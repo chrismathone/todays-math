@@ -7,6 +7,7 @@ import { MIDDLE_REMAINING_FAMILIES } from "./remaining";
 import { inverseCoefficientSum } from "./inverseCoefficient";
 import { inverseRootTable } from "./inverseRootTable";
 import { inverseMinimum } from "./inverseMinimum";
+import { inverseTangentRectangle } from "./inverseTangentRectangle";
 
 export { MIDDLE_REMAINING_FAMILIES } from "./remaining";
 
@@ -28,4 +29,5 @@ export const MIDDLE_STUDY_FAMILIES: readonly ExamStudyFamily[] = [
   inverseCoefficientSum,
   inverseRootTable,
   inverseMinimum,
+  inverseTangentRectangle,
 ];

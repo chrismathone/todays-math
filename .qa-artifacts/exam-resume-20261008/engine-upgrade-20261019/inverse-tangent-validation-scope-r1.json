@@ -1,0 +1,28 @@
+{
+  "files": [
+    "src/lib/examStudy/families/middle/inverseTangentRectangle.ts",
+    "src/contracts/examStudy.contract.ts",
+    "src/lib/examStudy/requirements.ts",
+    "src/lib/examStudy/families/middle/index.ts",
+    "src/lib/examStudy/releaseEligibility.ts",
+    "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+    "src/__tests__/unit/examStudyInverseMinimum.test.ts"
+  ],
+  "tests": [
+    "src/__tests__/unit/examStudyContract.test.ts",
+    "src/__tests__/unit/examStudyIntegration.test.ts",
+    "src/__tests__/unit/examStudyAccess.test.ts",
+    "src/__tests__/unit/examStudyRoutes.test.ts",
+    "src/__tests__/unit/examStudyCore.test.ts",
+    "src/__tests__/unit/examStudyCoreLegacy.test.ts",
+    "src/__tests__/unit/examStudyCompletion.test.ts",
+    "src/__tests__/unit/examStudyChoiceBounds.test.ts",
+    "src/__tests__/unit/examStudyCurriculumEligibility.test.ts",
+    "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+    "src/__tests__/unit/examStudyInverseMinimum.test.ts",
+    "src/__tests__/unit/examStudyInverseRootTable.test.ts",
+    "src/__tests__/unit/examStudyInverseCoefficient.test.ts"
+  ],
+  "sourceOnlyNoSharedInstall": true,
+  "dbWrites": 0
+}

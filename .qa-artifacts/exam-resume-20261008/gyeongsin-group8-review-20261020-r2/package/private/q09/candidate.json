@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 9,
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group8-r2-q09",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 6,
+  "content": "그림과 같이 $\\angle PRQ=90^\\circ$인 직각삼각형 $PQR$에서 원 $O$의 중심은 빗변 $PQ$ 위에 있다. 이 원은 두 변 $RP$, $RQ$에 각각 $F$, $G$에서 접한다. 원의 반지름의 길이가 $3\\,\\mathrm{cm}$이고 $\\overline{RP}=5\\,\\mathrm{cm}$일 때, 선분 $RQ$의 길이는?",
+  "choices": [
+    "$7\\,\\mathrm{cm}$",
+    "$\\frac{15}{2}\\,\\mathrm{cm}$",
+    "$8\\,\\mathrm{cm}$",
+    "$\\frac{17}{2}\\,\\mathrm{cm}$",
+    "$9\\,\\mathrm{cm}$"
+  ],
+  "answer": "②",
+  "solution": "원의 접점을 지나는 반지름은 접선과 수직이므로 $OF\\perp RP$, $OG\\perp RQ$이고 $OF=OG=3\\,\\mathrm{cm}$이다. 선분 $RO$를 긋자. 점 $O$가 선분 $PQ$ 위에 있으므로 삼각형 $PQR$의 넓이는 삼각형 $PRO$와 $QRO$의 넓이의 합과 같다.\n\n$RQ=x\\,\\mathrm{cm}$라 하자. 삼각형 $PRO$에서 밑변 $RP$에 대한 높이는 $OF$이고, 삼각형 $QRO$에서 밑변 $RQ$에 대한 높이는 $OG$이다. 따라서\n$\\displaystyle \\frac12\\cdot5x=\\frac12\\cdot5\\cdot3+\\frac12\\cdot x\\cdot3$이다.\n\n양변에 $2$를 곱하여 정리하면 $5x=15+3x$이므로 $x=\\frac{15}{2}$이다. 이 값은 반지름 $3$보다 커 접점이 선분 내부에 놓이는 길이 조건을 만족한다. 일차식에서 양의 길이가 하나로 정해지므로 구하는 길이는 $\\frac{15}{2}\\,\\mathrm{cm}$이고 정답은 ②이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsin-3-2-mid-9",
+    "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group8-r2-q09",
+    "sourceContentSha256": "ce401e03fc781709212ea7c3c9197cfbb00075fdfd5a59b9ad0873ef4bffb211",
+    "sourceSchoolInternal": "경신중학교",
+    "sourceExamYear": 2025,
+    "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+      "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    ],
+    "actualReference": "OriginalH page3 printedq9 actually viewed: hypotenuse center, two perpendicular tangent legs and6points. Component only, not wholepair/year/rights certification.",
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group8-r2/source-q09-component-observation-r1.json",
+      "sha256": "99cbd314f5fd5da2c598297601b290435a93e2d96e11b678e7bd05bf06bbc137"
+    },
+    "sourceCropViewed": true,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "originalQuestionRender": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-03.webp",
+      "sha256": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+      "physicalPdfPage": 3,
+      "printedQuestion": 9
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "두 직각변의 길이에서 반지름을 구한 후 기약분수 분자와 분모의 합을 묻는다.",
+    "after": "반지름과 한 직각변의 길이를 주고 다른 직각변의 길이를 복원한다.",
+    "sharedConcept": "원의 접선과 반지름의 수직, 빗변 위 중심으로 분할된 두 삼각형의 같은 높이 관계",
+    "sharedProcedure": "두 접점까지의 반지름을 높이로 확인→직각삼각형을 중심을 지나게 나눈 넓이 관계→일차식으로 양수 길이 결정",
+    "actualStructuralChange": "원문의 출력인 반지름을 새 입력으로 옮기고 원문의 입력인 직각변을 질문으로 역전했다. 기약분수의 분자/분모 합 형식 대신 실제 선분 길이를 묻는다. 새 조건과 배치/점 이름으로 도형을 전량 작도한다.",
+    "domainProof": "두배정수 좌표로O가P와Q사이이고 두직각변까지의 거리가3이며 접점이각선분내부임을확인했다. a5>r3이고 ax=r(a+x)에서(a-r)x=ra이므로 x15/2만가능하다. 양수접점/단위/서로다른다섯보기검산. 픽셀계산을사용하지않는다.",
+    "difficultyBasis": "원문6점을유지하는심화하제안이다. 원문과공유한넓이/높이관계에서질문방향을바꾸며인위적인분자분모합계산을제거했다. 실측난도동등성은보류하고독립검수대상이다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-19"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수04-19",
+      "actualScope": "2015 circle chord/tangent properties, with similarity/Pythagoras prerequisite standards; no general circle proportion formula"
+    },
+    "legitimateMethodDraft": "원의 접선에 수직인 반지름, 이미 배운 삼각형 넓이와 넓이의 덧셈, 일차방정식을 쓴다. 좌표·원의방정식·고등삼각비·원과비례를학생필수방법으로요구하지않는다.",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figureTable": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 6,
+    "difficultyProposal": "심화하",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "빗변 위 중심과 반지름 조건에서 직각변 길이 역추론",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+        "capturedAt": "2026-10-19 18:07:30.165227+00"
+      },
+      "evidence": "원의접선 실제UnitUUID 유지. 빗변위중심/두변접촉/넓이분할의 정확한 livefamily는 불명이다. 내접원이나 직사각형 접선16으로 자동 분류하지 않는다."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-FigureSpec-v2-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "Doubled exact integer coordinates prove center-on-segment, tangent perpendicularity and interior contacts. Floats position points only.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-q09-r2.ts",
+      "renderingReviewPending": true,
+      "lengthUnit": "cm",
+      "numericConditionsOnlyInStem": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": null,
+    "prerequisiteUnits": [],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "원의접선과반지름의수직",
+        "삼각형의넓이",
+        "일차방정식"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "namedPrerequisitesWithoutCapturedUuid": [
+      "삼각형의 넓이",
+      "한변위점에의한삼각형넓이분할",
+      "일차방정식"
+    ]
+  }
+}

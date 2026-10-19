@@ -1,0 +1,159 @@
+import { describe, expect, it, vi } from "vitest";
+import type { ExamStudyDraft } from "@/contracts/examStudy.contract";
+import { studyRequirementIdSchema } from "@/contracts/examStudy.contract";
+import {
+  inverseTangentRectangle as family,
+  inverseTangentRectangleStudyMetadata as metadata,
+} from "@/lib/examStudy/families/middle/inverseTangentRectangle";
+import { generateExamStudy } from "@/lib/examStudy/generate";
+import {
+  examStudyFamilies,
+  getExamStudyCatalog,
+} from "@/lib/examStudy/registry";
+import { familyCoverage } from "@/lib/examStudy/evidence";
+import { studyReleaseHold } from "@/lib/examStudy/releaseEligibility";
+import { checkPaperRender } from "@/lib/testchanger/mathRenderQa";
+
+const demand = "geometry.inverse-tangent-rectangle" as const;
+function independentlySolve(item: ExamStudyDraft) {
+  const width = BigInt(item.content.match(/BC\}=(\d+)/)![1]),
+    a = BigInt(item.content.match(/AE\}=(\d+)/)![1]);
+  // Enumerate a DIFFERENT unknown, the rectangle's full height. No producer
+  // parameters, answer, geometry helper or claimed figure dimensions are inputs.
+  const solutions: { height: bigint; tangent: bigint }[] = [];
+  for (let h = BigInt(1); h <= BigInt(500); h++) {
+    if (h < width || h <= a || BigInt(2) * a <= width || a >= width) continue;
+    const lower = h - a,
+      tangent = h + a - width;
+    if (
+      tangent > BigInt(0) &&
+      tangent * tangent === width * width + lower * lower
+    )
+      solutions.push({ height: h, tangent });
+  }
+  expect(solutions).toHaveLength(1);
+  return { width, a, ...solutions[0] };
+}
+
+describe("review-only inverse tangent rectangle", () => {
+  it("solves every printed case by a separate exact height search and proves geometry exists", () => {
+    const texts = new Set<string>();
+    for (let i = 0; i < 10; i++) {
+      const item = family.generate(0, i),
+        solved = independentlySolve(item);
+      expect(item.answer).toBe(`$${solved.tangent}\\,\\mathrm{cm}$`);
+      expect(family.verify(item).valid).toBe(true);
+      const r = solved.width / BigInt(2),
+        s = solved.a - r,
+        lower = solved.height - solved.a;
+      expect(s > BigInt(0) && lower > BigInt(0)).toBe(true);
+      expect(solved.height > BigInt(2) * r).toBe(true);
+      // EO² = r²+s², CO² = r²+(h-r)²; area of EOC gives
+      // distance(O,EC)=r. Fractions are cleared with integers.
+      const eo2 = r * r + s * s,
+        co2 = r * r + (solved.height - r) ** BigInt(2);
+      expect(eo2 * co2).toBe(r * r * solved.tangent * solved.tangent);
+      expect(eo2 / solved.tangent).toBe(s);
+      expect(eo2 % solved.tangent).toBe(BigInt(0));
+      for (const text of [item.content, item.answer, item.solution])
+        expect(checkPaperRender(text).safe).toBe(true);
+      texts.add(item.content);
+    }
+    expect(texts.size).toBe(10);
+  });
+  it("rejects changed givens, targets, answers, methods, figures and unreviewed formats", () => {
+    for (let i = 0; i < 10; i++) {
+      const item = family.generate(0, i);
+      const mutations: ExamStudyDraft[] = [
+        { ...item, answer: "$99\\,\\mathrm{cm}$" },
+        { ...item, answer: item.answer.replace("cm}", "cm}^2") },
+        { ...item, content: item.content.replace("접한다", "만난다") },
+        {
+          ...item,
+          content: item.content.replace(
+            "선분 $EC$의 길이를",
+            "선분 $AB$의 길이를",
+          ),
+        },
+        { ...item, content: item.content.replace(/AE\}=\d+/, "AE}=1") },
+        { ...item, parameters: { ...item.parameters, upperPart: 0 } },
+        { ...item, parameters: { ...item.parameters, extra: 1 } },
+        { ...item, solution: item.solution + " 미분으로 구한다." },
+        { ...item, figureSpec: { version: 2, points: {} } },
+        { ...item, difficulty: "기본" },
+        { ...item, questionType: "객관식", distractors: ["1", "2", "3", "4"] },
+        { ...item, questionType: "서술형" },
+      ];
+      for (const changed of mutations)
+        expect(family.verify(changed).valid).toBe(false);
+    }
+  });
+  it("copies finite parameters and reproduces safe seeds without changing legacy generators", () => {
+    expect(family.paramDomain.kind).toBe("finite");
+    if (family.paramDomain.kind !== "finite") throw new Error("finite");
+    expect(family.paramDomain.enumerate()).toHaveLength(10);
+    const first = family.paramDomain.enumerate();
+    Reflect.set(first[0], "width", 999); // Simulate a caller bypassing the readonly type.
+    expect(family.paramDomain.enumerate()[0].width).toBe(4);
+    for (const seed of [
+      -Number.MAX_SAFE_INTEGER,
+      -1,
+      0,
+      1,
+      Number.MAX_SAFE_INTEGER,
+    ]) {
+      const one = family.generate(seed, 9);
+      expect(family.generate(seed, 9)).toEqual(one);
+      expect(family.verify(one).valid).toBe(true);
+    }
+    for (const v of [-1, NaN, Infinity, Number.MAX_SAFE_INTEGER + 1])
+      expect(() => family.generate(0, v)).toThrow();
+  });
+  it.each(["객관식", "단답형", "서술형"] as const)(
+    "holds public %s before factory execution even under caller approval labels",
+    async (format) => {
+      for (const change of [
+        {},
+        { id: "renamed", version: "999" },
+        {
+          gradeApproved: true,
+          rightsApproved: true,
+          confidence: 1,
+          curriculum: "2022",
+        },
+        { fulfills: [{ requirement: demand, level: "component" as const }] },
+      ]) {
+        const generate = vi.fn(family.generate),
+          f = { ...family, ...change, generate };
+        const result = await generateExamStudy(
+          {
+            course: "중3",
+            familyIds: [f.id],
+            requirementIds: [demand],
+            count: 1,
+            maxPerFamily: 1,
+            seed: 7,
+            format,
+          },
+          { families: [f] },
+        );
+        expect(result.status).toBe("unavailable");
+        expect(result.questions).toEqual([]);
+        expect(generate).not.toHaveBeenCalled();
+        expect(studyReleaseHold(f)?.status).toBe("review-only-template");
+        expect(familyCoverage(f, demand)).toBe("unavailable");
+      }
+    },
+  );
+  it("registers the internal requirement while hiding it from public catalogs and retaining grade/rights holds", () => {
+    expect(studyRequirementIdSchema.parse(demand)).toBe(demand);
+    expect(examStudyFamilies().some((f) => f.id === family.id)).toBe(true);
+    expect(
+      getExamStudyCatalog("중3").families.some((f) => f.id === family.id),
+    ).toBe(false);
+    expect(metadata.unitId).toBe("635abab8-4a87-452b-ad6c-d59065822f29");
+    expect(metadata.proposedCurriculum.from2027).toBe("2022-review-required");
+    expect(metadata.rightsApproved).toBe(false);
+    expect(metadata.loadable).toBe(false);
+  });
+});

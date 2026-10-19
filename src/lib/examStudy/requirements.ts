@@ -16,6 +16,14 @@ type Dimensions = readonly [
 
 /** Mathematical demands only. Source wording, coefficients and source figures are absent. */
 const DIMENSIONS: Record<StudyRequirementId, Dimensions> = {
+  "geometry.inverse-tangent-rectangle": [
+    "직사각형의 부분 길이에서 전체 접선 복원",
+    ["원의 접선", "직사각형", "피타고라스", "일차방정식"],
+    ["지름과 가로 길이", "접선 분할", "피타고라스 역산", "양수 길이 유일성"],
+    "figure-required",
+    "exclude",
+    ["단답형"],
+  ],
   "number.inverse-extreme-range": [
     "최대·최소 차이에서 누락된 최솟값 복원",
     ["제곱근의 대소", "최댓값·최솟값", "동류근호항 계산"],

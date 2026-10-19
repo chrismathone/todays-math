@@ -1,7 +1,7 @@
 import type { ExamStudyFamily } from "@/contracts/examStudy.contract";
 
 export const STUDY_RELEASE_POLICY_VERSION =
-  "20261020-source-informed-template-review-r3";
+  "20261020-source-informed-template-review-r4";
 
 const INVERSE_COEFFICIENT_REVIEW = Object.freeze({
   status: "review-only-template" as const,
@@ -39,6 +39,18 @@ const INVERSE_MINIMUM_REVIEW = Object.freeze({
     "학생 문장 설계의 검토는 실제 해설·factory·학년·live family·권리·native 사용 승인이 아니다.",
 });
 
+const INVERSE_TANGENT_RECTANGLE_REVIEW = Object.freeze({
+  status: "review-only-template" as const,
+  message:
+    "접선 길이 역추론 유형은 전체 학년·도형·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+  evidence:
+    ".qa-artifacts/exam-resume-20261008/gyeongsin-group7-review-20261020-r2/current-author-summary-parent-r1.json",
+  evidenceSha256:
+    "6ec79748c2e90da690ca71c0776fe0914589e2ba21adb67ded5edb61c44a219b",
+  basis:
+    "한 문항의 검수나 기존 family 후보는 새 factory 전체의 학년·교육과정·형식·권리·native 승인이 아니다. 2022 배치도 보류한다.",
+});
+
 /** No ID, version, confidence or caller-supplied approval clears this study hold. */
 export function studyReleaseHold(
   family: Pick<ExamStudyFamily, "fulfills">,
@@ -46,7 +58,14 @@ export function studyReleaseHold(
   | typeof INVERSE_COEFFICIENT_REVIEW
   | typeof INVERSE_ROOT_TABLE_REVIEW
   | typeof INVERSE_MINIMUM_REVIEW
+  | typeof INVERSE_TANGENT_RECTANGLE_REVIEW
   | null {
+  if (
+    family.fulfills.some(
+      (f) => f.requirement === "geometry.inverse-tangent-rectangle",
+    )
+  )
+    return INVERSE_TANGENT_RECTANGLE_REVIEW;
   if (
     family.fulfills.some(
       (f) => f.requirement === "algebra.inverse-coefficient-sum",

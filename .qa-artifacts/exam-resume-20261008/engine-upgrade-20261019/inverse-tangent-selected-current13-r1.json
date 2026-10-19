@@ -1,0 +1,2790 @@
+{
+  "kind": "selection-from-actual-vitest-report/v1",
+  "utc": "2026-10-19T18:35:33.873Z",
+  "rawReport": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-tangent-tests-r1.json",
+    "sha256": "bdfc6c9926a547bf6eb940a7c4648fa771743c8c2c7cb5f33b78a628ce8b62ee",
+    "actualFiles": 15,
+    "actualPassed": 236
+  },
+  "selectedCurrentFiles": 13,
+  "selectedCurrentPassed": 220,
+  "excludedArchivedCopies": [
+    {
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-tangent-first-code-20261020-r1/src/__tests__/unit/examStudyInverseMinimum.test.ts",
+      "assertions": 9,
+      "status": "passed"
+    },
+    {
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-tangent-first-code-20261020-r1/src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+      "assertions": 7,
+      "status": "passed"
+    }
+  ],
+  "numPassedTests": 220,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu home",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu home",
+          "duration": 122.06759999999986,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu bank",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu bank",
+          "duration": 1.7203999999996995,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu arithmetic",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu arithmetic",
+          "duration": 1.8487999999997555,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu studio",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu studio",
+          "duration": 1.1435999999998785,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu export",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu export",
+          "duration": 1.2190999999997985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu library",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu library",
+          "duration": 0.9655999999999949,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu textbook",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu textbook",
+          "duration": 1.048899999999776,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu teaching",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu teaching",
+          "duration": 1.0401999999999134,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu concept",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu concept",
+          "duration": 1.6901000000002568,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu conceptBlank",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu conceptBlank",
+          "duration": 1.8706999999999425,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu srs",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu srs",
+          "duration": 1.2446999999997388,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu english-school",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu english-school",
+          "duration": 1.048699999999826,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu english-maker",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu english-maker",
+          "duration": 1.147399999999834,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu english-library",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu english-library",
+          "duration": 0.7928999999999178,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu english-listening",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu english-listening",
+          "duration": 0.743199999999888,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy uses the same feature boundary for menu english-bank",
+          "status": "passed",
+          "title": "uses the same feature boundary for menu english-bank",
+          "duration": 1.5320999999999003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy preserves textbook output without treating it as an exam-practice grant",
+          "status": "passed",
+          "title": "preserves textbook output without treating it as an exam-practice grant",
+          "duration": 2.0561000000002423,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam-practice output menu policy"
+          ],
+          "fullName": "exam-practice output menu policy keeps approval required even with a valid output menu",
+          "status": "passed",
+          "title": "keeps approval required even with a valid output menu",
+          "duration": 1.5075999999999112,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434542092,
+      "endTime": 1792434542237.5076,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyAccess.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "examStudy statement-count choice bounds"
+          ],
+          "fullName": "examStudy statement-count choice bounds fixes the actual old EQ06 family-seed 1638860089 repro without modifying the general engine",
+          "status": "passed",
+          "title": "fixes the actual old EQ06 family-seed 1638860089 repro without modifying the general engine",
+          "duration": 149.82470000000103,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "examStudy statement-count choice bounds"
+          ],
+          "fullName": "examStudy statement-count choice bounds fixes the actual old EQ09 family-seed 648800451 repro without modifying the general engine",
+          "status": "passed",
+          "title": "fixes the actual old EQ09 family-seed 648800451 repro without modifying the general engine",
+          "duration": 26.36569999999847,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "examStudy statement-count choice bounds"
+          ],
+          "fullName": "examStudy statement-count choice bounds fixes the actual old EQ09 family-seed 1360768244 repro without modifying the general engine",
+          "status": "passed",
+          "title": "fixes the actual old EQ09 family-seed 1360768244 repro without modifying the general engine",
+          "duration": 27.204200000000128,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "examStudy statement-count choice bounds"
+          ],
+          "fullName": "examStudy statement-count choice bounds covers every admissible answer at counts 4..12 and 20 option orders, including 0/n",
+          "status": "passed",
+          "title": "covers every admissible answer at counts 4..12 and 20 option orders, including 0/n",
+          "duration": 1089.6306000000004,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "examStudy statement-count choice bounds"
+          ],
+          "fullName": "examStudy statement-count choice bounds fails closed when five distinct possible choices do not exist or the claimed answer is impossible",
+          "status": "passed",
+          "title": "fails closed when five distinct possible choices do not exist or the claimed answer is impossible",
+          "duration": 3.7901999999994587,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "examStudy statement-count choice bounds"
+          ],
+          "fullName": "examStudy statement-count choice bounds rejects injected out-of-range, equivalent, fractional and malformed distractors",
+          "status": "passed",
+          "title": "rejects injected out-of-range, equivalent, fractional and malformed distractors",
+          "duration": 2.8170000000027358,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "examStudy statement-count choice bounds"
+          ],
+          "fullName": "examStudy statement-count choice bounds runs request seeds 71/20261019 through the actual core and rejects mutated returned choices: legacy:mid:1-1|일차방정식의 풀이|06",
+          "status": "passed",
+          "title": "runs request seeds 71/20261019 through the actual core and rejects mutated returned choices: legacy:mid:1-1|일차방정식의 풀이|06",
+          "duration": 49.21969999999783,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "examStudy statement-count choice bounds"
+          ],
+          "fullName": "examStudy statement-count choice bounds runs request seeds 71/20261019 through the actual core and rejects mutated returned choices: legacy:mid:1-1|일차방정식의 풀이|09",
+          "status": "passed",
+          "title": "runs request seeds 71/20261019 through the actual core and rejects mutated returned choices: legacy:mid:1-1|일차방정식의 풀이|09",
+          "duration": 38.185199999999895,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "examStudy statement-count choice bounds"
+          ],
+          "fullName": "examStudy statement-count choice bounds keeps non-list numeric count derivation and canonical keys unchanged",
+          "status": "passed",
+          "title": "keeps non-list numeric count derivation and canonical keys unchanged",
+          "duration": 1.7839999999996508,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434527167,
+      "endTime": 1792434528555.784,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyChoiceBounds.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API provides the selected demands within the grade eligibility gate for 'daeryun-m1'",
+          "status": "passed",
+          "title": "provides the selected demands within the grade eligibility gate for 'daeryun-m1'",
+          "duration": 14851.168999999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API provides the selected demands within the grade eligibility gate for 'daeryun-m2'",
+          "status": "passed",
+          "title": "provides the selected demands within the grade eligibility gate for 'daeryun-m2'",
+          "duration": 492.9821000000011,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API provides the selected demands within the grade eligibility gate for 'kyungmyung-m1'",
+          "status": "passed",
+          "title": "provides the selected demands within the grade eligibility gate for 'kyungmyung-m1'",
+          "duration": 136.1398999999983,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'",
+          "status": "passed",
+          "title": "provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'",
+          "duration": 1289.8654999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API provides the selected demands within the grade eligibility gate for 'kyungshin-common2'",
+          "status": "passed",
+          "title": "provides the selected demands within the grade eligibility gate for 'kyungshin-common2'",
+          "duration": 181.1169000000009,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for daeryun-m1 / model.doubling-time-offset without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for daeryun-m1 / model.doubling-time-offset without component substitution",
+          "duration": 133.08179999999993,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for daeryun-m1 / model.circle-revolution-percentage without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for daeryun-m1 / model.circle-revolution-percentage without component substitution",
+          "duration": 131.87840000000142,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for daeryun-m1 / number.coprime-symbolic-sum without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for daeryun-m1 / number.coprime-symbolic-sum without component substitution",
+          "duration": 130.59150000000227,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for daeryun-m2 / coord.intercept-integer-area without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for daeryun-m2 / coord.intercept-integer-area without component substitution",
+          "duration": 146.07830000000104,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for daeryun-m2 / graph.translated-coefficient-reuse without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for daeryun-m2 / graph.translated-coefficient-reuse without component substitution",
+          "duration": 137.8173999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for kyungmyung-m1 / algebra.candidate-verification without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for kyungmyung-m1 / algebra.candidate-verification without component substitution",
+          "duration": 139.88999999999942,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for kyungmyung-m1 / algebra.equality-truth without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for kyungmyung-m1 / algebra.equality-truth without component substitution",
+          "duration": 134.8924999999981,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for kyungmyung-m1 / algebra.equation-classification without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for kyungmyung-m1 / algebra.equation-classification without component substitution",
+          "duration": 148.09859999999753,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for kyungmyung-m1 / algebra.linear-model without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for kyungmyung-m1 / algebra.linear-model without component substitution",
+          "duration": 134.77500000000146,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for kyungmyung-m1 / algebra.linear-simplify without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for kyungmyung-m1 / algebra.linear-simplify without component substitution",
+          "duration": 132.7023999999983,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for kyungmyung-m3 / graph.translated-coefficient-reuse without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for kyungmyung-m3 / graph.translated-coefficient-reuse without component substitution",
+          "duration": 133.8585000000021,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for kyungmyung-m3 / written.rectangle-domain without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for kyungmyung-m3 / written.rectangle-domain without component substitution",
+          "duration": 136.71879999999874,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API honors eligibility for kyungshin-common2 / function.radical-inverse-circle without component substitution",
+          "status": "passed",
+          "title": "honors eligibility for kyungshin-common2 / function.radical-inverse-circle without component substitution",
+          "duration": 178.40760000000228,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API keeps the approved per-menu output rule for bank",
+          "status": "passed",
+          "title": "keeps the approved per-menu output rule for bank",
+          "duration": 135.95000000000073,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API keeps the approved per-menu output rule for arithmetic",
+          "status": "passed",
+          "title": "keeps the approved per-menu output rule for arithmetic",
+          "duration": 140.31589999999778,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API keeps the approved per-menu output rule for studio",
+          "status": "passed",
+          "title": "keeps the approved per-menu output rule for studio",
+          "duration": 133.6784000000007,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API keeps the approved per-menu output rule for library",
+          "status": "passed",
+          "title": "keeps the approved per-menu output rule for library",
+          "duration": 130.82240000000093,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API keeps the approved per-menu output rule for conceptBlank",
+          "status": "passed",
+          "title": "keeps the approved per-menu output rule for conceptBlank",
+          "duration": 137.63190000000031,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API denies an account with no output menu: [ 'export' ]",
+          "status": "passed",
+          "title": "denies an account with no output menu: [ 'export' ]",
+          "duration": 2.1352999999980966,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API denies an account with no output menu: [ 'textbook' ]",
+          "status": "passed",
+          "title": "denies an account with no output menu: [ 'textbook' ]",
+          "duration": 1.8479999999981374,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API denies an account with no output menu: []",
+          "status": "passed",
+          "title": "denies an account with no output menu: []",
+          "duration": 1.4673000000002503,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API bounds actual count-question choices for reproduced seed 71",
+          "status": "passed",
+          "title": "bounds actual count-question choices for reproduced seed 71",
+          "duration": 146.39719999999943,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API bounds actual count-question choices for reproduced seed 20261019",
+          "status": "passed",
+          "title": "bounds actual count-question choices for reproduced seed 20261019",
+          "duration": 155.40879999999743,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "completed selected school-study demands through the actual API"
+          ],
+          "fullName": "completed selected school-study demands through the actual API keeps native writing unavailable as short answer without silently changing the requested format",
+          "status": "passed",
+          "title": "keeps native writing unavailable as short answer without silently changing the requested format",
+          "duration": 64.9922000000006,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434334696,
+      "endTime": 1792434354517.9922,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyCompletion.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary accepts bounded generation without a stored original or a school",
+          "status": "passed",
+          "title": "accepts bounded generation without a stored original or a school",
+          "duration": 100.08300000000008,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"original\":\"원문\"}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"original\":\"원문\"}",
+          "duration": 2.641900000000078,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"content\":\"본문\"}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"content\":\"본문\"}",
+          "duration": 1.2078000000001339,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"svg\":\"<svg/>\"}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"svg\":\"<svg/>\"}",
+          "duration": 0.8130000000001019,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"count\":0}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"count\":0}",
+          "duration": 1.2903999999998632,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"count\":31}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"count\":31}",
+          "duration": 0.870600000000195,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"count\":1.5}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"count\":1.5}",
+          "duration": 1.3029999999998836,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"seed\":-1}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"seed\":-1}",
+          "duration": 1.1875,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"seed\":9007199254740991}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"seed\":9007199254740991}",
+          "duration": 1.6035000000001673,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"course\":\"미상\"}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"course\":\"미상\"}",
+          "duration": 2.1813999999999396,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"format\":\"계산을 서술형으로\"}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"format\":\"계산을 서술형으로\"}",
+          "duration": 1.4130999999997584,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"maxPerFamily\":0}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"maxPerFamily\":0}",
+          "duration": 1.0542999999997846,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"familyIds\":[\"a\",\"a\"]}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"familyIds\":[\"a\",\"a\"]}",
+          "duration": 1.6977999999999156,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"requirementIds\":[\"학교이름으로추측\"]}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"requirementIds\":[\"학교이름으로추측\"]}",
+          "duration": 1.0401999999999134,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary rejects unsafe, unbounded or ambiguous input: {\"requirementIds\":[\"algebra.linear-simplify\",\"algebra.linear-simplify\"]}",
+          "status": "passed",
+          "title": "rejects unsafe, unbounded or ambiguous input: {\"requirementIds\":[\"algebra.linear-simplify\",\"algebra.linear-simplify\"]}",
+          "duration": 0.9162999999998647,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary has a unique school-independent demand vocabulary",
+          "status": "passed",
+          "title": "has a unique school-independent demand vocabulary",
+          "duration": 1.2986000000000786,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "original exam-study request boundary"
+          ],
+          "fullName": "original exam-study request boundary output recheck requires a pinned digest and forbids client-authored questions",
+          "status": "passed",
+          "title": "output recheck requires a pinned digest and forbids client-authored questions",
+          "duration": 2.492200000000139,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434545519,
+      "endTime": 1792434545642.4922,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyContract.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"count\":0}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"count\":0}",
+          "duration": 156.4355999999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"count\":31}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"count\":31}",
+          "duration": 2.0109000000002197,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"count\":1.5}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"count\":1.5}",
+          "duration": 2.0794000000005326,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"seed\":-1}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"seed\":-1}",
+          "duration": 1.41990000000078,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"seed\":null}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"seed\":null}",
+          "duration": 2.0354999999999563,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"seed\":0.5}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"seed\":0.5}",
+          "duration": 1.4465000000000146,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"maxPerFamily\":0}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"maxPerFamily\":0}",
+          "duration": 1.672099999999773,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"maxPerFamily\":31}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"maxPerFamily\":31}",
+          "duration": 1.0351000000000568,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"course\":\"고3\"}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"course\":\"고3\"}",
+          "duration": 1.8085000000000946,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"format\":\"주관식\"}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"format\":\"주관식\"}",
+          "duration": 1.4954999999999927,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"difficulty\":\"상\"}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"difficulty\":\"상\"}",
+          "duration": 1.1437999999998283,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"familyIds\":[]}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"familyIds\":[]}",
+          "duration": 2.4221000000006825,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"familyIds\":[\"a\",\"a\"]}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"familyIds\":[\"a\",\"a\"]}",
+          "duration": 2.026699999999437,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"requirementIds\":[\"algebra.linear-simplify\",\"algebra.linear-simplify\"]}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"requirementIds\":[\"algebra.linear-simplify\",\"algebra.linear-simplify\"]}",
+          "duration": 1.5095000000001164,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"requirementIds\":[\"made-up\"]}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"requirementIds\":[\"made-up\"]}",
+          "duration": 1.6432000000004336,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"originalStem\":\"untrusted\"}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"originalStem\":\"untrusted\"}",
+          "duration": 1.6419999999998254,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"coefficients\":[1,2]}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"coefficients\":[1,2]}",
+          "duration": 0.9983999999994921,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unsupported or source-bearing input {\"figureSpec\":{}}",
+          "status": "passed",
+          "title": "rejects unsupported or source-bearing input {\"figureSpec\":{}}",
+          "duration": 0.9409999999998035,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary enforces bytes, a closed vocabulary, and normalized defaults",
+          "status": "passed",
+          "title": "enforces bytes, a closed vocabulary, and normalized defaults",
+          "duration": 4.310299999999188,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects unregistered and cross-course family/profile injection",
+          "status": "passed",
+          "title": "rejects unregistered and cross-course family/profile injection",
+          "duration": 18.362100000000282,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study strict boundary"
+          ],
+          "fullName": "exam study strict boundary rejects conflicting school attribution and out-of-scope selected demands",
+          "status": "passed",
+          "title": "rejects conflicting school attribution and out-of-scope selected demands",
+          "duration": 4.313299999999799,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity counterfactual profiles in the same range select different mathematics",
+          "status": "passed",
+          "title": "counterfactual profiles in the same range select different mathematics",
+          "duration": 26.401700000000346,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity school/alias/region/label renaming leaves math, seeds and digest unchanged",
+          "status": "passed",
+          "title": "school/alias/region/label renaming leaves math, seeds and digest unchanged",
+          "duration": 9.192000000000007,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity profile revision and actual demand changes change the pinned digest",
+          "status": "passed",
+          "title": "profile revision and actual demand changes change the pinned digest",
+          "duration": 8.471400000000358,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity maximum matching reallocates a flexible family to avoid greedy starvation",
+          "status": "passed",
+          "title": "maximum matching reallocates a flexible family to avoid greedy starvation",
+          "duration": 9.719600000000355,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity joint demands cannot be declared complete from count alone",
+          "status": "passed",
+          "title": "joint demands cannot be declared complete from count alone",
+          "duration": 3.6159999999999854,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity weights allocate finite quotas jointly with a minimum for every demand",
+          "status": "passed",
+          "title": "weights allocate finite quotas jointly with a minimum for every demand",
+          "duration": 1.7645999999995183,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity a single task can fulfill several independently verified demands",
+          "status": "passed",
+          "title": "a single task can fulfill several independently verified demands",
+          "duration": 6.953199999999924,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity lowers declared full with missing evidence gap",
+          "status": "passed",
+          "title": "lowers declared full with missing evidence gap",
+          "duration": 4.965900000000147,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity lowers declared full with test evidence gap",
+          "status": "passed",
+          "title": "lowers declared full with test evidence gap",
+          "duration": 3.275399999999536,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity lowers declared full with samples evidence gap",
+          "status": "passed",
+          "title": "lowers declared full with samples evidence gap",
+          "duration": 4.3661999999994805,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity lowers declared full with boundaries evidence gap",
+          "status": "passed",
+          "title": "lowers declared full with boundaries evidence gap",
+          "duration": 3.4234999999998763,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity lowers declared full with checks evidence gap",
+          "status": "passed",
+          "title": "lowers declared full with checks evidence gap",
+          "duration": 10.332400000000234,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity lowers declared full with scope evidence gap",
+          "status": "passed",
+          "title": "lowers declared full with scope evidence gap",
+          "duration": 4.338999999999942,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity requires each actual verifier to pass and carry its claimed checks",
+          "status": "passed",
+          "title": "requires each actual verifier to pass and carry its claimed checks",
+          "duration": 5.356300000000374,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "demand planning, evidence and deterministic identity"
+          ],
+          "fullName": "demand planning, evidence and deterministic identity unknown schools use explicitly warned general practice",
+          "status": "passed",
+          "title": "unknown schools use explicitly warned general practice",
+          "duration": 5.035300000000461,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces enforces a bare difficulty on actual output, including legacy unknown tiers",
+          "status": "passed",
+          "title": "enforces a bare difficulty on actual output, including legacy unknown tiers",
+          "duration": 3.8554000000003725,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces derives MC with established conversion while keeping logical/content identities",
+          "status": "passed",
+          "title": "derives MC with established conversion while keeping logical/content identities",
+          "duration": 13.668300000000272,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces never manufactures written tasks or relaxes fixed-MC/short-only policies",
+          "status": "passed",
+          "title": "never manufactures written tasks or relaxes fixed-MC/short-only policies",
+          "duration": 6.147100000000137,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces rejects an MC label without actual choices and valid answer marks",
+          "status": "passed",
+          "title": "rejects an MC label without actual choices and valid answer marks",
+          "duration": 2.350399999999354,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces rejects incorrect mathematics even if the generator self-reports success",
+          "status": "passed",
+          "title": "rejects incorrect mathematics even if the generator self-reports success",
+          "duration": 3.9057000000002517,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces does not infer written validity merely from a rubric field",
+          "status": "passed",
+          "title": "does not infer written validity merely from a rubric field",
+          "duration": 2.566000000000713,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces caps families by default and permits explicit distinct-parameter practice",
+          "status": "passed",
+          "title": "caps families by default and permits explicit distinct-parameter practice",
+          "duration": 3.0973000000003594,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces reports small finite exhaustion without manufacturing seeds/format clones",
+          "status": "passed",
+          "title": "reports small finite exhaustion without manufacturing seeds/format clones",
+          "duration": 3.199200000000019,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces refuses unsafe sampled retry bounds 0",
+          "status": "passed",
+          "title": "refuses unsafe sampled retry bounds 0",
+          "duration": 1.5038000000004104,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces refuses unsafe sampled retry bounds -1",
+          "status": "passed",
+          "title": "refuses unsafe sampled retry bounds -1",
+          "duration": 1.4208000000007814,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces refuses unsafe sampled retry bounds Infinity",
+          "status": "passed",
+          "title": "refuses unsafe sampled retry bounds Infinity",
+          "duration": 1.6858000000001994,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces refuses unsafe sampled retry bounds 361",
+          "status": "passed",
+          "title": "refuses unsafe sampled retry bounds 361",
+          "duration": 1.3256000000001222,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces refuses unsafe sampled retry bounds 1.5",
+          "status": "passed",
+          "title": "refuses unsafe sampled retry bounds 1.5",
+          "duration": 1.0981999999994514,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "strict formats, mathematical validation and bounded spaces"
+          ],
+          "fullName": "strict formats, mathematical validation and bounded spaces validates finite enumerator size, uniqueness, canonical domain and values",
+          "status": "passed",
+          "title": "validates finite enumerator size, uniqueness, canonical domain and values",
+          "duration": 5.665599999999358,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "logical/content deduplication and strict visual delivery"
+          ],
+          "fullName": "logical/content deduplication and strict visual delivery deduplicates aliases, same canonical tuple and identical content with different tuples",
+          "status": "passed",
+          "title": "deduplicates aliases, same canonical tuple and identical content with different tuples",
+          "duration": 5.317299999999705,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "logical/content deduplication and strict visual delivery"
+          ],
+          "fullName": "logical/content deduplication and strict visual delivery choice reorder/format twins have one mathematical digest",
+          "status": "passed",
+          "title": "choice reorder/format twins have one mathematical digest",
+          "duration": 3.6023999999997613,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "logical/content deduplication and strict visual delivery"
+          ],
+          "fullName": "logical/content deduplication and strict visual delivery deduplicates reordered multiple-selection choices and harmless math spacing",
+          "status": "passed",
+          "title": "deduplicates reordered multiple-selection choices and harmless math spacing",
+          "duration": 3.2020999999995183,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "logical/content deduplication and strict visual delivery"
+          ],
+          "fullName": "logical/content deduplication and strict visual delivery never delivers a figureSpec without actual preparation, even in general mode",
+          "status": "passed",
+          "title": "never delivers a figureSpec without actual preparation, even in general mode",
+          "duration": 5.813699999999699,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "logical/content deduplication and strict visual delivery"
+          ],
+          "fullName": "logical/content deduplication and strict visual delivery bounds render retry, refuses empty success, and continues to alternate parameters",
+          "status": "passed",
+          "title": "bounds render retry, refuses empty success, and continues to alternate parameters",
+          "duration": 9.30409999999938,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "logical/content deduplication and strict visual delivery"
+          ],
+          "fullName": "logical/content deduplication and strict visual delivery does not substitute a figure-free component for a visual requirement",
+          "status": "passed",
+          "title": "does not substitute a figure-free component for a visual requirement",
+          "duration": 2.6917999999996027,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "logical/content deduplication and strict visual delivery"
+          ],
+          "fullName": "logical/content deduplication and strict visual delivery SVG glyph IDs and renderer metadata do not alter content/generation digests",
+          "status": "passed",
+          "title": "SVG glyph IDs and renderer metadata do not alter content/generation digests",
+          "duration": 3.9202000000004773,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "aggregate source profiles"
+          ],
+          "fullName": "aggregate source profiles preserves source year/term/visibility/uncertainty and unmeasured calibration",
+          "status": "passed",
+          "title": "preserves source year/term/visibility/uncertainty and unmeasured calibration",
+          "duration": 4.203300000000127,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434534397,
+      "endTime": 1792434534807.2034,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyCore.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics forces natural and negative-integer branches and excludes zero/domain endpoints",
+          "status": "passed",
+          "title": "forces natural and negative-integer branches and excludes zero/domain endpoints",
+          "duration": 116.14450000000033,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics independently solves 64 actual outputs of 1-1|좌표와 그래프|06 and rejects wrong answers",
+          "status": "passed",
+          "title": "independently solves 64 actual outputs of 1-1|좌표와 그래프|06 and rejects wrong answers",
+          "duration": 123.22449999999935,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics independently solves 64 actual outputs of 2-1|일차함수와 그 그래프 ⑴|01 and rejects wrong answers",
+          "status": "passed",
+          "title": "independently solves 64 actual outputs of 2-1|일차함수와 그 그래프 ⑴|01 and rejects wrong answers",
+          "duration": 48.32679999999982,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics independently solves 64 actual outputs of 2-1|일차함수와 그 그래프 ⑵|01 and rejects wrong answers",
+          "status": "passed",
+          "title": "independently solves 64 actual outputs of 2-1|일차함수와 그 그래프 ⑵|01 and rejects wrong answers",
+          "duration": 41.71649999999954,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics independently solves 64 actual outputs of 2-1|일차부등식|118X and rejects wrong answers",
+          "status": "passed",
+          "title": "independently solves 64 actual outputs of 2-1|일차부등식|118X and rejects wrong answers",
+          "duration": 50.240999999999985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics independently solves 64 actual outputs of 1-1|일차방정식의 풀이|17 and rejects wrong answers",
+          "status": "passed",
+          "title": "independently solves 64 actual outputs of 1-1|일차방정식의 풀이|17 and rejects wrong answers",
+          "duration": 134.41499999999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics independently solves 64 actual outputs of 3-1|이차방정식의 활용|53V and rejects wrong answers",
+          "status": "passed",
+          "title": "independently solves 64 actual outputs of 3-1|이차방정식의 활용|53V and rejects wrong answers",
+          "duration": 28.247400000000198,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics covers every sign-condition/coordinate-transform branch and essential-condition removal",
+          "status": "passed",
+          "title": "covers every sign-condition/coordinate-transform branch and essential-condition removal",
+          "duration": 15.953499999999622,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics checks all 56 unordered selections of printed function relations, including nonuniqueness witnesses",
+          "status": "passed",
+          "title": "checks all 56 unordered selections of printed function relations, including nonuniqueness witnesses",
+          "duration": 4.448500000000422,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics tests all slope/intercept sign combinations, every quadrant, and independent truth/false flips",
+          "status": "passed",
+          "title": "tests all slope/intercept sign combinations, every quadrant, and independent truth/false flips",
+          "duration": 5.9473999999991065,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics enumerates original inequality truth rows at closed boundaries and rejects nonpositive infinite cases",
+          "status": "passed",
+          "title": "enumerates original inequality truth rows at closed boundaries and rejects nonpositive infinite cases",
+          "duration": 10.482600000000275,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "curated legacy evidence reads printed mathematics"
+          ],
+          "fullName": "curated legacy evidence reads printed mathematics keeps repeated roots and rejects irrational/negative-discriminant/nonnatural candidates",
+          "status": "passed",
+          "title": "keeps repeated roots and rejects irrational/negative-discriminant/nonnatural candidates",
+          "duration": 0.9932999999991807,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "readonly adapters and conservative catalogs"
+          ],
+          "fullName": "readonly adapters and conservative catalogs preserves original registry identities/counts and exposes actual supported courses only",
+          "status": "passed",
+          "title": "preserves original registry identities/counts and exposes actual supported courses only",
+          "duration": 13223.953899999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "readonly adapters and conservative catalogs"
+          ],
+          "fullName": "readonly adapters and conservative catalogs respects author short-only policies and never advertises written derivation",
+          "status": "passed",
+          "title": "respects author short-only policies and never advertises written derivation",
+          "duration": 6.517199999998411,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "readonly adapters and conservative catalogs"
+          ],
+          "fullName": "readonly adapters and conservative catalogs does not infer school full from a legacy title, and honors unsupported bare formats/difficulties",
+          "status": "passed",
+          "title": "does not infer school full from a legacy title, and honors unsupported bare formats/difficulties",
+          "duration": 17.244000000002416,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434439828,
+      "endTime": 1792434453656.244,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyCoreLegacy.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion keeps all fourteen mathematical proofs inspectable without offering the out-of-grade M1 task",
+          "status": "passed",
+          "title": "keeps all fourteen mathematical proofs inspectable without offering the out-of-grade M1 task",
+          "duration": 120.90359999999964,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion never generates a held item or calls its factory when format is 혼합",
+          "status": "passed",
+          "title": "never generates a held item or calls its factory when format is 혼합",
+          "duration": 14.15729999999985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion never generates a held item or calls its factory when format is 단답형",
+          "status": "passed",
+          "title": "never generates a held item or calls its factory when format is 단답형",
+          "duration": 5.384600000000319,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion never generates a held item or calls its factory when format is 객관식",
+          "status": "passed",
+          "title": "never generates a held item or calls its factory when format is 객관식",
+          "duration": 4.8432999999995445,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion never generates a held item or calls its factory when format is 서술형",
+          "status": "passed",
+          "title": "never generates a held item or calls its factory when format is 서술형",
+          "duration": 4.374499999999898,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion a renamed family, new version or claimed confidence cannot bypass the same forbidden requirement",
+          "status": "passed",
+          "title": "a renamed family, new version or claimed confidence cannot bypass the same forbidden requirement",
+          "duration": 3.018199999999524,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion hides the held template from selectable catalogs and retains its definition for internal review",
+          "status": "passed",
+          "title": "hides the held template from selectable catalogs and retains its definition for internal review",
+          "duration": 12221.934,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion a null restriction result is not a blanket symbol screen or another template's curriculum certificate",
+          "status": "passed",
+          "title": "a null restriction result is not a blanket symbol screen or another template's curriculum certificate",
+          "duration": 1.1471999999994296,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion only the reviewed full student-method version may generate for 'study-middle-inverse-equal-legs'",
+          "status": "passed",
+          "title": "only the reviewed full student-method version may generate for 'study-middle-inverse-equal-legs'",
+          "duration": 4.873199999998178,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "grade eligibility precedes mathematical proof and profile completion"
+          ],
+          "fullName": "grade eligibility precedes mathematical proof and profile completion only the reviewed full student-method version may generate for 'study-middle-inverse-area-ratio'",
+          "status": "passed",
+          "title": "only the reviewed full student-method version may generate for 'study-middle-inverse-area-ratio'",
+          "duration": 4.3237999999983,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434477004,
+      "endTime": 1792434489389.3237,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyCurriculumEligibility.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "integrated registered exam-study generation"
+          ],
+          "fullName": "integrated registered exam-study generation keeps all nine courses available without multiplying authored families by response format",
+          "status": "passed",
+          "title": "keeps all nine courses available without multiplying authored families by response format",
+          "duration": 12052.138299999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "integrated registered exam-study generation"
+          ],
+          "fullName": "integrated registered exam-study generation plans the actual authored and legacy registry for 'daeryun-m1'",
+          "status": "passed",
+          "title": "plans the actual authored and legacy registry for 'daeryun-m1'",
+          "duration": 172.2440999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "integrated registered exam-study generation"
+          ],
+          "fullName": "integrated registered exam-study generation plans the actual authored and legacy registry for 'daeryun-m2'",
+          "status": "passed",
+          "title": "plans the actual authored and legacy registry for 'daeryun-m2'",
+          "duration": 120.56549999999697,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "integrated registered exam-study generation"
+          ],
+          "fullName": "integrated registered exam-study generation plans the actual authored and legacy registry for 'kyungmyung-m1'",
+          "status": "passed",
+          "title": "plans the actual authored and legacy registry for 'kyungmyung-m1'",
+          "duration": 130.14470000000074,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "integrated registered exam-study generation"
+          ],
+          "fullName": "integrated registered exam-study generation plans the actual authored and legacy registry for 'kyungmyung-m3'",
+          "status": "passed",
+          "title": "plans the actual authored and legacy registry for 'kyungmyung-m3'",
+          "duration": 183.8012000000017,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "integrated registered exam-study generation"
+          ],
+          "fullName": "integrated registered exam-study generation plans the actual authored and legacy registry for 'kyungshin-common2'",
+          "status": "passed",
+          "title": "plans the actual authored and legacy registry for 'kyungshin-common2'",
+          "duration": 189.5652999999984,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "integrated registered exam-study generation"
+          ],
+          "fullName": "integrated registered exam-study generation runs authenticated API → actual math → strict Python SVG → reproducible output confirmation",
+          "status": "passed",
+          "title": "runs authenticated API → actual math → strict Python SVG → reproducible output confirmation",
+          "duration": 2089.5319000000018,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434400503,
+      "endTime": 1792434415441.532,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyIntegration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only independently solves every one of32printed tasks, including absent y² terms and negative constants",
+          "status": "passed",
+          "title": "independently solves every one of32printed tasks, including absent y² terms and negative constants",
+          "duration": 288.8176000000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only rejects both inconsistent and nonunique zero-slope equations before division",
+          "status": "passed",
+          "title": "rejects both inconsistent and nonunique zero-slope equations before division",
+          "duration": 1.8968000000004395,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only rejects wrong answers, hidden-condition/solution appendices and false format/rubric claims",
+          "status": "passed",
+          "title": "rejects wrong answers, hidden-condition/solution appendices and false format/rubric claims",
+          "duration": 12.593300000000454,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only keeps the mathematical domain independent of seed/format and returns isolated parameter copies",
+          "status": "passed",
+          "title": "keeps the mathematical domain independent of seed/format and returns isolated parameter copies",
+          "duration": 10.664800000000469,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only cannot offer an unreleased implementation in 혼합, even with renamed/native/approval flags",
+          "status": "passed",
+          "title": "cannot offer an unreleased implementation in 혼합, even with renamed/native/approval flags",
+          "duration": 19.417999999999665,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only cannot offer an unreleased implementation in 단답형, even with renamed/native/approval flags",
+          "status": "passed",
+          "title": "cannot offer an unreleased implementation in 단답형, even with renamed/native/approval flags",
+          "duration": 10.651300000000447,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only cannot offer an unreleased implementation in 객관식, even with renamed/native/approval flags",
+          "status": "passed",
+          "title": "cannot offer an unreleased implementation in 객관식, even with renamed/native/approval flags",
+          "duration": 9.472600000000057,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only cannot offer an unreleased implementation in 서술형, even with renamed/native/approval flags",
+          "status": "passed",
+          "title": "cannot offer an unreleased implementation in 서술형, even with renamed/native/approval flags",
+          "duration": 7.701299999999719,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only keeps the explicit grade exclusion ahead of the template release hold",
+          "status": "passed",
+          "title": "keeps the explicit grade exclusion ahead of the template release hold",
+          "duration": 4.621900000000096,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "finite inverse coefficient implementation remains review-only"
+          ],
+          "fullName": "finite inverse coefficient implementation remains review-only retains the internal implementation but excludes it from selectable catalogs without inventing a live family",
+          "status": "passed",
+          "title": "retains the internal implementation but excludes it from selectable catalogs without inventing a live family",
+          "duration": 13927.8421,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434494329,
+      "endTime": 1792434508622.842,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyInverseCoefficient.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "inverse minimum from an extreme difference"
+          ],
+          "fullName": "inverse minimum from an extreme difference independently solves all24 printed data sets, including positive and negative fourth values",
+          "status": "passed",
+          "title": "independently solves all24 printed data sets, including positive and negative fourth values",
+          "duration": 453.02750000000015,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "inverse minimum from an extreme difference"
+          ],
+          "fullName": "inverse minimum from an extreme difference binds the actual student text to the preimplementation proposal without inheriting its missing-solution approval",
+          "status": "passed",
+          "title": "binds the actual student text to the preimplementation proposal without inheriting its missing-solution approval",
+          "duration": 3.7280000000000655,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "inverse minimum from an extreme difference"
+          ],
+          "fullName": "inverse minimum from an extreme difference rejects changed printed conditions, answers, metadata parameters and student methods",
+          "status": "passed",
+          "title": "rejects changed printed conditions, answers, metadata parameters and student methods",
+          "duration": 18.921699999999873,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "inverse minimum from an extreme difference"
+          ],
+          "fullName": "inverse minimum from an extreme difference keeps finite tuples, enumeration copies and safe seed reproduction independent of formats",
+          "status": "passed",
+          "title": "keeps finite tuples, enumeration copies and safe seed reproduction independent of formats",
+          "duration": 5.083800000000338,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "inverse minimum from an extreme difference"
+          ],
+          "fullName": "inverse minimum from an extreme difference never calls the factory under caller approval/identity labels for 혼합",
+          "status": "passed",
+          "title": "never calls the factory under caller approval/identity labels for 혼합",
+          "duration": 23.670900000000074,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "inverse minimum from an extreme difference"
+          ],
+          "fullName": "inverse minimum from an extreme difference never calls the factory under caller approval/identity labels for 객관식",
+          "status": "passed",
+          "title": "never calls the factory under caller approval/identity labels for 객관식",
+          "duration": 15.82930000000033,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "inverse minimum from an extreme difference"
+          ],
+          "fullName": "inverse minimum from an extreme difference never calls the factory under caller approval/identity labels for 단답형",
+          "status": "passed",
+          "title": "never calls the factory under caller approval/identity labels for 단답형",
+          "duration": 12.140199999999822,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "inverse minimum from an extreme difference"
+          ],
+          "fullName": "inverse minimum from an extreme difference never calls the factory under caller approval/identity labels for 서술형",
+          "status": "passed",
+          "title": "never calls the factory under caller approval/identity labels for 서술형",
+          "duration": 11.93249999999989,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "inverse minimum from an extreme difference"
+          ],
+          "fullName": "inverse minimum from an extreme difference retains a captured Unit proposal while the internal factory stays hidden in public catalogs",
+          "status": "passed",
+          "title": "retains a captured Unit proposal while the internal factory stays hidden in public catalogs",
+          "duration": 15891.767199999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434379209,
+      "endTime": 1792434395645.767,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyInverseMinimum.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "review-only inverse root table"
+          ],
+          "fullName": "review-only inverse root table independently checks all45 actual tables, integer rounding bounds and unique reverse mappings",
+          "status": "passed",
+          "title": "independently checks all45 actual tables, integer rounding bounds and unique reverse mappings",
+          "duration": 604.2376000000004,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse root table"
+          ],
+          "fullName": "review-only inverse root table rejects changed tables, approximation semantics, conditions, answers and unsupported response formats",
+          "status": "passed",
+          "title": "rejects changed tables, approximation semantics, conditions, answers and unsupported response formats",
+          "duration": 41.108000000000175,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse root table"
+          ],
+          "fullName": "review-only inverse root table preserves finite domains and seed reproducibility without multiplying seeds or formats into tuples",
+          "status": "passed",
+          "title": "preserves finite domains and seed reproducibility without multiplying seeds or formats into tuples",
+          "duration": 5.237200000000485,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse root table"
+          ],
+          "fullName": "review-only inverse root table blocks every public 혼합 request before factory execution despite native/rename/component/approval labels",
+          "status": "passed",
+          "title": "blocks every public 혼합 request before factory execution despite native/rename/component/approval labels",
+          "duration": 19.70589999999993,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse root table"
+          ],
+          "fullName": "review-only inverse root table blocks every public 단답형 request before factory execution despite native/rename/component/approval labels",
+          "status": "passed",
+          "title": "blocks every public 단답형 request before factory execution despite native/rename/component/approval labels",
+          "duration": 13.680200000000696,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse root table"
+          ],
+          "fullName": "review-only inverse root table blocks every public 객관식 request before factory execution despite native/rename/component/approval labels",
+          "status": "passed",
+          "title": "blocks every public 객관식 request before factory execution despite native/rename/component/approval labels",
+          "duration": 11.778800000000047,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse root table"
+          ],
+          "fullName": "review-only inverse root table blocks every public 서술형 request before factory execution despite native/rename/component/approval labels",
+          "status": "passed",
+          "title": "blocks every public 서술형 request before factory execution despite native/rename/component/approval labels",
+          "duration": 8.252400000000307,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse root table"
+          ],
+          "fullName": "review-only inverse root table keeps the internal factory hidden and the actual Unit proposal separate from live-family, rights and grade approval",
+          "status": "passed",
+          "title": "keeps the internal factory hidden and the actual Unit proposal separate from live-family, rights and grade approval",
+          "duration": 12524.5679,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434420774,
+      "endTime": 1792434434003.5679,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyInverseRootTable.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "review-only inverse tangent rectangle"
+          ],
+          "fullName": "review-only inverse tangent rectangle solves every printed case by a separate exact height search and proves geometry exists",
+          "status": "passed",
+          "title": "solves every printed case by a separate exact height search and proves geometry exists",
+          "duration": 305.3649999999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse tangent rectangle"
+          ],
+          "fullName": "review-only inverse tangent rectangle rejects changed givens, targets, answers, methods, figures and unreviewed formats",
+          "status": "passed",
+          "title": "rejects changed givens, targets, answers, methods, figures and unreviewed formats",
+          "duration": 9.618400000000292,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse tangent rectangle"
+          ],
+          "fullName": "review-only inverse tangent rectangle copies finite parameters and reproduces safe seeds without changing legacy generators",
+          "status": "passed",
+          "title": "copies finite parameters and reproduces safe seeds without changing legacy generators",
+          "duration": 4.540299999999661,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse tangent rectangle"
+          ],
+          "fullName": "review-only inverse tangent rectangle holds public 객관식 before factory execution even under caller approval labels",
+          "status": "passed",
+          "title": "holds public 객관식 before factory execution even under caller approval labels",
+          "duration": 18.618099999999686,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse tangent rectangle"
+          ],
+          "fullName": "review-only inverse tangent rectangle holds public 단답형 before factory execution even under caller approval labels",
+          "status": "passed",
+          "title": "holds public 단답형 before factory execution even under caller approval labels",
+          "duration": 18.269000000000233,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse tangent rectangle"
+          ],
+          "fullName": "review-only inverse tangent rectangle holds public 서술형 before factory execution even under caller approval labels",
+          "status": "passed",
+          "title": "holds public 서술형 before factory execution even under caller approval labels",
+          "duration": 9.51890000000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "review-only inverse tangent rectangle"
+          ],
+          "fullName": "review-only inverse tangent rectangle registers the internal requirement while hiding it from public catalogs and retaining grade/rights holds",
+          "status": "passed",
+          "title": "registers the internal requirement while hiding it from public catalogs and retaining grade/rights holds",
+          "duration": 11462.494999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434360600,
+      "endTime": 1792434372429.495,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyInverseTangentRectangle.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary denies missing account, student, reviewer, menu cap and pending approval: null",
+          "status": "passed",
+          "title": "denies missing account, student, reviewer, menu cap and pending approval: null",
+          "duration": 111.71600000000035,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary denies missing account, student, reviewer, menu cap and pending approval: {\"student\":{\"id\":\"student\",\"mustChangePassword\":false}}",
+          "status": "passed",
+          "title": "denies missing account, student, reviewer, menu cap and pending approval: {\"student\":{\"id\":\"student\",\"mustChangePassword\":false}}",
+          "duration": 3.4747999999999593,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"reviewer\",\"approvalStatus\":\"approved\",\"isAdmin\":false,\"menus\":[\"bank\"],\"branchRole\":\"teacher\",\"branchId\":\"fixture-branch\"}}",
+          "status": "passed",
+          "title": "denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"reviewer\",\"approvalStatus\":\"approved\",\"isAdmin\":false,\"menus\":[\"bank\"],\"branchRole\":\"teacher\",\"branchId\":\"fixture-branch\"}}",
+          "duration": 3.435899999999947,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"director\",\"approvalStatus\":\"approved\",\"isAdmin\":false,\"menus\":[\"export\"],\"branchRole\":\"teacher\",\"branchId\":\"fixture-branch\"}}",
+          "status": "passed",
+          "title": "denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"director\",\"approvalStatus\":\"approved\",\"isAdmin\":false,\"menus\":[\"export\"],\"branchRole\":\"teacher\",\"branchId\":\"fixture-branch\"}}",
+          "duration": 2.7901999999999134,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"director\",\"approvalStatus\":\"approved\",\"isAdmin\":false,\"menus\":[\"textbook\"],\"branchRole\":\"teacher\",\"branchId\":\"fixture-branch\"}}",
+          "status": "passed",
+          "title": "denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"director\",\"approvalStatus\":\"approved\",\"isAdmin\":false,\"menus\":[\"textbook\"],\"branchRole\":\"teacher\",\"branchId\":\"fixture-branch\"}}",
+          "duration": 3.199200000000019,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"director\",\"approvalStatus\":\"approved\",\"isAdmin\":false,\"menus\":[],\"branchRole\":\"manager\",\"branchId\":\"fixture-branch\"}}",
+          "status": "passed",
+          "title": "denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"director\",\"approvalStatus\":\"approved\",\"isAdmin\":false,\"menus\":[],\"branchRole\":\"manager\",\"branchId\":\"fixture-branch\"}}",
+          "duration": 2.4634000000000924,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"director\",\"approvalStatus\":\"pending\",\"isAdmin\":false,\"menus\":[\"bank\"],\"branchRole\":\"teacher\",\"branchId\":\"fixture-branch\"}}",
+          "status": "passed",
+          "title": "denies missing account, student, reviewer, menu cap and pending approval: {\"user\":{\"id\":\"fixture-teacher\",\"name\":\"검사 교사\",\"email\":\"fixture@example.invalid\",\"role\":\"director\",\"approvalStatus\":\"pending\",\"isAdmin\":false,\"menus\":[\"bank\"],\"branchRole\":\"teacher\",\"branchId\":\"fixture-branch\"}}",
+          "duration": 1.8816000000001623,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary authorizes an approved teacher and keeps generated questions private",
+          "status": "passed",
+          "title": "authorizes an approved teacher and keeps generated questions private",
+          "duration": 13.858400000000074,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary uses the same-origin mutation guard even when the menu is available",
+          "status": "passed",
+          "title": "uses the same-origin mutation guard even when the menu is available",
+          "duration": 2.0443999999997686,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary uses the configured application origin rather than trusting the request URL",
+          "status": "passed",
+          "title": "uses the configured application origin rather than trusting the request URL",
+          "duration": 3.5614000000000487,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+          "status": "passed",
+          "title": "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+          "duration": 3.149699999999939,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+          "status": "passed",
+          "title": "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+          "duration": 2.3314000000000306,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+          "status": "passed",
+          "title": "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+          "duration": 2.4940999999998894,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+          "status": "passed",
+          "title": "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+          "duration": 1.546400000000176,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary checks catalog query names, duplicate course and course vocabulary",
+          "status": "passed",
+          "title": "checks catalog query names, duplicate course and course vocabulary",
+          "duration": 3.8476000000000568,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exam study authenticated route boundary"
+          ],
+          "fullName": "exam study authenticated route boundary pins output to the same recipe and refuses a changed digest or empty generation",
+          "status": "passed",
+          "title": "pins output to the same recipe and refuses a changed digest or empty generation",
+          "duration": 5.688499999999749,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "figure preparation is strict and bounded"
+          ],
+          "fullName": "figure preparation is strict and bounded does not accept a figure when rendering dropped required dimensions",
+          "status": "passed",
+          "title": "does not accept a figure when rendering dropped required dimensions",
+          "duration": 5.399800000000141,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "figure preparation is strict and bounded"
+          ],
+          "fullName": "figure preparation is strict and bounded limits simultaneous Python calls to two",
+          "status": "passed",
+          "title": "limits simultaneous Python calls to two",
+          "duration": 36.85340000000042,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "figure preparation is strict and bounded"
+          ],
+          "fullName": "figure preparation is strict and bounded refuses oversized SVG instead of delivering a figureless replacement",
+          "status": "passed",
+          "title": "refuses oversized SVG instead of delivering a figureless replacement",
+          "duration": 3.2135000000002947,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "the real proxy keeps the new paths inside the per-menu output policy (84d58378f)"
+          ],
+          "fullName": "the real proxy keeps the new paths inside the per-menu output policy (84d58378f) denies reviewer at both new API paths",
+          "status": "passed",
+          "title": "denies reviewer at both new API paths",
+          "duration": 5.5393999999996595,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "the real proxy keeps the new paths inside the per-menu output policy (84d58378f)"
+          ],
+          "fullName": "the real proxy keeps the new paths inside the per-menu output policy (84d58378f) denies no-menu at both new API paths",
+          "status": "passed",
+          "title": "denies no-menu at both new API paths",
+          "duration": 3.257799999999861,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "the real proxy keeps the new paths inside the per-menu output policy (84d58378f)"
+          ],
+          "fullName": "the real proxy keeps the new paths inside the per-menu output policy (84d58378f) denies student at both new API paths",
+          "status": "passed",
+          "title": "denies student at both new API paths",
+          "duration": 2.7531000000003587,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "the real proxy keeps the new paths inside the per-menu output policy (84d58378f)"
+          ],
+          "fullName": "the real proxy keeps the new paths inside the per-menu output policy (84d58378f) allows an output-capable menu teacher through both paths",
+          "status": "passed",
+          "title": "allows an output-capable menu teacher through both paths",
+          "duration": 1.805699999999888,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1792434538476,
+      "endTime": 1792434538703.8057,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyRoutes.test.ts"
+    }
+  ],
+  "notANewTestExecution": true,
+  "notWholeAppRun": true,
+  "typeCheckR1Failed": "Readonly type in a controlled mutation test; preserved raw log. R2 Reflect.set and exact includes/current5tests55/types/lint passed.",
+  "dbWrites": 0
+}

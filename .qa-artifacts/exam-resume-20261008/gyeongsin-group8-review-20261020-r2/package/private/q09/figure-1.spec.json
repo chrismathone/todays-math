@@ -1,0 +1,97 @@
+{
+  "version": 2,
+  "style": {
+    "show_points": true
+  },
+  "points": {
+    "R": [
+      35,
+      145
+    ],
+    "P": [
+      35,
+      55
+    ],
+    "Q": [
+      170,
+      145
+    ],
+    "O": [
+      89,
+      91
+    ],
+    "F": [
+      35,
+      91
+    ],
+    "G": [
+      89,
+      145
+    ]
+  },
+  "circles": {
+    "c": {
+      "center": "O",
+      "radius": 54
+    }
+  },
+  "segments": {
+    "PR": [
+      "P",
+      "R"
+    ],
+    "QR": [
+      "Q",
+      "R"
+    ],
+    "PQ": [
+      "P",
+      "Q"
+    ],
+    "OF": [
+      "O",
+      "F"
+    ],
+    "OG": [
+      "O",
+      "G"
+    ]
+  },
+  "angles": {
+    "rightR": {
+      "vertex": "R",
+      "points": [
+        "P",
+        "Q"
+      ],
+      "right": true,
+      "label": ""
+    },
+    "rightF": {
+      "vertex": "F",
+      "points": [
+        "O",
+        "P"
+      ],
+      "right": true,
+      "label": ""
+    },
+    "rightG": {
+      "vertex": "G",
+      "points": [
+        "O",
+        "Q"
+      ],
+      "right": true,
+      "label": ""
+    }
+  },
+  "labels": {
+    "R": "R",
+    "P": "P",
+    "Q": "Q",
+    "O": "O",
+    "F": "F",
+    "G": "G"
+  }
+}

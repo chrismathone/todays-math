@@ -232,7 +232,7 @@ describe("inverse minimum from an extreme difference", () => {
   );
   it("retains a captured Unit proposal while the internal factory stays hidden in public catalogs", () => {
     expect(studyRequirementIdSchema.parse(demand)).toBe(demand);
-    expect(STUDY_REQUIREMENT_IDS.at(-1)).toBe(demand);
+    expect(STUDY_REQUIREMENT_IDS).toContain(demand);
     expect(examStudyFamilies().some((f) => f.id === family.id)).toBe(true);
     expect(
       getExamStudyCatalog("중3").families.some((f) => f.id === family.id),

@@ -1,0 +1,1513 @@
+{
+  "cases": [
+    {
+      "caseId": "case01",
+      "studentDigest": "d906446e27a930acb0710fd9dcff18e414c6e71abecd0547a40d175c50d50964",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "ownPrintedSolution": {
+        "w": 4,
+        "a": 3,
+        "r": 2,
+        "k": 1,
+        "fullHeight": 6,
+        "EB": 3,
+        "EF": 1,
+        "CF": 4,
+        "EC": 5
+      },
+      "allSolutionNumericStepsChecked": [
+        "4\\div2=2",
+        "AI=AH=2",
+        "DG=DH=2",
+        "EI=AE-AI=3-2=1",
+        "EF=1",
+        "CF=CG=x",
+        "CD=x+2",
+        "EB=AB-AE=x+2-3=x-1",
+        "EC=EF+FC=x+1",
+        "(x+1)^2=(x-1)^2+4^2",
+        "4x=16",
+        "x=4",
+        "EC=4+1=5",
+        "EB=3>0",
+        "EF=1>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    },
+    {
+      "caseId": "case02",
+      "studentDigest": "162d0e70072f858c0f0c07e86dc267b40742eeec2e2338b70ff1a1f1d598ba86",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "ownPrintedSolution": {
+        "w": 8,
+        "a": 6,
+        "r": 4,
+        "k": 2,
+        "fullHeight": 12,
+        "EB": 6,
+        "EF": 2,
+        "CF": 8,
+        "EC": 10
+      },
+      "allSolutionNumericStepsChecked": [
+        "8\\div2=4",
+        "AI=AH=4",
+        "DG=DH=4",
+        "EI=AE-AI=6-4=2",
+        "EF=2",
+        "CF=CG=x",
+        "CD=x+4",
+        "EB=AB-AE=x+4-6=x-2",
+        "EC=EF+FC=x+2",
+        "(x+2)^2=(x-2)^2+8^2",
+        "8x=64",
+        "x=8",
+        "EC=8+2=10",
+        "EB=6>0",
+        "EF=2>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    },
+    {
+      "caseId": "case03",
+      "studentDigest": "86718eccb6610c2fdb058db4533292bc5bc53594e80e77da1e4550e90e33b9f2",
+      "figureSha256": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171",
+      "ownPrintedSolution": {
+        "w": 6,
+        "a": 4,
+        "r": 3,
+        "k": 1,
+        "fullHeight": 12,
+        "EB": 8,
+        "EF": 1,
+        "CF": 9,
+        "EC": 10
+      },
+      "allSolutionNumericStepsChecked": [
+        "6\\div2=3",
+        "AI=AH=3",
+        "DG=DH=3",
+        "EI=AE-AI=4-3=1",
+        "EF=1",
+        "CF=CG=x",
+        "CD=x+3",
+        "EB=AB-AE=x+3-4=x-1",
+        "EC=EF+FC=x+1",
+        "(x+1)^2=(x-1)^2+6^2",
+        "4x=36",
+        "x=9",
+        "EC=9+1=10",
+        "EB=8>0",
+        "EF=1>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    },
+    {
+      "caseId": "case04",
+      "studentDigest": "bea33f44cabad9303ff228f18c270b7cbcfa5684598049582a1da7438765454a",
+      "figureSha256": "4fe1c766f1050e542fc6e39e102a0f2825c62cf15eb5d34e45a3d1b9bcabe0c2",
+      "ownPrintedSolution": {
+        "w": 12,
+        "a": 10,
+        "r": 6,
+        "k": 4,
+        "fullHeight": 15,
+        "EB": 5,
+        "EF": 4,
+        "CF": 9,
+        "EC": 13
+      },
+      "allSolutionNumericStepsChecked": [
+        "12\\div2=6",
+        "AI=AH=6",
+        "DG=DH=6",
+        "EI=AE-AI=10-6=4",
+        "EF=4",
+        "CF=CG=x",
+        "CD=x+6",
+        "EB=AB-AE=x+6-10=x-4",
+        "EC=EF+FC=x+4",
+        "(x+4)^2=(x-4)^2+12^2",
+        "16x=144",
+        "x=9",
+        "EC=9+4=13",
+        "EB=5>0",
+        "EF=4>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    },
+    {
+      "caseId": "case05",
+      "studentDigest": "b40928e4f3742284e78b31da8439c80a6fd128e8a04a766fbc4524515d999e97",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "ownPrintedSolution": {
+        "w": 12,
+        "a": 9,
+        "r": 6,
+        "k": 3,
+        "fullHeight": 18,
+        "EB": 9,
+        "EF": 3,
+        "CF": 12,
+        "EC": 15
+      },
+      "allSolutionNumericStepsChecked": [
+        "12\\div2=6",
+        "AI=AH=6",
+        "DG=DH=6",
+        "EI=AE-AI=9-6=3",
+        "EF=3",
+        "CF=CG=x",
+        "CD=x+6",
+        "EB=AB-AE=x+6-9=x-3",
+        "EC=EF+FC=x+3",
+        "(x+3)^2=(x-3)^2+12^2",
+        "12x=144",
+        "x=12",
+        "EC=12+3=15",
+        "EB=9>0",
+        "EF=3>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    },
+    {
+      "caseId": "case06",
+      "studentDigest": "a0b9d94d4a6fe6511f1a2b1b60edceaf90c69c58fff9fff681419e394db8fa1a",
+      "figureSha256": "c5dc793820a0bf77cc69647ea9573f3d108fe7604a91b97a5d223bf2bc54b78a",
+      "ownPrintedSolution": {
+        "w": 8,
+        "a": 5,
+        "r": 4,
+        "k": 1,
+        "fullHeight": 20,
+        "EB": 15,
+        "EF": 1,
+        "CF": 16,
+        "EC": 17
+      },
+      "allSolutionNumericStepsChecked": [
+        "8\\div2=4",
+        "AI=AH=4",
+        "DG=DH=4",
+        "EI=AE-AI=5-4=1",
+        "EF=1",
+        "CF=CG=x",
+        "CD=x+4",
+        "EB=AB-AE=x+4-5=x-1",
+        "EC=EF+FC=x+1",
+        "(x+1)^2=(x-1)^2+8^2",
+        "4x=64",
+        "x=16",
+        "EC=16+1=17",
+        "EB=15>0",
+        "EF=1>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    },
+    {
+      "caseId": "case07",
+      "studentDigest": "97332c255ebecb8d42fd44e88b80f7aa6ff87b7a0fbd8fca4f898b47c6b6edde",
+      "figureSha256": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171",
+      "ownPrintedSolution": {
+        "w": 12,
+        "a": 8,
+        "r": 6,
+        "k": 2,
+        "fullHeight": 24,
+        "EB": 16,
+        "EF": 2,
+        "CF": 18,
+        "EC": 20
+      },
+      "allSolutionNumericStepsChecked": [
+        "12\\div2=6",
+        "AI=AH=6",
+        "DG=DH=6",
+        "EI=AE-AI=8-6=2",
+        "EF=2",
+        "CF=CG=x",
+        "CD=x+6",
+        "EB=AB-AE=x+6-8=x-2",
+        "EC=EF+FC=x+2",
+        "(x+2)^2=(x-2)^2+12^2",
+        "8x=144",
+        "x=18",
+        "EC=18+2=20",
+        "EB=16>0",
+        "EF=2>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    },
+    {
+      "caseId": "case08",
+      "studentDigest": "a9ca2e42e8e786e934581a2f0b2447cfe332e6edbadfb86b47ef9d1006fb8ada",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "ownPrintedSolution": {
+        "w": 16,
+        "a": 12,
+        "r": 8,
+        "k": 4,
+        "fullHeight": 24,
+        "EB": 12,
+        "EF": 4,
+        "CF": 16,
+        "EC": 20
+      },
+      "allSolutionNumericStepsChecked": [
+        "16\\div2=8",
+        "AI=AH=8",
+        "DG=DH=8",
+        "EI=AE-AI=12-8=4",
+        "EF=4",
+        "CF=CG=x",
+        "CD=x+8",
+        "EB=AB-AE=x+8-12=x-4",
+        "EC=EF+FC=x+4",
+        "(x+4)^2=(x-4)^2+16^2",
+        "16x=256",
+        "x=16",
+        "EC=16+4=20",
+        "EB=12>0",
+        "EF=4>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    },
+    {
+      "caseId": "case09",
+      "studentDigest": "d4b9c21ecf16c54c6fe6a9c006c647046b67994c0a4e55baba6031935ef87e5b",
+      "figureSha256": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+      "ownPrintedSolution": {
+        "w": 20,
+        "a": 15,
+        "r": 10,
+        "k": 5,
+        "fullHeight": 30,
+        "EB": 15,
+        "EF": 5,
+        "CF": 20,
+        "EC": 25
+      },
+      "allSolutionNumericStepsChecked": [
+        "20\\div2=10",
+        "AI=AH=10",
+        "DG=DH=10",
+        "EI=AE-AI=15-10=5",
+        "EF=5",
+        "CF=CG=x",
+        "CD=x+10",
+        "EB=AB-AE=x+10-15=x-5",
+        "EC=EF+FC=x+5",
+        "(x+5)^2=(x-5)^2+20^2",
+        "20x=400",
+        "x=20",
+        "EC=20+5=25",
+        "EB=15>0",
+        "EF=5>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    },
+    {
+      "caseId": "case10",
+      "studentDigest": "e7cecdc9017170672b4df442c5f3b47aa59ba390a5efa431d094a290a1dbf44c",
+      "figureSha256": "d55dde524b6053d2f77b4165ff867651c3d60a1250fbe44a5ee79cf6541e7f53",
+      "ownPrintedSolution": {
+        "w": 24,
+        "a": 21,
+        "r": 12,
+        "k": 9,
+        "fullHeight": 28,
+        "EB": 7,
+        "EF": 9,
+        "CF": 16,
+        "EC": 25
+      },
+      "allSolutionNumericStepsChecked": [
+        "24\\div2=12",
+        "AI=AH=12",
+        "DG=DH=12",
+        "EI=AE-AI=21-12=9",
+        "EF=9",
+        "CF=CG=x",
+        "CD=x+12",
+        "EB=AB-AE=x+12-21=x-9",
+        "EC=EF+FC=x+9",
+        "(x+9)^2=(x-9)^2+24^2",
+        "36x=576",
+        "x=16",
+        "EC=16+9=25",
+        "EB=7>0",
+        "EF=9>0"
+      ],
+      "exactAnswerMatchesSealedRaw": true,
+      "actualStrictRender": true,
+      "droppedDimensions": [],
+      "mutationsRejected": 20
+    }
+  ],
+  "generatedCurrentDrafts": [
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=4\\,\\mathrm{cm}$, $\\overline{AE}=3\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$5\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $4\\div2=2$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=2$, $DG=DH=2$이다. 따라서 $EI=AE-AI=3-2=1$이고 $EF=1$이다.\n\n$CF=CG=x$라 하자. $CD=x+2$이므로 $EB=AB-AE=x+2-3=x-1$이다. 또 $EC=EF+FC=x+1$이다. 직각삼각형 $EBC$에서 $(x+1)^2=(x-1)^2+4^2$이다. 전개하여 정리하면 $4x=16$이므로 $x=4$이다.\n\n따라서 $EC=4+1=5\\,\\mathrm{cm}$이다. 이때 $EB=3>0$이고 $EF=1>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 4,
+        "upperPart": 3
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            179
+          ],
+          "C": [
+            136,
+            179
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            107
+          ],
+          "F": [
+            59.2,
+            121.39999999999999
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    },
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=8\\,\\mathrm{cm}$, $\\overline{AE}=6\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$10\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $8\\div2=4$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=4$, $DG=DH=4$이다. 따라서 $EI=AE-AI=6-4=2$이고 $EF=2$이다.\n\n$CF=CG=x$라 하자. $CD=x+4$이므로 $EB=AB-AE=x+4-6=x-2$이다. 또 $EC=EF+FC=x+2$이다. 직각삼각형 $EBC$에서 $(x+2)^2=(x-2)^2+8^2$이다. 전개하여 정리하면 $8x=64$이므로 $x=8$이다.\n\n따라서 $EC=8+2=10\\,\\mathrm{cm}$이다. 이때 $EB=6>0$이고 $EF=2>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 8,
+        "upperPart": 6
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            179
+          ],
+          "C": [
+            136,
+            179
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            107
+          ],
+          "F": [
+            59.2,
+            121.39999999999999
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    },
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=6\\,\\mathrm{cm}$, $\\overline{AE}=4\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$10\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $6\\div2=3$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=3$, $DG=DH=3$이다. 따라서 $EI=AE-AI=4-3=1$이고 $EF=1$이다.\n\n$CF=CG=x$라 하자. $CD=x+3$이므로 $EB=AB-AE=x+3-4=x-1$이다. 또 $EC=EF+FC=x+1$이다. 직각삼각형 $EBC$에서 $(x+1)^2=(x-1)^2+6^2$이다. 전개하여 정리하면 $4x=36$이므로 $x=9$이다.\n\n따라서 $EC=9+1=10\\,\\mathrm{cm}$이다. 이때 $EB=8>0$이고 $EF=1>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 6,
+        "upperPart": 4
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            227
+          ],
+          "C": [
+            136,
+            227
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            99
+          ],
+          "F": [
+            49.6,
+            111.8
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    },
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=12\\,\\mathrm{cm}$, $\\overline{AE}=10\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$13\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $12\\div2=6$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=6$, $DG=DH=6$이다. 따라서 $EI=AE-AI=10-6=4$이고 $EF=4$이다.\n\n$CF=CG=x$라 하자. $CD=x+6$이므로 $EB=AB-AE=x+6-10=x-4$이다. 또 $EC=EF+FC=x+4$이다. 직각삼각형 $EBC$에서 $(x+4)^2=(x-4)^2+12^2$이다. 전개하여 정리하면 $16x=144$이므로 $x=9$이다.\n\n따라서 $EC=9+4=13\\,\\mathrm{cm}$이다. 이때 $EB=5>0$이고 $EF=4>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 12,
+        "upperPart": 10
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            155
+          ],
+          "C": [
+            136,
+            155
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            115
+          ],
+          "F": [
+            69.53846153846155,
+            127.3076923076923
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    },
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=12\\,\\mathrm{cm}$, $\\overline{AE}=9\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$15\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $12\\div2=6$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=6$, $DG=DH=6$이다. 따라서 $EI=AE-AI=9-6=3$이고 $EF=3$이다.\n\n$CF=CG=x$라 하자. $CD=x+6$이므로 $EB=AB-AE=x+6-9=x-3$이다. 또 $EC=EF+FC=x+3$이다. 직각삼각형 $EBC$에서 $(x+3)^2=(x-3)^2+12^2$이다. 전개하여 정리하면 $12x=144$이므로 $x=12$이다.\n\n따라서 $EC=12+3=15\\,\\mathrm{cm}$이다. 이때 $EB=9>0$이고 $EF=3>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 12,
+        "upperPart": 9
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            179
+          ],
+          "C": [
+            136,
+            179
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            107
+          ],
+          "F": [
+            59.2,
+            121.4
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    },
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=8\\,\\mathrm{cm}$, $\\overline{AE}=5\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$17\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $8\\div2=4$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=4$, $DG=DH=4$이다. 따라서 $EI=AE-AI=5-4=1$이고 $EF=1$이다.\n\n$CF=CG=x$라 하자. $CD=x+4$이므로 $EB=AB-AE=x+4-5=x-1$이다. 또 $EC=EF+FC=x+1$이다. 직각삼각형 $EBC$에서 $(x+1)^2=(x-1)^2+8^2$이다. 전개하여 정리하면 $4x=64$이므로 $x=16$이다.\n\n따라서 $EC=16+1=17\\,\\mathrm{cm}$이다. 이때 $EB=15>0$이고 $EF=1>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 8,
+        "upperPart": 5
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            275
+          ],
+          "C": [
+            136,
+            275
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            95
+          ],
+          "F": [
+            45.64705882352941,
+            105.58823529411765
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    },
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=12\\,\\mathrm{cm}$, $\\overline{AE}=8\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$20\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $12\\div2=6$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=6$, $DG=DH=6$이다. 따라서 $EI=AE-AI=8-6=2$이고 $EF=2$이다.\n\n$CF=CG=x$라 하자. $CD=x+6$이므로 $EB=AB-AE=x+6-8=x-2$이다. 또 $EC=EF+FC=x+2$이다. 직각삼각형 $EBC$에서 $(x+2)^2=(x-2)^2+12^2$이다. 전개하여 정리하면 $8x=144$이므로 $x=18$이다.\n\n따라서 $EC=18+2=20\\,\\mathrm{cm}$이다. 이때 $EB=16>0$이고 $EF=2>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 12,
+        "upperPart": 8
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            227
+          ],
+          "C": [
+            136,
+            227
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            99
+          ],
+          "F": [
+            49.6,
+            111.8
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    },
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=16\\,\\mathrm{cm}$, $\\overline{AE}=12\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$20\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $16\\div2=8$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=8$, $DG=DH=8$이다. 따라서 $EI=AE-AI=12-8=4$이고 $EF=4$이다.\n\n$CF=CG=x$라 하자. $CD=x+8$이므로 $EB=AB-AE=x+8-12=x-4$이다. 또 $EC=EF+FC=x+4$이다. 직각삼각형 $EBC$에서 $(x+4)^2=(x-4)^2+16^2$이다. 전개하여 정리하면 $16x=256$이므로 $x=16$이다.\n\n따라서 $EC=16+4=20\\,\\mathrm{cm}$이다. 이때 $EB=12>0$이고 $EF=4>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 16,
+        "upperPart": 12
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            179
+          ],
+          "C": [
+            136,
+            179
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            107
+          ],
+          "F": [
+            59.2,
+            121.39999999999999
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    },
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=20\\,\\mathrm{cm}$, $\\overline{AE}=15\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$25\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $20\\div2=10$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=10$, $DG=DH=10$이다. 따라서 $EI=AE-AI=15-10=5$이고 $EF=5$이다.\n\n$CF=CG=x$라 하자. $CD=x+10$이므로 $EB=AB-AE=x+10-15=x-5$이다. 또 $EC=EF+FC=x+5$이다. 직각삼각형 $EBC$에서 $(x+5)^2=(x-5)^2+20^2$이다. 전개하여 정리하면 $20x=400$이므로 $x=20$이다.\n\n따라서 $EC=20+5=25\\,\\mathrm{cm}$이다. 이때 $EB=15>0$이고 $EF=5>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 20,
+        "upperPart": 15
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            179
+          ],
+          "C": [
+            136,
+            179
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            107
+          ],
+          "F": [
+            59.2,
+            121.39999999999999
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    },
+    {
+      "content": "직사각형 $ABCD$의 내부에 있는 원 $O$는 세 변 $DA$, $AB$, $CD$에 접한다. 변 $AB$ 위의 점 $E$에서 꼭짓점 $C$를 이은 선분 $EC$도 원에 접하며 접점은 $F$이다. $\\overline{BC}=24\\,\\mathrm{cm}$, $\\overline{AE}=21\\,\\mathrm{cm}$일 때, 선분 $EC$의 길이를 구하시오.",
+      "answer": "$25\\,\\mathrm{cm}$",
+      "solution": "원과 변 $DA$, $AB$, $CD$의 접점을 각각 $H$, $I$, $G$라 하자. 가로 길이가 지름과 같으므로 반지름은 $24\\div2=12$이다. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 $AI=AH=12$, $DG=DH=12$이다. 따라서 $EI=AE-AI=21-12=9$이고 $EF=9$이다.\n\n$CF=CG=x$라 하자. $CD=x+12$이므로 $EB=AB-AE=x+12-21=x-9$이다. 또 $EC=EF+FC=x+9$이다. 직각삼각형 $EBC$에서 $(x+9)^2=(x-9)^2+24^2$이다. 전개하여 정리하면 $36x=576$이므로 $x=16$이다.\n\n따라서 $EC=16+9=25\\,\\mathrm{cm}$이다. 이때 $EB=7>0$이고 $EF=9>0$이므로 분할 선분의 조건을 만족한다. 일차식에서 $x$가 하나로 정해져 길이도 유일하다.",
+      "parameters": {
+        "width": 24,
+        "upperPart": 21
+      },
+      "questionType": "단답형",
+      "difficulty": "심화하",
+      "difficultyBasis": [
+        "접선 길이의 대응",
+        "부분 길이에서 전체 접선 역추론",
+        "피타고라스 전개와 양수 길이"
+      ],
+      "figureSpec": {
+        "version": 2,
+        "style": {
+          "show_points": true
+        },
+        "points": {
+          "A": [
+            40,
+            35
+          ],
+          "B": [
+            40,
+            147
+          ],
+          "C": [
+            136,
+            147
+          ],
+          "D": [
+            136,
+            35
+          ],
+          "O": [
+            88,
+            83
+          ],
+          "E": [
+            40,
+            119
+          ],
+          "F": [
+            74.56,
+            129.07999999999998
+          ]
+        },
+        "circles": {
+          "c": {
+            "center": "O",
+            "radius": 48
+          }
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ],
+          "BC": [
+            "B",
+            "C"
+          ],
+          "CD": [
+            "C",
+            "D"
+          ],
+          "DA": [
+            "D",
+            "A"
+          ],
+          "EC": [
+            "E",
+            "C"
+          ],
+          "OF": [
+            "O",
+            "F"
+          ]
+        },
+        "angles": {
+          "rightF": {
+            "vertex": "F",
+            "points": [
+              "O",
+              "C"
+            ],
+            "right": true,
+            "label": ""
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D",
+          "O": "O",
+          "E": "E",
+          "F": "F"
+        }
+      }
+    }
+  ],
+  "rendererCalls": 10,
+  "mutationsRejected": 200,
+  "seedCases": 20,
+  "invalidSeedVariantCases": 9,
+  "poisonRejected": 10,
+  "copyIsolation": true,
+  "ES2017BigIntConstructorOnly": true,
+  "metadata": {
+    "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+    "proposedLiveFamilyKey": "mid:3-2|원과 직선|16",
+    "registrationStatus": "pending",
+    "proposedCurriculum": {
+      "grade": "중3",
+      "edition": "2015",
+      "years": [
+        2025,
+        2026
+      ],
+      "from2027": "2022-review-required"
+    },
+    "prerequisites": [
+      "원의 접선의 성질",
+      "직사각형",
+      "피타고라스",
+      "다항식 전개와 일차방정식"
+    ],
+    "sourceStudyEvidence": ".qa-artifacts/exam-resume-20261008/gyeongsin-group7-review-20261020-r2/current-author-summary-parent-r1.json",
+    "sourceStudyEvidenceSha256": "6ec79748c2e90da690ca71c0776fe0914589e2ba21adb67ded5edb61c44a219b",
+    "independentTemplateReview": "pending-current-ten-student-surfaces-and-code",
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false
+  },
+  "rendererSource": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts",
+    "sha256": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "additionalRuntimeDependencyClosureNotCertified": true
+  },
+  "sourceBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "4b21ee3433d80b4a16e7d8c37cdda912879893eb5a92bba1c21b865d1f8e65e4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "be38fc8ddd57398e88378ea9caaf5d7fe6713be55ebf455a32581acddfd1c5e5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013"
+  },
+  "sourceAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "4b21ee3433d80b4a16e7d8c37cdda912879893eb5a92bba1c21b865d1f8e65e4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "be38fc8ddd57398e88378ea9caaf5d7fe6713be55ebf455a32581acddfd1c5e5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013"
+  },
+  "inputBefore": {
+    "student-only10.json": "81e1a3ed6814ef5ab6d8b38c388d6eec885bbfa6f9985e0625a28b1a3665e267",
+    "private-drafts10.json": "39712d923b7d289385e4326ca2dd2c12b03d37c015f3d1358cdf54b672a22b49",
+    "own-raw-solves10.json": "e0c77da61cd8cd157fe0fbb7d3323352fae395def53555ce55f0ecd269e4ead4",
+    "case01.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case02.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case03.svg": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171",
+    "case04.svg": "4fe1c766f1050e542fc6e39e102a0f2825c62cf15eb5d34e45a3d1b9bcabe0c2",
+    "case05.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case06.svg": "c5dc793820a0bf77cc69647ea9573f3d108fe7604a91b97a5d223bf2bc54b78a",
+    "case07.svg": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171",
+    "case08.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case09.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case10.svg": "d55dde524b6053d2f77b4165ff867651c3d60a1250fbe44a5ee79cf6541e7f53"
+  },
+  "inputAfter": {
+    "student-only10.json": "81e1a3ed6814ef5ab6d8b38c388d6eec885bbfa6f9985e0625a28b1a3665e267",
+    "private-drafts10.json": "39712d923b7d289385e4326ca2dd2c12b03d37c015f3d1358cdf54b672a22b49",
+    "own-raw-solves10.json": "e0c77da61cd8cd157fe0fbb7d3323352fae395def53555ce55f0ecd269e4ead4",
+    "case01.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case02.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case03.svg": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171",
+    "case04.svg": "4fe1c766f1050e542fc6e39e102a0f2825c62cf15eb5d34e45a3d1b9bcabe0c2",
+    "case05.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case06.svg": "c5dc793820a0bf77cc69647ea9573f3d108fe7604a91b97a5d223bf2bc54b78a",
+    "case07.svg": "9467c9d93293fd519039e702007769c743c38e190f6d86f1b4378a837e9f4171",
+    "case08.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case09.svg": "3dd254503a314c20329a1adf9a9634e723d4d303c9452c5163dd5c709bfabe38",
+    "case10.svg": "d55dde524b6053d2f77b4165ff867651c3d60a1250fbe44a5ee79cf6541e7f53"
+  },
+  "rawBefore": "e0c77da61cd8cd157fe0fbb7d3323352fae395def53555ce55f0ecd269e4ead4",
+  "rawAfter": "e0c77da61cd8cd157fe0fbb7d3323352fae395def53555ce55f0ecd269e4ead4",
+  "limits": "Internal factory+actual renderer10 only. No public generation or grade/rights/native release follows. VM producer poison uses equivalent bounded support assert/match; actual positive/negative templates use real imported factory."
+}

@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-19T18:24:11.799Z",
+  "files": [
+    {
+      "path": "src/lib/examStudy/families/middle/inverseTangentRectangle.ts",
+      "sha256": "90eb87b3d6202cbfca721e4289c52d9f34ab8fbaef72aa64ec66bf0153221908"
+    },
+    {
+      "path": "src/contracts/examStudy.contract.ts",
+      "sha256": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21"
+    },
+    {
+      "path": "src/lib/examStudy/requirements.ts",
+      "sha256": "69d93467bb3012a3b933461ace00153b72c544fcaecaa7cefbec8346d5e47ce5"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/index.ts",
+      "sha256": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2"
+    },
+    {
+      "path": "src/lib/examStudy/releaseEligibility.ts",
+      "sha256": "d82cc8d8c0c37d6b25ce593762e824e1c3a3529e7df35ad1eff1072e0257de4c"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+      "sha256": "4cb50d556096f8385f56385c53869908374860be654cdd6ebf48aa0589e57420"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseMinimum.test.ts",
+      "sha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222"
+    }
+  ],
+  "testFiles": 2,
+  "passed": 16,
+  "failed": 0,
+  "firstTestRunSourceHashCapturedAfterRun": true,
+  "nextChange": "ES2017 project compatibility: replace bigint literals with BigInt constructors; scoped formatting before formal validation",
+  "newApprovals": 0,
+  "dbWrites": 0
+}

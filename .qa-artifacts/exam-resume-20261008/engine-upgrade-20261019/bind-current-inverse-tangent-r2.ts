@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {inverseTangentRectangle as family} from '../../../src/lib/examStudy/families/middle/inverseTangentRectangle';
+import {sha256} from '../../../scripts/import/exam-twin/candidatePack.mjs';
+const p='.qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/';
+const old=JSON.parse(fs.readFileSync(p+'private-drafts10.json','utf8')),scope=JSON.parse(fs.readFileSync(p+'provided-code-scope-r2.json','utf8'));
+for(const f of scope.files)assert.equal(sha256(fs.readFileSync(f.path)),f.sha256);
+const current=old.privateDrafts.map((row:{caseId:string;draft:unknown},i:number)=>{const item=family.generate(0,i);assert.deepEqual(item,row.draft);assert(family.verify(item).valid);return{caseId:row.caseId,draft:item,renderSpecAndSvgUnchanged:true};});
+const receipt={utc:new Date().toISOString(),sourceFiles:scope.files,sourceScopeSha256:sha256(fs.readFileSync(p+'provided-code-scope-r2.json')),previousPrivateInputSha256:sha256(fs.readFileSync(p+'private-drafts10.json')),studentInputSha256:sha256(fs.readFileSync(p+'student-only10.json')),ownRawSha256:sha256(fs.readFileSync(p+'own-raw-solves10.json')),allTenActualCurrentRegeneratedDraftsEqualPrevious:true,sourceDifferencesSinceFirstRender:'Only metadata evidence SHA fields and readonly test mutation syntax; student/body/answer/solution/params/spec exactly equal. First source hashes retained in original input, not passed off as current.',currentDrafts:current,publicReleaseHeld:true,newManualQuestions:0,newCountedFigures:0,dbWrites:0};
+fs.writeFileSync(p+'current-drafts-rebind-r2.json',JSON.stringify(receipt,null,2)+'\n',{flag:'wx'});
+fs.copyFileSync(p+'current-drafts-rebind-r2.json','C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/'+p+'current-drafts-rebind-r2.json',fs.constants.COPYFILE_EXCL);
+console.log(JSON.stringify({actualCurrentDraftsRegenerated:10,allStudentAnswerSolutionAndSpecsEqual:true,oldRawPreserved:true,newManualCounts:0}));

@@ -1,0 +1,90 @@
+{
+  "createdAt": "2026-10-19T18:42:52.730Z",
+  "canonicalSelected": 136,
+  "canonicalFigures": 96,
+  "canonicalMathGradeReviewed": 135,
+  "workingManualCandidates": [
+    {
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group8-r2/q09.json",
+        "sha256": "3f4ab0737b465f85a36cec840ffc166cb3c24cda8017de47cda40c77b334bfcb"
+      },
+      "logicalWorkingQuestions": 1,
+      "workingFigures": 1,
+      "status": "authored/newvector/student+solution viewed/frozen; independent student-only raw pending; not in selected136",
+      "historicalUnselectedR1Preserved": true
+    }
+  ],
+  "newPrototype": {
+    "id": "U52",
+    "area": "Inverse rectangle partial-side to full tangent",
+    "productionStatus": "implemented-internal-finite10; bounded-math-grade-render-audited; public-held; visual-information-evidence-link-still-missing",
+    "code": [
+      {
+        "path": "src/contracts/examStudy.contract.ts",
+        "sha256": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+        "normalizedLfSourceSha256": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21"
+      },
+      {
+        "path": "src/lib/examStudy/requirements.ts",
+        "sha256": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+        "normalizedLfSourceSha256": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246"
+      },
+      {
+        "path": "src/lib/examStudy/families/middle/index.ts",
+        "sha256": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+        "normalizedLfSourceSha256": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2"
+      },
+      {
+        "path": "src/lib/examStudy/releaseEligibility.ts",
+        "sha256": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+        "normalizedLfSourceSha256": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e"
+      },
+      {
+        "path": "src/__tests__/unit/examStudyInverseMinimum.test.ts",
+        "sha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+        "normalizedLfSourceSha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222"
+      },
+      {
+        "path": "src/lib/examStudy/families/middle/inverseTangentRectangle.ts",
+        "sha256": "4b21ee3433d80b4a16e7d8c37cdda912879893eb5a92bba1c21b865d1f8e65e4",
+        "normalizedLfSourceSha256": "4b21ee3433d80b4a16e7d8c37cdda912879893eb5a92bba1c21b865d1f8e65e4"
+      },
+      {
+        "path": "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+        "sha256": "be38fc8ddd57398e88378ea9caaf5d7fe6713be55ebf455a32581acddfd1c5e5",
+        "normalizedLfSourceSha256": "be38fc8ddd57398e88378ea9caaf5d7fe6713be55ebf455a32581acddfd1c5e5"
+      }
+    ],
+    "parentValidation": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-tangent-validation-r2.json",
+      "sha256": "9fa9b9b71b15f0b0a705e96ab09c5f1baf35a93b94809a9e77f3bd13a585acfd"
+    },
+    "selectedHistorical13": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-tangent-selected-current13-r1.json",
+      "sha256": "f24dd28eb9bd2d4833253f6793a90cd56440f9cd28d794b3cbd1761720ec5f24"
+    },
+    "independentAudit": {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-engine-audit-report-r2.json",
+      "sha256": "a50f00ee752df1c25cc341b9a160fd0695d219510b0c90b24d7078a324181e42"
+    },
+    "currentDraftBinding": {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/current-drafts-rebind-r2.json",
+      "sha256": "51ad184e66b974ad3e7f6ac3ff4abd819f07ae4837fd50093dff56637cb3da2c"
+    },
+    "finiteCases": 10,
+    "manualQuestionCounts": 0,
+    "manualFigureCounts": 0,
+    "publicApproval": false,
+    "rightsApproved": false,
+    "loadable": false,
+    "remaining": [
+      "independent geometry/spec validation and visual-information evidence tag",
+      "exact livefamily16 adoption and MC/difficulty mapping",
+      "2022 placement, native reader/print, rights/similarity"
+    ]
+  },
+  "loadable": 0,
+  "dbWrites": 0,
+  "wholeGoalComplete": false
+}

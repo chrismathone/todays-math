@@ -57,6 +57,7 @@ export const STUDY_REQUIREMENT_IDS = [
   "algebra.inverse-coefficient-sum",
   "number.inverse-root-table",
   "number.inverse-extreme-range",
+  "geometry.inverse-tangent-rectangle",
 ] as const;
 
 export const studyRequirementIdSchema = z.enum(STUDY_REQUIREMENT_IDS);
