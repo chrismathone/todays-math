@@ -1,0 +1,138 @@
+{
+  "numberRepresentation": "(r,s)=r+s√5; all arithmetic uses exact Fraction values",
+  "denominators": {
+    "u": "√5-1",
+    "v": "√5+1",
+    "nonzeroProof": "5>1이므로 √5>1. 따라서 √5-1>0,√5+1>0.",
+    "rationalizationProduct": "(√5-1)(√5+1)=5-1=4≠0",
+    "norms": {
+      "u": "-4",
+      "v": "-4"
+    }
+  },
+  "u": {
+    "rational": "1/4",
+    "sqrt5Coefficient": "1/4"
+  },
+  "v": {
+    "rational": "-1/4",
+    "sqrt5Coefficient": "1/4"
+  },
+  "uv": {
+    "rational": "1/4",
+    "sqrt5Coefficient": "0"
+  },
+  "uMinusV": {
+    "rational": "1/2",
+    "sqrt5Coefficient": "0"
+  },
+  "uPlusV": {
+    "rational": "0",
+    "sqrt5Coefficient": "1/2"
+  },
+  "quarticDirect": {
+    "rational": "0",
+    "sqrt5Coefficient": "1/16"
+  },
+  "quarticFactored": {
+    "rational": "0",
+    "sqrt5Coefficient": "1/16"
+  },
+  "target": {
+    "rational": "0",
+    "sqrt5Coefficient": "13/16"
+  },
+  "t": {
+    "rational": "3/2",
+    "sqrt5Coefficient": "0"
+  },
+  "choices": [
+    {
+      "mark": "①",
+      "t": "-1/2",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "-3/16"
+      },
+      "rhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "13/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "-1"
+      },
+      "satisfies": false
+    },
+    {
+      "mark": "②",
+      "t": "0",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "1/16"
+      },
+      "rhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "13/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "-3/4"
+      },
+      "satisfies": false
+    },
+    {
+      "mark": "③",
+      "t": "1/2",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "5/16"
+      },
+      "rhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "13/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "-1/2"
+      },
+      "satisfies": false
+    },
+    {
+      "mark": "④",
+      "t": "1",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "9/16"
+      },
+      "rhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "13/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "-1/4"
+      },
+      "satisfies": false
+    },
+    {
+      "mark": "⑤",
+      "t": "3/2",
+      "lhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "13/16"
+      },
+      "rhs": {
+        "rational": "0",
+        "sqrt5Coefficient": "13/16"
+      },
+      "residual": {
+        "rational": "0",
+        "sqrt5Coefficient": "0"
+      },
+      "satisfies": true
+    }
+  ],
+  "uniqueness": "t의 계수u+v=√5/2>0이므로0이 아니다. t에 관한 일차방정식에 정확히 하나의 실수 해가 있고 t=3/2를 원식에 대입해 존재도 확인했다.",
+  "domainAndUnits": "u,v는 양의 실수로 정의된다. t는 실수이며 양수 조건이 붙지 않았지만 구한 해는 양수이다. 제곱근의 피제곱수5는 양수,원래/유리화 분모는 모두0이 아니고 u+v로 나눌 때도0이 아니다. 단위·도형·픽셀 측정 조건은 없다."
+}
