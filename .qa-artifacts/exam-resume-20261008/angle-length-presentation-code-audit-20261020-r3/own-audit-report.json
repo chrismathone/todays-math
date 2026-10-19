@@ -1,0 +1,111 @@
+{
+  "kind": "independent-standalone-measure-fallback-repair-audit/v3",
+  "status": "bounded-controls-passed",
+  "ownControls": 696,
+  "controlsResultSha256": "3fe5fa5ec6cc32887606a795270b278f680a7f93d8a335ed091b786f3a63ebc5",
+  "sourceBeforeAfterHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.test.mjs": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs": "5a7be5f678487de764840c7e7e3d3a61fe4eee0a9b549201ddf2aac08c2a1d8d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\review-exam-twins.mjs": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\prepare-sealed-review.mjs": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.mjs": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.test.mjs": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+  },
+  "exactProvidedSnapshotHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\00-answerPresentation.mjs.snapshot": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\01-answerPresentation.test.mjs.snapshot": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\02-candidatePack.mjs.snapshot": "5a7be5f678487de764840c7e7e3d3a61fe4eee0a9b549201ddf2aac08c2a1d8d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\03-constantAnswers.mjs.snapshot": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\04-review-exam-twins.mjs.snapshot": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\05-prepare-sealed-review.mjs.snapshot": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\06-singleLengthPresentation.mjs.snapshot": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\07-singleLengthPresentation.test.mjs.snapshot": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+  },
+  "findings": [
+    {
+      "status": "fixed-within-scope",
+      "subject": "four-normalization-bypasses",
+      "basis": "For valid standalone author4cm/TeX4cm and short/written non-MC types, raw4\\leftcm,4\\rightcm,4c\\mathrm{m},$$4cm$$ are rejected by actual independentAnswerMatches. In-memory guard-removal control restores their prior acceptance against4cm. No parent source or old evidence changed."
+    },
+    {
+      "status": "passed",
+      "subject": "normal-values-and-role-preservation",
+      "basis": "Unicode/TeX radicals, exact Fraction and cm/m conversion, sqrt squares,0..360degree and fractional-degree checks pass. Wrong value/unit/dimension, named roles, numbered prefixes, extra/missing content are not erased for recognized standalone author. Entire constant is consumed; no tolerance comparison."
+    },
+    {
+      "status": "explicit-remaining-boundary",
+      "subject": "author-recognition-not-global-validation",
+      "basis": "The mandatory structured path is selected by recognized complete AUTHOR answer. If author itself is malformed/unknown (e.g.4\\leftcm), prior fallback remains, as requested. Named/numbered/MC paths retain their previous behavior. This is a bounded repair, not general syntax certification."
+    },
+    {
+      "status": "passed",
+      "subject": "no-approval-from-presentation",
+      "basis": "Negative and zero exact values remain numerical identities only. Missing grade basis, pending grade, stale digest, wrong answer and forged rights/source/taxonomy gate controls never create overall/native/loadable/production approval."
+    }
+  ],
+  "actualManualCollectors": [
+    {
+      "group": 10,
+      "math": 2,
+      "grade": 2,
+      "overall": 0,
+      "loadable": 0
+    },
+    {
+      "group": 11,
+      "math": 5,
+      "grade": 5,
+      "overall": 0,
+      "loadable": 0
+    }
+  ],
+  "oldEvidenceIntegrity": {
+    "gitCommit": "1995e615aacc05fa4b15d301e5d32d2ffe3c7052",
+    "files": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-presentation-code-audit-20261020-r1\\own-code-audit-report.json": "34bc6e97052eba284a3d0ac377d4cbf5e8e7cf8b7485aa5f07cce0b722905bee",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-presentation-code-audit-20261020-r1\\own-code-controls-results.json": "c2290ec498dc7a9b8089b26c3df6d57fb56638e2be2f61cbeb6d6f0ca2ee970c",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-presentation-code-audit-20261020-r1\\own-code-controls.mjs": "e1ffc6d711e209b8191d2d20317cca69e16bcdb351d5c75ad7fca9571c2a6898",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-presentation-code-audit-20261020-r1\\own-seal-evidence.py": "e30fb63d7837151323e7adf6e7aaf34fdb393662e268fb2672ffb3515167a2c3",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-presentation-code-audit-20261020-r1\\own-utf8-probe.txt": "17cf9a40a0a2b79fe9e0227f380e7b71726dc8e83f97a1ea182d81c439f17c49",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r2\\own-audit-report.json": "30cbfacc259477b157ec7970d4870a67dc995568e741f8d0b89bfd2318b19315",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r2\\own-controls-results.json": "c4aa1685a70f64ca1fecd17debd426d369156042e1f91f58918722ae7e36048c",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r2\\own-controls.mjs": "d724b4907c0fc6daab203cd59763db9fb902c88336d21033dff2945d6b163ec7",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r2\\own-diagnostic.mjs": "7dab44780d55639bffb8c27e9312df587162aaca13ae5ceacebf40193092b9b9",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r2\\own-initial-fallback-diagnostic.json": "0124a298d78b7d959b9587bf35e9cbe5c62eea841c008febb49394241ea95820",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r2\\own-refine-control.py": "42927b979fba905255aa311c77acb01b25f5e0f44f5937af4ab88e4fe3783af0",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r2\\own-seal.py": "483ef9f2e8af56d65a60a7e7acd35dbf541d3ef68e452279a1aaf7bc3064bbf1",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r2\\own-utf8-probe.txt": "9ebce46c5b750b5ebb6719962afdad758168902c1dfee831b6ef452c185b8d43",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\blind\\solve\\q11.json": "b36067fb6aa11cb1d1a655401ba56e258d36692e661e4147414a83e58c120b8b",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\verification\\reports\\q11.json": "f012be660f942c3178b277456d0c9eebd957c5371465b1d15c1370cf0eeae1b1",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\blind\\solve\\q12.json": "580b2c6a3c4dd9ebe0a089b189ad979c4f36bb3e09e54b926951de29435e180f",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\verification\\reports\\q12.json": "61cc9667fb9894d64ecf033921ed072a4a76fc2b27bd3bad23eb6afa537f1577",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q13.json": "620dcdf3464f8d7710a5773513c9fb3fbf2d855bafd5dc34342c4c2e6aa490b8",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\verification\\reports\\q13.json": "2e99c8bf194a3e2bc73b37eaaba3bbae2d9b0a19278beddfaaab59b1dc55abb5",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q14.json": "ff820db7da0f843aff48da33a11157fc93685bbc2be02c7bfa71be38854f034f",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\verification\\reports\\q14.json": "8310839466714b121bf9c626e67a9ee734de96669a5f8ca9080a52f8cb605323",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q15.json": "ba83a05eb711be5e216726c7b8c04d1990bed219f0d639f7225fad840dce797b",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\verification\\reports\\q15.json": "c50c361ffa9573c5c879fecd9bf524e18ef17f4a32f187087936fc665ad2efe3",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q16.json": "fe7fcf936c383f845ed5e937a507ebd8a75c10f7a1cbd87e24e98f22b7a9eff0",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\verification\\reports\\q16.json": "2efba14c7cfb9b774655392b4b52484fa4995e185d7d2811cd11af77db757178",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q17.json": "80d48077fadbd63dd587866ff6f587adbe48f5903142f925956300f12b1f7cfd",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\verification\\reports\\q17.json": "f8d2ae19133904c7c17ce533e774ea9fa403553920534aeec4603052e1bd03ee",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\verification\\own-q13-q17-review-collector.json": "561c7b9deb73faa6e554e524a7087e03c704f3f3fa5a3d4346b63fa8049c26a8"
+    },
+    "allByteIdentical": true
+  },
+  "limits": [
+    "Only an author answer recognized as a complete standalone decimal degree or exact cm/m length gets mandatory structured comparison",
+    "Malformed/unknown AUTHOR formats retain prior exact-normalization fallback, including 4leftcm author versus4cm raw; this is an explicitly unchanged boundary, not universal syntax validation",
+    "zero/negative numeric identity is not positivity/existence or method proof",
+    "7 existing manual raw/reports and R1/R2 evidence unchanged; no new approvals or manual count",
+    "315-current-raw parity and parent117 tests not independently rerun or claimed",
+    "in-memory removal of only new guard used to demonstrate old bypass; no claim of historical Git module execution",
+    "source8 and exact snapshots checked; runtime imports existing dependencies; no DB/API/root writes"
+  ],
+  "parent117TestsOr315RawParityClaimedAsOwn": false,
+  "newManualCount": 0,
+  "DBorAPI": false,
+  "rootSourceWrites": 0
+}
