@@ -112,7 +112,7 @@ describe("성적표 원장님 화면 Hi-fi — 로컬 시안", () => {
   it("문장 없이도 확정되며 빈 문장 칸은 지면에 싣지 않는다", () => {
     const { container } = render(<ExamReportScreenHifi />);
     scenario("none");
-    expect(container.querySelector(".er-note")).toBeNull();
+    expect(container.querySelector(".sc-teacherNote")).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "이 학생 확정" }));
     expect(
       within(
@@ -230,12 +230,12 @@ describe("성적표 원장님 화면 Hi-fi — 로컬 시안", () => {
   it("지면이 넘친다는 측정 결과에서는 저장·확정·선택 학생 인쇄를 막는다", () => {
     vi.spyOn(HTMLElement.prototype, "clientHeight", "get").mockImplementation(
       function (this: HTMLElement) {
-        return this.classList.contains("er-sheet") ? 1123 : 0;
+        return this.classList.contains("sc-sheet") ? 1123 : 0;
       },
     );
     vi.spyOn(HTMLElement.prototype, "scrollHeight", "get").mockImplementation(
       function (this: HTMLElement) {
-        return this.classList.contains("er-sheet") ? 1300 : 0;
+        return this.classList.contains("sc-sheet") ? 1300 : 0;
       },
     );
     render(<ExamReportScreenHifi />);

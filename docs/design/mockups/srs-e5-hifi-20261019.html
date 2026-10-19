@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>초5 혼자 공부 · 펼친 책 Hi-fi 5안</title>
+    <style>
+      @font-face {
+        font-family: Pretendard;
+        src: url("../../../public/fonts/PretendardVariable.woff2")
+          format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      :root {
+        --ink: #172b4d;
+        --muted: #596c86;
+        --line: #dde3ec;
+        --control: #b8c4d6;
+        --panel: #edf0f6;
+        --blue: #3159df;
+        --white: #fff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--white);
+        color: var(--ink);
+        font:
+          15px/1.6 Pretendard,
+          "Malgun Gothic",
+          sans-serif;
+      }
+      button,
+      select {
+        font: inherit;
+        color: inherit;
+        background: var(--white);
+        border: 1px solid var(--control);
+        padding: 10px 16px;
+        min-height: 44px;
+        cursor: pointer;
+      }
+      button:focus-visible,
+      select:focus-visible,
+      a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+      }
+      button[aria-selected="true"],
+      button[aria-pressed="true"] {
+        background: var(--ink);
+        color: white;
+      }
+      h1 {
+        font-size: 28px;
+        line-height: 1.3;
+        margin: 0 0 16px;
+      }
+      h2 {
+        font-size: 24px;
+        margin: 0 0 12px;
+      }
+      h3 {
+        font-size: 20px;
+        margin: 0;
+      }
+      p {
+        margin: 8px 0;
+      }
+      .board {
+        max-width: 1600px;
+        margin: auto;
+        padding: 32px;
+      }
+      .intro {
+        max-width: 900px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .bar {
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 5;
+        border-block: 1px solid var(--line);
+        padding: 12px 0;
+        margin: 24px 0;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .tabs,
+      .widths,
+      .states {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .widths {
+        margin-left: auto;
+      }
+      .thesis {
+        padding: 0 0 20px;
+        border-bottom: 1px solid var(--line);
+      }
+      .thesis p {
+        max-width: 1000px;
+      }
+      .review {
+        margin: 32px 0;
+      }
+      .review-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .pair {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 390px;
+        gap: 24px;
+        align-items: start;
+      }
+      .device {
+        min-width: 0;
+      }
+      .device-label {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .viewport {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--control);
+        background: var(--panel);
+      }
+      iframe {
+        display: block;
+        border: 0;
+        transform-origin: top left;
+        background: white;
+      }
+      .phone iframe {
+        width: 390px;
+      }
+      .desktop iframe {
+        width: 1366px;
+      }
+      .phone .viewport {
+        max-width: 392px;
+      }
+      .notes {
+        font-size: 13px;
+        color: var(--muted);
+        max-width: 1050px;
+        margin-top: 12px;
+      }
+      .source {
+        border-top: 1px solid var(--line);
+        padding-top: 24px;
+        margin-top: 48px;
+        font-size: 13px;
+      }
+      .source li {
+        margin: 8px 0;
+      }
+      .only-pc .pair,
+      .only-phone .pair {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .only-pc .phone,
+      .only-phone .desktop {
+        display: none;
+      }
+      .only-phone .phone {
+        max-width: 392px;
+        margin: auto;
+        width: 100%;
+      }
+      .audit {
+        border: 1px solid var(--line);
+        padding: 20px;
+        margin: 24px 0;
+      }
+      .audit summary {
+        cursor: pointer;
+        font-weight: 700;
+        min-height: 44px;
+      }
+      .audit table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 16px;
+      }
+      .audit td,
+      .audit th {
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+        padding: 10px;
+        vertical-align: top;
+      }
+      .audit th {
+        font-weight: 700;
+      }
+      a {
+        color: var(--blue);
+      }
+      [hidden] {
+        display: none !important;
+      }
+      @media (max-width: 1150px) {
+        .pair {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .phone {
+          width: min(100%, 392px);
+          margin: auto;
+        }
+      }
+      @media (max-width: 600px) {
+        .board {
+          padding: 16px;
+        }
+        .widths {
+          margin-left: 0;
+        }
+        .bar {
+          position: static;
+        }
+        .tabs button {
+          padding: 8px 12px;
+        }
+        .audit {
+          padding: 12px;
+        }
+        .audit td,
+        .audit th {
+          padding: 8px 4px;
+        }
+        h1 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="board">
+      <header class="intro">
+        <h1>초5 혼자 공부 · 펼친 책 Hi-fi 5안</h1>
+        <p>
+          선택한 E 펼친 책의 구조 위에서 종이·테마·폰의 두 면·풀이·길잡이를
+          비교합니다. 첫 화면과 예습은 좌우 두 면, 풀이는 문제 아래 글과 그림 두
+          단을 유지합니다.
+        </p>
+        <p class="muted">검토용 정적 Hi-fi · 2026-10-19 · 제품 저장 없음</p>
+      </header>
+      <nav class="bar" aria-label="시안 비교">
+        <div class="tabs" role="tablist" aria-label="구조안"></div>
+        <div class="widths" aria-label="미리보기 폭">
+          <button data-width="both" aria-pressed="true">PC + 폰</button
+          ><button data-width="pc" aria-pressed="false">PC 1366</button
+          ><button data-width="phone" aria-pressed="false">폰 390</button>
+        </div>
+      </nav>
+      <section id="proposal" role="tabpanel" aria-labelledby="tab-A">
+        <div class="thesis" id="thesis"></div>
+        <div id="screens"></div>
+      </section>
+      <details class="audit">
+        <summary>고정된 구조와 확인할 세부</summary>
+        <p>
+          PC는 실제 1366px, 폰은 390px를 공간에 맞춰 축소해 보여 줍니다. 화면 위
+          상태 단추는 검토 도구입니다. PC·폰의 내용 상태는 함께 바뀝니다.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>고정</th>
+              <th>다섯 안 공통</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>첫 화면</td>
+              <td>
+                왼쪽 오늘 공부·길잡이·시작 하나, 오른쪽 여정 그림·단원 길 넷.
+                하루 마침은 오늘 한 것·내일 할 것·보상 그림.
+              </td>
+            </tr>
+            <tr>
+              <td>틀렸을 때</td>
+              <td>
+                같은 문제, 첫 오답 뒤 3·4·5·6 → 6·5·3·4. 정답과 풀이는 두 번째
+                오답 또는 모르겠어요에서. 문제 아래 글·그림 두 단, 알겠어요를
+                눌러야 이동.
+              </td>
+            </tr>
+            <tr>
+              <td>예습</td>
+              <td>
+                왼쪽 뜻·모눈, 오른쪽 함께 풀기·따라 풀기. 0.48 확인 뒤 문제
+                풀기. 개념 설명과 단계·일정은 새로 계산하지 않음.
+              </td>
+            </tr>
+            <tr>
+              <td>그림</td>
+              <td>
+                수학 그림은 정확한 SVG 두 장. 여정은 기존 webp. 길잡이·보상은
+                제작 방향을 적은 자리 상자.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+      <footer class="source">
+        <h3>근거 · 검증 · 원장님께 확인할 세부</h3>
+        <p>
+          구조: Wire E, 계획서 §2 결정 8 · Hi-fi 지시서
+          docs/planning/tracks/brief-srs-e5-hifi-codex.md. 다른 Wire 안의 구조는
+          가져오지 않았습니다.
+        </p>
+        <p>
+          내용: g5-decimal-multiply의 뜻·예시·참거짓, 24-q3-wrong-a.png의 실제
+          은행 문제. 보기는 main 67f8a8f55 이후의 3·4·5·6. 하루 마침은
+          12-day1-done.png의 개념 활동 15개만 사용합니다. 내일 내용은 엔진
+          응답으로 채울 자리입니다.
+        </p>
+        <p>
+          수학 그림: 10×10의 100칸 중 2열×3행=6칸, 한 칸 0.01. 수직선은 같은
+          간격의 눈금에서 36·38·42·44·45를 표시하고 44를 채운 끝점으로 왼쪽
+          범위를 그립니다. 파일은 이 시안 폴더 안의 SVG이며 제품 엔진을 수정하지
+          않았습니다.
+        </p>
+        <p>
+          폰 방식: A·B 쌓기, C 두 면 표와 가로 밀기, D 제목을 눌러 접고 펴기, E
+          쌓기와 면 바로가기. PC 비교창의 폰은 키캡을 숨긴 미리보기이며 실제
+          터치 기기에서도 별도 점검했습니다. E의 폰 미리보기는 높이 844px의 내부
+          스크롤을 사용하므로 면 바로가기가 화면 위에 남습니다.
+        </p>
+        <p>
+          새 색은 B의 종이 #fffdf7 하나입니다. 밝은 종이 느낌을 내기 위한
+          바탕색이며 글자색은 학생 토큰 그대로입니다. 모든 그림 위의 글은 불투명
+          종이 면에 놓습니다.
+        </p>
+        <p id="contrast">
+          대비(흰 바탕): 잉크 14.10:1 · 보조 글 5.37:1 · 코발트 단추의 흰 글
+          5.79:1. B 종이 바탕: 잉크 13.86:1 · 보조 글 5.27:1 · 코발트 글 5.70:1.
+          글과 단추의 대비는 모두 4.5:1 이상입니다.
+        </p>
+        <p id="verification">
+          2026-10-19 · Edge/Playwright: 5안 × 3화면 × PC 1366·폰 390의 30개
+          프레임에서 가로 넘침·누락 그림·JavaScript 오류 없음. 보기 값 보존과
+          재배열, 두 번째 오답·모르겠어요 풀이 공개, 자동 넘김 없음,
+          알겠어요·정답 성공 경로, 예시 정오·참거짓, 0.48 확인·Enter, 하루
+          마침을 확인했습니다. 터치·움직임 줄이기 환경의 가로 밀기와 접기, 면
+          이동 중 입력 보존, E 폰의 고정 바로가기도 확인했습니다. SVG 원본과
+          인라인 그림의 일치·기하 좌표·라벨 경계도 점검했습니다.
+        </p>
+        <p>
+          검증 자료:
+          <a href="srs-e5-hifi-shots/qa-results.json">동작·대비 기록</a> ·
+          <a href="srs-e5-hifi-shots/A-pc.png">A PC</a> ·
+          <a href="srs-e5-hifi-shots/B-pc.png">B PC</a> ·
+          <a href="srs-e5-hifi-shots/C-pc.png">C PC</a> ·
+          <a href="srs-e5-hifi-shots/D-pc.png">D PC</a> ·
+          <a href="srs-e5-hifi-shots/E-pc.png">E PC</a>. 같은 폴더에 안마다
+          폰·은행 풀이·개념 풀이·예습 확인·하루 마침 캡처가 있습니다.
+        </p>
+        <p>
+          다음 문항의 내용·순서와 기록 저장은 구현 단계의 범위입니다. 이 파일은
+          API·DB·학습 일정에 쓰지 않습니다.
+        </p>
+        <p><b>원장님께:</b> 기본 안 A~E와 함께 다음 세부를 골라 주세요.</p>
+        <ol>
+          <li>
+            ‘오늘 공부 시작’은 현재처럼 왼쪽 면 아래에 둘까요? 문구는 이대로
+            둘까요?
+          </li>
+          <li>폰에서 쌓기·면 넘김·접기·면 바로가기 중 어느 방식이 편한가요?</li>
+          <li>
+            풀이의 아랫단·끼운 쪽지·다음 종이·노트 테두리 중 어느 모양으로
+            할까요? ‘알겠어요’는 풀이 끝 오른쪽(폰 전체 폭)에 둘까요?
+          </li>
+          <li>
+            길잡이와 보상 그림의 크기·위치는 선택한 안 그대로 둘까요? 표시한
+            그림 방향으로 제작할까요?
+          </li>
+        </ol>
+        <p>
+          05-design-system §0-3 ‘세부 디테일은 항상 질문’에 따라 선택할 항목을
+          남겼습니다. 이 시안의 문구·위치·넘김 방식은 구현 확정 사항이 아닙니다.
+        </p>
+      </footer>
+    </main>
+    <script>
+      "use strict";
+      const variants = [
+        {
+          id: "A",
+          name: "담백한 두 판",
+          diff: "접힘 그림자 없이 흰 두 판을 가릅니다. 도형 테마는 여정 면에만, 풀이는 옅은 코발트 아랫단에 둡니다. 폰에서는 두 면을 위아래로 쌓습니다.",
+          cost: "빠르게 읽히지만 실제 책 같은 손맛은 가장 약하고, 폰에서 오른쪽 면까지 스크롤이 깁니다.",
+        },
+        {
+          id: "B",
+          name: "숲의 종이책",
+          diff: "밝은 종이색·가운데 접힘·책갈피를 둡니다. 숲 그림은 여정 가장자리와 공부 화면까지, 풀이는 끼운 쪽지처럼. 폰은 책장을 위아래로 쌓습니다.",
+          cost: "책 느낌과 테마가 가장 풍부하지만 테두리·접힘이 공간을 쓰고, 작은 폰에서는 그림과 여백이 길어집니다.",
+        },
+        {
+          id: "C",
+          name: "바다의 넘김책",
+          diff: "코발트 제본과 바다 머리띠를 둡니다. 풀이는 아래 잇는 얇은 밑줄 면. 폰은 두 면의 표를 누르거나 옆으로 밀어 넘깁니다.",
+          cost: "폰에서 한 면에 집중할 수 있지만 뜻과 예를 동시에 볼 수 없고, 숨은 오른쪽 면을 알아차려야 합니다.",
+        },
+        {
+          id: "D",
+          name: "하늘의 접힌 책",
+          diff: "하늘 그림을 윗띠로만 씁니다. 풀이는 다음 종이로 이어지고, 길잡이는 왼쪽 면의 작은 짝그림. 폰에서는 접힌 면 제목을 눌러 엽니다.",
+          cost: "현재 보는 면을 짧게 유지하지만 접힌 내용을 다시 열어야 하며, 요약 제목이 탐색을 잘 도와야 합니다.",
+        },
+        {
+          id: "E",
+          name: "도형의 테두리",
+          diff: "도형 테마를 책 가장자리에 가늘게 두릅니다. 풀이는 아래에 붙인 정돈된 노트. 폰은 두 면을 쌓되 작은 면 바로가기로 오갑니다.",
+          cost: "두 면을 모두 남기며 오갈 수 있지만 폰의 바로가기가 자리를 쓰고, 접힘보다 학습 노트 느낌이 강합니다.",
+        },
+      ];
+      let selected = "A";
+      const state = {
+        home: { done: false },
+        wrong: { kind: "bank", phase: "retry" },
+        preview: { step: 0, checked: false },
+      };
+      function app(option, screen, initial, illustrations) {
+        const root = document.getElementById("app");
+        let s = { side: 0, draft: "", ...initial };
+        const escapeHTML = (value) =>
+          String(value).replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[c],
+          );
+        const themes = {
+          A: "shapes",
+          B: "forest",
+          C: "sea",
+          D: "sky",
+          E: "shapes",
+        };
+        const directions = {
+          A: "얇은 선의 작은 책 길잡이 · 옆모습",
+          B: "숲을 걷는 둥근 길잡이 · 연필 질감",
+          C: "바다를 살피는 길잡이 · 단정한 평면 그림",
+          D: "구름 위 길잡이 · 밝고 가벼운 입체감",
+          E: "도형을 모으는 길잡이 · 작은 종이 모형",
+        };
+        const theme = themes[option];
+        const unit = "소수 곱셈과 어림";
+        const themePath =
+          "../../../public/images/journey/" + theme + "-board.webp";
+        function btn(text, action, primary = false, extra = "") {
+          const extraClass = extra.match(/class="([^"]*)"/);
+          const classes = [
+            primary ? "primary" : "",
+            extraClass?.[1] || "",
+          ].join(" ");
+          extra = extra.replace(/class="[^"]*"/g, "");
+          return `<button type="button" data-action="${action}" class="${classes}" ${extra}>${text}</button>`;
+        }
+        function slot(reward = false) {
+          return `<div class="character ${reward ? "reward" : ""}"><div class="character-box"><span>${reward ? "보상 그림 자리" : "길잡이 자리"}</span></div><p>${reward ? "하루 마침을 담은 작은 기념 그림" : directions[option]}</p></div>`;
+        }
+        function send(next) {
+          s = { ...s, ...next };
+          render();
+          parent.postMessage({ wire: true, screen, state: s }, "*");
+        }
+        function top(session = false) {
+          return `<header class="app-header"><b>오늘 수학</b><span>검수학생</span>${session ? btn("학습 홈", "home") : btn("로그아웃", "logout")}</header>${session ? "" : `<nav class="app-nav" aria-label="학생 메뉴"><b aria-current="page">탐험</b>${btn("도감", "catalog")}</nav>`}`;
+        }
+        function art(name, caption) {
+          return `<figure class="math-figure">${illustrations[name]}<figcaption>${caption}</figcaption></figure>`;
+        }
+        function pages(left, right, labels) {
+          const side = s.side || 0;
+          return `<div class="page-tools" role="group" aria-label="책의 두 면"><button data-side="0" aria-pressed="${side === 0}">${labels[0]}</button><button data-side="1" aria-pressed="${side === 1}">${labels[1]}</button></div><div class="spread side-${side}" data-book><section class="leaf left-leaf"><button class="fold-head" data-fold="0" aria-expanded="${side === 0}"><span>${labels[0]}</span><span aria-hidden="true">${side === 0 ? "접기" : "펼치기"}</span></button><div class="leaf-content"><div class="page-title">${labels[0]}</div>${left}<span class="folio" aria-hidden="true">왼쪽 면</span></div></section><section class="leaf right-leaf"><button class="fold-head" data-fold="1" aria-expanded="${side === 1}"><span>${labels[1]}</span><span aria-hidden="true">${side === 1 ? "접기" : "펼치기"}</span></button><div class="leaf-content"><div class="page-title">${labels[1]}</div>${right}<span class="folio" aria-hidden="true">오른쪽 면</span></div></section></div>`;
+        }
+        function journey() {
+          const units = [
+            unit,
+            "대응·평균·가능성",
+            "합동·대칭과 직육면체",
+            "다각형의 둘레와 넓이",
+          ];
+          return `<div class="journey-art"><img src="${themePath}" alt="${{ forest: "숲", sea: "바다", sky: "하늘", shapes: "도형" }[theme]} 테마의 수학 여정 그림"></div><ol class="unit-path">${units.map((t, i) => `<li class="${i === 0 ? "current" : ""}"><span class="path-dot" aria-hidden="true"></span><div><span class="path-status">${i === 0 ? (s.done ? "오늘 마침" : "지금 여기") : "앞으로 만날 내용"}</span><b>${t}</b></div></li>`).join("")}</ol>`;
+        }
+        function home() {
+          const left = `<p class="eyeline">초등 5학년</p><h1>${s.done ? "오늘 공부를 마쳤어요" : "오늘도 한 칸씩 배워요"}</h1><p class="unit-name">${unit}</p>${s.done ? `<div class="day-result"><h2>오늘 한 것</h2><p>소수의 곱셈 · 개념 활동 15개</p><h2>내일 할 것</h2><p>기억 복습과 다음 공부를 이어 가요.</p></div>${slot(true)}` : `<p class="invitation">배운 것을 떠올리고,<br>새 내용을 배워요.</p>${slot()}${btn("오늘 공부 시작", "start", true)}`}`;
+          return `${top()}<main class="home-main">${pages(left, journey(), ["오늘 공부", "나의 수학 여정"])}</main>`;
+        }
+        function question() {
+          return `<div class="problem-heading"><h1>${s.kind === "bank" ? "이상과 이하 알아보기" : "소수의 곱셈"}</h1><span class="kind-tag">${s.kind === "bank" ? "개념" : "방법"}</span></div><p class="question">${s.kind === "bank" ? "42, 44, 45, 38, 36 중에서<br> 44 이하인 수는 모두 몇 개입니까?" : "0.2 × 0.3은 0.06이다."}</p>`;
+        }
+        function choices() {
+          const values =
+            s.kind === "bank"
+              ? s.phase === "initial"
+                ? ["3", "4", "5", "6"]
+                : ["6", "5", "3", "4"]
+              : s.phase === "initial"
+                ? ["맞다", "아니다"]
+                : ["아니다", "맞다"];
+          return `<div class="choices">${values.map((v, i) => `<button type="button" data-answer="${v}" aria-pressed="${s.chosen === v}" aria-keyshortcuts="${i + 1}"><span class="keycap" aria-hidden="true">${i + 1}</span><span>${v}</span></button>`).join("")}</div>${btn("아직 모르겠어요", "giveup", false, 'class="giveup"')}`;
+        }
+        function explanation() {
+          const bank = s.kind === "bank";
+          return `<section class="explanation" tabindex="-1"><div class="solution-heading"><span class="solution-tag">다시 살펴봐요</span><h2>정답과 풀이</h2></div><div class="solution-columns"><div class="solution-text">${bank ? `<h3>정답은 4개예요.</h3><p><b>44 이하에는 44도 들어가요.</b></p><p>42, 44, 38, 36이므로 모두 4개예요.<br>45는 44보다 커서 들어가지 않아요.</p>` : `<h3>정답은 ‘맞다’예요.</h3><p>자연수처럼 계산한 뒤 두 수의 소수 자릿수의 합만큼 소수점 아래 자리를 둬요.</p><ul class="example-list"><li><b>맞는 예</b> 0.2 × 0.3 = 0.06</li><li><b>맞는 예</b> 1.2 × 0.4 = 0.48</li><li><b>틀린 예</b> 0.2 × 0.3 = 0.6</li><li><b>틀린 예</b> 1.2 × 0.4 = 4.8</li></ul><p>‘0.2 × 0.3은 0.06이다’는 참이에요.<br>0.1 × 0.1은 0.01임을 생각해요.</p>`}</div><div class="solution-picture">${bank ? art("at-most44.svg", "44를 포함하고, 44보다 작은 수가 들어가요.") : art("decimal-area.svg", "작은 한 칸이 0.01, 색칠한 6칸은 0.06이에요.")}</div></div><div class="solution-footer"><p>이 문제는 다음 복습에서 다시 만나요.</p>${btn("알겠어요", "understood", true)}</div></section>`;
+        }
+        function wrong() {
+          let area;
+          if (s.phase === "next")
+            area = `<section class="next-page"><p class="eyeline">다음 공부</p><h1>${s.readSolution ? "풀이를 확인했어요" : "이어서 배워요"}</h1><p>다음 공부를 이어 가요.</p><div class="next-placeholder">엔진이 정한 다음 문항 자리</div></section>`;
+          else if (s.phase === "success")
+            area = `<section class="next-page"><p class="success-line" role="status">맞았어요</p><h1>잘 풀었어요</h1><p>다음 공부를 이어 가요.</p>${btn("다음", "advance", true)}</section>`;
+          else
+            area = `<div class="problem-sheet"><section class="problem">${question()}${s.phase !== "solution" ? `<p class="feedback" role="status">${s.phase === "retry" ? "다시 해 볼까요" : ""}</p>${choices()}` : ""}</section>${s.phase === "solution" ? explanation() : ""}</div>`;
+          return `${top(true)}<main class="study-main"><div class="session-line"><span>${s.kind === "bank" ? "문제 풀기" : "개념 탐험"}</span><span>${s.kind === "bank" ? "3 / 5" : "3 / 15"}</span></div>${area}</main>`;
+        }
+        function preview() {
+          const left = `<div class="problem-heading"><h1>소수의 곱셈</h1><span class="kind-tag">방법</span></div><p class="definition">자연수처럼 계산한 뒤 두 수의 <b>소수 자릿수의 합</b>만큼 소수점 아래 자리를 둬요.</p>${art("decimal-area.svg", "가로 0.2, 세로 0.3인 부분은 모두 6칸이에요.")}<p class="small-note">한 변이 1인 정사각형을 100칸으로 나눴어요.</p>${btn("예와 연습 보기", "show-right", false, 'class="phone-next"')}`;
+          const right = `<section class="worked"><h2>함께 풀어 봐요</h2><p class="equation">0.2 × 0.3 = 0.06</p><p>작은 한 칸은 0.01이에요.<br>6칸이므로 넓이는 0.06이에요.</p><p>2 × 3 = 6에서<br>소수점 아래 두 자리를 둬요.</p></section><section class="practice"><h2>따라 풀어 봐요</h2><p>1.2 × 0.4를 계산해 보세요.</p><p class="small-note">12 × 4 = 48이에요.<br>두 수의 소수 자릿수의 합만큼<br>소수점을 옮겨요.</p><form id="practice-form"><label for="practice">1.2 × 0.4 =</label><div class="input-row"><input id="practice" type="text" inputmode="decimal" autocomplete="off" value="${s.checked ? "0.48" : escapeHTML(s.draft || "")}" aria-label="1.2 곱하기 0.4의 답" aria-describedby="practice-feedback"><button type="submit" class="primary check" aria-keyshortcuts="Enter">확인 <span class="enter-cap" aria-hidden="true">↵</span></button></div></form><p class="practice-feedback ${s.checked ? "success-line" : ""}" id="practice-feedback" role="status">${s.checked ? "0.48이에요. 소수점 아래 두 자리를 둬요." : ""}</p></section>${btn("문제 풀기", "practice", true)}`;
+          return `${top(true)}<main class="preview-main"><div class="session-line"><span>처음 배우는 내용</span><span>소수 곱셈과 어림</span></div>${pages(left, right, ["뜻과 그림", "예와 연습"])}</main>`;
+        }
+        function render() {
+          root.innerHTML =
+            screen === "home"
+              ? home()
+              : screen === "wrong"
+                ? wrong()
+                : preview();
+        }
+        function check() {
+          const input = root.querySelector("#practice");
+          if (input.value.trim() === "0.48") send({ checked: true });
+          else {
+            root.querySelector(".practice-feedback").textContent =
+              "12 × 4 = 48에서 소수점의 위치를 생각해 봐요.";
+            input.focus();
+          }
+        }
+        function reveal() {
+          send({ phase: "solution" });
+          requestAnimationFrame(() =>
+            root.querySelector(".explanation")?.focus({ preventScroll: true }),
+          );
+        }
+        root.addEventListener("submit", (e) => {
+          if (e.target.id === "practice-form") {
+            e.preventDefault();
+            check();
+          }
+        });
+        root.addEventListener("input", (e) => {
+          if (e.target.id !== "practice") return;
+          s = { ...s, draft: e.target.value, checked: false };
+          root.querySelector(".practice-feedback").textContent = "";
+          parent.postMessage({ wireDraft: true, screen, draft: s.draft }, "*");
+        });
+        root.addEventListener("click", (e) => {
+          const b = e.target.closest("button");
+          if (!b) return;
+          if (b.dataset.side !== undefined) {
+            send({ side: Number(b.dataset.side) });
+            root
+              .querySelector(`[data-side="${b.dataset.side}"]`)
+              ?.focus({ preventScroll: true });
+            if (option === "E")
+              root
+                .querySelector(
+                  Number(b.dataset.side) === 0 ? ".left-leaf" : ".right-leaf",
+                )
+                .scrollIntoView({
+                  block: "start",
+                  behavior: matchMedia("(prefers-reduced-motion: reduce)")
+                    .matches
+                    ? "instant"
+                    : "smooth",
+                });
+            return;
+          }
+          if (b.dataset.fold !== undefined) {
+            send({
+              side:
+                (s.side ?? 0) === Number(b.dataset.fold)
+                  ? -1
+                  : Number(b.dataset.fold),
+            });
+            root
+              .querySelector(`[data-fold="${b.dataset.fold}"]`)
+              ?.focus({ preventScroll: true });
+            return;
+          }
+          if (b.dataset.answer) {
+            const value = b.dataset.answer;
+            const correct =
+              s.kind === "bank" ? value === "4" : value === "맞다";
+            send({
+              phase: correct
+                ? "success"
+                : s.phase === "initial"
+                  ? "retry"
+                  : "solution",
+              chosen: value,
+            });
+            if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+              const choice = [...root.querySelectorAll("[data-answer]")].find(
+                (el) => el.dataset.answer === value,
+              );
+              choice?.classList.add("choice-rise");
+              choice?.addEventListener(
+                "animationend",
+                () => choice.classList.remove("choice-rise"),
+                { once: true },
+              );
+            }
+            return;
+          }
+          switch (b.dataset.action) {
+            case "start":
+              parent.postMessage({ wireNavigate: "preview" }, "*");
+              break;
+            case "giveup":
+              reveal();
+              break;
+            case "understood":
+              send({ phase: "next", readSolution: true });
+              break;
+            case "advance":
+              send({ phase: "next", readSolution: false });
+              break;
+            case "practice":
+              parent.postMessage({ wireNavigate: "wrong" }, "*");
+              break;
+            case "home":
+              parent.postMessage({ wireNavigate: "home" }, "*");
+              break;
+            case "show-right":
+              send({ side: 1 });
+              break;
+            case "catalog":
+              root.querySelector("main").innerHTML =
+                `<section class="next-page"><h1>도감 · 둘러보기</h1><p>소수 곱셈과 어림</p><p>대응·평균·가능성</p><p>배운 내용을 살펴봐요.</p>${btn("탐험으로", "home")}</section>`;
+              break;
+            case "logout":
+              b.textContent = "시안에서는 로그아웃하지 않아요";
+              break;
+          }
+        });
+        addEventListener("keydown", (e) => {
+          if (
+            e.ctrlKey ||
+            e.metaKey ||
+            e.altKey ||
+            /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)
+          )
+            return;
+          if (
+            screen === "wrong" &&
+            ["initial", "retry"].includes(s.phase) &&
+            /^[1-4]$/.test(e.key)
+          ) {
+            const b = root.querySelectorAll("[data-answer]")[Number(e.key) - 1];
+            if (b) {
+              e.preventDefault();
+              b.click();
+            }
+          }
+        });
+        let pointer = null;
+        root.addEventListener("pointerdown", (e) => {
+          if (
+            option === "C" &&
+            e.pointerType === "touch" &&
+            !e.target.closest("button,input")
+          )
+            pointer = { x: e.clientX, y: e.clientY };
+        });
+        root.addEventListener("pointerup", (e) => {
+          if (!pointer) return;
+          const dx = e.clientX - pointer.x,
+            dy = e.clientY - pointer.y;
+          pointer = null;
+          if (Math.abs(dx) > 60 && Math.abs(dy) < 40)
+            send({ side: dx < 0 ? 1 : 0 });
+        });
+        root.addEventListener("pointercancel", () => {
+          pointer = null;
+        });
+        addEventListener("message", (e) => {
+          if (e.source === parent && e.data.sync && e.data.screen === screen) {
+            const next = { side: 0, draft: "", ...e.data.state };
+            if (JSON.stringify(next) !== JSON.stringify(s)) {
+              s = next;
+              render();
+            }
+          }
+          if (
+            e.source === parent &&
+            e.data.draftUpdate &&
+            e.data.screen === screen
+          ) {
+            s = { ...s, draft: e.data.draft, checked: false };
+            const input = root.querySelector("#practice");
+            if (input) input.value = s.draft;
+            const feedback = root.querySelector(".practice-feedback");
+            if (feedback) feedback.textContent = "";
+          }
+        });
+        render();
+      }
+
+      const mathIllustrations = {
+        "decimal-area.svg":
+          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" width="420" height="460" role="img" aria-labelledby="title desc" lang="ko" xml:lang="ko">\r\n  <title id="title">0.2 × 0.3의 넓이 모형</title>\r\n  <desc id="desc">한 변이 1인 정사각형을 가로 10칸, 세로 10칸으로 나눴어요. 왼쪽 위 가로 2칸, 세로 3칸을 칠했어요. 가로는 0.2, 세로는 0.3이에요. 한 칸의 넓이는 0.01이고, 색칠한 6칸의 넓이는 0.06이에요.</desc>\r\n  <rect width="420" height="460" fill="#ffffff"/>\r\n  <g font-family="Pretendard, \'Malgun Gothic\', sans-serif" fill="#172b4d" font-size="20">\r\n    <!-- Square: (90,90) to (330,330); each cell is 24 by 24. -->\r\n    <rect x="90" y="90" width="240" height="240" fill="#edf2ff"/>\r\n    <rect id="highlight" x="90" y="90" width="48" height="72" fill="#3159df"/>\r\n    <g id="grid" stroke="#b8c4d6" stroke-width="1" fill="none">\r\n      <path d="M 114 90 V 330 M 90 114 H 330"/>\r\n      <path d="M 138 90 V 330 M 90 138 H 330"/>\r\n      <path d="M 162 90 V 330 M 90 162 H 330"/>\r\n      <path d="M 186 90 V 330 M 90 186 H 330"/>\r\n      <path d="M 210 90 V 330 M 90 210 H 330"/>\r\n      <path d="M 234 90 V 330 M 90 234 H 330"/>\r\n      <path d="M 258 90 V 330 M 90 258 H 330"/>\r\n      <path d="M 282 90 V 330 M 90 282 H 330"/>\r\n      <path d="M 306 90 V 330 M 90 306 H 330"/>\r\n    </g>\r\n    <rect x="90" y="90" width="240" height="240" fill="none" stroke="#172b4d" stroke-width="2"/>\r\n    <!-- Dimension labels sit outside every stroke, without white masks. -->\r\n    <g stroke="#3159df" stroke-width="2" fill="none">\r\n      <path d="M 90 70 V 62 H 138 V 70"/>\r\n      <path d="M 76 90 H 68 V 162 H 76"/>\r\n    </g>\r\n    <text x="114" y="45" text-anchor="middle" fill="#3159df">0.2</text>\r\n    <text x="52" y="134" text-anchor="end" fill="#3159df">0.3</text>\r\n    <path d="M 90 346 V 354 H 330 V 346" fill="none" stroke="#172b4d" stroke-width="1.5"/>\r\n    <text x="210" y="382" text-anchor="middle">한 변 1</text>\r\n    <text x="210" y="415" text-anchor="middle">한 칸의 넓이 0.01</text>\r\n    <text x="210" y="446" text-anchor="middle" font-weight="700" fill="#3159df">색칠한 6칸의 넓이 0.06</text>\r\n  </g>\r\n</svg>\r\n',
+        "at-most44.svg":
+          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 240" width="420" height="240" role="img" aria-labelledby="title desc" lang="ko" xml:lang="ko">\r\n  <title id="title">44 이하인 수</title>\r\n  <desc id="desc">35부터 46까지 모든 정수 눈금의 간격이 같은 수직선이에요. 36, 38, 42, 44, 45를 표시했어요. 44의 채운 점과 왼쪽 화살표는 44를 포함한 작은 수를 나타내요. 45는 범위 밖이에요.</desc>\r\n  <rect width="420" height="240" fill="#ffffff"/>\r\n  <g font-family="Pretendard, \'Malgun Gothic\', sans-serif" fill="#172b4d" font-size="20">\r\n    <text x="24" y="38" font-weight="700">44 이하인 수</text>\r\n    <!-- Uniform scale: x(n) = 44 + 30 * (n - 35), y = 110. -->\r\n    <path d="M 24 110 H 396 M 389 105 L 396 110 L 389 115" fill="none" stroke="#172b4d" stroke-width="2"/>\r\n    <g id="ticks" stroke="#172b4d" stroke-width="1.5">\r\n      <path data-value="35" d="M 44 102 V 120"/>\r\n      <path data-value="36" d="M 74 102 V 120"/>\r\n      <path data-value="37" d="M 104 102 V 120"/>\r\n      <path data-value="38" d="M 134 102 V 120"/>\r\n      <path data-value="39" d="M 164 102 V 120"/>\r\n      <path data-value="40" d="M 194 102 V 120"/>\r\n      <path data-value="41" d="M 224 102 V 120"/>\r\n      <path data-value="42" d="M 254 102 V 120"/>\r\n      <path data-value="43" d="M 284 102 V 120"/>\r\n      <path data-value="44" d="M 314 102 V 120"/>\r\n      <path data-value="45" d="M 344 102 V 120"/>\r\n      <path data-value="46" d="M 374 102 V 120"/>\r\n    </g>\r\n    <path id="interval" d="M 314 110 H 24 M 34 102 L 24 110 L 34 118" fill="none" stroke="#3159df" stroke-width="5" stroke-linejoin="round"/>\r\n    <circle id="included-endpoint" cx="314" cy="110" r="7" fill="#3159df"/>\r\n    <text x="74" y="153" text-anchor="middle" font-size="18">36</text>\r\n    <text x="134" y="153" text-anchor="middle" font-size="18">38</text>\r\n    <text x="254" y="153" text-anchor="middle" font-size="18">42</text>\r\n    <text x="314" y="153" text-anchor="middle" font-size="18" font-weight="700" fill="#3159df">44</text>\r\n    <text x="344" y="153" text-anchor="middle" font-size="18">45</text>\r\n    <text x="24" y="197" fill="#3159df" font-weight="700">44도 포함해요</text>\r\n    <text x="24" y="226">45는 범위 밖이에요</text>\r\n  </g>\r\n</svg>\r\n',
+      };
+      const innerCSS =
+        "@font-face{font-family:Pretendard;src:url('../../../public/fonts/PretendardVariable.woff2') format('woff2');font-weight:100 900;font-display:swap}\n:root{--learn-ink:#172b4d;--learn-muted:#596c86;--learn-accent:#3159df;--learn-accent-hover:#2448bd;--learn-bg:#f4f6fa;--learn-surface:#fff;--learn-soft:#edf2ff;--learn-soft-hover:#e1e9ff;--learn-neutral:#edf0f6;--learn-track:#dde3ec;--learn-control:#b8c4d6;--learn-focus:#82a1ff;--learn-done:#1d7550;--learn-done-bg:#e9f5ee;--learn-warning:#8a5a06;--learn-warning-bg:#fff4df;--learn-radius:14px;--learn-radius-sm:10px;--paper:#fff;--theme:url('../../../public/images/journey/shapes-board.webp')}\n*{box-sizing:border-box}body{margin:0;color:var(--learn-ink);background:var(--learn-bg);font:18px/1.7 Pretendard,'Malgun Gothic',sans-serif;font-variant-numeric:tabular-nums;word-break:keep-all}h1,h2,h3,p,figure{margin:0}h1{font-size:36px;line-height:1.35;letter-spacing:-.035em;font-weight:800}h2{font-size:23px;line-height:1.4;letter-spacing:-.02em}h3{font-size:25px;line-height:1.5}button,input{font:inherit;color:inherit}button{position:relative;min-height:48px;padding:10px 22px;border:1px solid var(--learn-control);border-radius:10px;background:var(--learn-surface);font-weight:700;cursor:pointer;touch-action:manipulation}button.primary{background:var(--learn-accent);color:white;border-color:var(--learn-accent);box-shadow:0 3px 0 var(--learn-accent-hover)}button:focus-visible,input:focus-visible{outline:3px solid var(--learn-accent);outline-offset:4px}button:active{transform:translateY(1px)}.app-header{display:flex;align-items:center;gap:20px;min-height:76px;padding:14px 40px;background:white;border-bottom:1px solid var(--learn-track)}.app-header b{font-size:23px;letter-spacing:-.04em;margin-right:auto}.app-header span{font-size:13px;color:var(--learn-muted)}.app-header button{font-size:14px;min-height:44px}.app-nav{max-width:1280px;margin:auto;display:flex;align-items:center;gap:12px;padding:18px 24px 0;font-size:15px}.app-nav>b{padding:9px 22px;border-radius:10px;color:var(--learn-accent);background:var(--learn-soft)}.app-nav button{min-height:44px;padding:8px 22px;background:transparent;border-color:transparent;font-weight:500}main{max-width:1280px;padding:28px 36px 44px;margin:auto}.home-main{padding-top:28px}.spread{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--paper);border:1px solid var(--learn-control);border-radius:14px;overflow:hidden}.leaf{position:relative;min-width:0;background:var(--paper)}.left-leaf{border-right:1px solid var(--learn-track)}.leaf-content{padding:34px 40px 46px;position:relative;height:100%;display:flex;flex-direction:column}.page-title{font-size:15px;font-weight:700;color:var(--learn-muted);padding-bottom:16px;margin-bottom:28px;border-bottom:1px solid var(--learn-track)}.eyeline{font-size:14px;color:var(--learn-muted);margin:2px 0 14px}.unit-name{font-size:24px;font-weight:700;line-height:1.5;margin-top:20px}.invitation{font-size:18px;color:var(--learn-muted);margin-top:20px}.leaf-content>.primary{width:100%;margin-top:auto;min-height:56px}.character{display:flex;align-items:center;gap:16px;margin:30px 0}.character-box{flex:0 0 96px;height:96px;display:grid;place-items:center;border:1px dashed var(--learn-muted);border-radius:14px;background:var(--learn-neutral);text-align:center;font-size:13px;color:var(--learn-muted)}.character>p{font-size:13px;line-height:1.65;color:var(--learn-muted);max-width:21ch}.folio{position:absolute;bottom:13px;font-size:11px;color:var(--learn-muted)}.left-leaf .folio{left:40px}.right-leaf .folio{right:40px}.journey-art{height:190px;overflow:hidden;border-radius:10px;background:var(--learn-neutral)}.journey-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0}.unit-path{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px}.unit-path li{display:flex;gap:14px;align-items:center;padding:12px 16px;border:1px dashed var(--learn-control);border-radius:10px;background:var(--paper)}.unit-path li.current{border:1px solid var(--learn-accent);background:var(--learn-soft)}.path-dot{position:relative;flex:0 0 12px;height:12px;border:1px solid var(--learn-control);border-radius:50%}.current .path-dot{background:var(--learn-accent);border-color:var(--learn-accent);box-shadow:0 0 0 4px white}.path-status{display:block;font-size:11px;color:var(--learn-muted);margin-bottom:1px}.current .path-status{color:var(--learn-accent);font-weight:700}.unit-path b{font-size:15px;line-height:1.4;display:block}.day-result{margin-top:28px}.day-result h2{font-size:17px;margin-top:22px}.day-result p{font-size:17px;color:var(--learn-muted);margin-top:7px}.reward .character-box{width:126px;height:126px;flex-basis:126px;background:var(--learn-warning-bg)}.session-line{display:flex;justify-content:space-between;gap:16px;color:var(--learn-muted);font-size:14px;margin-bottom:18px}.session-line span:last-child{font-variant-numeric:tabular-nums}.problem-sheet{border:1px solid var(--learn-control);border-radius:14px;background:var(--paper);overflow:hidden}.problem{padding:36px 44px}.problem-heading{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.problem-heading h1{font-size:28px;letter-spacing:-.03em}.kind-tag{font-size:12px;line-height:1.5;font-weight:700;padding:2px 7px;border-radius:5px;background:#dfe7f4;color:#405a80}.question{font-size:27px;line-height:1.8;margin-top:26px;max-width:50ch}.feedback{color:var(--learn-warning);font-size:16px;font-weight:700;min-height:28px;margin:28px 0 16px}.choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.choices button{display:flex;align-items:center;justify-content:center;gap:16px;font-size:25px;min-height:76px;border-color:var(--learn-control);font-weight:600;overflow:hidden}.choices button[aria-pressed=true]{background:var(--learn-accent);border-color:var(--learn-accent);color:#fff}.choices button[aria-pressed=true]:before{content:'';position:absolute;inset:0;background:var(--learn-accent);z-index:-1}.keycap{display:inline-grid;place-items:center;font-size:13px;width:24px;height:24px;border-radius:50%;background:var(--learn-soft);color:#35547b;font-weight:700}.choices button[aria-pressed=true] .keycap{background:white;color:var(--learn-accent)}.problem>button{display:block;border-color:transparent;color:var(--learn-muted);font-size:14px;padding:10px 0;margin-top:16px}.explanation{position:relative;padding:30px 44px 34px;border-top:1px solid var(--learn-track);outline:none}.solution-heading{display:flex;align-items:center;gap:12px;margin-bottom:22px}.solution-heading h2{font-size:23px}.solution-tag{font-size:12px;font-weight:700;color:var(--learn-muted);background:var(--learn-neutral);border-radius:5px;padding:3px 8px}.solution-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:34px;align-items:start}.solution-text p{margin-top:16px;font-size:17px}.solution-text b{font-weight:700}.math-figure{background:white;border:1px solid var(--learn-track);border-radius:10px;padding:12px;overflow:hidden}.math-figure svg{display:block;width:100%;height:auto;max-height:360px;object-fit:contain}.math-figure figcaption{font-size:13px;color:var(--learn-muted);margin:8px 8px 2px;text-align:center}.solution-footer{border-top:1px solid var(--learn-track);margin-top:24px;padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:20px}.solution-footer p{font-size:15px;color:var(--learn-muted)}.solution-footer .primary{min-width:200px}.example-list{padding-left:0;list-style:none;margin:20px 0;font-size:15px;display:grid;gap:6px}.example-list b{font-size:12px;color:var(--learn-muted);margin-right:8px}.definition{font-size:19px;line-height:1.85;margin:22px 0 24px}.definition b{font-weight:700}.preview-main .math-figure{margin:0 -10px}.preview-main .math-figure svg{max-height:340px}.small-note{font-size:14px;color:var(--learn-muted);margin:16px 0;line-height:1.8}.worked h2,.practice h2{font-size:22px}.equation{font-size:32px;font-weight:700;letter-spacing:-.02em;margin:18px 0}.worked>p:not(.equation){font-size:17px;margin-top:12px}.practice{border-top:1px solid var(--learn-track);margin-top:30px;padding-top:28px}.practice>p{margin-top:14px;font-size:17px}.practice .small-note{font-size:14px}.input-row{display:flex;gap:10px;margin-top:8px}label{font-size:20px;font-weight:600}input{min-width:0;width:100%;max-width:220px;border:1px solid var(--learn-control);border-radius:10px;font-size:24px;padding:10px 16px;background:#fff;color:var(--learn-ink)}.check{display:flex;gap:12px;align-items:center;justify-content:center;min-width:104px}.enter-cap{display:none}.practice-feedback{font-size:14px;min-height:52px;line-height:1.7;padding-top:12px}.success-line{color:var(--learn-done);font-weight:700}.preview-main .leaf-content>.primary{margin-top:24px}.page-tools,.fold-head,.phone-next{display:none}.next-page{background:white;border:1px solid var(--learn-control);padding:44px;border-radius:14px;max-width:880px;margin:auto}.next-page p{margin:16px 0}.next-page .primary{margin-top:20px}.next-placeholder{border:1px dashed var(--learn-muted);padding:40px;text-align:center;background:var(--learn-neutral);color:var(--learn-muted);font-size:14px}\n/* A: flat leaves. The existing theme stays inside the journey illustration. */\n.vA .spread{box-shadow:none}.vA .folio{display:none}.vA .page-title{border-color:var(--learn-control)}.vA .character-box{flex-basis:72px;height:72px}.vA .explanation{background:var(--learn-soft)}\n/* B: paper book, a shallow spine shadow and a forest border. No gradient hero. */\n.vB{--paper:#fffdf7;--theme:url('../../../public/images/journey/forest-board.webp');background:#edf0f6}.vB .spread{border:8px solid #dde3ec;border-radius:14px;box-shadow:0 8px 24px #172b4d12,0 4px 0 #b8c4d6}.vB .spread:after{content:'';position:absolute;top:0;bottom:0;left:calc(50% - 10px);width:20px;pointer-events:none;background:linear-gradient(90deg,transparent,#172b4d0d,transparent)}.vB .spread:before{content:'';position:absolute;top:0;left:36px;width:16px;height:29px;background:var(--learn-accent);z-index:2;clip-path:polygon(0 0,100% 0,100% 100%,50% 80%,0 100%)}.vB .leaf-content{padding-top:40px}.vB .right-leaf{background-image:var(--theme);background-size:cover}.vB .right-leaf .leaf-content{background:var(--paper);margin:18px;height:calc(100% - 36px);padding:22px 24px 42px;border-radius:10px}.vB .journey-art{height:230px}.vB .character{flex-direction:column;align-items:flex-start;gap:10px}.vB .character-box{height:124px;width:150px;flex-basis:auto;background:var(--learn-warning-bg)}.vB .character>p{max-width:32ch}.vB .problem-sheet{border:8px solid var(--learn-track);padding-top:18px;background-image:var(--theme);background-size:100% auto}.vB .problem{background:var(--paper);margin:0 16px;padding:28px}.vB .explanation{margin:24px 28px;background:white;border:1px solid var(--learn-control);border-top:5px solid var(--learn-accent);border-radius:2px 2px 10px 10px;box-shadow:0 5px 12px #172b4d0a;padding:28px}.vB .preview-main .right-leaf .leaf-content{border:1px solid var(--learn-track)}\n/* C: sea binding, clipped landscape bands and phone page turning. */\n.vC{--theme:url('../../../public/images/journey/sea-board.webp')}.vC .spread{border-left:12px solid var(--learn-accent);box-shadow:0 5px 0 var(--learn-control)}.vC .leaf-content:before{content:'';position:absolute;top:0;left:0;right:0;height:16px;background-image:var(--theme);background-position:center 38%;background-size:100% auto}.vC .page-title{padding-top:8px}.vC .journey-art{height:220px}.vC .character{margin:30px 0 26px;align-items:flex-end}.vC .character-box{height:76px;flex-basis:100px;border-radius:10px 10px 0 10px;background:var(--learn-soft)}.vC .problem-sheet{border-top:16px solid transparent;border-image:var(--theme) 30 stretch}.vC .explanation{background:white;border-top:2px solid var(--learn-accent);margin:0 24px;padding-inline:20px}.vC .solution-tag{background:var(--learn-soft);color:var(--learn-accent)}\n/* D: sky headband; folded leaves on a phone. */\n.vD{--theme:url('../../../public/images/journey/sky-board.webp')}.vD .spread{padding-top:40px;border-color:var(--learn-control)}.vD .spread:before{position:absolute;content:'';top:0;left:0;right:0;height:40px;background:var(--theme) center 15%/cover}.vD .journey-art{height:180px}.vD .character{flex-direction:row-reverse;justify-content:flex-end}.vD .character-box{flex-basis:100px;height:100px;background:var(--learn-soft)}.vD .problem-sheet{border-top:16px solid var(--learn-soft)}.vD .explanation{margin:0;background:var(--learn-surface);border-top:12px solid var(--learn-track);box-shadow:inset 0 3px 0 white}.vD .solution-heading{border-bottom:1px solid var(--learn-track);padding-bottom:18px}\n/* E: geometry edges, quiet study pages; compact anchor navigation on a phone. */\n.vE{--theme:url('../../../public/images/journey/shapes-board.webp')}.vE .spread{padding:10px;border:0;background:var(--theme) center/cover;gap:1px}.vE .leaf{border:0}.vE .left-leaf{border-radius:8px 0 0 8px}.vE .right-leaf{border-radius:0 8px 8px 0}.vE .leaf-content{padding:30px 34px 44px}.vE .journey-art{height:200px}.vE .page-title{border-bottom:2px solid var(--learn-track)}.vE .character{border-block:1px solid var(--learn-track);padding:14px 0}.vE .character-box{flex-basis:70px;height:70px;border-radius:10px}.vE .character>p{max-width:25ch}.vE .problem-sheet{border:0;border-left:10px solid transparent;border-right:10px solid transparent;border-image:var(--theme) 30 stretch;background:var(--paper)}.vE .explanation{margin:0 16px 20px;border:1px solid var(--learn-control);border-radius:10px;padding:28px;background:var(--learn-surface)}.vE .solution-heading{border-left:4px solid var(--learn-accent);padding-left:14px}\n@media(hover:hover) and (pointer:fine){button:not([aria-pressed=true]):hover{background:var(--learn-soft)}button.primary:hover{background:var(--learn-accent-hover);color:white}.choices button:not([aria-pressed=true]):hover{border-color:var(--learn-accent);background:var(--learn-soft)}.keycap{border-radius:5px;background:white;border:1px solid #c6d4ec;box-shadow:0 2px 0 #c6d4ec}.choices button[aria-pressed=true] .keycap{border-color:white;box-shadow:0 2px 0 #2445b0}.enter-cap{display:inline-grid;place-items:center;min-width:22px;height:20px;border:1px solid #ffffff73;box-shadow:0 2px 0 #ffffff73;border-radius:4px;font-size:16px}.problem>button:hover{color:var(--learn-accent)}.fold-head:hover{background:var(--learn-soft)}}\n.is-phone .keycap{border-radius:50%;border:0;box-shadow:none;background:var(--learn-soft)}.is-phone .enter-cap{display:none}\n@media(max-width:600px){body{font-size:16px}h1{font-size:28px}h2{font-size:21px}h3{font-size:22px}.app-header{min-height:64px;padding:10px 16px;gap:8px}.app-header b{font-size:20px}.app-header span{display:none}.app-header button{font-size:13px;padding:8px 12px}.app-nav{padding:12px 16px 0}.app-nav b,.app-nav button{padding:7px 16px}main{padding:20px 12px 28px}.spread{display:block}.leaf-content{padding:24px 22px 40px}.left-leaf{border-right:0;border-bottom:1px solid var(--learn-control)}.page-title{font-size:13px;padding-bottom:12px;margin-bottom:22px}.eyeline{font-size:13px;margin-bottom:12px}.unit-name{font-size:21px;margin-top:16px}.invitation{font-size:16px;margin-top:18px}.character{margin:24px 0}.character-box{flex-basis:82px;height:82px}.character>p{font-size:12px}.leaf-content>.primary{margin-top:4px;min-height:52px}.folio{font-size:10px;bottom:10px}.left-leaf .folio{left:22px}.right-leaf .folio{right:22px}.journey-art{height:178px}.unit-path{margin-top:18px}.unit-path li{padding:12px 14px}.unit-path b{font-size:14px}.day-result p{font-size:16px}.session-line{font-size:12px;gap:12px;line-height:1.6;margin-bottom:14px}.session-line span:last-child{max-width:50%;text-align:right}.problem{padding:26px 22px}.problem-heading h1{font-size:24px}.kind-tag{font-size:11px}.question{font-size:23px;line-height:1.8;margin-top:24px}.question br{display:none}.feedback{margin-top:22px;margin-bottom:12px;font-size:15px}.choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.choices button{font-size:23px;min-height:68px;gap:12px;padding:10px 12px}.keycap{font-size:12px;width:22px;height:22px}.problem>button{margin-top:16px;min-height:44px}.explanation{padding:24px 22px}.solution-heading{flex-wrap:wrap;gap:8px;margin-bottom:20px}.solution-heading h2{font-size:21px}.solution-columns{display:block}.solution-text p{font-size:16px;margin-top:14px}.solution-picture{margin-top:22px}.math-figure{padding:8px}.math-figure svg{max-height:none}.math-figure figcaption{font-size:12px;line-height:1.7;margin-inline:4px}.solution-footer{display:block;margin-top:22px;padding-top:18px}.solution-footer p{font-size:14px}.solution-footer .primary{width:100%;min-width:0;margin-top:18px}.example-list{font-size:14px;line-height:1.8}.example-list b{display:block;margin-right:0}.definition{font-size:17px;line-height:1.85;margin-top:16px}.preview-main .math-figure{margin-inline:-8px}.preview-main .math-figure svg{max-height:none}.small-note{font-size:13px}.worked h2,.practice h2{font-size:21px}.equation{font-size:28px;white-space:nowrap}.worked>p:not(.equation){font-size:16px}.practice{padding-top:24px;margin-top:26px}.practice>p{font-size:16px}.practice .small-note{font-size:13px}.practice-feedback{font-size:13px;min-height:48px}label{font-size:19px}.input-row{gap:8px}input{padding:10px 12px;font-size:22px;max-width:none}.check{min-width:88px;padding-inline:18px}.preview-main .leaf-content>.primary{margin-top:20px}.next-page{padding:28px 22px}.next-placeholder{padding:30px 16px}.vB .spread{border-width:5px;box-shadow:0 4px 0 var(--learn-control)}.vB .spread:after{display:none}.vB .spread:before{left:auto;right:24px}.vB .leaf-content{padding-top:30px}.vB .left-leaf{border-bottom:8px solid var(--learn-track)}.vB .right-leaf .leaf-content{margin:10px;padding:22px 18px 38px;height:auto}.vB .journey-art{height:200px}.vB .character{flex-direction:row;align-items:center}.vB .character-box{height:100px;width:100px;flex-basis:100px;flex-shrink:0}.vB .character>p{max-width:18ch}.vB .problem-sheet{border-width:5px;padding-top:12px}.vB .problem{padding:22px 18px;margin:0 8px}.vB .explanation{padding:22px 18px;margin:18px 8px}.vC .spread{border-left-width:7px}.vC .leaf{border:0}.vC .leaf-content{padding-inline:22px}.vC .right-leaf{display:none}.vC .side-1 .left-leaf{display:none}.vC .side-1 .right-leaf{display:block}.vC .page-tools{display:flex;gap:6px;margin-bottom:12px;padding:4px;background:var(--learn-neutral);border-radius:10px}.page-tools button{flex:1;font-size:13px;padding:8px 12px;min-height:44px;border:0;background:transparent}.page-tools button[aria-pressed=true]{background:var(--learn-accent);color:white}.vC .phone-next{display:block;margin-top:20px;color:var(--learn-accent);border-color:var(--learn-control)}.vC .journey-art{height:200px}.vC .explanation{margin:0 12px;padding-inline:10px}.vD .spread{padding-top:28px}.vD .spread:before{height:28px}.vD .fold-head{display:flex;width:100%;justify-content:space-between;align-items:center;border:0;border-radius:0;border-bottom:1px solid var(--learn-track);background:var(--learn-soft);min-height:56px;padding:14px 20px;font-size:15px;text-align:left}.vD .fold-head>span:last-child{font-size:12px;color:var(--learn-muted);font-weight:500}.vD .left-leaf,.vD .right-leaf{border-bottom:1px solid var(--learn-track)}.vD .leaf-content{display:none;padding:24px 22px 38px}.vD .side-0 .left-leaf .leaf-content,.vD .side-1 .right-leaf .leaf-content{display:flex}.vD .page-title{display:none}.vD .explanation{border-top-width:8px}.vD .character-box{flex-basis:90px;height:90px}.vE .spread{padding:6px}.vE .leaf-content{padding:24px 20px 38px}.vE .left-leaf,.vE .right-leaf{border-radius:6px}.vE .left-leaf{margin-bottom:6px}.vE .page-tools{display:flex;position:sticky;top:0;z-index:3;gap:6px;padding:6px;background:var(--learn-bg);margin-bottom:10px;border-bottom:1px solid var(--learn-control)}.vE .leaf{scroll-margin-top:64px}.vE .page-tools button{border:1px solid var(--learn-control);background:white}.vE .page-tools button[aria-pressed=true]{color:var(--learn-accent);border-color:var(--learn-accent);background:var(--learn-soft)}.vE .problem-sheet{border-left-width:6px;border-right-width:6px}.vE .explanation{margin:0 8px 14px;padding:20px 14px}.vE .character{gap:12px}.vE .character-box{flex-basis:64px;height:64px}.vE .character>p{font-size:12px}.vE .journey-art{height:180px}}\n@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}\n";
+
+      const refinementCSS = `.vC [data-book]{touch-action:pan-y}.choices button>span{position:relative;z-index:1}.choices button[aria-pressed=true].choice-rise{background:white;animation:chosen-ink .18s both}.choices button.choice-rise:after{content:'';position:absolute;inset:0;background:var(--learn-accent);animation:chosen-fill .18s cubic-bezier(.25,.8,.3,1) both}@keyframes chosen-fill{from{clip-path:inset(100% 0 0)}to{clip-path:inset(0)}}@keyframes chosen-ink{0%,40%{color:var(--learn-ink)}100%{color:white}}`;
+      function doc(v, k, device) {
+        return (
+          '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>' +
+          innerCSS +
+          refinementCSS +
+          '</style></head><body class="v' +
+          v +
+          (device === "phone" ? " is-phone" : "") +
+          '"><div id="app"></div><script>(' +
+          app.toString() +
+          ")(" +
+          JSON.stringify(v) +
+          "," +
+          JSON.stringify(k) +
+          "," +
+          JSON.stringify(state[k]) +
+          "," +
+          JSON.stringify(mathIllustrations) +
+          ")<" +
+          "/script></body></html>"
+        );
+      }
+      function states(k) {
+        if (k === "home")
+          return '<button data-state="home:start">시작 전</button><button data-state="home:done">하루 마침</button>';
+        if (k === "wrong")
+          return '<select aria-label="문제 종류" id="kind"><option value="bank">은행 문제</option><option value="concept">개념 카드</option></select><button data-state="wrong:initial">풀기 전</button><button data-state="wrong:retry">첫 오답</button><button data-state="wrong:solution">두 번째 오답 / 모르겠어요</button>';
+        return '<button data-state="preview:reset">처음부터</button>';
+      }
+      function select(v) {
+        selected = v;
+        const data = variants.find((x) => x.id === v);
+        document.querySelectorAll("[role=tab]").forEach((b) => {
+          b.setAttribute("aria-selected", b.dataset.variant === v);
+          b.tabIndex = b.dataset.variant === v ? 0 : -1;
+        });
+        document
+          .getElementById("proposal")
+          .setAttribute("aria-labelledby", "tab-" + v);
+        document.getElementById("thesis").innerHTML =
+          `<h2>${v} · ${data.name}</h2><p><b>무엇이 다른가</b> ${data.diff}</p><p><b>대가</b> ${data.cost}</p>`;
+        document.getElementById("screens").innerHTML = [
+          ["home", "A. 첫 화면"],
+          ["wrong", "B. 틀렸을 때"],
+          ["preview", "C. 예습 카드"],
+        ]
+          .map(
+            ([k, title]) =>
+              `<section class="review" id="review-${k}"><div class="review-head"><h3>${title}</h3><div class="states">${states(k)}</div></div><div class="pair">${["desktop", "phone"].map((d) => `<div class="device ${d}"><div class="device-label">${d === "desktop" ? "PC · 실제 화면 폭 1366px (공간에 맞춰 축소)" : "폰 · 실제 화면 폭 390px"}</div><div class="viewport"><iframe title="${v}안 ${title} ${d === "desktop" ? "PC" : "폰"}" data-screen="${k}" data-device="${d}" sandbox="allow-scripts allow-same-origin allow-forms"></iframe></div></div>`).join("")}</div><p class="notes">${k === "home" ? "하루 마침은 첫날 12-day1-done.png 기준. ‘내일 할 것’의 세부 내용은 엔진 응답으로 채울 자리입니다." : k === "wrong" ? "첫 오답은 보기 순서만 섞습니다. 두 번째 오답·모르겠어요는 풀이를 연 채 기다립니다. ‘알겠어요’를 누르면 다음 공부 안내로 이동합니다." : "따라 풀기에서 0.48을 입력해 확인할 수 있습니다. 두 면의 내용은 모든 안에서 같습니다. 수학 그림은 실제 SVG입니다."}</p></section>`,
+          )
+          .join("");
+        document.getElementById("kind").value = state.wrong.kind;
+        document.querySelectorAll("iframe").forEach((f) => {
+          f.srcdoc = doc(v, f.dataset.screen, f.dataset.device);
+          f.onload = () => {
+            new ResizeObserver(() => fit(f)).observe(
+              f.contentDocument.documentElement,
+            );
+            fit(f);
+          };
+        });
+      }
+      function fit(f) {
+        const width = f.dataset.device === "desktop" ? 1366 : 390;
+        const available = f.parentElement.clientWidth;
+        const scale = Math.min(1, available / width);
+        const scrollingPhone =
+          selected === "E" &&
+          f.dataset.device === "phone" &&
+          f.dataset.screen !== "wrong";
+        const height = scrollingPhone
+          ? 844
+          : Math.max(
+              700,
+              f.contentDocument?.getElementById("app")?.getBoundingClientRect()
+                .height || 700,
+            );
+        f.style.width = width + "px";
+        f.style.height = height + "px";
+        f.style.transform = `scale(${scale})`;
+        f.parentElement.style.height = Math.ceil(height * scale) + "px";
+      }
+      document.querySelector(".tabs").innerHTML = variants
+        .map(
+          (v) =>
+            `<button id="tab-${v.id}" role="tab" aria-controls="proposal" aria-selected="${v.id === "A"}" data-variant="${v.id}">${v.id} ${v.name}</button>`,
+        )
+        .join("");
+      document.addEventListener("click", (e) => {
+        const b = e.target.closest("button");
+        if (!b) return;
+        if (b.dataset.variant) select(b.dataset.variant);
+        if (b.dataset.width) {
+          document.body.classList.remove("only-pc", "only-phone");
+          if (b.dataset.width !== "both")
+            document.body.classList.add("only-" + b.dataset.width);
+          document
+            .querySelectorAll("[data-width]")
+            .forEach((x) => x.setAttribute("aria-pressed", x === b));
+          requestAnimationFrame(() =>
+            document.querySelectorAll("iframe").forEach(fit),
+          );
+        }
+        if (b.dataset.state) {
+          const [k, value] = b.dataset.state.split(":");
+          if (k === "home") state.home.done = value === "done";
+          if (k === "wrong") state.wrong.phase = value;
+          if (k === "preview") state.preview = { step: 0, checked: false };
+          sync(k);
+        }
+      });
+      document.querySelector(".tabs").addEventListener("keydown", (e) => {
+        let i = variants.findIndex((v) => v.id === selected);
+        if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(e.key)) return;
+        e.preventDefault();
+        i =
+          e.key === "Home"
+            ? 0
+            : e.key === "End"
+              ? 4
+              : (i + (e.key === "ArrowRight" ? 1 : 4)) % 5;
+        select(variants[i].id);
+        document.getElementById("tab-" + selected).focus();
+      });
+      document.addEventListener("change", (e) => {
+        if (e.target.id === "kind") {
+          state.wrong = { kind: e.target.value, phase: "retry" };
+          sync("wrong");
+        }
+      });
+      function sync(k) {
+        document
+          .querySelectorAll(`iframe[data-screen="${k}"]`)
+          .forEach((f) =>
+            f.contentWindow.postMessage(
+              { sync: true, screen: k, state: state[k] },
+              "*",
+            ),
+          );
+        setTimeout(() => document.querySelectorAll("iframe").forEach(fit), 100);
+      }
+      addEventListener("message", (e) => {
+        const frame = Array.from(document.querySelectorAll("iframe")).find(
+          (f) => f.contentWindow === e.source,
+        );
+        if (!frame) return;
+        if (e.data.wireDraft && e.data.screen === frame.dataset.screen) {
+          state[e.data.screen] = {
+            ...state[e.data.screen],
+            draft: e.data.draft,
+            checked: false,
+          };
+          document
+            .querySelectorAll(`iframe[data-screen="${e.data.screen}"]`)
+            .forEach((f) => {
+              if (f !== frame)
+                f.contentWindow.postMessage(
+                  {
+                    draftUpdate: true,
+                    screen: e.data.screen,
+                    draft: e.data.draft,
+                  },
+                  "*",
+                );
+            });
+        }
+        if (e.data.wire && e.data.screen === frame.dataset.screen) {
+          state[e.data.screen] = e.data.state;
+          sync(e.data.screen);
+        }
+        if (e.data.wireNavigate) {
+          const k = e.data.wireNavigate;
+          if (!["home", "wrong", "preview"].includes(k)) return;
+          if (k === "wrong") {
+            state.wrong = { kind: "concept", phase: "initial", chosen: null };
+            document.getElementById("kind").value = "concept";
+            sync(k);
+          }
+          if (k === "home") sync(k);
+          document
+            .getElementById("review-" + k)
+            .scrollIntoView({ behavior: "instant", block: "start" });
+        }
+      });
+      new ResizeObserver(() =>
+        document.querySelectorAll("iframe").forEach(fit),
+      ).observe(document.querySelector(".board"));
+      select("A");
+    </script>
+  </body>
+</html>

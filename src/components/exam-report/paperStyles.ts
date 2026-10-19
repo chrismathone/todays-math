@@ -1,3 +1,5 @@
+import { FOUR_STYLE_CSS } from "./fourStyleCss";
+
 /** 선택된 H1 CSS의 정본. 화면과 서버 HTML이 같은 문자열을 쓴다. */
 export const EXAM_REPORT_PAPER_CSS = `
 @font-face {
@@ -252,4 +254,5 @@ export const EXAM_REPORT_PAPER_CSS = `
     box-shadow: none;
   }
 }
+${FOUR_STYLE_CSS}
 `;

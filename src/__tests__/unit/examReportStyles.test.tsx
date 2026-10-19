@@ -150,10 +150,22 @@ describe.each(STYLE_CANDIDATES)("$id $name 정적 지면", ({ id }) => {
     expect(
       root.querySelectorAll('[data-report-block="teacherNote"]'),
     ).toHaveLength(1);
-    expect(
-      [...root.querySelectorAll("[data-report-block]")]
-        .at(-1)
-        ?.getAttribute("data-report-block"),
-    ).toBe("score");
+    if (["H1", "letter", "grid", "ledger"].includes(id)) {
+      const sheets = [...root.querySelectorAll("[data-exam-report-page]")];
+      expect(
+        sheets[0].querySelector('[data-report-block="score"]'),
+      ).not.toBeNull();
+      for (const sheet of sheets.slice(1))
+        expect(
+          [...sheet.querySelectorAll("[data-report-block]")].map((block) =>
+            block.getAttribute("data-report-block"),
+          ),
+        ).toEqual(["wrongTable"]);
+    } else
+      expect(
+        [...root.querySelectorAll("[data-report-block]")]
+          .at(-1)
+          ?.getAttribute("data-report-block"),
+      ).toBe("score");
   });
 });

@@ -21,6 +21,7 @@ import {
 } from "@/app/dev/exam-report-screen-hifi/fixtures";
 import type {
   ExamReportList,
+  ExamReportOptions,
   ExamReportStudent,
 } from "@/contracts/examReportWorkspace.contract";
 import type { ExamReportClient } from "@/components/exam-report/client";
@@ -29,7 +30,16 @@ vi.mock("@/components/exam-report/client", async (original) => ({
   ...(await original<typeof import("@/components/exam-report/client")>()),
   downloadExamReport: m.download,
 }));
+vi.mock("@/components/exam-report/ExamReportPaper", async (original) => {
+  const actual =
+    await original<typeof import("@/components/exam-report/ExamReportPaper")>();
+  return {
+    ...actual,
+    studentExamReportPages: vi.fn(actual.studentExamReportPages),
+  };
+});
 import { ExamReportWorkspace } from "@/components/exam-report/ExamReportWorkspace";
+import { studentExamReportPages } from "@/components/exam-report/ExamReportPaper";
 import { ExamReportClientError } from "@/components/exam-report/client";
 import { wrongTableFixture } from "../helpers/examReportWrongTableFixture";
 
@@ -63,8 +73,9 @@ function fixture(many = false) {
     classReport: classFixture(students),
     students: rows.map((row) => row.summary),
   };
+  let currentList = list;
   const source = {
-    list: vi.fn(async () => structuredClone(list)),
+    list: vi.fn(async () => structuredClone(currentList)),
     student: vi.fn(async (_test: string, id: string) =>
       structuredClone(rows.find((row) => row.report.student.id === id)!),
     ),
@@ -92,7 +103,25 @@ function fixture(many = false) {
         return row;
       },
     ),
-    settings: vi.fn(async () => structuredClone(list)),
+    settings: vi.fn(
+      async (_test: string, _digest: string, next: ExamReportOptions) => {
+        for (const row of rows) {
+          row.options = next;
+          row.summary = {
+            ...row.summary,
+            status:
+              row.summary.status === "confirmed" ? "stale" : row.summary.status,
+          };
+        }
+        currentList = {
+          ...currentList,
+          options: next,
+          optionsDigest: "b".repeat(64),
+          students: rows.map((row) => row.summary),
+        };
+        return structuredClone(currentList);
+      },
+    ),
     print: vi.fn(
       async () => new Blob(["%PDF-fixture"], { type: "application/pdf" }),
     ),
@@ -158,7 +187,7 @@ describe("실제 성적표 H3 화면", () => {
     fireEvent.change(screen.getByLabelText("원장님 문장"), {
       target: { value: "쓴 문장을 옆에서 봅니다." },
     });
-    expect(container.querySelector(".er-note p")).toHaveTextContent(
+    expect(container.querySelector(".sc-noteText")).toHaveTextContent(
       "쓴 문장을 옆에서 봅니다.",
     );
     expect(screen.getByText(/저장 상한 1000자/)).toBeInTheDocument();
@@ -310,8 +339,19 @@ describe("실제 성적표 H3 화면", () => {
     fireEvent.click(screen.getByRole("button", { name: "닫기" }));
     fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
     const dialog = screen.getByRole("dialog", { name: "반 지면 설정" });
-    expect(within(dialog).getAllByRole("radio")).toHaveLength(1);
+    expect(within(dialog).getAllByRole("radio")).toHaveLength(5);
+    expect(
+      within(dialog)
+        .getByRole("group", { name: "학생 성적표 구성" })
+        .querySelectorAll("input"),
+    ).toHaveLength(1);
+    expect(
+      within(dialog)
+        .getByRole("group", { name: "학생 성적표 양식" })
+        .querySelectorAll("input"),
+    ).toHaveLength(4);
     expect(within(dialog).getByLabelText("요약 한 장")).toBeChecked();
+    expect(within(dialog).getByLabelText("H1 (기본)")).toBeChecked();
     fireEvent.click(within(dialog).getByLabelText("틀린 문항"));
     fireEvent.click(within(dialog).getByRole("button", { name: "취소" }));
     expect(source.settings).not.toHaveBeenCalled();
@@ -337,7 +377,7 @@ describe("실제 성적표 H3 화면", () => {
     });
     const { container } = await ready(source);
     expect(
-      screen.getByText("지면: 요약 한 장 · 반 전체에 적용"),
+      screen.getByText("지면: 요약 한 장 · H1 (기본) · 반 전체에 적용"),
     ).toBeInTheDocument();
     expect(container.querySelector("[data-report-question]")).toBeNull();
     expect(container.querySelectorAll("[data-exam-report-page]")).toHaveLength(
@@ -363,5 +403,130 @@ describe("실제 성적표 H3 화면", () => {
       ),
     );
     expect(list.options.format).toBe("M1");
+  });
+  it.each([
+    ["letter", "편지형"],
+    ["grid", "정오 격자형"],
+    ["ledger", "장부형"],
+  ] as const)(
+    "%s 양식만 바꿔도 저장·새 미리보기·반 인쇄로 이어지고 다시 열면 선택을 유지한다",
+    async (style, label) => {
+      const { source } = fixture();
+      await ready(source);
+      expect(studentExamReportPages).toHaveBeenLastCalledWith(
+        expect.anything(),
+        expect.objectContaining({ style: "H1" }),
+      );
+      fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
+      fireEvent.click(screen.getByRole("radio", { name: label }));
+      fireEvent.click(screen.getByRole("button", { name: "적용" }));
+      await waitFor(() =>
+        expect(source.settings).toHaveBeenCalledWith(
+          "fixture-test",
+          "a".repeat(64),
+          { ...options, style },
+        ),
+      );
+      await waitFor(() =>
+        expect(studentExamReportPages).toHaveBeenLastCalledWith(
+          expect.anything(),
+          expect.objectContaining({ style }),
+        ),
+      );
+      expect(
+        screen.getByText(`지면: 요약 한 장 · ${label} · 반 전체에 적용`),
+      ).toBeInTheDocument();
+      await waitFor(() => expect(source.list).toHaveBeenCalledTimes(2));
+      fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
+      expect(screen.getByRole("radio", { name: label })).toBeChecked();
+      fireEvent.click(screen.getByRole("button", { name: "적용" }));
+      expect(source.settings).toHaveBeenCalledTimes(1);
+      fireEvent.change(screen.getByLabelText("학생 인쇄 범위"), {
+        target: { value: "all" },
+      });
+      fireEvent.click(screen.getByRole("button", { name: /^학생 성적표/ }));
+      await waitFor(() =>
+        expect(source.print).toHaveBeenCalledWith(
+          "fixture-test",
+          "all",
+          "students",
+        ),
+      );
+      await waitFor(() =>
+        expect(
+          screen.getByRole("button", { name: "반 지면 설정" }),
+        ).toBeEnabled(),
+      );
+      fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
+      fireEvent.click(screen.getByRole("radio", { name: "H1 (기본)" }));
+      fireEvent.click(screen.getByRole("button", { name: "적용" }));
+      await waitFor(() =>
+        expect(source.settings).toHaveBeenLastCalledWith(
+          "fixture-test",
+          "b".repeat(64),
+          { ...options, style: "H1" },
+        ),
+      );
+      await waitFor(() =>
+        expect(studentExamReportPages).toHaveBeenLastCalledWith(
+          expect.anything(),
+          expect.objectContaining({ style: "H1" }),
+        ),
+      );
+    },
+  );
+  it("양식 선택은 취소·Esc로 버리고 기본 H1 그대로 적용하면 저장하지 않는다", async () => {
+    const { source } = fixture();
+    await ready(source);
+    const opener = screen.getByRole("button", { name: "반 지면 설정" });
+    for (const cancel of ["취소", "Esc"]) {
+      fireEvent.click(opener);
+      fireEvent.click(screen.getByRole("radio", { name: "편지형" }));
+      if (cancel === "취소")
+        fireEvent.click(screen.getByRole("button", { name: "취소" }));
+      else
+        fireEvent(
+          screen.getByRole("dialog", { name: "반 지면 설정" }),
+          new Event("cancel", { cancelable: true }),
+        );
+      expect(source.settings).not.toHaveBeenCalled();
+      expect(opener).toHaveFocus();
+    }
+    fireEvent.click(opener);
+    expect(screen.getByRole("radio", { name: "H1 (기본)" })).toBeChecked();
+    fireEvent.click(screen.getByRole("button", { name: "적용" }));
+    expect(source.settings).not.toHaveBeenCalled();
+  });
+  it("양식 저장 실패는 고른 값과 문장을 남겨 같은 창에서 다시 적용할 수 있다", async () => {
+    const { source } = fixture();
+    source.settings.mockRejectedValueOnce(
+      new ExamReportClientError(409, "지면 설정이 바뀌었습니다."),
+    );
+    await ready(source);
+    fireEvent.change(screen.getByLabelText("원장님 문장"), {
+      target: { value: "보존할 문장" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
+    fireEvent.click(screen.getByRole("radio", { name: "장부형" }));
+    fireEvent.click(screen.getByRole("button", { name: "적용" }));
+    await waitFor(() =>
+      expect(
+        within(screen.getByRole("dialog", { name: "반 지면 설정" })).getByRole(
+          "alert",
+        ),
+      ).toHaveTextContent("지면 설정이 바뀌었습니다."),
+    );
+    expect(screen.getByRole("radio", { name: "장부형" })).toBeChecked();
+    expect(screen.getByRole("textbox", { name: "원장님 문장" })).toHaveValue(
+      "보존할 문장",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "적용" }));
+    await waitFor(() => expect(source.settings).toHaveBeenCalledTimes(2));
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
+    expect(screen.getByRole("textbox", { name: "원장님 문장" })).toHaveValue(
+      "보존할 문장",
+    );
   });
 });

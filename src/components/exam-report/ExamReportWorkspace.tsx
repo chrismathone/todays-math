@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type ButtonHTMLAttributes } from "react";
 import type {
   ExamReportList,
   ExamReportOptions,
+  ExamReportStyle,
   ExamReportStudent,
   ExamReportSummary,
 } from "@/contracts/examReportWorkspace.contract";
@@ -51,6 +52,13 @@ const scoreText = (row: ExamReportSummary) =>
   row.score.value === null
     ? "—"
     : `${row.score.value}${row.score.unit === "points" ? "점" : "문항"}`;
+
+const STYLE_LABELS = {
+  H1: "H1 (기본)",
+  letter: "편지형",
+  grid: "정오 격자형",
+  ledger: "장부형",
+} satisfies Record<ExamReportStyle, string>;
 
 /** Wire A · 합의된 H3 + H1 목록 배지·위쪽 인쇄. 실제 저장만 API로 바꾼다. */
 export function ExamReportWorkspace({
@@ -177,16 +185,18 @@ export function ExamReportWorkspace({
   let pages: ReturnType<typeof studentExamReportPages> = [];
   if (selected?.report.status === "graded" && options) {
     try {
+      const outputOptions = {
+        mode: options.format,
+        style: options.style ?? "H1",
+        wrong: options.wrongQuestions,
+        retry: options.retries,
+        note: options.teacherNote && Boolean(note.trim()),
+        average: options.classAverage ? list!.classReport.rollup : null,
+        wrongTableLayout,
+      };
       pages = studentExamReportPages(
         { ...selected.report, teacherNote: note },
-        {
-          mode: options.format,
-          wrong: options.wrongQuestions,
-          retry: options.retries,
-          note: options.teacherNote && Boolean(note.trim()),
-          average: options.classAverage ? list!.classReport.rollup : null,
-          wrongTableLayout,
-        },
+        outputOptions,
       );
     } catch (cause) {
       layoutError =
@@ -262,6 +272,7 @@ export function ExamReportWorkspace({
     if (!list || !pendingOptions || busy) return;
     // 기존 M1도 같은 요약이다. 설정을 그대로 닫는 것만으로 확정을 풀지 않는다.
     if (
+      (pendingOptions.style ?? "H1") === (list.options.style ?? "H1") &&
       pendingOptions.wrongQuestions === list.options.wrongQuestions &&
       pendingOptions.retries === list.options.retries &&
       pendingOptions.teacherNote === list.options.teacherNote &&
@@ -473,7 +484,10 @@ export function ExamReportWorkspace({
               확정 {confirmed} / {graded}명
             </span>
           </p>
-          <p className={s.meta}>지면: 요약 한 장 · 반 전체에 적용</p>
+          <p className={s.meta}>
+            지면: 요약 한 장 · {STYLE_LABELS[options?.style ?? "H1"]} · 반
+            전체에 적용
+          </p>
         </div>
         <section className={s.printBar} aria-label="반 인쇄">
           <div className={s.printTools}>
@@ -605,7 +619,7 @@ export function ExamReportWorkspace({
                       ) : (
                         <PaperStrip
                           label="선택한 학생의 성적표"
-                          hint={`요약 한 장 · ${pages.length}쪽 · 쪽을 누르면 크게 봅니다.`}
+                          hint={`${STYLE_LABELS[options?.style ?? "H1"]} · 요약 한 장 · ${pages.length}쪽 · 쪽을 누르면 크게 봅니다.`}
                           pages={pages.map((node, i) => ({
                             key: `${selectedId}-${i}`,
                             node: <div className={s.paper}>{node}</div>,
@@ -762,59 +776,81 @@ export function ExamReportWorkspace({
             if (!busy) setDialog(null);
           }}
         >
-          <p className={s.dialogIntro}>
-            {report.className} 전체에 적용합니다. 지면이 바뀌면 확정한 학생은
-            다시 확정합니다.
-          </p>
-          <fieldset className={s.settingFields} disabled={Boolean(busy)}>
-            <legend>학생 성적표 구성</legend>
-            {([["S1", "요약 한 장"]] as const).map(([format, label]) => (
-              <label key={format}>
-                <input
-                  type="radio"
-                  name="paper-mode"
-                  checked={pendingOptions.format === format}
-                  onChange={() =>
-                    setPendingOptions((old) => old && { ...old, format })
-                  }
-                />
-                {label}
-              </label>
-            ))}
-          </fieldset>
-          <fieldset className={s.settingFields} disabled={Boolean(busy)}>
-            <legend>지면에 담을 기록</legend>
-            {(
-              [
-                ["wrongQuestions", "틀린 문항"],
-                ["retries", "재시험 결과"],
-                ["teacherNote", "원장님 문장"],
-                ["classAverage", "반 평균 · 기본 꺼짐"],
-              ] as const
-            ).map(([key, label]) => (
-              <label key={key}>
-                <input
-                  type="checkbox"
-                  checked={pendingOptions[key]}
-                  onChange={(event) =>
-                    setPendingOptions(
-                      (old) => old && { ...old, [key]: event.target.checked },
-                    )
-                  }
-                />
-                {label}
-              </label>
-            ))}
-          </fieldset>
-          <p className={s.meta}>
-            문장 칸은 문장이 있는 학생에게만 표시됩니다. 반 평균은 응시 학생
-            기준입니다. 틀린 문항 표가 길면 다음 쪽으로 이어집니다.
-          </p>
-          {error && (
-            <p className={s.error} role="alert">
-              {error}
+          <div className={s.settingsBody}>
+            <p className={s.dialogIntro}>
+              {report.className} 전체에 적용합니다. 지면이 바뀌면 확정한 학생은
+              다시 확정합니다.
             </p>
-          )}
+            <div className={s.settingLayout}>
+              <fieldset className={s.settingFields} disabled={Boolean(busy)}>
+                <legend>학생 성적표 구성</legend>
+                {([["S1", "요약 한 장"]] as const).map(([format, label]) => (
+                  <label key={format}>
+                    <input
+                      type="radio"
+                      name="paper-mode"
+                      checked={pendingOptions.format === format}
+                      onChange={() =>
+                        setPendingOptions((old) => old && { ...old, format })
+                      }
+                    />
+                    {label}
+                  </label>
+                ))}
+              </fieldset>
+              <fieldset className={s.settingFields} disabled={Boolean(busy)}>
+                <legend>학생 성적표 양식</legend>
+                {(Object.keys(STYLE_LABELS) as ExamReportStyle[]).map(
+                  (style) => (
+                    <label key={style}>
+                      <input
+                        type="radio"
+                        name="paper-style"
+                        checked={(pendingOptions.style ?? "H1") === style}
+                        onChange={() =>
+                          setPendingOptions((old) => old && { ...old, style })
+                        }
+                      />
+                      {STYLE_LABELS[style]}
+                    </label>
+                  ),
+                )}
+              </fieldset>
+            </div>
+            <fieldset className={s.settingFields} disabled={Boolean(busy)}>
+              <legend>지면에 담을 기록</legend>
+              {(
+                [
+                  ["wrongQuestions", "틀린 문항"],
+                  ["retries", "재시험 결과"],
+                  ["teacherNote", "원장님 문장"],
+                  ["classAverage", "반 평균 · 기본 꺼짐"],
+                ] as const
+              ).map(([key, label]) => (
+                <label key={key}>
+                  <input
+                    type="checkbox"
+                    checked={pendingOptions[key]}
+                    onChange={(event) =>
+                      setPendingOptions(
+                        (old) => old && { ...old, [key]: event.target.checked },
+                      )
+                    }
+                  />
+                  {label}
+                </label>
+              ))}
+            </fieldset>
+            <p className={s.meta}>
+              문장 칸은 문장이 있는 학생에게만 표시됩니다. 반 평균은 응시 학생
+              기준입니다. 틀린 문항 표가 길면 다음 쪽으로 이어집니다.
+            </p>
+            {error && (
+              <p className={s.error} role="alert">
+                {error}
+              </p>
+            )}
+          </div>
         </PickerDialog>
       )}
     </div>

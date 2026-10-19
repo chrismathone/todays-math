@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-19",
+  "engine": "Edge / Playwright",
+  "widths": [
+    1366,
+    390
+  ],
+  "variants": [
+    {
+      "id": "A",
+      "frames": 6,
+      "checks": [
+        "100 grid cells; 2×3 highlighted; exact inline SVG",
+        "3/4/5/6 → 6/5/3/4; selected cobalt; no early answer",
+        "second wrong/giveup reveals; no 1.2s auto advance; acknowledgment and correct success",
+        "concept examples/truth; phone navigation; 0.48/Enter; done; preview→concept"
+      ]
+    },
+    {
+      "id": "B",
+      "frames": 6,
+      "checks": [
+        "100 grid cells; 2×3 highlighted; exact inline SVG",
+        "3/4/5/6 → 6/5/3/4; selected cobalt; no early answer",
+        "second wrong/giveup reveals; no 1.2s auto advance; acknowledgment and correct success",
+        "concept examples/truth; phone navigation; 0.48/Enter; done; preview→concept"
+      ]
+    },
+    {
+      "id": "C",
+      "frames": 6,
+      "checks": [
+        "100 grid cells; 2×3 highlighted; exact inline SVG",
+        "3/4/5/6 → 6/5/3/4; selected cobalt; no early answer",
+        "second wrong/giveup reveals; no 1.2s auto advance; acknowledgment and correct success",
+        "concept examples/truth; phone navigation; 0.48/Enter; done; preview→concept"
+      ]
+    },
+    {
+      "id": "D",
+      "frames": 6,
+      "checks": [
+        "100 grid cells; 2×3 highlighted; exact inline SVG",
+        "3/4/5/6 → 6/5/3/4; selected cobalt; no early answer",
+        "second wrong/giveup reveals; no 1.2s auto advance; acknowledgment and correct success",
+        "concept examples/truth; phone navigation; 0.48/Enter; done; preview→concept"
+      ]
+    },
+    {
+      "id": "E",
+      "frames": 6,
+      "checks": [
+        "100 grid cells; 2×3 highlighted; exact inline SVG",
+        "3/4/5/6 → 6/5/3/4; selected cobalt; no early answer",
+        "second wrong/giveup reveals; no 1.2s auto advance; acknowledgment and correct success",
+        "concept examples/truth; phone navigation; 0.48/Enter; done; preview→concept"
+      ]
+    }
+  ],
+  "contrast": {
+    "inkOnWhite": 14.102034448456891,
+    "mutedOnWhite": 5.36529986138677,
+    "whiteOnAccent": 5.792963455333661,
+    "inkOnPaper": 13.863771814022858,
+    "mutedOnPaper": 5.2746497864507775,
+    "accentOnPaper": 5.695087738245272
+  },
+  "touch": {
+    "swipe": true,
+    "fold": true,
+    "keycapsHidden": true,
+    "reducedMotion": true,
+    "outerOverflow": false
+  },
+  "errors": []
+}

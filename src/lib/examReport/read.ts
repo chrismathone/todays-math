@@ -5,6 +5,7 @@ import type {
   Prisma,
 } from "@prisma/client";
 import {
+  examReportOptionsForStorage,
   examReportOptionsSchema,
   type ExamReportSummary,
   type ExamReportOptions,
@@ -134,13 +135,18 @@ export async function loadExamReportContext(
       orderBy: { id: "asc" },
     }),
   ]);
-  const options = examReportOptionsSchema.parse(drafts[0]?.options ?? {});
+  const options = examReportOptionsForStorage(
+    examReportOptionsSchema.parse(drafts[0]?.options ?? {}),
+  );
   // 한 반의 설정은 한 벌이다. 일부 행의 설정이 다르면 조용히 한쪽을 택하지 않는다.
   if (
     drafts.some(
       (draft) =>
-        canonicalHash(examReportOptionsSchema.parse(draft.options)) !==
-        canonicalHash(options),
+        canonicalHash(
+          examReportOptionsForStorage(
+            examReportOptionsSchema.parse(draft.options),
+          ),
+        ) !== canonicalHash(options),
     )
   )
     throw reportConflict();
@@ -225,6 +231,7 @@ export function paperOptions(snapshot: ExamReportSnapshot) {
   const options = examReportOptionsSchema.parse(snapshot.options);
   return {
     mode: "S1" as const,
+    style: options.style ?? "H1",
     wrong: options.wrongQuestions,
     retry: options.retries,
     note: options.teacherNote && Boolean(snapshot.report.teacherNote.trim()),

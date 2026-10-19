@@ -5,6 +5,10 @@ import {
   type WrongTableLayout,
 } from "@/lib/examReport/wrongTable";
 import { examReportTableDom } from "@/lib/examReport/wrongTableDom";
+import {
+  styledReportTableDom,
+  styledReportOverflow,
+} from "@/lib/examReport/styledReportDom";
 
 /** 시안과 같은 H1 원본 DOM 검사. 서버의 PDF 렌더에서도 다시 검사한다. */
 export function usePaperOverflow(key: string) {
@@ -24,7 +28,14 @@ export function usePaperOverflow(key: string) {
       if (!active) return;
       const root = ref.current;
       const fontsReady = !document.fonts || document.fonts.status === "loaded";
-      const metrics = root && fontsReady ? examReportTableDom(root) : null;
+      const desk = root?.querySelector("[data-paper-desk]") ?? root;
+      const styled = Boolean(desk?.querySelector("[data-report-style]"));
+      const metrics =
+        root && fontsReady
+          ? styled
+            ? styledReportTableDom(root)
+            : examReportTableDom(root)
+          : null;
       const nextLayout = metrics
         ? paginateWrongTableRows(
             metrics.heights,
@@ -32,9 +43,11 @@ export function usePaperOverflow(key: string) {
             metrics.continuation,
           )
         : undefined;
-      const currentLayout = root
+      const currentLayout = desk
         ? [
-            ...root.querySelectorAll("[data-paper-desk] .er-wrongArea tbody"),
+            ...desk.querySelectorAll(
+              styled ? ".sc-wrongTable tbody" : ".er-wrongArea tbody",
+            ),
           ].map((body) => body.children.length)
         : [];
       const pending =
@@ -50,28 +63,28 @@ export function usePaperOverflow(key: string) {
         });
         return;
       }
-      const sheets =
-        root?.querySelectorAll<HTMLElement>("[data-paper-desk] .er-sheet") ??
-        [];
-      const overflow = [...sheets].some((sheet) => {
-        if (!sheet.clientHeight) return false;
-        const rect = sheet.getBoundingClientRect();
-        const scale = rect.height / sheet.clientHeight;
-        const children = [...sheet.children] as HTMLElement[];
-        return (
-          sheet.scrollHeight > sheet.clientHeight + 1 ||
-          sheet.scrollWidth > sheet.clientWidth + 1 ||
-          children.some(
-            (node, i) =>
-              node.scrollHeight > node.clientHeight + 2 ||
-              (children[i + 1] &&
-                node.getBoundingClientRect().bottom >
-                  children[i + 1].getBoundingClientRect().top + scale),
-          )
-        );
-      });
+      const sheets = desk?.querySelectorAll<HTMLElement>(".er-sheet") ?? [];
+      const overflow =
+        (styled && root ? styledReportOverflow(root) : false) ||
+        [...sheets].some((sheet) => {
+          if (!sheet.clientHeight) return false;
+          const rect = sheet.getBoundingClientRect();
+          const scale = rect.height / sheet.clientHeight;
+          const children = [...sheet.children] as HTMLElement[];
+          return (
+            sheet.scrollHeight > sheet.clientHeight + 1 ||
+            sheet.scrollWidth > sheet.clientWidth + 1 ||
+            children.some(
+              (node, i) =>
+                node.scrollHeight > node.clientHeight + 2 ||
+                (children[i + 1] &&
+                  node.getBoundingClientRect().bottom >
+                    children[i + 1].getBoundingClientRect().top + scale),
+            )
+          );
+        });
       const summary = root?.querySelector<HTMLElement>(
-        '[data-er-summary="true"] .er-sheet',
+        '[data-er-summary="true"] :is(.er-sheet,.sc-sheet)',
       );
       let remainingMm = metrics
         ? (Math.max(0, metrics.remaining) * 25.4) / 96

@@ -359,8 +359,18 @@
   font-size: var(--text-body);
   line-height: 1.6;
 }
+.settingsBody {
+  padding: 20px;
+}
+.settingLayout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
 .settingFields {
   display: grid;
+  min-width: 0;
+  align-content: start;
   gap: 4px;
   padding: 0;
   margin: 0 0 16px;
@@ -380,6 +390,7 @@
 .settingFields input {
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
   accent-color: var(--learn-accent);
 }
 @container exam-report-screen (max-width: 860px) {
@@ -395,6 +406,9 @@
   }
 }
 @media (max-width: 760px) {
+  .settingsBody {
+    padding: 16px;
+  }
   .root {
     --workspace-page-padding: 14px 16px;
   }
@@ -412,6 +426,12 @@
   }
   .noteHelp {
     display: grid;
+  }
+}
+@media (max-width: 480px) {
+  .settingLayout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
   }
 }
 

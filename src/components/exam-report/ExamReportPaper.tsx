@@ -1,20 +1,19 @@
-import { Fragment, type CSSProperties, type ReactNode } from "react";
+import { type CSSProperties, type ReactNode } from "react";
 import type {
   ClassExamReport,
   StudentExamReport,
 } from "@/contracts/examReport.contract";
 import { A4Page } from "@/components/print/A4Page";
 import { PAPER_COLORS } from "@/components/print/tokens";
-import { ExamReportTrend } from "./ExamReportTrend";
 import { originalScoreLabel, scoreTo100 } from "@/lib/examReport/score100";
-import { recentExamHistory } from "@/lib/examReport/trend";
 import {
-  estimateWrongTableLayout,
-  wrongTableColumns,
-  type WrongTableLayout,
-} from "@/lib/examReport/wrongTable";
+  styleReportPages,
+  type ExamReportStyle,
+} from "./StyledExamReportPaper";
+import type { WrongTableLayout } from "@/lib/examReport/wrongTable";
 
 export interface ExamReportOutputOptions {
+  style?: ExamReportStyle;
   /** 저장된 M1도 S1 요약으로 출력한다. 기존 호출의 읽기 호환용이다. */
   mode?: "S1" | "M1";
   wrong?: boolean;
@@ -31,7 +30,13 @@ export interface ExamReportOutputOptions {
   > | null;
 }
 
-type ExamReportQuestion = StudentExamReport["wrongQuestions"][number];
+const dateParts = (value: string) => value.split("-").map(Number);
+const day = (value: string) => {
+  const [y, m, d] = dateParts(value);
+  return `${y}년 ${m}월 ${d}일`;
+};
+const scoreUnit = (score: StudentExamReport["score"]) =>
+  score.unit === "points" ? "점" : "문항";
 
 const statusLabels = {
   absent: "결시",
@@ -39,17 +44,6 @@ const statusLabels = {
   incomplete: "채점 중",
   graded: "채점 완료",
 } as const;
-const dateParts = (value: string) => value.split("-").map(Number);
-const day = (value: string) => {
-  const [y, m, d] = dateParts(value);
-  return `${y}년 ${m}월 ${d}일`;
-};
-const shortDay = (value: string) => {
-  const [, m, d] = dateParts(value);
-  return `${m}월 ${d}일`;
-};
-const scoreUnit = (score: StudentExamReport["score"]) =>
-  score.unit === "points" ? "점" : "문항";
 
 type ReportIdentity = Pick<StudentExamReport, "publication" | "className">;
 
@@ -84,173 +78,6 @@ function Head({
         <p className="er-examName">{report.publication.title}</p>
       </div>
     </header>
-  );
-}
-
-function Summary({
-  report,
-  options,
-  questions,
-}: {
-  report: StudentExamReport;
-  options: ExamReportOutputOptions;
-  questions: readonly ExamReportQuestion[];
-}) {
-  const { wrong = true, retry = true, note = true, average } = options;
-  const graded = report.status === "graded";
-  const retries = retry ? report.retries : [];
-  const score100 = graded
-    ? scoreTo100(report.score.value, report.score.maximum)
-    : null;
-  const original = originalScoreLabel(report.score);
-  return (
-    <>
-      <Head report={report} name={report.student.name} title="요약" />
-      <div className="er-numbers">
-        <div>
-          <p>이번 시험</p>
-          <strong>
-            {graded
-              ? score100 === null
-                ? "점수 확인 필요"
-                : `${score100}점`
-              : statusLabels[report.status]}
-          </strong>
-          <span>
-            {graded
-              ? score100 === null
-                ? "만점 확인 필요"
-                : "/ 100점 만점"
-              : report.publication.testDate.replaceAll("-", ". ") + "."}
-          </span>
-          {graded && original && (
-            <span className="er-originalScore">{original}</span>
-          )}
-        </div>
-        <div>
-          <p>맞힌 문항</p>
-          <strong>{graded ? report.correctCount : "—"}</strong>
-          <span>
-            {graded ? `/ ${report.questionCount}문항` : "점수에 포함하지 않음"}
-          </span>
-        </div>
-        {average && average.averageScore !== null && (
-          <div>
-            <p>반 평균 · 100점 환산</p>
-            <strong>
-              {scoreTo100(average.averageScore, report.score.maximum) ?? "—"}
-            </strong>
-            <span>응시 {average.gradedCount}명 기준</span>
-          </div>
-        )}
-      </div>
-      {options.trend !== false &&
-        recentExamHistory(report.history).length > 0 && (
-          <section className="er-area">
-            <h3>월말평가 추이</h3>
-            <ExamReportTrend history={report.history} />
-          </section>
-        )}
-      {wrong && (
-        <section className="er-area er-wrongArea">
-          <h3>틀린 문항</h3>
-          {!graded ? (
-            <p>
-              {report.status === "absent"
-                ? "결시하여 문항별 기록이 없습니다."
-                : "채점 후 문항별 기록을 확인합니다."}
-            </p>
-          ) : report.wrongQuestions.length === 0 ? (
-            <p>틀린 문항이 없습니다.</p>
-          ) : (
-            <WrongTable
-              questions={questions}
-              columns={wrongTableColumns(report.wrongQuestions.length)}
-            />
-          )}
-        </section>
-      )}
-      {retries.length > 0 && (
-        <section className="er-area">
-          <h3>재시험 결과</h3>
-          {retries.map((item) => (
-            <p key={item.resultId ?? item.testId}>
-              {shortDay(item.testDate)} ·{" "}
-              {item.status === "graded"
-                ? `오답 복습 ${item.questionCount}문항 중 ${item.correctCount}문항 정답`
-                : statusLabels[item.status]}
-            </p>
-          ))}
-        </section>
-      )}
-      {note && report.teacherNote.trim() && (
-        <section className="er-area er-note">
-          <h3>원장님 문장</h3>
-          <p>{report.teacherNote}</p>
-        </section>
-      )}
-      <p className="er-coverage">
-        담은 기록:{" "}
-        {graded
-          ? "월말평가 1회"
-          : report.status === "absent"
-            ? "시험일 · 결시 1회"
-            : `시험일(${statusLabels[report.status]})`}
-        {retries.length ? ` · 재시험 ${retries.length}회` : ""}
-        {note && report.teacherNote.trim() ? " · 원장님 문장" : ""}.
-      </p>
-    </>
-  );
-}
-
-function WrongTable({
-  questions,
-  columns,
-}: {
-  questions: readonly ExamReportQuestion[];
-  columns: 1 | 2;
-}) {
-  const rows = [];
-  for (let i = 0; i < questions.length; i += columns)
-    rows.push(questions.slice(i, i + columns));
-  return (
-    <table className="er-wrongTable" data-er-wrong-columns={columns}>
-      {columns === 2 && <caption>왼쪽 → 오른쪽, 위 → 아래 순서</caption>}
-      <colgroup>
-        {Array.from({ length: columns }, (_, i) => (
-          <Fragment key={i}>
-            <col style={{ width: columns === 2 ? "12mm" : "16mm" }} />
-            <col style={{ width: columns === 2 ? "39mm" : "82mm" }} />
-            <col />
-          </Fragment>
-        ))}
-      </colgroup>
-      <thead>
-        <tr>
-          {Array.from({ length: columns }, (_, i) => (
-            <Fragment key={i}>
-              <th scope="col">번호</th>
-              <th scope="col">단원</th>
-              <th scope="col">유형</th>
-            </Fragment>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row) => (
-          <tr key={row[0].problemId} data-er-wrong-row>
-            {row.map((q) => (
-              <Fragment key={q.problemId}>
-                <td data-er-wrong-no={q.no}>{q.no}번</td>
-                <td>{q.unitName}</td>
-                <td>{q.typeLabel ?? "—"}</td>
-              </Fragment>
-            ))}
-            {row.length < columns && <td colSpan={3} aria-hidden="true" />}
-          </tr>
-        ))}
-      </tbody>
-    </table>
   );
 }
 
@@ -307,49 +134,16 @@ export function studentExamReportPages(
   report: StudentExamReport,
   options: ExamReportOutputOptions = {},
 ) {
-  const columns = wrongTableColumns(report.wrongQuestions.length);
-  const measured = options.wrongTableLayout;
-  const rowCount = Math.ceil(report.wrongQuestions.length / columns);
-  const measuredValid =
-    measured?.length &&
-    measured.every((count) => Number.isInteger(count) && count >= 0) &&
-    measured.reduce((sum, count) => sum + count, 0) === rowCount;
-  const layout =
-    options.wrong !== false &&
-    report.status === "graded" &&
-    report.wrongQuestions.length
-      ? measuredValid
-        ? measured
-        : estimateWrongTableLayout(report, options)
-      : [0];
-  let offset = 0;
-  const tablePages = layout.map((count) => {
-    const questions = report.wrongQuestions.slice(
-      offset,
-      offset + count * columns,
-    );
-    offset += count * columns;
-    return questions;
+  return styleReportPages(options.style ?? "H1", report, {
+    header: { name: "오늘의수학", line: "월말평가 성적표" },
+    footer: "오늘의수학",
+    wrong: options.wrong,
+    retry: options.retry,
+    note: options.note,
+    trend: options.trend,
+    average: options.average,
+    wrongTableLayout: options.wrongTableLayout,
   });
-  const total = tablePages.length;
-  return [
-    <Page key="summary" index={0} total={total} summary>
-      <Summary report={report} options={options} questions={tablePages[0]} />
-    </Page>,
-    ...tablePages.slice(1).map((questions, i) => (
-      <Page key={`table-${i}`} index={i + 1} total={total} continuation>
-        <Head
-          report={report}
-          name={report.student.name}
-          title="틀린 문항 (이어서)"
-        />
-        <section className="er-area er-wrongArea">
-          <h3>틀린 문항 (이어서)</h3>
-          <WrongTable questions={questions} columns={columns} />
-        </section>
-      </Page>
-    )),
-  ];
 }
 
 export function StudentExamReportPaper({
@@ -360,7 +154,10 @@ export function StudentExamReportPaper({
   options?: ExamReportOutputOptions;
 }) {
   return (
-    <div data-mathgen-document="true" data-exam-report-document="H1">
+    <div
+      data-mathgen-document="true"
+      data-exam-report-document={options?.style ?? "H1"}
+    >
       {studentExamReportPages(report, options)}
     </div>
   );

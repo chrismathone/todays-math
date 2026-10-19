@@ -3,12 +3,41 @@ import {
   examReportConfirmInputSchema,
   examReportNoteInputSchema,
   examReportOptionsSchema,
+  examReportOptionsForStorage,
   examReportPrintInputSchema,
   examReportSettingsInputSchema,
+  examReportStyleSchema,
 } from "@/contracts/examReportWorkspace.contract";
 import { EXAM_REPORT_NOTE_LIMIT } from "@/lib/examReport/settings";
 
 describe("실제 성적표 편집 계약", () => {
+  it("양식은 구성과 별도로 네 값만 받고 기본 H1은 기존 JSON 모양으로 저장한다", () => {
+    const legacy = examReportOptionsSchema.parse({ format: "M1" });
+    expect(legacy.style ?? "H1").toBe("H1");
+    expect(legacy).not.toHaveProperty("style");
+    expect(examReportOptionsForStorage({ ...legacy, style: "H1" })).toEqual(
+      legacy,
+    );
+    for (const style of examReportStyleSchema.options) {
+      const options = examReportSettingsInputSchema.parse({
+        expectedOptionsDigest: "a".repeat(64),
+        options: { style },
+      }).options;
+      expect(options.format).toBe("S1");
+      expect(options.style).toBe(style);
+      expect(examReportOptionsForStorage(options)).toEqual(
+        style === "H1" ? examReportOptionsSchema.parse({}) : options,
+      );
+      expect(examReportOptionsSchema.parse({ ...legacy, style }).format).toBe(
+        "M1",
+      );
+    }
+    for (const style of ["certificate", "newspaper", "big", "h1", "", null])
+      expect(examReportOptionsSchema.safeParse({ style }).success).toBe(false);
+    expect(
+      examReportOptionsSchema.safeParse({ format: "numbers" }).success,
+    ).toBe(false);
+  });
   it("M1 저장값은 그대로 읽고 새 설정 요청은 S1만 받는다", () => {
     expect(examReportOptionsSchema.parse({ format: "M1" }).format).toBe("M1");
     const input = { expectedOptionsDigest: "a".repeat(64), options: {} };
