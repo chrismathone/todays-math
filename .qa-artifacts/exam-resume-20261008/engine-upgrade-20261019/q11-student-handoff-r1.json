@@ -1,0 +1,31 @@
+{
+  "utc": "2026-10-19T13:02:29.574Z",
+  "target": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/nobyeon-sem1-q11-clean-blind-20261019-r1/",
+  "inputs": [
+    {
+      "name": "student-problems.json",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group5-review-20261019-r1/blind/student-problems.json",
+      "sha256": "6894d89506d97ff75f87cab8263a1ef3f95fd5bb9466b19d30af1a98dd58f6c7"
+    },
+    {
+      "name": "blind-manifest.json",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group5-review-20261019-r1/blind/blind-manifest.json",
+      "sha256": "92d0dfc3e6492ff27c97432406cab02698b7fd0362d62caae4ea04858910600e"
+    },
+    {
+      "name": "SOLVE-BRIEF.md",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group5-review-20261019-r1/blind/SOLVE-BRIEF.md",
+      "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+    },
+    {
+      "name": "q11.png",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group5-r1/student-preview-q11-r1/q11.png",
+      "sha256": "f766f708d7d3a30ab579d60f0417b4a3828238a6acd21afd123d9a780b60155a"
+    }
+  ],
+  "priorMetadataTaskScope": "q06/q08/q09/q10 only; newq11notauthorized before this packet",
+  "explicitPriorExposureDeclarationRequired": true,
+  "authorAnswerIncluded": false,
+  "newWorktrees": 0,
+  "dbWrites": 0
+}

@@ -1,0 +1,56 @@
+{
+  "utc": "2026-10-19T12:58:15.097Z",
+  "candidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group5-r1/candidates/q11.json",
+    "sha256": "fcb3b51b377b43c6a6a67773aa23507b666aee22ee15a486813e36a4d9f9f1bc"
+  },
+  "studentDigest": "8fb875e31b296e79000e213cb75b1f3cbd333441b69ed233c09fec9f2e4064a5",
+  "candidateDigest": "2b28f14f1a91ee4d67c3272ae65a02d2f3d97abc40a64e7cf955b55c3158774b",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "positiveSquareRoot": {
+    "squared": 0.5625,
+    "a": 0.75,
+    "negativeRootExcluded": -0.75
+  },
+  "givenSum": -5.25,
+  "choices": [
+    {
+      "k": 2,
+      "constant": 0.5625,
+      "b": -3,
+      "sum": -2.25
+    },
+    {
+      "k": 3,
+      "constant": 0.5625,
+      "b": -4.5,
+      "sum": -3.75
+    },
+    {
+      "k": 4,
+      "constant": 0.5625,
+      "b": -6,
+      "sum": -5.25
+    },
+    {
+      "k": 5,
+      "constant": 0.5625,
+      "b": -7.5,
+      "sum": -6.75
+    },
+    {
+      "k": 6,
+      "constant": 0.5625,
+      "b": -9,
+      "sum": -8.25
+    }
+  ],
+  "uniqueK": 4,
+  "polynomialSubstitutionCases": 25,
+  "newFigures": 0,
+  "newTables": 0,
+  "authorArithmeticOnly": true,
+  "independentReview": false,
+  "loadable": 0,
+  "dbWrites": 0
+}

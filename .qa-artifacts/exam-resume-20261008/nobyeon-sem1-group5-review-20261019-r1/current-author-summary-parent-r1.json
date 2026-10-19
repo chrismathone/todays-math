@@ -1,0 +1,361 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T13:46:42.272Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group5-review-20261019-r1/current-index-parent-r1.json",
+    "sha256": "984742049d84e1a5288fded5a4fab9c8c9ac037dab6a102c2d7dc7a456dffd7a"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 1,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 1,
+    "figureInstances": 0,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    11
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 11,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group5-r1-q11",
+      "studentDigest": "8fb875e31b296e79000e213cb75b1f3cbd333441b69ed233c09fec9f2e4064a5",
+      "candidateDigest": "2b28f14f1a91ee4d67c3272ae65a02d2f3d97abc40a64e7cf955b55c3158774b",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "4d9fc0e1f3c3ab9abcb56251e106c9e4639b7baf7ebb802e8aaf28394e4ac062",
+      "reportSha256": "6f92e28f069afbe96dcd6a8070db630da910a4527fa9c09acf5ebfb5c5105883",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q11",
+        "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceContentSha256": "e675b511e0c0984365c97c077aab9baa976b48d259bf63568d2a3c5c7941e77c",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+          "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+            "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+            "bytes": 579072
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+            "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+            "bytes": 154842
+          }
+        ],
+        "originalIdentitySource": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+          "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+          "bytes": 3313997
+        },
+        "hwpAnchor": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1429,
+          "inflatedByteOffset": 60122,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "c45b95823243109c339108cddfeeb0b6dfabeaa306aa259d3d48e3348d481976"
+        },
+        "originalHeaderObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+          "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+        },
+        "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "sourceCropViewed": false,
+        "sourceBodyVisualCorrespondence": "pending-N-original-access"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "familyCandidates": [
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|01",
+              "family_code": "A01",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|02",
+              "family_code": "A02",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|03",
+              "family_code": "A03",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|04",
+              "family_code": "A04",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|05",
+              "family_code": "A05",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|06",
+              "family_code": "A06",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|07",
+              "family_code": "A07",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|08",
+              "family_code": "A08",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|09",
+              "family_code": "A09",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|10",
+              "family_code": "A10",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|11",
+              "family_code": "A11",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|12",
+              "family_code": "A12",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|13",
+              "family_code": "A13",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|14",
+              "family_code": "A14",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|15",
+              "family_code": "A15",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|16",
+              "family_code": "A16",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|17",
+              "family_code": "A17",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|18",
+              "family_code": "A18",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|52V",
+              "family_code": "A20",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+              "family_code": "A19",
+              "live_count": 24
+            }
+          ],
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제 다항식 곱셈Unit UUID/live family 후보를 연결했다. 상수항과 계수 합으로 선두 계수를 되찾는 풀이 목적의 family 의미는 별도 판단 전 보류한다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "pure-algebra-no-figure-required",
+          "newTables": 0,
+          "newFigures": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ]
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "선두 계수가 주어진 제곱식의 상수항과 양수 조건으로 두 계수를 찾고 그 합을 직접 구한다.",
+        "after": "상수항과 계수 합을 결과 조건으로 제공하고, 제곱식 안의 선두 계수를 역으로 복원한다.",
+        "sharedConcept": "일차식의 제곱 공식, 양수의 제곱근, 일차항/상수항의 계수 해석",
+        "sharedProcedure": "제곱식에서 상수항과 일차항을 구별 →상수항과 양수 조건으로 상수를 복원 →일차항 계수 및 합의 관계를 사용",
+        "actualStructuralChange": "원문에서 구하던 계수 합을 조건으로 제시하고 원문에서 수치로 주던 제곱식의 선두 계수를 질문 대상으로 바꿨다. 양수의 제곱근으로a를 결정하는 핵심 단계를 생략하지 않는다. 문장 순서·숫자 교체만으로 차별성을 주장하지 않는다.",
+        "domainProof": "a²=9/16과a>0으로a=3/4만 가능하다. 주어진 합으로b=-6이고b=-2ka에서k=4가 유일하다. k>0을 만족하며 원래 다항식을 전개해 상수항/일차항/합을 다시 확인했다. 분모0/길이/함수 범위 조건을 새로 요구하지 않는다.",
+        "difficultyBasis": "제곱공식, 상수항의 양수 제곱근과 일차항 계수 해석을 유지하고 질문 대상을 역전한다. k는 실수 상수이며 필요한 방정식은 일차방정식이다. 원문4점/중 난이도에 대한 적절성은 독립 편집 검토 전 제안이다."
+      },
+      "packageDigest": "4337311274ecaf13cfa57ac76e84a39b57c1f3a0a0718c5b8a30de6989f261f7",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-authoring-group5-r1\\candidates\\q11.json",
+        "sha256": "fcb3b51b377b43c6a6a67773aa23507b666aee22ee15a486813e36a4d9f9f1bc"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-group5-review-20261019-r1\\blind\\solve\\q11.json",
+        "sha256": "0610042ee0be9b62d7ba79580d82ec1bcfc1433a33f1d876d563c2614c4ca9fd"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group5-review-20261019-r1/verification/reports/q11.json",
+        "sha256": "6f92e28f069afbe96dcd6a8070db630da910a4527fa9c09acf5ebfb5c5105883"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group5-review-20261019-r1/verification/verification-manifest.json",
+        "sha256": "6a7eabcf6adfcd7f3d5e029077c683330e09656f44589d4e26de9a91946662ee"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group5-review-20261019-r1/blind/blind-manifest.json",
+        "sha256": "92d0dfc3e6492ff27c97432406cab02698b7fd0362d62caae4ea04858910600e"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group5-review-20261019-r1/package/private/q11/candidate.json",
+        "sha256": "fcb3b51b377b43c6a6a67773aa23507b666aee22ee15a486813e36a4d9f9f1bc"
+      },
+      "candidateContentWithoutRelocatedPaths": "c6baebe195c0907ab50b2d250511e632649e2a7dfd12b5b521bd312963628c64",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group5-r1/candidates/q11.json",
+        "sha256": "fcb3b51b377b43c6a6a67773aa23507b666aee22ee15a486813e36a4d9f9f1bc"
+      },
+      "authorCandidateDigest": "2b28f14f1a91ee4d67c3272ae65a02d2f3d97abc40a64e7cf955b55c3158774b"
+    }
+  ],
+  "reviewBindingDigest": "f2e36abb6da0c67bb6d0e2518fa0e5c8e2b5bfac1d919e4d468ecb2441b4e9a4",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

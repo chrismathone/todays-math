@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-19T13:37:58.900Z",
+  "target": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-sem1-q12-clean-blind-20261019-r1\\",
+  "inputs": [
+    {
+      "name": "student-problems.json",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group6-review-20261019-r1/blind/student-problems.json",
+      "sha256": "b21aae6f9fd44283f0087c35ae35e8c649edea93569675693dc7b5bca4ff61de"
+    },
+    {
+      "name": "blind-manifest.json",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group6-review-20261019-r1/blind/blind-manifest.json",
+      "sha256": "6245b46b74528f711bef478212578e2c9a9945bf0b3b67c906b3fe3b3993dcdf"
+    },
+    {
+      "name": "SOLVE-BRIEF.md",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group6-review-20261019-r1/blind/SOLVE-BRIEF.md",
+      "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+    },
+    {
+      "name": "q12.png",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group6-r1/student-preview-q12-r1/q12.png",
+      "sha256": "e8706b89e870da16c5f0803d7d8b481750896b2a9f29cd9bc0e14fd79fedbfd1"
+    }
+  ],
+  "priorAuthorizedSourceQuestions": [
+    6,
+    8,
+    9,
+    10,
+    11
+  ],
+  "exactQ12NotExposedBeforeStudentPacket": true,
+  "priorExposureDeclarationRequired": true,
+  "authorAnswersIncluded": false,
+  "newWorktrees": 0,
+  "dbWrites": 0
+}

@@ -1,0 +1,56 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/components/PrintCheck.test.tsx (10 tests) 6065ms
+     ✓ 🔴 근거는 **커밋되는** 파일이어야 한다 (있기만 한 것은 그 창에서만 초록이다)  470ms
+     ✓ 항목을 전부 그린다  3494ms
+     ✓ 체크하면 진행 수가 오르고 다시 열어도 남아 있다  936ms
+     ✓ 「체크 지우기」는 전부 되돌린다  656ms
+ ✓ src/__tests__/unit/examReportServer.test.ts (31 tests) 879ms
+ ✓ src/__tests__/components/ExamReportWorkspace.test.tsx (13 tests) 7001ms
+     ✓ 쓰는 문장이 옆 H1 지면에 바로 보이고, 확정 단추가 수정 문장 저장을 포함한다  695ms
+     ✓ 학생을 바꿔도 입력을 보존하고, 실패 뒤에는 확정으로 표시하지 않는다  380ms
+     ✓ 긴 명단은 공용 고르기 창, 반 설정은 취소·적용을 쓴다  643ms
+     ✓ 기존 M1을 요약으로 열고 같은 설정 적용은 확정을 보존하며 변경할 때만 S1을 전송한다  477ms
+     ✓ letter 양식만 바꿔도 저장·새 미리보기·반 인쇄로 이어지고 다시 열면 선택을 유지한다  899ms
+     ✓ grid 양식만 바꿔도 저장·새 미리보기·반 인쇄로 이어지고 다시 열면 선택을 유지한다  916ms
+     ✓ ledger 양식만 바꿔도 저장·새 미리보기·반 인쇄로 이어지고 다시 열면 선택을 유지한다  931ms
+     ✓ 양식 선택은 취소·Esc로 버리고 기본 H1 그대로 적용하면 저장하지 않는다  539ms
+     ✓ 양식 저장 실패는 고른 값과 문장을 남겨 같은 창에서 다시 적용할 수 있다  565ms
+ ✓ src/__tests__/unit/examReportScreenHifi.test.tsx (10 tests) 3630ms
+     ✓ H1~H4 모두 A 짜임과 같은 H1 지면을 쓰며 추천을 공개하지 않는다  688ms
+     ✓ 네 상태·결시·길이 상한·저장/확정 실패를 예시로 보여 준다  469ms
+     ✓ 학생·안을 옮겨도 초안을 보존하며 확정 뒤 수정은 다시 확정으로 바뀐다  300ms
+     ✓ 저장 실패의 재시도는 해당 학생의 입력만 저장하고 확정 실패는 다시 확정할 수 있다  346ms
+     ✓ 긴 학생 명단은 공용 고르기 창에서 검색하고 선택한다  307ms
+     ✓ 반 지면 설정의 취소는 지면을 보존하고 적용은 기존 확정을 다시 확정으로 돌린다  520ms
+     ✓ 저장·설정·확정·인쇄 검토를 조작해도 서버를 호출하지 않는다  457ms
+ ✓ src/__tests__/api/examReportWorkspace.test.ts (14 tests) 107ms
+ ✓ src/__tests__/unit/examReportWrongTable.test.tsx (10 tests) 568ms
+ ✓ src/__tests__/unit/examReportStyles.test.tsx (196 tests) 1899ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 11716ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  9727ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1445ms
+ ✓ src/__tests__/unit/examStudyInverseCoefficient.test.ts (10 tests) 10622ms
+     ✓ retains the internal implementation but excludes it from selectable catalogs without inventing a live family  10315ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (10 tests) 10081ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  9953ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 186ms
+ ✓ src/__tests__/unit/examStudyM1StudentMethods.test.ts (6 tests) 219ms
+ ✓ src/__tests__/unit/examReportFourStyles.test.tsx (108 tests) 1456ms
+ ✓ src/__tests__/unit/examReportWorkspaceContract.test.ts (5 tests) 96ms
+ ✓ src/__tests__/unit/examReportContract.test.ts (4 tests) 106ms
+ ✓ src/__tests__/unit/examReportHifi.test.tsx (4 tests) 1303ms
+     ✓ 선택된 H1만 실제 공용 지면을 사용하며 H2~H4는 시안을 유지한다  504ms
+     ✓ H1~H4마다 S1 · C2를 공용 지면 띠로 비교한다  597ms
+ ✓ src/__tests__/unit/examReportStylesPreview.test.tsx (2 tests) 1120ms
+     ✓ 네 첫 쪽을 지면 띠에 나란히 두고 추이는 기본 켬·평균은 기본 끔이다  534ms
+     ✓ 구성·상황·출력 선택을 모든 후보에 같이 적용한다  579ms
+ ✓ src/__tests__/unit/examReportFourStylesHtml.test.ts (5 tests) 271ms
+
+ Test Files  18 passed (18)
+      Tests  468 passed (468)
+   Start at  22:46:23
+   Duration  119.32s (transform 9.95s, setup 17.87s, import 19.53s, tests 57.33s, environment 20.91s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r13.json

@@ -1,0 +1,249 @@
+{
+  "status": "pending",
+  "studentDigest": "0dddfbde65392132ea554db13f95d80be6f2c0d4bb4f520aee66f8ebd0434ca8",
+  "candidateDigest": "f5ecffefe51058ea55aa7d94ac7bac4f51c6e4dec82d6e387df8f11fc38c5e14",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "fresh-independent-codex-q12-stage2-20261019-r1",
+  "solveDigest": "13c521579f948df018f8536619805852dcb0ae4e700d8dcf6bcd20c732ad1f69",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "calculations": {
+      "representation": "r+s√5; exact Fraction arithmetic",
+      "u": {
+        "rational": "1/4",
+        "sqrt5Coefficient": "1/4"
+      },
+      "v": {
+        "rational": "-1/4",
+        "sqrt5Coefficient": "1/4"
+      },
+      "uPlusV": {
+        "rational": "0",
+        "sqrt5Coefficient": "1/2"
+      },
+      "uMinusV": {
+        "rational": "1/2",
+        "sqrt5Coefficient": "0"
+      },
+      "uv": {
+        "rational": "1/4",
+        "sqrt5Coefficient": "0"
+      },
+      "directQuartic": {
+        "rational": "0",
+        "sqrt5Coefficient": "1/16"
+      },
+      "factoredQuartic": {
+        "rational": "0",
+        "sqrt5Coefficient": "1/16"
+      },
+      "target": {
+        "rational": "0",
+        "sqrt5Coefficient": "13/16"
+      },
+      "t": {
+        "rational": "3/2",
+        "sqrt5Coefficient": "0"
+      },
+      "choices": [
+        {
+          "mark": "①",
+          "t": "-1/2",
+          "lhs": {
+            "rational": "0",
+            "sqrt5Coefficient": "-3/16"
+          },
+          "residual": {
+            "rational": "0",
+            "sqrt5Coefficient": "-1"
+          },
+          "satisfies": false
+        },
+        {
+          "mark": "②",
+          "t": "0",
+          "lhs": {
+            "rational": "0",
+            "sqrt5Coefficient": "1/16"
+          },
+          "residual": {
+            "rational": "0",
+            "sqrt5Coefficient": "-3/4"
+          },
+          "satisfies": false
+        },
+        {
+          "mark": "③",
+          "t": "1/2",
+          "lhs": {
+            "rational": "0",
+            "sqrt5Coefficient": "5/16"
+          },
+          "residual": {
+            "rational": "0",
+            "sqrt5Coefficient": "-1/2"
+          },
+          "satisfies": false
+        },
+        {
+          "mark": "④",
+          "t": "1",
+          "lhs": {
+            "rational": "0",
+            "sqrt5Coefficient": "9/16"
+          },
+          "residual": {
+            "rational": "0",
+            "sqrt5Coefficient": "-1/4"
+          },
+          "satisfies": false
+        },
+        {
+          "mark": "⑤",
+          "t": "3/2",
+          "lhs": {
+            "rational": "0",
+            "sqrt5Coefficient": "13/16"
+          },
+          "residual": {
+            "rational": "0",
+            "sqrt5Coefficient": "0"
+          },
+          "satisfies": true
+        }
+      ],
+      "denominatorAndDomain": "√5>1로 두 원래 분모는 양수·비영이다. 유리화의 공통분모4와 수치분모16은 비영, u+v=√5/2>0도 비영이다. t는 모든 실수 중에서 구하며 단위는 없다."
+    },
+    "answerCorrect": "현재⑤는봉인raw와일치하며독립정확계산에서t=3/2가유일하다.",
+    "solutionCorrect": "현재해설의u=(√5+1)/4,v=(√5-1)/4→합√5/2·차1/2·곱1/4→uv(u²-v²)=uv(u-v)(u+v)=√5/16→양변16/√5곱→1+8t=13→t=3/2→대입및유일성/원분모비영을 단계마다새계산과대조했다. 모두정확하다.",
+    "existenceUniqueness": "원래분모가모두양수라u,v가존재하고,비영계수u+v=√5/2로t의일차방정식해가유일하다. t=3/2대입시좌변13√5/16로실제성립한다.",
+    "choicesCorrect": [
+      {
+        "mark": "①",
+        "t": "-1/2",
+        "lhs": {
+          "rational": "0",
+          "sqrt5Coefficient": "-3/16"
+        },
+        "residual": {
+          "rational": "0",
+          "sqrt5Coefficient": "-1"
+        },
+        "satisfies": false
+      },
+      {
+        "mark": "②",
+        "t": "0",
+        "lhs": {
+          "rational": "0",
+          "sqrt5Coefficient": "1/16"
+        },
+        "residual": {
+          "rational": "0",
+          "sqrt5Coefficient": "-3/4"
+        },
+        "satisfies": false
+      },
+      {
+        "mark": "③",
+        "t": "1/2",
+        "lhs": {
+          "rational": "0",
+          "sqrt5Coefficient": "5/16"
+        },
+        "residual": {
+          "rational": "0",
+          "sqrt5Coefficient": "-1/2"
+        },
+        "satisfies": false
+      },
+      {
+        "mark": "④",
+        "t": "1",
+        "lhs": {
+          "rational": "0",
+          "sqrt5Coefficient": "9/16"
+        },
+        "residual": {
+          "rational": "0",
+          "sqrt5Coefficient": "-1/4"
+        },
+        "satisfies": false
+      },
+      {
+        "mark": "⑤",
+        "t": "3/2",
+        "lhs": {
+          "rational": "0",
+          "sqrt5Coefficient": "13/16"
+        },
+        "residual": {
+          "rational": "0",
+          "sqrt5Coefficient": "0"
+        },
+        "satisfies": true
+      }
+    ],
+    "figureConsistent": "순수 대수 문항이고 assets=[]이며 별도표/도형/축척전제가 없다. 봉인raw의 인쇄이미지 확인과 현재content가 대응한다.",
+    "sameCoreConceptAndProcedure": "허용원문은두근호분수를유리화하고합·차·곱과공통인수/합차공식으로x³y-xy³-x-y의고정결과를구한다. 후보도두분모유리화→합·차·곱계산→고차항을uv(u-v)(u+v)로축소→결합식대입이라는핵심을유지한다.",
+    "distinctPresentation": "고정계수-1의합항을포함한직접계산결과를묻던원문에서,결합값13√5/16을조건으로제공하고합항의실수계수t를역으로복원한다. 주어진정보/질문대상의방향이실제로바뀌며√3→√5와문자변경만을차이로주장하지않는다.",
+    "naturalKorean": "정의한두수와등식,구할실수t의대상이명확하다. 빈줄의등식과“이성립할때”가문법적으로연결되고새상황문구나단위혼동이없다.",
+    "curriculumAppropriate": "교육부실제9수01-10(근호사칙계산),9수02-12(곱셈/인수분해),9수02-05(일차방정식)원문을다시읽고현재풀이단계에적용했다. 경기도교육청의실제중3표에서유리화배치를,인천교육청의실제중3표에서곱셈/인수분해배치를확인했다. 기존q10/q11학년승인이나출신학교만으로판정하지않는다.",
+    "allStudentSurfacesInScope": "일곱surface를현재후보에개별적용하여모두passed.2015중3의필수선수학습이후로한정한다.",
+    "unitFamilyFit": "false/pending:본문은근호계산·인수분해·계수역산이섞인완결목표이다. metadata의혼합A19 key/count와family후보목록만으로실제정의/목표/domain호환을확정할수없다. 현재범위에서는엔진정의를읽지않았으므로정확한livefamily를선택하지않는다.",
+    "scoreAppropriate": "4점은두유리화,합·차·곱,공통인수/제곱의차와계수역산이연결되는중간수준응용으로편집상타당하다. 작은분모4/16과한개의근호5로직접전개보다계산량을제한한다. 저자variant의원문“중”은제공source의difficultyLabelFromSource=하와다르므로원문사실로인정하지않는다. 직접계산보다역산한단계가늘었다는편집판단이며동일실측난도·정답률·학습효과는주장하지않는다.",
+    "curriculumSurfaceEvidence": {
+      "stem": "두 실수 u,v를 비영 근호분모로 정의하고 실수t를 구하도록 명시한다. 고차모양u³v-uv³도 공통uv와 제곱의차로 다루는 중3곱셈·인수분해 구조이다.",
+      "choices": "음의분수·0·양의분수·정수인 다섯보기를 모두 정확계산했다. LHS√5계수는-3/16,1/16,5/16,9/16,13/16로⑤만 맞고 모든보기는2015중3유리수 범위이다.",
+      "figuresAndTables": "순수 대수 문항이고 assets=[]이며 별도표/도형/축척전제가 없다. 봉인raw의 인쇄이미지 확인과 현재content가 대응한다.",
+      "notation": "u,v,t,분수·근호·지수3과 곱 표기는 중학교 식의계산 표기이다. 인수정리나 세제곱합차공식·복소수·고등 항등식미정계수법을 요구하지 않는다.",
+      "answer": "t=3/2는실수이며⑤에대응한다. 부호조건은t에없다. t의계수√5/2가비영이므로해가유일하다.",
+      "studentSolution": "현재해설의u=(√5+1)/4,v=(√5-1)/4→합√5/2·차1/2·곱1/4→uv(u²-v²)=uv(u-v)(u+v)=√5/16→양변16/√5곱→1+8t=13→t=3/2→대입및유일성/원분모비영을 단계마다새계산과대조했다. 모두정확하다.",
+      "prerequisites": "중3근호계산과분모유리화,곱셈공식/공통인수묶기와제곱의차를학습한이후. 중1일차방정식·중2지수및다항식계산도선수이다. 주단원이곱셈이라는이유로 인수분해/역분배단계의학습을생략하지않는다. 학교별중간고사진도인증은아니다."
+    },
+    "officialEvidence": "own-q12-official-evidence.json",
+    "rawSha256": "d98157688b6eca3a2ca3886e9ec7bde184985d5d7e65105d0c5c1afdb862e9c6",
+    "localRawCommit": "14e02717e9b535171f375a47c3ae82d315811e7d",
+    "parentRawCommit": "c4eaabddbd5e1a9521df3803d43f0f34b27d8779",
+    "verificationInputsSha256": "948168e76f329dd7b609200a464f161d0acde68b16673e4d405b3a5f0de4bf1b",
+    "digestBinding": "candidateDigest는SHA256검증된verification-inputs의정확한값을사용;solveDigest는봉인raw객체의정렬키canonicalJSONSHA256와일치검증.",
+    "pendingReasons": [
+      "정확한혼합livefamily의정의/목표/절차/domain배정미확정"
+    ],
+    "metadataConditions": "metadata가근호계산선수Unit을기록하지만공통인수묶기/제곱의차를역방향으로쓰는학습조건도배치검토에명시해야한다.",
+    "scope": "허용stage2여섯입력과자신의봉인raw및해당공식학년/기준표만사용.전체sourceManifest/저자별도계산파일/루트코드/다른QA는읽지않음."
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  },
+  "mathApproved": true,
+  "gradeApproved2015M3": true,
+  "year2022M3": "pending-separate-placement-review",
+  "liveFamily": false,
+  "unitFamilyFit": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false
+}

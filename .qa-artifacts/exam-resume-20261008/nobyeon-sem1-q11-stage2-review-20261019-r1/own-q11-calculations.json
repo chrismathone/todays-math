@@ -1,0 +1,56 @@
+{
+  "expansion": "k²x²-2kax+a²",
+  "a": "3/4",
+  "b": "-6",
+  "k": "4",
+  "choices": [
+    {
+      "mark": "①",
+      "k": 2,
+      "constant": "9/16",
+      "linearCoefficient": "-3",
+      "quadraticCoefficient": "4",
+      "aPlusB": "-9/4",
+      "valid": false
+    },
+    {
+      "mark": "②",
+      "k": 3,
+      "constant": "9/16",
+      "linearCoefficient": "-9/2",
+      "quadraticCoefficient": "9",
+      "aPlusB": "-15/4",
+      "valid": false
+    },
+    {
+      "mark": "③",
+      "k": 4,
+      "constant": "9/16",
+      "linearCoefficient": "-6",
+      "quadraticCoefficient": "16",
+      "aPlusB": "-21/4",
+      "valid": true
+    },
+    {
+      "mark": "④",
+      "k": 5,
+      "constant": "9/16",
+      "linearCoefficient": "-15/2",
+      "quadraticCoefficient": "25",
+      "aPlusB": "-27/4",
+      "valid": false
+    },
+    {
+      "mark": "⑤",
+      "k": 6,
+      "constant": "9/16",
+      "linearCoefficient": "-9",
+      "quadraticCoefficient": "36",
+      "aPlusB": "-33/4",
+      "valid": false
+    }
+  ],
+  "domain": "a,k>0인 실수 상수; b=-2ka<0; 다항식은 모든 실수 x에서 정의됨; 단위 없음.",
+  "uniqueness": "a²=9/16과 a>0으로 a=3/4 하나. -2a=-3/2≠0이므로 k의 일차방정식도 해가 하나.",
+  "coefficientMeaning": "a,k는 x에 관한 상수. b는 일차항 x의 계수이며 이차항 계수 k², 상수항 a²와 구별한다."
+}

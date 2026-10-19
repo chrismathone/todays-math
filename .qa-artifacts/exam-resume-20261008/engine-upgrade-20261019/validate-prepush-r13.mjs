@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {spawn,execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+const base='.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/';
+const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
+const hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const incoming=git('diff','--name-only','a543a59a4166d1ec82957ea96f1ee7de986163de','origin/main').split(/\r?\n/);
+const tests=[...new Set([...incoming.filter(p=>p.startsWith('src/__tests__/')&&/\.test\.tsx?$/u.test(p)),...['examStudyInverseCoefficient','examStudyM1StudentMethods','examStudyCurriculumEligibility','examStudyRoutes','examStudyIntegration'].map(n=>`src/__tests__/unit/${n}.test.ts`)])];
+fs.writeFileSync(base+'vitest-prepush-r13.mts',fs.readFileSync(base+'vitest-inverse-coeff-r1.mts','utf8').replaceAll('inverse-coeff-r1-evidence','prepush-r13-evidence'),{flag:'wx'});
+const ts=JSON.parse(fs.readFileSync(base+'tsconfig-owned-isolated-r11.json','utf8'));
+ts.files=[...new Set([...ts.files,...incoming.filter(p=>/\.(tsx?|mts)$/u.test(p)).map(p=>'../../../'+p)])];
+fs.writeFileSync(base+'tsconfig-owned-isolated-r12.json',JSON.stringify(ts,null,2)+'\n',{flag:'wx'});
+const before=Object.fromEntries([...new Set([...Object.keys(JSON.parse(fs.readFileSync(base+'inverse-coeff-validation-r2.json','utf8')).after),...incoming.filter(p=>/\.(tsx?|mts)$/u.test(p)),...tests])].map(p=>[p,hash(p)]));
+const env={...process.env,AUTH_URL:'http://localhost',NEXTAUTH_URL:'http://localhost',DATABASE_URL:'postgresql://test:test@127.0.0.1:1/test',DIRECT_URL:'postgresql://test:test@127.0.0.1:1/test'};
+for(const k of ['STUDIO_ENGINE_URL','VERCEL','VERCEL_ENV'])delete env[k];
+const jobs=[['prepush-r13.log',['node_modules/vitest/vitest.mjs','run',...tests,'--config',base+'vitest-prepush-r13.mts','--maxWorkers=1','--reporter=json','--reporter=default','--outputFile.json='+base+'prepush-r13.json']],['prepush-types-r13.log',['node_modules/typescript/bin/tsc','--noEmit','--project',base+'tsconfig-owned-isolated-r12.json']]];
+const outcomes=[];
+for(const[name,args]of jobs){const log=fs.createWriteStream(base+name,{flags:'wx'});const status=await new Promise((resolve,reject)=>{const proc=spawn(process.execPath,args,{env,stdio:['ignore','pipe','pipe']});console.log(JSON.stringify({name,pid:proc.pid}));proc.stdout.pipe(log,{end:false});proc.stderr.pipe(log,{end:false});proc.on('error',reject);proc.on('close',resolve);});await new Promise(r=>log.end(r));outcomes.push({name,status});for(const[p,h]of Object.entries(before))assert.equal(hash(p),h,p);console.log(JSON.stringify({name,status}));assert.equal(status,0,fs.readFileSync(base+name,'utf8').slice(-9000));}
+const result=JSON.parse(fs.readFileSync(base+'prepush-r13.json','utf8'));assert.equal(result.numFailedTests,0);
+fs.writeFileSync(base+'prepush-r13-receipt.json',JSON.stringify({utc:new Date().toISOString(),integratedMain:git('rev-parse','origin/main'),integratedTarget:git('rev-parse','origin/chrismathone/exam-extraction-resume-20261008'),merge:git('rev-parse','HEAD'),before,after:before,sourceUnchanged:true,files:result.testResults.length,passed:result.numPassedTests,failed:0,skipped:result.numPendingTests,outcomes,fullAppBuildValidated:false,repositoryEnvLoaded:false,dbMocked:true,dbWrites:0,deploy:false},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({files:result.testResults.length,passed:result.numPassedTests,typesPassed:true}));

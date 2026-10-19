@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-19T13:53:01.879Z",
+  "failedBuilder": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/build-resume-v25-r1.mjs",
+  "failure": "Duplicate audit attempted undefined asset.sha256; binding contract uses svgSha256. Strict digest guard rejected before writing canonical index/ledger/engine.",
+  "preservedPartialOutput": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-current-candidate-index-v25.json",
+  "partialReuse": "r2 exact object correspondence checked; no overwrite",
+  "builderCorrection": "Use actual svgSha256 and also recheck old metadata/source digests. No production code or candidate edits.",
+  "dbWrites": 0
+}

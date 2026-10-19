@@ -1,0 +1,532 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 13,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group7-r1-q13",
+      "authorId": "codex-parent-engine-upgrade-20261019",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "다음은 곱셈 공식을 이용한 다섯 계산 기록이다. 등호 오른쪽이 잘못된 기록 두 개를 고르면?\n\n(가) $(3\\sqrt2-1)^2=19-6\\sqrt2$\n\n(나) $(\\sqrt6+\\sqrt{10})^2=16+2\\sqrt{15}$\n\n(다) $(\\sqrt{11}+3)(\\sqrt{11}-3)=2$\n\n(라) $(\\sqrt7+2)(\\sqrt7-4)=-1+2\\sqrt7$\n\n(마) $(4\\sqrt3+\\sqrt5)(\\sqrt3-2\\sqrt5)=2-7\\sqrt{15}$",
+      "choices": [
+        "가, 나",
+        "가, 다",
+        "나, 라",
+        "다, 마",
+        "라, 마"
+      ],
+      "answer": "③",
+      "solution": "(가) $(3\\sqrt2-1)^2=18-6\\sqrt2+1=19-6\\sqrt2$이므로 맞다.\n\n(나) $(\\sqrt6+\\sqrt{10})^2=6+2\\sqrt{60}+10=16+4\\sqrt{15}$이다. $\\sqrt{60}=2\\sqrt{15}$이므로 근호 앞의 계수는 $2$가 아니라 $4$이다.\n\n(다) 합과 차의 곱을 이용하면 $(\\sqrt{11}+3)(\\sqrt{11}-3)=11-9=2$이므로 맞다.\n\n(라) 분배법칙으로 전개하면 $7-4\\sqrt7+2\\sqrt7-8=-1-2\\sqrt7$이다. 근호항의 부호가 잘못되었다.\n\n(마) 전개하여 동류항을 모으면 $12-8\\sqrt{15}+\\sqrt{15}-10=2-7\\sqrt{15}$이므로 맞다.\n\n따라서 고쳐야 할 기록은 (나), (라) 두 개이다.",
+      "figureArtifacts": [],
+      "sourceReference": {
+        "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q13",
+        "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceContentSha256": "d520996b6f56cd684f3698786acd7ad8cedb8dbfe7a9d5d5b987c5e8c68ef547",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+          "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+            "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+            "bytes": 579072
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+            "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+            "bytes": 154842
+          }
+        ],
+        "originalIdentitySource": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+          "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+          "bytes": 3313997
+        },
+        "hwpAnchor": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1568,
+          "inflatedByteOffset": 66400,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "85a06bdf3ef2780f4c4daf09f6d232b69b0383149829fc8349b8d4d2b16651ae"
+        },
+        "originalHeaderObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+          "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+        },
+        "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "sourceCropViewed": false,
+        "sourceBodyVisualCorrespondence": "pending-N-original-access"
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "target-switch",
+          "data-reorganization"
+        ],
+        "before": "다섯 곱셈식의 빈칸을 채우고 빈칸에 들어가는 수 중 최댓값을 고른다.",
+        "after": "완성된 다섯 계산 기록의 참·거짓을 검토하여 서로 다른 오류 두 개를 찾아 고친다.",
+        "sharedConcept": "근호를 포함한 곱셈 공식, 분배법칙, 근호 간단히 하기와 동류항 계산",
+        "sharedProcedure": "제곱식·합차곱·서로 다른 두 일차식의 곱을 전개 →근호의 곱을 간단히 정리 →유리수항과 근호항의 계수 확인",
+        "actualStructuralChange": "빈칸 결과의 대소 비교를 정답 목표로 삼지 않고 완성된 등식의 오류 진단과 교정으로 바꾼다. 자료를 다섯 독립 기록으로 다시 조직하고, 새 보기에는 기록의 쌍만 제시한다. 근호 단순화 누락과 동류항 부호 오류를 각각 검토해야 하며 단순 숫자·학교명 교체가 아니다.",
+        "domainProof": "모든 근호 안 수는 양수이고 분모·미지수·길이 단위는 없다. 모든 식은 실수 범위의 곱셈 공식과 제곱근 계산으로 판별한다. 정확한 정수 계수 전개에서 나·라만 잘못되어 해당 쌍이 유일하며 다른 네 보기에는 맞는 기록이 포함된다.",
+        "difficultyBasis": "원문의 다섯 근호 곱셈식과 같은 공식·계산 수준을 유지하되 최대 빈칸 비교를 두 오류 식별로 바꾼다. 원문 하/4점에 맞춘 기본 제안이며 독립 난이도 검토 전 승인하지 않는다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-10",
+          "9수02-12"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "records1based": [
+            3788,
+            3956
+          ],
+          "primaryStandardCodes": [
+            "9수01-10",
+            "9수02-12"
+          ]
+        },
+        "legitimateMethodDraft": "제곱근 곱셈과 근호 간단히 하기, 제곱식·합차곱 공식, 분배법칙 및 동류항의 수치 계산만 사용한다. 고등 다항식 항등성 판정법·복소수·근의공식·새 선수 개념은 요구하지 않는다.",
+        "sevenSurfaces": {
+          "stem": "author-proposed",
+          "choices": "author-proposed",
+          "figureTable": "not-required-five-text-records",
+          "notation": "author-proposed",
+          "answer": "author-exact-calculated-only",
+          "studentSolution": "author-proposed",
+          "prerequisites": "author-proposed"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "familyCandidates": [
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|01",
+              "family_code": "A01",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|02",
+              "family_code": "A02",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|03",
+              "family_code": "A03",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|04",
+              "family_code": "A04",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|05",
+              "family_code": "A05",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|06",
+              "family_code": "A06",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|07",
+              "family_code": "A07",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|08",
+              "family_code": "A08",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|09",
+              "family_code": "A09",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|10",
+              "family_code": "A10",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|11",
+              "family_code": "A11",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|12",
+              "family_code": "A12",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|13",
+              "family_code": "A13",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|14",
+              "family_code": "A14",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|15",
+              "family_code": "A15",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|16",
+              "family_code": "A16",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|17",
+              "family_code": "A17",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|18",
+              "family_code": "A18",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:3-1|다항식의 곱셈|52V",
+              "family_code": "A20",
+              "live_count": 24
+            },
+            {
+              "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+              "family_key": "mid:중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+              "family_code": "A19",
+              "live_count": 24
+            }
+          ],
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "현재 다항식 곱셈 Unit UUID와 근호 계산 선수 Unit을 연결했다. 기존 혼합/계산 family의 개수·키만으로 새 다섯 기록 오류 진단과 쌍 보기를 호환 승인하지 않는다. 실제 정의·학생 목적 검토 전 familyKey=null."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "pure-algebra-no-figure-required",
+          "newTables": 0,
+          "newFigures": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "prerequisiteUnits": [
+          {
+            "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "근호를 포함한 식의 계산",
+            "semester": 1,
+            "orderIndex": 471,
+            "problemCodePrefix": "J30103"
+          }
+        ],
+        "exactAuthorArithmetic": {
+          "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group7-r1/author-calculations-q13.json",
+          "independentReview": false
+        }
+      }
+    },
+    "assets": [],
+    "studentDigest": "99cce281964802c6e4da46dc69b5c194cad243e4aa94958b0be95b1427916985",
+    "candidateDigest": "29e778ff02a7ff44aa519113e2c23779f5029f1b1290b4c5bcde4ddbb19c0bcf",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "99cce281964802c6e4da46dc69b5c194cad243e4aa94958b0be95b1427916985",
+      "solverId": "fresh-independent-codex-q13-20261019-r1",
+      "answer": "③",
+      "solution": "곱셈 공식과 분배법칙으로 왼쪽을 각각 계산한다. (가)는 (3√2-1)²=(3√2)²-2×3√2×1+1²=18-6√2+1=19-6√2이므로 맞다. (나)는 (√6+√10)²=6+2√60+10=16+4√15이다. √60=2√15이므로 교차항은 4√15이며, 기록의 2√15는 틀렸다. (다)는 합과 차의 곱이므로 (√11+3)(√11-3)=11-9=2로 맞다. (라)는 (√7+2)(√7-4)=7-4√7+2√7-8=-1-2√7이다. 따라서 기록의 +2√7는 부호가 틀렸다. (마)는 (4√3+√5)(√3-2√5)=12-8√15+√15-10=2-7√15이므로 맞다. 잘못된 기록은 (나), (라) 정확히 두 개이므로 ③이다. 보기 ① 가·나는 맞는 기록 가를 포함하고 라를 빠뜨리며, ② 가·다는 모두 맞는 기록이다. ④ 다·마도 모두 맞는 기록이고, ⑤ 라·마는 맞는 기록 마를 포함하고 나를 빠뜨리므로 모두 답이 아니다. 각 피제곱수는 양수이므로 모든 식이 실수에서 정의되고 분모나 미지수의 제한은 없다. 특히 √7<4이므로 (라)의 실제 곱은 음수이며 -1-2√7와 부호가 일치한다. 다섯 기록과 다섯 보기를 모두 확인했으므로 답은 유일하고 단위는 없다.",
+      "evidence": {
+        "calculations": {
+          "representation": "sum(coefficient[n]*sqrt(n)); positive squarefree n, rational coefficients; key1 is rational part",
+          "records": [
+            {
+              "label": "가",
+              "leftFactor": {
+                "1": "-1",
+                "2": "3"
+              },
+              "rightFactor": {
+                "1": "-1",
+                "2": "3"
+              },
+              "computed": {
+                "1": "19",
+                "2": "-6"
+              },
+              "stated": {
+                "1": "19",
+                "2": "-6"
+              },
+              "residual": {},
+              "recordCorrect": true
+            },
+            {
+              "label": "나",
+              "leftFactor": {
+                "6": "1",
+                "10": "1"
+              },
+              "rightFactor": {
+                "6": "1",
+                "10": "1"
+              },
+              "computed": {
+                "1": "16",
+                "15": "4"
+              },
+              "stated": {
+                "1": "16",
+                "15": "2"
+              },
+              "residual": {
+                "15": "2"
+              },
+              "recordCorrect": false
+            },
+            {
+              "label": "다",
+              "leftFactor": {
+                "1": "3",
+                "11": "1"
+              },
+              "rightFactor": {
+                "1": "-3",
+                "11": "1"
+              },
+              "computed": {
+                "1": "2"
+              },
+              "stated": {
+                "1": "2"
+              },
+              "residual": {},
+              "recordCorrect": true
+            },
+            {
+              "label": "라",
+              "leftFactor": {
+                "1": "2",
+                "7": "1"
+              },
+              "rightFactor": {
+                "1": "-4",
+                "7": "1"
+              },
+              "computed": {
+                "1": "-1",
+                "7": "-2"
+              },
+              "stated": {
+                "1": "-1",
+                "7": "2"
+              },
+              "residual": {
+                "7": "-4"
+              },
+              "recordCorrect": false
+            },
+            {
+              "label": "마",
+              "leftFactor": {
+                "3": "4",
+                "5": "1"
+              },
+              "rightFactor": {
+                "3": "1",
+                "5": "-2"
+              },
+              "computed": {
+                "1": "2",
+                "15": "-7"
+              },
+              "stated": {
+                "1": "2",
+                "15": "-7"
+              },
+              "residual": {},
+              "recordCorrect": true
+            }
+          ],
+          "wrongRecords": [
+            "나",
+            "라"
+          ],
+          "choices": [
+            {
+              "mark": "①",
+              "records": [
+                "가",
+                "나"
+              ],
+              "exactWrongPair": false,
+              "wrongRecordsIncluded": [
+                "나"
+              ],
+              "correctRecordsIncorrectlyIncluded": [
+                "가"
+              ]
+            },
+            {
+              "mark": "②",
+              "records": [
+                "가",
+                "다"
+              ],
+              "exactWrongPair": false,
+              "wrongRecordsIncluded": [],
+              "correctRecordsIncorrectlyIncluded": [
+                "가",
+                "다"
+              ]
+            },
+            {
+              "mark": "③",
+              "records": [
+                "나",
+                "라"
+              ],
+              "exactWrongPair": true,
+              "wrongRecordsIncluded": [
+                "나",
+                "라"
+              ],
+              "correctRecordsIncorrectlyIncluded": []
+            },
+            {
+              "mark": "④",
+              "records": [
+                "다",
+                "마"
+              ],
+              "exactWrongPair": false,
+              "wrongRecordsIncluded": [],
+              "correctRecordsIncorrectlyIncluded": [
+                "다",
+                "마"
+              ]
+            },
+            {
+              "mark": "⑤",
+              "records": [
+                "라",
+                "마"
+              ],
+              "exactWrongPair": false,
+              "wrongRecordsIncluded": [
+                "라"
+              ],
+              "correctRecordsIncorrectlyIncluded": [
+                "마"
+              ]
+            }
+          ],
+          "exactErrors": {
+            "나": "actual-stated=2√15>0",
+            "라": "actual-stated=-4√7<0"
+          },
+          "domain": "피제곱수2,6,10,11,7,3,5는모두양수라모든근호가정의된다. 분모나변수가없어추가제외조건은없다. 단위와도형조건도없다.",
+          "signChecks": [
+            "(√7+2)>0,(√7-4)<0:7<16이므로(라)의실제곱은음수이다.",
+            "(4√3+√5)>0,(√3-2√5)<0:3<20이므로(마)의실제곱은음수이다.",
+            "제곱인(가),(나)는0이상이면서실제로양수이고,(다)=11-9=2>0이다."
+          ],
+          "uniqueness": "다섯기록을모두계산한결과잘못된기록은나와라정확히두개이다. 다섯보기중이집합과일치하는것은③하나뿐이므로선택답이존재하고유일하다."
+        },
+        "method": "2015 중3 곱셈 공식 (A±B)²,A²-B² 및 분배법칙·근호 곱셈·제곱인수 꺼내기",
+        "priorExposure": "정확한 새q13 문항/정답을 읽기 전 본 적 없음. 지정된 네 파일만 읽고 독립 계산함. 이전 family 답·원문·저자·기존 proof를 oracle로 사용하지 않음.",
+        "printedCheck": "q13.png에서 다섯 기록의 인수·제곱·우변 계수와 부호 및 다섯 조합 보기를 직접 대조했다. 픽셀 측정은 하지 않음.",
+        "studentProblemsSha256": "99d5569996e0b21ba18c7dff938e7c1dede6130212a5c5b2c2c81a725eaf0321"
+      },
+      "status": "solved"
+    },
+    "solveDigest": "2d35165c4ef974eb473d3175d518d83a52959dd6f160fb5c3693953da3982153"
+  }
+]

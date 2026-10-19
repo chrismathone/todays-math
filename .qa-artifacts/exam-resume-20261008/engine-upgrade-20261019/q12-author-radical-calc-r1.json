@@ -1,0 +1,81 @@
+{
+  "kind": "author-exact-Qsqrt5-arithmetic/not-independent-review",
+  "u": [
+    "1/4",
+    "1/4"
+  ],
+  "v": [
+    "-1/4",
+    "1/4"
+  ],
+  "uv": [
+    "1/4",
+    "0"
+  ],
+  "uPlusV": [
+    "0",
+    "1/2"
+  ],
+  "uMinusV": [
+    "1/2",
+    "0"
+  ],
+  "cubicDifference": [
+    "0",
+    "1/16"
+  ],
+  "target": [
+    "0",
+    "13/16"
+  ],
+  "uniqueT": [
+    "3/2",
+    "0"
+  ],
+  "choices": [
+    {
+      "t": "-1/2",
+      "left": [
+        "0",
+        "-3/16"
+      ],
+      "satisfies": false
+    },
+    {
+      "t": "0",
+      "left": [
+        "0",
+        "1/16"
+      ],
+      "satisfies": false
+    },
+    {
+      "t": "1/2",
+      "left": [
+        "0",
+        "5/16"
+      ],
+      "satisfies": false
+    },
+    {
+      "t": "1",
+      "left": [
+        "0",
+        "9/16"
+      ],
+      "satisfies": false
+    },
+    {
+      "t": "3/2",
+      "left": [
+        "0",
+        "13/16"
+      ],
+      "satisfies": true
+    }
+  ],
+  "positiveDenominatorProof": "sqrt5>1 because5>1; u+v=sqrt5/2>0, so division is legitimate",
+  "authorOnly": true,
+  "independentReview": false,
+  "dbWrites": 0
+}
