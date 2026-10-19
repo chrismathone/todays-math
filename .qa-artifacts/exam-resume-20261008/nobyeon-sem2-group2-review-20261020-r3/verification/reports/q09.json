@@ -1,0 +1,181 @@
+{
+  "status": "pending",
+  "studentDigest": "fb01f6709f673af33ec51622497bc8b8e66cb2f07d2012f91954a06f9673e6ec",
+  "candidateDigest": "ae994c5cb915a9825af369d001d80bdf81462d219e8155b09219f01010c73f8b",
+  "assetDigest": "0204618b3b83832d5d541ed1f32405b5b18b14eb0a1452af0ebd881fccf53dc6",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-nobyeon-sem2-group2-source-r3-20261020",
+  "solveDigest": "349cd3dcbeedf3bca0c1b90a269fa261b9d92ad836a4d5afba2ed71f5be691b1",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held"
+    },
+    "ownCalculations": {
+      "RH": "6",
+      "PHsquared": "108",
+      "QHsquared": "81",
+      "QH": 9,
+      "QR": "15",
+      "unit": "cm",
+      "choices": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      },
+      "existenceUniqueness": "자체 존재 예 R=(0,0),H=(6,0),Q=(15,0),P=(6,6√3). PR²144,PQ²189, ∠PRH60°,0<6<15. 좌표는 존재 증명용으로 새로 구성했고 SVG 좌표에서 얻지 않았다. H 내부로 Q가H의R 반대쪽에 있어 QR은 차가 아닌합이다. RH6과 양의QH9가 강제된다. 반사된 삼각형도 목표15는 동일."
+    },
+    "fullAuthorSolution": "저자 sin60°=√3/2,cos60°=1/2를 실제 직각삼각형PRH에 적용하여PH6√3,RH6을 구했다. PQH 피타고라스189−108=81, 양의QH9, H내부로합15. 이는 두 삼각비 사이 항등식 없이 정의와 특수각값만 사용한다.",
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "actuallyReadCurrent": true,
+        "edition": "2015 tab lines84–85",
+        "locators": [
+          "line540:9수04-16/17/18 피타고라스·삼각비 정의와 간단한 값·활용",
+          "lines555–557:삼각비 사이 관계 제외,0°~90°값,거리/높이 활용",
+          "line570:9수05-06 대표값 및9수05-07 분산/표준편차",
+          "lines573/583–584:편차 등 용어와 자료의 대표값·산포 해석"
+        ],
+        "methodLimit": "실제 직각삼각형의 정의를 쓰는 것은 삼각비 사이의 항등식을 가정하는 것과 다르다. 현재 저자 해설에는 코사인법칙/일반항등식이 없다."
+      },
+      "actualGradePlacement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "locators": [
+          "PDFindex73/physical74/printed72:중3 수학2학기 header,8월9수04-17,9월9수04-18,10월9수05-06",
+          "PDFindex74/physical75/printed73:11월9수05-07; 이번 실제 페이지 렌더/view 확인"
+        ],
+        "newViewedPageSha256": "9a28ae27965caa4f3181604f7700d644d315d4308ff6da98212e1e6fe5729ef8",
+        "limits": "실제 학년/학기 배치 근거이며 노변중 특정 중간고사 진도/2022 배치/출처권리 인증 아님. 전체PDF와 페이지이미지는Git에 넣지 않음."
+      }
+    },
+    "sourceComparison": {
+      "status": "question-only-component-comparison-passed",
+      "observations": {
+        "sourceObserved": "원문 질문·그림은 연못 가장자리AB거리를 묻고, AC8m,BC12m, C60°를 제공한다. 원문5개보기는m 단위 근호 길이이다. 참고그림에는 수선이 없으나 A에서BC로수선을 내려 실제 두 직각삼각형을 만들 수 있다.",
+        "sharedCore": "원문의 두 변과끼인각은 한 직각삼각형에서높이와투영을 정하고 전체밑변에서나머지투영을 얻어 피타고라스로목표거리를구하는 절차를 허용한다. 새문항은 PR과PQ를주고 H내부조건하에서투영둘을합해QR을구한다. 두실제직각삼각형의삼각비/피타고라스라는같은핵심이다. 코사인법칙이나원문답은사용하지않았다.",
+        "substantiveChange": "원문에서주어진밑변전체를새목표로, 원문의목표측면거리를새입력으로조직했다. 수선발내부를명시해부호를고정하고측량상황을추상삼각형으로재표현했다. 숫자/점이름만바꾼변형이아니다.",
+        "symbolicProcedure": "source: height=a·sin60°, projection=a·cos60°, remaining=b−projection, target²=height²+remaining². current: same height/projection fromgiven side, remaining²=givenOtherSide²−height², total=projection+positiveRemaining. Original numeric target/key not evaluated."
+      },
+      "sourceHashes": {
+        "questionSha256": "bf65a7bd8490d8db74bebd8f107a9ae84e39ef2e3e6e494c7bbb7795696786d6",
+        "referenceFigureSha256": "2600b1d6c8ed835a4d12974f05c5ac81877e3836692474c4b63e97d3e5738107"
+      },
+      "sourceReferenceImagesActuallyViewed": true,
+      "sourceFigureRole": "reference-only, quarantined, not final authored asset",
+      "limits": "실제제공질문/참고그림의수학적대응만검증. 원문답안/해설키는없으며사용하지않았다. 원문대안/전체문서/학기표지/저작권동일성은별도보류. context의printedidentity/coreProposal/gradeApproved플래그를승인오라클로사용하지않았다."
+    },
+    "naturalKorean": "현재조건·목표는명확하다. H내부조건이높이발의위치와합/차모호성을제거한다.",
+    "scoreDifficulty": {
+      "score": 5,
+      "basis": "여러단계의정의/기하연결을요구하는5점객관식배점제안은내용상수용가능. 실제측정난도나부분점기준을발명하지않는다.",
+      "proposal": "기본",
+      "sourceLabelAsProvided": "중",
+      "sourceLabelStatus": "prior-preparation-label-not-measured-target-calibration",
+      "difficultyApproval": "pending",
+      "reason": "제공source중/하라벨과새기본제안의동등성은측정·독립보정되지않았다. metadata difficultyStatus의source-label-unknown문구와관측값이함께있어향후정확한서술정리가필요하다."
+    },
+    "unitFamily": {
+      "capturedUnitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "section": "삼각비의 활용",
+      "snapshotAsProvided": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "liveFamilyKey": null,
+      "fit": false,
+      "basis": "제공캡처Unit과수학목표의개념대응은보이나정확한livefamily전체정의/평가목적은이번범위에서검증하지않았다. 캡처는현재DB보증아님."
+    },
+    "rawBinding": {
+      "parentSeal": "9e70fff99801df3835e6cf2791f36f53e21983de",
+      "helperSeal": "ab41f0db4a50b72762805929db1465cc316a4b21",
+      "rawSha256": "cf3bda60fb12572115765aa18803b26ecd48fa142c528f9ea6dfe051e26b35a3",
+      "gitBlobExact": true,
+      "exposureDeclarationPreserved": {
+        "currentAuthoredAnswersOrSolutionsExposed": false,
+        "priorExposure": "이전 노변 1학기 여러 문항·메타데이터와 관련 대수/기하/엔진 검토 이력이 있다. 다른 시험의 관련 원·접선·피타고라스 문제도 보았다. 이번 노변2학기 current group2-r2의 저자 답·해설·패키지·원본은 읽지 않았다. 과거 전체 원본 코퍼스의 완전 미노출을 주장하지 않는다.",
+        "basis": "이번 학생 발문·표·선택지와 학생SVG만 사용. 원문답/코드/비공개 자료 검색 없음.",
+        "pixelOrSvgCoordinateOracle": false
+      }
+    },
+    "assets": [
+      {
+        "specSha256": "15bd51bf8b2a2827578c1b0e4d5d892a1a3ac5cfd386d3cdcbf3220b44ff8855",
+        "svgSha256": "1ecbc9981e8f2715a84099b6dca4d1c698724e1b06a273ad08748123e554bbed",
+        "studentPrivateByteEqual": true,
+        "specGeometry": "passed; floats only for drawing verification"
+      }
+    ],
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "liveFamilyApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "difficultyEquivalence": "pending"
+    },
+    "sharedConceptBankChange": false,
+    "r3Binding": {
+      "priorReportSha256": "568051f8ccbf7a15517df9ed4eb65cde98dbad1800332baa282295051f01136c",
+      "priorReportCommit": "d5bee0fc79f0074076cb97cac72f45f8415bf7a1",
+      "priorRawCommit": "ab41f0db4a50b72762805929db1465cc316a4b21",
+      "parentRawSeal": "9e70fff99801df3835e6cf2791f36f53e21983de",
+      "candidateStudentAnswerSolutionScoreAssetUnchanged": true,
+      "mathGradeSurfacesReboundUnchanged": true,
+      "noNewBlindOrQuestionCount": true,
+      "currentSourceExposure": "원시Git봉인이후이번r3에서원문질문과참고그림노출. 원시풀이의기존노출선언은그대로보존했다."
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "수선의 발H를 선분QR 내부로 제한하여 양의 투영길이와 합의 관계를 유일하게 정한다. 실제 직각삼각형 삼각비·피타고라스 적용은2015 9수04-16/17/18 범위이다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "13,14,15,16,17 cm를 모두 검사하여15 하나만 참이다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "봉인 전 학생 SVG를 실제 렌더/view했고 현재 spec/SVG해시 및 학생/private 바이트 일치를 확인했다. 그림의수선·60°·H내부 및 라벨을 추가 spec검사했다. 좌표·픽셀로 학생 답을 구하지 않았다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "실제 해설의sin/cos60°는각직각삼각형의높이/밑변과빗변비이다. √21 및 cm,양의제곱근은중학교 실수 표기이다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "독립 raw와 저자 선택표시가 일치하고 정확 계산과다섯보기 검사로 유일한 ③를확인했다. 목표는양의cm길이15이다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자 sin60°=√3/2,cos60°=1/2를 실제 직각삼각형PRH에 적용하여PH6√3,RH6을 구했다. PQH 피타고라스189−108=81, 양의QH9, H내부로합15. 이는 두 삼각비 사이 항등식 없이 정의와 특수각값만 사용한다. 실제 공식primary의범위및제외사항과대조하여필수고등방법이없음을확인했다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "9수04-17 특수각값과9수04-18 활용을학습한후,이전 피타고라스·수선·양의제곱근·선분합을사용한다. 실제중3배치는PDFprinted72의8~9월삼각비계획에서확인했다. 특정노변중중간고사학습시기및2022배치는미확인이다."
+    }
+  }
+}
