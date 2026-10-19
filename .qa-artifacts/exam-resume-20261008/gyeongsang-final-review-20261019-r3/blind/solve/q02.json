@@ -1,0 +1,130 @@
+{
+  "studentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "④",
+  "solution": "a,b>0이므로 PR은 양의 x축 위, QR은 양의 y축 위에 놓이고 R은 직각이다. 각 QPR에 대하여 cos∠QPR=PR/PQ=a/20=4/5이므로 a=16이다. 따라서 ④이다. 피타고라스 정리에 의해 b=√(20²−16²)=12>0이므로 주어진 좌표 조건을 만족한다.",
+  "evidence": {
+    "questionNumber": 2,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+    "studentOnlyInputs": true,
+    "figureReading": "Axes meet at R; P on positive x-axis and Q on positive y-axis. Diagram agrees with a,b>0.",
+    "renderedFiguresViewed": [
+      {
+        "svgPath": "figures/q02-1.svg",
+        "sha256": "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7",
+        "pngPath": "rendered/q02-1.png",
+        "pixelMeasurement": false
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$12$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "12",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$4$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "4",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$20$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "20",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$16$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "16",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$25$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "25",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "parts": [],
+    "existenceUniquenessPositiveLengthsUnits": "a=16,b=12 makes a positive16–12–20 right triangle with the required coordinate positions; a is unique by a/20=4/5. Coordinate units unspecified; do not introduce cm.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "좌표축의 수직과 양의 좌표",
+        "코사인의 정의",
+        "피타고라스 정리"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q02",
+      "actualResult": {
+        "calculated": "16",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "12",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "4",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "20",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "16",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "25",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

@@ -1,0 +1,119 @@
+{
+  "kind": "execution-status-ledger/v15",
+  "version": 15,
+  "createdAt": "2026-10-19T07:06:32.985Z",
+  "previousLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v14.json",
+    "sha256": "081f3d00e86664d3135fa2216db6fab5e5de59646f092943279af51306ad33bf"
+  },
+  "counts": {
+    "authoredCurrentCandidates": 112,
+    "currentFigureInstances": 88,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 112,
+    "independentMathReviewed": 111,
+    "independentFullGradeReviewed": 111,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 96,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 111,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1
+  },
+  "currentIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v15.json",
+    "sha256": "a770ff3d76ebcc9a644e2dcea7c8b3773dceabc48357b6dd6c4e0ab995149915"
+  },
+  "countsBasis": "Current112 exact IDs;111 formal independent math/grade, q18 pending. Failed/superseded/repeated proof versions are preserved without inflating current counts. Legacy including-superseded aggregate intentionally omitted.",
+  "engine": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r7.json",
+    "sha256": "e787fd7716b3761891a9f7146c8fe799c5261deacd4a3d17e92a4026d92224ba"
+  },
+  "sourceReconnection": {
+    "path": ".qa-artifacts/exam-resume-20261008/source-reconnection-20261019/run-receipt-r1.json",
+    "sha256": "3cc09f702758a702df7c9673c57b0ba8fecd3aafcafb611cfbafd0d4dba06df1"
+  },
+  "freshExtraction": {
+    "evidence": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r1/aggregate-receipt.json",
+        "sha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r2/aggregate-receipt.json",
+        "sha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r3/aggregate-receipt.json",
+        "sha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r4/aggregate-receipt.json",
+        "sha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f"
+      }
+    ],
+    "oldParentObservations": 253,
+    "newFreshParentObservations": 253,
+    "totalParentObservations": 506,
+    "newFreshExams": 12,
+    "freshComponentsApproved": 0,
+    "wholePairsCertified": 0,
+    "countScope": "Parser parent observations, not unique certified exams or verified twins"
+  },
+  "latestClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-current.json",
+    "sha256": "b298c06ce5b93f9e7527e137962ba888849234e8f4e06339b8670ffbf9949264"
+  },
+  "unusedWorktreeCleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "original82AndPermanentExclusionPreserved": true,
+  "dbWrites": 0,
+  "loadable": 0,
+  "wholeGoalComplete": false,
+  "automaticContinuationControllerChanged": false,
+  "execution": "manual user-requested resume; one root and one independent Codex worker",
+  "independentNB5": {
+    "rawCommit": "c51c84ce57debd1287f5a1d7708f0c4d709ba01b",
+    "reviewCommit": "7bd67c0d0a710a394c4a5314207af73bc49a36f5",
+    "seal": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/pre-exposure-seal-receipt-r2.json",
+      "sha256": "f96937cc6973a298fd0e768691d50389bfc572206a2b152c2de4fca54ac6ad0d"
+    },
+    "summary": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/current-author-summary-parent-r1.json",
+      "sha256": "36f59e7384fdff5aea15e264adc484d40106d8639b84f735b2540f7d351ca240"
+    },
+    "newMathReviewed": 5,
+    "newGradeReviewed": 5,
+    "contentHeld": 5
+  },
+  "liveClassification": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+    "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+  },
+  "sourceOwnershipHolds": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/source-region-audit-r1.json",
+    "sha256": "580c4be786cd1b3271d3ad9812bb7000a40d4c5c35b0fca40e88dd449477d29d"
+  },
+  "latestIndependentReviews": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/current-author-summary-parent.json",
+      "sha256": "f1295514c6eb3710f79aa81a57080c9453ec8b8488dcae9ec7a1ff59ec19350f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gangbuk-final-review-20261019-r2/current-author-summary-parent.json",
+      "sha256": "c483b2bd2d02f935acfabfa2827dd02e9ebe1cdcf5e60e235a4ea70d364eea99"
+    }
+  ],
+  "encodingRecovery": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/encoding-recovery-guard-r1.json",
+    "sha256": "a788466dc8035e202861a9e53e48e6baa74a6e9536ce1d721258ab5400bb3d95"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "kind": "checkpoint-scope-validation/v1",
+  "createdAt": "2026-10-19T07:10:11.593Z",
+  "codeAndReportHashesMatch": true,
+  "nodeTests": 51,
+  "pythonTests": 4,
+  "stagedPaths": 212,
+  "originalSourceTextsOrCropsStaged": false,
+  "sharedDependenciesStaged": false,
+  "diffCheckAllOtherPathsPassed": true,
+  "frozenSvgWhitespaceException": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r2/blind/figures/q20-1.svg",
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c",
+      "matchesOriginal": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r2/package/private/q20/figure-1.svg",
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c",
+      "matchesOriginal": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/figures/q20-1.svg",
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c",
+      "matchesOriginal": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q20/figure-1.svg",
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c",
+      "matchesOriginal": true
+    }
+  ],
+  "reason": "Frozen engine SVG contains an indented blank line; preserve proof bytes. Higher-priority local attributes enable whitespace checks.",
+  "dbWrites": 0,
+  "loadable": 0
+}

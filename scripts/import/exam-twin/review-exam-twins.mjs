@@ -5,6 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   bindCandidate,
+  assertRawSolveReadable,
   containedPath,
   digest,
   evaluateReview,
@@ -274,6 +275,7 @@ function verifyPack(directory, blindDirectory, newReviewDirectory) {
     const solve = readJson(solvePath);
     assert.equal(solve.studentDigest, b.studentDigest);
     assert.equal(solve.status, "solved");
+    assertRawSolveReadable(solve, b.candidate.questionType);
     assert(
       solve.solverId &&
         solve.solverId !== b.candidate.authorId &&

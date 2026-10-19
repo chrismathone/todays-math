@@ -1,0 +1,3511 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T07:06:33.448Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/current-selection-parent.json",
+    "sha256": "96adf01529f363c632b04f52c211d236baea02f4e2b2847d755dee88967158e4"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 14,
+    "historicalCandidateVersions": 14,
+    "independentSolvesBound": 14,
+    "mathematicalVerified": 14,
+    "gradeReviewed": 14,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 14,
+    "figureInstances": 11,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    16,
+    17,
+    19,
+    20,
+    21
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q01",
+      "studentDigest": "2943693cd61755fa2623c43bab6afc0ca7af4022dc19a1deecc299cfdfb59347",
+      "candidateDigest": "a4a54f592cfd24a59afbc8f870618f368846bba68881e9325d0712c49b5fc9f6",
+      "assetDigest": "63e544f44422f45515ae4a7b20192b59e5dc6e3a6bf9ceb634dfacc0c8181515",
+      "solveDigest": "62ed2a8e8a83f2aabb075f3220af2d1d19d16042e086c31b050a27045a38b9b9",
+      "reportSha256": "fa07550c90a86b00f2e4b47e1081dafb21b36a09b1ebf3ab2fc286b2af183b19",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-1",
+        "sourceContentSha256": "f39d2b24ddf9f609ab64e94f61343cbef8f3a57bc729e55263f4f54f4fa12239",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q01-part1.png",
+            "sha256": "580276b65358f9e8dc13c58dc3119e2c656135b80b8b7d56344a2ebfe48976d1",
+            "page": 1,
+            "column": 0,
+            "bbox": [
+              55,
+              99,
+              375,
+              524.3187866210938
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-1",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q01",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 3,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 3,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 3,
+          "referenceParentScore": 3,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 사인 정의의 비를 세우고 실제 대변 길이를 복구한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "proposed",
+          "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "unitSection": "삼각비의 뜻",
+          "familyKey": "mid:3-2|삼각비|02",
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 뜻",
+              "semester": 2,
+              "orderIndex": 481,
+              "problemCodePrefix": "J30501"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "02의 sin+빗변→대변 모드와 목적/절차가 맞는 제안이다. 7-24-25 실제 매개변수와 표 표현은 별도 검수 대상이다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|02",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 뜻",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "02",
+                  "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                    "family_key": "mid:3-2|삼각비|02",
+                    "live_count": 24
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 982,
+                  "endLine1based": 1023,
+                  "text": "def(\n    \"삼각비\",\n    \"02\",\n    \"삼각비를 이용하여 삼각형의 변의 길이 구하기\",\n    SEC.뜻,\n    \"기본\",\n    (rng) =>\n      attempt(120, () => {\n        const [p, q, r] = pick(rng, TRIPLES);\n        const mode = intBetween(rng, 0, 2);\n        const t = intBetween(rng, 1, 4);\n        // $\\angle B=90^\\circ$ · $\\angle A$ 기준: 대변 $pt$, 이웃변 $qt$, 빗변 $rt$.\n        const opp = p * t;\n        const adj = q * t;\n        const hyp = r * t;\n        if (hyp > 80) return null;\n        const [gnum, gden] = red(mode === 1 ? q : p, mode === 2 ? q : r);\n        if (gnum >= gden) return null;\n        const given = mode === 2 ? adj : hyp;\n        const x = mode === 1 ? adj : opp;\n        const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;\n        const askSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;\n        const relation = [\n          `\\\\sin A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n          `\\\\cos A=\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n          `\\\\tan A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n        ][mode]!;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$이고 $${trigOf(mode, \"A\")}=${frac(gnum, gden)}$, $${givenSide}=${cm(given)}$일 때, $${askSide}$의 길이를 구하시오.`,\n          answer: `$${cm(x)}$`,\n          solution: `$${relation}$이다.\\n따라서 $${askSide}=${given}\\\\times${frac(gnum, gden)}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: { num: gnum, den: gden, given, x, mode },\n          figureSpec: figRight({\n            vert: adj,\n            horz: opp,\n            dims: mode === 2 ? { AB: dimCm(given) } : { CA: dimCm(given) },\n          }),\n        };\n      }),\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": "const TRIPLES = [\n  [3, 4, 5],\n  [6, 8, 10],\n  [5, 12, 13],\n  [9, 12, 15],\n  [8, 15, 17],\n  [12, 16, 20],\n  [7, 24, 25],\n  [15, 20, 25],\n  [10, 24, 26],\n  [20, 21, 29],\n  [18, 24, 30],\n  [16, 30, 34],\n  [12, 35, 37],\n  [9, 40, 41],\n] as const;"
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 1
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q01.json",
+          "sha256": "5f4c9bce36d4bebb00dac8a2c66861a5027597d3a1b8212ef92825f8212be2e3"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "직각삼각형 $\\mathrm{ABC}$에서 $\\sin \\mathrm{A}$의 값은? [$3$점]\nC 직각; AB=17, BC=8, AC=15.",
+        "after": "세 변의 길이에서 사인 값을 읽는 문제를, 빗변과 사인 기록으로 실제 대변의 길이를 복구하는 표로 역전한다.",
+        "sharedConcept": "사인의 대변/빗변 정의와 실제 길이 대응",
+        "sharedProcedure": "사인 정의의 비를 세우고 실제 대변 길이를 복구한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q01\\q01.json",
+        "sha256": "deac4937c529b13152428c2ae49a265232a696f8153516ffd690e6c292351d54"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "4a0adb5783f53b969ab6f84892e23def7dc884f26d5ff92298ccaf94bdd86c3b",
+          "svgSha256": "596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q01-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q01.json",
+        "sha256": "37dfbf5bf6c1067c1a51d3eb574471aa774acb4e88410e3baa8e42f6ab656e71"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q01.json",
+        "sha256": "fa07550c90a86b00f2e4b47e1081dafb21b36a09b1ebf3ab2fc286b2af183b19"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q01/candidate.json",
+        "sha256": "1ee5a36d7423eecf49280e0b1c54525aa30122291665ff266cef6142c32237e5"
+      },
+      "candidateContentWithoutRelocatedPaths": "59ad2212d1902d1d8688a497f78073c33f70379d02c83e3846e8491e46062793",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q01/q01.json",
+        "sha256": "deac4937c529b13152428c2ae49a265232a696f8153516ffd690e6c292351d54"
+      },
+      "authorCandidateDigest": "f0f6e9dd9b023dd39c1aaf1674aca4782c56889883a223388286f0669bd6d086"
+    },
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+      "studentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+      "candidateDigest": "3582fe2e9b52a54e6b1b54199c83e427fa2b527fdc68b8860a718110fee66a05",
+      "assetDigest": "54314aaff47a988bbd4711991cb50368ec1f193bbc3cf51588b6e081268278c8",
+      "solveDigest": "bda28d93338952fa209dafd9711dfc348706a2f20ff5d7278dcdaa7721e130a7",
+      "reportSha256": "501bddb4b50e2e7ee327e2059dd07d46dfd419f0241d2599d6059504ad0ea82b",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-2",
+        "sourceContentSha256": "02ca25987d09d2497dcb005c5c6a7d3707bf831d96148d2c99f3a6be4f7a2e30",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q02-part1.png",
+            "sha256": "4fc7396fde5ffab4fac25aad42890a7818b8c18e3eb81837e08f9ce6babfa4d1",
+            "page": 1,
+            "column": 0,
+            "bbox": [
+              55,
+              530.3187866210938,
+              375,
+              943
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-2",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 3,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 3,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 3,
+          "referenceParentScore": 3,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 축의 직각과 양의 좌표=선분 길이를 확인하고 코사인 정의로 이웃변을 역산한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "unitSection": "삼각비의 뜻",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 뜻",
+              "semester": 2,
+              "orderIndex": 481,
+              "problemCodePrefix": "J30501"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "02의 cos+빗변→이웃변 계산과 공통이지만 축/좌표 표현을 포함한 전체 갈래가 확인되지 않아 family는 보류한다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|02",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 뜻",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "02",
+                  "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                    "family_key": "mid:3-2|삼각비|02",
+                    "live_count": 24
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 982,
+                  "endLine1based": 1023,
+                  "text": "def(\n    \"삼각비\",\n    \"02\",\n    \"삼각비를 이용하여 삼각형의 변의 길이 구하기\",\n    SEC.뜻,\n    \"기본\",\n    (rng) =>\n      attempt(120, () => {\n        const [p, q, r] = pick(rng, TRIPLES);\n        const mode = intBetween(rng, 0, 2);\n        const t = intBetween(rng, 1, 4);\n        // $\\angle B=90^\\circ$ · $\\angle A$ 기준: 대변 $pt$, 이웃변 $qt$, 빗변 $rt$.\n        const opp = p * t;\n        const adj = q * t;\n        const hyp = r * t;\n        if (hyp > 80) return null;\n        const [gnum, gden] = red(mode === 1 ? q : p, mode === 2 ? q : r);\n        if (gnum >= gden) return null;\n        const given = mode === 2 ? adj : hyp;\n        const x = mode === 1 ? adj : opp;\n        const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;\n        const askSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;\n        const relation = [\n          `\\\\sin A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n          `\\\\cos A=\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n          `\\\\tan A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n        ][mode]!;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$이고 $${trigOf(mode, \"A\")}=${frac(gnum, gden)}$, $${givenSide}=${cm(given)}$일 때, $${askSide}$의 길이를 구하시오.`,\n          answer: `$${cm(x)}$`,\n          solution: `$${relation}$이다.\\n따라서 $${askSide}=${given}\\\\times${frac(gnum, gden)}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: { num: gnum, den: gden, given, x, mode },\n          figureSpec: figRight({\n            vert: adj,\n            horz: opp,\n            dims: mode === 2 ? { AB: dimCm(given) } : { CA: dimCm(given) },\n          }),\n        };\n      }),\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 2
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q02.json",
+          "sha256": "516a006b828c54d25937da0cf06cffe15053f7638950e9f158f274dfed75f977"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "representation",
+          "inverse-target",
+          "structure"
+        ],
+        "before": "직각삼각형 $\\mathrm{ABC}$에서 $\\cos \\mathrm{A}$의 값은? [$3$점]\nC 직각; AB=29, BC=20, AC=21.",
+        "after": "세 변이 표시된 삼각형의 코사인 값을 묻던 것을, 코사인/빗변 기록에서 축 위 점의 양의 좌표를 복구하는 기하 표현으로 바꾼다.",
+        "sharedConcept": "코사인의 이웃변/빗변 정의",
+        "sharedProcedure": "축의 직각과 양의 좌표=선분 길이를 확인하고 코사인 정의로 이웃변을 역산한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q02\\q02.json",
+        "sha256": "8b1da1b11a15d876a5b8b3111ec85bf3030ba6f4b47bc2d420e17df173d54b69"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "a6812f3efef5fb083eb5ae9c28ac856af8dc9412fa2396d05c8812e03b9ce680",
+          "svgSha256": "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q02-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q02.json",
+        "sha256": "33becc05dfaea16f3eea63e8c8c88573c401d922b4e7c7da669e93d02487effc"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q02.json",
+        "sha256": "501bddb4b50e2e7ee327e2059dd07d46dfd419f0241d2599d6059504ad0ea82b"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q02/candidate.json",
+        "sha256": "9aa5d4ae9a85cee0a1f7119cfe725272a8bd049a9a303e373a11814d5e00fd3c"
+      },
+      "candidateContentWithoutRelocatedPaths": "6dc185306c470fe3193ca3d0eb69cabd87ba0d8e46369f8ba575a3eebb6cf397",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "sha256": "8b1da1b11a15d876a5b8b3111ec85bf3030ba6f4b47bc2d420e17df173d54b69"
+      },
+      "authorCandidateDigest": "e606c22d15e92ffbc28bd453fc8d7261568de9a65bdd6ae5f27542dc8a8208b4"
+    },
+    {
+      "n": 3,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q03",
+      "studentDigest": "77c7086a0c79113ec148fdd060350757db2d2eaa960d67f071d66ac3485cefba",
+      "candidateDigest": "098d18d1bda8d6c2e0997764bfbf2d09b953fd0d545a53095a112b0e486b828e",
+      "assetDigest": "dde2a6c4241688b07141c50239d4bb17604a230292a111872d181f9836ab02b6",
+      "solveDigest": "058775ef9c7160fd5fec417caa8e67565964a9b4420e7d4e3c3e8b488aedbbcc",
+      "reportSha256": "5b21fa4a75e12254018af74e216f717301300e9b0f617a8c5dbb9bf6289cf79e",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-3",
+        "sourceContentSha256": "29969fbf225323e592306a32751aff0131bcf9e6acf8e3b1e6812c2892e6c549",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q03-part1.png",
+            "sha256": "e789a00452faee0f04137927379107b8923ca8a61cd908c94b640120556ed4f4",
+            "page": 1,
+            "column": 1,
+            "bbox": [
+              370,
+              99,
+              688,
+              486.30670166015625
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-3",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q03",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 4,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 4,
+          "referenceParentScore": 4,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 빗변과 이웃변으로 남은 양의 직각변을 구한 뒤 대변/이웃변을 읽는다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "unitSection": "삼각비의 뜻",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 뜻",
+              "semester": 2,
+              "orderIndex": 481,
+              "problemCodePrefix": "J30501"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "01은 한 삼각비 값만 묻는다. 길이/탄젠트 두 기록 전체는 배정 근거가 없어 보류한다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|01",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 뜻",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "01",
+                  "rpmTitle": "삼각비의 값"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                    "family_key": "mid:3-2|삼각비|01",
+                    "live_count": 24
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 949,
+                  "endLine1based": 982,
+                  "text": "def(\"삼각비\", \"01\", \"삼각비의 값\", SEC.뜻, \"기본\", (rng) => {\n    const [p, q, r] = pick(rng, TRIPLES);\n    const mode = intBetween(rng, 0, 2);\n    // $\\angle B=90^\\circ$ — $\\overline{BC}$ 가 $\\angle A$ 의 대변, $\\overline{AB}$ 가 이웃변.\n    // mode 2($\\tan A=\\overline{BC}/\\overline{AB}$)는 진분수여야 하므로 대변을 짧게 고정한다.\n    const swap = mode === 2 ? false : rng() < 0.5;\n    const bc = swap ? q : p;\n    const ab = swap ? p : q;\n    const [num, den] = red(mode === 1 ? ab : bc, mode === 2 ? ab : r);\n    const asked = trigOf(mode, \"A\");\n    const ratio = [\n      `\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n      `\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n      `\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n    ][mode]!;\n    const raw = [\n      `\\\\dfrac{${bc}}{${r}}`,\n      `\\\\dfrac{${ab}}{${r}}`,\n      `\\\\dfrac{${bc}}{${ab}}`,\n    ][mode]!;\n    return {\n      content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$이고 $\\\\overline{AB}=${cm(ab)}$, $\\\\overline{BC}=${cm(bc)}$일 때, $${asked}$의 값을 구하시오.`,\n      answer: `$${frac(num, den)}$`,\n      solution: `피타고라스 정리에서 $\\\\overline{AC}=\\\\sqrt{${ab}^2+${bc}^2}=${r}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 $${asked}=${ratio}=${raw === frac(num, den) ? raw : `${raw}=${frac(num, den)}`}$이다.`,\n      facts: { ab, bc, ac: r, mode, num, den },\n      figureSpec: figRight({\n        vert: ab,\n        horz: bc,\n        dims: { AB: dimCm(ab), BC: dimCm(bc) },\n      }),\n    };\n  }),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 3
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q03.json",
+          "sha256": "346d11d740149cde5852ac26aef7eb58041bad531f0430a700719fba70ab0b7d"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "structure"
+        ],
+        "before": "직각삼각형 $\\mathrm{ABC}$에서 $\\tan \\mathrm{A}$의 값은? [$4$점]\nC 직각; AC=5, BC=√11, AB=6.",
+        "after": "누락된 직각변을 복구하여 탄젠트 한 값을 선택하는 구조를, 복구한 실제 길이와 탄젠트의 두 기록을 함께 판별하는 표로 바꾼다.",
+        "sharedConcept": "피타고라스의 양의 길이 복구 및 탄젠트 정의",
+        "sharedProcedure": "빗변과 이웃변으로 남은 양의 직각변을 구한 뒤 대변/이웃변을 읽는다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q03\\q03.json",
+        "sha256": "2bb926878937da31e1f3b000fb0fe4625bf6b664e1b23b82038d2c3398722d61"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "93336e0dc357d0f6d718a0b90a838cfad6999409c34a08bff90c0f625f432138",
+          "svgSha256": "1d8a4b296cdfae1da1e056ca99636a9bf4b3e1af1bd9261a6a32c3b8655a87da",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q03-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q03.json",
+        "sha256": "17ae8c04b2b5a81fb17dcf8c7b5fe4a5de4c546c4f8fe657dd48ae034f5ed6fe"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q03.json",
+        "sha256": "5b21fa4a75e12254018af74e216f717301300e9b0f617a8c5dbb9bf6289cf79e"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q03/candidate.json",
+        "sha256": "27b6cd96c24844665b86cf3cafad3d7e01ad8559cd16895a46b6d6bca1a93c98"
+      },
+      "candidateContentWithoutRelocatedPaths": "5287c5462bdbcd7dae6e26258ce839efc96492ec10c642187e6ea0264898e359",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+        "sha256": "2bb926878937da31e1f3b000fb0fe4625bf6b664e1b23b82038d2c3398722d61"
+      },
+      "authorCandidateDigest": "a45d0178d562468345f2a797620b45e4749360c8f03c249e8362c8de79adf9a5"
+    },
+    {
+      "n": 4,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q04",
+      "studentDigest": "7573787736f2193f4671a6f5d5ba596c08813d348e6070457f2e9073ecd1f167",
+      "candidateDigest": "8337a911ed20a64cb5caa4dcbd1dff95cf52b21915604b8527c68029ebd4e5da",
+      "assetDigest": "c5657a52125dd0a961aa11183a05a414918cb40cb38ee584fab77b617b8325b6",
+      "solveDigest": "718357ce81b21df33ae5270655c2449a531601d6e3e29f8d60bf0b8252fd3ca0",
+      "reportSha256": "d9763d4da8441bca888f8edfcdc30749b6c28d7fc4a09c06ba46c4725c6f8a83",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-4",
+        "sourceContentSha256": "e2bf86df0ac8add6a17202e67c5eecea607e1abede3f48d043c09649157fe47e",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q04-part1.png",
+            "sha256": "922d1199f5a783c0e141b036d5d3af374f43b846e181b040791ad1c2ef77398c",
+            "page": 1,
+            "column": 1,
+            "bbox": [
+              370,
+              492.30670166015625,
+              688,
+              943
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-4",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q04",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 4,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 4,
+          "referenceParentScore": 4,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 두 실제 직각삼각형에서 OH/OP, AD/OA를 읽고 기록값을 반지름으로 나누어 반올림한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "unitSection": "삼각비의 값",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "12는 반지름1의 길이→단일 비이다. 비단위 반지름과 두 기록/반올림 전체 갈래는 미확인이다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|12",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 값",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "12",
+                  "rpmTitle": "사분원을 이용하여 삼각비의 값 구하기"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                    "family_key": "mid:3-2|삼각비|12",
+                    "live_count": 20
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1349,
+                  "endLine1based": 1382,
+                  "text": "def(\n    \"삼각비\",\n    \"12\",\n    \"사분원을 이용하여 삼각비의 값 구하기\",\n    SEC.값,\n    \"응용\",\n    (rng) => {\n      const ang = intBetween(rng, 25, 65);\n      const rad = ang * DEG;\n      const s100 = Math.round(Math.sin(rad) * 100);\n      const c100 = Math.round(Math.cos(rad) * 100);\n      const t100 = Math.round(Math.tan(rad) * 100);\n      const mode = intBetween(rng, 0, 4);\n      const parts = [[s100], [c100], [t100], [s100, c100], [c100, t100]][mode]!;\n      const x100 = parts.reduce((u, v) => u + v, 0);\n      const asked = [\n        `\\\\sin ${ang}^\\\\circ`,\n        `\\\\cos ${ang}^\\\\circ`,\n        `\\\\tan ${ang}^\\\\circ`,\n        `\\\\sin ${ang}^\\\\circ+\\\\cos ${ang}^\\\\circ`,\n        `\\\\cos ${ang}^\\\\circ+\\\\tan ${ang}^\\\\circ`,\n      ][mode]!;\n      const two = (v: number): string => (v / 100).toFixed(2);\n      return {\n        content: `반지름의 길이가 $1$인 사분원에서 $\\\\angle AOB=${ang}^\\\\circ$이다. 점 $B$에서 $\\\\overline{OA}$에 내린 수선의 발을 $H$라 하고, 점 $A$를 지나고 $\\\\overline{OA}$에 수직인 직선이 $\\\\overrightarrow{OB}$와 만나는 점을 $T$라 하자. $\\\\overline{BH}=${two(s100)}$, $\\\\overline{OH}=${two(c100)}$, $\\\\overline{AT}=${two(t100)}$일 때, $${asked}$의 값을 구하시오.`,\n        answer: `$${two(x100)}$`,\n        solution: `$\\\\overline{OB}=\\\\overline{OA}=1$이므로 $\\\\sin ${ang}^\\\\circ=\\\\dfrac{\\\\overline{BH}}{\\\\overline{OB}}=\\\\overline{BH}$, $\\\\cos ${ang}^\\\\circ=\\\\dfrac{\\\\overline{OH}}{\\\\overline{OB}}=\\\\overline{OH}$, $\\\\tan ${ang}^\\\\circ=\\\\dfrac{\\\\overline{AT}}{\\\\overline{OA}}=\\\\overline{AT}$이다.\\n따라서 $${asked}=${two(x100)}$이다.`,\n        facts: { ang, s100, c100, t100, mode, x100 },\n        figureSpec: figQuadrant({ ang }),\n      };\n    },\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 4
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q04.json",
+          "sha256": "60aa88ea9fa59c3b5cf0e6f20b43ee1548c3518082869da5b60f8a1d13c99264"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "representation",
+          "structure"
+        ],
+        "before": "그림은 좌표평면 위에 원점 $\\mathrm{O}$를 중심으로 하고, 반지름의 길이가 $1$인 사분원이다. $\\cos 35^\\circ$의 값으로 옳은 것은? [$4$점]\n단위 사분원, 35°; 0.7002/0.5736/0.8192 길이.",
+        "after": "단위 사분원의 좌표 그림에서 코사인을 바로 읽는 것에서, 반지름10의 실제 길이 기록표를 정규화해 서로 다른 두 정의의 기록을 완성하는 구조로 바꾼다.",
+        "sharedConcept": "사분원의 수선/수직선으로 삼각비를 길이 비로 해석",
+        "sharedProcedure": "두 실제 직각삼각형에서 OH/OP, AD/OA를 읽고 기록값을 반지름으로 나누어 반올림한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q04\\q04.json",
+        "sha256": "01f6867ac13e983c2d97614dc5a3b48282844d4278e0d4c0aa7a5df36ce9afc7"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "9ef5e2530a298b421d028b8d44c95f6b69795f8c20e2f1d51fb947af85341007",
+          "svgSha256": "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q04-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q04.json",
+        "sha256": "7a900366be02b11c07584ccf015a9dabadf5847bcb99e79d34a635ab4ac81f03"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q04.json",
+        "sha256": "d9763d4da8441bca888f8edfcdc30749b6c28d7fc4a09c06ba46c4725c6f8a83"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q04/candidate.json",
+        "sha256": "e701bccc37bfc42cd9536575c33e6cfc6fac8b9e9abc5020a0c403b3daa6b640"
+      },
+      "candidateContentWithoutRelocatedPaths": "73465d157f05e480d2032a2489b627ad0658be15a1851068b50459447ca0b0f8",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+        "sha256": "01f6867ac13e983c2d97614dc5a3b48282844d4278e0d4c0aa7a5df36ce9afc7"
+      },
+      "authorCandidateDigest": "7984c942762580d144f4b7630ca027b657788db6f44bb56e929ba3e47c111100"
+    },
+    {
+      "n": 5,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q05",
+      "studentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+      "candidateDigest": "75e38dc2d1884dcb3bd3f063db1a12ba5dfe3804ab471eff5cf4c1f4e6dc6a5f",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "06c44b7528ae3a18301e3b41e673963a00838865957a3ff0c10d28370dca71a5",
+      "reportSha256": "375fe6a7638f6146b8e1c6ffaf07f7955e04f4ff62e7a37485b20ff1b71a31bb",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-5",
+        "sourceContentSha256": "2478ab4c49e9571d99b504991faa461271166bb3c6ca545d4192f829e67c2e12",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q05-part1.png",
+            "sha256": "945e7f2ce7e2add5f68f700674e9595ac8a1ae57820db194224e91af2d017c44",
+            "page": 2,
+            "column": 0,
+            "bbox": [
+              55,
+              83,
+              375,
+              334.977783203125
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-5",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q05",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 4,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 4,
+          "referenceParentScore": 4,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 각도/함수에 맞는 표 항목으로 두 합을 각각 계산하고 순서 있는 차를 구한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "unitSection": "삼각비의 값",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "16의 실제 갈래는 한 함수의 각 조회/합/차이다. 서로 다른 sin/cos의 두 합과 차 전체는 미확인이다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|16",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 값",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "16",
+                  "rpmTitle": "삼각비의 표를 이용하여 삼각비의 값 구하기"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                    "family_key": "mid:3-2|삼각비|16",
+                    "live_count": 20
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1526,
+                  "endLine1based": 1575,
+                  "text": "def(\n    \"삼각비\",\n    \"16\",\n    \"삼각비의 표를 이용하여 삼각비의 값 구하기\",\n    SEC.값,\n    \"기본\",\n    (rng) => {\n      const b = intBetween(rng, 30, 58);\n      const fn = intBetween(rng, 0, 2);\n      const table = [0, 1, 2].map((i) => tableValue(fn, b + i));\n      const mode = intBetween(rng, 0, 2);\n      const rows = [0, 1, 2]\n        .map((i) => `$${trigText(fn, b + i)}=${table[i]!.toFixed(4)}$`)\n        .join(\", \");\n      const head = `삼각비의 표에서 ${rows}이다.`;\n      if (mode === 0) {\n        return {\n          // 소수 넷째 자리까지 적으므로 마지막에 읽는 숫자는 만 배 한 정수의 끝 자리다.\n          content: `${head} 이때 $${FN_NAMES[fn]} x=${table[2]!.toFixed(4)}$${eulReul(Math.round(table[2]! * 10000))} 만족시키는 $x$의 크기를 구하시오.`,\n          answer: `$${b + 2}^\\\\circ$`,\n          solution: `표에서 값이 $${table[2]!.toFixed(4)}$인 각을 찾으면 $${b + 2}^\\\\circ$이다.\\n따라서 $x=${b + 2}^\\\\circ$이다.`,\n          facts: { b, fn, mode, target: b + 2, val: table[2]! },\n          figureSpec: null,\n        };\n      }\n      if (mode === 1) {\n        const sum = Number((table[0]! + table[2]!).toFixed(4));\n        return {\n          content: `${head} 이때 $${trigText(fn, b)}+${trigText(fn, b + 2)}$의 값을 구하시오.`,\n          answer: `$${sum.toFixed(4)}$`,\n          solution: `표에서 $${trigText(fn, b)}=${table[0]!.toFixed(4)}$, $${trigText(fn, b + 2)}=${table[2]!.toFixed(4)}$이다.\\n따라서 구하는 값은 $${table[0]!.toFixed(4)}+${table[2]!.toFixed(4)}=${sum.toFixed(4)}$이다.`,\n          facts: { b, fn, mode, target: b, val: sum },\n          figureSpec: null,\n        };\n      }\n      // 차 — 큰 값에서 작은 값을 뺀다($\\cos$ 는 각이 커질수록 작아진다).\n      const hi = fn === 1 ? b : b + 2;\n      const lo = fn === 1 ? b + 2 : b;\n      const diff = Number((tableValue(fn, hi) - tableValue(fn, lo)).toFixed(4));\n      return {\n        content: `${head} 이때 $${trigText(fn, hi)}-${trigText(fn, lo)}$의 값을 구하시오.`,\n        answer: `$${diff.toFixed(4)}$`,\n        solution: `표에서 $${trigText(fn, hi)}=${tableValue(fn, hi).toFixed(4)}$, $${trigText(fn, lo)}=${tableValue(fn, lo).toFixed(4)}$이다.\\n따라서 구하는 값은 $${tableValue(fn, hi).toFixed(4)}-${tableValue(fn, lo).toFixed(4)}=${diff.toFixed(4)}$이다.`,\n        facts: { b, fn, mode, target: hi, val: diff },\n        figureSpec: null,\n      };\n    },\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 5
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q05.json",
+          "sha256": "f8b7f1dfd0551f6d3f61319ee5b0e4daba8530d1a94708e728fe8dbd7e6fd95b"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "$\\sin 69^\\circ +\\cos 71^\\circ$을 계산한 값으로 옳은 것은? [$4$점]\nNo bitmap figure; positioned HWP math/text and any table remain the source givens.",
+        "after": "공유 세로 삼각비 표에서 한 합을 읽던 구조를 함수별 가로 표와 두 계산 기록의 순서 있는 차로 재구성한다.",
+        "sharedConcept": "삼각비 표의 올바른 행/열 조회 및 근삿값 사칙계산",
+        "sharedProcedure": "각도/함수에 맞는 표 항목으로 두 합을 각각 계산하고 순서 있는 차를 구한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q05\\q05.json",
+        "sha256": "87c7d44ab970c7d9100609484911326e7a9f69cf3088061dd6ad7e5de9056c7a"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q05.json",
+        "sha256": "9a49b251472006e7e9bdc7a3d2c830466e88de29944dd0ebf155f5005e5f2210"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q05.json",
+        "sha256": "375fe6a7638f6146b8e1c6ffaf07f7955e04f4ff62e7a37485b20ff1b71a31bb"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q05/candidate.json",
+        "sha256": "82b5e386aaa7b9e947bc9e8b374f6099eeceffe1e7947ca672a20081b0b76a40"
+      },
+      "candidateContentWithoutRelocatedPaths": "870ae16a7577bda3c4bce6724df634f572b25d54f8d8b5453046addf690702ea",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q05/q05.json",
+        "sha256": "87c7d44ab970c7d9100609484911326e7a9f69cf3088061dd6ad7e5de9056c7a"
+      },
+      "authorCandidateDigest": "75e38dc2d1884dcb3bd3f063db1a12ba5dfe3804ab471eff5cf4c1f4e6dc6a5f"
+    },
+    {
+      "n": 6,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+      "studentDigest": "e8e2cd65469c93106cf535a49b233675fa1b741a3fea60e9d5fbf636208a61ad",
+      "candidateDigest": "7e6f5eca851cc950c4383188038620d73f495a704047b96fd372ff73dcb6b701",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "636965988973eba973d3f71d60c466f5d3e08076287b2f8239fa56a2d96e8638",
+      "reportSha256": "44aa467485c14020b44f3ec22f4384d4c5cb1152c8cf8b5afab6d00387c889e7",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-6",
+        "sourceContentSha256": "a44fe870412df398071e49c54a11b62fc96b018a9ca343913a64bdd15b5790eb",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q05-part1.png",
+            "sha256": "945e7f2ce7e2add5f68f700674e9595ac8a1ae57820db194224e91af2d017c44",
+            "page": 2,
+            "column": 0,
+            "bbox": [
+              55,
+              83,
+              375,
+              334.977783203125
+            ],
+            "role": "shared_context_page_contains_question5_not_an_answer"
+          },
+          {
+            "file": "images/q06-part1.png",
+            "sha256": "afbf2fe6163d11429b5629e4e931905e70135b151b50d169e506d125e0c66e2e",
+            "page": 2,
+            "column": 0,
+            "bbox": [
+              55,
+              340.977783203125,
+              375,
+              495.77978515625
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-6",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 3,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 3,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 3,
+          "referenceParentScore": 3,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 다른 두 행에서 각각 유일한 각 열을 찾고 그 수의 차를 구한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "unitSection": "삼각비의 값",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "16 mode0의 한 각 역조회와 부분적으로 같지만 두 독립 조회 후 차인 전체 갈래는 미확인이다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|16",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 값",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "16",
+                  "rpmTitle": "삼각비의 표를 이용하여 삼각비의 값 구하기"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                    "family_key": "mid:3-2|삼각비|16",
+                    "live_count": 20
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1526,
+                  "endLine1based": 1575,
+                  "text": "def(\n    \"삼각비\",\n    \"16\",\n    \"삼각비의 표를 이용하여 삼각비의 값 구하기\",\n    SEC.값,\n    \"기본\",\n    (rng) => {\n      const b = intBetween(rng, 30, 58);\n      const fn = intBetween(rng, 0, 2);\n      const table = [0, 1, 2].map((i) => tableValue(fn, b + i));\n      const mode = intBetween(rng, 0, 2);\n      const rows = [0, 1, 2]\n        .map((i) => `$${trigText(fn, b + i)}=${table[i]!.toFixed(4)}$`)\n        .join(\", \");\n      const head = `삼각비의 표에서 ${rows}이다.`;\n      if (mode === 0) {\n        return {\n          // 소수 넷째 자리까지 적으므로 마지막에 읽는 숫자는 만 배 한 정수의 끝 자리다.\n          content: `${head} 이때 $${FN_NAMES[fn]} x=${table[2]!.toFixed(4)}$${eulReul(Math.round(table[2]! * 10000))} 만족시키는 $x$의 크기를 구하시오.`,\n          answer: `$${b + 2}^\\\\circ$`,\n          solution: `표에서 값이 $${table[2]!.toFixed(4)}$인 각을 찾으면 $${b + 2}^\\\\circ$이다.\\n따라서 $x=${b + 2}^\\\\circ$이다.`,\n          facts: { b, fn, mode, target: b + 2, val: table[2]! },\n          figureSpec: null,\n        };\n      }\n      if (mode === 1) {\n        const sum = Number((table[0]! + table[2]!).toFixed(4));\n        return {\n          content: `${head} 이때 $${trigText(fn, b)}+${trigText(fn, b + 2)}$의 값을 구하시오.`,\n          answer: `$${sum.toFixed(4)}$`,\n          solution: `표에서 $${trigText(fn, b)}=${table[0]!.toFixed(4)}$, $${trigText(fn, b + 2)}=${table[2]!.toFixed(4)}$이다.\\n따라서 구하는 값은 $${table[0]!.toFixed(4)}+${table[2]!.toFixed(4)}=${sum.toFixed(4)}$이다.`,\n          facts: { b, fn, mode, target: b, val: sum },\n          figureSpec: null,\n        };\n      }\n      // 차 — 큰 값에서 작은 값을 뺀다($\\cos$ 는 각이 커질수록 작아진다).\n      const hi = fn === 1 ? b : b + 2;\n      const lo = fn === 1 ? b + 2 : b;\n      const diff = Number((tableValue(fn, hi) - tableValue(fn, lo)).toFixed(4));\n      return {\n        content: `${head} 이때 $${trigText(fn, hi)}-${trigText(fn, lo)}$의 값을 구하시오.`,\n        answer: `$${diff.toFixed(4)}$`,\n        solution: `표에서 $${trigText(fn, hi)}=${tableValue(fn, hi).toFixed(4)}$, $${trigText(fn, lo)}=${tableValue(fn, lo).toFixed(4)}$이다.\\n따라서 구하는 값은 $${tableValue(fn, hi).toFixed(4)}-${tableValue(fn, lo).toFixed(4)}=${diff.toFixed(4)}$이다.`,\n        facts: { b, fn, mode, target: hi, val: diff },\n        figureSpec: null,\n      };\n    },\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 6
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q06.json",
+          "sha256": "232f8a3c20ba1ffd6c9e87ba88f0c8e9e14eb60d35a45e9a69477713a0b8bdfa"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "$\\tan \\,x^\\circ =2.7475$를 만족시키는 $x$의 값으로 옳은 것은?\n[$3$점]\nNo bitmap figure; positioned HWP math/text and any table remain the source givens.",
+        "after": "tan값으로 한 각을 선택하던 공유 문항을 두 독립적인 함수별 역조회와 각도 기록 차로 재구성한다.",
+        "sharedConcept": "삼각비 표의 값→해당 각 역조회",
+        "sharedProcedure": "다른 두 행에서 각각 유일한 각 열을 찾고 그 수의 차를 구한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q06\\q06.json",
+        "sha256": "7a7695ead84369b43532d093a9eb7eea317b164fdebb78cac79d63b86e1311db"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q06.json",
+        "sha256": "6e68296b6decc3b324de983a2956c15e3841fe22565625d273da66894ae03c8c"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q06.json",
+        "sha256": "44aa467485c14020b44f3ec22f4384d4c5cb1152c8cf8b5afab6d00387c889e7"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q06/candidate.json",
+        "sha256": "0d7e7d8fe0a7f6ad2c3dbcd05f62ff5f5caa5ceec314a98ef40aa9e29a41176a"
+      },
+      "candidateContentWithoutRelocatedPaths": "437aaa8d4d48ab5ca1d77b3aa88d6b69457ec1d03a5fce68e848468f8f0877d9",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q06/q06.json",
+        "sha256": "7a7695ead84369b43532d093a9eb7eea317b164fdebb78cac79d63b86e1311db"
+      },
+      "authorCandidateDigest": "7e6f5eca851cc950c4383188038620d73f495a704047b96fd372ff73dcb6b701"
+    },
+    {
+      "n": 7,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q07",
+      "studentDigest": "e50a69925cee1b85a85af824a2f35617704372861ee872f7f8f60d4e866b4100",
+      "candidateDigest": "f61238e077bccc45057a9f035e4e9264fc9d062da33de57211e6aed9145dfa2f",
+      "assetDigest": "b56f1d586bed9fe38d6d41b460c2fcebc778d4975363d537c10bc3cb9856f683",
+      "solveDigest": "1204651a461ce9de987fbd913b4679aeaeb43f84fa02f764e3b8b21271aa175d",
+      "reportSha256": "62fe95320ff36f5baf2310234413244a5d6bfd82329223139f421e1c961b9c40",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-7",
+        "sourceContentSha256": "479133a9e2a9a2513455c218289ba2c9f912b1d22bde1c105c5d8494d39c071e",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q07-part1.png",
+            "sha256": "49beaae1ef091598a3470e45f9ae77aa9c416014382e753d703fbd5675d362dd",
+            "page": 2,
+            "column": 0,
+            "bbox": [
+              55,
+              501.77978515625,
+              375,
+              943
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-7",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q07",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 4,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 4,
+          "referenceParentScore": 4,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 45도 정의/이등변 성질로 실제 두 직각변을 구해 길이의 합과 차를 계산한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "unitSection": "삼각비의 활용",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "활용01에는 빗변/특수각→둘레가 있지만 직각변 합−빗변이라는 목표 전체는 확인되지 않았다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비의 활용|01",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 활용",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비의 활용",
+                  "rpmType": "01",
+                  "rpmTitle": "직각삼각형의 변의 길이 구하기"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                    "family_key": "mid:3-2|삼각비의 활용|01",
+                    "live_count": 24
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1867,
+                  "endLine1based": 1928,
+                  "text": "def(\n    \"삼각비의 활용\",\n    \"01\",\n    \"직각삼각형의 변의 길이 구하기\",\n    SEC.활용,\n    \"기본\",\n    (rng) =>\n      attempt<Body>(200, () => {\n        const theta = pick(rng, [30, 45, 60] as const);\n        const g = pick(rng, [4, 6, 8, 10, 12, 16, 20] as const);\n        const mode = intBetween(rng, 0, 1);\n        const sinT = exact(0, theta)!;\n        const cosT = exact(1, theta)!;\n        const adj = surdMul(surd(g, 1, 1), cosT);\n        const opp = surdMul(surd(g, 1, 1), sinT);\n        if (mode === 0) {\n          // (넓이) $=\\dfrac{1}{2}\\times\\overline{AB}\\times\\overline{BC}$\n          const area = surdMul(surdMul(adj, opp), surd(1, 1, 2));\n          if (area.d !== 1) return null;\n          return {\n            content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$, $\\\\angle A=${theta}^\\\\circ$이고 $\\\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.`,\n            answer: `$${cm2(surdText(area))}$`,\n            solution: `$\\\\overline{AB}=${g}\\\\times\\\\cos ${theta}^\\\\circ=${surdText(adj)}\\\\,(\\\\mathrm{cm})$, $\\\\overline{BC}=${g}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(opp)}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 (넓이)$=\\\\dfrac{1}{2}\\\\times${surdText(adj)}\\\\times${surdText(opp)}=${surdText(area)}\\\\,(\\\\mathrm{cm}^2)$이다.`,\n            facts: nums({ theta, given: g, mode, an: area.n, ar: area.r }),\n            figureSpec: figRight({\n              vert: surdValue(adj),\n              horz: surdValue(opp),\n              angA: `${theta}°`,\n              dims: { CA: dimCm(g) },\n            }),\n          };\n        }\n        // 둘레 — 유리항과 무리항을 따로 모은다($45^\\circ$ 는 둘 다 $\\sqrt{2}$ 라 합쳐진다).\n        let c0 = g;\n        let irr: Surd = { n: 0, r: 1, d: 1 };\n        for (const s of [adj, opp]) {\n          if (s.r === 1) {\n            c0 += s.n / s.d;\n            continue;\n          }\n          const t = surdAdd(irr, s);\n          if (!t) return null;\n          irr = t;\n        }\n        if (!Number.isInteger(c0)) return null;\n        if (irr.n === 0 || irr.d !== 1) return null;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$, $\\\\angle A=${theta}^\\\\circ$이고 $\\\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 둘레의 길이를 구하시오.`,\n          answer: `$${lenText(c0, irr.n, irr.r, \"cm\")}$`,\n          solution: `$\\\\overline{AB}=${g}\\\\times\\\\cos ${theta}^\\\\circ=${surdText(adj)}\\\\,(\\\\mathrm{cm})$, $\\\\overline{BC}=${g}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(opp)}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 (둘레)$=${g}+${surdText(adj)}+${surdText(opp)}=${binomText(c0, irr.n, irr.r)}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: nums({ theta, given: g, mode, c0, c1: irr.n, root: irr.r }),\n          figureSpec: figRight({\n            vert: surdValue(adj),\n            horz: surdValue(opp),\n            angA: `${theta}°`,\n            dims: { CA: dimCm(g) },\n          }),\n        };\n      }),\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 7
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q07.json",
+          "sha256": "62c5fb37d72d83472a379aefe20b98bb7a892ecbb42557fc5fc22b1c34cc3d74"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "그림과 같은 직각삼각형에서 $x,~y$의 값을 옳게 짝지은 것은? [$4$점]\n\n$x$\n\n$y$\n윗 꼭짓점 직각; 왼쪽 직각변 5cm, 오른쪽 직각변 x cm; 아래 빗변 y cm; 왼쪽 아래 예각 45°.",
+        "after": "45도 직각삼각형의 한 직각변에서 나머지 두 길이를 묻던 것을 빗변 입력으로 역전하고 두 직각변 합과 빗변의 차를 묻는다.",
+        "sharedConcept": "45도 직각삼각형의 양수 변 대응",
+        "sharedProcedure": "45도 정의/이등변 성질로 실제 두 직각변을 구해 길이의 합과 차를 계산한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q07\\q07.json",
+        "sha256": "53380d131a689001aaaf0599986609e3da80b0f9a998815d39529e6321c9220a"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "f19adc33b9952dc1e1f73947aa602caea2d1af55b3997467cf088683b94dd609",
+          "svgSha256": "7dfd74e8fcfae4bf45df5049313461b8ec7fb4b1912b33df4492c7f30ad2b1e8",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q07-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q07.json",
+        "sha256": "9ea99d9a7d00a70ec792fc079d2a5e88830a096e0d23e7849701b711808efb5d"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q07.json",
+        "sha256": "62fe95320ff36f5baf2310234413244a5d6bfd82329223139f421e1c961b9c40"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q07/candidate.json",
+        "sha256": "f0acd3fed3a027219dc8a31369ef2795d9e034ed7bef5062ff977d0a5d58f574"
+      },
+      "candidateContentWithoutRelocatedPaths": "198d181809ed3adee8159e624ef669b253d62ea9ec1cb82fd0efd6452a677903",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+        "sha256": "53380d131a689001aaaf0599986609e3da80b0f9a998815d39529e6321c9220a"
+      },
+      "authorCandidateDigest": "78e433961c1efd5a24e208051c4211b421b9f04770b71552162b524c251e5c6a"
+    },
+    {
+      "n": 8,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q08",
+      "studentDigest": "c858d84e85ac38c9e0abf8128b07be51d4742244e6030ad8ebed15c3fa7f2887",
+      "candidateDigest": "e769adbe8ced0cc7ad5e220d55d038d050cddb8c70df37aefc28f79ec8c34c12",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "e56330f7e73599976c506bfd2cae2c41b0d10b316898a817a553d018dff2039f",
+      "reportSha256": "d54f0ef5ec63595c765efc0cf282c98f509ba699d6589fe9fb02d4d1775d3f36",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-8",
+        "sourceContentSha256": "d460995ea3f6cc926dac63729bc434bd328332feaccf7c7d5be59bec9125e335",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q08-part1.png",
+            "sha256": "ed81ef7263d7a121f16f22bcbb63a964bb73c31f6c367319b4417f48d2fb7af1",
+            "page": 2,
+            "column": 1,
+            "bbox": [
+              370,
+              83,
+              688,
+              318.4299011230469
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-8",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q08",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 4,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 4,
+          "referenceParentScore": 4,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 두 고정 특수각 곱을 각각 대입한 뒤 0이 아닌 상수로 나누어 계수를 구한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "unitSection": "삼각비의 값",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "08은 두 값의 한 연산이다. 두 곱을 대조해 계수를 역산하는 전체 입력/목표는 미확인이다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|08",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 값",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "08",
+                  "rpmTitle": "의 삼각비의 값"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                    "family_key": "mid:3-2|삼각비|08",
+                    "live_count": 20
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1203,
+                  "endLine1based": 1229,
+                  "text": "def(\"삼각비\", \"08\", \"의 삼각비의 값\", SEC.값, \"기본\", (rng) =>\n    attempt(300, () => {\n      const angles = [30, 45, 60] as const;\n      const a1 = pick(rng, angles);\n      const a2 = pick(rng, angles);\n      const f1 = intBetween(rng, 0, 2);\n      const f2 = intBetween(rng, 0, 2);\n      if (a1 === a2 && f1 === f2) return null;\n      const op = intBetween(rng, 0, 3);\n      const v1 = exact(f1, a1);\n      const v2 = exact(f2, a2);\n      if (!v1 || !v2) return null;\n      const res = applyOp(op, v1, v2);\n      if (!res) return null;\n      if (res.r === 1 && res.d > 1 && Math.abs(res.n) >= res.d) return null;\n      const expr = `${trigText(f1, a1)} ${OP_TEXT[op]} ${trigText(f2, a2)}`;\n      return {\n        content: `$${expr}$의 값을 구하시오.`,\n        answer: `$${surdText(res)}$`,\n        solution: `$${trigText(f1, a1)}=${surdText(v1)}$, $${trigText(f2, a2)}=${surdText(v2)}$이다.\\n따라서 $${expr}=${surdText(v1)} ${OP_TEXT[op]} ${surdText(v2)}=${surdText(res)}$이다.`,\n        facts: { f1, a1, op, f2, a2, an: res.n, ar: res.r, ad: res.d },\n        figureSpec: null,\n      };\n    }),\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 8
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q08.json",
+          "sha256": "8d907d57d3078ff6a24ceb78bd3d2e8b3d8c7ebd5f91506208f4c2ad2d80311d"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "$\\sin 45^\\circ \\times \\mathrm{\\tan }60^\\circ$를 계산한 값으로 옳은 것은? [$4$점]\nNo bitmap figure; positioned HWP math/text and any table remain the source givens.",
+        "after": "특수각의 한 곱을 바로 구하는 계산에서 두 고정각 곱의 값이 같아지도록 실제 계수k를 복구하는 기록표로 바꾼다.",
+        "sharedConcept": "고정된30/45/60도 값의 대입과 근호 계산",
+        "sharedProcedure": "두 고정 특수각 곱을 각각 대입한 뒤 0이 아닌 상수로 나누어 계수를 구한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q08\\q08.json",
+        "sha256": "475f8252eae3cb82c910ffc621dd2a680db5e7e22beb9f389ac417c3643ca2be"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q08.json",
+        "sha256": "cda0a98efa2146f6c8898443f14f8c492d705e07ecec217de9b2bf446b856758"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q08.json",
+        "sha256": "d54f0ef5ec63595c765efc0cf282c98f509ba699d6589fe9fb02d4d1775d3f36"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q08/candidate.json",
+        "sha256": "e9df41c8daf3069c24aeda6441543711fcb448bb644a51ee5b96205b03cc412d"
+      },
+      "candidateContentWithoutRelocatedPaths": "0e68a8dcf85f31da654de9585c7fed4ff8199981a0dde60509d57ac0550a549e",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+        "sha256": "475f8252eae3cb82c910ffc621dd2a680db5e7e22beb9f389ac417c3643ca2be"
+      },
+      "authorCandidateDigest": "e769adbe8ced0cc7ad5e220d55d038d050cddb8c70df37aefc28f79ec8c34c12"
+    },
+    {
+      "n": 9,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+      "studentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+      "candidateDigest": "63851faa5a81ffce75d4169758fedd293904df580e6e009200afd12b60f61ca8",
+      "assetDigest": "8265e94e19d24602f235ac4c4c55d6d8ee34908e4c7f8501d8629618834a0066",
+      "solveDigest": "84ba90948742b337af015102a8a9be4501873b9823b75bd106a2645de7d15b9f",
+      "reportSha256": "c462d05c98d2ab826f8b2f21dde9294862c9a0bbc4b403f9859664bde2b043fa",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-9",
+        "sourceContentSha256": "e4405e8a1ab62b14d7c24d7f9d514953458a780569ef700e4ffbe8a184736004",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q09-part1.png",
+            "sha256": "275b646f7db7e8433346507dbaf0168e5288c193011af8c0f51e2f3f9a7f6ccd",
+            "page": 2,
+            "column": 1,
+            "bbox": [
+              370,
+              324.4299011230469,
+              688,
+              607.6576538085938
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-9",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 4,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 4,
+          "referenceParentScore": 4,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 30/60 각을 먼저 확정한 뒤 60도 sin,cos,tan 상수를 각각 대입하여 곱한다. 일반각 항등식은 쓰지 않는다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "unitSection": "삼각비의 값",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "고정각 세 값의 곱+각도 기록이며 일반sin*cos*tan 관계 유도 유형으로 분류하지 않는다. 전체 갈래 미확인이다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|08",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 값",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "08",
+                  "rpmTitle": "의 삼각비의 값"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                    "family_key": "mid:3-2|삼각비|08",
+                    "live_count": 20
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1203,
+                  "endLine1based": 1229,
+                  "text": "def(\"삼각비\", \"08\", \"의 삼각비의 값\", SEC.값, \"기본\", (rng) =>\n    attempt(300, () => {\n      const angles = [30, 45, 60] as const;\n      const a1 = pick(rng, angles);\n      const a2 = pick(rng, angles);\n      const f1 = intBetween(rng, 0, 2);\n      const f2 = intBetween(rng, 0, 2);\n      if (a1 === a2 && f1 === f2) return null;\n      const op = intBetween(rng, 0, 3);\n      const v1 = exact(f1, a1);\n      const v2 = exact(f2, a2);\n      if (!v1 || !v2) return null;\n      const res = applyOp(op, v1, v2);\n      if (!res) return null;\n      if (res.r === 1 && res.d > 1 && Math.abs(res.n) >= res.d) return null;\n      const expr = `${trigText(f1, a1)} ${OP_TEXT[op]} ${trigText(f2, a2)}`;\n      return {\n        content: `$${expr}$의 값을 구하시오.`,\n        answer: `$${surdText(res)}$`,\n        solution: `$${trigText(f1, a1)}=${surdText(v1)}$, $${trigText(f2, a2)}=${surdText(v2)}$이다.\\n따라서 $${expr}=${surdText(v1)} ${OP_TEXT[op]} ${surdText(v2)}=${surdText(res)}$이다.`,\n        facts: { f1, a1, op, f2, a2, an: res.n, ar: res.r, ad: res.d },\n        figureSpec: null,\n      };\n    }),\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 9
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q09.json",
+          "sha256": "1e5bcc72a4f9d925b30f54e16f588a14342d0067de0be52f8a4abeeeab628e87"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "representation",
+          "structure"
+        ],
+        "before": "삼각형 세 내각의 크기의 비가 $1:2:3$이고, 세 내각 중 가장 작은 각의 크기를 $\\mathrm{A}$라 할 때, $\\sin \\mathrm{\\,}A\\times \\cos \\,A\\times \\tan \\,A$의 값으로 옳은 것은? [$4$점]\nNo bitmap figure; positioned HWP math/text and any table remain the source givens.",
+        "after": "세 내각 비와 최솟각의 곱 한 값에서, 직각/두 예각의 배 관계로 정해진 다른 특수각의 각도와 곱을 함께 기록하는 구조로 바꾼다.",
+        "sharedConcept": "삼각형 각의 합으로 고정된 특수각을 정한 뒤 세 특수값을 대입",
+        "sharedProcedure": "30/60 각을 먼저 확정한 뒤 60도 sin,cos,tan 상수를 각각 대입하여 곱한다. 일반각 항등식은 쓰지 않는다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q09\\q09.json",
+        "sha256": "91027639f616e2fbe6c532622650aa0411aaf6c5f32c2747d85b41ecd4d90b14"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "d1446aad050681011c4761f02abb10311d2ffb56d9caecf8bd5a56c1f0281a29",
+          "svgSha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q09-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q09.json",
+        "sha256": "5d49975ac8ff8a2e7cb1502bdd66055478866e8b8bb111bc8970f396accda1ff"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q09.json",
+        "sha256": "c462d05c98d2ab826f8b2f21dde9294862c9a0bbc4b403f9859664bde2b043fa"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q09/candidate.json",
+        "sha256": "dae04fcd8a8f868be69ef662dcd5313efad8d088242939eb52b41fa4e0a632c9"
+      },
+      "candidateContentWithoutRelocatedPaths": "a397b68b36ad73b46507629eceae443472dece361f4a19fcf48a2c4210206e32",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "sha256": "91027639f616e2fbe6c532622650aa0411aaf6c5f32c2747d85b41ecd4d90b14"
+      },
+      "authorCandidateDigest": "3cd8b42eb3f6c9f3cfb6c9f072f31fc3ce2ea8d64066f54db02fbb70e3c2deed"
+    },
+    {
+      "n": 16,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q16",
+      "studentDigest": "91c18fc29aa9f2d61ff05d5ce0e024c4a6fdb962cdb69204c73a33c438afc4c5",
+      "candidateDigest": "05ce927bf0cf049442a8ab234338aa7b23f4f6510f428577df3c285a117c8192",
+      "assetDigest": "c6941b96c702330b86eee779736105a193178ac7735397037d468c92239a7c6f",
+      "solveDigest": "d77bfb9183d318da6fdaaa99cddf3559957fa61ec9aae50e4595b7767f89863b",
+      "reportSha256": "4a9730083f461ce58d42bcbd90b2908f41bd8df2176d1d4cacfc9005bec483cc",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-16",
+        "sourceContentSha256": "b51ea62f810afde0fe32d3b3f25c825e8d2ffd17ce97e17a99229d22e72bd743",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q16-part1.png",
+            "sha256": "6e84f20a9d3c2a7f9e00a960b0cb3c069f5124041384a470658e15cc130c66f8",
+            "page": 4,
+            "column": 0,
+            "bbox": [
+              55,
+              476.47430419921875,
+              375,
+              943
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-16",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q16",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 5,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 5,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 5,
+          "referenceParentScore": 5,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 수선의 실제 높이를 사인 정의로 구하고 동일 넓이 식을 밑변에 대해 역으로 푼다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "proposed",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "unitSection": "삼각비의 활용",
+          "familyKey": "mid:3-2|삼각비의 활용|08",
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "활용08 triangleArea mode1의 한 변/끼인60도/넓이→다른 변 목적이 맞는다. a12,b12,면적36√3 제안이며 독립 배정 검토는 남는다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비의 활용|08",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 활용",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비의 활용",
+                  "rpmType": "08",
+                  "rpmTitle": "삼각형의 넓이 예각이 주어진 경우"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                    "family_key": "mid:3-2|삼각비의 활용|08",
+                    "live_count": 24
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 2266,
+                  "endLine1based": 2275,
+                  "text": "def(\n    \"삼각비의 활용\",\n    \"08\",\n    \"삼각형의 넓이 예각이 주어진 경우\",\n    SEC.활용,\n    \"응용\",\n    (rng) => triangleArea(rng, [30, 45, 60]),\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 16
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q16.json",
+          "sha256": "126eb7015e5228d710362de6bd3b3adc64b555fb2ebfcf0a908bf7a16be751f7"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "$\\mathrm{\\overline{AB}}=4,~\\overline{BC}=5,~\\angle B=40^\\circ$인 $\\triangle \\mathrm{ABC}$의 넓이는?\n(단, $\\sin 40^\\circ =0.6428,~\\cos 40^\\circ =0.7660,~\\tan 40^\\circ =0.8391$)\n[$5$점]\nAB=4, BC=5; ∠B=40°; 삼각비 표 값은 본문에 직접 제시.",
+        "after": "두 변/끼인각의 표 값으로 넓이를 구하던 것을 실제 한 변/끼인각/넓이 표로 바꾸어 밑변을 역산한다. 새 특수각은 정확한 값으로 계산한다.",
+        "sharedConcept": "수선 높이에 삼각비를 적용하고 밑변×높이/2로 삼각형 넓이를 구성",
+        "sharedProcedure": "수선의 실제 높이를 사인 정의로 구하고 동일 넓이 식을 밑변에 대해 역으로 푼다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q16\\q16.json",
+        "sha256": "f38c0da233a3887f453b3226dcd8991a8182cbef06a62acac93aa61e6f393905"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "2b3363de8a388849f6f3e38cc8929888f4e7734fd1f9b34c10178764149c4c48",
+          "svgSha256": "d7914810a8b49c895a08d3ec9ebda0e76f48575b346be96a0ac350be59fd98b1",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q16-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q16.json",
+        "sha256": "759497ebb3d101ae603fcc57e305257922c971b2d90502ea29cc6eed648c46b1"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q16.json",
+        "sha256": "4a9730083f461ce58d42bcbd90b2908f41bd8df2176d1d4cacfc9005bec483cc"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q16/candidate.json",
+        "sha256": "b199b483c5f09cec256dd6af27407914b9d2dde3518fad234a26f4f5c96b925f"
+      },
+      "candidateContentWithoutRelocatedPaths": "f3999f31eadb479d1b273c787f737127584959a3cd86210881097e7efeae6782",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "sha256": "f38c0da233a3887f453b3226dcd8991a8182cbef06a62acac93aa61e6f393905"
+      },
+      "authorCandidateDigest": "1769def3603a427749f21b49ba1231f415e7648f61788de7134b7905a1ac4373"
+    },
+    {
+      "n": 17,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q17",
+      "studentDigest": "6d6742ec5d913f57b328eac371e82666284f907bf5778af5c1c7624225953f94",
+      "candidateDigest": "23eff1b9c0ffe692ae364fb1b450ddcfaa35555f4d2390896af005ceb899bcab",
+      "assetDigest": "2ba2e5a725089bf7b9fdabe086df9bdfbbed025abd5a9ab170d8e9f02a65f373",
+      "solveDigest": "931be1aee0141337795eede78299a4b5df605e04f8c160cefd4e007ef68b87b4",
+      "reportSha256": "43c491edd13bec0dc90047668528ff9aa5eded8dd9b98ca8bb13cef4b422f876",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-17",
+        "sourceContentSha256": "bf7dd69a41ba25960d2256de7f08c91c66aae6132ffea5860ea1681b130fe2ea",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q17-part1.png",
+            "sha256": "c04807cf6397b93ae0106c3f742571c28b55798791c4d8bd438f71410954fcde",
+            "page": 4,
+            "column": 1,
+            "bbox": [
+              370,
+              83,
+              688,
+              503.09442138671875
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-17",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q17",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "객관식",
+        "score": 4,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 4,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 4,
+          "referenceParentScore": 4,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 높이/수평거리 비를 세우고 주어진 양의 근삿값으로 수평거리를 구해 지정 자릿수로 반올림한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "unitSection": "삼각비의 활용",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "활용03의 나무는 지면거리/각→높이이다. 높이→지면거리 및15도 표/반올림 전체 갈래는 확인되지 않았다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비의 활용|03",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 활용",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비의 활용",
+                  "rpmType": "03",
+                  "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                    "family_key": "mid:3-2|삼각비의 활용|03",
+                    "live_count": 24
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1968,
+                  "endLine1based": 2029,
+                  "text": "def(\n    \"삼각비의 활용\",\n    \"03\",\n    \"실생활에서 직각삼각형의 변의 길이의 활용 ⑴\",\n    SEC.활용,\n    \"응용\",\n    (rng) =>\n      attempt(200, () => {\n        const theta = pick(rng, [30, 45, 60] as const);\n        const d = pick(rng, [6, 8, 9, 10, 12, 15, 18, 20] as const);\n        const mode = intBetween(rng, 0, 2);\n        const sinT = exact(0, theta)!;\n        const cosT = exact(1, theta)!;\n        const tanT = exact(2, theta)!;\n        const ds = surd(d, 1, 1);\n        const res =\n          mode === 0\n            ? surdMul(ds, tanT)\n            : mode === 1\n              ? surdDiv(ds, cosT)\n              : surdMul(ds, sinT);\n        if (res.d !== 1 || res.n > 90) return null;\n        const height =\n          mode === 2\n            ? surdValue(res)\n            : mode === 0\n              ? surdValue(res)\n              : d * Math.tan(theta * DEG);\n        const ground = mode === 2 ? d * Math.cos(theta * DEG) : d;\n        const scene = [\n          {\n            content: `지면에 수직으로 서 있는 나무의 밑동에서 $${d}\\\\,\\\\mathrm{m}$ 떨어진 지점에서 나무의 꼭대기를 올려본각의 크기가 $${theta}^\\\\circ$이었다. 이 나무의 높이를 구하시오.`,\n            solution: `나무의 높이를 $h\\\\,\\\\mathrm{m}$라 하면 $\\\\tan ${theta}^\\\\circ=\\\\dfrac{h}{${d}}$이다.\\n따라서 $h=${d}\\\\times\\\\tan ${theta}^\\\\circ=${surdText(res)}$이므로 나무의 높이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"BC\",\n          },\n          {\n            content: `벽에 사다리를 기대어 놓았더니 사다리가 지면과 이루는 각의 크기가 $${theta}^\\\\circ$이고, 사다리의 아래 끝이 벽에서 $${d}\\\\,\\\\mathrm{m}$ 떨어져 있었다. 이 사다리의 길이를 구하시오.`,\n            solution: `사다리의 길이를 $l\\\\,\\\\mathrm{m}$라 하면 $\\\\cos ${theta}^\\\\circ=\\\\dfrac{${d}}{l}$이다.\\n따라서 $l=\\\\dfrac{${d}}{${surdText(cosT)}}=${surdText(res)}$이므로 사다리의 길이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"BC\",\n          },\n          {\n            content: `길이가 $${d}\\\\,\\\\mathrm{m}$인 실을 모두 풀어 연을 날렸더니 실이 지면과 이루는 각의 크기가 $${theta}^\\\\circ$이었다. 실이 팽팽하다고 할 때, 지면에서 연까지의 높이를 구하시오.`,\n            solution: `연까지의 높이를 $h\\\\,\\\\mathrm{m}$라 하면 $\\\\sin ${theta}^\\\\circ=\\\\dfrac{h}{${d}}$이다.\\n따라서 $h=${d}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(res)}$이므로 연까지의 높이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"CA\",\n          },\n        ][mode]!;\n        return {\n          content: scene.content,\n          answer: `$${surdText(res)}\\\\,\\\\mathrm{m}$`,\n          solution: scene.solution,\n          facts: { theta, d, mode, an: res.n, ar: res.r },\n          figureSpec: figRight({\n            vert: r2(height),\n            horz: r2(ground),\n            angC: `${theta}°`,\n            dims: { [scene.dimKey]: `${d} m` },\n          }),\n        };\n      }),\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 17
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q17.json",
+          "sha256": "7d8fa233865fb1d66671f7431cd469a543ddc6fc6b10772dd0f8e74b24cdd296"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "context",
+          "inverse-target",
+          "structure"
+        ],
+        "before": "그림과 같이 직각삼각형 모양의 미끄럼틀 놀이기구에서 지면 위의 두 지점 $\\mathrm{A},~C$ 사이의 거리는 $50\\,\\mathrm{m}$이고 놀이기구의 경사각의 크기는 $15^\\circ$이다. 놀이 기구의 출발 지점 $\\mathrm{B}$의 지면으로부터의 높이는?\n(단, $\\sin 15^\\circ =0.2588,~\\cos 15^\\circ =0.9659,~\\tan 15^\\circ =0.2679$)\n[$4$점]\nAC=50m 수평 거리; 경사각 15°; 제시된 삼각비로 높이를 묻는다.",
+        "after": "미끄럼틀의 수평거리에서 높이를 계산하는 상황을 운반용 경사판의 높이 입력→수평거리 복구 및 지정 자릿수 기록으로 전환한다.",
+        "sharedConcept": "수평선과 경사판의 예각에서 탄젠트의 실제 대변/이웃변 대응",
+        "sharedProcedure": "높이/수평거리 비를 세우고 주어진 양의 근삿값으로 수평거리를 구해 지정 자릿수로 반올림한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q17\\q17.json",
+        "sha256": "3f3f2be7983a9fd7e0c7112aaaf8fcb743a672624e53d1c272b6ecf339fd45da"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "551080e198ac493474b8c4c13aab4017052e79a89f7ecc9b48ccc60294b9bcc2",
+          "svgSha256": "6c1ca8318654e10257b87f02a1591708451dc814e14f1150058d533e5b21357c",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q17-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q17.json",
+        "sha256": "c39ad367ac2467dd154daeee75401c2af9fe8a59485302b172515f082dba4a8a"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q17.json",
+        "sha256": "43c491edd13bec0dc90047668528ff9aa5eded8dd9b98ca8bb13cef4b422f876"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q17/candidate.json",
+        "sha256": "ad21b75f5764c6a1192613e8c150ed086869550360655d60ace0d473dea639e9"
+      },
+      "candidateContentWithoutRelocatedPaths": "d64f8f02db64e7df3a3a684c07c2042e9f576b58c02209f0d1dd7a5c553033ad",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "sha256": "3f3f2be7983a9fd7e0c7112aaaf8fcb743a672624e53d1c272b6ecf339fd45da"
+      },
+      "authorCandidateDigest": "f09befc7b6b1b1898140f7055ef3bd0ef5ce125a7f4dbf5ce48018031fbc41a2"
+    },
+    {
+      "n": 19,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q19",
+      "studentDigest": "8a288ba524f8e0508bca7471f09f5ee7284677aa0e4a0150ac5e45c71e088254",
+      "candidateDigest": "c19b0e15a4171801222b7510f57bf2354949ebcc56e10483f7024ea2ca3210e2",
+      "assetDigest": "889a51e617be78399466d7c1d4c94bf4353d7530f8ae8deca574e11e9e8f03c6",
+      "solveDigest": "725672a4f1d8f2574fd60f7cf5dd0273f0b72bb4a41b66c9d74c9979b7d4217e",
+      "reportSha256": "619247ec3bf0cdc16ddfb72140520aa3eaa306055de3f8282062597f3437ec6c",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-19",
+        "sourceContentSha256": "8643234df9460eb8b58f8e4bb3be9a02fe01c5222618c97871faa82f3cf97209",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q19-part1.png",
+            "sha256": "8a7e07fcdb40612a8dd229c42ecb994cbadd3377783b87eed169f5e1fda4876f",
+            "page": 5,
+            "column": 0,
+            "bbox": [
+              55,
+              83,
+              375,
+              943
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-19",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q19",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "서술형",
+        "score": 8,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [
+          {
+            "part": 1,
+            "points": 2,
+            "criteria": "cos정의로QR식을 세움1, Pythagoras와양수로PR식1"
+          },
+          {
+            "part": 2,
+            "points": 4,
+            "criteria": "넓이식2, x²=100과양의근선택2"
+          },
+          {
+            "part": 3,
+            "points": 2,
+            "criteria": "QR6cm과PR8cm 각각1"
+          }
+        ],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 8,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 8,
+          "referenceParentScore": 8,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: 양의 빗변 변수를 놓고 두 실제 직각변을 구성한 뒤 넓이 식의 양의 제곱근으로 실제 길이를 복구한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "unitSection": "삼각비의 활용",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "일반 sin/cos 관계를 묻는03이 아니다. 실제 넓이로 삼각형 크기/세 길이를 복구하는 전체 서술형 갈래는 배정되지 않았다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|02",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 뜻",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "02",
+                  "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                    "family_key": "mid:3-2|삼각비|02",
+                    "live_count": 24
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 982,
+                  "endLine1based": 1023,
+                  "text": "def(\n    \"삼각비\",\n    \"02\",\n    \"삼각비를 이용하여 삼각형의 변의 길이 구하기\",\n    SEC.뜻,\n    \"기본\",\n    (rng) =>\n      attempt(120, () => {\n        const [p, q, r] = pick(rng, TRIPLES);\n        const mode = intBetween(rng, 0, 2);\n        const t = intBetween(rng, 1, 4);\n        // $\\angle B=90^\\circ$ · $\\angle A$ 기준: 대변 $pt$, 이웃변 $qt$, 빗변 $rt$.\n        const opp = p * t;\n        const adj = q * t;\n        const hyp = r * t;\n        if (hyp > 80) return null;\n        const [gnum, gden] = red(mode === 1 ? q : p, mode === 2 ? q : r);\n        if (gnum >= gden) return null;\n        const given = mode === 2 ? adj : hyp;\n        const x = mode === 1 ? adj : opp;\n        const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;\n        const askSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;\n        const relation = [\n          `\\\\sin A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n          `\\\\cos A=\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n          `\\\\tan A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n        ][mode]!;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$이고 $${trigOf(mode, \"A\")}=${frac(gnum, gden)}$, $${givenSide}=${cm(given)}$일 때, $${askSide}$의 길이를 구하시오.`,\n          answer: `$${cm(x)}$`,\n          solution: `$${relation}$이다.\\n따라서 $${askSide}=${given}\\\\times${frac(gnum, gden)}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: { num: gnum, den: gden, given, x, mode },\n          figureSpec: figRight({\n            vert: adj,\n            horz: opp,\n            dims: mode === 2 ? { AB: dimCm(given) } : { CA: dimCm(given) },\n          }),\n        };\n      }),\n  ),\n\n  "
+                }
+              },
+              {
+                "registry": {
+                  "key": "3-2|삼각비의 활용|01",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 활용",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비의 활용",
+                  "rpmType": "01",
+                  "rpmTitle": "직각삼각형의 변의 길이 구하기"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                    "family_key": "mid:3-2|삼각비의 활용|01",
+                    "live_count": 24
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1867,
+                  "endLine1based": 1928,
+                  "text": "def(\n    \"삼각비의 활용\",\n    \"01\",\n    \"직각삼각형의 변의 길이 구하기\",\n    SEC.활용,\n    \"기본\",\n    (rng) =>\n      attempt<Body>(200, () => {\n        const theta = pick(rng, [30, 45, 60] as const);\n        const g = pick(rng, [4, 6, 8, 10, 12, 16, 20] as const);\n        const mode = intBetween(rng, 0, 1);\n        const sinT = exact(0, theta)!;\n        const cosT = exact(1, theta)!;\n        const adj = surdMul(surd(g, 1, 1), cosT);\n        const opp = surdMul(surd(g, 1, 1), sinT);\n        if (mode === 0) {\n          // (넓이) $=\\dfrac{1}{2}\\times\\overline{AB}\\times\\overline{BC}$\n          const area = surdMul(surdMul(adj, opp), surd(1, 1, 2));\n          if (area.d !== 1) return null;\n          return {\n            content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$, $\\\\angle A=${theta}^\\\\circ$이고 $\\\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.`,\n            answer: `$${cm2(surdText(area))}$`,\n            solution: `$\\\\overline{AB}=${g}\\\\times\\\\cos ${theta}^\\\\circ=${surdText(adj)}\\\\,(\\\\mathrm{cm})$, $\\\\overline{BC}=${g}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(opp)}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 (넓이)$=\\\\dfrac{1}{2}\\\\times${surdText(adj)}\\\\times${surdText(opp)}=${surdText(area)}\\\\,(\\\\mathrm{cm}^2)$이다.`,\n            facts: nums({ theta, given: g, mode, an: area.n, ar: area.r }),\n            figureSpec: figRight({\n              vert: surdValue(adj),\n              horz: surdValue(opp),\n              angA: `${theta}°`,\n              dims: { CA: dimCm(g) },\n            }),\n          };\n        }\n        // 둘레 — 유리항과 무리항을 따로 모은다($45^\\circ$ 는 둘 다 $\\sqrt{2}$ 라 합쳐진다).\n        let c0 = g;\n        let irr: Surd = { n: 0, r: 1, d: 1 };\n        for (const s of [adj, opp]) {\n          if (s.r === 1) {\n            c0 += s.n / s.d;\n            continue;\n          }\n          const t = surdAdd(irr, s);\n          if (!t) return null;\n          irr = t;\n        }\n        if (!Number.isInteger(c0)) return null;\n        if (irr.n === 0 || irr.d !== 1) return null;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$, $\\\\angle A=${theta}^\\\\circ$이고 $\\\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 둘레의 길이를 구하시오.`,\n          answer: `$${lenText(c0, irr.n, irr.r, \"cm\")}$`,\n          solution: `$\\\\overline{AB}=${g}\\\\times\\\\cos ${theta}^\\\\circ=${surdText(adj)}\\\\,(\\\\mathrm{cm})$, $\\\\overline{BC}=${g}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(opp)}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 (둘레)$=${g}+${surdText(adj)}+${surdText(opp)}=${binomText(c0, irr.n, irr.r)}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: nums({ theta, given: g, mode, c0, c1: irr.n, root: irr.r }),\n          figureSpec: figRight({\n            vert: surdValue(adj),\n            horz: surdValue(opp),\n            angA: `${theta}°`,\n            dims: { CA: dimCm(g) },\n          }),\n        };\n      }),\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 19
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q19.json",
+          "sha256": "64d7e382f70950cc9d40c180099823c3ce484c1184416a89c1c2a2c4996cdaf0"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "[서술형 $1$] 직각삼각형 $\\mathrm{ABC}$에서 $\\mathrm{\\overline{AB}}=18cm$이고 $\\cos \\mathrm{B}=\\frac{1}{3}$일 때, $\\triangle \\mathrm{ABC}$의 넓이를 구하고, 그 풀이과정을 서술하시오. [$8$점, 부분점수 있음]\nC 직각; AB=18cm; cos B=1/3.",
+        "after": "빗변/코사인 입력으로 넓이를 묻던 서술형을 넓이/코사인 입력으로 실제 세 변의 크기를 복구하는 세 부분 기록으로 역전한다.",
+        "sharedConcept": "코사인 정의와 피타고라스에 의한 실제 밑변/높이 구성 및 삼각형 넓이",
+        "sharedProcedure": "양의 빗변 변수를 놓고 두 실제 직각변을 구성한 뒤 넓이 식의 양의 제곱근으로 실제 길이를 복구한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q19\\q19.json",
+        "sha256": "f436be0b4e7157ca2ee5db9043e350b353f121f8eb48c3531416d91405a1fd16"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "1a611b422fac37c97833460b2db724956915596d6a6edef71dba6129b7239793",
+          "svgSha256": "f20873d5f9b8459b755075e8aca5ef71c14d5f1d5f06b17b68835885591de7fc",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q19-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q19.json",
+        "sha256": "78c99877c650115eee3b56ffa3b24dd6a99ca0500305dff3a501b8fc799a5a93"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q19.json",
+        "sha256": "619247ec3bf0cdc16ddfb72140520aa3eaa306055de3f8282062597f3437ec6c"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q19/candidate.json",
+        "sha256": "ffbd57c62b1fbb26bd26fa311f873eced64134421f3cf8e94e90bddf38acf160"
+      },
+      "candidateContentWithoutRelocatedPaths": "1f5d79bd8c1d9d142dfdd632c17ea950ebf74229c2788dc69e25dead4e08ca59",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "sha256": "f436be0b4e7157ca2ee5db9043e350b353f121f8eb48c3531416d91405a1fd16"
+      },
+      "authorCandidateDigest": "519730cf301789d7b8282540e4b53f8fce6d117079c8e9932696aa13974aaac6"
+    },
+    {
+      "n": 20,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+      "studentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+      "candidateDigest": "ff6421ee4d288ba585d613d91416ca4abd7b37d71ad1ae5f8f218666e58c464a",
+      "assetDigest": "ca03bce69450c9c0408c424a1e664c0baef98a8bbd132f4a0ff82bfdf09d9ba8",
+      "solveDigest": "ab79260e134e1f43d80a20e401d15f4ce02e57e952e1617fc337805c3b543885",
+      "reportSha256": "476d4e49caeade621120215e3f515e09d00352d340ce44919dfc2eba6843c2a1",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-20",
+        "sourceContentSha256": "2a9b36df0b941de4891c535a103d14cfd8dc0331a0b72f7d29079840083f9d21",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q20-part1.png",
+            "sha256": "37f4d6b0396f6d74f8c40da9c1efe1ef9fc48a26dc969b883d844190bceb0e2d",
+            "page": 5,
+            "column": 1,
+            "bbox": [
+              370,
+              83,
+              688,
+              943
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": false,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-20",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "서술형",
+        "score": 8,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [
+          {
+            "part": 1,
+            "points": 2,
+            "criteria": "SSS/평각의수직근거1, 각이등분에의한30도1"
+          },
+          {
+            "part": 2,
+            "points": 3,
+            "criteria": "QH5와Pythagoras식2,양의길이5√3cm1"
+          },
+          {
+            "part": 3,
+            "points": 3,
+            "criteria": "세직접선분비와정확한값 각각1"
+          }
+        ],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 8,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 8,
+          "referenceParentScore": 8,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: SSS와평각으로수선을 정당화하고 양의높이를 피타고라스로 구해30도 직각삼각형의세정의를 직접 읽는다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "unitSection": "삼각비의 값",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "정해진특수각 값을 계산하는 갈래와 달리 합동/수선/높이/세정의 구성 증명이 필요하므로 전체family를 보류한다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비|09",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 값",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "09",
+                  "rpmTitle": "의 삼각비의 값을 이용하여 각의 크기 구하기"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                    "family_key": "mid:3-2|삼각비|09",
+                    "live_count": 20
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1229,
+                  "endLine1based": 1259,
+                  "text": "def(\n    \"삼각비\",\n    \"09\",\n    \"의 삼각비의 값을 이용하여 각의 크기 구하기\",\n    SEC.값,\n    \"기본\",\n    (rng) =>\n      attempt(300, () => {\n        const fn = intBetween(rng, 0, 2);\n        const theta = pick(rng, [30, 45, 60] as const);\n        const m = intBetween(rng, 1, 3);\n        const off = pick(rng, [-30, -20, -15, -10, 10, 15, 20, 30] as const);\n        if ((theta - off) % m !== 0) return null;\n        const x = (theta - off) / m;\n        if (x <= 0 || x >= 90) return null;\n        const v = exact(fn, theta);\n        if (!v) return null;\n        const coef = m === 1 ? \"x\" : `${m}x`;\n        const inner =\n          off > 0 ? `${coef}+${off}^\\\\circ` : `${coef}-${-off}^\\\\circ`;\n        return {\n          content: `$${inner}$가 예각이고 $${FN_NAMES[fn]}(${inner})=${surdText(v)}$일 때, $x$의 크기를 구하시오.`,\n          answer: `$${x}^\\\\circ$`,\n          solution: `$${trigText(fn, theta)}=${surdText(v)}$이고 $${inner}$가 예각이므로 $${inner}=${theta}^\\\\circ$이다.\\n따라서 $x=${x}^\\\\circ$이다.`,\n          facts: { fn, theta, m, off, x, an: v.n, ar: v.r, ad: v.d },\n          figureSpec: null,\n        };\n      }),\n  ),\n\n  "
+                }
+              },
+              {
+                "registry": {
+                  "key": "3-2|삼각비|13",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 값",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비",
+                  "rpmType": "13",
+                  "rpmTitle": "의 삼각비의 값"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                    "family_key": "mid:3-2|삼각비|13",
+                    "live_count": 18
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 1382,
+                  "endLine1based": 1410,
+                  "text": "def(\"삼각비\", \"13\", \"의 삼각비의 값\", SEC.값, \"기본\", (rng) =>\n    attempt(300, () => {\n      const angles = [0, 30, 45, 60, 90] as const;\n      const a1 = pick(rng, angles);\n      const a2 = pick(rng, angles);\n      // 이 유형의 열쇠는 $0^\\circ$·$90^\\circ$ 다 — 적어도 한 항은 거기서 나온다.\n      if (a1 !== 0 && a1 !== 90 && a2 !== 0 && a2 !== 90) return null;\n      const f1 = intBetween(rng, 0, 2);\n      const f2 = intBetween(rng, 0, 2);\n      if (a1 === a2 && f1 === f2) return null;\n      const op = intBetween(rng, 0, 3);\n      const v1 = exact(f1, a1);\n      const v2 = exact(f2, a2);\n      if (!v1 || !v2) return null;\n      const res = applyOp(op, v1, v2);\n      if (!res) return null;\n      if (res.r === 1 && res.d > 1 && Math.abs(res.n) >= res.d) return null;\n      const expr = `${trigText(f1, a1)} ${OP_TEXT[op]} ${trigText(f2, a2)}`;\n      return {\n        content: `$${expr}$의 값을 구하시오.`,\n        answer: `$${surdText(res)}$`,\n        solution: `$${trigText(f1, a1)}=${surdText(v1)}$, $${trigText(f2, a2)}=${surdText(v2)}$이다.\\n따라서 $${expr}=${surdText(v1)} ${OP_TEXT[op]} ${surdText(v2)}=${surdText(res)}$이다.`,\n        facts: { f1, a1, op, f2, a2, an: res.n, ar: res.r, ad: res.d },\n        figureSpec: null,\n      };\n    }),\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 20
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q20.json",
+          "sha256": "4a5007a9981ceab612edcb45338e22888a2cb41b93fb8cea26ca68b6bd85ce11"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "representation",
+          "structure"
+        ],
+        "before": "[서술형 $2$] 정삼각형 $\\mathrm{ABC}$를 이용하여 $60^\\circ$의 삼각비를 구하고, 그 과정을 서술하시오.\n[$8$점, 부분점수 있음]\n정삼각형 ABC; 각 60°; 수선 구성은 풀이에서 새로 해야 한다.",
+        "after": "정삼각형으로60도 값을 서술하는 문제를, 중점 수선의 합동 근거/실제 높이/꼭짓점의30도 세 값 기록표로 바꾸어 질문 대상과 증명 조직을 새로 구성한다.",
+        "sharedConcept": "정삼각형을 수선으로 나누고 피타고라스와 삼각비 정의로 특수값 구성",
+        "sharedProcedure": "SSS와평각으로수선을 정당화하고 양의높이를 피타고라스로 구해30도 직각삼각형의세정의를 직접 읽는다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q20\\q20.json",
+        "sha256": "d7eb1afb51684cd0cba6665dcf502d610911d0a562b29e8bde13706a915d5d6c"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "79bfcc7fc1cc5d8a1dc9b224b8cfa3d8a136992dbf8e316dc97d30c739240ddd",
+          "svgSha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q20-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q20.json",
+        "sha256": "d125639e1bd8e9e1e106b8e5462236228561549eedf97f19ae7df68760ec333a"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q20.json",
+        "sha256": "476d4e49caeade621120215e3f515e09d00352d340ce44919dfc2eba6843c2a1"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q20/candidate.json",
+        "sha256": "9f823e4ecf504dc3513fdec3b9766af89552c7970d490f6e96d621145791c2fb"
+      },
+      "candidateContentWithoutRelocatedPaths": "075a06e8029e43612540cdbfe39d779c2b0b6ad18e4153088f73608d4d62bafd",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "sha256": "d7eb1afb51684cd0cba6665dcf502d610911d0a562b29e8bde13706a915d5d6c"
+      },
+      "authorCandidateDigest": "03b322a3da318f8f65df92228fb25b3a5c2e1c000fc16fdd71471abebed82482"
+    },
+    {
+      "n": 21,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+      "studentDigest": "f1b9e9f5a3138cc5b9f702c6f3f2ecf50b21aed02cd5f518d3a5066955d4284c",
+      "candidateDigest": "6a12f87c656411963e113f9b9af50cf47624c1dafbdd893a659e0f49cd7543c4",
+      "assetDigest": "502d010af81c38241610e3ff45524475fde3bd8104fb2d970cda8061178b0119",
+      "solveDigest": "a32578e3fd38ea351b14f2896b003a0d9b4fc2a4c42b910eb158a28522049821",
+      "reportSha256": "a8b877d1f3864920babec282c37c433686933fa1f3dc3974de634b9cfb61c6dd",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-21",
+        "sourceContentSha256": "b3bd5e1e3aad29ca8767586c5b6a0356ac3469f1763cf0f3fa2846d4e5b3b016",
+        "sourceSchoolInternal": "경상중",
+        "sourceExamYear": 2025,
+        "packet": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+          "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+        },
+        "sourceCommit": "4cc9278da",
+        "questionOnlyImageRefs": [
+          {
+            "file": "images/q21-part1.png",
+            "sha256": "0c90e365ba51bf41ed328cb8050b249e100ccbb08760bfb0582c3b67b2a72a2b",
+            "page": 6,
+            "column": 0,
+            "bbox": [
+              55,
+              83,
+              375,
+              943
+            ]
+          }
+        ],
+        "providedOriginalFileRefs": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+            "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+            "bytes": 1635840
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+            "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+            "bytes": 14846744
+          }
+        ],
+        "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "sourceManifestOrOriginalAnswerInput": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "semester": 2,
+        "subject": "수학",
+        "source": "transformed",
+        "originProblemId": null,
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "2027Republication": "requiresnew2022review"
+        },
+        "sourceExamYear": 2025,
+        "sourceSchoolInternal": "경상중",
+        "fictionalVisibleSchool": "해솔중학교",
+        "schoolReplacementMap": {
+          "경상중": "해솔중학교"
+        },
+        "fictionalSchoolUsedInStudentText": true,
+        "sourceQuestionId": "2025-gyeongsang-3-2-mid-21",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+        "sourceSchoolNamesInStudentSurfaces": false,
+        "questionType": "서술형",
+        "score": 8,
+        "parentScoreCountedOnce": true,
+        "newSubpartRubric": [
+          {
+            "part": 1,
+            "points": 3,
+            "criteria": "60도삼각비로OH9m1,PH9√3m2"
+          },
+          {
+            "part": 2,
+            "points": 3,
+            "criteria": "Pythagoras식과2252,양의근15m1"
+          },
+          {
+            "part": 3,
+            "points": 2,
+            "criteria": "내부H의길이합과OQ24m"
+          }
+        ],
+        "sourcePrintedScore": {
+          "selectedHwpPdfPrintedParentScore": 8,
+          "selectedPairScoreStatus": "literal_match",
+          "originalPrintedParentScore": 8,
+          "referenceParentScore": 8,
+          "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+          "parentCountedOnce": true,
+          "childScores": [],
+          "subquestionCount": 0,
+          "parentAndChildrenMustNotBeAddedTogether": false
+        },
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "difficultyEvidence": "Task operations: OH/PH를60도 정의로 구성하고 PHQ의양의길이를Pythagoras로 복구한뒤 내부순서로합한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending",
+        "problemTypeEvidence": {
+          "path": "classification-limits.json",
+          "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+        },
+        "assignment": {
+          "status": "pending",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "unitSection": "삼각비의 활용",
+          "familyKey": null,
+          "evidence": {
+            "actualCapturedUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+            "snapshotOnly": true,
+            "comparison": "끼인각/두변→맞은편변과 공통수선이 있지만 한변/맞은편변→다른변의역산 및세서술부분 전체는 확인되지 않았다.",
+            "comparedRegistryEntries": [
+              {
+                "registry": {
+                  "key": "3-2|삼각비의 활용|04",
+                  "grade": "중3",
+                  "unitSection": "삼각비의 활용",
+                  "rpmBook": "3-2",
+                  "rpmMinor": "삼각비의 활용",
+                  "rpmType": "04",
+                  "rpmTitle": "일반 삼각형의 변의 길이 구하기 두 변의 길이와 그 끼인각의 크기를 아는 경우"
+                },
+                "liveMatches": [
+                  {
+                    "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                    "family_key": "mid:3-2|삼각비의 활용|04",
+                    "live_count": 22
+                  }
+                ],
+                "actualRule": {
+                  "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+                  "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+                  "startLine1based": 2029,
+                  "endLine1based": 2084,
+                  "text": "def(\n    \"삼각비의 활용\",\n    \"04\",\n    \"일반 삼각형의 변의 길이 구하기 두 변의 길이와 그 끼인각의 크기를 아는 경우\",\n    SEC.활용,\n    \"응용\",\n    (rng) => {\n      // $[\\overline{AB}$의 계수·근호, $\\overline{BC}$, $\\angle B$, $\\overline{BH}$,\n      //  $\\overline{AH}$의 계수·근호, $\\overline{HC}$, $\\overline{AC}]$ —\n      // 전부 수선의 발 $H$ 로 실제 계산해 둔 값이라 답이 정수다.\n      const [abC, abR, bc, ang, bh, ahC, ahR, hc, ac] = pick(rng, [\n        [8, 1, 5, 60, 4, 4, 3, 1, 7],\n        [8, 1, 15, 60, 4, 4, 3, 11, 13],\n        [16, 1, 21, 60, 8, 8, 3, 13, 19],\n        [6, 1, 16, 60, 3, 3, 3, 13, 14],\n        [10, 1, 16, 60, 5, 5, 3, 11, 14],\n        [24, 1, 35, 60, 12, 12, 3, 23, 31],\n        [8, 1, 7, 120, 4, 4, 3, 11, 13],\n        [16, 1, 5, 120, 8, 8, 3, 13, 19],\n        [6, 1, 10, 120, 3, 3, 3, 13, 14],\n        [10, 1, 6, 120, 5, 5, 3, 11, 14],\n        [24, 1, 11, 120, 12, 12, 3, 23, 31],\n        [3, 2, 7, 45, 3, 3, 1, 4, 5],\n        [6, 2, 14, 45, 6, 6, 1, 8, 10],\n        [5, 2, 17, 45, 5, 5, 1, 12, 13],\n        [12, 2, 17, 45, 12, 12, 1, 5, 13],\n        [5, 2, 7, 135, 5, 5, 1, 12, 13],\n        [8, 2, 7, 135, 8, 8, 1, 15, 17],\n        [7, 2, 17, 135, 7, 7, 1, 24, 25],\n      ] as const);\n      const abText = surdText(surd(abC, abR, 1));\n      const ahText = surdText(surd(ahC, ahR, 1));\n      const outer = ang > 90 ? 180 - ang : ang;\n      const where =\n        ang > 90\n          ? `꼭짓점 $A$에서 $\\\\overline{BC}$의 연장선에 내린 수선의 발을 $H$라 하면 $\\\\angle ABH=${outer}^\\\\circ$이므로`\n          : `꼭짓점 $A$에서 $\\\\overline{BC}$에 내린 수선의 발을 $H$라 하면`;\n      return {\n        content: `삼각형 $ABC$에서 $\\\\overline{AB}=${cm(abText)}$, $\\\\overline{BC}=${cm(bc)}$, $\\\\angle B=${ang}^\\\\circ$일 때, $\\\\overline{AC}$의 길이를 구하시오.`,\n        answer: `$${cm(ac)}$`,\n        solution: `${where} $\\\\overline{BH}=${abText}\\\\times\\\\cos ${outer}^\\\\circ=${bh}\\\\,(\\\\mathrm{cm})$, $\\\\overline{AH}=${abText}\\\\times\\\\sin ${outer}^\\\\circ=${ahText}\\\\,(\\\\mathrm{cm})$이다.\\n$\\\\overline{HC}=${hc}\\\\,\\\\mathrm{cm}$이므로 직각삼각형 $AHC$에서 $\\\\overline{AC}=\\\\sqrt{(${ahText})^2+${hc}^2}=${ac}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { abC, abR, bc, ang, bh, hc, ac },\n        // 원장님 지적 2026-08-25 — `J30503-A04-002` 는 발문이 $\\overline{AB}$·\n        // $\\overline{BC}$ 를 둘 다 말하는데 그림엔 `6 cm` **하나뿐**이었다.\n        // 「받은 치수를 다 적는다」는 09 §4-20 이 이미 정한 규칙이다.\n        figureSpec: figTwoSides({\n          ab: abC * Math.sqrt(abR),\n          bc,\n          angB: ang,\n          dims: { AB: dimCm(abText), BC: dimCm(bc) },\n        }),\n      };\n    },\n  ),\n\n  "
+                }
+              }
+            ],
+            "TRIPLESPoolCheckedForQ01": null
+          }
+        },
+        "authorMathEvidence": {
+          "file": "../../author-calculations.json",
+          "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+          "questionNumber": 21
+        },
+        "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "rightsApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "limits": [
+          "Independent solve and full seven-surface review pending.",
+          "Rights/native/custody/loading remain pending.",
+          "Historical taxonomy snapshot is not a currentDB assertion."
+        ],
+        "authorFigureEvidence": {
+          "path": "figure-author-checks.json",
+          "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+        },
+        "authorVisualEvidence": {
+          "path": "visual-inspection.json",
+          "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+        },
+        "officialAuthorCurriculumEvidence": {
+          "path": "curriculum-author-basis.json",
+          "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+        },
+        "authorSevenSurfaceEvidence": {
+          "path": "author-checks/q21.json",
+          "sha256": "977e7561b992c923f427f7e0eba45224c6d7ff7afbde07e1360d53cf922f9846"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "context",
+          "inverse-target",
+          "structure"
+        ],
+        "before": "[서술형 $3$] 연못의 두 지점 $\\mathrm{B},~C$ 사이의 거리를 구하기 위해 연못의 바깥쪽에 지점 $\\mathrm{A}$를 정하여 측정하였더니, $\\mathrm{\\overline{AB}}=30m,~\\overline{AC}=40m,~\\angle A=60^\\circ$일 때, 두 지점 $\\mathrm{B},~C$ 사이의 거리를 구하고, 그 풀이과정을 서술하시오. [$8$점, 부분점수 있음]\nAB=30m, AC=40m; ∠A=60°; 연못 양끝 B,C.",
+        "after": "연못의관측점에서 두알려진변/끼인각으로맞은편거리를 구하던 것을 새연습공간의한변/맞은편변/끼인각으로 다른변을복구하는수선별서술형으로역전한다.",
+        "sharedConcept": "60도 수선 직각삼각형과 피타고라스에 의한 관측 거리 구성",
+        "sharedProcedure": "OH/PH를60도 정의로 구성하고 PHQ의양의길이를Pythagoras로 복구한뒤 내부순서로합한다.",
+        "originalAnswerOrNumericalAgreementUsed": false
+      },
+      "packageDigest": "6fc7974b96cf5f6c5aa63fac6aac3c20a61f8bb8ae97928142f9886a0c898605",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q21\\q21.json",
+        "sha256": "cd2ccfa83e50bef390c7397a864ee1b087944c1f06187ef048ed0bf675d69a1a"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "c2b557961055ec2cc8e92f3620dab4c398a6c69acf6092b4410973b2a31e3f1a",
+          "svgSha256": "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q21-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-final-review-20261019-r3\\blind\\solve\\q21.json",
+        "sha256": "8ecd9eaaf324d5c92046ecdbdecd90b7e10f3bb8b995a4ae01afb147e793d0e0"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/reports/q21.json",
+        "sha256": "a8b877d1f3864920babec282c37c433686933fa1f3dc3974de634b9cfb61c6dd"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/verification/verification-manifest.json",
+        "sha256": "51a01c813c1dbeddb9d5e9a5f74e359a632d741e37cdc5cf297abb9325bbbb2f"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/blind/blind-manifest.json",
+        "sha256": "471c5e8754dd3f219d52306bfa7dba941100987cf4129dcfae41459192f85aef"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-final-review-20261019-r3/package/private/q21/candidate.json",
+        "sha256": "c5a59442c46c226a5186aa8186ec23852334dfa98e41070a690c6b21681ce405"
+      },
+      "candidateContentWithoutRelocatedPaths": "3daefdd8ae327cecb4a5b0adae0cc59aa5b1b8ca9d7709de24190b7f319d8e7a",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "sha256": "cd2ccfa83e50bef390c7397a864ee1b087944c1f06187ef048ed0bf675d69a1a"
+      },
+      "authorCandidateDigest": "915abbc2b0a47ec85377438677ba4697d2d3c14a677e1bd9c0e595a3c49ded14"
+    }
+  ],
+  "reviewBindingDigest": "090cfca7c9311c0d46042b462ca2c4bd7ef3ca252b754650d9b369ec04c7df2b",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

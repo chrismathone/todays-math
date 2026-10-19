@@ -1,0 +1,129 @@
+{
+  "studentDigest": "2943693cd61755fa2623c43bab6afc0ca7af4022dc19a1deecc299cfdfb59347",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "③",
+  "solution": "R이 직각이므로 빗변은 PQ이다. 각 P의 사인 정의에 의해 sin P=QR/PQ=7/25이다. PQ=25 cm이므로 QR=25×(7/25)=7 cm이다. 따라서 ㉠=7, 정답은 ③이다. 이때 PR=√(25²−7²)=24 cm로 양의 길이가 존재한다.",
+  "evidence": {
+    "questionNumber": 1,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q01",
+    "studentOnlyInputs": true,
+    "figureReading": "Figure shows R right, PQ hypotenuse and QR opposite P; no length read from scale.",
+    "renderedFiguresViewed": [
+      {
+        "svgPath": "figures/q01-1.svg",
+        "sha256": "596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76",
+        "pngPath": "rendered/q01-1.png",
+        "pixelMeasurement": false
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$24$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "24",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$175$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "175",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$7$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "7",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$25$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "25",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$18$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "18",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "parts": [],
+    "existenceUniquenessPositiveLengthsUnits": "Positive right triangle7–24–25 exists. QR is uniquely fixed by QR/25=7/25; all legs positive. ㉠ is a numerical count in cm.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "사인의 정의",
+        "양의 길이와 비례식"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q01",
+      "actualResult": {
+        "calculated": "7",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "24",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "175",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "7",
+            "correct": true
+          },
+          {
+            "choice": 4,
+            "encodedValue": "25",
+            "correct": false
+          },
+          {
+            "choice": 5,
+            "encodedValue": "18",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 3
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

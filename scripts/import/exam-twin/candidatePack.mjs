@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { compareConstantParts } from "./constantAnswers.mjs";
+import { compareWrittenAnswerPresentation } from "./answerPresentation.mjs";
 
 export const REVIEW_CHECKS = [
   "answerCorrect",
@@ -409,7 +410,7 @@ export function independentAnswerMatches(candidate, answer) {
   if (!answer) return false;
   const exact = normalizeAnswer(answer) === normalizeAnswer(candidate.answer);
   if (candidate.questionType !== "객관식" || candidate.choices?.length !== 5)
-    return exact;
+    return exact || compareWrittenAnswerPresentation(candidate.answer, answer).status === "equivalent";
   const marked = (x) => /^\s*([①-⑤])(?:\s+(.+?))?\s*$/u.exec(String(x));
   const expected = marked(candidate.answer), actual = marked(answer);
   if (!expected || !actual) return exact;
@@ -433,6 +434,16 @@ export function independentAnswerMatches(candidate, answer) {
     return supplied !== null &&
       compareConstantParts([selected], [supplied]).status === "equivalent";
   });
+}
+
+/** Serialization sanity before exposing answers. This is not a math/grade test. */
+export function assertRawSolveReadable(solve, questionType) {
+  assert(typeof solve.answer === "string" && solve.answer.trim(), "Raw answer is missing");
+  assert(typeof solve.solution === "string" && solve.solution.trim(), "Raw solution is missing");
+  assert(!/[?\uFFFD]/u.test(solve.answer), "Raw answer has an unresolved or damaged character");
+  assert(!/\?\?|\uFFFD/u.test(solve.solution), "Raw solution has unresolved or damaged characters");
+  if (questionType === "객관식")
+    assert(/^\s*[①-⑤](?:(?:\s+|[:：,]\s*)[^?]+)?\s*$/u.test(solve.answer), "Raw MC answer needs a readable choice mark");
 }
 
 export function evaluateReview(binding, solve, review, gates = {}) {
@@ -468,6 +479,8 @@ export function evaluateReview(binding, solve, review, gates = {}) {
     else if (review.status !== "verified")
       fail(`review-status-${review.status}`);
     if (solve.status !== "solved") fail("independent-solve-not-complete");
+    try { assertRawSolveReadable(solve, binding.candidate.questionType); }
+    catch { fail("independent-raw-proof-unreadable"); }
     if (
       !independentAnswerMatches(binding.candidate, solve.answer)
     )

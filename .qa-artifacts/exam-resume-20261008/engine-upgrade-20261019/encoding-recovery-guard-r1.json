@@ -1,0 +1,24 @@
+{
+  "kind": "actual-pre-exposure-encoding-counterexample/v1",
+  "createdAt": "2026-10-19T06:57:52.544Z",
+  "oldRaw": {
+    "path": ".qa-artifacts/exam-resume-20261008/gangbuk-independent-20261019-r1/solve/q01.json",
+    "sha256": "b8c79027b13a3365f90b4a254e449a7527bd17739bcd2d3925ac57b6ccd6df7e",
+    "commit": "e454116eb7de621be8a4476b6ca853a22e4b6043"
+  },
+  "rejectedBeforeOutput": true,
+  "reason": "Raw answer has an unresolved or damaged character",
+  "outputExists": false,
+  "oldRawModified": false,
+  "freshUnexposedActorRawCommit": "415c30466d60634bf000ba1ae5396f7d97be2e7a",
+  "freshProof": {
+    "path": ".qa-artifacts/exam-resume-20261008/gangbuk-independent-20261019-r2/solve/q01.json",
+    "sha256": "7e22c19d5664f456a10a2ad060c7a9170d1cd2b2e72dc1af05f6b577c51ac1aa"
+  },
+  "oldActorTerminal": "term_1870621b-e4f1-41c9-8d0a-f31d2e1cf6b1",
+  "freshActorTerminal": "term_9b99805b-bed0-467d-a7ee-aa5ac9cab178",
+  "worktreeReused": true,
+  "newWorktreeCreated": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

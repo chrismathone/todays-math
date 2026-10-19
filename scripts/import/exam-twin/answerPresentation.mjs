@@ -1,0 +1,72 @@
+/** Bounded numbered-answer comparison, not a solver or geometry/grade proof.
+ * Roles, explicit units, subpart order and a single x factor are preserved.
+ * No prose, general symbolic identities, substitutions or sampled equivalence.
+ */
+import assert from 'node:assert/strict';
+import { compareConstantParts } from './constantAnswers.mjs';
+
+function parse(source) {
+  assert(typeof source === 'string' && source.length <= 4096);
+  assert(!/\d\s+\d/u.test(source), 'Separated numerals');
+  let text = source.replace(/²/g, '^{2}').replace(/³/g, '^{3}').normalize('NFKC')
+    .replace(/\$([^$]*)\$/g, '$1')
+    .replace(/\\(?:left|right)/g, '')
+    .replace(/\\(?:alpha|beta|gamma)/g, (s) => ({'\\alpha':'α','\\beta':'β','\\gamma':'γ'})[s])
+    .replace(/\\perp/g, '⊥').replace(/\\(sin|cos|tan)/g, '$1')
+    .replace(/\\(?:dfrac|tfrac)/g, '\\frac')
+    .replace(/\\frac(\d)(\d)/g, '\\frac{$1}{$2}')
+    .replace(/\\(?:mathrm|text)\{(cm|m)\}/g, '$1')
+    .replace(/\^\{?\\circ\}?/g, '°')
+    .replace(/\\[,!; ]|[~\s]/g, '');
+  const labels = [...text.matchAll(/\((\d{1,2})\)/g)];
+  assert(labels.length > 0 && labels.length <= 12 && labels[0].index === 0, 'Numbered parts required');
+  const lhs = /^(?:[A-Z]{1,3}|[αβγ]|(?:sin|cos|tan)[αβγ])$/u;
+  return labels.map((mark, index) => {
+    assert.equal(Number(mark[1]), index + 1, 'Ordered unique subparts required');
+    let body = text.slice(mark.index + mark[0].length, labels[index + 1]?.index ?? text.length).replace(/;$/, '');
+    const seen = new Set();
+    const terms = body.split(',').map((term) => {
+      assert(term.length > 0, 'Empty assignment');
+      if (/^[A-Z]{1,3}⊥[A-Z]{1,3}$/u.test(term)) {
+        assert(!seen.has(term)); seen.add(term);
+        return { relation: term };
+      }
+      const eq = term.split('=');
+      assert(eq.length === 2 && lhs.test(eq[0]) && !seen.has(eq[0]), 'Unique named assignment required');
+      seen.add(eq[0]);
+      const units = /^(.*?)(cm|m)(?:\^\{?([23])\}?)?$/u.exec(eq[1]);
+      let value = units ? units[1] : eq[1];
+      let unit = units ? units[2] + (units[3] ? `^${units[3]}` : '') : 'none';
+      if (value.endsWith('°')) { assert.equal(unit, 'none'); unit = 'deg'; value = value.slice(0, -1); }
+      let variable = null;
+      if (value.includes('x')) {
+        const monomial = /^(?:([+-]?\d+(?:\.\d+)?)?x(?:\/(\d+))?|\\frac\{([+-]?\d+)x\}\{(\d+)\})$/u.exec(value);
+        assert(monomial, 'Only an explicit single x factor is supported');
+        variable = 'x';
+        value = monomial[3] !== undefined ? `${monomial[3]}/${monomial[4]}` : `${monomial[1] ?? '1'}/${monomial[2] ?? '1'}`;
+      }
+      const part = { role: eq[0], value, unit };
+      assert.equal(compareConstantParts([part], [part]).status, 'equivalent', 'Unsupported scalar');
+      return { part, variable };
+    });
+    return { label: index + 1, terms };
+  });
+}
+
+export function compareWrittenAnswerPresentation(author, independent) {
+  const limits = { presentationComparisonOnly: true, relationTruthProved: false,
+    permitsGradeOrQuestionApproval: false, generalSymbolicEquivalence: false };
+  try {
+    const a = parse(author), b = parse(independent);
+    const equal = a.length === b.length && a.every((p, i) =>
+      p.terms.length === b[i].terms.length && p.terms.every((term, j) => {
+        const other = b[i].terms[j];
+        if ('relation' in term || 'relation' in other) return term.relation === other.relation;
+        return term.variable === other.variable &&
+          compareConstantParts([term.part], [other.part]).status === 'equivalent';
+      }));
+    return { status: equal ? 'equivalent' : 'different', ...limits };
+  } catch (error) {
+    return { status: 'unsupported', reason: error.message, ...limits };
+  }
+}

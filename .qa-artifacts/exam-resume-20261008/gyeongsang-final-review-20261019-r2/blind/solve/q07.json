@@ -1,0 +1,131 @@
+{
+  "studentDigest": "e50a69925cee1b85a85af824a2f35617704372861ee872f7f8f60d4e866b4100",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "②",
+  "solution": "R=90°, P=45°이므로 Q=45°이다. 따라서 두 직각변 PR,RQ는 같고, 그 길이를 t>0이라 하면 피타고라스 정리에 의해 2t²=(12√2)²=288이다. t²=144이므로 t=12 cm이다. 구하는 차는 PR+RQ−PQ=12+12−12√2=24−12√2 cm이므로 ②이다. 1<√2<2이므로 이 차는 0과12 사이이며 다른 보기와도 구별된다.",
+  "evidence": {
+    "questionNumber": 7,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q07",
+    "studentOnlyInputs": true,
+    "figureReading": "R is the upper right-angle vertex; P45° and PQ is the lower hypotenuse, not a leg.",
+    "renderedFiguresViewed": [
+      {
+        "svgPath": "figures/q07-1.svg",
+        "sha256": "7dfd74e8fcfae4bf45df5049313461b8ec7fb4b1912b33df4492c7f30ad2b1e8",
+        "pngPath": "rendered/q07-1.png",
+        "pixelMeasurement": false
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$12\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "(12, 0)",
+          "correct": false
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$(24-12\\sqrt2)\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "(24, -12)",
+          "correct": true
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$12\\sqrt2\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "(0, 12)",
+          "correct": false
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$(24+12\\sqrt2)\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "(24, 12)",
+          "correct": false
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$24\\,\\mathrm{cm}$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "(24, 0)",
+          "correct": false
+        },
+        "explanation": "Pairs encode rational part and coefficient of√2. Positivity/order proof0<24−12√2<12 additionally separates all distractors."
+      }
+    ],
+    "parts": [],
+    "existenceUniquenessPositiveLengthsUnits": "A45–45–90 triangle with legs12 and hypotenuse12√2 exists and fixes the requested difference. Since1<√2<2, 0<24−12√2<12. Length unitcm; triangle inequality satisfied.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "삼각형 내각의 합",
+        "이등변직각삼각형",
+        "피타고라스 정리",
+        "근호의 계산"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q07",
+      "actualResult": {
+        "calculated": "(24, -12)",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "(12, 0)",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "(24, -12)",
+            "correct": true
+          },
+          {
+            "choice": 3,
+            "encodedValue": "(0, 12)",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "(24, 12)",
+            "correct": false
+          },
+          {
+            "choice": 5,
+            "encodedValue": "(24, 0)",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 2
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

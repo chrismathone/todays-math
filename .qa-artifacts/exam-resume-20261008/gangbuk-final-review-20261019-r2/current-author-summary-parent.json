@@ -1,0 +1,186 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T07:06:33.496Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/gangbuk-final-review-20261019-r2/current-selection-parent.json",
+    "sha256": "6190b08935a7c8bc582cf0f19b0da35bd0c17d35022959f08c1ebae9a2b3ff96"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 1,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 1,
+    "figureInstances": 0,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    1
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-gangbuk-2025-1-mid-author-r1-q01",
+      "studentDigest": "3495bdf016028ee78b38c57f6d5afc1d160820896c91102b659bbea3d1983740",
+      "candidateDigest": "005d9179e12672d6ec72861ddafdf83026d0455eda30024e7c550bbff5bd0ee9",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "c2ed36a6075b19dee8e412d7d9a3aa71877257d7de82a324ac2648af7130ccd9",
+      "reportSha256": "400c91dbb6b2c3285799f4f335320c2e8b19c50f7db2df9ae753f5220ea94e7e",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gangbuk-3-1-mid-1",
+        "newSourceReferenceId": "source-ref-gangbuk-2025-1-mid-r1-q01",
+        "sourceContentSha256": "2c82a792998c6ad70d7e4a13079ff4258a3b16bb024883d8b904c850a7235c08",
+        "sourceSchoolInternal": "강북중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-ae2bb575dbaef34005e65cdeedba6860",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r2/personal-ae2bb575dbaef34005e65cdeedba6860/source-manifest.local.json",
+          "sha256": "9e1fbb7f8b8a5a5a3f6f5bced0530ac62a1174548f19b38dabf1e13df074e701"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[강북중][3][25-1-중간][동아강] (완료).hwp",
+            "sha256": "4e1f70e5bf4df634492ee9d0ca346dcd7bda8ba45a85f4f367ba77d62a4d0ef0",
+            "bytes": 153600
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[강북중][3][25-1-중간][동아강] (완료).PDF",
+            "sha256": "02cbfc930e9b252b5ef5d5a23433e9359d3f48b897e95adeca24b73565f6c0e0",
+            "bytes": 128348
+          }
+        ],
+        "sourceIdentityAsProvided": "printed2025-grade3-semester1-midterm-observed; whole-pair/custody not certified",
+        "originalQuestionCrop": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r2/personal-ae2bb575dbaef34005e65cdeedba6860/reviewer-only/question-01-part1.png",
+          "sha256": "73680509f84c827219a8dd94d68ee89cc30c34800b0defab4d787528b23046c4"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 3,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed",
+        "sourceDifficultyObserved": "하",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "familyKey": null,
+          "evidence": "실제 중3 제곱근의 뜻과 성질 UUID/학기와 live family snapshot을 확인했다. 제곱근 구하기04 등 직접 결과를 묻는 기존 family를 입력 역추론 문항에 자동 배정하지 않는다.",
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          }
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/해설/그림에 학교명이 없다. 실제 학교는 내부 출처에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "not-required-pure-algebra",
+          "originalCropEmbedded": false
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "부호가 지정된 두 제곱근을 순서대로 구한 뒤 두 값의 합을 묻는다.",
+        "after": "조건을 부호·제곱 관계로 조직하고 합을 조건으로 주어 양의 제곱근의 입력 N을 역으로 구한다.",
+        "sharedConcept": "제곱근의 정의, 근호의 값, 음/양의 제곱근의 구분",
+        "sharedProcedure": "안쪽 근호 값을 구함 → 부호 조건으로 제곱근을 선택 → 두 값의 관계를 이용",
+        "actualStructuralChange": "묻던 합이 주어진 조건이 되고, 원문의 두 번째 고정 입력이 미지수가 된다. 근호·부호를 진술하던 정보를 세 개의 조건식으로 바꾸었다.",
+        "numericalChangeIsNotSufficient": true,
+        "domainProof": "a²=9와 a<0으로 a=-3만 가능하고, 합7로 b=10만 가능하다. N=b²=100은 양수이며 b>0도 만족한다.",
+        "difficultyBasis": "원문처럼 근호 평가, 부호에 따른 제곱근 선택, 두 수의 관계 계산을 사용한다. 마지막 제곱은 정의의 역방향이며 새로운 선수 개념은 필요 없다. 난이도는 저자 제안으로 독립 검토 대기."
+      },
+      "packageDigest": "712da8e6b785ac21da23799a1f911673df80962063e7c911937d970e270f1439",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-authoring-r1\\q01.json",
+        "sha256": "333b7c700f0154fe84d8feeec01c277ac6bc85a21ddca72c7708b538159c787d"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-final-review-20261019-r2\\blind\\solve\\q01.json",
+        "sha256": "7e22c19d5664f456a10a2ad060c7a9170d1cd2b2e72dc1af05f6b577c51ac1aa"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-final-review-20261019-r2/verification/reports/q01.json",
+        "sha256": "400c91dbb6b2c3285799f4f335320c2e8b19c50f7db2df9ae753f5220ea94e7e"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-final-review-20261019-r2/verification/verification-manifest.json",
+        "sha256": "ac230a0416cb076a032e2731c91fa82fa1981ddc6a73d32f2613d8af679c6969"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-final-review-20261019-r2/blind/blind-manifest.json",
+        "sha256": "e0811add642407e2478b0e90e155b1b93f7476038c4e22ea8fef2675f462c1af"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-final-review-20261019-r2/package/private/q01/candidate.json",
+        "sha256": "333b7c700f0154fe84d8feeec01c277ac6bc85a21ddca72c7708b538159c787d"
+      },
+      "candidateContentWithoutRelocatedPaths": "4ea8319761d0cabe30bd66d00204b7bc97f6c3d95919c4ffff832f19d4f6f5cb",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-authoring-r1/q01.json",
+        "sha256": "333b7c700f0154fe84d8feeec01c277ac6bc85a21ddca72c7708b538159c787d"
+      },
+      "authorCandidateDigest": "005d9179e12672d6ec72861ddafdf83026d0455eda30024e7c550bbff5bd0ee9"
+    }
+  ],
+  "reviewBindingDigest": "bd345a9ed529bab70118dfe2d4fd6c9ae5115f17a5a8c19f5aa6f58aab9e73b3",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

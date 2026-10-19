@@ -1,0 +1,130 @@
+{
+  "studentDigest": "6d6742ec5d913f57b328eac371e82666284f907bf5778af5c1c7624225953f94",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "④",
+  "solution": "직각삼각형 PHQ에서 tan15°=QH/PH이다. 주어진 표의 기록값0.2679를 사용하면 PH≈2.7/0.2679=9000/893≈10.0784 m이다. 소수 첫째 자리까지 반올림하면10.1 m이므로 ④이다. 수평 거리 PH를 구하는 것이므로 빗변을 구하는 사인을 분모로 쓰지 않는다.",
+  "evidence": {
+    "questionNumber": 17,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q17",
+    "studentOnlyInputs": true,
+    "figureReading": "PH horizontal ground, QH vertical height, PQ ramp and 15° atP. External angle-label leader disambiguates that angle.",
+    "renderedFiguresViewed": [
+      {
+        "svgPath": "figures/q17-1.svg",
+        "sha256": "6c1ca8318654e10257b87f02a1591708451dc814e14f1150058d533e5b21357c",
+        "pngPath": "rendered/q17-1.png",
+        "pixelMeasurement": false
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "studentOption": "$2.6\\,\\mathrm{m}$",
+        "test": {
+          "choice": 1,
+          "encodedValue": "2.6",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 2,
+        "studentOption": "$5.2\\,\\mathrm{m}$",
+        "test": {
+          "choice": 2,
+          "encodedValue": "5.2",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 3,
+        "studentOption": "$10.4\\,\\mathrm{m}$",
+        "test": {
+          "choice": 3,
+          "encodedValue": "10.4",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 4,
+        "studentOption": "$10.1\\,\\mathrm{m}$",
+        "test": {
+          "choice": 4,
+          "encodedValue": "10.1",
+          "correct": true
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      },
+      {
+        "choice": 5,
+        "studentOption": "$5.1\\,\\mathrm{m}$",
+        "test": {
+          "choice": 5,
+          "encodedValue": "5.1",
+          "correct": false
+        },
+        "explanation": "Compare the exact derived target with this option; equality test is recorded in the independent calculation."
+      }
+    ],
+    "parts": [],
+    "existenceUniquenessPositiveLengthsUnits": "Given table coefficient0.2679>0 gives one positivePH=9000/893 m. This lies in[10.05,10.15), so rounding to tenths uniquely gives10.1m. No trigonometric identity or high-grade15° formula is needed.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "직각삼각형의 탄젠트 정의",
+        "제시된 표의 근삿값",
+        "나눗셈과 반올림"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q17",
+      "actualResult": {
+        "calculated": "10.1",
+        "choices": [
+          {
+            "choice": 1,
+            "encodedValue": "2.6",
+            "correct": false
+          },
+          {
+            "choice": 2,
+            "encodedValue": "5.2",
+            "correct": false
+          },
+          {
+            "choice": 3,
+            "encodedValue": "10.4",
+            "correct": false
+          },
+          {
+            "choice": 4,
+            "encodedValue": "10.1",
+            "correct": true
+          },
+          {
+            "choice": 5,
+            "encodedValue": "5.1",
+            "correct": false
+          }
+        ],
+        "uniqueChoice": 4
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}

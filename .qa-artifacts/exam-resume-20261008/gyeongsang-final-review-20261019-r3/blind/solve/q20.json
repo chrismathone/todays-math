@@ -1,0 +1,80 @@
+{
+  "studentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+  "solverId": "codex-gf14-independent-20261019-r2",
+  "answer": "(1) PH⊥QR, α=30°; (2) PH=5√3 cm; (3) sinα=1/2, cosα=√3/2, tanα=√3/3",
+  "solution": "(1) 정삼각형에서 PQ=PR=10 cm이고, H가 QR의 중점이므로 QH=HR=5 cm이다. PH는 공통변이므로 삼각형 PQH와 PRH는 세 변의 길이가 각각 같아 SSS 합동이다. 대응각 ∠QHP=∠PHR이고 Q,H,R은 한 직선 위이므로 두 각은 각각90°이다. 따라서 PH⊥QR이다. 또한 ∠QPH=∠HPR이고 정삼각형의 꼭짓각 P는60°이므로 α=30°이다.\n(2) 직각삼각형 PQH에서 PH²=10²−5²=75이므로 PH=5√3 cm이다.\n(3) 기준각은 P의30°이므로 sinα=QH/PQ=5/10=1/2, cosα=PH/PQ=5√3/10=√3/2, tanα=QH/PH=5/(5√3)=√3/3이다. 각각 실제 직각삼각형의 대응 변의 비로 구한다.",
+  "evidence": {
+    "questionNumber": 20,
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+    "studentOnlyInputs": true,
+    "figureReading": "Q,H,R collinear with PH drawn; perpendicularity is proved from congruence rather than assumed from drawing.",
+    "renderedFiguresViewed": [
+      {
+        "svgPath": "figures/q20-1.svg",
+        "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c",
+        "pngPath": "rendered/q20-1.png",
+        "pixelMeasurement": false
+      }
+    ],
+    "choiceChecks": [],
+    "parts": [
+      {
+        "label": "(1)",
+        "answer": "SSS 합동 → PH⊥QR, α=30°",
+        "points": 2
+      },
+      {
+        "label": "(2)",
+        "answer": "PH=5√3 cm",
+        "points": 3
+      },
+      {
+        "label": "(3)",
+        "answer": "sinα=QH/PQ=1/2, cosα=PH/PQ=√3/2, tanα=QH/PH=√3/3",
+        "points": 3
+      }
+    ],
+    "existenceUniquenessPositiveLengthsUnits": "An equilateral triangle with side10 exists; the midpoint forces QH=HR5. SSS uniquely proves perpendicular and bisected vertex angle; positivePH=5√3 and α30 follow. PHcm; three ratios dimensionless.",
+    "withinGradeMethodEvidence": {
+      "target": "M3 / 2015",
+      "usedConcepts": [
+        "SSS 합동",
+        "일직선 위의 두 각과 정삼각형의 각",
+        "피타고라스 정리",
+        "삼각비 각각의 변의 비 정의"
+      ],
+      "derivationBasis": "Actual student-level proof written above; no formal live-family/classification or release approval is asserted.",
+      "forbiddenMethodsUsed": false,
+      "restrictionsChecked": [
+        "no general trig identities or function relationships",
+        "no sine/cosine laws",
+        "no Heron",
+        "no vectors",
+        "no higher-grade shortcuts",
+        "no pixel measurement"
+      ]
+    },
+    "calculation": {
+      "script": "independent-calculations.py",
+      "result": "calculation-results.json#checks.q20",
+      "actualResult": {
+        "part1": "SSS -> PH perpendicular QR, alpha30deg",
+        "part2PH": "5sqrt3 cm",
+        "part3": {
+          "sin": "QH/PQ=1/2",
+          "cos": "PH/PQ=sqrt3/2",
+          "tan": "QH/PH=sqrt3/3"
+        },
+        "rightTriangleCheck": "25+75=100",
+        "rubricPoints": [
+          2,
+          3,
+          3
+        ]
+      }
+    },
+    "exposure": "No GF14 candidate/private/source/old solves or actual author answers read. Prior unbound generic REVIEW-KIT example disclosed in input receipt and unused as answer evidence.",
+    "authorAnswersUsed": false
+  },
+  "status": "solved"
+}
