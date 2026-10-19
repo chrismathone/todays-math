@@ -1,0 +1,14 @@
+{
+  "kind": "final-extractor-checks/v2",
+  "executedWrapperSha256": "fbc22af960cd3bc5e09ca5b307fdbcfa08be4ddef690889d1be7021c22c82fce",
+  "executedWrapperLocalSnapshot": "executed-extractor-r1.local.py",
+  "finalWrapperSha256": "20c3bcfecf18dd1298ac3fae3532ac507067907f934439ab7418fb1e21403e7e",
+  "finalChange": "Exclude previously successful fresh aggregate receipts on future invocations; remove unused imports. No source reader/converter/textlayer changes. Actual source parse used the preserved executed wrapper version.",
+  "pythonAstPassed": true,
+  "repeatCurrentJobRejectionExit": 2,
+  "repeatRejectionCreatedNoDirectory": true,
+  "originalInputAndSourceRehashesPassed": 28,
+  "runTimePreservationChecksPassed": 29,
+  "componentsApproved": 0,
+  "twins": 0
+}
