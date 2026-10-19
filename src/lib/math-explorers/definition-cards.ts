@@ -515,6 +515,14 @@ export type DefinitionSession = {
   unresolved: DefinitionTask[];
   eligible: string[];
   reviewOnly?: boolean;
+  /** «한 번 더 → 풀이» on the current question (plan §3.2 ②). */
+  followUp?: {
+    questionId: string;
+    state: "again" | "solution";
+    firstChoiceIds: number[];
+  };
+  /** Activities (`cardId:kind`) whose solution was shown — not asked again today. */
+  shown?: string[];
 };
 export type DefinitionRecord = {
   courseGrade?: number;
