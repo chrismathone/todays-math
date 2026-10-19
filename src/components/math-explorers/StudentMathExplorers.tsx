@@ -12,6 +12,7 @@ import {
   type ReactNode,
 } from "react";
 import type { FadingSource } from "@/lib/fading/source";
+import { EXPLORER_FOLLOW_UP_HEADER } from "@/contracts/mathExplorers.contract";
 import type { FadingRelearnSource } from "@/lib/fading/relearnSource";
 import { createApiFadingRelearnSource } from "@/components/fading/apiRelearnSource";
 import { useFadingRelearn } from "@/components/fading/useFadingRelearn";
@@ -103,6 +104,7 @@ async function readLatest(): Promise<ExplorerState | null> {
   try {
     const response = await fetch("/api/learn/math-explorers", {
       cache: "no-store",
+      headers: explorerHeaders(),
       signal: controller.signal,
     });
     if (!response.ok) return null;
@@ -120,6 +122,9 @@ async function readLatest(): Promise<ExplorerState | null> {
 // 05 §8.21 — 원장님 위임 3자 합의(Claude · codex · grok, 2026-09-28).
 const CHEST_FAILED = "별을 받지 못했어요. 상자를 다시 눌러 주세요.";
 const CHEST_RELOADED = "다른 화면에서 기록이 바뀌어 최신 기록을 불러왔어요.";
+function explorerHeaders() {
+  return { [EXPLORER_FOLLOW_UP_HEADER]: "1" };
+}
 
 export default function StudentMathExplorers({
   initialView,
@@ -219,7 +224,9 @@ function ExplorerGame({
   const [error, setError] = useState<Failure | null>(null);
   const [reload, setReload] = useState(0);
   const [busy, setBusy] = useState(false);
-  const [practicing, setPracticing] = useState(false);
+  const [practicing, setPracticing] = useState(
+    !!initialState?.currentActivity?.followUp,
+  );
   // «오늘 다시 만날 개념» 첫 장에서 시작을 누른 세션(저장소가 막혀도 이번 화면에서는 넘어가게).
   const [introStarted, setIntroStarted] = useState<string | null>(null);
   const [bankKind, setBankKind] = useState<"elementary" | "middle" | null>(
@@ -347,6 +354,7 @@ function ExplorerGame({
         timeout = setTimeout(() => controller.abort(), 15000);
         const response = await fetch("/api/learn/math-explorers", {
           cache: "no-store",
+          headers: explorerHeaders(),
           signal: controller.signal,
         });
         const json = await response.json().catch(() => null);
@@ -408,6 +416,7 @@ function ExplorerGame({
         }
         latest.current = data;
         setState(data);
+        if (data.currentActivity?.followUp) setPracticing(true);
         setError(null);
         setCorrect(null);
         lastRequest.current = null;
@@ -464,7 +473,10 @@ function ExplorerGame({
         method: "POST",
         cache: "no-store",
         signal: controller.signal,
-        headers: { "content-type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          ...explorerHeaders(),
+        },
         body: JSON.stringify(input),
       });
       const json = await response.json().catch(() => null);
@@ -534,6 +546,15 @@ function ExplorerGame({
           );
           if (cue) play(cue, answerEvent);
         }
+        if (
+          action.type === "answer" &&
+          (data.feedback.advance === false || data.currentActivity?.followUp)
+        ) {
+          setState(data);
+          setCorrect(null);
+          setFeedbackMessage(undefined);
+          return;
+        }
         held = true;
         setCorrect(data.feedback.correct);
         setEffectKey(input.requestId);
@@ -545,7 +566,11 @@ function ExplorerGame({
               ? data.feedback.correct
                 ? "정확하게 풀었어요"
                 : "다시 생각해 볼 문제예요"
-              : undefined,
+              : action.type === "answer" &&
+                  data.feedback.correct &&
+                  state.currentActivity?.followUp?.state === "again"
+                ? "맞았어요"
+                : undefined,
         );
         timer.current = setTimeout(() => {
           if (!alive.current) return;
@@ -571,6 +596,17 @@ function ExplorerGame({
         }, EFFECT_MS);
       } else {
         setState(data);
+        if (action.type === "understood") {
+          setCorrect(null);
+          setFeedbackMessage(undefined);
+          relearn.boundary();
+          if (data.session?.done || !data.currentActivity) {
+            setPracticing(false);
+            setLoading(true);
+            setReload((value) => value + 1);
+            window.scrollTo({ top: 0, behavior: "instant" });
+          }
+        }
         if (
           action.type === "start" ||
           action.type === "expedition-start" ||
@@ -769,7 +805,10 @@ function ExplorerGame({
         // even when the page itself is closed.
         keepalive: true,
         signal: controller.signal,
-        headers: { "content-type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          ...explorerHeaders(),
+        },
         body: JSON.stringify({
           requestId: claim.requestId,
           expectedRevision: revision,
@@ -839,6 +878,7 @@ function ExplorerGame({
     inPractice && state?.session ? sessionIntroKind(state.session) : null;
   const showIntro =
     !!introKind &&
+    !state?.currentActivity?.followUp &&
     introStarted !== state?.session?.id &&
     !sessionIntroSeen(state!.session!.id);
   function startAfterIntro() {
@@ -1160,6 +1200,10 @@ function ExplorerGame({
               ) : (
                 <ExplorerPractice
                   activity={state.currentActivity}
+                  solution={
+                    state.currentActivity.solution ?? state.feedback?.solution
+                  }
+                  journeyTheme={journeyTheme}
                   session={state.session}
                   units={state.units}
                   busy={busy || !!error || loading}

@@ -1,10 +1,17 @@
 "use client";
 
-import { useRef, useState, type CSSProperties, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 import type {
   ExplorerAction,
   ExplorerActivity,
   ExplorerState,
+  ExplorerSolution,
 } from "@/contracts/mathExplorers.contract";
 import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
 import { BackButton } from "@/components/ui/BackLink";
@@ -21,6 +28,16 @@ import {
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
 import { useSentenceFit } from "./sentenceFit";
+import {
+  FollowUpSolution,
+  FollowUpWarning,
+  PreviousAnswerMark,
+} from "@/components/math-srs/FollowUpFeedback";
+import {
+  JOURNEY_THEMES,
+  type JourneyThemeId,
+} from "@/lib/math-explorers/journeyThemes";
+import f from "./explorer-follow-up.module.css";
 
 const activityNames = {
   read: "뜻 만나기",
@@ -49,6 +66,8 @@ export default function ExplorerPractice({
   feedbackMessage,
   onAction,
   onHome,
+  solution,
+  journeyTheme,
 }: {
   activity: ExplorerActivity;
   session: PracticeSession;
@@ -62,6 +81,8 @@ export default function ExplorerPractice({
   feedbackMessage?: string;
   onAction: (action: ExplorerAction) => void;
   onHome: () => void;
+  solution?: ExplorerSolution;
+  journeyTheme?: JourneyThemeId;
 }) {
   const grade = units?.find((unit) => unit.id === activity.unitId)?.grade;
   const turnPage = useQuestionPageTurn(
@@ -73,9 +94,11 @@ export default function ExplorerPractice({
       progressLabel={progressLabel}
       busy={busy}
       onHome={onHome}
+      followUp={!!activity.followUp}
+      journeyTheme={journeyTheme}
     >
       <Activity
-        key={`${activity.questionId}:${activity.kind}`}
+        key={`${activity.questionId}:${activity.kind}:${activity.followUp?.state ?? "initial"}`}
         activity={activity}
         gradeLabel={
           grade === undefined
@@ -92,6 +115,7 @@ export default function ExplorerPractice({
         retry={session.round > 0}
         turnPage={turnPage}
         onAction={onAction}
+        solution={activity.solution ?? solution}
       />
     </ExplorerPracticeFrame>
   );
@@ -103,12 +127,16 @@ export function ExplorerPracticeFrame({
   busy,
   onHome,
   children,
+  followUp = false,
+  journeyTheme,
 }: {
   session: PracticeSession;
   progressLabel?: string;
   busy: boolean;
   onHome: () => void;
   children: ReactNode;
+  followUp?: boolean;
+  journeyTheme?: JourneyThemeId;
   // Reading/session intros still pass these legacy frame props; feedback lives in the dock.
   correct?: boolean | null;
   eventKey?: string;
@@ -150,7 +178,14 @@ export function ExplorerPracticeFrame({
       </div>
       <section
         ref={frame}
-        className={s.practiceFrame}
+        className={`${s.practiceFrame} ${followUp ? f.frame : ""}`}
+        style={
+          journeyTheme && JOURNEY_THEMES[journeyTheme].boardImage
+            ? ({
+                "--learn-course-theme": `url("${JOURNEY_THEMES[journeyTheme].boardImage}")`,
+              } as CSSProperties)
+            : undefined
+        }
         aria-label="개념 문제와 답 고르기"
       >
         {children}
@@ -170,6 +205,7 @@ function Activity({
   retry,
   turnPage,
   onAction,
+  solution,
 }: {
   activity: ExplorerActivity;
   gradeLabel: string | null;
@@ -181,6 +217,7 @@ function Activity({
   retry: boolean;
   turnPage: "true" | undefined;
   onAction: (action: ExplorerAction) => void;
+  solution?: ExplorerSolution;
 }) {
   const [selected, setSelected] = useState<number[]>([]);
   const [submittedAction, setSubmittedAction] = useState<
@@ -204,7 +241,21 @@ function Activity({
   const [motion, setMotion] = useState<Record<number, "in" | "out">>({});
   const move = (id: number, value: "in" | "out") =>
     setMotion((current) => ({ ...current, [id]: value }));
-  const disabled = busy || correct !== null;
+  const again = activity.followUp?.state === "again";
+  const showingSolution = activity.followUp?.state === "solution";
+  const disabled =
+    busy ||
+    showingSolution ||
+    correct === true ||
+    (!activity.followUp && correct !== null);
+  const choices =
+    again && activity.choices.length > 1
+      ? [...activity.choices.slice(1), activity.choices[0]!]
+      : activity.choices;
+  const understood = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (showingSolution) understood.current?.focus({ preventScroll: true });
+  }, [showingSolution]);
   const isReading = activity.kind === "read";
   // 문장 조립 — 넘칠 때만 글씨 줄이기(원장님 2026-09-29, D-143). 채운 말이 바뀌면 그리기 전에 다시 잰다.
   const pane = useRef<HTMLDivElement>(null);
@@ -243,7 +294,7 @@ function Activity({
     <>
       <div
         ref={pane}
-        className={`${s.problemPane} ${pageTurn.page}`}
+        className={`${s.problemPane} ${pageTurn.page} ${activity.followUp ? f.problem : ""}`}
         data-page-turn="true"
         data-question-transition={turnPage}
         tabIndex={0}
@@ -365,109 +416,174 @@ function Activity({
         )}
       </div>
       {/* 뜻 만나기는 단추 하나뿐이라 답 칸 높이를 비운다(4안) — 좁은 폰에서도 뜻 상자가 보이게. */}
-      <div
-        className={isReading ? `${s.answerDock} ${c.dockSlim}` : s.answerDock}
-        data-explorer-dock="true"
-        data-dock-size={isReading ? "slim" : undefined}
-      >
-        {isReading ? (
-          <button
-            type="button"
-            className={s.primary}
-            disabled={disabled}
-            onClick={() =>
-              onAction({ type: "read", questionId: activity.questionId })
+      {showingSolution ? (
+        <div className={f.solutionPane}>
+          <FollowUpSolution
+            headingId="explorer-inline-solution-title"
+            footerText="이 개념은 다음 복습에서 다시 만나요."
+            busy={busy || !solution}
+            buttonRef={understood}
+            onUnderstood={() =>
+              onAction({ type: "understood", questionId: activity.questionId })
             }
           >
-            뜻을 가리고 도전하기 <span aria-hidden="true">→</span>
-          </button>
-        ) : (
-          <>
-            <div className={s.answerInstruction}>
-              {correct !== null ? (
-                <AnswerFeedbackEffect
-                  correct={correct}
-                  eventKey={eventKey}
-                  message={resultMessage}
-                />
-              ) : (
-                <span>
-                  {activity.kind === "assemble"
-                    ? `말 조각 두 개를 순서대로 · ${Math.min(selected.length, 2)} / 2`
-                    : activity.kind === "examples"
-                      ? "해당하는 예 모두 선택"
-                      : "답을 하나 골라 주세요"}
-                </span>
-              )}
-              <button
-                type="button"
-                disabled={disabled}
-                onClick={() => submit([])}
-              >
-                아직 모르겠어요
-              </button>
-            </div>
-            <div
-              className={s.answers}
-              data-kind={activity.kind}
-              role="group"
-              aria-label="답 고르기"
+            {solution ? (
+              <div className={f.content}>
+                <h4>
+                  {activity.kind === "assemble" ? "뜻과 완성 문장" : "뜻"}
+                </h4>
+                <div>
+                  <ExplorerMath text={solution.definition} />
+                </div>
+                {activity.kind === "examples" ? (
+                  <>
+                    <h4>예마다 확인해요</h4>
+                    <ul>
+                      {solution.examples.map((example, index) => (
+                        <li key={index}>
+                          <ExplorerMath text={example.label} />
+                          <strong>{example.correct ? "맞음" : "아님"}</strong>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : null}
+                {activity.kind === "truth" ? (
+                  <>
+                    <h4>이 문장은 {solution.truth ? "맞아요" : "아니에요"}</h4>
+                    <div>
+                      <ExplorerMath text={solution.statement} />
+                    </div>
+                  </>
+                ) : null}
+                <h4>이렇게 생각해요</h4>
+                <div>
+                  <ExplorerMath text={solution.explanation} />
+                </div>
+              </div>
+            ) : (
+              <p role="alert">풀이를 확인하지 못했어요. 다시 불러와 주세요.</p>
+            )}
+          </FollowUpSolution>
+        </div>
+      ) : (
+        <div
+          className={`${isReading ? `${s.answerDock} ${c.dockSlim}` : s.answerDock} ${activity.followUp ? f.dock : ""}`}
+          data-explorer-dock="true"
+          data-dock-size={isReading ? "slim" : undefined}
+        >
+          {isReading ? (
+            <button
+              type="button"
+              className={s.primary}
+              disabled={disabled}
+              onClick={() =>
+                onAction({ type: "read", questionId: activity.questionId })
+              }
             >
-              {activity.choices.map((choice, index) => (
-                <button
-                  type="button"
-                  key={choice.id}
-                  aria-label={`${index + 1} ${choice.label}`}
-                  aria-keyshortcuts={answerKey(index)}
-                  aria-pressed={selected.includes(choice.id)}
-                  data-answer-control=""
-                  disabled={
-                    disabled ||
-                    (activity.kind === "assemble" &&
-                      selected.includes(choice.id))
-                  }
-                  data-answer-state={
-                    selected.includes(choice.id) && correct !== null
-                      ? correct
-                        ? "correct"
-                        : "incorrect"
-                      : undefined
-                  }
-                  data-anim={motion[choice.id]}
-                  onClick={() => choose(choice.id)}
-                >
-                  <NumberKey index={index} className={s.answerNumber} />
-                  <ExplorerChoiceText
-                    className={s.answerText}
-                    text={choice.label}
+              뜻을 가리고 도전하기 <span aria-hidden="true">→</span>
+            </button>
+          ) : (
+            <>
+              <div className={s.answerInstruction}>
+                {again && correct !== true ? (
+                  <FollowUpWarning />
+                ) : correct !== null ? (
+                  <AnswerFeedbackEffect
+                    correct={correct}
+                    eventKey={eventKey}
+                    message={resultMessage}
                   />
-                </button>
-              ))}
-            </div>
-            <div className={s.answerControls}>
-              {activity.kind === "examples" || activity.kind === "assemble" ? (
+                ) : (
+                  <span>
+                    {activity.kind === "assemble"
+                      ? `말 조각 두 개를 순서대로 · ${Math.min(selected.length, 2)} / 2`
+                      : activity.kind === "examples"
+                        ? "해당하는 예 모두 선택"
+                        : "답을 하나 골라 주세요"}
+                  </span>
+                )}
                 <button
                   type="button"
-                  className={s.confirm}
-                  aria-keyshortcuts="Enter"
-                  disabled={
-                    disabled ||
-                    (activity.kind === "assemble"
-                      ? selected.length !== 2
-                      : selected.length === 0)
-                  }
-                  onClick={() => submit(selected)}
+                  disabled={disabled}
+                  onClick={() => submit([])}
                 >
-                  {activity.kind === "assemble"
-                    ? "완성한 문장 확인하기"
-                    : "선택한 예 확인하기"}
-                  <EnterKey />
+                  아직 모르겠어요
                 </button>
-              ) : null}
-            </div>
-          </>
-        )}
-      </div>
+              </div>
+              <div
+                className={s.answers}
+                data-kind={activity.kind}
+                role="group"
+                aria-label="답 고르기"
+              >
+                {choices.map((choice, index) => (
+                  <button
+                    type="button"
+                    key={choice.id}
+                    aria-label={`${index + 1} ${choice.label}${again && activity.followUp?.firstChoiceIds.includes(choice.id) ? " 앞에서 고른 답" : ""}`}
+                    aria-keyshortcuts={answerKey(index)}
+                    aria-pressed={selected.includes(choice.id)}
+                    data-answer-control=""
+                    data-previous={
+                      again &&
+                      activity.followUp?.firstChoiceIds.includes(choice.id)
+                        ? "true"
+                        : undefined
+                    }
+                    disabled={
+                      disabled ||
+                      (activity.kind === "assemble" &&
+                        selected.includes(choice.id))
+                    }
+                    data-answer-state={
+                      selected.includes(choice.id) && correct !== null
+                        ? correct
+                          ? "correct"
+                          : "incorrect"
+                        : undefined
+                    }
+                    data-anim={motion[choice.id]}
+                    onClick={() => choose(choice.id)}
+                  >
+                    <NumberKey index={index} className={s.answerNumber} />
+                    <ExplorerChoiceText
+                      className={s.answerText}
+                      text={choice.label}
+                    />
+                    {again &&
+                    activity.followUp?.firstChoiceIds.includes(choice.id) ? (
+                      <PreviousAnswerMark />
+                    ) : null}
+                  </button>
+                ))}
+              </div>
+              <div className={s.answerControls}>
+                {activity.kind === "examples" ||
+                activity.kind === "assemble" ? (
+                  <button
+                    type="button"
+                    className={s.confirm}
+                    aria-keyshortcuts="Enter"
+                    disabled={
+                      disabled ||
+                      (activity.kind === "assemble"
+                        ? selected.length !== 2
+                        : selected.length === 0)
+                    }
+                    onClick={() => submit(selected)}
+                  >
+                    {activity.kind === "assemble"
+                      ? "완성한 문장 확인하기"
+                      : "선택한 예 확인하기"}
+                    <EnterKey />
+                  </button>
+                ) : null}
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 }
