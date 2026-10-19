@@ -1,0 +1,434 @@
+{
+  "kind": "independent-u51-bounded-code-audit/v1",
+  "status": "bounded-controls-passed-with-limits",
+  "ownCases": 28,
+  "ownPassed": 28,
+  "actualRendererCases": 2,
+  "actualCliRejectionCases": 4,
+  "renderCalls": 2,
+  "results": [
+    {
+      "name": "actual-parent-renderer-1",
+      "passed": true,
+      "evidence": {
+        "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json",
+        "assetHashes": [
+          "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160"
+        ]
+      }
+    },
+    {
+      "name": "actual-parent-renderer-2",
+      "passed": true,
+      "evidence": {
+        "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json",
+        "assetHashes": [
+          "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+        ]
+      }
+    },
+    {
+      "name": "exact-strict-isolated-copy",
+      "passed": true,
+      "evidence": "reproduced"
+    },
+    {
+      "name": "saved-svg-radius-mismatch",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "a2157246935067df579e61b8fa5bfd8d23feca8d8580fe8134304408f16fd269",
+        "intendedWidthMm": 70,
+        "replayedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "exactByteParity": false,
+        "status": "mismatch",
+        "droppedDimensions": []
+      }
+    },
+    {
+      "name": "throws",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "independent-render-failure"
+      }
+    },
+    {
+      "name": "ok-false",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "controlled"
+      }
+    },
+    {
+      "name": "missing-svg",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "empty-svg",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "null-result",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "dropped-dimension",
+      "passed": true,
+      "evidence": {
+        "index": 0,
+        "role": "stem",
+        "specSha256": "732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+        "expectedSvgSha256": "9492efce288abdb1df2edf25e7ebb0ec419376a6f04732f238db004164e73579",
+        "intendedWidthMm": 70,
+        "status": "render-error",
+        "exactByteParity": false,
+        "reason": "Strict replay returned no SVG or dropped a dimension"
+      }
+    },
+    {
+      "name": "no-figures-no-render",
+      "passed": true,
+      "evidence": {
+        "calls": 0,
+        "status": "no-figures"
+      }
+    },
+    {
+      "name": "version1-unsupported-no-render",
+      "passed": true,
+      "evidence": {
+        "calls": 0,
+        "status": "held"
+      }
+    },
+    {
+      "name": "raster-v2-unsupported-no-render",
+      "passed": true,
+      "evidence": {
+        "calls": 0,
+        "status": "held"
+      }
+    },
+    {
+      "name": "unsafe-script",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "unsafe-event",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "external-href",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "asset-traversal",
+      "passed": true,
+      "evidence": {
+        "calls": 0
+      }
+    },
+    {
+      "name": "own-input-mutation-candidate.json",
+      "passed": true,
+      "evidence": {
+        "onlyOwnedFixtureMutated": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r1\\own-fixture-16\\own-candidate.json"
+      }
+    },
+    {
+      "name": "own-input-mutation-spec.json",
+      "passed": true,
+      "evidence": {
+        "onlyOwnedFixtureMutated": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r1\\own-fixture-17\\own-spec.json"
+      }
+    },
+    {
+      "name": "own-input-mutation-saved.svg",
+      "passed": true,
+      "evidence": {
+        "onlyOwnedFixtureMutated": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r1\\own-fixture-18\\own-saved.svg"
+      }
+    },
+    {
+      "name": "approval-flags-cannot-promote",
+      "passed": true,
+      "evidence": {
+        "status": "reproduced",
+        "fixedFalse": true
+      }
+    },
+    {
+      "name": "env-function-STUDIO_ENGINE_URL",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "env-function-VERCEL",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "env-function-FIGURE_ENGINE_PATH",
+      "passed": true,
+      "evidence": {
+        "rejected": true
+      }
+    },
+    {
+      "name": "actual-cli-outside-root-output",
+      "passed": true,
+      "evidence": {
+        "key": null,
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Output must stay in this task worktree\n    at newOutputPath (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs:113:3)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:24:18)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:53:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "actual-cli-STUDIO_ENGINE_URL",
+      "passed": true,
+      "evidence": {
+        "key": "STUDIO_ENGINE_URL",
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: STUDIO_ENGINE_URL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:8:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:53:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "actual-cli-VERCEL",
+      "passed": true,
+      "evidence": {
+        "key": "VERCEL",
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: VERCEL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:8:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:53:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    },
+    {
+      "name": "actual-cli-FIGURE_ENGINE_PATH",
+      "passed": true,
+      "evidence": {
+        "key": "FIGURE_ENGINE_PATH",
+        "exitCode": 1,
+        "outputCreated": false,
+        "stdout": "",
+        "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: FIGURE_ENGINE_PATH must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:8:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:53:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+      }
+    }
+  ],
+  "cliResults": [
+    {
+      "key": null,
+      "exitCode": 1,
+      "outputCreated": false,
+      "stdout": "",
+      "stderr": "AssertionError [ERR_ASSERTION]: Output must stay in this task worktree\n    at newOutputPath (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs:113:3)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:24:18)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:53:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+    },
+    {
+      "key": "STUDIO_ENGINE_URL",
+      "exitCode": 1,
+      "outputCreated": false,
+      "stdout": "",
+      "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: STUDIO_ENGINE_URL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:8:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:53:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+    },
+    {
+      "key": "VERCEL",
+      "exitCode": 1,
+      "outputCreated": false,
+      "stdout": "",
+      "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: VERCEL must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:8:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:53:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+    },
+    {
+      "key": "FIGURE_ENGINE_PATH",
+      "exitCode": 1,
+      "outputCreated": false,
+      "stdout": "",
+      "stderr": "AssertionError [ERR_ASSERTION]: Offline vendored replay: FIGURE_ENGINE_PATH must be unset\n    at assertLocalReplayEnvironment (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/vectorReplay.mjs:8:5)\n    at main (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:14:3)\n    at <anonymous> (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs:53:1)\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n"
+    }
+  ],
+  "actual": [
+    {
+      "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json",
+      "assetHashes": [
+        "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160"
+      ]
+    },
+    {
+      "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json",
+      "assetHashes": [
+        "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+      ]
+    }
+  ],
+  "parentEvidenceOnly": {
+    "positiveManifestSha256": "192e55fb08a0d0b2680004f76560c46d2bc56750384a4b5147c9c7e37dd3f2b9",
+    "negativeReceiptSha256": "523b082e006e9d45da7807d5891b185de07b16aef6ee2965cb3bfead31c791a0",
+    "parentReportedPositive": true,
+    "parentReportedNegativeExit": 2,
+    "claimedAsOwnTests": false
+  },
+  "sourceBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.mjs": "98b285090d949c581a5413988d71be9fc38bec6a9a9be5479d7ec50b899210f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs": "76ab379be797831e925726e5cdbeea6d47ca21342171af7d8c5327ad960e893a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.test.mjs": "f5db21c28b8082511de5322715df026f93a22cda4aed8a960ceb257ad6731d5c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\engine_path.py": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs": "f16698209652f0c0e0815baa8dabef2e13330bbf9a1134cf5dfbf4fb56c6f076",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\authoredMathNotation.mjs": "c7707f98b032e11a0fc09fe1e360070e4022d836f0d6e82bc1f1e10e4fe4f6e6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\recordCorrectionAnswer.mjs": "883a1320c36106d2f0bf582614ea2ea7e1758f5327dd2eff8d451362d80b64da",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\engine\\authoredImage.ts": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxSubstitute.ts": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxLabel.ts": "1fea1628a51754de8c1654c59903eb562001b67f23e5ab97e78eed4b316d34fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-paper\\solver_rules.json": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\node_modules\\mathjax-full\\package.json": "aaecba51d5d5d66da591425a3d03fe1bec88a5ce09af3f6f2805b442eafc9f42",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "62e4284e3d435eb55053af77cd33102c3cbdc32f6cf65829bbf946dd515a5934",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "81587508b3f04a4e6e85feafc9b41caed42cdde1de1cd0098e1e489f67c7f1d8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\label_markup.py": "3e8d625f15f6c4f094d2d08dfd1d0f07a6ffb7fe1a8160d04d6275ac8fef1c4c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sourceAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.mjs": "98b285090d949c581a5413988d71be9fc38bec6a9a9be5479d7ec50b899210f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\replay-vector-figures.mjs": "76ab379be797831e925726e5cdbeea6d47ca21342171af7d8c5327ad960e893a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\vectorReplay.test.mjs": "f5db21c28b8082511de5322715df026f93a22cda4aed8a960ceb257ad6731d5c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\engine_path.py": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs": "f16698209652f0c0e0815baa8dabef2e13330bbf9a1134cf5dfbf4fb56c6f076",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\authoredMathNotation.mjs": "c7707f98b032e11a0fc09fe1e360070e4022d836f0d6e82bc1f1e10e4fe4f6e6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\recordCorrectionAnswer.mjs": "883a1320c36106d2f0bf582614ea2ea7e1758f5327dd2eff8d451362d80b64da",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\engine\\authoredImage.ts": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxSubstitute.ts": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxLabel.ts": "1fea1628a51754de8c1654c59903eb562001b67f23e5ab97e78eed4b316d34fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-paper\\solver_rules.json": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\node_modules\\mathjax-full\\package.json": "aaecba51d5d5d66da591425a3d03fe1bec88a5ce09af3f6f2805b442eafc9f42",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "62e4284e3d435eb55053af77cd33102c3cbdc32f6cf65829bbf946dd515a5934",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "81587508b3f04a4e6e85feafc9b41caed42cdde1de1cd0098e1e489f67c7f1d8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\label_markup.py": "3e8d625f15f6c4f094d2d08dfd1d0f07a6ffb7fe1a8160d04d6275ac8fef1c4c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "inputBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r2\\replay-manifest.json": "192e55fb08a0d0b2680004f76560c46d2bc56750384a4b5147c9c7e37dd3f2b9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-negative-20261020-r1\\negative-control-receipt-r1.json": "523b082e006e9d45da7807d5891b185de07b16aef6ee2965cb3bfead31c791a0",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r2\\candidate-1-replay.json": "1e7abb2e22caafe710b4b0eec50a00679190c0690142c510b3d65c6c9092a27a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.svg": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r2\\candidate-2-replay.json": "4d73aced5c8e31d3746663124a15bef44eeae260ef20b29054dc241d731cc0ee",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.spec.json": "b4ab1b47fd6fcf248c2468591cc1df44c9d43177808a5747471f22c6a6dd287c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.svg": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+  },
+  "inputAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r2\\replay-manifest.json": "192e55fb08a0d0b2680004f76560c46d2bc56750384a4b5147c9c7e37dd3f2b9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-negative-20261020-r1\\negative-control-receipt-r1.json": "523b082e006e9d45da7807d5891b185de07b16aef6ee2965cb3bfead31c791a0",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r2\\candidate-1-replay.json": "1e7abb2e22caafe710b4b0eec50a00679190c0690142c510b3d65c6c9092a27a",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.figure.svg": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-cli-20261020-r2\\candidate-2-replay.json": "4d73aced5c8e31d3746663124a15bef44eeae260ef20b29054dc241d731cc0ee",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.spec.json": "b4ab1b47fd6fcf248c2468591cc1df44c9d43177808a5747471f22c6a6dd287c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.svg": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+  },
+  "staticFindings": [
+    "CLI rejects hosted/env overrides before output creation and renderer import. newOutputPath checks lexical worktree ownership, dependency paths and real ancestor junctions; no positive CLI was run because parent output writes were forbidden.",
+    "Core hashes candidate/spec/savedSVG/resources and checks all hashes in finally, including on render errors. It passes a structured-cloned spec and strict:true. No figures cannot pass vacuously.",
+    "Version2 with bound raster resources is held without renderer invocation. Bind validation is transport/schema/rejection aid, not semantic math or grade approval.",
+    "Core itself is dependency-injected and does not enforce offline environment; actual CLI performs that guard. Direct core use requires trusted caller/renderer.",
+    "Renderer Python selection includes FIGURE_ENGINE_PATH/vendor/F-drive fallback generally; this CLI bans override and requires current vendor figure_scene.py. Tests used PYTHONDONTWRITEBYTECODE=1 and TSX_DISABLE_CACHE=1 to avoid parent caches.",
+    "Existing renderer may warn for unresolved MathJax labels and preserve text while returning ok:true. Exact replay of saved bytes alone cannot certify complete label typesetting or student reader/print semantics.",
+    "Snapshot checks are endpoint hash checks, not filesystem immutability locks or sandbox guarantees. Input modifications restored before final check, races, malicious trusted renderer, exhaustive SVG sanitization and all vendor dependencies are outside this bounded audit."
+  ],
+  "limits": [
+    "Two current candidates only; no broad registry/render sweep.",
+    "No positive actual CLI, no actual network/AI/DB calls; hosted controls tested as early rejection only.",
+    "Static imports and listed vendor source hashes captured; installed MathJax/Zod/tsx dependency trees and all transitive Python runtime modules are not fully certified.",
+    "No visual/math/grade/rights/full reader/print/native approval. No fresh student/manual question counts.",
+    "PYTHON_BIN remains an allowed trusted executable choice; executable identity and full installed dependency closure were not certified. Sources are hashed before/after, not locked against transient or concurrent changes.",
+    "Runner fixtures are retained as own-* inputs/results; repeat execution requires a new owned version/output prefix because creation refuses overwrites."
+  ],
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "dbWrites": 0,
+  "auditToolingIncident": {
+    "initialError": "ERR_MODULE_NOT_FOUND before core import",
+    "scopeViolation": "Relative Set-Content from parent CWD created one newly owned own-audit.mjs in parent audit prefix. Corrected by exact Move-Item to helper; this transient parent write is explicitly not claimed absent.",
+    "diagnostic": "own-initial-path-diagnostic.txt",
+    "parentOwnedScriptNowAbsent": true
+  }
+}
