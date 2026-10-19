@@ -1,0 +1,185 @@
+{
+  "status": "pending",
+  "studentDigest": "1d6563056697661a1c4a56c3883cfc51998879e10674b3953412963d5dd1e827",
+  "candidateDigest": "9276d52ab4cda6b2e941d0fa4a97ee900ff3c1b830dbca1508fd9226544c1f2f",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "fresh-independent-codex-stage2-20261019-r1",
+  "solveDigest": "b9d1489e951cefa9aacdd74de4bb98ea6251370d8e6a3a15e8da65520144359b",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "rawCommitLocal": "b80faf8a2dd08261761a57c381c534c90373cb6e",
+    "parentSealedCommit": "86aa5786d479f2fdcfa61c5c76b767908f9f0558",
+    "rawSha256": "57bfe42a2619bc42e894e46332ff0dc0519e429af4f38ce519e0323b55f31ea6",
+    "rawUnchanged": true,
+    "calculation": {
+      "cases": [
+        {
+          "interval": "x < -2",
+          "difference": "1*x+(-5)",
+          "candidate": "7",
+          "valid": false,
+          "A": "9",
+          "B": "11"
+        },
+        {
+          "interval": "-2 < x < 3/2",
+          "difference": "3*x+(-1)",
+          "candidate": "1",
+          "valid": true,
+          "A": "3",
+          "B": "1"
+        },
+        {
+          "interval": "x > 3/2",
+          "difference": "-1*x+(5)",
+          "candidate": "3",
+          "valid": true,
+          "A": "5",
+          "B": "3"
+        }
+      ],
+      "excluded": [
+        {
+          "x": -2,
+          "A": 0,
+          "B": 7
+        },
+        {
+          "x": "3/2",
+          "A": "7/2",
+          "B": 0
+        }
+      ],
+      "roots": [
+        "1",
+        "3"
+      ],
+      "sum": "4",
+      "choices": [
+        {
+          "mark": "①",
+          "value": 1,
+          "valid": false
+        },
+        {
+          "mark": "②",
+          "value": 2,
+          "valid": false
+        },
+        {
+          "mark": "③",
+          "value": 3,
+          "valid": false
+        },
+        {
+          "mark": "④",
+          "value": 4,
+          "valid": true
+        },
+        {
+          "mark": "⑤",
+          "value": 6,
+          "valid": false
+        }
+      ]
+    },
+    "independentKoreanSolution": "넓이를 인수분해하면 A는 (x+2)², B는 (2x-3)²이다. 따라서 양의 변의 길이는 각각 |x+2| cm, |2x-3| cm이고 x=-2, 3/2는 제외한다. A의 변에서 B의 변을 뺀 값이 2이므로 부호에 따라 나눈다. x<-2이면 x-5=2에서 x=7이지만 구간 밖이다. -2<x<3/2이면 3x-1=2에서 x=1이며 변은 A=3 cm, B=1 cm로 적합하다. x>3/2이면 5-x=2에서 x=3이며 변은 A=5 cm, B=3 cm로 적합하다. 모든 구간을 조사했고 각 일차방정식의 해는 하나뿐이므로 가능한 x는 정확히 1, 3이다. 합은 4로 ④이다. 보기 ① 1, ② 2, ③ 3, ⑤ 6은 이 합과 다르다. 넓이 단위는 cm², 변과 차의 단위는 cm이며 x의 값의 합에 길이 단위를 붙이지 않는다.",
+    "candidateSolutionReview": "현재 후보 해설의 모든 계산 단계·분기·대입과 결론을 봉인 풀이와 대조했다. 후보 해설은 정답만 맞는 것이 아니라 부호·정의역·범위 확인 및 유일성 논증까지 맞는다.",
+    "answerCorrect": "봉인 풀이 ④와 현재 후보 답 ④가 일치한다. 수치와 전 보기 검산은 calculation 및 independentKoreanSolution 참조.",
+    "solutionCorrect": "candidateSolutionReview 및 independentKoreanSolution의 단계별 대조 참조.",
+    "existenceUniqueness": "넓이를 인수분해하면 A는 (x+2)², B는 (2x-3)²이다. 따라서 양의 변의 길이는 각각 |x+2| cm, |2x-3| cm이고 x=-2, 3/2는 제외한다. A의 변에서 B의 변을 뺀 값이 2이므로 부호에 따라 나눈다. x<-2이면 x-5=2에서 x=7이지만 구간 밖이다. -2<x<3/2이면 3x-1=2에서 x=1이며 변은 A=3 cm, B=1 cm로 적합하다. x>3/2이면 5-x=2에서 x=3이며 변은 A=5 cm, B=3 cm로 적합하다. 모든 구간을 조사했고 각 일차방정식의 해는 하나뿐이므로 가능한 x는 정확히 1, 3이다. 합은 4로 ④이다. 보기 ① 1, ② 2, ③ 3, ⑤ 6은 이 합과 다르다. 넓이 단위는 cm², 변과 차의 단위는 cm이며 x의 값의 합에 길이 단위를 붙이지 않는다.",
+    "choicesCorrect": [
+      {
+        "mark": "①",
+        "value": 1,
+        "valid": false
+      },
+      {
+        "mark": "②",
+        "value": 2,
+        "valid": false
+      },
+      {
+        "mark": "③",
+        "value": 3,
+        "valid": false
+      },
+      {
+        "mark": "④",
+        "value": 4,
+        "valid": true
+      },
+      {
+        "mark": "⑤",
+        "value": 6,
+        "valid": false
+      }
+    ],
+    "figureConsistent": "인쇄 표에서 A/B의 넓이는 각각 x²+4x+4,4x²-12x+9이며 cm²가 붙는다. 길이는 양의 제곱근으로 정하고 차는 cm이다. 별도 축척 그림이나 픽셀 측정은 필요 없다.",
+    "sameCoreConceptAndProcedure": "원문은 두 전개된 완전제곱식을 인수분해하고 √u²=|u|로 바꾸어 -1,1/2 경계의 세 구간에서 부호를 판단한다. 후보 역시 전개된 식을 (x+2)²,(2x-3)²로 직접 인수분해해야 하고 -2,3/2의 세 구간에서 양의 제곱근 부호를 판단하므로 핵심 절차가 남아 있다.",
+    "distinctPresentation": "원문의 구간별 진술 정오 선택을 넓이 표→양의 변 길이→길이 차 2를 만드는 모든 입력의 합이라는 역문제로 바꿨다. 기하 표현, 조건/결과 역전, 모든 해의 선별이 실질 변화이며 숫자 교체만의 주장이 아니다.",
+    "naturalKorean": "실수 x, 양수인 변, A가 B보다 2 cm 길다는 방향, 가능한 모든 x의 합이 명시되어 있다. 표/본문의 지시 대상이 명확하고 번역투·불필요한 상황 서술·노출된 학교명은 없다.",
+    "curriculumAppropriate": "9수01-07(3776),9수01-10(3788),9수02-12(3956). 인수분해는 필수 선수이므로 제곱근 단원 첫 진도만으로 풀도록 배치하면 안 된다. 중3 인수분해 학습 이후의 통합 문제로는 적합하다. 정사각형 넓이/단위는 6수03-05(3429) 및 3425, 일차방정식은 9수02-05(3916), 절댓값 표기는 3799. 고등 절댓값 방정식 일반해법 없이 부호를 직접 나눈다.",
+    "allStudentSurfacesInScope": "아래 일곱 surface를 현재 후보 문장/표/보기/답/해설에 각각 적용해 판정했다. 2015 중3 학습 완료 범위의 판정이며 특정 학교의 중간고사 진도 승인이나 2022 승인으로 확대하지 않는다.",
+    "unitFamilyFit": "pending: Unit 명칭은 수학 주제와 관련되지만 family 목록은 key/code/count뿐이다. 해당 family의 실제 문항 의미·필수 풀이·분류 규약을 열람하지 않았으므로 정확한 live family 배정은 확정할 수 없다. 특히 q08은 인수분해 선수 이후 통합 배치가 필요하다.",
+    "scoreAppropriate": "5점은 두 인수분해, 세 부호 구간, 범위 밖 후보 제거, 양의 길이 재검산, 합 계산을 요구하는 응용 문항으로 편집상 타당하다. 원문 중 난도보다 역추론과 기하 연결의 부담이 추가되므로 동일 실측 난도라고 주장하지 않는다.",
+    "official": {
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+      "ownEvidence": "own-official-record-evidence-20261019.json",
+      "actualHashMatched": true,
+      "notInheritedGradeApproval": true
+    },
+    "era": {
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0",
+      "locator": "부칙1 나/다/라; web lines544,546,548",
+      "conclusion": "2025 중1,2026 중2,2027 중3부터 2022 적용. 2025/2026 중3는 2015로 검토. 2027/2022는 별도 보류."
+    },
+    "pendingReasons": [
+      "실제 live family 의미 미확인; unitFamilyFit=false",
+      "출처 동일성·권리·유사성·native provenance·적재 가능성은 별도 미승인"
+    ],
+    "scope": "허용된 stage2 여섯 파일, 본인 봉인 raw, 공식 교육과정 원문만 사용. 원본 전체 manifest, 다른 문항, 이전 proof, private package를 열지 않음.",
+    "curriculumSurfaceEvidence": {
+      "stem": "실수 x, 양수인 변, A가 B보다 2 cm 길다는 방향, 가능한 모든 x의 합이 명시되어 있다. 9수01-07(3776),9수01-10(3788),9수02-12(3956). 인수분해는 필수 선수이므로 제곱근 단원 첫 진도만으로 풀도록 배치하면 안 된다. 중3 인수분해 학습 이후의 통합 문제로는 적합하다. 정사각형 넓이/단위는 6수03-05(3429) 및 3425, 일차방정식은 9수02-05(3916), 절댓값 표기는 3799. 고등 절댓값 방정식 일반해법 없이 부호를 직접 나눈다.",
+      "choices": "다섯 보기 모두 정수 수치로 중학교 범위. 계산은 choicesCorrect 참조.",
+      "figuresAndTables": "인쇄 표에서 A/B의 넓이는 각각 x²+4x+4,4x²-12x+9이며 cm²가 붙는다. 길이는 양의 제곱근으로 정하고 차는 cm이다. 별도 축척 그림이나 픽셀 측정은 필요 없다.",
+      "notation": "x², 근호, 절댓값, 분수 경계, cm²/cm는 중학교 및 초등 선수 범위이다.",
+      "answer": "선택 기호 한 글자와 수치 결과는 calculation에 검증됨.",
+      "studentSolution": "9수01-07(3776),9수01-10(3788),9수02-12(3956). 인수분해는 필수 선수이므로 제곱근 단원 첫 진도만으로 풀도록 배치하면 안 된다. 중3 인수분해 학습 이후의 통합 문제로는 적합하다. 정사각형 넓이/단위는 6수03-05(3429) 및 3425, 일차방정식은 9수02-05(3916), 절댓값 표기는 3799. 고등 절댓값 방정식 일반해법 없이 부호를 직접 나눈다. 현재 후보 해설의 모든 계산 단계·분기·대입과 결론을 봉인 풀이와 대조했다. 후보 해설은 정답만 맞는 것이 아니라 부호·정의역·범위 확인 및 유일성 논증까지 맞는다.",
+      "prerequisites": "인수분해를 생략할 수 없다. 9수02-12 학습 완료가 필요하며 9수02-05 일차방정식, 절댓값의 부호, 초등 정사각형 넓이도 사용한다."
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  },
+  "mathApproved": true,
+  "gradeApproved2015M3": true,
+  "liveFamily": false,
+  "unitFamilyFit": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false
+}
