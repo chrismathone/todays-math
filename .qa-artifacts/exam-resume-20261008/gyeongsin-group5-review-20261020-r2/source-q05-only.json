@@ -1,0 +1,55 @@
+{
+  "number": 5,
+  "stem": "그림에서 $\\overline{AD}$는 원 $\\mathrm{O}$의 지름이고, 원 위의 점 $\\mathrm{A}$에서 현 $\\mathrm{B}C$에 내린 수선의 발을 $\\mathrm{H}$라 하자. $\\overline{AB}=8$, $\\overline{AC}=12$, $\\overline{BH}=2$일 때, 원 $\\mathrm{O}$의 반지름의 길이는? [$5$점]",
+  "choices": [
+    "$\\frac{7}{5}\\sqrt{15}$",
+    "$\\frac{8}{5}\\sqrt{15}$",
+    "$\\frac{9}{5}\\sqrt{15}$",
+    "$2\\sqrt{15}$",
+    "$\\frac{11}{5}\\sqrt{15}$"
+  ],
+  "sourceContentDigest": "2b8db0bf9afc612d26b789d5ea10ad3158dfa5340ba0827e26d6cb5579c7c23f",
+  "questionPageCrops": [
+    {
+      "file": "gyeongsin\\packet\\images\\q05-part1.png",
+      "sha256": "60d50e2c270f310bfacd9a694ea4d1d2650f0d14573250ac6dc39cdb77095a68",
+      "page": 2,
+      "column": 0,
+      "bbox": [
+        55,
+        83,
+        375,
+        530.7940673828125
+      ]
+    }
+  ],
+  "figureGivenObservation": "AD 지름; AB=8, AC=12, BH=2; AH⊥BC.",
+  "reviewObservation": {
+    "reviewedActualCompletedPages": [
+      2
+    ],
+    "originalQuestionLocator": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+      "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9",
+      "physicalPdfPage": 2,
+      "printedPage": 2,
+      "column": "left",
+      "printedQuestion": "객관식 5",
+      "render": "gyeongsin\\evidence\\additional-original-H-page-02.webp",
+      "renderSha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0"
+    },
+    "givenFigureConditions": "AD 지름; AB=8, AC=12, BH=2; AH⊥BC.",
+    "structuredTableOrPlot": {},
+    "coreMethodCandidate": "지름에 대한 원주각과 두 직각삼각형의 수선/길이 조건을 연결한다.",
+    "sourceAmbiguityHolds": [
+      "source_exam_year_identity_hold",
+      "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+      "source_custody_rights_permission_pending",
+      "canonical_text_product_render_review_pending",
+      "specific_grade_method_risk"
+    ],
+    "priority": "P0",
+    "studentSolutionOrCorrectChoiceAuthored": false
+  },
+  "difficultyLabelFromSource": ""
+}

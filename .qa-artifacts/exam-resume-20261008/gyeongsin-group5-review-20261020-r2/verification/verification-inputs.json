@@ -1,0 +1,299 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 5,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group5-r2-q05",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 5,
+      "content": "그림과 같이 반지름의 길이가 $15\\,\\mathrm{cm}$인 원 $O$에서 선분 $PD$는 지름이고, $P,Q,R$는 원 위의 점이다. 점 $P$에서 선분 $QR$에 내린 수선의 발을 $H$라 하자. $H$는 선분 $QR$의 내부에 있고, $\\overline{PQ}=10\\,\\mathrm{cm}$, $\\overline{PR}=24\\,\\mathrm{cm}$일 때, $\\overline{QH}$의 길이는?",
+      "choices": [
+        "$4\\,\\mathrm{cm}$",
+        "$5\\,\\mathrm{cm}$",
+        "$6\\,\\mathrm{cm}$",
+        "$8\\,\\mathrm{cm}$",
+        "$10\\,\\mathrm{cm}$"
+      ],
+      "answer": "③",
+      "solution": "선분 $RD$를 긋자. $PD$가 원의 지름이므로 $\\angle PRD=90^\\circ$이다. 또 $PH\\perp QR$이므로 $\\angle PHQ=90^\\circ$이다.\n\n$H$가 선분 $QR$의 내부에 있으므로 $\\angle PQH=\\angle PQR$이다. 같은 호 $PR$에 대한 원주각의 크기는 같으므로 $\\angle PQR=\\angle PDR$이다. 따라서 두 각의 크기가 각각 같은 $\\triangle PQH$와 $\\triangle PDR$는 닮음이다.\n\n원의 반지름이 $15\\,\\mathrm{cm}$이므로 $\\overline{PD}=30\\,\\mathrm{cm}$이다. 닮음에서 대응하는 변의 길이의 비를 이용하면\n\n$\\displaystyle \\frac{\\overline{PH}}{\\overline{PR}}=\\frac{\\overline{PQ}}{\\overline{PD}}=\\frac{10}{30}=\\frac13$이므로 $\\overline{PH}=8\\,\\mathrm{cm}$이다.\n\n직각삼각형 $PQH$에서 피타고라스 정리에 따라 $\\overline{QH}^{\\,2}=10^2-8^2=36$이다. 선분의 길이는 양수이므로 $\\overline{QH}=6\\,\\mathrm{cm}$이다. 따라서 정답은 ③이다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-5",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group5-r2-q05",
+        "sourceContentSha256": "2b8db0bf9afc612d26b789d5ea10ad3158dfa5340ba0827e26d6cb5579c7c23f",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "Observed originalH page2 q5 component and completedq5. Completed crop and original scan roles distinguished; whole-pair/year/rights certification remains separate.",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group5-r2/source-q05-component-observation-r1.json",
+          "sha256": "484aded7ae2b42568adf5106bd2b5387e902c3cdf5cd23873756e342f6a39591"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "completedQuestionCrop": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q05-part1.png",
+          "sha256": "60d50e2c270f310bfacd9a694ea4d1d2650f0d14573250ac6dc39cdb77095a68"
+        },
+        "originalQuestionRender": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-02.webp",
+          "sha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0",
+          "physicalPdfPage": 2,
+          "printedQuestion": 5
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "두현의길이와수선의발로나눈짧은선분을주고원의반지름을구한다.",
+        "after": "원의반지름과두현의길이를주고수선의발로나눈짧은선분을구한다.",
+        "sharedConcept": "지름에대한원주각90°,동일호원주각같음,직각삼각형닮음과피타고라스",
+        "sharedProcedure": "지름끝점을보조선으로연결→두직각삼각형의각대응/닮음→수선길이및현/지름관계→피타고라스와양수길이로미지량결정",
+        "actualStructuralChange": "원문의최종반지름을조건으로,원문의입력분할선분을질문대상으로역전했다. 피타고라스로높이를먼저구하던순서가닮음으로높이를복원한뒤피타고라스를쓰는순서로바뀐다. 중심이삼각형밖에있는새조건으로그림도전량작도했다. 단순숫자/이름교체를완료근거로삼지않는다.",
+        "domainProof": "저자전용정확한좌표a+b√2쌍연산으로P,Q,R,D가반지름15의같은원위이고PD가실제지름이며PQ10,PR24,PH8,QH6임을확인했다. H는Q(-6,0)와R(16√2,0)사이이다. 학생은이좌표를쓸필요가없다. 닮음은PH8을유일하게정하고양수길이는QH6하나만남긴다. 보기다섯값은서로다르다. 픽셀은계산근거가아니다.",
+        "difficultyBasis": "원문5점의동일호·직각·닮음·피타고라스를역순서로사용한다. 난도라벨은불명이며표준5점은독립검토전제안이다. 원과비례의일반공식/고등외접반지름공식없이실제두삼각형의각대응과닮음비를학생해설에모두쓴다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수04-20",
+          "9수04-14",
+          "9수04-16"
+        ],
+        "officialProvisions": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+          "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+        },
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "editionObserved": "2015",
+          "readCurrentPage": true,
+          "standard": "9수04-20",
+          "actualScope": "원주각의성질;원과비례제외. 2015중학교학년군기준이며실제M3배치와학생방법검토는별도로필요하다."
+        },
+        "legitimateMethodDraft": "지름에대한직각과동일호원주각을확인하고실제두직각삼각형의AA닮음을보인다. 닮음비와피타고라스로양수길이를구한다. 원과비례의일반성질·현곱/할선곱공식·사인법칙·고등외접반지름공식·좌표계산을학생필수방법으로쓰지않는다. 이실제학생절차의2015M3적합성은독립검토대상이다.",
+        "sevenSurfaces": {
+          "stem": "author-proposed",
+          "choices": "author-proposed",
+          "figureTable": "author-new-vector-proposed",
+          "notation": "author-proposed",
+          "answer": "author-exact-angles-only",
+          "studentSolution": "author-proposed",
+          "prerequisites": "author-proposed"
+        },
+        "independentReviewPending": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 5,
+        "difficultyProposal": "표준",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "주어진 원 반지름에서 수선의 발로 나뉜 선분 복원",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각의 활용",
+            "semester": 2,
+            "orderIndex": 487,
+            "problemCodePrefix": "J30604"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제원주각활용UnitUUID와원주각선수를연결한다. 실제닮음·피타고라스역추론전체평가목적과일치하는livefamily는확인전null."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-FigureSpec-v2-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "Exact integer-pair arithmetic over sqrt2 proves circle/diameter/chord/foot conditions; floating values only place engine points.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-q05-r2.ts",
+          "renderingReviewPending": true,
+          "lengthUnit": "cm",
+          "intentionallyOmittedFigureLabels": [
+            {
+              "name": "givenPQ",
+              "value10PreservedInStem": true,
+              "reason": "Short chord dimension collides with circle in preserved strict r1; do not silently drop any stem condition."
+            }
+          ]
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": null,
+        "prerequisiteUnits": [
+          {
+            "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각",
+            "semester": 2,
+            "orderIndex": 486,
+            "problemCodePrefix": "J30603"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "지름에대한원주각",
+            "같은호의원주각",
+            "삼각형의닮음비",
+            "피타고라스정리"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "namedPrerequisitesWithoutCapturedUuid": [
+          "삼각형의AA닮음과대응변의길이의비",
+          "피타고라스정리와양수길이"
+        ]
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\package\\private\\q05\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\package\\private\\q05\\figure-1.svg",
+        "specSha256": "b4ab1b47fd6fcf248c2468591cc1df44c9d43177808a5747471f22c6a6dd287c",
+        "svgSha256": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q05-1.svg"
+      }
+    ],
+    "studentDigest": "c5372fbdf123fd7fbfe98b7d7d9ae889787a7b6970e600800fc7e704a7bbf428",
+    "candidateDigest": "28097999c8fc94bad3345029c2ea505ac3016a1e5ede11545b10ffd1cb53a636",
+    "assetDigest": "2eb15c2abe2667236bc8ff88befb081fdf48214726ce713a22a54c89af4e3087",
+    "independentSolve": {
+      "studentDigest": "c5372fbdf123fd7fbfe98b7d7d9ae889787a7b6970e600800fc7e704a7bbf428",
+      "solverId": "independent-retained-helper-gyeongsin-q05-r2",
+      "answer": "③",
+      "solution": "반지름이 15 cm이므로 지름 PD=30 cm이다. 지름에 대한 원주각 ∠PRD는 직각이다. 따라서 직각삼각형 PDR에서 DR²=30²−24²=324이고, 길이는 양수이므로 DR=18 cm이다. H가 QR의 내부에 있고 PH⊥QR이므로 ∠PQH는 예각이다. 따라서 Q와 D는 현 PR의 같은 쪽 호에 있으며, 같은 현 PR에 대한 원주각으로 ∠PQH=∠PQR=∠PDR이다. 또 ∠PHQ=∠PRD=90°이므로 △PQH와 △PDR는 Q↔D, H↔R, P↔P의 대응으로 닮음이다. 그러므로 QH/DR=PQ/PD=10/30=1/3에서 QH=6 cm이다. 또한 PH=24/3=8 cm이고, PQ²=6²+8²=100으로 주어진 길이와 일치한다. 보기 4,5,6,8,10 cm를 각각 QH에 넣으면 QH²+8²는 80,89,100,128,164이므로 ③만 가능하다. 모든 길이는 양수이며 HR²=24²−8²=512>0이어서 H가 내부인 조건과 모순이 없다. 조건을 만족하는 도형은 지름 30인 원에 PR=24, PQ=10인 현을 그림의 순서대로 잡아 구성할 수 있으며, 위 닮음비는 모든 허용 배치에 공통이므로 요구 길이는 유일하다.",
+      "evidence": {
+        "exposureDeclaration": {
+          "current_authored_q05_r2_answer_or_solution_exposed": false,
+          "current_authored_student_question_unseen_before_this_student_packet": true,
+          "prior_original_q05_page_incidental_exposure": true,
+          "history": "직전 허가된 q06 원본 H 전체 페이지에 원래 q05 그림·조건이 함께 보여 노출된 이력이 있다. 현재 authored q05 r2의 저자 답·해설·비공개 자료는 읽지 않았다. 완전한 원문 비노출을 주장하지 않는다. 이번 답은 현재 학생 조건에서 독립 계산했다."
+        },
+        "method": "지름의 원주각, 같은 현에 대한 원주각, 두 각이 같은 삼각형의 닮음, 피타고라스 정리",
+        "exactCalculations": {
+          "PD_cm": 30,
+          "DR_squared_cm2": 324,
+          "DR_cm": 18,
+          "similarity_ratio": "1/3",
+          "PH_cm": 8,
+          "QH_cm": 6,
+          "HR_squared_cm2": 512,
+          "HR_cm": "16√2",
+          "QR_cm": "6+16√2"
+        },
+        "allChoices": [
+          {
+            "mark": "①",
+            "length_cm": 4,
+            "PQ_squared_from_right_triangle": 80,
+            "equals_100": false,
+            "similarity_ratio_matches": false
+          },
+          {
+            "mark": "②",
+            "length_cm": 5,
+            "PQ_squared_from_right_triangle": 89,
+            "equals_100": false,
+            "similarity_ratio_matches": false
+          },
+          {
+            "mark": "③",
+            "length_cm": 6,
+            "PQ_squared_from_right_triangle": 100,
+            "equals_100": true,
+            "similarity_ratio_matches": true
+          },
+          {
+            "mark": "④",
+            "length_cm": 8,
+            "PQ_squared_from_right_triangle": 128,
+            "equals_100": false,
+            "similarity_ratio_matches": false
+          },
+          {
+            "mark": "⑤",
+            "length_cm": 10,
+            "PQ_squared_from_right_triangle": 164,
+            "equals_100": false,
+            "similarity_ratio_matches": false
+          }
+        ],
+        "existenceAndUniqueness": "18,24,30인 직각삼각형 PRD를 만들고 PD를 지름으로 하는 원을 그리면 반지름은 15이다. R을 지나지 않는 반원 PD에서 P로부터 현의 길이가 10인 Q를 잡을 수 있다(0<10<30). Q는 P와 D 사이에 있고 순서는 P,Q,D,R이다. Q에서의 각은 직각삼각형 PDR의 예각과 같고, R에서의 각도 작은 호 PQ에 대한 예각이므로 P의 수선의 발은 QR 내부에 있다. 따라서 조건을 만족하는 구성이 존재한다. 반사된 배치까지 도형 자체가 유일하다는 주장은 하지 않으며, 모든 허용 배치에서 아래 닮음으로 요구 길이가 유일하다.",
+        "domains": "반지름, 현, 지름과 QH,PH,HR는 모두 양수. 분모 PD=30,DR=18,PR=24는 0이 아니다. 제곱근은 양의 길이만 채택한다. 길이 cm, 제곱 cm².",
+        "figureInspection": "학생 PNG를 육안으로 확인하고 SVG의 라벨만 확인했다. H의 내부 위치, 수선 표시, PD 지름 및 점 순서를 확인했으며 픽셀이나 SVG 좌표를 수치 계산에 쓰지 않았다.",
+        "studentDigestRecomputed": "c5372fbdf123fd7fbfe98b7d7d9ae889787a7b6970e600800fc7e704a7bbf428",
+        "figureSha256Verified": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01",
+        "limitations": "현재 학생 문제의 독립 수학 풀이이며 학년·권리·출처·가족·배포 승인이나 승인 개수 증가를 뜻하지 않는다."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "b1786cfb1e194c6836bbc8fd52388bc285bc42f15d9728bfa15ed2e161c1a1c1"
+  }
+]

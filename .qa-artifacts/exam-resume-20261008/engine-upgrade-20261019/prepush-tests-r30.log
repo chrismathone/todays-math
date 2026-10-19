@@ -1,0 +1,74 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+stderr | src/__tests__/components/StudentCourseSrs.test.tsx > persisted course practice > waits for the saved answer, prevents double submit, and supports Enter to advance
+A component suspended inside an `act` scope, but the `act` call was not awaited. When testing React components that depend on asynchronous data, you must await the result:
+
+await act(() => ...)
+
+ ✓ src/__tests__/components/StudentCourseSrs.test.tsx (48 tests) 9310ms
+     ✓ routes the second answer to follow-up and reconciles a 409 before continuing  972ms
+     ✓ keeps supply shortage distinct from completion after the last answer (recommendation=false)  413ms
+     ✓ keeps supply shortage distinct from completion after the last answer (recommendation=true)  334ms
+     ✓ moves focus into settings and returns it to the opener on Escape  311ms
+     ✓ requires each curriculum choice and does not silently select the first section  462ms
+     ✓ persists a setup plan before allowing automatic start  438ms
+     ✓ waits for the saved answer, prevents double submit, and supports Enter to advance  325ms
+     ✓ locks an uncertain offline answer and retries the exact same request  315ms
+     ✓ requests the next recommendation after five problems and stops at the daily goal  496ms
+ ✓ src/__tests__/components/ExplorerConceptMemory.test.tsx (21 tests) 8236ms
+     ✓ shows only one student start and device settings, preserving the exact recall next  1337ms
+     ✓ queues cold checks via the first rating receipt and leaves long-term and explorer records unchanged by a minute check  711ms
+     ✓ records partial wrong/give-up evidence before the main step and keeps minute checks separate from explorer progress  313ms
+     ✓ runs the actual local daily planner from first activity to persisted resume inside the explorer  394ms
+     ✓ selects a real catalog concept, opens the shared recall screen inline, and returns keyboard focus  659ms
+     ✓ resumes typed recall without posting an open action and leaves old credits untouched after rating  1018ms
+     ✓ offers a future concept as unrecorded practice and sends no pick/open or schedule write  803ms
+     ✓ rereads the shared explorer revision before the next old action without crediting concept results  481ms
+     ✓ retries a failed open catalog as well as state so the selector becomes usable  324ms
+ ✓ src/__tests__/api/mathExplorersRoutes.test.ts (33 tests) 6999ms
+     ✓ shows a new 초5 student the 2nd-semester unit, writes nothing on read and keeps the plan on start  506ms
+     ✓ awards the actual Korea completion day once and keeps historical replay read only  585ms
+     ✓ keeps an exhausted concept mission open across midnight until retry-unresolved solves the rest  1318ms
+     ✓ never adds a second tile on a day that already has one  500ms
+     ✓ continues elementary ten across five-question sessions and midnight despite a source daily limit of five  317ms
+     ✓ stores selected grade and goal, then supports due-memory and prerequisite-repair sessions  801ms
+     ✓ collects wrong answers, awards one completed day, unlocks chests, and replays old days without rewards  555ms
+ ✓ src/__tests__/api/mathExplorersStarAward.test.ts (10 tests) 3754ms
+     ✓ gives a middle question-bank day three stars once, only when its retry is solved, and not again the same day  885ms
+     ✓ tops a thin memory day up to three and keeps historical replay free of stars  688ms
+     ✓ does not read a leftover concept session's stars on an elementary bank day  437ms
+ ✓ src/__tests__/components/ExplorerHomeAtelier.test.tsx (7 tests) 1882ms
+   ✓ shows one journey heading inside the book while retaining board controls and totals  616ms
+     ✓ 다른 시트(도감 · 우리 기지)에는 스위치를 두지 않는다  426ms
+ ✓ src/__tests__/unit/srsStoredContractWalk.test.ts (6 tests) 2386ms
+     ✓ chooses 초5 and a unit in the settings, then studies every day without a teacher plan  955ms
+     ✓ studies from a teacher plan through sections that hand out self-check problems  518ms
+     ✓ finishes a bank day whose given-up problems were resolved on the spot (follow-ups)  506ms
+ ✓ src/__tests__/components/StudentExplorerFollowUp.test.tsx (3 tests) 2636ms
+     ✓ restores the waiting question, keeps the solution open without a timer, and sends understood before leaving  1144ms
+     ✓ shows a second correct answer as 맞았어요, then continues with the existing short transition  1330ms
+ ✓ src/__tests__/components/StudentCoursePreview.test.tsx (7 tests) 1103ms
+     ✓ shows the authored two-page card before the first question of 5-2-1-1 without writing  704ms
+ ✓ src/__tests__/components/StudentCourseFollowUp.test.tsx (7 tests) 1199ms
+     ✓ clears the first selected choice when its saved wrong answer opens the second try  512ms
+ ✓ src/__tests__/unit/mathSrsRecordIsolation.test.ts (6 tests) 686ms
+ ✓ src/__tests__/components/StudyBook.test.tsx (4 tests) 612ms
+     ✓ notifies its scroll host when the displayed page changes  475ms
+ ✓ src/__tests__/components/ExplorerStudyBook.test.tsx (6 tests) 649ms
+     ✓ shows the unit once in C order for todo  469ms
+ ✓ src/__tests__/components/FollowUpFeedback.test.tsx (3 tests) 525ms
+     ✓ labels the solution and preserves the caller's button ref and action  460ms
+ ✓ src/__tests__/unit/mathExpeditionJourney.test.ts (5 tests) 478ms
+     ✓ combines three completed modes on one date into one permanent tile with every replay reference  334ms
+ ✓ src/__tests__/unit/mathExplorersGiveUp.test.ts (6 tests) 259ms
+ ✓ src/__tests__/unit/mathExpeditionForecast.test.ts (33 tests) 283ms
+ ✓ src/__tests__/unit/mathExpeditionRecordCompat.test.ts (3 tests) 225ms
+ ✓ src/__tests__/unit/mathExplorersStarEconomy.test.ts (4 tests) 181ms
+
+ Test Files  18 passed (18)
+      Tests  212 passed (212)
+   Start at  02:14:11
+   Duration  136.70s (transform 15.39s, setup 31.26s, import 32.06s, tests 41.40s, environment 25.65s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r30.json
