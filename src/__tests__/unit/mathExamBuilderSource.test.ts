@@ -85,6 +85,23 @@ const inventory = (counts: Record<string, number>) => {
     },
   };
 };
+const curriculum = () =>
+  reply({
+    problems: [],
+    total: 6,
+    page: 1,
+    pageSize: 12,
+    grades: [{ grade: unit.grade, count: 6 }],
+    chapters: [unit.chapter],
+    units: MOCK_UNITS.map(({ id, grade, chapter, section, orderIndex }) => ({
+      id,
+      grade,
+      chapter,
+      section,
+      orderIndex,
+    })),
+    unitCounts: { [unit.id]: 6 },
+  });
 const listRequest = {
   scopeIds: [unit.id],
   difficulty: "기본",
@@ -410,13 +427,28 @@ describe("Math exam builder source", () => {
     expect(initial.initialScopes?.[0].count).toBe(3);
     expect(initial.initialScopes?.[1].count).toBe(0);
 
-    const fetcher = vi
-      .fn<typeof fetch>()
-      .mockImplementation(async (url) =>
-        String(url).endsWith("/sources")
-          ? reply(inventory(counts))
-          : reply({ problems: [], units: MOCK_UNITS, unitCounts: counts }),
-      );
+    const fetcher = vi.fn<typeof fetch>().mockImplementation(async (url) =>
+      String(url).endsWith("/sources")
+        ? reply(inventory(counts))
+        : reply({
+            problems: [],
+            units: MOCK_UNITS.map(
+              ({ id, grade, chapter, section, orderIndex }) => ({
+                id,
+                grade,
+                chapter,
+                section,
+                orderIndex,
+              }),
+            ),
+            unitCounts: counts,
+            total: 3,
+            page: 1,
+            pageSize: 12,
+            grades: [{ grade: unit.grade, count: 3 }],
+            chapters: [unit.chapter],
+          }),
+    );
     const remote = createMathExamBuilderSource({ fetch: fetcher });
     expect((await remote.loadScopes(signal))[1].count).toBe(0);
   });
@@ -604,6 +636,58 @@ describe("Math exam builder source", () => {
       );
     },
   );
+
+  it("keeps legacy output closed until the saved scope is known, then checks moved units", async () => {
+    let finish!: (value: Response) => void;
+    const check = ready([readyId]);
+    check.items[0].unitId = MOCK_UNITS[1].id;
+    const fetcher = vi.fn<typeof fetch>(async (url) => {
+      if (String(url).endsWith("/check")) return reply(check);
+      if (String(url).endsWith("/sources"))
+        return reply(inventory({ [unit.id]: 6 }));
+      return new Promise((resolve) => {
+        finish = resolve;
+      });
+    });
+    const source = createMathExamBuilderSource({ fetch: fetcher });
+    const { unitId: _unitId, ...saved } = row(readyId);
+    expect(_unitId).toBe(unit.id);
+    const pending = source.prepareOutput!([saved], signal);
+    const moved = expect(pending).rejects.toThrow("단원이나 출처");
+    expect(fetcher).toHaveBeenCalledWith(
+      "/api/studio/problems?identity=question&view=bootstrap",
+      expect.objectContaining({ signal }),
+    );
+    expect(
+      fetcher.mock.calls.some(([url]) => String(url).endsWith("/check")),
+    ).toBe(false);
+    finish(curriculum());
+    await moved;
+    await expect(source.prepareOutput!([saved], signal)).rejects.toThrow(
+      "단원이나 출처",
+    );
+    check.items[0].unitId = unit.id;
+    expect(await source.prepareOutput!([saved], signal)).toEqual([saved]);
+    expect(saved).not.toHaveProperty("unitId");
+  });
+
+  it("validates a legacy saved row from a fresh source without a preceding scope read", async () => {
+    const fetcher = vi.fn<typeof fetch>(async (url) =>
+      String(url).endsWith("/check") ? reply(ready([readyId])) : curriculum(),
+    );
+    const { unitId: _unitId, ...legacy } = row(readyId);
+    const saved = { ...legacy, questionId: `question:${readyId}` };
+    expect(_unitId).toBe(unit.id);
+    const source = createMathExamBuilderSource({ fetch: fetcher });
+    expect((await source.prepareOutput!([saved], signal))[0]).toBe(saved);
+    expect((await source.prepareOutput!([saved], signal))[0]).toBe(saved);
+    expect(
+      fetcher.mock.calls.filter(([url]) =>
+        String(url).includes("view=bootstrap"),
+      ),
+    ).toHaveLength(1);
+    expect(saved).not.toHaveProperty("unitId");
+  });
 
   it("propagates authorization failures and aborts without a fallback request", async () => {
     const fetcher = vi

@@ -122,21 +122,32 @@ export default function ExamBuilder<T>({
     [loaded, source],
   );
   const scopeLoading = !loaded && !source.initialScopes;
-  const [configuredAllocations, setAllocations] = useState<ExamAllocation[]>(
-    () => {
-      const counts = new Map<string, number>();
-      questions.forEach((item) => {
-        const id = source.info(item).scopeId;
-        if (id) counts.set(id, (counts.get(id) ?? 0) + 1);
-      });
-      return initialScopeIds?.length
-        ? initialScopeIds.map((scopeId) => ({
-            scopeId,
-            count: counts.get(scopeId) ?? 5,
-          }))
-        : Array.from(counts, ([scopeId, count]) => ({ scopeId, count }));
-    },
+  function restoredAllocations(): ExamAllocation[] {
+    const counts = new Map<string, number>();
+    questions.forEach((item) => {
+      const id = source.info(item).scopeId;
+      if (id) counts.set(id, (counts.get(id) ?? 0) + 1);
+    });
+    return initialScopeIds?.length
+      ? initialScopeIds.map((scopeId) => ({
+          scopeId,
+          count: counts.get(scopeId) ?? 5,
+        }))
+      : Array.from(counts, ([scopeId, count]) => ({ scopeId, count }));
+  }
+  const [configuredAllocations, setAllocations] =
+    useState<ExamAllocation[]>(restoredAllocations);
+  const [awaitingRestoredScopes, setAwaitingRestoredScopes] = useState(
+    () =>
+      !source.initialScopes &&
+      questions.some((item) => !source.info(item).scopeId),
   );
+  // Legacy saved questions resolve their scope from deferred curriculum labels.
+  // Restore once before showing the loaded table; later edits keep their intent.
+  if (awaitingRestoredScopes && loaded && !loaded.error) {
+    setAwaitingRestoredScopes(false);
+    setAllocations(restoredAllocations());
+  }
   const [scopePage, setScopePage] = useState(1);
   const [picker, setPicker] = useState<{
     replaceId?: string;

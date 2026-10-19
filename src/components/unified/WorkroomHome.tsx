@@ -1,9 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Icon from "./WorkspaceIcon";
 import WorkProgress from "./WorkProgress";
 import type { BankData, StudioProblem } from "./types";
+import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
+import { unifiedBankBootstrapSchema } from "@/contracts/unifiedBankBootstrap.contract";
 import {
   WORKSPACE_MENUS,
   canOutputFrom,
@@ -24,6 +26,8 @@ interface Props {
   cloudStorage?: boolean;
   allowedMenus?: WorkspaceMenu[];
   data: BankData;
+  deferBankMetadata?: boolean;
+  navigationReady?: boolean;
   draft: {
     id: string;
     title: string;
@@ -53,7 +57,9 @@ export function formatDraftDate(value: string) {
       }).format(date);
 }
 export default function WorkroomHome({
-  data,
+  data: initialData,
+  deferBankMetadata = false,
+  navigationReady = true,
   draft,
   recent,
   hydrated,
@@ -70,6 +76,7 @@ export default function WorkroomHome({
   const canOutput = canOutputFrom(allowedMenus);
   const canOpenSaved = canOutputFrom(allowedMenus, "library");
   const canCreate = can("bank") || can("studio") || can("library");
+  const canBank = can("bank");
   const showPrimary = can("bank") || can("studio") || can("library");
   const showSecondary = canOutput || can("teaching");
   const continueView =
@@ -82,6 +89,37 @@ export default function WorkroomHome({
           : "export";
   const [query, setQuery] = useState("");
   const [dragging, setDragging] = useState(false);
+  const [bankData, setBankData] = useState<BankData>();
+  useEffect(() => {
+    if (!deferBankMetadata || !navigationReady || !canBank) return;
+    const controller = new AbortController();
+    // The existing authenticated list route has a metadata-only view backed by
+    // the same public summary cache as the server bootstrap.
+    void fetch(
+      `${getStudioEndpoints().problems}?identity=question&view=bootstrap`,
+      {
+        signal: controller.signal,
+        cache: "no-store",
+        credentials: "same-origin",
+      },
+    )
+      .then(async (response) => {
+        if (!response.ok) throw new Error("bank unavailable");
+        const value = unifiedBankBootstrapSchema.parse(await response.json());
+        if (!controller.signal.aborted) setBankData(value);
+      })
+      .catch(() => {
+        if (!controller.signal.aborted)
+          setBankData({
+            ...initialData,
+            error:
+              "문제은행 연결을 확인해 주세요. 문제 추출은 바로 사용할 수 있습니다.",
+          });
+      });
+    return () => controller.abort();
+  }, [deferBankMetadata, navigationReady, canBank, initialData]);
+  const data = bankData ?? initialData;
+  const bankLoading = deferBankMetadata && !bankData;
   const total = data.grades.reduce((sum, g) => sum + g.count, 0);
   const gradeGroups = [
     { prefix: "초", label: "초등" },
@@ -120,15 +158,17 @@ export default function WorkroomHome({
                       </h2>
                     </div>
                   </div>
-                  <span className={s.databaseCount}>
-                    {data.error ? (
-                      "연결 확인 필요"
-                    ) : (
-                      <>
-                        <b>{total.toLocaleString()}</b>문항
-                      </>
-                    )}
-                  </span>
+                  {!bankLoading && (
+                    <span className={s.databaseCount}>
+                      {data.error ? (
+                        "연결 확인 필요"
+                      ) : (
+                        <>
+                          <b>{total.toLocaleString()}</b>문항
+                        </>
+                      )}
+                    </span>
+                  )}
                 </div>
                 <form
                   className={s.quickSearch}
@@ -151,32 +191,38 @@ export default function WorkroomHome({
                     <Icon name="arrow" size={18} />
                   </button>
                 </form>
-                <div className={s.gradeGroups}>
-                  {gradeGroups.map((group) => (
-                    <div className={s.gradeGroup} key={group.prefix}>
-                      <div>
-                        <strong>{group.label}</strong>
+                {bankLoading ? (
+                  <WorkProgress label="시험지 만들기를 여는 중입니다…" />
+                ) : (
+                  <div className={s.gradeGroups}>
+                    {gradeGroups.map((group) => (
+                      <div className={s.gradeGroup} key={group.prefix}>
+                        <div>
+                          <strong>{group.label}</strong>
+                        </div>
+                        <div>
+                          {data.grades
+                            .filter((g) => g.grade.startsWith(group.prefix))
+                            .sort((a, b) =>
+                              a.grade.localeCompare(b.grade, "ko"),
+                            )
+                            .map((g) => (
+                              <button
+                                key={g.grade}
+                                aria-label={`${g.grade} 문제 찾기`}
+                                onClick={() => onBank({ grade: g.grade })}
+                              >
+                                <strong>
+                                  {g.grade.replace(group.prefix, "")}학년
+                                </strong>
+                                <Icon name="chevron" size={15} />
+                              </button>
+                            ))}
+                        </div>
                       </div>
-                      <div>
-                        {data.grades
-                          .filter((g) => g.grade.startsWith(group.prefix))
-                          .sort((a, b) => a.grade.localeCompare(b.grade, "ko"))
-                          .map((g) => (
-                            <button
-                              key={g.grade}
-                              aria-label={`${g.grade} 문제 찾기`}
-                              onClick={() => onBank({ grade: g.grade })}
-                            >
-                              <strong>
-                                {g.grade.replace(group.prefix, "")}학년
-                              </strong>
-                              <Icon name="chevron" size={15} />
-                            </button>
-                          ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
                 <div className={s.bankFoot}>
                   <button onClick={() => onBank()}>
                     시험지 만들기

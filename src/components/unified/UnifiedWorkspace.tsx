@@ -373,6 +373,7 @@ function SidebarSignOutButton() {
 
 export default function UnifiedWorkspace({
   initialData,
+  deferBankMetadata = false,
   storageScope,
   currentUser,
   allowedMenus,
@@ -380,6 +381,7 @@ export default function UnifiedWorkspace({
   examReportTestId,
 }: {
   initialData: BankData;
+  deferBankMetadata?: boolean;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus?: WorkspaceMenu[];
@@ -392,6 +394,7 @@ export default function UnifiedWorkspace({
       <UnifiedWorkspaceContent
         key={storageScope ?? "development"}
         initialData={initialData}
+        deferBankMetadata={deferBankMetadata}
         storageScope={storageScope}
         currentUser={access.currentUser}
         allowedMenus={access.allowedMenus}
@@ -403,6 +406,7 @@ export default function UnifiedWorkspace({
 }
 function UnifiedWorkspaceContent({
   initialData,
+  deferBankMetadata,
   storageScope,
   currentUser,
   allowedMenus,
@@ -410,6 +414,7 @@ function UnifiedWorkspaceContent({
   examReportTestId,
 }: {
   initialData: BankData;
+  deferBankMetadata: boolean;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus: WorkspaceMenu[];
@@ -1835,6 +1840,8 @@ function UnifiedWorkspaceContent({
           {view === "home" && (
             <WorkroomHome
               data={initialData}
+              deferBankMetadata={deferBankMetadata}
+              navigationReady={navigationReady}
               draft={draft}
               recent={recent}
               hydrated={hydrated}

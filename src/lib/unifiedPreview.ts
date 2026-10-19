@@ -518,7 +518,7 @@ async function loadUnifiedBankMetadata(
   };
 }
 
-/** Metadata for the authenticated workspace shell; intentionally omits problem payloads. */
+/** Shared metadata for authenticated, deferred bank consumers; omits problem payloads. */
 export async function loadUnifiedBankBootstrap(
   identity?: "question",
 ): Promise<UnifiedBankBootstrap> {
@@ -536,6 +536,21 @@ export async function loadUnifiedBank(
   params = new URLSearchParams(),
   context?: BankQueryContext,
 ): Promise<BankData> {
+  // Reuse the list route's auth/development gates, but skip candidate paging and
+  // body reads when only the shared curriculum/counts are needed. The summary
+  // already uses bankReadCache; never cache this request's authorization.
+  if (params.get("view") === "bootstrap") {
+    if (params.get("identity") !== "question" || params.size !== 2)
+      throw new UnifiedBankQueryError(
+        "검색 조건이 올바르지 않습니다. 필터를 확인해 주세요.",
+      );
+    return {
+      ...(await loadUnifiedBankBootstrap("question")),
+      problems: [],
+      page: 1,
+      pageSize: 12,
+    };
+  }
   const resolved = await resolveUnifiedBankQuery(params, context);
   if (resolved.identity === "question")
     return loadQuestionBank(params, resolved);

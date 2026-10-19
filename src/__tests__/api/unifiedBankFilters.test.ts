@@ -107,6 +107,73 @@ const tierCounts = (counts: Partial<DifficultyRatio> = {}): DifficultyRatio =>
   ) as DifficultyRatio;
 
 describe("Math exam builder scoped bank access", () => {
+  it("reuses the shared cached question summary and serves the same metadata from the deferred list API", async () => {
+    await plant();
+    const problemRows = vi.mocked(db.problem.findMany);
+    problemRows.mockClear();
+    const [bootstrap, simultaneous] = await Promise.all([
+      loadUnifiedBankBootstrap("question"),
+      loadUnifiedBankBootstrap("question"),
+    ]);
+    expect(simultaneous).toEqual(bootstrap);
+    const reads = problemRows.mock.calls.length;
+    expect(reads).toBeGreaterThan(0);
+    expect(await loadUnifiedBankBootstrap("question")).toEqual(bootstrap);
+    expect(problemRows).toHaveBeenCalledTimes(reads);
+    vi.stubEnv("NODE_ENV", "development");
+    const response = await GET(
+      new Request(
+        "http://localhost/api/dev/unified/problems?identity=question&pageSize=1",
+      ),
+    );
+    expect(response.status).toBe(200);
+    expect(response.headers.get("cache-control")).toBe("no-store");
+    const body = await response.json();
+    const readsBeforeMetadata = problemRows.mock.calls.length;
+    const deferred = await GET(
+      new Request(
+        "http://localhost/api/dev/unified/problems?identity=question&view=bootstrap",
+      ),
+    );
+    const deferredBody = await deferred.json();
+    expect(deferred.status).toBe(200);
+    expect(problemRows).toHaveBeenCalledTimes(readsBeforeMetadata);
+    for (const field of [
+      "total",
+      "grades",
+      "chapters",
+      "units",
+      "unitCounts",
+      "countUnit",
+      "version",
+      "queryKey",
+    ] as const) {
+      expect(body[field]).toEqual(bootstrap[field]);
+      expect(deferredBody[field]).toEqual(bootstrap[field]);
+    }
+    expect(body.problems).toHaveLength(1);
+    expect(deferredBody.problems).toEqual([]);
+  });
+  it.each([
+    "view=bootstrap",
+    "identity=question&view=bootstrap&recent=1",
+    "identity=question&view=bootstrap&grade=중1",
+  ])(
+    "rejects non-global bootstrap requests before reading the bank: %s",
+    async (params) => {
+      vi.stubEnv("NODE_ENV", "development");
+      const problemRows = vi.mocked(db.problem.findMany);
+      problemRows.mockClear();
+      expect(
+        (
+          await GET(
+            new Request(`http://localhost/api/dev/unified/problems?${params}`),
+          )
+        ).status,
+      ).toBe(400);
+      expect(problemRows).not.toHaveBeenCalled();
+    },
+  );
   it("bootstraps curriculum and counts without loading rows, then pages actual candidates", async () => {
     const candidate = await plant();
     const problemRows = vi.mocked(db.problem.findMany);
