@@ -1,0 +1,189 @@
+{
+  "direct": [
+    {
+      "case": 1,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 8.640000000000004e-14,
+      "nonzeroOFperpendicularDot": -1.1519999999999995e-13,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 2,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 8.640000000000004e-14,
+      "nonzeroOFperpendicularDot": -1.1519999999999995e-13,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 3,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 1.536000000000001e-13,
+      "nonzeroOFperpendicularDot": -1.151999999999998e-13,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 4,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 4.800000000000005e-14,
+      "nonzeroOFperpendicularDot": -1.1520000000000005e-13,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 5,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 8.639999999999981e-14,
+      "nonzeroOFperpendicularDot": -1.152000000000001e-13,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 6,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 2.1600000000000004e-13,
+      "nonzeroOFperpendicularDot": -1.1519999999999995e-13,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 7,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 1.536000000000001e-13,
+      "nonzeroOFperpendicularDot": -1.151999999999998e-13,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 8,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 8.640000000000004e-14,
+      "nonzeroOFperpendicularDot": -1.1519999999999995e-13,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 9,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 8.640000000000004e-14,
+      "nonzeroOFperpendicularDot": -1.1519999999999995e-13,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 10,
+      "helperAccepted": true,
+      "error": "",
+      "nonzeroFIncidenceCross": 3.360000000000028e-14,
+      "nonzeroOFperpendicularDot": -1.1519999999999995e-13,
+      "canonicalItemRejected": true
+    }
+  ],
+  "producer": [
+    {
+      "case": 1,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    {
+      "case": 2,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    {
+      "case": 3,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    {
+      "case": 4,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    {
+      "case": 5,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    {
+      "case": 6,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    {
+      "case": 7,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    {
+      "case": 8,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    {
+      "case": 9,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    {
+      "case": 10,
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    }
+  ],
+  "sourceEdited": false,
+  "poisonOnlyInMemory": true,
+  "description": "Shrink producer geometry coordinates and radius by1e-8, then moveF sideways by12original drawing units times1e-8. F incidence and OF perpendicularity are false; helper absolute eq floor1e-8 can accept small-coordinate contradictions. Canonical item rejects changed JSON, but changing producer figure path in memory makes expected geometry equally wrong."
+}
