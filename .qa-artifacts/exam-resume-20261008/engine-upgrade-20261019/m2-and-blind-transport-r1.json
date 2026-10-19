@@ -1,0 +1,93 @@
+{
+  "utc": "2026-10-19T11:20:38.575Z",
+  "sourceCommit": "c3655bae8d8e4deacf2614e56ff4bd939e639fe9",
+  "copyByteExact": true,
+  "files": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/actual12-results.json",
+      "sha256": "112f48dde314a891494d839e891acfcd6b37b3d997208302225368f561331743",
+      "bytes": 53790
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/audit-report.json",
+      "sha256": "b8babcb68a84f21b72185b3cab7a8fd20c97f9c6d305566bfa616b522d512035",
+      "bytes": 9460
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/closing-source-hashes.json",
+      "sha256": "88d4db9e1f31df0291cde3e053c793b1dc34f49bd875ff76ead93927a791707f",
+      "bytes": 443
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/code-after.json",
+      "sha256": "25ce701b2b4a8bfd103f58a48adeadd5e9a56803aa94cd59b01b31b7dd223c13",
+      "bytes": 437
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/code-before.json",
+      "sha256": "25ce701b2b4a8bfd103f58a48adeadd5e9a56803aa94cd59b01b31b7dd223c13",
+      "bytes": 437
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/collect-primary-locators.py",
+      "sha256": "0bf4774324d27bb1663aec329b20681954c3280f288ebc11ed52c120b8449b49",
+      "bytes": 6368
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/current-audit.mts",
+      "sha256": "260424fa747bda8ba5255854ae1af60d4ad963e0083bfa29c3ce2e312e2275c2",
+      "bytes": 4116
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/evidence-manifest.json",
+      "sha256": "9d98e42b959bbf4fadd319f70cd29b8fec7dae774a31fe405bca0897635738b4",
+      "bytes": 1074
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/finalize-audit.py",
+      "sha256": "7d66a5ffc0bb96505a7c267b52a7bb536d2e37b155e4ef819cc188ba02b325f7",
+      "bytes": 10017
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/primary-locators.json",
+      "sha256": "bc3b641ac2ea90da26bd94208402f7bae55d87a74af05c14af33ab901592dddf",
+      "bytes": 16007
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m2-integer-area-curriculum-audit-20261019-r1/project-placement.json",
+      "sha256": "1730293840740a07957836ac94e541e4942dfca62cb267552c4e51fc5d27a407",
+      "bytes": 972
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-clean-blind-20261019-r1/solve/calculations.json",
+      "sha256": "1e4935b91e0300b4541a6b3ca1316459071b262de7e70c4954451c438cd360fe",
+      "bytes": 3072
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-clean-blind-20261019-r1/solve/exposure-declaration.json",
+      "sha256": "e399b3a2f30d16fed61cd839907c8d6ebbeb40fe30de67fa3107efea510c9f91",
+      "bytes": 1324
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-clean-blind-20261019-r1/solve/independent-calculate.py",
+      "sha256": "a21bb84664edab89abdd7d7199660593738ca7f3abbf8a465d557882d7239163",
+      "bytes": 7222
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-clean-blind-20261019-r1/solve/own-evidence-manifest.json",
+      "sha256": "46a4f0fb0f9d906f2cc6d45579b489ed4cd23c1cd886eb0935880df72325a750",
+      "bytes": 792
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-clean-blind-20261019-r1/solve/q06.json",
+      "sha256": "04505180a8b99a2aa393e622668f2c6e38be725f20f29cbf19687d08aae16ce6",
+      "bytes": 7332
+    }
+  ],
+  "independentSolverId": "codex-nobyeon-sem1-q06-blind-20261019-r1-independent-01",
+  "authorAnswerPacketNotYetCreated": true,
+  "workerBranchPreserved": true,
+  "rawProofsModified": false,
+  "priorAttempt": "Existing empty blind/solve directory stopped transport before commit. Dependent prepare refused missing Git raw blob before exposing anything. Reused verified empty directory, source bytes compared to original worker Git.",
+  "dbWrites": 0
+}
