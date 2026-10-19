@@ -12,6 +12,11 @@ export type ForecastUnit = {
   title: string;
   cards: number;
   collected: number;
+  /**
+   * 한 번이라도 풀어 기록이 생긴 카드(수집 전이어도). 단원 넘김은 이것으로 본다 — 풀이를 본 카드는 그 단원을
+   * 통째로 되풀이하지 않고 기억 복습에서 다시 만난다(원장님 결정 6, 2026-10-19). 없으면 `collected`.
+   */
+  settled?: number;
   /** 끝낸 문제은행 날 — 중1 일차방정식만 센다(D-142 ⑹). */
   bankDays?: number;
 };
@@ -59,7 +64,8 @@ export const BANK_REVIEW = {
   minGapDays: 4,
 } as const;
 const middleBank = (unit: ForecastUnit) => unitHasBank(unit) && unit.grade >= 7;
-const finished = (unit: ForecastUnit) => unit.collected >= unit.cards;
+const finished = (unit: ForecastUnit) =>
+  (unit.settled ?? unit.collected) >= unit.cards;
 const bankLeft = (unit: ForecastUnit) =>
   middleBank(unit) ? Math.max(0, MIDDLE_BANK_DAYS - (unit.bankDays ?? 0)) : 0;
 /**

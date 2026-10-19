@@ -125,7 +125,12 @@ completed-day record; `shown` stays out of `passed` · `next` · `unresolved`;
 `missed` counts the union of keys; a shown solution is never copied into
 `hinted`; the workshop interlude never starts during a follow-up; the mission
 counts a waiting activity once; the response fields go only to screens that
-ask. Supplement cards (D-147) keep the old rounds.
+ask. Supplement cards (D-147) keep the old rounds. A card left at its solution
+stays uncollected (level 0, due the next day) but no longer holds the unit: the
+next concept day comes only while a card was never studied (`settled` in
+`conceptUnits` · `expeditionLearning`), so a hard card returns at memory reviews
+instead of replaying the whole unit (decision 6). Stars, chests and «모은 개념»
+still count collected cards only.
 
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**
