@@ -204,7 +204,8 @@ export function FadingTypedComparison({
                       <FadingMath text={piece.text} />
                     ) : (
                       <span className={s.typedWritten}>
-                        {answers[piece.target.id] || "[미입력]"}
+                        {answers[piece.target.id] ||
+                          (student ? "아직 쓰지 못했어요" : "[미입력]")}
                       </span>
                     )}
                   </span>

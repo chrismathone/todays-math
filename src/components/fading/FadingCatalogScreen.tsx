@@ -340,7 +340,7 @@ export function FadingCatalogScreen({
                       setPage(1);
                     }}
                   >
-                    망각 위험순
+                    {student ? "다시 떠올려 볼 순서" : "망각 위험순"}
                   </button>
                   <button
                     aria-pressed={sort === "unit"}
@@ -433,7 +433,8 @@ export function FadingCatalogScreen({
                               : "시작 전"}
                           </span>
                         </div>
-                        {concept.status?.risk !== null &&
+                        {!student &&
+                        concept.status?.risk !== null &&
                         concept.status?.risk !== undefined ? (
                           <div className={s.risk}>
                             <strong>{toPercent(concept.status.risk)}%</strong>

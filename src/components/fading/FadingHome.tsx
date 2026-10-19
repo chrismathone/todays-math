@@ -117,14 +117,18 @@ export function FadingHome({
             </svg>
           </span>
           <h2>오늘 할 복습을 마쳤어요</h2>
-          <p>자가 평가까지 마친 풀이가 오늘의 기록으로 남았어요.</p>
+          <p>
+            {student
+              ? "공부를 마치고 고른 느낌도 함께 기록했어요."
+              : "자가 평가까지 마친 풀이가 오늘의 기록으로 남았어요."}
+          </p>
           <div className={s.completedMetrics}>
             <div>
               <span>오늘 한 복습</span>
               <strong>{summary.plan.done}개</strong>
             </div>
             <div>
-              <span>다시 아닌 평가</span>
+              <span>{student ? "다시 말고 고른 것" : "다시 아닌 평가"}</span>
               <strong>{summary.todayCount.passed}개</strong>
             </div>
             <div>
@@ -317,7 +321,9 @@ export function FadingHome({
                         ? "그 학년의 첫 단원부터 살펴보세요"
                         : i === 1
                           ? "핵심어와 수식을 함께 읽어요"
-                          : "네 단계 뒤에 자가 평가로 마쳐요"}
+                          : student
+                            ? "네 단계를 마치면 느낌을 골라요"
+                            : "네 단계 뒤에 자가 평가로 마쳐요"}
                     </p>
                   </div>
                 </div>
@@ -421,7 +427,7 @@ export function FadingHome({
                           <span className={s.code}>
                             {dueLabel(item.daysUntil)}
                           </span>
-                          {item.risk !== null && (
+                          {!student && item.risk !== null && (
                             <span className={s.riskTag}>
                               망각 위험 {toPercent(item.risk)}% · 추정
                             </span>

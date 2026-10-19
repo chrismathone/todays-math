@@ -96,7 +96,12 @@ for (const [name, Screen, cards] of [
   });
 }
 it("figure hides reading/comparison chip only for students", () => {
-  const figure = { viewBox: "0 0 10 10", svg: "", tags: [] };
+  const figure = {
+    id: "student-figure",
+    viewBox: "0 0 10 10",
+    svg: "",
+    tags: [],
+  };
   const view = render(<FadingFigureView figure={figure} answers student />);
   expect(screen.queryByText("정독 · 대조")).not.toBeInTheDocument();
   view.rerender(<FadingFigureView figure={figure} answers />);

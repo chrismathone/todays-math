@@ -12,6 +12,24 @@ vi.mock("@/components/fading/FadingMath", () => ({
   FadingMath: ({ text }: { text: string }) => <>{text}</>,
 }));
 afterEach(cleanup);
+it("uses child wording on the completed day while preserving the default summary", async () => {
+  const source = sourceFor();
+  const state = await source.state();
+  state.summary.learned = 1;
+  const props = {
+    state,
+    source,
+    busy: false,
+    onCatalog: vi.fn(),
+    onOpen: vi.fn(),
+    onMode: vi.fn(),
+  };
+  const view = render(<FadingHome {...props} student />);
+  expect(document.body.textContent).not.toMatch(/자가 평가|다시 아닌 평가/);
+  view.unmount();
+  render(<FadingHome {...props} />);
+  expect(screen.getByText("다시 아닌 평가")).toBeInTheDocument();
+});
 const concepts: FadingConcept[] = [
   {
     id: "overview-copy",
@@ -36,7 +54,7 @@ const concepts: FadingConcept[] = [
 ];
 const sourceFor = () =>
   createLocalFadingSource({ concepts, today: "2026-10-20" });
-const forbidden = /정독|소거|분량|배정|대조|기준안|초5|2-1| · 하|1\/2/;
+const forbidden = /정독|소거|분량|배정|대조|기준안|초5|2-1| · 하|1\/2|망각 위험|자가 평가/;
 function clean() {
   expect(document.body.textContent).not.toMatch(forbidden);
   for (const el of document.querySelectorAll("[aria-label], [title]")) {
@@ -200,8 +218,14 @@ it.each([false, true])(
         <FadingHomeHistory student={student} state={state} />
       </>,
     );
-    expect(screen.getByLabelText("다시가 아닌 평가 1개")).toBeInTheDocument();
-    expect(screen.getByLabelText("평가로 닫은 풀이 3개")).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(
+        student ? "다시 말고 고른 것 1개" : "다시가 아닌 평가 1개",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(student ? "마친 복습 3개" : "평가로 닫은 풀이 3개"),
+    ).toBeInTheDocument();
     expect(document.body.textContent).not.toContain("정답률");
     if (student) {
       clean();

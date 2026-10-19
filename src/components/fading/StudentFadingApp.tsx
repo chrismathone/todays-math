@@ -28,6 +28,7 @@ export function StudentFadingApp({ studentId }: { studentId: string }) {
   const relearn = useFadingRelearn(relearnSource, onAccessFailure);
   return (
     <FadingApp
+      student
       source={source}
       relearn={relearn}
       onAccessFailure={onAccessFailure}

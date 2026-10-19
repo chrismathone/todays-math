@@ -44,6 +44,7 @@ export function FadingApp({
   initialTab = "home",
   initialSession = false,
   preview = false,
+  student = false,
   initialFailure,
   relearn,
   onAccessFailure,
@@ -54,6 +55,7 @@ export function FadingApp({
   initialTab?: FadingTab;
   initialSession?: boolean;
   preview?: boolean;
+  student?: boolean;
   initialFailure?: string;
   relearn?: FadingRelearnController;
   onAccessFailure?: (error: FadingSourceError) => void;
@@ -294,13 +296,19 @@ export function FadingApp({
                 <button
                   key={item.id}
                   className={s.tab}
-                  aria-label={item.name}
+                  aria-label={
+                    student && item.id === "erase" ? "빈칸 연습" : item.name
+                  }
                   aria-current={tab === item.id ? "page" : undefined}
                   onClick={() => navigate(item.id)}
                 >
                   <FadingIcon name={item.icon} />
-                  <span className={s.desktopLabel}>{item.name}</span>
-                  <span className={s.phoneLabel}>{item.short}</span>
+                  <span className={s.desktopLabel}>
+                    {student && item.id === "erase" ? "빈칸 연습" : item.name}
+                  </span>
+                  <span className={s.phoneLabel}>
+                    {student && item.id === "erase" ? "빈칸" : item.short}
+                  </span>
                 </button>
               ))}
             </nav>
@@ -351,9 +359,14 @@ export function FadingApp({
             (practising || (sessionState?.session && sessionState.opened)) ? (
             <main>
               {relearn && !practising ? (
-                <FadingRelearnStatus controller={relearn} allowStart={false} />
+                <FadingRelearnStatus
+                  student={student}
+                  controller={relearn}
+                  allowStart={false}
+                />
               ) : null}
               <FadingSessionView
+                student={student}
                 key={sessionKey}
                 source={source}
                 state={sessionState ?? state}
@@ -397,6 +410,7 @@ export function FadingApp({
             <main className={s.shell}>
               {detail ? (
                 <FadingConceptReader
+                  student={student}
                   key={detail.content.concept.id}
                   detail={detail}
                   busy={busy}
@@ -433,9 +447,13 @@ export function FadingApp({
               ) : tab === "home" ? (
                 <>
                   {relearn ? (
-                    <FadingRelearnStatus controller={relearn} />
+                    <FadingRelearnStatus
+                      student={student}
+                      controller={relearn}
+                    />
                   ) : null}
                   <FadingHome
+                    student={student}
                     source={source}
                     state={state}
                     busy={busy}
@@ -451,6 +469,7 @@ export function FadingApp({
               ) : tab === "catalog" ? (
                 catalog ? (
                   <FadingCatalogScreen
+                    student={student}
                     catalog={catalog}
                     busy={busy}
                     onGrade={(grade) =>
@@ -467,11 +486,13 @@ export function FadingApp({
                 )
               ) : tab === "stats" ? (
                 <FadingStats
+                  student={student}
                   state={state}
                   onCatalog={() => navigate("catalog")}
                 />
               ) : (
                 <FadingEraseScreen
+                  student={student}
                   state={state}
                   source={source}
                   onCatalog={() => navigate("catalog")}
@@ -482,7 +503,9 @@ export function FadingApp({
           )}
         </div>
         <FadingScrollFade scrollRef={appBody} />
-        {relearn ? <FadingRelearnModal controller={relearn} /> : null}
+        {relearn ? (
+          <FadingRelearnModal student={student} controller={relearn} />
+        ) : null}
       </div>
     </div>
   );

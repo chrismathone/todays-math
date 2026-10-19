@@ -625,7 +625,8 @@ export function FadingCardSessionScreen({
     fadingComparison(concept, result ?? { missed: [] }).flatMap((card) =>
       card.blanks.map((blank) => [
         blank.target.id,
-        blank.text ?? "[입력 원문 없음]",
+        blank.text ??
+          (student ? "[쓴 답을 다시 볼 수 없어요]" : "[입력 원문 없음]"),
       ]),
     ),
   );

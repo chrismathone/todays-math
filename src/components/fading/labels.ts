@@ -32,28 +32,63 @@ export function dueLabel(days: number | null) {
 
 /** Student display only. Source curriculum names and identifiers are unchanged. */
 export function studentCurriculumName(name = "") {
-  return name.split("::").map(part => part.trim()
-    .replace(/^(?:초등|중등|고등|초|중|고)\s*\d(?:학년)?\s*(?:[·:]\s*)?/, "")
-    .replace(/^\d+(?:-\d+)+\s*(?:[·:]\s*)?/, "")
-    .trim()).filter(Boolean).join(" · ");
+  return name
+    .split("::")
+    .map((part) =>
+      part
+        .trim()
+        .replace(
+          /^(?:초등|중등|고등|초|중|고)\s*\d(?:학년)?\s*(?:[·:]\s*)?/,
+          "",
+        )
+        .replace(/^\d+(?:-\d+)+\s*(?:[·:]\s*)?/, "")
+        .trim(),
+    )
+    .filter(Boolean)
+    .join(" · ");
 }
 export const studentStepNames: Record<FadingStep, string> = {
-  1: "떠올려 보기", 2: "핵심어 빈칸", 3: "더 많은 빈칸", 4: "직접 쓰기",
+  1: "떠올려 보기",
+  2: "핵심어 빈칸",
+  3: "더 많은 빈칸",
+  4: "직접 쓰기",
 };
 
 /** Relative words for an already calculated date; never changes the schedule. */
 export function studentDateLabel(value: string, today?: string): string {
-  const base = today ?? new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit",
-  }).format(new Date());
+  const base =
+    today ??
+    new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Seoul",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(new Date());
   const day = (date: string) => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return NaN;
     const time = Date.parse(`${date}T00:00:00Z`);
-    return Number.isFinite(time) && new Date(time).toISOString().slice(0,10) === date ? time : NaN;
+    return Number.isFinite(time) &&
+      new Date(time).toISOString().slice(0, 10) === date
+      ? time
+      : NaN;
   };
   const days = Math.round((day(value) - day(base)) / 86400000);
-  return !Number.isFinite(days) ? "다음에" : days === 0 ? "오늘" : days === 1 ? "내일" : days === 2 ? "모레" : days > 0 ? `${days}일 뒤` : `${-days}일 전`;
+  return !Number.isFinite(days)
+    ? "다음에"
+    : days === 0
+      ? "오늘"
+      : days === 1
+        ? "내일"
+        : days === 2
+          ? "모레"
+          : days > 0
+            ? `${days}일 뒤`
+            : `${-days}일 전`;
 }
 export function studentDueLabel(days: number | null) {
-  return days === null ? "처음 만나요" : days < 0 ? `${-days}일 지났어요` : `${days === 0 ? "오늘" : days === 1 ? "내일" : days === 2 ? "모레" : `${days}일 뒤`} 복습`;
+  return days === null
+    ? "처음 만나요"
+    : days < 0
+      ? `${-days}일 지났어요`
+      : `${days === 0 ? "오늘" : days === 1 ? "내일" : days === 2 ? "모레" : `${days}일 뒤`} 복습`;
 }
