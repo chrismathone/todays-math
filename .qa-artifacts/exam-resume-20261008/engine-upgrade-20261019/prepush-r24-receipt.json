@@ -1,0 +1,72 @@
+{
+  "utc": "2026-10-19T15:46:06.384Z",
+  "snapshot": "027793baba612b1052137120734f9282ecbb65d1",
+  "fetchedMain": "6718a855c5594f5273846b2fd7a5c846e592102c",
+  "targetBefore": "a0706869b022fcddaee6eeecfbf82209f2da7cce",
+  "affectedValidation": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r23-receipt.json",
+    "sha256": "0cb9bd8b05e0098a09a7a17697e3f053bd786efc2cf0f2658c30d488f626a94d"
+  },
+  "latestPerFileIntegration": {
+    "files": 23,
+    "passed": 366,
+    "typesPassed": true,
+    "actualSingleWholeRun": false,
+    "twoInitialTimeoutsPreserved": true,
+    "failedFilesOnlyRerunWithUnchanged20000ms": true
+  },
+  "nodeContract": {
+    "files": 11,
+    "passed": 135
+  },
+  "currentCandidateBindings": 128,
+  "counts": {
+    "authoredCurrentCandidates": 128,
+    "currentFigureInstances": 92,
+    "recreatedStatTables": 8,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 128,
+    "independentMathReviewed": 127,
+    "independentFullGradeReviewed": 127,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 112,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 127,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 1,
+    "failedStudentRenderDraftVersions": 1
+  },
+  "sourceAndCandidateHashesRechecked": true,
+  "newBlobsOver100MiB": 0,
+  "knownStyleWarnings": {
+    "historicalQ16IdenticalSvgCopies": 11,
+    "newUtf8DiagnosticCopyBlankLines": [
+      30,
+      33
+    ],
+    "original": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/record-correction-first-failure-r1.tap",
+      "sha256": "2f32b304a410289a840a63b4b9ea5cde5e644b5c26cad902f57bd6951d90e1d6"
+    },
+    "utf8Copy": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/record-correction-first-failure-r1.utf8.tap",
+      "sha256": "bf73643b925712a98e03e81bcadf39ca01ccf7b5350055323b5d4dfbaf12f18d"
+    },
+    "transport": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/record-correction-failure-log-transport-r1.json",
+      "sha256": "b3429f2e8d8c527c3adc36d4781bed4365a1663d250f1027f3bf402719c5cfa4"
+    },
+    "preservedBytes": true,
+    "normalDiffCheckExcludingSealedDiagnosticCopyPassed": true
+  },
+  "fullAppBuildValidated": false,
+  "dbWrites": 0,
+  "deploy": false,
+  "featureMergedIntoMain": false
+}
