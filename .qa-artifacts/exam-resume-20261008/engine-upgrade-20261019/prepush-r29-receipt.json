@@ -1,0 +1,56 @@
+{
+  "utc": "2026-10-19T16:46:36.248Z",
+  "snapshot": "dfa5548d763f04722b4b52f2eec8e14c4c495610",
+  "fetchedMain": "3d744bba2bf32163ffbc63d0e8896c91195070c7",
+  "targetBefore": "19c4ce5f5761a9ad43bb92bd366849aca5db2130",
+  "affectedValidation": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r27-receipt.json",
+    "sha256": "17c329cf632b39aea57b3103dc5ac025f2053b9c03736c4ce01b3e30efb63290"
+  },
+  "priorIntegration": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r25-receipt.json",
+    "sha256": "5aba7e71ef69b93c8e940cb15cae44feed5a9458f3f73d9d024755079bc6b1bb"
+  },
+  "actualRerun": {
+    "files": 8,
+    "passed": 102,
+    "typesPassed": true
+  },
+  "priorRun": {
+    "files": 19,
+    "passed": 236,
+    "typesPassed": true
+  },
+  "currentCandidateBindings": 131,
+  "counts": {
+    "authoredCurrentCandidates": 131,
+    "currentFigureInstances": 92,
+    "recreatedStatTables": 8,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 131,
+    "independentMathReviewed": 130,
+    "independentFullGradeReviewed": 130,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 115,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 130,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 1,
+    "failedStudentRenderDraftVersions": 1
+  },
+  "additionalPublishedWorkingQuestion": "q02 authored student-only blind pending outside canonical v30; not additional full approval",
+  "unpublishedLocalWork": "No additional unpublished manual item claimed by this receipt",
+  "sourceAndCandidateHashesRechecked": true,
+  "newBlobsOver100MiB": 0,
+  "normalDiffCheckPassed": true,
+  "fullAppBuildValidated": false,
+  "dbWrites": 0,
+  "deploy": false,
+  "featureMergedIntoMain": false
+}
