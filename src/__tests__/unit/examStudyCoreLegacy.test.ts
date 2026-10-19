@@ -305,7 +305,8 @@ describe("readonly adapters and conservative catalogs", () => {
   });
   it("does not infer school full from a legacy title, and honors unsupported bare formats/difficulties", async () => {
     const all = legacyStudyFamilies();
-    expect(all.filter((f) => f.evidence).length).toBe(6);
+    // Six original curated checks plus the six independently verified overlays.
+    expect(all.filter((f) => f.evidence).length).toBe(12);
     const count = all.find((f) => f.id === "legacy:mid:1-1|좌표와 그래프|84X")!;
     expect(familyCoverage(count, "graph.piecewise-multi-claim")).toBe(
       "unverified",
