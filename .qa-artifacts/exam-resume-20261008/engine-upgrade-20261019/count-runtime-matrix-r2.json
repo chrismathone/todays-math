@@ -1,0 +1,783 @@
+{
+  "kind": "direct-runtime-count-validation/v2",
+  "utc": "2026-10-19T10:05:18.309Z",
+  "runtime": "v22.17.1",
+  "source": "src/lib/engine/deriveFormats.ts",
+  "sourceSha256Before": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+  "sourceSha256After": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+  "actualGeneratorSamples": 64,
+  "passed": 64,
+  "observations": [
+    {
+      "seed": 1,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$0$개",
+        "$2$개",
+        "$4$개",
+        "$5$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 2,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$2$개",
+        "$4$개",
+        "$1$개",
+        "$5$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 3,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$2$개",
+        "$1$개",
+        "$4$개",
+        "$3$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 4,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$3$개",
+        "$2$개",
+        "$1$개",
+        "$5$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 5,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$2$개",
+        "$0$개",
+        "$5$개",
+        "$3$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 6,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$2$개",
+        "$4$개",
+        "$3$개",
+        "$0$개"
+      ],
+      "selectedIndex": 4
+    },
+    {
+      "seed": 7,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$2$개",
+        "$5$개",
+        "$0$개",
+        "$1$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 8,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$3$개",
+        "$5$개",
+        "$0$개",
+        "$4$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 9,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$0$개",
+        "$3$개",
+        "$5$개",
+        "$1$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 10,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$1$개",
+        "$2$개",
+        "$3$개",
+        "$5$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 11,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$3$개",
+        "$2$개",
+        "$4$개",
+        "$5$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 12,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$1$개",
+        "$0$개",
+        "$5$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 13,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$1$개",
+        "$0$개",
+        "$4$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 14,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$0$개",
+        "$1$개",
+        "$2$개",
+        "$3$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 15,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$2$개",
+        "$4$개",
+        "$3$개",
+        "$1$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 16,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$1$개",
+        "$0$개",
+        "$3$개",
+        "$4$개"
+      ],
+      "selectedIndex": 4
+    },
+    {
+      "seed": 17,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$4$개",
+        "$1$개",
+        "$3$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 18,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$3$개",
+        "$2$개",
+        "$4$개",
+        "$0$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 19,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$2$개",
+        "$4$개",
+        "$0$개",
+        "$5$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 20,
+      "bound": 5,
+      "choices": [
+        "$2$개",
+        "$4$개",
+        "$0$개",
+        "$3$개",
+        "$1$개"
+      ],
+      "selectedIndex": 4
+    },
+    {
+      "seed": 21,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$2$개",
+        "$4$개",
+        "$0$개",
+        "$1$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 22,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$0$개",
+        "$2$개",
+        "$1$개",
+        "$4$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 23,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$1$개",
+        "$2$개",
+        "$3$개",
+        "$0$개"
+      ],
+      "selectedIndex": 4
+    },
+    {
+      "seed": 24,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$2$개",
+        "$0$개",
+        "$3$개",
+        "$5$개"
+      ],
+      "selectedIndex": 4
+    },
+    {
+      "seed": 25,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$1$개",
+        "$4$개",
+        "$3$개",
+        "$2$개"
+      ],
+      "selectedIndex": 4
+    },
+    {
+      "seed": 26,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$2$개",
+        "$1$개",
+        "$4$개",
+        "$0$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 27,
+      "bound": 5,
+      "choices": [
+        "$2$개",
+        "$0$개",
+        "$1$개",
+        "$3$개",
+        "$4$개"
+      ],
+      "selectedIndex": 4
+    },
+    {
+      "seed": 28,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$2$개",
+        "$5$개",
+        "$1$개",
+        "$3$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 29,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$3$개",
+        "$2$개",
+        "$4$개",
+        "$1$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 30,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$0$개",
+        "$4$개",
+        "$5$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 31,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$2$개",
+        "$3$개",
+        "$4$개",
+        "$5$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 32,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$0$개",
+        "$3$개",
+        "$1$개",
+        "$5$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 33,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$2$개",
+        "$3$개",
+        "$1$개",
+        "$4$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 34,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$5$개",
+        "$4$개",
+        "$0$개",
+        "$3$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 35,
+      "bound": 5,
+      "choices": [
+        "$2$개",
+        "$4$개",
+        "$5$개",
+        "$3$개",
+        "$0$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 36,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$4$개",
+        "$5$개",
+        "$0$개",
+        "$1$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 37,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$3$개",
+        "$4$개",
+        "$5$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 38,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$3$개",
+        "$0$개",
+        "$4$개",
+        "$2$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 39,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$2$개",
+        "$3$개",
+        "$5$개",
+        "$1$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 40,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$3$개",
+        "$2$개",
+        "$0$개",
+        "$4$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 41,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$2$개",
+        "$3$개",
+        "$5$개",
+        "$4$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 42,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$4$개",
+        "$3$개",
+        "$1$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 43,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$3$개",
+        "$0$개",
+        "$1$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 44,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$2$개",
+        "$4$개",
+        "$5$개",
+        "$1$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 45,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$4$개",
+        "$2$개",
+        "$0$개",
+        "$5$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 46,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$3$개",
+        "$2$개",
+        "$4$개",
+        "$0$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 47,
+      "bound": 5,
+      "choices": [
+        "$2$개",
+        "$4$개",
+        "$3$개",
+        "$5$개",
+        "$0$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 48,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$1$개",
+        "$2$개",
+        "$0$개",
+        "$3$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 49,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$0$개",
+        "$1$개",
+        "$2$개",
+        "$4$개"
+      ],
+      "selectedIndex": 4
+    },
+    {
+      "seed": 50,
+      "bound": 5,
+      "choices": [
+        "$2$개",
+        "$0$개",
+        "$1$개",
+        "$4$개",
+        "$3$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 51,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$2$개",
+        "$4$개",
+        "$3$개",
+        "$0$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 52,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$4$개",
+        "$3$개",
+        "$5$개",
+        "$0$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 53,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$0$개",
+        "$4$개",
+        "$5$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 54,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$0$개",
+        "$2$개",
+        "$4$개",
+        "$1$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 55,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$4$개",
+        "$2$개",
+        "$1$개",
+        "$3$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 56,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$3$개",
+        "$5$개",
+        "$1$개",
+        "$2$개"
+      ],
+      "selectedIndex": 2
+    },
+    {
+      "seed": 57,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$4$개",
+        "$3$개",
+        "$5$개",
+        "$0$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 58,
+      "bound": 5,
+      "choices": [
+        "$2$개",
+        "$4$개",
+        "$5$개",
+        "$3$개",
+        "$0$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 59,
+      "bound": 5,
+      "choices": [
+        "$1$개",
+        "$0$개",
+        "$3$개",
+        "$4$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 60,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$1$개",
+        "$0$개",
+        "$5$개",
+        "$2$개"
+      ],
+      "selectedIndex": 1
+    },
+    {
+      "seed": 61,
+      "bound": 5,
+      "choices": [
+        "$4$개",
+        "$5$개",
+        "$3$개",
+        "$1$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 62,
+      "bound": 5,
+      "choices": [
+        "$3$개",
+        "$1$개",
+        "$0$개",
+        "$4$개",
+        "$2$개"
+      ],
+      "selectedIndex": 5
+    },
+    {
+      "seed": 63,
+      "bound": 5,
+      "choices": [
+        "$0$개",
+        "$4$개",
+        "$2$개",
+        "$3$개",
+        "$1$개"
+      ],
+      "selectedIndex": 3
+    },
+    {
+      "seed": 64,
+      "bound": 5,
+      "choices": [
+        "$5$개",
+        "$2$개",
+        "$1$개",
+        "$3$개",
+        "$0$개"
+      ],
+      "selectedIndex": 2
+    }
+  ],
+  "independentSemanticGradeApproval": false,
+  "loadable": 0,
+  "dbWrites": 0
+}

@@ -23,11 +23,24 @@ describe("finite classification count choices", () => {
     for (const invalid of [
       content + "\n조건을 추가한다.",
       content.replace("$1=2$", "$x=x$"),
+      content.replace("$1=2$", "$ x=x $"),
+      content.replace("$1=2$", "$ $"),
+      content.replace("$1=2$", "$\\cdots$"),
       content.replace("$1=2$", "그 밖의 식"),
       content.replace("일차방정식인 것의 개수", "자연수 해의 개수"),
       "일차방정식의 개수를 구하시오.",
     ])
       expect(declaredClassificationCount(invalid)).toBeNull();
+  });
+
+  it("holds a recognized but incomplete classification collection before the legacy fallback", () => {
+    for (const last of ["$ $", "$\\cdots$", "$…$", "$...$", "$ x=x $"]) {
+      expect(() => asMultipleChoice({ ...stem, content: content.replace("$1=2$", last),
+        distractors: ["$0$개", "$1$개", "$3$개", "$5$개"] }, createRng(1))).toThrow(/완전하게/);
+    }
+    const four = content.split(", $").slice(0, 4).join(", $");
+    expect(parseProblemContent(asMultipleChoice({ ...stem, content: four }, createRng(1)).content).choices.sort())
+      .toEqual(["$0$개", "$1$개", "$2$개", "$3$개", "$4$개"]);
   });
 
   it("keeps every choice within 0..5 and preserves the answer over actual generated tasks", () => {

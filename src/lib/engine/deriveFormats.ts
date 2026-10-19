@@ -135,7 +135,8 @@ export function declaredClassificationCount(content: string): number | null {
     !/^\$[^$\n]+\$(?:,\s*\$[^$\n]+\$)+$/.test(lines[1]!)
   )
     return null;
-  const items = [...lines[1]!.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]!);
+  const items = [...lines[1]!.matchAll(/\$([^$]+)\$/g)].map((m) => m[1]!.replace(/\s+/g, ""));
+  if (items.some((s) => !s || /\\(?:cdots|ldots|dots|vdots|ddots)\b|…|⋯|\.\.\./u.test(s))) return null;
   // Duplicate rows are ambiguous count inputs. Do not invent the missing rows.
   return items.length <= 20 && new Set(items).size === items.length
     ? items.length
@@ -150,6 +151,8 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
   }
   const correct = stem.answer.trim();
   const countBound = declaredClassificationCount(stem.content);
+  if (countBound === null && /^다음 중 (?:일차방정식인 것|방정식인 것)의 개수를 구하시오\.$/.test(stem.content.trim().split(/\r?\n/)[0]!.trim()))
+    throw new Error("분류 목록이 완전하게 명시되지 않아 가능한 개수 범위를 확정하지 않습니다");
   if (countBound !== null) {
     const readCount = (s: string) => /^\$(0|[1-9]\d*)\$개$/.exec(s.trim());
     const parsed = readCount(correct);
@@ -161,7 +164,7 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
       );
     const wrong =
       stem.distractors?.map((s) => s.trim()) ??
-      Array.from({ length: countBound + 1 }, (_, n) => `${n}$개`).filter(
+      Array.from({ length: countBound + 1 }, (_, n) => `$${n}$개`).filter(
         (s) => s !== correct,
       );
     if (

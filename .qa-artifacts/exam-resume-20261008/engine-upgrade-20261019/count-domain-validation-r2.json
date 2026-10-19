@@ -1,0 +1,34 @@
+{
+  "kind": "hash-bound-code-validation/v2",
+  "utc": "2026-10-19T10:06:57.245Z",
+  "runtime": "v22.17.1",
+  "before": {
+    "src/lib/engine/deriveFormats.ts": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+    "src/__tests__/unit/deriveFormatsCountDomain.test.ts": "dd0ea0d31a898cdcf3dfe6aa38a17e332d9e591462decd8baaac8b239a3accb5",
+    "scripts/import/exam-twin/summarize-reviewed-batch.mjs": "747d8f33d1e5fdb5f911dcbd761157063a0e5f227840bdc1c325fa7a34069c9e",
+    "scripts/import/exam-twin/answerPresentation.mjs": "f16698209652f0c0e0815baa8dabef2e13330bbf9a1134cf5dfbf4fb56c6f076"
+  },
+  "after": {
+    "src/lib/engine/deriveFormats.ts": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+    "src/__tests__/unit/deriveFormatsCountDomain.test.ts": "dd0ea0d31a898cdcf3dfe6aa38a17e332d9e591462decd8baaac8b239a3accb5",
+    "scripts/import/exam-twin/summarize-reviewed-batch.mjs": "747d8f33d1e5fdb5f911dcbd761157063a0e5f227840bdc1c325fa7a34069c9e",
+    "scripts/import/exam-twin/answerPresentation.mjs": "f16698209652f0c0e0815baa8dabef2e13330bbf9a1134cf5dfbf4fb56c6f076"
+  },
+  "unchangedDuringEveryCommand": true,
+  "tests": [
+    "src/__tests__/unit/deriveFormats.test.ts",
+    "src/__tests__/unit/deriveFormatsDecimal.test.ts",
+    "src/__tests__/unit/deriveFormatsExactDistractors.test.ts",
+    "src/__tests__/unit/deriveFormatsCountDomain.test.ts",
+    "src/__tests__/unit/expandEngineExactChoices.test.ts",
+    "src/__tests__/unit/examStudyCoreLegacy.test.ts",
+    "src/__tests__/unit/examStudyCore.test.ts",
+    "src/__tests__/unit/examStudyRoutes.test.ts",
+    "src/__tests__/unit/examStudyIntegration.test.ts"
+  ],
+  "typecheckPassed": true,
+  "eslintPassed": true,
+  "directRuntimePassed": 64,
+  "dbWrites": 0,
+  "loadable": 0
+}

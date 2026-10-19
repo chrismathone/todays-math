@@ -1,0 +1,27 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/deriveFormatsDecimal.test.ts (23 tests) 28115ms
+     ✓ 재현: 삼각비 18 씨앗 15에서 발문으로 계산되는 정답은 정확히 한 보기다  305ms
+     ✓ 단위 있는 소수·정수 값의 소수도 씨앗 0~299에서 서로 다른 다섯 보기를 낸다  6056ms
+     ✓ 초등·중등 등록부에서 발견한 소수 문항류는 씨앗 0~99에서도 정답이 하나다  21568ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 15980ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  13332ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1902ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 19674ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  19069ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 461ms
+ ✓ src/__tests__/unit/deriveFormatsCountDomain.test.ts (5 tests) 248ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (22 tests) 288ms
+ ✓ src/__tests__/unit/deriveFormats.test.ts (42 tests) 381ms
+ ✓ src/__tests__/unit/deriveFormatsExactDistractors.test.ts (14 tests) 468ms
+ ✓ src/__tests__/unit/expandEngineExactChoices.test.ts (3 tests) 343ms
+     ✓ rejects equal distractors even when the marked correct option is unique  315ms
+
+ Test Files  9 passed (9)
+      Tests  189 passed (189)
+   Start at  19:03:12
+   Duration  118.55s (transform 8.78s, setup 15.32s, import 16.96s, tests 65.96s, environment 17.65s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/count-domain-tests-r2.json
+
