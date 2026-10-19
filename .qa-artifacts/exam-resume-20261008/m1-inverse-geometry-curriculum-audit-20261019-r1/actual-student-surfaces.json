@@ -1,0 +1,4106 @@
+[
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "version": "1",
+    "variant": 0,
+    "domain": {
+      "p": 2,
+      "q": 5
+    },
+    "parameters": {
+      "p": 2,
+      "q": 5
+    },
+    "content": "$k>0$인 반비례 그래프 $y=k/x$ 위에 두 점 $A=(2,u)$, $B=(5,v)$가 있다. $u>v>0$이고, 두 점의 가로 좌표 차와 세로 좌표 차가 같다. $k,u,v$를 모두 구하시오.",
+    "answer": "k=10, u=5, v=2",
+    "solution": "가로 차는 3이므로 $u-v=3$. 두 점이 같은 반비례 그래프 위에 있어 $2u=5v$이다. 첫 식에 2을 곱해 빼면 $3v=6$이므로 $v=2$, $u=5$, $k=10$이다. 어느 한 점의 세로 좌표를 먼저 알려 주지 않았으므로 같은 길이 조건이 계수 결정에 필요하다.",
+    "figureSpec": null,
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "같은 반비례식의 두 입사",
+      "두 좌표차의 길이 조건을 결합"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "errors": []
+    },
+    "archivedFigure": null
+  },
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "version": "1",
+    "variant": 1,
+    "domain": {
+      "p": 2,
+      "q": 7
+    },
+    "parameters": {
+      "p": 2,
+      "q": 7
+    },
+    "content": "$k>0$인 반비례 그래프 $y=k/x$ 위에 두 점 $A=(2,u)$, $B=(7,v)$가 있다. $u>v>0$이고, 두 점의 가로 좌표 차와 세로 좌표 차가 같다. $k,u,v$를 모두 구하시오.",
+    "answer": "k=14, u=7, v=2",
+    "solution": "가로 차는 5이므로 $u-v=5$. 두 점이 같은 반비례 그래프 위에 있어 $2u=7v$이다. 첫 식에 2을 곱해 빼면 $5v=10$이므로 $v=2$, $u=7$, $k=14$이다. 어느 한 점의 세로 좌표를 먼저 알려 주지 않았으므로 같은 길이 조건이 계수 결정에 필요하다.",
+    "figureSpec": null,
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "같은 반비례식의 두 입사",
+      "두 좌표차의 길이 조건을 결합"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "errors": []
+    },
+    "archivedFigure": null
+  },
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "version": "1",
+    "variant": 2,
+    "domain": {
+      "p": 3,
+      "q": 5
+    },
+    "parameters": {
+      "p": 3,
+      "q": 5
+    },
+    "content": "$k>0$인 반비례 그래프 $y=k/x$ 위에 두 점 $A=(3,u)$, $B=(5,v)$가 있다. $u>v>0$이고, 두 점의 가로 좌표 차와 세로 좌표 차가 같다. $k,u,v$를 모두 구하시오.",
+    "answer": "k=15, u=5, v=3",
+    "solution": "가로 차는 2이므로 $u-v=2$. 두 점이 같은 반비례 그래프 위에 있어 $3u=5v$이다. 첫 식에 3을 곱해 빼면 $2v=6$이므로 $v=3$, $u=5$, $k=15$이다. 어느 한 점의 세로 좌표를 먼저 알려 주지 않았으므로 같은 길이 조건이 계수 결정에 필요하다.",
+    "figureSpec": null,
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "같은 반비례식의 두 입사",
+      "두 좌표차의 길이 조건을 결합"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "errors": []
+    },
+    "archivedFigure": null
+  },
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "version": "1",
+    "variant": 3,
+    "domain": {
+      "p": 3,
+      "q": 7
+    },
+    "parameters": {
+      "p": 3,
+      "q": 7
+    },
+    "content": "$k>0$인 반비례 그래프 $y=k/x$ 위에 두 점 $A=(3,u)$, $B=(7,v)$가 있다. $u>v>0$이고, 두 점의 가로 좌표 차와 세로 좌표 차가 같다. $k,u,v$를 모두 구하시오.",
+    "answer": "k=21, u=7, v=3",
+    "solution": "가로 차는 4이므로 $u-v=4$. 두 점이 같은 반비례 그래프 위에 있어 $3u=7v$이다. 첫 식에 3을 곱해 빼면 $4v=12$이므로 $v=3$, $u=7$, $k=21$이다. 어느 한 점의 세로 좌표를 먼저 알려 주지 않았으므로 같은 길이 조건이 계수 결정에 필요하다.",
+    "figureSpec": null,
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "같은 반비례식의 두 입사",
+      "두 좌표차의 길이 조건을 결합"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "errors": []
+    },
+    "archivedFigure": null
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 0,
+    "domain": {
+      "a": 2,
+      "y": 6,
+      "r": 1,
+      "s": 1
+    },
+    "parameters": {
+      "a": 2,
+      "y": 6,
+      "r": 1,
+      "s": 1
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(4,3), 넓이=9",
+    "solution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=1:1$이다. 따라서 $x_B=4$. $k=2×6=12$이므로 $y_B=3$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(24-6)/2=9$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        5.8
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 12,
+          "domain": [
+            1.44,
+            5.2
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            6
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            4,
+            3
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        },
+        {
+          "at": [
+            4,
+            3
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "A(2,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            3
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/0.json",
+      "snapshotSha256": "c3e0e387d3444dcbc5326220a2fcbef4b6fee5c3ed361536fd8f29ed65c699c0",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/0.svg",
+      "svgSha256": "04ec533efe05fbd40863e1364c246acb7a3411663c2314afc4e7d604199d153f",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 1,
+    "domain": {
+      "a": 2,
+      "y": 6,
+      "r": 2,
+      "s": 1
+    },
+    "parameters": {
+      "a": 2,
+      "y": 6,
+      "r": 2,
+      "s": 1
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 2:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(6,2), 넓이=16",
+    "solution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=2:1$이다. 따라서 $x_B=6$. $k=2×6=12$이므로 $y_B=2$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(36-4)/2=16$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 12,
+          "domain": [
+            1.44,
+            7.800000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            6
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            6,
+            2
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              6,
+              2
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        },
+        {
+          "at": [
+            6,
+            2
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "A(2,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            2
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/1.json",
+      "snapshotSha256": "321ae7bd9c5909a489a104d761b242fe49fddd83cdc9664973f2805072be5b8c",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/1.svg",
+      "svgSha256": "f1e141e2553d16d692d6481dd81a7d8180cde17b5522ff4952899a67c53ccf66",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 2,
+    "domain": {
+      "a": 2,
+      "y": 6,
+      "r": 1,
+      "s": 2
+    },
+    "parameters": {
+      "a": 2,
+      "y": 6,
+      "r": 1,
+      "s": 2
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:2일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(3,4), 넓이=5",
+    "solution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=1:2$이다. 따라서 $x_B=3$. $k=2×6=12$이므로 $y_B=4$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(18-8)/2=5$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        4.35
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 12,
+          "domain": [
+            1.44,
+            3.9000000000000004
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            6
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            3,
+            4
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        },
+        {
+          "at": [
+            3,
+            4
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "A(2,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/2.json",
+      "snapshotSha256": "833647197b2d518598cf88f11e04769c15a45430f3bf320acc19b4b4eefdd296",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/2.svg",
+      "svgSha256": "55afe0ada17cac4ea7421f73afd77c276071a0e436021b8b40a1c2f1262e3e61",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 3,
+    "domain": {
+      "a": 2,
+      "y": 12,
+      "r": 1,
+      "s": 1
+    },
+    "parameters": {
+      "a": 2,
+      "y": 12,
+      "r": 1,
+      "s": 1
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(4,6), 넓이=18",
+    "solution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=1:1$이다. 따라서 $x_B=4$. $k=2×12=24$이므로 $y_B=6$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(48-12)/2=18$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        5.8
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            1.44,
+            5.2
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            12
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            4,
+            6
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            12
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            12
+          ],
+          "text": "A(2,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/3.json",
+      "snapshotSha256": "7e8de3c97d6355b380622ad6bd2a11cb0e10e84b6737a96f92d4453928883f0c",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/3.svg",
+      "svgSha256": "fdcfda7ced16a6896e2f24cb66c3074941da5517ebb27de5dbfdcffdd9e3cf9a",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 4,
+    "domain": {
+      "a": 2,
+      "y": 12,
+      "r": 2,
+      "s": 1
+    },
+    "parameters": {
+      "a": 2,
+      "y": 12,
+      "r": 2,
+      "s": 1
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 2:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(6,4), 넓이=32",
+    "solution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=2:1$이다. 따라서 $x_B=6$. $k=2×12=24$이므로 $y_B=4$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(72-8)/2=32$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            1.44,
+            7.800000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            12
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            6,
+            4
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            12
+          ]
+        },
+        {
+          "at": [
+            6,
+            4
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            12
+          ],
+          "text": "A(2,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/4.json",
+      "snapshotSha256": "e78b44345648341bd07f36be02952019c602cb6e0fa8cc1030696d9df01d0110",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/4.svg",
+      "svgSha256": "b738bcbdaddc8dc3bfd37df574e07dccd76144485bee1b006998685f231d80d5",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 5,
+    "domain": {
+      "a": 2,
+      "y": 12,
+      "r": 1,
+      "s": 2
+    },
+    "parameters": {
+      "a": 2,
+      "y": 12,
+      "r": 1,
+      "s": 2
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:2일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(3,8), 넓이=10",
+    "solution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=1:2$이다. 따라서 $x_B=3$. $k=2×12=24$이므로 $y_B=8$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(36-16)/2=10$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        4.35
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            1.44,
+            3.9000000000000004
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            12
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            3,
+            8
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              8
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            12
+          ]
+        },
+        {
+          "at": [
+            3,
+            8
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            12
+          ],
+          "text": "A(2,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            8
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/5.json",
+      "snapshotSha256": "cffc1bf9854895b569e8172e62d06d7086507a45c565ab629d77adbff7b42e8f",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/5.svg",
+      "svgSha256": "d8bd99ba610edf1e2e2c10f416acca75a4cb7d3a28ad6fb6a99e197091e436a3",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 6,
+    "domain": {
+      "a": 4,
+      "y": 6,
+      "r": 1,
+      "s": 1
+    },
+    "parameters": {
+      "a": 4,
+      "y": 6,
+      "r": 1,
+      "s": 1
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(8,3), 넓이=18",
+    "solution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=1:1$이다. 따라서 $x_B=8$. $k=4×6=24$이므로 $y_B=3$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(48-12)/2=18$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        11.6
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            2.88,
+            10.4
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            6
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            8,
+            3
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              8,
+              3
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            8,
+            3
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "A(4,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            8,
+            3
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/6.json",
+      "snapshotSha256": "085c3df01219669891d414a03fc26a6f97344fe7f3dbf1520d2d51cfbaf7bb9e",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/6.svg",
+      "svgSha256": "eaadcd5400f31ee262944a892e1be76e7fc245508a22b6bdf82cc069f4217ebe",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 7,
+    "domain": {
+      "a": 4,
+      "y": 6,
+      "r": 2,
+      "s": 1
+    },
+    "parameters": {
+      "a": 4,
+      "y": 6,
+      "r": 2,
+      "s": 1
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 2:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(12,2), 넓이=32",
+    "solution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=2:1$이다. 따라서 $x_B=12$. $k=4×6=24$이므로 $y_B=2$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(72-8)/2=32$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        17.4
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            2.88,
+            15.600000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            6
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            12,
+            2
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              12,
+              2
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            12,
+            2
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "A(4,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            12,
+            2
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/7.json",
+      "snapshotSha256": "87d94a916146838aec6e3a98c72ffcaf3db687e6bacd11ce11edc60c4b8eb7f3",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/7.svg",
+      "svgSha256": "7c8db3ffffb41bb7e308d24422dcc9dc55c57c9fe31c3a2e3ac2bc19d05b3937",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 8,
+    "domain": {
+      "a": 4,
+      "y": 6,
+      "r": 1,
+      "s": 2
+    },
+    "parameters": {
+      "a": 4,
+      "y": 6,
+      "r": 1,
+      "s": 2
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:2일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(6,4), 넓이=10",
+    "solution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=1:2$이다. 따라서 $x_B=6$. $k=4×6=24$이므로 $y_B=4$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(36-16)/2=10$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            2.88,
+            7.800000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            6
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            6,
+            4
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            6,
+            4
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "A(4,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/8.json",
+      "snapshotSha256": "43ef7ee78af223b1a840335ebc6aa6692b6fb176f1ca8056e891ebf11bae466c",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/8.svg",
+      "svgSha256": "760b6d37e664d6df96d52f3914e4d1778941d944a6da076beca0462f3fdc3082",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 9,
+    "domain": {
+      "a": 4,
+      "y": 12,
+      "r": 1,
+      "s": 1
+    },
+    "parameters": {
+      "a": 4,
+      "y": 12,
+      "r": 1,
+      "s": 1
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(8,6), 넓이=36",
+    "solution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=1:1$이다. 따라서 $x_B=8$. $k=4×12=48$이므로 $y_B=6$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(96-24)/2=36$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        11.6
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 48,
+          "domain": [
+            2.88,
+            10.4
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            12
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            8,
+            6
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              8,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            12
+          ]
+        },
+        {
+          "at": [
+            8,
+            6
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            12
+          ],
+          "text": "A(4,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            8,
+            6
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/9.json",
+      "snapshotSha256": "9b36eee3b168077f8479301286406c52d1a0a463202a68835e387a80efec3ccd",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/9.svg",
+      "svgSha256": "d8ac4cacfcb99e3dedcfc6cf4b1a51213e60d3b8fd779520d8e0a7e3070ec3b1",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 10,
+    "domain": {
+      "a": 4,
+      "y": 12,
+      "r": 2,
+      "s": 1
+    },
+    "parameters": {
+      "a": 4,
+      "y": 12,
+      "r": 2,
+      "s": 1
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 2:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(12,4), 넓이=64",
+    "solution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=2:1$이다. 따라서 $x_B=12$. $k=4×12=48$이므로 $y_B=4$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(144-16)/2=64$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        17.4
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 48,
+          "domain": [
+            2.88,
+            15.600000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            12
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            12,
+            4
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              12,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            12
+          ]
+        },
+        {
+          "at": [
+            12,
+            4
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            12
+          ],
+          "text": "A(4,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            12,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/10.json",
+      "snapshotSha256": "a9c15675f2bc865d5c1679813894fcb3157e8d05d2b245b053b5bfe14fc91c96",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/10.svg",
+      "svgSha256": "037c4dee408d07ca09adf3a1a65276b41c5d8d4b98fbb7c2e258db1e4dfe0e3d",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "1",
+    "variant": 11,
+    "domain": {
+      "a": 4,
+      "y": 12,
+      "r": 1,
+      "s": 2
+    },
+    "parameters": {
+      "a": 4,
+      "y": 12,
+      "r": 1,
+      "s": 2
+    },
+    "content": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:2일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "answer": "B=(6,8), 넓이=20",
+    "solution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=1:2$이다. 따라서 $x_B=6$. $k=4×12=48$이므로 $y_B=8$. 큰 삼각형에서 작은 삼각형을 빼면 넓이는 $(72-32)/2=20$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 48,
+          "domain": [
+            2.88,
+            7.800000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            12
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            6,
+            8
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            12
+          ]
+        },
+        {
+          "at": [
+            6,
+            8
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            12
+          ],
+          "text": "A(4,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            8
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/11.json",
+      "snapshotSha256": "e19d013ce87a9c960370f755dbd25a5743ec1e3f44babae428b498a500723d6e",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-inverse-area-ratio/11.svg",
+      "svgSha256": "ce8aadfdfc7696a4576e40deac8e3c1f7e247776af47a398262f03fb8df37427",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 0,
+    "domain": {
+      "a": 1,
+      "gap": 1,
+      "u": 2
+    },
+    "parameters": {
+      "a": 1,
+      "gap": 1,
+      "u": 2
+    },
+    "content": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "answer": "C=(4,4)",
+    "solution": "$A=(u,1u)$, $D=(u,2u)$라 두면 세로 길이는 1u이다. 정사각형이므로 가로도 같아 $u+1u=4$, $u=2$. 따라서 $C=(4,4)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        5.8
+      ],
+      "yRange": [
+        -1,
+        5.8
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            1,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        },
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            2
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              2,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            2,
+            2
+          ]
+        },
+        {
+          "at": [
+            4,
+            2
+          ]
+        },
+        {
+          "at": [
+            4,
+            4
+          ]
+        },
+        {
+          "at": [
+            2,
+            4
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            2
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            2
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            4
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            4
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.3,
+            1.3
+          ],
+          "text": "$y=1x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2.54,
+            5.08
+          ],
+          "text": "$y=2x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "R=4",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/0.json",
+      "snapshotSha256": "2765ded2a776d8e23ef37eff6da7e23d89fcc2fa74f093848dbfab3b52e4c2a5",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/0.svg",
+      "svgSha256": "952be6597b55c3eab7a618215e80757c4082505b8a68ff4605fa0d7f29ccb829",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 1,
+    "domain": {
+      "a": 1,
+      "gap": 1,
+      "u": 3
+    },
+    "parameters": {
+      "a": 1,
+      "gap": 1,
+      "u": 3
+    },
+    "content": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "answer": "C=(6,6)",
+    "solution": "$A=(u,1u)$, $D=(u,2u)$라 두면 세로 길이는 1u이다. 정사각형이므로 가로도 같아 $u+1u=6$, $u=3$. 따라서 $C=(6,6)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            1,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        },
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            6,
+            3
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              3,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              3,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            3,
+            3
+          ]
+        },
+        {
+          "at": [
+            6,
+            3
+          ]
+        },
+        {
+          "at": [
+            6,
+            6
+          ]
+        },
+        {
+          "at": [
+            3,
+            6
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            3,
+            3
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            3
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            6
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            6
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.9500000000000002,
+            1.9500000000000002
+          ],
+          "text": "$y=1x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3.81,
+            7.62
+          ],
+          "text": "$y=2x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            0
+          ],
+          "text": "R=6",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/1.json",
+      "snapshotSha256": "91cf280649511523ebd2818c57eccca51ce20ee221054b1558f1964e91c0e95e",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/1.svg",
+      "svgSha256": "2e833f6c07147610484788ab419931d72c2b9653c4e5ef19ed7372eed09383bd",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 2,
+    "domain": {
+      "a": 1,
+      "gap": 2,
+      "u": 2
+    },
+    "parameters": {
+      "a": 1,
+      "gap": 2,
+      "u": 2
+    },
+    "content": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "answer": "C=(6,6)",
+    "solution": "$A=(u,1u)$, $D=(u,3u)$라 두면 세로 길이는 2u이다. 정사각형이므로 가로도 같아 $u+2u=6$, $u=2$. 따라서 $C=(6,6)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            1,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        },
+        {
+          "coefficients": [
+            3,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            6,
+            2
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              2,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              2,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            2,
+            2
+          ]
+        },
+        {
+          "at": [
+            6,
+            2
+          ]
+        },
+        {
+          "at": [
+            6,
+            6
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            2
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            2
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            6
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.3,
+            1.3
+          ],
+          "text": "$y=1x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2.54,
+            7.62
+          ],
+          "text": "$y=3x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            0
+          ],
+          "text": "R=6",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/2.json",
+      "snapshotSha256": "5391408db2a005e55cbd4ea2ab4f7e68efa9e9c2111a77f9114166b0b33860df",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/2.svg",
+      "svgSha256": "e27b856a6102140ecf5d6407f8a0603413e1f1697920adc4aa3083480508431d",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 3,
+    "domain": {
+      "a": 1,
+      "gap": 2,
+      "u": 3
+    },
+    "parameters": {
+      "a": 1,
+      "gap": 2,
+      "u": 3
+    },
+    "content": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "answer": "C=(9,9)",
+    "solution": "$A=(u,1u)$, $D=(u,3u)$라 두면 세로 길이는 2u이다. 정사각형이므로 가로도 같아 $u+2u=9$, $u=3$. 따라서 $C=(9,9)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        13.049999999999999
+      ],
+      "yRange": [
+        -1,
+        13.049999999999999
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            1,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        },
+        {
+          "coefficients": [
+            3,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            9,
+            3
+          ],
+          "to": [
+            9,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              3,
+              3
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              3,
+              9
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            3,
+            3
+          ]
+        },
+        {
+          "at": [
+            9,
+            3
+          ]
+        },
+        {
+          "at": [
+            9,
+            9
+          ]
+        },
+        {
+          "at": [
+            3,
+            9
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            3,
+            3
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            3
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            9
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            9
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.9500000000000002,
+            1.9500000000000002
+          ],
+          "text": "$y=1x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3.81,
+            11.43
+          ],
+          "text": "$y=3x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            0
+          ],
+          "text": "R=9",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/3.json",
+      "snapshotSha256": "f6793bdd34751fff8c3025a3e6e4aeb4e5c4d636a341bbc30d2a50cf14cf5188",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/3.svg",
+      "svgSha256": "8086472464c0573e8548c966b3d3352b5be1076b4b50e92c144b0e619789ef21",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 4,
+    "domain": {
+      "a": 2,
+      "gap": 1,
+      "u": 2
+    },
+    "parameters": {
+      "a": 2,
+      "gap": 1,
+      "u": 2
+    },
+    "content": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "answer": "C=(4,6)",
+    "solution": "$A=(u,2u)$, $D=(u,3u)$라 두면 세로 길이는 1u이다. 정사각형이므로 가로도 같아 $u+1u=4$, $u=2$. 따라서 $C=(4,6)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        },
+        {
+          "coefficients": [
+            3,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            4
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              2,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "at": [
+            4,
+            4
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            4
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.3,
+            2.6
+          ],
+          "text": "$y=2x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2.54,
+            7.62
+          ],
+          "text": "$y=3x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "R=4",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/4.json",
+      "snapshotSha256": "ae3f56ee91c257bab64f577d14bd62e27d29adcae7a3979c819f1a76b66bb6b0",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/4.svg",
+      "svgSha256": "5f77ddd712c79b1b9f6b6f4a5cccb078783725976bb1b723746c99d7a0a9e868",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 5,
+    "domain": {
+      "a": 2,
+      "gap": 1,
+      "u": 3
+    },
+    "parameters": {
+      "a": 2,
+      "gap": 1,
+      "u": 3
+    },
+    "content": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "answer": "C=(6,9)",
+    "solution": "$A=(u,2u)$, $D=(u,3u)$라 두면 세로 길이는 1u이다. 정사각형이므로 가로도 같아 $u+1u=6$, $u=3$. 따라서 $C=(6,9)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        13.049999999999999
+      ],
+      "yRange": [
+        -1,
+        13.049999999999999
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        },
+        {
+          "coefficients": [
+            3,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            6,
+            6
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              3,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              3,
+              9
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            3,
+            6
+          ]
+        },
+        {
+          "at": [
+            6,
+            6
+          ]
+        },
+        {
+          "at": [
+            6,
+            9
+          ]
+        },
+        {
+          "at": [
+            3,
+            9
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            3,
+            6
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            6
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            9
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            9
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.9500000000000002,
+            3.9000000000000004
+          ],
+          "text": "$y=2x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3.81,
+            11.43
+          ],
+          "text": "$y=3x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            0
+          ],
+          "text": "R=6",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/5.json",
+      "snapshotSha256": "66f6b8fd2606d5c4d69154577c00cbb1f44fe30adaaa94ce97b62cd2def90edf",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/5.svg",
+      "svgSha256": "087fec11345e3a302a3f8c3a1191818c008ad594220c43e9b7134a896b443820",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 6,
+    "domain": {
+      "a": 2,
+      "gap": 2,
+      "u": 2
+    },
+    "parameters": {
+      "a": 2,
+      "gap": 2,
+      "u": 2
+    },
+    "content": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "answer": "C=(6,8)",
+    "solution": "$A=(u,2u)$, $D=(u,4u)$라 두면 세로 길이는 2u이다. 정사각형이므로 가로도 같아 $u+2u=6$, $u=2$. 따라서 $C=(6,8)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        11.6
+      ],
+      "yRange": [
+        -1,
+        11.6
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        },
+        {
+          "coefficients": [
+            4,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            6,
+            4
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              2,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "at": [
+            6,
+            4
+          ]
+        },
+        {
+          "at": [
+            6,
+            8
+          ]
+        },
+        {
+          "at": [
+            2,
+            8
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            4
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            8
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            8
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.3,
+            2.6
+          ],
+          "text": "$y=2x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2.54,
+            10.16
+          ],
+          "text": "$y=4x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            0
+          ],
+          "text": "R=6",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/6.json",
+      "snapshotSha256": "1e0a3697ae479ec509801d0505850ad0572135ca692e90f2fbfbcf5fb56a8bef",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/6.svg",
+      "svgSha256": "cf157f2b452f06444e14ac2ebdacfed9837609ee5605784c36384f3f5d442af6",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 7,
+    "domain": {
+      "a": 2,
+      "gap": 2,
+      "u": 3
+    },
+    "parameters": {
+      "a": 2,
+      "gap": 2,
+      "u": 3
+    },
+    "content": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "answer": "C=(9,12)",
+    "solution": "$A=(u,2u)$, $D=(u,4u)$라 두면 세로 길이는 2u이다. 정사각형이므로 가로도 같아 $u+2u=9$, $u=3$. 따라서 $C=(9,12)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        17.4
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        },
+        {
+          "coefficients": [
+            4,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            9,
+            6
+          ],
+          "to": [
+            9,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              3,
+              6
+            ],
+            [
+              9,
+              6
+            ],
+            [
+              9,
+              12
+            ],
+            [
+              3,
+              12
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            3,
+            6
+          ]
+        },
+        {
+          "at": [
+            9,
+            6
+          ]
+        },
+        {
+          "at": [
+            9,
+            12
+          ]
+        },
+        {
+          "at": [
+            3,
+            12
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            3,
+            6
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            6
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            12
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            12
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.9500000000000002,
+            3.9000000000000004
+          ],
+          "text": "$y=2x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3.81,
+            15.24
+          ],
+          "text": "$y=4x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            0
+          ],
+          "text": "R=9",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "difficulty": "심화하",
+    "difficultyBasis": [
+      "그림에서 읽은 여러 자료를 공유하여 판단",
+      "좌표 조건과 길이·넓이의 의존 관계"
+    ],
+    "questionType": "단답형",
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "archivedFigure": {
+      "snapshot": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/7.json",
+      "snapshotSha256": "3ff62db8e2e64803b4014419327a62be51a953f203ac8d5e1bf7c7d7a7156653",
+      "svg": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-r1/middle-figures/study-middle-shared-side-square/7.svg",
+      "svgSha256": "769501d6a3ccc6f18344496034cad76e28551966f4e7e2f4c8af30df9707a239",
+      "exactCurrentFigureSpec": true,
+      "exactCurrentContentAnswerSolution": true
+    }
+  }
+]

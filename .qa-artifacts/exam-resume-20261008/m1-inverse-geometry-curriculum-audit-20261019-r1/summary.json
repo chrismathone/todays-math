@@ -1,0 +1,36 @@
+{
+  "families": [
+    {
+      "id": "study-middle-inverse-equal-legs",
+      "version": "1",
+      "domainSize": 4,
+      "formats": [
+        "단답형"
+      ]
+    },
+    {
+      "id": "study-middle-inverse-area-ratio",
+      "version": "1",
+      "domainSize": 12,
+      "formats": [
+        "단답형"
+      ]
+    },
+    {
+      "id": "study-middle-shared-side-square",
+      "version": "1",
+      "domainSize": 8,
+      "formats": [
+        "단답형"
+      ]
+    }
+  ],
+  "totalVariants": 24,
+  "mathFailures": 0,
+  "actualVerifierPasses": 24,
+  "archivedFiguresExactlyBound": 20,
+  "formatRouteChecks": 12,
+  "independentMethod": "Student printed text and labels, numerical linear equations and elementary triangle dissection; no author-only linear2/area oracle imported.",
+  "noNewRender": true,
+  "sourceUnchanged": true
+}
