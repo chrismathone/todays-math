@@ -839,6 +839,11 @@ model Problem {
   /// mapProblemType 이 객관식→"개념" 으로 뭉개 원본 구분이 소실돼 있었다(11 §2.4).
   /// 청사진의 유형 배분(학교 고유성 51.1%)을 채우려면 이 컬럼이 필요하다.
   questionType      String?    @map("question_type") @db.VarChar(10)
+  /// 실제 형식 캐시. NULL=미계산, unknown=계산했으나 확정 불가. DB 먼저 적용하며 기존 reader는 그대로 둔다.
+  actualFormat        String? @map("actual_format") @db.VarChar(20)
+  /// 정본 분류기·파서 의존 소스의 버전. 입력 변경 시 DB 트리거가 세 칸을 함께 비운다.
+  actualFormatVersion String? @map("actual_format_version") @db.VarChar(96)
+  actualFormatDigest  String? @map("actual_format_digest") @db.Char(64)
   /// 문제 본문 — LaTeX 수식 포함 마크다운
   content           String     @db.Text
   answer            String     @db.Text
@@ -977,6 +982,10 @@ model Problem {
   @@index([unitId, questionGroupKey])
   // 「이 자료의 문항」 — 출판사 · 자료 종류로 거르는 조회가 자료 → 문항으로 내려온다(D-161).
   @@index([sourceMaterialId])
+  // 실제 형식 집계·단원/자료별 후보 쪽 자르기. 아직 운영 reader가 이 캐시를 읽지는 않는다.
+  @@index([pool, actualFormat, id], map: "problem_pool_actual_format_id_idx")
+  @@index([pool, unitId, actualFormat, problemCode, id], map: "problem_pool_unit_actual_format_code_id_idx")
+  @@index([pool, sourceMaterialId, actualFormat, questionNumber, id], map: "problem_pool_material_actual_format_number_id_idx")
   @@map("problem")
 }
 

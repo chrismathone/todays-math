@@ -1,0 +1,29 @@
+{
+  "mode": "read-only-preflight",
+  "migration": "20261019120000_problem_actual_format",
+  "checksum": "794ccf77aadaf1b63292090b6419cff5d6c66aaa1f6f2f14e00e7280e876f4f9",
+  "statements": 7,
+  "status": "pending",
+  "columnsPresent": false,
+  "checks": 0,
+  "indexes": 0,
+  "questionGroupKeyPresent": true,
+  "triggers": [
+    {
+      "name": "problem_code_assign",
+      "enabled": "O"
+    },
+    {
+      "name": "problem_code_freeze",
+      "enabled": "O"
+    },
+    {
+      "name": "problem_question_group_invalidate",
+      "enabled": "O"
+    },
+    {
+      "name": "registered_problem_outer_wall",
+      "enabled": "O"
+    }
+  ]
+}
