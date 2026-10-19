@@ -1,0 +1,18 @@
+{
+  "actor": "codex-gangbuk-independent-20261019-r2",
+  "priorExposure": "Fresh actor in reused checkout. No NEW twin answer or previous solve seen before independent derivation. Old solves are not mine.",
+  "readScope": [
+    "User-provided instructions",
+    "D:/todays-math/AGENTS.md",
+    "Get-Location and git status --short",
+    "Only the three authorized parent blind files",
+    "This new r2 directory"
+  ],
+  "authorExposure": false,
+  "historicalSolveExposure": false,
+  "figuresOpened": false,
+  "answerSearch": false,
+  "networkUsed": false,
+  "serialization": "apply_patch UTF-8 script and explicit UTF-8 byte writes; no PowerShell Unicode piping",
+  "consoleIncident": "Initial strict UTF-8 read of AGENTS could not print under cp949. Retried with PYTHONIOENCODING=utf-8; no blind input was reached in the failed command."
+}
