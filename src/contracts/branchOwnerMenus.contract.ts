@@ -3,6 +3,7 @@ import {
   ALL_WORKSPACE_MENUS,
   WORKSPACE_MENUS,
   WORKSPACE_PRODUCTS,
+  WORKSPACE_SELECTABLE_MENUS,
   workspaceMenuOptionsOf,
   type WorkspaceMenu,
   type WorkspaceProduct,
@@ -30,6 +31,10 @@ export type BranchOwnerMenus = {
 };
 
 const currentMenuSchema = z.enum(WORKSPACE_MENUS.map((menu) => menu.id));
+/** 관리 화면에서 고르는 메뉴(«시험지 · 내보내기»는 2026-10-19부터 고르지 않는다 — 저장값만 보존). */
+const SELECTABLE = new Set<string>(
+  WORKSPACE_SELECTABLE_MENUS.map((menu) => menu.id),
+);
 export const branchOwnerMenusUpdateSchema = z.strictObject({
   menus: z
     .array(currentMenuSchema)
@@ -72,8 +77,9 @@ export function nextOwnerDisabled(
 ): WorkspaceMenu[] | null {
   const on = new Set<string>(selected);
   if (selected.some((menu) => ceilingDisabled.includes(menu))) return null;
+  // 고르지 않는 메뉴(저장 호환용 export — 보내와도 무시)와 닫힌 메뉴는 지난 값 그대로.
   return ALL_WORKSPACE_MENUS.filter((menu) =>
-    ceilingDisabled.includes(menu)
+    ceilingDisabled.includes(menu) || !SELECTABLE.has(menu)
       ? ownerDisabled.includes(menu)
       : !on.has(menu),
   );
@@ -90,12 +96,15 @@ export function branchMenuLabel(menu: string, branchId: string): string {
   return menu;
 }
 
-/** 지점에서 쓰는 메뉴(상한 − 원장이 끈 것). 감사 기록 · 에이와 알림의 «전 · 후» 값. */
+/** 지점에서 쓰는 메뉴(상한 − 원장이 끈 것) — 고르는 메뉴만. 감사 기록 · 에이와 알림의 «전 · 후» 값. */
 export function branchOwnerMenusOn(
   ceilingDisabled: readonly string[],
   ownerDisabled: readonly string[],
 ): WorkspaceMenu[] {
   return ALL_WORKSPACE_MENUS.filter(
-    (menu) => !ceilingDisabled.includes(menu) && !ownerDisabled.includes(menu),
+    (menu) =>
+      SELECTABLE.has(menu) &&
+      !ceilingDisabled.includes(menu) &&
+      !ownerDisabled.includes(menu),
   );
 }

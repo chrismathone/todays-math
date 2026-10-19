@@ -14,7 +14,12 @@ const branchId = "20000000-0000-4000-8000-000000000002";
 describe("지점 원장 사용 메뉴 — 상한 안에서만", () => {
   it("상한이 닫은 메뉴는 열림 false · 사용 false, 원장이 끈 메뉴는 열림 true · 사용 false", () => {
     const items = branchOwnerMenuItems(["textbook"], ["bank"], branchId);
-    expect(items.map((i) => i.menu)).toEqual(ALL_WORKSPACE_MENUS);
+    expect(items.map((i) => i.menu)).toEqual(
+      ALL_WORKSPACE_MENUS.filter((menu) => menu !== "export"),
+    );
+    // «시험지 · 내보내기»는 고르지 않는다 — 원장이 보낸 값에 있어도 지난 값 그대로
+    expect(nextOwnerDisabled([], ["export"], ["export"])).toContain("export");
+    expect(nextOwnerDisabled([], [], [])).not.toContain("export");
     expect(items.find((i) => i.menu === "textbook")).toMatchObject({
       open: false,
       on: false,
