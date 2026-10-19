@@ -9,6 +9,10 @@ import { finiteBijectionFamily, iteratedRangeFamily } from "./finite";
 import { parabolaLineChainFamily } from "./graph";
 import { splitIncentersFamily, twoCentersAngleFamily } from "./geometry";
 import { incircleShadedAreaFamily } from "./incircle";
+import {
+  quadraticCoefficientReuseFamily,
+  radicalInverseCircleFamily,
+} from "./remaining";
 
 /** Owned by the advanced authoring worker; isolated from legacy bank/SRS registries. */
 export const ADVANCED_STUDY_FAMILIES: readonly ExamStudyFamily[] = [
@@ -23,4 +27,6 @@ export const ADVANCED_STUDY_FAMILIES: readonly ExamStudyFamily[] = [
   splitIncentersFamily,
   twoCentersAngleFamily,
   incircleShadedAreaFamily,
+  quadraticCoefficientReuseFamily,
+  radicalInverseCircleFamily,
 ];

@@ -62,7 +62,7 @@ afterEach(() => {
 });
 
 async function open() {
-  render(<ExamPracticeWorkspace allowedMenus={["export"]} />);
+  render(<ExamPracticeWorkspace allowedMenus={["bank"]} />);
   await waitFor(() =>
     expect(
       screen.getByRole("button", { name: "연습 문제 만들기" }),
@@ -72,6 +72,32 @@ async function open() {
 }
 
 describe("exam study generation, review and common output", () => {
+  it.each(["bank", "arithmetic", "studio", "library", "conceptBlank"] as const)(
+    "enables generation for the authorized output menu %s",
+    async (menu) => {
+      render(<ExamPracticeWorkspace allowedMenus={[menu]} />);
+      await waitFor(() =>
+        expect(
+          screen.getByRole("button", { name: "연습 문제 만들기" }),
+        ).toBeEnabled(),
+      );
+    },
+  );
+
+  it.each(["export", "textbook"] as const)(
+    "keeps generation closed without a practice output menu: %s",
+    async (menu) => {
+      render(<ExamPracticeWorkspace allowedMenus={[menu]} />);
+      await screen.findByRole("combobox", { name: "학교·검토 자료" });
+      expect(
+        screen.getByRole("button", { name: "연습 문제 만들기" }),
+      ).toBeDisabled();
+      expect(
+        fetcher.mock.calls.some((call) => call[1]?.method === "POST"),
+      ).toBe(false);
+    },
+  );
+
   it("sends the reviewed school requirements, shows partial scope, and hides answers initially", async () => {
     const user = await open();
     await user.click(screen.getByRole("button", { name: "연습 문제 만들기" }));
@@ -194,7 +220,7 @@ describe("exam study generation, review and common output", () => {
     fetcher.mockImplementationOnce(async () =>
       json({ error: { message: "권한이 없습니다." } }, 403),
     );
-    render(<ExamPracticeWorkspace allowedMenus={["export"]} />);
+    render(<ExamPracticeWorkspace allowedMenus={["bank"]} />);
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "권한이 없습니다.",
     );

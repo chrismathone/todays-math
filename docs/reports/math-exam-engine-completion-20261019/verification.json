@@ -1,0 +1,239 @@
+{
+  "schema": 1,
+  "date": "2026-10-19",
+  "baseCommit": "261a5e263e4e104949d7a21673c9c9ad5850a380",
+  "verifiedSourceCommit": "2fac1748c034be7f461e727cad449b4c47c10bd2",
+  "branch": "BIGSHOL/problem_make",
+  "scope": {
+    "unsupportedUniqueDemandsImplemented": 6,
+    "existingUniqueDemandsStrengthened": 6,
+    "courseQualifiedOccurrences": 13,
+    "newAuthoredFamilies": 7,
+    "existingRegistrationIdsPreserved": 6,
+    "extraLegacyRegistrations": 0,
+    "schoolOriginalsRestored": false,
+    "uiLayoutOrCssChanged": false,
+    "printTemplateChanged": false,
+    "localMainChanged": false
+  },
+  "request": {
+    "format": "혼합",
+    "count": 12,
+    "maxPerFamily": 3
+  },
+  "schoolBrowserResults": [
+    {
+      "profileId": "daeryun-m1",
+      "course": "중1",
+      "status": "complete",
+      "count": 12,
+      "full": 11,
+      "uniqueKeys": 12,
+      "figures": 6,
+      "native": 2
+    },
+    {
+      "profileId": "kyungmyung-m1",
+      "course": "중1",
+      "status": "complete",
+      "count": 12,
+      "full": 7,
+      "uniqueKeys": 12,
+      "figures": 0,
+      "native": 0
+    },
+    {
+      "profileId": "daeryun-m2",
+      "course": "중2",
+      "status": "complete",
+      "count": 12,
+      "full": 10,
+      "uniqueKeys": 12,
+      "figures": 1,
+      "native": 3
+    },
+    {
+      "profileId": "kyungmyung-m3",
+      "course": "중3",
+      "status": "complete",
+      "count": 12,
+      "full": 4,
+      "uniqueKeys": 12,
+      "figures": 3,
+      "native": 3
+    },
+    {
+      "profileId": "kyungshin-common2",
+      "course": "공통수학2",
+      "status": "complete",
+      "count": 12,
+      "full": 8,
+      "uniqueKeys": 12,
+      "figures": 0,
+      "native": 1
+    },
+    {
+      "name": "common2 actual shared print preview and digest recheck",
+      "pages": 4
+    }
+  ],
+  "canonicalDomainChecks": {
+    "newMiddleFinite": 64,
+    "newAdvancedFinite": 32,
+    "existingReinforcedFinite": 356,
+    "finiteTotal": 452,
+    "classificationSampleRecords": 512,
+    "linearModelSampleRecords": 512,
+    "recordCountsAreUniqueCapacity": false,
+    "rareRadicalInverseCircleFiniteCapacity": 7
+  },
+  "tests": {
+    "unitAndRoutePolicy": {
+      "files": 14,
+      "passed": 302,
+      "failed": 0,
+      "skipped": 0
+    },
+    "actualApiAndPythonIntegration": {
+      "files": 2,
+      "passed": 36,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "browser": {
+    "authentication": "synthetic approved director, bank menu only",
+    "source": "actual UI, API, core, strict Python figures and shared WorksheetEditor",
+    "mainFlowChecks": 8,
+    "schoolAndCommon2PrintChecks": 6,
+    "errors": [],
+    "viewportWidths": [1920, 1280, 768, 390, 320],
+    "answerDetailsInitiallyClosed": true,
+    "uniqueKeysPerSchoolRequest": 12,
+    "everyQuestionHasReviewedRequirements": true,
+    "digestRecheckedBeforePrint": true,
+    "pdfVisualInspection": {
+      "daeryunPages": 6,
+      "common2Pages": 4,
+      "allPagesRasterizedAndInspected": true,
+      "questionTextMathAndFiguresClipped": false,
+      "actualPrinterTested": false
+    }
+  },
+  "closedFindings": [
+    {
+      "id": "count-choice-domain",
+      "result": "Actual EQ06/EQ09 cases and 0..N choices pass; fewer than five possible counts fails closed."
+    },
+    {
+      "id": "practice-output-menu",
+      "result": "Same five-menu predicate for page/API/UI; export/textbook alone denied; existing textbook common output preserved."
+    },
+    {
+      "id": "contradictory-native-rubric",
+      "result": "480 keyword-matching contradictory authored-guidance mutations reject; all 60 normal cases preserved."
+    }
+  ],
+  "lint": {
+    "changedFiles": 24,
+    "exitCode": 0,
+    "globalAffordanceExitCode": 0
+  },
+  "build": {
+    "command": "node scripts/deploy/build-next.mjs",
+    "exitCode": 0,
+    "nextVersion": "16.3.8",
+    "typeScriptPassed": true,
+    "staticPages": 244,
+    "warnings": {
+      "count": 2,
+      "source": "src/lib/textbook/server/figureBytes.ts",
+      "description": "Broad public path tracing, identical to 261a5e263 baseline"
+    },
+    "dependencySetup": "APFS clone of existing dependencies into this worktree, no install or Prisma generation",
+    "database": "dummy localhost:1 URL; no database operation"
+  },
+  "independentAcceptance": {
+    "report": "independent-acceptance.json",
+    "sourceFixPin": "2fac1748c034be7f461e727cad449b4c47c10bd2",
+    "blockersRemaining": 0,
+    "publicationOwnedByCoordinator": true
+  },
+  "publication": {
+    "requestedTarget": "origin/main via HEAD:main",
+    "localMainUntouched": true,
+    "status": "Separate exact-commit publication receipt is recorded after push; this file records pre-push source validation."
+  },
+  "rawEvidenceRoot": "/Users/pss/orca/workspaces/today_/problem_make/.qa-artifacts/math-exam-engine-completion-20261019",
+  "sourceSha256": {
+    "src/__tests__/unit/examStudyAccess.test.ts": "e7153d34818d05732958ca5c7858de4bf54559212c3aec14ce7f57c535b93590",
+    "src/__tests__/unit/examStudyAdvanced.test.ts": "3b72e981de3bc8f03234ab5e9069c3c1b699a38ceb6f72b1aafd3188acbaab45",
+    "src/__tests__/unit/examStudyAdvancedRemaining.test.ts": "10552ba5eb39988886dacafeb94e88ababfe3114851579a7bd2a61b6b602b583",
+    "src/__tests__/unit/examStudyChoiceBounds.test.ts": "bc0b91f2adac23e4a24d73c9519069884e18e319f17be75137afd14c02130258",
+    "src/__tests__/unit/examStudyCompletion.test.ts": "e55b7775f6ba0866d8c57ffb4f75a2f4f8bc801dbdeb7d8375c64a4c229e28d1",
+    "src/__tests__/unit/examStudyCoreLegacy.test.ts": "c7bd77c1b0aee4ed9d48c70c6553c47d665f931939dc654da972806da2a7f393",
+    "src/__tests__/unit/examStudyMiddle.test.ts": "d4eba54b8029fabbcd1d104673788a337d881ff494389a04a1550d679b319964",
+    "src/__tests__/unit/examStudyMiddleRemaining.test.ts": "a6a445ac3a8ade115b2d451c6e2a3897dc3857c93c2d0afff87a04dcfab85179",
+    "src/__tests__/unit/examStudyReinforcement.test.ts": "0b2d761fa9ce80accbac13e67886a1047e340276fc628ff43491b6ad30c9ea15",
+    "src/__tests__/unit/examStudyRoutes.test.ts": "6e2a93eb03e4cf14e040abd52edf2f7e047d006893ef1f3e708080698090e11b",
+    "src/__tests__/unit/examStudyWorkspace.test.tsx": "fc6fffdd60fd208f30ee2c6c9d212314273430064057ef7d29e4f59f8dabcab8",
+    "src/components/exam-practice/ExamPracticeWorkspace.tsx": "dbe1001f9d2e19cf5a046f48ee0146e74b1bb80fcc57196fd1deba9849c16cc0",
+    "src/lib/accountRouteAccess.ts": "2b9f42da5c1699049b507667e7ec8465c67e7c615730ddf6edc0c94f00398273",
+    "src/lib/examStudy/adapters.ts": "6ef7595551aaa59f25264938c73938358b3c168ee5499c31db497f85667ae10a",
+    "src/lib/examStudy/families/advanced/index.ts": "aac5fc7705178d093ddb635d98d79ce8b333e4f1bda52b1543eac2263501d409",
+    "src/lib/examStudy/families/advanced/remaining.ts": "8da4e488e66ad3627e03784a11f8be479e3633fa7c6396ebe1e2a5198eac020d",
+    "src/lib/examStudy/families/advanced/remainingExact.ts": "c63186aa3cce6461a7597c9f5a825feac6fcc3231fbc7495179de42d3fc0dff9",
+    "src/lib/examStudy/families/middle/index.ts": "ba46dea6fbd4ca94c9c237911922e4fa032b34cf17f972e7750ccfa56d0b3cbb",
+    "src/lib/examStudy/families/middle/remaining.ts": "8f25537a569a693879c2847f00a707ecb43a141159069df88b93dd14d81db98d",
+    "src/lib/examStudy/legacyReinforcement.ts": "0e1aae8a51e2d7c1bd588dfddbc0bab3c71557866558d73a66a969e2e07a4318",
+    "src/lib/examStudy/reinforcementMath.ts": "e4ff06d37b86961c01473ed8aa0491edc1d3269b6fef7f1e001a5580ddb9cee4",
+    "src/lib/examStudy/reinforcementVerification.ts": "f49d15aae3970084f745be4c78b330796a709b6bc2de19da52ff979d6281de57",
+    "src/lib/examStudy/studyChoiceBounds.ts": "c61863aa2dcae1c02b65e45883f817cb24ce8b24c6a03d3000b2fc6c0be359c4",
+    "src/lib/examStudyAccess.ts": "46821d9fd52e8b6ff9e2a661bd723e9c5a6477e55dcf722fd1a3976bf718ff1b"
+  },
+  "artifactSha256": {
+    "unit-results.json": "e5dcb3bf3bd3790d8b2b24f4bb1e2d40a3e4d6356abc06e9cb3f0ad02be0c4a0",
+    "integration-results.json": "35a935ad9c2e842ae603cb77f1c7305cb9a8f1eabc4627c0997186c4f3cbd2b7",
+    "unit-final.log": "c9ea053ed855034994feb80a648a712c8bd360170dfd7006371ca28172570f4b",
+    "integration-final.log": "3666596a08eabf778d77760c3c176345942d70085c6d08c3e237c9f7531ffeb1",
+    "vitest-unit.config.mts": "375576e2e58f4d7073bc352e548128d0b3ac7c139a87572c0c8ad28253cb76a9",
+    "vitest-integration.config.mts": "20bcce45c597726dcdebd393feddd92d00c340ed73340a85e39ca4f85e6d498b",
+    "build-final.log": "0a07b9205b8a8c25967d6ffbf05fbcd042bc3eb0949f9ddc0ad29e82fa804a38",
+    "lint-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "affordance-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "browser/check.mjs": "55f5799ad5254ff1ea5825e8a0e2c75742a70a5df7ae939bc0d2d046860b29bf",
+    "browser/schools-check.mjs": "70cf0692c49bf12fe03b48d2a2beb31bcc65126fba0f6c8289e2f8b793b0c908",
+    "browser/server.mjs": "317ea0543a4c842987de31d0e58d97d20d182277aeb9cd2f3e810351e19bf3a0",
+    "browser/main.tsx": "a00024a311fd8d7ca5f559d7128c3c8ce93c7088405a8eaad23dee0c54daa5d6",
+    "browser/auth.ts": "382abc55a3cfcb3b59f9b7c81f87593584a83aa32428655e32d55bd1a89ac9f0",
+    "browser/api-evidence.json": "235b17ca68cd1fbae305bf0c1220a1a7c831d9442ece83f93066bcd465e87780",
+    "browser/browser-checks.json": "d0b541d6cb728355811c2a859217225ae73dd808bceaaac4f25a2aed3143804f",
+    "browser/school-browser-checks.json": "e5c3d3d2bcbe6694e15624c7c4b23f3b83298b6ac6c4a11a074c5d2f12d99830",
+    "browser/check.log": "19567952f58df9584bdd75dbad5d0f5d3697dc1859a1e749db8c2fe544c99312",
+    "browser/schools-check.log": "f24afcc46231c2a32f1317a5741a3756ec83832d6dac6a4eca857938c1ce49e5",
+    "browser/student-print.pdf": "e85e439bb2ad89f01f84df8241eded2d720af0f276292ed208ff37b0632311d2",
+    "browser/common2-student-print.pdf": "994f778fbb5c6c7ce990e48dd8f78ad26f644590be397aeab660e01f54b8ebb6",
+    "middle-evidence/SHA256SUMS.json": "f2008ebeb7a75c958322ba0a8ed5ded0f33560fb5cbfc77fc76c85305f3997b5",
+    "advanced/SHA256SUMS.json": "d2f20affc6a2722b5f804bfb3e1e54f49b7b0aef13d9db6109a2d6fd41116d94",
+    "reinforcement-evidence/SHA256SUMS.json": "6b77d53f631b9f527673cd5ded273791d06b581a30ceb6b3d12873f31d984834",
+    "browser/common2-print-page-1.png": "23e6d7deb8b40f32a93fd369474782a1a2f96c9dbfd46905fd71a11cff391dd3",
+    "browser/common2-print-page-2.png": "af404b1a1928c7ccd20f80a34930afdcc3b7994e5cb55ffc61409d3f9c18c587",
+    "browser/common2-print-page-3.png": "fca3d77c40fdb7b4205615f4d9aa3f8eec431e9e797358f6ea0d23ccf7a74732",
+    "browser/common2-print-page-4.png": "77e91f1f4acf6cc6d1ee442cd099ed274ad4776689691cee17e93a8233919035",
+    "browser/student-print-page-1.png": "c37f3be9bc556b5df96bdb823a9a871be26f603905e585dc8a66c2f1fb7a31c8",
+    "browser/student-print-page-2.png": "03c9babe39595d6d553f9731133ae8c2aed2c826c6d395769b5e2f714f029c6e",
+    "browser/student-print-page-3.png": "3f749be18b233968801d45ed31eb35827af07c679d5357dbf13452b73856fe3e",
+    "browser/student-print-page-4.png": "9722c4f09ce5eeca6b7bf8c6a28423f26f74ff6bae55423280d312a4ef3b2590",
+    "browser/student-print-page-5.png": "89135314dec9ea569aa58d7a89d7d0032c5a9ed00823e3df37642fe92c108289",
+    "browser/student-print-page-6.png": "b5ff6ad83ef22d75c4e118ab8457758364b73c015907c0a6f79b41d433b41558"
+  },
+  "notClaimed": [
+    "Whole-school coverage or all original exam questions",
+    "Original school-question DB ingestion",
+    "Unbounded capacity from seeds, formats or answer order",
+    "Exhaustion of sampled classification/model domains",
+    "Calibrated difficulty or measured learning effects",
+    "New visual-reading families",
+    "Production authenticated session or physical printing or HWPX backend"
+  ]
+}
