@@ -3,6 +3,38 @@ import test from 'node:test';
 import { compareWrittenAnswerPresentation as compare } from './answerPresentation.mjs';
 import { independentAnswerMatches } from './candidatePack.mjs';
 
+test('complete standalone measures cannot bypass the parser through legacy string normalization', () => {
+  for (const type of ['단답형', '서술형']) {
+    const candidate = Object.freeze({ questionType: type, choices: Object.freeze([]), answer: '$4\\,\\mathrm{cm}$' });
+    for (const raw of ['4\\leftcm', '4\\rightcm', '4c\\mathrm{m}', '$$4cm$$']) {
+      assert.equal(independentAnswerMatches(candidate, raw), false, raw);
+      assert.equal(compare(candidate.answer, raw).status, 'unsupported');
+    }
+    assert.equal(independentAnswerMatches(candidate, '4cm'), true);
+    assert.equal(independentAnswerMatches(candidate, '$4\\,\\mathrm{cm}$'), true);
+    const angle = { ...candidate, answer: '$27^\\circ$' };
+    for (const raw of ['$$27^\\circ$$', '27\\left^\\circ', '27^\\circ\\right'])
+      assert.equal(independentAnswerMatches(angle, raw), false, raw);
+  }
+});
+
+test('current standalone radical lengths match their sealed-style raw presentation with units intact', () => {
+  for (const [answer, raw] of [['$(18+18\\sqrt3)\\,\\mathrm{cm}$', '18+18√3 cm'], ['$4\\sqrt3\\,\\mathrm{cm}$', '4√3 cm']]) {
+    const candidate = Object.freeze({ questionType: '서술형', choices: Object.freeze([]), answer });
+    const frozen = Object.freeze({ answer: raw });
+    const before = JSON.stringify({ candidate, frozen });
+    assert.equal(compare(answer, raw).status, 'equivalent');
+    assert.equal(compare(raw, answer).status, 'equivalent');
+    assert.equal(independentAnswerMatches(candidate, frozen.answer), true);
+    for (const bad of [raw.replace('cm','m'), raw.replace('cm','cm²'), raw.replace('cm',''), raw+'이다', '(1) '+raw, 'AC='+raw])
+      assert.equal(independentAnswerMatches(candidate,bad),false,bad);
+    assert.equal(JSON.stringify({ candidate, frozen }), before);
+    assert.equal(compare(answer, raw).permitsGradeOrQuestionApproval, false);
+  }
+  assert.equal(compare('4√3cm', '(1) AC=4√3cm').status, 'different');
+  assert.notEqual(compare('4√3cm', '4√3°').status, 'equivalent');
+});
+
 test('single degree answers compare explicit Unicode/TeX presentation without editing sealed answers', () => {
   const candidate = Object.freeze({ questionType: '서술형', choices: Object.freeze([]), answer: '$27^\\circ$' });
   const raw = Object.freeze({ answer: '27°', status: 'solved' });

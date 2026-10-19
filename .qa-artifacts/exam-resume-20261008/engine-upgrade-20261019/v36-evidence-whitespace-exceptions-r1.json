@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-19T19:48:28.979597+00:00",
+  "exceptions": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/angle-length-presentation-tests-r2.tap",
+      "sha256": "8c296386b5d5d4f1551b47ba2a7905876f44eb579ce408757eaf0ba065a4de98",
+      "lines": [
+        12,
+        15
+      ],
+      "basis": "Preserve actual failed test log bytes",
+      "workerSeal": null
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group2-review-20261020-r2/blind/own-nobyeon2-blind-calculate.py",
+      "sha256": "0fe97a2c61b51d7a35faa289d8eef0d84ab9f5f03666fa52ef57a614f3bce72a",
+      "lines": [
+        46
+      ],
+      "basis": "Preserve worker Git sealed reproduction script bytes",
+      "workerSeal": "ab41f0db4"
+    }
+  ],
+  "rawAnswerOrReportEdited": false,
+  "otherStagedWhitespaceCheckedSeparately": true,
+  "dbWrites": 0
+}

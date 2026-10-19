@@ -1,0 +1,69 @@
+{
+  "version": 2,
+  "style": {
+    "show_points": true
+  },
+  "points": {
+    "P": [
+      89,
+      51.469256391280624
+    ],
+    "Q": [
+      170,
+      145
+    ],
+    "R": [
+      35,
+      145
+    ],
+    "H": [
+      89,
+      145
+    ]
+  },
+  "segments": {
+    "PQ": [
+      "P",
+      "Q"
+    ],
+    "PR": [
+      "P",
+      "R"
+    ],
+    "RQ": [
+      "R",
+      "Q"
+    ],
+    "PH": [
+      "P",
+      "H"
+    ]
+  },
+  "angles": {
+    "given": {
+      "vertex": "R",
+      "points": [
+        "P",
+        "Q"
+      ],
+      "label": "60°",
+      "radius": 18,
+      "label_distance": 32
+    },
+    "right": {
+      "vertex": "H",
+      "points": [
+        "P",
+        "Q"
+      ],
+      "right": true,
+      "label": ""
+    }
+  },
+  "labels": {
+    "P": "P",
+    "Q": "Q",
+    "R": "R",
+    "H": "H"
+  }
+}

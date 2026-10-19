@@ -5,6 +5,7 @@
  */
 import assert from 'node:assert/strict';
 import { compareConstantParts } from './constantAnswers.mjs';
+import { singleLengthPart } from './singleLengthPresentation.mjs';
 
 /** One explicit decimal degree value. Fully consume the input; do not erase
  * angle units, names, prose, signs, arithmetic or arbitrary Unicode numerals.
@@ -18,6 +19,14 @@ export function singleAnglePart(source) {
   const match = /^((?:0|[1-9]\d{0,2})(?:\.\d{1,6})?)\s*(?:°|\^\s*(?:\\circ|\{\\circ\}))$/u.exec(text);
   assert(match && Number(match[1]) <= 360, 'One explicit decimal degree in [0,360] required');
   return { role: 'scalar-angle', value: match[1], unit: 'deg' };
+}
+
+/** Recognize only an author's complete standalone measure. Callers must not
+ * fall back to lossy string normalization for the corresponding raw answer.
+ */
+export function isStandaloneMeasuredAnswer(source) {
+  try { singleAnglePart(source); return true; } catch { /* Try explicit length. */ }
+  try { singleLengthPart(source); return true; } catch { return false; }
 }
 
 function parseNumberedLengths(source) {
@@ -94,6 +103,8 @@ function parseNamed(source) {
 function parse(source) {
   try { return [{ label: 1, terms: [{ part: singleAnglePart(source), variable: null }] }]; }
   catch { /* Numbered/named grammars retain their own roles and bounds. */ }
+  try { return [{ label: 1, terms: [{ part: singleLengthPart(source), variable: null }] }]; }
+  catch { /* Do not erase named roles or numbered parts to create a scalar. */ }
   try { return parseNumberedLengths(source); }
   catch { return parseNamed(source); }
 }

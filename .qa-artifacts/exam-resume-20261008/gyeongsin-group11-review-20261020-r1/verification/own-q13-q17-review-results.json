@@ -1,0 +1,90 @@
+{
+  "results": [
+    {
+      "q": 13,
+      "reportSha256": "2e99c8bf194a3e2bc73b37eaaba3bbae2d9b0a19278beddfaaab59b1dc55abb5",
+      "trueChecks": 11,
+      "passedSurfaces": 7,
+      "math": "passed",
+      "grade": "passed",
+      "content": "held"
+    },
+    {
+      "q": 14,
+      "reportSha256": "8310839466714b121bf9c626e67a9ee734de96669a5f8ca9080a52f8cb605323",
+      "trueChecks": 11,
+      "passedSurfaces": 7,
+      "math": "passed",
+      "grade": "passed",
+      "content": "held"
+    },
+    {
+      "q": 15,
+      "reportSha256": "c50c361ffa9573c5c879fecd9bf524e18ef17f4a32f187087936fc665ad2efe3",
+      "trueChecks": 11,
+      "passedSurfaces": 7,
+      "math": "passed",
+      "grade": "passed",
+      "content": "held"
+    },
+    {
+      "q": 16,
+      "reportSha256": "2efba14c7cfb9b774655392b4b52484fa4995e185d7d2811cd11af77db757178",
+      "trueChecks": 11,
+      "passedSurfaces": 7,
+      "math": "passed",
+      "grade": "passed",
+      "content": "held"
+    },
+    {
+      "q": 17,
+      "reportSha256": "f8d2ae19133904c7c17ce533e774ea9fa403553920534aeec4603052e1bd03ee",
+      "trueChecks": 11,
+      "passedSurfaces": 7,
+      "math": "passed",
+      "grade": "passed",
+      "content": "held"
+    }
+  ],
+  "immutableBeforeAfterHashes": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q13.json": "620dcdf3464f8d7710a5773513c9fb3fbf2d855bafd5dc34342c4c2e6aa490b8",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q13\\candidate.json": "1040305a842db7aece2f26b62f37a3ff4a0165bfd528874dba9d74618789e04b",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q13\\figure-1.spec.json": "b935b7c660ebd19966c052b6e60d20ee07c066d5cf3e372221b866162b198afb",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q13\\figure-1.svg": "dba542fdec9a3c89c05e110e017db74defc10cb3bacc0dddc5795d4c7209bfb7",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q14.json": "ff820db7da0f843aff48da33a11157fc93685bbc2be02c7bfa71be38854f034f",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q14\\candidate.json": "60fb9672d567a6830b4102a7e8c49793e1c3f39d8c476233207cd154996ce218",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q14\\figure-1.spec.json": "cb19db66729df4c929e367037189e56739a686faca3799ebeac46e05777e7e93",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q14\\figure-1.svg": "ceef8c68344733faf8596cab8a03eaf01003231e370d325d007267fda2c33706",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q15.json": "ba83a05eb711be5e216726c7b8c04d1990bed219f0d639f7225fad840dce797b",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q15\\candidate.json": "150d098b2979fffb1627098259a0f6a599b9b098636eee410a730c3f3b8766be",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q15\\figure-1.spec.json": "ca464a9c4e8cd54d39db7a856c22020e14b50e5072f393e60b79804343efe775",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q15\\figure-1.svg": "79e396c33aa39b5c525cdd9aa2aa4e13ab9ee6732e9eca4381b01eaf3e808294",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q16.json": "fe7fcf936c383f845ed5e937a507ebd8a75c10f7a1cbd87e24e98f22b7a9eff0",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q16\\candidate.json": "8a3e8e3b7dc76ed8a3a9901af9c464bbc9930a27a03e0e3acaa3da48d2da4829",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q16\\figure-1.spec.json": "dfa2de949da434d984521da5b6f244ae1f4d400d6dcea60ba8f45f4d91acbe5a",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q16\\figure-1.svg": "665c6b63d503aaf37682f0dddb580652d1689e5a4705d4d96cbc7fdbddded817",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\blind\\solve\\q17.json": "80d48077fadbd63dd587866ff6f587adbe48f5903142f925956300f12b1f7cfd",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q17\\candidate.json": "fd38865a3f65594bed4ab7b1a4c0a9544f7c983e6aed6be591c7c35ba1c180ba",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q17\\figure-1.spec.json": "c57e07a4b39bff1adbddaaec5270a6c6c0de4cdc10b6ad671832be5912a46754",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1\\package\\private\\q17\\figure-1.svg": "525b5b2715604c0c699fe1891992ce4922379e73d042b0368e1e5959c231bc76"
+  },
+  "rawAndInputsUnchanged": true,
+  "exactStudentCalculations": 5,
+  "specGeometryChecks": 5,
+  "primaryEvidence": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "previouslyActuallyViewed": true,
+      "edition": "2015",
+      "locators": "9수04-19 원의 현·접선 성질;9수04-20 원주각;9수04-16 피타고라스; 일반적인 원의 비례관계 제외",
+      "limit": "학교나 코드만으로 승인하지 않음; 풀이가 해당 성질과 이전 평면도형·연산으로 실제 완결되는지 개별 확인"
+    },
+    "actualM3Placement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "previouslyActuallyViewed": true,
+      "locator": "PDFindex73/physical74/printed72, 중3 수학2학기,9월9수04-19/10월9수04-20",
+      "limit": "경신중 해당 시험의 진도나2022 배치 인증은 아님"
+    }
+  }
+}

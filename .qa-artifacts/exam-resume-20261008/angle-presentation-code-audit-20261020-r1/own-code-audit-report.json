@@ -1,0 +1,44 @@
+{
+  "kind": "independent-single-angle-code-audit/v1",
+  "status": "bounded-controls-passed",
+  "ownCases": 467,
+  "sourceBeforeAfterHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs": "0dc857165e462617e8cead94ebc29aa9f41ec7354e086bfa59c02caef47f558d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.test.mjs": "a1a111e398dca7af6bb5b02567c294c91eeb9203d8760313d0d77bfa981549e3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs": "37340da93493163a9641933f2a57cc84172e64ed0d399ce056f7522dcc85b6e6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\review-exam-twins.mjs": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\prepare-sealed-review.mjs": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe"
+  },
+  "controlsResultsSha256": "c2290ec498dc7a9b8089b26c3df6d57fb56638e2be2f61cbeb6d6f0ca2ee970c",
+  "independentFindings": {
+    "newGrammar": "ASCII decimal with explicit Unicode degree or TeX circ only; fully consumed;0..360;0..6 fractional digits; no sign/leadingzero except0/arithmetic/prose/roles/unit inference",
+    "exactComparison": "decimal rationals compared through constantAnswers BigInt fractions; zero/trailingzero normalization exact, unequal final decimal digits rejected",
+    "sourceOwnership": "singleAnglePart is separate scalar-angle role. Existing numbered/named parsers and exact-string normalizeAnswer fallback remain; this is no universal notation validator",
+    "oldVsCurrentGroup10": {
+      "beforeMath": 1,
+      "beforeGrade": 1,
+      "afterMath": 2,
+      "afterGrade": 2,
+      "basis": "Own actual evaluateReview against current fixed q11/q12 raw/reports; prior path simulated by removing only scalar-angle parse branch in memory. Actual current collector separately ran2/2. No claim of running historical Git code."
+    },
+    "approvals": "presentationComparisonOnly=true, relationTruthProved=false, permitsGradeOrQuestionApproval=false. Missing grade basis/pendinggrade/wronganswer do not gain approval; even forged source/taxonomy/rights/similarity gates leave overall/loadable/productionWrites false.",
+    "rawAndOldReportsUnchanged": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\blind\\solve\\q11.json": "b36067fb6aa11cb1d1a655401ba56e258d36692e661e4147414a83e58c120b8b",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\verification\\reports\\q11.json": "f012be660f942c3178b277456d0c9eebd957c5371465b1d15c1370cf0eeae1b1",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\blind\\solve\\q12.json": "580b2c6a3c4dd9ebe0a089b189ad979c4f36bb3e09e54b926951de29435e180f",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1\\verification\\reports\\q12.json": "61cc9667fb9894d64ecf033921ed072a4a76fc2b27bd3bad23eb6afa537f1577"
+    }
+  },
+  "limitations": [
+    "decimal explicit degree grammar only, 0..360, at most six fractional digits; no missing-unit inference",
+    "existing named/numbered grammars and normalizeAnswer identical-string fallback remain prior behavior, not new unrestricted scalar acceptance",
+    "no general TeX/symbolic or relation truth proof",
+    "no new grade/rights/native/family/manual-count approval; no DB/API/root writes",
+    "six pinned source bytes checked before/after; imports may resolve existing runtime dependencies without explicit additional source reads"
+  ],
+  "parentTestCountsUsedAsOwn": false,
+  "newManualCount": 0,
+  "dbWrites": 0,
+  "rootWrites": 0
+}

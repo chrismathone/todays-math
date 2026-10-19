@@ -1,0 +1,56 @@
+{
+  "utc": "2026-10-19T19:40:44.888728+00:00",
+  "kind": "bounded-measure-collector-fallback-repair/v3",
+  "files": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs",
+      "sha256": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\00-answerPresentation.mjs.snapshot"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.test.mjs",
+      "sha256": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\01-answerPresentation.test.mjs.snapshot"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs",
+      "sha256": "5a7be5f678487de764840c7e7e3d3a61fe4eee0a9b549201ddf2aac08c2a1d8d",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\02-candidatePack.mjs.snapshot"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs",
+      "sha256": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\03-constantAnswers.mjs.snapshot"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\review-exam-twins.mjs",
+      "sha256": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\04-review-exam-twins.mjs.snapshot"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\prepare-sealed-review.mjs",
+      "sha256": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\05-prepare-sealed-review.mjs.snapshot"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.mjs",
+      "sha256": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\06-singleLengthPresentation.mjs.snapshot"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.test.mjs",
+      "sha256": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r3\\07-singleLengthPresentation.test.mjs.snapshot"
+    }
+  ],
+  "parentValidation": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\angle-length-presentation-validation-r4.json",
+  "current138315Parity": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\angle-length-current138-parity-r4.json",
+  "manualReviewRoots": [
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1"
+  ],
+  "priorIndependentLimit": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-length-presentation-code-audit-20261020-r2\\own-audit-report.json",
+  "boundary": "For a non-choice author answer recognized as a complete standalone degree or cm/m length, raw must pass structured presentation comparator; normalized exact fallback cannot bypass it. Prior named/numbered/unknown-format behavior and MC branches unchanged. No method/grade/rights/positivephysical/native/loadable approvals.",
+  "newManualCounts": 0,
+  "dbWrites": 0
+}

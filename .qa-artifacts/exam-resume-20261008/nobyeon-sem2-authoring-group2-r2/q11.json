@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 11,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group2-r2-q11",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "자료 $1,5,5,7,7,11$의 평균은 $6$이다. 이 자료를 정리한 다음 기록표에서 잘못된 내용 한 곳을 바르게 고친 것은?\n\n| 기록 | 항목 | 기록한 값 |\n| --- | --- | --- |\n| ㄱ | 중앙값 | $6$ |\n| ㄴ | 최빈값 | $5$, $7$ |\n| ㄷ | 편차의 총합 | $0$ |\n| ㄹ | 분산 | $3$ |\n| ㅁ | 평균에서 가장 멀리 떨어진 변량 | $1$, $11$ |",
+  "choices": [
+    "ㄱ의 $6$을 $5$로 고친다.",
+    "ㄴ의 $5$, $7$을 $6$으로 고친다.",
+    "ㄷ의 $0$을 $36$으로 고친다.",
+    "ㄹ의 $3$을 $9$로 고친다.",
+    "ㅁ의 $1$, $11$을 $5$, $7$로 고친다."
+  ],
+  "answer": "④",
+  "solution": "자료가 작은 수부터 정리되어 있고 개수가 $6$이므로 중앙값은 가운데 두 값 $5$, $7$의 평균인 $6$이다. $5$, $7$은 각각 두 번씩 나타나므로 두 값이 모두 최빈값이다.\n\n각 편차는 $-5,-1,-1,1,1,5$이고 그 합은 $0$이다. 편차의 제곱의 합은 $25+1+1+1+1+25=54$이므로 분산은 $54\\div6=9$이다. 기록한 $3$은 표준편차 $\\sqrt9=3$과 혼동한 값이다.\n\n편차의 절댓값이 가장 큰 변량은 $1$, $11$이므로 다른 기록은 옳다. 따라서 ㄹ의 분산을 $9$로 고치는 ④가 정답이다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "externalId": "2025-nobyeon-3-2-mid-11",
+    "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group2-r2-q11",
+    "sourceContentSha256": "66b9220c7712af31fe9487e5d2340ed0024a66f7799ab5c6028fb3360f7f4259",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q11.json",
+      "sha256": "66b9220c7712af31fe9487e5d2340ed0024a66f7799ab5c6028fb3360f7f4259"
+    },
+    "sourceReviewReport": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q11.json",
+      "sha256": "43e4f99d49de388e8da8e2d4041d3171e3e435437f7974898f17adb06e404c94"
+    },
+    "sourceManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+        "bytes": 1736704
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+        "bytes": 14857959
+      }
+    ],
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group2-r2/q11-source-component-observation-r1.json",
+      "sha256": "3f910487f02e76e6e0e69598b9b7baca4fba9999b2fcf99cd754aee397219070"
+    },
+    "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+    "currentNFilesReRead": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false
+  },
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "new-data",
+      "new-table"
+    ],
+    "before": "대표값·편차·산포도에 관한 추상적인 다섯 주장의 옳고 그름을 고른다.",
+    "after": "실제 자료의 요약 기록표를 주고 다섯 정의를 적용하여 잘못된 기록 하나를 고친다.",
+    "sharedConcept": "중앙값, 여러 최빈값, 편차 총합, 편차제곱 평균인 분산, 평균과의 거리",
+    "sharedProcedure": "같은 자료에서 각 정의를 적용→분산과 표준편차 기록의 혼동 확인→다른 네 기록도 대조",
+    "actualStructuralChange": "실제 자료의 요약 기록표를 주고 다섯 정의를 적용하여 잘못된 기록 하나를 고친다. 조건 제시와 묻는 대상을 새로 조직했다. 새 발문/답/전체 해설/그림·표를 제작하며 숫자·학교명·동의어만 바꿨다는 이유로 완료하지 않는다.",
+    "domainProof": "자료합36,평균6,중앙값6(원자료에없음),최빈값5/7,편차합0,제곱합54/개수6=분산9,표준편차3,최대절대편차5인변량1/11. 원문의 다섯 개념을 실제 새 데이터/새 표의 교정 과제로 조직했다. 보기 수정은4번만 참이다.",
+    "difficultyBasis": "원문 배점과 같은 개념·핵심 원리를 유지한 기본 저자 제안이다. 실제 난도 동등성/출제시점 선수학습/2022적용은 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수05-06",
+      "9수05-07"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수05-06, 9수05-07",
+      "actualScope": "2015 M3 actual right-triangle ratio definitions/Pythagoras or representative values/dispersion as required; no arbitrary trig identities. Independent seven-surface and whole-method placement required."
+    },
+    "legitimateMethodDraft": "같은 자료에서 각 정의를 적용→분산과 표준편차 기록의 혼동 확인→다른 네 기록도 대조",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 4,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "실제 자료의 요약 기록표를 주고 다섯 정의를 적용하여 잘못된 기록 하나를 고친다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 단원 UUID 재대응, 새 역추론/기록 교정의 정확한 live family는 별도 검수 전 null/보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "new-native-Markdown-table",
+      "newFigures": 0,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "자료합36,평균6,중앙값6(원자료에없음),최빈값5/7,편차합0,제곱합54/개수6=분산9,표준편차3,최대절대편차5인변량1/11. 원문의 다섯 개념을 실제 새 데이터/새 표의 교정 과제로 조직했다. 보기 수정은4번만 참이다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem2-q09-11-r2.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "중앙값과 최빈값",
+        "평균과 편차",
+        "분산과 표준편차의 뜻",
+        "절댓값과 평균으로부터 거리"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "prior-preparation-label-not-measured-target-calibration"
+  }
+}

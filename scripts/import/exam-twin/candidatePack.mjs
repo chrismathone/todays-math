@@ -4,7 +4,10 @@ import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { compareConstantParts } from "./constantAnswers.mjs";
-import { compareWrittenAnswerPresentation } from "./answerPresentation.mjs";
+import {
+  compareWrittenAnswerPresentation,
+  isStandaloneMeasuredAnswer,
+} from "./answerPresentation.mjs";
 import { unescapedMathCommandWarnings } from "./authoredMathNotation.mjs";
 import { compareRecordCorrectionAnswer } from "./recordCorrectionAnswer.mjs";
 
@@ -470,8 +473,12 @@ export function independentAnswerMatches(candidate, answer) {
     return compareRecordCorrectionAnswer(candidate.answer, answer,
       candidate.metadata.recordCorrectionAnswerSchema).status === "equivalent";
   const exact = normalizeAnswer(answer) === normalizeAnswer(candidate.answer);
-  if (candidate.questionType !== "객관식" || candidate.choices?.length !== 5)
-    return exact || compareWrittenAnswerPresentation(candidate.answer, answer).status === "equivalent";
+  if (candidate.questionType !== "객관식" || candidate.choices?.length !== 5) {
+    const compared = compareWrittenAnswerPresentation(candidate.answer, answer);
+    if (isStandaloneMeasuredAnswer(candidate.answer))
+      return compared.status === "equivalent";
+    return exact || compared.status === "equivalent";
+  }
   const marked = (x) => /^\s*([①-⑤])(?:\s+(.+?))?\s*$/u.exec(String(x));
   const expected = marked(candidate.answer), actual = marked(answer);
   if (!expected || !actual) return exact;

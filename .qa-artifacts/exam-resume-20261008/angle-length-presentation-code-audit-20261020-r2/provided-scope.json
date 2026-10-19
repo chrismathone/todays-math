@@ -1,0 +1,56 @@
+{
+  "utc": "2026-10-19T19:35:44.748491+00:00",
+  "kind": "bounded-single-angle-and-exact-length-scope/v2",
+  "files": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs",
+      "sha256": "1f9b80c974d61e5a5322ab0e188bf4d8fe3efed6c84ea890d510edb4c5e4c66e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.test.mjs",
+      "sha256": "8bba8c7cfd48a53ecc3f6e956d3d3347cea20759bc12832a3231b214a37cf2b7"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs",
+      "sha256": "37340da93493163a9641933f2a57cc84172e64ed0d399ce056f7522dcc85b6e6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs",
+      "sha256": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\review-exam-twins.mjs",
+      "sha256": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\prepare-sealed-review.mjs",
+      "sha256": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.mjs",
+      "sha256": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.test.mjs",
+      "sha256": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+    }
+  ],
+  "parentValidation": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\angle-length-presentation-validation-r3.json",
+  "currentParity": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\angle-length-current138-parity-r3.json",
+  "manualReviewRoots": [
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group10-review-20261020-r1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group11-review-20261020-r1"
+  ],
+  "currentCollectors": [
+    "collected-parent-r2.json",
+    "collected-parent-r2.json"
+  ],
+  "oldCollectorsImmutable": [
+    "collected-parent-r1.json",
+    "collected-parent-r1.json"
+  ],
+  "priorAngleOnlyAudit": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\angle-presentation-code-audit-20261020-r1\\own-code-audit-report.json",
+  "boundary": "Degree decimals0..360 plus one standalone cm/m length whose entire scalar is consumed by existing exact bounded Fraction/radical parser. Never erase named roles/subparts/units. First own test caught (1) as coefficient and guard added before integration. Reject malformed unsupported inputs; equality does not certify physical positivity, methods, grade, rights, source, native or loadable. Prior exact-string fallback unchanged.",
+  "newManualCounts": 0,
+  "dbWrites": 0
+}

@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-19T19:32:08.060Z",
+  "files": 2,
+  "passed": 8,
+  "failed": 0,
+  "before": {
+    "scripts/import/exam-twin/singleLengthPresentation.mjs": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+    "scripts/import/exam-twin/singleLengthPresentation.test.mjs": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+  },
+  "after": {
+    "scripts/import/exam-twin/singleLengthPresentation.mjs": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+    "scripts/import/exam-twin/singleLengthPresentation.test.mjs": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+  },
+  "notIntegrated": true,
+  "priorFailedTestPreserved": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/single-length-before-integration-tests-r1.tap",
+  "priorFailure": "Numbered prefix (1) became a multiplication coefficient; now rejected before constant parser",
+  "mathOrGradeApproval": false,
+  "dbWrites": 0
+}

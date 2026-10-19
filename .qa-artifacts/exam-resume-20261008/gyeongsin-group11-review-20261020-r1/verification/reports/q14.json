@@ -1,0 +1,133 @@
+{
+  "status": "pending",
+  "studentDigest": "17b9d4462efffcd49591e1b526e85cafd5e9ac7bd0909c2a921465b573de1d22",
+  "candidateDigest": "ed1640b0c3aea71cabf4f6de44c5bf0c240d5173651d9ddd4e35e5d96f74ee35",
+  "assetDigest": "38d0949cf334926bce1bdd6a2e568894f1af6fd8953c4d721ace84340bbe293c",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gyeongsin-group11-review-20261020",
+  "solveDigest": "45163bc4d844b957649d6852cc42355a6f18bec49ab2bb7303eabc9acfca8f64",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExactCalculationAndExistence": {
+      "majorArcCentral": 230,
+      "minorArcCentral": 130,
+      "tangentAngle": 50,
+      "existence": "임의 양의 반지름 원에서 작은 중심각130°의 두 점을 잡으면 접선 교점은 외부에 존재한다. 작은 호 안의 W는 두 끝점과 다르게 잡을 수 있고 보는 큰 호는230°이다.",
+      "uniqueness": "W의 위치와 반지름이 바뀌어도 보는 큰 호 및 작은 중심각은 고정이다."
+    },
+    "fullAuthorMethodReview": "W가 작은 호에 있어 보는 호는 큰 호. 원주각115°의 큰 호 회전각230°, 작은 중심각130°, 두 접점 직각을 포함한 사각형의 나머지각50°. 230°를 보통의 ∠UOV=230°라고 쓰지 않고 큰 호에 대한 중심의 회전각으로 명시했다. 보조점Z를 큰 호에 잡으면 원에 내접한 사각형UWVZ의 대각합180°로∠UZV65°, 작은 중심각130°를 얻는다. 대각합도 같은 호 원주각 관계로 증명 가능하다. 따라서 큰 호 반사각 표현은 새 고등 정리를 요구하지 않는다.",
+    "sourceRelation": {
+      "observedPacketReference": "OriginalH page4 written4: two tangents outsideP angle44, C on minorarcAB, ask ACB;7points. Component only; no wholepaper/pair/year/rights certification.",
+      "comparison": "두 접선의 사이각을 주고 작은 호 위의 점이 보는 원주각을 구한다. → 작은 호 위의 점이 보는 원주각을 주고 두 접선의 사이각을 역으로 구한다.",
+      "independentJudgment": "입력과 목표의 역할을 역전하고 핵심 접선/원주각/피타고라스의 연결을 유지한다. 새 그림·명칭 변경만을 실질변형 근거로 쓰지 않는다. 제공 구성정보에 따른 성분 비교이며 이번에 원본/답안키를 재열람하거나 원본 답을 계산하지 않았다.",
+      "sourceComponentOnly": true
+    },
+    "wording": "조건과 목표가 한국어로 명시되고, 원주각이 보는 큰 호와 작은 호의 구분이 자연스럽다.",
+    "scoreAndDifficulty": {
+      "score": 7,
+      "scoreBasis": "제공 원문과 같은 7점 서술형으로 여러 성질의 연결과 과정 설명을 요구하므로 배점 제안은 수용 가능. 구체적 부분점표는 제공되지 않아 창작하지 않는다.",
+      "proposal": "심화하",
+      "approval": "pending",
+      "basis": "실제 풀이 단계는 위에서 개별 검토했으나 sourceDifficultyLabelObserved=null이고 측정된 학생 난도·원문 동등성 자료가 없다. 심화하 라벨은 제안으로 유지한다."
+    },
+    "unitFamily": {
+      "capturedUnitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "section": "원주각의 활용",
+      "familyKey": null,
+      "fit": false,
+      "basis": "단원 개념 대응은 있으나 정확한 평가목적·조건·형식에 맞는 live family 정의·실시간 상태를 확인하지 않았다. 코드/이름/개수로 승인하지 않음."
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "previouslyActuallyViewed": true,
+        "edition": "2015",
+        "locators": "9수04-19 원의 현·접선 성질;9수04-20 원주각;9수04-16 피타고라스; 일반적인 원의 비례관계 제외",
+        "limit": "학교나 코드만으로 승인하지 않음; 풀이가 해당 성질과 이전 평면도형·연산으로 실제 완결되는지 개별 확인"
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locator": "PDFindex73/physical74/printed72, 중3 수학2학기,9월9수04-19/10월9수04-20",
+        "limit": "경신중 해당 시험의 진도나2022 배치 인증은 아님"
+      }
+    },
+    "rawBinding": {
+      "helperRawCommit": "f4a9aa7c978906cf021e02029bd0511ff2d4190f",
+      "parentRawCommit": "27675600865d132c73425be059e79825cd8d4d63",
+      "rawSha256": "ff820db7da0f843aff48da33a11157fc93685bbc2be02c7bfa71be38854f034f",
+      "gitBlobByteIdentical": true,
+      "exposureDeclaration": {
+        "currentAuthorAnswerOrSolutionExposedBeforeRaw": false,
+        "priorExposure": "이전 원본 H 2·3쪽을 허용된 범위에서 보았고 관련 원주각·접선·삼각형 문제 및 엔진을 검토했다. 현재 q13–17의 저자 답·해설·패키지는 열지 않았다. 이 다섯 원문 각각을 과거 보았는지에 대한 완전한 부정은 하지 않으며, 원본 전체 미노출 주장도 하지 않는다. 이번에는 학생 발문과 새 SVG만 사용했다.",
+        "pixelOrCoordinateOracle": false
+      }
+    },
+    "assetBinding": {
+      "specSha256": "cb19db66729df4c929e367037189e56739a686faca3799ebeac46e05777e7e93",
+      "svgSha256": "ceef8c68344733faf8596cab8a03eaf01003231e370d325d007267fda2c33706",
+      "privateStudentByteEqual": true
+    },
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "difficultyEquivalence": "pending"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "현재 q14 발문의 조건은 W가 작은 호에 있어 보는 호는 큰 호. 원주각115°의 큰 호 회전각230°, 작은 중심각130°, 두 접점 직각을 포함한 사각형의 나머지각50°. 조건의 순서·호 위치·접선/반원 여부를 그대로 사용한다. 위 공식2015 범위와 이전 평면도형 계산으로 완결된다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제 choices=[]인 서술형이다. 없는 객관식 보기를 가정하지 않고 값과 과정을 평가한다. 추가 학년 개념이 없다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생 SVG를 봉인 전 실제 렌더하여 확인했다. 현재 package SVG와학생 SVG 바이트가 같고 spec/SVG 해시가 일치한다. 현재 spec의 원·접선·점위치도 별도 수치검사를 했다. 점·선·호·원과 라벨이 실제 발문과 대응한다. spec 실수연산은 그림 검증 전용이며 학생 수치답은 정확한 별도 계산이다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "q14의230°는 큰 호에 대한 회전각으로 구별하고 작은 ∠UOV는130°로 쓴다. 원주각·사각형각 표기는 중학교 기하 범위이다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "봉인 raw 50°와 저자 $50^\\circ$의 값·단위가 같음을 자체 정확 계산으로 확인했다. 모든 길이의 음의 해를 배제하고 각은0°보다 크고180°보다 작다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자 전체 해설의 순서를 실제 검토했다: W가 작은 호에 있어 보는 호는 큰 호. 원주각115°의 큰 호 회전각230°, 작은 중심각130°, 두 접점 직각을 포함한 사각형의 나머지각50°. 230°를 보통의 ∠UOV=230°라고 쓰지 않고 큰 호에 대한 중심의 회전각으로 명시했다. 보조점Z를 큰 호에 잡으면 원에 내접한 사각형UWVZ의 대각합180°로∠UZV65°, 작은 중심각130°를 얻는다. 대각합도 같은 호 원주각 관계로 증명 가능하다. 따라서 큰 호 반사각 표현은 새 고등 정리를 요구하지 않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "2015 중3 원의 현·접선(9수04-19) 및 원주각(9수04-20) 학습 후, 이전 합동·평행선·삼각형각합·원의 둘레/넓이 중 실제 필요한 성질 및 피타고라스/제곱근·전개·일차식 학습 후 배정한다. 230°를 보통의 ∠UOV=230°라고 쓰지 않고 큰 호에 대한 중심의 회전각으로 명시했다. 보조점Z를 큰 호에 잡으면 원에 내접한 사각형UWVZ의 대각합180°로∠UZV65°, 작은 중심각130°를 얻는다. 대각합도 같은 호 원주각 관계로 증명 가능하다. 따라서 큰 호 반사각 표현은 새 고등 정리를 요구하지 않는다. 실제 중3 배치는 이전 확인한 공식 중3 2학기 계획 printed72로 뒷받침하며 특정 학교 진도/2022를 인증하지 않는다."
+    }
+  }
+}

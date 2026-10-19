@@ -1,0 +1,114 @@
+{
+  "studentDigest": "2b33750ff92006a911168c78ca51b329de12bd4d1b22aa32dbab7a379bd3efa5",
+  "solverId": "independent-helper-nobyeon-sem2-group2-r2-20261020",
+  "answer": "④",
+  "solution": "자료는 이미 크기순으로 나열되어 있다. 자료가6개이므로 중앙값은 세 번째와 네 번째 값의 평균인(5+7)/2=6이다. 5와7이 각각 두 번씩 나타나므로 최빈값은5,7이다. 평균6에 대한 편차는−5,−1,−1,1,1,5이고 총합은0이다. 편차 제곱은25,1,1,1,1,25이며 그 합은54이므로 분산은54/6=9이다. 평균에서의 거리는5,1,1,1,1,5이므로 가장 먼 변량은1,11이다. 따라서 ㄱ,ㄴ,ㄷ,ㅁ은 옳고 ㄹ의 분산3만9로 고쳐야 한다. 정답은④이다. 나머지 수정 보기들은 이미 옳은 기록을 틀리게 바꾼다.",
+  "evidence": {
+    "exposure": {
+      "currentAuthoredAnswersOrSolutionsExposed": false,
+      "priorExposure": "이전 노변 1학기 여러 문항·메타데이터와 관련 대수/기하/엔진 검토 이력이 있다. 다른 시험의 관련 원·접선·피타고라스 문제도 보았다. 이번 노변2학기 current group2-r2의 저자 답·해설·패키지·원본은 읽지 않았다. 과거 전체 원본 코퍼스의 완전 미노출을 주장하지 않는다.",
+      "basis": "이번 학생 발문·표·선택지와 학생SVG만 사용. 원문답/코드/비공개 자료 검색 없음.",
+      "pixelOrSvgCoordinateOracle": false
+    },
+    "exactCalculations": {
+      "data": [
+        1,
+        5,
+        5,
+        7,
+        7,
+        11
+      ],
+      "sum": 36,
+      "count": 6,
+      "mean": "6",
+      "median": "6",
+      "frequencies": {
+        "1": 1,
+        "5": 2,
+        "7": 2,
+        "11": 1
+      },
+      "modes": [
+        5,
+        7
+      ],
+      "deviations": [
+        "-5",
+        "-1",
+        "-1",
+        "1",
+        "1",
+        "5"
+      ],
+      "deviationSum": "0",
+      "squaredDeviations": [
+        "25",
+        "1",
+        "1",
+        "1",
+        "1",
+        "25"
+      ],
+      "squareSum": "54",
+      "variance": "9",
+      "farthest": [
+        1,
+        11
+      ],
+      "recordTruth": {
+        "ㄱ": true,
+        "ㄴ": true,
+        "ㄷ": true,
+        "ㄹ": false,
+        "ㅁ": true
+      },
+      "allChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": false,
+        "④": true,
+        "⑤": false
+      },
+      "domainExistenceUniqueness": "실제6개 유한 자료이고 분산 정의의 분모6은0이 아니다. 표의 잘못된 기록은 ㄹ 하나이며 보기④만 이를 실제 참인 값9로 고친다. 표준편차3과 분산9를 혼동하지 않는다. 변량 단위는 제시되지 않았으므로 임의 cm/m나 측정 단위를 붙이지 않는다."
+    },
+    "figureSha256s": [],
+    "studentDigestVerified": true,
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "student-method-proposed-in-scope",
+        "basis": "주어진6개 자료와 평균6에 대한 대표값·산포 기록을 직접 정의로 평가한다. 자료 밖의 추정·확률 모델은 요구되지 않는다."
+      },
+      "choices": {
+        "status": "all-five-independently-checked",
+        "basis": "각 보기를 정확히 검산했고 ④만 틀린 분산 기록을 참인9로 수정한다. 다른4개는 옳은 기록을 거짓으로 바꾼다."
+      },
+      "figuresAndTables": {
+        "status": "student-view-checked",
+        "basis": "실제 학생 Markdown 표5개 행 ㄱ중앙값6,ㄴ최빈값5·7,ㄷ편차합0,ㄹ분산3,ㅁ가장먼1·11을 모두 확인했다. 별도 그림 없음."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "중앙값·최빈값·편차·분산·변량의 용어와 음의 편차·제곱 연산을 실제 통계 정의대로 사용한다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "선택 표시만 저장하며 실제 수치·단위·모든 보기 검사는 자체 계산 evidence에 둔다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "평균·짝수개 중앙값·복수 최빈값·편차의 합·분산 정의·평균에서의 거리. 저자 전체 해설은 아직 미노출이므로 향후 별도 검토 필요."
+      },
+      "prerequisites": {
+        "status": "2015-M3-proposal-primary-certification-pending",
+        "basis": "2015 중3 대표값·산포의 평균/중앙값/최빈값/편차/분산을 학습한 뒤라는 학생 방법 제안이다. 표본분산 n−1을 사용하지 않는다. 이번 학생 전용 단계에서는 실제 통계/삼각비 학년 배치 primary를 새로 열지 않았으므로 정식7면 승인/2022 적용을 주장하지 않는다."
+      }
+    },
+    "limits": [
+      "정식 수학·학년·출처·권리·family·native 승인 개수 아님",
+      "현재 저자 전체 해설·채점기준 미노출; 정식grade는 후속 primary 및 실제 해설 검토 필요",
+      "2022 배치 미확인"
+    ]
+  },
+  "status": "solved"
+}

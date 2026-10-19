@@ -1,0 +1,72 @@
+TAP version 13
+# Subtest: Gyeonggu exact written area uses algebraic constants, never literal string equality
+ok 1 - Gyeonggu exact written area uses algebraic constants, never literal string equality
+  ---
+  duration_ms: 4.8485
+  type: 'test'
+  ...
+# Subtest: role, order, angle/length/area dimension and unit scale remain part of an answer
+ok 2 - role, order, angle/length/area dimension and unit scale remain part of an answer
+  ---
+  duration_ms: 2.3038
+  type: 'test'
+  ...
+# Subtest: unknown expressions, zero denominators and ambiguous role data hold instead of matching
+ok 3 - unknown expressions, zero denominators and ambiguous role data hold instead of matching
+  ---
+  duration_ms: 2.3844
+  type: 'test'
+  ...
+# Subtest: a single selected mark can carry annotations without treating them as checked math
+ok 4 - a single selected mark can carry annotations without treating them as checked math
+  ---
+  duration_ms: 0.3829
+  type: 'test'
+  ...
+# Subtest: a hundred distributed and rationalized constants retain exact equivalence
+ok 5 - a hundred distributed and rationalized constants retain exact equivalence
+  ---
+  duration_ms: 11.5219
+  type: 'test'
+  ...
+# Subtest: fresh raw radical length presentations retain the entire exact value and explicit unit
+ok 6 - fresh raw radical length presentations retain the entire exact value and explicit unit
+  ---
+  duration_ms: 8.9427
+  type: 'test'
+  ...
+# Subtest: single lengths fully consume units and scalar syntax without losing named roles or subparts
+not ok 7 - single lengths fully consume units and scalar syntax without losing named roles or subparts
+  ---
+  duration_ms: 4.9929
+  type: 'test'
+  location: 'C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.test.mjs:21:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception: (1) 4√3cm'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/singleLengthPresentation.test.mjs:27:46)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: equality of a nonpositive scalar does not certify positive lengths or approve problems
+ok 8 - equality of a nonpositive scalar does not certify positive lengths or approve problems
+  ---
+  duration_ms: 1.8889
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 7
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 152.9056

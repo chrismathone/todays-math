@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-19T19:39:56.117Z",
+  "files": 7,
+  "passed": 117,
+  "failed": 0,
+  "before": {
+    "scripts/import/exam-twin/answerPresentation.mjs": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1",
+    "scripts/import/exam-twin/answerPresentation.test.mjs": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86",
+    "scripts/import/exam-twin/singleLengthPresentation.mjs": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+    "scripts/import/exam-twin/singleLengthPresentation.test.mjs": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7",
+    "scripts/import/exam-twin/candidatePack.mjs": "5a7be5f678487de764840c7e7e3d3a61fe4eee0a9b549201ddf2aac08c2a1d8d"
+  },
+  "after": {
+    "scripts/import/exam-twin/answerPresentation.mjs": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1",
+    "scripts/import/exam-twin/answerPresentation.test.mjs": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86",
+    "scripts/import/exam-twin/singleLengthPresentation.mjs": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+    "scripts/import/exam-twin/singleLengthPresentation.test.mjs": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7",
+    "scripts/import/exam-twin/candidatePack.mjs": "5a7be5f678487de764840c7e7e3d3a61fe4eee0a9b549201ddf2aac08c2a1d8d"
+  },
+  "lintPassed": true,
+  "priorIndependentAudit": "angle-length-presentation-code-audit-20261020-r2/own-audit-report.json",
+  "resolvedConcreteLegacyFallbacks": 4,
+  "mathOrGradeApproval": false,
+  "dbWrites": 0
+}
