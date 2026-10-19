@@ -1,0 +1,174 @@
+{
+  "status": "pending",
+  "studentDigest": "3b9231921758e1f1f7ffdce33fcfca4dc63f1f5a37b7a9ca573e7a225817e656",
+  "candidateDigest": "a57165927b27f88e3911800fea48b78b0f792c460913693fcd628f8b23a1c8f7",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "fresh-independent-codex-stage2-20261019-r1",
+  "solveDigest": "f74a5051af20fa393635df62fe19c335b4087c944f9476ac214876234faedfdf",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "rawCommitLocal": "b80faf8a2dd08261761a57c381c534c90373cb6e",
+    "parentSealedCommit": "86aa5786d479f2fdcfa61c5c76b767908f9f0558",
+    "rawSha256": "28762ff5c76e9978d06c2fc0bf3b062081f8ef8bc49e8f03539d850f06a0fb37",
+    "rawUnchanged": true,
+    "calculation": {
+      "ABCD": [
+        5.999999999999999,
+        10.0,
+        1.9999999999999998,
+        4.0
+      ],
+      "E": "m/2",
+      "ranges": [
+        "0 < m/2 < 2: range=10-m/2 < 10",
+        "2 <= m/2 <= 10: range=8",
+        "m/2 > 10: range=m/2-2; equals 12 iff m=28"
+      ],
+      "choices": [
+        {
+          "mark": "①",
+          "m": 20,
+          "E": 10.0,
+          "range": 8,
+          "valid": false
+        },
+        {
+          "mark": "②",
+          "m": 24,
+          "E": 12.0,
+          "range": 10.0,
+          "valid": false
+        },
+        {
+          "mark": "③",
+          "m": 26,
+          "E": 13.0,
+          "range": 11.0,
+          "valid": false
+        },
+        {
+          "mark": "④",
+          "m": 28,
+          "E": 14.0,
+          "range": 12.0,
+          "valid": true
+        },
+        {
+          "mark": "⑤",
+          "m": 32,
+          "E": 16.0,
+          "range": 14.0,
+          "valid": false
+        }
+      ]
+    },
+    "independentKoreanSolution": "곱셈과 나눗셈은 왼쪽부터 계산한다. A=3×2=6, B=2×5=10, C=√(1/4)×4=2, D=(-3)×(-4/3)=4, E=m/2이다. 모든 근호 안은 양수이고 나누는 수는 0이 아니므로 정의된다. m>0이므로 t=m/2>0이다. 0<t<2이면 차는 10-t로 8보다 크고 10보다 작아 12가 될 수 없다. 2≤t≤10이면 차는 10-2=8이다. t>10이면 차는 t-2이므로 t-2=12에서 t=14, m=28이다. 이 값은 해당 구간에 있고 차가 12여서 존재하며, 각 구간을 모두 조사했으므로 유일하다. 보기 m=20,24,26,28,32의 차는 각각 8,10,11,12,14이므로 ④만 맞다. 단위는 없는 수의 계산이고 D는 음수 두 개의 곱이므로 양수이다.",
+    "candidateSolutionReview": "현재 후보 해설의 모든 계산 단계·분기·대입과 결론을 봉인 풀이와 대조했다. 후보 해설은 정답만 맞는 것이 아니라 부호·정의역·범위 확인 및 유일성 논증까지 맞는다.",
+    "answerCorrect": "봉인 풀이 ④와 현재 후보 답 ④가 일치한다. 수치와 전 보기 검산은 calculation 및 independentKoreanSolution 참조.",
+    "solutionCorrect": "candidateSolutionReview 및 independentKoreanSolution의 단계별 대조 참조.",
+    "existenceUniqueness": "곱셈과 나눗셈은 왼쪽부터 계산한다. A=3×2=6, B=2×5=10, C=√(1/4)×4=2, D=(-3)×(-4/3)=4, E=m/2이다. 모든 근호 안은 양수이고 나누는 수는 0이 아니므로 정의된다. m>0이므로 t=m/2>0이다. 0<t<2이면 차는 10-t로 8보다 크고 10보다 작아 12가 될 수 없다. 2≤t≤10이면 차는 10-2=8이다. t>10이면 차는 t-2이므로 t-2=12에서 t=14, m=28이다. 이 값은 해당 구간에 있고 차가 12여서 존재하며, 각 구간을 모두 조사했으므로 유일하다. 보기 m=20,24,26,28,32의 차는 각각 8,10,11,12,14이므로 ④만 맞다. 단위는 없는 수의 계산이고 D는 음수 두 개의 곱이므로 양수이다.",
+    "choicesCorrect": [
+      {
+        "mark": "①",
+        "m": 20,
+        "E": 10.0,
+        "range": 8,
+        "valid": false
+      },
+      {
+        "mark": "②",
+        "m": 24,
+        "E": 12.0,
+        "range": 10.0,
+        "valid": false
+      },
+      {
+        "mark": "③",
+        "m": 26,
+        "E": 13.0,
+        "range": 11.0,
+        "valid": false
+      },
+      {
+        "mark": "④",
+        "m": 28,
+        "E": 14.0,
+        "range": 12.0,
+        "valid": true
+      },
+      {
+        "mark": "⑤",
+        "m": 32,
+        "E": 16.0,
+        "range": 14.0,
+        "valid": false
+      }
+    ],
+    "figureConsistent": "인쇄 표의 A~E는 독립된 다섯 계산식이며 곱셈/나눗셈은 왼쪽부터 한다. C의 두 분수는 각각 근호 안, D의 음수와 괄호, E의 계수 m이 확인된다. 표와 본문이 일치하고 단위는 없다.",
+    "sameCoreConceptAndProcedure": "원문은 다섯 근호 곱셈·나눗셈을 수행하고 결과를 비교한다. 후보도 다섯 행 모두 같은 연산과 음수 곱의 부호를 처리해 수치의 크기를 비교한다.",
+    "distinctPresentation": "계산식 자체인 다섯 선택지에서 최대를 고르는 원문을 표 자료의 계산값과 가장 큰 수/가장 작은 수의 차 조건으로 양수 m을 역추론하는 구조로 바꿨다. 자료 표현과 입력/출력 관계가 달라졌다.",
+    "naturalKorean": "양수 m과 다섯 계산 결과 중 가장 큰 수/가장 작은 수의 차 12가 명시되어 있다. 표/본문의 지시 대상이 명확하고 번역투·불필요한 상황 서술·노출된 학교명은 없다.",
+    "curriculumAppropriate": "9수01-10(3788) 근호 사칙계산,9수01-09(3784) 실수 대소,9수02-05(3916) 일차방정식. m/2가 (0,2),[2,10],(10,∞) 어디에 놓이는지만 수 비교로 판단한다. 함수의 극값 정리·미분·통계 공식을 쓰지 않는다. 경계 2,10도 중간 경우에 포함된다.",
+    "allStudentSurfacesInScope": "아래 일곱 surface를 현재 후보 문장/표/보기/답/해설에 각각 적용해 판정했다. 2015 중3 학습 완료 범위의 판정이며 특정 학교의 중간고사 진도 승인이나 2022 승인으로 확대하지 않는다.",
+    "unitFamilyFit": "pending: Unit 명칭은 수학 주제와 관련되지만 family 목록은 key/code/count뿐이다. 해당 family의 실제 문항 의미·필수 풀이·분류 규약을 열람하지 않았으므로 정확한 live family 배정은 확정할 수 없다. 특히 q08은 인수분해 선수 이후 통합 배치가 필요하다.",
+    "scoreAppropriate": "4점은 다섯 근호 계산과 부호 처리 후 세 경우를 나누는 중간 수준 응용으로 편집상 타당하다. 제공 원문 추출의 difficultyLabelFromSource는 하인데 저자 variant 설명은 중을 언급하므로 후자를 원문 난도 사실로 받아들이지 않는다. 새 문항은 직접 최대 선택보다 경우분류 부담이 커졌다. 응용 분류는 가능하나 실측 난도 근거는 없다.",
+    "official": {
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+      "ownEvidence": "own-official-record-evidence-20261019.json",
+      "actualHashMatched": true,
+      "notInheritedGradeApproval": true
+    },
+    "era": {
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0",
+      "locator": "부칙1 나/다/라; web lines544,546,548",
+      "conclusion": "2025 중1,2026 중2,2027 중3부터 2022 적용. 2025/2026 중3는 2015로 검토. 2027/2022는 별도 보류."
+    },
+    "pendingReasons": [
+      "실제 live family 의미 미확인; unitFamilyFit=false",
+      "출처 동일성·권리·유사성·native provenance·적재 가능성은 별도 미승인"
+    ],
+    "scope": "허용된 stage2 여섯 파일, 본인 봉인 raw, 공식 교육과정 원문만 사용. 원본 전체 manifest, 다른 문항, 이전 proof, private package를 열지 않음.",
+    "curriculumSurfaceEvidence": {
+      "stem": "양수 m과 다섯 계산 결과 중 가장 큰 수/가장 작은 수의 차 12가 명시되어 있다. 9수01-10(3788) 근호 사칙계산,9수01-09(3784) 실수 대소,9수02-05(3916) 일차방정식. m/2가 (0,2),[2,10],(10,∞) 어디에 놓이는지만 수 비교로 판단한다. 함수의 극값 정리·미분·통계 공식을 쓰지 않는다. 경계 2,10도 중간 경우에 포함된다.",
+      "choices": "다섯 보기 모두 정수 수치로 중학교 범위. 계산은 choicesCorrect 참조.",
+      "figuresAndTables": "인쇄 표의 A~E는 독립된 다섯 계산식이며 곱셈/나눗셈은 왼쪽부터 한다. C의 두 분수는 각각 근호 안, D의 음수와 괄호, E의 계수 m이 확인된다. 표와 본문이 일치하고 단위는 없다.",
+      "notation": "양의 근호, 분수, 음수 괄호, m/2 및 순서 비교는 중학교 범위이다.",
+      "answer": "선택 기호 한 글자와 수치 결과는 calculation에 검증됨.",
+      "studentSolution": "9수01-10(3788) 근호 사칙계산,9수01-09(3784) 실수 대소,9수02-05(3916) 일차방정식. m/2가 (0,2),[2,10],(10,∞) 어디에 놓이는지만 수 비교로 판단한다. 함수의 극값 정리·미분·통계 공식을 쓰지 않는다. 경계 2,10도 중간 경우에 포함된다. 현재 후보 해설의 모든 계산 단계·분기·대입과 결론을 봉인 풀이와 대조했다. 후보 해설은 정답만 맞는 것이 아니라 부호·정의역·범위 확인 및 유일성 논증까지 맞는다.",
+      "prerequisites": "양수 제곱근의 곱셈·나눗셈, 음수 곱의 부호, 실수 비교, 간단한 일차방정식. 양수 m 전체의 경우를 직접 비교할 수 있다."
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  },
+  "mathApproved": true,
+  "gradeApproved2015M3": true,
+  "liveFamily": false,
+  "unitFamilyFit": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false
+}

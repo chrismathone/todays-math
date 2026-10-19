@@ -1,0 +1,50 @@
+{
+  "kind": "question8-only-source-comparison/not-answer-evidence",
+  "sourceManifest": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+    "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+  },
+  "school": "노변중",
+  "year": 2025,
+  "grade": 3,
+  "semester": 1,
+  "round": "중간",
+  "question": {
+    "number": 8,
+    "questionType": "multiple-choice",
+    "stem": "$A=\\sqrt{x^{2}+2x+1}-\\sqrt{4x^{2}-4x+1}$일 때, 옳은 것만을 <보기>에서 있는 대로 고른 것은? [$5$점]\n\n<보기>\n\nㄱ. $x<\\,-1$이면 $A=x-2$이다.\n\nㄴ. $-1<x<\\frac{1}{2}$이면 $A=2x$이다.\n\nㄷ. $x>\\frac{1}{2}$이면 $A=-x+2$이다.",
+    "choices": [
+      "ㄷ",
+      "ㄱ, ㄴ",
+      "ㄱ, ㄷ",
+      "ㄴ, ㄷ",
+      "ㄱ, ㄴ, ㄷ"
+    ],
+    "hwpScriptStem": "$A= sqrt {x ^{2} +2x+1} - sqrt {4x ^{2} -4x+1}$일 때, 옳은 것만을 <보기>에서 있는 대로 고른 것은? [$5$점]\n\n<보기>\n\nㄱ. $x<`-1$이면 $A=x-2$이다.\n\nㄴ. $-1<x< {1} over {2}$이면 $A=2x$이다.\n\nㄷ. $x> {1} over {2}$이면 $A=-x+2$이다.",
+    "topicLabelFromSource": "근호를 포함한 식의 계산",
+    "difficultyLabelFromSource": "중",
+    "printedScoreOccurrences": [
+      {
+        "printed": "[$5$점]",
+        "value": 5,
+        "parentTotalMarked": false,
+        "textOffset": 79
+      }
+    ],
+    "hwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 1172,
+      "inflatedByteOffset": 49011,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "c067c890bf9754687fc3eeb95993577d57509191c939902d620d59ef8861e8b6"
+    },
+    "referenceRepairs": [],
+    "figureCorrespondence": [],
+    "contentApproved": false
+  },
+  "originalAnswersIncluded": false,
+  "otherQuestionsIncluded": false,
+  "identityApproved": false,
+  "rightsApproved": false
+}

@@ -1,0 +1,66 @@
+{
+  "utc": "2026-10-19T12:14:02.374Z",
+  "fixed": [
+    5.999999999999999,
+    10,
+    1.9999999999999998,
+    4
+  ],
+  "choices": [
+    {
+      "m": 20,
+      "range": 8,
+      "satisfies": false
+    },
+    {
+      "m": 24,
+      "range": 10,
+      "satisfies": false
+    },
+    {
+      "m": 26,
+      "range": 11,
+      "satisfies": false
+    },
+    {
+      "m": 28,
+      "range": 12,
+      "satisfies": true
+    },
+    {
+      "m": 32,
+      "range": 14,
+      "satisfies": false
+    }
+  ],
+  "domainCases": [
+    {
+      "range": "0<m/2<2",
+      "difference": "10-m/2<10",
+      "accepted": false
+    },
+    {
+      "range": "2<=m/2<=10",
+      "difference": 8,
+      "accepted": false
+    },
+    {
+      "range": "m/2>10",
+      "equation": "m/2-2=12",
+      "uniqueM": 28
+    }
+  ],
+  "candidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group3-r1/candidates/q09.json",
+    "sha256": "2888b07139a0b65d53925c0762aab4510cd3e80b40e2cfc390ba7d89d2fe296c"
+  },
+  "studentDigest": "3b9231921758e1f1f7ffdce33fcfca4dc63f1f5a37b7a9ca573e7a225817e656",
+  "candidateDigest": "a57165927b27f88e3911800fea48b78b0f792c460913693fcd628f8b23a1c8f7",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "newTables": 1,
+  "newFigures": 0,
+  "authorArithmeticOnly": true,
+  "independentReview": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

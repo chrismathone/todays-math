@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-19T12:00:45.421Z",
+  "studentOnlyTarget": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08-clean-blind-20261019-r1/",
+  "files": [
+    {
+      "name": "student-problems.json",
+      "sha256": "fe95a5b078a007d480892243112c1e6f4532ddec07aeb3ac9ebca21b9c8712e9"
+    },
+    {
+      "name": "blind-manifest.json",
+      "sha256": "e78e6e35312515dd7518dd3672a82c9484434b30e274c09bbf0fa7e7e10e1547"
+    },
+    {
+      "name": "SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    {
+      "name": "q08.png",
+      "sha256": "985e611776ece28f70e594e00d0149fbda523036700c480c8527eaf2f4930e1d"
+    }
+  ],
+  "whyFreshSession": "Prior worker read original-paper manifest after q06 raw sealing; do not reuse that exposure history as a new clean q08 solve.",
+  "existingWorkerBranchPreserved": true,
+  "newWorktrees": 0,
+  "parentAuthorAnswersIncluded": false,
+  "operatingDbWrites": 0
+}

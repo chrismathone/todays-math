@@ -1,0 +1,44 @@
+{
+  "utc": "2026-10-19T11:47:57.554Z",
+  "cases": [
+    {
+      "range": "x<-2",
+      "m": 1,
+      "b": -5,
+      "candidate": 7,
+      "accepted": false
+    },
+    {
+      "range": "-2<x<3/2",
+      "m": 3,
+      "b": -1,
+      "candidate": 1,
+      "accepted": true
+    },
+    {
+      "range": "x>3/2",
+      "m": -1,
+      "b": 5,
+      "candidate": 3,
+      "accepted": true
+    }
+  ],
+  "accepted": [
+    1,
+    3
+  ],
+  "sum": 4,
+  "newCandidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group2-r1/candidates/q08.json",
+    "sha256": "60ae05660de0dbb29413f62a64f715f3ec6c7eb85143bed12f6845a240bc67d4"
+  },
+  "studentDigest": "1bc87c3d319cea30078b3a3b4051ccde076a44a57b60a00aed8428c974db7074",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "candidateDigest": "465a581bbe28af75f97bf0e317f617211b103a28f05c37de449a3f3c11d9dcd9",
+  "newTables": 1,
+  "newFigures": 0,
+  "independentReview": false,
+  "exposedPreviousReviewerMustNotSupplyFreshBlind": true,
+  "loadable": 0,
+  "dbWrites": 0
+}

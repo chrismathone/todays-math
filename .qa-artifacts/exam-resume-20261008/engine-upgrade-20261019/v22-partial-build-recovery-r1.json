@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-19T12:37:26.420Z",
+  "failedBuilder": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/build-resume-v22-r1.mjs",
+    "sha256": "5c79687e850e01de0fcaa29bd7d9439801cfe0f2ec44f2621b05c8e3116d56f1"
+  },
+  "failure": "ENOENT: actual root-table audit report is report.json, not audit-report.json; failed before engine/ledger/continuation writes",
+  "preservedPartialFiles": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v22.json",
+      "sha256": "03d7470df21de8197fc3a6adc350f85b6687d26b51dc5586b72e5fe6b9a4e72d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-current-candidate-index-v22.json",
+      "sha256": "47d9043c413f8a06eded428f2ebb4047c045c75cf8e1ad0afb9cb4beb83b3cbc"
+    }
+  ],
+  "completedRemainingFilesOnly": true,
+  "sourceOrRawModified": false,
+  "dbWrites": 0
+}

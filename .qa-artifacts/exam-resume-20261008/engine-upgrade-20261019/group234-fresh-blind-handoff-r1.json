@@ -1,0 +1,45 @@
+{
+  "utc": "2026-10-19T12:28:02.348Z",
+  "target": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/nobyeon-sem1-q08q09q10-clean-blind-20261019-r1/",
+  "files": [
+    {
+      "name": "student-problems.json",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group234-current-review-20261019-r2/blind/student-problems.json",
+      "sha256": "3d8c6db9216f8605adb8e3dac87a9370e7227cc377bd6bc787c5657237c0b059"
+    },
+    {
+      "name": "blind-manifest.json",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group234-current-review-20261019-r2/blind/blind-manifest.json",
+      "sha256": "fdf3f469080f01ac6cfb18c184c7fbab5db3800ee0faf1a73017cf2c8bbaa94d"
+    },
+    {
+      "name": "SOLVE-BRIEF.md",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-group234-current-review-20261019-r2/blind/SOLVE-BRIEF.md",
+      "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+    },
+    {
+      "name": "q08.png",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group2-r3/student-preview-q08-r3/q08.png",
+      "sha256": "985e611776ece28f70e594e00d0149fbda523036700c480c8527eaf2f4930e1d"
+    },
+    {
+      "name": "q09.png",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group3-r1/student-preview-q09-r1/q09.png",
+      "sha256": "a8811568616e51924b4b629de56151ba849ac77d3859d2b602e4fed6c129ef05"
+    },
+    {
+      "name": "q10.png",
+      "source": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group4-r2/student-preview-q10-r2/q10.png",
+      "sha256": "6dc77f24294c9a84459be4aa6fde95070632c755cbe93c0d9bf2118380578e42"
+    }
+  ],
+  "previousTerminalClosed": {
+    "handle": "term_ef4f5ce1-75b4-4af4-a1f9-c90add5560d6",
+    "ptyKilled": true,
+    "lastCommit": "cf1e353a1c53f4052b8c380f8740bdd429fa94a4"
+  },
+  "reason": "Keep strict answer parser; priorq08 proof has unsupported explanatory annotation and was exposed, so preserve it and require a separate genuinely fresh solve. q09/q10 have no independent proof yet.",
+  "newWorktrees": 0,
+  "parentAuthorAnswersIncluded": false,
+  "dbWrites": 0
+}

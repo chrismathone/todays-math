@@ -1,0 +1,49 @@
+{
+  "utc": "2026-10-19T11:52:18.499Z",
+  "cases": [
+    {
+      "range": "x<-2",
+      "m": 1,
+      "b": -5,
+      "candidate": 7,
+      "accepted": false
+    },
+    {
+      "range": "-2<x<3/2",
+      "m": 3,
+      "b": -1,
+      "candidate": 1,
+      "accepted": true
+    },
+    {
+      "range": "x>3/2",
+      "m": -1,
+      "b": 5,
+      "candidate": 3,
+      "accepted": true
+    }
+  ],
+  "accepted": [
+    1,
+    3
+  ],
+  "sum": 4,
+  "newCandidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group2-r2/candidates/q08.json",
+    "sha256": "10fa759ceb3ae19574357fc75de9bead84fca9dac1404fb3d62bc25f5a4fbccf"
+  },
+  "studentDigest": "7fa8c90b1c7159577f45b474453f52f02a0f57d3ab9783520eec2e64f19e8137",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "candidateDigest": "87731d522ea99456fa256be049b353c9d7f413e7e1d1f846958215819bc4d7b3",
+  "newTables": 1,
+  "newFigures": 0,
+  "independentReview": false,
+  "exposedPreviousReviewerMustNotSupplyFreshBlind": true,
+  "loadable": 0,
+  "dbWrites": 0,
+  "previousAuthorCalculation": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group2-r1/author-calculations-q08.json",
+    "sha256": "0daddb968423bc35344a24f950d53949948709364bcf87441017048e992f7c20"
+  },
+  "sameAuthorArithmeticNotIndependentApproval": true
+}

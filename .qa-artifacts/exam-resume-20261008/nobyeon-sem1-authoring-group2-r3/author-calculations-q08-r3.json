@@ -1,0 +1,75 @@
+{
+  "utc": "2026-10-19T11:57:06.122Z",
+  "cases": [
+    {
+      "range": "x<-2",
+      "m": 1,
+      "b": -5,
+      "candidate": 7,
+      "accepted": false
+    },
+    {
+      "range": "-2<x<3/2",
+      "m": 3,
+      "b": -1,
+      "candidate": 1,
+      "accepted": true
+    },
+    {
+      "range": "x>3/2",
+      "m": -1,
+      "b": 5,
+      "candidate": 3,
+      "accepted": true
+    }
+  ],
+  "accepted": [
+    1,
+    3
+  ],
+  "sum": 4,
+  "newCandidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group2-r3/candidates/q08.json",
+    "sha256": "43298d2898ac0b1be2bddad6a37c4f764a157086718d758d6ded5f109d12e7a0"
+  },
+  "studentDigest": "1d6563056697661a1c4a56c3883cfc51998879e10674b3953412963d5dd1e827",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "candidateDigest": "9276d52ab4cda6b2e941d0fa4a97ee900ff3c1b830dbca1508fd9226544c1f2f",
+  "newTables": 1,
+  "newFigures": 0,
+  "independentReview": false,
+  "exposedPreviousReviewerMustNotSupplyFreshBlind": true,
+  "loadable": 0,
+  "dbWrites": 0,
+  "previousAuthorCalculation": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group2-r2/author-calculations-q08-r2.json",
+    "sha256": "18cffccd100967f45ae06e4c3d886d44511fcaf3407e1192f9cf0ed7b0b63db2"
+  },
+  "sameAuthorArithmeticNotIndependentApproval": true,
+  "factorizationCoefficientIdentities": [
+    {
+      "linear": [
+        1,
+        2
+      ],
+      "expanded": [
+        1,
+        4,
+        4
+      ]
+    },
+    {
+      "linear": [
+        2,
+        -3
+      ],
+      "expanded": [
+        4,
+        -12,
+        9
+      ]
+    }
+  ],
+  "oldStudentPayloadOrOldReviewReused": false,
+  "authorArithmeticOnly": true
+}

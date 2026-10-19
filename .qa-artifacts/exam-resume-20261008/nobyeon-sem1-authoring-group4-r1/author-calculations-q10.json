@@ -1,0 +1,60 @@
+{
+  "utc": "2026-10-19T12:20:06.962Z",
+  "candidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group4-r1/candidates/q10.json",
+    "sha256": "da10eda5a69bca8f8cf66444e49ddbbb1cf48564fa5e1fd8e1902133c14dfff2"
+  },
+  "studentDigest": "2d87adf4236325fafe9f04c58415697e08ed1cfa245669cd0c1f4b970c4dd668",
+  "candidateDigest": "fb59923d11de04f1abf2ccf9d5359bebb2d702716e610f74f46680065f1d6b8c",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "choices": [
+    {
+      "k": 4,
+      "x2": 6,
+      "xy": -7,
+      "y2": -20,
+      "sum": -27
+    },
+    {
+      "k": 6,
+      "x2": 6,
+      "xy": -3,
+      "y2": -30,
+      "sum": -33
+    },
+    {
+      "k": 8,
+      "x2": 6,
+      "xy": 1,
+      "y2": -40,
+      "sum": -39
+    },
+    {
+      "k": 10,
+      "x2": 6,
+      "xy": 5,
+      "y2": -50,
+      "sum": -45
+    },
+    {
+      "k": 12,
+      "x2": 6,
+      "xy": 9,
+      "y2": -60,
+      "sum": -51
+    }
+  ],
+  "numericPolynomialSubstitutionCases": 60,
+  "uniqueEquation": {
+    "coefficient": -3,
+    "constant": -15,
+    "target": -39,
+    "solution": 8
+  },
+  "newTables": 0,
+  "newFigures": 0,
+  "independentReview": false,
+  "authorArithmeticOnly": true,
+  "dbWrites": 0,
+  "loadable": 0
+}
