@@ -1,0 +1,99 @@
+{
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-stage1-clean-q04-0fc94311-fb71-40f7-a231-41156894d828",
+  "studentDigest": "fcca4ce290ea6f3e26d0591de1ec75a10e7cb2472a7f2797323d1f081820c4c9",
+  "candidateDigest": "44c3a61fc3cdf15fdc919c29c486b49791a91763f2ce9e50bb714d46ca0d58df",
+  "assetDigest": "ea0c65528f3fb80b76368eb0ad33d1650620a670d7769409a05b7787defeaefe",
+  "solveDigest": "5bdb92976f32624e3cda560e40760673dd0db0c3509e95660c70c7f464ee9c3a",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "stage1": "Fresh raw committed before private exposure; parent explicitly reported successful Git/current/blind seal verification and authorized STAGE2. Raw and stage1 metadata remain immutable; local byte checks repeated.",
+    "priorExposure": {
+      "beforeStage1": "none",
+      "afterStage1": "Only after explicit STAGE2 permission: four sealed verification inputs, official curriculum evidence, permitted original q04/top/footer local crops and component observation. No original answer key or broad original pages opened. Historical candidate reports were not needed."
+    },
+    "checkBasis": {
+      "answerCorrect": "Fresh pre-exposure proof gives (1) 18 cm and (2) 10 cm. Candidate has the same ordered scalar lengths; actual comparator result is recorded separately.",
+      "solutionCorrect": "QSOE is a rectangle from three right angles. QS=QE=6; PS=PT=12; RT=RE=QR-6. Hence PR+QR=18. x²=36+(18-x)² reduces to 36x=360. Each candidate step is valid; no cancellation or sign error.",
+      "existenceUniqueness": "Independent raw establishes QR=8, PR=10, RE=RT=2 and constructs all three tangencies using similarity and Pythagoras/converse. x+y=18 and y-x=2 force unique lengths. Reflection does not change requested values. E is strictly internal and both extension orders hold.",
+      "choicesCorrect": "Not applicable: written two-part item; choices array is empty. Both numbered answers and cm units were reviewed.",
+      "figureConsistent": "Exact SVG hash matches sealed student asset. CSS 70mm render viewed both before and after exposure. P-Q-S and P-R-T are clear; R label is left of the oblique segment with visible white gap, T is above its contact point; neither label masks a segment or each other. E and O, radii and right-angle marks remain readable. Diagram measurements were not used as mathematical evidence.",
+      "sameCoreConceptAndProcedure": "Original component AFD is a right triangle, with AB/AC tangent rays and DF the third tangent. Mapping A/F/D/B/C to P/Q/R/S/T preserves the three-tangent configuration. Both procedures combine equal tangents, perpendicular radii/rectangle and Pythagoras. Original obtains DF from AD and AF then radius; new item obtains side sum from radius then hypotenuse.",
+      "distinctPresentation": "Original observed q04 is one multiple-choice radius question with AD=5 and AF=3. New item is a two-part written inverse problem with radius=6 and PQ=6, asks PR+QR then PR, and requires a quadratic expansion that cancels to a linear equation. This changes known/unknown roles and reasoning order beyond renaming or scaling. Does not certify legal originality or similarity clearance.",
+      "naturalKorean": "The three contacts are introduced in matching order with 각각; explicit point orders and E interior remove extension ambiguity. PR+QR is a length sum, not perimeter. Standard school terms 직각삼각형, 반직선, 변, 접점 and 풀이 과정을 쓰시오 are natural. No missing variable or hidden reliance on scale.",
+      "curriculumAppropriate": "Official book 8 printed pp30,34,35 inspected: 9수04-19 tangent properties; 9수04-12 rectangle; 9수04-16 Pythagoras; 9수02-12 polynomial multiplication. Elementary linear equations and length units are prerequisites. No circle proportionality/power, exradius formula, trig identity, distance-to-line formula or upper-grade method required.",
+      "allStudentSurfacesInScope": "All seven named surfaces independently recorded below. Author-only coordinate domain check is not part of student solution and is not required by rubric.",
+      "unitFamilyFit": "Unit 635abab8-4a87-452b-ad6c-d59065822f29, 중3/6. 원의 성질/원의 접선/J30602 matches the dominant tangent procedure. Captured live snapshot lists multiple families without procedure evidence sufficient to assign this inverse two-part task. familyKey remains null; family/taxonomy fit is pending, not silently approved.",
+      "scoreAppropriate": "2+3=5. Part1: 1 for QS=QE=6 and PT=12/equivalent tangent setup, 1 for deriving sum18. Part2: 1 for Pythagoras with linked lengths, 1 for solving PR10, 1 for valid lengths/order (QR8>QE6 or equivalent). Accept the raw factorization alternative; no coordinate construction, special circle formula or lengthy existence proof is required. Reading and expansion add application demand but scaffolded two parts support 5 points. No empirical difficulty claim."
+    },
+    "official": "official-provisions-reviewed.json; official-page-extracts.json; actual rendered printed pp30,34,35 inspected.",
+    "visual": "current-70mm.png (exact copy of independently viewed render); no critical visual issue; specifically R/T label clearance passed.",
+    "comparator": "actual-results.json: current 99d5b7653 descendant implementation returns unsupported and independentAnswerMatches=false for the exact immutable raw. Grammar strips a trailing semicolon but not a comma. Diagnostic formatting-only variant is equivalent; that diagnostic is not substituted for raw and does not clear the failure.",
+    "source": "source-family-rubric-review.json; original crops remain reviewer-only and are not copied or committed.",
+    "criticalContentIssues": [
+      "Current automated answer comparator cannot consume comma-separated numbered scalar lengths in the immutable raw. Actual result unsupported / independent-answer-mismatch; no waiver. Manual mathematics agrees, but workflow completion remains pending."
+    ],
+    "contentStatus": "pending-workflow-comparator-failure",
+    "gradeStatus": "manual-seven-surfaces-passed; automated-gradeReviewed-false-due-to-answer-mismatch",
+    "familyStatus": "pending-null",
+    "releaseStatus": "held",
+    "holds": [
+      "unresolved actual comparator failure on immutable raw answer presentation",
+      "whole-pair 2024/2025 header conflict",
+      "custody pending",
+      "rights pending; printed copyright notice observed",
+      "similarity review pending",
+      "native provenance/read-contract not implemented",
+      "familyKey null; taxonomy pending"
+    ],
+    "legalClearance": false,
+    "overallVerified": false,
+    "loadable": false,
+    "productionWrites": false,
+    "manualMathematicsStatus": "passed"
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "M3/2015 circle tangency and a right triangle; lengths6 cm, right angle90°, rays and strict point orders. 9수04-19; prior plane geometry."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "No choices; no unsupported distractor or method introduced."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "One native vector circle/triangle figure; perpendicular radii, rectangle and point labels. No trigonometric/proportional-circle fact encoded. No table. 9수04-12,19."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Angle notation, segment overbars, P/Q/R/S/T/E/O, cm, addition and squared lengths are middle-school standard; no excenter notation or formula."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "Numbered scalar lengths18 cm and10 cm; correct order and dimensions."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Equal tangents and right-angle rectangle, Pythagoras then square expansion/cancellation and linear equation. 9수04-19,12,16;9수02-12 and earlier equations."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "Rectangle opposite sides, perpendicular lines/radii, equal tangents, Pythagoras, polynomial expansion and positive lengths. Reviewer-only existence check additionally uses middle-school similarity and intuitive Pythagoras converse; official p35 permits the converse intuitively. No extra student demand."
+    }
+  }
+}
