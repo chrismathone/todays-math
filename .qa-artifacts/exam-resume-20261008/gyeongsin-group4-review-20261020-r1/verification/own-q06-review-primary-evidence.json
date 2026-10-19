@@ -1,0 +1,49 @@
+{
+  "officialSchoolPlan": {
+    "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+    "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+    "pageImageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+    "physicalPdfPage": 74,
+    "pageIndex0": 73,
+    "actualPrintedPage": 72,
+    "oldProvisionalPrintedPage": 73,
+    "oldAndCorrectedProvidedReceiptsPreserved": true,
+    "footerTextExtractionLiteral72InTail": false,
+    "printedPageBasis": "independent visual footer72; extraction tail ordering not a page locator",
+    "pageTextSha256": "cd24c6e329cec8955d1a1d7dcf2e3aaa4dbd3b67dfb5f6e36251fee7e73d35db",
+    "observedByOwnVisualAndPdfText": [
+      "3학년",
+      "수학",
+      "2학기",
+      "9수04-20",
+      "원주각·중심각 계산"
+    ],
+    "notExamPacingOrPermission": true
+  },
+  "normativePrimary": {
+    "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+    "directCurrentRead": true,
+    "observedStandard": "9수04-20",
+    "scopeParaphrase": "원주각의 성질을 이해하는 범위;원과비례의성질은제외. 볼록다각형과학생수준의기본정당화만사용.",
+    "webPageLineLocators": {
+      "standard": 540,
+      "convexOnly": 549,
+      "excludedCircleProportionality": 558,
+      "noComplexFormalLogicDemand": 565
+    },
+    "searchDiagnostics": {
+      "literal2015TextFind": "no match in parsed page; edition attribution uses provided2015source provenance and known2015MOEstandard,not claim visible2015label",
+      "literalCircleProportionFind": "exact text search no match due spacing; actual open line558 visibly contains the exclusion"
+    }
+  },
+  "studentMethodReasoning": "Opposite cyclic angles subtend complementary arcs whose center angles sum360; the2:1inscribed relation gives opposite angles sum180. Then one auxiliary chord, angle subtraction and doubling only. No chord/secant/tangent length ratios or coordinate/trigonometric theorem.",
+  "sourceImagesObserved": {
+    "originalHPage2Sha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0",
+    "completedQ06Sha256": "6e691dad0a26f43976149e8bcf2d2a9e48a3ddcfe5ccf37de4d400275d526d08",
+    "q06ComponentObservation": "Both display cyclicABCDE,centerBOC42,angleD102,targetBAE,score5. No source answer/key calculated.",
+    "footerRestriction": "originalH footer displays copyright/copying restriction notice; rights not cleared.",
+    "incidentalExposureHistory": "Provided full original page also contains adjacent originalq05/q07/q08, incidentally visible; not solved or used. Record this for future exposure declarations."
+  },
+  "limits": "Full PDF/page images and original source images remain provided local inputs only, never stage. Source component correspondence does not certify whole pair,year,custody,rights/native.",
+  "utf8WriteReadPassed": true
+}

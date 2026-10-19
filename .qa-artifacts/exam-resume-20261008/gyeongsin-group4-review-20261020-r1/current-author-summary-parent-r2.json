@@ -1,0 +1,247 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T17:11:15.573Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group4-review-20261020-r1/current-author-index-parent-r2.json",
+    "sha256": "56e7c4735107552027bfec17c7bb3682ed64bfcf5df63c4304df1235930d798e"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 1,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 1,
+    "figureInstances": 1,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    6
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 6,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group4-r1-q06",
+      "studentDigest": "225b5e64ceb422692469fc64ee3406b4e535decdb3510afa871c6f164dbb6856",
+      "candidateDigest": "899e7ea6b8ad3eb4f22c56ca311400ed4cf5a2481d24d7550a04e8e3623330ba",
+      "assetDigest": "20fa33c0d677aded936b0adc54e432970bc198e68f64c2c3046e752d68c0d100",
+      "solveDigest": "b4372de1f5f4d7e0d9c581124c0d83833da00299cda747dec7bf74e711801653",
+      "reportSha256": "12d8375d3cb9f1b052c73d4ee9f140fd60c5054c366cedaf40deaa7051eb43b8",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-6",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group4-r1-q06",
+        "sourceContentSha256": "63ebb2e0f2d99a6968f90c52eae61cea63558defe48706b81e73af392069181b",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "Actual originalH page2 printedq6 and completedq6 viewed; shared pentagon conditions observed. Only this component correspondence, not whole-pair or rights approval.",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group4-r1/source-q06-component-observation-r1.json",
+          "sha256": "dcda83aaf95e2101e93e931a3f487fff8e8c8d556158977cf56c98718a15b833"
+        },
+        "originalQuestionCrop": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q06-part1.png",
+          "sha256": "6e691dad0a26f43976149e8bcf2d2a9e48a3ddcfe5ccf37de4d400275d526d08"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 5,
+        "difficultyProposal": "표준",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "내접 오각형의 원주각 조건에서 중심각 역산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각의 활용",
+            "semester": 2,
+            "orderIndex": 487,
+            "problemCodePrefix": "J30604"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제원주각활용UnitUUID및원주각선수UUID를연결한다. 두원주각에서중심각을역산하는전체풀이목표의livefamily는확인전null."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-FigureSpec-v2-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "Five exact integer angular gaps; on_circle engine positioning only. Student proof uses inscribed/cyclic angle properties, not trigonometric coordinates.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-q06-r1.ts",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": null,
+        "prerequisiteUnits": [
+          {
+            "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각",
+            "semester": 2,
+            "orderIndex": 486,
+            "problemCodePrefix": "J30603"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "원주각과중심각의관계",
+            "원에내접하는사각형의마주보는각의합",
+            "볼록다각형에서보조선으로각분할"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "두중심각/원주각정보에서오각형의다른원주각을구한다.",
+        "after": "두원주각을조건으로주고그사이의중심각을역산한다.",
+        "sharedConcept": "원에내접하는사각형의대각합,동일호의원주각과중심각관계,보조선에의한각분할",
+        "sharedProcedure": "원에내접하는오각형에대각선을그어사각형관계와원주각관계를연결→각의덧셈/뺄셈과2배관계로미지각결정",
+        "actualStructuralChange": "원문의출력각을새입력으로옮기고원문의중심각입력을새출력으로뒤집었다. 원주각-중심각의방향과보조선후계산순서가바뀌며그림도다른점이름·배치·수학조건으로전량새작도했다. 단순숫자/점이름교체를완료근거로삼지않는다.",
+        "domainProof": "원주순서PQRST의정수중심각간격80,46,68,76,90은모두양수이고합360이다. 따라서서로다른다섯점의볼록내접오각형이존재하며조건각95,108을동시에만족한다. 보조선PR의각분할72와23이양수이고중심각46<180이유일하게정해진다. 다섯보기는서로다른양수각이다. 픽셀은계산근거로쓰지않는다.",
+        "difficultyBasis": "원문5점,난도라벨은불명이다. 같은보조선·내접사각형·원주각관계를역방향으로사용하는표준5점제안이며독립검토·실측동난도인증전이다."
+      },
+      "packageDigest": "7494353db3e9e28970080006b3a4590a29241d83db4b009e90e96b4642996689",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group4-r1\\q06.json",
+        "sha256": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+          "svgSha256": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q06-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group4-review-20261020-r1\\blind\\solve\\q06.json",
+        "sha256": "048bf55787249386b418f882d4d6af680d5d68553809a478782343577d9ba101"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group4-review-20261020-r1/verification/reports/q06.json",
+        "sha256": "12d8375d3cb9f1b052c73d4ee9f140fd60c5054c366cedaf40deaa7051eb43b8"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group4-review-20261020-r1/verification/verification-manifest.json",
+        "sha256": "cbc58fdf2530eeaa59e9c81ab3ce684f992d53604215d5d492e4fa5e95cf520e"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group4-review-20261020-r1/blind/blind-manifest.json",
+        "sha256": "0c62361c425bbb154473aea6f6671473b78935fea93437f25c24d0fd02e2145a"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group4-review-20261020-r1/package/private/q06/candidate.json",
+        "sha256": "248b40f199aa0bedc39b810347b04d7db4785beb47853b6311f1534c5830af37"
+      },
+      "candidateContentWithoutRelocatedPaths": "1e332e8310d1cc742a48b1f623e9f908375f4d1853fd59c6f9e2b6bb5fb7e5c6",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group4-r1/q06.json",
+        "sha256": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24"
+      },
+      "authorCandidateDigest": "aeee817562f759f1953a29d1fcd026c1bbd11dc624aa7e317b3d9d4f7c291f73"
+    }
+  ],
+  "reviewBindingDigest": "3bae0d861e9d41ac8bd0163947be2b3b3c15b5f7021ac1558750249f8157bb1b",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

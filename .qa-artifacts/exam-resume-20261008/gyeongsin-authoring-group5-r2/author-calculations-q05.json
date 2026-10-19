@@ -1,0 +1,94 @@
+{
+  "utc": "2026-10-19T17:06:51.405Z",
+  "candidateFileSha256": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8",
+  "studentDigest": "c5372fbdf123fd7fbfe98b7d7d9ae889787a7b6970e600800fc7e704a7bbf428",
+  "candidateDigest": "30ad323cd9a49981713ee6c9150f5bc77a1f3db68c6ea74b3b36035d22636e91",
+  "assetDigest": "2eb15c2abe2667236bc8ff88befb081fdf48214726ce713a22a54c89af4e3087",
+  "radius": 15,
+  "pq": 10,
+  "pr": 24,
+  "ph": 8,
+  "qh": 6,
+  "exactCoordinateBasis": "a+b*sqrt2 integer pair, never float answer oracle",
+  "exact": {
+    "P": [
+      [
+        0,
+        0
+      ],
+      [
+        8,
+        0
+      ]
+    ],
+    "Q": [
+      [
+        -6,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "R": [
+      [
+        0,
+        16
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "H": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "O": [
+      [
+        -3,
+        8
+      ],
+      [
+        4,
+        -6
+      ]
+    ],
+    "D": [
+      [
+        -6,
+        16
+      ],
+      [
+        0,
+        -12
+      ]
+    ]
+  },
+  "verifiedCircleSquaredRadius": 225,
+  "verifiedDiameterSquared": 900,
+  "chordSquares": [
+    100,
+    576
+  ],
+  "heightSquared": 64,
+  "footSegmentSquared": 36,
+  "allRequiredLengthsPositive": true,
+  "originalAnswerKeyUsed": false,
+  "authorOnly": true,
+  "independentReview": false,
+  "newFigures": 1,
+  "newTables": 0,
+  "strictVectorRender": true,
+  "droppedDimensions": [],
+  "nativeReaderParity": false,
+  "loadable": 0,
+  "dbWrites": 0
+}

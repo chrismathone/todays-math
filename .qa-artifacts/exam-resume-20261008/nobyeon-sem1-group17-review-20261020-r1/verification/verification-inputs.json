@@ -1,0 +1,230 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group17-r1-q02",
+      "authorId": "codex-parent-engine-upgrade-20261019",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "양수 $a,b$에 대하여 다음 두 등식이 모두 성립한다. $b$의 값은?\n\n$\\displaystyle \\frac{\\sqrt a}{2}=\\sqrt{\\frac b8},\\qquad \\sqrt{2a}=6\\sqrt3$",
+      "choices": [
+        "$27$",
+        "$54$",
+        "$72$",
+        "$108$",
+        "$216$"
+      ],
+      "answer": "④",
+      "solution": "$6\\sqrt3=\\sqrt{36\\times3}=\\sqrt{108}$이다. 따라서 두 번째 등식은 $\\sqrt{2a}=\\sqrt{108}$이므로 $2a=108$, $a=54$이다.\n\n첫 번째 등식에서 $2=\\sqrt4$이므로 $\\frac{\\sqrt a}{2}=\\sqrt{\\frac a4}$이다. 따라서 $\\sqrt{\\frac a4}=\\sqrt{\\frac b8}$이므로 $\\frac a4=\\frac b8$이고, 양변에 $8$을 곱하면 $b=2a=108$이다.\n\n$a=54$, $b=108$을 대입하면 $\\frac b8=\\frac a4$이므로 첫 번째 등식이 성립한다. 또 $\\sqrt{2a}=\\sqrt{108}=6\\sqrt3$이므로 두 번째 등식도 성립한다. 두 값은 모두 양수이며, 두 번째 등식에서 $a$가 하나로 정해지고 첫 번째 등식에서 $b$가 하나로 정해진다. 따라서 정답은 ④이다.",
+      "figureArtifacts": [],
+      "sourceReference": {
+        "sourceReferenceId": "source-ref-nobyeon-2025-1-mid-fresh-r6-q02",
+        "inventoryExamId": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+        "sourceSchoolInternal": "노변중학교",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceContentSha256": "761c316e345c317de805c28ec2948f5d3f56b6d2ba0b562e6922c4f474a56186",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+          "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[노변중][3][25-1-중간][동아강] (완료).hwp",
+            "sha256": "711bf0e161d5f83ee5261c40c48796ebc13f03b0f7f213f4973be00263190e44",
+            "bytes": 579072
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[노변중][3][25-1-중간][동아강] (완료).PDF",
+            "sha256": "b35bc2edff56bc9b92aaecb77f43a403017254cc48f817099badeb1743eca742",
+            "bytes": 154842
+          }
+        ],
+        "originalIdentitySource": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[노변중][3][25-1-중간] (원본)  (흰닭).pdf",
+          "sha256": "0010d2a15529c79f3407d2b8c461787080247e126dc7e725bb8c7eda461ed643",
+          "bytes": 3313997
+        },
+        "hwpAnchor": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 403,
+          "inflatedByteOffset": 15313,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "4968500df4d89ba9d8869f22c1321f6b9074f2bdf1fda811c346138c10a4c05c"
+        },
+        "originalHeaderObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+          "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+        },
+        "actualReference": "Original header date2025-04-29 observed earlier;2026 preparation footer is separate. This component has not received original/body/whole-pair identity certification.",
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "sourceCropViewed": false,
+        "sourceBodyVisualCorrespondence": "pending-N-original-access"
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target",
+          "data-reorganization"
+        ],
+        "before": "독립된다섯근호등식의빈칸값을계산한뒤가장작은것을고른다.",
+        "after": "동일한미지수a로연결된두등식을주고앞등식의미지수b를연쇄적으로복원한다.",
+        "sharedConcept": "양수제곱근의곱/몫,근호밖계수와근호안제곱인수의변환,동일한양의제곱근의피제곱수관계",
+        "sharedProcedure": "근호안팎의수를같은제곱근표현으로바꿈→피제곱수관계로미지수를구함→다른표현으로대입검산",
+        "actualStructuralChange": "원문의서로독립된다섯입력계산과최솟값선택을없애고두표현을공유변수로연결했다. 두번째조건에서복원한값을첫번째조건의입력으로써목표b를결정한다. 단순숫자나문장순서교체만으로완료시키지않는다.",
+        "domainProof": "a,b양수이므로제곱근과나눗셈이모두정의된다. 분모2,4,8은양수다. √(2a)=6√3은2a=108을유일하게정하고첫등식은b=2a를유일하게정한다. a=54,b=108의정확한대입검산과다섯선택지의서로다름을확인했다.",
+        "difficultyBasis": "원문하/4점의근호계수·분모를제곱근안으로옮기는기본계산을유지한다. 독립다섯값비교를두조건연쇄로재조직했으며중학교일차식의대입·양변곱셈만추가선수로사용한다. 기본/4점은독립검토전제안이다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-07",
+          "9수01-10"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수01-07",
+            "9수01-10"
+          ]
+        },
+        "legitimateMethodDraft": "양수의주제곱근성질로계수와분모를근호안으로옮긴다. 같은제곱근의피제곱수가같음을사용하여정수상수배관계의두미지수를순서대로구한다. 고등무리방정식의일반해법·불필요한양변제곱과무연근도입·연립이차방정식은학생에게요구하지않는다.",
+        "sevenSurfaces": {
+          "stem": "author-proposed",
+          "choices": "author-proposed",
+          "figureTable": "no-figure-or-table-required",
+          "notation": "author-proposed",
+          "answer": "author-exact-radicand-constraints-only",
+          "studentSolution": "author-proposed",
+          "prerequisites": "author-proposed"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "근호 안팎의 표현을 연결한 피제곱수 복원",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "근호를 포함한 식의 계산",
+            "semester": 1,
+            "orderIndex": 471,
+            "problemCodePrefix": "J30103"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제근호계산UnitUUID와제곱근선수UUID를연결한다. 공유변수의두등식에서목표피제곱수를복원하는전체목적의livefamily는확인전null."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "본문·보기·표·해설에 학교명이 없다. 실제 출처 학교는 내부 메타데이터에만 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "pure-root-arithmetic-no-figure-required",
+          "newTables": 0,
+          "newFigures": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "제곱근의뜻·성질",
+            "근호곱과몫의성질",
+            "이전학년일차식의대입·양변곱셈"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "namedPrerequisitesWithoutCapturedUuid": [
+          "이전학년일차식의대입과양변상수곱셈"
+        ]
+      }
+    },
+    "assets": [],
+    "studentDigest": "c6028b4627faffb3396c3759885a744c79379139800cd23a29cb99696c2a8c31",
+    "candidateDigest": "06a122b42d8dd31a15d0878c6ae063f53e5e9931f1dbd61667c4c32a2849a7e0",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "c6028b4627faffb3396c3759885a744c79379139800cd23a29cb99696c2a8c31",
+      "solverId": "independent-helper-q02-blind-20261020-r1",
+      "answer": "④",
+      "solution": "a,b가 양수이므로 √a,√(b/8),√(2a)는 모두 양수이며, 분모2와8도0이 아니다. 둘째 등식 √(2a)=6√3에서 제곱근의 성질을 쓰면 2a=(6√3)²=36×3=108이다. 따라서 a=54이다.\n\n첫째 등식에서 (√a/2)²=a/4이고 (√(b/8))²=b/8이므로 a/4=b/8이다. 양변에8을 곱하면 b=2a=108이다. 이는 제곱근의 제곱을 원래 수로 바꾸고 수치 관계를 정리한 것이며, 새로운 부호의 해를 임의로 추가한 것이 아니다.\n\n원래 식도 검산한다. a=54,b=108이면 첫째 식의 왼쪽은 √54/2=3√6/2이다. 오른쪽은 √(108/8)=√(27/2)이고 (3√6/2)²=27/2,3√6/2>0이므로 역시3√6/2이다. 둘째 식은 √108=6√3이므로 성립한다. a=54,b=108은 양수이고 모든 피제곱수도 양수여서 해가 실제로 존재한다. 둘째 식이a를 하나로 정하고 첫째 식이b를 하나로 정하므로 이 해는 유일하다.\n\n다섯 보기를 a=54에서 각각 확인하면 첫째 식 왼쪽의 제곱은 항상27/2이고, 오른쪽의 제곱 b/8은 ①27/8,②27/4,③9,④27/2,⑤27이다. 양쪽이 모두 양수이므로 제곱값이 같은④만 원래 첫째 식을 만족한다. 둘째 식도 위에서 확인했으므로 정답은④ 하나뿐이다. 길이 등 물리 단위나 도형 조건은 없다.",
+      "evidence": {
+        "noAuthorAnswerExposureDeclaration": "새 current q02의 정확한 문항이나 저자 답·해설을 본 적이 없다고 학생 파일을 읽기 전에 선언했다. 지정된 학생용 brief/manifest/student-problems만 읽었고 부모·private·원문q02·저자계산/해설·verification·다른문항·답검색에 노출되지 않고 독립적으로 풀었다.",
+        "ownCalculationsFile": "../own-q02-blind-calculations.json",
+        "a": "54",
+        "b": "108",
+        "allFiveChoicesChecked": true,
+        "bothOriginalEquationsVerified": true,
+        "domainAndPositiveSignsChecked": true,
+        "existenceAndUniquenessChecked": true,
+        "studentMethod": "제곱근 성질과 유리수 계산으로 두 수치관계를 순서대로 정리하고 원래 양변의 양수성을 유지해 검산. 고등 무리방정식/이차방정식 공식 불필요. blind raw는 정식 math/grade 승인 집계가 아니다.",
+        "utf8WriteReadPassed": true,
+        "noFloatingPixelsOrAuthorOracle": true,
+        "newApprovalCounts": 0
+      },
+      "status": "solved"
+    },
+    "solveDigest": "00c59dd2ed6568606748f1af856201e838a51625eea2834cc55a3b2867fd03cf"
+  }
+]

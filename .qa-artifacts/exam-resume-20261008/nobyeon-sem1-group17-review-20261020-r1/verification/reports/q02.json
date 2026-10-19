@@ -1,0 +1,244 @@
+{
+  "status": "pending",
+  "studentDigest": "c6028b4627faffb3396c3759885a744c79379139800cd23a29cb99696c2a8c31",
+  "candidateDigest": "06a122b42d8dd31a15d0878c6ae063f53e5e9931f1dbd61667c4c32a2849a7e0",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-q02-stage2-review-20261020-r1",
+  "solveDigest": "00c59dd2ed6568606748f1af856201e838a51625eea2834cc55a3b2867fd03cf",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "현재두식은2015중3 양수제곱근의 곱/몫·제곱근성질과 이전 정수상수배 관계만으로 순서대로 처리된다.",
+      "evidence": "둘째√(2a)=6√3=√108에서2a108,a54;첫째√a/2=√(a/4)=√(b/8)에서a/4=b/8,b108. 제곱근밖의변수가더해지는 일반무리방정식이나 연립이차방정식풀이가 아니다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제다섯보기27/54/72/108/216은 양의정수이며 추가학년밖표현이 없다.",
+      "evidence": "a54에서 첫째양변제곱은 왼쪽27/2,각오른쪽27/8,27/4,9,27/2,27. 양변양수이므로④만원래식과일치한다. 다른a로보기를구제할수없는데 둘째식이a54로고정하기때문이다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "실제텍스트두등식과정수보기만있어도형·표·측정선수는없다.",
+      "evidence": "current assets=[],figureArtifacts=[],student figures=[]; 픽셀이나도형계산을사용하지않았다. 실제native렌더는별도보류이다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "√a,√(b/8),√(2a),분수와6√3 표기는2015중3근호성질·사칙의범위이다.",
+      "evidence": "a,b양수에서a,b/8,2a양수,분모2/4/8양수.2=√4를쓸때절댓값이나음수부호가문제되지않는다. 모든근호는주제곱근이며물리단위없음."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "현재④의b108은 두원래식과양수조건을 실제 만족하는 유일한값이다.",
+      "evidence": "a54,b108에서첫째공통양수3√6/2,둘째공통양수6√3. 두값실제존재하고 둘째a유일→첫째b유일로정답유일하다. 현재답과봉인raw가일치하며높은차수방정식해공식은없다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재저자해설은근호안팎표현변환으로같은양의제곱근을만든뒤피제곱수의단순관계를사용한다. 실제2015중3 성질학습후학생방법이다.",
+      "evidence": "저자는6√3=√108과√a/2=√(a/4)를명시하고a54,b108을계산·대입검산·양수/유일성까지설명한다. 독립raw의제곱근제곱성질풀이와같은결과이다. 고등무리방정식의일반해법/함수도구는실제텍스트에없다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "제곱근뜻·양수주값·곱/몫성질과이전유리수계산,일차수치관계의대입/양변상수곱을배운2015중3이후배정한다.",
+      "evidence": "actual MOE3776/3788의9수01-07/10와실제중3root배치PDFpageIndex38에대조했다.양수상수배2a108,a/4=b/8만정리하며고등무리방정식을선수로두지않는다. 이전학년세부선수UUID와학교진도는미확인으로별도보류한다."
+    }
+  },
+  "evidence": {
+    "calculationFile": "own-q02-review-calculations.json",
+    "calculationSha256": "dad7aacac9c56483c5be1d3e05420e079da7a887c6b276a13576d68dba6b89aa",
+    "bothEquationsAndDomain": {
+      "substitution": {
+        "first": "sqrt54/2 =3sqrt6/2 =sqrt(108/8); both squares27/2 and both positive",
+        "second": "sqrt(2*54)=sqrt108=6sqrt3; both positive, squared value108",
+        "existence": true,
+        "uniqueAFromSecond": true,
+        "uniqueBFromFirstGivenA": true
+      },
+      "domain": {
+        "aPositive": true,
+        "bPositive": true,
+        "aRadicand": "54",
+        "bOver8Radicand": "27/2",
+        "twoARadicand": "108",
+        "constantRadicands": [
+          3,
+          4,
+          108
+        ],
+        "denominators": [
+          2,
+          4,
+          8
+        ],
+        "allDenominatorsNonzero": true,
+        "noExtraneousRootSigns": true,
+        "units": "abstract scalars; no geometry/physical units"
+      },
+      "allFiveOptions": [
+        {
+          "mark": "①",
+          "candidateB": "27",
+          "positive": true,
+          "firstLeftSquareAtA54": "27/2",
+          "firstRightSquare": "27/8",
+          "firstEquationAtA54": false,
+          "aImpliedByFirst": "27/2",
+          "secondLeftSquareIfFirstHolds": "27",
+          "secondRequiredSquare": "108",
+          "satisfiesBoth": false
+        },
+        {
+          "mark": "②",
+          "candidateB": "54",
+          "positive": true,
+          "firstLeftSquareAtA54": "27/2",
+          "firstRightSquare": "27/4",
+          "firstEquationAtA54": false,
+          "aImpliedByFirst": "27",
+          "secondLeftSquareIfFirstHolds": "54",
+          "secondRequiredSquare": "108",
+          "satisfiesBoth": false
+        },
+        {
+          "mark": "③",
+          "candidateB": "72",
+          "positive": true,
+          "firstLeftSquareAtA54": "27/2",
+          "firstRightSquare": "9",
+          "firstEquationAtA54": false,
+          "aImpliedByFirst": "36",
+          "secondLeftSquareIfFirstHolds": "72",
+          "secondRequiredSquare": "108",
+          "satisfiesBoth": false
+        },
+        {
+          "mark": "④",
+          "candidateB": "108",
+          "positive": true,
+          "firstLeftSquareAtA54": "27/2",
+          "firstRightSquare": "27/2",
+          "firstEquationAtA54": true,
+          "aImpliedByFirst": "54",
+          "secondLeftSquareIfFirstHolds": "108",
+          "secondRequiredSquare": "108",
+          "satisfiesBoth": true
+        },
+        {
+          "mark": "⑤",
+          "candidateB": "216",
+          "positive": true,
+          "firstLeftSquareAtA54": "27/2",
+          "firstRightSquare": "27",
+          "firstEquationAtA54": false,
+          "aImpliedByFirst": "108",
+          "secondLeftSquareIfFirstHolds": "216",
+          "secondRequiredSquare": "108",
+          "satisfiesBoth": false
+        }
+      ]
+    },
+    "currentFullAuthorSolutionAudit": {
+      "route": "author uses6sqrt3=sqrt108, sqrt(a)/2=sqrt(a/4), then equal positive roots imply equal radicands; raw uses root-square identity instead. Both give same exact linear numerical relations.",
+      "domain": "positive a/b and denominators2/4/8 make all transformations valid",
+      "substitution": "author explicitly substitutes a54/b108 to verify both equalities",
+      "uniqueness": "author explicitly fixes a bysecond then b byfirst",
+      "choiceCoverage": "author need not enumerate5options once b108 is unique; own code checks all5 and only4works",
+      "higherGradeTools": "actual student solution uses no general radical-equation procedure, quadratic formula, extraneous-root algorithm, high-school system or root-function monotonicity theorem"
+    },
+    "sourceCoreAndStructuralAssessment": {
+      "sourceArtifactSha256": "21805bf322eb9d150c805773e524c879f88e2b5bfb642f562f25d1d5f6fe672a",
+      "observed": "source asks smallest of values filling5independent radical-equality boxes; source하/4points",
+      "sameCore": "root product/quotient, moving a positive coefficient/denominator inside a root as a square factor, equal positive root radicands, numerical substitution",
+      "actualChange": "source already contains inverse blank-value recovery. New novelty is not simply an unknown under a radical: five independent restorations plus minimum comparison become two equations coupled by shared a, with a second-condition value fed into first to determine target b. This changes dependency/target and organizes data substantively.",
+      "sourceKeyNotComputedOrUsed": true
+    },
+    "naturalKorean": "양수a,b,두식모두성립,b의값이라는역할이명확하다. 같은a가두조건에실제로공유되고정수상수분모도명확하다. 두번째부터풀어첫번째로대입하는순서는자연스럽고 불필요한고등방법을암시하지않는다.",
+    "scoreDifficulty": {
+      "sourceObserved": "하/4점",
+      "currentProposal": "기본/4점",
+      "decision": "reasonable editorial proposal only; not measured same difficulty",
+      "basis": "원문5독립빈칸의계산·최소비교를새문항은두조건연쇄로재조직했다. 계산횟수는줄지만조건연결과목표변수역산이추가된다. 근호곱/몫과짧은정수상수관계만요구해기본4점은합리적이나 실제동난도/학습효과는미검증이다."
+    },
+    "unitFamily": {
+      "capturedUnitUuid": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "capturedSection": "근호를 포함한 식의 계산",
+      "snapshotSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "현재근호계산핵심은제안된근호를포함한식의계산Unit과관련된다. 그러나공유변수의두근호조건에서목표피제곱수를복원하는전체목적의정확한livefamily정의는이범위에서미확인이다. 이름/UUID/개수만으로가족호환승인하지않는다.",
+      "namedPrerequisiteUuidGaps": [
+        "이전학년일차식의대입과양변상수곱셈"
+      ],
+      "notCurrentDbPromise": true
+    },
+    "primaryReferences": {
+      "basis": "actual primary previously directly inspected; current method individually compared, no source-school/band-only/item-grade inheritance",
+      "moe2015": {
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+        "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "stream": "BodyText/Section0",
+        "actualRecords1based": {
+          "3776": {
+            "code": "9수01-07",
+            "scope": "제곱근의뜻과성질"
+          },
+          "3788": {
+            "code": "9수01-10",
+            "scope": "근호를포함한식의사칙계산"
+          }
+        }
+      },
+      "actualM3Placement": {
+        "url": "https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202202101132253081.pdf",
+        "pageIndex0": 38,
+        "printedPage": 38,
+        "observed": "actual중3표의제곱근성질/근호계산배치;발행2022와2022개정은별개"
+      },
+      "era": "source2025/practice2026M3=2015;2027M3/2022pending"
+    },
+    "rawBinding": {
+      "ownCommit": "f6df453b8126362cc1b621f45812afc18aece5cc",
+      "parentSeal": "92eb231a3cd5a3d2a8bc50e401fee6137367c7d5",
+      "rawSha256": "7180540fb931239b6a5e6d9fb40eb8d62953cdc3ca56eee5b587fd8231cea7b6",
+      "originalExposureDeclarationAnswerAndSolutionPreserved": true
+    },
+    "separateHolds": {
+      "2022M3": "pending actual separateplacement",
+      "sourcePairIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyApproved": false,
+      "loadable": false
+    },
+    "counts": {
+      "independentMathDecision": 1,
+      "independentGradeDecision2015AfterRootProperties": 1,
+      "checksPassed": 11,
+      "checksHeld": 1,
+      "surfacesPassed": 7,
+      "contentHeld": 1,
+      "newBlindOrQuestionIncrement": 0
+    },
+    "limits": "No rootcode/actualcollector/DB/native/sourcepaperidentity audit. Current math/grade decisions are bounded to actualtext and prerequisite conditions; no full release, measured same difficulty or2022approval.",
+    "utf8WriteReadPassed": true,
+    "dbWrites": 0,
+    "paidApiCalls": 0,
+    "newWorkers": 0
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "inputHashes": {
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "verification-inputs.json": "9f18df82bed96cefba52b8d8e817a03d1a380ce7a43c1f6081a120d300e8c73f",
+    "verification-manifest.json": "cbc58fdf2530eeaa59e9c81ab3ce684f992d53604215d5d492e4fa5e95cf520e",
+    "sealed-raw-commit.json": "70c6ccd6782c194732f4602d51adadbeeac2e6404e60bf792adb08a595286a10"
+  },
+  "sourceQ06OnlySha256": "0512b57b019e601a11b79fa4abfe180846277c4453304003f97f4b2a2cbc2cce",
+  "rawSha256": "048bf55787249386b418f882d4d6af680d5d68553809a478782343577d9ba101",
+  "reportSha256": "12d8375d3cb9f1b052c73d4ee9f140fd60c5054c366cedaf40deaa7051eb43b8",
+  "ownedEvidenceHashes": {
+    "own-q06-review-primary.py": "f183ff06e67b1819bb2aab98664185627cf75d8fece32f9fa23e25f99b9c34ed",
+    "own-q06-review-primary-r2.py": "9523acaf12a50c86d5ce80daa1e06e55e43f5f69145103eb7f96d8ca10566e54",
+    "own-q06-review-primary-repair.py": "d422794be36b6f0314e2b9e73d3b016772f516141bd74c747bf2c11e269504b3",
+    "own-q06-review-primary-diagnostic.json": "b58068217cc8996ce2e0e7ef017eba0c192d6eda3985e6b7b5bba2f6bae6c143",
+    "own-q06-review-primary-evidence.json": "2640fc1cc13ba34cb6cb829a988d06aea35daf007debcce5a72bfd32466f0925",
+    "own-q06-review-utf8-probe.txt": "ca4a61362e87e3f991d2c18b335c4910acf12ca90295af042612ac83ff9ebdd5",
+    "own-q06-review-audit.py": "138b2d94193863ee03d111cfce622bbdd2d91c4696ccb12e9581c8737f9e2d43",
+    "own-q06-review-calculations.json": "6beb0bab917823429c5a2194af51156e73479ac0a711ae44777736d9adf107e0"
+  },
+  "localPrimaryAndSourceImageHashes": {
+    "schoolPdf": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+    "schoolPageImage": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+    "sourceOriginalHPage2": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0",
+    "sourceCompletedQ06": "6e691dad0a26f43976149e8bcf2d2a9e48a3ddcfe5ccf37de4d400275d526d08"
+  },
+  "fullDocumentsImagesNeverStage": true,
+  "counts": {
+    "independentMathDecision": 1,
+    "independentGradeDecision2015AfterPrerequisites": 1,
+    "checksPassed": 11,
+    "checksHeld": 1,
+    "studentSurfacesPassed": 7,
+    "contentHeld": 1,
+    "newManualOrBlindIncrement": 0
+  }
+}

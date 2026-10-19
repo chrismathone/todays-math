@@ -1,0 +1,36 @@
+{
+  "kind": "authored-exam-twin-review-result/v1",
+  "packageDigest": "fccd099dcf33947ae9f19593f8e5b3b46b685876c67db492befef6d5cb277c10",
+  "createdAt": "2026-10-19T16:55:30.749Z",
+  "authored": 1,
+  "mathematicalVerified": 1,
+  "gradeReviewed": 1,
+  "overallVerified": 0,
+  "loadable": 0,
+  "productionWrites": false,
+  "results": [
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group17-r1-q02",
+      "studentDigest": "c6028b4627faffb3396c3759885a744c79379139800cd23a29cb99696c2a8c31",
+      "candidateDigest": "06a122b42d8dd31a15d0878c6ae063f53e5e9931f1dbd61667c4c32a2849a7e0",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "00c59dd2ed6568606748f1af856201e838a51625eea2834cc55a3b2867fd03cf",
+      "reportSha256": "e9794ccf13f6466ce049c739028b8bd20ea7df94c05b5a8914f25d0972f8323a",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  ]
+}

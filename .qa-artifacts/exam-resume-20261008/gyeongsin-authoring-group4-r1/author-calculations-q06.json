@@ -1,0 +1,45 @@
+{
+  "utc": "2026-10-19T16:54:01.584Z",
+  "candidateFileSha256": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24",
+  "studentDigest": "225b5e64ceb422692469fc64ee3406b4e535decdb3510afa871c6f164dbb6856",
+  "candidateDigest": "aeee817562f759f1953a29d1fcd026c1bbd11dc624aa7e317b3d9d4f7c291f73",
+  "assetDigest": "20fa33c0d677aded936b0adc54e432970bc198e68f64c2c3046e752d68c0d100",
+  "positions": {
+    "P": 210,
+    "Q": 290,
+    "R": 336,
+    "S": 404,
+    "T": 480
+  },
+  "gaps": [
+    80,
+    46,
+    68,
+    76,
+    90
+  ],
+  "arcSum": 360,
+  "atP": 95,
+  "atS": 108,
+  "atRPT": 72,
+  "atQPR": 23,
+  "answer": 46,
+  "choices": [
+    42,
+    44,
+    46,
+    48,
+    50
+  ],
+  "authorOnly": true,
+  "independentReview": false,
+  "geometryOracle": "Exact angular sums; floating engine positions are rendering only, never student or answer oracle.",
+  "strictVectorRender": true,
+  "droppedDimensions": [],
+  "newFigures": 1,
+  "newTables": 0,
+  "sourceCropEmbedded": false,
+  "nativeReaderParity": false,
+  "loadable": 0,
+  "dbWrites": 0
+}

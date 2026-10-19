@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-19T17:11:15.275Z",
+  "status": "r1builder failed on an incorrect raw-digest equality assumption; not a review failure",
+  "cause": "freeze relocates spec/svg filenames in candidate JSON; digest includes those paths",
+  "authorCandidateDigest": "aeee817562f759f1953a29d1fcd026c1bbd11dc624aa7e317b3d9d4f7c291f73",
+  "frozenCandidateDigest": "899e7ea6b8ad3eb4f22c56ca311400ed4cf5a2481d24d7550a04e8e3623330ba",
+  "reportCandidateDigest": "899e7ea6b8ad3eb4f22c56ca311400ed4cf5a2481d24d7550a04e8e3623330ba",
+  "authorRawFileSha256": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24",
+  "frozenRawFileSha256": "248b40f199aa0bedc39b810347b04d7db4785beb47853b6311f1534c5830af37",
+  "studentDigest": "225b5e64ceb422692469fc64ee3406b4e535decdb3510afa871c6f164dbb6856",
+  "assetDigest": "20fa33c0d677aded936b0adc54e432970bc198e68f64c2c3046e752d68c0d100",
+  "allFieldsExceptKnownRelocatedArtifactPathsDeepEqual": true,
+  "normalizedCandidateDigest": "1e332e8310d1cc742a48b1f623e9f908375f4d1853fd59c6f9e2b6bb5fb7e5c6",
+  "actualSpecAndSvgBytesIdentical": true,
+  "reportSha256": "12d8375d3cb9f1b052c73d4ee9f140fd60c5054c366cedaf40deaa7051eb43b8",
+  "manifestSha256": "eb5d16c70fa335562bea46931a3a86c232329ee5ae781775e2fa354d175746a1",
+  "existingStrictAuthorFrozenLineageContract": "summarizeReviewedBatch checks exact authoredInput SHA, current ID, student/assets, and complete candidate content after only known artifact path relocation",
+  "rawReportsAndInputsModified": false,
+  "canonicalV31WrittenByFailedR1": false,
+  "intermediateNB2IndexSummaryR1Preserved": true,
+  "dbWrites": 0
+}

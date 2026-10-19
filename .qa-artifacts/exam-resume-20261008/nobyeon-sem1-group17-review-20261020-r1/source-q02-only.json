@@ -1,0 +1,2109 @@
+{
+  "number": 2,
+  "questionType": "multiple-choice",
+  "stem": "$□$ 안에 알맞은 수 중에서 가장 작은 것은? [$4$점]",
+  "choices": [
+    "$\\frac{\\sqrt{10}}{3}=\\sqrt{\\frac{10}{□}}$",
+    "$\\frac{5}{\\sqrt{10}}=\\frac{\\sqrt{□}}{2}$",
+    "$\\frac{1}{5}\\sqrt{50}=\\sqrt{□}$",
+    "$\\sqrt{108}=□\\sqrt{3}$",
+    "$\\sqrt{2^{2}\\times 5^{3}}=10\\sqrt{□}$"
+  ],
+  "hwpScriptStem": "$□$ 안에 알맞은 수 중에서 가장 작은 것은? [$4$점]",
+  "hwpScriptChoices": [
+    "${sqrt {10}} over {3} = sqrt {{10} over {□}}$",
+    "${5} over {sqrt {10}} = {sqrt {□}} over {2}$",
+    "${1} over {5} sqrt {50} = sqrt {□}$",
+    "$sqrt {108} =□ sqrt {3}$",
+    "$sqrt {2 ^{2} times5 ^{3}} =10 sqrt {□}$"
+  ],
+  "topicLabelFromSource": "근호를 포함한 식의 계산",
+  "difficultyLabelFromSource": "하",
+  "printedScoreOccurrences": [
+    {
+      "printed": "[$4$점]",
+      "value": 4.0,
+      "parentTotalMarked": false,
+      "textOffset": 27
+    }
+  ],
+  "referenceRepairs": [],
+  "notationNormalizationEvidence": [],
+  "hwpAnchor": {
+    "stream": "BodyText/Section0",
+    "recordIndex": 403,
+    "inflatedByteOffset": 15313,
+    "tag": 71,
+    "level": 1,
+    "payloadSha256": "4968500df4d89ba9d8869f22c1321f6b9074f2bdf1fda811c346138c10a4c05c"
+  },
+  "positionedSourceItems": [
+    {
+      "kind": "text",
+      "text": " ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 400,
+        "inflatedByteOffset": 15143,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "9f4c99aab0ada7c37798f49bbebdeb33c58620a58d204541050a97d38bcdb081",
+        "utf16Range": [
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "□",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 411,
+        "inflatedByteOffset": 15553,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "126ed24fc16af9f0952f985efed9f4a5bc37d6ab88256ca1ab8713bf74542355"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 410,
+        "inflatedByteOffset": 15491,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "c787fa867321e9a9f7de2138e096db9e09478a27b08149c57061e6e8a4567fa5"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " 안에 알맞은 수 중에서 가장 작은 것은? [",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 400,
+        "inflatedByteOffset": 15143,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "9f4c99aab0ada7c37798f49bbebdeb33c58620a58d204541050a97d38bcdb081",
+        "utf16Range": [
+          17,
+          42
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "4",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 413,
+        "inflatedByteOffset": 15695,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "468980e2fb7fd64fc0d36c63257e1a770a28e9ceee5e00d27f2b46ee1792cb57"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 412,
+        "inflatedByteOffset": 15633,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "186e779416cf8bb506b29930b136f4f35f89544023b123f4526c845fd81f235b"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "점]",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 400,
+        "inflatedByteOffset": 15143,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "9f4c99aab0ada7c37798f49bbebdeb33c58620a58d204541050a97d38bcdb081",
+        "utf16Range": [
+          50,
+          52
+        ]
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 400,
+        "inflatedByteOffset": 15143,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "9f4c99aab0ada7c37798f49bbebdeb33c58620a58d204541050a97d38bcdb081"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "① ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 415,
+        "inflatedByteOffset": 15803,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c6f06bb3af2b341047fcd99fad5a2bb977a7d32491063b20fc56989beb82138f",
+        "utf16Range": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "{sqrt {10}} over {3} = sqrt {{10} over {□}}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 419,
+        "inflatedByteOffset": 15979,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "4ad09b058e7c0f9792717d95d7abb5f0c0db55f750d12da34a8531fc207a8cbb"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 418,
+        "inflatedByteOffset": 15917,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "12d26fb34e247d1b0b5fa0b64323dc77d8226c446c42abe196c2a71280f19756"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 415,
+        "inflatedByteOffset": 15803,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c6f06bb3af2b341047fcd99fad5a2bb977a7d32491063b20fc56989beb82138f"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "② ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 415,
+        "inflatedByteOffset": 15803,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c6f06bb3af2b341047fcd99fad5a2bb977a7d32491063b20fc56989beb82138f",
+        "utf16Range": [
+          18,
+          20
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "{5} over {sqrt {10}} = {sqrt {□}} over {2}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 421,
+        "inflatedByteOffset": 16205,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "8adf97d5b6482cf3fab6893ec50a2df06cdd78e0bf16af26fcd0be6178bed7b0"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 420,
+        "inflatedByteOffset": 16143,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "59ff1801ff70bd1494d5c4d52a85bec3f0e1fb44ea6dda14b6cb9cf6061b7699"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 415,
+        "inflatedByteOffset": 15803,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "c6f06bb3af2b341047fcd99fad5a2bb977a7d32491063b20fc56989beb82138f"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "③ ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 423,
+        "inflatedByteOffset": 16395,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "6d45bb99705e42b97e093760d4ae5c7aaf8abd56e8ea5fe229f7f9379bb19410",
+        "utf16Range": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "{1} over {5} sqrt {50} = sqrt {□}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 427,
+        "inflatedByteOffset": 16571,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "63364d52e288462b6c52db56e5ecf6cad77d64abeec8207409ba994cc214690d"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 426,
+        "inflatedByteOffset": 16509,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "b36106d99eb20e24232c89cc43e7bf053df6a8aea40b883f01c3a8c2dfd256b5"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 423,
+        "inflatedByteOffset": 16395,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "6d45bb99705e42b97e093760d4ae5c7aaf8abd56e8ea5fe229f7f9379bb19410"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "④ ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 423,
+        "inflatedByteOffset": 16395,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "6d45bb99705e42b97e093760d4ae5c7aaf8abd56e8ea5fe229f7f9379bb19410",
+        "utf16Range": [
+          18,
+          20
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "sqrt {108} =□ sqrt {3}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 429,
+        "inflatedByteOffset": 16777,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "f1a09dce2c696cc810a9dfedee46809ffd66280646ad6dbadea5e5816a56c7e9"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 428,
+        "inflatedByteOffset": 16715,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "71ea68cb87a8ec90fbfdf95a76b66210bc85bc6376e9ee49070a41a0b0269d07"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 423,
+        "inflatedByteOffset": 16395,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "6d45bb99705e42b97e093760d4ae5c7aaf8abd56e8ea5fe229f7f9379bb19410"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "⑤ ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 431,
+        "inflatedByteOffset": 16927,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "e5d513d38b2c7868bfeb348c5566405e8231717caa8cf4aa02dc62b883b92048",
+        "utf16Range": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "math",
+      "script": "sqrt {2 ^{2} times5 ^{3}} =10 sqrt {□}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 435,
+        "inflatedByteOffset": 17067,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "42e8df7cb37ca788e99aed82ded46376dc8477d4e7fb00c6620124af374fd67d"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 434,
+        "inflatedByteOffset": 17005,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "f07a8872b7e122563621758856c1455af8e0fd78f6a8d5b2d977e13283b35ec8"
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 431,
+        "inflatedByteOffset": 16927,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "e5d513d38b2c7868bfeb348c5566405e8231717caa8cf4aa02dc62b883b92048"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " [중단원] 근호를 포함한 식의 계산 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 437,
+        "inflatedByteOffset": 17249,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "4fd1b6c4b04d718b899a55c01d08901eda11182f959a4aeb960b9894f7852d0e",
+        "utf16Range": [
+          0,
+          21
+        ]
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 437,
+        "inflatedByteOffset": 17249,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "4fd1b6c4b04d718b899a55c01d08901eda11182f959a4aeb960b9894f7852d0e"
+      }
+    },
+    {
+      "kind": "text",
+      "text": " [난이도] 하 ",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 442,
+        "inflatedByteOffset": 17393,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "29703cadeb540691fb6e40d2c0215ad4d7f2726a1217c9f89ef73f259a68de0e",
+        "utf16Range": [
+          0,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "text",
+      "text": "\n",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 442,
+        "inflatedByteOffset": 17393,
+        "tag": 67,
+        "level": 1,
+        "payloadSha256": "29703cadeb540691fb6e40d2c0215ad4d7f2726a1217c9f89ef73f259a68de0e"
+      }
+    }
+  ],
+  "mathExpressions": [
+    {
+      "kind": "math",
+      "script": "□",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 411,
+        "inflatedByteOffset": 15553,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "126ed24fc16af9f0952f985efed9f4a5bc37d6ab88256ca1ab8713bf74542355"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 410,
+        "inflatedByteOffset": 15491,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "c787fa867321e9a9f7de2138e096db9e09478a27b08149c57061e6e8a4567fa5"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "4",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 413,
+        "inflatedByteOffset": 15695,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "468980e2fb7fd64fc0d36c63257e1a770a28e9ceee5e00d27f2b46ee1792cb57"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 412,
+        "inflatedByteOffset": 15633,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "186e779416cf8bb506b29930b136f4f35f89544023b123f4526c845fd81f235b"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "{sqrt {10}} over {3} = sqrt {{10} over {□}}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 419,
+        "inflatedByteOffset": 15979,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "4ad09b058e7c0f9792717d95d7abb5f0c0db55f750d12da34a8531fc207a8cbb"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 418,
+        "inflatedByteOffset": 15917,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "12d26fb34e247d1b0b5fa0b64323dc77d8226c446c42abe196c2a71280f19756"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "{5} over {sqrt {10}} = {sqrt {□}} over {2}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 421,
+        "inflatedByteOffset": 16205,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "8adf97d5b6482cf3fab6893ec50a2df06cdd78e0bf16af26fcd0be6178bed7b0"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 420,
+        "inflatedByteOffset": 16143,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "59ff1801ff70bd1494d5c4d52a85bec3f0e1fb44ea6dda14b6cb9cf6061b7699"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "{1} over {5} sqrt {50} = sqrt {□}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 427,
+        "inflatedByteOffset": 16571,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "63364d52e288462b6c52db56e5ecf6cad77d64abeec8207409ba994cc214690d"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 426,
+        "inflatedByteOffset": 16509,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "b36106d99eb20e24232c89cc43e7bf053df6a8aea40b883f01c3a8c2dfd256b5"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "sqrt {108} =□ sqrt {3}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 429,
+        "inflatedByteOffset": 16777,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "f1a09dce2c696cc810a9dfedee46809ffd66280646ad6dbadea5e5816a56c7e9"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 428,
+        "inflatedByteOffset": 16715,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "71ea68cb87a8ec90fbfdf95a76b66210bc85bc6376e9ee49070a41a0b0269d07"
+      }
+    },
+    {
+      "kind": "math",
+      "script": "sqrt {2 ^{2} times5 ^{3}} =10 sqrt {□}",
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 435,
+        "inflatedByteOffset": 17067,
+        "tag": 88,
+        "level": 2,
+        "payloadSha256": "42e8df7cb37ca788e99aed82ded46376dc8477d4e7fb00c6620124af374fd67d"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 434,
+        "inflatedByteOffset": 17005,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "f07a8872b7e122563621758856c1455af8e0fd78f6a8d5b2d977e13283b35ec8"
+      }
+    }
+  ],
+  "hwpFigureRecords": [],
+  "sharedSourceContext": null,
+  "unmappedItems": [],
+  "sourceContentDigest": "761c316e345c317de805c28ec2948f5d3f56b6d2ba0b562e6922c4f474a56186",
+  "pdfReference": {
+    "number": 2,
+    "regions": [
+      {
+        "page": 1,
+        "column": 0,
+        "bbox": [
+          55,
+          362.20220947265625,
+          375,
+          658.0206909179688
+        ]
+      }
+    ],
+    "positionedCharacters": [
+      {
+        "page": 0,
+        "c": "2",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 365.20220947265625,
+        "x1": 61.096187591552734,
+        "y1": 374.1956787109375,
+        "size": 8.993474960327148,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": ".",
+        "eq": false,
+        "x0": 61.15644073486328,
+        "y0": 365.20220947265625,
+        "x1": 65.65321350097656,
+        "y1": 374.1956787109375,
+        "size": 8.993474960327148,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 65.59295654296875,
+        "y0": 365.96954345703125,
+        "x1": 71.10900115966797,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "□",
+        "eq": true,
+        "x0": 71.58866119384766,
+        "y0": 365.729736328125,
+        "x1": 82.6207504272461,
+        "y1": 376.76171875,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 82.74066162109375,
+        "y0": 365.96954345703125,
+        "x1": 88.25670623779297,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "안",
+        "eq": false,
+        "x0": 88.13679504394531,
+        "y0": 365.96954345703125,
+        "x1": 99.16888427734375,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "에",
+        "eq": false,
+        "x0": 99.16887664794922,
+        "y0": 365.96954345703125,
+        "x1": 110.20096588134766,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 110.20096588134766,
+        "y0": 365.96954345703125,
+        "x1": 115.71701049804688,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "알",
+        "eq": false,
+        "x0": 115.59709930419922,
+        "y0": 365.96954345703125,
+        "x1": 126.62918853759766,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "맞",
+        "eq": false,
+        "x0": 126.62918853759766,
+        "y0": 365.96954345703125,
+        "x1": 137.66127014160156,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "은",
+        "eq": false,
+        "x0": 137.66127014160156,
+        "y0": 365.96954345703125,
+        "x1": 148.693359375,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 148.5731201171875,
+        "y0": 365.96954345703125,
+        "x1": 154.0891571044922,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "수",
+        "eq": false,
+        "x0": 154.08949279785156,
+        "y0": 365.96954345703125,
+        "x1": 165.12158203125,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 165.12158203125,
+        "y0": 365.96954345703125,
+        "x1": 170.6376190185547,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "중",
+        "eq": false,
+        "x0": 170.51771545410156,
+        "y0": 365.96954345703125,
+        "x1": 181.5498046875,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "에",
+        "eq": false,
+        "x0": 181.5498046875,
+        "y0": 365.96954345703125,
+        "x1": 192.58189392089844,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "서",
+        "eq": false,
+        "x0": 192.58189392089844,
+        "y0": 365.96954345703125,
+        "x1": 203.61398315429688,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 203.4937286376953,
+        "y0": 365.96954345703125,
+        "x1": 209.009765625,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "가",
+        "eq": false,
+        "x0": 209.01010131835938,
+        "y0": 365.96954345703125,
+        "x1": 220.0421905517578,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "장",
+        "eq": false,
+        "x0": 220.0421905517578,
+        "y0": 365.96954345703125,
+        "x1": 231.07427978515625,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 230.9540252685547,
+        "y0": 365.96954345703125,
+        "x1": 236.47006225585938,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "작",
+        "eq": false,
+        "x0": 236.4704132080078,
+        "y0": 365.96954345703125,
+        "x1": 247.50250244140625,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "은",
+        "eq": false,
+        "x0": 247.50250244140625,
+        "y0": 365.96954345703125,
+        "x1": 258.5345764160156,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 258.41436767578125,
+        "y0": 365.96954345703125,
+        "x1": 263.930419921875,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "것",
+        "eq": false,
+        "x0": 263.93072509765625,
+        "y0": 365.96954345703125,
+        "x1": 274.9627990722656,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "은",
+        "eq": false,
+        "x0": 274.9627990722656,
+        "y0": 365.96954345703125,
+        "x1": 285.994873046875,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "?",
+        "eq": false,
+        "x0": 285.8749694824219,
+        "y0": 365.96954345703125,
+        "x1": 291.3910217285156,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 291.3910217285156,
+        "y0": 365.96954345703125,
+        "x1": 296.9070739746094,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "[",
+        "eq": false,
+        "x0": 296.9070739746094,
+        "y0": 365.96954345703125,
+        "x1": 302.4231262207031,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 303.0226745605469,
+        "y0": 366.3702087402344,
+        "x1": 308.5387268066406,
+        "y1": 377.4022216796875,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "점",
+        "eq": false,
+        "x0": 308.778564453125,
+        "y0": 365.96954345703125,
+        "x1": 319.8106384277344,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "]",
+        "eq": false,
+        "x0": 319.8106384277344,
+        "y0": 365.96954345703125,
+        "x1": 325.3266906738281,
+        "y1": 377.00152587890625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "①",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 393.6692199707031,
+        "x1": 67.63150024414062,
+        "y1": 404.7012023925781,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 393.6692199707031,
+        "x1": 73.14754486083984,
+        "y1": 404.7012023925781,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 74.7064208984375,
+        "y0": 386.9097900390625,
+        "x1": 100.84767150878906,
+        "y1": 410.9259338378906,
+        "size": 24.016151428222656,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 85.1389389038086,
+        "y0": 401.1446838378906,
+        "x1": 90.65498352050781,
+        "y1": 412.17669677734375,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 76.38522338867188,
+        "y0": 385.41986083984375,
+        "x1": 87.41731262207031,
+        "y1": 396.9215087890625,
+        "size": 11.5016508102417,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 86.69782257080078,
+        "y0": 378.772705078125,
+        "x1": 99.04896545410156,
+        "y1": 395.2806701660156,
+        "size": 16.50797462463379,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 86.81774139404297,
+        "y0": 386.63531494140625,
+        "x1": 92.33378601074219,
+        "y1": 397.6673278808594,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 92.09395599365234,
+        "y0": 386.63531494140625,
+        "x1": 97.61000061035156,
+        "y1": 397.6673278808594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 101.9269027709961,
+        "y0": 393.35040283203125,
+        "x1": 110.48780059814453,
+        "y1": 404.3824157714844,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 112.47933197021484,
+        "y0": 392.4226989746094,
+        "x1": 123.46127319335938,
+        "y1": 409.4048767089844,
+        "size": 16.982160568237305,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 122.79193878173828,
+        "y0": 375.9725646972656,
+        "x1": 140.65911865234375,
+        "y1": 395.8274841308594,
+        "size": 19.854928970336914,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 124.11099243164062,
+        "y0": 392.1734619140625,
+        "x1": 137.90110778808594,
+        "y1": 409.6165771484375,
+        "size": 17.443117141723633,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "□",
+        "eq": true,
+        "x0": 125.78978729248047,
+        "y0": 400.50421142578125,
+        "x1": 136.82186889648438,
+        "y1": 411.53619384765625,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 125.78978729248047,
+        "y0": 386.63531494140625,
+        "x1": 131.3058319091797,
+        "y1": 397.6673278808594,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 131.06600952148438,
+        "y0": 386.63531494140625,
+        "x1": 136.58204650878906,
+        "y1": 397.6673278808594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "②",
+        "eq": false,
+        "x0": 206.49191284179688,
+        "y0": 393.6692199707031,
+        "x1": 217.5240020751953,
+        "y1": 404.7012023925781,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 217.5240020751953,
+        "y0": 393.6692199707031,
+        "x1": 223.0400390625,
+        "y1": 404.7012023925781,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 224.5989227294922,
+        "y0": 387.0296936035156,
+        "x1": 250.74017333984375,
+        "y1": 411.04583740234375,
+        "size": 24.016151428222656,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 226.27772521972656,
+        "y0": 401.60797119140625,
+        "x1": 237.309814453125,
+        "y1": 413.109619140625,
+        "size": 11.5016508102417,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 236.59033203125,
+        "y0": 394.9608459472656,
+        "x1": 248.94146728515625,
+        "y1": 411.46881103515625,
+        "size": 16.50797462463379,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 236.71023559570312,
+        "y0": 402.8234558105469,
+        "x1": 242.2262725830078,
+        "y1": 413.85546875,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 241.9864501953125,
+        "y0": 402.8234558105469,
+        "x1": 247.5024871826172,
+        "y1": 413.85546875,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 235.0314483642578,
+        "y0": 386.63531494140625,
+        "x1": 240.5474853515625,
+        "y1": 397.6673278808594,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 251.8194122314453,
+        "y0": 393.4703063964844,
+        "x1": 260.38031005859375,
+        "y1": 404.5023193359375,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 263.57098388671875,
+        "y0": 387.0296936035156,
+        "x1": 289.7122497558594,
+        "y1": 411.04583740234375,
+        "size": 24.016151428222656,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 274.0035095214844,
+        "y0": 401.1446838378906,
+        "x1": 279.5195617675781,
+        "y1": 412.17669677734375,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 265.1298522949219,
+        "y0": 385.5397644042969,
+        "x1": 276.16192626953125,
+        "y1": 397.0414123535156,
+        "size": 11.5016508102417,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 275.4424743652344,
+        "y0": 378.772705078125,
+        "x1": 287.7936096191406,
+        "y1": 395.2806701660156,
+        "size": 16.50797462463379,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "□",
+        "eq": true,
+        "x0": 275.6822814941406,
+        "y0": 386.1147766113281,
+        "x1": 286.71435546875,
+        "y1": 397.1467590332031,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "③",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 427.2445983886719,
+        "x1": 67.63150024414062,
+        "y1": 438.2765808105469,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 427.2445983886719,
+        "x1": 73.14754486083984,
+        "y1": 438.2765808105469,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 74.7064208984375,
+        "y0": 428.9479064941406,
+        "x1": 83.46014404296875,
+        "y1": 442.84539794921875,
+        "size": 13.89749813079834,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 76.50513458251953,
+        "y0": 434.9598693847656,
+        "x1": 82.02117919921875,
+        "y1": 445.99188232421875,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 76.50513458251953,
+        "y0": 420.45050048828125,
+        "x1": 82.02117919921875,
+        "y1": 431.4825134277344,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 84.65928649902344,
+        "y0": 426.42974853515625,
+        "x1": 95.69137573242188,
+        "y1": 437.931396484375,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 94.85197448730469,
+        "y0": 419.7826232910156,
+        "x1": 107.20311737060547,
+        "y1": 436.29058837890625,
+        "size": 16.50797462463379,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 95.09180450439453,
+        "y0": 427.76513671875,
+        "x1": 100.60784912109375,
+        "y1": 438.7971496582031,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 100.3680191040039,
+        "y0": 427.76513671875,
+        "x1": 105.88406372070312,
+        "y1": 438.7971496582031,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 107.44294738769531,
+        "y0": 427.2854919433594,
+        "x1": 116.00384521484375,
+        "y1": 438.3175048828125,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 117.99537658691406,
+        "y0": 426.42974853515625,
+        "x1": 129.0274658203125,
+        "y1": 437.931396484375,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 128.3079833984375,
+        "y0": 419.7826232910156,
+        "x1": 140.65911865234375,
+        "y1": 436.29058837890625,
+        "size": 16.50797462463379,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "□",
+        "eq": true,
+        "x0": 128.5478057861328,
+        "y0": 427.1246643066406,
+        "x1": 139.57989501953125,
+        "y1": 438.1566467285156,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "④",
+        "eq": false,
+        "x0": 206.49191284179688,
+        "y0": 427.2445983886719,
+        "x1": 217.5240020751953,
+        "y1": 438.2765808105469,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 217.5240020751953,
+        "y0": 427.2445983886719,
+        "x1": 223.0400390625,
+        "y1": 438.2765808105469,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 223.5196990966797,
+        "y0": 426.42974853515625,
+        "x1": 234.55178833007812,
+        "y1": 437.931396484375,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 233.83230590820312,
+        "y0": 417.08953857421875,
+        "x1": 251.45965576171875,
+        "y1": 436.810791015625,
+        "size": 19.721223831176758,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 234.07212829589844,
+        "y0": 427.6452331542969,
+        "x1": 239.58816528320312,
+        "y1": 438.67724609375,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 239.2284393310547,
+        "y0": 427.6452331542969,
+        "x1": 244.74447631835938,
+        "y1": 438.67724609375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 244.50465393066406,
+        "y0": 427.6452331542969,
+        "x1": 250.02069091796875,
+        "y1": 438.67724609375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 251.57957458496094,
+        "y0": 427.16558837890625,
+        "x1": 260.1404724121094,
+        "y1": 438.1976013183594,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "□",
+        "eq": true,
+        "x0": 262.13201904296875,
+        "y0": 427.0047607421875,
+        "x1": 273.1640930175781,
+        "y1": 438.0367431640625,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 272.6844482421875,
+        "y0": 426.42974853515625,
+        "x1": 283.7165222167969,
+        "y1": 437.931396484375,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 282.9970397949219,
+        "y0": 422.87713623046875,
+        "x1": 290.07196044921875,
+        "y1": 435.3711242675781,
+        "size": 12.49399185180664,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 283.1169738769531,
+        "y0": 427.6452331542969,
+        "x1": 288.6330261230469,
+        "y1": 438.67724609375,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "⑤",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 455.78363037109375,
+        "x1": 67.63150024414062,
+        "y1": 466.81561279296875,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 455.78363037109375,
+        "x1": 73.14754486083984,
+        "y1": 466.81561279296875,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 73.627197265625,
+        "y0": 454.139404296875,
+        "x1": 84.65928649902344,
+        "y1": 466.5270690917969,
+        "size": 12.387657165527344,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 83.93980407714844,
+        "y0": 438.4984130859375,
+        "x1": 115.83692932128906,
+        "y1": 465.027099609375,
+        "size": 26.528701782226562,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 84.17962646484375,
+        "y0": 456.30419921875,
+        "x1": 89.69567108154297,
+        "y1": 467.3362121582031,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 89.33592987060547,
+        "y0": 454.3885192871094,
+        "x1": 93.05326080322266,
+        "y1": 461.8231201171875,
+        "size": 7.434606075286865,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "×",
+        "eq": true,
+        "x0": 95.33163452148438,
+        "y0": 456.30419921875,
+        "x1": 104.27865600585938,
+        "y1": 467.3362121582031,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 105.04467010498047,
+        "y0": 456.30419921875,
+        "x1": 110.56071472167969,
+        "y1": 467.3362121582031,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 110.32088470458984,
+        "y0": 454.3885192871094,
+        "x1": 114.03821563720703,
+        "y1": 461.8231201171875,
+        "size": 7.434606075286865,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 115.95684051513672,
+        "y0": 455.8245544433594,
+        "x1": 124.51773834228516,
+        "y1": 466.8565673828125,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 126.50926971435547,
+        "y0": 456.30419921875,
+        "x1": 132.0253143310547,
+        "y1": 467.3362121582031,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 131.78549194335938,
+        "y0": 456.30419921875,
+        "x1": 137.30152893066406,
+        "y1": 467.3362121582031,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 137.06170654296875,
+        "y0": 455.0887145996094,
+        "x1": 148.0937957763672,
+        "y1": 466.5903625488281,
+        "size": 11.5016508102417,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "",
+        "eq": true,
+        "x0": 147.25439453125,
+        "y0": 448.44158935546875,
+        "x1": 159.60552978515625,
+        "y1": 464.9495544433594,
+        "size": 16.50797462463379,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "□",
+        "eq": true,
+        "x0": 147.4942169189453,
+        "y0": 455.6637268066406,
+        "x1": 158.52630615234375,
+        "y1": 466.6957092285156,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 473.5306091308594,
+        "x1": 62.115455627441406,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "[",
+        "eq": false,
+        "x0": 62.11545181274414,
+        "y0": 473.5306091308594,
+        "x1": 67.6314926147461,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "중",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 473.5306091308594,
+        "x1": 78.66358947753906,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "단",
+        "eq": false,
+        "x0": 78.5433349609375,
+        "y0": 473.5306091308594,
+        "x1": 89.57542419433594,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "원",
+        "eq": false,
+        "x0": 89.57542419433594,
+        "y0": 473.5306091308594,
+        "x1": 100.60751342773438,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "]",
+        "eq": false,
+        "x0": 100.60784912109375,
+        "y0": 473.5306091308594,
+        "x1": 106.12389373779297,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 106.12389373779297,
+        "y0": 473.5306091308594,
+        "x1": 111.63993835449219,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "근",
+        "eq": false,
+        "x0": 111.52001953125,
+        "y0": 473.5306091308594,
+        "x1": 122.55210876464844,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "호",
+        "eq": false,
+        "x0": 122.55210876464844,
+        "y0": 473.5306091308594,
+        "x1": 133.58419799804688,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "를",
+        "eq": false,
+        "x0": 133.58419799804688,
+        "y0": 473.5306091308594,
+        "x1": 144.6162872314453,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 144.49603271484375,
+        "y0": 473.5306091308594,
+        "x1": 150.01206970214844,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "포",
+        "eq": false,
+        "x0": 150.01242065429688,
+        "y0": 473.5306091308594,
+        "x1": 161.0445098876953,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "함",
+        "eq": false,
+        "x0": 161.0445098876953,
+        "y0": 473.5306091308594,
+        "x1": 172.07659912109375,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "한",
+        "eq": false,
+        "x0": 171.9563446044922,
+        "y0": 473.5306091308594,
+        "x1": 182.98843383789062,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 182.98843383789062,
+        "y0": 473.5306091308594,
+        "x1": 188.5044708251953,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "식",
+        "eq": false,
+        "x0": 188.5048065185547,
+        "y0": 473.5306091308594,
+        "x1": 199.53689575195312,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "의",
+        "eq": false,
+        "x0": 199.41665649414062,
+        "y0": 473.5306091308594,
+        "x1": 210.44874572753906,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 210.44873046875,
+        "y0": 473.5306091308594,
+        "x1": 215.9647674560547,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "계",
+        "eq": false,
+        "x0": 215.96511840820312,
+        "y0": 473.5306091308594,
+        "x1": 226.99720764160156,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "산",
+        "eq": false,
+        "x0": 226.876953125,
+        "y0": 473.5306091308594,
+        "x1": 237.90904235839844,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 237.90904235839844,
+        "y0": 473.5306091308594,
+        "x1": 243.42507934570312,
+        "y1": 484.5625915527344,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 56.59941101074219,
+        "y0": 491.1576843261719,
+        "x1": 62.115455627441406,
+        "y1": 502.1896667480469,
+        "size": 11.03199577331543,
+        "bol": true
+      },
+      {
+        "page": 0,
+        "c": "[",
+        "eq": false,
+        "x0": 62.11545181274414,
+        "y0": 491.1576843261719,
+        "x1": 67.6314926147461,
+        "y1": 502.1896667480469,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "난",
+        "eq": false,
+        "x0": 67.63150024414062,
+        "y0": 491.1576843261719,
+        "x1": 78.66358947753906,
+        "y1": 502.1896667480469,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "이",
+        "eq": false,
+        "x0": 78.5433349609375,
+        "y0": 491.1576843261719,
+        "x1": 89.57542419433594,
+        "y1": 502.1896667480469,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "도",
+        "eq": false,
+        "x0": 89.57542419433594,
+        "y0": 491.1576843261719,
+        "x1": 100.60751342773438,
+        "y1": 502.1896667480469,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "]",
+        "eq": false,
+        "x0": 100.60784912109375,
+        "y0": 491.1576843261719,
+        "x1": 106.12389373779297,
+        "y1": 502.1896667480469,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 106.12389373779297,
+        "y0": 491.1576843261719,
+        "x1": 111.63993835449219,
+        "y1": 502.1896667480469,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": "하",
+        "eq": false,
+        "x0": 111.52001953125,
+        "y0": 491.1576843261719,
+        "x1": 122.55210876464844,
+        "y1": 502.1896667480469,
+        "size": 11.03199577331543,
+        "bol": false
+      },
+      {
+        "page": 0,
+        "c": " ",
+        "eq": false,
+        "x0": 122.55210876464844,
+        "y0": 491.1576843261719,
+        "x1": 128.06814575195312,
+        "y1": 502.1896667480469,
+        "size": 11.03199577331543,
+        "bol": false
+      }
+    ],
+    "decodedText": "2. □ 안에 알맞은 수 중에서 가장 작은 것은? [4점]① ⁄3√⁄10=√⁄⁄□10② ⁄√⁄105=⁄2√⁄□③ ⁄51√⁄50=√⁄□④ √⁄108=□√⁄3⑤ √⁄22×53=10√⁄□ [중단원] 근호를 포함한 식의 계산  [난이도] 하 ",
+    "freshParserQuestion": {
+      "number": 2,
+      "type": "객관식",
+      "score": 4.0,
+      "topic": "근호를 포함한 식의 계산",
+      "difficulty": "하",
+      "contents": [
+        {
+          "type": "equation",
+          "value": "□"
+        },
+        {
+          "type": "text",
+          "value": "안에 알맞은 수 중에서 가장 작은 것은?"
+        }
+      ],
+      "choices": [
+        {
+          "number": 1,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "\\frac{√10}{3}=√□10"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "\\frac{5}{√10}=\\frac{√□}{2}"
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "51√50=√□"
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "√108=□√3"
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "contents": [
+            {
+              "type": "equation",
+              "value": "√2^{2}×5^{3}=10√□"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "figureCorrespondence": [],
+  "contentApproved": false
+}
