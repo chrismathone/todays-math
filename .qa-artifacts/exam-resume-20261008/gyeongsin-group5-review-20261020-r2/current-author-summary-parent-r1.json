@@ -1,0 +1,266 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T17:44:24.472Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group5-review-20261020-r2/current-author-index-parent-r1.json",
+    "sha256": "0b55d73cdda4709dda618d2fe71641e5e01b313ca502d008e4f3566d892af7b9"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 1,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 1,
+    "figureInstances": 1,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    5
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 5,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group5-r2-q05",
+      "studentDigest": "c5372fbdf123fd7fbfe98b7d7d9ae889787a7b6970e600800fc7e704a7bbf428",
+      "candidateDigest": "28097999c8fc94bad3345029c2ea505ac3016a1e5ede11545b10ffd1cb53a636",
+      "assetDigest": "2eb15c2abe2667236bc8ff88befb081fdf48214726ce713a22a54c89af4e3087",
+      "solveDigest": "b1786cfb1e194c6836bbc8fd52388bc285bc42f15d9728bfa15ed2e161c1a1c1",
+      "reportSha256": "179780447fac28245e439c2f1f9b2ea8baac83463149c3aaf7a3e1526be9892d",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "scoreAppropriate": true,
+        "unitFamilyFit": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-5",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group5-r2-q05",
+        "sourceContentSha256": "2b8db0bf9afc612d26b789d5ea10ad3158dfa5340ba0827e26d6cb5579c7c23f",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "Observed originalH page2 q5 component and completedq5. Completed crop and original scan roles distinguished; whole-pair/year/rights certification remains separate.",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group5-r2/source-q05-component-observation-r1.json",
+          "sha256": "484aded7ae2b42568adf5106bd2b5387e902c3cdf5cd23873756e342f6a39591"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "completedQuestionCrop": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q05-part1.png",
+          "sha256": "60d50e2c270f310bfacd9a694ea4d1d2650f0d14573250ac6dc39cdb77095a68"
+        },
+        "originalQuestionRender": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-02.webp",
+          "sha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0",
+          "physicalPdfPage": 2,
+          "printedQuestion": 5
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 5,
+        "difficultyProposal": "표준",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "주어진 원 반지름에서 수선의 발로 나뉜 선분 복원",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각의 활용",
+            "semester": 2,
+            "orderIndex": 487,
+            "problemCodePrefix": "J30604"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "실제원주각활용UnitUUID와원주각선수를연결한다. 실제닮음·피타고라스역추론전체평가목적과일치하는livefamily는확인전null."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-FigureSpec-v2-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "Exact integer-pair arithmetic over sqrt2 proves circle/diameter/chord/foot conditions; floating values only place engine points.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-q05-r2.ts",
+          "renderingReviewPending": true,
+          "lengthUnit": "cm",
+          "intentionallyOmittedFigureLabels": [
+            {
+              "name": "givenPQ",
+              "value10PreservedInStem": true,
+              "reason": "Short chord dimension collides with circle in preserved strict r1; do not silently drop any stem condition."
+            }
+          ]
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": null,
+        "prerequisiteUnits": [
+          {
+            "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각",
+            "semester": 2,
+            "orderIndex": 486,
+            "problemCodePrefix": "J30603"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "지름에대한원주각",
+            "같은호의원주각",
+            "삼각형의닮음비",
+            "피타고라스정리"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "namedPrerequisitesWithoutCapturedUuid": [
+          "삼각형의AA닮음과대응변의길이의비",
+          "피타고라스정리와양수길이"
+        ]
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "두현의길이와수선의발로나눈짧은선분을주고원의반지름을구한다.",
+        "after": "원의반지름과두현의길이를주고수선의발로나눈짧은선분을구한다.",
+        "sharedConcept": "지름에대한원주각90°,동일호원주각같음,직각삼각형닮음과피타고라스",
+        "sharedProcedure": "지름끝점을보조선으로연결→두직각삼각형의각대응/닮음→수선길이및현/지름관계→피타고라스와양수길이로미지량결정",
+        "actualStructuralChange": "원문의최종반지름을조건으로,원문의입력분할선분을질문대상으로역전했다. 피타고라스로높이를먼저구하던순서가닮음으로높이를복원한뒤피타고라스를쓰는순서로바뀐다. 중심이삼각형밖에있는새조건으로그림도전량작도했다. 단순숫자/이름교체를완료근거로삼지않는다.",
+        "domainProof": "저자전용정확한좌표a+b√2쌍연산으로P,Q,R,D가반지름15의같은원위이고PD가실제지름이며PQ10,PR24,PH8,QH6임을확인했다. H는Q(-6,0)와R(16√2,0)사이이다. 학생은이좌표를쓸필요가없다. 닮음은PH8을유일하게정하고양수길이는QH6하나만남긴다. 보기다섯값은서로다르다. 픽셀은계산근거가아니다.",
+        "difficultyBasis": "원문5점의동일호·직각·닮음·피타고라스를역순서로사용한다. 난도라벨은불명이며표준5점은독립검토전제안이다. 원과비례의일반공식/고등외접반지름공식없이실제두삼각형의각대응과닮음비를학생해설에모두쓴다."
+      },
+      "packageDigest": "f88d1c91bd4446e4deaecef55b5fc6df37b1b66fb110e335918ea9a9378ec504",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json",
+        "sha256": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "b4ab1b47fd6fcf248c2468591cc1df44c9d43177808a5747471f22c6a6dd287c",
+          "svgSha256": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q05-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group5-review-20261020-r2\\blind\\solve\\q05.json",
+        "sha256": "95166e93887c2655dfedf57f81eee3082a809356de238afeb96d7e2941b7abb1"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group5-review-20261020-r2/verification/reports/q05.json",
+        "sha256": "179780447fac28245e439c2f1f9b2ea8baac83463149c3aaf7a3e1526be9892d"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group5-review-20261020-r2/verification/verification-manifest.json",
+        "sha256": "c281850dff8ecea79b0ca5160862054615ee498e011f8812ecbf5da5a05f713d"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group5-review-20261020-r2/blind/blind-manifest.json",
+        "sha256": "be2abe63283c4393446dcd9c62f0cbd6124dc96ffd94192a73373728a3f028e5"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group5-review-20261020-r2/package/private/q05/candidate.json",
+        "sha256": "1b609c978bff7ea45cfd063ab9caf87423274126fb0870045a658bd184d42860"
+      },
+      "candidateContentWithoutRelocatedPaths": "d466085b5977c837fe78c9653352ebee9cd92c099e4b06704f5b0d01d0496a92",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group5-r2/q05.json",
+        "sha256": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8"
+      },
+      "authorCandidateDigest": "30ad323cd9a49981713ee6c9150f5bc77a1f3db68c6ea74b3b36035d22636e91"
+    }
+  ],
+  "reviewBindingDigest": "5a37ce102219d454a9cfc1efc512f2234e92f07718548d55e9ce9ec4067766f7",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

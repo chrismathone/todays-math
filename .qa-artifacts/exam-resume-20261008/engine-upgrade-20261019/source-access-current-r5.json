@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-19T17:32:27.569574+00:00",
+  "observedCommands": [
+    "Get-PSDrive -Name N -ErrorAction SilentlyContinue",
+    "Test-Path -LiteralPath N:/personal/exams (actual Korean path queried)"
+  ],
+  "NpsDrivePresent": false,
+  "NoriginalFolderAccessibleInThisProcess": false,
+  "scope": "This Windows process only; globalNAS/connectivity/otherlogons unknown. No mapping/credential changes. Continue cached2025sources, not whole-goal blocking.",
+  "originalsModified": false,
+  "dbWrites": 0
+}

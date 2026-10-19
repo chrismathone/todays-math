@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-19T17:19:55.553Z",
+  "branch": "chrismathone/exam-extraction-resume-20261008",
+  "pushedSha": "c0326155f3f0edb602c1b87351a42f4af8e4e65b",
+  "remoteSha": "c0326155f3f0edb602c1b87351a42f4af8e4e65b",
+  "remoteShaVerified": true,
+  "integratedMain": "0e858c133d08c4b6a7a0bd83c5ca08860a9df402",
+  "targetBefore": "f0f6dbb7839f254ec3486306186b7f8044e5f6cf",
+  "fastForward": true,
+  "force": false,
+  "prepush": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r31-receipt.json",
+    "sha256": "c550375f38a034842be65f85f2702950f5cb433a3aae2c71f0e7d107567a3ecf"
+  },
+  "counts": {
+    "authoredCurrentCandidates": 133,
+    "currentFigureInstances": 93,
+    "recreatedStatTables": 8,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 133,
+    "independentMathReviewed": 132,
+    "independentFullGradeReviewed": 132,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 117,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 132,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 1,
+    "failedStudentRenderDraftVersions": 1
+  },
+  "dbWrites": 0,
+  "deploy": false,
+  "featureMergedIntoMain": false
+}

@@ -1,0 +1,47 @@
+{
+  "kind": "authored-vector-render-replay/v1",
+  "candidate": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-negative-20261020-r1\\candidate-control.json",
+    "sha256": "74e29b91de7074ddb9c19718dbaed42f2879f752fe2360ce1f1c98430f776293"
+  },
+  "twinExternalId": "exam-twin-control-vector-replay-radius-q06",
+  "candidateDigest": "b84e09dff898b9f7981e8bba2418c5130f94be19c56e7c84b3ede2b589ffdaea",
+  "studentDigest": "b597e4281e86f9401ff41b0ee6ebdd9dade4b71e69ae27c93279c37518a402e9",
+  "assetDigest": "6a63fb224ad5c18ad3444665cb12c2ed8d28063c1d9c500d0ed1f77448a32b4e",
+  "status": "held",
+  "assets": [
+    {
+      "index": 0,
+      "role": "stem",
+      "specSha256": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+      "expectedSvgSha256": "34172784fed4658fa8ef5ace9025cc98ebf496d7fffe0f181c790eec43ae08c4",
+      "intendedWidthMm": 70,
+      "replayedSvgSha256": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+      "exactByteParity": false,
+      "status": "mismatch",
+      "droppedDimensions": []
+    }
+  ],
+  "allVectorAssetsReproduced": false,
+  "inputHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-negative-20261020-r1\\candidate-control.json": "74e29b91de7074ddb9c19718dbaed42f2879f752fe2360ce1f1c98430f776293",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-negative-20261020-r1\\figure.spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-render-replay-negative-20261020-r1\\figure.svg": "34172784fed4658fa8ef5ace9025cc98ebf496d7fffe0f181c790eec43ae08c4"
+  },
+  "inputsUnchanged": true,
+  "candidateValidation": {
+    "structurallyValid": true,
+    "surfaceKeywordViolations": [],
+    "studentMathNotationWarnings": [],
+    "semanticGradeReviewStillRequired": true,
+    "metadataAnswerFormatMismatch": false
+  },
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "newAuthoredFigures": 0,
+  "dbWrites": 0
+}

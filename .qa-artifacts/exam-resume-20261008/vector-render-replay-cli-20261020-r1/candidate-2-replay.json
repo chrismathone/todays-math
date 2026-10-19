@@ -1,0 +1,47 @@
+{
+  "kind": "authored-vector-render-replay/v1",
+  "candidate": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json",
+    "sha256": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8"
+  },
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group5-r2-q05",
+  "candidateDigest": "30ad323cd9a49981713ee6c9150f5bc77a1f3db68c6ea74b3b36035d22636e91",
+  "studentDigest": "c5372fbdf123fd7fbfe98b7d7d9ae889787a7b6970e600800fc7e704a7bbf428",
+  "assetDigest": "2eb15c2abe2667236bc8ff88befb081fdf48214726ce713a22a54c89af4e3087",
+  "status": "reproduced",
+  "assets": [
+    {
+      "index": 0,
+      "role": "stem",
+      "specSha256": "b4ab1b47fd6fcf248c2468591cc1df44c9d43177808a5747471f22c6a6dd287c",
+      "expectedSvgSha256": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01",
+      "intendedWidthMm": 70,
+      "replayedSvgSha256": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01",
+      "exactByteParity": true,
+      "status": "reproduced",
+      "droppedDimensions": []
+    }
+  ],
+  "allVectorAssetsReproduced": true,
+  "inputHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.json": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.spec.json": "b4ab1b47fd6fcf248c2468591cc1df44c9d43177808a5747471f22c6a6dd287c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group5-r2\\q05.figure.svg": "4e86594dc6d43aa3764f4d4577ab28de75962440beb7e5b67aeddc6ff95f7a01"
+  },
+  "inputsUnchanged": true,
+  "candidateValidation": {
+    "structurallyValid": true,
+    "surfaceKeywordViolations": [],
+    "studentMathNotationWarnings": [],
+    "semanticGradeReviewStillRequired": true,
+    "metadataAnswerFormatMismatch": false
+  },
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "newAuthoredFigures": 0,
+  "dbWrites": 0
+}

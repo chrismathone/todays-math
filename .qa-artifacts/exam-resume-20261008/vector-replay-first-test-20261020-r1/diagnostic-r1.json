@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-19T17:23:03.151717+00:00",
+  "evidence": "observed initial node --test tool stdout; full TAP was not separately saved",
+  "actualPassed": 7,
+  "actualFailed": 1,
+  "failure": "Test expected /must be unset/ but guard correctly threw Offline vendored replay requires STUDIO_ENGINE_URL to be unset",
+  "environmentGuardDidReject": true,
+  "firstActualCLIReproduced": 2,
+  "firstCLIReceipt": ".qa-artifacts/exam-resume-20261008/vector-render-replay-cli-20261020-r1/replay-manifest.json",
+  "preservedFirstSourceAndTest": [
+    {
+      "source": "scripts/import/exam-twin/vectorReplay.mjs",
+      "copy": ".qa-artifacts/exam-resume-20261008/vector-replay-first-test-20261020-r1/vectorReplay.mjs.first.txt",
+      "sha256": "cb7e3de6311614654965b2f5970ee4b5499a92ac2fecf40fb6ffdde63f06506f"
+    },
+    {
+      "source": "scripts/import/exam-twin/vectorReplay.test.mjs",
+      "copy": ".qa-artifacts/exam-resume-20261008/vector-replay-first-test-20261020-r1/vectorReplay.test.mjs.first.txt",
+      "sha256": "785a9ae5a31893a054140a6823995d0ced8472be597630577b84d3fbb3b668d5"
+    }
+  ],
+  "productionOrReviewApprovalByTheseTests": false,
+  "dbWrites": 0
+}

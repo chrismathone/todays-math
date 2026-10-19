@@ -1,0 +1,74 @@
+{
+  "utc": "2026-10-19T17:26:01.665Z",
+  "before": {
+    "scripts/import/exam-twin/vectorReplay.mjs": "98b285090d949c581a5413988d71be9fc38bec6a9a9be5479d7ec50b899210f2",
+    "scripts/import/exam-twin/replay-vector-figures.mjs": "76ab379be797831e925726e5cdbeea6d47ca21342171af7d8c5327ad960e893a",
+    "scripts/import/exam-twin/vectorReplay.test.mjs": "f5db21c28b8082511de5322715df026f93a22cda4aed8a960ceb257ad6731d5c",
+    "scripts/import/exam-twin/answerPresentation.test.mjs": "cda540e57aeedbb57a309fa1b746dcbd5bd942266ca974ae0fc4b33a5af6a92a",
+    "scripts/import/exam-twin/authoredMathNotation.test.mjs": "5e6609605d3bcd6e9854e68fdafde606466eb70642e9060a392c5c719d2b8875",
+    "scripts/import/exam-twin/candidatePack.test.mjs": "1b20e6319a510b2958062166e0db57b1bd76eb392955ca3c22f3bc3209c388f0",
+    "scripts/import/exam-twin/computedChoiceChecks.test.mjs": "7e93b5f266ebc95b71f76dad496c135e2dd71c848bca7a0f5f8995d654174359",
+    "scripts/import/exam-twin/constantAnswers.test.mjs": "77130006f26cfd5edc97616100f16bb85079171dbc640b9e95d6bdeb29cfa511",
+    "scripts/import/exam-twin/prepare-sealed-review.test.mjs": "49980fc2455cc236a05eaccdb221438055179f2a08eb641129988b0ff162a0d4",
+    "scripts/import/exam-twin/rebind-identical-review.test.mjs": "4ffaad3f983d18328c7805beab76dba0bf67484a5effac1179b385fd4822c0a3",
+    "scripts/import/exam-twin/recordCorrectionAnswer.test.mjs": "5b490df946af4fac792d47ef8d8c073b42deedc8faee281bd7faef47c588fd4e",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "39a487451e39ca02f1c20038ad26efc36c79983cbd2617b4ffc8febe22fb162a",
+    "scripts/import/exam-twin/sourceIdentity.test.mjs": "75a034880045119d34bd2c2422c6f503083b7e1eba911952a75e95f5d6760e9a",
+    "scripts/import/exam-twin/statisticsConditions.test.mjs": "fcd129705b430af8ad0ac2706afe80a984160d0a979f682699c725b85fbfff37",
+    "scripts/import/exam-twin/candidatePack.mjs": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345"
+  },
+  "after": {
+    "scripts/import/exam-twin/vectorReplay.mjs": "98b285090d949c581a5413988d71be9fc38bec6a9a9be5479d7ec50b899210f2",
+    "scripts/import/exam-twin/replay-vector-figures.mjs": "76ab379be797831e925726e5cdbeea6d47ca21342171af7d8c5327ad960e893a",
+    "scripts/import/exam-twin/vectorReplay.test.mjs": "f5db21c28b8082511de5322715df026f93a22cda4aed8a960ceb257ad6731d5c",
+    "scripts/import/exam-twin/answerPresentation.test.mjs": "cda540e57aeedbb57a309fa1b746dcbd5bd942266ca974ae0fc4b33a5af6a92a",
+    "scripts/import/exam-twin/authoredMathNotation.test.mjs": "5e6609605d3bcd6e9854e68fdafde606466eb70642e9060a392c5c719d2b8875",
+    "scripts/import/exam-twin/candidatePack.test.mjs": "1b20e6319a510b2958062166e0db57b1bd76eb392955ca3c22f3bc3209c388f0",
+    "scripts/import/exam-twin/computedChoiceChecks.test.mjs": "7e93b5f266ebc95b71f76dad496c135e2dd71c848bca7a0f5f8995d654174359",
+    "scripts/import/exam-twin/constantAnswers.test.mjs": "77130006f26cfd5edc97616100f16bb85079171dbc640b9e95d6bdeb29cfa511",
+    "scripts/import/exam-twin/prepare-sealed-review.test.mjs": "49980fc2455cc236a05eaccdb221438055179f2a08eb641129988b0ff162a0d4",
+    "scripts/import/exam-twin/rebind-identical-review.test.mjs": "4ffaad3f983d18328c7805beab76dba0bf67484a5effac1179b385fd4822c0a3",
+    "scripts/import/exam-twin/recordCorrectionAnswer.test.mjs": "5b490df946af4fac792d47ef8d8c073b42deedc8faee281bd7faef47c588fd4e",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "39a487451e39ca02f1c20038ad26efc36c79983cbd2617b4ffc8febe22fb162a",
+    "scripts/import/exam-twin/sourceIdentity.test.mjs": "75a034880045119d34bd2c2422c6f503083b7e1eba911952a75e95f5d6760e9a",
+    "scripts/import/exam-twin/statisticsConditions.test.mjs": "fcd129705b430af8ad0ac2706afe80a984160d0a979f682699c725b85fbfff37",
+    "scripts/import/exam-twin/candidatePack.mjs": "0acb61d7f1bbaae37cd6f8164fd532e4dbf8f465d00bcfd73cf2f4a50d6aa345"
+  },
+  "sourceUnchanged": true,
+  "files": 12,
+  "tests": [
+    "scripts/import/exam-twin/answerPresentation.test.mjs",
+    "scripts/import/exam-twin/authoredMathNotation.test.mjs",
+    "scripts/import/exam-twin/candidatePack.test.mjs",
+    "scripts/import/exam-twin/computedChoiceChecks.test.mjs",
+    "scripts/import/exam-twin/constantAnswers.test.mjs",
+    "scripts/import/exam-twin/prepare-sealed-review.test.mjs",
+    "scripts/import/exam-twin/rebind-identical-review.test.mjs",
+    "scripts/import/exam-twin/recordCorrectionAnswer.test.mjs",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+    "scripts/import/exam-twin/sourceIdentity.test.mjs",
+    "scripts/import/exam-twin/statisticsConditions.test.mjs",
+    "scripts/import/exam-twin/vectorReplay.test.mjs"
+  ],
+  "passed": 144,
+  "failed": 0,
+  "skipped": 0,
+  "outcomes": [
+    {
+      "name": "vector-replay-tests-r1.tap",
+      "status": 0
+    },
+    {
+      "name": "vector-replay-lint-r1.log",
+      "status": 0
+    }
+  ],
+  "actualVectorReplay": {
+    "path": ".qa-artifacts/exam-resume-20261008/vector-render-replay-cli-20261020-r2/replay-manifest.json",
+    "sha256": "192e55fb08a0d0b2680004f76560c46d2bc56750384a4b5147c9c7e37dd3f2b9"
+  },
+  "newManualQuestions": 0,
+  "newFigures": 0,
+  "approval": false,
+  "dbWrites": 0
+}

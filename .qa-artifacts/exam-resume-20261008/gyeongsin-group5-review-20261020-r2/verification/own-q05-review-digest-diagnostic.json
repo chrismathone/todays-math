@@ -1,0 +1,20 @@
+{
+  "initialRun": "Assertion failed at combined canonical digest assertion before report output; raw and input byte checks already passed. Preserved; examine declared digest encoding instead of changing input.",
+  "observations": {
+    "solve": {
+      "declared": "b1786cfb1e194c6836bbc8fd52388bc285bc42f15d9728bfa15ed2e161c1a1c1",
+      "sorted": "b1786cfb1e194c6836bbc8fd52388bc285bc42f15d9728bfa15ed2e161c1a1c1",
+      "insertionOrder": "84e2b0a3a0d5ee8fc722eb7f07dabefcba250e1556bbd285a77e76404863ea45"
+    },
+    "candidate": {
+      "declared": "28097999c8fc94bad3345029c2ea505ac3016a1e5ede11545b10ffd1cb53a636",
+      "sorted": "e7b19450956f7330af532c418a50841dbe96b4c55f494144ff9a0e2b3f2850f9",
+      "insertionOrder": "7304d31dedccd922aecd2aadf126115b2fa5430aee9515067d2528db10a56997"
+    },
+    "asset": {
+      "declared": "2eb15c2abe2667236bc8ff88befb081fdf48214726ce713a22a54c89af4e3087",
+      "sorted": "03e45adf0fd2f89054c1f851da1be708785090de285975e4f0590b6bae362715",
+      "insertionOrder": "320e64dd85d7dcb2b4772b17c6f9a83be9cb621381b41f8f9509b17ee96340e5"
+    }
+  }
+}

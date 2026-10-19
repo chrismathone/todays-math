@@ -1,0 +1,47 @@
+{
+  "kind": "authored-vector-render-replay/v1",
+  "candidate": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r1\\own-pre-snapshot-fixture\\own-candidate.json",
+    "sha256": "71f15362ae46d6bc94bc854bd6f25ebe1d4264c5977f8a500d8df119da06c76d"
+  },
+  "twinExternalId": "exam-twin-own-presnapshot-race-control",
+  "candidateDigest": "4c519006dcb4aa18e66f95dd52e5a6639ea4918218d72bdbc3e87a2afdb0ddd9",
+  "studentDigest": "f06f095be41ffa41e0244aa7502699b593e80f63d6f96d52b88f375639a95a30",
+  "assetDigest": "20fa33c0d677aded936b0adc54e432970bc198e68f64c2c3046e752d68c0d100",
+  "status": "reproduced",
+  "assets": [
+    {
+      "index": 0,
+      "role": "stem",
+      "specSha256": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+      "expectedSvgSha256": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+      "intendedWidthMm": 70,
+      "replayedSvgSha256": "69f53b0c707230d6a2c7e9554100ad1a7dfd293e986e8cb177971cc4cccf9160",
+      "exactByteParity": true,
+      "status": "reproduced",
+      "droppedDimensions": []
+    }
+  ],
+  "allVectorAssetsReproduced": true,
+  "inputHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r1\\own-pre-snapshot-fixture\\own-candidate.json": "71f15362ae46d6bc94bc854bd6f25ebe1d4264c5977f8a500d8df119da06c76d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r1\\own-pre-snapshot-fixture\\own-spec.json": "83b0cd17c8e648a368ceabab17e098f6fb7e3219322f47dcffc968b283c399c6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\vector-replay-code-audit-20261020-r1\\own-pre-snapshot-fixture\\own-saved.svg": "34172784fed4658fa8ef5ace9025cc98ebf496d7fffe0f181c790eec43ae08c4"
+  },
+  "inputsUnchanged": true,
+  "candidateValidation": {
+    "structurallyValid": true,
+    "surfaceKeywordViolations": [],
+    "studentMathNotationWarnings": [],
+    "semanticGradeReviewStillRequired": true,
+    "metadataAnswerFormatMismatch": false
+  },
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "newAuthoredFigures": 0,
+  "dbWrites": 0
+}
