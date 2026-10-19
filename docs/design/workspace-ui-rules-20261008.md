@@ -109,6 +109,12 @@
 
 ## 3. 남은 구현 차이와 후속 점검
 
+### 지점관리 — `/branch` (2026-10-19)
+
+독립 관리 셸과 기존 권한을 유지하며, 세부 메뉴는 **반 관리 → 학생 반 배정 → 계정 관리** 순서다. [BranchAccounts](../../src/components/branch/BranchAccounts.tsx)의 직원 목록은 이름·계정 유형·이메일, 담당 강사 목록은 반 이름·학년·학생 수·담당 강사를 표의 열로 맞춘다. [CSS](../../src/components/branch/BranchAccounts.module.css)는 기존 토큰을 사용하고, 가용 컨테이너 600px 이하에서는 열 이름을 각 값에 붙여 아래로 접는다. 행에는 hover 배경이나 손가락 커서를 주지 않는다.
+
+학생 목록은 지점 권한과 반 소속을 검사하는 `/api/branch/students`로 읽으며, 반 선택기는 운영 중인 반만 받는다. 실계정·실DB 검증과 구분한 예시 데이터의 폭별 화면·동작 검증은 [수정 보고서](../planning/tracks/reports/branch-accounts-fix-codex-20261019.md)에 기록한다.
+
 ### 수학 채점 · 오답 복습 — `/tests/{id}/grade` (2026-10-11)
 
 현재 진입은 확정·인쇄 시험지의 채점 버튼이며, 독립 채점 경로의 `AppChrome`을 유지한다. `UnifiedWorkspace`의 새 메뉴를 추가한 것은 아니다. [GradeSheet](../../src/components/test/GradeSheet.tsx)가 채점표와 저장을, [SavedRetryPanel](../../src/components/test/SavedRetryPanel.tsx)이 학생 선택·저장된 기록의 오답·원문별 변형 검토를 소유한다.

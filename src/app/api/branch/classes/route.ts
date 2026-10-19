@@ -11,7 +11,11 @@ async function handleGet(request: Request) {
       { status: 403 },
     );
   const classes = await db.class.findMany({
-    where: { branchId: access.account.branchId },
+    where: {
+      branchId: access.account.branchId,
+      active: true,
+      OR: [{ closedAt: null }, { closedAt: { gt: new Date() } }],
+    },
     select: {
       id: true,
       name: true,

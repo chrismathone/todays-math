@@ -24,7 +24,11 @@ export default async function BranchPage({
     !["owner", "manager"].includes(account.branchRole ?? "")
   )
     redirect(account.isSuperAdmin ? "/admin" : "/");
-  const tab = (await searchParams)?.tab === "classes" ? "classes" : "accounts";
+  const requestedTab = (await searchParams)?.tab;
+  const tab =
+    requestedTab === "classes" || requestedTab === "students"
+      ? requestedTab
+      : "accounts";
 
   return (
     <div className={s.shell}>
@@ -78,6 +82,13 @@ export default async function BranchPage({
             aria-current={tab === "classes" ? "page" : undefined}
           >
             반 관리
+            <RouteLinkStatus />
+          </Link>
+          <Link
+            href="/branch?tab=students"
+            aria-current={tab === "students" ? "page" : undefined}
+          >
+            학생 반 배정
             <RouteLinkStatus />
           </Link>
           <Link
