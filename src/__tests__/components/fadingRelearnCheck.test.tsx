@@ -136,6 +136,160 @@ function view(api = source(), current = item, onConflict = vi.fn()) {
   );
   return { api, close, onQueue, onConflict, ...rendered };
 }
+describe("student relearn wording opt-in", () => {
+  it("hides a student status when starting is disallowed, preserving legacy counts by default", async () => {
+    const api = source();
+    const { result: hook } = renderHook(() => useFadingRelearn(api));
+    await act(async () => {});
+    const { container, rerender } = render(
+      <FadingRelearnStatus
+        controller={hook.current}
+        allowStart={false}
+        student
+      />,
+    );
+    expect(container).toBeEmptyDOMElement();
+    rerender(
+      <FadingRelearnStatus controller={hook.current} allowStart={false} />,
+    );
+    expect(screen.getByRole("complementary")).toHaveTextContent(
+      "지금 1 · 대조 0 · 기다리는 문장 0",
+    );
+  });
+  it("uses child wording at the daily cap and keeps retrying the identical student attempt", async () => {
+    const api = source();
+    vi.mocked(api.grade).mockRejectedValueOnce(
+      new Error("답을 보내지 못했어요"),
+    );
+    vi.mocked(api.grade).mockImplementationOnce(async (attempt) => ({
+      queue: {
+        ...queue([]),
+        limit: {
+          cap: 30,
+          checks: 30,
+          reserved: 0,
+          capped: true,
+          stopped: 0,
+          resumeAt: 86400000,
+        },
+      },
+      result: result(attempt.attemptId),
+    }));
+    render(<QueueHost api={api} student />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "한 번 더 확인하기" }),
+    );
+    fill();
+    fireEvent.click(screen.getByRole("button", { name: "답 확인하기" }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: "같은 답 다시 보내기" }),
+    );
+    expect(await screen.findByRole("status")).toHaveTextContent(
+      "오늘은 여기까지예요.",
+    );
+    expect(screen.getByRole("dialog")).not.toHaveTextContent(
+      /추가 확인|분량|대조|기준안|5분 뒤/,
+    );
+    expect(vi.mocked(api.grade).mock.calls[1]![0]).toEqual(
+      vi.mocked(api.grade).mock.calls[0]![0],
+    );
+    expect(screen.queryByRole("complementary")).not.toBeInTheDocument();
+  });
+  it.each([{ items: [] }, { items: [{ ...item, state: "waiting" as const }] }])(
+    "hides idle and waiting-only student status",
+    async ({ items }) => {
+      const api = source();
+      vi.mocked(api.queue).mockResolvedValue(queue(items));
+      const { container } = render(<QueueHost api={api} student />);
+      await act(async () => {});
+      expect(container).toBeEmptyDOMElement();
+    },
+  );
+  it("keeps only the actionable button and passes student through the modal", async () => {
+    const api = source();
+    render(<QueueHost api={api} student />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "한 번 더 확인하기" }),
+    );
+    expect(screen.getByRole("complementary").textContent).toBe(
+      "한 번 더 확인하기",
+    );
+    expect(
+      screen.getByRole("button", { name: "확인 닫기" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("dialog")).not.toHaveTextContent(
+      /추가 확인|분량|대조|기준안/,
+    );
+    fill();
+    fireEvent.click(screen.getByRole("button", { name: "답 확인하기" }));
+    await screen.findByRole("status");
+    expect(screen.getByLabelText("내가 쓴 답 확인")).toBeInTheDocument();
+    expect(screen.getByRole("dialog")).not.toHaveTextContent(
+      /추가 확인|분량|대조|기준안/,
+    );
+    expect(api.grade).toHaveBeenCalledOnce();
+  });
+  it("keeps failures and refresh available", async () => {
+    const api = source();
+    vi.mocked(api.queue).mockRejectedValueOnce(new Error("불러오지 못했어요"));
+    render(<QueueHost api={api} student />);
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "불러오지 못했어요",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "다시 불러오기" }));
+    await screen.findByRole("button", { name: "한 번 더 확인하기" });
+  });
+  it("preserves persisted comparison actions with child wording", async () => {
+    const api = source();
+    const pending = {
+      ...item,
+      state: "judging" as const,
+      pending: {
+        attemptId: newFadingId(),
+        answers: [
+          { targetId: "p0#1", text: "바깥 중심", outcome: "unknown" as const },
+        ],
+      },
+    };
+    vi.mocked(api.queue).mockResolvedValue(queue([pending]));
+    render(<QueueHost api={api} student />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "쓴 답 확인하기" }),
+    );
+    expect(
+      screen.getByRole("heading", { name: "쓴 답을 확인해요" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("dialog")).not.toHaveTextContent(
+      /추가 확인|분량|대조|기준안/,
+    );
+    expect(screen.getByRole("button", { name: "확인 마치기" })).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "같은 뜻" }));
+    fireEvent.click(screen.getByRole("button", { name: "확인 마치기" }));
+    await screen.findByRole("status");
+    expect(api.judge).toHaveBeenCalledWith(
+      expect.objectContaining({
+        attemptId: pending.pending.attemptId,
+        judged: { "p0#1": "same" },
+      }),
+    );
+  });
+  it("preserves default legacy copy and labels", async () => {
+    render(<QueueHost api={source()} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "추가 확인 시작" }),
+    );
+    expect(
+      screen.getByRole("complementary", { name: "추가 재학습 현황" }),
+    ).toHaveTextContent("기본 분량과 따로 확인해요.");
+    expect(screen.getByRole("dialog")).toHaveTextContent(
+      "문장 하나를 확인해요. 기본 학습 분량과 별도로 기록돼요.",
+    );
+    expect(
+      screen.getByRole("button", { name: "추가 확인 닫기" }),
+    ).toBeInTheDocument();
+  });
+});
+
 function fill() {
   fireEvent.change(screen.getByLabelText("빈칸 1"), {
     target: { value: "외심" },
@@ -144,12 +298,18 @@ function fill() {
     target: { value: "반지름" },
   });
 }
-function QueueHost({ api }: { api: FadingRelearnSource }) {
+function QueueHost({
+  api,
+  student = false,
+}: {
+  api: FadingRelearnSource;
+  student?: boolean;
+}) {
   const controller = useFadingRelearn(api);
   return (
     <>
-      <FadingRelearnStatus controller={controller} />
-      <FadingRelearnModal controller={controller} />
+      <FadingRelearnStatus controller={controller} student={student} />
+      <FadingRelearnModal controller={controller} student={student} />
     </>
   );
 }

@@ -24,12 +24,37 @@ import s from "./FadingRelearnCheck.module.css";
 export function FadingRelearnStatus({
   controller,
   allowStart = true,
+  student = false,
 }: {
   controller: FadingRelearnController;
   allowStart?: boolean;
+  student?: boolean;
 }) {
   const { queue, failure, refresh, boundary } = controller;
   if (!queue?.enabled && !failure) return null;
+  const actionable =
+    !!queue?.enabled &&
+    allowStart &&
+    queue.counts.ready + queue.counts.judging > 0;
+  if (student && !actionable && !failure) return null;
+  if (student)
+    return (
+      <aside className={s.status} aria-label="다시 확인하기">
+        {actionable ? (
+          <button type="button" onClick={boundary}>
+            {queue!.counts.judging ? "쓴 답 확인하기" : "한 번 더 확인하기"}
+          </button>
+        ) : null}
+        {failure ? (
+          <div role="alert">
+            <p>{failure}</p>
+            <button type="button" onClick={() => void refresh()}>
+              다시 불러오기
+            </button>
+          </div>
+        ) : null}
+      </aside>
+    );
   return (
     <aside className={s.status} aria-label="추가 재학습 현황">
       {queue?.enabled ? (
@@ -74,8 +99,10 @@ export function FadingRelearnStatus({
 
 export function FadingRelearnModal({
   controller,
+  student = false,
 }: {
   controller: FadingRelearnController;
+  student?: boolean;
 }) {
   const { active, source } = controller;
   const content = active?.content;
@@ -83,6 +110,7 @@ export function FadingRelearnModal({
   return (
     <FadingRelearnCheck
       key={`${active.key}:${active.token}`}
+      student={student}
       item={active}
       content={content}
       source={source}
@@ -103,6 +131,7 @@ export function FadingRelearnCheck({
   onConflict,
   onClose,
   onFailure,
+  student = false,
 }: {
   item: FadingRelearnItem;
   content: FadingRelearnQueue["contents"][string];
@@ -111,6 +140,7 @@ export function FadingRelearnCheck({
   onConflict: () => void | Promise<void>;
   onClose: () => void;
   onFailure?: (error: unknown) => void;
+  student?: boolean;
 }) {
   const proposition = content.concept.propositions.find(
     (row) => row.id === item.propositionId,
@@ -266,25 +296,31 @@ export function FadingRelearnCheck({
       }}
     >
       <header className={s.header}>
-        <span className={s.eyebrow}>오늘의 기억 · 추가 확인</span>
+        <span className={s.eyebrow}>
+          {student ? "오늘의 기억 · 다시 떠올리기" : "오늘의 기억 · 추가 확인"}
+        </span>
         <button
           type="button"
           disabled={busy || !!retry}
           onClick={onClose}
-          aria-label="추가 확인 닫기"
+          aria-label={student ? "확인 닫기" : "추가 확인 닫기"}
         >
           닫기
         </button>
       </header>
       <h2 id={`${prefix}-title`}>
         {pending
-          ? "입력한 답을 대조해요"
+          ? student
+            ? "쓴 답을 확인해요"
+            : "입력한 답을 대조해요"
           : result
             ? "이번 확인을 마쳤어요"
             : "조금 뒤, 다시 떠올려 볼까요?"}
       </h2>
       <p className={s.note}>
-        문장 하나를 확인해요. 기본 학습 분량과 별도로 기록돼요.
+        {student
+          ? "빈칸에 알맞은 말을 떠올려 써 보세요."
+          : "문장 하나를 확인해요. 기본 학습 분량과 별도로 기록돼요."}
       </p>
       {item.changed ? (
         <p className={s.note}>문장이 바뀌어 지금 내용으로 확인해요.</p>
@@ -340,7 +376,9 @@ export function FadingRelearnCheck({
             ))}
           </div>
           <p className={s.note}>
-            Tab 빈칸 이동 · Enter 답 제출 · 답은 제출한 뒤에 확인해요.
+            {student
+              ? "Tab으로 다음 빈칸으로 가요. Enter를 누르면 쓴 답을 확인해요."
+              : "Tab 빈칸 이동 · Enter 답 제출 · 답은 제출한 뒤에 확인해요."}
           </p>
           <div className={s.actions}>
             <button
@@ -352,7 +390,11 @@ export function FadingRelearnCheck({
                 targets.some((target) => !answers[target.id]?.trim())
               }
             >
-              {busy ? "답을 보내고 있어요…" : "답 제출"}
+              {busy
+                ? "답을 보내고 있어요…"
+                : student
+                  ? "답 확인하기"
+                  : "답 제출"}
             </button>
             <button
               type="button"
@@ -364,7 +406,9 @@ export function FadingRelearnCheck({
           </div>
         </form>
       ) : (
-        <section aria-label="추가 확인 기준안 대조">
+        <section
+          aria-label={student ? "내가 쓴 답 확인" : "추가 확인 기준안 대조"}
+        >
           <p className={s.sentence}>
             {proposition.pieces.map((piece, index) => (
               <FadingMath
@@ -378,11 +422,16 @@ export function FadingRelearnCheck({
               <strong>빈칸 {index + 1}</strong>
               <p>내 답: {answers[target.id] || "아직 쓰지 못했어요"}</p>
               <p>
-                기준안: <FadingMath text={target.text} />
+                {student ? "답: " : "기준안: "}
+                <FadingMath text={target.text} />
               </p>
               {unknown.some((answer) => answer.targetId === target.id) ? (
                 <fieldset disabled={busy || !!retry}>
-                  <legend>핵심 뜻을 비교해 주세요</legend>
+                  <legend>
+                    {student
+                      ? "내가 쓴 답도 같은 뜻인가요?"
+                      : "핵심 뜻을 비교해 주세요"}
+                  </legend>
                   {(["same", "different"] as const).map((value) => (
                     <button
                       key={value}
@@ -405,8 +454,14 @@ export function FadingRelearnCheck({
           {pending ? (
             <>
               <p className={s.note}>
-                입력은 저장됐어요. 알아보지 못한 표현을 틀림으로 정하지 않고
-                직접 대조해요.
+                {student ? (
+                  "쓴 답은 저장됐어요. 위의 답과 같은 뜻인지 골라 주세요."
+                ) : (
+                  <>
+                    입력은 저장됐어요. 알아보지 못한 표현을 틀림으로 정하지 않고
+                    직접 대조해요.
+                  </>
+                )}
               </p>
               <button
                 type="button"
@@ -428,7 +483,7 @@ export function FadingRelearnCheck({
                   })
                 }
               >
-                대조 제출
+                {student ? "확인 마치기" : "대조 제출"}
               </button>
             </>
           ) : (
@@ -445,8 +500,14 @@ export function FadingRelearnCheck({
                       : "1분 뒤 다시 확인해요."
                     : result?.next
                       ? ""
-                      : "이 문장의 추가 확인을 마쳤어요."}
-                {dayEnd === "capped" ? ` ${FADING_RELEARN_CAPPED}` : null}
+                      : student
+                        ? "이 문장을 다시 떠올려 봤어요."
+                        : "이 문장의 추가 확인을 마쳤어요."}
+                {dayEnd === "capped"
+                  ? student
+                    ? " 오늘은 여기까지예요. 남은 문장은 내일부터 이어서 확인해요."
+                    : ` ${FADING_RELEARN_CAPPED}`
+                  : null}
               </p>
               <button type="button" className={s.primary} onClick={onClose}>
                 원래 학습으로
