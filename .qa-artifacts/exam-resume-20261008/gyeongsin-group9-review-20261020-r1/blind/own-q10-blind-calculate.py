@@ -1,0 +1,37 @@
+﻿from pathlib import Path
+from fractions import Fraction as F
+import json,hashlib
+p=Path('.qa-artifacts/exam-resume-20261008/gyeongsin-group9-review-20261020-r1/blind')
+def sha(f):return hashlib.sha256(f.read_bytes()).hexdigest()
+with(p/'own-q10-blind-utf8-probe.txt').open('x',encoding='utf-8')as f:f.write('경신 q10 독립 풀이: 원주각·삼각형외각 UTF-8 확인\n')
+assert(p/'own-q10-blind-utf8-probe.txt').read_text(encoding='utf-8')=='경신 q10 독립 풀이: 원주각·삼각형외각 UTF-8 확인\n'
+a=json.loads((p/'student-problems.json').read_text(encoding='utf-8-sig'))[0]
+digest=hashlib.sha256(json.dumps({k:v for k,v in a.items()if k!='studentDigest'},ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest();assert digest==a['studentDigest'];svg=p/a['figures'][0]['svgPath'];assert sha(svg)==a['figures'][0]['sha256']
+given=F(21);arcXW=2*given;alpha=(360-arcXW)/3;angleYWZ=alpha/2;anglePYW=given;anglePWY=180-angleYWZ;answer=180-anglePYW-anglePWY
+assert arcXW==42 and alpha==106 and angleYWZ==53 and anglePWY==127 and answer==32
+assert all(0<v<180 for v in [arcXW,alpha,angleYWZ,anglePYW,anglePWY,answer])
+assert 3*alpha+arcXW==360
+assert angleYWZ==anglePYW+answer and anglePYW+anglePWY+answer==180
+baseAngle=180-alpha;assert baseAngle==74 and 2*baseAngle+answer==180
+checks=[]
+for i,value in enumerate([30,31,32,33,34]):
+ impliedFar=2*(F(value)+given);total=3*impliedFar+arcXW
+ checks.append({'choice':'①②③④⑤'[i],'angle_XPW_degrees':value,'triangleExteriorResidual_degrees':str(F(value)+given-angleYWZ),'impliedEqualArcCentralAngle_degrees':str(impliedFar),'impliedCircleTotal_degrees':str(total),'valid':total==360 and F(value)+given==angleYWZ})
+assert[z['choice']for z in checks if z['valid']]==['③']
+solution='같은 원에서 길이가 같은 호에 대한 중심각은 같다. 세 작은 호 XY,YZ,ZW에 대한 중심각을 각각 a°라 하자. 원주각 ∠XYW=21°가 보는 호는 Y를 포함하지 않는 호 XW이므로 그 호에 대한 중심각은 42°이다. 원 한 바퀴의 중심각 합은360°이므로 3a+42=360에서 a=106이다. 따라서 작은 호 YZ를 보는 원주각 ∠YWZ는106°의 절반인53°이다. P,X,Y는 가까운 순서대로 한 직선 위에 있으므로 ∠PYW=∠XYW=21°이다. 또 P,W,Z가 이 순서로 한 직선 위에 있어 ∠YWZ는 삼각형 PYW의 W에서의 외각이다. 삼각형의 한 외각은 이웃하지 않은 두 내각의 합과 같으므로 ∠YPW+21°=53°이다. 따라서 ∠XPW=∠YPW=32°이고 정답은③이다. 보기30°,31°,32°,33°,34°에21°를더하면51°,52°,53°,54°,55°로53°와같은값은③뿐이다.'
+existence='양의반지름인원둘레에 X,Y,Z,W를이순서로잡아연속한중심각을106°,106°,106°,42°로하면네점은서로다르고앞세호는모두작은호이다. 이때∠XYW=42°/2=21°이다. 원주각∠YXW와∠XWZ는각각두호합212°를보므로106°이다. X에서XY를X쪽뒤로늘인반직선과W에서WZ를W쪽뒤로늘인반직선은 XW를밑변으로각각74°를이루어,74°+74°<180°이므로외부쪽에서하나의점P로만난다. 두반직선은원의현을바깥으로연장한방향이라P는원밖이고 P-X-Y,P-W-Z의순서를만족한다. 꼭짓각은180−74−74=32°이다. 반대로모든허용배치에서중심각의합과삼각형외각관계가같아요구각32°가유일하다. 반지름이나회전·반사배치의유일성은주장하지않는다.'
+exposure={'priorOriginalGyeongsinQ10PageExposure':True,'currentAuthoredQ10AnswerSolutionPrivateMetadataExposedBeforeRaw':False,'declaration':'직전허가된원본Hphysical3페이지검토에서원래GYEONGSINq10조건·그림이함께보여노출된이력이있다. 원의접선/원주각및다른시험Nobyeonq10검토이력도있다. 현재authoredgroup9r1q10의답·해설·비공개자료/R1이전세션을읽거나적용하지않았다. 이번학생본문/SVG만으로계산했으며완전한원문·주제미노출을주장하지않는다.'}
+faces={
+ 'stem':'2015M3원주각9수04-20을학습한뒤,같은원에서동일길이호의중심각같음과두할선의교점/가까운점순서를읽는문항이다. 일반할선각차공식이나원의비례길이공식을필수전제로두지않는다.',
+ 'choices':'보기30~34°는서로다른양의각이다. 삼각형외각53°에서21°를뺀값과비교하거나각보기가유도하는중심각합348,354,360,366,372°를정확검산하여③만성립한다.',
+ 'figuresAndTables':'학생SVG를PyMuPDF로PNG변환해실제view_image로확인했다. P-X-Y/P-W-Z순서,원위X-Y-Z-W순서,선분YW와Y에서의21°표시,P의목표각x가일치한다. 같은세호길이는본문에명시되어그림반복표시없이도조건이완전하다. 픽셀·SVG좌표각을계산에쓰지않는다.',
+ 'notation':'작은호XY/YZ/ZW,원O,각XYW/XPW,도단위°와간단한중심각a표기는중학교원의성질표기다. 실제길이cm와중심각도수를혼동하지않는다.',
+ 'answer':'③은32°다. 양의삼각형내각21°,127°,32°의합180°,호중심각106°세개와42°의합360°로중복검산했다. 모든분모2와3은0이아니다.',
+ 'studentSolution':'현재제공된저자해설은미노출이다. 본raw의학생풀이제안은같은호중심각→원주각두배→360°합→다른원주각→삼각형외각으로전체가닫힌다. 저자전체해설의학년판정은봉인후별도검토가필요하다.',
+ 'prerequisites':'원의중심각/호관계와같은원동일호,원주각9수04-20,삼각형내각/외각,일차식3a+42=360을배운학생에한정한다. 이전실제확인한KOSAC2015기하와공식M3계획의원주각배치에대한제안이며새1문항전체학년·2022·출시승인으로세지않는다.'}
+evidence={'exposureDeclaration':exposure,'exactCalculations':{'givenInscribedAngle_degrees':str(given),'arcXWcentralAngle_degrees':str(arcXW),'equalArcCentralAngles_degrees':[str(alpha)]*3,'angleYWZ_degrees':str(angleYWZ),'anglePYW_degrees':str(anglePYW),'anglePWY_degrees':str(anglePWY),'angleXPW_degrees':str(answer),'existenceBaseAngles_degrees':[str(baseAngle)]*2},'allChoices':checks,'domainsUnits':'원의반지름은임의의양수로존재한다. 네원주점은순서대로서로다르며세작은호중심각106°와나머지42°는각각0~180°사이이다. 삼각형PYW내각21°,127°,32°모두0~180°사이이고외부점P/교점유한성을구성으로확인한다. 각과중심각은도단위,호길이는동일하다는조건만쓰며도수를cm등물리적호길이로해석하지않는다. 선분곱·접선곱이나고등삼각함수는사용하지않는다.','existenceUniqueness':existence,'studentMethod':'원주각의성질,동일호중심각,원한바퀴360°,삼각형내각/외각과일차계산. 할선각차공식을가정하거나고등원의비례/좌표/사인법칙을사용하지않는다.','curriculumSurfacesProposal':{k:{'status':'student-method-proposal-in-scope'if k!='studentSolution'else'own-solution-proposed-author-solution-pending','basis':b}for k,b in faces.items()},'bindings':{'studentDigest':digest,'studentProblemsSha256':sha(p/'student-problems.json'),'studentSvgSha256':sha(svg)},'figureView':'Actual view_image of own locally rendered student SVG completed; no pixels/coordinates as angle oracle.','limits':'Rawmathsolvedandconditional2015M3studentmethodproposalonly;actualauthorfullsolution/allformalgradechecks/source/rights/family/native/2022/releaseunreviewed. No newapprovedmanualcount.'}
+raw={'studentDigest':digest,'solverId':'independent-retained-helper-gyeongsin-q10-r1','answer':'③','solution':solution,'evidence':evidence,'status':'solved'}
+(p/'solve').mkdir(exist_ok=True)
+for file,obj in [(p/'own-q10-blind-calculations.json',evidence),(p/'own-q10-blind-exposure.json',exposure),(p/'solve/q10.json',raw)]:
+ with file.open('x',encoding='utf-8')as f:json.dump(obj,f,ensure_ascii=False,indent=2);f.write('\n')
+print(json.dumps({'rawSha256':sha(p/'solve/q10.json'),'angleXPW_degrees':str(answer),'studentDigest':digest,'sevenSurfaceProposals':len(faces),'authorExposed':False}))

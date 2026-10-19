@@ -1,0 +1,106 @@
+{
+  "exposureDeclaration": {
+    "priorOriginalGyeongsinQ10PageExposure": true,
+    "currentAuthoredQ10AnswerSolutionPrivateMetadataExposedBeforeRaw": false,
+    "declaration": "직전허가된원본Hphysical3페이지검토에서원래GYEONGSINq10조건·그림이함께보여노출된이력이있다. 원의접선/원주각및다른시험Nobyeonq10검토이력도있다. 현재authoredgroup9r1q10의답·해설·비공개자료/R1이전세션을읽거나적용하지않았다. 이번학생본문/SVG만으로계산했으며완전한원문·주제미노출을주장하지않는다."
+  },
+  "exactCalculations": {
+    "givenInscribedAngle_degrees": "21",
+    "arcXWcentralAngle_degrees": "42",
+    "equalArcCentralAngles_degrees": [
+      "106",
+      "106",
+      "106"
+    ],
+    "angleYWZ_degrees": "53",
+    "anglePYW_degrees": "21",
+    "anglePWY_degrees": "127",
+    "angleXPW_degrees": "32",
+    "existenceBaseAngles_degrees": [
+      "74",
+      "74"
+    ]
+  },
+  "allChoices": [
+    {
+      "choice": "①",
+      "angle_XPW_degrees": 30,
+      "triangleExteriorResidual_degrees": "-2",
+      "impliedEqualArcCentralAngle_degrees": "102",
+      "impliedCircleTotal_degrees": "348",
+      "valid": false
+    },
+    {
+      "choice": "②",
+      "angle_XPW_degrees": 31,
+      "triangleExteriorResidual_degrees": "-1",
+      "impliedEqualArcCentralAngle_degrees": "104",
+      "impliedCircleTotal_degrees": "354",
+      "valid": false
+    },
+    {
+      "choice": "③",
+      "angle_XPW_degrees": 32,
+      "triangleExteriorResidual_degrees": "0",
+      "impliedEqualArcCentralAngle_degrees": "106",
+      "impliedCircleTotal_degrees": "360",
+      "valid": true
+    },
+    {
+      "choice": "④",
+      "angle_XPW_degrees": 33,
+      "triangleExteriorResidual_degrees": "1",
+      "impliedEqualArcCentralAngle_degrees": "108",
+      "impliedCircleTotal_degrees": "366",
+      "valid": false
+    },
+    {
+      "choice": "⑤",
+      "angle_XPW_degrees": 34,
+      "triangleExteriorResidual_degrees": "2",
+      "impliedEqualArcCentralAngle_degrees": "110",
+      "impliedCircleTotal_degrees": "372",
+      "valid": false
+    }
+  ],
+  "domainsUnits": "원의반지름은임의의양수로존재한다. 네원주점은순서대로서로다르며세작은호중심각106°와나머지42°는각각0~180°사이이다. 삼각형PYW내각21°,127°,32°모두0~180°사이이고외부점P/교점유한성을구성으로확인한다. 각과중심각은도단위,호길이는동일하다는조건만쓰며도수를cm등물리적호길이로해석하지않는다. 선분곱·접선곱이나고등삼각함수는사용하지않는다.",
+  "existenceUniqueness": "양의반지름인원둘레에 X,Y,Z,W를이순서로잡아연속한중심각을106°,106°,106°,42°로하면네점은서로다르고앞세호는모두작은호이다. 이때∠XYW=42°/2=21°이다. 원주각∠YXW와∠XWZ는각각두호합212°를보므로106°이다. X에서XY를X쪽뒤로늘인반직선과W에서WZ를W쪽뒤로늘인반직선은 XW를밑변으로각각74°를이루어,74°+74°<180°이므로외부쪽에서하나의점P로만난다. 두반직선은원의현을바깥으로연장한방향이라P는원밖이고 P-X-Y,P-W-Z의순서를만족한다. 꼭짓각은180−74−74=32°이다. 반대로모든허용배치에서중심각의합과삼각형외각관계가같아요구각32°가유일하다. 반지름이나회전·반사배치의유일성은주장하지않는다.",
+  "studentMethod": "원주각의성질,동일호중심각,원한바퀴360°,삼각형내각/외각과일차계산. 할선각차공식을가정하거나고등원의비례/좌표/사인법칙을사용하지않는다.",
+  "curriculumSurfacesProposal": {
+    "stem": {
+      "status": "student-method-proposal-in-scope",
+      "basis": "2015M3원주각9수04-20을학습한뒤,같은원에서동일길이호의중심각같음과두할선의교점/가까운점순서를읽는문항이다. 일반할선각차공식이나원의비례길이공식을필수전제로두지않는다."
+    },
+    "choices": {
+      "status": "student-method-proposal-in-scope",
+      "basis": "보기30~34°는서로다른양의각이다. 삼각형외각53°에서21°를뺀값과비교하거나각보기가유도하는중심각합348,354,360,366,372°를정확검산하여③만성립한다."
+    },
+    "figuresAndTables": {
+      "status": "student-method-proposal-in-scope",
+      "basis": "학생SVG를PyMuPDF로PNG변환해실제view_image로확인했다. P-X-Y/P-W-Z순서,원위X-Y-Z-W순서,선분YW와Y에서의21°표시,P의목표각x가일치한다. 같은세호길이는본문에명시되어그림반복표시없이도조건이완전하다. 픽셀·SVG좌표각을계산에쓰지않는다."
+    },
+    "notation": {
+      "status": "student-method-proposal-in-scope",
+      "basis": "작은호XY/YZ/ZW,원O,각XYW/XPW,도단위°와간단한중심각a표기는중학교원의성질표기다. 실제길이cm와중심각도수를혼동하지않는다."
+    },
+    "answer": {
+      "status": "student-method-proposal-in-scope",
+      "basis": "③은32°다. 양의삼각형내각21°,127°,32°의합180°,호중심각106°세개와42°의합360°로중복검산했다. 모든분모2와3은0이아니다."
+    },
+    "studentSolution": {
+      "status": "own-solution-proposed-author-solution-pending",
+      "basis": "현재제공된저자해설은미노출이다. 본raw의학생풀이제안은같은호중심각→원주각두배→360°합→다른원주각→삼각형외각으로전체가닫힌다. 저자전체해설의학년판정은봉인후별도검토가필요하다."
+    },
+    "prerequisites": {
+      "status": "student-method-proposal-in-scope",
+      "basis": "원의중심각/호관계와같은원동일호,원주각9수04-20,삼각형내각/외각,일차식3a+42=360을배운학생에한정한다. 이전실제확인한KOSAC2015기하와공식M3계획의원주각배치에대한제안이며새1문항전체학년·2022·출시승인으로세지않는다."
+    }
+  },
+  "bindings": {
+    "studentDigest": "b9518eac6f1217f3504ea0e201666fa9625f807d11a875a9ac669dd615f1fcbc",
+    "studentProblemsSha256": "a4b1c420f1c1ef1fd549be344ddd58043dc3d66b6bc0272edfb3f13a98d85c3a",
+    "studentSvgSha256": "5f8d12c49156186685d86c330b6b1771711050a9ed74da931ed0d46f9d6655e7"
+  },
+  "figureView": "Actual view_image of own locally rendered student SVG completed; no pixels/coordinates as angle oracle.",
+  "limits": "Rawmathsolvedandconditional2015M3studentmethodproposalonly;actualauthorfullsolution/allformalgradechecks/source/rights/family/native/2022/releaseunreviewed. No newapprovedmanualcount."
+}
