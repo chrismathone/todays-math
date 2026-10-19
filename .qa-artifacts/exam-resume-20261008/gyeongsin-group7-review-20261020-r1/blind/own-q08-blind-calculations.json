@@ -1,0 +1,73 @@
+{
+  "exposureDeclaration": {
+    "currentAuthoredAnswerSolutionMetadataExposedBeforeRaw": false,
+    "priorOriginalQ08PageExposure": true,
+    "declaration": "현재 authored GYEONGSIN q08 r1의 답·해설·비공개 자료는 읽지 않았다. 이전 허가된 원본 H 전체 페이지 검토에서 원래 q08의 조건·그림에 우연히 노출되었다. 완전한 원문 비노출을 주장하지 않으며, 현재 학생 조건만으로 독립 계산했다. 원본·root저자·비공개 패키지를 이번 풀이 중 열지 않았다."
+  },
+  "exactCalculations": {
+    "radius_cm": "6",
+    "PI_SG_cm": "6",
+    "EI_EF_cm": "3",
+    "height_cm": "18",
+    "RG_RF_cm": "12",
+    "EQ_cm": "9",
+    "ER_cm": "15",
+    "linearEquation": "12x-72=144",
+    "EO_squared_cm2": 45,
+    "OR_squared_cm2": 180,
+    "existenceDistanceToER_cm": "6"
+  },
+  "allChoices": [
+    {
+      "choice": "①",
+      "ER_cm": 12,
+      "impliedHeight_cm": 15,
+      "implied_EQ_cm": 6,
+      "pythagorasResidual_cm2": -36,
+      "matches": false
+    },
+    {
+      "choice": "②",
+      "ER_cm": 13,
+      "impliedHeight_cm": 16,
+      "implied_EQ_cm": 7,
+      "pythagorasResidual_cm2": -24,
+      "matches": false
+    },
+    {
+      "choice": "③",
+      "ER_cm": 14,
+      "impliedHeight_cm": 17,
+      "implied_EQ_cm": 8,
+      "pythagorasResidual_cm2": -12,
+      "matches": false
+    },
+    {
+      "choice": "④",
+      "ER_cm": 15,
+      "impliedHeight_cm": 18,
+      "implied_EQ_cm": 9,
+      "pythagorasResidual_cm2": 0,
+      "matches": true
+    },
+    {
+      "choice": "⑤",
+      "ER_cm": 16,
+      "impliedHeight_cm": 19,
+      "implied_EQ_cm": 10,
+      "pythagorasResidual_cm2": 12,
+      "matches": false
+    }
+  ],
+  "existenceUniqueness": "가로12, 세로18인 직사각형에서 위쪽 변과 왼쪽·오른쪽 변으로부터 각각6 떨어진 점을 O로 삼아 반지름6의 원을 그리면 세 변에 접하고 아래쪽 변까지 거리는12라 원이 직사각형 내부에 놓인다. 왼쪽 변 위에서 PE=9인 E를 잡는다. EI=3, OI=6이므로 EO²=45이고, OG=6, GR=12이므로 OR²=180이다. ER²=9²+12²=225=EO²+OR²이므로 △EOR는 O가 직각인 삼각형이다. 이 삼각형의 넓이를 두 방식으로 구하면 O에서 빗변 ER에 내린 높이는 EO·OR/ER=90/15=6이다. 따라서 ER는 반지름6인 원에 접하며 발 F는 빗변 내부에 있다. AA닮음으로 EF=EO²/ER=3, FR=OR²/ER=12도 확인된다. 이 비는 실제 직각삼각형의 닮음으로 정당화하는 구성 검산이며 원의 할선곱·접선곱 정리를 쓰는 학생 방법이 아니다. 조건을 만족하는 도형이 존재하며, 유일한 양의 높이18에서 요구 길이15가 강제된다.",
+  "domainsAndSigns": "PQ=x>PE=9 so E is on side PQ and EQ>0; x=18 satisfies this. Radius6, EI3, EF3, RF12, RG12, ER15 are positive. Negative or zero lengths rejected. Divisors2,12,ER15 nonzero. Lengths cm, squares cm². The linear equation has exactly one solution, not two quadratic branches.",
+  "tangentJustification": "EO를 공통 빗변, OI=OF를 반지름으로 하는 직각삼각형 EIO,EFO가 합동이어서 EI=EF이다. OR를 공통 빗변, OG=OF로 하는 RGO,RFO도 합동이어서 RG=RF이다. 실제 접선-반지름 직각과 합동에 근거하며 접선곱 정리를 전제로 하지 않는다.",
+  "figureInspection": "학생 SVG를 PyMuPDF로 PNG 변환하여 P-Q-R-S의 직사각형 순서, 세 변의 접점 H,I,G, PQ 위 E의 위치, ER 위 접점F와 OF의 수직 표시, PE9 및 QR12를 육안 확인했다. SVG 좌표나 픽셀 길이를 답의 수치 근거로 사용하지 않았다.",
+  "bindings": {
+    "studentDigest": "9dbc5be8b02b581861d09a8cd91d8d792fd864ffbacf25ca0cb65602e78c720d",
+    "studentProblemsSha256": "0c8d6d56b6cdb75e905b643124db4bef8295f21fb9b87a30eb03e7841768c3c9",
+    "svgSha256": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903"
+  },
+  "studentMethod": "원의 반지름과 접선의 수직 관계, 같은 점에서 그은 접선 길이의 같음, 직사각형, 피타고라스, 곱셈식 전개와 일차방정식. 고등 원과 비례·사인법칙·외접반지름 공식·좌표나 픽셀 계산은 사용하지 않았다.",
+  "limits": "현재 학생 raw만 봉인. 별도 학년·출처·권리·가족·native·배포 승인 및 승인개수 증가가 아니다."
+}
