@@ -1,0 +1,293 @@
+{
+  "inputHashes": {
+    "SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+    "student-problems.json": "1fc34b975b9639b17817158cabc92a0626c2e4d162f98c2fe9cf83bea965b2c5",
+    "blind-manifest.json": "5348401eaa70b8584d43613facb82b0d0abd450ee5596b13630783f08a1fb818"
+  },
+  "studentDigestIndependentlyRecomputed": "7b1e42ae5d8934cd3c8f01c10d12b82707adfc605e48d480110717725e1a6ced",
+  "universalStudentProof": "a>0 gives a well-defined positive principal root r=sqrt(a)>0. The two real square roots are r and -r, distinct because r>0. Thus x>0 selects r uniquely. Each other choice permits x=-r; a1,x-1 is an explicit exact witness. No advanced quadratic theorem required.",
+  "allFiveChoices": [
+    {
+      "mark": "①",
+      "printed": "$x>0$",
+      "sufficient": true,
+      "nonvacuousWitness": {
+        "a": "1",
+        "x": "1"
+      },
+      "counterexample": null,
+      "reason": "x>0 and x²=a means x is the positive square root, uniquely sqrt(a)."
+    },
+    {
+      "mark": "②",
+      "printed": "$x<0$",
+      "sufficient": false,
+      "nonvacuousWitness": {
+        "a": "1",
+        "x": "-1"
+      },
+      "counterexample": {
+        "a": "1",
+        "x": "-1",
+        "positivePrincipalRoot": "1",
+        "premise": true,
+        "addedCondition": true,
+        "conclusion": false
+      },
+      "reason": "x<0 selects the negative root; for a1,x-1 the conclusion fails."
+    },
+    {
+      "mark": "③",
+      "printed": "$x\\ne0$",
+      "sufficient": false,
+      "nonvacuousWitness": {
+        "a": "1",
+        "x": "-1"
+      },
+      "counterexample": {
+        "a": "1",
+        "x": "-1",
+        "positivePrincipalRoot": "1",
+        "premise": true,
+        "addedCondition": true,
+        "conclusion": false
+      },
+      "reason": "a>0 already implies x≠0; this does not choose a sign."
+    },
+    {
+      "mark": "④",
+      "printed": "$a>0$",
+      "sufficient": false,
+      "nonvacuousWitness": {
+        "a": "1",
+        "x": "-1"
+      },
+      "counterexample": {
+        "a": "1",
+        "x": "-1",
+        "positivePrincipalRoot": "1",
+        "premise": true,
+        "addedCondition": true,
+        "conclusion": false
+      },
+      "reason": "This repeats the existing assumption a>0 and leaves both signs."
+    },
+    {
+      "mark": "⑤",
+      "printed": "$x^2>0$",
+      "sufficient": false,
+      "nonvacuousWitness": {
+        "a": "1",
+        "x": "-1"
+      },
+      "counterexample": {
+        "a": "1",
+        "x": "-1",
+        "positivePrincipalRoot": "1",
+        "premise": true,
+        "addedCondition": true,
+        "conclusion": false
+      },
+      "reason": "x²=a>0 already implies x²>0 and leaves both signs."
+    }
+  ],
+  "exactRationalWitnessChecks": [
+    {
+      "a": "1/25",
+      "x": "1/5",
+      "principalRoot": "1/5",
+      "conclusion": true,
+      "choicesSatisfied": [
+        true,
+        false,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "1/25",
+      "x": "-1/5",
+      "principalRoot": "1/5",
+      "conclusion": false,
+      "choicesSatisfied": [
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "1/4",
+      "x": "1/2",
+      "principalRoot": "1/2",
+      "conclusion": true,
+      "choicesSatisfied": [
+        true,
+        false,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "1/4",
+      "x": "-1/2",
+      "principalRoot": "1/2",
+      "conclusion": false,
+      "choicesSatisfied": [
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "1",
+      "x": "1",
+      "principalRoot": "1",
+      "conclusion": true,
+      "choicesSatisfied": [
+        true,
+        false,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "1",
+      "x": "-1",
+      "principalRoot": "1",
+      "conclusion": false,
+      "choicesSatisfied": [
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "4",
+      "x": "2",
+      "principalRoot": "2",
+      "conclusion": true,
+      "choicesSatisfied": [
+        true,
+        false,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "4",
+      "x": "-2",
+      "principalRoot": "2",
+      "conclusion": false,
+      "choicesSatisfied": [
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "9",
+      "x": "3",
+      "principalRoot": "3",
+      "conclusion": true,
+      "choicesSatisfied": [
+        true,
+        false,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "9",
+      "x": "-3",
+      "principalRoot": "3",
+      "conclusion": false,
+      "choicesSatisfied": [
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "49/4",
+      "x": "7/2",
+      "principalRoot": "7/2",
+      "conclusion": true,
+      "choicesSatisfied": [
+        true,
+        false,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "49/4",
+      "x": "-7/2",
+      "principalRoot": "7/2",
+      "conclusion": false,
+      "choicesSatisfied": [
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "100",
+      "x": "10",
+      "principalRoot": "10",
+      "conclusion": true,
+      "choicesSatisfied": [
+        true,
+        false,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "a": "100",
+      "x": "-10",
+      "principalRoot": "10",
+      "conclusion": false,
+      "choicesSatisfied": [
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "finiteChecksLimitation": "14 rational examples check code logic and exact counterexamples; universal sufficiency is justified by positive square-root definition, not finite tests.",
+  "domain": {
+    "aPositive": true,
+    "sqrtADefinedAndPositive": true,
+    "xNonzeroFromPremise": true,
+    "twoDistinctRealRootBranches": true,
+    "zeroCaseExcluded": "a0,x0 violates a>0",
+    "negativeAExcluded": "a<0 is outside assumption and cannot equal square of a real number",
+    "denominatorInStudentTask": false,
+    "units": "abstract real numbers; no units or figures"
+  },
+  "existenceAndUniqueness": "For any allowed a>0, positive root r exists by the learned positive-root property and r is unique. Without the added sign condition both r and-r satisfy original conditions. Every listed extra condition has a nonempty valid instance, so no option is accepted through an impossible antecedent.",
+  "utf8WriteReadPassed": true,
+  "authorAnswerExposure": false,
+  "newApprovalCounts": 0
+}
