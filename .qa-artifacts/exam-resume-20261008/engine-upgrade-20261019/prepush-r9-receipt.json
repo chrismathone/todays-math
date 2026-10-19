@@ -1,0 +1,22 @@
+{
+  "kind": "feature-checkpoint-post-integration/v9",
+  "utc": "2026-10-19T10:51:57.530Z",
+  "integratedMain": "ea5fec912c12635ec5e2a9b1896d7e3aab0f9c5f",
+  "merge": "b519b378f45cb2116d073714c4597e270bafeea0",
+  "tests": 99,
+  "failed": 0,
+  "skipped": 0,
+  "runs": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r9.json",
+      "sha256": "6777fe80564df8e4f2ad41f0a24fb8307fbc3bf9ff8ea167881c135968333436"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/grade-gate-validation-r1.json",
+      "sha256": "6dedcd6c47950ee5890ea994008eff3c226143989fc7bc044936d041818f4b2b"
+    }
+  ],
+  "readFloor": "871e8cac6 unhinted self-check compatible; no older shared DB reader launched",
+  "dbWrites": 0,
+  "mainMergeOrDeploy": false
+}
