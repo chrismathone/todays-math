@@ -127,6 +127,16 @@ async function handlePost(request: NextRequest) {
   const [provenance] = await withProblemSourceReferences([
     { originProblemId: origin.id },
   ]);
+  // Reproducing an old answer is a consistency check, not independent proof of
+  // a new twin or permission to use a past exam. Preserve the actual origin lock
+  // and close past-exam descendants, including old chains and unresolved roots.
+  const directUseAllowed =
+    askedOrigin.directUseAllowed &&
+    origin.directUseAllowed &&
+    askedOrigin.source !== "past_exam" &&
+    origin.source !== "past_exam" &&
+    provenance?.sourceReference != null &&
+    provenance.sourceReference.source !== "past_exam";
 
   // 생성 쪽과 같은 이유로 `createManyAndReturn`(=INSERT ... RETURNING) 한 문장이다.
   // 문장이 하나뿐이므로 트랜잭션 래퍼 없이도 전부 아니면 전무다 — 채택 묶음이 반쯤
@@ -138,6 +148,7 @@ async function handlePost(request: NextRequest) {
       unitId: origin.unitId,
       source: "transformed",
       originProblemId: origin.id,
+      directUseAllowed,
       // 🔴 **변형본은 원본과 같은 문항류다** (원장님 지적 2026-08-27:
       //    「새로운 문항류로 전부 되어버리네 사실 같은 문항류 같은데」).
       //

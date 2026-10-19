@@ -79,6 +79,12 @@ export function newOutputPath(input, workspace = process.cwd()) {
     within && !within.startsWith("..") && !path.isAbsolute(within),
     "Output must stay in this task worktree",
   );
+  assert(
+    !within
+      .split(path.sep)
+      .some((part) => ["node_modules", ".git"].includes(part.toLowerCase())),
+    "Output dependency or junction escapes worktree artifact ownership",
+  );
   let ancestor = output;
   while (!fs.existsSync(ancestor)) ancestor = path.dirname(ancestor);
   const realAncestor = fs.realpathSync(ancestor);

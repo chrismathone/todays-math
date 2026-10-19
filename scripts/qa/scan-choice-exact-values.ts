@@ -13,6 +13,8 @@
 import { createHash } from "node:crypto";
 import fs from "node:fs";
 import { expandFamily } from "../../src/lib/engine/expandEngine";
+import { parseProblemContent } from "../../src/lib/problem/parseProblemContent";
+import { newOutputPath } from "../import/exam-twin/candidatePack.mjs";
 import {
   exactChoiceValue,
   sameValueChoicePairs,
@@ -40,16 +42,27 @@ const variants = Number(arg("--variants", "3"));
 const out = arg("--out", "");
 // 고치기 전후의 엔진 출력을 견주려고 행마다 지문을 떠 둔다(형식 · 발문 · 정답).
 const dump = arg("--dump", "");
+const engines = new Set(arg("--engines", "middle").split(","));
+if (
+  !seeds.length ||
+  seeds.some((s) => !Number.isSafeInteger(s) || s < 0) ||
+  !Number.isSafeInteger(variants) ||
+  variants < 1 ||
+  !engines.size ||
+  [...engines].some((e) => !["middle", "combo", "elem"].includes(e))
+)
+  throw new Error("Invalid engines, seeds or variant count");
+const outFile = out ? newOutputPath(out) : null;
+const dumpFile = dump ? newOutputPath(dump) : null;
+if (outFile && outFile === dumpFile)
+  throw new Error("Reports require separate new output paths");
 const fingerprints: Record<string, string> = {};
 let skippedMcq = 0;
 const MARKS = "①②③④⑤";
 
 function choiceTexts(content: string): string[] | null {
-  const lines = content
-    .split("\n")
-    .map((l) => l.trim())
-    .filter((l) => l.length > 0 && MARKS.includes(l[0]!))
-    .map((l) => l.slice(1).trim());
+  // Read the same choice bodies as bank/print and native engine validation.
+  const lines = parseProblemContent(content).choices;
   return lines.length === 5 ? lines : null;
 }
 
@@ -67,6 +80,8 @@ const unsimplifiedCorrect: Hit[] = [];
 let mcRows = 0;
 let fullyReadable = 0;
 let failedTypes = 0;
+const failedTypeSeedDetails: { key: string; seed: number; error: string }[] =
+  [];
 const typesTouched = new Set<string>();
 
 type StemOut = {
@@ -103,8 +118,16 @@ function scanFamily(
       variants,
       opts,
     );
-  } catch {
+  } catch (error) {
     failedTypes += 1;
+    failedTypeSeedDetails.push({
+      key,
+      seed,
+      error: (error instanceof Error ? error.message : String(error)).slice(
+        0,
+        500,
+      ),
+    });
     return;
   }
   skippedMcq += got.skippedMcq;
@@ -141,7 +164,6 @@ function scanFamily(
   }
 }
 
-const engines = new Set(arg("--engines", "middle").split(","));
 if (engines.has("middle"))
   for (const entry of registeredTypes())
     for (const seed of seeds)
@@ -172,10 +194,12 @@ const byType = (hits: Hit[]) => {
 };
 const summary = {
   kind: "middle-engine-choice-exact-scan/v1",
+  engines: [...engines],
   seeds,
   variants,
   registeredTypes: registeredTypes().length,
   failedTypeSeeds: failedTypes,
+  failedTypeSeedDetails,
   skippedMcq,
   mcRows,
   mcRowsAllChoicesReadable: fullyReadable,
@@ -191,8 +215,14 @@ const summary = {
   dbReads: 0,
   dbWrites: 0,
 };
-if (out) fs.writeFileSync(out, JSON.stringify(summary, null, 2) + "\n");
-if (dump) fs.writeFileSync(dump, JSON.stringify(fingerprints) + "\n");
+if (outFile)
+  fs.writeFileSync(outFile, JSON.stringify(summary, null, 2) + "\n", {
+    flag: "wx",
+  });
+if (dumpFile)
+  fs.writeFileSync(dumpFile, JSON.stringify(fingerprints) + "\n", {
+    flag: "wx",
+  });
 console.log(
   JSON.stringify({
     mcRows,

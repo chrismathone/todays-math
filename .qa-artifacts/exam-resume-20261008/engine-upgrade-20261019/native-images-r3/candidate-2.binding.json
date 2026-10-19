@@ -1,0 +1,49 @@
+{
+  "templateId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+  "templateVersion": "asset-adapter-preview-20261019-r1",
+  "studentContentSha256": "a0d0304eb9545bffef1a59620070c73f7016eb69d5c4d62cb3afee9686913a34",
+  "diagramSha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+  "curriculum": {
+    "grade": "중3",
+    "edition": "2015",
+    "examYear": 2025
+  },
+  "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+  "familyKey": "mid:3-2|삼각비의 활용|05",
+  "classificationSnapshotSha256": null,
+  "calculationAuthority": "explicit-math-facts-not-image-pixels",
+  "facts": {
+    "givenBC": "30*sqrt(6)",
+    "angleA": 45,
+    "angleB": 75,
+    "angleC": 60,
+    "targetAB": 90
+  },
+  "factRelations": [
+    "drop perpendicular BH to AC",
+    "BH=BC*sin60=45sqrt2",
+    "AB=BH/sin45=90"
+  ],
+  "constraints": [
+    "45+75+60=180",
+    "positive lengths",
+    "H lies inside AC",
+    "unique triangle up to reflection/congruence; unique AB",
+    "no trig laws or addition relations in student solution"
+  ],
+  "pointRoles": {
+    "A": "첫 번째 측량 표지",
+    "B": "두 번째 측량 표지",
+    "C": "관개 제어함"
+  },
+  "variant": {
+    "modes": [
+      "context",
+      "structure",
+      "inverse-target"
+    ],
+    "sharedConcept": "나머지 각을 구하고 높이를 보조선으로 삼아 알려진 변·특수각의 삼각비로 필요한 변을 표현한다.",
+    "sharedProcedure": "내각의 합과 보조 수선으로 45°·60° 직각삼각형을 만들고 삼각비로 선분 길이를 구한다. 미지 선분을 역으로 전환한다.",
+    "changeEvidence": "캠핑장의 두 텐트 사이 거리에서 시설까지 거리 구하기를, 공원 시설까지 거리로 빠진 표지 사이 거리를 복구하는 기록표로 전환한다."
+  }
+}

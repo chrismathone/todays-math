@@ -1,0 +1,35 @@
+{
+    "include":  [
+
+                ],
+    "compilerOptions":  {
+                            "paths":  {
+                                          "@/*":  [
+                                                      "src/*"
+                                                  ],
+                                          "@prisma/client":  [
+                                                                 "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\isolated-prisma\\generated-client"
+                                                             ]
+                                      },
+                            "baseUrl":  "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+                            "incremental":  false
+                        },
+    "files":  [
+                  "../../../src/lib/math/exactChoiceValue.ts",
+                  "../../../src/lib/engine/deriveFormats.ts",
+                  "../../../src/lib/engine/expandEngine.ts",
+                  "../../../src/lib/engine/authoredImage.ts",
+                  "../../../src/lib/figure/renderFigureSpec.ts",
+                  "../../../src/app/api/problems/transform/adopt/route.ts",
+                  "../../../src/__tests__/api/problemTransform.test.ts",
+                  "../../../src/__tests__/unit/authoredImage.test.ts",
+                  "../../../src/__tests__/unit/expandEngineExactChoices.test.ts",
+                  "../../../scripts/qa/scan-choice-exact-values.ts",
+                  "../../../scripts/qa/count-loaded-unsimplified-choices.ts",
+                  "../../../scripts/qa/verify-authored-image-support.ts"
+              ],
+    "exclude":  [
+
+                ],
+    "extends":  "../../../tsconfig.json"
+}

@@ -347,3 +347,25 @@ test("outputs cannot escape through a worktree dependency junction", () => {
   );
   assert.throws(() => newOutputPath("../outside-forbidden-output"));
 });
+
+test("local dependency and git directories cannot become artifact outputs either", () => {
+  const f = fixture();
+  try {
+    fs.mkdirSync(path.join(f.root, "node_modules"));
+    fs.mkdirSync(path.join(f.root, ".git"));
+    assert.throws(
+      () => newOutputPath("node_modules/new-review-proof.json", f.root),
+      /artifact ownership/,
+    );
+    assert.throws(
+      () => newOutputPath(".git/new-review-proof.json", f.root),
+      /artifact ownership/,
+    );
+    assert.equal(
+      fs.existsSync(path.join(f.root, "node_modules/new-review-proof.json")),
+      false,
+    );
+  } finally {
+    f.clean();
+  }
+});

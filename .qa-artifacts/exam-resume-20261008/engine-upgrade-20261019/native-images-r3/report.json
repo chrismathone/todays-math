@@ -1,0 +1,98 @@
+{
+  "kind": "native-authored-image-support/v1",
+  "capturedAt": "2026-10-19T05:34:23.322Z",
+  "results": [
+    {
+      "candidateId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "inputPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r2\\image-context\\q10.json",
+      "inputSha256": "75e82d33f3d27ad9084a084f8168fcaa0930c21857cd4fd59740a4c4067003dc",
+      "spec": {
+        "kind": "authored-image-panel/v1",
+        "assetId": "exam-twin-bumil-2025-2-mid-author-r2-q10:scene",
+        "assetSha256": "72c2deb6fd213e9e372af15bdf7e108e79aaf538c448be8860b1a565b478d7ba",
+        "bindingSha256": "2f3cc1074c72eb161c534d66c9dddb3e6c759acab5d1618ed925a9250b3b72bc",
+        "generationSha256": "ac77edc7e2d7712cdb2a0cb45a4bdec2b527f033fafd812d3537a0b7341de155",
+        "promptSha256": "615ecdf7bcbd87d0c9bee9cf28ed6d18428598c4c94fcce13c21f3f80aad6fd1"
+      },
+      "image": {
+        "assetId": "exam-twin-bumil-2025-2-mid-author-r2-q10:scene",
+        "assetSha256": "72c2deb6fd213e9e372af15bdf7e108e79aaf538c448be8860b1a565b478d7ba",
+        "bindingSha256": "2f3cc1074c72eb161c534d66c9dddb3e6c759acab5d1618ed925a9250b3b72bc",
+        "generationSha256": "ac77edc7e2d7712cdb2a0cb45a4bdec2b527f033fafd812d3537a0b7341de155",
+        "promptSha256": "615ecdf7bcbd87d0c9bee9cf28ed6d18428598c4c94fcce13c21f3f80aad6fd1",
+        "purpose": "preview",
+        "heldChecks": [
+          "stem",
+          "choices",
+          "figuresAndTables",
+          "notation",
+          "answer",
+          "studentSolution",
+          "prerequisites",
+          "withinGradeMethod",
+          "math",
+          "classification",
+          "rights",
+          "similarity",
+          "nativePresentation"
+        ],
+        "problemApproval": false
+      },
+      "diagramSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+      "pixelsUnchanged": true,
+      "strictDiagramRendered": true,
+      "noContextBlocked": true,
+      "approvedDisplayBlocked": true,
+      "newIndependentReview": false,
+      "loadable": false,
+      "dbWrites": 0
+    },
+    {
+      "candidateId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "inputPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r2\\image-context\\q19.json",
+      "inputSha256": "4189ede185564ff2de94bac1c8ef7d6ca96f9f1b13d8073e4818d86d91d5ce62",
+      "spec": {
+        "kind": "authored-image-panel/v1",
+        "assetId": "exam-twin-bumil-2025-2-mid-author-r2-q19:scene",
+        "assetSha256": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+        "bindingSha256": "b74e6298485c92056915a77a83dd3d7069b7d67e5c8928cd56a6418dd02e1bdb",
+        "generationSha256": "ee091600287b19fff886e399d48e19e1a863f201b781b620aa13ca14eeb548af",
+        "promptSha256": "cfa906f1e2a8d230514c700ddfdcc8b11439bf88894abfc26eab95652e5aa2ec"
+      },
+      "image": {
+        "assetId": "exam-twin-bumil-2025-2-mid-author-r2-q19:scene",
+        "assetSha256": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+        "bindingSha256": "b74e6298485c92056915a77a83dd3d7069b7d67e5c8928cd56a6418dd02e1bdb",
+        "generationSha256": "ee091600287b19fff886e399d48e19e1a863f201b781b620aa13ca14eeb548af",
+        "promptSha256": "cfa906f1e2a8d230514c700ddfdcc8b11439bf88894abfc26eab95652e5aa2ec",
+        "purpose": "preview",
+        "heldChecks": [
+          "stem",
+          "choices",
+          "figuresAndTables",
+          "notation",
+          "answer",
+          "studentSolution",
+          "prerequisites",
+          "withinGradeMethod",
+          "math",
+          "classification",
+          "rights",
+          "similarity",
+          "nativePresentation"
+        ],
+        "problemApproval": false
+      },
+      "diagramSha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+      "pixelsUnchanged": true,
+      "strictDiagramRendered": true,
+      "noContextBlocked": true,
+      "approvedDisplayBlocked": true,
+      "newIndependentReview": false,
+      "loadable": false,
+      "dbWrites": 0
+    }
+  ],
+  "runtimeSkillInvocation": false,
+  "dbWrites": 0
+}

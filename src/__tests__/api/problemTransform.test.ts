@@ -513,6 +513,7 @@ describe("POST /api/problems/transform/adopt — 채택분만 넣는다", () => 
     expect(saved.source).toBe("transformed");
     expect(saved.originProblemId).toBe(origin.id);
     expect(saved.reviewStatus).toBe("pending");
+    expect(saved.directUseAllowed).toBe(true);
     expect(saved.unitId).toBe(origin.unitId);
     expect(saved.problemType).toBe(origin.problemType);
     expect(saved.difficulty).toBe(origin.difficulty);
@@ -603,6 +604,7 @@ describe("POST /api/problems/transform/adopt — 채택분만 넣는다", () => 
       examId: null,
       questionNumber: null,
       reviewStatus: "pending",
+      directUseAllowed: false,
     });
     const fetched = await getProblem(
       new NextRequest(`http://localhost/api/problems/${data[0].id}`),
@@ -615,6 +617,78 @@ describe("POST /api/problems/transform/adopt — 채택분만 넣는다", () => 
       data[0].sourceReference,
     );
     expect(await prismaTestDouble.examQuestion.count()).toBe(1);
+  });
+
+  it("원본이 잠겼으면 원본 답 재현을 통과해도 새 변형의 잠금을 유지한다", async () => {
+    const origin = MOCK_PROBLEMS[0]!;
+    await prismaTestDouble.problem.update({
+      where: { id: origin.id },
+      data: { directUseAllowed: false },
+    });
+    const response = await adoptRoute(
+      jsonRequest("http://localhost/api/problems/transform/adopt", {
+        originProblemId: origin.id,
+        items: [adoptItem("잠긴 원본의 검토용 변형")],
+      }),
+    );
+    expect(response.status).toBe(201);
+    const { data } = problemTransformAdoptResponseSchema.parse(
+      await response.json(),
+    );
+    expect(data[0]).toMatchObject({
+      source: "transformed",
+      reviewStatus: "pending",
+      directUseAllowed: false,
+    });
+  });
+
+  it("출처 사슬의 기출 원문까지 확인해 예전 변형본의 열린 플래그를 새 변형에 복사하지 않는다", async () => {
+    const original = MOCK_PROBLEMS[0]!;
+    await prismaTestDouble.problem.update({
+      where: { id: original.id },
+      data: { source: "past_exam", directUseAllowed: false },
+    });
+    const currentOrigin = (await prismaTestDouble.problem.findUnique({
+      where: { id: original.id },
+    }))!;
+    const {
+      id: _id,
+      problemCode: _code,
+      createdAt: _createdAt,
+      updatedAt: _updatedAt,
+      ...legacyData
+    } = currentOrigin;
+    const legacy = await prismaTestDouble.problem.create({
+      data: {
+        ...legacyData,
+        unitId: original.unitId,
+        source: "transformed",
+        originProblemId: original.id,
+        familyKey: "solo:legacy-past-exam-test",
+        difficulty: original.difficulty,
+        problemType: original.problemType,
+        questionType: "단답형",
+        content: "기출에서 예전에 만든 변형",
+        answer: "2",
+        reviewStatus: "approved",
+        directUseAllowed: true,
+      },
+    });
+    const response = await adoptRoute(
+      jsonRequest("http://localhost/api/problems/transform/adopt", {
+        originProblemId: legacy.id,
+        items: [adoptItem("옛 변형에서 만든 새 후보", "2")],
+      }),
+    );
+    expect(response.status).toBe(201);
+    const { data } = problemTransformAdoptResponseSchema.parse(
+      await response.json(),
+    );
+    expect(data[0]).toMatchObject({
+      source: "transformed",
+      directUseAllowed: false,
+      sourceReference: { source: "past_exam", problemId: original.id },
+    });
   });
 
   /**

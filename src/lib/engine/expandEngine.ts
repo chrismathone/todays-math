@@ -35,7 +35,9 @@
  * ─────────────────────────────────────────────────────────────────────────
  */
 import { createRng } from "../elementary/rng";
+import { sameValueChoicePairs } from "../math/exactChoiceValue";
 import { hasChoices } from "../problem/choiceCountRule";
+import { parseProblemContent } from "../problem/parseProblemContent";
 import { answerIsChoiceNumber } from "../problem/provenance";
 import {
   asMultipleChoice,
@@ -88,6 +90,15 @@ export function expandFamily(
     //    통째로 `[?형식]` 이 된다(실측 3유형). `classifyFormat` 이 쓰는 바로
     //    그 축을 여기서도 쓴다.
     if (hasChoices(stem.content) && answerIsChoiceNumber(stem.answer)) {
+      // Native MC stems bypass asMultipleChoice. Their numeric options need the
+      // same exact-value check, including equal wrong options (q22's failure).
+      // Unknown symbolic expressions stay outside this bounded numeric proof.
+      const choices = parseProblemContent(stem.content).choices;
+      const duplicatePairs = sameValueChoicePairs(choices);
+      if (duplicatePairs.length > 0)
+        throw new Error(
+          `생성기가 직접 낸 객관식에 같은 값 보기가 있습니다: ${duplicatePairs.map(([a, b]) => `${a + 1}=${b + 1}`).join(", ")}`,
+        );
       items.push({ ...stem, questionType: "객관식" });
       continue;
     }

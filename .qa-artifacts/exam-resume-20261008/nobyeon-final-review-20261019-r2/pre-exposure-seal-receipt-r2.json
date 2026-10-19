@@ -1,0 +1,47 @@
+{
+    "originalProofSummary":  {
+                                 "path":  ".qa-artifacts/exam-resume-20261008/nobyeon-independent-20261019-r2/proof-summary.json",
+                                 "sha256":  "fc87f16d98ef7670fce7b7a62b33c734fdf4dba490ffca10e49fd46a01d280d0"
+                             },
+    "kind":  "corrected-pre-exposure-seal-receipt/v2",
+    "createdAt":  "2026-10-19T05:59:52.2834146Z",
+    "supersededIncorrectReceipt":  {
+                                       "path":  "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\pre-exposure-seal-receipt.json",
+                                       "sha256":  "2ae046dfb97f3379d287e0c2938148addd979329b8e9eaa57e9cb707a3a47f58",
+                                       "status":  "invalid-full-commit-id; not approval evidence",
+                                       "reason":  "Original preparation script had an incorrectly typed full SHA. Actual Git object was reread; original raw proof/bytes and verify-pack hashes were unaffected."
+                                   },
+    "solves":  [
+                   {
+                       "original":  ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\solve\\q01.json",
+                       "copy":  "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q01.json",
+                       "sha256":  "098e0f5ae3400203044463c82c0787e42b4b3bd6aaf6c700cf7bbce497a0b350"
+                   },
+                   {
+                       "original":  ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\solve\\q02.json",
+                       "copy":  "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q02.json",
+                       "sha256":  "078bcdba7ea8b5ae7364e1801e85647e083c1c0b828e6649ae315ef5619372ba"
+                   },
+                   {
+                       "original":  ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\solve\\q04.json",
+                       "copy":  "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q04.json",
+                       "sha256":  "bb4b919629fdd78c77e03c7ee8594a8d54fc6f0ef6156fe9dc35c56676c63a60"
+                   },
+                   {
+                       "original":  ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\solve\\q06.json",
+                       "copy":  "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q06.json",
+                       "sha256":  "32cd6ee617b3dea5656ab75b148e8bc27134569109b84fdef75a43c3a8b320bd"
+                   },
+                   {
+                       "original":  ".qa-artifacts\\exam-resume-20261008\\nobyeon-independent-20261019-r2\\solve\\q08.json",
+                       "copy":  "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\nobyeon-final-review-20261019-r2\\blind\\solve\\q08.json",
+                       "sha256":  "ab7c55e334ae458f62ad0e75641db03467d2820e06dc4b65f695d1eb0715c3e1"
+                   }
+               ],
+    "copiedOriginalRawBytesUnchanged":  true,
+    "reviewManifest":  ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/verification/verification-manifest.json",
+    "rawCommit":  "c51c84ce57debd1287f5a1d7708f0c4d709ba01b",
+    "authorExposureAllowedOnlyAfterRawCommit":  true,
+    "fullShaVerifiedAgainstGit":  true,
+    "loadable":  0
+}

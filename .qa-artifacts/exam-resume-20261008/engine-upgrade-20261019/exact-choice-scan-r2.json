@@ -1,0 +1,3187 @@
+{
+  "kind": "middle-engine-choice-exact-scan/v1",
+  "engines": [
+    "middle",
+    "combo",
+    "elem"
+  ],
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "variants": 3,
+  "registeredTypes": 1517,
+  "failedTypeSeeds": 0,
+  "failedTypeSeedDetails": [],
+  "skippedMcq": 4596,
+  "mcRows": 55339,
+  "mcRowsAllChoicesReadable": 47605,
+  "sameValueRows": 0,
+  "unsimplifiedWrongOnlyRows": 15,
+  "unsimplifiedCorrectRows": 200,
+  "typesTouched": 34,
+  "sameValueByType": [],
+  "unsimplifiedWrongOnlyByType": [
+    [
+      "mid:2-1|유리수와 순환소수|06",
+      15
+    ]
+  ],
+  "unsimplifiedCorrectByType": [
+    [
+      "mid:3-1|근호를 포함한 식의 계산|04",
+      15
+    ],
+    [
+      "elem:초3|1-6-2 분수 알아보기(1)|09",
+      15
+    ],
+    [
+      "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+      15
+    ],
+    [
+      "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+      15
+    ],
+    [
+      "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+      9
+    ],
+    [
+      "elem:초3|1-6-1 똑같이 나누기|08",
+      8
+    ],
+    [
+      "elem:초3|1-6-2 분수 알아보기(1)|10",
+      8
+    ],
+    [
+      "elem:초3|1-6-3 분수 알아보기(2)|03",
+      7
+    ],
+    [
+      "elem:초3|2-4-1 분수로 나타내기|01",
+      7
+    ],
+    [
+      "elem:초3|2-4-1 분수로 나타내기|11",
+      7
+    ],
+    [
+      "elem:초3|2-4-1 분수로 나타내기|12",
+      7
+    ],
+    [
+      "elem:초4|2-1-2 진분수의 뺄셈|07",
+      7
+    ],
+    [
+      "elem:초5|1-4-2 분수를 간단하게 나타내기|01",
+      7
+    ],
+    [
+      "elem:초5|1-4-2 분수를 간단하게 나타내기|03",
+      7
+    ],
+    [
+      "elem:초3|1-6-2 분수 알아보기(1)|03",
+      6
+    ],
+    [
+      "elem:초3|2-4-1 분수로 나타내기|02",
+      6
+    ],
+    [
+      "elem:초4|2-1-2 진분수의 뺄셈|08",
+      6
+    ],
+    [
+      "elem:초5|1-4-1 크기가 같은 분수 알아보기|04",
+      6
+    ],
+    [
+      "elem:초3|1-6-2 분수 알아보기(1)|02",
+      5
+    ],
+    [
+      "elem:초3|1-6-4 분모가 같은 분수의 크기 비교|03",
+      5
+    ],
+    [
+      "mid:2-1|유리수와 순환소수|45",
+      3
+    ],
+    [
+      "elem:초3|1-6-2 분수 알아보기(1)|01",
+      3
+    ],
+    [
+      "elem:초3|1-6-2 분수 알아보기(1)|04",
+      3
+    ],
+    [
+      "elem:초3|1-6-3 분수 알아보기(2)|01",
+      3
+    ],
+    [
+      "elem:초3|1-6-3 분수 알아보기(2)|02",
+      3
+    ],
+    [
+      "elem:초3|1-6-3 분수 알아보기(2)|04",
+      3
+    ],
+    [
+      "elem:초3|1-6-3 분수 알아보기(2)|06",
+      3
+    ],
+    [
+      "elem:초3|2-4-1 분수로 나타내기|03",
+      3
+    ],
+    [
+      "mid:1-1|정수와 유리수|11",
+      2
+    ],
+    [
+      "elem:초3|2-4-1 분수로 나타내기|08",
+      2
+    ],
+    [
+      "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|01",
+      2
+    ],
+    [
+      "elem:초3|1-6-6 소수 알아보기|01",
+      1
+    ],
+    [
+      "elem:초5|1-4-4 분수의 크기 비교|01",
+      1
+    ]
+  ],
+  "hits": {
+    "sameValue": [],
+    "unsimplifiedWrongOnly": [
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 1,
+        "variant": 0,
+        "answer": "③, ⑤",
+        "choices": [
+          "$\\dfrac{77}{121}$",
+          "$\\dfrac{12}{18}$",
+          "$\\dfrac{3}{15}$",
+          "$\\dfrac{54}{132}$",
+          "$\\dfrac{22}{80}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 1,
+        "variant": 1,
+        "answer": "③, ④",
+        "choices": [
+          "$\\dfrac{56}{63}$",
+          "$\\dfrac{14}{21}$",
+          "$\\dfrac{3}{15}$",
+          "$\\dfrac{54}{120}$",
+          "$\\dfrac{10}{42}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 1,
+        "variant": 2,
+        "answer": "②, ⑤",
+        "choices": [
+          "$\\dfrac{14}{21}$",
+          "$\\dfrac{6}{30}$",
+          "$\\dfrac{8}{30}$",
+          "$\\dfrac{55}{66}$",
+          "$\\dfrac{21}{112}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 2,
+        "variant": 0,
+        "answer": "③, ④",
+        "choices": [
+          "$\\dfrac{6}{14}$",
+          "$\\dfrac{88}{99}$",
+          "$\\dfrac{33}{176}$",
+          "$\\dfrac{54}{120}$",
+          "$\\dfrac{35}{84}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 2,
+        "variant": 1,
+        "answer": "②, ⑤",
+        "choices": [
+          "$\\dfrac{35}{84}$",
+          "$\\dfrac{26}{100}$",
+          "$\\dfrac{10}{12}$",
+          "$\\dfrac{48}{54}$",
+          "$\\dfrac{21}{112}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 2,
+        "variant": 2,
+        "answer": "②, ④",
+        "choices": [
+          "$\\dfrac{54}{132}$",
+          "$\\dfrac{3}{15}$",
+          "$\\dfrac{77}{198}$",
+          "$\\dfrac{6}{8}$",
+          "$\\dfrac{9}{21}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 3,
+        "variant": 0,
+        "answer": "④, ⑤",
+        "choices": [
+          "$\\dfrac{35}{42}$",
+          "$\\dfrac{28}{105}$",
+          "$\\dfrac{88}{99}$",
+          "$\\dfrac{77}{88}$",
+          "$\\dfrac{54}{120}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 3,
+        "variant": 1,
+        "answer": "③, ⑤",
+        "choices": [
+          "$\\dfrac{21}{49}$",
+          "$\\dfrac{28}{105}$",
+          "$\\dfrac{22}{80}$",
+          "$\\dfrac{22}{33}$",
+          "$\\dfrac{9}{48}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 3,
+        "variant": 2,
+        "answer": "④, ⑤",
+        "choices": [
+          "$\\dfrac{6}{9}$",
+          "$\\dfrac{56}{63}$",
+          "$\\dfrac{35}{42}$",
+          "$\\dfrac{18}{96}$",
+          "$\\dfrac{42}{48}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 4,
+        "variant": 0,
+        "answer": "④, ⑤",
+        "choices": [
+          "$\\dfrac{10}{12}$",
+          "$\\dfrac{33}{77}$",
+          "$\\dfrac{15}{36}$",
+          "$\\dfrac{21}{112}$",
+          "$\\dfrac{99}{220}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 4,
+        "variant": 1,
+        "answer": "①, ⑤",
+        "choices": [
+          "$\\dfrac{18}{24}$",
+          "$\\dfrac{18}{42}$",
+          "$\\dfrac{35}{84}$",
+          "$\\dfrac{63}{154}$",
+          "$\\dfrac{14}{50}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 4,
+        "variant": 2,
+        "answer": "③, ④",
+        "choices": [
+          "$\\dfrac{27}{66}$",
+          "$\\dfrac{56}{63}$",
+          "$\\dfrac{22}{80}$",
+          "$\\dfrac{21}{28}$",
+          "$\\dfrac{28}{105}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 5,
+        "variant": 0,
+        "answer": "①, ④",
+        "choices": [
+          "$\\dfrac{26}{100}$",
+          "$\\dfrac{16}{18}$",
+          "$\\dfrac{49}{126}$",
+          "$\\dfrac{22}{80}$",
+          "$\\dfrac{27}{66}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 5,
+        "variant": 1,
+        "answer": "③, ④",
+        "choices": [
+          "$\\dfrac{30}{126}$",
+          "$\\dfrac{22}{33}$",
+          "$\\dfrac{21}{112}$",
+          "$\\dfrac{21}{75}$",
+          "$\\dfrac{35}{84}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|06",
+        "seed": 5,
+        "variant": 2,
+        "answer": "②, ③",
+        "choices": [
+          "$\\dfrac{22}{33}$",
+          "$\\dfrac{33}{120}$",
+          "$\\dfrac{11}{55}$",
+          "$\\dfrac{24}{90}$",
+          "$\\dfrac{35}{42}$"
+        ],
+        "detail": "①:fraction-not-reduced ②:fraction-not-reduced ③:fraction-not-reduced ④:fraction-not-reduced ⑤:fraction-not-reduced"
+      }
+    ],
+    "unsimplifiedCorrect": [
+      {
+        "key": "mid:1-1|정수와 유리수|11",
+        "seed": 1,
+        "variant": 2,
+        "answer": "③",
+        "choices": [
+          "$5$",
+          "$7$",
+          "$\\frac{8}{2}$",
+          "$8$",
+          "$3$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "mid:1-1|정수와 유리수|11",
+        "seed": 3,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$1$",
+          "$-3$",
+          "$-\\frac{3}{3}$",
+          "$2$",
+          "$-2$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 1,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\sqrt{27}$",
+          "$\\sqrt{54}$",
+          "$\\sqrt{26}$",
+          "$\\sqrt{37}$",
+          "$\\sqrt{17}$"
+        ],
+        "detail": "①:sqrt-square-factor ②:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 1,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\sqrt{124}$",
+          "$\\sqrt{123}$",
+          "$\\sqrt{128}$",
+          "$\\sqrt{125}$",
+          "$\\sqrt{250}$"
+        ],
+        "detail": "①:sqrt-square-factor ③:sqrt-square-factor ④:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 1,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\sqrt{252}$",
+          "$\\sqrt{249}$",
+          "$\\sqrt{500}$",
+          "$\\sqrt{240}$",
+          "$\\sqrt{250}$"
+        ],
+        "detail": "①:sqrt-square-factor ③:sqrt-square-factor ④:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 2,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\sqrt{52}$",
+          "$\\sqrt{51}$",
+          "$\\sqrt{104}$",
+          "$\\sqrt{62}$",
+          "$\\sqrt{42}$"
+        ],
+        "detail": "①:sqrt-square-factor ③:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 2,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\sqrt{98}$",
+          "$\\sqrt{97}$",
+          "$\\sqrt{102}$",
+          "$\\sqrt{99}$",
+          "$\\sqrt{198}$"
+        ],
+        "detail": "①:sqrt-square-factor ④:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 2,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\sqrt{56}$",
+          "$\\sqrt{55}$",
+          "$\\sqrt{108}$",
+          "$\\sqrt{64}$",
+          "$\\sqrt{54}$"
+        ],
+        "detail": "①:sqrt-square-factor ③:sqrt-square-factor ④:sqrt-of-square ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 3,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\sqrt{468}$",
+          "$\\sqrt{234}$",
+          "$\\sqrt{936}$",
+          "$\\sqrt{478}$",
+          "$\\sqrt{568}$"
+        ],
+        "detail": "①:sqrt-square-factor ②:sqrt-square-factor ③:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 3,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\sqrt{395}$",
+          "$\\sqrt{398}$",
+          "$\\sqrt{399}$",
+          "$\\sqrt{396}$",
+          "$\\sqrt{198}$"
+        ],
+        "detail": "④:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 3,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\sqrt{82}$",
+          "$\\sqrt{81}$",
+          "$\\sqrt{160}$",
+          "$\\sqrt{90}$",
+          "$\\sqrt{80}$"
+        ],
+        "detail": "②:sqrt-of-square ③:sqrt-square-factor ④:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 4,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\sqrt{99}$",
+          "$\\sqrt{198}$",
+          "$\\sqrt{98}$",
+          "$\\sqrt{109}$",
+          "$\\sqrt{89}$"
+        ],
+        "detail": "①:sqrt-square-factor ②:sqrt-square-factor ③:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 4,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\sqrt{26}$",
+          "$\\sqrt{25}$",
+          "$\\sqrt{30}$",
+          "$\\sqrt{27}$",
+          "$\\sqrt{54}$"
+        ],
+        "detail": "②:sqrt-of-square ④:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 4,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\sqrt{54}$",
+          "$\\sqrt{53}$",
+          "$\\sqrt{104}$",
+          "$\\sqrt{62}$",
+          "$\\sqrt{52}$"
+        ],
+        "detail": "①:sqrt-square-factor ③:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 5,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\sqrt{20}$",
+          "$\\sqrt{40}$",
+          "$\\sqrt{19}$",
+          "$\\sqrt{10}$",
+          "$\\sqrt{30}$"
+        ],
+        "detail": "①:sqrt-square-factor ②:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 5,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\sqrt{179}$",
+          "$\\sqrt{182}$",
+          "$\\sqrt{183}$",
+          "$\\sqrt{180}$",
+          "$\\sqrt{90}$"
+        ],
+        "detail": "④:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:3-1|근호를 포함한 식의 계산|04",
+        "seed": 5,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\sqrt{119}$",
+          "$\\sqrt{116}$",
+          "$\\sqrt{234}$",
+          "$\\sqrt{217}$",
+          "$\\sqrt{117}$"
+        ],
+        "detail": "②:sqrt-square-factor ③:sqrt-square-factor ⑤:sqrt-square-factor"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|45",
+        "seed": 1,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$\\dfrac{2}{4}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|45",
+        "seed": 4,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\frac{1}{3}$",
+          "$2$",
+          "$1$",
+          "$\\dfrac{4}{8}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "mid:2-1|유리수와 순환소수|45",
+        "seed": 4,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$\\dfrac{2}{4}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-1 똑같이 나누기|08",
+        "seed": 1,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{8}$",
+          "$4$",
+          "$\\frac{1}{5}$",
+          "$\\frac{5}{4}$",
+          "$\\frac{1}{2}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-1 똑같이 나누기|08",
+        "seed": 1,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$2$",
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$\\frac{2}{4}$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-1 똑같이 나누기|08",
+        "seed": 2,
+        "variant": 0,
+        "answer": "③",
+        "choices": [
+          "$\\frac{5}{2}$",
+          "$\\frac{5}{4}$",
+          "$\\frac{2}{8}$",
+          "$\\frac{1}{5}$",
+          "$\\frac{1}{2}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-1 똑같이 나누기|08",
+        "seed": 3,
+        "variant": 0,
+        "answer": "③",
+        "choices": [
+          "$2$",
+          "$\\frac{3}{2}$",
+          "$\\frac{2}{4}$",
+          "$\\frac{1}{3}$",
+          "$1$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-1 똑같이 나누기|08",
+        "seed": 3,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{6}$",
+          "$3$",
+          "$\\frac{1}{4}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{2}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-1 똑같이 나누기|08",
+        "seed": 3,
+        "variant": 3,
+        "answer": "④",
+        "choices": [
+          "$4$",
+          "$\\frac{5}{4}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{2}{8}$",
+          "$\\frac{1}{5}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-1 똑같이 나누기|08",
+        "seed": 4,
+        "variant": 4,
+        "answer": "④",
+        "choices": [
+          "$2$",
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$\\frac{2}{4}$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-1 똑같이 나누기|08",
+        "seed": 5,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{8}$",
+          "$4$",
+          "$\\frac{1}{5}$",
+          "$\\frac{5}{4}$",
+          "$\\frac{1}{2}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|01",
+        "seed": 1,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{8}$",
+          "$\\frac{5}{4}$",
+          "$4$",
+          "$\\frac{1}{5}$",
+          "$\\frac{5}{2}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|01",
+        "seed": 5,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{6}$",
+          "$\\frac{4}{3}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{20}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|01",
+        "seed": 5,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$2$",
+          "$\\frac{2}{4}$",
+          "$1$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|02",
+        "seed": 1,
+        "variant": 1,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{4}{3}$",
+          "$1$",
+          "$\\frac{15}{2}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{6}{8}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|02",
+        "seed": 2,
+        "variant": 1,
+        "answer": "⑤",
+        "choices": [
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{3}{6}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|02",
+        "seed": 3,
+        "variant": 3,
+        "answer": "②",
+        "choices": [
+          "$1$",
+          "$\\frac{6}{8}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{15}{2}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|02",
+        "seed": 4,
+        "variant": 1,
+        "answer": "⑤",
+        "choices": [
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{2}{4}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|02",
+        "seed": 5,
+        "variant": 1,
+        "answer": "⑤",
+        "choices": [
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{2}{4}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|03",
+        "seed": 1,
+        "variant": 2,
+        "answer": "②",
+        "choices": [
+          "$1$",
+          "$\\frac{4}{6}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{1}{2}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|03",
+        "seed": 2,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$\\frac{1}{4}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{2}{6}$",
+          "$3$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|03",
+        "seed": 3,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$\\frac{1}{2}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{5}{3}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|03",
+        "seed": 4,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$\\frac{1}{2}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{5}{3}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|03",
+        "seed": 4,
+        "variant": 2,
+        "answer": "②",
+        "choices": [
+          "$4$",
+          "$\\frac{2}{8}$",
+          "$\\frac{5}{4}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{1}{5}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|03",
+        "seed": 5,
+        "variant": 0,
+        "answer": "③",
+        "choices": [
+          "$\\frac{7}{4}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{6}{8}$",
+          "$1$",
+          "$\\frac{15}{2}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|04",
+        "seed": 1,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$\\frac{3}{6}$",
+          "$\\frac{1}{3}$",
+          "$2$",
+          "$1$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|04",
+        "seed": 1,
+        "variant": 2,
+        "answer": "③",
+        "choices": [
+          "$1$",
+          "$2$",
+          "$\\frac{3}{6}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|04",
+        "seed": 4,
+        "variant": 0,
+        "answer": "③",
+        "choices": [
+          "$\\frac{4}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{6}{8}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{3}{5}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 1,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{8}{8}$",
+          "$2$",
+          "$4$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 1,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{5}{5}$",
+          "$4$",
+          "$2$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 1,
+        "variant": 6,
+        "answer": "③",
+        "choices": [
+          "$10$",
+          "$2$",
+          "$\\frac{7}{7}$",
+          "$4$",
+          "$3$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 2,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{4}$",
+          "$2$",
+          "$4$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 2,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{7}{7}$",
+          "$4$",
+          "$2$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 2,
+        "variant": 3,
+        "answer": "③",
+        "choices": [
+          "$10$",
+          "$2$",
+          "$\\frac{3}{3}$",
+          "$4$",
+          "$3$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 3,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{5}{5}$",
+          "$2$",
+          "$4$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 3,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{8}{8}$",
+          "$4$",
+          "$2$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 3,
+        "variant": 4,
+        "answer": "③",
+        "choices": [
+          "$10$",
+          "$2$",
+          "$\\frac{3}{3}$",
+          "$4$",
+          "$3$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 4,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{3}{3}$",
+          "$2$",
+          "$4$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 4,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{5}{5}$",
+          "$4$",
+          "$2$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 4,
+        "variant": 3,
+        "answer": "③",
+        "choices": [
+          "$10$",
+          "$2$",
+          "$\\frac{8}{8}$",
+          "$4$",
+          "$3$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 5,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{6}{6}$",
+          "$2$",
+          "$4$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 5,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{3}{3}$",
+          "$4$",
+          "$2$",
+          "$10$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|09",
+        "seed": 5,
+        "variant": 2,
+        "answer": "③",
+        "choices": [
+          "$10$",
+          "$2$",
+          "$\\frac{4}{4}$",
+          "$4$",
+          "$3$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|10",
+        "seed": 1,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{6}{8}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{15}{2}$",
+          "$1$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|10",
+        "seed": 1,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{4}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|10",
+        "seed": 2,
+        "variant": 1,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$\\frac{2}{4}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|10",
+        "seed": 2,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{15}{2}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{3}{5}$",
+          "$1$",
+          "$\\frac{6}{8}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|10",
+        "seed": 3,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{4}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$2$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|10",
+        "seed": 4,
+        "variant": 1,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$\\frac{2}{4}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|10",
+        "seed": 4,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{2}{3}$",
+          "$\\frac{10}{3}$",
+          "$3$",
+          "$\\frac{1}{4}$",
+          "$\\frac{2}{6}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-2 분수 알아보기(1)|10",
+        "seed": 5,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$\\frac{4}{8}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|01",
+        "seed": 4,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{6}{8}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{7}{4}$",
+          "$1$",
+          "$\\frac{15}{2}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|01",
+        "seed": 5,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{4}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$",
+          "$2$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|01",
+        "seed": 5,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\frac{1}{2}$",
+          "$\\frac{5}{2}$",
+          "$\\frac{5}{4}$",
+          "$\\frac{2}{8}$",
+          "$4$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|02",
+        "seed": 1,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{10}{3}$",
+          "$\\frac{2}{6}$",
+          "$\\frac{4}{3}$",
+          "$3$",
+          "$\\frac{1}{4}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|02",
+        "seed": 4,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{10}{3}$",
+          "$\\frac{3}{9}$",
+          "$\\frac{4}{3}$",
+          "$3$",
+          "$\\frac{1}{4}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|02",
+        "seed": 5,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{4}$",
+          "$2$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|03",
+        "seed": 1,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{4}{3}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{20}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|03",
+        "seed": 1,
+        "variant": 2,
+        "answer": "③",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$\\frac{3}{6}$",
+          "$1$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|03",
+        "seed": 2,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{7}{5}$",
+          "$\\frac{5}{2}$",
+          "$\\frac{4}{5}$",
+          "$\\frac{1}{5}$",
+          "$\\frac{4}{10}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|03",
+        "seed": 3,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\frac{3}{5}$",
+          "$\\frac{4}{5}$",
+          "$\\frac{7}{5}$",
+          "$\\frac{4}{10}$",
+          "$\\frac{1}{5}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|03",
+        "seed": 4,
+        "variant": 2,
+        "answer": "③",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$\\frac{3}{6}$",
+          "$1$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|03",
+        "seed": 5,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{5}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{6}{9}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|03",
+        "seed": 5,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{4}{3}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{20}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|04",
+        "seed": 1,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\frac{5}{3}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{6}{9}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|04",
+        "seed": 1,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$\\frac{1}{5}$",
+          "$\\frac{5}{2}$",
+          "$4$",
+          "$\\frac{2}{8}$",
+          "$\\frac{5}{4}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|04",
+        "seed": 5,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$\\frac{1}{4}$",
+          "$\\frac{10}{3}$",
+          "$3$",
+          "$\\frac{2}{6}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|06",
+        "seed": 1,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{4}$",
+          "$2$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|06",
+        "seed": 3,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$\\frac{10}{3}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{1}{4}$",
+          "$\\frac{2}{6}$",
+          "$3$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-3 분수 알아보기(2)|06",
+        "seed": 5,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$\\frac{20}{3}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-4 분모가 같은 분수의 크기 비교|03",
+        "seed": 1,
+        "variant": 2,
+        "answer": "①",
+        "choices": [
+          "$\\frac{3}{9}$",
+          "$\\frac{4}{3}$",
+          "$3$",
+          "$\\frac{2}{3}$",
+          "$\\frac{10}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-4 분모가 같은 분수의 크기 비교|03",
+        "seed": 2,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{3}{6}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$2$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-4 분모가 같은 분수의 크기 비교|03",
+        "seed": 2,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{3}{6}$",
+          "$2$",
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-4 분모가 같은 분수의 크기 비교|03",
+        "seed": 5,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{8}$",
+          "$\\frac{5}{2}$",
+          "$4$",
+          "$\\frac{1}{2}$",
+          "$\\frac{1}{5}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-4 분모가 같은 분수의 크기 비교|03",
+        "seed": 5,
+        "variant": 2,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{8}$",
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$1$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|1-6-6 소수 알아보기|01",
+        "seed": 3,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{2}{5}$",
+          "$\\frac{6}{5}$",
+          "$\\frac{1}{6}$",
+          "$5$",
+          "$\\frac{2}{10}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|01",
+        "seed": 1,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$",
+          "$2$",
+          "$\\frac{3}{6}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|01",
+        "seed": 3,
+        "variant": 0,
+        "answer": "④",
+        "choices": [
+          "$\\frac{1}{4}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{10}{3}$",
+          "$\\frac{2}{6}$",
+          "$3$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|01",
+        "seed": 4,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$2$",
+          "$\\frac{4}{8}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|01",
+        "seed": 4,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{20}{3}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{4}{6}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|01",
+        "seed": 5,
+        "variant": 0,
+        "answer": "④",
+        "choices": [
+          "$\\frac{1}{2}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|01",
+        "seed": 5,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$1$",
+          "$\\frac{4}{6}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|01",
+        "seed": 5,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$",
+          "$2$",
+          "$\\frac{4}{8}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|02",
+        "seed": 1,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$1$",
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{2}{4}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|02",
+        "seed": 2,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$\\frac{5}{2}$",
+          "$\\frac{5}{4}$",
+          "$\\frac{2}{8}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{1}{5}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|02",
+        "seed": 3,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$\\frac{20}{3}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{1}{2}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|02",
+        "seed": 4,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$1$",
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{3}{6}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|02",
+        "seed": 4,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$\\frac{20}{3}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{1}{2}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|02",
+        "seed": 5,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$1$",
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{3}{6}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|03",
+        "seed": 2,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{6}$",
+          "$\\frac{3}{2}$",
+          "$1$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|03",
+        "seed": 4,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$\\frac{1}{4}$",
+          "$3$",
+          "$\\frac{2}{6}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{10}{3}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|03",
+        "seed": 5,
+        "variant": 0,
+        "answer": "②",
+        "choices": [
+          "$\\frac{5}{4}$",
+          "$\\frac{2}{8}$",
+          "$4$",
+          "$\\frac{5}{2}$",
+          "$\\frac{1}{5}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|08",
+        "seed": 1,
+        "variant": 1,
+        "answer": "③",
+        "choices": [
+          "$\\frac{1}{3}$",
+          "$2$",
+          "$\\frac{3}{6}$",
+          "$\\frac{3}{2}$",
+          "$1$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|08",
+        "seed": 4,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$\\frac{1}{2}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|11",
+        "seed": 1,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{7}{4}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{6}{8}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|11",
+        "seed": 1,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{6}{8}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{15}{2}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{3}{5}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|11",
+        "seed": 1,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$2$",
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$\\frac{4}{8}$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|11",
+        "seed": 2,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{6}{8}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{15}{2}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{3}{5}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|11",
+        "seed": 3,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$\\frac{20}{3}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{4}{6}$",
+          "$1$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|11",
+        "seed": 5,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{8}$",
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$1$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|11",
+        "seed": 5,
+        "variant": 2,
+        "answer": "④",
+        "choices": [
+          "$2$",
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$\\frac{4}{8}$",
+          "$\\frac{1}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|12",
+        "seed": 1,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{6}{8}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|12",
+        "seed": 1,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{1}{3}$",
+          "$2$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{3}{6}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|12",
+        "seed": 3,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{6}{8}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|12",
+        "seed": 3,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$3$",
+          "$\\frac{10}{3}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{2}{6}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|12",
+        "seed": 4,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{6}{8}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|12",
+        "seed": 5,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{6}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{10}{3}$",
+          "$3$",
+          "$\\frac{2}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-1 분수로 나타내기|12",
+        "seed": 5,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{3}{6}$",
+          "$2$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|01",
+        "seed": 1,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{1}{5}$",
+          "$\\frac{2}{8}$",
+          "$\\frac{5}{4}$",
+          "$\\frac{1}{2}$",
+          "$4$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|01",
+        "seed": 2,
+        "variant": 0,
+        "answer": "④",
+        "choices": [
+          "$3$",
+          "$\\frac{2}{3}$",
+          "$\\frac{1}{4}$",
+          "$\\frac{3}{9}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+        "seed": 1,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{6}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+        "seed": 2,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{6}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+        "seed": 3,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{6}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+        "seed": 3,
+        "variant": 5,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{1}{2}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{4}{6}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+        "seed": 4,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{3}{6}$",
+          "$1$",
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+        "seed": 4,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+        "seed": 4,
+        "variant": 5,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{3}{5}$",
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$\\frac{7}{4}$",
+          "$\\frac{6}{8}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+        "seed": 5,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초3|2-4-6 분모가 같은 분수의 크기 비교|04",
+        "seed": 5,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{3}{5}$",
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$\\frac{7}{4}$",
+          "$\\frac{6}{8}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|07",
+        "seed": 1,
+        "variant": 0,
+        "answer": "②",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$\\frac{4}{8}$",
+          "$1$",
+          "$\\frac{1}{3}$",
+          "$2$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|07",
+        "seed": 1,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$3$",
+          "$\\frac{2}{6}$",
+          "$\\frac{1}{4}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{2}{3}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|07",
+        "seed": 2,
+        "variant": 0,
+        "answer": "②",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$\\frac{3}{6}$",
+          "$1$",
+          "$\\frac{1}{3}$",
+          "$2$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|07",
+        "seed": 2,
+        "variant": 2,
+        "answer": "③",
+        "choices": [
+          "$\\frac{15}{2}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{6}{8}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{7}{4}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|07",
+        "seed": 4,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$1$",
+          "$\\frac{6}{8}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|07",
+        "seed": 5,
+        "variant": 0,
+        "answer": "②",
+        "choices": [
+          "$\\frac{5}{3}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{20}{3}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|07",
+        "seed": 5,
+        "variant": 2,
+        "answer": "③",
+        "choices": [
+          "$1$",
+          "$\\frac{1}{3}$",
+          "$\\frac{4}{8}$",
+          "$2$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|08",
+        "seed": 1,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{3}{6}$",
+          "$\\frac{1}{3}$",
+          "$2$",
+          "$1$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|08",
+        "seed": 1,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$\\frac{7}{4}$",
+          "$1$",
+          "$\\frac{3}{5}$",
+          "$\\frac{6}{8}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|08",
+        "seed": 3,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\frac{15}{2}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{6}{8}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|08",
+        "seed": 4,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{6}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{5}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|08",
+        "seed": 4,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$1$",
+          "$\\frac{3}{2}$",
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$\\frac{4}{8}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초4|2-1-2 진분수의 뺄셈|08",
+        "seed": 5,
+        "variant": 1,
+        "answer": "④",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$\\frac{20}{3}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{8}{12}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 1,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{8}{10}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{8}{5}$",
+          "$\\frac{9}{5}$",
+          "$1$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 1,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{2}{5}$",
+          "$\\frac{2}{10}$",
+          "$5$",
+          "$\\frac{1}{6}$",
+          "$\\frac{6}{5}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 1,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{1}{3}$",
+          "$\\frac{7}{6}$",
+          "$6$",
+          "$\\frac{5}{3}$",
+          "$\\frac{4}{24}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 2,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{12}{16}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{7}{4}$",
+          "$1$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 2,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{25}{3}$",
+          "$\\frac{15}{18}$",
+          "$\\frac{6}{5}$",
+          "$1$",
+          "$\\frac{5}{3}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 2,
+        "variant": 3,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$1$",
+          "$\\frac{4}{3}$",
+          "$\\frac{15}{2}$",
+          "$\\frac{12}{16}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 3,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{5}{15}$",
+          "$\\frac{1}{4}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{4}{3}$",
+          "$3$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 3,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{1}{5}$",
+          "$\\frac{5}{20}$",
+          "$\\frac{5}{2}$",
+          "$4$",
+          "$\\frac{5}{4}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 3,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{6}{7}$",
+          "$\\frac{4}{7}$",
+          "$\\frac{7}{3}$",
+          "$\\frac{30}{7}$",
+          "$\\frac{9}{21}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 4,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{6}{8}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{7}{4}$",
+          "$1$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 4,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{25}{3}$",
+          "$\\frac{20}{24}$",
+          "$\\frac{6}{5}$",
+          "$1$",
+          "$\\frac{5}{3}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 4,
+        "variant": 2,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{2}{5}$",
+          "$\\frac{1}{6}$",
+          "$5$",
+          "$\\frac{6}{5}$",
+          "$\\frac{3}{15}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 5,
+        "variant": 0,
+        "answer": "①",
+        "choices": [
+          "$\\frac{20}{24}$",
+          "$\\frac{5}{7}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{11}{6}$",
+          "$1$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 5,
+        "variant": 2,
+        "answer": "②",
+        "choices": [
+          "$\\frac{15}{2}$",
+          "$\\frac{18}{24}$",
+          "$\\frac{4}{3}$",
+          "$1$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|03",
+        "seed": 5,
+        "variant": 3,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{4}{5}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{5}{2}$",
+          "$\\frac{1}{5}$",
+          "$\\frac{8}{20}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|04",
+        "seed": 1,
+        "variant": 3,
+        "answer": "③",
+        "choices": [
+          "$\\frac{15}{2}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{12}{16}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|04",
+        "seed": 2,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{16}$",
+          "$4$",
+          "$\\frac{1}{5}$",
+          "$\\frac{5}{2}$",
+          "$\\frac{5}{4}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|04",
+        "seed": 3,
+        "variant": 2,
+        "answer": "③",
+        "choices": [
+          "$5$",
+          "$\\frac{1}{6}$",
+          "$\\frac{3}{15}$",
+          "$\\frac{6}{5}$",
+          "$\\frac{2}{5}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|04",
+        "seed": 4,
+        "variant": 0,
+        "answer": "④",
+        "choices": [
+          "$\\frac{5}{3}$",
+          "$1$",
+          "$\\frac{6}{5}$",
+          "$\\frac{20}{24}$",
+          "$\\frac{25}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|04",
+        "seed": 4,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{20}{24}$",
+          "$\\frac{25}{3}$",
+          "$1$",
+          "$\\frac{6}{5}$",
+          "$\\frac{5}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|04",
+        "seed": 5,
+        "variant": 2,
+        "answer": "③",
+        "choices": [
+          "$2$",
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{4}$",
+          "$\\frac{3}{2}$",
+          "$1$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 1,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$2$",
+          "$1$",
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{5}{10}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 1,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{20}{24}$",
+          "$\\frac{11}{6}$",
+          "$\\frac{5}{7}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{6}{5}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 1,
+        "variant": 2,
+        "answer": "①",
+        "choices": [
+          "$\\frac{6}{15}$",
+          "$\\frac{1}{5}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{5}{2}$",
+          "$\\frac{7}{5}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 2,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{4}{3}$",
+          "$\\frac{12}{18}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 2,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{4}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{1}{3}$",
+          "$1$",
+          "$2$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 2,
+        "variant": 2,
+        "answer": "①",
+        "choices": [
+          "$\\frac{2}{6}$",
+          "$\\frac{10}{3}$",
+          "$\\frac{1}{4}$",
+          "$\\frac{2}{3}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 3,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{5}{3}$",
+          "$\\frac{8}{5}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{6}{5}$",
+          "$\\frac{12}{20}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 3,
+        "variant": 2,
+        "answer": "①",
+        "choices": [
+          "$\\frac{4}{10}$",
+          "$\\frac{7}{5}$",
+          "$\\frac{1}{3}$",
+          "$\\frac{4}{5}$",
+          "$\\frac{5}{2}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 3,
+        "variant": 3,
+        "answer": "①",
+        "choices": [
+          "$\\frac{6}{15}$",
+          "$\\frac{1}{5}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{5}{2}$",
+          "$\\frac{7}{5}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 4,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{10}{7}$",
+          "$\\frac{8}{7}$",
+          "$\\frac{1}{8}$",
+          "$\\frac{2}{7}$",
+          "$\\frac{2}{14}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 4,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{3}{18}$",
+          "$\\frac{7}{6}$",
+          "$\\frac{1}{7}$",
+          "$\\frac{1}{3}$",
+          "$6$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 4,
+        "variant": 2,
+        "answer": "①",
+        "choices": [
+          "$\\frac{3}{12}$",
+          "$\\frac{5}{2}$",
+          "$\\frac{1}{5}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{5}{4}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 5,
+        "variant": 0,
+        "answer": "⑤",
+        "choices": [
+          "$\\frac{4}{3}$",
+          "$\\frac{7}{4}$",
+          "$\\frac{3}{5}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{9}{12}$"
+        ],
+        "detail": "⑤:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 5,
+        "variant": 1,
+        "answer": "①",
+        "choices": [
+          "$\\frac{20}{24}$",
+          "$\\frac{11}{6}$",
+          "$\\frac{5}{7}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{6}{5}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-1 크기가 같은 분수 알아보기|09",
+        "seed": 5,
+        "variant": 2,
+        "answer": "①",
+        "choices": [
+          "$\\frac{5}{10}$",
+          "$1$",
+          "$\\frac{1}{3}$",
+          "$2$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "①:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|01",
+        "seed": 1,
+        "variant": 0,
+        "answer": "④",
+        "choices": [
+          "$\\frac{5}{2}$",
+          "$\\frac{1}{5}$",
+          "$4$",
+          "$\\frac{3}{12}$",
+          "$\\frac{1}{2}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|01",
+        "seed": 2,
+        "variant": 0,
+        "answer": "④",
+        "choices": [
+          "$1$",
+          "$\\frac{1}{3}$",
+          "$2$",
+          "$\\frac{2}{4}$",
+          "$\\frac{3}{2}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|01",
+        "seed": 2,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$5$",
+          "$\\frac{2}{10}$",
+          "$\\frac{6}{5}$",
+          "$\\frac{2}{5}$",
+          "$\\frac{1}{6}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|01",
+        "seed": 4,
+        "variant": 0,
+        "answer": "④",
+        "choices": [
+          "$\\frac{5}{2}$",
+          "$\\frac{1}{5}$",
+          "$4$",
+          "$\\frac{2}{8}$",
+          "$\\frac{1}{2}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|01",
+        "seed": 4,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{5}{4}$",
+          "$\\frac{8}{10}$",
+          "$\\frac{8}{5}$",
+          "$\\frac{2}{5}$",
+          "$\\frac{2}{3}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|01",
+        "seed": 5,
+        "variant": 0,
+        "answer": "④",
+        "choices": [
+          "$\\frac{20}{3}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{3}{2}$",
+          "$\\frac{4}{6}$",
+          "$\\frac{4}{3}$"
+        ],
+        "detail": "④:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|01",
+        "seed": 5,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{6}{5}$",
+          "$\\frac{9}{15}$",
+          "$\\frac{4}{5}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{1}{2}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|03",
+        "seed": 2,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$1$",
+          "$\\frac{35}{40}$",
+          "$\\frac{8}{7}$",
+          "$\\frac{7}{9}$",
+          "$\\frac{15}{8}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|03",
+        "seed": 3,
+        "variant": 0,
+        "answer": "③",
+        "choices": [
+          "$\\frac{8}{5}$",
+          "$\\frac{2}{5}$",
+          "$\\frac{24}{30}$",
+          "$1$",
+          "$\\frac{2}{3}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|03",
+        "seed": 3,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{3}{4}$",
+          "$\\frac{20}{32}$",
+          "$\\frac{8}{5}$",
+          "$\\frac{5}{9}$",
+          "$\\frac{13}{8}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|03",
+        "seed": 4,
+        "variant": 0,
+        "answer": "③",
+        "choices": [
+          "$\\frac{1}{2}$",
+          "$\\frac{5}{2}$",
+          "$\\frac{6}{24}$",
+          "$4$",
+          "$\\frac{1}{5}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|03",
+        "seed": 4,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{4}{5}$",
+          "$\\frac{18}{30}$",
+          "$\\frac{5}{3}$",
+          "$\\frac{1}{2}$",
+          "$\\frac{8}{5}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|03",
+        "seed": 5,
+        "variant": 0,
+        "answer": "③",
+        "choices": [
+          "$\\frac{8}{5}$",
+          "$\\frac{2}{5}$",
+          "$\\frac{24}{30}$",
+          "$1$",
+          "$\\frac{2}{3}$"
+        ],
+        "detail": "③:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-2 분수를 간단하게 나타내기|03",
+        "seed": 5,
+        "variant": 3,
+        "answer": "②",
+        "choices": [
+          "$1$",
+          "$\\frac{30}{36}$",
+          "$\\frac{5}{7}$",
+          "$\\frac{25}{3}$",
+          "$\\frac{11}{6}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      },
+      {
+        "key": "elem:초5|1-4-4 분수의 크기 비교|01",
+        "seed": 4,
+        "variant": 1,
+        "answer": "②",
+        "choices": [
+          "$\\frac{3}{2}$",
+          "$\\frac{9}{12}$",
+          "$\\frac{4}{3}$",
+          "$1$",
+          "$\\frac{15}{2}$"
+        ],
+        "detail": "②:fraction-not-reduced"
+      }
+    ]
+  },
+  "engineOutputChanged": false,
+  "dbReads": 0,
+  "dbWrites": 0
+}

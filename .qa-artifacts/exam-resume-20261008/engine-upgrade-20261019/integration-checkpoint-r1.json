@@ -1,0 +1,51 @@
+{
+  "kind": "exam-engine-integration-checkpoint/v1",
+  "capturedAt": "2026-10-19T06:08:16.819Z",
+  "baseHead": "8635426c3d46b5d3d20accbe6cc27953947d4c8d",
+  "integratedMain": "5051fea68f0abe6877a4a3001601846cb1d3a9a3",
+  "engineLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r4.json",
+    "sha256": "87b2608e701d8b5b9d85758dccbb5f289f8f452d2432da6d9a27bf8d17f506c3"
+  },
+  "validation": {
+    "vitest": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r1.json",
+      "sha256": "7219f39f75f6b6d40584363247b5b54941fc5df764cef56343bfdb0035e9f860"
+    },
+    "testFiles": 29,
+    "testsPassed": 423,
+    "nodeTestsPassed": 41,
+    "ownedTypecheck": "passed with isolated Prisma Client against latest schema",
+    "fullAppBuild": false
+  },
+  "integrationFix": {
+    "path": "scripts/db/problem-actual-format.ts",
+    "problem": "Windows relative path separators changed the classifier release fingerprint despite identical normalized source bytes",
+    "change": "Canonical repository paths use forward slashes. Existing release version and source contents unchanged.",
+    "linuxAndWindowsExpectedVersion": "format-v1:1c653f6c01b41e1c9e9a78edab82a2e3373923af6d6c88aa9f21233aafa0e42a",
+    "backfillExecuted": false,
+    "dbWrites": 0
+  },
+  "cleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "newSealedBlindProof": {
+    "commit": "c51c84ce57debd1287f5a1d7708f0c4d709ba01b",
+    "solved": 5,
+    "pending": 0,
+    "formalReviewCollected": false,
+    "receipt": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-final-review-20261019-r2/pre-exposure-seal-receipt-r2.json",
+      "sha256": "f96937cc6973a298fd0e768691d50389bfc572206a2b152c2de4fca54ac6ad0d"
+    }
+  },
+  "authoredCurrent": 111,
+  "wholeExtractionComplete": false,
+  "wholeEngineComplete": false,
+  "fullVerified": 0,
+  "loadable": 0,
+  "dbWrites": 0,
+  "deployed": false,
+  "automaticControllerChanged": false
+}

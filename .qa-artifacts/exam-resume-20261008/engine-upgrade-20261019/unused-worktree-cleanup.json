@@ -1,0 +1,41 @@
+{
+    "archiveDirectory":  "C:/Users/user/orca/artifacts/outputs/exam-unused-worktrees-20261019-r1",
+    "removed":  [
+                    {
+                        "branchPreserved":  true,
+                        "branch":  "chrismathone/exam-twin-author-algebra-20261008",
+                        "path":  "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008",
+                        "archiveVerified":  true,
+                        "priorActiveTerminals":  0,
+                        "absent":  true,
+                        "publishedFeatureAncestor":  true,
+                        "trackedClean":  true,
+                        "head":  "b2de0fe07d248557f2344f4dd8a383a795d7f138"
+                    },
+                    {
+                        "branchPreserved":  true,
+                        "branch":  "chrismathone/exam-twin-author-geometry-20261008",
+                        "path":  "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-geometry-20261008",
+                        "archiveVerified":  true,
+                        "priorActiveTerminals":  0,
+                        "absent":  true,
+                        "publishedFeatureAncestor":  true,
+                        "trackedClean":  true,
+                        "head":  "d68b5f2c87f6039af879817ef1a9c9fb159c4a8f"
+                    }
+                ],
+    "sourceOrDependencyTargetsChanged":  false,
+    "archivedFiles":  277,
+    "activeWorktreesRetained":  [
+                                    "exam-extraction-resume-20261008",
+                                    "exam-twin-source-identity-20261008"
+                                ],
+    "utc":  "2026-10-19T05:47:41.6926882Z",
+    "kind":  "unused-exam-worktrees-cleanup/v1",
+    "reason":  "User requested removing unused checkouts while continuing engine work; current parent retains pending work and evidence",
+    "archiveManifestSha256":  "4ce04833a2ddbcd17f9cc91d096116da554828396c059a880eab973ba2cab756",
+    "doNotPublishArchiveContents":  true,
+    "remainingReviewTasksTransferredToParent":  true,
+    "archivedBytes":  191564110,
+    "archiveMayContainPrivateFiles":  true
+}

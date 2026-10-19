@@ -1,0 +1,379 @@
+{
+  "kind": "exam-engine-upgrades-progress/v4",
+  "version": 4,
+  "createdAt": "2026-10-19T05:44:35.531Z",
+  "previous": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r3.json",
+    "sha256": "b69480aeecb7cf7f5f6260bf0ca7fd3fbe8e706c38b516c70b4b14992f6ab283"
+  },
+  "report": {
+    "path": "docs/planning/tracks/reports/exam-engine-native-upgrade-20261019.md",
+    "sha256": "e63e0f348f232faa166ee63b18b56e629c1579d353a2418cb6bfe512bd8e9509"
+  },
+  "choiceReport": {
+    "path": "docs/planning/tracks/reports/exam-engine-choice-upgrade-20261019.md",
+    "sha256": "86bdc88613064831ea926bdca43d6ad674e41553db18f35a5cb8cbdab9576f04"
+  },
+  "latestUserDirection": "Continue engine upgrade, N source reconnected; remove unused worktrees preserving branches/evidence; checkpoint feature commits/pushes.",
+  "code": [
+    {
+      "path": "src/lib/math/exactChoiceValue.ts",
+      "sha256": "413f130acfc79fcc0cc1e06576debb6636b636eb9fc4ea62cc22a99cddd7adbd"
+    },
+    {
+      "path": "src/lib/engine/deriveFormats.ts",
+      "sha256": "ca566c7f159afaba6dc1b335545af61a169ed5697bb6ae3afa8c25687465be6e"
+    },
+    {
+      "path": "src/lib/engine/expandEngine.ts",
+      "sha256": "4ec4dcaa8857685c755928912f927c5ba7bda9c6fcabb031a147b6295e9f8330"
+    },
+    {
+      "path": "src/lib/engine/authoredImage.ts",
+      "sha256": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324"
+    },
+    {
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "sha256": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df"
+    },
+    {
+      "path": "src/app/api/problems/transform/adopt/route.ts",
+      "sha256": "03d8b91838ae83e9a2d0145b669cfcd1a310a7adfbfd58333f3f73f5a96e41aa"
+    },
+    {
+      "path": "scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "f99b4fafb64803fc0ea8561f40c9bd7cec00d3a83607c78a2321351087d2714c"
+    },
+    {
+      "path": "scripts/import/exam-twin/sourceIdentity.mjs",
+      "sha256": "b5933369ff1063b6cdc96de53510047008e728a83adc402af90d8515730096c3"
+    },
+    {
+      "path": "scripts/qa/scan-choice-exact-values.ts",
+      "sha256": "470e4c9b02e350c16626e12e8fbd869f054851aadcff17b6f7c1eaf6289f44a8"
+    },
+    {
+      "path": "scripts/qa/audit-past-exam-closure.mjs",
+      "sha256": "fe8ca8de4cacdb80a6c60e4093f90986500c313ee41f65c4319b1feefc7ce44e"
+    },
+    {
+      "path": "scripts/qa/verify-authored-image-support.ts",
+      "sha256": "57c4701a427de3fcef492e0ec6e7aff72c71222e2d1ea43dea09ced935a8f108"
+    }
+  ],
+  "items": [
+    {
+      "id": "U01",
+      "title": "Structural/context variants",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Fail number/name/synonym/order-only controls; pass meaningful condition/data/question organization or natural new situation while preserving core steps; fluency, method and presentation reviews independent"
+    },
+    {
+      "id": "U02",
+      "title": "School/context substitution",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Search stem/choices/subparts/table/figure/solution for real-name residue; one mapping per school per question; compare names affecting numeric/choice conditions"
+    },
+    {
+      "id": "U03",
+      "title": "Independent twin solve gate",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "partially-implemented-bounded-native-support",
+      "change": "Native adoption keeps locked origins/past-exam descendants/unresolved source roots closed; general independent-solve approval remains unimplemented.",
+      "remainingValidation": "No original-answer oracle; all types solved; mutate stem/spec/asset/choice/score and reject old reports; independent computations, every step and uniqueness checked"
+    },
+    {
+      "id": "U04",
+      "title": "Parameter constraints",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Enumerate boundary parameters and at least 100 deterministic seeds per changed rule; separate solver checks denominator/domain/discriminant/positivity/integer counts/triangle inequalities and required solution cardinality"
+    },
+    {
+      "id": "U05",
+      "title": "Choice quality",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "partially-implemented-bounded-native-support",
+      "change": "Bounded exact numeric choice uniqueness and simplified distractors in deriveFormats and direct-MC expandFamily; unreadable symbolic/domain equivalence remains pending.",
+      "remainingValidation": "Recompute all options; algebraic-equivalent duplicate controls, one required correct answer/set, faithful figure-choice mapping, balanced answer positions and plausible distractors"
+    },
+    {
+      "id": "U06",
+      "title": "Solution and rubric quality",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Require new nonempty complete explanations; check cases, units and conclusion; subpart/rubric scores sum to item/paper totals; render and independent step review"
+    },
+    {
+      "id": "U07",
+      "title": "Difficulty/reading-burden preservation",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "After U27 gate, preserve core steps/target difficulty; no new reading or prerequisite burden; labeled review and no confidence-only assignment"
+    },
+    {
+      "id": "U08",
+      "title": "Concept/type coverage",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Compare every extracted concept/core method to registry/live families; register∪hold completeness, no key collisions, actual multi-seed invariants and held reason per missing type"
+    },
+    {
+      "id": "U09",
+      "title": "Conditions, tables and multipart forms",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Preserve subpart/option order, table headers/units/data totals and score; rebuild tables instead of source crops; parser/render parity and independent recalculation"
+    },
+    {
+      "id": "U10",
+      "title": "Prompt/catalog capability sync",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Prompt includes current v2/graph/elem keys; representative geometry/function/stat/solid specs render; catalog generated from engine, unknown keys still reject"
+    },
+    {
+      "id": "U11",
+      "title": "Figure mathematical bindings",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Bind each length/angle/coordinate/table count to target facts and units; negative right-angle/ratio/scatter cases; allow documented figure-only givens; prevent showing sought answers"
+    },
+    {
+      "id": "U12",
+      "title": "Strict figure quality",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Strict render no silent dimension loss; collision/cutoff/label checks, explicit unresolved labels and omissions; source-review false/timeout drafts remain held; actual print size inspection"
+    },
+    {
+      "id": "U13",
+      "title": "Multi-figure ownership",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Multiple stem/subpart/solution/choice artifacts; exact URL/dims/mm/index cardinality, no duplicate/missing choice binding, screen/print parity; geometry SVG supplied per role through reviewed representation"
+    },
+    {
+      "id": "U14",
+      "title": "Imagegen assets/templates",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "partially-implemented-bounded-native-support",
+      "change": "Native renderFigureSpec saved-image adapter, trusted resource injection and real q10/q19 previews; public catalog/API registration and whole-problem release remain pending.",
+      "remainingValidation": "Pin reviewed bytes/template/hash/anchors; reject pending/stale/missing assets; no runtime skill call; label transcript/school/name review, multiple parameter cases and print legibility"
+    },
+    {
+      "id": "U15",
+      "title": "Provenance and metadata read chain",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "External-origin twin never workbook; null FK truthful; authored raster never scan; old textbook/engine labels unchanged; source+variant+review/figure fields survive serialization; high-engine origin considered if current data requires it"
+    },
+    {
+      "id": "U16",
+      "title": "Filter/search completion",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "UI→request→where/join→stored value parity; source/twin/review/year/term/asset/concept queries with unknown values, mixed filters, total counts and page boundaries; measure before adding indexes"
+    },
+    {
+      "id": "U17",
+      "title": "Snapshot-based classification",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Parent snapshot hash/time required; real Unit/live family; no-match/ambiguous cases held; five Bumil proposals reevaluated; mocked Jev timeout/invalid output paths cannot approve"
+    },
+    {
+      "id": "U18",
+      "title": "Twin IDs/digests/replay",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "partially-implemented-bounded-native-support",
+      "change": "Native PNG/math binding/student/diagram/generation/prompt digests invalidate stale asset requests and reviews; generic twin version/native provenance chain still pending.",
+      "remainingValidation": "Separate reference/twin/solution/metadata versions, ordered canonical representation, byte changes stale results, ID collisions and rerun idempotency; problemCode not forged"
+    },
+    {
+      "id": "U19",
+      "title": "Diversity/deduplication",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Same seed/template version reproducible; semantic near-copy controls, structural/context coverage, spec/asset-aware keys, honest shortfalls; valid same-answer twins allowed; format siblings kept/dropped together"
+    },
+    {
+      "id": "U20",
+      "title": "Review/failure observability",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Persist successful and failed generation/review evidence, model/prompt/template version, pending versus rejected, changed-conditions reset and bounded retries; no fallback to old answer/crop"
+    },
+    {
+      "id": "U21",
+      "title": "Safe authored-asset handling",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "partially-implemented-bounded-native-support",
+      "change": "Native bounded PNG integrity/decode and trusted data construction; ordinary vector image ban unchanged. Offline outputs refuse dependencies/.git even without a junction.",
+      "remainingValidation": "Manifest/file hash validation, trusted MIME/dimensions, physical-path escape/overwrite controls, hostile SVG/label rejection and separate raster boundary; do not weaken engine image prohibition"
+    },
+    {
+      "id": "U22",
+      "title": "Permanent exclusion/lock guard",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "partially-implemented-bounded-native-support",
+      "change": "Past-exam ancestry and origin locks inherited at adoption; fresh protected82/correction/closure read verified. No new loader, permanent-exclusion override or writer added.",
+      "remainingValidation": "81 holds + 1 permanent exclude = 82 unique original IDs; 2 patches are subsets; q19 excluded despite new twin UUID and baseline before=true; no writer/unlock hidden in dry-run"
+    },
+    {
+      "id": "U23",
+      "title": "Generation scope/count/answers",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Reject incomplete requested batch without silently counting it complete; require solutions; grade-aware constraints and approved image/template input; mocked responses preserve pending/failed states"
+    },
+    {
+      "id": "U24",
+      "title": "Korean/math notation consistency",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Correct particles/units, natural context vocabulary, no wordy-symbol or source-font residue, valid math delimiters; normalization cannot change an equation or create fake structural change; screen/print textual review"
+    },
+    {
+      "id": "U25",
+      "title": "Algebra/geometry representation templates",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Signed-variable→positive-length counterexample must fail; distinguish segment from length; prove relation/domain equivalence, positive lengths/areas, coordinates/units and same principle; all new prerequisites pass U27"
+    },
+    {
+      "id": "U26",
+      "title": "Inverse input/condition/parameter generation",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "M-m=R checks m=M-R, R≥0, attained extrema; negative/zero/boundary cases, impossible range, multiple parameters, denominator zero and square-root sign; independently solve full admissible inverse set and student method"
+    },
+    {
+      "id": "U27",
+      "title": "Highest-priority applied-curriculum gate",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "partially-implemented-bounded-native-support",
+      "change": "Native initial middle3/2025-2027 applied-edition validation, seven-surface/legitimate-method reject and missing-evidence holds for authored images. General curriculum/template grading remains pending.",
+      "remainingValidation": "2025 middle3 resolves to 2015; all stem/choice/figure/notation/answer/student-solution/prerequisite surfaces checked; no legitimate method→reject, unclear→hold; unverified codes null; Unit/family/template existence and school/AI confidence never auto-approve"
+    },
+    {
+      "id": "U28",
+      "title": "Authored Markdown tables, paragraph boundaries and graph-choice rendering",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "All bank/review/print paths preserve authored table cells and following paragraphs; graph-choice asset role maps to visible choice index; existing OCR paragraph behavior unchanged; actual student dimensions/solution render and end-to-end serializer tests before use"
+    },
+    {
+      "id": "U29",
+      "title": "Exact constant, role and unit comparison without changing raw blind solves",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "requires-latest-main-audit",
+      "change": "Previous evidence preserved. Latest main changed substantially; this version does not carry old not-implemented labels forward as a new audit.",
+      "remainingValidation": "Bound actual candidate/student/asset/raw-solve and role/unit/whole-answer target coverage; preserve pre-exposure proofs; require independent within-grade full reasoning, no uncertainty/rights or operational release from numeric match."
+    },
+    {
+      "id": "U30",
+      "title": "Exact computed distractor equivalence and unique-target controls",
+      "previousProductionStatus": "not-implemented",
+      "productionStatus": "partially-implemented-bounded-native-support",
+      "change": "Direct-MC numeric exact duplicates are now blocked even when only wrong choices collide; geometry-role and universal symbolic identities remain outside this bounded proof.",
+      "remainingValidation": "Checked mathematical model/domain plus all five options; exact aliases and multipart roles/units; samples never prove universal symbolic identity; fresh raw solve and seven-surface grade/core/rights/native gates remain required."
+    }
+  ],
+  "validations": {
+    "vitest": {
+      "files": 22,
+      "passed": 335
+    },
+    "nodePassed": 41,
+    "scopedOwnedTypecheck": "passed against latest schema using independent Prisma/client/dependency copies; no shared writes or npm install",
+    "fullAppBuildValidated": false,
+    "exactScan": {
+      "evidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/exact-choice-scan-r2.json",
+        "sha256": "4d133905f03e6e9517a6cbfeb73c9866d0b4b61c81a1c1c647db09c549c06088"
+      },
+      "engines": [
+        "middle",
+        "combo",
+        "elem"
+      ],
+      "mcRows": 55339,
+      "allChoicesReadable": 47605,
+      "sameValuePairsFound": 0,
+      "failedTypeSeeds": 0,
+      "symbolicAndUnreadableAnswersNotCertified": true
+    },
+    "nativeImages": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-images-r3/report.json",
+      "sha256": "faeed8f767d144f7f962835350eed09c1e155f54afc05b0949c4fdc0b96ad72b"
+    },
+    "native70mmPreview": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-images-r3/visual-check.json",
+      "sha256": "3ada5bde94ebc63a76bbb98b8f97be5d29a08955a1918f1fa2e847e04f6d3642"
+    },
+    "independentCodeReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/source-reconnection-20261019/asset-adapter-review-r1.md",
+      "sha256": "89264f2d5cf8077e8f1541d3ec739070886ec5d0718061b0dd3ff671992ce0ec"
+    },
+    "independentRecheck": {
+      "path": ".qa-artifacts/exam-resume-20261008/source-reconnection-20261019/asset-angle-investigation-r1.md",
+      "sha256": "3faf772c522f7e1cc0a8d3435421de76962dbd8c5f8fceed651db0b14a8f5ed8"
+    }
+  },
+  "latestClosure": {
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-current.json",
+      "sha256": "b298c06ce5b93f9e7527e137962ba888849234e8f4e06339b8670ffbf9949264"
+    },
+    "capturedAt": "2026-10-19 05:35:39.321763+00",
+    "originals": 101,
+    "directlyAllowed": 0,
+    "transformedDescendants": 0,
+    "protected82Unchanged": true,
+    "dbWrites": 0
+  },
+  "sourceAccess": {
+    "observedAt": "2026-10-19T05:15:27.985Z",
+    "nDriveAvailable": true,
+    "matchedEntries": 29,
+    "manifests": 12,
+    "contentPairIdentity": "unconfirmed",
+    "allSourcesExtracted": false
+  },
+  "candidateReviewCountsRecomputed": false,
+  "newAuthoredProblems": 0,
+  "newImagegenRasters": 0,
+  "nativeAssetPreviews": 2,
+  "nativePreviewsLoadable": 0,
+  "wholeEngineComplete": false,
+  "wholeExtractionComplete": false,
+  "operationalLoads": 0,
+  "dbWrites": 0,
+  "deployed": false,
+  "workerOwnership": "One current root engine writer plus one existing source-identity worktree worker for source extraction; inactive historical algebra/geometry checkouts are being preserved/removed on user direction.",
+  "automaticContinuationControllerChanged": false
+}

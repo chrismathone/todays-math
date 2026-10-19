@@ -1,0 +1,53 @@
+{
+  "templateId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+  "templateVersion": "asset-adapter-preview-20261019-r1",
+  "studentContentSha256": "1332e78bcd78d9b58a82f94b80820dc21bc373138689143e60c5c144dcb37c2a",
+  "diagramSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+  "curriculum": {
+    "grade": "중3",
+    "edition": "2015",
+    "examYear": 2025
+  },
+  "unitId": null,
+  "familyKey": null,
+  "classificationSnapshotSha256": null,
+  "calculationAuthority": "explicit-math-facts-not-image-pixels",
+  "facts": {
+    "heightM": 12.8,
+    "eyeHeightM": 1.6,
+    "elevationDegrees": 58,
+    "displayedTan": "1.6003",
+    "distanceM": 6.998687746047615,
+    "roundedM": 7
+  },
+  "factRelations": [
+    "CB=CE-AG=11.2",
+    "tan58=CB/AB",
+    "AB=11.2/1.6003",
+    "GE=AB"
+  ],
+  "constraints": [
+    "level ground; vertical wall; eye line horizontal",
+    "height>eyeHeight>0",
+    "0<angle<90",
+    "positive unique distance",
+    "use supplied table and stated rounding"
+  ],
+  "pointRoles": {
+    "A": "관측자의 눈",
+    "G": "관측자 발밑",
+    "B": "눈높이와 벽의 교점",
+    "C": "환기창 중심",
+    "E": "창 중심 바로 아래 지면"
+  },
+  "variant": {
+    "modes": [
+      "context",
+      "structure",
+      "inverse-target"
+    ],
+    "sharedConcept": "표에서 필요한 삼각비를 골라 눈높이 위 높이를 계산한 뒤 눈높이를 합한다.",
+    "sharedProcedure": "표에서 필요한 직각삼각형의 삼각비를 선택하고 눈높이 보정과 비의 관계를 사용한다. 미지 대상을 총높이에서 거리로 전환한다.",
+    "changeEvidence": "석탑 높이를 구하는 직접 계산에서 체육관 환기창의 관측 위치를 정하는 거리 역산으로 바꾸고 두 기록표로 자료를 제시한다."
+  }
+}

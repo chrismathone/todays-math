@@ -14,6 +14,12 @@
  */
 import { spawn } from "node:child_process";
 import path from "node:path";
+import {
+  AUTHORED_IMAGE_KIND,
+  renderSavedAuthoredImage,
+  type AuthoredImageResult,
+  type SavedAuthoredImage,
+} from "../engine/authoredImage";
 
 import { substituteLabels, withLabelMetrics } from "./mathjaxSubstitute";
 
@@ -27,7 +33,15 @@ const RENDER_TIMEOUT_MS = 15_000;
 const MAX_OUTPUT_BYTES = 1_024 * 1_024;
 
 export type RenderFigureResult =
-  | { ok: true; svg: string; droppedDimensions?: readonly string[] }
+  | {
+      ok: true;
+      svg: string;
+      droppedDimensions?: readonly string[];
+      authoredImage?: Extract<
+        AuthoredImageResult,
+        { ok: true }
+      >["authoredImage"];
+    }
   | { ok: false; error: string };
 
 /** 엔진이 「이 치수는 놓을 자리가 없다」고 할 때의 사유 — 이름을 여기서 꺼낸다. */
@@ -41,6 +55,14 @@ const SCRIPT_PATH = path.join(
 );
 
 export interface RenderFigureOptions {
+  /** Trusted server assets; never filled from request JSON. Missing = fail closed.
+   * Preview can display held assets for review; it never approves a problem.
+   * The existing vector engine continues to prohibit arbitrary raster resources.
+   */
+  authoredImages?: {
+    assets: ReadonlyMap<string, SavedAuthoredImage>;
+    purpose: "preview" | "approved-display";
+  };
   /** Cancel a render or internal HTTP call when its request/queue is cancelled. */
   signal?: AbortSignal;
   /** Redraw must repair an invalid spec rather than discard printed dimensions. */
@@ -89,6 +111,18 @@ export async function renderFigureSpec(
     return { ok: false, error: "도형 생성이 취소되었습니다" };
   if (spec === null || typeof spec !== "object") {
     return { ok: false, error: "도형 스펙이 없습니다" };
+  }
+  if ((spec as { kind?: unknown }).kind === AUTHORED_IMAGE_KIND) {
+    if (!options.authoredImages)
+      return {
+        ok: false,
+        error: "서버의 검증된 이미지 자산 연결이 필요합니다",
+      };
+    return renderSavedAuthoredImage(
+      spec,
+      options.authoredImages.assets,
+      options.authoredImages.purpose,
+    );
   }
   const dims = (spec as { dimensions?: unknown }).dimensions;
   const names =

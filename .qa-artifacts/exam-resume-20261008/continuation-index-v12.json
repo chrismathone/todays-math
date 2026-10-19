@@ -1,0 +1,83 @@
+{
+  "kind": "exam-continuation-index/v12",
+  "version": 12,
+  "createdAt": "2026-10-19T05:54:11.973Z",
+  "previousIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v11.json",
+    "sha256": "d32dbe837dc9ff0498de6a089b7671676511b5fbd1edb8e7ab3b2858f019e8c3"
+  },
+  "statusLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v12.json",
+    "sha256": "a798ddedb16d97cb2f6bbacd8946edce36d7d14e1f4ff0e642064626fb9a0966"
+  },
+  "currentCandidateIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v12.json",
+    "sha256": "6c61e7388d1b7a5046af4f3909ecb09f9eee51dc41694fb5f389d2bbd371e73c"
+  },
+  "progressReport": "docs/planning/tracks/reports/exam-engine-native-upgrade-20261019.md",
+  "counts": {
+    "authoredCurrentCandidates": 111,
+    "currentFigureInstances": 88,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 106,
+    "preExposureRawSolvesIncludingSupersededR1": 107,
+    "independentMathReviewed": 91,
+    "independentFullGradeReviewed": 91,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 76,
+    "awaitingCollectedIndependentReview": 20,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 105,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 5
+  },
+  "sourceAccess": {
+    "nDriveAvailable": true,
+    "latestRead": {
+      "path": ".qa-artifacts/exam-resume-20261008/source-reconnection-20261019/run-receipt-r1.json",
+      "sha256": "3cc09f702758a702df7c9673c57b0ba8fecd3aafcafb611cfbafd0d4dba06df1"
+    },
+    "allSourcesExtracted": false
+  },
+  "freshExtraction": {
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r1/aggregate-receipt.json",
+      "sha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367"
+    },
+    "newParentObservations": 61,
+    "totalParentObservations": 314,
+    "componentsApproved": 0,
+    "newTwins": 0,
+    "wholePairsCertified": 0
+  },
+  "engine": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r4.json",
+    "sha256": "87b2608e701d8b5b9d85758dccbb5f289f8f452d2432da6d9a27bf8d17f506c3"
+  },
+  "latestClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-current.json",
+    "sha256": "b298c06ce5b93f9e7527e137962ba888849234e8f4e06339b8670ffbf9949264"
+  },
+  "cleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "sourceQueue": "Preserved initial continuation-index.json and original20261003 inventory; newly successful fresh aggregate receipts exclude repeat extraction jobs.",
+  "nextActions": [
+    "Seal fresh NB5 blind solves before author exposure, then math/seven-surface/content/family review",
+    "Continue per-item HWP/PDF correspondence of new61; isolate DGI identity and q3/q4 choice/figure/score holds",
+    "Review remaining28+ engine gaps against integrated latestmain and implement useful scoped upgrades",
+    "Fetch main+feature and validate before each fast-forward checkpoint push"
+  ],
+  "restrictions": [
+    "No DB apply/delete/reload/unlock/deploy",
+    "Protected82, three correction ledgers and permanent exclusion unchanged",
+    "N/originals/old proof bytes/shared dependencies preserved",
+    "Rights/similarity/source identity and curriculum never auto-approved",
+    "No active or unpreserved worktree cleanup"
+  ],
+  "wholeGoalComplete": false
+}

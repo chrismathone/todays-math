@@ -46,7 +46,8 @@ export function formatRuleVersion(): string {
   };
   visit(resolve(ROOT, "src/lib/problem/provenance.ts"));
   visit(resolve(ROOT, "src/lib/problem/questionFormat.ts"));
-  return `format-v1:${sha256(JSON.stringify([...visited].map(([file, source]) => [relative(ROOT, file), source]).sort()))}`;
+  // The released fingerprint uses repository paths, independent of the host OS.
+  return `format-v1:${sha256(JSON.stringify([...visited].map(([file, source]) => [relative(ROOT, file).replaceAll("\\", "/"), source]).sort()))}`;
 }
 
 /** Canonical field order, explicit nulls, exact UTF-8 strings. Never trim, NFC-normalize
