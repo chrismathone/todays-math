@@ -1,0 +1,44 @@
+{
+  "sourceComponent": {
+    "allowedQuestionNumber": 6,
+    "sourceManifestSha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9",
+    "sourceContentDigest": "6c2a1409562ed7b00e5cec48601527fad5729da1497ac52f180e6ff9a45d98b8",
+    "hwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 771,
+      "inflatedByteOffset": 31171,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "a8134043b9a32d5e5542b7793ea23fec020aeba5ed5a7790344ab0ac88d1abca"
+    },
+    "printedPoints": [
+      4.0
+    ],
+    "sourceDeclaredTopic": "제곱근과 실수",
+    "sourceDeclaredDifficulty": "하",
+    "originalAnswerKeyUsed": false,
+    "sourceBodyVisualCertified": false,
+    "description": "Question6 forward evaluation uses a larger multirow root table, one radicand shifted by100 and one perfect-square root, then100a+b. Only this question component used in substantive comparison; no original answers exported."
+  },
+  "delta": {
+    "shared": "Positive roots, a100-factor under the radical becoming10 outside, decimal root-table lookup and a combined linear value.",
+    "substantiveChange": "Given forward combined result is inverted to a root-table ordinate and then one of five input columns; explicit positive squared relations replace direct radical definitions; multilevel original table becomes newly calculated1D five-column table.",
+    "limits": "Reverse linear equation is one short prerequisite step;1D table reduces original row/column decoding. This is a substantive inverse target, not demonstrated to be more difficult or psychometrically equivalent."
+  },
+  "familyA09": {
+    "file": "src/lib/middle/m3Root.ts",
+    "fileSha256": "dff83077bdb3f30d9598f00872e544b5a6fdb6716e3e8f5b11be1cb664114610",
+    "selectedHandlerSha256": "10ee29aa74674c8f6c765a9d3f3846072683a6332e7e7231bda7bfc8e6003514",
+    "key": "mid:3-1|무리수와 실수|09",
+    "proposedFamilyCode": "A09",
+    "actualImplementedPurpose": "Given one table root approximation and a square decimal factor, output another scaled square-root value; forward value target.",
+    "actualCandidatePurpose": "Given combined result and positive squared relations, recover the table input column.",
+    "fit": "related concept/procedure and correct unit, but exact inverse-target family coverage not established. Keep unitFamilyFit false/pending; do not inherit from live_count24 or title.",
+    "additionalObservation": "Legacy handler prints an equals sign with rounded table values. This audit does not approve that engine wording; candidate explicitly labels approximations and distinguishes them in solution."
+  },
+  "score": {
+    "printed": 4,
+    "judgment": "Reasonable qualitative4point MC: positivity, one complete-square root, decimal scaling, linear inverse and table match. No long/high-grade or proof demand.",
+    "difficulty": "Source tag하 is observed metadata, not measured authority. Candidate proposal응용 is plausible for inversion but difficultyStatus remains independent-calibration-pending; no forced equivalence or learned-effect claim."
+  }
+}
