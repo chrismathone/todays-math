@@ -1,0 +1,106 @@
+.book {
+  width: 100%;
+  min-width: 0;
+  color: var(--learn-ink);
+}
+.spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  border: 1px solid var(--learn-control);
+  border-left: 12px solid var(--learn-accent);
+  border-radius: 12px;
+  box-shadow: 0 5px 0 var(--learn-control);
+  overflow: hidden;
+  background: var(--learn-surface);
+  touch-action: pan-y;
+}
+.leaf {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.leaf + .leaf {
+  border-left: 1px solid var(--learn-control);
+}
+.band {
+  height: 16px;
+  flex-shrink: 0;
+  background: var(
+      --study-theme,
+      linear-gradient(var(--learn-soft), var(--learn-soft))
+    )
+    center / cover;
+}
+.content {
+  padding: 28px 30px 30px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.pageTitle {
+  margin: 0 0 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--learn-control);
+  font-size: 15px;
+  font-weight: 700;
+}
+.tabs,
+.turn {
+  display: none;
+}
+.book button:focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .tabs {
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    background: var(--learn-neutral);
+  }
+  .tabs button {
+    flex: 1;
+    min-height: 44px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--learn-ink);
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .tabs button[aria-pressed="true"] {
+    background: var(--learn-accent);
+    color: var(--learn-surface);
+  }
+  .spread {
+    display: block;
+    border-left-width: 7px;
+  }
+  .spread[data-page="0"] [data-leaf="1"],
+  .spread[data-page="1"] [data-leaf="0"] {
+    display: none;
+  }
+  .leaf + .leaf {
+    border: 0;
+  }
+  .content {
+    padding: 24px 18px;
+  }
+  button.turn {
+    display: block;
+    margin-top: 22px;
+    min-height: 44px;
+    border: 1px solid var(--learn-control);
+    border-radius: 8px;
+    background: var(--learn-surface);
+    color: var(--learn-accent);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
