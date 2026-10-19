@@ -1,0 +1,42 @@
+{
+  "inputSha256": "59aa8041f279fac3bb9b1db7e6058d691293179df5a3aaf58de39797bd93d614",
+  "exposure": {
+    "currentAuthoredAnswerOrSolutionExposed": false,
+    "priorOriginalExposure": true,
+    "details": "이전 허용된 원본 H 3쪽 열람에서 서술형 1·2의 조건과 그림이 함께 보였다. 관련 원·접선 문제와 다른 시험 문제도 검토한 이력이 있다. 이번 authored q11/q12의 저자 답·해설·비공개 패키지는 읽지 않았다. 완전히 미노출된 원본 문제라는 주장은 하지 않는다.",
+    "calculationSource": "이번 학생 발문과 학생 SVG만 사용; 원본 재열람·답 검색·좌표 측정 없음"
+  },
+  "calculations": {
+    "q11": {
+      "centralKM": "108",
+      "centralKL": "54",
+      "inscribedKTL": "27",
+      "exactExistenceWitnessAngularDegrees": {
+        "K": "0",
+        "L": "54",
+        "M": "108",
+        "T": "234"
+      },
+      "uniqueness": "T가 L을 포함하지 않는 호 KM의 어느 점이든 T를 포함하지 않는 작은 호 KL은 고정되어 원주각은 27도이다. 반대 호의 원주각이나 반사각을 선택하지 않는다."
+    },
+    "q12": {
+      "PU_PW": "4",
+      "QU_QV": "7",
+      "RV_RW": "9",
+      "PR": "13",
+      "semiperimeter": "20",
+      "triangleInequalityMargins": [
+        "8",
+        "14",
+        "18"
+      ],
+      "uniqueness": "각 꼭짓점의 접선 길이가 차례로 4,7,9로 강제되므로 PR=13만 가능. 엄격한 삼각부등식으로 이 세 변의 삼각형이 존재하고 내접원의 접선 분할도 주어진 값과 일치한다."
+    }
+  },
+  "probe": "UTF8 write/read passed; initial console cp949 print failure retained by script execution history; rerun PYTHONIOENCODING=utf-8 succeeded",
+  "checks": "Fractions exact arithmetic, strict triangle inequalities, positive lengths, angular ordering, SVG byte hashes; no pixel oracle",
+  "rawHashes": {
+    "q11": "b36067fb6aa11cb1d1a655401ba56e258d36692e661e4147414a83e58c120b8b",
+    "q12": "580b2c6a3c4dd9ebe0a089b189ad979c4f36bb3e09e54b926951de29435e180f"
+  }
+}
