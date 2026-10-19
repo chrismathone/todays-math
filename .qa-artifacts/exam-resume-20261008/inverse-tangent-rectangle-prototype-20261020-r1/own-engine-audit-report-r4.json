@@ -1,0 +1,167 @@
+{
+  "kind": "independent-U52-engine-audit-r4/v1",
+  "status": "bounded-controls-passed-public-release-held",
+  "actualFamilyVersion": "3-normalized-topology",
+  "sourceScopeSha256": "a4897dc59a74c831164610c33f6f9cf34f35e0890052fca643fe59477e71f6a6",
+  "sourceBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "009c8208e563c16055340bf7151741d9dcb573def0ef332b093237e76ceed3bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\tangentRectangleGeometry.ts": "71f90c810277d4d3628a42e312527cef815258f8357707a8b8f77d6ab26ae39c"
+  },
+  "sourceAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "009c8208e563c16055340bf7151741d9dcb573def0ef332b093237e76ceed3bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\tangentRectangleGeometry.ts": "71f90c810277d4d3628a42e312527cef815258f8357707a8b8f77d6ab26ae39c"
+  },
+  "all12DeclaredSourceHashesVerifiedAndUnchanged": true,
+  "priorR3Findings": {
+    "sealedReportSha256": "60b0b094c2db3231e789566dd5d8b484992b1e0e6a52a13730b7bc7796d35051",
+    "preservedUnchanged": true,
+    "smallScaleAbsFloor": "Focused controls now reject false F incidence/perpendicularity at all9 tested scales after radius normalization; no code/source edits by helper.",
+    "producerTopology": "Closed top-level,points,circles,segments,labels,style,right-angle schema and expected endpoint relationships now reject old omitEC/omitOF/wrongAB producer faults plus additional named drawing faults.",
+    "scopeOfResolution": "R3 record remains an honest hold on its frozen bytes. New R4 evidence resolves the two observed classes for this current version/bounded cases, not retroactively or universally."
+  },
+  "ownResults": {
+    "actualCurrentFactoryCases": 10,
+    "allCurrentContentAnswersFullSolutionsParametersDifficultySpecsEqualR2R3": true,
+    "priorGradeSurfacesExactlyRebound": 70,
+    "actualStrictRendersMatchingStudentSvg": 10,
+    "zeroDroppedDimensions": true,
+    "positiveHelperScaleRigidMirrorEndpointCases": 120,
+    "directGeometryTopologyGivenFaultRejections": 380,
+    "producerGeometryTopologyPoisonRejectedBeforeCanonical": 350,
+    "validScaledProducerPositiveControls": 30,
+    "precisionCollapsedInputsFailClosed": 10,
+    "testedScaleFactors": [
+      1e-200,
+      1e-100,
+      1e-12,
+      1e-08,
+      1,
+      100000000,
+      1000000000000,
+      1e+100,
+      1e+200
+    ],
+    "studentSurfaceMutationsRejected": 200,
+    "producerNumericAnswerOnlyPoisonRejected": 10,
+    "safeSeedReproductionCases": 20,
+    "invalidSeedVariantRejections": 9,
+    "publicHoldMatrixCases": 96,
+    "publicFactoryCalls": 0,
+    "publicPrepareCalls": 0,
+    "m1HardExclusionPriorityCases": 1,
+    "boundedCatalogCases": 2,
+    "strictRequestSchemaInjectionRejections": 8
+  },
+  "independenceEvidence": {
+    "numericalAnswer": "Printed BC/AE exact BigInt solve remains independent of producer facts/geometry/answer. Own sealedFraction answers and freshheight enumeration agree; make-answer-only poison fails10/10.",
+    "geometry": "Actual helper translates by O and normalizes raw coordinates by positive radius before all dot/cross/distance checks. Answers never come from drawing coordinates. Exact own R2 rational construction stays bound to unchanged spec. Normalized1e-8 tolerance is only drawing residuals, not tolerance on answer.",
+    "producerPoison": "Owned in-memory TS changes only figureSpec construction used by both generated draft and make-expected. Actual current geometric helper rejects350before canonicalcomparison; this would not be proved by changedJSON rejection alone. Validscaledproducer positives30 prevent attributing rejection merely to producer change.",
+    "canonicalPolicy": "Actual ordinary factory still rejects alternative geometrically valid transforms/endpointordering canonically until separately reviewed; helper permits valid geometry/undirected endpoint equivalents. No extra generator domain or student format is released."
+  },
+  "gradeAndStudentBinding": {
+    "file": "own-r4-current-grade-rebind.json",
+    "status": "same70conditional2015M3faces-retained-after-deepEqual",
+    "conditions": "2015 M3 source2025/practice2026 after tangency,rectangle,Pythagoras,expansion/linear equation. Source-school permission or manualq08grade not auto-inherited. Actualauthor10fullsolutions had independent R2 check; currentall10 arebyte-structurally identical.",
+    "2022From2027": "pending",
+    "studentDigestProjectionLimit": "Providedlabels from raw retained and bound via exact student packet/file SHA, actualfullcontent/type andstrictSVGhashes. Internal studentDigest projection remainsopaque/notclaimedreproduced."
+  },
+  "publicHold": {
+    "policy": "20261020-source-informed-template-review-r4",
+    "requirementBased": "Alltestedrenamed/old/future/native/approval/component/format/course variants stay unavailable before factory; M1oldhardexclusion wins where applicable.",
+    "explicitMocks": [
+      "legacy/MC adapters disabled",
+      "middle registry bounded to actual U52 family; index reviewed statically",
+      "identity: deterministic SHA/stable keys only",
+      "profiles empty bounded collection",
+      "planner: quotas1 only, plan must not run"
+    ],
+    "boundary": "Actual scoped release/curriculum/evidence/registry/generate implementations executed after TS transpilation, real request Zod schema and actual U52 factory used as bounded collection. Outside11 identity/profiles/planner/adapters/full registries are explicit mocks. No DB/HTTP/auth/outputresolver/full registry/native-renderer integration claim."
+  },
+  "metadataLimits": {
+    "providedScopeGenericVersion": "scope text still mentions familyVersion2-checked-vector, while actual frozen factory export is3-normalized-topology. Input not edited; actual sourcehash/export used for this report.",
+    "parentValidationPointer": "ProvidedparentValidation references prior validation-r3; user reports current3files35/types/lint, but neither old nor new parent counts are independent own runs. Own executable results above stand separately.",
+    "liveFamilyAdoption": "Captured Unit/proposedfamily16 relationship only; current internal version does not certify exact live family adoption or registration/rights/native release.",
+    "coverage": "visual-information tag oncurrent10 now backed by bounded numericandclosed-topology controls. Requirement releasehold remainsunconditional; presence of tag doesnot itself approveallvisual/nativeorgradeengine."
+  },
+  "preservedOldOwnedFiles": {
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-calculate10.py": "1797b8305f8f16178b02568f7f1e531426c08ad7fbc31ae12af782dfb64fff08",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-calculations10.json": "60c0a112976e955ec46be115460aa78bdf12434b3b4ad1c2836d4663ffc295b9",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-engine-audit-report-r2.json": "a50f00ee752df1c25cc341b9a160fd0695d219510b0c90b24d7078a324181e42",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-engine-audit-report-r3.json": "60b0b094c2db3231e789566dd5d8b484992b1e0e6a52a13730b7bc7796d35051",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-exposure-declaration.json": "d15eeb0baa1515bc23e8337cec8f044f1634629335da07d5deab7c244e6df529",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-current-grade-rebind.json": "13e92a9865f8e0a7864b07c1e332be0b994f24786d51584296347291e87bfd0c",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-finalize.py": "1a9d6eb023642aedb491a0483347ececc66923d21fd2c2d2ef3eead0c20b0c36",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-geometry-controls.json": "20163f6514699046223aa8cd0241852c6d42cf898976edb69fbacd705d713b3e",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-geometry-controls.mjs": "60f6e257fb1a9fbb047b7d094a6c0654925c9daa377b2262d320973626b64610",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-native-results.json": "dfdb94a5b7ced73558e5dfaa4bf2d17a7acc2a9f125191f06447ff8c80f34577",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-native.mjs": "6919edb8ea2f2200b8789b28859cd772ad1c38d1bacca4b78977562d8583b156",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-runtime-results.json": "0d519477c7bc8ec9bca2d514e4b4810f82c2dfc9d65bef7f4251821056f04c7a",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-runtime.mjs": "34e983d9f3321d4c8c06fd5235aba3ff66d6a91443e17118c713e07bf689aa64",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-scale-probe-results.json": "c3b6033b48b019505013e62757a2ab4587b340643e2765c9fe696a8b6cf4028e",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-scale-probe.mjs": "5d0e122d7a0f487fc391bb5fe96287489bf59ff459199fbab6c4d99646aee415",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-r3-utf8-probe.txt": "a6700a10b5c79e2495a231f8b36a7d713f9c24d12642c5b00c5bd5a59c43393b",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-raw-solves10.json": "e0c77da61cd8cd157fe0fbb7d3323352fae395def53555ce55f0ecd269e4ead4",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-review-finalize.py": "52d798539abf9adc3d5323d6125f5dec20570a75925d88f112dd919d63726821",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-review-geometry-grade10.json": "9a381d703a20e9b81f001c6b80beacd21f8df244c97e89a78acfe7482319be13",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-review-native-results.json": "98d3aa58de3dc1894a089aec245028dd20232027a6078ff34adc60c17b9c4692",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-review-native.mjs": "87c0e6e42fcfaf7c5dcea8cd1d684acf393c72f5bde8d95ace0bb7f476a04786",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-review-runtime-results.json": "03a910da44f423d60650b8396de6203e4dd18d6025cc0798bdc35cb0709f97f0",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-review-runtime.mjs": "879e07772fbab9f2129acf57c9b60003c3ea3480f89f7919e9cb783337b6c96b",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-review-tool-diagnostic.txt": "f15324a2021184206824a9e3435c88391f86ab985f427a53faac91be977a1f60",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-review-utf8-probe.txt": "a6700a10b5c79e2495a231f8b36a7d713f9c24d12642c5b00c5bd5a59c43393b",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-student-figure-contactsheet.png": "299d6b659148b1e110f2aad79b3681eb375eede641bc64a7866b7c53d874340f",
+    ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-utf8-probe.txt": "5dbb5816b0ac87065c29da9051982e176e464ed26ce53c10e1c5428801dc1461"
+  },
+  "evidenceSha256": {
+    "own-r4-native-results.json": "4a417186027183a95185e8525ce8ce5bab1d2b5765773ef8b5e04eea0a82f2be",
+    "own-r4-runtime-results.json": "148f93f3b620eac8a6090b3b4a33f4c3996f3cdbf447f24ac041c1d66dab238a",
+    "own-r4-geometry-controls.json": "c6cdbf1e654e4b7ca091fdc93737518ff844f1f3eb92d4db71b95f5e192a64cb",
+    "own-r4-current-grade-rebind.json": "0c6c043ba34f758676fb63fb3d951b4fc418facf7a57b3b4103bb32236a62a2b",
+    "own-engine-audit-report-r3.json": "60b0b094c2db3231e789566dd5d8b484992b1e0e6a52a13730b7bc7796d35051",
+    "own-engine-audit-report-r2.json": "a50f00ee752df1c25cc341b9a160fd0695d219510b0c90b24d7078a324181e42",
+    "own-raw-solves10.json": "e0c77da61cd8cd157fe0fbb7d3323352fae395def53555ce55f0ecd269e4ead4"
+  },
+  "limitations": [
+    "Finite10currenttemplatesonly; no universal floating-point or arbitrary geometry validator certificate. Translation causing loss of coordinate distinctions is rejected; actualprinter viability of tiny/huge scales not claimed.",
+    "Actual strict renderer10 runs in parentCWD with currentvendor and absolutehelper-owned output results; complete dependencyclosure/nativebrowser/print layout not fully audited.",
+    "Public generate/catalog/coverage use scoped productioncode with explicitbounded outside12mocks; no real HTTP/auth/DB/API/AI/paid calls or fullregistry sweep.",
+    "Source hashes are before/after verification, not filesystem locks. R3 hold,oldraw/reports unchanged.",
+    "All70gradefaces reused only afterexactcurrentpayloadbinding; no newblind/manual/figurecounts. Wholeengine/futuremodes/2022/source/rights/exactlivefamily/native/loadable remainheld."
+  ],
+  "approvals": {
+    "publicRelease": false,
+    "wholeEngineGrade": false,
+    "curriculum2022": "pending",
+    "exactLiveFamilyAdoption": false,
+    "sourceIdentity": false,
+    "rights": false,
+    "nativeFullReaderPrint": false,
+    "loadable": false
+  },
+  "counts": {
+    "newManualQuestions": 0,
+    "newCountedFigures": 0,
+    "newBlindSolves": 0,
+    "dbWrites": 0
+  }
+}

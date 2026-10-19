@@ -1,0 +1,19 @@
+{
+  "files": [
+    "src/lib/examStudy/families/middle/inverseTangentRectangle.ts",
+    "src/contracts/examStudy.contract.ts",
+    "src/lib/examStudy/requirements.ts",
+    "src/lib/examStudy/families/middle/index.ts",
+    "src/lib/examStudy/releaseEligibility.ts",
+    "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+    "src/__tests__/unit/examStudyInverseMinimum.test.ts",
+    "src/lib/examStudy/families/middle/tangentRectangleGeometry.ts"
+  ],
+  "tests": [
+    "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+    "src/__tests__/unit/examStudyInverseMinimum.test.ts",
+    "src/__tests__/unit/examStudyContract.test.ts"
+  ],
+  "sourceOnlyNoSharedInstall": true,
+  "dbWrites": 0
+}

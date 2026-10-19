@@ -1,0 +1,145 @@
+{
+  "createdAt": "2026-10-19T19:16:11.000Z",
+  "counts": {
+    "authoredCurrentCandidates": 138,
+    "currentFigureInstances": 98,
+    "recreatedStatTables": 8,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 138,
+    "independentMathReviewed": 137,
+    "independentFullGradeReviewed": 137,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 122,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 137,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 1,
+    "failedStudentRenderDraftVersions": 1
+  },
+  "all138ExactBindings": true,
+  "exactDuplicates": 0,
+  "newManualSelected": 2,
+  "newFigures": 2,
+  "workingDrafts": 2,
+  "vitestComposite": {
+    "files": 112,
+    "passed": 2255,
+    "failed": 0,
+    "latestPerFileRuns": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r7.json",
+        "sha256": "ff0927817dd218edec684a87fc405fd7be5d6705a406a1cbd7b8bafffa91b3a2"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/grade-gate-tests-r1.json",
+        "sha256": "449146d7d3aae97cccac5d981b3b921bee1d568902668ddf59bf405e6687c057"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r9.json",
+        "sha256": "6777fe80564df8e4f2ad41f0a24fb8307fbc3bf9ff8ea167881c135968333436"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-tests-r1.json",
+        "sha256": "080e16e1a92ae4d64ed7ecf6da6dd5f286762433bec31bd32889cdb5cc50e000"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/native-models-tests-r2.json",
+        "sha256": "d883825e80a8d9ab47f362068383aa11a2bcce422d0e740737e5ef8c2a0b6eab"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/root-table-tests-r1.json",
+        "sha256": "6949f50feeac9689cefea14d380bd93d7316d120129ffa152579a4fe14707cda"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/root-table-tests-r2.json",
+        "sha256": "6a52a99af0fd18c760feda3b14819d21d0e091317b88b7d7a8a3618892977045"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/post-main-r10.json",
+        "sha256": "8e9b916152e7ec1df6e8f7a6630a35b8938c385696b282070501f129b6cd3128"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m1-method-tests-r2.json",
+        "sha256": "140326254d175ee8a5503f16b61fc336e5a27a9936f7d602468a7d870dfd4fbc"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r12.json",
+        "sha256": "50d5c9efcc5a83f58f42e7779e500314bda5ed761d248e1bc29d02c58e51899c"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-coeff-tests-r1.json",
+        "sha256": "d9de2bfe72ebec78c5e35ef0de8fc6f0cb0b5e7e33c1f26f1e62b431c26a6e65"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-coeff-tests-r2.json",
+        "sha256": "4ec85efbf6d4afd9bac111c3bceaec2ba4c0650c29dbc9b97ab087f7aaf50bae"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r13.json",
+        "sha256": "64f7f35e3ef35fc632057130117bfc8d12ddde8f319101d561575e0097d8be3a"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-root-table-tests-r1.json",
+        "sha256": "1ab0a351c39e213b3d0b4a8f0ac4974ab885cd54468fe55c5a1504b5d342351b"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r20.json",
+        "sha256": "aaa8e6b0590f2b9a2564e0b646faa8a6bfc025daa3073568f08c25ce453bba0a"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r23.json",
+        "sha256": "eeacd7f49286ce46c5fcc23b13e152aafefd16918702e4f6e34655a3bff668b1"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-minimum-tests-r1.json",
+        "sha256": "28dd39effb99a13c43983565d0e7f9f6e84156f28bde67f1aabeedaec0ae2cdc"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-calculation-tests-r2.json",
+        "sha256": "73e0b2412ea5d13de49983d4ab797fbda3967c4a83c23c906130827925512ce0"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r25.json",
+        "sha256": "49d1b1fd518d6c127e29e50d2231e10323504e5bc1384c65636b7dbe9dd6d4fe"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r27.json",
+        "sha256": "5cf1d268be9fca2910c4a3f5248e192fd8e49cd45b69c44151a581db753be192"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r30.json",
+        "sha256": "e5972bbca7cda04af89fe29ab748dcf3e5d574b9a6ea6b8407774207d982d655"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-tangent-selected-current13-r1.json",
+        "sha256": "f24dd28eb9bd2d4833253f6793a90cd56440f9cd28d794b3cbd1761720ec5f24"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-tangent-tests-r2.json",
+        "sha256": "6d891653f3e7c8cf14faaa546de9455f01302c4e2e53b9157f4c5e2a0352b4d8"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-tangent-tests-r4.json",
+        "sha256": "deaff8e802d13eecc151d6736dc84b4395b490edaedc6de25daa0c33d8142056"
+      }
+    ],
+    "scope": "Historical latest passing result per actual canonical test file; not one whole-app run. R4 changes only the held factory verifier and its dedicated test."
+  },
+  "engineValidation": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-tangent-validation-r4.json",
+    "sha256": "06245891428910b3941e926b6526c2b8b41b93d020b535517934d0f61d98aa78"
+  },
+  "enginePeer": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-engine-audit-report-r4.json",
+    "sha256": "e60aac49dcb5db7343d6eecf9e7fd0f131cd5eb960d08a75f30ba9910e8956e3"
+  },
+  "loadable": 0,
+  "dbWrites": 0,
+  "wholeGoalComplete": false
+}

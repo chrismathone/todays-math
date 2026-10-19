@@ -1,0 +1,67 @@
+{
+  "utc": "2026-10-19T19:18:15.507748+00:00",
+  "actualCurrentAuditSourceSnapshots": [
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts",
+      "sha256": "009c8208e563c16055340bf7151741d9dcb573def0ef332b093237e76ceed3bc",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\00-inverseTangentRectangle.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts",
+      "sha256": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\01-examStudy.contract.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts",
+      "sha256": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\02-requirements.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts",
+      "sha256": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\03-index.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts",
+      "sha256": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\04-releaseEligibility.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts",
+      "sha256": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\05-examStudyInverseTangentRectangle.test.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts",
+      "sha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\06-examStudyInverseMinimum.test.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts",
+      "sha256": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\07-registry.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts",
+      "sha256": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\08-evidence.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts",
+      "sha256": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\09-generate.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts",
+      "sha256": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\10-curriculumEligibility.ts.snapshot"
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\tangentRectangleGeometry.ts",
+      "sha256": "71f90c810277d4d3628a42e312527cef815258f8357707a8b8f77d6ab26ae39c",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r4-audited-code-snapshots-r1\\11-tangentRectangleGeometry.ts.snapshot"
+    }
+  ],
+  "all12MatchPeerBeforeAfter": true,
+  "dbWrites": 0
+}

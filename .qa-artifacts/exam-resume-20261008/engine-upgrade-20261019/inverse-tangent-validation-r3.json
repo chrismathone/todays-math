@@ -1,0 +1,51 @@
+{
+  "utc": "2026-10-19T18:53:18.152Z",
+  "before": {
+    "src/lib/examStudy/families/middle/inverseTangentRectangle.ts": "551919a8dcdfb7040eb3cd5cd5ca4abd420be89b3346c28bcf63da09ecdb1fe2",
+    "src/contracts/examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "src/lib/examStudy/requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "src/lib/examStudy/families/middle/index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "src/lib/examStudy/releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts": "01a5679849da141d5b02d05a0de962f90d3a351d7e8ec119ce7e275daba82591",
+    "src/__tests__/unit/examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "src/lib/examStudy/families/middle/tangentRectangleGeometry.ts": "fb2f47ef1bbbf8947403ad4a2b1edc65ef45706c9533cb974baa92d15bd33369",
+    "src/__tests__/unit/examStudyContract.test.ts": "53fbb892e08519c7260f5419c1e85c3e55c4a8c2407bdb4c16ee551974a71624"
+  },
+  "after": {
+    "src/lib/examStudy/families/middle/inverseTangentRectangle.ts": "551919a8dcdfb7040eb3cd5cd5ca4abd420be89b3346c28bcf63da09ecdb1fe2",
+    "src/contracts/examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "src/lib/examStudy/requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "src/lib/examStudy/families/middle/index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "src/lib/examStudy/releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts": "01a5679849da141d5b02d05a0de962f90d3a351d7e8ec119ce7e275daba82591",
+    "src/__tests__/unit/examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "src/lib/examStudy/families/middle/tangentRectangleGeometry.ts": "fb2f47ef1bbbf8947403ad4a2b1edc65ef45706c9533cb974baa92d15bd33369",
+    "src/__tests__/unit/examStudyContract.test.ts": "53fbb892e08519c7260f5419c1e85c3e55c4a8c2407bdb4c16ee551974a71624"
+  },
+  "sourcesUnchanged": true,
+  "files": 3,
+  "passed": 34,
+  "failed": 0,
+  "skipped": 0,
+  "outcomes": [
+    {
+      "name": "inverse-tangent-tests-r3.log",
+      "status": 0
+    },
+    {
+      "name": "inverse-tangent-types-r3.log",
+      "status": 0
+    },
+    {
+      "name": "inverse-tangent-lint-r3.log",
+      "status": 0
+    }
+  ],
+  "typesPassed": true,
+  "lintPassed": true,
+  "publicReleaseHeld": true,
+  "newManualQuestions": 0,
+  "newAuthoredFigures": 0,
+  "dbWrites": 0,
+  "sharedDependenciesChanged": false
+}

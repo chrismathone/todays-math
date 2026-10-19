@@ -13,6 +13,7 @@ import {
 import { familyCoverage } from "@/lib/examStudy/evidence";
 import { studyReleaseHold } from "@/lib/examStudy/releaseEligibility";
 import { checkPaperRender } from "@/lib/testchanger/mathRenderQa";
+import { assertTangentRectangleGeometry } from "@/lib/examStudy/families/middle/tangentRectangleGeometry";
 
 const demand = "geometry.inverse-tangent-rectangle" as const;
 function independentlySolve(item: ExamStudyDraft) {
@@ -36,6 +37,141 @@ function independentlySolve(item: ExamStudyDraft) {
 }
 
 describe("review-only inverse tangent rectangle", () => {
+  it("rejects the independently reproduced tiny-scale and wrong drawing-topology faults", () => {
+    type Spec = {
+      points: Record<string, [number, number]>;
+      circles: { c: { radius: number } };
+      segments: Record<string, string[]>;
+      labels: Record<string, string>;
+      angles: {
+        rightF: {
+          vertex: string;
+          points: string[];
+          right: boolean;
+          label: string;
+        };
+      };
+      style: { show_points: boolean };
+    };
+    for (let i = 0; i < 10; i++) {
+      const item = family.generate(0, i),
+        solved = independentlySolve(item);
+      const givens = {
+        width: Number(solved.width),
+        upperPart: Number(solved.a),
+        tangent: Number(solved.tangent),
+      };
+      // Same construction at extreme but representable scales. Changing scale
+      // does not change whether F lies on EC or OF is perpendicular to EC.
+      for (const factor of [1e-100, 1e-8, 1, 1e100]) {
+        const scaled = structuredClone(item.figureSpec) as Spec;
+        for (const [name, [x, y]] of Object.entries(scaled.points))
+          scaled.points[name] = [factor * x, factor * y];
+        scaled.circles.c.radius *= factor;
+        expect(() =>
+          assertTangentRectangleGeometry(scaled, givens),
+        ).not.toThrow();
+        scaled.points.F[1] += 12 * factor;
+        expect(() => assertTangentRectangleGeometry(scaled, givens)).toThrow();
+      }
+      // These producer faults preserve numeric points, so coordinate checks
+      // alone and a canonical comparison against the same producer cannot help.
+      const faults = [
+        (s: Spec) => {
+          delete s.segments.EC;
+        },
+        (s: Spec) => {
+          delete s.segments.OF;
+        },
+        (s: Spec) => {
+          s.segments.AB = ["A", "C"];
+        },
+        (s: Spec) => {
+          s.labels.E = "F";
+        },
+        (s: Spec) => {
+          s.angles.rightF.vertex = "E";
+        },
+        (s: Spec) => {
+          s.angles.rightF.points = ["O", "B"];
+        },
+        (s: Spec) => {
+          s.style.show_points = false;
+        },
+        (s: Spec) => {
+          s.segments.extra = ["A", "C"];
+        },
+      ];
+      for (const mutate of faults) {
+        const changed = structuredClone(item.figureSpec) as Spec;
+        mutate(changed);
+        expect(() => assertTangentRectangleGeometry(changed, givens)).toThrow();
+        expect(family.verify({ ...item, figureSpec: changed }).checks).toEqual(
+          [],
+        );
+      }
+    }
+  });
+  it("checks current coordinates independently of canonical generation, including rigid motions and geometry faults", () => {
+    type Spec = {
+      points: Record<string, [number, number]>;
+      circles: { c: { radius: number } };
+    };
+    for (let i = 0; i < 10; i++) {
+      const item = family.generate(0, i),
+        result = independentlySolve(item);
+      const givens = {
+        width: Number(result.width),
+        upperPart: Number(result.a),
+        tangent: Number(result.tangent),
+      };
+      expect(() =>
+        assertTangentRectangleGeometry(item.figureSpec, givens),
+      ).not.toThrow();
+      const rotated = structuredClone(item.figureSpec) as Spec;
+      for (const [name, [x, y]] of Object.entries(rotated.points))
+        rotated.points[name] = [100 - y, 20 + x];
+      expect(() =>
+        assertTangentRectangleGeometry(rotated, givens),
+      ).not.toThrow();
+      // The geometry check accepts equivalent rigid motion; canonical template
+      // binding deliberately stays stricter until separately reviewed.
+      expect(family.verify({ ...item, figureSpec: rotated }).valid).toBe(false);
+      const mutations = [
+        (s: Spec) => {
+          s.circles.c.radius += 1;
+        },
+        (s: Spec) => {
+          s.circles.c.radius = Infinity;
+        },
+        (s: Spec) => {
+          s.points.O[0] += 1;
+        },
+        (s: Spec) => {
+          s.points.F[1] += 0.5;
+        },
+        (s: Spec) => {
+          s.points.E[0] += 0.5;
+        },
+        (s: Spec) => {
+          s.points.A[1] += 1;
+        },
+        (s: Spec) => {
+          delete s.points.F;
+        },
+      ];
+      for (const mutate of mutations) {
+        const changed = structuredClone(item.figureSpec) as Spec;
+        mutate(changed);
+        expect(() => assertTangentRectangleGeometry(changed, givens)).toThrow();
+        expect(family.verify({ ...item, figureSpec: changed }).checks).toEqual(
+          [],
+        );
+      }
+      expect(family.verify(item).checks).toContain("visual-information");
+      expect(family.evidence?.checks).toContain("visual-information");
+    }
+  });
   it("solves every printed case by a separate exact height search and proves geometry exists", () => {
     const texts = new Set<string>();
     for (let i = 0; i < 10; i++) {

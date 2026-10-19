@@ -1,0 +1,5638 @@
+{
+  "familyVersion": "3-normalized-topology",
+  "positiveHelperCases": 120,
+  "directFaultRejections": 380,
+  "producerFaultRejectionsBeforeCanonical": 350,
+  "validScaledProducerCases": 30,
+  "precisionCollapseRejections": 10,
+  "scales": [
+    1e-200,
+    1e-100,
+    1e-12,
+    1e-8,
+    1,
+    100000000,
+    1000000000000,
+    1e+100,
+    1e+200
+  ],
+  "positive": [
+    {
+      "case": 1,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 1,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 1,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 1,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 1,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 1,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 1,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 1,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 1,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 1,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 1,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 1,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 2,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 2,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 2,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 2,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 2,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 2,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 2,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 2,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 2,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 2,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 2,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 2,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 3,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 3,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 3,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 3,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 3,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 3,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 3,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 3,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 3,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 3,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 3,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 3,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 4,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 4,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 4,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 4,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 4,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 4,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 4,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 4,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 4,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 4,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 4,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 4,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 5,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 5,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 5,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 5,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 5,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 5,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 5,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 5,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 5,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 5,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 5,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 5,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 6,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 6,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 6,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 6,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 6,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 6,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 6,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 6,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 6,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 6,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 6,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 6,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 7,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 7,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 7,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 7,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 7,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 7,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 7,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 7,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 7,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 7,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 7,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 7,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 8,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 8,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 8,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 8,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 8,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 8,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 8,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 8,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 8,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 8,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 8,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 8,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 9,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 9,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 9,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 9,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 9,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 9,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 9,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 9,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 9,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 9,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 9,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 9,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 10,
+      "kind": "scale",
+      "factor": 1e-200,
+      "helperPassed": true
+    },
+    {
+      "case": 10,
+      "kind": "scale",
+      "factor": 1e-100,
+      "helperPassed": true
+    },
+    {
+      "case": 10,
+      "kind": "scale",
+      "factor": 1e-12,
+      "helperPassed": true
+    },
+    {
+      "case": 10,
+      "kind": "scale",
+      "factor": 1e-8,
+      "helperPassed": true
+    },
+    {
+      "case": 10,
+      "kind": "scale",
+      "factor": 1,
+      "helperPassed": true
+    },
+    {
+      "case": 10,
+      "kind": "scale",
+      "factor": 100000000,
+      "helperPassed": true
+    },
+    {
+      "case": 10,
+      "kind": "scale",
+      "factor": 1000000000000,
+      "helperPassed": true
+    },
+    {
+      "case": 10,
+      "kind": "scale",
+      "factor": 1e+100,
+      "helperPassed": true
+    },
+    {
+      "case": 10,
+      "kind": "scale",
+      "factor": 1e+200,
+      "helperPassed": true
+    },
+    {
+      "case": 10,
+      "kind": "rotation90",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 10,
+      "kind": "reflection",
+      "helperPassedCanonicalRejected": true
+    },
+    {
+      "case": 10,
+      "kind": "reverse-endpoints",
+      "helperPassedCanonicalRejected": true
+    }
+  ],
+  "directFailures": [
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e-200",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e-100",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e-12",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e-8",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-100000000",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1000000000000",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e+100",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e+200",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "radius+1",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "center-off",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "F-off",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "E-off",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "rectangle-off",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "nonfinite-F",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "omitEC",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "omitOF",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "wrongAB",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "extraSegment",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "segmentLength3",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "labelEtoF",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "missingLabel",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "extraLabel",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "rightVertex",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "rightEndpoints",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "rightFalse",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "rightLabel",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "missingAngle",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "extraAngle",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "hidePoints",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "extraStyle",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "extraPoint",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "extraCircle",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "extraRoot",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "name": "wrong-given-tangent",
+      "rejected": true
+    }
+  ],
+  "producerFailures": [
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 1,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 2,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 3,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 4,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 5,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 6,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 7,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 8,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 9,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e-200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e-100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e-12",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e-8",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-100000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1000000000000",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e+100",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "scaled-F-off-1e+200",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "radius+1",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "center-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "F-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "E-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "rectangle-off",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "missing-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "nonfinite-F",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "omitEC",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "omitOF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "wrongAB",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "extraSegment",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "segmentLength3",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "labelEtoF",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 이름 표시 불일치"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "missingLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "extraLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "rightVertex",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "rightEndpoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "그려지는 선분·각의 끝점 불일치"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "rightFalse",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "rightLabel",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "접점의 직각 표시 불일치"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "missingAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "벡터 객체 누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "extraAngle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "hidePoints",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "점 표시 필요"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "extraStyle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "extraPoint",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "extraCircle",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    },
+    {
+      "case": 10,
+      "name": "extraRoot",
+      "rejectedBeforeCanonical": true,
+      "errors": [
+        "검토한 도형 요소 밖의 추가·누락"
+      ]
+    }
+  ],
+  "validProducer": [
+    {
+      "case": 1,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 1,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 1,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 2,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 2,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 2,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 3,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 3,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 3,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 4,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 4,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 4,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 5,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 5,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 5,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 6,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 6,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 6,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 7,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 7,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 7,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 8,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 8,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 8,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 9,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 9,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 9,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 10,
+      "factor": 1e-100,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 10,
+      "factor": 1,
+      "validGeometryProducerAccepted": true
+    },
+    {
+      "case": 10,
+      "factor": 1e+100,
+      "validGeometryProducerAccepted": true
+    }
+  ],
+  "collapsed": [
+    {
+      "case": 1,
+      "precisionCollapsedGeometryRejected": true
+    },
+    {
+      "case": 2,
+      "precisionCollapsedGeometryRejected": true
+    },
+    {
+      "case": 3,
+      "precisionCollapsedGeometryRejected": true
+    },
+    {
+      "case": 4,
+      "precisionCollapsedGeometryRejected": true
+    },
+    {
+      "case": 5,
+      "precisionCollapsedGeometryRejected": true
+    },
+    {
+      "case": 6,
+      "precisionCollapsedGeometryRejected": true
+    },
+    {
+      "case": 7,
+      "precisionCollapsedGeometryRejected": true
+    },
+    {
+      "case": 8,
+      "precisionCollapsedGeometryRejected": true
+    },
+    {
+      "case": 9,
+      "precisionCollapsedGeometryRejected": true
+    },
+    {
+      "case": 10,
+      "precisionCollapsedGeometryRejected": true
+    }
+  ],
+  "sourceBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "009c8208e563c16055340bf7151741d9dcb573def0ef332b093237e76ceed3bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\tangentRectangleGeometry.ts": "71f90c810277d4d3628a42e312527cef815258f8357707a8b8f77d6ab26ae39c"
+  },
+  "sourceAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "009c8208e563c16055340bf7151741d9dcb573def0ef332b093237e76ceed3bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\tangentRectangleGeometry.ts": "71f90c810277d4d3628a42e312527cef815258f8357707a8b8f77d6ab26ae39c"
+  },
+  "limits": "Only actual helper/real factory and owned in-memory producer poisoning. Valid helper-equivalent transforms remain rejected canonically by ordinary factory; no claim that arbitrary tiny/huge SVGs are actual printer-ready. Residual tolerance is in radius-normalized drawing units; mathematical answer path remains exact."
+}

@@ -1,0 +1,18 @@
+{
+  "snapshots": [
+    {
+      "source": "src/lib/examStudy/families/middle/inverseTangentRectangle.ts",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r3-audited-code-snapshots-r1\\inverseTangentRectangle.ts.snapshot",
+      "sha256": "551919a8dcdfb7040eb3cd5cd5ca4abd420be89b3346c28bcf63da09ecdb1fe2",
+      "reconstructedByExactKnownPatchReversal": true
+    },
+    {
+      "source": "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+      "snapshot": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-r3-audited-code-snapshots-r1\\examStudyInverseTangentRectangle.test.ts.snapshot",
+      "sha256": "01a5679849da141d5b02d05a0de962f90d3a351d7e8ec119ce7e275daba82591",
+      "reconstructedByExactKnownPatchReversal": true
+    }
+  ],
+  "helperSnapshotPending": true,
+  "r3ReportAndControlsImmutable": true
+}

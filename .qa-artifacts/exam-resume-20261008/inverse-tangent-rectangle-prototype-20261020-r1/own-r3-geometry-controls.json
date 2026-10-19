@@ -1,0 +1,1923 @@
+{
+  "positiveGeometryCases": 40,
+  "directGeometryFaultRejections": 170,
+  "independentProducerGeometryPoisonRejections": 70,
+  "producerTopologyPoisonAccepted": 30,
+  "positives": [
+    {
+      "case": 1,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 1,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 1,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 1,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 2,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 2,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 2,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 2,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 3,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 3,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 3,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 3,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 4,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 4,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 4,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 4,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 5,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 5,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 5,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 5,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 6,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 6,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 6,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 6,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 7,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 7,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 7,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 7,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 8,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 8,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 8,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 8,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 9,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 9,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 9,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 9,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 10,
+      "transform": "original",
+      "passed": true
+    },
+    {
+      "case": 10,
+      "transform": "rotation90-translation",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 10,
+      "transform": "mirror",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    },
+    {
+      "case": 10,
+      "transform": "valid-scale2",
+      "helperPassed": true,
+      "canonicalItemRejected": true
+    }
+  ],
+  "negative": [
+    {
+      "case": 1,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 1,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 2,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 3,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 4,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 5,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 6,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 7,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 8,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 9,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "radius-plus1",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "radius-zero",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "radius-inf",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "center-shift",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "F-off-line",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "E-off-line",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "rectangle-A",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "missing-F",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "F-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "E-endpoint",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "wrong-center-key",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "version",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "NaN-coordinate",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "outside-center",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "wrong-given-width",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "wrong-given-upperPart",
+      "rejected": true
+    },
+    {
+      "case": 10,
+      "fault": "wrong-given-tangent",
+      "rejected": true
+    }
+  ],
+  "producer": [
+    {
+      "case": 1,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 1,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 1,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 1,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 1,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 1,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    },
+    {
+      "case": 2,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 2,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 2,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 2,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 2,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 2,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    },
+    {
+      "case": 3,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 3,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 3,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 3,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 3,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 3,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    },
+    {
+      "case": 4,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 4,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 4,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 4,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 4,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 4,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    },
+    {
+      "case": 5,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 5,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 5,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 5,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 5,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 5,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    },
+    {
+      "case": 6,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 6,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 6,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 6,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 6,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 6,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    },
+    {
+      "case": 7,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 7,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 7,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 7,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 7,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 7,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    },
+    {
+      "case": 8,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 8,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 8,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 8,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 8,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 8,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    },
+    {
+      "case": 9,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 9,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 9,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 9,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 9,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 9,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    },
+    {
+      "case": 10,
+      "fault": "radius-plus1",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "가로와 지름 조건"
+      ]
+    },
+    {
+      "case": 10,
+      "fault": "center-shift",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "세 변과 원의 접촉 조건"
+      ]
+    },
+    {
+      "case": 10,
+      "fault": "F-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "F가 접선 선분 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "fault": "E-off-line",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "E가 변 AB 위에 없음"
+      ]
+    },
+    {
+      "case": 10,
+      "fault": "rectangle-A",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "마주 보는 변 불일치"
+      ]
+    },
+    {
+      "case": 10,
+      "fault": "missing-F",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "유한한 점 좌표 필요: F"
+      ]
+    },
+    {
+      "case": 10,
+      "fault": "wrong-center-key",
+      "rejectedByIndependentGeometryBeforeCanonicalBinding": true,
+      "errors": [
+        "지원하지 않는 도형 구조"
+      ]
+    }
+  ],
+  "topology": [
+    {
+      "case": 1,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 1,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 1,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 2,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 2,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 2,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 3,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 3,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 3,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 4,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 4,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 4,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 5,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 5,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 5,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 6,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 6,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 6,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 7,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 7,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 7,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 8,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 8,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 8,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 9,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 9,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 9,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 10,
+      "fault": "omit-EC",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 10,
+      "fault": "omit-OF",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    },
+    {
+      "case": 10,
+      "fault": "AB-drawn-as-diagonal",
+      "helperAccepted": true,
+      "poisonProducerVerifyAccepted": true,
+      "visualInformationEmitted": true,
+      "healthyFactoryCanonicalRejected": true
+    }
+  ],
+  "sourceBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "551919a8dcdfb7040eb3cd5cd5ca4abd420be89b3346c28bcf63da09ecdb1fe2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "01a5679849da141d5b02d05a0de962f90d3a351d7e8ec119ce7e275daba82591",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\tangentRectangleGeometry.ts": "fb2f47ef1bbbf8947403ad4a2b1edc65ef45706c9533cb974baa92d15bd33369"
+  },
+  "sourceAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts": "551919a8dcdfb7040eb3cd5cd5ca4abd420be89b3346c28bcf63da09ecdb1fe2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts": "01a5679849da141d5b02d05a0de962f90d3a351d7e8ec119ce7e275daba82591",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\tangentRectangleGeometry.ts": "fb2f47ef1bbbf8947403ad4a2b1edc65ef45706c9533cb974baa92d15bd33369"
+  },
+  "limits": "Actual helper/real factory direct controls; poison changes only in-memory producer figure path. Geometry helper does not examine drawn segments/labels/angles; canonical binding checks them against make, so it is not independent of producer for that surface."
+}

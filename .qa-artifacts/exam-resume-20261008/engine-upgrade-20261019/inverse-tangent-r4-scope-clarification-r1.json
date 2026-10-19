@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-19T19:16:10.889340+00:00",
+  "originalR4Scope": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\inverse-tangent-rectangle-prototype-20261020-r1\\provided-code-scope-r4.json",
+    "sha256": "a4897dc59a74c831164610c33f6f9cf34f35e0890052fca643fe59477e71f6a6"
+  },
+  "originalScopeAndIndependentReportNotEdited": true,
+  "staleCopiedFields": [
+    "parentValidation references r3",
+    "scope description says version2-checked-vector"
+  ],
+  "actualCurrentFactoryVersion": "3-normalized-topology",
+  "actualParentCurrentValidation": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-validation-r4.json",
+    "sha256": "06245891428910b3941e926b6526c2b8b41b93d020b535517934d0f61d98aa78",
+    "tests": 35,
+    "files": 3,
+    "types": true,
+    "lint": true
+  },
+  "actualCurrentIndependentReport": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\inverse-tangent-rectangle-prototype-20261020-r1\\own-engine-audit-report-r4.json",
+    "sha256": "e60aac49dcb5db7343d6eecf9e7fd0f131cd5eb960d08a75f30ba9910e8956e3"
+  },
+  "source12HashesAgreeAcrossValidationScopePeer": true,
+  "independentCountsNotParentCounts": true,
+  "publicReleaseHeld": true,
+  "dbWrites": 0
+}

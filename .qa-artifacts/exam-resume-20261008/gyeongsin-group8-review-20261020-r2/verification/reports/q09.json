@@ -1,0 +1,285 @@
+{
+  "status": "pending",
+  "studentDigest": "92eb522c8513e9d7c10364bdfa12410853ea95abcb404adbc4daeadf27954939",
+  "candidateDigest": "5a3bf8e38c03fdfbe9b8c561fc4f814a6bfec5606cdc4102aef72b8a965d5587",
+  "assetDigest": "c76f56042290f73073466bea9e19ff08215b16112625a8d7f76c7672af3bc337",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-retained-helper-gyeongsin-q09-r2-review",
+  "solveDigest": "ebc0e46d5f7d4d5ec2dd2503a5f996d6d9fa78036b658ed55373ce96eef71f79",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "현재발문은 직각삼각형의두직각변에접한원과빗변위중심,반지름3과RP5를명시하고RQ를묻는다. 실제9수04-19 접선과반지름의수직상황이다. 내접원·삼각형전체내부원으로오해하면조건을바꾸는것이며 실제2015M3접선학습후로한정한다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "현재다섯보기는7,15/2,8,17/2,9 cm로서 서로다른양의길이다. 이번Fraction넓이잔차−1/2,0,1/2,1,3/2 cm²와AA곱의잔차−1,0,1,2,3 cm²에서②만성립한다. 단위는길이이며분수표기가중학교범위다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생SVG/독립PNG와현재spec/SVG해시를대조했다. R직각,RP/RQ 위F/G와반지름수직,빗변PQ위O,원이빗변밖으로교차하는위치가본문과일치한다. 수치조건3/5는본문에완전명시되어그림반복이필수가아니다. 좌표/픽셀길이는계산oracle로쓰지않았으며 전체native/print승인은별도다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "선분윗줄,각PRQ90°,원O,수직기호,길이cm,삼각형넓이의1/2곱셈,미지수x,기약분수15/2는중학교의통상표기다. 고등삼각함수/원의방정식/접선곱기호를추가하지않는다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "현재저자답②=RQ15/2cm와봉인raw가일치한다. 정확한넓이식에서양의유일해15/2를구했고반지름3보다커RG내부,PR5>3이라F내부를확인했다. 답을면적이나원문분자분모합으로잘못해석하지않는다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제전체저자해설은 OF⊥RP,OG⊥RQ와같은반지름3→RO보조선→O가PQ위라PQR면적=PRO+QRO→각밑변5,x와높이3→5x=15+3x→x15/2→양수/접점내부/유일성이다. 원주각/피타고라스/삼각비조차필수가아니며 넓이합은초등선수,접선수직은9수04-19다. raw의별도AA각대응도9수04-14선수로정당하다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "2015M3원의접선9수04-19를학습하고이미삼각형넓이·같은삼각형을한변위점으로나눈넓이합·간단한일차방정식을배운학생에게배정한다. 공식M3계획printed72의접선행과규범기준을근거로하며학교원문이라는이유로학년승인을주지않는다. AA는raw대안의추가선수이며실제저자넓이방법의필수는아니다. 2022M3및정확선수UUID는미확인보류다."
+    }
+  },
+  "evidence": {
+    "checkBasis": {
+      "answerCorrect": "현재답②와oldraw가일치하며별도Fraction넓이/AA검산이모두15/2를강제한다.",
+      "solutionCorrect": {
+        "RQ_cm": "15/2",
+        "areaPQR_cm2": "75/4",
+        "areaPRO_cm2": "15/2",
+        "areaQRO_cm2": "45/4",
+        "equation": "(5x)/2=(5·3)/2+(3x)/2 ->5x=15+3x ->2x=15 ->x15/2",
+        "justification": "RO splits trianglePQR because O lies on segmentPQ; OF andOG are perpendicular heights of trianglesPRO andQRO. Both individual areas positive. No height to PQ term is needed or allowed; this is not an incircle sum over all three sides."
+      },
+      "existenceUniqueness": "서로 수직인 변 RP=5 cm,RQ=15/2 cm인 삼각형을 만들고 R에서 각각3 cm인 F,G를 잡는다. RFOG를 정사각형이 되게 O를 잡으면 OF=OG=3이고 두 변에수직이다. PF=2이므로 직각삼각형PFO와PRQ의두직각변은 PF/PR=2/5=FO/RQ로대응하며 끼인각도90°라 닮음이다. 따라서 P에서의각이같아 P,O,Q가한직선위에있고 PO/PQ=2/5이므로 O는PQ내부다. 중심O반지름3의원은두변에F,G에서접하며조건을모두만족한다. 반대로모든허용배치에서는PF2,FO3과AA닮음으로RQ15/2가강제된다. 도형의회전/반사까지하나라는주장이아니라요구길이의유일성이다. 원전체가삼각형내부라는조건은없고 중심이빗변위라원은빗변양쪽으로나올수있다. r3,PR5,PF2,RQ15/2,RG3,GQ9/2 allpositive; PR−r=2 and divisionby2,5 nonzero. Center cannot be endpointP/Q since either haszero distance tooneleg butradius3>0. Requested lengthunique; triangleorientation/reflection notclaimedunique. Lengthcm,area/productcm²,ratio dimensionless,angle90°.",
+      "choicesCorrect": [
+        {
+          "choice": "①",
+          "RQ_cm": "7",
+          "wholeArea_cm2": "35/2",
+          "twoPartAreaSum_cm2": "18",
+          "areaResidual_cm2": "-1/2",
+          "AAcrossProductResidual_cm2": "-1",
+          "valid": false
+        },
+        {
+          "choice": "②",
+          "RQ_cm": "15/2",
+          "wholeArea_cm2": "75/4",
+          "twoPartAreaSum_cm2": "75/4",
+          "areaResidual_cm2": "0",
+          "AAcrossProductResidual_cm2": "0",
+          "valid": true
+        },
+        {
+          "choice": "③",
+          "RQ_cm": "8",
+          "wholeArea_cm2": "20",
+          "twoPartAreaSum_cm2": "39/2",
+          "areaResidual_cm2": "1/2",
+          "AAcrossProductResidual_cm2": "1",
+          "valid": false
+        },
+        {
+          "choice": "④",
+          "RQ_cm": "17/2",
+          "wholeArea_cm2": "85/4",
+          "twoPartAreaSum_cm2": "81/4",
+          "areaResidual_cm2": "1",
+          "AAcrossProductResidual_cm2": "2",
+          "valid": false
+        },
+        {
+          "choice": "⑤",
+          "RQ_cm": "9",
+          "wholeArea_cm2": "45/2",
+          "twoPartAreaSum_cm2": "21",
+          "areaResidual_cm2": "3/2",
+          "AAcrossProductResidual_cm2": "3",
+          "valid": false
+        }
+      ],
+      "figureConsistent": "학생SVG/독립PNG와현재spec/SVG해시를대조했다. R직각,RP/RQ 위F/G와반지름수직,빗변PQ위O,원이빗변밖으로교차하는위치가본문과일치한다. 수치조건3/5는본문에완전명시되어그림반복이필수가아니다. 좌표/픽셀길이는계산oracle로쓰지않았으며 전체native/print승인은별도다.",
+      "sameCoreConceptAndProcedure": "실제원본Hphysical3printedq9는직각변두길이→빗변위중심원반지름→기약분수분자분모합을묻고6점이다. 반지름을두직각변에대한높이로삼아RO로분할한넓이를더하는관계가현재에도보존된다. 원본답/키는계산하거나대조하지않았다.",
+      "distinctPresentation": "원문출력반지름을새조건3으로옮기고원문입력직각변하나를새RQ질문으로역전했다. 분자분모합의가공출력에서실제선분길이로표현을바꾼실제역목표이며숫자/이름변경만이아니다.",
+      "naturalKorean": "중심이빗변위,두변의각접점과원의반지름,한변과질문대상을명확히명시했다. 선분PQ내부는양의반지름으로끝점불가임이따르며그림과모순없다. 해설의밑변/높이명칭및면적합이정확하다.",
+      "curriculumAppropriate": {
+        "normative": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "actualPreviouslyViewed": "2015tab;line5409수04-19circlechord/tangents;9수04-14AA;line558generalcircleproportionexcluded;line560studentleveljustification;line565no complexformal logic required",
+          "interpretation": "Student author method uses tangency perpendicular radius, elementary triangle area/additivity and a previous linear equation only. Own raw AA alternative legitimately adds previously learned triangle similarity; Pythagoras is optional checking, not a prerequisite of the actual area solution."
+        },
+        "actualM3Placement": {
+          "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+          "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+          "viewedPageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+          "pdfIndex0": 73,
+          "physicalPage": 74,
+          "printedPage": 72,
+          "observed": "Official2024 plan actualM3mathsemester2 header and9수04-19chord/tangent row. Provisionalprinted73notused.",
+          "limits": "ActualM3placement evidence, not originalschoolpacing/year/wholepair approval or2022 certificate. Requires learned triangle-area/additivity and simplelinear equation."
+        }
+      },
+      "allStudentSurfacesInScope": "7면마다actualconcept/method/primarybasis별도기록;2015M3접선학습후로한정.",
+      "unitFamilyFit": {
+        "capturedUnit": {
+          "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원의 접선",
+          "semester": 2,
+          "orderIndex": 485,
+          "problemCodePrefix": "J30602"
+        },
+        "reason": "원의접선UUID는주단원개념과맞으나빗변위중심/두변접촉/넓이분할역추론의exactlivefamily정의·입출력·도메인은미확인이다. 내접원/직사각형family16으로자동맞추지않고familyKey null유지. Snapshot은포착시점기록이며현재DB약속이아니다."
+      },
+      "scoreAppropriate": "원본실제6점과현재6점. 중심이빗변위인비내접원에서반지름을두높이로해석하고RO넓이분할을선택하는기하관계인식과역목표가핵심이라6점/심화하편집제안을지지한다. 일차계산자체는단순하며원문분자분모합을없앴으므로실측난도동등성/통계교정승인은없고원본난도라벨은unknown이다."
+    },
+    "ownExactCalculations": {
+      "authorAreaMethod": {
+        "RQ_cm": "15/2",
+        "areaPQR_cm2": "75/4",
+        "areaPRO_cm2": "15/2",
+        "areaQRO_cm2": "45/4",
+        "equation": "(5x)/2=(5·3)/2+(3x)/2 ->5x=15+3x ->2x=15 ->x15/2",
+        "justification": "RO splits trianglePQR because O lies on segmentPQ; OF andOG are perpendicular heights of trianglesPRO andQRO. Both individual areas positive. No height to PQ term is needed or allowed; this is not an incircle sum over all three sides."
+      },
+      "independentRawAA": {
+        "square": "RFOG has3rightangles andOF=OG=3, hence squareRF=RG3",
+        "triangles": "PFO~PRQ, P↔P,F↔R,O↔Q",
+        "angles": "PFO=PRQ90°, FPO=RPQ since F onPR,O onPQ",
+        "sideRatio": "PF/PR=FO/RQ=2/5; PO/PQ=2/5 internal"
+      },
+      "allChoices": [
+        {
+          "choice": "①",
+          "RQ_cm": "7",
+          "wholeArea_cm2": "35/2",
+          "twoPartAreaSum_cm2": "18",
+          "areaResidual_cm2": "-1/2",
+          "AAcrossProductResidual_cm2": "-1",
+          "valid": false
+        },
+        {
+          "choice": "②",
+          "RQ_cm": "15/2",
+          "wholeArea_cm2": "75/4",
+          "twoPartAreaSum_cm2": "75/4",
+          "areaResidual_cm2": "0",
+          "AAcrossProductResidual_cm2": "0",
+          "valid": true
+        },
+        {
+          "choice": "③",
+          "RQ_cm": "8",
+          "wholeArea_cm2": "20",
+          "twoPartAreaSum_cm2": "39/2",
+          "areaResidual_cm2": "1/2",
+          "AAcrossProductResidual_cm2": "1",
+          "valid": false
+        },
+        {
+          "choice": "④",
+          "RQ_cm": "17/2",
+          "wholeArea_cm2": "85/4",
+          "twoPartAreaSum_cm2": "81/4",
+          "areaResidual_cm2": "1",
+          "AAcrossProductResidual_cm2": "2",
+          "valid": false
+        },
+        {
+          "choice": "⑤",
+          "RQ_cm": "9",
+          "wholeArea_cm2": "45/2",
+          "twoPartAreaSum_cm2": "21",
+          "areaResidual_cm2": "3/2",
+          "AAcrossProductResidual_cm2": "3",
+          "valid": false
+        }
+      ],
+      "positiveExistenceAndUniqueness": "서로 수직인 변 RP=5 cm,RQ=15/2 cm인 삼각형을 만들고 R에서 각각3 cm인 F,G를 잡는다. RFOG를 정사각형이 되게 O를 잡으면 OF=OG=3이고 두 변에수직이다. PF=2이므로 직각삼각형PFO와PRQ의두직각변은 PF/PR=2/5=FO/RQ로대응하며 끼인각도90°라 닮음이다. 따라서 P에서의각이같아 P,O,Q가한직선위에있고 PO/PQ=2/5이므로 O는PQ내부다. 중심O반지름3의원은두변에F,G에서접하며조건을모두만족한다. 반대로모든허용배치에서는PF2,FO3과AA닮음으로RQ15/2가강제된다. 도형의회전/반사까지하나라는주장이아니라요구길이의유일성이다. 원전체가삼각형내부라는조건은없고 중심이빗변위라원은빗변양쪽으로나올수있다.",
+      "domainsUnits": "r3,PR5,PF2,RQ15/2,RG3,GQ9/2 allpositive; PR−r=2 and divisionby2,5 nonzero. Center cannot be endpointP/Q since either haszero distance tooneleg butradius3>0. Requested lengthunique; triangleorientation/reflection notclaimedunique. Lengthcm,area/productcm²,ratio dimensionless,angle90°.",
+      "negativeInterpretation": "No third tangency toPQ: its center lies onPQ, so circle crosseshypotenuse. Applying incircle area r·semiperimeter would add an unsupported third triangle term and is rejected. No family16rectangle mapping or source-answer computation."
+    },
+    "primaryReferences": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "actualPreviouslyViewed": "2015tab;line5409수04-19circlechord/tangents;9수04-14AA;line558generalcircleproportionexcluded;line560studentleveljustification;line565no complexformal logic required",
+        "interpretation": "Student author method uses tangency perpendicular radius, elementary triangle area/additivity and a previous linear equation only. Own raw AA alternative legitimately adds previously learned triangle similarity; Pythagoras is optional checking, not a prerequisite of the actual area solution."
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "viewedPageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+        "pdfIndex0": 73,
+        "physicalPage": 74,
+        "printedPage": 72,
+        "observed": "Official2024 plan actualM3mathsemester2 header and9수04-19chord/tangent row. Provisionalprinted73notused.",
+        "limits": "ActualM3placement evidence, not originalschoolpacing/year/wholepair approval or2022 certificate. Requires learned triangle-area/additivity and simplelinear equation."
+      }
+    },
+    "rawSeal": {
+      "helperCommit": "caabf523632de48c9d725b005ba64f995a70f1c8",
+      "parentCommit": "22aed67f70b1ddcd57c51d30145c3ce9f43cccca",
+      "rawSha256": "f5ca72453f31011fad382e599c10ad4eb32b3a7f5e04237c3fd642da987fc665",
+      "rawUnchanged": true,
+      "preAuthorExposureDeclarationPreserved": {
+        "currentGyeongsinQ09R2AuthorAnswerSolutionMetadataExposedBeforeRaw": false,
+        "priorOriginalGyeongsinQ09ExposureKnown": false,
+        "declaration": "보존된허가이력에서원본GYEONGSINq09를읽은이력은없다. 이전허가된원본H페이지에서보인원래문항은q05~q08이며이번현재authoredq09R2답·해설·메타데이터는읽지않았다. 다른시험Nobyeonq09와관련원/접선문항및기존코드검토이력은있으므로수학주제전체미노출은주장하지않는다. 현재학생패킷만으로풀이했고rootgroup8저자/원본/비공개패키지/R1은열지않았다."
+      },
+      "authorAndOriginalExposureNow": "Current author full solution/source q09 first read only after raw Git seal. OriginalHphysical3 view additionally displayed originalMCq10 andwritten1/2 incidentally; record this for future blind declarations. No adjacent solution/key calculations performed."
+    },
+    "sourceComponent": {
+      "utc": "2026-10-19T18:38:02.758Z",
+      "actuallyViewed": {
+        "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-03.webp",
+        "sha256": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe"
+      },
+      "physicalPdfPage": 3,
+      "printedQuestion": 9,
+      "observed": "Right triangleC; centerO on hypotenuseAB; circle touches legsBC8 andCA4; ask numerator+denominator of reduced radius;6points. Circle is not fully inside triangle. No original answer key used.",
+      "wholePairIdentityApproved": false,
+      "rightsRestrictionObserved": true,
+      "rightsApproved": false,
+      "originalCropEmbedded": false,
+      "dbWrites": 0
+    },
+    "sourceEvidenceScope": "ActualHq09componentcondition/6points correspondence only. Footerrestrictionobserved; page footerhasnoverified2025year, wholepair/year custody notcertified. Do not infer permissionfromschoolname. No fulloriginalimage/PDFstaged.",
+    "metadataConcerns": {
+      "currentR2SevenProposals": "Allsevenauthor-proposed-independent-review-pending; not inheritedapproval. PrefreezeR1labelnotreadorreviewed.",
+      "genericPrimaryScopeText": "officialPrimary.actualScope mentions similarity/Pythagoras generically; actualarea-methodrequiredprerequisites aretangentperpendicularity,area/additivity,linearequation. RawAA isvalidalternativebutnotforcedontheauthorstudenttext.",
+      "difficultyCalibration": "Sourceactual6pointobservedbutsourcehigher/lowerdifficultylabelunknown; current심화하proposalnotmeasuredapproval."
+    },
+    "holds": {
+      "unitFamilyFit": false,
+      "liveFamilyKey": null,
+      "sourceIdentityApproved": false,
+      "wholePairApproved": false,
+      "sourceYearIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "curriculum2022": "pending"
+    },
+    "counts": {
+      "mathematicsPass": 1,
+      "gradePass": 1,
+      "contentHeld": 1,
+      "newBlindOrManualCountIncrement": 0,
+      "releaseApprovals": 0
+    }
+  }
+}

@@ -4,9 +4,14 @@ import type {
   ExamStudyFamily,
 } from "@/contracts/examStudy.contract";
 import { insist, match } from "./support";
+import { assertTangentRectangleGeometry } from "./tangentRectangleGeometry";
 
 const requirement = "geometry.inverse-tangent-rectangle" as const;
-const checks = ["independent-solution", "essential-conditions"] as const;
+const checks = [
+  "independent-solution",
+  "essential-conditions",
+  "visual-information",
+] as const;
 type Params = { width: number; upperPart: number };
 const domain: readonly Params[] = [
   [4, 3],
@@ -142,7 +147,15 @@ function solvePrinted(content: string) {
   insist(numerator % denominator === BigInt(0), "인쇄 자료의 정수 답 영역");
   const value = numerator / denominator;
   insist(value > twiceS, "인쇄 자료의 분할 길이 조건");
-  return { parameters: p, answer: `$${value}\\,\\mathrm{cm}$` };
+  insist(
+    value <= BigInt(Number.MAX_SAFE_INTEGER),
+    "도형 검수의 유한 길이 범위",
+  );
+  return {
+    parameters: p,
+    answer: `$${value}\\,\\mathrm{cm}$`,
+    tangent: Number(value),
+  };
 }
 const sameParams = (a: CanonicalParams, b: Params) =>
   Object.keys(a).length === 2 &&
@@ -152,7 +165,7 @@ const sameParams = (a: CanonicalParams, b: Params) =>
 /** Internal finite factory. Requirement-based public hold remains unconditional. */
 export const inverseTangentRectangle: ExamStudyFamily = {
   id: "study-middle-inverse-tangent-rectangle",
-  version: "1",
+  version: "3-normalized-topology",
   title: "직사각형 부분 길이에서 원의 접선 길이 복원",
   course: "중3",
   unitIds: ["중3|원의 접선"],
@@ -206,6 +219,10 @@ export const inverseTangentRectangle: ExamStudyFamily = {
         item.answer === solved.answer,
         "인쇄 조건에서 복원한 접선 길이 불일치",
       );
+      assertTangentRectangleGeometry(item.figureSpec, {
+        ...solved.parameters,
+        tangent: solved.tangent,
+      });
       const expected = make(solved.parameters);
       for (const key of [
         "content",

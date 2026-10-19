@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 11,
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group10-r1-q11",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "서술형",
+  "score": 6,
+  "content": "원 $O$ 위의 서로 다른 네 점 $K,L,M,T$가 있다. 점 $L$은 작은 호 $KM$ 위에 있고 두 작은 호 $KL$, $LM$의 길이는 같다. 점 $T$는 $L$을 포함하지 않는 호 $KM$ 위에 있다. 중심각 $KOM$의 크기가 $108^\\circ$일 때, $\\angle KTL$의 크기를 구하고 그 과정을 쓰시오.",
+  "choices": [],
+  "answer": "$27^\\circ$",
+  "solution": "길이가 같은 두 호에 대한 중심각의 크기는 같으므로 $\\angle KOL=\\angle LOM$이다. 점 $L$이 작은 호 $KM$ 위에 있으므로 $\\angle KOL+\\angle LOM=108^\\circ$이고, 따라서 $\\angle KOL=54^\\circ$이다.\n\n점 $T$는 작은 호 $KL$ 위에 있지 않으므로 $\\angle KTL$은 이 호에 대한 원주각이다. 같은 호에 대한 원주각의 크기는 중심각의 크기의 절반이므로 $\\angle KTL=54^\\circ\\div2=27^\\circ$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsin-3-2-mid-11",
+    "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group10-r1-q11",
+    "sourceContentSha256": "f814fb2c048af129f89ae2415373a2da8e08c5d50ecd3f45b3479674de5aa0ba",
+    "sourceSchoolInternal": "경신중학교",
+    "sourceExamYear": 2025,
+    "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+      "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    ],
+    "actualReference": "OriginalH page3 written1: equal small arcsAB/BC each2 and ADB21; ask AOC;6points. Component only; no wholepaper/pair/year/rights certification.",
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group10-r1/q11-source-component-observation-r1.json",
+      "sha256": "69cbeac5797347199c06fecfdf6c90412a726c664883badf1ab3bbcc1517805b"
+    },
+    "sourceCropViewed": true,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "originalQuestionRender": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-03.webp",
+      "sha256": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+      "physicalPdfPage": 3,
+      "printedQuestion": "서술형1"
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "같은 두 작은 호와 원주각을 주고 두 호 전체의 중심각을 구한다.",
+    "after": "두 호 전체의 중심각을 주고 한 호를 보는 원주각을 역으로 복원한다.",
+    "sharedConcept": "같은 호의 중심각과 원주각, 길이가 같은 호의 중심각",
+    "sharedProcedure": "같은 두 호의 각을 한 문자로 묶음→중심각 전체와 부분의 관계→원주각의 절반 관계",
+    "actualStructuralChange": "두 호 전체의 중심각을 주고 한 호를 보는 원주각을 역으로 복원한다. 입력과 질문 대상을 역전하고 점 위치·배치·표시를 새로 제작했다. 단순 숫자/학교명/동의어 교체로 완료하지 않는다.",
+    "domainProof": "양의 두 중심각54°가 합108°를 이루고 나머지호252°에 T를 잡을 수 있다. 주어진 작은호와 T의 위치가 원주각이 보는 호를 유일하게 정한다. 실제 좌표는 각-30,-84,-138,80°의 서로 다른 점을 배치할 뿐 답의 입력이 아니다.",
+    "difficultyBasis": "원문 배점과 같은 개념·핵심 관계를 유지한다. 직접 결과→누락 입력 복원의 역방향이며 새 선수 개념을 요구하지 않는다. 기본은 저자 제안으로 실제 난도 동등성은 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-20"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수04-20",
+      "actualScope": "2015 central-angle and inscribed-angle properties; general circle proportionality excluded."
+    },
+    "legitimateMethodDraft": "같은 두 호의 각을 한 문자로 묶음→중심각 전체와 부분의 관계→원주각의 절반 관계",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "서술형",
+    "answerFormat": "scalar-with-working",
+    "score": 6,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "두 호 전체의 중심각을 주고 한 호를 보는 원주각을 역으로 복원한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원주각",
+        "semester": 2,
+        "orderIndex": 486,
+        "problemCodePrefix": "J30603"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 단원 UUID를 연결했다. 질문 역전의 전체 평가 목적에 대응하는 정확한 live family는 별도 검수 전 null/보류다."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-FigureSpec-v2-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "양의 두 중심각54°가 합108°를 이루고 나머지호252°에 T를 잡을 수 있다. 주어진 작은호와 T의 위치가 원주각이 보는 호를 유일하게 정한다. 실제 좌표는 각-30,-84,-138,80°의 서로 다른 점을 배치할 뿐 답의 입력이 아니다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-written11-12-r1.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": null,
+    "prerequisiteUnits": [
+      {
+        "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원주각",
+        "semester": 2,
+        "orderIndex": 486,
+        "problemCodePrefix": "J30603"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "중심각과 원주각의 관계",
+        "길이가 같은 호의 중심각",
+        "일차적인 각의 분할"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "utc": "2026-10-19T18:55:38.586Z",
+  "kind": "independent-native-inverse-tangent-scope/v3",
+  "files": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseTangentRectangle.ts",
+      "sha256": "551919a8dcdfb7040eb3cd5cd5ca4abd420be89b3346c28bcf63da09ecdb1fe2"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts",
+      "sha256": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts",
+      "sha256": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts",
+      "sha256": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts",
+      "sha256": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseTangentRectangle.test.ts",
+      "sha256": "01a5679849da141d5b02d05a0de962f90d3a351d7e8ec119ce7e275daba82591"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseMinimum.test.ts",
+      "sha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts",
+      "sha256": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts",
+      "sha256": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts",
+      "sha256": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts",
+      "sha256": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\tangentRectangleGeometry.ts",
+      "sha256": "fb2f47ef1bbbf8947403ad4a2b1edc65ef45706c9533cb974baa92d15bd33369"
+    }
+  ],
+  "previousIndependentReport": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\inverse-tangent-rectangle-prototype-20261020-r1\\own-engine-audit-report-r2.json",
+    "sha256": "a50f00ee752df1c25cc341b9a160fd0695d219510b0c90b24d7078a324181e42"
+  },
+  "parentValidation": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\inverse-tangent-validation-r3.json",
+    "sha256": "b1dafad43632f2cff5faa3871a28130c549bfe2b583fad37db2f0bf98e59ddb6"
+  },
+  "studentInput": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\inverse-tangent-rectangle-prototype-20261020-r1\\student-only10.json",
+    "sha256": "81e1a3ed6814ef5ab6d8b38c388d6eec885bbfa6f9985e0625a28b1a3665e267"
+  },
+  "rawInput": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\inverse-tangent-rectangle-prototype-20261020-r1\\own-raw-solves10.json",
+    "sha256": "e0c77da61cd8cd157fe0fbb7d3323352fae395def53555ce55f0ecd269e4ead4"
+  },
+  "scope": "Numeric spec constraints derived independently from printed exact solve; visual-information tag emitted only after checking actual coordinates; familyVersion2-checked-vector. Student givens/body/answer/solution/spec unchanged; current whole-method R2 grade evidence needs exact rebind, no new blind/manual approval.",
+  "publicReleaseStillHeld": true,
+  "newManualQuestions": 0,
+  "newCountedFigures": 0,
+  "dbWrites": 0
+}

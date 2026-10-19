@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-19T19:10:43.140Z",
+  "head": "729816f8ae03478215929106afa2bbaeff2ef862",
+  "target": "a6c8c29c1dd7392ecbac214fc834129b2aadb6ec",
+  "main": "0e858c133d08c4b6a7a0bd83c5ca08860a9df402",
+  "passed": 39,
+  "failed": 0,
+  "before": {
+    "scripts/import/exam-twin/candidatePack.mjs": "37340da93493163a9641933f2a57cc84172e64ed0d399ce056f7522dcc85b6e6",
+    "scripts/import/exam-twin/review-exam-twins.mjs": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1",
+    "scripts/import/exam-twin/prepare-sealed-review.mjs": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe"
+  },
+  "after": {
+    "scripts/import/exam-twin/candidatePack.mjs": "37340da93493163a9641933f2a57cc84172e64ed0d399ce056f7522dcc85b6e6",
+    "scripts/import/exam-twin/review-exam-twins.mjs": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1",
+    "scripts/import/exam-twin/prepare-sealed-review.mjs": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe"
+  },
+  "scope": "Committed raw solve/author/pack artifacts only; R4 production changes remain uncommitted and are not included in this push",
+  "dbWrites": 0
+}

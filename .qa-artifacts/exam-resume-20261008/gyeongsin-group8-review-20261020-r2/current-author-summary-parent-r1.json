@@ -1,0 +1,247 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T19:16:12.022Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group8-review-20261020-r2/current-author-index-parent-r1.json",
+    "sha256": "4103c943d4fff3f0d48eb178c9d947d690f9c2a7c974e20cdd3bc80742fc4ad2"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 1,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 1,
+    "figureInstances": 1,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    9
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 9,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group8-r2-q09",
+      "studentDigest": "92eb522c8513e9d7c10364bdfa12410853ea95abcb404adbc4daeadf27954939",
+      "candidateDigest": "5a3bf8e38c03fdfbe9b8c561fc4f814a6bfec5606cdc4102aef72b8a965d5587",
+      "assetDigest": "c76f56042290f73073466bea9e19ff08215b16112625a8d7f76c7672af3bc337",
+      "solveDigest": "ebc0e46d5f7d4d5ec2dd2503a5f996d6d9fa78036b658ed55373ce96eef71f79",
+      "reportSha256": "1a596239e28178de44e731997a7e515d7b19d1e4a8899a956f796d64319b6a2f",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "scoreAppropriate": true,
+        "unitFamilyFit": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-9",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group8-r2-q09",
+        "sourceContentSha256": "ce401e03fc781709212ea7c3c9197cfbb00075fdfd5a59b9ad0873ef4bffb211",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "OriginalH page3 printedq9 actually viewed: hypotenuse center, two perpendicular tangent legs and6points. Component only, not wholepair/year/rights certification.",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group8-r2/source-q09-component-observation-r1.json",
+          "sha256": "99cbd314f5fd5da2c598297601b290435a93e2d96e11b678e7bd05bf06bbc137"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "originalQuestionRender": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-03.webp",
+          "sha256": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe",
+          "physicalPdfPage": 3,
+          "printedQuestion": 9
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 6,
+        "difficultyProposal": "심화하",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "빗변 위 중심과 반지름 조건에서 직각변 길이 역추론",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원의 접선",
+            "semester": 2,
+            "orderIndex": 485,
+            "problemCodePrefix": "J30602"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+            "capturedAt": "2026-10-19 18:07:30.165227+00"
+          },
+          "evidence": "원의접선 실제UnitUUID 유지. 빗변위중심/두변접촉/넓이분할의 정확한 livefamily는 불명이다. 내접원이나 직사각형 접선16으로 자동 분류하지 않는다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-FigureSpec-v2-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "Doubled exact integer coordinates prove center-on-segment, tangent perpendicularity and interior contacts. Floats position points only.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-q09-r2.ts",
+          "renderingReviewPending": true,
+          "lengthUnit": "cm",
+          "numericConditionsOnlyInStem": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": null,
+        "prerequisiteUnits": [],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "원의접선과반지름의수직",
+            "삼각형의넓이",
+            "일차방정식"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "namedPrerequisitesWithoutCapturedUuid": [
+          "삼각형의 넓이",
+          "한변위점에의한삼각형넓이분할",
+          "일차방정식"
+        ]
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "두 직각변의 길이에서 반지름을 구한 후 기약분수 분자와 분모의 합을 묻는다.",
+        "after": "반지름과 한 직각변의 길이를 주고 다른 직각변의 길이를 복원한다.",
+        "sharedConcept": "원의 접선과 반지름의 수직, 빗변 위 중심으로 분할된 두 삼각형의 같은 높이 관계",
+        "sharedProcedure": "두 접점까지의 반지름을 높이로 확인→직각삼각형을 중심을 지나게 나눈 넓이 관계→일차식으로 양수 길이 결정",
+        "actualStructuralChange": "원문의 출력인 반지름을 새 입력으로 옮기고 원문의 입력인 직각변을 질문으로 역전했다. 기약분수의 분자/분모 합 형식 대신 실제 선분 길이를 묻는다. 새 조건과 배치/점 이름으로 도형을 전량 작도한다.",
+        "domainProof": "두배정수 좌표로O가P와Q사이이고 두직각변까지의 거리가3이며 접점이각선분내부임을확인했다. a5>r3이고 ax=r(a+x)에서(a-r)x=ra이므로 x15/2만가능하다. 양수접점/단위/서로다른다섯보기검산. 픽셀계산을사용하지않는다.",
+        "difficultyBasis": "원문6점을유지하는심화하제안이다. 원문과공유한넓이/높이관계에서질문방향을바꾸며인위적인분자분모합계산을제거했다. 실측난도동등성은보류하고독립검수대상이다."
+      },
+      "packageDigest": "93dce9400a98d14475c4e7484464e94487b0415aeecc159711f7339f6e427f13",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group8-r2\\q09.json",
+        "sha256": "3f4ab0737b465f85a36cec840ffc166cb3c24cda8017de47cda40c77b334bfcb"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "25ac1af1d60c87af63d6f4b8874b3c3a15db1958c9f9e82dc2efc9f8e7d9ab92",
+          "svgSha256": "1c3e01139591707cb98d5fe060d3cca1fc45faf3230e350d575a43beb5bdb85b",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q09-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group8-review-20261020-r2\\blind\\solve\\q09.json",
+        "sha256": "f5ca72453f31011fad382e599c10ad4eb32b3a7f5e04237c3fd642da987fc665"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group8-review-20261020-r2/verification/reports/q09.json",
+        "sha256": "1a596239e28178de44e731997a7e515d7b19d1e4a8899a956f796d64319b6a2f"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group8-review-20261020-r2/verification/verification-manifest.json",
+        "sha256": "e9a644eccc5e5d518f22f68b91127aa8708671f0ffa7edfa3866925a626a4f12"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group8-review-20261020-r2/blind/blind-manifest.json",
+        "sha256": "61373538d646956608ddce09a1dcafb95a9ed295555999451fac4602e6b5d626"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group8-review-20261020-r2/package/private/q09/candidate.json",
+        "sha256": "6bb4f3db2bfcec547232e61e8a6eee8fa8d34ed3770668c63d1fec973302c3a0"
+      },
+      "candidateContentWithoutRelocatedPaths": "0de0eab281d08107107e01d718ea036fbb96bffe889a1b3093bea9d6ba8d444a",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group8-r2/q09.json",
+        "sha256": "3f4ab0737b465f85a36cec840ffc166cb3c24cda8017de47cda40c77b334bfcb"
+      },
+      "authorCandidateDigest": "2a27e64206e52616ccca59887df801472966d1d9e76683e8e75c9e8a4b1b04c5"
+    }
+  ],
+  "reviewBindingDigest": "05c03b7865c620d7dae53350c85b3263fdff910ef207e9445a3e7fe8ebbd498b",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

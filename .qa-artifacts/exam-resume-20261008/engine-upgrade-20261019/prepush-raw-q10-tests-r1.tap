@@ -1,0 +1,244 @@
+TAP version 13
+# Subtest: sealed marked answers validate their annotated value and dimension against the actual option
+ok 1 - sealed marked answers validate their annotated value and dimension against the actual option
+  ---
+  duration_ms: 11.7977
+  type: 'test'
+  ...
+# Subtest: UTF-8 BOM parsing keeps raw-byte evidence distinct and rejects UTF-16 or corrupt UTF-8
+ok 2 - UTF-8 BOM parsing keeps raw-byte evidence distinct and rejects UTF-16 or corrupt UTF-8
+  ---
+  duration_ms: 22.8738
+  type: 'test'
+  ...
+# Subtest: a corrupt or nonobject figure spec cannot bind behind an otherwise valid SVG
+ok 3 - a corrupt or nonobject figure spec cannot bind behind an otherwise valid SVG
+  ---
+  duration_ms: 78.3438
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 and unreadable XML diagram characters reject without byte repair
+ok 4 - invalid UTF-8 and unreadable XML diagram characters reject without byte repair
+  ---
+  duration_ms: 52.7804
+  type: 'test'
+  ...
+# Subtest: valid Korean/BOM/CRLF figure transports keep exact raw hashes and no semantic approval
+ok 5 - valid Korean/BOM/CRLF figure transports keep exact raw hashes and no semantic approval
+  ---
+  duration_ms: 17.1909
+  type: 'test'
+  ...
+# Subtest: middle3 rollout cannot reuse 2015 source mapping for 2027
+ok 6 - middle3 rollout cannot reuse 2015 source mapping for 2027
+  ---
+  duration_ms: 1.5737
+  type: 'test'
+  ...
+# Subtest: candidate identity hashes the parsed bytes rather than a later replacement
+ok 7 - candidate identity hashes the parsed bytes rather than a later replacement
+  ---
+  duration_ms: 21.0733
+  type: 'test'
+  ...
+# Subtest: ordinary program wording is not a logarithm, while explicit logarithms remain forbidden
+ok 8 - ordinary program wording is not a logarithm, while explicit logarithms remain forbidden
+  ---
+  duration_ms: 4.8744
+  type: 'test'
+  ...
+# Subtest: student payload exposes no answer, solution, private calibration or origin key
+ok 9 - student payload exposes no answer, solution, private calibration or origin key
+  ---
+  duration_ms: 0.5982
+  type: 'test'
+  ...
+# Subtest: answer presentation permits TeX braces but preserves value and unit differences
+ok 10 - answer presentation permits TeX braces but preserves value and unit differences
+  ---
+  duration_ms: 0.9455
+  type: 'test'
+  ...
+# Subtest: different key order preserves semantic digest and content changes invalidate it
+ok 11 - different key order preserves semantic digest and content changes invalidate it
+  ---
+  duration_ms: 1.2013
+  type: 'test'
+  ...
+# Subtest: stale content/figure/solution evidence fails closed
+ok 12 - stale content/figure/solution evidence fails closed
+  ---
+  duration_ms: 6.4047
+  type: 'test'
+  ...
+# Subtest: author's self-review cannot pass independent verification
+ok 13 - author's self-review cannot pass independent verification
+  ---
+  duration_ms: 1.1048
+  type: 'test'
+  ...
+# Subtest: uncertain or rejected surface/curriculum evidence blocks
+ok 14 - uncertain or rejected surface/curriculum evidence blocks
+  ---
+  duration_ms: 2.6161
+  type: 'test'
+  ...
+# Subtest: detailed curriculum audit preserves each surface basis and fails closed without it
+ok 15 - detailed curriculum audit preserves each surface basis and fails closed without it
+  ---
+  duration_ms: 1.2386
+  type: 'test'
+  ...
+# Subtest: new math evidence never clears provenance, rights or production gates
+ok 16 - new math evidence never clears provenance, rights or production gates
+  ---
+  duration_ms: 1.5048
+  type: 'test'
+  ...
+# Subtest: mathematics, grade and unresolved taxonomy are separate review dimensions
+ok 17 - mathematics, grade and unresolved taxonomy are separate review dimensions
+  ---
+  duration_ms: 2.4251
+  type: 'test'
+  ...
+# Subtest: known forbidden method in any student surface rejects
+ok 18 - known forbidden method in any student surface rejects
+  ---
+  duration_ms: 3.2641
+  type: 'test'
+  ...
+# Subtest: numeric-only variants, duplicate choices and original ID reuse reject
+ok 19 - numeric-only variants, duplicate choices and original ID reuse reject
+  ---
+  duration_ms: 1.4862
+  type: 'test'
+  ...
+# Subtest: metadata cannot silently change source year, curriculum, score or Unit UUID
+ok 20 - metadata cannot silently change source year, curriculum, score or Unit UUID
+  ---
+  duration_ms: 16.2169
+  type: 'test'
+  ...
+# Subtest: copied choice descriptors are held on written responses without erasing independent math or grade evidence
+ok 21 - copied choice descriptors are held on written responses without erasing independent math or grade evidence
+  ---
+  duration_ms: 7.02
+  type: 'test'
+  ...
+# Subtest: lost math command escapes remain readable evidence but cannot inherit passing math or grade reports
+ok 22 - lost math command escapes remain readable evidence but cannot inherit passing math or grade reports
+  ---
+  duration_ms: 4.2131
+  type: 'test'
+  ...
+# Subtest: record correction answer comparison requires an explicit typed schema and preserves all roles
+ok 23 - record correction answer comparison requires an explicit typed schema and preserves all roles
+  ---
+  duration_ms: 10.6486
+  type: 'test'
+  ...
+# Subtest: actual Git blob, working proof and blind proof bind before answer exposure
+ok 24 - actual Git blob, working proof and blind proof bind before answer exposure
+  ---
+  duration_ms: 1672.1061
+  type: 'test'
+  ...
+# Subtest: post-seal raw edits fail before creating answer-exposing outputs
+ok 25 - post-seal raw edits fail before creating answer-exposing outputs
+  ---
+  duration_ms: 852.1044
+  type: 'test'
+  ...
+# Subtest: a mismatching blind copy cannot expose authored answers
+ok 26 - a mismatching blind copy cannot expose authored answers
+  ---
+  duration_ms: 802.5754
+  type: 'test'
+  ...
+# Subtest: an author-labelled raw proof cannot act as independent evidence
+ok 27 - an author-labelled raw proof cannot act as independent evidence
+  ---
+  duration_ms: 776.8442
+  type: 'test'
+  ...
+# Subtest: encoding-damaged answers or proofs cannot expose authored answers
+ok 28 - encoding-damaged answers or proofs cannot expose authored answers
+  ---
+  duration_ms: 3071.3871
+  type: 'test'
+  ...
+# Subtest: freeze and blind input bind actual assets; stale spec blocks dry-run
+ok 29 - freeze and blind input bind actual assets; stale spec blocks dry-run
+  ---
+  duration_ms: 569.9994
+  type: 'test'
+  ...
+# Subtest: a renderable lost radical command is held before freeze without changing its source
+ok 30 - a renderable lost radical command is held before freeze without changing its source
+  ---
+  duration_ms: 139.7285
+  type: 'test'
+  ...
+# Subtest: independent solve is frozen before new answer exposure; later alteration rejects
+ok 31 - independent solve is frozen before new answer exposure; later alteration rejects
+  ---
+  duration_ms: 1194.5566
+  type: 'test'
+  ...
+# Subtest: collection rechecks blind student bytes after answer exposure
+ok 32 - collection rechecks blind student bytes after answer exposure
+  ---
+  duration_ms: 548.451
+  type: 'test'
+  ...
+# Subtest: batch counts select the exact current ID and never reuse an old question-number review
+ok 33 - batch counts select the exact current ID and never reuse an old question-number review
+  ---
+  duration_ms: 1059.2124
+  type: 'test'
+  ...
+# Subtest: a verified report cannot inflate content/classification passes while a required dimension is held
+ok 34 - a verified report cannot inflate content/classification passes while a required dimension is held
+  ---
+  duration_ms: 785.4419
+  type: 'test'
+  ...
+# Subtest: reason-only surface objects cannot inflate grade counts; explicit per-surface evidence retains independent math and holds
+ok 35 - reason-only surface objects cannot inflate grade counts; explicit per-surface evidence retains independent math and holds
+  ---
+  duration_ms: 671.9993
+  type: 'test'
+  ...
+# Subtest: a verified written report cannot inflate classification counts with copied single-choice metadata
+ok 36 - a verified written report cannot inflate classification counts with copied single-choice metadata
+  ---
+  duration_ms: 1085.5742
+  type: 'test'
+  ...
+# Subtest: image composition binds both generated pixels and generation record
+ok 37 - image composition binds both generated pixels and generation record
+  ---
+  duration_ms: 295.2366
+  type: 'test'
+  ...
+# Subtest: outputs cannot escape through a worktree dependency junction
+ok 38 - outputs cannot escape through a worktree dependency junction
+  ---
+  duration_ms: 1.8093
+  type: 'test'
+  ...
+# Subtest: local dependency and git directories cannot become artifact outputs either
+ok 39 - local dependency and git directories cannot become artifact outputs either
+  ---
+  duration_ms: 7.8055
+  type: 'test'
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7349.093

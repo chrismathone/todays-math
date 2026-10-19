@@ -1,0 +1,284 @@
+{
+  "status": "pending",
+  "studentDigest": "b9518eac6f1217f3504ea0e201666fa9625f807d11a875a9ac669dd615f1fcbc",
+  "candidateDigest": "a1062c633a93fc8d4831737a1967d35eeacb5afd24ea714d40982ebcde94f4a4",
+  "assetDigest": "632264c31cc043a96ede5e96f1f01172a138faf60b805d17784997b4f8510a97",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-retained-helper-gyeongsin-q10-review",
+  "solveDigest": "6b973af762e460e9169c66befe8acb3b8e85c697c094cc587c196c1108fb1c49",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "원밖P와두직선의가까운교점순서,같은세작은호와원주각21°를주고외부각을묻는다. 실제2015M3원주각9수04-20학습후같은호원주각성질로읽을수있으며원과비례길이정리나할선각일반공식을조건으로요구하지않는다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "30°,31°,32°,33°,34°는서로다른양의각이다. 각보기θ에대해u=θ+21을넣으면삼각형XYW내각합174,177,180,183,186°가되어③만가능하다. 숫자·도표기와계산은초과학년선수가없다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "실제학생PNG를view_image로다시확인했고현재spec/SVG의해시를학생자산과대조했다. spec의PX/XY/PW/WZ/YW선분과Y의X,W사이21°표시및P목표각을확인했다. 작은호동일조건은본문에완전명시되어그림중복표시가필수는아니다. 픽셀/좌표각은계산근거가아니며native전체승인은별도다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "호XY/YZ/ZW,원O,각기호,도단위21°와보조각u,직선위반직선및삼각형내각합은중학교원의성질표기다. 저자해설에는삼각함수/현곱/원의방정식이등장하지않는다. 호길이와중심각도수를같은단위로혼동하지않는다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "③은32°이다. 현재저자풀이3u+21=180→u53→180−127−21=32를정확분수로재계산하여봉인raw와일치했다. 삼각형각과호분할각이모두양수이고독립보기조건도하나만성립한다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제전체해설을검토: XW/XZ보조현→같은호XY/YZ/ZW를보는각XWY/YXZ/ZXW가u→XZ가각YXW내부라YXW=2u→삼각형XYW에서u53→같은YZ호의YWZ53→WP와WZ반대여서PWY127→PYW21→P각32. 실제각대응·삼각형관계만으로닫히며외부할선각공식이나고등방법을학생에게요구하지않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "2015M3원의원주각9수04-20을배우고,삼각형내각/외각과평각·같은/반대반직선및간단한일차계산을학습한학생에게한정한다. 실제공식계획printed72에M3원주각배치가있다. 원주각선수UUID bd2f6e4b-2822-421c-a67d-855ab4a60103는포착제안이며학교진도/2022배치는승인하지않는다. 저자좌표의sin표현은학생선수가아니다."
+    }
+  },
+  "evidence": {
+    "checkBasis": {
+      "answerCorrect": "현재답③와oldraw가일치하며새u기반정확계산/전보기검산이32°를강제한다.",
+      "solutionCorrect": {
+        "equalAngleCorrespondences": [
+          "XWY sees XY",
+          "YXZ sees YZ",
+          "ZXW sees ZW"
+        ],
+        "sameEqualArcsGive_u": "53",
+        "YXW_2u_degrees": "106",
+        "XYW_given_degrees": "21",
+        "XYW_triangleSum": "2u+21+u=180",
+        "YWZ_degrees": "53",
+        "PWY_supplement_degrees": "127",
+        "PYW_degrees": "21",
+        "YPW_XPW_degrees": "32",
+        "rayOrder": "P-X-Y and P-W-Z; WP opposite WZ; PX and PY same ray"
+      },
+      "existenceUniqueness": "양의반지름인원둘레에 X,Y,Z,W를이순서로잡아연속한중심각을106°,106°,106°,42°로하면네점은서로다르고앞세호는모두작은호이다. 이때∠XYW=42°/2=21°이다. 원주각∠YXW와∠XWZ는각각두호합212°를보므로106°이다. X에서XY를X쪽뒤로늘인반직선과W에서WZ를W쪽뒤로늘인반직선은 XW를밑변으로각각74°를이루어,74°+74°<180°이므로외부쪽에서하나의점P로만난다. 두반직선은원의현을바깥으로연장한방향이라P는원밖이고 P-X-Y,P-W-Z의순서를만족한다. 꼭짓각은180−74−74=32°이다. 반대로모든허용배치에서중심각의합과삼각형외각관계가같아요구각32°가유일하다. 반지름이나회전·반사배치의유일성은주장하지않는다. Radius anypositive, fourdistinctcirclepoints cyclicX-Y-Z-W, equalminorarc central106 in(0,180), residual42 in(0,180). ActualtriangleXYW angles106,21,53; trianglePYW32,21,127. Allnondegeneratepositiveangles. Divisors2,3 nonzero. Degrees forangles, arc equality islength relation inonecircle; no confusion assigning106cm toanarc. Scale/rotation/reflection neednotunique; requestedangle32unique.",
+      "choicesCorrect": [
+        {
+          "mark": "①",
+          "XPW_degrees": 30,
+          "implied_u_degrees": 51,
+          "XYW_triangleSum_degrees": 174,
+          "sumResidual_degrees": -6,
+          "valid": false
+        },
+        {
+          "mark": "②",
+          "XPW_degrees": 31,
+          "implied_u_degrees": 52,
+          "XYW_triangleSum_degrees": 177,
+          "sumResidual_degrees": -3,
+          "valid": false
+        },
+        {
+          "mark": "③",
+          "XPW_degrees": 32,
+          "implied_u_degrees": 53,
+          "XYW_triangleSum_degrees": 180,
+          "sumResidual_degrees": 0,
+          "valid": true
+        },
+        {
+          "mark": "④",
+          "XPW_degrees": 33,
+          "implied_u_degrees": 54,
+          "XYW_triangleSum_degrees": 183,
+          "sumResidual_degrees": 3,
+          "valid": false
+        },
+        {
+          "mark": "⑤",
+          "XPW_degrees": 34,
+          "implied_u_degrees": 55,
+          "XYW_triangleSum_degrees": 186,
+          "sumResidual_degrees": 6,
+          "valid": false
+        }
+      ],
+      "figureConsistent": "실제학생PNG를view_image로다시확인했고현재spec/SVG의해시를학생자산과대조했다. spec의PX/XY/PW/WZ/YW선분과Y의X,W사이21°표시및P목표각을확인했다. 작은호동일조건은본문에완전명시되어그림중복표시가필수는아니다. 픽셀/좌표각은계산근거가아니며native전체승인은별도다.",
+      "sameCoreConceptAndProcedure": "이전실제본Hphysical3printedq10과현재component관찰은같은세호/외부교점각입력에서원주각을묻는원문6점이다. 현재도같은호원주각과보조현,삼각형내각합/직선위각관계를보존한다. 원본답을계산/키대조하지않았다.",
+      "distinctPresentation": "원문출력원주각을새21°조건으로옮기고원문입력외부각을질문으로역전했다. 가까운점순서를본문에명시한구조변화도있으며단순숫자·점이름변경만이아니다.",
+      "naturalKorean": "두직선의가까운순서를각각XY/WZ로명시하여반직선판단을정확히한다. 작은호와주어진각/목표각의명칭이그림과같으며보조선/보조각u가해설에서정의된다.",
+      "curriculumAppropriate": {
+        "normative": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "previouslyActuallyViewed": "2015tab;9수04-20inscribedangle line540;generalcircleproportionality excludedline558;student-leveljustificationline560/565.",
+          "judgment": "Actualstudentmethoduses equal-arcinscribedangles, auxiliarychords,triangleangle-sumandsupplementaryrays. Noexternalsecantangleformulaisassumed. Author-onlytrigonometricdrawingprovenanceisnotstudentprerequisite."
+        },
+        "actualM3Placement": {
+          "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+          "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+          "viewedPageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+          "pdfIndex0": 73,
+          "physicalPage": 74,
+          "printedPage": 72,
+          "observed": "Official2024plan M3mathsemester2 header and9수04-20inscribedanglesrow; earlierprovisionalprinted73notused.",
+          "limits": "ActualM3placement evidence, not source-schooltestpacing/yearidentity or2022certificate. Requires previous triangleangles andrays."
+        }
+      },
+      "allStudentSurfacesInScope": "아래7면의개별basis로판정.2015M3선수학습후한정이며작도코드의삼각함수표현을학생방법으로섞지않는다.",
+      "unitFamilyFit": {
+        "capturedUnit": {
+          "id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원주각의 활용",
+          "semester": 2,
+          "orderIndex": 487,
+          "problemCodePrefix": "J30604"
+        },
+        "reason": "원주각활용UUID는주단원과일치하나세같은호/외부교점역목표의exactlivefamily목표·정의·도메인은미검증이다. familyKey null유지,소스key/count나unit이름으로승인하지않는다."
+      },
+      "scoreAppropriate": "원문실제6점,현재6점. 두보조현으로같은호각을찾아2u를구성하고내부/외부삼각형의각을역연결하는선택이필요하여심화하·6점편집제안은타당하다. 일차산술자체는단순하고실측난도/원문난도라벨동등성/학생성과는검증하지않았다. 원문난도라벨unknown유지."
+    },
+    "ownExactCalculations": {
+      "authorMethod": {
+        "equalAngleCorrespondences": [
+          "XWY sees XY",
+          "YXZ sees YZ",
+          "ZXW sees ZW"
+        ],
+        "sameEqualArcsGive_u": "53",
+        "YXW_2u_degrees": "106",
+        "XYW_given_degrees": "21",
+        "XYW_triangleSum": "2u+21+u=180",
+        "YWZ_degrees": "53",
+        "PWY_supplement_degrees": "127",
+        "PYW_degrees": "21",
+        "YPW_XPW_degrees": "32",
+        "rayOrder": "P-X-Y and P-W-Z; WP opposite WZ; PX and PY same ray"
+      },
+      "rawIndependentArcMethod": "XW arc-central42; other3centralangles106; YWZ53; triangle exterior53=21+32. No guessed secant formula.",
+      "allChoices": [
+        {
+          "mark": "①",
+          "XPW_degrees": 30,
+          "implied_u_degrees": 51,
+          "XYW_triangleSum_degrees": 174,
+          "sumResidual_degrees": -6,
+          "valid": false
+        },
+        {
+          "mark": "②",
+          "XPW_degrees": 31,
+          "implied_u_degrees": 52,
+          "XYW_triangleSum_degrees": 177,
+          "sumResidual_degrees": -3,
+          "valid": false
+        },
+        {
+          "mark": "③",
+          "XPW_degrees": 32,
+          "implied_u_degrees": 53,
+          "XYW_triangleSum_degrees": 180,
+          "sumResidual_degrees": 0,
+          "valid": true
+        },
+        {
+          "mark": "④",
+          "XPW_degrees": 33,
+          "implied_u_degrees": 54,
+          "XYW_triangleSum_degrees": 183,
+          "sumResidual_degrees": 3,
+          "valid": false
+        },
+        {
+          "mark": "⑤",
+          "XPW_degrees": 34,
+          "implied_u_degrees": 55,
+          "XYW_triangleSum_degrees": 186,
+          "sumResidual_degrees": 6,
+          "valid": false
+        }
+      ],
+      "existenceUniqueness": "양의반지름인원둘레에 X,Y,Z,W를이순서로잡아연속한중심각을106°,106°,106°,42°로하면네점은서로다르고앞세호는모두작은호이다. 이때∠XYW=42°/2=21°이다. 원주각∠YXW와∠XWZ는각각두호합212°를보므로106°이다. X에서XY를X쪽뒤로늘인반직선과W에서WZ를W쪽뒤로늘인반직선은 XW를밑변으로각각74°를이루어,74°+74°<180°이므로외부쪽에서하나의점P로만난다. 두반직선은원의현을바깥으로연장한방향이라P는원밖이고 P-X-Y,P-W-Z의순서를만족한다. 꼭짓각은180−74−74=32°이다. 반대로모든허용배치에서중심각의합과삼각형외각관계가같아요구각32°가유일하다. 반지름이나회전·반사배치의유일성은주장하지않는다.",
+      "domainsAndUnits": "Radius anypositive, fourdistinctcirclepoints cyclicX-Y-Z-W, equalminorarc central106 in(0,180), residual42 in(0,180). ActualtriangleXYW angles106,21,53; trianglePYW32,21,127. Allnondegeneratepositiveangles. Divisors2,3 nonzero. Degrees forangles, arc equality islength relation inonecircle; no confusion assigning106cm toanarc. Scale/rotation/reflection neednotunique; requestedangle32unique."
+    },
+    "primaryReferences": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "previouslyActuallyViewed": "2015tab;9수04-20inscribedangle line540;generalcircleproportionality excludedline558;student-leveljustificationline560/565.",
+        "judgment": "Actualstudentmethoduses equal-arcinscribedangles, auxiliarychords,triangleangle-sumandsupplementaryrays. Noexternalsecantangleformulaisassumed. Author-onlytrigonometricdrawingprovenanceisnotstudentprerequisite."
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "viewedPageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+        "pdfIndex0": 73,
+        "physicalPage": 74,
+        "printedPage": 72,
+        "observed": "Official2024plan M3mathsemester2 header and9수04-20inscribedanglesrow; earlierprovisionalprinted73notused.",
+        "limits": "ActualM3placement evidence, not source-schooltestpacing/yearidentity or2022certificate. Requires previous triangleangles andrays."
+      }
+    },
+    "sourceComponent": {
+      "utc": "2026-10-19T19:00:48.241Z",
+      "actuallyViewed": {
+        "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-03.webp",
+        "sha256": "0663a680ec641aa045a9b81db40fbfa5c5a73e32e0b204f38dd68749a2ccf1fe"
+      },
+      "physicalPdfPage": 3,
+      "printedQuestion": 10,
+      "observed": "Two chord extensions intersect at outsideP, nearA/C thenfarB/D. Three arcsAB/BD/DC equal, exteriorAPC28; askABC;6points. Shared angle relationships only, original answer key not used.",
+      "wholePairIdentityApproved": false,
+      "rightsRestrictionObserved": true,
+      "rightsApproved": false,
+      "originalCropEmbedded": false,
+      "dbWrites": 0
+    },
+    "rawSeal": {
+      "helperCommit": "20c0ddd4c5ab867161bd173298d4b16bee81e97b",
+      "parentCommit": "729816f8ae03478215929106afa2bbaeff2ef862",
+      "rawSha256": "58fe317cb5004add12d8a813200d1cc4c5e85cb9293ac1edaea2ba8b7a59e511",
+      "rawUnchanged": true,
+      "preExposureDeclarationUnchanged": {
+        "priorOriginalGyeongsinQ10PageExposure": true,
+        "currentAuthoredQ10AnswerSolutionPrivateMetadataExposedBeforeRaw": false,
+        "declaration": "직전허가된원본Hphysical3페이지검토에서원래GYEONGSINq10조건·그림이함께보여노출된이력이있다. 원의접선/원주각및다른시험Nobyeonq10검토이력도있다. 현재authoredgroup9r1q10의답·해설·비공개자료/R1이전세션을읽거나적용하지않았다. 이번학생본문/SVG만으로계산했으며완전한원문·주제미노출을주장하지않는다."
+      },
+      "authorExposure": "Currentauthoranswer/fullsolutionfirstreadafterrawseal. Priororiginalq10exposurealreadydeclaredandpreserved."
+    },
+    "metadataConcerns": {
+      "authorOnlySevenProposals": "Currentsevenareauthor-proposed-independent-review-pending;notinheritedgradeapproval.",
+      "authorDomainProofVsStudentMethod": "Metadata domainProof uses sin values for drawing existence; actual student fullsolution does not. Own raw provides a separate106/42degreeand74/74triangleexistence argument withouttrig. No advancedmethodimportedintogradeapproval.",
+      "difficultyAndSourceIdentity": "Source6pointsobserved;sourceyear/wholepair/custodynotestablishedbyschoolorfooter,sourcelevelunknown;currentdifficultyeditorialonly."
+    },
+    "holds": {
+      "unitFamilyFit": false,
+      "liveFamilyKey": null,
+      "sourceIdentityApproved": false,
+      "sourceYearApproved": false,
+      "wholePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "curriculum2022": "pending"
+    },
+    "counts": {
+      "mathematicsPass": 1,
+      "gradePass": 1,
+      "contentHeld": 1,
+      "newBlindOrManualCountIncrement": 0,
+      "releaseApprovals": 0
+    }
+  }
+}
