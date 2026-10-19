@@ -1,0 +1,104 @@
+{
+  "status": "pending",
+  "studentDigest": "ef764a890044e19cd0193e18785dacd1d771a46f3a3db28a98be886281468a22",
+  "candidateDigest": "41ec7ee3ab6fb501e215ff348bb741133f3a2fe862ce3cf3b60540502caf56f5",
+  "assetDigest": "f8e63d35321d51014560fc40d0a79857a93c466f30c2823aa004b9365a8c4248",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-gyeongsin-group2-clean-blind-20261019-r1-q02",
+  "solveDigest": "0f30ceb6450403debed9e616907b0670d07d6d919c194d57e5313a7dd0422a62",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "states": {"math": "passed", "grade": "passed", "authoredContent": "passed", "taxonomy": "pending-assignment", "fullRelease": "held"},
+    "preExposureBinding": {
+      "rawCommit": "4c21bf9e5a7b965367a3102513b1d5dec761fedd",
+      "gitPath": ".qa-artifacts/exam-resume-20261008/gyeongsin-group2-clean-blind-20261019-r1/q02.json",
+      "rawSha256": "f3f959a291114ad2f2db1f2748171a96114fd3342112466394271f6b15e2aab2",
+      "answer": "③",
+      "answerCodePoint": "U+2462",
+      "declaration": "내가 먼저 쓴 group2 q02의 독립 기하 풀이와 실제 노출 이력을 원본 그대로 사용한다. 저자 답·사인 해설은 사용자가 실제 Git/current/blind 봉인 검증을 완료했다고 알리고 2단계를 허용한 뒤 처음 열었다. Git 봉인은 사람의 과거 노출 이력을 자동 인증하지 않는다.",
+      "rawEdited": false
+    },
+    "answerCorrect": "저자 답 ③(30°)은 노출 전 독립 풀이와 같다. OK=OU=8cm, TK=8cm에서 OT=16cm, 접선과 반지름의 수직으로 ∠OUT=90°이다. 독립 풀이에서는 빗변 OT의 중점 K가 직각삼각형 OUT의 외심이므로 KU=KO=8cm이고 OUK가 정삼각형이어서 ∠UOT=60°, ∠UTO=30°임을 증명했다.",
+    "solutionCorrect": "저자 해설은 OK=8, OT=8+8=16, 접점의 직각, sin∠UTO=OU/OT=8/16=1/2, 예각과 특수각 sin30°=1/2의 순서로 올바르다. ∠UTO가 예각이라는 범위도 명시한다. 이는 중3의 간단한 삼각비·특수각 식별이며 역삼각함수 표기나 일반각·덧셈/배각공식·사인/코사인법칙을 요구하지 않는다. 비율에서 물은 예각이 유일하다는 점은 내 사전 기하 증명으로도 독립 확인했다. 저자 해설과 다른 합법적 방법이라고 해서 원시 증거를 고치지 않았다.",
+    "existenceUniqueness": "한 변 8cm인 정삼각형 OUK를 만들고 반직선 OK 위에 KT=8cm인 T를 잡는다. KU=KT이므로 ∠UKT=120°에서 ∠KUT=∠UTK=30°이고 ∠OUT=60°+30°=90°이다. 따라서 중심 O, 반지름 8cm인 원의 U에서 UT가 접선이 되며 모든 조건을 만족한다. OT=16>8로 T는 원 밖이고 모든 길이는 양수이다. 어느 접점을 선택해도 빗변의 중점 성질로 OUK가 정삼각형이어서 물은 각은 30°로 강제된다. 위아래 접점이나 위치·방향의 유일성을 주장하는 것은 아니다.",
+    "choicesCorrect": [
+      {"choice": "①", "angleUTO": 10, "rightAngleOUT": 90, "forcedAngleUOT": 80, "requiredAngleUOT": 60, "anglesPositive": true, "angleSum": 180, "valid": false},
+      {"choice": "②", "angleUTO": 20, "rightAngleOUT": 90, "forcedAngleUOT": 70, "requiredAngleUOT": 60, "anglesPositive": true, "angleSum": 180, "valid": false},
+      {"choice": "③", "angleUTO": 30, "rightAngleOUT": 90, "forcedAngleUOT": 60, "requiredAngleUOT": 60, "anglesPositive": true, "angleSum": 180, "valid": true},
+      {"choice": "④", "angleUTO": 40, "rightAngleOUT": 90, "forcedAngleUOT": 50, "requiredAngleUOT": 60, "anglesPositive": true, "angleSum": 180, "valid": false},
+      {"choice": "⑤", "angleUTO": 50, "rightAngleOUT": 90, "forcedAngleUOT": 40, "requiredAngleUOT": 60, "anglesPositive": true, "angleSum": 180, "valid": false}
+    ],
+    "figureConsistent": "현재 패키지에 결합된 새 SVG를 실제 렌더해 원과 O, 외부점 T, 접점 U, O-K-T의 점·선 연결, OU·TU 및 U의 직각 표지, T의 x를 확인했다. K의 이름이 점 오른쪽에 있지만 해당 원과 중심선의 교점으로 식별되며 x와 구별된다. 한 접선만으로 모든 조건이 표현되고 본문이 반지름과 TK의 8cm를 명시한다. 원본 스캔·학교명·누락된 필수 도형 조건이 보이지 않는다. 스펙 수치 검산은 봉인 후의 그림 충실도 확인일 뿐 학생 풀이 또는 픽셀 정답 추정이 아니다.",
+    "sameCoreConceptAndProcedure": "후보가 명시한 원문 역할과 인용된 q02 한정 성분 관찰은 접선, 반지름, 중심선의 가까운 교점, 주어진 각·바깥 길이, 구하는 반지름의 역할을 기록한다. 저자 학생 해설은 같은 중심거리=반지름+바깥 길이, 접점의 직각, 직각삼각형 사인비의 관계를 역방향으로 읽는다. 내 독립 풀이가 외심·정삼각형 성질을 활용하더라도 저자의 같은 핵심 절차 보존을 직접 확인할 수 있다. 이 단계에서 다른 원문·정답을 재열람해 출처 승인을 확장하지 않았다.",
+    "distinctPresentation": "원문 역할은 각과 바깥 길이로 반지름을 구하는 것이고, 새 문항은 반지름 8cm와 바깥 길이 8cm로 접선-중심선의 각을 구한다. 주어진 각과 물은 반지름의 역할이 뒤바뀌며, 원문의 두 접선 배치에서 실제 필요한 한 접선만 남기고 U,K,T의 역할을 새로 조직했다. 중심거리 r+d와 사인비 r/(r+d)의 관계는 같지만 알려진 양과 구하는 양이 다르므로 단순 수치·이름 교체보다 구조적 변화가 있다. 원문 역할 근거는 후보 선언과 제한된 성분 관찰이며, 원본 전체를 이 검수에서 직접 인증했다고 주장하지 않는다. 이는 권리·법적 유사성 심사와 별개이다.",
+    "naturalKorean": "접선의 접점, 선분 OT와 원이 만나는 점이라는 표현이 자연스럽다. 선분 OT는 중심에서 외부점까지이므로 그 위 원과의 교점 K는 하나이고 가까운 쪽 점으로 명확하다. 물은 각의 꼭짓점 T, cm 길이와 ° 각도 단위, 5개 보기와 단일 선택 ③가 일관된다. 저자 해설의 한국어와 식의 연결도 자연스럽다. 학생 본문·보기·답·해설·그림에는 학교명이 없고 내부 출처명은 별도이다.",
+    "curriculumAppropriate": {
+      "grade": "중3",
+      "edition": "2015",
+      "provisions": [
+        {"id": "9수04-19", "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다.", "role": "접선과 접점의 반지름의 수직 관계"},
+        {"id": "9수04-17", "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.", "role": "직각삼각형의 사인비와 sin30°=1/2"},
+        {"id": "9수04-18", "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.", "role": "접선 도형의 길이 관계를 삼각비로 해석"}
+      ],
+      "officialExtract": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "officialExtractSha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7",
+      "primaryParagraphExtractSha256": "185fb860e76e42f33bd5f75158681a1f3f44dc5a63b6036db4886eafcd233c95",
+      "boundaryChecks": ["실제 원문 단락의 삼각비 사이의 관계는 다루지 않는다는 유의사항을 확인했다.", "실제 원문 단락의 삼각비 값은 0°에서 90°까지라는 범위를 확인했다. 이 해설은 예각 30°의 값만 쓴다.", "독립 기하 풀이의 직각삼각형 외심·정삼각형·내각의 합은 이전 학년의 선수 내용이다.", "역함수 표기나 임의의 삼각비 역산, 일반각, 삼각비 사이의 항등식, 사인·코사인법칙, 고등 좌표 원, 원과 비례는 필수 방법이 아니다."],
+      "basis": "인용된 공식 조항 모음과 그 MOE 2020-236 원문 단락 추출의 해시 및 실제 문장을 대조했다. 중학교군 공식 범위와 현재 Unit의 중3 2학기 배치를 함께 확인했다. 저자 사인 방법과 사전 기하 방법 모두 이 범위 안이다. 2022 교육과정 재출판 승인은 포함하지 않는다."
+    },
+    "allStudentSurfacesInScope": "일곱 학생 표면을 아래에서 각각 판정했다. 그림 생성용 내부 계산과 학생에게 필요한 수학을 분리했다.",
+    "unitFamilyFit": {
+      "status": "held-unassigned",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "unit": "중3 / 2학기 / 6. 원의 성질 / 원의 접선 / J30602",
+      "candidateFamilyKeyUnchanged": null,
+      "recommendedFamilyKey": "mid:3-2|원과 직선|07",
+      "familyCode": "A01",
+      "recommendationStatus": "semantic-fit-recommended-with-inverse-target-note; not assigned",
+      "generator": "src/lib/middle/m3Tangent.ts:890-923",
+      "actualSemantics": "실제 07은 기본 분류이며 mode 3에서 반지름 r=3~10과 접선-중심선 각 30°를 주고 OP=2r을 묻는다. 해설은 반지름⊥접선 및 OA=OP sin30°를 쓴다. 다른 세 갈래도 한 접선의 직각삼각형에서 길이를 묻는다. 이번 r=8, OT=16의 특수각 관계는 mode 3과 정확히 같고, 바깥 선분으로 OT를 먼저 얻은 뒤 각을 묻는 역목표이다. 두 접선 각 관계를 주로 쓰는 09보다 한 접선·반지름·중심거리의 07이 구체적으로 맞는다. 다만 현재 07에 각을 물어보는 이 발문 분기는 없으므로 역목표를 같은 family로 허용할지 확인하고 명시 배정해야 한다.",
+      "snapshot": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+      "snapshotSha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+      "snapshotCapturedAt": "2026-10-19 06:14:08.658144+00",
+      "liveSnapshotRow": {"unit_id": "635abab8-4a87-452b-ad6c-d59065822f29", "family_key": "mid:3-2|원과 직선|07", "family_code": "A01", "live_count": 46},
+      "limitation": "실제 생성기 조건·해설·목표와 스냅샷의 정확한 key/Unit을 읽었다. 제목·46건만으로 고르지 않았다. 후보나 DB를 수정하지 않아 familyKey=null, unitFamilyFit=false이다."
+    },
+    "scoreAppropriate": "접점의 직각, 두 길이의 합, 특수각 인식의 연결이 있어 계산형 5지선다 4점은 합리적이다. 기존 07의 기본 분류에 중심거리 구성과 역목표가 추가된 낮은 응용 수준으로 후보의 응용 제안도 허용 가능하다. 어려운 항등식 계산이나 수치 역산을 요구하는 문제로 분류하지 않는다. 제한된 q02 성분 관찰에도 4점으로 기록되나 실측 난도·배점 타당도를 입증하는 것은 아니다.",
+    "sourceAndReleaseHolds": {
+      "componentReference": ".qa-artifacts/exam-resume-20261008/gyeongsin-source-component-review-20261019-r1/q02-component-review.json",
+      "componentReferenceSha256": "49344fa0ead1583a83494c3add80756121639aaeab97dd350c42263cf2078b10",
+      "limitedObservation": "부모의 관찰은 2025 원본 첫 쪽 q02와 완료본 해당 한 문항의 조건·목표·도형 역할·보기·배점 대응에 한정된다. 다른 문항·원본 답안이나 전체 대응 승인이 아니다.",
+      "headerYearWholePair": "hold_year_header_conflict: 2024/2025 conflict remains unresolved",
+      "sourceIdentity": "pending",
+      "custody": "pending",
+      "rights": "pending-copyright-notice-observed; no permission inferred",
+      "similarity": "pending; inverse-target analysis is not clearance",
+      "nativeProvenance": "not-implemented/held",
+      "loadable": 0
+    },
+    "typesafe": "프로젝트 skill과 live index, building guide, hierarchical-classification 문서를 읽었다. 의미 검토를 수학·표면·분류·출처/권리의 별도 판단으로 나누고 수치·ID·바이트 대조는 코드에 두었다. 모델·유료 API 호출은 없고 확률이나 코드가 권리·승인 근거가 아니다.",
+    "scope": "이번 q02의 허용 후보·패키지·입력·자기 원시 증거와 후보가 인용한 공식 조항·Unit/family 스냅샷·q02 성분 관찰, 관련 실제 중3 생성기만 판단 자료로 썼다. 다른 root 저작 폴더나 원본/정답을 열지 않았으며 원시 풀이·기존 후보·입력·바인딩·코드를 고치지 않았다."
+  },
+  "curriculumSurfaces": {
+    "stem": {"status": "passed", "evidence": "원 밖의 점, 접선·접점, 반지름, 중심과 외부점을 잇는 선분, 길이 덧셈은 중3 9수04-19와 선수 산술 범위이다."},
+    "choices": {"status": "passed", "evidence": "10°,20°,30°,40°,50°는 예각·같은 단위이며 중복이 없다. 실제 다섯 보기를 전부 정수 각 계산으로 점검해 ③만 남는다."},
+    "figuresAndTables": {"status": "passed", "evidence": "현재 새 SVG의 O,U,K,T, 접선·반지름·중심선·직각·x는 읽을 수 있는 중학교 도형 표현이다. 다른 접선이나 표·상위 개념이 필수로 숨겨져 있지 않다."},
+    "notation": {"status": "passed", "evidence": "길이의 선분 표기·cm, 각과 °, sin 및 분수 8/16=1/2는 중3 삼각비 기호이다. 역함수 표기나 원의 좌표 방정식은 없다."},
+    "answer": {"status": "passed", "evidence": "③(30°)가 저자 노출 전에 봉인한 기하 풀이와 일치하며 조건에 맞는 유일한 각이다."},
+    "studentSolution": {"status": "passed", "evidence": "저자는 접점 직각과 사인비 및 sin30°=1/2인 특수각만 쓴다. 예각 범위가 명시되고 9수04-17/18/19에 맞으며 삼각비 사이 관계·법칙을 요구하지 않는다."},
+    "prerequisites": {"status": "passed", "evidence": "길이 합과 중3 특수각 삼각비가 충분하다. 독립 기하 방법은 앞서 배운 직각삼각형의 외심·정삼각형·이등변삼각형과 내각의 합만 더 사용한다."}
+  }
+}
