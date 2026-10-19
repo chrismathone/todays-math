@@ -1,0 +1,43 @@
+{
+  "utc": "2026-10-19T15:06:56.647Z",
+  "snapshot": "67020f83c5ba5edf87dad5ed659a7d2694f7490d",
+  "fetchedMain": "eca42efa73c77baaf33f04d5bb1cb1a23187558f",
+  "targetBefore": "a7fae00b871afc7267dbcdd23842c26c0ca01524",
+  "affectedValidation": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepush-r16-receipt.json",
+    "sha256": "ac57e30f5f8d53fb6f3f548ec5419a9669708969d2f6ce22462db6a6d8cbe1e9"
+  },
+  "files": 18,
+  "passed": 319,
+  "typesPassed": true,
+  "unchangedNodeContractTests": 122,
+  "currentCandidateBindings": 125,
+  "counts": {
+    "authoredCurrentCandidates": 125,
+    "currentFigureInstances": 92,
+    "recreatedStatTables": 8,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 125,
+    "independentMathReviewed": 124,
+    "independentFullGradeReviewed": 124,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 109,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 124,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2
+  },
+  "sourceAndCandidateHashesRechecked": true,
+  "newBlobsOver100MiB": 0,
+  "knownIdenticalQ16SvgBlankWhitespaceCopies": 11,
+  "sealedBytesModified": false,
+  "fullAppBuildValidated": false,
+  "dbWrites": 0,
+  "deploy": false,
+  "featureMergedIntoMain": false
+}
