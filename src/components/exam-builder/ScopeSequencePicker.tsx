@@ -1,7 +1,14 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import type { ExamScope } from "./types";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import type { ExamBuilderSource, ExamScope } from "./types";
 import { canSelectScope } from "./scopeAvailability";
 import s from "./ExamBuilder.module.css";
 
@@ -20,6 +27,9 @@ export default function ScopeSequencePicker({
   error,
   onRetry,
   onChange,
+  navigation,
+  onBrowse,
+  retryRequest = 0,
 }: {
   scopes: ExamScope[];
   selected: string[];
@@ -31,6 +41,12 @@ export default function ScopeSequencePicker({
   error?: string;
   onRetry: () => void;
   onChange: (ids: string[]) => void;
+  navigation?: Pick<
+    NonNullable<ExamBuilderSource<never>["scopeNavigation"]>,
+    "groups" | "details" | "lessons"
+  >;
+  onBrowse?: (scopes: ExamScope[]) => void;
+  retryRequest?: number;
 }) {
   const restored = scopes.find((scope) => scope.id === selected.at(-1));
   const [group, setGroup] = useState(restored?.group ?? initialGroup ?? "");
@@ -45,6 +61,52 @@ export default function ScopeSequencePicker({
   const [page, setPage] = useState(0);
   const [focusRequest, setFocusRequest] = useState(0);
   const frame = useRef<HTMLElement>(null);
+  const pathKey = JSON.stringify([stage, group, detail]);
+  const [pathResult, setPathResult] = useState<{
+    navigation: typeof navigation;
+    key: string;
+    groups?: string[];
+    details?: string[];
+    scopes?: ExamScope[];
+    error?: string;
+  }>();
+  const path =
+    pathResult?.navigation === navigation && pathResult?.key === pathKey
+      ? pathResult
+      : undefined;
+  useEffect(() => {
+    if (!navigation) return;
+    const controller = new AbortController();
+    const load = async () =>
+      stage === "group"
+        ? { groups: await navigation.groups(controller.signal) }
+        : stage === "detail"
+          ? { details: await navigation.details(group, controller.signal) }
+          : {
+              scopes: await navigation.lessons(
+                group,
+                detail,
+                controller.signal,
+              ),
+            };
+    void load()
+      .then((value) => {
+        if (!controller.signal.aborted)
+          setPathResult({ navigation, key: pathKey, ...value });
+      })
+      .catch((cause: unknown) => {
+        if (!controller.signal.aborted)
+          setPathResult({
+            navigation,
+            key: pathKey,
+            error:
+              cause instanceof Error
+                ? cause.message
+                : "출제 범위를 불러오지 못했습니다.",
+          });
+      });
+    return () => controller.abort();
+  }, [navigation, stage, group, detail, pathKey, retryRequest]);
   if (restoreRequest !== lastRestoreRequest) {
     setLastRestoreRequest(restoreRequest);
     setTouched(false);
@@ -66,18 +128,47 @@ export default function ScopeSequencePicker({
         ?.querySelector<HTMLElement>("[data-scope-stage] h3")
         ?.focus();
   }, [focusRequest]);
-  const groups = [...new Set(scopes.map((scope) => scope.group))];
+  const groups = navigation
+    ? (path?.groups ?? [])
+    : [...new Set(scopes.map((scope) => scope.group))];
   const inGroup = scopes.filter((scope) => scope.group === group);
-  const details = [...new Set(inGroup.map((scope) => scope.detail ?? ""))];
-  const lessons = inGroup.filter(
-    (scope) =>
-      (scope.detail ?? "") === detail &&
-      scope.label
-        .toLocaleLowerCase()
-        .includes(query.trim().toLocaleLowerCase()),
+  const details = navigation
+    ? (path?.details ?? [])
+    : [...new Set(inGroup.map((scope) => scope.detail ?? ""))];
+  const lessonMetadata = useMemo(
+    () =>
+      (navigation ? (path?.scopes ?? []) : scopes).filter(
+        (scope) =>
+          scope.group === group &&
+          (scope.detail ?? "") === detail &&
+          scope.label
+            .toLocaleLowerCase()
+            .includes(query.trim().toLocaleLowerCase()),
+      ),
+    [navigation, path, scopes, group, detail, query],
+  );
+  const lessons = lessonMetadata.map(
+    (scope) => scopes.find((row) => row.id === scope.id) ?? scope,
   );
   const pages = Math.max(1, Math.ceil(lessons.length / 20));
   const currentPage = Math.min(page, pages - 1);
+  const visibleIds = lessonMetadata
+    .slice(currentPage * 20, (currentPage + 1) * 20)
+    .map((scope) => scope.id)
+    .join(",");
+  useEffect(() => {
+    if (!navigation || !onBrowse) return;
+    const ids = new Set(visibleIds ? visibleIds.split(",") : []);
+    onBrowse(
+      stage === "lesson"
+        ? lessonMetadata.filter((scope) => ids.has(scope.id))
+        : [],
+    );
+  }, [navigation, onBrowse, stage, visibleIds, lessonMetadata]);
+  const pending = navigation
+    ? !path || (stage === "lesson" && loading)
+    : loading;
+  const failure = path?.error || error;
   function move(next: Stage) {
     setTouched(true);
     setStage(next);
@@ -119,15 +210,15 @@ export default function ScopeSequencePicker({
         {stage === "lesson" && collapsed("detail", detail)}
         <section data-scope-stage={stage}>
           <h3 tabIndex={-1}>{names[stage]}</h3>
-          {error ? (
+          {failure ? (
             <div className={s.empty} role="alert">
-              <p>{error}</p>
+              <p>{failure}</p>
               <p>선택은 유지됩니다.</p>
               <button type="button" onClick={onRetry}>
                 다시 불러오기
               </button>
             </div>
-          ) : loading ? (
+          ) : pending ? (
             <p className={s.empty} role="status">
               출제 범위를 불러오는 중입니다…
             </p>
@@ -155,9 +246,11 @@ export default function ScopeSequencePicker({
               >
                 {stage === "group" &&
                   groups.map((value) => {
-                    const suffix = availability(
-                      scopes.filter((scope) => scope.group === value),
-                    );
+                    const suffix = navigation
+                      ? ""
+                      : availability(
+                          scopes.filter((scope) => scope.group === value),
+                        );
                     return (
                       <button
                         type="button"
@@ -179,9 +272,13 @@ export default function ScopeSequencePicker({
                   })}
                 {stage === "detail" &&
                   details.map((value) => {
-                    const suffix = availability(
-                      inGroup.filter((scope) => (scope.detail ?? "") === value),
-                    );
+                    const suffix = navigation
+                      ? ""
+                      : availability(
+                          inGroup.filter(
+                            (scope) => (scope.detail ?? "") === value,
+                          ),
+                        );
                     return (
                       <button
                         type="button"

@@ -11,6 +11,8 @@ export default defineConfig({
       "src/components/exam-builder/ExamBuilder.test.tsx",
       "src/components/exam-builder/SavedConditions.test.tsx",
       "src/components/exam-builder/ExamBuilder.h2.test.tsx",
+      "src/components/exam-builder/ExamBuilder.demand.test.tsx",
+      "src/components/exam-builder/PickerDemand.test.tsx",
       "src/__tests__/components/QuestionFormatsUI.test.tsx",
       "src/__tests__/components/WorkspaceBankMetadata.test.tsx",
       "src/__tests__/components/ExamAnswerPanel.test.tsx",

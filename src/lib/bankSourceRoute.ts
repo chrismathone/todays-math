@@ -4,6 +4,13 @@ import {
   loadBankSourceMaterials,
 } from "@/lib/bankSourceAvailability";
 import { loadBankSourceCounts } from "@/lib/bankSourceCounts";
+import {
+  loadQuestionScopeCounts,
+  loadQuestionPickerGroups,
+  loadQuestionPickerBooks,
+  loadQuestionPickerBookCounts,
+  loadQuestionMaterialsPage,
+} from "@/lib/bankSourceQuestions";
 import { readUnifiedBankQueryBody } from "@/lib/unifiedBankQueryBody";
 import { UnifiedBankQueryError } from "@/lib/unifiedPreview";
 import type { BankQueryContext } from "@/lib/bankQueryContext";
@@ -37,14 +44,33 @@ export async function bankSourcesResponse(
     const view = params.get("view");
     if (params.has("identity") && params.get("identity") !== "question")
       throw new UnifiedBankQueryError("알 수 없는 문항 보기입니다.");
-    return Response.json(
-      view === null
-        ? await loadBankSourceCounts(params)
-        : view === "materials"
-          ? await loadBankSourceMaterials(params, context)
-          : await loadBankSourceAvailability(params, context),
-      { headers },
-    );
+    let value;
+    switch (view) {
+      case null:
+        value = await loadBankSourceCounts(params);
+        break;
+      case "scope-counts":
+        value = await loadQuestionScopeCounts(params, context);
+        break;
+      case "picker-groups":
+        value = await loadQuestionPickerGroups(params);
+        break;
+      case "picker-books":
+        value = await loadQuestionPickerBooks(params);
+        break;
+      case "picker-book-counts":
+        value = await loadQuestionPickerBookCounts(params);
+        break;
+      case "materials-page":
+        value = await loadQuestionMaterialsPage(params, context);
+        break;
+      case "materials":
+        value = await loadBankSourceMaterials(params, context);
+        break;
+      default:
+        value = await loadBankSourceAvailability(params, context);
+    }
+    return Response.json(value, { headers });
   } catch (error) {
     if (error instanceof UnifiedBankQueryError)
       return Response.json({ error: error.message }, { status: 400, headers });

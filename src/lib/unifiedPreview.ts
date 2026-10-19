@@ -46,6 +46,10 @@ import {
 } from "@/lib/problem/questionCountSql";
 import type { ProblemSourceReference } from "@/contracts/problemSourceReference.contract";
 import type { BankQueryContext } from "@/lib/bankQueryContext";
+import {
+  unifiedBankCurriculumQuerySchema,
+  type UnifiedBankCurriculum,
+} from "@/contracts/unifiedBankBootstrap.contract";
 import type {
   BankData,
   BankProblem,
@@ -470,6 +474,59 @@ export type UnifiedBankBootstrap = Pick<
   | "queryKey"
 >;
 
+/** S2 navigation: fetch just the visible level, without touching problems. */
+export async function loadUnifiedBankCurriculum(
+  params: URLSearchParams,
+): Promise<UnifiedBankCurriculum> {
+  const parsed = unifiedBankCurriculumQuerySchema.safeParse(
+    Object.fromEntries(params),
+  );
+  if (!parsed.success || new Set(params.keys()).size !== params.size)
+    throw new UnifiedBankQueryError(
+      "검색 조건이 올바르지 않습니다. 필터를 확인해 주세요.",
+    );
+  const { grade, chapter, unitIds } = parsed.data;
+  if (unitIds || chapter) {
+    const units = await db.unit.findMany({
+      where: unitIds ? { id: { in: unitIds } } : { grade, chapter },
+      select: {
+        id: true,
+        grade: true,
+        chapter: true,
+        section: true,
+        orderIndex: true,
+      },
+      orderBy: { orderIndex: "asc" },
+    });
+    return { view: "curriculum", grades: [], chapters: [], units };
+  }
+  if (grade) {
+    const rows = await db.unit.groupBy({
+      where: { grade },
+      by: ["chapter"],
+      _min: { orderIndex: true },
+      orderBy: { _min: { orderIndex: "asc" } },
+    });
+    return {
+      view: "curriculum",
+      grades: [],
+      chapters: [...new Set(rows.map((row) => row.chapter))],
+      units: [],
+    };
+  }
+  const rows = await db.unit.groupBy({
+    by: ["grade"],
+    _min: { orderIndex: true },
+    orderBy: { _min: { orderIndex: "asc" } },
+  });
+  return {
+    view: "curriculum",
+    grades: [...new Set(rows.map((row) => row.grade))],
+    chapters: [],
+    units: [],
+  };
+}
+
 async function loadUnifiedBankMetadata(
   {
     where,
@@ -565,6 +622,11 @@ export async function loadUnifiedBank(
       pageSize: 12,
     };
   }
+  if (params.get("identity") === "question" && params.get("view") === "page") {
+    const filters = new URLSearchParams(params);
+    filters.delete("view");
+    return loadQuestionBank(filters, context, false);
+  }
   if (params.get("identity") === "question")
     return loadQuestionBank(params, context);
   const resolved = await resolveUnifiedBankQuery(params, context);
@@ -611,20 +673,23 @@ export async function loadUnifiedBank(
 async function loadQuestionBank(
   params: URLSearchParams,
   context?: BankQueryContext,
+  includeMetadata = true,
 ): Promise<BankData> {
   return db.$transaction(
     async (tx) =>
       withBankReadFingerprint(tx, async () => {
         const resolved = await resolveUnifiedBankQuery(params, context);
         const cache = new Map<string, ReturnType<typeof classifyFormat>>();
-        const metadata = await loadQuestionBankSummary(
-          resolved.visibility,
-          resolved.grade,
-          resolved.semester,
-          params.has("reviewStatus"),
-          cache,
-          tx,
-        );
+        const metadata = includeMetadata
+          ? await loadQuestionBankSummary(
+              resolved.visibility,
+              resolved.grade,
+              resolved.semester,
+              params.has("reviewStatus"),
+              cache,
+              tx,
+            )
+          : { grades: [], chapters: [] };
         const { where, format, requestedPage, pageSize, orderBy, exactIds } =
           resolved;
         const listingWhere = {

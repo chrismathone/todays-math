@@ -85,14 +85,11 @@ const inventory = (counts: Record<string, number>) => {
     },
   };
 };
-const curriculum = () =>
+const navigationCurriculum = () =>
   reply({
-    problems: [],
-    total: 6,
-    page: 1,
-    pageSize: 12,
-    grades: [{ grade: unit.grade, count: 6 }],
-    chapters: [unit.chapter],
+    view: "curriculum",
+    grades: [],
+    chapters: [],
     units: MOCK_UNITS.map(({ id, grade, chapter, section, orderIndex }) => ({
       id,
       grade,
@@ -100,7 +97,6 @@ const curriculum = () =>
       section,
       orderIndex,
     })),
-    unitCounts: { [unit.id]: 6 },
   });
 const listRequest = {
   scopeIds: [unit.id],
@@ -511,6 +507,7 @@ describe("Math exam builder source", () => {
     const url = new URL(String(fetcher.mock.calls[0][0]), "https://math.test");
     expect(Object.fromEntries(url.searchParams)).toEqual({
       identity: "question",
+      view: "page",
       unitIds: unit.id,
       difficulty: "기본",
       q: "분수",
@@ -655,13 +652,13 @@ describe("Math exam builder source", () => {
     const pending = source.prepareOutput!([saved], signal);
     const moved = expect(pending).rejects.toThrow("단원이나 출처");
     expect(fetcher).toHaveBeenCalledWith(
-      "/api/studio/problems?identity=question&view=bootstrap",
+      `/api/studio/problems?${new URLSearchParams({ identity: "question", view: "curriculum", grade: unit.grade, chapter: unit.chapter })}`,
       expect.objectContaining({ signal }),
     );
     expect(
       fetcher.mock.calls.some(([url]) => String(url).endsWith("/check")),
     ).toBe(false);
-    finish(curriculum());
+    finish(navigationCurriculum());
     await moved;
     await expect(source.prepareOutput!([saved], signal)).rejects.toThrow(
       "단원이나 출처",
@@ -673,7 +670,9 @@ describe("Math exam builder source", () => {
 
   it("validates a legacy saved row from a fresh source without a preceding scope read", async () => {
     const fetcher = vi.fn<typeof fetch>(async (url) =>
-      String(url).endsWith("/check") ? reply(ready([readyId])) : curriculum(),
+      String(url).endsWith("/check")
+        ? reply(ready([readyId]))
+        : navigationCurriculum(),
     );
     const { unitId: _unitId, ...legacy } = row(readyId);
     const saved = { ...legacy, questionId: `question:${readyId}` };
@@ -683,7 +682,7 @@ describe("Math exam builder source", () => {
     expect((await source.prepareOutput!([saved], signal))[0]).toBe(saved);
     expect(
       fetcher.mock.calls.filter(([url]) =>
-        String(url).includes("view=bootstrap"),
+        String(url).includes("view=curriculum"),
       ),
     ).toHaveLength(1);
     expect(saved).not.toHaveProperty("unitId");

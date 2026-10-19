@@ -74,7 +74,7 @@ afterEach(() => {
 });
 
 describe("deferred workspace bank metadata", () => {
-  it("keeps home actions visible with the existing progress UI, then shows the returned grade and count", async () => {
+  it("keeps home actions visible and requests only grade names without a global inventory", async () => {
     let finish!: (value: Response) => void;
     const requests = vi.fn<typeof fetch>(
       () =>
@@ -87,14 +87,23 @@ describe("deferred workspace bank metadata", () => {
     expect(screen.getByText("시험지 만들기를 여는 중입니다…")).toBeVisible();
     expect(screen.getByRole("button", { name: "문제 찾기" })).toBeEnabled();
     expect(bankZero()).toBeNull();
-    await act(async () => finish(Response.json(metadata)));
+    await act(async () =>
+      finish(
+        Response.json({
+          view: "curriculum",
+          grades: ["중1"],
+          chapters: [],
+          units: [],
+        }),
+      ),
+    );
     expect(
       await screen.findByRole("button", { name: "중1 문제 찾기" }),
     ).toBeVisible();
-    expect(screen.getByText("23")).toBeVisible();
+    expect(screen.queryByText("23")).toBeNull();
     expect(screen.queryByText("시험지 만들기를 여는 중입니다…")).toBeNull();
     expect(requests).toHaveBeenCalledWith(
-      "/api/studio/problems?identity=question&view=bootstrap",
+      "/api/studio/problems?identity=question&view=curriculum",
       expect.objectContaining({
         credentials: "same-origin",
         cache: "no-store",

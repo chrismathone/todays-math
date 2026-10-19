@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import StudioStepBar from "@/components/unified/StudioStepBar";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import type {
@@ -102,30 +109,6 @@ export default function ExamBuilder<T>({
   const [conditionsOpen, setConditionsOpen] = useState(false);
   const [hasComposed, setHasComposed] = useState(false);
   const conditionsOpener = useRef<HTMLButtonElement>(null);
-  // 출제 가능 수는 최근 출제를 뺀 것 · 넣은 것을 따로 둔다 — 창이 둘을 견주고, 적용하면 깜빡이지 않고 바뀐다.
-  const [loadedList, setLoadedList] = useState<
-    {
-      source: ExamBuilderSource<T>;
-      recent: boolean;
-      scopes: ExamScope[];
-      error?: string;
-      retry: number;
-    }[]
-  >([]);
-  const [retry, setRetry] = useState(0);
-  const loadedFor = (recent: boolean) =>
-    loadedList.find(
-      (entry) =>
-        entry.source === source &&
-        entry.recent === recent &&
-        entry.retry === retry,
-    );
-  const loaded = loadedFor(excludeRecent);
-  const scopes = useMemo(
-    () => loaded?.scopes ?? source.initialScopes ?? [],
-    [loaded, source],
-  );
-  const scopeLoading = !loaded && !source.initialScopes;
   function restoredAllocations(): ExamAllocation[] {
     const counts = new Map<string, number>();
     questions.forEach((item) => {
@@ -141,6 +124,116 @@ export default function ExamBuilder<T>({
   }
   const [configuredAllocations, setAllocations] =
     useState<ExamAllocation[]>(restoredAllocations);
+  const [pendingApply, setPendingApply] = useState<{
+    item: ExamCondition;
+    key: string;
+    recent: boolean;
+    applied: AppliedConditions;
+  } | null>(null);
+  const [knownScopes, setKnownScopes] = useState<ExamScope[]>([]);
+  const [visibleScopeIds, setVisibleScopeIds] = useState<string[]>([]);
+  const [restoredScopeSource, setRestoredScopeSource] =
+    useState<ExamBuilderSource<T>>();
+  const [scopeRestoreError, setScopeRestoreError] = useState<{
+    source: ExamBuilderSource<T>;
+    message: string;
+  }>();
+  const [retry, setRetry] = useState(0);
+  const browseScopes = useCallback((rows: ExamScope[]) => {
+    setVisibleScopeIds((current) =>
+      current.join(",") === rows.map((row) => row.id).join(",")
+        ? current
+        : rows.map((row) => row.id),
+    );
+    setKnownScopes((current) => {
+      const map = new Map(current.map((scope) => [scope.id, scope]));
+      rows.forEach((scope) => map.set(scope.id, scope));
+      const next = [...map.values()];
+      return JSON.stringify(current) === JSON.stringify(next) ? current : next;
+    });
+  }, []);
+  useEffect(() => {
+    if (!source.scopeNavigation) return;
+    const controller = new AbortController();
+    void source.scopeNavigation
+      .restore(questions, controller.signal)
+      .then((rows) => {
+        if (controller.signal.aborted) return;
+        setKnownScopes((current) => [
+          ...new Map(
+            [...current, ...rows].map((row) => [row.id, row]),
+          ).values(),
+        ]);
+        setRestoredScopeSource(source);
+        setScopeRestoreError(undefined);
+      })
+      .catch((cause: unknown) => {
+        if (!controller.signal.aborted)
+          setScopeRestoreError({
+            source,
+            message:
+              cause instanceof Error
+                ? cause.message
+                : "저장한 출제 범위를 확인하지 못했습니다.",
+          });
+      });
+    return () => controller.abort();
+  }, [source, questions, retry]);
+  const demandIds = source.scopeNavigation
+    ? [
+        ...new Set([
+          ...visibleScopeIds,
+          ...configuredAllocations.map((row) => row.scopeId),
+          ...(pendingApply?.item.condition.rows.map((row) => row.unitId) ?? []),
+        ]),
+      ]
+        .sort()
+        .join(",")
+    : "";
+  // 출제 가능 수는 최근 출제를 뺀 것 · 넣은 것을 따로 둔다 — 창이 둘을 견주고, 적용하면 깜빡이지 않고 바뀐다.
+  const [loadedList, setLoadedList] = useState<
+    {
+      source: ExamBuilderSource<T>;
+      recent: boolean;
+      scopes: ExamScope[];
+      error?: string;
+      retry: number;
+      demandIds?: string;
+    }[]
+  >([]);
+  const loadedFor = (recent: boolean) =>
+    loadedList.find(
+      (entry) =>
+        entry.source === source &&
+        entry.recent === recent &&
+        entry.retry === retry &&
+        (!source.scopeNavigation || entry.demandIds === demandIds),
+    );
+  const loaded = loadedFor(excludeRecent);
+  const scopes = useMemo<ExamScope[]>(
+    () =>
+      source.scopeNavigation
+        ? [
+            ...new Map(
+              [
+                ...(source.initialScopes ?? []).map(
+                  ({ id, label, group, detail }) => ({
+                    id,
+                    label,
+                    group,
+                    detail,
+                  }),
+                ),
+                ...knownScopes,
+                ...(loaded?.scopes ?? []),
+              ].map((scope) => [scope.id, scope]),
+            ).values(),
+          ]
+        : (loaded?.scopes ?? source.initialScopes ?? []),
+    [loaded, source, knownScopes],
+  );
+  const scopeLoading =
+    !loaded && (!!source.scopeNavigation || !source.initialScopes);
   const [awaitingRestoredScopes, setAwaitingRestoredScopes] = useState(
     () =>
       !source.initialScopes &&
@@ -148,7 +241,12 @@ export default function ExamBuilder<T>({
   );
   // Legacy saved questions resolve their scope from deferred curriculum labels.
   // Restore once before showing the loaded table; later edits keep their intent.
-  if (awaitingRestoredScopes && loaded && !loaded.error) {
+  if (
+    awaitingRestoredScopes &&
+    loaded &&
+    !loaded.error &&
+    (!source.scopeNavigation || restoredScopeSource === source)
+  ) {
     setAwaitingRestoredScopes(false);
     setAllocations(restoredAllocations());
   }
@@ -241,10 +339,17 @@ export default function ExamBuilder<T>({
         ...current.filter(
           (item) => item.source === source && item.recent !== excludeRecent,
         ),
-        { source, recent: excludeRecent, retry, ...entry },
+        { source, recent: excludeRecent, retry, demandIds, ...entry },
       ]);
     void source
-      .loadScopes(controller.signal, conditions ? { excludeRecent } : undefined)
+      .loadScopes(
+        controller.signal,
+        source.scopeNavigation
+          ? { excludeRecent, scopeIds: demandIds ? demandIds.split(",") : [] }
+          : conditions
+            ? { excludeRecent }
+            : undefined,
+      )
       .then((result) => {
         if (!controller.signal.aborted) store({ scopes: result });
       })
@@ -259,7 +364,7 @@ export default function ExamBuilder<T>({
           });
       });
     return () => controller.abort();
-  }, [source, retry, excludeRecent, conditions, loaded]);
+  }, [source, retry, excludeRecent, conditions, loaded, demandIds]);
   // 창이 열려 있으면 반대쪽(최근 출제를 넣은 · 뺀) 수도 센다 — «지금 해당» · 켜고 끈 나뉠 모습에 쓴다.
   const otherLoaded = !!loadedFor(!excludeRecent);
   useEffect(() => {
@@ -267,19 +372,32 @@ export default function ExamBuilder<T>({
     const controller = new AbortController();
     const recent = !excludeRecent;
     void source
-      .loadScopes(controller.signal, { excludeRecent: recent })
+      .loadScopes(controller.signal, {
+        excludeRecent: recent,
+        ...(source.scopeNavigation
+          ? { scopeIds: demandIds ? demandIds.split(",") : [] }
+          : {}),
+      })
       .then((result) => {
         if (!controller.signal.aborted)
           setLoadedList((current) => [
             ...current.filter(
               (item) => item.source === source && item.recent !== recent,
             ),
-            { source, recent, retry, scopes: result },
+            { source, recent, retry, demandIds, scopes: result },
           ]);
       })
       .catch(() => {});
     return () => controller.abort();
-  }, [conditionsOpen, conditions, source, excludeRecent, otherLoaded, retry]);
+  }, [
+    conditionsOpen,
+    conditions,
+    source,
+    excludeRecent,
+    otherLoaded,
+    retry,
+    demandIds,
+  ]);
   const scopeMap = useMemo(
     () => new Map(scopes.map((scope) => [scope.id, scope])),
     [scopes],
@@ -387,12 +505,6 @@ export default function ExamBuilder<T>({
     applied: string;
   } | null>(null);
   // 적용을 눌렀고, 되돌린 출처의 출제 가능 수가 아직 안 왔다 — 오면 표에 넣는다.
-  const [pendingApply, setPendingApply] = useState<{
-    item: ExamCondition;
-    key: string;
-    recent: boolean;
-    applied: AppliedConditions;
-  } | null>(null);
   useEffect(() => {
     if (!namedClient) return;
     const controller = new AbortController();
@@ -1210,6 +1322,9 @@ export default function ExamBuilder<T>({
           >
             {source.requireScopeCounts ? (
               <ScopeSequencePicker
+                navigation={source.scopeNavigation}
+                onBrowse={browseScopes}
+                retryRequest={retry}
                 scopes={scopes}
                 selected={allocations.map((row) => row.scopeId)}
                 initialGroup={initialGroup}
@@ -1217,7 +1332,12 @@ export default function ExamBuilder<T>({
                 disabled={actionsDisabled}
                 controls={scopeControls}
                 loading={scopeLoading || (!loaded && scopes.length === 0)}
-                error={loaded?.error}
+                error={
+                  loaded?.error ||
+                  (scopeRestoreError?.source === source
+                    ? scopeRestoreError.message
+                    : undefined)
+                }
                 onRetry={() => {
                   setLoadedList([]);
                   setRetry((value) => value + 1);
