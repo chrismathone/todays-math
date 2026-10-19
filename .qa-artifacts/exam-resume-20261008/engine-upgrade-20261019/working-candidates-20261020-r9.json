@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-19T18:16:21.259Z",
+  "previous": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-candidates-20261020-r8.json",
+    "sha256": "fe3408a13845813d47ce235fce20cad8ed401e2c2bdd96b0720c307879203d16"
+  },
+  "canonicalSelected": 136,
+  "canonicalFigures": 96,
+  "canonicalMathGradeReviewed": 135,
+  "workingManualCandidates": [],
+  "newPrototype": {
+    "id": "U51",
+    "status": "R3 bounded independent47/47; parent151 Node/lint and actual4vectors; semantic approvals false",
+    "independentAudit": {
+      "path": ".qa-artifacts/exam-resume-20261008/vector-replay-code-audit-20261020-r3/own-report.json",
+      "sha256": "182585a1783094f473b3b7fbb269c450b12329f621f45d311559795d6d5363f9"
+    }
+  },
+  "nextNativeGap": {
+    "proposedId": "U52",
+    "familyKey": "mid:3-2|원과 직선|16",
+    "trigger": "Independent q08r2 code/sample audit: exact partial-side input to whole-tangent target absent. Implement separately versioned generator and calculation/render/grade/format verification before any release.",
+    "status": "work card; not implemented or approved yet",
+    "codeToReview": [
+      "src/lib/middle/m3Tangent.ts",
+      "src/lib/examStudy/adapters.ts"
+    ],
+    "newManualCounts": 0
+  },
+  "loadable": 0,
+  "dbWrites": 0,
+  "wholeGoalComplete": false
+}

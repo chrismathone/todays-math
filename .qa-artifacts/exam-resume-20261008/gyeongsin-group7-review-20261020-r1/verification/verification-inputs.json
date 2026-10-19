@@ -1,0 +1,289 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 8,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group7-r1-q08",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 5,
+      "content": "그림과 같이 직사각형 $PQRS$의 내부에 있는 원 $O$는 세 변 $SP$, $PQ$, $RS$에 접하고, 그 접점을 각각 $H$, $I$, $G$라 한다. 변 $PQ$ 위의 점 $E$에 대하여 선분 $ER$도 원 $O$에 접하며 그 접점은 $F$이다. $\\overline{QR}=12\\,\\mathrm{cm}$, $\\overline{PE}=9\\,\\mathrm{cm}$일 때, 선분 $ER$의 길이는?",
+      "choices": [
+        "$12\\,\\mathrm{cm}$",
+        "$13\\,\\mathrm{cm}$",
+        "$14\\,\\mathrm{cm}$",
+        "$15\\,\\mathrm{cm}$",
+        "$16\\,\\mathrm{cm}$"
+      ],
+      "answer": "④",
+      "solution": "원의 반지름의 길이는 직사각형의 가로 길이의 절반인 $6\\,\\mathrm{cm}$이다. 한 점에서 원에 그은 두 접선의 길이는 같으므로 $PI=PH=6$, $SG=SH=6$이다. 따라서 $EI=PE-PI=9-6=3$이고, $EF=EI=3$이다.\n\n$RF=RG=x$라 하자. $RS=RG+GS=x+6$이므로 $EQ=PQ-PE=(x+6)-9=x-3$이다. 또 $ER=EF+FR=x+3$이다.\n\n직각삼각형 $EQR$에서 피타고라스 정리를 이용하면 $(x+3)^2=12^2+(x-3)^2$이다. 양변을 전개하여 정리하면 $12x=144$이므로 $x=12$이다. 이때 $EQ=9>0$이고 $ER=12+3=15\\,\\mathrm{cm}$이다. 따라서 정답은 ④이다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-8",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group7-r1-q08",
+        "sourceContentSha256": "f32af7c7cad8d3d46d59799a0de7aa3001c148408362248c4e4422a5d5d6fe69",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "OriginalH page2 q7 viewed; only component correspondence, not wholepaper/pair/year/rights certification.",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group7-r1/source-q08-component-observation-r1.json",
+          "sha256": "b84236cd317f83a1a8b5b7de48d07d78a863a7dec7b0cfccc119b97dc6ddf04e"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "originalQuestionRender": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-02.webp",
+          "sha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0",
+          "physicalPdfPage": 2,
+          "printedQuestion": 8
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "representation",
+          "new-vector"
+        ],
+        "before": "접선 전체 길이와 반지름을 주고 직사각형 변의 부분 길이를 구한다.",
+        "after": "직사각형의 가로 길이와 변의 부분 길이를 주고 접선 전체 길이를 역추론한다.",
+        "sharedConcept": "한 점에서 원에 그은 두 접선의 길이, 직사각형과 원의 지름, 직각삼각형 피타고라스",
+        "sharedProcedure": "가로와 지름 관계→두 접선 길이의 같음→직사각형 변과 접선 분할길이의 관계→피타고라스 전개/일차방정식",
+        "actualStructuralChange": "원문의 접선 길이 출력/부분선분 입력을 서로 뒤집고 반지름 조건을 직사각형 가로 조건으로 재조직했다. 두 접선의 합과 직사각형 변의 차를 미지수로 세우는 순서다. 원문의 반지름 선분 숫자 대신 가로 길이를 새 그림과 본문에 명시하며 도형을 전량 작도한다.",
+        "domainProof": "5배 정수 좌표로 원의 네 접점과 반지름6·수직·PE9·QR12·EF3·RF12·ER15를 검산했다. x>3에서 피타고라스 식은12x=144이므로 x12만 가능하고 실제 직사각형 높이18 및 내부 접점이 존재한다. 다섯 보기는 서로 다른 양수 길이이고 픽셀은 계산에 쓰지 않는다.",
+        "difficultyBasis": "원문5점의 접선/변 분할/피타고라스 관계를 역순으로 쓰는 표준5점 제안. 닮음 비례공식·고등 접선 방정식/좌표를 필수 학생 방법으로 요구하지 않는다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수04-19",
+          "9수04-16"
+        ],
+        "officialProvisions": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+          "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+        },
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "editionObserved": "2015",
+          "readCurrentPage": true,
+          "standard": "9수04-19",
+          "actualScope": "2015 circle chord/tangent properties, with similarity/Pythagoras prerequisite standards; no general circle proportion formula"
+        },
+        "legitimateMethodDraft": "원과 접선의 성질과 직사각형, 피타고라스 정리, 중학교 다항식 전개와 일차방정식으로 해결한다. 고등학교 원의 방정식이나 원과비례는 사용하지 않는다.",
+        "sevenSurfaces": {
+          "stem": "author-proposed",
+          "choices": "author-proposed",
+          "figureTable": "author-new-vector-proposed",
+          "notation": "author-proposed",
+          "answer": "author-exact-angles-only",
+          "studentSolution": "author-proposed",
+          "prerequisites": "author-proposed"
+        },
+        "independentReviewPending": true
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 5,
+        "difficultyProposal": "표준",
+        "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+        "problemTypeProposal": "직사각형의 부분 길이에서 원의 접선 전체 길이 복원",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원의 접선",
+            "semester": 2,
+            "orderIndex": 485,
+            "problemCodePrefix": "J30602"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          },
+          "evidence": "원과접선 실제 UUID를 연결하며, 직사각형/접선 길이 역추론 목적의 정확한 livefamily는 불명으로 null 유지."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-FigureSpec-v2-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "Exact scaled integer coordinates prove circle/tangencies/positive segment lengths; floats position engine points only.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-q08-r1.ts",
+          "renderingReviewPending": true,
+          "lengthUnit": "cm"
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "source": "transformed",
+        "originProblemId": null,
+        "sourceDifficultyLabelObserved": null,
+        "prerequisiteUnits": [],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "원의접선의성질",
+            "직사각형",
+            "피타고라스",
+            "다항식전개",
+            "일차방정식"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "namedPrerequisitesWithoutCapturedUuid": [
+          "직사각형과피타고라스",
+          "다항식의전개와일차방정식"
+        ]
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\package\\private\\q08\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\package\\private\\q08\\figure-1.svg",
+        "specSha256": "eab0e5657305f51a8acd934c7699651dfaf78821b9b17bec951a9f39a72a9ff4",
+        "svgSha256": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q08-1.svg"
+      }
+    ],
+    "studentDigest": "9dbc5be8b02b581861d09a8cd91d8d792fd864ffbacf25ca0cb65602e78c720d",
+    "candidateDigest": "1ece3c7eed9249bdc8c05d83df28a09ee6048f15161cfcd4801da53a19fc4eb4",
+    "assetDigest": "1e80de645119dac8e42de488399da797e137ab2453e5065cc4212219c82d0352",
+    "independentSolve": {
+      "studentDigest": "9dbc5be8b02b581861d09a8cd91d8d792fd864ffbacf25ca0cb65602e78c720d",
+      "solverId": "independent-retained-helper-gyeongsin-q08-r1",
+      "answer": "④",
+      "solution": "원은 직사각형의 서로 마주 보는 변 PQ, RS에 접하므로 그 두 변 사이의 거리 QR=12 cm는 원의 지름이다. 따라서 반지름은 6 cm이다. 접점에 그은 반지름은 변에 수직이므로 PI=SG=6 cm이다. PE=9 cm이므로 E는 I보다 Q 쪽에 있고 EI=9−6=3 cm이다. 한 점에서 원에 그은 두 접선의 길이는 같으므로 EF=EI=3 cm이고 RF=RG이다. 직사각형의 높이 PQ=RS를 x cm라 하면 RG=x−6 cm이므로 ER=EF+FR=3+(x−6)=x−3 cm이다. 또 EQ=x−9 cm이고 ∠EQR=90°이다. 피타고라스 정리에 따라 (x−3)²=(x−9)²+12²이다. 전개하여 같은 항을 정리하면 12x−72=144, 따라서 x=18이다. 그러므로 ER=x−3=15 cm이며 정답은 ④이다. 실제로 EQ=9, QR=12, ER=15는 9²+12²=15²를 만족하고, EF=3, FR=12로 F가 ER 내부에 있다. 보기의 ER를 12,13,14,15,16 cm로 각각 놓으면 ER²−EQ²−QR²는 −36,−24,−12,0,12 cm²이므로 ④만 가능하다. x>9인 길이 조건에서 위 일차식의 해는 하나이고 모든 접선 길이와 반지름은 양수이다.",
+      "evidence": {
+        "exposureDeclaration": {
+          "currentAuthoredAnswerSolutionMetadataExposedBeforeRaw": false,
+          "priorOriginalQ08PageExposure": true,
+          "declaration": "현재 authored GYEONGSIN q08 r1의 답·해설·비공개 자료는 읽지 않았다. 이전 허가된 원본 H 전체 페이지 검토에서 원래 q08의 조건·그림에 우연히 노출되었다. 완전한 원문 비노출을 주장하지 않으며, 현재 학생 조건만으로 독립 계산했다. 원본·root저자·비공개 패키지를 이번 풀이 중 열지 않았다."
+        },
+        "exactCalculations": {
+          "radius_cm": "6",
+          "PI_SG_cm": "6",
+          "EI_EF_cm": "3",
+          "height_cm": "18",
+          "RG_RF_cm": "12",
+          "EQ_cm": "9",
+          "ER_cm": "15",
+          "linearEquation": "12x-72=144",
+          "EO_squared_cm2": 45,
+          "OR_squared_cm2": 180,
+          "existenceDistanceToER_cm": "6"
+        },
+        "allChoices": [
+          {
+            "choice": "①",
+            "ER_cm": 12,
+            "impliedHeight_cm": 15,
+            "implied_EQ_cm": 6,
+            "pythagorasResidual_cm2": -36,
+            "matches": false
+          },
+          {
+            "choice": "②",
+            "ER_cm": 13,
+            "impliedHeight_cm": 16,
+            "implied_EQ_cm": 7,
+            "pythagorasResidual_cm2": -24,
+            "matches": false
+          },
+          {
+            "choice": "③",
+            "ER_cm": 14,
+            "impliedHeight_cm": 17,
+            "implied_EQ_cm": 8,
+            "pythagorasResidual_cm2": -12,
+            "matches": false
+          },
+          {
+            "choice": "④",
+            "ER_cm": 15,
+            "impliedHeight_cm": 18,
+            "implied_EQ_cm": 9,
+            "pythagorasResidual_cm2": 0,
+            "matches": true
+          },
+          {
+            "choice": "⑤",
+            "ER_cm": 16,
+            "impliedHeight_cm": 19,
+            "implied_EQ_cm": 10,
+            "pythagorasResidual_cm2": 12,
+            "matches": false
+          }
+        ],
+        "existenceUniqueness": "가로12, 세로18인 직사각형에서 위쪽 변과 왼쪽·오른쪽 변으로부터 각각6 떨어진 점을 O로 삼아 반지름6의 원을 그리면 세 변에 접하고 아래쪽 변까지 거리는12라 원이 직사각형 내부에 놓인다. 왼쪽 변 위에서 PE=9인 E를 잡는다. EI=3, OI=6이므로 EO²=45이고, OG=6, GR=12이므로 OR²=180이다. ER²=9²+12²=225=EO²+OR²이므로 △EOR는 O가 직각인 삼각형이다. 이 삼각형의 넓이를 두 방식으로 구하면 O에서 빗변 ER에 내린 높이는 EO·OR/ER=90/15=6이다. 따라서 ER는 반지름6인 원에 접하며 발 F는 빗변 내부에 있다. AA닮음으로 EF=EO²/ER=3, FR=OR²/ER=12도 확인된다. 이 비는 실제 직각삼각형의 닮음으로 정당화하는 구성 검산이며 원의 할선곱·접선곱 정리를 쓰는 학생 방법이 아니다. 조건을 만족하는 도형이 존재하며, 유일한 양의 높이18에서 요구 길이15가 강제된다.",
+        "domainsAndSigns": "PQ=x>PE=9 so E is on side PQ and EQ>0; x=18 satisfies this. Radius6, EI3, EF3, RF12, RG12, ER15 are positive. Negative or zero lengths rejected. Divisors2,12,ER15 nonzero. Lengths cm, squares cm². The linear equation has exactly one solution, not two quadratic branches.",
+        "tangentJustification": "EO를 공통 빗변, OI=OF를 반지름으로 하는 직각삼각형 EIO,EFO가 합동이어서 EI=EF이다. OR를 공통 빗변, OG=OF로 하는 RGO,RFO도 합동이어서 RG=RF이다. 실제 접선-반지름 직각과 합동에 근거하며 접선곱 정리를 전제로 하지 않는다.",
+        "figureInspection": "학생 SVG를 PyMuPDF로 PNG 변환하여 P-Q-R-S의 직사각형 순서, 세 변의 접점 H,I,G, PQ 위 E의 위치, ER 위 접점F와 OF의 수직 표시, PE9 및 QR12를 육안 확인했다. SVG 좌표나 픽셀 길이를 답의 수치 근거로 사용하지 않았다.",
+        "bindings": {
+          "studentDigest": "9dbc5be8b02b581861d09a8cd91d8d792fd864ffbacf25ca0cb65602e78c720d",
+          "studentProblemsSha256": "0c8d6d56b6cdb75e905b643124db4bef8295f21fb9b87a30eb03e7841768c3c9",
+          "svgSha256": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903"
+        },
+        "studentMethod": "원의 반지름과 접선의 수직 관계, 같은 점에서 그은 접선 길이의 같음, 직사각형, 피타고라스, 곱셈식 전개와 일차방정식. 고등 원과 비례·사인법칙·외접반지름 공식·좌표나 픽셀 계산은 사용하지 않았다.",
+        "limits": "현재 학생 raw만 봉인. 별도 학년·출처·권리·가족·native·배포 승인 및 승인개수 증가가 아니다."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "a6a218794c9413aae09c40c9b234002df11bac3ae7794c6d01aa79a026cfed51"
+  }
+]

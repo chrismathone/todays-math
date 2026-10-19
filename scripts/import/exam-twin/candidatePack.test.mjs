@@ -154,6 +154,26 @@ test("middle3 rollout cannot reuse 2015 source mapping for 2027", () => {
   assert.throws(() => validateCandidate(outdated), /curriculum mismatch/);
 });
 
+test("candidate identity hashes the parsed bytes rather than a later replacement", () => {
+  const f = figureEncodingFixture(), read = fs.readFileSync;
+  const target = f.file("candidate.json"), original = read(target);
+  const replacement = Buffer.from(JSON.stringify({ ...JSON.parse(original), content: "다른 조건의 새 본문" }));
+  let reads = 0;
+  fs.readFileSync = (file, ...args) => {
+    const bytes = read(file, ...args);
+    if (typeof file === "string" && path.resolve(file) === target && ++reads === 1)
+      fs.writeFileSync(target, replacement);
+    return bytes;
+  };
+  try {
+    const bound = f.bind();
+    assert.equal(bound.candidate.content, JSON.parse(original).content);
+    assert.equal(bound.candidateFileSha256, sha256(original));
+    assert.notEqual(bound.candidateFileSha256, sha256(read(target)));
+    assert.equal(reads, 1);
+  } finally { fs.readFileSync = read; f.close(); }
+});
+
 // Synthetic controls only. These are not verification reports for real twins.
 test("ordinary program wording is not a logarithm, while explicit logarithms remain forbidden", () => {
   const ordinary = structuredClone(candidate);

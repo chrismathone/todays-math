@@ -1,0 +1,290 @@
+{
+  "status": "pending",
+  "studentDigest": "ea9087ec3172bb66a4cb5f19df3644a2394e1434c593abf55ec30054eaaa7e2e",
+  "candidateDigest": "04401fee6ad250af2d8840a1632f2bb36a2cbe5400a85c0f68192b017994dd13",
+  "assetDigest": "da9e7e6955341bfe618e26420ba63a24f6d6490705d70f1c7a5d6748942098c9",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-retained-helper-gyeongsin-q07-review",
+  "solveDigest": "3743f05085bd460a7de3e41dd5648e15ca653f905c553772dcadb2931e71b273",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "원 위 점, 중심 O에서 두 현에 내린 수선, 같은 현과 반지름, 교점과 분할선분을 준다. 실제9수04-19 현의 수직이등분선 성질에 해당하며 공식계획printed72의 중3 원과직선 행에 직접 배치되어 있다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "지름8,10,12,14,16 cm의 양수 정수 다섯 값이다. TU²를 D²/48로 검산하면4/3,25/12,3,49/12,16/3 중3인③만 된다. 추가 학년 밖 지식은 없다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생SVG 및 독립 렌더 PNG에서 P,Q,R 원주점, Q-M-O와 O-U-T의 순서, PR과OQ 및 QR과OT의 두 수직 관계와 이름을 확인했다. TU의√3 숫자는 본문에 완전 명시되어 그림 반복 누락이 조건 손실이 아니다. 길이·각은 픽셀로 계산하지 않았다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "선분 윗줄·직교·원O·정삼각형·각30°/60°·근호√3·분수비·cm는 중학교 정삼각형/닮음/제곱근 표기다. 삼각함수 값이나 사인법칙 표기는 쓰지 않는다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "③은 지름12 cm이다. TU=r√3/6에서 r>0인 유일한 r6을 취하고 두 배를 한다. 학생에게 고등 근 판정이나 함수의 증가 정리를 요구하지 않는다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 저자 해설은 OPQ정삼각형→중심수선의 현 이등분과 OPM/ORM합동→OQR정삼각형→OM=r/2,OT=√3r/2→OMU~OTR의 실제AA→OU=√3r/3→차TU→r6 순서다. M↔T,U↔R와 O의 각30°가 맞고 원과비례 공식을 전제로 하지 않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "2015중3 원과현9수04-19를 학습한 뒤, 삼각형합동·정삼각형높이, AA닮음9수04-14,피타고라스9수04-16,근호·분수 계산을 이미 배운 학생에게 한정한다. 실제M3현/접선 배치는 공식계획printed72. named prerequisite UUID 미포착, 해당학교 진도와2022배치는 미승인이다."
+    }
+  },
+  "evidence": {
+    "checkBasis": {
+      "answerCorrect": "현재 저자답③와 봉인raw가 일치하고 이번별도정확계산/모든보기검산으로 다시 확인했다.",
+      "solutionCorrect": {
+        "radius_cm": 6,
+        "diameter_cm": 12,
+        "OT_cm": "3√3",
+        "OU_cm": "2√3",
+        "TU_cm": "√3",
+        "OM_cm": 3,
+        "RT_cm": 3,
+        "OT_squared_cm2": 27,
+        "OU_squared_cm2": 12,
+        "AAauthor": "OMU~OTR: O↔O,M↔T,U↔R. Both right at M,T; ∠MOU=∠TOR=30°. Thus OU/OR=OM/OT=1/√3. Distinct from own raw using OTQ; both correspondences valid because OQR equilateral.",
+        "noTrigJustification": "OM=r/2 follows equilateral OPQ altitude to base OQ. A 30° right triangle half-hypotenuse property here follows that equilateral construction, without sine/cosine. OT²=3r²/4 by Pythagoras; TU=r√3/6 and TU=√3 give r6 by positive-length division, no calculus/monotonicity theorem required.",
+        "allChoices": [
+          {
+            "mark": "①",
+            "diameter_cm": 8,
+            "implied_TU_squared_cm2": "4/3",
+            "matches": false
+          },
+          {
+            "mark": "②",
+            "diameter_cm": 10,
+            "implied_TU_squared_cm2": "25/12",
+            "matches": false
+          },
+          {
+            "mark": "③",
+            "diameter_cm": 12,
+            "implied_TU_squared_cm2": "3",
+            "matches": true
+          },
+          {
+            "mark": "④",
+            "diameter_cm": 14,
+            "implied_TU_squared_cm2": "49/12",
+            "matches": false
+          },
+          {
+            "mark": "⑤",
+            "diameter_cm": 16,
+            "implied_TU_squared_cm2": "16/3",
+            "matches": false
+          }
+        ],
+        "existence": "반지름6의 원에서 OQ=OR=QR=6인 정삼각형 OQR를 만들고 R을 직선 OQ에 대칭시킨 점을 P로 잡는다. 반사로 OP=6, PQ=QR=6이므로 P도 원 위에 있다. PR⊥OQ이고 M은 OQ의 중점이다. T는 QR의 중점으로 OT=3√3>0이다. OMU~OTQ의 닮음에서 OU=2OT/3=2√3이므로 U는 OT 내부, TU=√3>0이다. 양의 한 반지름에서 모든 조건이 동시에 성립하므로 존재한다. 닮음은 모든 허용 배치에서 r²=36을 강제하고 양의 r만 취하여 지름이 유일하다. 반사·회전된 도형까지 배치가 하나라는 주장은 하지 않는다.",
+        "domain": "r>0, OM=r/2>0, OT=r√3/2>0, OU=2OT/3>0, TU=OT/3>0. r−6 forbidden; denominator√3,r,OT nonzero. Units cm/cm²."
+      },
+      "existenceUniqueness": "반지름6의 원에서 OQ=OR=QR=6인 정삼각형 OQR를 만들고 R을 직선 OQ에 대칭시킨 점을 P로 잡는다. 반사로 OP=6, PQ=QR=6이므로 P도 원 위에 있다. PR⊥OQ이고 M은 OQ의 중점이다. T는 QR의 중점으로 OT=3√3>0이다. OMU~OTQ의 닮음에서 OU=2OT/3=2√3이므로 U는 OT 내부, TU=√3>0이다. 양의 한 반지름에서 모든 조건이 동시에 성립하므로 존재한다. 닮음은 모든 허용 배치에서 r²=36을 강제하고 양의 r만 취하여 지름이 유일하다. 반사·회전된 도형까지 배치가 하나라는 주장은 하지 않는다. r>0, OM=r/2>0, OT=r√3/2>0, OU=2OT/3>0, TU=OT/3>0. r−6 forbidden; denominator√3,r,OT nonzero. Units cm/cm².",
+      "choicesCorrect": [
+        {
+          "mark": "①",
+          "diameter_cm": 8,
+          "implied_TU_squared_cm2": "4/3",
+          "matches": false
+        },
+        {
+          "mark": "②",
+          "diameter_cm": 10,
+          "implied_TU_squared_cm2": "25/12",
+          "matches": false
+        },
+        {
+          "mark": "③",
+          "diameter_cm": 12,
+          "implied_TU_squared_cm2": "3",
+          "matches": true
+        },
+        {
+          "mark": "④",
+          "diameter_cm": 14,
+          "implied_TU_squared_cm2": "49/12",
+          "matches": false
+        },
+        {
+          "mark": "⑤",
+          "diameter_cm": 16,
+          "implied_TU_squared_cm2": "16/3",
+          "matches": false
+        }
+      ],
+      "figureConsistent": "학생SVG 및 독립 렌더 PNG에서 P,Q,R 원주점, Q-M-O와 O-U-T의 순서, PR과OQ 및 QR과OT의 두 수직 관계와 이름을 확인했다. TU의√3 숫자는 본문에 완전 명시되어 그림 반복 누락이 조건 손실이 아니다. 길이·각은 픽셀로 계산하지 않았다. 학생SVG·현재private spec/SVG 해시 일치; private좌표를 수학oracle로 사용하지 않았다. native reader parity는별도보류.",
+      "sameCoreConceptAndProcedure": "원본은 OB=AB=4와 두 수선/교점에서 HJ를 묻는다(이전 실제 H q7 그림·조건 노출 및 현재 component 관찰). 현재는 그 출력에 대응하는 TU=√3를 조건으로 옮겨 반지름의 두 배를 복원한다. 현의 수직이등분, 정삼각형, 두 직각삼각형의 닮음과 길이 차라는 핵심을 보존하며 실제 역목표라 숫자·점이름 교체만이 아니다.",
+      "distinctPresentation": "원본은 OB=AB=4와 두 수선/교점에서 HJ를 묻는다(이전 실제 H q7 그림·조건 노출 및 현재 component 관찰). 현재는 그 출력에 대응하는 TU=√3를 조건으로 옮겨 반지름의 두 배를 복원한다. 현의 수직이등분, 정삼각형, 두 직각삼각형의 닮음과 길이 차라는 핵심을 보존하며 실제 역목표라 숫자·점이름 교체만이 아니다.",
+      "naturalKorean": "수선의 발T, OQ와PR 교점M, OT와PR 교점U를 각각 정의하고 TU를 주어 지름을 묻는다. 그림과 문장의 점 순서가 같으며 r>0에서 U 내부도 증명된다. 소문자함수·좌표 같은 새 용어가 없다.",
+      "curriculumAppropriate": {
+        "normative": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "edition": "2015년 tab (lines84-85)",
+          "locators": "line540: 9수04-13/14 similarity;9수04-16 Pythagoras;9수04-19 chords/tangents. line558 excludes general circle proportionality; line561 permits tangent-length terminology; lines560/565 student-level justification, not complex formal logic.",
+          "interpretation": "실제 삼각형의 합동·닮음과 접선의 성질을 직접 쓰는 풀이만 심사했다. 원의 일반 비례/현곱·접선곱 공식을 이름만 바꾸어 허용하지 않는다.",
+          "currentHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7"
+        },
+        "gradePlacement": {
+          "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+          "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+          "pageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+          "pdfIndex0": 73,
+          "physicalPage": 74,
+          "printedPage": 72,
+          "actuallyViewed": "표 머리: 중학교3학년 수학2학기. 9월 원과직선/9수04-19 행에 원의 수직이등분선, 현과접선 성질이 명시되어 있다.",
+          "limits": "실제 공식2024 M3배치 근거이며 경신 원본의 시험 진도·출처년도 인증이나2022배치 승인 아님. 과거 잠정 printed73 오류를 그대로 승인하지 않고 실제 printed72를 인용한다."
+        }
+      },
+      "allStudentSurfacesInScope": "curriculumSurfaces에 실제7면별 개별근거를 기록. 전제는2015M3 선수학습완료 후이며2022아님.",
+      "unitFamilyFit": {
+        "capturedUnit": {
+          "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원과 현",
+          "semester": 2,
+          "orderIndex": 484,
+          "problemCodePrefix": "J30601"
+        },
+        "assessment": "단원명의개념은 실제현/접선목표와 연결되지만 exactlivefamily의 정의·도메인·출력목표는 검증하지 않았다. familyKey null 유지. snapshot은현재DB약속아님. 선수UUID도미포착."
+      },
+      "scoreAppropriate": "원본component에서5점, 현재5점. 원과현/접선→보조삼각형 또는 접선부분길이→닮음/피타고라스→역으로전체길이를구하는 복합절차가5점제안을지지한다. 표준은편집상제안으로 타당하지만 측정난도·원문난도라벨(unknown)동등성이나 실측수행자료를승인하지 않는다."
+    },
+    "ownExactCalculations": {
+      "radius_cm": 6,
+      "diameter_cm": 12,
+      "OT_cm": "3√3",
+      "OU_cm": "2√3",
+      "TU_cm": "√3",
+      "OM_cm": 3,
+      "RT_cm": 3,
+      "OT_squared_cm2": 27,
+      "OU_squared_cm2": 12,
+      "AAauthor": "OMU~OTR: O↔O,M↔T,U↔R. Both right at M,T; ∠MOU=∠TOR=30°. Thus OU/OR=OM/OT=1/√3. Distinct from own raw using OTQ; both correspondences valid because OQR equilateral.",
+      "noTrigJustification": "OM=r/2 follows equilateral OPQ altitude to base OQ. A 30° right triangle half-hypotenuse property here follows that equilateral construction, without sine/cosine. OT²=3r²/4 by Pythagoras; TU=r√3/6 and TU=√3 give r6 by positive-length division, no calculus/monotonicity theorem required.",
+      "allChoices": [
+        {
+          "mark": "①",
+          "diameter_cm": 8,
+          "implied_TU_squared_cm2": "4/3",
+          "matches": false
+        },
+        {
+          "mark": "②",
+          "diameter_cm": 10,
+          "implied_TU_squared_cm2": "25/12",
+          "matches": false
+        },
+        {
+          "mark": "③",
+          "diameter_cm": 12,
+          "implied_TU_squared_cm2": "3",
+          "matches": true
+        },
+        {
+          "mark": "④",
+          "diameter_cm": 14,
+          "implied_TU_squared_cm2": "49/12",
+          "matches": false
+        },
+        {
+          "mark": "⑤",
+          "diameter_cm": 16,
+          "implied_TU_squared_cm2": "16/3",
+          "matches": false
+        }
+      ],
+      "existence": "반지름6의 원에서 OQ=OR=QR=6인 정삼각형 OQR를 만들고 R을 직선 OQ에 대칭시킨 점을 P로 잡는다. 반사로 OP=6, PQ=QR=6이므로 P도 원 위에 있다. PR⊥OQ이고 M은 OQ의 중점이다. T는 QR의 중점으로 OT=3√3>0이다. OMU~OTQ의 닮음에서 OU=2OT/3=2√3이므로 U는 OT 내부, TU=√3>0이다. 양의 한 반지름에서 모든 조건이 동시에 성립하므로 존재한다. 닮음은 모든 허용 배치에서 r²=36을 강제하고 양의 r만 취하여 지름이 유일하다. 반사·회전된 도형까지 배치가 하나라는 주장은 하지 않는다.",
+      "domain": "r>0, OM=r/2>0, OT=r√3/2>0, OU=2OT/3>0, TU=OT/3>0. r−6 forbidden; denominator√3,r,OT nonzero. Units cm/cm²."
+    },
+    "primaryReferences": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "edition": "2015년 tab (lines84-85)",
+        "locators": "line540: 9수04-13/14 similarity;9수04-16 Pythagoras;9수04-19 chords/tangents. line558 excludes general circle proportionality; line561 permits tangent-length terminology; lines560/565 student-level justification, not complex formal logic.",
+        "interpretation": "실제 삼각형의 합동·닮음과 접선의 성질을 직접 쓰는 풀이만 심사했다. 원의 일반 비례/현곱·접선곱 공식을 이름만 바꾸어 허용하지 않는다.",
+        "currentHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7"
+      },
+      "gradePlacement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "pageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+        "pdfIndex0": 73,
+        "physicalPage": 74,
+        "printedPage": 72,
+        "actuallyViewed": "표 머리: 중학교3학년 수학2학기. 9월 원과직선/9수04-19 행에 원의 수직이등분선, 현과접선 성질이 명시되어 있다.",
+        "limits": "실제 공식2024 M3배치 근거이며 경신 원본의 시험 진도·출처년도 인증이나2022배치 승인 아님. 과거 잠정 printed73 오류를 그대로 승인하지 않고 실제 printed72를 인용한다."
+      }
+    },
+    "rawSeal": {
+      "parentCommit": "3a9998730c353e5a11e5eb3e809aed17daee7e08",
+      "rawSha256": "7f445e88791ae1d4d9d9ac2b3422733073cd20299a4407ed4ecdad0229cab3f4",
+      "rawUnchanged": true,
+      "preAuthorExposureDeclarationPreserved": {
+        "currentAuthoredQ07R2AnswerSolutionMetadataExposedBeforeRaw": false,
+        "priorOriginalQ07PageExposure": true,
+        "declaration": "현재 authored GYEONGSIN q07 r2의 답·해설·메타데이터를 읽지 않았다. 이전 허가된 원본 H 전체 페이지 검토에서 원래 q07의 조건·그림에 우연히 노출된 이력이 있다. 완전한 원문 비노출을 주장하지 않으며 이번 학생 조건으로 독립 계산했다. 현재 저자/비공개 패키지/원본을 재열람하지 않았다."
+      },
+      "authorExposure": "Current author answer/solution first read only after raw Git seal. Original-page prior exposure separately disclosed; no clean original-unexposed claim."
+    },
+    "sourceComponentObservation": {
+      "utc": "2026-10-19T17:55:34.428Z",
+      "actuallyViewed": {
+        "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-02.webp",
+        "sha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0"
+      },
+      "originalHPrintedQuestion": 7,
+      "physicalPdfPage": 2,
+      "observedConditions": "Inscribed triangle ABC; OB=AB=4; BO perpendicular AC atI; OH perpendicular BC atH; J=OH intersectAC; askHJ;5points. Original answer not used.",
+      "wholePairIdentityApproved": false,
+      "rightsApproved": false,
+      "observedRightsRestriction": true,
+      "sourceCropEmbeddedInNewFigure": false,
+      "dbWrites": 0
+    },
+    "metadataCorrectionHolds": [],
+    "diagnostic": "Attempted local review-root source-qNN-only.json reads failed because those files were absent. No inputs changed. Used exact authorized parent componentObservation path with declared SHA and prior actually viewed original q7/q8 components, not source answer keys.",
+    "holds": {
+      "sourceIdentityApproved": false,
+      "sourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyKey": null,
+      "unitFamilyFit": false,
+      "loadable": false,
+      "curriculum2022": "pending",
+      "difficultyLabelFromSource": "unknown"
+    },
+    "counts": {
+      "mathematicsPass": 1,
+      "gradePass": 1,
+      "contentHeld": 1,
+      "newBlindOrManualCountIncrement": 0,
+      "releaseApprovals": 0
+    },
+    "limits": "2015M3 선수학습후만. 해당학교 시험진도·출처전체쌍/년도·권리·포괄유사도·현재DB livefamily·native/reader·2022배치는인증하지 않는다. actualsource문항 대응과 수학/학년통과는 이보류를해제하지않는다."
+  }
+}

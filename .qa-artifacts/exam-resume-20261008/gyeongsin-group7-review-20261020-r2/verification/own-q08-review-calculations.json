@@ -1,0 +1,144 @@
+{
+  "ownMath": {
+    "RF": "12",
+    "EQ": "9",
+    "ER": "15",
+    "equation": "(x+3)^2=144+(x-3)^2 ->12x144",
+    "actualSolutionEqualsR1": true
+  },
+  "choices": [
+    {
+      "mark": "①",
+      "ER": 12,
+      "EQ": 6,
+      "residual": -36,
+      "valid": false
+    },
+    {
+      "mark": "②",
+      "ER": 13,
+      "EQ": 7,
+      "residual": -24,
+      "valid": false
+    },
+    {
+      "mark": "③",
+      "ER": 14,
+      "EQ": 8,
+      "residual": -12,
+      "valid": false
+    },
+    {
+      "mark": "④",
+      "ER": 15,
+      "EQ": 9,
+      "residual": 0,
+      "valid": true
+    },
+    {
+      "mark": "⑤",
+      "ER": 16,
+      "EQ": 10,
+      "residual": 12,
+      "valid": false
+    }
+  ],
+  "fieldEqualityVerified": [
+    "ID",
+    "student",
+    "answer",
+    "solution",
+    "score",
+    "spec",
+    "svg"
+  ],
+  "digestsIndependentlyRecomputed": {
+    "candidate": "13de4e76339158dc722178f6e53c5ded687e7c935fb865ec0b8c20988a64d798",
+    "student": "9dbc5be8b02b581861d09a8cd91d8d792fd864ffbacf25ca0cb65602e78c720d",
+    "asset": "1e80de645119dac8e42de488399da797e137ab2453e5065cc4212219c82d0352",
+    "solve": "a6a218794c9413aae09c40c9b234002df11bac3ae7794c6d01aa79a026cfed51"
+  },
+  "family": {
+    "capturedUnit": {
+      "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "grade": "중3",
+      "chapter": "6. 원의 성질",
+      "section": "원의 접선",
+      "semester": 2,
+      "orderIndex": 485,
+      "problemCodePrefix": "J30602"
+    },
+    "capturedFamily": {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|16",
+      "family_code": "A10",
+      "live_count": 42
+    },
+    "snapshotCapturedAt": "2026-10-19 18:07:30.165227+00",
+    "snapshotSha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+    "actualModuleSha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+    "definition": "def16 modes0,1,2,4 are rectangle/three-side circle/extra tangent; mode3 is a separate trapezoid branch. figRectTan line627 builds same full geometry after rotation.",
+    "purposeEvidence": "Three-side radius/contact, equal tangent lengths partition, opposite-side sums derived from tangents, then Pythagorean inversion. Not mere family/unit-name or count42 matching.",
+    "rigidMapping": {
+      "familyA": "S",
+      "familyB": "P",
+      "familyC": "Q",
+      "familyD": "R",
+      "familyE": "E",
+      "w12_t9_d15_L18": true,
+      "familyMode4": "w=12,L=18 ->BE=PE=9",
+      "candidate": "w=12,BE=PE=9 ->DE=ER=15; this inverse pair is not an existing handler branch"
+    },
+    "domain": "T16 explicitly contains [w12,t9,d15], L18. Thus candidate geometric values lie in current finite rectangle pool. Positive t9,d15,L18,w12,BE9>w/2=6; ratio/length conditions all valid.",
+    "boundedSamples": "12 actual handler outputs from four rectangular modes and three finite tuples, printed numeric givens parsed before own integer-square/linear calculations; all expected answers matched. Neither facts nor answer used as oracle.",
+    "reuseVersusChangedPurpose": "Mode4 givenw,L asksBE. New question givenw,BE asksDE, requiring an inverse recovery of L/CE and the whole tangent. Same complete mathematical structure and natural candidate-family relationship, but this precise input/output pair is absent from existing branches.",
+    "supportGaps": [
+      "No existing mode asks DE from w and BE; needs separately versioned inverse-target attestation or handler support, not silent claim that current handler emits this question.",
+      "Existing handler returns scalar length text and facts; explicit five-choice MC format/score5/current standard difficulty are not part of inspected TypeEntry output contract. Shared MC/registration adapters were not audited.",
+      "Type16 difficulty is 심화하 while candidate proposal is 표준; these labels/scales cannot be assumed identical or automatic measured calibration.",
+      "Exact live generator registration/semantics now partially evidenced by captured mapping and full code; current DB status or runtime route/native/rights certification remains outside scope."
+    ],
+    "verdict": "Strong existing-family16 structural/domain proposal supported; exact current target/format binding remains pending. Do not force unitFamilyFit true or auto-assign.",
+    "proposedFamilyKey": "mid:3-2|원과 직선|16",
+    "unitFamilyFitApproved": false
+  },
+  "receiptSha256": "50baa386c1552dc4721b40cbc32cbbce7a37a4ea12c15b5334a03181699f815e",
+  "inputBefore": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\verification\\reports\\q08.json": "f618ac5b7b1c85d91d694f2d0fd89e8cd5fdf0a7ef31a4d38a1a6cddd756bdb1",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\blind\\solve\\q08.json": "b5cfd361f72c42a2ce5793e1031e87f9fcfc3d672b92b5c6b5483b5aa5004858",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\blind\\solve\\q08.json": "b5cfd361f72c42a2ce5793e1031e87f9fcfc3d672b92b5c6b5483b5aa5004858",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\verification\\verification-inputs.json": "9696fcdb3ab592b5ee7cc4aceee0d2131dac1ecfd7f641c7943053e92ad3e4b4",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\verification\\verification-manifest.json": "09fafcf36900756a2b4072503027f29637d402a3d10031870d028230a1f6c23e",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\verification\\sealed-raw-commit.json": "991f908f4a706cf26b3d1a27c223391d2ecce04245b22f54c7472ec367480e14",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\blind\\student-problems.json": "0c8d6d56b6cdb75e905b643124db4bef8295f21fb9b87a30eb03e7841768c3c9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\package\\private\\q08\\figure-1.spec.json": "eab0e5657305f51a8acd934c7699651dfaf78821b9b17bec951a9f39a72a9ff4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\package\\private\\q08\\figure-1.spec.json": "eab0e5657305f51a8acd934c7699651dfaf78821b9b17bec951a9f39a72a9ff4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\package\\private\\q08\\figure-1.svg": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\package\\private\\q08\\figure-1.svg": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r2\\metadata-only-delta-r1.json": "50baa386c1552dc4721b40cbc32cbbce7a37a4ea12c15b5334a03181699f815e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\gyeongsin-q08-family16-proposal-r1.json": "cab2c6e653cb4a10dd2268b1f651541940ee37e4404b9e62fa98f21daa162084",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\live-family-snapshot-r2.json": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r1\\q08.json": "5abc699e28ed712f6488a4ebb1c36e47d342cdb7c6719165cb725b37c9618d43",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r2\\q08.json": "b4870175687badf1b86a3dd7f5d6661b14f6a8a064f0bf648f425ce734301877",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\verification\\own-q08-family16-samples.json": "76a2c1bb54d88c273b7910f0eeec83e9bc2c829f99c113292d8786f9051b0fb4"
+  },
+  "inputAfter": {
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\verification\\reports\\q08.json": "f618ac5b7b1c85d91d694f2d0fd89e8cd5fdf0a7ef31a4d38a1a6cddd756bdb1",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\blind\\solve\\q08.json": "b5cfd361f72c42a2ce5793e1031e87f9fcfc3d672b92b5c6b5483b5aa5004858",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\blind\\solve\\q08.json": "b5cfd361f72c42a2ce5793e1031e87f9fcfc3d672b92b5c6b5483b5aa5004858",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\verification\\verification-inputs.json": "9696fcdb3ab592b5ee7cc4aceee0d2131dac1ecfd7f641c7943053e92ad3e4b4",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\verification\\verification-manifest.json": "09fafcf36900756a2b4072503027f29637d402a3d10031870d028230a1f6c23e",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\verification\\sealed-raw-commit.json": "991f908f4a706cf26b3d1a27c223391d2ecce04245b22f54c7472ec367480e14",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\blind\\student-problems.json": "0c8d6d56b6cdb75e905b643124db4bef8295f21fb9b87a30eb03e7841768c3c9",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\package\\private\\q08\\figure-1.spec.json": "eab0e5657305f51a8acd934c7699651dfaf78821b9b17bec951a9f39a72a9ff4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\package\\private\\q08\\figure-1.spec.json": "eab0e5657305f51a8acd934c7699651dfaf78821b9b17bec951a9f39a72a9ff4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r1\\package\\private\\q08\\figure-1.svg": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\package\\private\\q08\\figure-1.svg": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r2\\metadata-only-delta-r1.json": "50baa386c1552dc4721b40cbc32cbbce7a37a4ea12c15b5334a03181699f815e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\gyeongsin-q08-family16-proposal-r1.json": "cab2c6e653cb4a10dd2268b1f651541940ee37e4404b9e62fa98f21daa162084",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\live-family-snapshot-r2.json": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r1\\q08.json": "5abc699e28ed712f6488a4ebb1c36e47d342cdb7c6719165cb725b37c9618d43",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r2\\q08.json": "b4870175687badf1b86a3dd7f5d6661b14f6a8a064f0bf648f425ce734301877",
+    ".qa-artifacts\\exam-resume-20261008\\gyeongsin-group7-review-20261020-r2\\verification\\own-q08-family16-samples.json": "76a2c1bb54d88c273b7910f0eeec83e9bc2c829f99c113292d8786f9051b0fb4"
+  }
+}

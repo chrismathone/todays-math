@@ -1,0 +1,36 @@
+{
+  "kind": "authored-exam-twin-review-result/v1",
+  "packageDigest": "fc75db81f7c1c5e490e9650847f100c9f4cf326713148b89e0850c3e25e8f84c",
+  "createdAt": "2026-10-19T18:09:16.881Z",
+  "authored": 1,
+  "mathematicalVerified": 1,
+  "gradeReviewed": 1,
+  "overallVerified": 0,
+  "loadable": 0,
+  "productionWrites": false,
+  "results": [
+    {
+      "n": 8,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group7-r1-q08",
+      "studentDigest": "9dbc5be8b02b581861d09a8cd91d8d792fd864ffbacf25ca0cb65602e78c720d",
+      "candidateDigest": "1ece3c7eed9249bdc8c05d83df28a09ee6048f15161cfcd4801da53a19fc4eb4",
+      "assetDigest": "1e80de645119dac8e42de488399da797e137ab2453e5065cc4212219c82d0352",
+      "solveDigest": "a6a218794c9413aae09c40c9b234002df11bac3ae7794c6d01aa79a026cfed51",
+      "reportSha256": "f618ac5b7b1c85d91d694f2d0fd89e8cd5fdf0a7ef31a4d38a1a6cddd756bdb1",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  ]
+}

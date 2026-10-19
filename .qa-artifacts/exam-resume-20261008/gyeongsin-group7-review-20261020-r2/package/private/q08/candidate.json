@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group7-r1-q08",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 5,
+  "content": "그림과 같이 직사각형 $PQRS$의 내부에 있는 원 $O$는 세 변 $SP$, $PQ$, $RS$에 접하고, 그 접점을 각각 $H$, $I$, $G$라 한다. 변 $PQ$ 위의 점 $E$에 대하여 선분 $ER$도 원 $O$에 접하며 그 접점은 $F$이다. $\\overline{QR}=12\\,\\mathrm{cm}$, $\\overline{PE}=9\\,\\mathrm{cm}$일 때, 선분 $ER$의 길이는?",
+  "choices": [
+    "$12\\,\\mathrm{cm}$",
+    "$13\\,\\mathrm{cm}$",
+    "$14\\,\\mathrm{cm}$",
+    "$15\\,\\mathrm{cm}$",
+    "$16\\,\\mathrm{cm}$"
+  ],
+  "answer": "④",
+  "solution": "원의 반지름의 길이는 직사각형의 가로 길이의 절반인 $6\\,\\mathrm{cm}$이다. 한 점에서 원에 그은 두 접선의 길이는 같으므로 $PI=PH=6$, $SG=SH=6$이다. 따라서 $EI=PE-PI=9-6=3$이고, $EF=EI=3$이다.\n\n$RF=RG=x$라 하자. $RS=RG+GS=x+6$이므로 $EQ=PQ-PE=(x+6)-9=x-3$이다. 또 $ER=EF+FR=x+3$이다.\n\n직각삼각형 $EQR$에서 피타고라스 정리를 이용하면 $(x+3)^2=12^2+(x-3)^2$이다. 양변을 전개하여 정리하면 $12x=144$이므로 $x=12$이다. 이때 $EQ=9>0$이고 $ER=12+3=15\\,\\mathrm{cm}$이다. 따라서 정답은 ④이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsin-3-2-mid-8",
+    "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group7-r1-q08",
+    "sourceContentSha256": "f32af7c7cad8d3d46d59799a0de7aa3001c148408362248c4e4422a5d5d6fe69",
+    "sourceSchoolInternal": "경신중학교",
+    "sourceExamYear": 2025,
+    "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+    "sourceManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+      "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    ],
+    "actualReference": "Observed originalH page2 printedq8 rectangle/three-side circle/tangent component. Shared geometric relationships only; whole-paper/pair/year/rights certification remains separate.",
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group7-r1/source-q08-component-observation-r1.json",
+      "sha256": "b84236cd317f83a1a8b5b7de48d07d78a863a7dec7b0cfccc119b97dc6ddf04e"
+    },
+    "sourceCropViewed": true,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "originalQuestionRender": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-02.webp",
+      "sha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0",
+      "physicalPdfPage": 2,
+      "printedQuestion": 8
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "representation",
+      "new-vector"
+    ],
+    "before": "접선 전체 길이와 반지름을 주고 직사각형 변의 부분 길이를 구한다.",
+    "after": "직사각형의 가로 길이와 변의 부분 길이를 주고 접선 전체 길이를 역추론한다.",
+    "sharedConcept": "한 점에서 원에 그은 두 접선의 길이, 직사각형과 원의 지름, 직각삼각형 피타고라스",
+    "sharedProcedure": "가로와 지름 관계→두 접선 길이의 같음→직사각형 변과 접선 분할길이의 관계→피타고라스 전개/일차방정식",
+    "actualStructuralChange": "원문의 접선 전체 길이 입력과 변의 부분 길이 출력을 서로 뒤집고, 반지름 조건을 직사각형의 가로 길이 조건으로 재조직했다. 두 접선의 합과 직사각형 변의 차를 미지수로 세우는 순서다. 원문의 반지름 선분 숫자 대신 가로 길이를 새 그림과 본문에 명시했다.",
+    "domainProof": "5배 정수 좌표로 원의 네 접점과 반지름6·수직·PE9·QR12·EF3·RF12·ER15를 검산했다. x>3에서 피타고라스 식은12x=144이므로 x12만 가능하고 실제 직사각형 높이18 및 내부 접점이 존재한다. 다섯 보기는 서로 다른 양수 길이이고 픽셀은 계산에 쓰지 않는다.",
+    "difficultyBasis": "원문5점의 접선/변 분할/피타고라스 관계를 역순으로 쓰는 표준5점 제안. 닮음 비례공식·고등 접선 방정식/좌표를 필수 학생 방법으로 요구하지 않는다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-16"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수04-19",
+      "actualScope": "2015 circle chord/tangent properties, with similarity/Pythagoras prerequisite standards; no general circle proportion formula"
+    },
+    "legitimateMethodDraft": "원과 접선의 성질과 직사각형, 피타고라스 정리, 중학교 다항식 전개와 일차방정식으로 해결한다. 고등학교 원의 방정식이나 원과비례는 사용하지 않는다.",
+    "sevenSurfaces": {
+      "stem": "author-proposed",
+      "choices": "author-proposed",
+      "figureTable": "author-new-vector-proposed",
+      "notation": "author-proposed",
+      "answer": "author-exact-positive-length; independently reviewed student bytes unchanged",
+      "studentSolution": "author-proposed",
+      "prerequisites": "author-proposed"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice",
+    "score": 5,
+    "difficultyProposal": "표준",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "직사각형의 부분 길이에서 원의 접선 전체 길이 복원",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "proposed",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "familyKey": "mid:3-2|원과 직선|16",
+      "currentUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+        "capturedAt": "2026-10-19 18:07:30.165227+00"
+      },
+      "evidence": {
+        "proposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/gyeongsin-q08-family16-proposal-r1.json",
+          "sha256": "cab2c6e653cb4a10dd2268b1f651541940ee37e4404b9e62fa98f21daa162084"
+        },
+        "actualUnit": {
+          "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원의 접선",
+          "semester": 2,
+          "orderIndex": 485,
+          "problemCodePrefix": "J30602"
+        },
+        "actualFamily": {
+          "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "family_key": "mid:3-2|원과 직선|16",
+          "family_code": "A10",
+          "live_count": 42
+        },
+        "sourceModule": {
+          "path": "src/lib/middle/m3Tangent.ts",
+          "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+          "definitionLine": 1433,
+          "figureBuilderLine": 627
+        },
+        "independentFitPending": true,
+        "reason": "Same full rectangle/three-side contact/extra tangent partition/Pythagoras purpose under rigid rotation; new target pair. Independent assessment required, no automatic assignment or approval."
+      }
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-FigureSpec-v2-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "Exact scaled integer coordinates prove circle/tangencies/positive segment lengths; floats position engine points only.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gyeongsin-q08-r1.ts",
+      "renderingReviewPending": true,
+      "lengthUnit": "cm",
+      "metadataRevisionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/derive-gyeongsin-q08-metadata-r2.mjs"
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": null,
+    "prerequisiteUnits": [],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "원의접선의성질",
+        "직사각형",
+        "피타고라스",
+        "다항식전개",
+        "일차방정식"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "namedPrerequisitesWithoutCapturedUuid": [
+      "직사각형과피타고라스",
+      "다항식의전개와일차방정식"
+    ],
+    "metadataRevision": "r2-reference-number-delta-wording-and-family16-proposal",
+    "previousMetadataVersion": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group7-r1/q08.json",
+      "sha256": "5abc699e28ed712f6488a4ebb1c36e47d342cdb7c6719165cb725b37c9618d43"
+    }
+  }
+}

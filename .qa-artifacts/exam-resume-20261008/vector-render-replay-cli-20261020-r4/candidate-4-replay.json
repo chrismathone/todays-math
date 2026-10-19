@@ -1,0 +1,49 @@
+{
+  "kind": "authored-vector-render-replay/v2",
+  "candidate": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r1\\q08.json",
+    "sha256": "5abc699e28ed712f6488a4ebb1c36e47d342cdb7c6719165cb725b37c9618d43"
+  },
+  "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group7-r1-q08",
+  "candidateDigest": "d132dec82cf902f1b9ffd32115ae9c028cadff563a8d711258fe26c35be699a8",
+  "studentDigest": "9dbc5be8b02b581861d09a8cd91d8d792fd864ffbacf25ca0cb65602e78c720d",
+  "assetDigest": "1e80de645119dac8e42de488399da797e137ab2453e5065cc4212219c82d0352",
+  "status": "reproduced",
+  "assets": [
+    {
+      "index": 0,
+      "role": "stem",
+      "specSha256": "eab0e5657305f51a8acd934c7699651dfaf78821b9b17bec951a9f39a72a9ff4",
+      "expectedSvgSha256": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903",
+      "intendedWidthMm": 70,
+      "renderedSpecSha256": "eab0e5657305f51a8acd934c7699651dfaf78821b9b17bec951a9f39a72a9ff4",
+      "replayedSvgSha256": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903",
+      "exactByteParity": true,
+      "status": "reproduced",
+      "droppedDimensions": []
+    }
+  ],
+  "allVectorAssetsReproduced": true,
+  "inputHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r1\\q08.json": "5abc699e28ed712f6488a4ebb1c36e47d342cdb7c6719165cb725b37c9618d43",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r1\\q08.figure.spec.json": "eab0e5657305f51a8acd934c7699651dfaf78821b9b17bec951a9f39a72a9ff4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group7-r1\\q08.figure.svg": "d4b4867090e45033a18da01aa263d746c427818e941f47ae6735794868158903"
+  },
+  "inputsMatchCapturedBinding": true,
+  "inputsUnchanged": true,
+  "candidateValidation": {
+    "structurallyValid": true,
+    "surfaceKeywordViolations": [],
+    "studentMathNotationWarnings": [],
+    "semanticGradeReviewStillRequired": true,
+    "metadataAnswerFormatMismatch": false
+  },
+  "mathematicalApproval": false,
+  "gradeApproval": false,
+  "rightsApproval": false,
+  "nativeReaderParity": false,
+  "loadable": false,
+  "newManualQuestions": 0,
+  "newAuthoredFigures": 0,
+  "dbWrites": 0
+}

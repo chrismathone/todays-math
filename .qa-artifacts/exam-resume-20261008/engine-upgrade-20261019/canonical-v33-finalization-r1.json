@@ -1,0 +1,55 @@
+{
+  "finalizedAt": "2026-10-19T18:16:21.256Z",
+  "refs": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v33.json",
+      "sha256": "3618fb883f0ec0e33b227ccc2d6d7a4f7b2f2db8dba8bf4b89518495a53b76fe"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v33.json",
+      "sha256": "7f28602fe7e0978e9718a0fce3cb1a1db9659250d28ccd3bda24fdff2cb506ea"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v33.json",
+      "sha256": "921ebe970a914684d8348b50281f229fb515d9f5e3d5aec051cb70a430f7c0c8"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r25.json",
+      "sha256": "d3186f85a121b48f48b09d6f1ec21458a54399ae253cc23951fb43120fee7481"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-current-candidate-index-v33.json",
+      "sha256": "df85153b6525b9b92c1871d8a7d754c0f04b9bedfa007b2640836f9abb221e3e"
+    }
+  ],
+  "counts": {
+    "authoredCurrentCandidates": 136,
+    "currentFigureInstances": 96,
+    "recreatedStatTables": 8,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 136,
+    "independentMathReviewed": 135,
+    "independentFullGradeReviewed": 135,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 120,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 135,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 1,
+    "failedStudentRenderDraftVersions": 1
+  },
+  "report": {
+    "path": "docs/planning/tracks/reports/exam-twin-checkpoint-v33-20261020.md",
+    "sha256": "1ee2c4e781d7168001a4d381f5a80a146f7c80b3301256f84b5f6c9ecf3a4e9b"
+  },
+  "firstDerivedTimestampRetained": true,
+  "firstAttemptIntermediateBytesPreservedAndExactlyReverified": true,
+  "wholeGoalComplete": false,
+  "dbWrites": 0
+}

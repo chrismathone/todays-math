@@ -322,7 +322,9 @@ export function validateCandidate(candidate) {
 }
 
 export function bindCandidate(file) {
-  const candidate = readJson(file);
+  // Parse and hash the same captured bytes, even if the path is later replaced.
+  const candidateBytes = fs.readFileSync(file);
+  const candidate = parseJsonArtifact(candidateBytes);
   const validation = validateCandidate(candidate);
   const folder = path.dirname(file);
   const assetPath = (relative) => {
@@ -363,7 +365,8 @@ export function bindCandidate(file) {
           .equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])),
         "Only bound PNG raster resources are supported",
       );
-      const generation = readJson(generationPath);
+      const generationBytes = fs.readFileSync(generationPath);
+      const generation = parseJsonArtifact(generationBytes);
       assert.equal(generation.tool, "built-in image_gen.imagegen");
       assert.equal(generation.paidApiCliFallback, false);
       assert(typeof generation.prompt === "string" && generation.prompt.trim());
@@ -375,7 +378,7 @@ export function bindCandidate(file) {
         sourceRasterPath: rasterPath,
         sourceGenerationPath: generationPath,
         rasterSha256: sha256(png),
-        generationSha256: sha256(fs.readFileSync(generationPath)),
+        generationSha256: sha256(generationBytes),
         widthPx: png.readUInt32BE(16),
         heightPx: png.readUInt32BE(20),
       };
@@ -434,7 +437,7 @@ export function bindCandidate(file) {
   return {
     candidate,
     candidateFile: path.resolve(file),
-    candidateFileSha256: sha256(fs.readFileSync(file)),
+    candidateFileSha256: sha256(candidateBytes),
     assets,
     validation,
     student,

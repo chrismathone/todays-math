@@ -1,0 +1,37 @@
+{
+  "utc": "2026-10-19T18:14:31.207645+00:00",
+  "failure": "Composite accumulator asserted every historical run passed before newer per-file runs could supersede recorded old failures. Failed native-models-r1 evidence is preserved; final latest-per-file flags must be checked only after folding all actual runs.",
+  "partialDerivedArtifacts": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group6-review-20261020-r2/current-author-index-parent-r1.json",
+      "sha256": "2a93bf69d407b7bc55bd78a94b5ad867088df9e5264ac25f1e57ef33c428594c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group6-review-20261020-r2/current-author-summary-parent-r1.json",
+      "sha256": "202158076ee21600d191872963c0f0d515411849bcb14de72efee37f3cdd9d07"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group7-review-20261020-r2/current-author-index-parent-r1.json",
+      "sha256": "e1303a64d4b0b78338ec4169bba297197e3d6e32c60f12a73db0283eb818d5b4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group7-review-20261020-r2/current-author-summary-parent-r1.json",
+      "sha256": "6ec79748c2e90da690ca71c0776fe0914589e2ba21adb67ded5edb61c44a219b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-current-candidate-index-v33.json",
+      "sha256": "df85153b6525b9b92c1871d8a7d754c0f04b9bedfa007b2640836f9abb221e3e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/current136-binding-audit-r1.json",
+      "sha256": "d3064b79a802f15ded41440dff332b93894760aae485600f47a4a03a190dcccd"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v33.json",
+      "sha256": "3618fb883f0ec0e33b227ccc2d6d7a4f7b2f2db8dba8bf4b89518495a53b76fe"
+    }
+  ],
+  "canonicalLedgerCreated": false,
+  "dbWrites": 0,
+  "nextAttempt": "r2 preserves these existing bytes; compares all regenerated fields exactly except neutral summary timestamps aligned to captured originals before comparison."
+}

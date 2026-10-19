@@ -138,3 +138,37 @@ test("CLI code and renderer fingerprints must belong to the same worktree", () =
   for (const file of [path.join(workspace + "-other", suffix), path.join(workspace, "extra", suffix), path.join(workspace, "scripts", "different.mjs")])
     assert.throws(() => assertReplayWorkingDirectory(workspace, file), /own task worktree/);
 });
+
+test("candidate content replaced after first read is rejected before renderer use", withFixture(async (f) => {
+  const read = fs.readFileSync, target = f.file("candidate.json"); let reads = 0, calls = 0;
+  const replacement = { ...f.candidate, twinExternalId: "exam-twin-changed-candidate", content: "다른 조건", answer: "99" };
+  fs.readFileSync = (file, ...args) => {
+    const bytes = read(file, ...args);
+    if (typeof file === "string" && path.resolve(file) === target && ++reads === 1)
+      fs.writeFileSync(target, JSON.stringify(replacement));
+    return bytes;
+  };
+  try {
+    await assert.rejects(replayVectorCandidate(f.file("candidate.json"), async () => { calls++; return { ok: true, svg: f.svg }; }), /Input changed after binding/);
+    assert.equal(calls, 0);
+  } finally { fs.readFileSync = read; }
+}));
+
+test("generation record hash comes from the same bytes as its validated provenance", withFixture(async (f) => {
+  const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScLbtAAAAABJRU5ErkJggg==", "base64");
+  const record = JSON.stringify({ tool: "built-in image_gen.imagegen", paidApiCliFallback: false, prompt: "Synthetic provenance race control; no real image generation" });
+  fs.writeFileSync(f.file("pixel.png"), png); fs.writeFileSync(f.file("generation.json"), record);
+  fs.writeFileSync(f.file("figure.svg"), `<svg><image href="data:image/png;base64,${png.toString("base64")}"/></svg>`);
+  f.candidate.figureArtifacts[0].rasterResources = [{ path: "pixel.png", generationPath: "generation.json" }]; f.save();
+  const read = fs.readFileSync, target = f.file("generation.json"); let reads = 0, calls = 0;
+  fs.readFileSync = (file, ...args) => {
+    const bytes = read(file, ...args);
+    if (typeof file === "string" && path.resolve(file) === target && ++reads === 1)
+      fs.writeFileSync(target, JSON.stringify({ tool: "unknown", paidApiCliFallback: true, prompt: "replacement" }));
+    return bytes;
+  };
+  try {
+    await assert.rejects(replayVectorCandidate(f.file("candidate.json"), async () => { calls++; return { ok: true, svg: f.svg }; }), /Input changed after binding/);
+    assert.equal(calls, 0);
+  } finally { fs.readFileSync = read; }
+}));

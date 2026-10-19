@@ -1,0 +1,312 @@
+{
+  "status": "pending",
+  "studentDigest": "9dbc5be8b02b581861d09a8cd91d8d792fd864ffbacf25ca0cb65602e78c720d",
+  "candidateDigest": "1ece3c7eed9249bdc8c05d83df28a09ee6048f15161cfcd4801da53a19fc4eb4",
+  "assetDigest": "1e80de645119dac8e42de488399da797e137ab2453e5065cc4212219c82d0352",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-retained-helper-gyeongsin-q08-review",
+  "solveDigest": "a6a218794c9413aae09c40c9b234002df11bac3ae7794c6d01aa79a026cfed51",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "직사각형 세 변에 접하는 원, 접선ER와 발F, PE9 및 폭QR12는9수04-19 원의접선 상황이다. 실제 공식M3계획printed72의 현/접선9수04-19 행과 연결되며 원과비례 관계를 조건으로 요구하지 않는다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "접선 전체길이12,13,14,15,16 cm는 중복 없는 양수 정수다. 관계에서 EQ=ER−6이며 피타고라스 잔차−36,−24,−12,0,12 중④만0이다. 보기 표기나 선택에 추가 선수가 없다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생SVG와 자체 렌더 PNG에서 P-Q-R-S 직사각형, 위H/왼I/오른G 접점, PQ위E, ER위F, OF수직과 PE9/QR12를 확인했다. E는I아래, F는ER내부이며 실제 독립 구성 검산도 이를 만족한다. 그림좌표·픽셀은 수치 근거가 아니다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "원O, 접점H/I/G/F, 선분윗줄, 직각, cm, 미지수x,제곱과 전개는 중학교 도형·식의 표기다. 원의 방정식·외접반지름·현곱/접선곱 또는 고등 삼각함수를 도입하지 않는다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "④은 ER15 cm로 EF3+FR12다. 양수 접선 길이와 EQ9를 확인하고 피타고라스9²+12²=15² 검산을 통과한다. 일차식 해12를 접선 부분길이로 해석하여 전체길이15를 내는 역할이 명확하다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 저자 해설은 폭12→반지름6→PI/PH/SG/SH6→EI=EF3→x=RF=RG와 EQ=x−3,ER=x+3→직각EQR의피타고라스→12x144→ER15다. 접선길이같음9수04-19와피타고라스9수04-16,직사각형 및 전개/일차방정식만 필요하다. 원과비례나 고등 원의방정식이 아니다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "2015중3 접선의성질9수04-19 후, 접점반지름수직·같은점접선길이,직사각형,피타고라스9수04-16,다항식곱셈전개와 이전일차방정식을 배운 학생에게 배정한다. 공식2024중3계획printed72에서 접선 배치를 확인했다. 정확한 선수UUID·경신시험진도·2022배치는 미인증이다."
+    }
+  },
+  "evidence": {
+    "checkBasis": {
+      "answerCorrect": "현재 저자답④와 봉인raw가 일치하고 이번별도정확계산/모든보기검산으로 다시 확인했다.",
+      "solutionCorrect": {
+        "radius_cm": 6,
+        "PI_PH_SG_SH_cm": 6,
+        "EI_EF_cm": 3,
+        "RF_RG_cm": 12,
+        "height_cm": 18,
+        "EQ_cm": 9,
+        "ER_cm": 15,
+        "authorEquation": "x=RF=RG>3; (x+3)²=144+(x−3)² ->12x=144 ->x12. Own raw x denotes height18, so variable meaning differs legitimately.",
+        "tangentJustification": "EO공통빗변과 OI=OF인 두 직각삼각형 EIO,EFO의 합동으로 EI=EF. OR공통빗변과 OG=OF인 RGO,RFO 합동으로 RG=RF. OHIP와 OHSG는 세 직각과 같은 반지름을 가진 한 변6의 정사각형이므로 PI=PH=SG=SH=6. 실제 접선·반지름 직각과 합동을 쓰며 접선곱·원과비례는 아니다.",
+        "allChoices": [
+          {
+            "mark": "①",
+            "ER_cm": 12,
+            "EQ_cm": 6,
+            "residual_cm2": -36,
+            "matches": false
+          },
+          {
+            "mark": "②",
+            "ER_cm": 13,
+            "EQ_cm": 7,
+            "residual_cm2": -24,
+            "matches": false
+          },
+          {
+            "mark": "③",
+            "ER_cm": 14,
+            "EQ_cm": 8,
+            "residual_cm2": -12,
+            "matches": false
+          },
+          {
+            "mark": "④",
+            "ER_cm": 15,
+            "EQ_cm": 9,
+            "residual_cm2": 0,
+            "matches": true
+          },
+          {
+            "mark": "⑤",
+            "ER_cm": 16,
+            "EQ_cm": 10,
+            "residual_cm2": 12,
+            "matches": false
+          }
+        ],
+        "existence": "가로12, 세로18인 직사각형에서 위쪽 변과 왼쪽·오른쪽 변으로부터 각각6 떨어진 점을 O로 삼아 반지름6의 원을 그리면 세 변에 접하고 아래쪽 변까지 거리는12라 원이 직사각형 내부에 놓인다. 왼쪽 변 위에서 PE=9인 E를 잡는다. EI=3, OI=6이므로 EO²=45이고, OG=6, GR=12이므로 OR²=180이다. ER²=9²+12²=225=EO²+OR²이므로 △EOR는 O가 직각인 삼각형이다. 이 삼각형의 넓이를 두 방식으로 구하면 O에서 빗변 ER에 내린 높이는 EO·OR/ER=90/15=6이다. 따라서 ER는 반지름6인 원에 접하며 발 F는 빗변 내부에 있다. AA닮음으로 EF=EO²/ER=3, FR=OR²/ER=12도 확인된다. 이 비는 실제 직각삼각형의 닮음으로 정당화하는 구성 검산이며 원의 할선곱·접선곱 정리를 쓰는 학생 방법이 아니다. 조건을 만족하는 도형이 존재하며, 유일한 양의 높이18에서 요구 길이15가 강제된다.",
+        "domain": "RF=x>3 gives EQ=x−3>0; x12. All radius6,EI/EF3,RF/RG12,height18,EQ9,ER15 positive, F internal since EF+FR15. Denominators2,12,ER15 nonzero. cm/cm²."
+      },
+      "existenceUniqueness": "가로12, 세로18인 직사각형에서 위쪽 변과 왼쪽·오른쪽 변으로부터 각각6 떨어진 점을 O로 삼아 반지름6의 원을 그리면 세 변에 접하고 아래쪽 변까지 거리는12라 원이 직사각형 내부에 놓인다. 왼쪽 변 위에서 PE=9인 E를 잡는다. EI=3, OI=6이므로 EO²=45이고, OG=6, GR=12이므로 OR²=180이다. ER²=9²+12²=225=EO²+OR²이므로 △EOR는 O가 직각인 삼각형이다. 이 삼각형의 넓이를 두 방식으로 구하면 O에서 빗변 ER에 내린 높이는 EO·OR/ER=90/15=6이다. 따라서 ER는 반지름6인 원에 접하며 발 F는 빗변 내부에 있다. AA닮음으로 EF=EO²/ER=3, FR=OR²/ER=12도 확인된다. 이 비는 실제 직각삼각형의 닮음으로 정당화하는 구성 검산이며 원의 할선곱·접선곱 정리를 쓰는 학생 방법이 아니다. 조건을 만족하는 도형이 존재하며, 유일한 양의 높이18에서 요구 길이15가 강제된다. RF=x>3 gives EQ=x−3>0; x12. All radius6,EI/EF3,RF/RG12,height18,EQ9,ER15 positive, F internal since EF+FR15. Denominators2,12,ER15 nonzero. cm/cm².",
+      "choicesCorrect": [
+        {
+          "mark": "①",
+          "ER_cm": 12,
+          "EQ_cm": 6,
+          "residual_cm2": -36,
+          "matches": false
+        },
+        {
+          "mark": "②",
+          "ER_cm": 13,
+          "EQ_cm": 7,
+          "residual_cm2": -24,
+          "matches": false
+        },
+        {
+          "mark": "③",
+          "ER_cm": 14,
+          "EQ_cm": 8,
+          "residual_cm2": -12,
+          "matches": false
+        },
+        {
+          "mark": "④",
+          "ER_cm": 15,
+          "EQ_cm": 9,
+          "residual_cm2": 0,
+          "matches": true
+        },
+        {
+          "mark": "⑤",
+          "ER_cm": 16,
+          "EQ_cm": 10,
+          "residual_cm2": 12,
+          "matches": false
+        }
+      ],
+      "figureConsistent": "학생SVG와 자체 렌더 PNG에서 P-Q-R-S 직사각형, 위H/왼I/오른G 접점, PQ위E, ER위F, OF수직과 PE9/QR12를 확인했다. E는I아래, F는ER내부이며 실제 독립 구성 검산도 이를 만족한다. 그림좌표·픽셀은 수치 근거가 아니다. 학생SVG·현재private spec/SVG 해시 일치; private좌표를 수학oracle로 사용하지 않았다. native reader parity는별도보류.",
+      "sameCoreConceptAndProcedure": "원본 q8은 직사각형의 세변 접촉과 CE10/반지름OF4를 주고 AE를 묻는다(이전 실제H q8 노출 및 현재component 관찰). 현재는 부분변PE9와 폭QR12(지름으로 반지름을 추론)를 주고 전체접선ER를 복원한다. 같은점의 접선길이,변의합·차,피타고라스로 일차식을 만드는 핵심은 같고 입력/출력의 실제 교환이 있다. 원문 정답/키는 계산하거나 대조하지 않았다.",
+      "distinctPresentation": "원본 q8은 직사각형의 세변 접촉과 CE10/반지름OF4를 주고 AE를 묻는다(이전 실제H q8 노출 및 현재component 관찰). 현재는 부분변PE9와 폭QR12(지름으로 반지름을 추론)를 주고 전체접선ER를 복원한다. 같은점의 접선길이,변의합·차,피타고라스로 일차식을 만드는 핵심은 같고 입력/출력의 실제 교환이 있다. 원문 정답/키는 계산하거나 대조하지 않았다.",
+      "naturalKorean": "본문은 세변과 접점의 순서를 각각정의하고 PQ위E와 ER의접점을 명시한다. 원이 내부에있고 변에접한다는 표현은 내접원의 통상용례이며 조건모순이 없다. 폭12와 PE9는 그림과일치한다.",
+      "curriculumAppropriate": {
+        "normative": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "edition": "2015년 tab (lines84-85)",
+          "locators": "line540: 9수04-13/14 similarity;9수04-16 Pythagoras;9수04-19 chords/tangents. line558 excludes general circle proportionality; line561 permits tangent-length terminology; lines560/565 student-level justification, not complex formal logic.",
+          "interpretation": "실제 삼각형의 합동·닮음과 접선의 성질을 직접 쓰는 풀이만 심사했다. 원의 일반 비례/현곱·접선곱 공식을 이름만 바꾸어 허용하지 않는다.",
+          "currentHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7"
+        },
+        "gradePlacement": {
+          "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+          "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+          "pageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+          "pdfIndex0": 73,
+          "physicalPage": 74,
+          "printedPage": 72,
+          "actuallyViewed": "표 머리: 중학교3학년 수학2학기. 9월 원과직선/9수04-19 행에 원의 수직이등분선, 현과접선 성질이 명시되어 있다.",
+          "limits": "실제 공식2024 M3배치 근거이며 경신 원본의 시험 진도·출처년도 인증이나2022배치 승인 아님. 과거 잠정 printed73 오류를 그대로 승인하지 않고 실제 printed72를 인용한다."
+        }
+      },
+      "allStudentSurfacesInScope": "curriculumSurfaces에 실제7면별 개별근거를 기록. 전제는2015M3 선수학습완료 후이며2022아님.",
+      "unitFamilyFit": {
+        "capturedUnit": {
+          "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원의 접선",
+          "semester": 2,
+          "orderIndex": 485,
+          "problemCodePrefix": "J30602"
+        },
+        "assessment": "단원명의개념은 실제현/접선목표와 연결되지만 exactlivefamily의 정의·도메인·출력목표는 검증하지 않았다. familyKey null 유지. snapshot은현재DB약속아님. 선수UUID도미포착."
+      },
+      "scoreAppropriate": "원본component에서5점, 현재5점. 원과현/접선→보조삼각형 또는 접선부분길이→닮음/피타고라스→역으로전체길이를구하는 복합절차가5점제안을지지한다. 표준은편집상제안으로 타당하지만 측정난도·원문난도라벨(unknown)동등성이나 실측수행자료를승인하지 않는다."
+    },
+    "ownExactCalculations": {
+      "radius_cm": 6,
+      "PI_PH_SG_SH_cm": 6,
+      "EI_EF_cm": 3,
+      "RF_RG_cm": 12,
+      "height_cm": 18,
+      "EQ_cm": 9,
+      "ER_cm": 15,
+      "authorEquation": "x=RF=RG>3; (x+3)²=144+(x−3)² ->12x=144 ->x12. Own raw x denotes height18, so variable meaning differs legitimately.",
+      "tangentJustification": "EO공통빗변과 OI=OF인 두 직각삼각형 EIO,EFO의 합동으로 EI=EF. OR공통빗변과 OG=OF인 RGO,RFO 합동으로 RG=RF. OHIP와 OHSG는 세 직각과 같은 반지름을 가진 한 변6의 정사각형이므로 PI=PH=SG=SH=6. 실제 접선·반지름 직각과 합동을 쓰며 접선곱·원과비례는 아니다.",
+      "allChoices": [
+        {
+          "mark": "①",
+          "ER_cm": 12,
+          "EQ_cm": 6,
+          "residual_cm2": -36,
+          "matches": false
+        },
+        {
+          "mark": "②",
+          "ER_cm": 13,
+          "EQ_cm": 7,
+          "residual_cm2": -24,
+          "matches": false
+        },
+        {
+          "mark": "③",
+          "ER_cm": 14,
+          "EQ_cm": 8,
+          "residual_cm2": -12,
+          "matches": false
+        },
+        {
+          "mark": "④",
+          "ER_cm": 15,
+          "EQ_cm": 9,
+          "residual_cm2": 0,
+          "matches": true
+        },
+        {
+          "mark": "⑤",
+          "ER_cm": 16,
+          "EQ_cm": 10,
+          "residual_cm2": 12,
+          "matches": false
+        }
+      ],
+      "existence": "가로12, 세로18인 직사각형에서 위쪽 변과 왼쪽·오른쪽 변으로부터 각각6 떨어진 점을 O로 삼아 반지름6의 원을 그리면 세 변에 접하고 아래쪽 변까지 거리는12라 원이 직사각형 내부에 놓인다. 왼쪽 변 위에서 PE=9인 E를 잡는다. EI=3, OI=6이므로 EO²=45이고, OG=6, GR=12이므로 OR²=180이다. ER²=9²+12²=225=EO²+OR²이므로 △EOR는 O가 직각인 삼각형이다. 이 삼각형의 넓이를 두 방식으로 구하면 O에서 빗변 ER에 내린 높이는 EO·OR/ER=90/15=6이다. 따라서 ER는 반지름6인 원에 접하며 발 F는 빗변 내부에 있다. AA닮음으로 EF=EO²/ER=3, FR=OR²/ER=12도 확인된다. 이 비는 실제 직각삼각형의 닮음으로 정당화하는 구성 검산이며 원의 할선곱·접선곱 정리를 쓰는 학생 방법이 아니다. 조건을 만족하는 도형이 존재하며, 유일한 양의 높이18에서 요구 길이15가 강제된다.",
+      "domain": "RF=x>3 gives EQ=x−3>0; x12. All radius6,EI/EF3,RF/RG12,height18,EQ9,ER15 positive, F internal since EF+FR15. Denominators2,12,ER15 nonzero. cm/cm²."
+    },
+    "primaryReferences": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "edition": "2015년 tab (lines84-85)",
+        "locators": "line540: 9수04-13/14 similarity;9수04-16 Pythagoras;9수04-19 chords/tangents. line558 excludes general circle proportionality; line561 permits tangent-length terminology; lines560/565 student-level justification, not complex formal logic.",
+        "interpretation": "실제 삼각형의 합동·닮음과 접선의 성질을 직접 쓰는 풀이만 심사했다. 원의 일반 비례/현곱·접선곱 공식을 이름만 바꾸어 허용하지 않는다.",
+        "currentHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7"
+      },
+      "gradePlacement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "pageSha256": "9c47a005b2a6073631a3388b1c9e86c75a8691d90d5337c650517e9d5f2d9a12",
+        "pdfIndex0": 73,
+        "physicalPage": 74,
+        "printedPage": 72,
+        "actuallyViewed": "표 머리: 중학교3학년 수학2학기. 9월 원과직선/9수04-19 행에 원의 수직이등분선, 현과접선 성질이 명시되어 있다.",
+        "limits": "실제 공식2024 M3배치 근거이며 경신 원본의 시험 진도·출처년도 인증이나2022배치 승인 아님. 과거 잠정 printed73 오류를 그대로 승인하지 않고 실제 printed72를 인용한다."
+      }
+    },
+    "rawSeal": {
+      "parentCommit": "9f24d13935e7e806717a34cdb1f09ed3fb20a15d",
+      "rawSha256": "b5cfd361f72c42a2ce5793e1031e87f9fcfc3d672b92b5c6b5483b5aa5004858",
+      "rawUnchanged": true,
+      "preAuthorExposureDeclarationPreserved": {
+        "currentAuthoredAnswerSolutionMetadataExposedBeforeRaw": false,
+        "priorOriginalQ08PageExposure": true,
+        "declaration": "현재 authored GYEONGSIN q08 r1의 답·해설·비공개 자료는 읽지 않았다. 이전 허가된 원본 H 전체 페이지 검토에서 원래 q08의 조건·그림에 우연히 노출되었다. 완전한 원문 비노출을 주장하지 않으며, 현재 학생 조건만으로 독립 계산했다. 원본·root저자·비공개 패키지를 이번 풀이 중 열지 않았다."
+      },
+      "authorExposure": "Current author answer/solution first read only after raw Git seal. Original-page prior exposure separately disclosed; no clean original-unexposed claim."
+    },
+    "sourceComponentObservation": {
+      "utc": "2026-10-19T17:59:12.687Z",
+      "actuallyViewed": {
+        "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/evidence/additional-original-H-page-02.webp",
+        "sha256": "69c01d1bbcbf7ed5906adaf1961cb5b9f0a377e84b9493901b0712828675a5e0"
+      },
+      "physicalPdfPage": 2,
+      "printedQuestion": 8,
+      "observed": "Rectangle with circle tangent to three sides; tangent CE10 and radiusOF4; askAE;5points. Original correct choice not used.",
+      "wholePairIdentityApproved": false,
+      "rightsRestrictionObserved": true,
+      "rightsApproved": false,
+      "originalCropEmbedded": false,
+      "dbWrites": 0
+    },
+    "metadataCorrectionHolds": [
+      {
+        "field": "sourceReference.actualReference",
+        "observed": "OriginalH page2 q7 viewed; only component correspondence, not wholepaper/pair/year/rights certification.",
+        "issue": "q08인데 OriginalH page2 q7 viewed라고 적혀 있다. 같은 객체 originalQuestionRender.printedQuestion8 및 component관찰q8과 충돌한다. source identity hold; 수정은별도버전 필요."
+      },
+      {
+        "field": "variantDelta.actualStructuralChange",
+        "observed": "원문의 접선 길이 출력/부분선분 입력을 서로 뒤집고 반지름 조건을 직사각형 가로 조건으로 재조직했다. 두 접선의 합과 직사각형 변의 차를 미지수로 세우는 순서다. 원문의 반지름 선분 숫자 대신 가로 길이를 새 그림과 본문에 명시하며 도형을 전량 작도한다.",
+        "issue": "원문의 접선 길이 출력/부분선분 입력이라고 쓴 부분은 실제 원문과 반대다. 원문은 접선전체길이입력/부분선분출력이다. before/after 및 실제현재문항은 역목표로 타당하지만 이 메타설명은 수정 필요."
+      }
+    ],
+    "diagnostic": "Attempted local review-root source-qNN-only.json reads failed because those files were absent. No inputs changed. Used exact authorized parent componentObservation path with declared SHA and prior actually viewed original q7/q8 components, not source answer keys.",
+    "holds": {
+      "sourceIdentityApproved": false,
+      "sourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "liveFamilyKey": null,
+      "unitFamilyFit": false,
+      "loadable": false,
+      "curriculum2022": "pending",
+      "difficultyLabelFromSource": "unknown"
+    },
+    "counts": {
+      "mathematicsPass": 1,
+      "gradePass": 1,
+      "contentHeld": 1,
+      "newBlindOrManualCountIncrement": 0,
+      "releaseApprovals": 0
+    },
+    "limits": "2015M3 선수학습후만. 해당학교 시험진도·출처전체쌍/년도·권리·포괄유사도·현재DB livefamily·native/reader·2022배치는인증하지 않는다. actualsource문항 대응과 수학/학년통과는 이보류를해제하지않는다."
+  }
+}

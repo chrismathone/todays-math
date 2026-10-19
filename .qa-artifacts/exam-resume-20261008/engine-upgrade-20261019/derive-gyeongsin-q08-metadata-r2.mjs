@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {bindCandidate,readJson,sha256} from '../../../scripts/import/exam-twin/candidatePack.mjs';
+const b='.qa-artifacts/exam-resume-20261008/',e=b+'engine-upgrade-20261019/',before=bindCandidate(b+'gyeongsin-authoring-group7-r1/q08.json'),out=b+'gyeongsin-authoring-group7-r2/',proposal=readJson(e+'gyeongsin-q08-family16-proposal-r1.json'),c=structuredClone(before.candidate);
+fs.mkdirSync(out);
+for(const name of ['q08.figure.spec.json','q08.figure.svg'])fs.copyFileSync(b+'gyeongsin-authoring-group7-r1/'+name,out+name,fs.constants.COPYFILE_EXCL);
+// Same variant and unchanged student surfaces; new metadata bytes require a NEW full report.
+c.sourceReference.actualReference='Observed originalH page2 printedq8 rectangle/three-side circle/tangent component. Shared geometric relationships only; whole-paper/pair/year/rights certification remains separate.';
+c.variantDelta.actualStructuralChange='원문의 접선 전체 길이 입력과 변의 부분 길이 출력을 서로 뒤집고, 반지름 조건을 직사각형의 가로 길이 조건으로 재조직했다. 두 접선의 합과 직사각형 변의 차를 미지수로 세우는 순서다. 원문의 반지름 선분 숫자 대신 가로 길이를 새 그림과 본문에 명시했다.';
+c.curriculumReview.sevenSurfaces.answer='author-exact-positive-length; independently reviewed student bytes unchanged';
+c.metadata.assignment={...c.metadata.assignment,status:'proposed',familyKey:proposal.actualFamily.family_key,snapshot:proposal.liveSnapshot,evidence:{proposal:{path:e+'gyeongsin-q08-family16-proposal-r1.json',sha256:sha256(fs.readFileSync(e+'gyeongsin-q08-family16-proposal-r1.json'))},actualUnit:proposal.actualUnit,actualFamily:proposal.actualFamily,sourceModule:proposal.sourceModule,independentFitPending:true,reason:'Same full rectangle/three-side contact/extra tangent partition/Pythagoras purpose under rigid rotation; new target pair. Independent assessment required, no automatic assignment or approval.'}};
+c.metadata.metadataRevision='r2-reference-number-delta-wording-and-family16-proposal';
+c.metadata.figureAuthoring.metadataRevisionScript=e+'derive-gyeongsin-q08-metadata-r2.mjs';
+c.metadata.previousMetadataVersion={path:b+'gyeongsin-authoring-group7-r1/q08.json',sha256:before.candidateFileSha256};
+fs.writeFileSync(out+'q08.json',JSON.stringify(c,null,2)+'\n',{flag:'wx'});const after=bindCandidate(out+'q08.json');
+for(const key of ['studentDigest','assetDigest'])assert.equal(after[key],before[key]);
+for(const key of ['twinExternalId','content','choices','answer','solution','score','questionType'])assert.deepEqual(after.candidate[key],before.candidate[key]);
+assert.notEqual(after.candidateDigest,before.candidateDigest);
+fs.writeFileSync(out+'metadata-only-delta-r1.json',JSON.stringify({utc:new Date().toISOString(),before:{path:before.candidateFile,sha256:before.candidateFileSha256,candidateDigest:before.candidateDigest},after:{path:after.candidateFile,sha256:after.candidateFileSha256,candidateDigest:after.candidateDigest},variantIdUnchanged:true,studentDigest:after.studentDigest,assetDigest:after.assetDigest,allStudentSurfacesAnswerSolutionAndAssetBytesUnchanged:true,originalSealedRawStillSameStudent:true,newFullMetadataReviewRequired:true,earlierReportMayNotBeReusedForNewCandidateDigest:true,familyFit:'proposed independent review pending',newManualQuestions:0,newAuthoredFigures:0,newBlindSolves:0,loadable:0,dbWrites:0},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({sameStudentAndAssets:true,metadataCorrected:true,proposedFamily:proposal.actualFamily.family_key,independentReviewPending:true,newCounts:0}));

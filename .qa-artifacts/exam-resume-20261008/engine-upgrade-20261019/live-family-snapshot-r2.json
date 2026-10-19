@@ -1,0 +1,2220 @@
+{
+  "kind": "exam-live-family-observation/v1",
+  "capturedAt": "2026-10-19 18:07:30.165227+00",
+  "readOnly": true,
+  "isolation": "RepeatableRead",
+  "grade": "중3",
+  "prior": {
+    "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+    "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26"
+  },
+  "livePredicate": "중3; shared; approved; direct_use_allowed=true; nonblank/non-sentinel answer; nonnull family",
+  "predicateScope": "Explicit nonblank subset of current eligible bank rows; no eligibility rules changed",
+  "units": [
+    {
+      "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "제곱근의 뜻과 성질",
+      "semester": 1,
+      "orderIndex": 469,
+      "problemCodePrefix": "J30101"
+    },
+    {
+      "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "무리수와 실수",
+      "semester": 1,
+      "orderIndex": 470,
+      "problemCodePrefix": "J30102"
+    },
+    {
+      "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "근호를 포함한 식의 계산",
+      "semester": 1,
+      "orderIndex": 471,
+      "problemCodePrefix": "J30103"
+    },
+    {
+      "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "다항식의 곱셈",
+      "semester": 1,
+      "orderIndex": 472,
+      "problemCodePrefix": "J30201"
+    },
+    {
+      "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "인수분해",
+      "semester": 1,
+      "orderIndex": 473,
+      "problemCodePrefix": "J30202"
+    },
+    {
+      "id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "인수분해의 응용",
+      "semester": 1,
+      "orderIndex": 474,
+      "problemCodePrefix": "J30203"
+    },
+    {
+      "id": "82399e51-340d-4165-b016-3e941e65f810",
+      "grade": "중3",
+      "chapter": "3. 이차방정식",
+      "section": "이차방정식의 풀이",
+      "semester": 1,
+      "orderIndex": 475,
+      "problemCodePrefix": "J30301"
+    },
+    {
+      "id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "grade": "중3",
+      "chapter": "3. 이차방정식",
+      "section": "이차방정식의 근의 공식과 응용",
+      "semester": 1,
+      "orderIndex": 476,
+      "problemCodePrefix": "J30302"
+    },
+    {
+      "id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "grade": "중3",
+      "chapter": "3. 이차방정식",
+      "section": "이차방정식의 활용",
+      "semester": 1,
+      "orderIndex": 477,
+      "problemCodePrefix": "J30303"
+    },
+    {
+      "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "grade": "중3",
+      "chapter": "4. 이차함수",
+      "section": "이차함수와 그래프",
+      "semester": 1,
+      "orderIndex": 478,
+      "problemCodePrefix": "J30401"
+    },
+    {
+      "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "grade": "중3",
+      "chapter": "4. 이차함수",
+      "section": "이차함수 y=ax^2+bx+c의 그래프",
+      "semester": 1,
+      "orderIndex": 479,
+      "problemCodePrefix": "J30402"
+    },
+    {
+      "id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "grade": "중3",
+      "chapter": "4. 이차함수",
+      "section": "이차함수의 최댓값과 최솟값",
+      "semester": 1,
+      "orderIndex": 480,
+      "problemCodePrefix": "J30403"
+    },
+    {
+      "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "grade": "중3",
+      "chapter": "5. 삼각비",
+      "section": "삼각비의 뜻",
+      "semester": 2,
+      "orderIndex": 481,
+      "problemCodePrefix": "J30501"
+    },
+    {
+      "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "grade": "중3",
+      "chapter": "5. 삼각비",
+      "section": "삼각비의 값",
+      "semester": 2,
+      "orderIndex": 482,
+      "problemCodePrefix": "J30502"
+    },
+    {
+      "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "grade": "중3",
+      "chapter": "5. 삼각비",
+      "section": "삼각비의 활용",
+      "semester": 2,
+      "orderIndex": 483,
+      "problemCodePrefix": "J30503"
+    },
+    {
+      "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "grade": "중3",
+      "chapter": "6. 원의 성질",
+      "section": "원과 현",
+      "semester": 2,
+      "orderIndex": 484,
+      "problemCodePrefix": "J30601"
+    },
+    {
+      "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "grade": "중3",
+      "chapter": "6. 원의 성질",
+      "section": "원의 접선",
+      "semester": 2,
+      "orderIndex": 485,
+      "problemCodePrefix": "J30602"
+    },
+    {
+      "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "grade": "중3",
+      "chapter": "6. 원의 성질",
+      "section": "원주각",
+      "semester": 2,
+      "orderIndex": 486,
+      "problemCodePrefix": "J30603"
+    },
+    {
+      "id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "grade": "중3",
+      "chapter": "6. 원의 성질",
+      "section": "원주각의 활용",
+      "semester": 2,
+      "orderIndex": 487,
+      "problemCodePrefix": "J30604"
+    },
+    {
+      "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "grade": "중3",
+      "chapter": "7. 통계",
+      "section": "대푯값과 산포도",
+      "semester": 2,
+      "orderIndex": 488,
+      "problemCodePrefix": "J30701"
+    },
+    {
+      "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "grade": "중3",
+      "chapter": "7. 통계",
+      "section": "산점도와 상관관계",
+      "semester": 2,
+      "orderIndex": 489,
+      "problemCodePrefix": "J30702"
+    },
+    {
+      "id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "grade": "중3",
+      "chapter": "7. 통계",
+      "section": "상자그림",
+      "semester": 2,
+      "orderIndex": 490,
+      "problemCodePrefix": "J30703"
+    }
+  ],
+  "liveFamilies": [
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|01",
+      "family_code": "A01",
+      "live_count": 22
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|02",
+      "family_code": "A02",
+      "live_count": 21
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|03",
+      "family_code": "A03",
+      "live_count": 11
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|04",
+      "family_code": "A04",
+      "live_count": 22
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|05",
+      "family_code": "A05",
+      "live_count": 22
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|06",
+      "family_code": "A06",
+      "live_count": 11
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|07",
+      "family_code": "A07",
+      "live_count": 22
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|08",
+      "family_code": "A08",
+      "live_count": 22
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|09",
+      "family_code": "A09",
+      "live_count": 11
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|10",
+      "family_code": "A10",
+      "live_count": 22
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|11",
+      "family_code": "A11",
+      "live_count": 22
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|12",
+      "family_code": "A12",
+      "live_count": 22
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|13",
+      "family_code": "A13",
+      "live_count": 22
+    },
+    {
+      "unit_id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|22T",
+      "family_code": "A14",
+      "live_count": 22
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|01",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|02",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|03",
+      "family_code": "A03",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|04",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|06",
+      "family_code": "A06",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|07",
+      "family_code": "A07",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|08",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|09",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|50",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:3-1|다항식의 인수분해|55W",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:manual-20261018|인수분해|F01",
+      "family_code": "A12",
+      "live_count": 10
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:manual-20261018|인수분해|F02",
+      "family_code": "A13",
+      "live_count": 5
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "mid:manual-20261018|인수분해|F03",
+      "family_code": "A14",
+      "live_count": 10
+    },
+    {
+      "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "family_key": "native-desc:m3-factor-error-proof-r1",
+      "family_code": "A15",
+      "live_count": 5
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|01",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|02",
+      "family_code": "A02",
+      "live_count": 22
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|03",
+      "family_code": "A03",
+      "live_count": 24
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|04",
+      "family_code": "A04",
+      "live_count": 22
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|06",
+      "family_code": "A06",
+      "live_count": 20
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|07",
+      "family_code": "A07",
+      "live_count": 18
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|08",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|09",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|10",
+      "family_code": "A10",
+      "live_count": 18
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|11",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|12",
+      "family_code": "A12",
+      "live_count": 24
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|13",
+      "family_code": "A13",
+      "live_count": 24
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|14",
+      "family_code": "A14",
+      "live_count": 24
+    },
+    {
+      "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "family_key": "mid:3-2|삼각비의 활용|144X",
+      "family_code": "A15",
+      "live_count": 12
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|01",
+      "family_code": "A01",
+      "live_count": 40
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|02",
+      "family_code": "A02",
+      "live_count": 42
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|03",
+      "family_code": "A03",
+      "live_count": 38
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|04",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|05",
+      "family_code": "A05",
+      "live_count": 42
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|06",
+      "family_code": "A06",
+      "live_count": 48
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|07",
+      "family_code": "A07",
+      "live_count": 48
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|08",
+      "family_code": "A08",
+      "live_count": 33
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|09",
+      "family_code": "A09",
+      "live_count": 44
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|10",
+      "family_code": "A10",
+      "live_count": 44
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|11",
+      "family_code": "A11",
+      "live_count": 44
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|12",
+      "family_code": "A12",
+      "live_count": 48
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|13",
+      "family_code": "A13",
+      "live_count": 46
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|130X",
+      "family_code": "A20",
+      "live_count": 24
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|14",
+      "family_code": "A14",
+      "live_count": 48
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|15",
+      "family_code": "A15",
+      "live_count": 48
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|16",
+      "family_code": "A16",
+      "live_count": 46
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|17",
+      "family_code": "A17",
+      "live_count": 44
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|18",
+      "family_code": "A18",
+      "live_count": 32
+    },
+    {
+      "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "family_key": "mid:3-1|제곱근의 뜻과 성질|41U",
+      "family_code": "A19",
+      "live_count": 47
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|01",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|02",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|03",
+      "family_code": "A03",
+      "live_count": 24
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|04",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|06",
+      "family_code": "A06",
+      "live_count": 12
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|07",
+      "family_code": "A07",
+      "live_count": 12
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|08",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|09",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|10",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:3-1|무리수와 실수|56W",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:manual-20261018|무리수와 실수|R01",
+      "family_code": "A12",
+      "live_count": 5
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:manual-20261018|무리수와 실수|R02",
+      "family_code": "A13",
+      "live_count": 5
+    },
+    {
+      "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "family_key": "mid:manual-20261018|무리수와 실수|R03",
+      "family_code": "A14",
+      "live_count": 5
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|08",
+      "family_code": "A01",
+      "live_count": 20
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|09",
+      "family_code": "A02",
+      "live_count": 20
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|10",
+      "family_code": "A03",
+      "live_count": 20
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|11",
+      "family_code": "A04",
+      "live_count": 20
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|12",
+      "family_code": "A05",
+      "live_count": 20
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|13",
+      "family_code": "A06",
+      "live_count": 18
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|131X",
+      "family_code": "A12",
+      "live_count": 10
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|14",
+      "family_code": "A07",
+      "live_count": 20
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|15",
+      "family_code": "A08",
+      "live_count": 9
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|16",
+      "family_code": "A09",
+      "live_count": 20
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|17",
+      "family_code": "A10",
+      "live_count": 20
+    },
+    {
+      "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "family_key": "mid:3-2|삼각비|18",
+      "family_code": "A11",
+      "live_count": 20
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|01",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|02",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|03",
+      "family_code": "A03",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|04",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|06",
+      "family_code": "A06",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|07",
+      "family_code": "A07",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|19",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|20",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|21",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|44U",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|10",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|11",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|12",
+      "family_code": "A03",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|13",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|14",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|15",
+      "family_code": "A06",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|16",
+      "family_code": "A07",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|17",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|18",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|19",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|20",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|21",
+      "family_code": "A12",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|22",
+      "family_code": "A13",
+      "live_count": 24
+    },
+    {
+      "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+      "family_key": "mid:3-1|다항식의 인수분해|43U",
+      "family_code": "A14",
+      "live_count": 24
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|01",
+      "family_code": "A01",
+      "live_count": 16
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|02",
+      "family_code": "A02",
+      "live_count": 16
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|03",
+      "family_code": "A03",
+      "live_count": 16
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|04",
+      "family_code": "A04",
+      "live_count": 16
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|05",
+      "family_code": "A05",
+      "live_count": 16
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|06",
+      "family_code": "A06",
+      "live_count": 16
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|17A",
+      "family_code": "A07",
+      "live_count": 16
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|18A",
+      "family_code": "A08",
+      "live_count": 16
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|19A",
+      "family_code": "A09",
+      "live_count": 16
+    },
+    {
+      "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "family_key": "mid:3-2|원과 직선|20A",
+      "family_code": "A10",
+      "live_count": 16
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|01",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|02",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|03",
+      "family_code": "A03",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|04",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|06",
+      "family_code": "A06",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|07",
+      "family_code": "A07",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|08",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|09",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|10",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:3-2|산포도|11T",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:manual-20261018|대푯값과 산포도|S01",
+      "family_code": "A14",
+      "live_count": 5
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:manual-20261018|대푯값과 산포도|S02",
+      "family_code": "A15",
+      "live_count": 10
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "mid:manual-20261018|대푯값과 산포도|S03",
+      "family_code": "A16",
+      "live_count": 5
+    },
+    {
+      "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "family_key": "native-desc:m3-statistics-shift-spread-r1",
+      "family_code": "A17",
+      "live_count": 5
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|06",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|07",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|08",
+      "family_code": "A03",
+      "live_count": 12
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|09",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|10",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|11",
+      "family_code": "A06",
+      "live_count": 24
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|12",
+      "family_code": "A07",
+      "live_count": 24
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|13",
+      "family_code": "A08",
+      "live_count": 12
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|14",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|15",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "family_key": "mid:3-2|상자그림과 산점도|58W",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|07",
+      "family_code": "A01",
+      "live_count": 46
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|08",
+      "family_code": "A02",
+      "live_count": 48
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|09",
+      "family_code": "A03",
+      "live_count": 46
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|10",
+      "family_code": "A04",
+      "live_count": 48
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|11",
+      "family_code": "A05",
+      "live_count": 46
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|12",
+      "family_code": "A06",
+      "live_count": 48
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|13",
+      "family_code": "A07",
+      "live_count": 46
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|14",
+      "family_code": "A08",
+      "live_count": 48
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|145X",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|15",
+      "family_code": "A09",
+      "live_count": 48
+    },
+    {
+      "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "family_key": "mid:3-2|원과 직선|16",
+      "family_code": "A10",
+      "live_count": 42
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|01",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|02",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|03",
+      "family_code": "A03",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|04",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|50",
+      "family_code": "A06",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|51",
+      "family_code": "A07",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|52",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|53",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|54",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "81710710-e029-49d3-9e50-b3e23f882464",
+      "family_key": "mid:3-2|상자그림과 산점도|57W",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|01",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|02",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|03",
+      "family_code": "A03",
+      "live_count": 23
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|04",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|06",
+      "family_code": "A06",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|07",
+      "family_code": "A07",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|08",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|09",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|10",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|11",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|12",
+      "family_code": "A12",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|13",
+      "family_code": "A13",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|14",
+      "family_code": "A14",
+      "live_count": 23
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|15",
+      "family_code": "A15",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|16",
+      "family_code": "A16",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:3-1|이차방정식의 풀이|51V",
+      "family_code": "A18",
+      "live_count": 24
+    },
+    {
+      "unit_id": "82399e51-340d-4165-b016-3e941e65f810",
+      "family_key": "mid:중3|이차방정식의 풀이::중3|인수분해",
+      "family_code": "A17",
+      "live_count": 24
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|01",
+      "family_code": "A01",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|02",
+      "family_code": "A02",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|03",
+      "family_code": "A03",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|04",
+      "family_code": "A04",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|05",
+      "family_code": "A05",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|06",
+      "family_code": "A06",
+      "live_count": 14
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|07",
+      "family_code": "A07",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|08",
+      "family_code": "A08",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|09",
+      "family_code": "A09",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|10",
+      "family_code": "A10",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|11",
+      "family_code": "A11",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|12",
+      "family_code": "A12",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|13",
+      "family_code": "A13",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|14",
+      "family_code": "A14",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|15",
+      "family_code": "A15",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|16",
+      "family_code": "A16",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|17",
+      "family_code": "A17",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|18",
+      "family_code": "A18",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|19",
+      "family_code": "A19",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|20",
+      "family_code": "A20",
+      "live_count": 16
+    },
+    {
+      "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "family_key": "mid:3-1|근호를 포함한 식의 계산|54V",
+      "family_code": "A21",
+      "live_count": 16
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|01",
+      "family_code": "A01",
+      "live_count": 12
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|02",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|03",
+      "family_code": "A03",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|04",
+      "family_code": "A04",
+      "live_count": 12
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|06",
+      "family_code": "A06",
+      "live_count": 12
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|07",
+      "family_code": "A07",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|08",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|09",
+      "family_code": "A09",
+      "live_count": 19
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|10",
+      "family_code": "A10",
+      "live_count": 12
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|11",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|12",
+      "family_code": "A12",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|13",
+      "family_code": "A13",
+      "live_count": 12
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|14",
+      "family_code": "A14",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|15",
+      "family_code": "A15",
+      "live_count": 23
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|16",
+      "family_code": "A16",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|17",
+      "family_code": "A17",
+      "live_count": 12
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|18",
+      "family_code": "A18",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|19",
+      "family_code": "A19",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|20",
+      "family_code": "A20",
+      "live_count": 12
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|21",
+      "family_code": "A21",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑴|42U",
+      "family_code": "A22",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|01",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|02",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|03",
+      "family_code": "A03",
+      "live_count": 22
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|04",
+      "family_code": "A04",
+      "live_count": 21
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|06",
+      "family_code": "A06",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|07",
+      "family_code": "A07",
+      "live_count": 22
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|16",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|17",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|18",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "a1e32f75-aa48-4740-aa9e-935e1d02ae13",
+      "family_key": "mid:3-1|이차방정식의 활용|53V",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|01",
+      "family_code": "A01",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|02",
+      "family_code": "A02",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|03",
+      "family_code": "A03",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|04",
+      "family_code": "A04",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|05",
+      "family_code": "A05",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|06",
+      "family_code": "A06",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|07",
+      "family_code": "A07",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|08",
+      "family_code": "A08",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|09",
+      "family_code": "A09",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|10",
+      "family_code": "A10",
+      "live_count": 46
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|11",
+      "family_code": "A11",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|12",
+      "family_code": "A12",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|13",
+      "family_code": "A13",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|14",
+      "family_code": "A14",
+      "live_count": 48
+    },
+    {
+      "unit_id": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+      "family_key": "mid:3-2|원주각의 활용|146X",
+      "family_code": "A15",
+      "live_count": 24
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|01",
+      "family_code": "A01",
+      "live_count": 32
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|02",
+      "family_code": "A02",
+      "live_count": 30
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|03",
+      "family_code": "A03",
+      "live_count": 28
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|04",
+      "family_code": "A04",
+      "live_count": 32
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|05",
+      "family_code": "A05",
+      "live_count": 30
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|06",
+      "family_code": "A06",
+      "live_count": 26
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|07",
+      "family_code": "A07",
+      "live_count": 32
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|08",
+      "family_code": "A08",
+      "live_count": 30
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|09",
+      "family_code": "A09",
+      "live_count": 28
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|10",
+      "family_code": "A10",
+      "live_count": 28
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:3-2|원주각|132X",
+      "family_code": "A12",
+      "live_count": 16
+    },
+    {
+      "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "family_key": "mid:중3|원주각::중3|이차방정식의 풀이",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|14",
+      "family_code": "A01",
+      "live_count": 20
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|15",
+      "family_code": "A02",
+      "live_count": 20
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|16",
+      "family_code": "A03",
+      "live_count": 20
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|17",
+      "family_code": "A04",
+      "live_count": 20
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|18",
+      "family_code": "A05",
+      "live_count": 20
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|19",
+      "family_code": "A06",
+      "live_count": 20
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|20",
+      "family_code": "A07",
+      "live_count": 20
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|21",
+      "family_code": "A08",
+      "live_count": 20
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|70",
+      "family_code": "A09",
+      "live_count": 18
+    },
+    {
+      "unit_id": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "family_key": "mid:3-1|이차함수의 그래프 ⑵|71",
+      "family_code": "A10",
+      "live_count": 17
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|01",
+      "family_code": "A01",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|02",
+      "family_code": "A02",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|03",
+      "family_code": "A03",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|04",
+      "family_code": "A04",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|05",
+      "family_code": "A05",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|06",
+      "family_code": "A06",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|07",
+      "family_code": "A07",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|08",
+      "family_code": "A08",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|09",
+      "family_code": "A09",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|10",
+      "family_code": "A10",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|11",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|12",
+      "family_code": "A12",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|13",
+      "family_code": "A13",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|14",
+      "family_code": "A14",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|15",
+      "family_code": "A15",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|16",
+      "family_code": "A16",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|17",
+      "family_code": "A17",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|18",
+      "family_code": "A18",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:3-1|다항식의 곱셈|52V",
+      "family_code": "A20",
+      "live_count": 24
+    },
+    {
+      "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "family_key": "mid:중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+      "family_code": "A19",
+      "live_count": 24
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|08",
+      "family_code": "A01",
+      "live_count": 42
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|09",
+      "family_code": "A02",
+      "live_count": 40
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|10",
+      "family_code": "A03",
+      "live_count": 46
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|11",
+      "family_code": "A04",
+      "live_count": 46
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|12",
+      "family_code": "A05",
+      "live_count": 46
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|129X",
+      "family_code": "A11",
+      "live_count": 24
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|13",
+      "family_code": "A06",
+      "live_count": 48
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|14",
+      "family_code": "A07",
+      "live_count": 48
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|15",
+      "family_code": "A08",
+      "live_count": 34
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|19",
+      "family_code": "A09",
+      "live_count": 46
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:3-1|이차방정식의 활용|20",
+      "family_code": "A10",
+      "live_count": 48
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:manual-20261018|이차방정식의 활용|Q01",
+      "family_code": "A12",
+      "live_count": 5
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:manual-20261018|이차방정식의 활용|Q02",
+      "family_code": "A13",
+      "live_count": 5
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "mid:manual-20261018|이차방정식의 활용|Q03",
+      "family_code": "A14",
+      "live_count": 10
+    },
+    {
+      "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+      "family_key": "native-desc:m3-quadratic-domain-r1",
+      "family_code": "A15",
+      "live_count": 5
+    }
+  ],
+  "changes": {
+    "added": [
+      {
+        "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+        "family_key": "mid:manual-20261018|인수분해|F01",
+        "family_code": "A12",
+        "live_count": 10
+      },
+      {
+        "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+        "family_key": "mid:manual-20261018|인수분해|F02",
+        "family_code": "A13",
+        "live_count": 5
+      },
+      {
+        "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+        "family_key": "mid:manual-20261018|인수분해|F03",
+        "family_code": "A14",
+        "live_count": 10
+      },
+      {
+        "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+        "family_key": "native-desc:m3-factor-error-proof-r1",
+        "family_code": "A15",
+        "live_count": 5
+      },
+      {
+        "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "family_key": "mid:manual-20261018|무리수와 실수|R01",
+        "family_code": "A12",
+        "live_count": 5
+      },
+      {
+        "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "family_key": "mid:manual-20261018|무리수와 실수|R02",
+        "family_code": "A13",
+        "live_count": 5
+      },
+      {
+        "unit_id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "family_key": "mid:manual-20261018|무리수와 실수|R03",
+        "family_code": "A14",
+        "live_count": 5
+      },
+      {
+        "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "family_key": "mid:manual-20261018|대푯값과 산포도|S01",
+        "family_code": "A14",
+        "live_count": 5
+      },
+      {
+        "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "family_key": "mid:manual-20261018|대푯값과 산포도|S02",
+        "family_code": "A15",
+        "live_count": 10
+      },
+      {
+        "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "family_key": "mid:manual-20261018|대푯값과 산포도|S03",
+        "family_code": "A16",
+        "live_count": 5
+      },
+      {
+        "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "family_key": "native-desc:m3-statistics-shift-spread-r1",
+        "family_code": "A17",
+        "live_count": 5
+      },
+      {
+        "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+        "family_key": "mid:manual-20261018|이차방정식의 활용|Q01",
+        "family_code": "A12",
+        "live_count": 5
+      },
+      {
+        "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+        "family_key": "mid:manual-20261018|이차방정식의 활용|Q02",
+        "family_code": "A13",
+        "live_count": 5
+      },
+      {
+        "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+        "family_key": "mid:manual-20261018|이차방정식의 활용|Q03",
+        "family_code": "A14",
+        "live_count": 10
+      },
+      {
+        "unit_id": "f7cf8f63-e727-4923-b46b-091804472a32",
+        "family_key": "native-desc:m3-quadratic-domain-r1",
+        "family_code": "A15",
+        "live_count": 5
+      }
+    ],
+    "removed": []
+  },
+  "limitations": [
+    "Eligible example counts are not semantic family fit, grade evidence or rights clearance",
+    "A missing family_code remains unresolved",
+    "No question text, answers or student records captured",
+    "No automatic candidate metadata changes"
+  ],
+  "dbWrites": 0,
+  "automaticAssignments": 0
+}

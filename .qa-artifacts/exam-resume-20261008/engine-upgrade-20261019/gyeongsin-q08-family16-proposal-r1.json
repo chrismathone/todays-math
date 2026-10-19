@@ -1,0 +1,36 @@
+{
+  "utc": "2026-10-19T18:07:19.288Z",
+  "status": "parent-proposal-independent-fit-review-required",
+  "liveSnapshot": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+    "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+    "capturedAt": "2026-10-19 18:07:30.165227+00"
+  },
+  "actualUnit": {
+    "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+    "grade": "중3",
+    "chapter": "6. 원의 성질",
+    "section": "원의 접선",
+    "semester": 2,
+    "orderIndex": 485,
+    "problemCodePrefix": "J30602"
+  },
+  "actualFamily": {
+    "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+    "family_key": "mid:3-2|원과 직선|16",
+    "family_code": "A10",
+    "live_count": 42
+  },
+  "sourceModule": {
+    "path": "src/lib/middle/m3Tangent.ts",
+    "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+    "definitionLine": 1433,
+    "figureBuilderLine": 627
+  },
+  "observed": "Family16 explicitly defines rectangle tangent to three sides, an extra tangent meeting another side, positive segment partition/equal tangent lengths plus Pythagoras. Modes reverse width/whole-side/partial-length/triangle-perimeter targets. Q08 newly reverses whole tangent length vs opposite partial segment, same full structure after rigid rotation.",
+  "unconfirmed": "Exact family assessment-purpose fit requires independent review; current registered modes do not yet ask this exact target pair. No engine extension, semantic approval or source/rights/native clearance inferred.",
+  "notMerelyUnitNameMatch": true,
+  "candidateFilesChanged": false,
+  "automaticAssignments": 0,
+  "dbWrites": 0
+}
