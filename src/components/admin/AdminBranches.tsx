@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
+import { countWorkspaceMenus } from "@/contracts/accountAccess.contract";
 import type {
   BranchListResponse,
   BranchSummary,
@@ -249,8 +250,8 @@ export default function AdminBranches({
                     <strong>{branch.name}</strong>
                     <span className={s.branchMeta}>
                       계정 {branch._count.users}명 · 승인 대기{" "}
-                      {branch.pendingCount}명 · 사용 메뉴 {branch.menus.length}
-                      개 · 개설{" "}
+                      {branch.pendingCount}명 · 사용 메뉴{" "}
+                      {countWorkspaceMenus(branch.menus)}개 · 개설{" "}
                       {new Date(branch.createdAt).toLocaleDateString("ko-KR", {
                         timeZone: "Asia/Seoul",
                       })}

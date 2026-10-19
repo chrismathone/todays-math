@@ -4,8 +4,12 @@ import { db } from "@/lib/db";
 import { authorizeAccount } from "@/lib/accountAccess";
 import { recordAudit } from "@/lib/audit";
 import type { Prisma, WorkspaceDocument } from "@prisma/client";
-import type { AccountAccess } from "@/contracts/accountAccess.contract";
+import {
+  canOutputFrom,
+  type AccountAccess,
+} from "@/contracts/accountAccess.contract";
 import { documentWorkflow } from "@/contracts/workspaceWorkflow.contract";
+import { LIBRARY_DOCUMENT_KINDS } from "@/contracts/privateWorkspace.contract";
 
 export const privateHeaders = {
   "Cache-Control": "private, no-store",
@@ -70,17 +74,31 @@ export const privateError = (message: string, status: number, code?: string) =>
     },
     { status, headers: privateHeaders },
   );
-/** Bank-only access is limited to arithmetic documents, never private assets. */
-export function arithmeticDocumentsOnly(account: AccountAccess): boolean {
-  return !account.menus.some((menu) =>
-    ["studio", "export", "library", "conceptBlank"].includes(menu),
+/** 기존 보관함·추출의 읽기 범위는 유지하고, 새 제작 메뉴는 자기 자료만 연다. */
+export function privateDocumentKinds(account: AccountAccess) {
+  if (
+    canOutputFrom(account.menus, "library") ||
+    canOutputFrom(account.menus, "studio")
+  )
+    return [...LIBRARY_DOCUMENT_KINDS];
+  return LIBRARY_DOCUMENT_KINDS.filter((kind) =>
+    canOutputFrom(
+      account.menus,
+      kind === "draft"
+        ? "bank"
+        : kind === "extraction"
+          ? "studio"
+          : kind === "arithmeticSheet"
+            ? "arithmetic"
+            : "conceptBlank",
+    ),
   );
 }
 
 export async function authorizePrivate(
   request: Request,
   ownerId?: string,
-  allowArithmeticDocuments = false,
+  allowSourceDocuments = false,
 ) {
   const access = await authorizeAccount(
     request,
@@ -103,8 +121,15 @@ export async function authorizePrivate(
     };
   if (
     !ownerId &&
-    arithmeticDocumentsOnly(access.account!) &&
-    !(allowArithmeticDocuments && access.account!.menus.includes("arithmetic"))
+    !(["bank", "studio", "library"] as const).some((source) =>
+      canOutputFrom(access.account!.menus, source),
+    ) &&
+    !(
+      allowSourceDocuments &&
+      (["arithmetic", "conceptBlank"] as const).some((source) =>
+        canOutputFrom(access.account!.menus, source),
+      )
+    )
   )
     return {
       account: null,

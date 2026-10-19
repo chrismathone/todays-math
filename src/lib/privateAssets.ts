@@ -12,6 +12,7 @@ import {
 } from "@/lib/privateWorkspace";
 import { auditData } from "@/lib/audit";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
+import { canOutputFrom } from "@/contracts/accountAccess.contract";
 const MAX_SIZE = 64 * 1024 * 1024;
 const MIME = new Set([
   "application/pdf",
@@ -82,8 +83,8 @@ export async function writePrivateAsset(request: Request, id: string) {
   const ownerError = mutationOwnerError(request, access.ownerId!);
   if (ownerError) return ownerError;
   if (
-    !access.account!.menus.some(
-      (menu) => menu === "studio" || menu === "export",
+    !(["bank", "studio", "library"] as const).some((source) =>
+      canOutputFrom(access.account!.menus, source),
     )
   )
     return privateError("파일을 저장할 권한이 없습니다.", 403);

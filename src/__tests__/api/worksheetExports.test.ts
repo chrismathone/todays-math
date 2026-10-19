@@ -3,9 +3,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { gunzipSync } from "node:zlib";
 import { authorizeExport } from "@/lib/export/request";
 import { POST } from "@/app/api/exports/hwpx/route";
+import { POST as pdfPost } from "@/app/api/exports/pdf/route";
 
 const mocks = vi.hoisted(() => ({ session: vi.fn() }));
 vi.mock("@/lib/session", () => ({ getSessionUser: mocks.session }));
+vi.mock("@/lib/export/pdfServer", async (original) => ({
+  ...(await original<typeof import("@/lib/export/pdfServer")>()),
+  buildPdf: vi.fn(async () => new Uint8Array([37, 80, 68, 70])),
+}));
 vi.mock("@/lib/export/hwpxServer", async (original) => ({
   ...(await original<typeof import("@/lib/export/hwpxServer")>()),
   buildHwpxParts: vi.fn(async () => ({
@@ -30,6 +35,49 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllEnvs());
 
 describe("worksheet export routes", () => {
+  it.each([
+    "bank",
+    "arithmetic",
+    "studio",
+    "library",
+    "textbook",
+    "conceptBlank",
+  ])("%s alone reaches the actual PDF and HWPX handlers", async (source) => {
+    vi.stubEnv("NODE_ENV", "production");
+    mocks.session.mockResolvedValue({ id: "owner", menus: [source] });
+    const hwpx = await POST(
+      request(JSON.stringify({ title: "시험지", pages: [{ objects: [] }] })),
+    );
+    expect(hwpx.status).toBe(200);
+    const pdf = await pdfPost(
+      new Request(
+        "http://localhost:3000/api/exports/pdf",
+        request(JSON.stringify({ html: "<p>시험지</p>" })),
+      ),
+    );
+    expect(pdf.status).toBe(200);
+    expect(pdf.headers.get("Content-Type")).toBe("application/pdf");
+  });
+  it.each([
+    { menus: [] },
+    { menus: ["export"] },
+    { menus: ["home", "teaching"] },
+    { menus: ["english-maker"] },
+  ])(
+    "denies direct output with non-output menus $menus before generation",
+    async ({ menus }) => {
+      vi.stubEnv("NODE_ENV", "production");
+      mocks.session.mockResolvedValue({ id: "owner", menus });
+      expect((await POST(request())).status).toBe(403);
+      expect(
+        (
+          await pdfPost(
+            new Request("http://localhost:3000/api/exports/pdf", request()),
+          )
+        ).status,
+      ).toBe(403);
+    },
+  );
   it("allows English library output only at the two shared POST endpoints", async () => {
     vi.stubEnv("NODE_ENV", "production");
     mocks.session.mockResolvedValue({
@@ -64,7 +112,7 @@ describe("worksheet export routes", () => {
           id: "owner",
           isAdmin: true,
           isSuperAdmin,
-          menus: ["export"],
+          menus: ["arithmetic"],
         });
         expect(await authorizeExport(request())).toBeNull();
       }

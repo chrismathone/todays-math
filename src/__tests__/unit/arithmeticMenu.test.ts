@@ -140,12 +140,11 @@ describe("관문 — /api/arithmetic 과 연산 학습지 자료 경로는 «연
     },
   );
 
-  it.each(ARITHMETIC_ROUTES)(
-    "«시험지 만들기»만 켠 계정은 %s %s 를 못 연다",
-    (method, path) => {
-      expect(accountRouteAllowed(only("bank"), method, path)).toBe(false);
-    },
-  );
+  it.each(
+    ARITHMETIC_ROUTES.filter(([, path]) => path.startsWith("/api/arithmetic")),
+  )("«시험지 만들기»만 켠 계정은 %s %s 를 못 연다", (method, path) => {
+    expect(accountRouteAllowed(only("bank"), method, path)).toBe(false);
+  });
 
   it("연산대장을 끈 계정은 다른 메뉴가 다 켜져 있어도 연산 경로를 못 연다", () => {
     const limited = only(

@@ -71,7 +71,7 @@ beforeEach(() => {
     id: reportId(20),
     role: "director",
     approvalStatus: "approved",
-    menus: ["export"],
+    menus: ["library"],
   });
 });
 describe("실제 성적표 라우트 계약과 원장 관문", () => {
@@ -85,7 +85,7 @@ describe("실제 성적표 라우트 계약과 원장 관문", () => {
       m.account.mockResolvedValueOnce({
         role: "reviewer",
         approvalStatus: "approved",
-        menus: ["export"],
+        menus: ["library"],
       });
       expect((await handler(request(method, suffix), context)).status).toBe(
         403,

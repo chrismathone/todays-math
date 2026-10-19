@@ -4,11 +4,47 @@ import { http, HttpResponse } from "msw";
 import { server } from "@/mocks/server";
 import { MOCK_CLASS_A } from "@/mocks/data";
 import {
+  WORKSPACE_OUTPUT_MENUS,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
+import {
   loadMainDashboard,
   type MainDashboardData,
 } from "@/lib/main/loadMainDashboard";
 
 describe("dashboard partial reads and capabilities", () => {
+  it.each(WORKSPACE_OUTPUT_MENUS)(
+    "loads common test output for %s without an export permission",
+    async (source) => {
+      const tests = vi.fn(() =>
+        HttpResponse.json({
+          data: [],
+          meta: { page: 1, pageSize: 100, total: 0 },
+        }),
+      );
+      server.use(http.get("/api/tests", tests));
+      const result = await loadMainDashboard({ allowedMenus: [source] });
+      expect(tests).toHaveBeenCalledOnce();
+      expect(result.testsStatus).toBe("ready");
+      expect(result.metricsStatus).toBe("unavailable");
+    },
+  );
+
+  it.each<{ allowedMenus: WorkspaceMenu[] }>([
+    { allowedMenus: [] },
+    { allowedMenus: ["export"] },
+    { allowedMenus: ["teaching"] },
+  ])(
+    "does not request test output without a source menu ($allowedMenus)",
+    async ({ allowedMenus }) => {
+      const tests = vi.fn(() => HttpResponse.json({}, { status: 403 }));
+      server.use(http.get("/api/tests", tests));
+      const result = await loadMainDashboard({ allowedMenus });
+      expect(result.testsStatus).toBe("unavailable");
+      expect(tests).not.toHaveBeenCalled();
+    },
+  );
+
   it("paints classes before slow progress, limits fanout, isolates a failure and makes zero forbidden requests", async () => {
     const classes = Array.from({ length: 8 }, (_, index) => ({
       ...MOCK_CLASS_A,

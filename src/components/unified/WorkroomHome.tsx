@@ -6,6 +6,7 @@ import WorkProgress from "./WorkProgress";
 import type { BankData, StudioProblem } from "./types";
 import {
   WORKSPACE_MENUS,
+  canOutputFrom,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
 import s from "./WorkroomHome.module.css";
@@ -66,9 +67,11 @@ export default function WorkroomHome({
   allowedMenus = WORKSPACE_MENUS.map((menu) => menu.id),
 }: Props) {
   const can = (menu: WorkspaceMenu) => allowedMenus.includes(menu);
-  const canCreate = can("bank") || can("studio") || can("export");
+  const canOutput = canOutputFrom(allowedMenus);
+  const canOpenSaved = canOutputFrom(allowedMenus, "library");
+  const canCreate = can("bank") || can("studio") || can("library");
   const showPrimary = can("bank") || can("studio") || can("library");
-  const showSecondary = can("export") || can("teaching");
+  const showSecondary = canOutput || can("teaching");
   const continueView =
     !hydrated || draft.problems.length
       ? "export"
@@ -264,8 +267,8 @@ export default function WorkroomHome({
                     {visibleDrafts.map((item) => (
                       <button
                         key={item.id}
-                        disabled={!can("export")}
-                        onClick={() => can("export") && onOpen(item.id)}
+                        disabled={!canOpenSaved}
+                        onClick={() => canOpenSaved && onOpen(item.id)}
                       >
                         <span className={s.documentIcon}>
                           <Icon name="paper" size={22} />
@@ -280,7 +283,7 @@ export default function WorkroomHome({
                             {formatDraftDate(item.updatedAt)}
                           </small>
                         </span>
-                        {can("export") && (
+                        {canOpenSaved && (
                           <span className={s.resume}>
                             이어하기
                             <Icon name="arrow" size={17} />
@@ -321,7 +324,7 @@ export default function WorkroomHome({
         )}
         {showSecondary && (
           <aside className={s.secondaryColumn}>
-            {can("export") && (
+            {canOutput && (
               <section
                 className={s.activeDraft}
                 aria-labelledby="active-draft-heading"
@@ -396,9 +399,11 @@ export default function WorkroomHome({
                     : "첫 문제 담기"}
                   <Icon name="arrow" size={19} />
                 </button>
-                <button className={s.newDraftButton} onClick={onNew}>
-                  <Icon name="plus" size={16} />새 시험지 만들기
-                </button>
+                {canCreate && (
+                  <button className={s.newDraftButton} onClick={onNew}>
+                    <Icon name="plus" size={16} />새 시험지 만들기
+                  </button>
+                )}
               </section>
             )}
             {can("teaching") && (

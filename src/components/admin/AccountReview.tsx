@@ -3,9 +3,9 @@
 import { useEffect, useId, useRef, useState } from "react";
 import {
   ALL_WORKSPACE_MENUS,
+  countWorkspaceMenus,
   normalizeWorkspaceMenus,
   isPersonalMenuSelectionRepresentable,
-  workspaceMenuInSidebar,
   workspaceMenuOptionsOf,
   type ManagedAccount,
   type WorkspaceMenu,
@@ -678,13 +678,6 @@ export default function AccountReview({
       </div>
       {MENU_TABS.map((tab) => {
         const options = workspaceMenuOptionsOf(tab.id, branchId);
-        const sidebarOptions = options.filter((option) =>
-          workspaceMenuInSidebar(option.permission, effectiveMenus),
-        );
-        const nestedOptions = options.filter(
-          (option) =>
-            !workspaceMenuInSidebar(option.permission, effectiveMenus),
-        );
         return (
           <div
             key={tab.id}
@@ -698,16 +691,16 @@ export default function AccountReview({
                 {tab.label}{" "}
                 <span>
                   {
-                    sidebarOptions.filter((option) =>
+                    options.filter((option) =>
                       effectiveMenus.includes(option.permission),
                     ).length
                   }
                   {" / "}
-                  {sidebarOptions.length}
+                  {options.length}
                 </span>
               </legend>
               <div className={s.menuGrid}>
-                {sidebarOptions.map((option) => (
+                {options.map((option) => (
                   <label key={option.id} className={s.menuOption}>
                     <input
                       type="checkbox"
@@ -729,42 +722,11 @@ export default function AccountReview({
                   </label>
                 ))}
               </div>
-              {nestedOptions.length > 0 ? (
-                <div className={s.menuExtras}>
-                  <h4>추가 기능 권한</h4>
-                  <p id={`${menuId}-export-help`} className={s.help}>
-                    내보내기는 시험지 만들기·문제 추출·시험지 보관함에서 이어서
-                    이용합니다. 이 메뉴가 모두 해제되면 좌측 메뉴에 표시됩니다.
-                  </p>
-                  {nestedOptions.map((option) => (
-                    <label key={option.id} className={s.menuOption}>
-                      <input
-                        type="checkbox"
-                        checked={effectiveMenus.includes(option.permission)}
-                        disabled={
-                          !previewBranchMenus?.includes(option.permission) ||
-                          unavailableMenus.includes(option.permission)
-                        }
-                        aria-describedby={`${menuId}-export-help`}
-                        onChange={() => changeMenus(option.permission)}
-                      />
-                      <span>
-                        {option.label}
-                        {menuAvailabilityNote(option.permission) ? (
-                          <small className={s.menuBlocked}>
-                            {menuAvailabilityNote(option.permission)}
-                          </small>
-                        ) : null}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              ) : null}
             </fieldset>
           </div>
         );
       })}
-      {effectiveMenus.length === 0 ? (
+      {countWorkspaceMenus(effectiveMenus) === 0 ? (
         <p className={s.note}>
           사용할 수 있는 메뉴가 없습니다. 내 정보·로그아웃과 허용된 관리 화면은
           계속 이용할 수 있습니다.

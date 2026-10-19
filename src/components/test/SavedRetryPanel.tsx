@@ -238,7 +238,8 @@ function StudentRetry({
           beforeOutput={beforeOutput}
           fixedComposition
           draftActions={false}
-          allowedMenus={["export"]}
+          // This fixed plan uses its own review/output steps; it grants no workspace navigation.
+          allowedMenus={[]}
           selected={selected}
           title={title}
           setTitle={setTitle}

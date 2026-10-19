@@ -14,7 +14,7 @@ const account: AccountAccess = {
   menus: [...ALL_WORKSPACE_MENUS],
 };
 describe("account approval and menu route policy", () => {
-  it("성적표 화면과 모든 읽기·쓰기·PDF는 출력 메뉴를 따른다", () => {
+  it("성적표 화면과 모든 읽기·쓰기·PDF는 출력 단계가 있는 메뉴를 따른다", () => {
     for (const [method, path] of [
       ["GET", "/exam-reports/test-1"],
       ["GET", "/api/exam-reports/test-1"],
@@ -26,11 +26,11 @@ describe("account approval and menu route policy", () => {
       ["POST", "/api/exam-reports/test-1/print"],
     ]) {
       expect(
-        accountRouteAllowed({ ...account, menus: ["export"] }, method!, path!),
+        accountRouteAllowed({ ...account, menus: ["library"] }, method!, path!),
       ).toBe(true);
       expect(
         accountRouteAllowed(
-          { ...account, menus: ["library", "teaching"] },
+          { ...account, menus: ["export", "teaching"] },
           method!,
           path!,
         ),
@@ -149,13 +149,9 @@ describe("account approval and menu route policy", () => {
     expect(accountRouteAllowed(limited, "GET", "/api/library/documents")).toBe(
       true,
     );
-    for (const path of [
-      "/api/problems",
-      "/api/studio/ai",
-      "/api/tests",
-      "/api/new-feature",
-    ])
+    for (const path of ["/api/problems", "/api/studio/ai", "/api/new-feature"])
       expect(accountRouteAllowed(limited, "GET", path)).toBe(false);
+    expect(accountRouteAllowed(limited, "GET", "/api/tests")).toBe(true);
     expect(accountRouteAllowed({ ...account, menus: [] }, "GET", "/")).toBe(
       true,
     );
@@ -314,20 +310,28 @@ describe("account approval and menu route policy", () => {
         );
     }
   });
-  it("opens saved print layouts (W6) to the 출력 menu that gates step 3 only", () => {
+  it("opens saved print layouts (W6) through each menu that owns output", () => {
     for (const [method, path] of [
       ["GET", "/api/studio/print-presets"],
       ["POST", "/api/studio/print-presets"],
       ["PATCH", "/api/studio/print-presets/p1"],
       ["DELETE", "/api/studio/print-presets/p1"],
     ]) {
-      expect(
-        accountRouteAllowed({ ...account, menus: ["export"] }, method!, path!),
-      ).toBe(true);
+      for (const menus of [
+        ["library"],
+        ["bank"],
+        ["studio"],
+        ["arithmetic"],
+        ["textbook"],
+        ["conceptBlank"],
+      ] as AccountAccess["menus"][])
+        expect(accountRouteAllowed({ ...account, menus }, method!, path!)).toBe(
+          true,
+        );
       for (const menus of [
         [],
-        ["library"],
-        ["bank", "studio"],
+        ["export"],
+        ["home", "teaching"],
       ] as AccountAccess["menus"][])
         expect(accountRouteAllowed({ ...account, menus }, method!, path!)).toBe(
           false,

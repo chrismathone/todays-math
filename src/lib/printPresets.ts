@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import type { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 import { authorizeAccount } from "@/lib/accountAccess";
+import { canOutputFrom } from "@/contracts/accountAccess.contract";
 import { privateError, privateHeaders } from "@/lib/privateWorkspace";
 import { PRINT_PRESET_KIND } from "@/contracts/privateWorkspace.contract";
 import {
@@ -22,7 +23,7 @@ import {
  * 저장 자리는 내 시험지와 같은 표(`workspace_document`, kind `printPreset`)지만 **자료가 아니다** —
  * 늘 비공개(`visibility` private · `sharedBranchId` null)이고 주인(로그인한 계정)의 행만 읽고 쓴다.
  * 자료 목록 · 수 · 공유 · 사본 길은 이 종류를 걸러 낸다(`privateDocumentList.ts` · `privateDocumentActions.ts`).
- * 감사 기록(`material.*`)도 남기지 않는다. 3단계를 여는 메뉴(`export` — 출력)를 따른다.
+ * 감사 기록(`material.*`)도 남기지 않는다. 출력 단계가 있는 각 메뉴에서 함께 쓴다.
  * 새 시험지 기본 양식은 한 사람에 하나 — 기본을 세우는 저장 · 바꾸기가 같은 트랜잭션에서 다른 양식의 기본을 푼다.
  */
 
@@ -71,7 +72,7 @@ async function authorize(request: Request) {
         403,
       ),
     };
-  if (!account.menus.includes("export"))
+  if (!canOutputFrom(account.menus))
     return {
       response: privateError("시험지 출력 메뉴를 사용할 권한이 없습니다.", 403),
     };
