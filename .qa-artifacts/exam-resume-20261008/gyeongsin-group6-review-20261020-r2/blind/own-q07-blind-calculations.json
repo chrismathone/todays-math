@@ -1,0 +1,81 @@
+{
+  "exposureDeclaration": {
+    "currentAuthoredQ07R2AnswerSolutionMetadataExposedBeforeRaw": false,
+    "priorOriginalQ07PageExposure": true,
+    "declaration": "현재 authored GYEONGSIN q07 r2의 답·해설·메타데이터를 읽지 않았다. 이전 허가된 원본 H 전체 페이지 검토에서 원래 q07의 조건·그림에 우연히 노출된 이력이 있다. 완전한 원문 비노출을 주장하지 않으며 이번 학생 조건으로 독립 계산했다. 현재 저자/비공개 패키지/원본을 재열람하지 않았다."
+  },
+  "exactArithmetic": {
+    "OU_over_OT": "2/3",
+    "TU_over_OT": "1/3",
+    "TU_squared_cm2": "3",
+    "OT_squared_cm2": "27",
+    "radius_squared_cm2": "36",
+    "radius_cm": 6,
+    "diameter_cm": 12,
+    "OM_QM_cm": 3,
+    "QT_TR_cm": 3,
+    "PM_MR_cm": "3√3",
+    "OT_cm": "3√3",
+    "OU_cm": "2√3",
+    "TU_cm": "√3"
+  },
+  "allChoices": [
+    {
+      "choice": "①",
+      "diameter_cm": 8,
+      "radius_cm": "4",
+      "implied_TU_squared_cm2": "4/3",
+      "equals_given_3": false
+    },
+    {
+      "choice": "②",
+      "diameter_cm": 10,
+      "radius_cm": "5",
+      "implied_TU_squared_cm2": "25/12",
+      "equals_given_3": false
+    },
+    {
+      "choice": "③",
+      "diameter_cm": 12,
+      "radius_cm": "6",
+      "implied_TU_squared_cm2": "3",
+      "equals_given_3": true
+    },
+    {
+      "choice": "④",
+      "diameter_cm": 14,
+      "radius_cm": "7",
+      "implied_TU_squared_cm2": "49/12",
+      "equals_given_3": false
+    },
+    {
+      "choice": "⑤",
+      "diameter_cm": 16,
+      "radius_cm": "8",
+      "implied_TU_squared_cm2": "16/3",
+      "equals_given_3": false
+    }
+  ],
+  "AAcorrespondence": {
+    "triangles": "OMU ~ OTQ",
+    "mapping": {
+      "O": "O",
+      "M": "T",
+      "U": "Q"
+    },
+    "rightAngles": "OM⊥MU because OQ⊥PR; OT⊥TQ by definition of foot T.",
+    "commonAngle": "OM and OQ are along same ray, OU and OT same ray; U lies on segment OT.",
+    "sidePairs": "OM↔OT,OU↔OQ,MU↔TQ"
+  },
+  "domains": "r>0; OM=r/2>0, OT=r√3/2>0, OU=2OT/3>0, TU=OT/3>0. Ratio denominators OT,OQ,OT² are nonzero. Positive lengths select r=+6; r=−6 is rejected. cm for lengths, cm² for squares.",
+  "existenceUniqueness": "반지름6의 원에서 OQ=OR=QR=6인 정삼각형 OQR를 만들고 R을 직선 OQ에 대칭시킨 점을 P로 잡는다. 반사로 OP=6, PQ=QR=6이므로 P도 원 위에 있다. PR⊥OQ이고 M은 OQ의 중점이다. T는 QR의 중점으로 OT=3√3>0이다. OMU~OTQ의 닮음에서 OU=2OT/3=2√3이므로 U는 OT 내부, TU=√3>0이다. 양의 한 반지름에서 모든 조건이 동시에 성립하므로 존재한다. 닮음은 모든 허용 배치에서 r²=36을 강제하고 양의 r만 취하여 지름이 유일하다. 반사·회전된 도형까지 배치가 하나라는 주장은 하지 않는다.",
+  "studentMethod": "정삼각형의 높이와 밑변 이등분, 중심에서 현에 내린 수선, 수직이등분선, AA삼각형닮음, 피타고라스, 제곱근 계산. 사인법칙·외접반지름·현곱/할선곱/원과비례 일반공식·좌표를 학생 방법으로 쓰지 않았다.",
+  "figureCheck": "학생 SVG를 PyMuPDF로 자체 PNG로 변환해 P,Q,R의 원 위 위치, Q-M-O 및 O-U-T 순서, PR과 OQ 및 QR과 OT의 직각 관계와 표기를 육안 확인했다. 픽셀·SVG좌표로 길이나 각을 계산하지 않았다.",
+  "renderDiagnostic": "CairoSVG import failed because libcairo DLL is unavailable; no install or input change. PyMuPDF succeeded. This is a local viewing-tool failure, not a math pass claim.",
+  "bindings": {
+    "studentDigest": "ea9087ec3172bb66a4cb5f19df3644a2394e1434c593abf55ec30054eaaa7e2e",
+    "studentProblemsSha256": "604f11313de87b1291aacb53da290cdda672e987f85dc130a5afcd6571e95b52",
+    "svgSha256": "523965a2d7fad582b2098725d5869a4c83ebd340f1543852eb533eaf83084c22"
+  },
+  "scopeLimits": "학생 raw 풀이만 봉인; 별도 학년 심사·출처·권리·가족·native·배포 승인 및 승인개수 증가는 없다."
+}
