@@ -1,0 +1,172 @@
+{
+  "kind": "independent-code-audit/v1",
+  "root": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
+  "rootHead": "f4a16fce43726609304210be78b27990707ad4cf",
+  "code": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/summarize-reviewed-batch.mjs",
+      "sha256": "747d8f33d1e5fdb5f911dcbd761157063a0e5f227840bdc1c325fa7a34069c9e",
+      "sha256AtEnd": "747d8f33d1e5fdb5f911dcbd761157063a0e5f227840bdc1c325fa7a34069c9e",
+      "unchangedDuringAudit": true
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/reviewWorkflow.test.mjs",
+      "sha256": "fff162ea4af9ebf8f21d61b39c1565453bb4ef6006f5e63b5aa99c83f8adf902",
+      "sha256AtEnd": "fff162ea4af9ebf8f21d61b39c1565453bb4ef6006f5e63b5aa99c83f8adf902",
+      "unchangedDuringAudit": true
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/engine/deriveFormats.ts",
+      "sha256": "8c3e150c36b1ab1fbade17f4f6e31099b1f6948b206fe91e9dcff4b9cad6600f",
+      "sha256AtEnd": "8c3e150c36b1ab1fbade17f4f6e31099b1f6948b206fe91e9dcff4b9cad6600f",
+      "unchangedDuringAudit": true
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/deriveFormatsCountDomain.test.ts",
+      "sha256": "32b3c0666455a8b708b0014f5b2cd53f9723020e81a052224906d6e919e52193",
+      "sha256AtEnd": "32b3c0666455a8b708b0014f5b2cd53f9723020e81a052224906d6e919e52193",
+      "unchangedDuringAudit": true
+    }
+  ],
+  "scope": "Read-only actual root files and reports/summary metadata. No root, author/review or ledger edits. No new worktree/DB/install/push. No future blind problem answers read. Synthetic count tasks and actual deterministic generator calls only.",
+  "summarizer": {
+    "status": "passed-within-audited-scope",
+    "negativeControls": 53,
+    "positiveControl": true,
+    "actualQ04": {
+      "authored": 1,
+      "historicalCandidateVersions": 1,
+      "independentSolvesBound": 1,
+      "mathematicalVerified": 1,
+      "gradeReviewed": 1,
+      "contentReportVerified": 1,
+      "contentReviewPassed": 0,
+      "contentReviewHeld": 1,
+      "figureInstances": 1,
+      "overallVerified": 0,
+      "loadable": 0,
+      "productionWrites": 0
+    },
+    "legacy15Preserved": 15,
+    "counts": {
+      "legacyPassChecked": 15,
+      "legacyHistoricalHeld": 96,
+      "newThree": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeongsin-review-20261019-r2/current-author-summary-parent-r2.json",
+          "sha256": "9e083d2d9422d12de692314e4133f47b81e65d9c999bb9dab603e496b57d9cab",
+          "counts": {
+            "authored": 1,
+            "historicalCandidateVersions": 1,
+            "independentSolvesBound": 1,
+            "mathematicalVerified": 1,
+            "gradeReviewed": 1,
+            "contentReportVerified": 0,
+            "contentReviewPassed": 0,
+            "contentReviewHeld": 1,
+            "figureInstances": 1,
+            "overallVerified": 0,
+            "loadable": 0,
+            "productionWrites": 0
+          }
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeongsin-group2-review-20261019-r1/current-author-summary-parent-r2.json",
+          "sha256": "c1c9d99eb2c742aa4e7e50bf9581f88cf2705297e07d9ad082bb8e764f1fb145",
+          "counts": {
+            "authored": 1,
+            "historicalCandidateVersions": 1,
+            "independentSolvesBound": 1,
+            "mathematicalVerified": 1,
+            "gradeReviewed": 1,
+            "contentReportVerified": 0,
+            "contentReviewPassed": 0,
+            "contentReviewHeld": 1,
+            "figureInstances": 1,
+            "overallVerified": 0,
+            "loadable": 0,
+            "productionWrites": 0
+          }
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeongsin-group3-review-20261019-r5/current-author-summary-parent-r2.json",
+          "sha256": "ac4dc5f3dbc496a839a4fb35f3d42ef80003cb513f1a058c8600f89090397593",
+          "counts": {
+            "authored": 1,
+            "historicalCandidateVersions": 1,
+            "independentSolvesBound": 1,
+            "mathematicalVerified": 1,
+            "gradeReviewed": 1,
+            "contentReportVerified": 1,
+            "contentReviewPassed": 0,
+            "contentReviewHeld": 1,
+            "figureInstances": 1,
+            "overallVerified": 0,
+            "loadable": 0,
+            "productionWrites": 0
+          }
+        }
+      ],
+      "expectedContentPass": 15,
+      "expectedContentHeld": 99,
+      "historicalV16": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/current-authored-batches-v16.json",
+        "sha256": "6c31a700ec7ec77163eafa8eecba252683d7ea8172b9918cf23a5f7a3f988fb8",
+        "pass": 16,
+        "held": 98
+      },
+      "full": 0,
+      "loadable": 0,
+      "limitation": "Supports 15/99 as classification bookkeeping using checked legacy15 report gates and retained prior96 held count plus three current held summaries; not a new semantic/grade/custody/rights certification of all115. Parent canonicalv17 is outside this write scope."
+    },
+    "regressionReview": "Root regression checks5 held dimensions and positive control. Additional independent predicate matrix checks all12 dimensions with false/missing/string/number values, false math/grade and nonverified statuses. No root test file executed because its fixture writes into root checkout; equivalent focused checks and real q04 summary were executed from this worker.",
+    "limitations": [
+      "Counts require actual externally reviewed report evidence; gate booleans do not establish truth or rights.",
+      "Rejected statuses are neither passed nor held by current summary predicate; existing current audited rows do not exercise rejected status. Do not assume passed+held partitions every authored record.",
+      "Root evaluateReview produces boolean math/grade fields; the summarizer uses their truthiness. No false approval reproduced in actual path."
+    ]
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "high",
+      "status": "reproduced",
+      "file": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/engine/deriveFormats.ts",
+      "line": 167,
+      "title": "Automatic count distractors lack opening math delimiter and every valid finite collection is rejected",
+      "evidence": "valid-five-auto throws; domain4/domain20 throw; actual generator seeds1..64 all64 fail. Valid caller-supplied four distractors succeed.",
+      "cause": "Array.from callback builds `${n}$개`, which fails readCount /^\\$(0|[1-9]\\d*)\\$개$/. The correct answer cannot be removed from that malformed pool either.",
+      "impact": "Advertised automatic finite-domain multiple-choice derivation is unavailable for supported classification tasks; fail-closed, not a mathematical false approval.",
+      "recommendation": "Construct the same canonical $n$개 representation as readCount accepts; rerun direct N4/N20 and actual64 generator successes plus negative controls. Parent must implement separately."
+    },
+    {
+      "id": "F2",
+      "severity": "medium",
+      "status": "reproduced",
+      "file": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/engine/deriveFormats.ts",
+      "line": 125,
+      "title": "Collection recognizer treats ellipsis and blank math rows as explicit members",
+      "evidence": "A final $\\cdots$ or $ $ row returns bound5 and accepts valid in-range authored distractors; whitespace-distinct duplicate $ x=x $ also evades the raw duplicate guard.",
+      "impact": "A syntactically dollar-wrapped list is not necessarily the complete explicit collection promised by the function. Ellipsis makes total population unknown; blank row is not a printed expression. Numeric bound is unsupported in these adversarial cases.",
+      "recommendation": "Conservatively decline empty/whitespace/ellipsis placeholders and normalize only safe presentation whitespace before duplicate checking, or narrow/document supported list grammar. Do not add symbolic equivalence or grading approval."
+    }
+  ],
+  "countChecks": {
+    "boundaryCases": 24,
+    "actualGenerated64": {
+      "passed": 0,
+      "failed": 64
+    },
+    "authoredValidAccepted": true,
+    "badDistractorNegativeControlsRejected": true,
+    "insufficientDomainN2N3Rejected": true,
+    "unknownWordingStayedLegacy": true,
+    "unsupportedSemantics": "This branch bounds numeric choices only. It does not prove which expressions are equations/linear equations, correct answer truth, distractor pedagogy, target grade or rights."
+  },
+  "overall": "summarizer correction supported; finite count branch has blocking implementation defect and incomplete-collection guard findings",
+  "releaseApproved": false,
+  "gradeApproved": false,
+  "rightsApproved": false,
+  "fullVerified": 0,
+  "loadable": 0
+}

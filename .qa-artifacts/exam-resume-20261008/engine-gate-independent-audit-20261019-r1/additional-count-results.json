@@ -1,0 +1,366 @@
+{
+  "adversarial": [
+    {
+      "name": "ellipsis",
+      "bound": 5,
+      "accepted": true,
+      "choices": [
+        "① $2$개",
+        "② $0$개",
+        "③ $4$개",
+        "④ $3$개",
+        "⑤ $1$개"
+      ]
+    },
+    {
+      "name": "blank",
+      "bound": 5,
+      "accepted": true,
+      "choices": [
+        "① $2$개",
+        "② $0$개",
+        "③ $4$개",
+        "④ $3$개",
+        "⑤ $1$개"
+      ]
+    },
+    {
+      "name": "whitespace-duplicate",
+      "bound": 5,
+      "accepted": true,
+      "choices": [
+        "① $2$개",
+        "② $0$개",
+        "③ $4$개",
+        "④ $3$개",
+        "⑤ $1$개"
+      ]
+    }
+  ],
+  "actualGenerated64": {
+    "passed": 0,
+    "failed": 64,
+    "results": [
+      {
+        "seed": 1,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 2,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 3,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 4,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 5,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 6,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 7,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 8,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 9,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 10,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 11,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 12,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 13,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 14,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 15,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 16,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 17,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 18,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 19,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 20,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 21,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 22,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 23,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 24,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 25,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 26,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 27,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 28,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 29,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 30,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 31,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 32,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 33,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 34,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 35,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 36,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 37,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 38,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 39,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 40,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 41,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 42,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 43,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 44,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 45,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 46,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 47,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 48,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 49,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 50,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 51,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 52,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 53,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 54,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 55,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 56,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 57,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 58,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 59,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 60,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 61,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 62,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 63,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      },
+      {
+        "seed": 64,
+        "success": false,
+        "error": "Error: 개수형 오답은 목록 범위 안의 서로 다른 정수여야 합니다"
+      }
+    ]
+  }
+}

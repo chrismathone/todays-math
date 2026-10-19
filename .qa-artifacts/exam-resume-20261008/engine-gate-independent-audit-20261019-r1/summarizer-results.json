@@ -1,0 +1,494 @@
+{
+  "code": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/summarize-reviewed-batch.mjs",
+      "sha256": "747d8f33d1e5fdb5f911dcbd761157063a0e5f227840bdc1c325fa7a34069c9e"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/reviewWorkflow.test.mjs",
+      "sha256": "fff162ea4af9ebf8f21d61b39c1565453bb4ef6006f5e63b5aa99c83f8adf902"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/engine/deriveFormats.ts",
+      "sha256": "8c3e150c36b1ab1fbade17f4f6e31099b1f6948b206fe91e9dcff4b9cad6600f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/deriveFormatsCountDomain.test.ts",
+      "sha256": "32b3c0666455a8b708b0014f5b2cd53f9723020e81a052224906d6e919e52193"
+    }
+  ],
+  "predicateMatrix": {
+    "cases": 53,
+    "allExpectedRejections": true,
+    "positiveControl": true,
+    "matrix": [
+      {
+        "held": "answerCorrect",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "answerCorrect",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "answerCorrect",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "answerCorrect",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "solutionCorrect",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "solutionCorrect",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "solutionCorrect",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "solutionCorrect",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "existenceUniqueness",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "existenceUniqueness",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "existenceUniqueness",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "existenceUniqueness",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "choicesCorrect",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "choicesCorrect",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "choicesCorrect",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "choicesCorrect",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "figureConsistent",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "figureConsistent",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "figureConsistent",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "figureConsistent",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "sameCoreConceptAndProcedure",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "sameCoreConceptAndProcedure",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "sameCoreConceptAndProcedure",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "sameCoreConceptAndProcedure",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "distinctPresentation",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "distinctPresentation",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "distinctPresentation",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "distinctPresentation",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "naturalKorean",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "naturalKorean",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "naturalKorean",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "naturalKorean",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "curriculumAppropriate",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "curriculumAppropriate",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "curriculumAppropriate",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "curriculumAppropriate",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "allStudentSurfacesInScope",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "allStudentSurfacesInScope",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "allStudentSurfacesInScope",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "allStudentSurfacesInScope",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "unitFamilyFit",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "unitFamilyFit",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "unitFamilyFit",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "unitFamilyFit",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "scoreAppropriate",
+        "value": "false",
+        "passed": false
+      },
+      {
+        "held": "scoreAppropriate",
+        "value": "undefined",
+        "passed": false
+      },
+      {
+        "held": "scoreAppropriate",
+        "value": "true",
+        "passed": false
+      },
+      {
+        "held": "scoreAppropriate",
+        "value": "1",
+        "passed": false
+      },
+      {
+        "held": "mathematicalVerified",
+        "passed": false
+      },
+      {
+        "held": "gradeReviewed",
+        "passed": false
+      },
+      {
+        "held": "status-pending",
+        "passed": false
+      },
+      {
+        "held": "status-rejected",
+        "passed": false
+      },
+      {
+        "held": "status-undefined",
+        "passed": false
+      }
+    ]
+  },
+  "q04ActualSummary": {
+    "counts": {
+      "authored": 1,
+      "historicalCandidateVersions": 1,
+      "independentSolvesBound": 1,
+      "mathematicalVerified": 1,
+      "gradeReviewed": 1,
+      "contentReportVerified": 1,
+      "contentReviewPassed": 0,
+      "contentReviewHeld": 1,
+      "figureInstances": 1,
+      "overallVerified": 0,
+      "loadable": 0,
+      "productionWrites": 0
+    },
+    "checks": {
+      "answerCorrect": true,
+      "solutionCorrect": true,
+      "existenceUniqueness": true,
+      "choicesCorrect": true,
+      "figureConsistent": true,
+      "sameCoreConceptAndProcedure": true,
+      "distinctPresentation": true,
+      "naturalKorean": true,
+      "curriculumAppropriate": true,
+      "allStudentSurfacesInScope": true,
+      "unitFamilyFit": false,
+      "scoreAppropriate": true
+    },
+    "reasons": [
+      "review-unitFamilyFit-not-passed",
+      "source-identity-held",
+      "taxonomy-held",
+      "rights-review-pending",
+      "similarity-review-pending",
+      "native-exam-twin-provenance-not-implemented"
+    ]
+  },
+  "legacy15": [
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q01",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\verification\\reports\\q01.json",
+      "reportSha256": "f137abe0309ee53bee1c2e885f5d442d1292ac995df5ed2cf9f2169a9f7fd6c4",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q02",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\reports\\q02.json",
+      "reportSha256": "50a600abf5b5c98495c864c8f598d389c11606da6b159b7aab7074ddd780f1d8",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q03",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\reports\\q03.json",
+      "reportSha256": "242e6c80977eee0808cea01151e89e226d91f12227ef849dfa1fcf2be6decaad",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q04",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\verification\\reports\\q04.json",
+      "reportSha256": "6aa9d497b1185ec4e3d16a78a2cc7a7a72efc9b32572b8a158bfc4eedb5c9e7b",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q06",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\verification\\reports\\q06.json",
+      "reportSha256": "f868560788f6fb1a8e465f8a79ea23b2dded20d6429094c3604b0aeee4c22f4a",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q08",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\verification\\reports\\q08.json",
+      "reportSha256": "6a3c311445acfde01d33f757f30e1cb7fffe05956e13ba44b2ff48df2b721682",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q09",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\verification\\reports\\q09.json",
+      "reportSha256": "80dcf97f6855c69016c7b9cfa006abdbd259172818416a0ac7a8dc7b782b38db",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q12",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\verification\\reports\\q12.json",
+      "reportSha256": "3f8b26e026752e41098be611f8bf500e5d20cb8d21321dd327a6c81e621e1f5a",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q13",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\verification\\reports\\q13.json",
+      "reportSha256": "e9f5589e5165d1d53af0a0a43248099db5b40c877c640745ca9b007b252557eb",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q16",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\verification\\reports\\q16.json",
+      "reportSha256": "d7907d002f6a9478f141c67d94f48a81751b0691d0fd54ad5e8066fe002a2bc8",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\verification\\reports\\q19.json",
+      "reportSha256": "ad41a206b9593d662ad4f03fd3ad3f819e39e2bada8366bdba373566b40cd195",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-bumil-2025-2-mid-author-r1-q21",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\reports\\q21.json",
+      "reportSha256": "eac9740b74ad7ec8658e16f8fec72ac1ef11e8f373f0fd87608d25a9ebfa11ca",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-gyeongsan-2025-2-mid-author-r1-q02",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsan-final-review-r1\\reports\\q02.json",
+      "reportSha256": "36cd395317803f34565436c5b258bcbf570288ace7189dd987288a852d52bfce",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-gyeongsan-2025-2-mid-author-r1-q08",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsan-final-review-r1\\reports\\q08.json",
+      "reportSha256": "cfe7b3a6850e505fc3cd43da86af58276222672d66591e3914ca8e89070dfdcc",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    },
+    {
+      "id": "exam-twin-gyeonggu-2025-2-mid-author-r1-q18",
+      "reportPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q18.json",
+      "reportSha256": "548f822eceda24358dcce1359297af78dff8692f6784a9803bca5072ae1268ca",
+      "status": "verified",
+      "math": true,
+      "grade": true,
+      "all12": true,
+      "failedChecks": [],
+      "passesNewPredicate": true
+    }
+  ],
+  "legacyPassCountUnderNewPredicate": 15,
+  "limits": "Report/summary boolean and exact current ID/student/asset/hash consistency audit only; no new mathematical/grade/rights approval and no new problem answers read."
+}
