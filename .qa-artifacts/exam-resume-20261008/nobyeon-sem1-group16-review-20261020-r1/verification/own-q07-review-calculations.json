@@ -1,0 +1,338 @@
+{
+  "currentCanonicalDigestsRecomputed": {
+    "studentDigest": "437c39853bafc44982d38911db325ed5a206fd50a99c8788f21cd4ca334994c9",
+    "candidateDigest": "53759e771d6d37af7010a319e8f10ee6aaf10d9d90e7548635c63bd671b8b155",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "solveDigest": "602f1571b42702ffa4247261b295dea32770dd66f43e858e36fef7b1b413c782"
+  },
+  "rawSha256": "bef60c852d5add18f1ce613f3145aaf8f4f95bd14fd4050cf22b3099461ab5c4",
+  "rawUnchanged": true,
+  "baseNine": [
+    {
+      "printed": "\\sqrt2",
+      "normalForm": {
+        "n": 2,
+        "coefficient": "1",
+        "constant": "0"
+      },
+      "irrational": true,
+      "negative": false,
+      "nonintegerRational": false,
+      "integer": false,
+      "sign": "positive",
+      "exactBounds": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "printed": "-\\sqrt3",
+      "normalForm": {
+        "n": 3,
+        "coefficient": "-1",
+        "constant": "0"
+      },
+      "irrational": true,
+      "negative": true,
+      "nonintegerRational": false,
+      "integer": false,
+      "sign": "negative",
+      "exactBounds": [
+        "-2",
+        "-1"
+      ]
+    },
+    {
+      "printed": "\\sqrt8-2",
+      "normalForm": {
+        "n": 2,
+        "coefficient": "2",
+        "constant": "-2"
+      },
+      "irrational": true,
+      "negative": false,
+      "nonintegerRational": false,
+      "integer": false,
+      "sign": "positive",
+      "exactBounds": [
+        "0",
+        "2"
+      ]
+    },
+    {
+      "printed": "-3",
+      "normalForm": {
+        "n": 0,
+        "coefficient": "0",
+        "constant": "-3"
+      },
+      "irrational": false,
+      "negative": true,
+      "nonintegerRational": false,
+      "integer": true,
+      "sign": "negative",
+      "exactBounds": [
+        "-3",
+        "-3"
+      ]
+    },
+    {
+      "printed": "0",
+      "normalForm": {
+        "n": 0,
+        "coefficient": "0",
+        "constant": "0"
+      },
+      "irrational": false,
+      "negative": false,
+      "nonintegerRational": false,
+      "integer": true,
+      "sign": "zero",
+      "exactBounds": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "printed": "\\sqrt{16}",
+      "normalForm": {
+        "n": 0,
+        "coefficient": "0",
+        "constant": "4"
+      },
+      "irrational": false,
+      "negative": false,
+      "nonintegerRational": false,
+      "integer": true,
+      "sign": "positive",
+      "exactBounds": [
+        "4",
+        "4"
+      ]
+    },
+    {
+      "printed": "0.\\dot6",
+      "normalForm": {
+        "n": 0,
+        "coefficient": "0",
+        "constant": "2/3"
+      },
+      "irrational": false,
+      "negative": false,
+      "nonintegerRational": true,
+      "integer": false,
+      "sign": "positive",
+      "exactBounds": [
+        "2/3",
+        "2/3"
+      ]
+    },
+    {
+      "printed": "-1.25",
+      "normalForm": {
+        "n": 0,
+        "coefficient": "0",
+        "constant": "-5/4"
+      },
+      "irrational": false,
+      "negative": true,
+      "nonintegerRational": true,
+      "integer": false,
+      "sign": "negative",
+      "exactBounds": [
+        "-5/4",
+        "-5/4"
+      ]
+    },
+    {
+      "printed": "\\sqrt{\\frac9{16}}",
+      "normalForm": {
+        "n": 0,
+        "coefficient": "0",
+        "constant": "3/4"
+      },
+      "irrational": false,
+      "negative": false,
+      "nonintegerRational": true,
+      "integer": false,
+      "sign": "positive",
+      "exactBounds": [
+        "3/4",
+        "3/4"
+      ]
+    }
+  ],
+  "baseCounts": [
+    3,
+    3,
+    3
+  ],
+  "allFiveOptions": [
+    {
+      "mark": "①",
+      "printed": "$\\sqrt{25}-5$",
+      "classification": {
+        "normalForm": {
+          "n": 0,
+          "coefficient": "0",
+          "constant": "0"
+        },
+        "irrational": false,
+        "negative": false,
+        "nonintegerRational": false,
+        "integer": true,
+        "sign": "zero",
+        "exactBounds": [
+          "0",
+          "0"
+        ]
+      },
+      "finalCounts": [
+        3,
+        3,
+        3
+      ],
+      "meetsTarget": false
+    },
+    {
+      "mark": "②",
+      "printed": "$\\sqrt{0.81}$",
+      "classification": {
+        "normalForm": {
+          "n": 0,
+          "coefficient": "0",
+          "constant": "9/10"
+        },
+        "irrational": false,
+        "negative": false,
+        "nonintegerRational": true,
+        "integer": false,
+        "sign": "positive",
+        "exactBounds": [
+          "9/10",
+          "9/10"
+        ]
+      },
+      "finalCounts": [
+        3,
+        3,
+        4
+      ],
+      "meetsTarget": false
+    },
+    {
+      "mark": "③",
+      "printed": "$-\\sqrt{49}$",
+      "classification": {
+        "normalForm": {
+          "n": 0,
+          "coefficient": "0",
+          "constant": "-7"
+        },
+        "irrational": false,
+        "negative": true,
+        "nonintegerRational": false,
+        "integer": true,
+        "sign": "negative",
+        "exactBounds": [
+          "-7",
+          "-7"
+        ]
+      },
+      "finalCounts": [
+        3,
+        4,
+        3
+      ],
+      "meetsTarget": false
+    },
+    {
+      "mark": "④",
+      "printed": "$\\sqrt5-1$",
+      "classification": {
+        "normalForm": {
+          "n": 5,
+          "coefficient": "1",
+          "constant": "-1"
+        },
+        "irrational": true,
+        "negative": false,
+        "nonintegerRational": false,
+        "integer": false,
+        "sign": "positive",
+        "exactBounds": [
+          "1",
+          "2"
+        ]
+      },
+      "finalCounts": [
+        4,
+        3,
+        3
+      ],
+      "meetsTarget": false
+    },
+    {
+      "mark": "⑤",
+      "printed": "$2-\\sqrt7$",
+      "classification": {
+        "normalForm": {
+          "n": 7,
+          "coefficient": "-1",
+          "constant": "2"
+        },
+        "irrational": true,
+        "negative": true,
+        "nonintegerRational": false,
+        "integer": false,
+        "sign": "negative",
+        "exactBounds": [
+          "-1",
+          "0"
+        ]
+      },
+      "finalCounts": [
+        4,
+        4,
+        3
+      ],
+      "meetsTarget": true
+    }
+  ],
+  "overlap": {
+    "baseNegativeIrrational": 1,
+    "baseNegativeNonintegerRational": 1,
+    "finalNegativeIrrational": 2
+  },
+  "exactCyclicAndRationalValues": {
+    "0.dot6": "2/3",
+    "-1.25": "-5/4",
+    "sqrt9over16": "3/4",
+    "sqrt0.81": "9/10"
+  },
+  "rootDomain": "all numeric radicands positive; fraction denominator16positive; principal roots; no physical units/geometry",
+  "irrationalityAndSigns": "nonsquare2/3/5/7 roots irrational; nonzero rational multiple and rational shift preserve irrationality by elementary rearrangement. sqrt8-2=2sqrt2-2>0; sqrt5-1>0;2-sqrt7<0 from integer square comparisons.",
+  "authorFullSolutionAudit": {
+    "allNineAndFive": "correct; own exact values/counts agree",
+    "overlap": "author counts each category separately and uses simultaneous conditions, no disjoint-sum mistake",
+    "irrationality": "author explicitly explains2-sqrt7 via rational subtraction; base sqrt8-2 and option sqrt5-1 use same elementary rule implicitly, verified here",
+    "cyclic": "actual dot6 explicitly defined0.666...;2/3 conversion correct and within official limit of understanding rationality",
+    "existenceUniqueChoice": "option5 realizes4/4/3 and every other option fails at least one condition; no claim globally unique realx"
+  },
+  "sourceComparison": {
+    "sourceArtifactSha256": "beb995c7bdf38617cf769916b2771b3fcb489464a425553aeee4289c4f298353",
+    "sourceObserved": "complete10-number list; independently classify/count irrational,negative,noninteger rational then output a^2+b-c; source중/5points",
+    "currentObserved": "nine known entries plus three required final counts; recover missing datum by choosing negative irrational from5options",
+    "sameCore": "radical/finite/recurring decimal simplification, integer/rational/irrational inclusion and sign classification, overlapping counts",
+    "actualInverseTarget": "source output classification counts become target conditions and tenth datum becomes unknown; role/structure genuinely changed, not only numbers",
+    "difficultyTradeoff": "new list omits original pi and more complicated root forms, reducing some expression burden; inverse joint-count reasoning and five trial classifications add burden; no measured same difficulty claim",
+    "sourceKeyNotUsed": true
+  },
+  "inputHashes": {
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "verification-inputs.json": "98aee25ff9eae09e614c3baaaeac0d245ba0dab974e7ad8c0d516819cb2f6079",
+    "verification-manifest.json": "07b8786993a1506521bc3ae1b8ebb2e95c95dd1bf52de22f96a3549abd3b2e4a",
+    "sealed-raw-commit.json": "cad5f2b9bd1b1e60c2e0b9faabe3918d73a84f4dd6d17e0556be034cc08761f1"
+  },
+  "utf8WriteReadPassed": true
+}

@@ -1,0 +1,50 @@
+{
+  "utc": "2026-10-19T16:40:24.332971+00:00",
+  "kind": "source-geometry-order-diagnostic/v1",
+  "sourceManifest": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/personal-651da9aa806ce1c9d1c3ae5539e6038f/source-manifest.local.json",
+    "sha256": "76749165acccb92c23dd167adfbe16377d0c60735ea5568780c328ee469b0cf9"
+  },
+  "sourceQuestionNumber": 22,
+  "sourceContentDigest": "95f823471f6341ff7174ea498bb7ce4fe5fa3d8a0272ab929b6bfc0d1d524ba9",
+  "observedTextConditions": [
+    "P,A,Q on segment PQ; PA=a>0; QA=2 from circumference4pi",
+    "B midpointPQ; C midpointPB; all four circles throughA; 0<a<2"
+  ],
+  "coordinateConvention": "Put P=0 and Q=a+2; orientation reversal changes no distances.",
+  "exactCases": [
+    {
+      "a": "1/2",
+      "P": "0",
+      "A": "1/2",
+      "Q": "5/2",
+      "B": "5/4",
+      "C": "5/8",
+      "CA": "1/8",
+      "signed_A_minus_C": "-1/8",
+      "C_before_A": false,
+      "allFourRadiiPositive": true
+    },
+    {
+      "a": "1",
+      "P": "0",
+      "A": "1",
+      "Q": "3",
+      "B": "3/2",
+      "C": "3/4",
+      "CA": "1/4",
+      "signed_A_minus_C": "1/4",
+      "C_before_A": true,
+      "allFourRadiiPositive": true
+    }
+  ],
+  "finding": "The transcribed text permits C<A and A<C with positive radii. A signed (3a-2)/4 cannot be used as CA length without additional order evidence.",
+  "nondegenerateCircleCondition": "a=2/3 gives C=A and zero radius, so the named nondegenerate circle also requires excluding it; a numeric interval alone is incomplete.",
+  "decision": "hold source visual/order and full-method interpretation before authoring this item; do not infer the original figure ordering from pixels or assumed textbook layout",
+  "scope": "Exact source-condition audit only, not a fresh twin or independent twin approval; no original answer-key export or rights/grade approval.",
+  "sourceFigureAccess": "Current cached text did not supply the original diagram; previous source-access-r4 only describes that process, not global NAS state.",
+  "newManualQuestions": 0,
+  "newFigures": 0,
+  "newBlindSolves": 0,
+  "dbWrites": 0
+}

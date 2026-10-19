@@ -1,0 +1,26 @@
+{
+  "inputHashes": {
+    "VERIFY-BRIEF.md": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5",
+    "verification-inputs.json": "30741052c83849fd38f87bebe88e4d175517ce7b97b5054a88dcef738088c4ca",
+    "verification-manifest.json": "b46a12e8a4075ff444946f6ac549523ef1218f851e8010acb3797d4c37536411",
+    "sealed-raw-commit.json": "93abe840c1004e69c9620fd5c31c0ec1f831482d05c3567be2c2069749b9b9a6"
+  },
+  "sourceQ01OnlySha256": "b6358b343b2228058e5e33f7c0c951f2870cc88d64c7dfe77715ef0839a7c852",
+  "rawSha256": "5a5a4f113292f6de53c9d5bf948f3aedfcbbaca80345dac6c7f9fce65a952d19",
+  "reportSha256": "9aee4134f1ca32e0f5cdfba81c0b014750dee12ccb425a3edc69e879a69a41c3",
+  "ownEvidenceHashes": {
+    "own-q01-review-audit.py": "f03f10e428a1570a5d15cbb2adc0c5a3a0145ccb58c72b32ce8577e0da3614fb",
+    "own-q01-review-calculations.json": "7c547f8e2b43a3f04293ea0bbf09dee3e608c4b66c0fd97db6f1c842da1070f4",
+    "own-q01-review-utf8-probe.txt": "d363b3014884e1fa04f89ada74370aee6a8684f8932ffbf22e6bfe7e87598325"
+  },
+  "counts": {
+    "independentMathDecision": 1,
+    "independentGradeDecision2015AfterRootDefinition": 1,
+    "checksPassed": 11,
+    "checksHeld": 1,
+    "surfacesPassed": 7,
+    "contentHeld": 1,
+    "newBlindOrQuestionIncrement": 0
+  },
+  "providedInputsAndRawUnchanged": true
+}

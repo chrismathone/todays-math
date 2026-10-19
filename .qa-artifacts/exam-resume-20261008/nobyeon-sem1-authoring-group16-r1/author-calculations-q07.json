@@ -1,0 +1,143 @@
+{
+  "utc": "2026-10-19T16:35:17.454Z",
+  "candidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group16-r1/candidates/q07.json",
+    "sha256": "43519d897483b9c37dcccae6ff30f2f2b2fa56397253e9b1331459bcfcdbb1e0"
+  },
+  "studentDigest": "437c39853bafc44982d38911db325ed5a206fd50a99c8788f21cd4ca334994c9",
+  "candidateDigest": "53759e771d6d37af7010a319e8f10ee6aaf10d9d90e7548635c63bd671b8b155",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "baseFacts": [
+    {
+      "id": "sqrt2",
+      "irr": true,
+      "negative": false,
+      "nonIntegerRational": false
+    },
+    {
+      "id": "negative-sqrt3",
+      "irr": true,
+      "negative": true,
+      "nonIntegerRational": false
+    },
+    {
+      "id": "sqrt8-minus2",
+      "irr": true,
+      "negative": false,
+      "nonIntegerRational": false
+    },
+    {
+      "id": "negative3",
+      "irr": false,
+      "negative": true,
+      "nonIntegerRational": false
+    },
+    {
+      "id": "zero",
+      "irr": false,
+      "negative": false,
+      "nonIntegerRational": false
+    },
+    {
+      "id": "sqrt16",
+      "irr": false,
+      "negative": false,
+      "nonIntegerRational": false
+    },
+    {
+      "id": "periodic6",
+      "irr": false,
+      "negative": false,
+      "nonIntegerRational": true
+    },
+    {
+      "id": "negative125-over100",
+      "irr": false,
+      "negative": true,
+      "nonIntegerRational": true
+    },
+    {
+      "id": "sqrt9-over16",
+      "irr": false,
+      "negative": false,
+      "nonIntegerRational": true
+    }
+  ],
+  "baseCounts": [
+    3,
+    3,
+    3
+  ],
+  "options": [
+    {
+      "id": "sqrt25-minus5",
+      "irr": false,
+      "negative": false,
+      "nonIntegerRational": false
+    },
+    {
+      "id": "sqrt081",
+      "irr": false,
+      "negative": false,
+      "nonIntegerRational": true
+    },
+    {
+      "id": "negative-sqrt49",
+      "irr": false,
+      "negative": true,
+      "nonIntegerRational": false
+    },
+    {
+      "id": "sqrt5-minus1",
+      "irr": true,
+      "negative": false,
+      "nonIntegerRational": false
+    },
+    {
+      "id": "2-minus-sqrt7",
+      "irr": true,
+      "negative": true,
+      "nonIntegerRational": false
+    }
+  ],
+  "target": [
+    4,
+    4,
+    3
+  ],
+  "optionCounts": [
+    [
+      3,
+      3,
+      3
+    ],
+    [
+      3,
+      3,
+      4
+    ],
+    [
+      3,
+      4,
+      3
+    ],
+    [
+      4,
+      3,
+      3
+    ],
+    [
+      4,
+      4,
+      3
+    ]
+  ],
+  "correctChoice": 5,
+  "classificationCountersOverlap": true,
+  "authorOnly": true,
+  "independentReview": false,
+  "newFigures": 0,
+  "newTables": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}
