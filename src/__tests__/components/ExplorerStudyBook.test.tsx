@@ -21,6 +21,50 @@ const plan = {
 } as unknown as FadingDailyPlan;
 
 describe("§8.25 오늘 공부", () => {
+  it.each(["todo", "done"] as const)(
+    "shows the unit once in C order for %s",
+    (status) => {
+      render(
+        <ExplorerStudyBook
+          grade="초등 5학년"
+          unit="소수의 곱셈"
+          journey={<p>진도판</p>}
+          study={
+            <DailyStudy
+              plan={{ ...plan, status }}
+              busy={false}
+              onStart={vi.fn()}
+              startId="start"
+            />
+          }
+        />,
+      );
+      const grade = screen.getByText("초등 5학년");
+      const heading = screen.getByRole("heading", {
+        name:
+          status === "done" ? "오늘 공부를 마쳤어요" : "오늘도 한 칸씩 배워요",
+      });
+      const units = screen.getAllByText("소수의 곱셈");
+      expect(units).toHaveLength(1);
+      expect(
+        grade.compareDocumentPosition(heading) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+      expect(
+        heading.compareDocumentPosition(units[0]) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+      if (status === "todo") {
+        const invitation = screen.getByText(
+          "배운 것을 떠올리고, 새 내용을 배워요.",
+        );
+        expect(
+          units[0].compareDocumentPosition(invitation) &
+            Node.DOCUMENT_POSITION_FOLLOWING,
+        ).toBeTruthy();
+      }
+    },
+  );
   it("starts exactly plan.next, even when it is not the first activity", () => {
     const start = vi.fn();
     render(
@@ -74,9 +118,10 @@ describe("§8.25 오늘 공부", () => {
     fireEvent.touchEnd(spread, {
       changedTouches: [{ clientX: 200, clientY: 105 }],
     });
-    expect(
-      screen.getByRole("button", { name: /^오늘 공부$/ }),
-    ).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: /^오늘 공부$/ })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
     fireEvent.click(
       screen.getByRole("button", { name: "나의 수학 여정 보기" }),
     );

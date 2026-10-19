@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  createContext,
+  useContext,
   useId,
   useRef,
   useState,
@@ -19,6 +21,8 @@ import { curriculumName } from "@/components/fading/labels";
 import { ExplorerMath } from "./ExplorerMath";
 import b from "./explorer-study-book.module.css";
 
+const StudyUnit = createContext<string | null>(null);
+
 export function DailyStudy({
   plan,
   busy,
@@ -32,9 +36,15 @@ export function DailyStudy({
 }) {
   const next = plan.activities.find((activity) => activity.key === plan.next);
   const done = plan.status === "done" || plan.status === "short";
+  const unit = useContext(StudyUnit);
   return (
     <div className={b.study}>
       <h1>{done ? "오늘 공부를 마쳤어요" : "오늘도 한 칸씩 배워요"}</h1>
+      {unit ? (
+        <p className={b.unit}>
+          <ExplorerMath text={curriculumName(unit)} />
+        </p>
+      ) : null}
       {done ? (
         <>
           <section className={b.result}>
@@ -54,28 +64,11 @@ export function DailyStudy({
         </>
       ) : (
         <>
-          {next ? (
-            <p className={b.nextName}>
-              <ExplorerMath
-                text={curriculumName(
-                  next.kind === "recall"
-                    ? next.terms.join(" · ")
-                    : next.source.title,
-                )}
-              />
-            </p>
-          ) : (
-            <p>지금 시작할 공부를 준비하고 있어요.</p>
-          )}
+          <p className={b.invitation}>배운 것을 떠올리고, 새 내용을 배워요.</p>
           <div className={b.guide}>
             <div aria-label="길잡이 그림 자리" className={b.guideArt}>
               길잡이
             </div>
-            <p>
-              떠올려 보고, 풀어 보며
-              <br />
-              오늘 공부를 이어 가요.
-            </p>
           </div>
           <button
             id={startId}
@@ -165,10 +158,7 @@ export function ExplorerStudyBook({
           <div className={b.content}>
             <p className={b.pageTitle}>오늘 공부</p>
             <p className={b.grade}>{grade}</p>
-            <p className={b.unit}>
-              <ExplorerMath text={curriculumName(unit)} />
-            </p>
-            {study}
+            <StudyUnit.Provider value={unit}>{study}</StudyUnit.Provider>
             <button type="button" className={b.turn} onClick={() => setPage(1)}>
               나의 수학 여정 보기
             </button>
