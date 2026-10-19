@@ -34,7 +34,7 @@ let verifiedTransactions = 0;
 const denied = () => new Error("READ_ONLY_GUARD");
 
 function protect<T extends object>(client: T, transaction = false): T {
-  return new Proxy(client, {
+  return new Proxy<object>(client, {
     get(target, key, receiver) {
       const value = Reflect.get(target, key, receiver);
       if (key === "$extends")
@@ -98,7 +98,7 @@ function protect<T extends object>(client: T, transaction = false): T {
         });
       return value;
     },
-  });
+  }) as T;
 }
 
 const metadata = (data: Partial<BankData>) => ({
