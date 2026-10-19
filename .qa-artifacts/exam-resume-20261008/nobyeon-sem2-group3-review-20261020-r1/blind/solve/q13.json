@@ -1,0 +1,88 @@
+{
+  "studentDigest": "af62231ac743740f6043a3809993e34c59c93506af0102a78086fd9a923693a7",
+  "solverId": "independent-helper-nobyeon-sem2-group3-blind-20261020",
+  "answer": "③",
+  "solution": "자료가8개이고 평균이7이므로 전체 합은8×7=56이다. a를 제외한 일곱 값의 합은3+7+8+4+9+10+7=48이므로 a=56−48=8이다. 전체 자료에서7과8은 각각 두 번,3,4,9,10은 각각 한 번 나타난다. 따라서 최빈값은7,8을 모두 써야 한다. 보기①와②는하나를빠뜨리고,④와⑤는한번만나오는9를포함하므로옳지않다. 정답은③이다.",
+  "evidence": {
+    "exposure": {
+      "currentAuthorAnswerSolutionPackageExposed": false,
+      "priorSourceExposure": "이전 노변1학기 다수문항과노변2학기q09~11의학생풀이/저자해설/질문전용원문을검토했다. 관련대표값·산포도와다른시험기하검토이력도있다. 이번q12~14의현재저자답·해설·비공개패키지와원문은열지않았다. 전체원본코퍼스의완전미노출은주장하지않는다.",
+      "inputsUsed": "현재학생발문·표·5보기만; 저자답/원문키검색없음",
+      "noCovarianceFormulaUsed": true
+    },
+    "ownExactCalculations": {
+      "knownSum": 48,
+      "requiredTotal": 56,
+      "a": 8,
+      "data": [
+        3,
+        7,
+        8,
+        4,
+        8,
+        9,
+        10,
+        7
+      ],
+      "mean": "7",
+      "frequency": {
+        "3": 1,
+        "7": 2,
+        "8": 2,
+        "4": 1,
+        "9": 1,
+        "10": 1
+      },
+      "allModes": [
+        7,
+        8
+      ],
+      "choiceChecks": {
+        "①": false,
+        "②": false,
+        "③": true,
+        "④": false,
+        "⑤": false
+      },
+      "existenceUniqueness": "평균의분모8>0, 합식으로a8이유일하고자연수조건충족. 최빈값은가장큰빈도2를갖는두값을빠짐없이쓴집합으로유일."
+    },
+    "studentDigestVerified": true,
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "student-method-proposed-in-scope",
+        "basis": "평균정의로자료합과빠진자연수를구하고최빈값을정의대로모두찾는다."
+      },
+      "choices": {
+        "status": "all-five-checked",
+        "basis": "7단독/8단독/7과8/7과9/8과9의다섯목록을빈도와대조하여③만완전."
+      },
+      "figuresAndTables": {
+        "status": "student-table-checked",
+        "basis": "실제한행의여덟자료를순서와개수를유지하여확인했다. 제공SVG는없다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "자연수a,평균7,최빈값복수목록은중학교대표값표기이다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "보기③만참임을정확한계산/전체기록관찰로확인. raw answer에는선택기호하나만저장하고수치및근거는solution/evidence로분리한다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "중앙값의정렬정의와일차식·평균및빈도정의뿐이다. 현재저자해설은미노출이므로그해설은후속검토대상."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "2015중3대표값9수05-06의중앙값·평균·최빈값을학습한뒤배정. 이전자연수·부등관계·일차식·분수계산필요. 이전공식2015기준/중3배치열람이력은있으나이번새학생문항의정식7면·2022승인은후속전체해설검토와별개이다."
+      }
+    },
+    "domainUnits": "자연수/유한자료의정의역과양의자료개수·중앙값분모확인. 물리적길이나측정단위는제시되지않음.",
+    "limits": [
+      "수학solved와정식학년승인은구분;저자전체해설후속검토필요",
+      "새수동승인/출처/권리/livefamily/native승인아님",
+      "2022배치보류"
+    ]
+  },
+  "status": "solved"
+}
