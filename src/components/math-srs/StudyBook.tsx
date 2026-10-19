@@ -19,6 +19,7 @@ export type StudyBookProps = {
   rightTitle: string;
   left: ReactNode;
   right: ReactNode;
+  onPageChange?: (page: number) => void;
 };
 
 export function StudyBook({
@@ -27,11 +28,17 @@ export function StudyBook({
   rightTitle,
   left,
   right,
+  onPageChange,
 }: StudyBookProps) {
   const [page, setPage] = useState(0);
   const touch = useRef<{ x: number; y: number } | null>(null);
   const id = useId();
   const image = JOURNEY_THEMES[theme].boardImage;
+  function turn(next: number) {
+    if (next === page) return;
+    setPage(next);
+    onPageChange?.(next);
+  }
   return (
     <div
       className={b.book}
@@ -48,7 +55,7 @@ export function StudyBook({
             type="button"
             aria-pressed={page === index}
             aria-controls={`${id}-${index}`}
-            onClick={() => setPage(index)}
+            onClick={() => turn(index)}
           >
             {label}
           </button>
@@ -73,7 +80,7 @@ export function StudyBook({
           const dx = first.clientX - from.x;
           const dy = first.clientY - from.y;
           if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5)
-            setPage(dx < 0 ? 1 : 0);
+            turn(dx < 0 ? 1 : 0);
         }}
       >
         <section
@@ -86,7 +93,7 @@ export function StudyBook({
           <div className={b.content}>
             <p className={b.pageTitle}>{leftTitle}</p>
             {left}
-            <button type="button" className={b.turn} onClick={() => setPage(1)}>
+            <button type="button" className={b.turn} onClick={() => turn(1)}>
               {rightTitle} 보기
             </button>
           </div>
@@ -101,7 +108,7 @@ export function StudyBook({
           <div className={b.content}>
             <h2 className={b.pageTitle}>{rightTitle}</h2>
             {right}
-            <button type="button" className={b.turn} onClick={() => setPage(0)}>
+            <button type="button" className={b.turn} onClick={() => turn(0)}>
               {leftTitle} 보기
             </button>
           </div>

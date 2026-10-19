@@ -1,5 +1,5 @@
 ﻿import { fireEvent, render, screen, within } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { StudyBook } from "@/components/math-srs/StudyBook";
 
 function book() {
@@ -15,6 +15,22 @@ function book() {
 }
 
 describe("shared two-page study book", () => {
+  it("notifies its scroll host when the displayed page changes", () => {
+    const onPageChange = vi.fn();
+    render(
+      <StudyBook
+        leftTitle="뜻과 그림"
+        rightTitle="예와 연습"
+        left="왼쪽"
+        right="오른쪽"
+        onPageChange={onPageChange}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "예와 연습 보기" }));
+    expect(onPageChange).toHaveBeenLastCalledWith(1);
+    fireEvent.click(screen.getByRole("button", { name: "뜻과 그림 보기" }));
+    expect(onPageChange).toHaveBeenLastCalledWith(0);
+  });
   it("uses supplied titles for tabs, section names, page titles and turn controls", () => {
     const spread = book();
     for (const [index, title, content] of [
