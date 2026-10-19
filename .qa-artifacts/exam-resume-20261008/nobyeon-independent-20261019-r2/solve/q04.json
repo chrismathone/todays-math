@@ -1,0 +1,72 @@
+{
+  "studentDigest": "3bab64f7e8071bfce6043053aa19c709a2eb5be3e7fdea99f324d7e1e37db9b3",
+  "solverId": "codex-nobyeon-independent-20261019-r2",
+  "answer": "③ 24",
+  "solution": "k>0이므로 Q는 (0,6), P는 원점의 왼쪽 x축 위에 있다. P에서 원점 쪽으로 향하는 수평선과 PQ가 이루는 예각이 a이므로 직각삼각형 OPQ에서 cos a=OP/PQ=4/5이다. OP=4t, PQ=5t(t>0)라 두면 OQ=6이고 피타고라스 정리에 의해 (5t)²=(4t)²+6², 9t²=36이다. t>0이므로 t=2, OP=8이다. 넓이는 (1/2)×8×6=24이므로 ③이다. 이때 P=(−8,0), k=3/4>0이므로 주어진 영역도 만족한다.",
+  "evidence": {
+    "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q04",
+    "questionNumber": 4,
+    "blindInputOnly": true,
+    "actualFiguresViewed": [],
+    "figureObservation": "No figure supplied; graph/intercepts reconstructed from the stated equation.",
+    "allFiveChoiceChecks": [
+      {
+        "choice": 1,
+        "area": 12,
+        "squaredAdjacentHypotenuseRatio": "4/13",
+        "equals16over25": false
+      },
+      {
+        "choice": 2,
+        "area": 18,
+        "squaredAdjacentHypotenuseRatio": "1/2",
+        "equals16over25": false
+      },
+      {
+        "choice": 3,
+        "area": 24,
+        "squaredAdjacentHypotenuseRatio": "16/25",
+        "equals16over25": true
+      },
+      {
+        "choice": 4,
+        "area": 36,
+        "squaredAdjacentHypotenuseRatio": "4/5",
+        "equals16over25": false
+      },
+      {
+        "choice": 5,
+        "area": 48,
+        "squaredAdjacentHypotenuseRatio": "64/73",
+        "equals16over25": false
+      }
+    ],
+    "domainExistenceUniquenessUnits": {
+      "domain": "k>0, a acute, Q above O and P left of O; OP and PQ positive",
+      "existence": "Line y=(3/4)x+6 gives intercepts (−8,0),(0,6) and right-triangle sides 6,8,10.",
+      "uniqueness": "The positive 4:5 adjacent-to-hypotenuse ratio and OQ=6 force t=2 and k=3/4.",
+      "positiveLengths": "OP=8,OQ=6,PQ=10>0; negative x-intercept is not a negative length.",
+      "units": "24 coordinate square units; no cm² supplied."
+    },
+    "withinGradeMethodEvidence": {
+      "target": "middle3 / 2015",
+      "usedConcepts": [
+        "일차함수의 절편과 양의 기울기",
+        "직각삼각형에서 cos의 정의",
+        "피타고라스 정리",
+        "직각삼각형의 넓이"
+      ],
+      "scope": "Method-level evidence from the actual derivation, not full formal curriculum/classification approval.",
+      "advancedMethodsUsed": false,
+      "forbiddenMethods": [
+        "trigonometric identities/laws",
+        "Heron",
+        "vectors",
+        "pixel measurement"
+      ]
+    },
+    "codeCalculationReference": "calculation-results.json#q04",
+    "authorAnswersSeen": false
+  },
+  "status": "solved"
+}

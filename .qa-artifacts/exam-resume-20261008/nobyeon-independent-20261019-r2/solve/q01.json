@@ -1,0 +1,73 @@
+{
+  "studentDigest": "5ef72d6c9ca463f9ebb950b6a6e9c6cc69e7a5d035bef5f99fc99c9376700790",
+  "solverId": "codex-nobyeon-independent-20261019-r2",
+  "answer": "④ 9√10/10",
+  "solution": "PQ=3t, QR=t(t>0)로 놓으면 직각삼각형 PQR에서 피타고라스 정리에 의해 PR=√10·t이다. x는 P의 각이므로 cos x=PQ/PR=3/√10이고, y는 R의 각이므로 tan y=PQ/QR=3이다. 따라서 곱은 9/√10=9√10/10이므로 ④이다.",
+  "evidence": {
+    "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q01",
+    "questionNumber": 1,
+    "blindInputOnly": true,
+    "actualFiguresViewed": [
+      {
+        "path": "figures/q01-1.svg",
+        "sha256": "67c0329b8f2e36bc17fd2b4c65af1616c53caeafbee1309272cd163edd640450",
+        "renderedPng": "rendered/q01-1.png",
+        "pixelMeasurementUsed": false
+      }
+    ],
+    "figureObservation": "Rendered figure labels and incidences agree with the stated roles; no geometric length was inferred from pixels.",
+    "allFiveChoiceChecks": [
+      {
+        "choice": 1,
+        "sqrt10Coefficient": "1/30",
+        "equalsRequired": false
+      },
+      {
+        "choice": 2,
+        "sqrt10Coefficient": "1/10",
+        "equalsRequired": false
+      },
+      {
+        "choice": 3,
+        "sqrt10Coefficient": "3/10",
+        "equalsRequired": false
+      },
+      {
+        "choice": 4,
+        "sqrt10Coefficient": "9/10",
+        "equalsRequired": true
+      },
+      {
+        "choice": 5,
+        "sqrt10Coefficient": "3",
+        "equalsRequired": false
+      }
+    ],
+    "domainExistenceUniquenessUnits": {
+      "domain": "t>0; x,y are acute right-triangle angles",
+      "existence": "For any t>0, a 3t by t rectangle realizes the data.",
+      "uniqueness": "The scale cancels from both side ratios; the product is fixed.",
+      "positiveLengths": "3t,t,√10t>0",
+      "units": "Dimensionless product; no length unit is introduced."
+    },
+    "withinGradeMethodEvidence": {
+      "target": "middle3 / 2015",
+      "usedConcepts": [
+        "직각삼각형의 피타고라스 정리",
+        "예각의 cos와 tan을 변의 길이의 비로 정의",
+        "분모의 유리화"
+      ],
+      "scope": "Method-level evidence from the actual derivation, not full formal curriculum/classification approval.",
+      "advancedMethodsUsed": false,
+      "forbiddenMethods": [
+        "trigonometric identities/laws",
+        "Heron",
+        "vectors",
+        "pixel measurement"
+      ]
+    },
+    "codeCalculationReference": "calculation-results.json#q01",
+    "authorAnswersSeen": false
+  },
+  "status": "solved"
+}
