@@ -1,0 +1,97 @@
+{
+  "expansionRule": "(kx-a)^2=k^2*x^2-2ka*x+a^2",
+  "a": "3/4",
+  "b": "-6",
+  "k": "4",
+  "coefficients": {
+    "0": "9/16",
+    "1": "-6",
+    "2": "16"
+  },
+  "choices": [
+    {
+      "mark": "①",
+      "k": "2",
+      "a": "3/4",
+      "x2": "4",
+      "x": "-3",
+      "constant": "9/16",
+      "aPlusB": "-9/4",
+      "positiveConstants": true,
+      "satisfies": false
+    },
+    {
+      "mark": "②",
+      "k": "3",
+      "a": "3/4",
+      "x2": "9",
+      "x": "-9/2",
+      "constant": "9/16",
+      "aPlusB": "-15/4",
+      "positiveConstants": true,
+      "satisfies": false
+    },
+    {
+      "mark": "③",
+      "k": "4",
+      "a": "3/4",
+      "x2": "16",
+      "x": "-6",
+      "constant": "9/16",
+      "aPlusB": "-21/4",
+      "positiveConstants": true,
+      "satisfies": true
+    },
+    {
+      "mark": "④",
+      "k": "5",
+      "a": "3/4",
+      "x2": "25",
+      "x": "-15/2",
+      "constant": "9/16",
+      "aPlusB": "-27/4",
+      "positiveConstants": true,
+      "satisfies": false
+    },
+    {
+      "mark": "⑤",
+      "k": "6",
+      "a": "3/4",
+      "x2": "36",
+      "x": "-9",
+      "constant": "9/16",
+      "aPlusB": "-33/4",
+      "positiveConstants": true,
+      "satisfies": false
+    }
+  ],
+  "substitutionChecks": [
+    {
+      "x": "-2",
+      "factorSquare": "1225/16",
+      "expanded": "1225/16"
+    },
+    {
+      "x": "0",
+      "factorSquare": "9/16",
+      "expanded": "9/16"
+    },
+    {
+      "x": "1/2",
+      "factorSquare": "25/16",
+      "expanded": "25/16"
+    },
+    {
+      "x": "3",
+      "factorSquare": "2025/16",
+      "expanded": "2025/16"
+    }
+  ],
+  "excludedNegativeSquareRoot": {
+    "a": "-3/4",
+    "k": "-3",
+    "reason": "a>0 조건 위반; k도 양수가 아님"
+  },
+  "uniqueness": "a^2=9/16 및 a>0에서 a=3/4 하나. -2a=-3/2는 0이 아니므로 b=-2ak에 대한 k의 일차방정식도 해가 하나.",
+  "domain": "a,k는 양의 실수 상수, b는 실수인 계수. 다항식은 모든 실수 x에서 정의되며 x의 특정 값을 구하는 문제가 아니다. 근호·변수 분모 제한이나 단위는 없다."
+}
