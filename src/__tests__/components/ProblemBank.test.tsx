@@ -87,6 +87,28 @@ async function renderBank() {
 }
 
 describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
+  it("처음에는 현재 문항의 단원만 읽고 전체 목록은 범위를 열 때 한 번만 읽는다", async () => {
+    const reads: (string[] | null)[] = [];
+    server.use(http.get("/api/units", ({ request }) => {
+      const ids = new URL(request.url).searchParams.get("ids")?.split(",") ?? null;
+      reads.push(ids);
+      return HttpResponse.json({ data: MOCK_UNITS.filter((unit) => !ids || ids.includes(unit.id))
+        .map(({ id, grade, chapter, section, orderIndex }) => ({ id, grade, chapter, section, orderIndex })) });
+    }));
+    const { user } = await renderBank();
+    expect(reads).toHaveLength(1);
+    expect(reads[0]).not.toBeNull();
+    expect(reads[0]!.length).toBeLessThanOrEqual(20);
+    await user.click(screen.getByRole("button", { name: /^범위/ }));
+    await waitFor(() => expect(reads).toHaveLength(2));
+    expect(reads[1]).toBeNull();
+    await user.click(screen.getByRole("button", { name: "접기" }));
+    await waitFor(() => expect(screen.getByRole("button", { name: "등록" })).toBeEnabled());
+    await user.click(screen.getByRole("button", { name: "등록" }));
+    await screen.findByRole("form", { name: "등록" });
+    expect(reads).toHaveLength(2);
+  }, 120_000);
+
   it("검색 결과가 없을 때 조건을 초기화하고 다시 문제를 보여 준다", async () => {
     const { user } = await renderBank();
     const search = screen.getByRole("searchbox", {
@@ -139,6 +161,7 @@ describe("[T3.3 S-08] 문제은행 — 크롬·필터·액션", () => {
       http.get("/api/units", () => new HttpResponse(null, { status: 503 })),
     );
     render(<ProblemsPage />);
+    await user.click(screen.getByRole("button", { name: "등록" }));
     await screen.findByText(
       "단원 목록을 불러오지 못했습니다",
       undefined,
@@ -362,7 +385,7 @@ describe("[S-08] 문제은행 — 단원 범위 (MSW)", () => {
     startSection: string,
     endSection: string,
   ) {
-    // 단원 목록이 오기 전에는 범위 칸이 비활성이다 — 누르면 아무 일도 안 난다.
+    // 범위를 열 때 단원 목록을 읽고, 도착한 뒤 실제 소단원을 고른다.
     const open = screen.getByRole("button", { name: /^범위/ });
     await waitFor(() => {
       expect(open).toBeEnabled();

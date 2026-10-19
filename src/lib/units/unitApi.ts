@@ -1,5 +1,7 @@
-export async function loadUnits() {
-  const response = await fetch("/api/units");
+export async function loadUnits(ids?: readonly string[]) {
+  if (ids && !ids.length) return { data: [] };
+  const query = ids ? `?ids=${encodeURIComponent([...new Set(ids)].join(","))}` : "";
+  const response = await fetch(`/api/units${query}`);
   if (!response.ok) throw new Error("단원 목록을 불러오지 못했습니다");
   // 계약 검증은 그대로 유지하고 **위치만** 옮긴다 (성능 수리 C-1).
   // 정적 import 면 zod + 계약 스키마(279KB)가 첫 페인트를 막는 초기 번들에 실린다.

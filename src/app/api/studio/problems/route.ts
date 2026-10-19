@@ -1,4 +1,8 @@
-import { loadUnifiedBank, UnifiedBankQueryError } from "@/lib/unifiedPreview";
+import {
+  loadUnifiedBank,
+  loadUnifiedBankCurriculum,
+  UnifiedBankQueryError,
+} from "@/lib/unifiedPreview";
 import {
   authorizeStudio,
   STUDIO_HEADERS as headers,
@@ -10,14 +14,18 @@ async function handleGet(request: Request) {
   try {
     const access = await authorizeStudio(request);
     if (access.response) return access.response;
+    const params =
+      request.method === "POST"
+        ? await readUnifiedBankQueryBody(request)
+        : new URL(request.url).searchParams;
     return Response.json(
-      await loadUnifiedBank(
-        request.method === "POST"
-          ? await readUnifiedBankQueryBody(request)
-          : new URL(request.url).searchParams,
-        // 최근 출제 빼기(`recent=1`)는 로그인한 이 계정의 시험지로 센다(D-20).
-        bankQueryContext(access.user.id),
-      ),
+      params.get("view") === "curriculum"
+        ? await loadUnifiedBankCurriculum(params)
+        : await loadUnifiedBank(
+            params,
+            // 최근 출제 빼기(`recent=1`)는 로그인한 이 계정의 시험지로 센다(D-20).
+            bankQueryContext(access.user.id),
+          ),
       { headers },
     );
   } catch (error) {

@@ -2792,6 +2792,18 @@ model ClassMembership {
   @@map("class_membership")
 }
 
+// Server-only singleton. Statement triggers maintain this alongside old writers.
+// Read with raw SQL until the lead has applied the additive DB migration.
+model BankReadRevision {
+  id                 Int    @id @default(1) @db.SmallInt
+  revision           BigInt @default(1)
+  schemaVersion      Int    @default(1) @map("schema_version") @db.SmallInt
+  formatVersion      String @map("format_version") @db.VarChar(96)
+  invalidFormatCount BigInt @default(0) @map("invalid_format_count")
+
+  @@map("bank_read_revision")
+}
+
 model StudentEnrollment {
   id             String    @id @default(uuid()) @db.Uuid
   bindingId      String    @map("binding_id") @db.Uuid

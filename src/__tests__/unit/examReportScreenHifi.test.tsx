@@ -203,9 +203,7 @@ describe("성적표 원장님 화면 Hi-fi — 로컬 시안", () => {
     scenario("confirmed");
     fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
     expect(screen.getByRole("checkbox", { name: /반 평균/ })).not.toBeChecked();
-    fireEvent.click(
-      screen.getByRole("radio", { name: "요약 + 틀린 문항 풀이" }),
-    );
+    fireEvent.click(screen.getByRole("checkbox", { name: /반 평균/ }));
     fireEvent.click(screen.getByRole("button", { name: "취소" }));
     expect(
       screen
@@ -213,9 +211,7 @@ describe("성적표 원장님 화면 Hi-fi — 로컬 시안", () => {
         .querySelectorAll('[data-exam-report-page="H1"]'),
     ).toHaveLength(1);
     fireEvent.click(screen.getByRole("button", { name: "반 지면 설정" }));
-    fireEvent.click(
-      screen.getByRole("radio", { name: "요약 + 틀린 문항 풀이" }),
-    );
+    fireEvent.click(screen.getByRole("checkbox", { name: /반 평균/ }));
     fireEvent.click(screen.getByRole("button", { name: "적용" }));
     expect(
       screen.getByText("반 지면 설정이 바뀌었습니다.", { exact: false }),
@@ -228,7 +224,7 @@ describe("성적표 원장님 화면 Hi-fi — 로컬 시안", () => {
       screen
         .getByRole("region", { name: "선택한 학생의 성적표" })
         .querySelectorAll('[data-exam-report-page="H1"]').length,
-    ).toBeGreaterThan(1);
+    ).toBe(1);
   });
 
   it("지면이 넘친다는 측정 결과에서는 저장·확정·선택 학생 인쇄를 막는다", () => {

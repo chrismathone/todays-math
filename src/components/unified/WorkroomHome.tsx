@@ -5,7 +5,7 @@ import Icon from "./WorkspaceIcon";
 import WorkProgress from "./WorkProgress";
 import type { BankData, StudioProblem } from "./types";
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
-import { unifiedBankBootstrapSchema } from "@/contracts/unifiedBankBootstrap.contract";
+import { unifiedBankCurriculumSchema } from "@/contracts/unifiedBankBootstrap.contract";
 import {
   WORKSPACE_MENUS,
   canOutputFrom,
@@ -89,14 +89,16 @@ export default function WorkroomHome({
           : "export";
   const [query, setQuery] = useState("");
   const [dragging, setDragging] = useState(false);
-  const [bankData, setBankData] = useState<BankData>();
+  const [bankData, setBankData] = useState<{
+    grades: string[];
+    error?: string;
+  }>();
   useEffect(() => {
     if (!deferBankMetadata || !navigationReady || !canBank) return;
     const controller = new AbortController();
-    // The existing authenticated list route has a metadata-only view backed by
-    // the same public summary cache as the server bootstrap.
+    // Home links need grade names, not all lesson inventories or a global tally.
     void fetch(
-      `${getStudioEndpoints().problems}?identity=question&view=bootstrap`,
+      `${getStudioEndpoints().problems}?identity=question&view=curriculum`,
       {
         signal: controller.signal,
         cache: "no-store",
@@ -105,22 +107,25 @@ export default function WorkroomHome({
     )
       .then(async (response) => {
         if (!response.ok) throw new Error("bank unavailable");
-        const value = unifiedBankBootstrapSchema.parse(await response.json());
+        const value = unifiedBankCurriculumSchema.parse(await response.json());
         if (!controller.signal.aborted) setBankData(value);
       })
       .catch(() => {
         if (!controller.signal.aborted)
           setBankData({
-            ...initialData,
+            grades: initialData.grades.map((item) => item.grade),
             error:
               "문제은행 연결을 확인해 주세요. 문제 추출은 바로 사용할 수 있습니다.",
           });
       });
     return () => controller.abort();
   }, [deferBankMetadata, navigationReady, canBank, initialData]);
-  const data = bankData ?? initialData;
+  const data = bankData ?? {
+    grades: initialData.grades.map((item) => item.grade),
+    error: initialData.error,
+  };
   const bankLoading = deferBankMetadata && !bankData;
-  const total = data.grades.reduce((sum, g) => sum + g.count, 0);
+  const total = initialData.grades.reduce((sum, g) => sum + g.count, 0);
   const gradeGroups = [
     { prefix: "초", label: "초등" },
     { prefix: "중", label: "중등" },
@@ -158,7 +163,7 @@ export default function WorkroomHome({
                       </h2>
                     </div>
                   </div>
-                  {!bankLoading && (
+                  {!bankLoading && (!deferBankMetadata || data.error) && (
                     <span className={s.databaseCount}>
                       {data.error ? (
                         "연결 확인 필요"
@@ -202,18 +207,16 @@ export default function WorkroomHome({
                         </div>
                         <div>
                           {data.grades
-                            .filter((g) => g.grade.startsWith(group.prefix))
-                            .sort((a, b) =>
-                              a.grade.localeCompare(b.grade, "ko"),
-                            )
+                            .filter((grade) => grade.startsWith(group.prefix))
+                            .sort((a, b) => a.localeCompare(b, "ko"))
                             .map((g) => (
                               <button
-                                key={g.grade}
-                                aria-label={`${g.grade} 문제 찾기`}
-                                onClick={() => onBank({ grade: g.grade })}
+                                key={g}
+                                aria-label={`${g} 문제 찾기`}
+                                onClick={() => onBank({ grade: g })}
                               >
                                 <strong>
-                                  {g.grade.replace(group.prefix, "")}학년
+                                  {g.replace(group.prefix, "")}학년
                                 </strong>
                                 <Icon name="chevron" size={15} />
                               </button>

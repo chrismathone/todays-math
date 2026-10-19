@@ -108,6 +108,22 @@ export const EXAM_REPORT_PAPER_CSS = `
   display: block;
   font-size: 9pt;
 }
+[data-exam-report-page] .er-trend svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font: 15px Pretendard, sans-serif;
+}
+[data-exam-report-page] .er-trendTitles {
+  display: grid;
+  gap: 2mm;
+  list-style: none;
+  padding: 0;
+  margin: 1mm 0 0;
+  font: 9pt/1.5 Pretendard, sans-serif;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
 [data-exam-report-page] .er-area h3,
 [data-exam-report-page] .er-problem h3 {
   font-family: var(--paper-font-sans);
@@ -168,35 +184,6 @@ export const EXAM_REPORT_PAPER_CSS = `
   margin-top: auto;
   font: 9pt/1.5 var(--paper-font-sans);
 }
-[data-exam-report-page] .er-problemList {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  flex: 1;
-  gap: 8mm;
-}
-[data-exam-report-page] .er-problem {
-  border-bottom: 1px solid var(--paper-ink15);
-}
-[data-exam-report-page] .er-problem h3 span {
-  font-size: 9pt;
-  font-weight: 400;
-  padding-left: 3mm;
-}
-[data-exam-report-page] .er-stem {
-  padding: 6mm 0 12mm;
-  font-size: 11pt;
-}
-[data-exam-report-page] .er-problem dl {
-  display: grid;
-  grid-template-columns: 12mm 1fr;
-  gap: 3mm;
-  font-size: 10pt;
-}
-[data-exam-report-page] .er-problem dt {
-  font-family: var(--paper-font-sans);
-  font-size: 9pt;
-  font-weight: 600;
-}
 [data-exam-report-page] .er-classMeta {
   font: 10pt/1.6 var(--paper-font-sans);
 }
@@ -227,6 +214,11 @@ export const EXAM_REPORT_PAPER_CSS = `
 [data-exam-report-page] .er-matrix td[data-wrong="true"] {
   font-weight: 700;
 }
+[data-exam-report-page] .er-matrix .er-originalScore {
+  display: block;
+  font-size: 9pt;
+  line-height: 1.5;
+}
 [data-exam-report-page] .er-matrix tfoot {
   border-top: 2px solid var(--paper-ink);
 }
@@ -248,155 +240,11 @@ export const EXAM_REPORT_PAPER_CSS = `
 [data-exam-report-page] .er-titleRow > div {
   min-width: 0;
 }
-[data-exam-report-page] .er-problemList[data-question-count="1"] {
-  grid-template-rows: 1fr;
-}
-[data-exam-report-page] .er-problem {
-  min-width: 0;
-  min-height: 0;
-  break-inside: avoid;
-}
-[data-exam-report-page] .er-problem h3,
-[data-exam-report-page] .er-problem dd {
-  overflow-wrap: anywhere;
-}
+
 [data-exam-report-page] .er-note p {
   min-height: 1.65em;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-}
-[data-exam-report-page] .er-stem [data-paper-view] > div {
-  font: inherit;
-  line-height: inherit;
-}
-[data-exam-report-page] .prose {
-  font-family: inherit;
-  color: inherit;
-  max-width: none;
-}
-[data-exam-report-page] .prose :is(p, div) {
-  line-height: inherit;
-}
-[data-exam-report-page] .prose p {
-  margin: 0;
-}
-[data-exam-report-page] .er-problem img {
-  display: block;
-  max-width: min(100%, 70mm);
-  height: auto;
-  margin: 3mm auto;
-  mix-blend-mode: multiply;
-}
-[data-exam-report-page] [data-figure-svg] {
-  margin: 3mm auto;
-  max-width: 70mm;
-}
-[data-exam-report-page] [data-figure-svg][data-figure-size="compact"] {
-  max-width: 37mm;
-}
-[data-exam-report-page] [data-figure-svg][data-figure-size="mid"] {
-  max-width: 64mm;
-}
-[data-exam-report-page] [data-figure-svg][data-figure-size="pair"] {
-  max-width: 97mm;
-}
-[data-exam-report-page] [data-figure-svg] > svg {
-  width: 100%;
-  height: auto;
-}
-[data-exam-report-page] .er-problem svg {
-  display: block;
-  vertical-align: middle;
-}
-[data-exam-report-page] [data-paper-view] .grid {
-  display: grid;
-  gap: 2mm 4mm;
-}
-[data-exam-report-page] [data-paper-view] .grid-cols-1 {
-  grid-template-columns: 1fr;
-}
-[data-exam-report-page] [data-paper-view] .grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-[data-exam-report-page] [data-paper-view] .grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-[data-exam-report-page] [data-paper-view] .flex {
-  display: flex;
-}
-[data-exam-report-page] [data-paper-view] .flex-wrap {
-  flex-wrap: wrap;
-}
-[data-exam-report-page] [data-paper-view] .flex-col {
-  flex-direction: column;
-}
-[data-exam-report-page] [data-paper-view] .items-start {
-  align-items: flex-start;
-}
-[data-exam-report-page] [data-paper-view] .items-center {
-  align-items: center;
-}
-[data-exam-report-page] [data-paper-view] .items-baseline {
-  align-items: baseline;
-}
-[data-exam-report-page] [data-paper-view] .justify-center {
-  justify-content: center;
-}
-[data-exam-report-page] [data-paper-view] .flex-1 {
-  flex: 1 1 0%;
-  min-width: 0;
-}
-[data-exam-report-page] [data-paper-view] .flex-shrink-0 {
-  flex-shrink: 0;
-}
-[data-exam-report-page] [data-paper-view] [class~="gap-1.5"] {
-  gap: 6px;
-}
-[data-exam-report-page] [data-paper-view] img.w-full {
-  width: 100%;
-}
-[data-exam-report-page] [data-paper-view] .gap-4 {
-  gap: 16px;
-}
-[data-exam-report-page] [data-paper-view] .mt-4 {
-  margin-top: 16px;
-}
-[data-exam-report-page] [data-paper-view] .gap-y-2 {
-  row-gap: 8px;
-}
-[data-exam-report-page] [data-paper-view] .gap-x-8 {
-  column-gap: 32px;
-}
-[data-exam-report-page] [data-paper-view] [data-box-card] {
-  border: 1px solid var(--paper-ink30);
-  padding: 4mm;
-  margin: 4mm 0;
-  overflow: visible;
-}
-[data-exam-report-page] .prose .border:not([data-box-card]) {
-  border: 1px solid var(--paper-ink30);
-  padding: 4mm;
-  margin: 4mm 0;
-}
-[data-exam-report-page] [data-paper-view] [data-side-by-side] {
-  border: 0;
-  padding: 0;
-  margin: 2mm 0;
-}
-[data-exam-report-page] [data-box-header] {
-  text-align: center;
-  margin-bottom: 1mm;
-}
-[data-exam-report-page] [data-box-item] {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-[data-exam-report-page] [data-hwpx-grid] {
-  gap: 1mm 6mm;
-  align-items: baseline;
-}
-[data-exam-report-page] .katex {
-  font-size: 1.1em;
 }
 @media print {
   [data-exam-report-page] {

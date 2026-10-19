@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -11,25 +12,11 @@ import dynamic from "next/dynamic";
 import type WorksheetEditorComponent from "@/components/unified/WorksheetEditor";
 import UnifiedProblem from "@/components/unified/UnifiedProblem";
 import type { BankData, StudioProblem } from "@/components/unified/types";
-import {
-  possibleFormats,
-  requireQuestionRead,
-} from "@/lib/problem/questionSelectionClient";
+import { possibleFormats } from "@/lib/problem/questionSelectionClient";
 import WorkProgress from "@/components/unified/WorkProgress";
-import {
-  BankSourceField,
-  BankSourcePicker,
-} from "@/components/unified/BankSourcePicker";
-import {
-  sourceFieldText,
-  type SourcePick,
-} from "@/components/unified/bankSourcePick";
-import {
-  bankSourceCountsSchema,
-  bankSourceMaterialsSchema,
-  type BankSourceMaterial,
-  type BankSourceCounts,
-} from "@/contracts/bankSource.contract";
+import { BankSourceField } from "@/components/unified/BankSourcePicker";
+import type { SourcePick } from "@/components/unified/bankSourcePick";
+import type { UnifiedBankPickerBook } from "@/contracts/unifiedBankBootstrap.contract";
 import {
   bankTextbookSlotsResponseSchema,
   type BankTextbookSlotReadiness,
@@ -53,7 +40,8 @@ import type { SheetTag } from "@/contracts/sheetTag.contract";
 import { titleSuggestions } from "@/components/unified/print/suggestTitles";
 import type { PrintPresetsClient } from "@/components/unified/print/printPresetsClient";
 import type { PrintPreset } from "@/contracts/printPreset.contract";
-import MaterialPicker from "./MaterialPicker";
+import DemandMaterialPicker from "./DemandMaterialPicker";
+import SourcePicker, { sourcePickerLabel } from "./SourcePicker";
 import ExamAnswerPanel from "./ExamAnswerPanel";
 import {
   createMathExamBuilderSource,
@@ -118,52 +106,16 @@ export default function MathExamBuilder({
     problemIds: [...editor.selected.map((item) => item.id), ...candidateIds],
   });
   const [materialOpen, setMaterialOpen] = useState(false);
-  const [materialResult, setMaterialResult] = useState<{
-    key: string;
-    items?: BankSourceMaterial[];
-    error?: string;
-  }>();
-  const [materialRetry, setMaterialRetry] = useState(0);
   const materialKey =
     pick.group === "school_textbook" ? pick.books.join(",") : "";
-  useEffect(() => {
-    if (!materialOpen || !materialKey) return;
-    const controller = new AbortController();
-    void fetch(`${getStudioEndpoints().problems}/sources`, {
-      method: "POST",
-      signal: controller.signal,
-      cache: "no-store",
-      credentials: "same-origin",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        identity: "question",
-        view: "materials",
-        books: materialKey,
-      }),
-    })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("자료 목록을 불러오지 못했습니다.");
-        const value = bankSourceMaterialsSchema.parse(await response.json());
-        requireQuestionRead(value);
-        return value;
-      })
-      .then((value) => {
-        if (!controller.signal.aborted)
-          setMaterialResult({ key: materialKey, items: value.materials });
-      })
-      .catch((cause: unknown) => {
-        if (!controller.signal.aborted)
-          setMaterialResult({
-            key: materialKey,
-            error:
-              cause instanceof Error ? cause.message : "자료 목록 확인 실패",
-          });
-      });
-    return () => controller.abort();
-  }, [materialOpen, materialKey, materialRetry]);
-  const [counts, setCounts] = useState<BankSourceCounts | null>(null);
-  const [countsError, setCountsError] = useState<string | null>(null);
-  const [countsRetry, setCountsRetry] = useState(0);
+  const [sourceBooks, setSourceBooks] = useState<UnifiedBankPickerBook[]>([]);
+  const rememberBooks = useCallback((books: UnifiedBankPickerBook[]) => {
+    setSourceBooks((current) => [
+      ...new Map(
+        [...current, ...books].map((book) => [book.id, book]),
+      ).values(),
+    ]);
+  }, []);
   const [slotResult, setSlotResult] = useState<{
     ids: string;
     items: Record<string, BankTextbookSlotReadiness>;
@@ -180,36 +132,6 @@ export default function MathExamBuilder({
     }
     return params.toString();
   }, [pick, materialIds]);
-  useEffect(() => {
-    if (!sourceOpen) return;
-    const controller = new AbortController();
-    void fetch(`${getStudioEndpoints().problems}/sources?identity=question`, {
-      signal: controller.signal,
-      cache: "no-store",
-      credentials: "same-origin",
-    })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("전체 보유량을 불러오지 못했습니다.");
-        const value = bankSourceCountsSchema.parse(await response.json());
-        requireQuestionRead(value);
-        return value;
-      })
-      .then((value) => {
-        if (!controller.signal.aborted) {
-          setCounts(value);
-          setCountsError(null);
-        }
-      })
-      .catch((error: unknown) => {
-        if (!controller.signal.aborted)
-          setCountsError(
-            error instanceof Error
-              ? error.message
-              : "전체 보유량을 불러오지 못했습니다.",
-          );
-      });
-    return () => controller.abort();
-  }, [sourceOpen, countsRetry]);
   const textbookIds = editor.selected
     .filter((item) => item.source === "school_textbook")
     .map((item) => item.id)
@@ -253,6 +175,7 @@ export default function MathExamBuilder({
   );
   const source = useMemo(() => {
     const base = createMathExamBuilderSource({
+      deferScopes: true,
       initialUnits: initialData.units,
       initialUnitCounts: initialData.unitCounts,
       initialCountUnit: initialData.countUnit,
@@ -280,7 +203,7 @@ export default function MathExamBuilder({
   ]);
   // W5 «이름 붙인 출제 조건» — 출처 고르기 · 자료 · 같은 문항류 규칙을 조건에 함께 담고, 적용하면 되돌린다.
   const conditionsClient = useMemo(() => createExamConditionsClient(), []);
-  const sourceLabel = sourceFieldText(counts, pick);
+  const sourceLabel = sourcePickerLabel(sourceBooks, pick);
   const namedConditions = useMemo<ExamNamedConditions>(
     () => ({
       selection: {
@@ -384,7 +307,7 @@ export default function MathExamBuilder({
               같은 문항류는 1문항만
             </label>
             <BankSourceField
-              text={sourceFieldText(counts, pick)}
+              text={sourceLabel}
               opener={opener}
               onOpen={() => setSourceOpen(true)}
             />
@@ -405,57 +328,36 @@ export default function MathExamBuilder({
                   자료 조건 해제
                 </button>
               )}
-              {materialOpen && materialResult?.key !== materialKey && (
-                <span role="status">자료 목록을 확인합니다…</span>
-              )}
-              {materialOpen &&
-                materialResult?.key === materialKey &&
-                materialResult.error && (
-                  <span role="alert">
-                    {materialResult.error}
-                    <button
-                      onClick={() => setMaterialRetry((value) => value + 1)}
-                    >
-                      다시 확인
-                    </button>
-                  </span>
-                )}
             </div>
           )}
-          {materialOpen &&
-            materialResult?.key === materialKey &&
-            materialResult.items && (
-              <MaterialPicker
-                materials={materialResult.items.filter(
-                  (item) =>
-                    !pick.kinds.length || pick.kinds.includes(item.kind),
-                )}
-                selected={materialIds}
-                bookNames={Object.fromEntries(
-                  (counts?.textbook.books ?? []).map((book) => [
-                    book.id,
-                    [book.grade, book.publisher, book.author]
-                      .filter(Boolean)
-                      .join(" · "),
-                  ]),
-                )}
-                onClose={() => setMaterialOpen(false)}
-                onApply={(ids) => {
-                  setMaterialIds(ids);
-                  setMaterialOpen(false);
-                }}
-              />
-            )}
+          {materialOpen && materialKey && (
+            <DemandMaterialPicker
+              books={pick.books}
+              kinds={pick.kinds}
+              selected={materialIds}
+              bookNames={Object.fromEntries(
+                sourceBooks.map((book) => [
+                  book.id,
+                  [book.grade, book.publisher, book.author]
+                    .filter(Boolean)
+                    .join(" · "),
+                ]),
+              )}
+              onClose={() => setMaterialOpen(false)}
+              onApply={(ids) => {
+                setMaterialIds(ids);
+                setMaterialOpen(false);
+              }}
+            />
+          )}
           {overlap && (
             <p role="status">
               이 학습지에서 이미 연습한 변형이 복습에 다시 나올 수 있습니다.
             </p>
           )}
           {sourceOpen && (
-            <BankSourcePicker
-              counts={counts}
-              error={countsError}
-              onRetry={() => setCountsRetry((value) => value + 1)}
+            <SourcePicker
+              onCatalog={rememberBooks}
               value={pick}
               filterGrade={initialGroup ?? ""}
               returnFocus={opener}

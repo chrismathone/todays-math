@@ -260,6 +260,16 @@ export function ExamReportWorkspace({
   }
   async function applySettings() {
     if (!list || !pendingOptions || busy) return;
+    // 기존 M1도 같은 요약이다. 설정을 그대로 닫는 것만으로 확정을 풀지 않는다.
+    if (
+      pendingOptions.wrongQuestions === list.options.wrongQuestions &&
+      pendingOptions.retries === list.options.retries &&
+      pendingOptions.teacherNote === list.options.teacherNote &&
+      pendingOptions.classAverage === list.options.classAverage
+    ) {
+      setDialog(null);
+      return;
+    }
     setBusy("settings");
     setError(null);
     try {
@@ -319,7 +329,8 @@ export function ExamReportWorkspace({
   }
   function open(next: "students" | "settings", button: HTMLButtonElement) {
     opener.current = button;
-    if (next === "settings" && options) setPendingOptions({ ...options });
+    if (next === "settings" && options)
+      setPendingOptions({ ...options, format: "S1" });
     setDialog(next);
   }
   const filtered =
@@ -462,11 +473,7 @@ export function ExamReportWorkspace({
               확정 {confirmed} / {graded}명
             </span>
           </p>
-          <p className={s.meta}>
-            지면:{" "}
-            {options?.format === "M1" ? "요약 + 틀린 문항 풀이" : "요약 한 장"}{" "}
-            · 반 전체에 적용
-          </p>
+          <p className={s.meta}>지면: 요약 한 장 · 반 전체에 적용</p>
         </div>
         <section className={s.printBar} aria-label="반 인쇄">
           <div className={s.printTools}>
@@ -598,7 +605,7 @@ export function ExamReportWorkspace({
                       ) : (
                         <PaperStrip
                           label="선택한 학생의 성적표"
-                          hint={`${options?.format === "M1" ? "요약 + 틀린 문항 풀이" : "요약 한 장"} · ${pages.length}쪽 · 쪽을 누르면 크게 봅니다.`}
+                          hint={`요약 한 장 · ${pages.length}쪽 · 쪽을 누르면 크게 봅니다.`}
                           pages={pages.map((node, i) => ({
                             key: `${selectedId}-${i}`,
                             node: <div className={s.paper}>{node}</div>,
@@ -761,12 +768,7 @@ export function ExamReportWorkspace({
           </p>
           <fieldset className={s.settingFields} disabled={Boolean(busy)}>
             <legend>학생 성적표 구성</legend>
-            {(
-              [
-                ["S1", "요약 한 장"],
-                ["M1", "요약 + 틀린 문항 풀이"],
-              ] as const
-            ).map(([format, label]) => (
+            {([["S1", "요약 한 장"]] as const).map(([format, label]) => (
               <label key={format}>
                 <input
                   type="radio"

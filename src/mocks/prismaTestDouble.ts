@@ -17,6 +17,7 @@ import { ACTUAL_FORMAT_VERSION } from "@/lib/problem/actualFormat";
 import { classifyFormat, type ProblemFormat } from "@/lib/problem/provenance";
 import { questionBucketsFromRows } from "@/lib/problem/questionCountBuckets";
 import { problemIneligibleCode } from "@/lib/problemEligibility";
+import { BANK_SOURCE_GROUPS, BANK_SOURCE_GROUP_SOURCES } from "@/contracts/bankSource.contract";
 
 import type {
   ClassEntity,
@@ -1136,6 +1137,41 @@ function paginate<T>(rows: T[], skip = 0, take?: number): T[] {
   return take === undefined ? rows.slice(skip) : rows.slice(skip, skip + take);
 }
 
+/** Curriculum/source metadata GROUP BY; never compute problem inventory here. */
+function groupMetadataRows<T extends object>(rows: T[], args: {
+  by: string[]; where?: Record<string, unknown>; _min?: { orderIndex?: boolean }; orderBy?: unknown;
+}) {
+  if (Object.keys(args).some((key) => !["by", "where", "_min", "orderBy"].includes(key)) ||
+      args.by.some((key) => !["grade", "chapter"].includes(key)) ||
+      (args._min && Object.keys(args._min).some((key) => key !== "orderIndex")))
+    throw new Error("prismaTestDouble: unsupported metadata groupBy");
+  const groups = new Map<string, Record<string, unknown>>();
+  for (const row of rows.filter((row) => matchesWhere(row, args.where))) {
+    const record = row as Record<string, unknown>;
+    const values = Object.fromEntries(args.by.map((key) => [key, record[key]]));
+    const key = JSON.stringify(values);
+    const current = groups.get(key);
+    const previous = (current?._min as { orderIndex: number } | undefined)?.orderIndex ?? Infinity;
+    groups.set(key, { ...values, ...(args._min?.orderIndex ? {
+      _min: { orderIndex: Math.min(previous, Number(record.orderIndex)) },
+    } : {}) });
+  }
+  const specs = (Array.isArray(args.orderBy) ? args.orderBy : [args.orderBy]).flatMap((spec) =>
+    spec ? Object.entries(spec as Record<string, unknown>).flatMap(([key, order]) =>
+      key === "_min" ? Object.entries(order as Record<string, string>).map(([field, dir]) => [`_min.${field}`, dir]) : [[key, String(order)]],
+    ) : [],
+  );
+  return [...groups.values()].sort((a, b) => {
+    for (const [field, dir] of specs) {
+      const value = (row: Record<string, unknown>) => field.startsWith("_min.")
+        ? (row._min as Record<string, number>)[field.slice(5)] : row[field];
+      const av = value(a) as string | number, bv = value(b) as string | number;
+      if (av !== bv) return (av < bv ? -1 : 1) * (dir === "desc" ? -1 : 1);
+    }
+    return 0;
+  });
+}
+
 /**
  * `select` 투영 — 실제 Prisma 는 **고른 컬럼만** 돌려준다.
  *
@@ -1775,6 +1811,9 @@ const prismaModels = {
     },
   },
   unit: {
+    async groupBy(args: Parameters<typeof groupMetadataRows>[1]) {
+      return groupMetadataRows(unitRows, args);
+    },
     async findUnique({ where }: { where: { id: string } }) {
       return unitRows.find((row) => row.id === where.id) ?? null;
     },
@@ -1812,6 +1851,9 @@ const prismaModels = {
   },
   /** 출처 책(D-161). 문제은행 «출처 고르기»가 부르는 것만 — 심기(`create`)와 읽기(`findMany`). */
   sourceBook: {
+    async groupBy(args: Parameters<typeof groupMetadataRows>[1]) {
+      return groupMetadataRows(sourceBookRows, args);
+    },
     async create({
       data,
     }: {
@@ -3173,10 +3215,24 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
  * accepted here; unknown SQL fails. Runtime code always executes real database locks.
  */
 async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
-  if ((query as { bankReadFingerprint?: boolean }).bankReadFingerprint) {
+  if ((query as { bankHeldSourceGroups?: boolean }).bankHeldSourceGroups) {
+    const shared = problemRows.filter((row) => row.pool === "shared");
+    const identity = (row: (typeof shared)[number]) => row.questionGroupKey ?? `row:${row.id}`;
+    return [{
+      total: new Set(shared.map(identity)).size,
+      ...Object.fromEntries(BANK_SOURCE_GROUPS.map((group) => [group,
+        new Set(shared.filter((row) => BANK_SOURCE_GROUP_SOURCES[group].includes(row.source)).map(identity)).size,
+      ])),
+    }];
+  }
+  const revision = (query as { bankReadRevision?: boolean }).bankReadRevision;
+  if ((query as { bankReadFingerprint?: boolean }).bankReadFingerprint || revision) {
     const shared = problemRows.filter((row) => row.pool === "shared");
     return [{
-      token: JSON.stringify([shared, unitRows, sourceMaterialRows, sourceBookRows]),
+      // This double observes mutations for reader tests; the actual statement
+      // revision/counter is tested with the real migration in PGlite.
+      token: `${revision ? "revision-v1:" : ""}${JSON.stringify([shared, unitRows, sourceMaterialRows, sourceBookRows])}`,
+      ...(revision ? { formatVersion: ACTUAL_FORMAT_VERSION, schemaVersion: 1 } : {}),
       invalid: String(shared.filter((row) => {
         const fact = row as typeof row & { actualFormat?: string | null; actualFormatVersion?: string | null };
         return fact.actualFormat == null || fact.actualFormatVersion !== ACTUAL_FORMAT_VERSION;

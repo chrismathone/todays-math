@@ -1,4 +1,8 @@
-import { loadUnifiedBank, UnifiedBankQueryError } from "@/lib/unifiedPreview";
+import {
+  loadUnifiedBank,
+  loadUnifiedBankCurriculum,
+  UnifiedBankQueryError,
+} from "@/lib/unifiedPreview";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { readUnifiedBankQueryBody } from "@/lib/unifiedBankQueryBody";
 import { devBankQueryContext } from "@/lib/devBankQueryContext";
@@ -7,13 +11,14 @@ async function handleGet(request: Request) {
   if (process.env.NODE_ENV !== "development")
     return new Response(null, { status: 404 });
   try {
+    const params =
+      request.method === "POST"
+        ? await readUnifiedBankQueryBody(request)
+        : new URL(request.url).searchParams;
     return Response.json(
-      await loadUnifiedBank(
-        request.method === "POST"
-          ? await readUnifiedBankQueryBody(request)
-          : new URL(request.url).searchParams,
-        devBankQueryContext(),
-      ),
+      params.get("view") === "curriculum"
+        ? await loadUnifiedBankCurriculum(params)
+        : await loadUnifiedBank(params, devBankQueryContext()),
       { headers: { "Cache-Control": "no-store" } },
     );
   } catch (error) {

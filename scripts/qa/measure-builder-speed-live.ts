@@ -170,7 +170,12 @@ async function main() {
     const params = (extra: Record<string, string>) =>
       new URLSearchParams({ identity: "question", ...extra });
     const paths = (
-      reader: typeof after,
+      reader: Pick<
+        typeof after,
+        | "loadBankSourceAvailability"
+        | "loadUnifiedBank"
+        | "loadBankSourceCounts"
+      >,
     ): [string, () => Promise<unknown>][] => [
       [
         "범위 수량(최근 제외)",

@@ -6,11 +6,6 @@ import {
   ClassExamReportPaper,
   StudentExamReportPaper,
 } from "@/components/exam-report/ExamReportPaper";
-import {
-  paginateWrongQuestions,
-  estimateWrongQuestionMm,
-  WRONG_PAGE_BODY_MM,
-} from "@/lib/examReport/paginate";
 
 describe("H1 공용 성적표 지면", () => {
   it("S1은 실제 뷰모델의 점수·오답·문장만 한 쪽에 그린다", () => {
@@ -74,7 +69,7 @@ describe("H1 공용 성적표 지면", () => {
     },
   );
 
-  it("미완료와 무배점을 0점이나 100점으로 만들지 않는다", () => {
+  it("미완료를 0점으로 만들지 않고 무배점은 원문항 수와 100점 환산을 함께 보인다", () => {
     const { student } = reportFixture("normal");
     const incomplete = {
       ...student,
@@ -98,7 +93,9 @@ describe("H1 공용 성적표 지면", () => {
       <StudentExamReportPaper report={unweighted} />,
     );
     expect(html).toContain("/ 20문항");
-    expect(html).not.toContain("100점");
+    expect(html).toContain("80점");
+    expect(html).toContain("100점 만점");
+    expect(html).toContain("20문항 중 16문항");
   });
 
   it("C2는 집계의 명단 순서·정오·문항별 정답 수를 가로 A4에 싣는다", () => {
@@ -114,62 +111,70 @@ describe("H1 공용 성적표 지면", () => {
     expect(html).toContain("미채점");
     expect(html.indexOf("서하린")).toBeLessThan(html.indexOf("윤해온"));
   });
+  it("H1은 85점 만점도 정수 100점 환산과 원래 점수를 함께 그린다", () => {
+    const { student } = reportFixture("normal");
+    const html = renderToStaticMarkup(
+      <StudentExamReportPaper
+        report={{
+          ...student,
+          score: { value: 70, maximum: 85, unit: "points", storedValue: 70 },
+        }}
+      />,
+    );
+    expect(html).toContain("82점");
+    expect(html).toContain("100점 만점");
+    expect(html).toContain("85점 중 70점");
+  });
+  it("H1도 이력이 두 회부터만 추이를 그리고 선택 해제하면 칸을 뺀다", () => {
+    const { student } = reportFixture("normal");
+    const history = [
+      { date: "2026-09-24", title: "9월", score100: 0 },
+      { date: "2026-10-24", title: "10월", score100: 100 },
+    ];
+    const draw = (count: number, trend = true) =>
+      renderToStaticMarkup(
+        <StudentExamReportPaper
+          report={{ ...student, history: history.slice(0, count) }}
+          options={{ trend }}
+        />,
+      );
+    expect(draw(1)).not.toContain("data-exam-report-trend");
+    expect(draw(2)).toContain("data-exam-report-trend");
+    expect(draw(2)).toContain('data-trend-score="0"');
+    expect(draw(2)).toContain('data-trend-score="100"');
+    expect(draw(2, false)).not.toContain("data-exam-report-trend");
+  });
 });
 
-describe("M1 오답 쪽 나누기", () => {
-  const questions = () => reportFixture("zero").student.wrongQuestions;
-
-  it("0개는 빈 쪽을 만들지 않고, 1개는 한 쪽이다", () => {
-    expect(paginateWrongQuestions([])).toEqual([]);
-    expect(paginateWrongQuestions(questions().slice(0, 1))).toEqual([
-      questions().slice(0, 1),
-    ]);
-  });
-
-  it("많은 오답의 원문·순서를 한 번씩 보존하며 쪽당 두 문항을 넘지 않는다", () => {
-    const source = questions();
-    const before = JSON.stringify(source);
-    const pages = paginateWrongQuestions(source);
-    expect(pages.flat()).toEqual(source);
-    expect(pages).toHaveLength(10);
-    expect(pages.every((page) => page.length <= 2)).toBe(true);
-    expect(JSON.stringify(source)).toBe(before);
-  });
-
-  it("큰 그림과 긴 해설을 높이에 포함해 한 문항이 한 쪽을 쓴다", () => {
-    const source = questions().slice(0, 2);
-    const illustrated = {
-      ...source[0],
-      figureSvg: '<svg viewBox="0 0 200 340"><path d="M0 0L200 340"/></svg>',
-      solution: "양변에서 같은 수를 뺍니다. ".repeat(6),
-    };
-    expect(estimateWrongQuestionMm(illustrated)).toBeGreaterThan(
-      estimateWrongQuestionMm(source[0]),
-    );
-    expect(paginateWrongQuestions([illustrated, source[1]])).toEqual([
-      [illustrated],
-      [source[1]],
-    ]);
-  });
-
-  it("모르는 그림 크기도 0으로 세지 않는다", () => {
-    const question = questions()[0];
-    expect(
-      estimateWrongQuestionMm({
-        ...question,
-        figureUrls: ["/figures/example.png"],
-      }),
-    ).toBeGreaterThan(estimateWrongQuestionMm(question));
-  });
-
-  it("한 쪽보다 긴 문항은 잘라 싣지 않고 사유를 반환한다", () => {
-    const question = {
-      ...questions()[0],
-      solution: "긴 해설입니다. ".repeat(1500),
-    };
-    expect(estimateWrongQuestionMm(question)).toBeGreaterThan(
-      WRONG_PAGE_BODY_MM,
-    );
-    expect(() => paginateWrongQuestions([question])).toThrow(/1번.*한 쪽/);
-  });
+describe("기존 M1 저장값의 요약 출력 호환", () => {
+  it.each(["normal", "zero", "long", "absent", "ungraded"] as const)(
+    "%s에서도 S1과 같은 표·쪽수를 출력하고 문항 본문·해설은 싣지 않는다",
+    (scenario) => {
+      const { student } = reportFixture(scenario);
+      const questions = student.questions.map((q) => ({
+        ...q,
+        content: "성적표에 싣지 않을 문항 원문",
+        answer: "성적표에 싣지 않을 정답",
+        solution: "성적표에 싣지 않을 긴 해설".repeat(1500),
+        figureUrls: ["/figures/report-hidden.png"],
+      }));
+      const report = {
+        ...student,
+        questions,
+        wrongQuestions: questions.filter((q) => q.isCorrect === false),
+      };
+      const before = JSON.stringify(report);
+      const draw = (mode: "S1" | "M1") =>
+        renderToStaticMarkup(
+          <StudentExamReportPaper report={report} options={{ mode }} />,
+        );
+      const html = draw("M1");
+      expect(html).toBe(draw("S1"));
+      expect(html).not.toMatch(
+        /싣지 않을|report-hidden|data-report-question|er-problem|틀린 문항 풀이/,
+      );
+      expect(html).toContain(student.teacherNote);
+      expect(JSON.stringify(report)).toBe(before);
+    },
+  );
 });

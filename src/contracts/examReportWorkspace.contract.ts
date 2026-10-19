@@ -7,6 +7,7 @@ import {
 import { EXAM_REPORT_NOTE_LIMIT } from "@/lib/examReport/settings";
 
 export const examReportOptionsSchema = z.strictObject({
+  /** M1은 기존 저장값·확정 PDF 지문 호환용. 새 선택·출력은 S1 요약만 쓴다. */
   format: z.enum(["S1", "M1"]).default("S1"),
   wrongQuestions: z.boolean().default(true),
   retries: z.boolean().default(true),
@@ -36,7 +37,9 @@ export const examReportConfirmInputSchema = z.strictObject({
 });
 export const examReportSettingsInputSchema = z.strictObject({
   expectedOptionsDigest: digest,
-  options: examReportOptionsSchema,
+  options: examReportOptionsSchema.extend({
+    format: z.literal("S1").default("S1"),
+  }),
 });
 export const examReportPrintInputSchema = z.strictObject({
   scope: z.enum(["confirmed", "all"]).default("confirmed"),

@@ -6,10 +6,19 @@ import { ACTUAL_FORMAT_VERSION } from "./problem/actualFormat";
 type Client = Pick<Prisma.TransactionClient, "$queryRaw"> &
   Partial<Pick<Prisma.TransactionClient, "unit" | "problem">>;
 type Fingerprint = { token: string; invalid: string };
+type RevisionFingerprint = Fingerprint & { formatVersion: string; schemaVersion: number };
 const snapshot = new AsyncLocalStorage<{
   client: Client;
   fingerprint: Fingerprint;
 }>();
+const readClient = new AsyncLocalStorage<Client>();
+
+/** Bind range/identity resolution to an uncached scoped read's transaction.
+ * This conveys no fingerprint or cache-validity proof and issues no global scan.
+ */
+export function withBankReadClient<T>(client: Client, read: () => Promise<T>): Promise<T> {
+  return readClient.run(client, read);
+}
 
 /** No problem text/answers leave PostgreSQL. Two seeded 64-bit row-version hashes
  * cover inserts, updates and deletes, including SQL that preserves updated_at.
@@ -36,6 +45,37 @@ export function bankReadFingerprintSql() {
   );
 }
 
+/** Lead enables BANK_READ_REVISION=on only AFTER the guarded DDL/catalog check.
+ * Default off keeps deployments before the additive DDL on the existing path.
+ * No generated Prisma client/table delegate is needed. Every request still reads
+ * the database in its own RepeatableRead snapshot; this token has no TTL.
+ */
+export function bankRevisionFingerprintSql() {
+  return Object.assign(
+    Prisma.sql`SELECT 'revision-v1:' || format_version || ':' || revision::text AS token,
+      invalid_format_count::text AS invalid, format_version AS "formatVersion",
+      schema_version::int AS "schemaVersion"
+      FROM public.bank_read_revision WHERE id=1`,
+    { bankReadRevision: true },
+  );
+}
+
+async function readFingerprint(client: Client): Promise<Fingerprint | undefined> {
+  if (process.env.BANK_READ_REVISION === "on") {
+    const [revision] = await client.$queryRaw<RevisionFingerprint[]>(
+      bankRevisionFingerprintSql(),
+    );
+    if (!revision || revision.schemaVersion !== 1 ||
+      !/^\d+$/.test(revision.invalid) || !revision.token?.startsWith("revision-v1:"))
+      throw new Error("BANK_REVISION_NOT_READY");
+    // A future classifier deployment cannot trust a counter maintained for the
+    // previous version. Keep the original correct reader until a reviewed recount.
+    if (revision.formatVersion === ACTUAL_FORMAT_VERSION) return revision;
+  }
+  const [fingerprint] = await client.$queryRaw<Fingerprint[]>(bankReadFingerprintSql());
+  return fingerprint;
+}
+
 /** Validate on every request, in the same snapshot as the cached result's read.
  * A process never reuses another request's fingerprint or skips this DB check.
  */
@@ -44,9 +84,7 @@ export async function withBankReadFingerprint<T>(
   read: () => Promise<T>,
 ): Promise<T> {
   if (snapshot.getStore()?.client === client) return read();
-  const [fingerprint] = await client.$queryRaw<Fingerprint[]>(
-    bankReadFingerprintSql(),
-  );
+  const fingerprint = await readFingerprint(client);
   if (
     !fingerprint ||
     typeof fingerprint.token !== "string" ||
@@ -60,7 +98,7 @@ export function currentBankReadFingerprint() {
   return snapshot.getStore()?.fingerprint;
 }
 export function currentBankReadClient() {
-  return snapshot.getStore()?.client;
+  return snapshot.getStore()?.client ?? readClient.getStore();
 }
 export function bankFormatsCurrent(client: object) {
   const current = snapshot.getStore();

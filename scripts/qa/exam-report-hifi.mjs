@@ -55,7 +55,7 @@ try {
     await page
       .getByRole("button", { name: new RegExp(`^${variant} ·`) })
       .click();
-    for (const mode of ["S1", "M1", "C2"]) {
+    for (const mode of ["S1", "C2"]) {
       await page
         .getByRole("button", { name: new RegExp(`^${mode} ·`) })
         .click();

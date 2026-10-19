@@ -182,7 +182,10 @@ export function ProblemBank() {
   const [problems, setProblems] = useState<ProblemEntity[]>([]);
   const [units, setUnits] = useState<UnitEntity[]>([]);
   const [loading, setLoading] = useState(true);
-  const [unitsLoading, setUnitsLoading] = useState(true);
+  const [unitsLoading, setUnitsLoading] = useState(false);
+  const [unitsRequested, setUnitsRequested] = useState(false);
+  const [unitLabels, setUnitLabels] = useState<UnitEntity[]>([]);
+  const unitLabelsCache = useRef(new Map<string, UnitEntity>());
   const [error, setError] = useState<string | null>(null);
   const [unitsError, setUnitsError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
@@ -255,7 +258,22 @@ export function ProblemBank() {
   useEffect(() => {
     let cancelled = false;
     loadProblems(filters, page)
-      .then((body) => {
+      .then(async (body) => {
+        if (cancelled) return;
+        // Grade affects fraction display on the current cards. Read only their
+        // missing labels now; the full range/form catalogue waits for intent.
+        const ids = [...new Set(body.data.map((row) => row.unitId))]
+          .filter((id) => !unitLabelsCache.current.has(id));
+        if (ids.length) {
+          try {
+            const labels = await loadUnits(ids);
+            if (cancelled) return;
+            for (const unit of labels.data) unitLabelsCache.current.set(unit.id, unit);
+            setUnitLabels([...unitLabelsCache.current.values()]);
+          } catch {
+            if (!cancelled) setUnitsError("단원 목록을 불러오지 못했습니다");
+          }
+        }
         if (cancelled) return;
         setProblems(body.data);
         setTotal(body.meta.total);
@@ -273,10 +291,12 @@ export function ProblemBank() {
   }, [filters, page, listAttempt]);
 
   useEffect(() => {
+    if (!unitsRequested) return;
     let cancelled = false;
     loadUnits()
       .then((body) => {
         if (cancelled) return;
+        for (const unit of body.data) unitLabelsCache.current.set(unit.id, unit);
         setUnits(body.data);
         setUnitsError(null);
         setUnitsLoading(false);
@@ -289,7 +309,7 @@ export function ProblemBank() {
     return () => {
       cancelled = true;
     };
-  }, [unitsAttempt]);
+  }, [unitsRequested, unitsAttempt]);
 
   // 바구니는 **계정에 저장**된다 — 다른 기기에서 담은 것이 여기 그대로 있어야 한다.
   useEffect(() => {
@@ -389,12 +409,13 @@ export function ProblemBank() {
   );
 
   const defaultUnitId = rangeStart || units[0]?.id || "";
-  const unitActionsDisabled = unitsLoading || units.length === 0;
+  const unitActionsDisabled =
+    unitsRequested && (unitsLoading || units.length === 0);
   const totalPages = Math.max(1, Math.ceil(total / PROBLEM_PAGE_SIZE));
 
   const unitById = useMemo(
-    () => new Map(units.map((unit) => [unit.id, unit])),
-    [units],
+    () => new Map([...unitLabels, ...units].map((unit) => [unit.id, unit])),
+    [unitLabels, units],
   );
   /** 지금 범위를 한 줄과 막대로 — 확인테스트와 **같은 순수 함수**를 쓴다. */
   const rangeSummary = useMemo(
@@ -456,7 +477,15 @@ export function ProblemBank() {
     setRangeEnd(null);
   }
 
+  function requestUnits() {
+    if (!unitsRequested) {
+      setUnitsLoading(true);
+      setUnitsRequested(true);
+    }
+  }
+
   function toggle(next: Exclude<Panel, null>) {
+    requestUnits();
     setPanel((current) => (current === next ? null : next));
   }
 
@@ -588,7 +617,10 @@ export function ProblemBank() {
           value={rangeSummary ? rangeSummary.text : "전체"}
           aria-expanded={rangeEditing}
           disabled={unitActionsDisabled}
-          onClick={() => setRangeEditing((current) => !current)}
+          onClick={() => {
+            requestUnits();
+            setRangeEditing((current) => !current);
+          }}
         />
         <FieldSelect
           label="난이도"
@@ -775,17 +807,37 @@ export function ProblemBank() {
             </>
           ) : null}
           <div className="mt-2">
-            <UnitRangePicker
-              units={units}
-              startUnitId={rangeStart}
-              endUnitId={rangeEnd}
-              onChange={handleRangeChange}
-            />
+            {units.length > 0 && !unitsLoading ? (
+              <UnitRangePicker
+                units={units}
+                startUnitId={rangeStart}
+                endUnitId={rangeEnd}
+                onChange={handleRangeChange}
+              />
+            ) : !unitsError ? (
+              <p role="status">
+                {unitsLoading
+                  ? "단원 목록을 불러오는 중입니다…"
+                  : "등록된 단원이 없습니다."}
+              </p>
+            ) : null}
           </div>
         </div>
       ) : null}
 
-      {panel === "register" ? (
+      {panel && (unitsLoading || units.length === 0) ? (
+        <div className="mt-4">
+          {!unitsError && <p role="status">
+            {unitsLoading
+              ? "단원 목록을 불러오는 중입니다…"
+              : "등록된 단원이 없습니다."}
+          </p>}
+          <Button variant="secondary" onClick={() => setPanel(null)}>
+            닫기
+          </Button>
+        </div>
+      ) : null}
+      {panel === "register" && units.length > 0 && !unitsLoading ? (
         <ProblemRegisterForm
           units={units}
           defaultUnitId={defaultUnitId}
@@ -793,7 +845,7 @@ export function ProblemBank() {
           onError={setError}
         />
       ) : null}
-      {panel === "generate" ? (
+      {panel === "generate" && units.length > 0 && !unitsLoading ? (
         <ProblemGenerateForm
           units={units}
           defaultUnitId={defaultUnitId}
@@ -854,7 +906,14 @@ export function ProblemBank() {
             onClick={() => {
               setUnitsLoading(true);
               setUnitsError(null);
-              setUnitsAttempt((value) => value + 1);
+              if (unitsRequested) setUnitsAttempt((value) => value + 1);
+              else void loadUnits([...new Set(problems.map((row) => row.unitId))])
+                .then((body) => {
+                  for (const unit of body.data) unitLabelsCache.current.set(unit.id, unit);
+                  setUnitLabels([...unitLabelsCache.current.values()]);
+                })
+                .catch(() => setUnitsError("단원 목록을 불러오지 못했습니다"))
+                .finally(() => setUnitsLoading(false));
             }}
           >
             단원 다시 불러오기

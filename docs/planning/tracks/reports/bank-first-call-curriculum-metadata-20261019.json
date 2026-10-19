@@ -1,0 +1,176 @@
+{
+  "measuredAt": "2026-10-19T06:11:04.633Z",
+  "readOnly": true,
+  "valuesEqual": true,
+  "oldResultRows": 16,
+  "currentResultRows": 16,
+  "oldSql": "SELECT \"public\".\"unit\".\"id\", \"public\".\"unit\".\"grade\" FROM \"public\".\"unit\" WHERE 1=1 ORDER BY \"public\".\"unit\".\"grade\" ASC OFFSET $1",
+  "currentSql": "SELECT MIN(\"public\".\"unit\".\"order_index\") AS \"_min$order_index\", \"public\".\"unit\".\"grade\" FROM \"public\".\"unit\" WHERE 1=1 GROUP BY \"public\".\"unit\".\"grade\" ORDER BY MIN(\"public\".\"unit\".\"order_index\") ASC OFFSET $1",
+  "plans": [
+    [
+      {
+        "QUERY PLAN": [
+          {
+            "Plan": {
+              "Node Type": "Index Scan",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Scan Direction": "Forward",
+              "Index Name": "unit_grade_order_index_idx",
+              "Relation Name": "unit",
+              "Alias": "unit",
+              "Startup Cost": 0.28,
+              "Total Cost": 54.76,
+              "Plan Rows": 735,
+              "Plan Width": 23,
+              "Actual Startup Time": 0.012,
+              "Actual Total Time": 0.268,
+              "Actual Rows": 735,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 39,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning": {
+              "Shared Hit Blocks": 0,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.058,
+            "Triggers": [],
+            "Execution Time": 0.341
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "QUERY PLAN": [
+          {
+            "Plan": {
+              "Node Type": "Sort",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 24.25,
+              "Total Cost": 24.29,
+              "Plan Rows": 16,
+              "Plan Width": 11,
+              "Actual Startup Time": 0.303,
+              "Actual Total Time": 0.306,
+              "Actual Rows": 16,
+              "Actual Loops": 1,
+              "Sort Key": [
+                "(min(order_index))"
+              ],
+              "Sort Method": "quicksort",
+              "Sort Space Used": 25,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 8,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Aggregate",
+                  "Strategy": "Sorted",
+                  "Partial Mode": "Simple",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Startup Cost": 0.28,
+                  "Total Cost": 23.93,
+                  "Plan Rows": 16,
+                  "Plan Width": 11,
+                  "Actual Startup Time": 0.038,
+                  "Actual Total Time": 0.294,
+                  "Actual Rows": 16,
+                  "Actual Loops": 1,
+                  "Group Key": [
+                    "grade"
+                  ],
+                  "Shared Hit Blocks": 8,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0,
+                  "Plans": [
+                    {
+                      "Node Type": "Index Only Scan",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Scan Direction": "Forward",
+                      "Index Name": "unit_grade_order_index_idx",
+                      "Relation Name": "unit",
+                      "Alias": "unit",
+                      "Startup Cost": 0.28,
+                      "Total Cost": 20.1,
+                      "Plan Rows": 735,
+                      "Plan Width": 11,
+                      "Actual Startup Time": 0.015,
+                      "Actual Total Time": 0.162,
+                      "Actual Rows": 735,
+                      "Actual Loops": 1,
+                      "Heap Fetches": 0,
+                      "Shared Hit Blocks": 8,
+                      "Shared Read Blocks": 0,
+                      "Shared Dirtied Blocks": 0,
+                      "Shared Written Blocks": 0,
+                      "Local Hit Blocks": 0,
+                      "Local Read Blocks": 0,
+                      "Local Dirtied Blocks": 0,
+                      "Local Written Blocks": 0,
+                      "Temp Read Blocks": 0,
+                      "Temp Written Blocks": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            "Planning": {
+              "Shared Hit Blocks": 0,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            },
+            "Planning Time": 0.115,
+            "Triggers": [],
+            "Execution Time": 0.339
+          }
+        ]
+      }
+    ]
+  ],
+  "note": "Generated SQL and EXPLAIN reveal database rows before Prisma in-memory distinct; no question/body reads."
+}
