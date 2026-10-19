@@ -1,0 +1,211 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 849ms
+     ✓ has five course demands and exactly 64 canonical tuples, all genuine short answer  312ms
+ ✓ src/__tests__/api/builderSpeedPgliteParity.test.ts (1 test) 23258ms
+   ✓ matches the old readers on real local PostgreSQL across format evidence, facets and candidate pages  23249ms
+ ✓ src/__tests__/unit/examStudyAdvancedFigures.test.ts (6 tests) 50134ms
+     ✓ re-solves each printed parabola/line chain and checks every essential dependency  347ms
+     ✓ strictly renders graph-1/v2 combinations with their essential printed labels  4819ms
+     ✓ strictly renders every bounded figure tuple with readable, collision-free print labels  44862ms
+ ✓ src/__tests__/unit/devAiFigureEngine.test.ts (42 tests) 17487ms
+     ✓ renders the actual v2 engine, keeps source/labels, and returns the public SVG contract  1173ms
+     ✓ connects the existing deterministic annotated graph renderer  459ms
+     ✓ connects the existing deterministic elementary chart renderer  450ms
+     ✓ connects the existing deterministic solid renderer  469ms
+     ✓ connects the existing deterministic shaded arc renderer  522ms
+     ✓ connects the existing deterministic LaTeX labels renderer  490ms
+     ✓ repairs a Python-rejected right angle using the original source and real diagnostic  1119ms
+     ✓ rejects an invalid spec after three attempts without falling back to model SVG  1496ms
+     ✓ repairs clear source review issues twice, then keeps the review data without a source-comparison warning  945ms
+     ✓ runs both the spec generation and the source review at medium reasoning effort  316ms
+     ✓ returns the last successful render with a warning when the retry runs out of time  332ms
+     ✓ returns the render with a warning when the review itself runs out of time  323ms
+     ✓ stops before the handler when the handler leaves 100 s, still returning the last render  321ms
+     ✓ stops before the handler when the handler leaves 400 s, still returning the last render  318ms
+     ✓ still keeps the original when a user cancels after a successful render  334ms
+     ✓ fails unsupported graph fields instead of silently dropping them  366ms
+     ✓ fails unsupported graph fields instead of silently dropping them  378ms
+     ✓ fails unsupported graph fields instead of silently dropping them  441ms
+     ✓ fails unsupported graph fields instead of silently dropping them  447ms
+     ✓ draws the quadrilateral concept map through the whole redraw pipeline  397ms
+     ✓ tells the model to draw concept maps with graph-1 and to refuse only non-geometric images  400ms
+     ✓ the engine default still paints a white background rect  399ms
+     ✓ renders a v2 spec with no background transparently and stores that spec  870ms
+     ✓ renders a v2 spec with a white background transparently and stores that spec  874ms
+     ✓ renders a v2 spec with a white canvas background transparently and stores that spec  904ms
+     ✓ renders a v2 spec with both backgrounds transparently and stores that spec  1168ms
+     ✓ renders a v2 spec with an array canvas transparently and stores that spec  865ms
+     ✓ leaves graph-1 specs as the model wrote them  417ms
+     ✓ leaves elem-1 specs as the model wrote them  388ms
+ ✓ src/__tests__/components/PrintCheck.test.tsx (10 tests) 7056ms
+     ✓ 🔴 근거는 **커밋되는** 파일이어야 한다 (있기만 한 것은 그 창에서만 초록이다)  484ms
+     ✓ 항목을 전부 그린다  4153ms
+     ✓ 체크하면 진행 수가 오르고 다시 열어도 남아 있다  1194ms
+     ✓ 「체크 지우기」는 전부 되돌린다  686ms
+ ✓ src/__tests__/unit/examStudyReinforcement.test.ts (20 tests) 4247ms
+     ✓ rejects contradictory domain guidance with otherwise matching keywords and serialization  345ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: candidate  501ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: classification  1376ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: model  704ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: rectangle  411ms
+ ✓ src/__tests__/unit/examStudyAdvancedRemaining.test.ts (11 tests) 433ms
+ ✓ src/__tests__/unit/bankReadRevision.test.ts (10 tests) 5559ms
+     ✓ handles TRUNCATE transactionally and a DDL failure leaves no partial install  2108ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 14465ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  13894ms
+ ✓ src/__tests__/unit/problemActualFormatBackfill.test.ts (10 tests) 5687ms
+   ✓ 실제 PGlite에서 쓰기 직전 재독해·원장 선기록·멱등 재개·세 칸만 갱신을 검증한다  3355ms
+   ✓ 독립 SQL 집계는 unknown·형제·NULL 정체·자료/책 합집합을 보존한다  2229ms
+ ✓ src/__tests__/unit/bankHeldSourceSql.test.ts (1 test) 8033ms
+   ✓ counts only held question unions, including cross-source and same-group siblings, private exclusion and NULL singletons  8019ms
+ ✓ src/__tests__/unit/problemActualFormatReader.test.ts (4 tests) 3893ms
+ ✓ src/__tests__/unit/bankReadFingerprint.test.ts (5 tests) 4180ms
+ ✓ src/__tests__/unit/examStudyAdvanced.test.ts (21 tests) 5003ms
+     ✓ exam-advanced:parabola-line-chain: exhausts every canonical tuple, checks evidence and rejects corrupt answers  677ms
+     ✓ checks every rational integer boundary, excluded point, absolute branch and the infinite tail  2505ms
+stdout | src/__tests__/api/studioAiRoute.test.ts > authenticated production AI execution > uses injected Gemini inference for both figure phases with the real deterministic Python figure engine
+[POST /api/studio/ai] figure-redraw generate gemini/gemini-3.8-flash 1ms ok
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > authenticated production AI execution > uses injected Gemini inference for both figure phases with the real deterministic Python figure engine
+[POST /api/studio/ai] figure-redraw review gemini/gemini-3.8-flash 0ms ok
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > shows the model's own reason when it declines to draw
+[POST /api/studio/ai] figure-redraw generate gemini/gemini-3.8-flash 0ms ok
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > clips a long reason to one line
+[POST /api/studio/ai] figure-redraw generate gemini/gemini-3.8-flash 0ms ok
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > shows the engine's reason as one Korean line when the repairs run out — its words go to detail
+[POST /api/studio/ai] figure-redraw generate gemini/gemini-3.8-flash 0ms ok
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > shows the engine's reason as one Korean line when the repairs run out — its words go to detail
+[POST /api/studio/ai] figure-redraw generate gemini/gemini-3.8-flash 0ms ok
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > shows the engine's reason as one Korean line when the repairs run out — its words go to detail
+[POST /api/studio/ai] figure-redraw generate gemini/gemini-3.8-flash 0ms ok
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > returns the last render before the handler's own 240 s limit
+[POST /api/studio/ai] figure-redraw generate gemini/gemini-3.8-flash 0ms ok
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > returns the last render before the handler's own 240 s limit
+[POST /api/studio/ai] figure-redraw review gemini/gemini-3.8-flash 0ms ok
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > returns the last render before the handler's own 240 s limit
+[POST /api/studio/ai] figure-redraw generate gemini/gemini-3.8-flash 230000ms failed
+
+stdout | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > still hides failures it did not write
+[POST /api/studio/ai] figure-redraw generate gemini/gemini-3.8-flash 0ms failed
+
+ ✓ src/__tests__/api/studioAiRoute.test.ts (15 tests) 4676ms
+     ✓ uses injected Gemini inference for both figure phases with the real deterministic Python figure engine  395ms
+     ✓ shows the engine's reason as one Korean line when the repairs run out — its words go to detail  1073ms
+     ✓ carries the same detail on the development route  2336ms
+     ✓ returns the last render before the handler's own 240 s limit  688ms
+ ✓ src/__tests__/unit/bankFirstCallSql.test.ts (3 tests) 5136ms
+   ✓ keeps scoped unit/family counts and first-available order equal to an independent row union  1024ms
+ ✓ src/__tests__/unit/examStudyWorkspace.test.tsx (13 tests) 3193ms
+     ✓ enables generation for the authorized output menu bank  529ms
+     ✓ sends the reviewed school requirements, shows partial scope, and hides answers initially  596ms
+     ✓ requires explicit generic types and preserves generic mode for an unreviewed school  646ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 2087ms
+     ✓ every displayed formula parses with the existing print math renderer  1181ms
+ ✓ src/__tests__/api/problemTransform.test.ts (30 tests) 1734ms
+     ✓ 도형 스펙을 내면 **서버가 엔진으로 그려** 후보에 실어 준다  676ms
+     ✓ 스펙이 엔진 규칙을 어기면 사유를 남기고 도형은 비운다  363ms
+     ✓ 도형 스펙이 있으면 채택이 되고, **서버가 다시 그려** 저장한다  405ms
+ ✓ src/__tests__/api/builderSpeedParity.test.ts (15 tests) 1239ms
+ ✓ src/__tests__/api/questionBankProjection.test.ts (12 tests) 980ms
+     ✓ keeps uncached/cold/warm response bytes identical across pages and list filters  429ms
+ ✓ src/__tests__/unit/mathExamBuilderSource.test.ts (33 tests) 199ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 324ms
+ ✓ src/__tests__/unit/studioApiTransport.test.ts (18 tests) 153ms
+ ✓ src/__tests__/unit/deriveFormats.test.ts (42 tests) 199ms
+ ✓ src/__tests__/unit/accountRouteAccess.test.ts (24 tests) 148ms
+ ✓ src/__tests__/unit/proxyRoleGate.test.ts (20 tests) 98ms
+ ✓ src/__tests__/unit/deriveFormatsDecimal.test.ts (23 tests) 39173ms
+     ✓ 단위 있는 소수·정수 값의 소수도 씨앗 0~299에서 서로 다른 다섯 보기를 낸다  13013ms
+     ✓ 초등·중등 등록부에서 발견한 소수 문항류는 씨앗 0~99에서도 정답이 하나다  25571ms
+ ✓ src/__tests__/unit/routeAccess.test.ts (15 tests) 138ms
+ ✓ src/__tests__/unit/expandEngineChoiceSpread.test.ts (3 tests) 575ms
+     ✓ 갈래가 달라도 같은 변형번호가 같은 자리에 몰리지 않는다  448ms
+ ✓ src/__tests__/unit/expandEngineExactChoices.test.ts (3 tests) 203ms
+ ✓ src/__tests__/unit/expandEngineDistractors.test.ts (5 tests) 148ms
+ ✓ src/__tests__/unit/expandEngine.test.ts (7 tests) 132ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 231ms
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 19188ms
+     ✓ fulfills every selected demand for 'daeryun-m1'  14010ms
+     ✓ fulfills every selected demand for 'daeryun-m2'  617ms
+     ✓ fulfills every selected demand for 'kyungmyung-m3'  1278ms
+ ✓ src/__tests__/unit/examStudyChoiceBounds.test.ts (9 tests) 1831ms
+     ✓ covers every admissible answer at counts 4..12 and 20 option orders, including 0/n  1464ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 14389ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  12124ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  1547ms
+ ✓ src/__tests__/unit/devAiFigureConditionPreservation.test.ts (5 tests) 4687ms
+     ✓ retains the rejected geometry on every repair stage  653ms
+     ✓ retains the rejected geometry on every repair stage  486ms
+     ✓ accepts source-guided coordinate correction with the right marker still present  829ms
+     ✓ rejects the whole operation when two failed reviews end in an engine failure  1008ms
+     ✓ rejects the whole operation when two failed reviews end in an engine failure  1703ms
+ ✓ src/__tests__/unit/examReportServer.test.ts (24 tests) 1015ms
+     ✓ 문장 없음·문장 씀·확정·문장 변경 후 다시 확정·재채점 후 다시 확정을 실제 읽기로 가른다  373ms
+ ✓ src/__tests__/api/unifiedBankCurriculum.test.ts (19 tests) 563ms
+ ✓ src/__tests__/api/basket.test.ts (33 tests) 561ms
+ ✓ src/__tests__/api/unifiedBankFilters.test.ts (41 tests) 379ms
+ ✓ src/__tests__/api/unifiedBankPickerDemand.test.ts (12 tests) 270ms
+ ✓ src/__tests__/unit/deriveFormatsExactDistractors.test.ts (14 tests) 300ms
+ ✓ src/__tests__/unit/authoredImage.test.ts (12 tests) 222ms
+ ✓ src/__tests__/unit/examReportBlocks.test.ts (21 tests) 196ms
+ ✓ src/__tests__/unit/vendoredFigureEngine.test.ts (5 tests) 172ms
+ ✓ src/__tests__/unit/aiModelBench.test.ts (35 tests) 362ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 300ms
+ ✓ src/__tests__/unit/mathgenWorkflow.test.ts (11 tests) 525ms
+     ✓ preserves native tables, subquestions, printed metadata and raw fractions  412ms
+ ✓ src/__tests__/unit/exactChoiceValue.test.ts (8 tests) 369ms
+ ✓ src/__tests__/unit/problemSourceReference.test.ts (10 tests) 288ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 280ms
+ ✓ src/__tests__/unit/deriveFormatsCountDomain.test.ts (5 tests) 222ms
+ ✓ src/__tests__/api/examReportWorkspace.test.ts (4 tests) 196ms
+ ✓ src/__tests__/unit/examReportWorkspaceContract.test.ts (4 tests) 189ms
+ ✓ src/__tests__/unit/loaderFigureCache.test.ts (6 tests) 275ms
+stdout | src/__tests__/api/predictedPaperGuards.test.ts > PATCH /scores — 같은 orderIndex 를 두 번 보낸다 > 400 으로 거부하고 DB 만점이 그대로 100 이다
+PATCH status 400 · 응답 totalScore undefined
+
+stdout | src/__tests__/api/predictedPaperGuards.test.ts > PATCH /scores — 같은 orderIndex 를 두 번 보낸다 > 400 으로 거부하고 DB 만점이 그대로 100 이다
+DB 실제 만점: 100 · 배점: [
+  3, 3, 3, 3, 3, 4, 4, 4,
+  4, 4, 4, 4, 4, 4, 4, 4,
+  4, 4, 4, 4, 5, 5, 5, 5,
+  5
+]
+
+stdout | src/__tests__/api/predictedPaperGuards.test.ts > 근거 편수 경계 > 그 학교 근거가 0편이어도 코호트(남의 학교)만으로 시험지를 만든다
+status 201 · evidenceCount 0 · confidence 0 · 문항수 25
+
+ ✓ src/__tests__/api/predictedPaperGuards.test.ts (2 tests) 99ms
+ ✓ src/__tests__/api/unitDemand.test.ts (4 tests) 114ms
+ ✓ src/__tests__/unit/problemEligibility.test.ts (6 tests) 41ms
+ ↓ src/__tests__/unit/examStudyMiddleFigures.test.ts (6 tests | 6 skipped)
+ ✓ src/__tests__/unit/examStudyAccess.test.ts (18 tests) 162ms
+
+ Test Files  61 passed | 1 skipped (62)
+      Tests  953 passed | 6 skipped (959)
+   Start at  19:11:50
+   Duration  595.63s (transform 19.13s, setup 98.80s, import 85.02s, tests 258.25s, environment 128.65s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-integration-r7.json
+
+stderr | src/__tests__/api/studioAiRoute.test.ts > authenticated production AI execution > runs the shared parser through API with no production CLI fallback
+[POST /api/studio/ai] solution failed: 503 이 작업에 필요한 서버 API 키가 설정되지 않았습니다.
+
+stderr | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > shows the model's own reason when it declines to draw
+[POST /api/studio/ai] figure-redraw failed: 사진이라 기하 요소로 옮길 수 없습니다. 원본은 유지됩니다.
+
+stderr | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > clips a long reason to one line
+[POST /api/studio/ai] figure-redraw failed: 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 가나다라마 … 원본은 유지됩니다.
+
+stderr | src/__tests__/api/studioAiRoute.test.ts > figure redraw reasons reach the screen > still hides failures it did not write
+[POST /api/studio/ai] figure-redraw failed: upstream body with sk-live-secret
+

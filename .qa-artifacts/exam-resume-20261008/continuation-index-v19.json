@@ -1,0 +1,127 @@
+{
+  "kind": "exam-continuation-index/v19",
+  "version": 19,
+  "createdAt": "2026-10-19T10:49:15.440Z",
+  "previousIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v18.json",
+    "sha256": "7c8be97e4cec39582d560b2c2b446c74a2e1622d555442d2452d077a63031a14"
+  },
+  "statusLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v19.json",
+    "sha256": "d919df7bc92a3d3564529a352066c3b712d7e72b666afb00351f038f7473ab2b"
+  },
+  "currentCandidateIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v19.json",
+    "sha256": "a50d21415429cd2036793c334681a7ad1fec24e6702dc58dc8386efa18313f2d"
+  },
+  "progressReport": "docs/planning/tracks/reports/exam-twin-checkpoint-v19-20261019.md",
+  "counts": {
+    "authoredCurrentCandidates": 115,
+    "currentFigureInstances": 91,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 115,
+    "independentMathReviewed": 114,
+    "independentFullGradeReviewed": 114,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 99,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 114,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1
+  },
+  "sourceAccess": {
+    "nDriveAvailable": false,
+    "checkedAt": "2026-10-19T10:49:15.440Z",
+    "scope": "Current process access only; no network remap or original changes.",
+    "earlierConnectedReceipt": {
+      "observedAt": "2026-10-19T05:15:27.985Z",
+      "nDriveAvailable": true,
+      "matchedEntries": 29,
+      "manifests": 12,
+      "contentPairIdentity": "unconfirmed",
+      "allSourcesExtracted": false
+    },
+    "allSourcesExtracted": false
+  },
+  "freshExtraction": {
+    "evidence": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r1/aggregate-receipt.json",
+        "sha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r2/aggregate-receipt.json",
+        "sha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r3/aggregate-receipt.json",
+        "sha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r4/aggregate-receipt.json",
+        "sha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r5/aggregate-receipt.json",
+        "sha256": "7dfed92a5c2019e565a577910dc51baae6ad949535036950d969186b7e86fb9b"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/aggregate-receipt.json",
+        "sha256": "5918ee507fa9f3f23e7c5c182cbd1872a850f8101afeaf35fa1bb991a874c3c1"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r7/aggregate-receipt.json",
+        "sha256": "5a26d0ba285a3d8a78ae0803c82b78771f45e457cb7e7d706ce71a776c4de139"
+      }
+    ],
+    "oldParentObservations": 253,
+    "newFreshParentObservations": 381,
+    "totalParentObservations": 634,
+    "newFreshExams": 18,
+    "freshComponentsApproved": 0,
+    "wholePairsCertified": 0,
+    "countScope": "Parser parent observations, not unique content-certified exams or verified twins",
+    "latestReviewerObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+      "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+    },
+    "latestAttempt": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r7/aggregate-receipt.json",
+      "sha256": "5a26d0ba285a3d8a78ae0803c82b78771f45e457cb7e7d706ce71a776c4de139"
+    },
+    "latestAttemptResult": "N unavailable in current process; three individual file-access holds, new extraction0. Local evidence/code/review work continues."
+  },
+  "engine": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r11.json",
+    "sha256": "ad906354d4ab9c681283db3038eda711231ee0c6f16bd3755a520875edb84e28"
+  },
+  "latestClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-r2.json",
+    "sha256": "3dc4189206ec0bba6f36f41ee927dc1af1f0a49fdea374d1ef037f7522ca8343"
+  },
+  "cleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "sourceQueue": "Preserved initial continuation-index.json and original20261003 inventory; newly successful fresh aggregate receipts exclude repeat extraction jobs.",
+  "nextActions": [
+    "Continue actual wheel/doubling seven-surface independent grade audits in existing Codex checkout.",
+    "Implement native within-grade inverse-target templates with deterministic existence/uniqueness/figure/solution checks.",
+    "When N access returns, continue original2025+ extraction and component correspondence;634 parser parent observations are not full extraction or unique certified sources.",
+    "Retain q18/source/family/custody/rights/similarity/native holds; new metadata or author bytes require a new bound review.",
+    "Checkpoint feature changes; immediately fetch target and main, preserve integration and rerun affected checks before fast-forward pushes."
+  ],
+  "restrictions": [
+    "No DB apply/delete/reload/unlock/deploy",
+    "Protected82, three correction ledgers and permanent exclusion unchanged",
+    "N/originals/old proof bytes/shared dependencies preserved",
+    "Rights/similarity/source identity and curriculum never auto-approved",
+    "No active or unpreserved worktree cleanup"
+  ],
+  "wholeGoalComplete": false
+}
