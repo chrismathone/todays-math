@@ -23,6 +23,18 @@
   font-weight: 400;
   color: var(--learn-muted);
 }
+/* Example choices keep their original number/text inset and left alignment. */
+:global([data-kind="examples"] button[data-previous="true"]):has(
+  span.previous.previous.previous
+) {
+  grid-template-columns: 18px minmax(0, 1fr);
+  justify-content: start;
+  text-align: left;
+}
+:global([data-kind="examples"]) .previous {
+  grid-column: 2;
+  text-align: left;
+}
 .solution {
   border-top: 2px solid var(--learn-accent);
   padding-top: 26px;
