@@ -1,0 +1,1719 @@
+{
+  "kind": "current-six-captured-family-semantics-audit",
+  "status": "pending",
+  "scope": "Already author-exposed current q11/12/13/14/16/18 only; no fresh blind/new math or grade approval. No original source key calculation.",
+  "capturedAt": "2026-10-19 06:14:08.658144+00",
+  "snapshotIsNotCurrentDbPromise": true,
+  "moduleHashesBefore": {
+    "middle/m3Root.ts": "047c2d34ac6347fcf99dc91ea76957f6ec0245ead0e8d1ad4c9fa2f2d8df76fc",
+    "middle/m3Poly.ts": "fe177c3296c22d0ff550588c901ebe8c283fe1e20237a7777ee3391c39362c5c",
+    "elementary/rng.ts": "a91a03e74d14bbbad7a550f5e3daa78bf4646b06a8d584476f9321adc2e6a3f0"
+  },
+  "moduleHashesAfter": {
+    "middle/m3Root.ts": "047c2d34ac6347fcf99dc91ea76957f6ec0245ead0e8d1ad4c9fa2f2d8df76fc",
+    "middle/m3Poly.ts": "fe177c3296c22d0ff550588c901ebe8c283fe1e20237a7777ee3391c39362c5c",
+    "elementary/rng.ts": "a91a03e74d14bbbad7a550f5e3daa78bf4646b06a8d584476f9321adc2e6a3f0"
+  },
+  "moduleBytesUnchanged": true,
+  "inputHashes": {
+    "current6-author-bindings.json": "f014f2b39545e5716fcc687a650e012cc36c4ca82b042ecb20524e264f1fcda8",
+    "captured-unit-family-snapshot.json": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0",
+    "q16.spec.json": "09a1f9ea5599d03118de7bedac7832d4b112a1a9bfd484ecb41fdd2cafb965ee",
+    "q16.svg": "5340655f8a589234dd79e7b6d2bce30f5541808de0d7cd465399a5e4c0544158"
+  },
+  "allProvidedInputsUnchanged": true,
+  "method": "Compare actual source bodies/domain guards and generated printed outputs with current whole target/conditions/method/domain/answer format. Compute sample answers independently from content, then compare factory answer. Snapshot joins are evidence of captured key/unit associations only.",
+  "boundedSamples": {
+    "definitions": 17,
+    "printedSamples": 34,
+    "independentlyChecked": 34,
+    "passed": 34,
+    "factoryFactsUsed": false,
+    "scopeLimit": "Two seeds per selected nearest definition, not full branch enumeration or all-engine certification."
+  },
+  "items": [
+    {
+      "questionNumber": 11,
+      "binding": {
+        "id": "exam-twin-nobyeon-2025-1-mid-author-group5-r1-q11",
+        "authorSha256": "fcb3b51b377b43c6a6a67773aa23507b666aee22ee15a486813e36a4d9f9f1bc",
+        "authorCandidateDigest": "2b28f14f1a91ee4d67c3272ae65a02d2f3d97abc40a64e7cf955b55c3158774b",
+        "studentDigest": "8fb875e31b296e79000e213cb75b1f3cbd333441b69ed233c09fec9f2e4064a5",
+        "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "currentTarget": "양수인 상수 $a,k$에 대하여 다항식 $(kx-a)^{2}$을 전개했을 때, $x$의 계수를 $b$라고 한다. 상수항이 $\\dfrac9{16}$이고 $a+b=-\\dfrac{21}{4}$일 때, $k$의 값은?",
+      "currentFormat": {
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4
+      },
+      "capturedUnit": {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      },
+      "capturedRelevantFamilies": [
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|01",
+          "family_code": "A01",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|02",
+          "family_code": "A02",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|03",
+          "family_code": "A03",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|04",
+          "family_code": "A04",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|05",
+          "family_code": "A05",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|06",
+          "family_code": "A06",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|07",
+          "family_code": "A07",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|08",
+          "family_code": "A08",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|09",
+          "family_code": "A09",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|10",
+          "family_code": "A10",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|11",
+          "family_code": "A11",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|12",
+          "family_code": "A12",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|13",
+          "family_code": "A13",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|14",
+          "family_code": "A14",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|15",
+          "family_code": "A15",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|16",
+          "family_code": "A16",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|17",
+          "family_code": "A17",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|18",
+          "family_code": "A18",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|52V",
+          "family_code": "A20",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+          "family_code": "A19",
+          "live_count": 24
+        }
+      ],
+      "currentUnitObservation": "UUID/course/section in supplied binding exactly matches captured unit row; this supports captured identity only, not target-level family semantics.",
+      "nearbyActualDefinitions": [
+        {
+          "definitionKey": "3-1|다항식의 곱셈|02",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            274,
+            326
+          ],
+          "actualTargetDomain": "a2..5,b-6..6 except0,c1..4,d-6..6 except0,e-7..7 except0; ask x or x² coefficient nonzero. Forward scalar coefficient of linear×quadratic product.",
+          "capturedFamily": {
+            "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "family_key": "mid:3-1|다항식의 곱셈|02",
+            "family_code": "A02",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 곱셈|02",
+              "seed": 1103,
+              "content": "$(4x-4)(x^2-6x-5)$ 의 전개식에서 $x^2$ 의 계수를 구하시오.",
+              "answer": "$-28$"
+            },
+            {
+              "key": "3-1|다항식의 곱셈|02",
+              "seed": 1907,
+              "content": "$(2x-5)(2x^2+6x+4)$ 의 전개식에서 $x$ 의 계수를 구하시오.",
+              "answer": "$-22$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|다항식의 곱셈|03",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            328,
+            367
+          ],
+          "actualTargetDomain": "integer numerical coefficients; expand one squared linear/binomial expression; gcd guard. Output polynomial, no inverse positive leading constant.",
+          "capturedFamily": {
+            "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "family_key": "mid:3-1|다항식의 곱셈|03",
+            "family_code": "A03",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 곱셈|03",
+              "seed": 1103,
+              "content": "다음 식을 전개하시오.\n$(x-7)^2$",
+              "answer": "$x^2-14x+49$"
+            },
+            {
+              "key": "3-1|다항식의 곱셈|03",
+              "seed": 1907,
+              "content": "다음 식을 전개하시오.\n$(4x+9)^2$",
+              "answer": "$16x^2+72x+81$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|다항식의 인수분해|04",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            1241,
+            1304
+          ],
+          "actualTargetDomain": "make a given monic quadratic a square by finding missing coefficient/constant; integer construction; not unknown leading k inside given square with rational constant+sum.",
+          "capturedFamily": {
+            "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "family_key": "mid:3-1|다항식의 인수분해|04",
+            "family_code": "A04",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해",
+            "semester": 1,
+            "orderIndex": 473,
+            "problemCodePrefix": "J30202"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 인수분해|04",
+              "seed": 1103,
+              "content": "$x^2+ax+9$가 완전제곱식이 되도록 하는 상수 $a$ 의 값을 구하시오. (단, $a>0$)",
+              "answer": "$6$"
+            },
+            {
+              "key": "3-1|다항식의 인수분해|04",
+              "seed": 1907,
+              "content": "$x^2-16x+k$ 가 완전제곱식이 되도록 하는 상수 $k$ 의 값을 구하시오.",
+              "answer": "$64$"
+            }
+          ],
+          "exactFit": false
+        }
+      ],
+      "reusedConceptVsChangedPurpose": "양의 a의 제곱근을 결정하고 b=S-a를 구한 뒤 b=-2ka의 k를 복원하는 역목표가 없다. 정수 계수 전개와 양의 유리상수/합조건 역산은 domain·goal이 다르다.",
+      "verdict": "hold-no-exact-existing-family-established-in-authorized-definitions",
+      "proposedExistingFamily": null,
+      "liveFamilyKey": null,
+      "newTemplateProposal": {
+        "name": "positive-square-constant-and-coefficient-sum-to-leading-constant",
+        "status": "design-proposal-only-not-created-or-registered",
+        "requiredDomainMethodFormat": "a>0,rational a² given; S<a ensures b<0,k=(a-S)/(2a)>0; a≠0; unique. MC five choices/4 points need separately authored distractors and scored steps.",
+        "prerequisiteAndGradeCondition": "기존 문항의 grade evidence를 새 parameter domain 전체의 승인으로 복사하지 않는다. 실제2015중3 전체 학생절차/선수학습 및2022 별도 검토 필요.",
+        "scoreCondition": "current point value is editorial metadata. The inspected TypeEntry.handler emits difficulty but no numeric score/MC choices/written rubric; bind/validate those surfaces separately."
+      },
+      "unknownSemanticCandidates": "captured mixed/manual/native/54V/52V/50/55W keys not defined in these two files remain uninspected. Their existence/counts neither prove compatibility nor prove a globally missing family. No unreviewed key is invented as a fit.",
+      "mathApprovalAdded": false,
+      "gradeApprovalAdded": false,
+      "metadataChanged": false
+    },
+    {
+      "questionNumber": 12,
+      "binding": {
+        "id": "exam-twin-nobyeon-2025-1-mid-author-group6-r1-q12",
+        "authorSha256": "2a33e1413117e023d13fa0e32c37ab93e44516fb09c103afa30b2dff9f510704",
+        "authorCandidateDigest": "21f052e889ed487d0d9d03c22636012d6313f4e0b9da71d7e6f4a93fa30bc3d3",
+        "studentDigest": "0dddfbde65392132ea554db13f95d80be6f2c0d4bb4f520aee66f8ebd0434ca8",
+        "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "currentTarget": "두 수 $u=\\dfrac1{\\sqrt5-1}$, $v=\\dfrac1{\\sqrt5+1}$에 대하여\n\n$u^{3}v-uv^{3}+t(u+v)=\\dfrac{13\\sqrt5}{16}$\n\n이 성립할 때, 실수 $t$의 값은?",
+      "currentFormat": {
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4
+      },
+      "capturedUnit": {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      },
+      "capturedRelevantFamilies": [
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|01",
+          "family_code": "A01",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|02",
+          "family_code": "A02",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|03",
+          "family_code": "A03",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|04",
+          "family_code": "A04",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|05",
+          "family_code": "A05",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|06",
+          "family_code": "A06",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|07",
+          "family_code": "A07",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|08",
+          "family_code": "A08",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|09",
+          "family_code": "A09",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|10",
+          "family_code": "A10",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|11",
+          "family_code": "A11",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|12",
+          "family_code": "A12",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|13",
+          "family_code": "A13",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|14",
+          "family_code": "A14",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|15",
+          "family_code": "A15",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|16",
+          "family_code": "A16",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|17",
+          "family_code": "A17",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|18",
+          "family_code": "A18",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|52V",
+          "family_code": "A20",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+          "family_code": "A19",
+          "live_count": 24
+        }
+      ],
+      "currentUnitObservation": "UUID/course/section in supplied binding exactly matches captured unit row; this supports captured identity only, not target-level family semantics.",
+      "nearbyActualDefinitions": [
+        {
+          "definitionKey": "3-1|다항식의 곱셈|13",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            804,
+            879
+          ],
+          "actualTargetDomain": "rationalize one k/(sqrt(a)-sqrt(b)) or k/(n+sqrt(a)); positive integer n,k and listed nonsquare radicands; no inverse t.",
+          "capturedFamily": {
+            "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "family_key": "mid:3-1|다항식의 곱셈|13",
+            "family_code": "A13",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 곱셈|13",
+              "seed": 1103,
+              "content": "다음 수의 분모를 유리화하시오.\n$\\dfrac{1}{1+\\sqrt{5}}$",
+              "answer": "$\\dfrac{\\sqrt{5}-1}{4}$"
+            },
+            {
+              "key": "3-1|다항식의 곱셈|13",
+              "seed": 1907,
+              "content": "다음 수의 분모를 유리화하시오.\n$\\dfrac{6}{6+\\sqrt{17}}$",
+              "answer": "$\\dfrac{36-6\\sqrt{17}}{19}$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|다항식의 곱셈|14",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            881,
+            914
+          ],
+          "actualTargetDomain": "given x=a±sqrt(b), evaluate monic quadratic; direct target.",
+          "capturedFamily": {
+            "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "family_key": "mid:3-1|다항식의 곱셈|14",
+            "family_code": "A14",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 곱셈|14",
+              "seed": 1103,
+              "content": "$x=4+\\sqrt{5}$ 일 때, $x^2-8x-9$ 의 값을 구하시오.",
+              "answer": "$-20$"
+            },
+            {
+              "key": "3-1|다항식의 곱셈|14",
+              "seed": 1907,
+              "content": "$x=2+\\sqrt{3}$ 일 때, $x^2-4x+9$ 의 값을 구하시오.",
+              "answer": "$8$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|다항식의 인수분해|20",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            1977,
+            2042
+          ],
+          "actualTargetDomain": "evaluate given x,y in square/difference-of-squares; direct output scalar, not quartic product plus coefficient inverse.",
+          "capturedFamily": {
+            "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+            "family_key": "mid:3-1|다항식의 인수분해|20",
+            "family_code": "A11",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해의 응용",
+            "semester": 1,
+            "orderIndex": 474,
+            "problemCodePrefix": "J30203"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 인수분해|20",
+              "seed": 1103,
+              "content": "$x=\\sqrt{5}+1$, $y=\\sqrt{5}-1$ 일 때, $x^2-2xy+y^2$ 의 값을 구하시오.",
+              "answer": "$4$"
+            },
+            {
+              "key": "3-1|다항식의 인수분해|20",
+              "seed": 1907,
+              "content": "$x=35$, $y=25$ 일 때, $x^2-y^2$ 의 값을 구하시오.",
+              "answer": "$600$"
+            }
+          ],
+          "exactFit": false
+        }
+      ],
+      "reusedConceptVsChangedPurpose": "근호 유리화/고차식 공통인수와 제곱의 차/t의 일차 역산을 결합해야 한다. 기존 직접 유리화 또는 값 계산을 t 역산으로 rename하지 않는다.",
+      "verdict": "hold-no-exact-existing-family-established-in-authorized-definitions",
+      "proposedExistingFamily": null,
+      "liveFamilyKey": null,
+      "newTemplateProposal": {
+        "name": "conjugate-reciprocals-quartic-factorization-linear-coefficient-inverse",
+        "status": "design-proposal-only-not-created-or-registered",
+        "requiredDomainMethodFormat": "r>c²>0, u=1/(sqrt(r)-c),v=1/(sqrt(r)+c); denominators and u+v nonzero; uv(u-v)(u+v) then solve unique real t. MC4, factorization+radical+equation prerequisites require separate binding.",
+        "prerequisiteAndGradeCondition": "기존 문항의 grade evidence를 새 parameter domain 전체의 승인으로 복사하지 않는다. 실제2015중3 전체 학생절차/선수학습 및2022 별도 검토 필요.",
+        "scoreCondition": "current point value is editorial metadata. The inspected TypeEntry.handler emits difficulty but no numeric score/MC choices/written rubric; bind/validate those surfaces separately."
+      },
+      "unknownSemanticCandidates": "captured mixed/manual/native/54V/52V/50/55W keys not defined in these two files remain uninspected. Their existence/counts neither prove compatibility nor prove a globally missing family. No unreviewed key is invented as a fit.",
+      "mathApprovalAdded": false,
+      "gradeApprovalAdded": false,
+      "metadataChanged": false
+    },
+    {
+      "questionNumber": 13,
+      "binding": {
+        "id": "exam-twin-nobyeon-2025-1-mid-author-group7-r1-q13",
+        "authorSha256": "31e13cbed95c51cfd699d8239a88194ce8b6d4002b90d5ec39a685f9d4150bee",
+        "authorCandidateDigest": "29e778ff02a7ff44aa519113e2c23779f5029f1b1290b4c5bcde4ddbb19c0bcf",
+        "studentDigest": "99cce281964802c6e4da46dc69b5c194cad243e4aa94958b0be95b1427916985",
+        "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "currentTarget": "다음은 곱셈 공식을 이용한 다섯 계산 기록이다. 등호 오른쪽이 잘못된 기록 두 개를 고르면?\n\n(가) $(3\\sqrt2-1)^2=19-6\\sqrt2$\n\n(나) $(\\sqrt6+\\sqrt{10})^2=16+2\\sqrt{15}$\n\n(다) $(\\sqrt{11}+3)(\\sqrt{11}-3)=2$\n\n(라) $(\\sqrt7+2)(\\sqrt7-4)=-1+2\\sqrt7$\n\n(마) $(4\\sqrt3+\\sqrt5)(\\sqrt3-2\\sqrt5)=2-7\\sqrt{15}$",
+      "currentFormat": {
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4
+      },
+      "capturedUnit": {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      },
+      "capturedRelevantFamilies": [
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|01",
+          "family_code": "A01",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|02",
+          "family_code": "A02",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|03",
+          "family_code": "A03",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|04",
+          "family_code": "A04",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|05",
+          "family_code": "A05",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|06",
+          "family_code": "A06",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|07",
+          "family_code": "A07",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|08",
+          "family_code": "A08",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|09",
+          "family_code": "A09",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|10",
+          "family_code": "A10",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|11",
+          "family_code": "A11",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|12",
+          "family_code": "A12",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|13",
+          "family_code": "A13",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|14",
+          "family_code": "A14",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|15",
+          "family_code": "A15",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|16",
+          "family_code": "A16",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|17",
+          "family_code": "A17",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|18",
+          "family_code": "A18",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|52V",
+          "family_code": "A20",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+          "family_code": "A19",
+          "live_count": 24
+        }
+      ],
+      "currentUnitObservation": "UUID/course/section in supplied binding exactly matches captured unit row; this supports captured identity only, not target-level family semantics.",
+      "nearbyActualDefinitions": [
+        {
+          "definitionKey": "3-1|다항식의 곱셈|12",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            742,
+            802
+          ],
+          "actualTargetDomain": "one direct radical conjugate product, (m sqrt(a)+n)², or (sqrt(a)+n)(sqrt(a)+k); answer expression. Does not construct five claims/two false/pair choices; arbitrary two-radical mixed products also not these branches.",
+          "capturedFamily": {
+            "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "family_key": "mid:3-1|다항식의 곱셈|12",
+            "family_code": "A12",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 곱셈|12",
+              "seed": 1103,
+              "content": "다음 식을 계산하시오.\n$(\\sqrt{5}-6)^2$",
+              "answer": "$41-12\\sqrt{5}$"
+            },
+            {
+              "key": "3-1|다항식의 곱셈|12",
+              "seed": 1907,
+              "content": "다음 식을 계산하시오.\n$(4\\sqrt{17}+5)^2$",
+              "answer": "$297+40\\sqrt{17}$"
+            }
+          ],
+          "exactFit": false
+        }
+      ],
+      "reusedConceptVsChangedPurpose": "기존 한 식 계산 family는 다섯 진술의 진위를 검토해 잘못된 두 기록의 조합을 선택하는 진단 목표/format을 만들지 않는다.",
+      "verdict": "hold-no-exact-existing-family-established-in-authorized-definitions",
+      "proposedExistingFamily": null,
+      "liveFamilyKey": null,
+      "newTemplateProposal": {
+        "name": "five-radical-formula-records-exactly-two-errors",
+        "status": "design-proposal-only-not-created-or-registered",
+        "requiredDomainMethodFormat": "five distinct printed records; exactly two false after exact simplification; include sign/coefficient errors without accidental truth; radicals positive; all five paired choices unambiguous. MC4 and mixed-root product support.",
+        "prerequisiteAndGradeCondition": "기존 문항의 grade evidence를 새 parameter domain 전체의 승인으로 복사하지 않는다. 실제2015중3 전체 학생절차/선수학습 및2022 별도 검토 필요.",
+        "scoreCondition": "current point value is editorial metadata. The inspected TypeEntry.handler emits difficulty but no numeric score/MC choices/written rubric; bind/validate those surfaces separately."
+      },
+      "unknownSemanticCandidates": "captured mixed/manual/native/54V/52V/50/55W keys not defined in these two files remain uninspected. Their existence/counts neither prove compatibility nor prove a globally missing family. No unreviewed key is invented as a fit.",
+      "mathApprovalAdded": false,
+      "gradeApprovalAdded": false,
+      "metadataChanged": false
+    },
+    {
+      "questionNumber": 14,
+      "binding": {
+        "id": "exam-twin-nobyeon-2025-1-mid-author-group8-r1-q14",
+        "authorSha256": "67d23068adbfdb03e223dd0a722f9e79a0734c6f6da64697f368c3c6f158200d",
+        "authorCandidateDigest": "1ff03e30c191a63dd64f4884f77046a3613bce7dd5f0bac3e9163d84dfcbb9ed",
+        "studentDigest": "2a6e6079a1fde74d5fde8b75e5db733454f87d3d5f6e0f6ab7f9bd09cfb80401",
+        "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "currentTarget": "$3$보다 큰 정수 $n$이 다음 등식을 만족한다.\n\n$(n+4)(n-3)-(n-1)^2=77$\n\n곱셈 공식을 이용하여 식을 간단히 할 때, $n$의 값은?",
+      "currentFormat": {
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4
+      },
+      "capturedUnit": {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      },
+      "capturedRelevantFamilies": [
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|01",
+          "family_code": "A01",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|02",
+          "family_code": "A02",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|03",
+          "family_code": "A03",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|04",
+          "family_code": "A04",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|05",
+          "family_code": "A05",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|06",
+          "family_code": "A06",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|07",
+          "family_code": "A07",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|08",
+          "family_code": "A08",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|09",
+          "family_code": "A09",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|10",
+          "family_code": "A10",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|11",
+          "family_code": "A11",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|12",
+          "family_code": "A12",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|13",
+          "family_code": "A13",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|14",
+          "family_code": "A14",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|15",
+          "family_code": "A15",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|16",
+          "family_code": "A16",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|17",
+          "family_code": "A17",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|18",
+          "family_code": "A18",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:3-1|다항식의 곱셈|52V",
+          "family_code": "A20",
+          "live_count": 24
+        },
+        {
+          "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "family_key": "mid:중3|다항식의 곱셈::중3|근호를 포함한 식의 계산",
+          "family_code": "A19",
+          "live_count": 24
+        }
+      ],
+      "currentUnitObservation": "UUID/course/section in supplied binding exactly matches captured unit row; this supports captured identity only, not target-level family semantics.",
+      "nearbyActualDefinitions": [
+        {
+          "definitionKey": "3-1|다항식의 곱셈|07",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            503,
+            537
+          ],
+          "actualTargetDomain": "(ax+b)²-(cx+d)(cx-d); requires a²-c² nonzero, preserves quadratic; output polynomial, not input integer recovered after quadratic cancellation.",
+          "capturedFamily": {
+            "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "family_key": "mid:3-1|다항식의 곱셈|07",
+            "family_code": "A07",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 곱셈|07",
+              "seed": 1103,
+              "content": "다음 식을 계산하시오.\n$(4x-4)^2-(x+2)(x-2)$",
+              "answer": "$15x^2-32x+20$"
+            },
+            {
+              "key": "3-1|다항식의 곱셈|07",
+              "seed": 1907,
+              "content": "다음 식을 계산하시오.\n$(5x+6)^2-(4x+8)(4x-8)$",
+              "answer": "$9x^2+60x+100$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|다항식의 곱셈|11",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            684,
+            740
+          ],
+          "actualTargetDomain": "given numerical near100/1000 square/product -> direct numerical value; no variable inverse or integer-bound check.",
+          "capturedFamily": {
+            "unit_id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "family_key": "mid:3-1|다항식의 곱셈|11",
+            "family_code": "A11",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 곱셈|11",
+              "seed": 1103,
+              "content": "곱셈 공식을 이용하여 다음을 계산하시오.\n$1002^2$",
+              "answer": "$1004004$"
+            },
+            {
+              "key": "3-1|다항식의 곱셈|11",
+              "seed": 1907,
+              "content": "곱셈 공식을 이용하여 다음을 계산하시오.\n$95^2$",
+              "answer": "$9025$"
+            }
+          ],
+          "exactFit": false
+        }
+      ],
+      "reusedConceptVsChangedPurpose": "기존07의 a²-c²≠0는 현재 필수인 이차항 소거를 배제한다. 단순 숫자 계산 family도 값77로 입력n을 복원하지 않는다.",
+      "verdict": "hold-no-exact-existing-family-established-in-authorized-definitions",
+      "proposedExistingFamily": null,
+      "liveFamilyKey": null,
+      "newTemplateProposal": {
+        "name": "inverse-integer-from-cancelling-quadratic-products",
+        "status": "design-proposal-only-not-created-or-registered",
+        "requiredDomainMethodFormat": "quadratic coefficients cancel; residual Ln+C with L≠0; generated rhs gives one integer n>bound; verify original equality and reject zero slope/inconsistent/nonunique cases. MC4.",
+        "prerequisiteAndGradeCondition": "기존 문항의 grade evidence를 새 parameter domain 전체의 승인으로 복사하지 않는다. 실제2015중3 전체 학생절차/선수학습 및2022 별도 검토 필요.",
+        "scoreCondition": "current point value is editorial metadata. The inspected TypeEntry.handler emits difficulty but no numeric score/MC choices/written rubric; bind/validate those surfaces separately."
+      },
+      "unknownSemanticCandidates": "captured mixed/manual/native/54V/52V/50/55W keys not defined in these two files remain uninspected. Their existence/counts neither prove compatibility nor prove a globally missing family. No unreviewed key is invented as a fit.",
+      "mathApprovalAdded": false,
+      "gradeApprovalAdded": false,
+      "metadataChanged": false
+    },
+    {
+      "questionNumber": 16,
+      "binding": {
+        "id": "exam-twin-nobyeon-2025-1-mid-author-group9-r2-q16",
+        "authorSha256": "dee1e34701a2a74e536eebf5151a282d98add678fb8fe0c131fce2ad12a2eb2b",
+        "authorCandidateDigest": "b0a6d6edb3ae8612b8bef85698c46cf781aaa97fd5652423053cd5d737882bdf",
+        "studentDigest": "d704fdbba699602e19ee63267d1ff951ff0063688ea7f1a4e25602fc754ed7bf",
+        "assetDigest": "b85a6ee8e22a978cfd31cb7d3fb8d75fab07e129ae483fb81238776abc91a0d6"
+      },
+      "currentTarget": "자연수 $x$, $y$에 대하여 두 정사각형 A, B가 있다. A의 한 변의 길이는 $x\\,\\mathrm{cm}$이고, B의 넓이는 $(y^2+12y+36)\\,\\mathrm{cm}^2$이다. A의 넓이는 B의 넓이보다 크다.\n\n두 정사각형의 둘레의 합이 $92\\,\\mathrm{cm}$이고, 넓이의 차를 $\\mathrm{cm}^2$ 단위로 나타낸 수가 소수일 때, $xy$의 값은?",
+      "currentFormat": {
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 5
+      },
+      "capturedUnit": {
+        "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "인수분해",
+        "semester": 1,
+        "orderIndex": 473,
+        "problemCodePrefix": "J30202"
+      },
+      "capturedRelevantFamilies": [
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|01",
+          "family_code": "A01",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|02",
+          "family_code": "A02",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|03",
+          "family_code": "A03",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|04",
+          "family_code": "A04",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|05",
+          "family_code": "A05",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|06",
+          "family_code": "A06",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|07",
+          "family_code": "A07",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|08",
+          "family_code": "A08",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|09",
+          "family_code": "A09",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|50",
+          "family_code": "A10",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:3-1|다항식의 인수분해|55W",
+          "family_code": "A11",
+          "live_count": 24
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:manual-20261018|인수분해|F01",
+          "family_code": "A12",
+          "live_count": 10
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:manual-20261018|인수분해|F02",
+          "family_code": "A13",
+          "live_count": 5
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "mid:manual-20261018|인수분해|F03",
+          "family_code": "A14",
+          "live_count": 10
+        },
+        {
+          "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "family_key": "native-desc:m3-factor-error-proof-r1",
+          "family_code": "A15",
+          "live_count": 5
+        }
+      ],
+      "currentUnitObservation": "UUID/course/section in supplied binding exactly matches captured unit row; this supports captured identity only, not target-level family semantics.",
+      "nearbyActualDefinitions": [
+        {
+          "definitionKey": "3-1|다항식의 인수분해|05",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            1306,
+            1346
+          ],
+          "actualTargetDomain": "given lo<x<hi, simplify two roots of square polynomials with sign cases; no square-geometry prime constraints.",
+          "capturedFamily": {
+            "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "family_key": "mid:3-1|다항식의 인수분해|05",
+            "family_code": "A05",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해",
+            "semester": 1,
+            "orderIndex": 473,
+            "problemCodePrefix": "J30202"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 인수분해|05",
+              "seed": 1103,
+              "content": "$-3<x<-1$ 일 때, 다음 식을 간단히 하시오.\n$\\sqrt{x^2+6x+9}-\\sqrt{x^2+2x+1}$",
+              "answer": "$2x+4$"
+            },
+            {
+              "key": "3-1|다항식의 인수분해|05",
+              "seed": 1907,
+              "content": "$-4<x<0$ 일 때, 다음 식을 간단히 하시오.\n$\\sqrt{x^2+8x+16}+\\sqrt{x^2}$",
+              "answer": "$4$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|다항식의 인수분해|06",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            1348,
+            1394
+          ],
+          "actualTargetDomain": "direct difference-of-squares factorization; output factors, no natural-prime inverse.",
+          "capturedFamily": {
+            "unit_id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "family_key": "mid:3-1|다항식의 인수분해|06",
+            "family_code": "A06",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해",
+            "semester": 1,
+            "orderIndex": 473,
+            "problemCodePrefix": "J30202"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 인수분해|06",
+              "seed": 1103,
+              "content": "다음 식을 인수분해하시오.\n$x^2-9$",
+              "answer": "$(x+3)(x-3)$"
+            },
+            {
+              "key": "3-1|다항식의 인수분해|06",
+              "seed": 1907,
+              "content": "다음 식을 인수분해하시오.\n$x^2-25y^2$",
+              "answer": "$(x+5y)(x-5y)$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|다항식의 인수분해|13",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            1640,
+            1676
+          ],
+          "actualTargetDomain": "given counts of x²,x,1 tiles -> rectangle perimeter polynomial; unitSection 인수분해의 응용, not current captured 인수분해 unit; no prime/two squares/known total.",
+          "capturedFamily": {
+            "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+            "family_key": "mid:3-1|다항식의 인수분해|13",
+            "family_code": "A04",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해의 응용",
+            "semester": 1,
+            "orderIndex": 474,
+            "problemCodePrefix": "J30203"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 인수분해|13",
+              "seed": 1103,
+              "content": "넓이가 $x^2$ 인 정사각형 $1$ 개, 넓이가 $x$ 인 직사각형 $6$ 개, 넓이가 $1$ 인 정사각형 $8$ 개를 빈틈없이 겹치지 않게 모두 붙여 하나의 큰 직사각형을 만들었다. 이 직사각형의 둘레의 길이를 구하시오.",
+              "answer": "$4x+12$"
+            },
+            {
+              "key": "3-1|다항식의 인수분해|13",
+              "seed": 1907,
+              "content": "넓이가 $x^2$ 인 정사각형 $1$ 개, 넓이가 $x$ 인 직사각형 $3$ 개, 넓이가 $1$ 인 정사각형 $2$ 개를 빈틈없이 겹치지 않게 모두 붙여 하나의 큰 직사각형을 만들었다. 이 직사각형의 둘레의 길이를 구하시오.",
+              "answer": "$4x+6$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|다항식의 인수분해|14",
+          "module": "m3Poly.ts",
+          "codeLines": [
+            1678,
+            1708
+          ],
+          "actualTargetDomain": "given rectangle area polynomial and side linear expression -> other side; positive coefficient design. Does not recover two natural inputs from perimeter/prime area difference.",
+          "capturedFamily": {
+            "unit_id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+            "family_key": "mid:3-1|다항식의 인수분해|14",
+            "family_code": "A05",
+            "live_count": 24
+          },
+          "capturedUnit": {
+            "id": "40a7b4e1-88d2-4cc6-8097-6d1b5f0bbbf9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해의 응용",
+            "semester": 1,
+            "orderIndex": 474,
+            "problemCodePrefix": "J30203"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|다항식의 인수분해|14",
+              "seed": 1103,
+              "content": "세로의 길이가 $x+1$ 인 직사각형의 넓이가 $3x^2+5x+2$ 일 때, 이 직사각형의 가로의 길이를 구하시오.",
+              "answer": "$3x+2$"
+            },
+            {
+              "key": "3-1|다항식의 인수분해|14",
+              "seed": 1907,
+              "content": "세로의 길이가 $3x+4$ 인 직사각형의 넓이가 $6x^2+17x+12$ 일 때, 이 직사각형의 가로의 길이를 구하시오.",
+              "answer": "$2x+3$"
+            }
+          ],
+          "exactFit": false
+        }
+      ],
+      "reusedConceptVsChangedPurpose": "완전제곱식의 양의 변·제곱의 차·소수의 양의 인수·자연수 합차 역산을 동시에 갖는 정의를 읽은 모듈에서 확인하지 못했다. 도형 family는 한 직사각형의 forward side/perimeter 목표다.",
+      "verdict": "hold-no-exact-existing-family-established-in-authorized-definitions",
+      "proposedExistingFamily": null,
+      "liveFamilyKey": null,
+      "newTemplateProposal": {
+        "name": "two-squares-perimeter-prime-area-difference-natural-product",
+        "status": "design-proposal-only-not-created-or-registered",
+        "requiredDomainMethodFormat": "offset h>0, odd prime side sum P with P>2h+1 gives x=(P+1)/2,y=(P-1)/2-h>0; difference side1 -> prime area difference P; exact two-square SVG/spec and MC5point; prime prerequisite UUID unresolved.",
+        "prerequisiteAndGradeCondition": "기존 문항의 grade evidence를 새 parameter domain 전체의 승인으로 복사하지 않는다. 실제2015중3 전체 학생절차/선수학습 및2022 별도 검토 필요.",
+        "scoreCondition": "current point value is editorial metadata. The inspected TypeEntry.handler emits difficulty but no numeric score/MC choices/written rubric; bind/validate those surfaces separately."
+      },
+      "unknownSemanticCandidates": "captured mixed/manual/native/54V/52V/50/55W keys not defined in these two files remain uninspected. Their existence/counts neither prove compatibility nor prove a globally missing family. No unreviewed key is invented as a fit.",
+      "mathApprovalAdded": false,
+      "gradeApprovalAdded": false,
+      "metadataChanged": false
+    },
+    {
+      "questionNumber": 18,
+      "binding": {
+        "id": "exam-twin-nobyeon-2025-1-mid-author-group10-r1-q18",
+        "authorSha256": "5a4a6499c75cf6e35f8dc35422075b60d031be7736223d19ab11ddd219e0d578",
+        "authorCandidateDigest": "477a0843e6ff6d53249dc6aa205d94e4898a7d85b680c1363d3a7303441c8370",
+        "studentDigest": "c1cd4a22095f2b438597b6dd7d857b460ff541578c72f26c5aa882aa3b4ddbf1",
+        "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "currentTarget": "다음 식으로 나타낸 수를 $A$라 하자.\n\n$A=-\\sqrt{(-3)^2}\\times(\\sqrt2)^2+(-\\sqrt{18})^2\\div\\sqrt{\\left(\\dfrac34\\right)^2}$\n\n수직선에서 $A$의 서로 다른 두 제곱근을 나타내는 두 점 사이의 거리를 구하고, 그 과정을 서술하시오.",
+      "currentFormat": {
+        "questionType": "서술형",
+        "answerFormat": "scalar-with-working",
+        "score": 4
+      },
+      "capturedUnit": {
+        "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "근호를 포함한 식의 계산",
+        "semester": 1,
+        "orderIndex": 471,
+        "problemCodePrefix": "J30103"
+      },
+      "capturedRelevantFamilies": [
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|01",
+          "family_code": "A01",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|02",
+          "family_code": "A02",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|03",
+          "family_code": "A03",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|04",
+          "family_code": "A04",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|05",
+          "family_code": "A05",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|06",
+          "family_code": "A06",
+          "live_count": 14
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|07",
+          "family_code": "A07",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|08",
+          "family_code": "A08",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|09",
+          "family_code": "A09",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|10",
+          "family_code": "A10",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|11",
+          "family_code": "A11",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|12",
+          "family_code": "A12",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|13",
+          "family_code": "A13",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|14",
+          "family_code": "A14",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|15",
+          "family_code": "A15",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|16",
+          "family_code": "A16",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|17",
+          "family_code": "A17",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|18",
+          "family_code": "A18",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|19",
+          "family_code": "A19",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|20",
+          "family_code": "A20",
+          "live_count": 16
+        },
+        {
+          "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "family_key": "mid:3-1|근호를 포함한 식의 계산|54V",
+          "family_code": "A21",
+          "live_count": 16
+        }
+      ],
+      "currentUnitObservation": "UUID/course/section in supplied binding exactly matches captured unit row; this supports captured identity only, not target-level family semantics.",
+      "nearbyActualDefinitions": [
+        {
+          "definitionKey": "3-1|제곱근의 뜻과 성질|06",
+          "module": "m3Root.ts",
+          "codeLines": [
+            418,
+            433
+          ],
+          "actualTargetDomain": "compute sqrt(a²)+sqrt((-b)²)-(-sqrt(c))²; output integer may be negative, domain does not guarantee two real roots downstream.",
+          "capturedFamily": {
+            "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "family_key": "mid:3-1|제곱근의 뜻과 성질|06",
+            "family_code": "A06",
+            "live_count": 48
+          },
+          "capturedUnit": {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|제곱근의 뜻과 성질|06",
+              "seed": 1103,
+              "content": "다음 식을 계산하시오.\n$\\sqrt{9^2}+\\sqrt{(-3)^2}-(-\\sqrt{5})^2$",
+              "answer": "$7$"
+            },
+            {
+              "key": "3-1|제곱근의 뜻과 성질|06",
+              "seed": 1907,
+              "content": "다음 식을 계산하시오.\n$\\sqrt{4^2}+\\sqrt{(-3)^2}-(-\\sqrt{13})^2$",
+              "answer": "$-6$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|제곱근의 뜻과 성질|07",
+          "module": "m3Root.ts",
+          "codeLines": [
+            435,
+            458
+          ],
+          "actualTargetDomain": "principal-root product divided by squared root; scalar positive integer with divisibility guard, no signed fraction expression then two-root distance.",
+          "capturedFamily": {
+            "unit_id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "family_key": "mid:3-1|제곱근의 뜻과 성질|07",
+            "family_code": "A07",
+            "live_count": 48
+          },
+          "capturedUnit": {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|제곱근의 뜻과 성질|07",
+              "seed": 1103,
+              "content": "다음 식을 계산하시오.\n$\\sqrt{6^2}\\times\\sqrt{(-5)^2}\\div(\\sqrt{10})^2$",
+              "answer": "$3$"
+            },
+            {
+              "key": "3-1|제곱근의 뜻과 성질|07",
+              "seed": 1907,
+              "content": "다음 식을 계산하시오.\n$\\sqrt{6^2}\\times\\sqrt{(-6)^2}\\div(\\sqrt{3})^2$",
+              "answer": "$12$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|근호를 포함한 식의 계산|13",
+          "module": "m3Root.ts",
+          "codeLines": [
+            1304,
+            1329
+          ],
+          "actualTargetDomain": "endpoint coordinate c+sqrt(A)-sqrt(B), a,b1..5 unequal; result can be negative. Endpoint is not distance between roots.",
+          "capturedFamily": {
+            "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "family_key": "mid:3-1|근호를 포함한 식의 계산|13",
+            "family_code": "A13",
+            "live_count": 16
+          },
+          "capturedUnit": {
+            "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "근호를 포함한 식의 계산",
+            "semester": 1,
+            "orderIndex": 471,
+            "problemCodePrefix": "J30103"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|근호를 포함한 식의 계산|13",
+              "seed": 1103,
+              "content": "수직선 위에서 좌표가 $-2$ 인 점에서 오른쪽으로 $\\sqrt{3}$ 만큼 이동한 후, 다시 왼쪽으로 $\\sqrt{12}$ 만큼 이동한 점에 대응하는 수를 구하시오.",
+              "answer": "$-2-\\sqrt{3}$"
+            },
+            {
+              "key": "3-1|근호를 포함한 식의 계산|13",
+              "seed": 1907,
+              "content": "수직선 위에서 좌표가 $-1$ 인 점에서 오른쪽으로 $\\sqrt{80}$ 만큼 이동한 후, 다시 왼쪽으로 $\\sqrt{45}$ 만큼 이동한 점에 대응하는 수를 구하시오.",
+              "answer": "$-1+\\sqrt{5}$"
+            }
+          ],
+          "exactFit": false
+        },
+        {
+          "definitionKey": "3-1|근호를 포함한 식의 계산|16",
+          "module": "m3Root.ts",
+          "codeLines": [
+            1416,
+            1443
+          ],
+          "actualTargetDomain": "one product of radicals minus rationalized term; output one surd; no intermediate A root-pair stage or written rubric.",
+          "capturedFamily": {
+            "unit_id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "family_key": "mid:3-1|근호를 포함한 식의 계산|16",
+            "family_code": "A16",
+            "live_count": 16
+          },
+          "capturedUnit": {
+            "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "근호를 포함한 식의 계산",
+            "semester": 1,
+            "orderIndex": 471,
+            "problemCodePrefix": "J30103"
+          },
+          "unitSectionMatches": true,
+          "samples": [
+            {
+              "key": "3-1|근호를 포함한 식의 계산|16",
+              "seed": 1103,
+              "content": "다음 식을 계산하시오.\n$2\\sqrt{3}\\times\\sqrt{5}-\\dfrac{15}{\\sqrt{15}}$",
+              "answer": "$\\sqrt{15}$"
+            },
+            {
+              "key": "3-1|근호를 포함한 식의 계산|16",
+              "seed": 1907,
+              "content": "다음 식을 계산하시오.\n$\\sqrt{2}\\times\\sqrt{6}-\\dfrac{3}{\\sqrt{3}}$",
+              "answer": "$\\sqrt{3}$"
+            }
+          ],
+          "exactFit": false
+        }
+      ],
+      "reusedConceptVsChangedPurpose": "계산한 A의 양성 보장→서로 다른 두 제곱근→양의 거리라는 합성목표가 없다. endpoint좌표 family를 distance로 해석하면 답과 domain이 바뀐다.",
+      "verdict": "hold-no-exact-existing-family-established-in-authorized-definitions",
+      "proposedExistingFamily": null,
+      "liveFamilyKey": null,
+      "newTemplateProposal": {
+        "name": "signed-radical-A-two-roots-positive-distance-written",
+        "status": "design-proposal-only-not-created-or-registered",
+        "requiredDomainMethodFormat": "all radicands>=0, fraction divisor nonzero; A>0 strictly; two roots±sqrt(A), distance2sqrt(A)>0; simplify radical; scalar-with-working and four-point rubric, not MC descriptor.",
+        "prerequisiteAndGradeCondition": "기존 문항의 grade evidence를 새 parameter domain 전체의 승인으로 복사하지 않는다. 실제2015중3 전체 학생절차/선수학습 및2022 별도 검토 필요.",
+        "scoreCondition": "current point value is editorial metadata. The inspected TypeEntry.handler emits difficulty but no numeric score/MC choices/written rubric; bind/validate those surfaces separately."
+      },
+      "unknownSemanticCandidates": "captured mixed/manual/native/54V/52V/50/55W keys not defined in these two files remain uninspected. Their existence/counts neither prove compatibility nor prove a globally missing family. No unreviewed key is invented as a fit.",
+      "mathApprovalAdded": false,
+      "gradeApprovalAdded": false,
+      "metadataChanged": false
+    }
+  ],
+  "decisions": {
+    "exactExistingFamilyProposals": 0,
+    "heldItems": 6,
+    "newTemplateDesignProposals": 6,
+    "currentLiveFamilyKeysRemainNull": true,
+    "newAuthoredQuestions": 0,
+    "newBlindSolves": 0,
+    "newMathApprovals": 0,
+    "newGradeApprovals": 0
+  },
+  "bindingLimitations": [
+    "Two authorized modules do not include all captured families. No claim that no suitable family exists anywhere in the engine.",
+    "Literal mid:+key join does not establish runtime registration or stored bank semantics; no registry/DB reads authorized/performed.",
+    "Snapshot units include current three units but no 인수분해의 응용 section row for geometry-definition unitSection; do not invent its UUID or remap.",
+    "No numeric score or options/written-rubric contract emitted by inspected generator wrappers. Current point/format requires separate binding even where component mathematics overlaps.",
+    "Particle imports were grammar-only stubs for in-memory generation; mathematical source/RNG code unmodified. This does not certify actual Korean rendering/production loader."
+  ],
+  "scopeDeviation": {
+    "occurred": true,
+    "description": "An intended two-file rg search used a PowerShell path variable not set in the fresh invocation and produced workspace-wide file names/code lines. Process was interrupted immediately. Output was not used as evidence or followed into other files. This is a read-scope deviation, so no claim of perfect read isolation is made.",
+    "mitigation": "All subsequent source reads and in-memory loader pinned exact absolute paths. All6 items were already author-exposed; no fresh blind claim.",
+    "otherRuntimeLimit": "require.resolve(typescript) failed; installed Node stripTypeScriptTypes used instead, with its experimental warning preserved."
+  },
+  "releaseGates": {
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "liveFamilyApproved": false,
+    "loadable": false
+  },
+  "outputs": [
+    "own-engine-samples.json",
+    "own-independent-sample-checks.json",
+    "own-current6-math-controls.json",
+    "own-definition-snapshot-joins.json"
+  ]
+}
