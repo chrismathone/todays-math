@@ -1,0 +1,3206 @@
+{
+  "method": "Python Decimal sqrt precision65 and ROUND_HALF_UP to0.001; Fraction exact subsequent arithmetic. No parent BigInt squared-bound binary search or factory parameters/answers used.",
+  "phase": "computed from own-printed-tasks.json only before generated-draft answer/parameter comparison",
+  "tasks": 45,
+  "rootCells": 225,
+  "fiveColumnOutputs": 225,
+  "scaleProof": "a>0,a²=x/100 -> exact a=sqrt(x)/10. Printed root s approximates sqrt(x); a approximation=s/10; output=100(s/10)+b. s is not set equal to exact sqrt(x).",
+  "errorBounds": "|s-sqrt(x)|<0.0005; a approximation error<0.00005; combined value approximation error<0.005. Printed decimal arithmetic is exact only after selecting s.",
+  "results": [
+    {
+      "ordinal": 0,
+      "printedContentSha256": "21e1a5ba05b7e6e832c52747c434e1addeea026b5a061538324f3959842e8208",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "1749/100",
+          "combinedOutputDecimal": "17.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "877/50",
+          "combinedOutputDecimal": "17.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "879/50",
+          "combinedOutputDecimal": "17.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "1763/100",
+          "combinedOutputDecimal": "17.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "442/25",
+          "combinedOutputDecimal": "17.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1749/100",
+      "selectedColumnZeroBased": 0,
+      "independentlyRecoveredAnswer": "1.10",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 7,
+        "index": 0
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 1,
+      "printedContentSha256": "ef6ae7c47dfea385aa4dfaecfa9ef95459137aa175e334c1a03a2c0ad8e2a8e9",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "1749/100",
+          "combinedOutputDecimal": "17.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "877/50",
+          "combinedOutputDecimal": "17.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "879/50",
+          "combinedOutputDecimal": "17.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "1763/100",
+          "combinedOutputDecimal": "17.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "442/25",
+          "combinedOutputDecimal": "17.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "877/50",
+      "selectedColumnZeroBased": 1,
+      "independentlyRecoveredAnswer": "1.11",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 7,
+        "index": 1
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 2,
+      "printedContentSha256": "25ae496dd49cf922a17b3bac50d86ee81d017c199a3de360a14361538e010f6e",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "1749/100",
+          "combinedOutputDecimal": "17.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "877/50",
+          "combinedOutputDecimal": "17.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "879/50",
+          "combinedOutputDecimal": "17.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "1763/100",
+          "combinedOutputDecimal": "17.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "442/25",
+          "combinedOutputDecimal": "17.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "879/50",
+      "selectedColumnZeroBased": 2,
+      "independentlyRecoveredAnswer": "1.12",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 7,
+        "index": 2
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 3,
+      "printedContentSha256": "2a007a3d6fc04688106b589e099741b3927885ada921c7de0624d46a4228654c",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "1749/100",
+          "combinedOutputDecimal": "17.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "877/50",
+          "combinedOutputDecimal": "17.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "879/50",
+          "combinedOutputDecimal": "17.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "1763/100",
+          "combinedOutputDecimal": "17.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "442/25",
+          "combinedOutputDecimal": "17.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1763/100",
+      "selectedColumnZeroBased": 3,
+      "independentlyRecoveredAnswer": "1.13",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 7,
+        "index": 3
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 4,
+      "printedContentSha256": "9e55f417378b854d46739b72bc0318e0cce4022fb3170ff900161f158a37f2d1",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "1749/100",
+          "combinedOutputDecimal": "17.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "877/50",
+          "combinedOutputDecimal": "17.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "879/50",
+          "combinedOutputDecimal": "17.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "1763/100",
+          "combinedOutputDecimal": "17.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "442/25",
+          "combinedOutputDecimal": "17.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "442/25",
+      "selectedColumnZeroBased": 4,
+      "independentlyRecoveredAnswer": "1.14",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 7,
+        "index": 4
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 5,
+      "printedContentSha256": "56b9fb79e14ca16475295f6a8db5c0554d18773d3d34b8ed8b3d062568a01ef2",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "2349/100",
+          "combinedOutputDecimal": "23.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1177/50",
+          "combinedOutputDecimal": "23.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1179/50",
+          "combinedOutputDecimal": "23.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "2363/100",
+          "combinedOutputDecimal": "23.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "592/25",
+          "combinedOutputDecimal": "23.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2349/100",
+      "selectedColumnZeroBased": 0,
+      "independentlyRecoveredAnswer": "1.10",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 13,
+        "index": 0
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 6,
+      "printedContentSha256": "451f0a9b4d198aa5e85f531d09d695174cdb912a78d159640888f1457bd509e7",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "2349/100",
+          "combinedOutputDecimal": "23.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1177/50",
+          "combinedOutputDecimal": "23.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1179/50",
+          "combinedOutputDecimal": "23.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "2363/100",
+          "combinedOutputDecimal": "23.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "592/25",
+          "combinedOutputDecimal": "23.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1177/50",
+      "selectedColumnZeroBased": 1,
+      "independentlyRecoveredAnswer": "1.11",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 13,
+        "index": 1
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 7,
+      "printedContentSha256": "8d9ed37c02d220115a4318105a183ab931ebafa16519853c9bf78f36b5df8dee",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "2349/100",
+          "combinedOutputDecimal": "23.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1177/50",
+          "combinedOutputDecimal": "23.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1179/50",
+          "combinedOutputDecimal": "23.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "2363/100",
+          "combinedOutputDecimal": "23.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "592/25",
+          "combinedOutputDecimal": "23.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1179/50",
+      "selectedColumnZeroBased": 2,
+      "independentlyRecoveredAnswer": "1.12",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 13,
+        "index": 2
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 8,
+      "printedContentSha256": "526ed0f1801b8936719ae36033b513f5e469bc515ab5c414e71f032ae4241b9e",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "2349/100",
+          "combinedOutputDecimal": "23.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1177/50",
+          "combinedOutputDecimal": "23.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1179/50",
+          "combinedOutputDecimal": "23.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "2363/100",
+          "combinedOutputDecimal": "23.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "592/25",
+          "combinedOutputDecimal": "23.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2363/100",
+      "selectedColumnZeroBased": 3,
+      "independentlyRecoveredAnswer": "1.13",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 13,
+        "index": 3
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 9,
+      "printedContentSha256": "8deb0fa0e5921226626cce48ff4dc8348a75ef964f1987a6fa822625633c6843",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "2349/100",
+          "combinedOutputDecimal": "23.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1177/50",
+          "combinedOutputDecimal": "23.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1179/50",
+          "combinedOutputDecimal": "23.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "2363/100",
+          "combinedOutputDecimal": "23.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "592/25",
+          "combinedOutputDecimal": "23.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "592/25",
+      "selectedColumnZeroBased": 4,
+      "independentlyRecoveredAnswer": "1.14",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 13,
+        "index": 4
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 10,
+      "printedContentSha256": "cdd74940b84ac07c4a387dfddcfcfbe1ad5eb71abc78e814e1d81d3cb3476e37",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "3349/100",
+          "combinedOutputDecimal": "33.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1677/50",
+          "combinedOutputDecimal": "33.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1679/50",
+          "combinedOutputDecimal": "33.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "3363/100",
+          "combinedOutputDecimal": "33.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "842/25",
+          "combinedOutputDecimal": "33.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "3349/100",
+      "selectedColumnZeroBased": 0,
+      "independentlyRecoveredAnswer": "1.10",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 23,
+        "index": 0
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 11,
+      "printedContentSha256": "c872b88c06e6982d381ca03210ffa7f950f9ab74ff607e46f3a41e335b4ef141",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "3349/100",
+          "combinedOutputDecimal": "33.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1677/50",
+          "combinedOutputDecimal": "33.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1679/50",
+          "combinedOutputDecimal": "33.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "3363/100",
+          "combinedOutputDecimal": "33.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "842/25",
+          "combinedOutputDecimal": "33.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1677/50",
+      "selectedColumnZeroBased": 1,
+      "independentlyRecoveredAnswer": "1.11",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 23,
+        "index": 1
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 12,
+      "printedContentSha256": "497a132e82da3a6c385f45f4e67abb813fa2d0ab8529a7106c95b1b144eeaccc",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "3349/100",
+          "combinedOutputDecimal": "33.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1677/50",
+          "combinedOutputDecimal": "33.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1679/50",
+          "combinedOutputDecimal": "33.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "3363/100",
+          "combinedOutputDecimal": "33.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "842/25",
+          "combinedOutputDecimal": "33.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1679/50",
+      "selectedColumnZeroBased": 2,
+      "independentlyRecoveredAnswer": "1.12",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 23,
+        "index": 2
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 13,
+      "printedContentSha256": "4090938f929f8ca37f7020a0b3c7608999b3ac0ade433c298747cc9a376ecb7f",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "3349/100",
+          "combinedOutputDecimal": "33.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1677/50",
+          "combinedOutputDecimal": "33.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1679/50",
+          "combinedOutputDecimal": "33.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "3363/100",
+          "combinedOutputDecimal": "33.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "842/25",
+          "combinedOutputDecimal": "33.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "3363/100",
+      "selectedColumnZeroBased": 3,
+      "independentlyRecoveredAnswer": "1.13",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 23,
+        "index": 3
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 14,
+      "printedContentSha256": "04733f485b892f13f91296c2cc0b99c90043f7c091b77043d5b12b0092067924",
+      "cells": [
+        {
+          "input": "1.10",
+          "decimalSqrt65Digits": "1.0488088481701515469914535136799375984752718576815039848757557636",
+          "roundedThousandth": "1.049",
+          "error": "0.0001911518298484530085464863200624015247281423184960151242442364",
+          "printedRootExactFraction": "1049/1000",
+          "aApproximationFraction": "1049/10000",
+          "combinedOutputFraction": "3349/100",
+          "combinedOutputDecimal": "33.49",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.11",
+          "decimalSqrt65Digits": "1.0535653752852738848401404661899667476747700659724348330440129128",
+          "roundedThousandth": "1.054",
+          "error": "0.0004346247147261151598595338100332523252299340275651669559870872",
+          "printedRootExactFraction": "527/500",
+          "aApproximationFraction": "527/5000",
+          "combinedOutputFraction": "1677/50",
+          "combinedOutputDecimal": "33.54",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.12",
+          "decimalSqrt65Digits": "1.0583005244258362362006463014557041702841036732329800721473337837",
+          "roundedThousandth": "1.058",
+          "error": "0.0003005244258362362006463014557041702841036732329800721473337837",
+          "printedRootExactFraction": "529/500",
+          "aApproximationFraction": "529/5000",
+          "combinedOutputFraction": "1679/50",
+          "combinedOutputDecimal": "33.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.13",
+          "decimalSqrt65Digits": "1.0630145812734649407999121914929314221967264258582596480796874554",
+          "roundedThousandth": "1.063",
+          "error": "0.0000145812734649407999121914929314221967264258582596480796874554",
+          "printedRootExactFraction": "1063/1000",
+          "aApproximationFraction": "1063/10000",
+          "combinedOutputFraction": "3363/100",
+          "combinedOutputDecimal": "33.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "1.14",
+          "decimalSqrt65Digits": "1.0677078252031311210811523965595710626282287769460580113978106043",
+          "roundedThousandth": "1.068",
+          "error": "0.0002921747968688789188476034404289373717712230539419886021893957",
+          "printedRootExactFraction": "267/250",
+          "aApproximationFraction": "267/2500",
+          "combinedOutputFraction": "842/25",
+          "combinedOutputDecimal": "33.68",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "842/25",
+      "selectedColumnZeroBased": 4,
+      "independentlyRecoveredAnswer": "1.14",
+      "independentlyRecoveredParameters": {
+        "start": 110,
+        "bRoot": 23,
+        "index": 4
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 15,
+      "printedContentSha256": "cec494ed797ef17ea7794b01eb4424af9fb1ab50502e841b4361e060463b0193",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2281/100",
+          "combinedOutputDecimal": "22.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "571/25",
+          "combinedOutputDecimal": "22.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2287/100",
+          "combinedOutputDecimal": "22.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2291/100",
+          "combinedOutputDecimal": "22.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1147/50",
+          "combinedOutputDecimal": "22.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2281/100",
+      "selectedColumnZeroBased": 0,
+      "independentlyRecoveredAnswer": "2.50",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 7,
+        "index": 0
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 16,
+      "printedContentSha256": "431ce320d381ce2756771d20572a6dd3fbaad1d76cc5ef6a2e9b1882eddd2310",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2281/100",
+          "combinedOutputDecimal": "22.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "571/25",
+          "combinedOutputDecimal": "22.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2287/100",
+          "combinedOutputDecimal": "22.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2291/100",
+          "combinedOutputDecimal": "22.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1147/50",
+          "combinedOutputDecimal": "22.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "571/25",
+      "selectedColumnZeroBased": 1,
+      "independentlyRecoveredAnswer": "2.51",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 7,
+        "index": 1
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 17,
+      "printedContentSha256": "087cce7a5cd29ff5713aa34f9b901bcbcb0e75b9d7494e6c92b8c5ae6c856d07",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2281/100",
+          "combinedOutputDecimal": "22.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "571/25",
+          "combinedOutputDecimal": "22.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2287/100",
+          "combinedOutputDecimal": "22.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2291/100",
+          "combinedOutputDecimal": "22.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1147/50",
+          "combinedOutputDecimal": "22.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2287/100",
+      "selectedColumnZeroBased": 2,
+      "independentlyRecoveredAnswer": "2.52",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 7,
+        "index": 2
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 18,
+      "printedContentSha256": "87144bf142d761ca44f556a05a7507e2de3edd8fbdbf8cd18d288cd10bc1c263",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2281/100",
+          "combinedOutputDecimal": "22.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "571/25",
+          "combinedOutputDecimal": "22.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2287/100",
+          "combinedOutputDecimal": "22.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2291/100",
+          "combinedOutputDecimal": "22.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1147/50",
+          "combinedOutputDecimal": "22.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2291/100",
+      "selectedColumnZeroBased": 3,
+      "independentlyRecoveredAnswer": "2.53",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 7,
+        "index": 3
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 19,
+      "printedContentSha256": "9a3fe175446736aa0edd48599405206633e27a2aae78b193bd9ee12b7710a1ee",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2281/100",
+          "combinedOutputDecimal": "22.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "571/25",
+          "combinedOutputDecimal": "22.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2287/100",
+          "combinedOutputDecimal": "22.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2291/100",
+          "combinedOutputDecimal": "22.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1147/50",
+          "combinedOutputDecimal": "22.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1147/50",
+      "selectedColumnZeroBased": 4,
+      "independentlyRecoveredAnswer": "2.54",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 7,
+        "index": 4
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 20,
+      "printedContentSha256": "484a0b19fb110ed45b2033fe39c4f9fa04052ba317a206633686eb6b8a0fc81b",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2881/100",
+          "combinedOutputDecimal": "28.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "721/25",
+          "combinedOutputDecimal": "28.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2887/100",
+          "combinedOutputDecimal": "28.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2891/100",
+          "combinedOutputDecimal": "28.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1447/50",
+          "combinedOutputDecimal": "28.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2881/100",
+      "selectedColumnZeroBased": 0,
+      "independentlyRecoveredAnswer": "2.50",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 13,
+        "index": 0
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 21,
+      "printedContentSha256": "169290cfd8a059fa3cae755f1c391170d61940f3d43ca3835df60a7be24023e1",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2881/100",
+          "combinedOutputDecimal": "28.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "721/25",
+          "combinedOutputDecimal": "28.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2887/100",
+          "combinedOutputDecimal": "28.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2891/100",
+          "combinedOutputDecimal": "28.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1447/50",
+          "combinedOutputDecimal": "28.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "721/25",
+      "selectedColumnZeroBased": 1,
+      "independentlyRecoveredAnswer": "2.51",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 13,
+        "index": 1
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 22,
+      "printedContentSha256": "7657a9383ffbeefbb14731adae6aa02ec341ece66114be22ae7ba9d4c4c49a0f",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2881/100",
+          "combinedOutputDecimal": "28.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "721/25",
+          "combinedOutputDecimal": "28.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2887/100",
+          "combinedOutputDecimal": "28.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2891/100",
+          "combinedOutputDecimal": "28.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1447/50",
+          "combinedOutputDecimal": "28.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2887/100",
+      "selectedColumnZeroBased": 2,
+      "independentlyRecoveredAnswer": "2.52",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 13,
+        "index": 2
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 23,
+      "printedContentSha256": "e2298358cccb226642650810a2008b9e6aa01021db81e9fb1da7ad9e281aaec4",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2881/100",
+          "combinedOutputDecimal": "28.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "721/25",
+          "combinedOutputDecimal": "28.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2887/100",
+          "combinedOutputDecimal": "28.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2891/100",
+          "combinedOutputDecimal": "28.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1447/50",
+          "combinedOutputDecimal": "28.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2891/100",
+      "selectedColumnZeroBased": 3,
+      "independentlyRecoveredAnswer": "2.53",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 13,
+        "index": 3
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 24,
+      "printedContentSha256": "8eada8a830578175ce436cd7987a127f69a24ec7b7616ecbf99cfbe1187e6f84",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "2881/100",
+          "combinedOutputDecimal": "28.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "721/25",
+          "combinedOutputDecimal": "28.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "2887/100",
+          "combinedOutputDecimal": "28.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "2891/100",
+          "combinedOutputDecimal": "28.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1447/50",
+          "combinedOutputDecimal": "28.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1447/50",
+      "selectedColumnZeroBased": 4,
+      "independentlyRecoveredAnswer": "2.54",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 13,
+        "index": 4
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 25,
+      "printedContentSha256": "089f9fe900e80a89ec181ab6003298ef540b3445675656d63ef615ec0e098083",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "3881/100",
+          "combinedOutputDecimal": "38.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "971/25",
+          "combinedOutputDecimal": "38.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "3887/100",
+          "combinedOutputDecimal": "38.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "3891/100",
+          "combinedOutputDecimal": "38.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1947/50",
+          "combinedOutputDecimal": "38.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "3881/100",
+      "selectedColumnZeroBased": 0,
+      "independentlyRecoveredAnswer": "2.50",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 23,
+        "index": 0
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 26,
+      "printedContentSha256": "afa4f9b924519fceb6dad72db68598d9b9beda79c3eb11b8ccc2b3a03e536592",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "3881/100",
+          "combinedOutputDecimal": "38.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "971/25",
+          "combinedOutputDecimal": "38.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "3887/100",
+          "combinedOutputDecimal": "38.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "3891/100",
+          "combinedOutputDecimal": "38.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1947/50",
+          "combinedOutputDecimal": "38.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "971/25",
+      "selectedColumnZeroBased": 1,
+      "independentlyRecoveredAnswer": "2.51",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 23,
+        "index": 1
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 27,
+      "printedContentSha256": "bb1645a8118c589ec797ba5d7ff00abe65cd11bff7ef7253a22c7d3c4b702f38",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "3881/100",
+          "combinedOutputDecimal": "38.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "971/25",
+          "combinedOutputDecimal": "38.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "3887/100",
+          "combinedOutputDecimal": "38.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "3891/100",
+          "combinedOutputDecimal": "38.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1947/50",
+          "combinedOutputDecimal": "38.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "3887/100",
+      "selectedColumnZeroBased": 2,
+      "independentlyRecoveredAnswer": "2.52",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 23,
+        "index": 2
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 28,
+      "printedContentSha256": "0f19ca48120c2944c55a5db3fe7981c51535e128b9b8dadc73d5e74d979d5e3e",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "3881/100",
+          "combinedOutputDecimal": "38.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "971/25",
+          "combinedOutputDecimal": "38.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "3887/100",
+          "combinedOutputDecimal": "38.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "3891/100",
+          "combinedOutputDecimal": "38.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1947/50",
+          "combinedOutputDecimal": "38.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "3891/100",
+      "selectedColumnZeroBased": 3,
+      "independentlyRecoveredAnswer": "2.53",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 23,
+        "index": 3
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 29,
+      "printedContentSha256": "74504ecd376e79d64d1cf8279ba6a7d2d2146540d42b42fd03a48ae2d30959bd",
+      "cells": [
+        {
+          "input": "2.50",
+          "decimalSqrt65Digits": "1.5811388300841896659994467722163592668597775696626084134287524264",
+          "roundedThousandth": "1.581",
+          "error": "0.0001388300841896659994467722163592668597775696626084134287524264",
+          "printedRootExactFraction": "1581/1000",
+          "aApproximationFraction": "1581/10000",
+          "combinedOutputFraction": "3881/100",
+          "combinedOutputDecimal": "38.81",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.51",
+          "decimalSqrt65Digits": "1.5842979517754859484756796052047584818850697302709813495619745888",
+          "roundedThousandth": "1.584",
+          "error": "0.0002979517754859484756796052047584818850697302709813495619745888",
+          "printedRootExactFraction": "198/125",
+          "aApproximationFraction": "99/625",
+          "combinedOutputFraction": "971/25",
+          "combinedOutputDecimal": "38.84",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.52",
+          "decimalSqrt65Digits": "1.5874507866387543543009694521835562554261555098494701082210006755",
+          "roundedThousandth": "1.587",
+          "error": "0.0004507866387543543009694521835562554261555098494701082210006755",
+          "printedRootExactFraction": "1587/1000",
+          "aApproximationFraction": "1587/10000",
+          "combinedOutputFraction": "3887/100",
+          "combinedOutputDecimal": "38.87",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.53",
+          "decimalSqrt65Digits": "1.5905973720586866353745477830540558936593693904354443473981050965",
+          "roundedThousandth": "1.591",
+          "error": "0.0004026279413133646254522169459441063406306095645556526018949035",
+          "printedRootExactFraction": "1591/1000",
+          "aApproximationFraction": "1591/10000",
+          "combinedOutputFraction": "3891/100",
+          "combinedOutputDecimal": "38.91",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "2.54",
+          "decimalSqrt65Digits": "1.5937377450509227366631160746245421118357692398791584095898301565",
+          "roundedThousandth": "1.594",
+          "error": "0.0002622549490772633368839253754578881642307601208415904101698435",
+          "printedRootExactFraction": "797/500",
+          "aApproximationFraction": "797/5000",
+          "combinedOutputFraction": "1947/50",
+          "combinedOutputDecimal": "38.94",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1947/50",
+      "selectedColumnZeroBased": 4,
+      "independentlyRecoveredAnswer": "2.54",
+      "independentlyRecoveredParameters": {
+        "start": 250,
+        "bRoot": 23,
+        "index": 4
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 30,
+      "printedContentSha256": "0f20bc426006d6f03fade18a1234abddf3bf04d6d34d618749363b8de0a550bc",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1479/50",
+          "combinedOutputDecimal": "29.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "2961/100",
+          "combinedOutputDecimal": "29.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "2963/100",
+          "combinedOutputDecimal": "29.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "593/20",
+          "combinedOutputDecimal": "29.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "2967/100",
+          "combinedOutputDecimal": "29.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1479/50",
+      "selectedColumnZeroBased": 0,
+      "independentlyRecoveredAnswer": "5.10",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 7,
+        "index": 0
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 31,
+      "printedContentSha256": "571198d179c11fbe9baad1250c255cd51e565dab8f39d1fc658a16bc75864c30",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1479/50",
+          "combinedOutputDecimal": "29.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "2961/100",
+          "combinedOutputDecimal": "29.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "2963/100",
+          "combinedOutputDecimal": "29.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "593/20",
+          "combinedOutputDecimal": "29.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "2967/100",
+          "combinedOutputDecimal": "29.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2961/100",
+      "selectedColumnZeroBased": 1,
+      "independentlyRecoveredAnswer": "5.11",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 7,
+        "index": 1
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 32,
+      "printedContentSha256": "7d8c22b51d4e30879817c187bd220e4ba7e991dbdae32ac67b22dd85716caaaa",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1479/50",
+          "combinedOutputDecimal": "29.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "2961/100",
+          "combinedOutputDecimal": "29.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "2963/100",
+          "combinedOutputDecimal": "29.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "593/20",
+          "combinedOutputDecimal": "29.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "2967/100",
+          "combinedOutputDecimal": "29.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2963/100",
+      "selectedColumnZeroBased": 2,
+      "independentlyRecoveredAnswer": "5.12",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 7,
+        "index": 2
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 33,
+      "printedContentSha256": "fb8e44230ac1870f756d7ec4dcb9c2f113956144a173232b99688a4a7a44561f",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1479/50",
+          "combinedOutputDecimal": "29.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "2961/100",
+          "combinedOutputDecimal": "29.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "2963/100",
+          "combinedOutputDecimal": "29.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "593/20",
+          "combinedOutputDecimal": "29.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "2967/100",
+          "combinedOutputDecimal": "29.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "593/20",
+      "selectedColumnZeroBased": 3,
+      "independentlyRecoveredAnswer": "5.13",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 7,
+        "index": 3
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 34,
+      "printedContentSha256": "07a2bdeab2405f544384d569aff5bac29d113784e67c4b8045d9c9b451099e5c",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1479/50",
+          "combinedOutputDecimal": "29.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "2961/100",
+          "combinedOutputDecimal": "29.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "2963/100",
+          "combinedOutputDecimal": "29.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "593/20",
+          "combinedOutputDecimal": "29.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "2967/100",
+          "combinedOutputDecimal": "29.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2967/100",
+      "selectedColumnZeroBased": 4,
+      "independentlyRecoveredAnswer": "5.14",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 7,
+        "index": 4
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 35,
+      "printedContentSha256": "66b2056cc0485b23e76394a8aba928a07936299d348046dc11155d21fa16629e",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1779/50",
+          "combinedOutputDecimal": "35.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "3561/100",
+          "combinedOutputDecimal": "35.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "3563/100",
+          "combinedOutputDecimal": "35.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "713/20",
+          "combinedOutputDecimal": "35.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "3567/100",
+          "combinedOutputDecimal": "35.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "1779/50",
+      "selectedColumnZeroBased": 0,
+      "independentlyRecoveredAnswer": "5.10",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 13,
+        "index": 0
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 36,
+      "printedContentSha256": "a7dab78b788e557f04203c04ce9498e36605c7448539a29ac03fef29a587297b",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1779/50",
+          "combinedOutputDecimal": "35.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "3561/100",
+          "combinedOutputDecimal": "35.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "3563/100",
+          "combinedOutputDecimal": "35.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "713/20",
+          "combinedOutputDecimal": "35.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "3567/100",
+          "combinedOutputDecimal": "35.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "3561/100",
+      "selectedColumnZeroBased": 1,
+      "independentlyRecoveredAnswer": "5.11",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 13,
+        "index": 1
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 37,
+      "printedContentSha256": "a39d3134379532a0398b4381c829823f652fde6e8b8951dc4d887a887463111e",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1779/50",
+          "combinedOutputDecimal": "35.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "3561/100",
+          "combinedOutputDecimal": "35.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "3563/100",
+          "combinedOutputDecimal": "35.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "713/20",
+          "combinedOutputDecimal": "35.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "3567/100",
+          "combinedOutputDecimal": "35.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "3563/100",
+      "selectedColumnZeroBased": 2,
+      "independentlyRecoveredAnswer": "5.12",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 13,
+        "index": 2
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 38,
+      "printedContentSha256": "027c436752a57a92b583febe62c38d946bd4c09a00fde1b2ef1d5ac1e772c826",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1779/50",
+          "combinedOutputDecimal": "35.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "3561/100",
+          "combinedOutputDecimal": "35.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "3563/100",
+          "combinedOutputDecimal": "35.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "713/20",
+          "combinedOutputDecimal": "35.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "3567/100",
+          "combinedOutputDecimal": "35.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "713/20",
+      "selectedColumnZeroBased": 3,
+      "independentlyRecoveredAnswer": "5.13",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 13,
+        "index": 3
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 39,
+      "printedContentSha256": "a2370e75fee198bfdf2407ef2e28f049c749e4a3e12ee1aab872ca202d5d067d",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "1779/50",
+          "combinedOutputDecimal": "35.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "3561/100",
+          "combinedOutputDecimal": "35.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "3563/100",
+          "combinedOutputDecimal": "35.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "713/20",
+          "combinedOutputDecimal": "35.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "3567/100",
+          "combinedOutputDecimal": "35.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "3567/100",
+      "selectedColumnZeroBased": 4,
+      "independentlyRecoveredAnswer": "5.14",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 13,
+        "index": 4
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 40,
+      "printedContentSha256": "e6355294b25b80ea1b4586f72ef6f5ed8f7934914e86b4c983cd67054bda2784",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "2279/50",
+          "combinedOutputDecimal": "45.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "4561/100",
+          "combinedOutputDecimal": "45.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "4563/100",
+          "combinedOutputDecimal": "45.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "913/20",
+          "combinedOutputDecimal": "45.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "4567/100",
+          "combinedOutputDecimal": "45.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "2279/50",
+      "selectedColumnZeroBased": 0,
+      "independentlyRecoveredAnswer": "5.10",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 23,
+        "index": 0
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 41,
+      "printedContentSha256": "2326c57e42227d737434117f4f8e627cc7cecd19c348aa7aac603e08d1909913",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "2279/50",
+          "combinedOutputDecimal": "45.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "4561/100",
+          "combinedOutputDecimal": "45.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "4563/100",
+          "combinedOutputDecimal": "45.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "913/20",
+          "combinedOutputDecimal": "45.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "4567/100",
+          "combinedOutputDecimal": "45.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "4561/100",
+      "selectedColumnZeroBased": 1,
+      "independentlyRecoveredAnswer": "5.11",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 23,
+        "index": 1
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 42,
+      "printedContentSha256": "55ad74c5f395e1e7c7e958fffd4595c9f3f7fd2674e8f5d838781541249e0365",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "2279/50",
+          "combinedOutputDecimal": "45.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "4561/100",
+          "combinedOutputDecimal": "45.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "4563/100",
+          "combinedOutputDecimal": "45.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "913/20",
+          "combinedOutputDecimal": "45.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "4567/100",
+          "combinedOutputDecimal": "45.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "4563/100",
+      "selectedColumnZeroBased": 2,
+      "independentlyRecoveredAnswer": "5.12",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 23,
+        "index": 2
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 43,
+      "printedContentSha256": "d3a8aa91553c01e5c884f2f57a25e4a0dc93872c753df396f46fafff8ff800c1",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "2279/50",
+          "combinedOutputDecimal": "45.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "4561/100",
+          "combinedOutputDecimal": "45.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "4563/100",
+          "combinedOutputDecimal": "45.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "913/20",
+          "combinedOutputDecimal": "45.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "4567/100",
+          "combinedOutputDecimal": "45.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "913/20",
+      "selectedColumnZeroBased": 3,
+      "independentlyRecoveredAnswer": "5.13",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 23,
+        "index": 3
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    },
+    {
+      "ordinal": 44,
+      "printedContentSha256": "7388214b26c8d43269ca34577bab7369e68fc877921dc7dc3ce81cae179207c1",
+      "cells": [
+        {
+          "input": "5.10",
+          "decimalSqrt65Digits": "2.2583179581272429849720499859691153953599704039739026390694602733",
+          "roundedThousandth": "2.258",
+          "error": "0.0003179581272429849720499859691153953599704039739026390694602733",
+          "printedRootExactFraction": "1129/500",
+          "aApproximationFraction": "1129/5000",
+          "combinedOutputFraction": "2279/50",
+          "combinedOutputDecimal": "45.58",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.11",
+          "decimalSqrt65Digits": "2.2605309110914630445837850592159994901622391198725791459035317059",
+          "roundedThousandth": "2.261",
+          "error": "0.0004690889085369554162149407840005098377608801274208540964682941",
+          "printedRootExactFraction": "2261/1000",
+          "aApproximationFraction": "2261/10000",
+          "combinedOutputFraction": "4561/100",
+          "combinedOutputDecimal": "45.61",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.12",
+          "decimalSqrt65Digits": "2.2627416997969520780827019587355169257114750006031169170826875808",
+          "roundedThousandth": "2.263",
+          "error": "0.0002583002030479219172980412644830742885249993968830829173124192",
+          "printedRootExactFraction": "2263/1000",
+          "aApproximationFraction": "2263/10000",
+          "combinedOutputFraction": "4563/100",
+          "combinedOutputDecimal": "45.63",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.13",
+          "decimalSqrt65Digits": "2.2649503305812249091710054420838351174666584113870140414895880717",
+          "roundedThousandth": "2.265",
+          "error": "0.0000496694187750908289945579161648825333415886129859585104119283",
+          "printedRootExactFraction": "453/200",
+          "aApproximationFraction": "453/2000",
+          "combinedOutputFraction": "913/20",
+          "combinedOutputDecimal": "45.65",
+          "printedIsExactRadical": false
+        },
+        {
+          "input": "5.14",
+          "decimalSqrt65Digits": "2.2671568097509267786240958185846504874873911263663022522975875799",
+          "roundedThousandth": "2.267",
+          "error": "0.0001568097509267786240958185846504874873911263663022522975875799",
+          "printedRootExactFraction": "2267/1000",
+          "aApproximationFraction": "2267/10000",
+          "combinedOutputFraction": "4567/100",
+          "combinedOutputDecimal": "45.67",
+          "printedIsExactRadical": false
+        }
+      ],
+      "allFiveOutputsUnique": true,
+      "targetFraction": "4567/100",
+      "selectedColumnZeroBased": 4,
+      "independentlyRecoveredAnswer": "5.14",
+      "independentlyRecoveredParameters": {
+        "start": 510,
+        "bRoot": 23,
+        "index": 4
+      },
+      "existenceUniqueness": "finite five-column enumeration finds exactly one matching output, all positive roots; no monotonicity/function theorem required"
+    }
+  ]
+}

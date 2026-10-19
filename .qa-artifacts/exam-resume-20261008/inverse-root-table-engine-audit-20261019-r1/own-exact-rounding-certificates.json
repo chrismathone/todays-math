@@ -1,0 +1,1806 @@
+{
+  "method": "Independent Decimal oracle supplemented by exact Fraction midpoint-square certificates. No search or parent BigInt root routine.",
+  "cells": 225,
+  "certificates": [
+    {
+      "ordinal": 0,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 0,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 0,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 0,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 0,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 1,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 1,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 1,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 1,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 1,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 2,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 2,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 2,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 2,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 2,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 3,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 3,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 3,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 3,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 3,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 4,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 4,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 4,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 4,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 4,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 5,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 5,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 5,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 5,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 5,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 6,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 6,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 6,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 6,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 6,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 7,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 7,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 7,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 7,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 7,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 8,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 8,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 8,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 8,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 8,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 9,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 9,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 9,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 9,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 9,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 10,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 10,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 10,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 10,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 10,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 11,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 11,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 11,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 11,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 11,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 12,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 12,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 12,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 12,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 12,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 13,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 13,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 13,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 13,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 13,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 14,
+      "column": 0,
+      "lowerSquaredGap": "2591/4000000",
+      "upperSquaredGap": "5801/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 14,
+      "column": 1,
+      "lowerSquaredGap": "551/4000000",
+      "upperSquaredGap": "7881/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 14,
+      "column": 2,
+      "lowerSquaredGap": "271/160000",
+      "upperSquaredGap": "1689/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 14,
+      "column": 3,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "4129/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 14,
+      "column": 4,
+      "lowerSquaredGap": "71/160000",
+      "upperSquaredGap": "6769/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 15,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 15,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 15,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 15,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 15,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 16,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 16,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 16,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 16,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 16,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 17,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 17,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 17,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 17,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 17,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 18,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 18,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 18,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 18,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 18,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 19,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 19,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 19,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 19,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 19,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 20,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 20,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 20,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 20,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 20,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 21,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 21,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 21,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 21,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 21,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 22,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 22,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 22,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 22,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 22,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 23,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 23,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 23,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 23,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 23,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 24,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 24,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 24,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 24,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 24,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 25,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 25,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 25,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 25,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 25,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 26,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 26,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 26,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 26,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 26,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 27,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 27,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 27,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 27,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 27,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 28,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 28,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 28,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 28,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 28,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 29,
+      "column": 0,
+      "lowerSquaredGap": "8079/4000000",
+      "upperSquaredGap": "4569/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 29,
+      "column": 1,
+      "lowerSquaredGap": "10111/4000000",
+      "upperSquaredGap": "2561/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 29,
+      "column": 2,
+      "lowerSquaredGap": "12071/4000000",
+      "upperSquaredGap": "1/6400",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 29,
+      "column": 3,
+      "lowerSquaredGap": "1239/4000000",
+      "upperSquaredGap": "11489/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 29,
+      "column": 4,
+      "lowerSquaredGap": "3031/4000000",
+      "upperSquaredGap": "9721/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 30,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 30,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 30,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 30,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 30,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 31,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 31,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 31,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 31,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 31,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 32,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 32,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 32,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 32,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 32,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 33,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 33,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 33,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 33,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 33,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 34,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 34,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 34,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 34,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 34,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 35,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 35,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 35,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 35,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 35,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 36,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 36,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 36,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 36,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 36,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 37,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 37,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 37,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 37,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 37,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 38,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 38,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 38,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 38,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 38,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 39,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 39,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 39,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 39,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 39,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 40,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 40,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 40,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 40,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 40,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 41,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 41,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 41,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 41,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 41,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 42,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 42,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 42,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 42,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 42,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 43,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 43,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 43,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 43,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 43,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 44,
+      "column": 0,
+      "lowerSquaredGap": "591/160000",
+      "upperSquaredGap": "3289/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 44,
+      "column": 1,
+      "lowerSquaredGap": "559/4000000",
+      "upperSquaredGap": "17529/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 44,
+      "column": 2,
+      "lowerSquaredGap": "7/6400",
+      "upperSquaredGap": "13729/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 44,
+      "column": 3,
+      "lowerSquaredGap": "8159/4000000",
+      "upperSquaredGap": "9961/4000000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    },
+    {
+      "ordinal": 44,
+      "column": 4,
+      "lowerSquaredGap": "11911/4000000",
+      "upperSquaredGap": "249/160000",
+      "strictMidpointBounds": true,
+      "decimalPrecision30And90Agree": true
+    }
+  ]
+}

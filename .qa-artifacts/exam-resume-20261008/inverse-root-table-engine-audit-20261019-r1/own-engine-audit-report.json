@@ -1,0 +1,217 @@
+{
+  "kind": "new-review-only-inverse-root-table-engine-audit",
+  "status": "pending-release-held",
+  "factoryId": "study-middle-inverse-root-table",
+  "requirement": "number.inverse-root-table",
+  "auditScopeRevision": "scope-input-r2.json; return type only",
+  "math": {
+    "status": "passed-finite45",
+    "actualCases": 45,
+    "distinctPrintedTasks": 45,
+    "distinctAnswers": 15,
+    "rootCellsChecked": 225,
+    "columnOutputsChecked": 225,
+    "positiveRoots": true,
+    "allUniqueInverseMappings": true,
+    "approximationNotExactRadical": true,
+    "independentOracle": "Decimal sqrt prec65 ROUND_HALF_UP plus Fraction exact arithmetic and exact midpoint certificates, precision30/90 stability; not parentBigIntbinaryalgorithm",
+    "answersAndParamsComparedOnlyAfterOracleSaved": true
+  },
+  "verifier": {
+    "rejectedMutations": 1395,
+    "categories": {
+      "root-cell": 225,
+      "input-cell": 225,
+      "rounding-text": 45,
+      "approximation-text": 45,
+      "positive-condition": 45,
+      "scale-100": 45,
+      "unmatched-result": 45,
+      "solution-assert-exact": 45,
+      "solution-drop-positive": 45,
+      "wrong-answer": 45,
+      "params-index": 45,
+      "params-start": 45,
+      "params-broot": 45,
+      "params-extra": 45,
+      "params-missing": 45,
+      "params-nan": 45,
+      "MC-format": 45,
+      "written-format": 45,
+      "distractors": 45,
+      "rubric": 45,
+      "figure": 45,
+      "difficulty": 45,
+      "difficulty-basis": 45
+    },
+    "finiteDomainCopiesIsolated": true,
+    "reproducibilityCases": 40,
+    "invalidSeedVariantRejected": 10
+  },
+  "runtimePolicy": {
+    "status": "fixed-hold-pass",
+    "publicCases": 32,
+    "formats": [
+      "혼합",
+      "단답형",
+      "객관식",
+      "서술형"
+    ],
+    "publicFactoryCalls": 0,
+    "IDVersionNativeComponentApprovalFlagsCannotBypass": true,
+    "coverage": "unavailable",
+    "catalog": "factory absent in bounded custom catalog; requirement still listed",
+    "outputResolver": "actual resolver run under pure mocks returned409 for matching unavailable and stale digests",
+    "M1ExclusionBeforeRelease": {
+      "status": "unavailable",
+      "releaseCallsBeforeM1Exclusion": 0,
+      "assertedNoReleaseCallAtM1Filter": true
+    },
+    "manifest": "actual manifest includesreleasePolicy; counterfactualoldpolicylabel changedhash; no archivedreal-outputreplay claim",
+    "limits": [
+      "No default complete registry loaded; custom single-family only.",
+      "Planner empty-pool allocation/selection mocked; unrelated adapters/profiles/MC parser mocked.",
+      "Actual registry/evidence/generate/release/curriculum/contracts/identity/resolver source executed in memory.",
+      "Zod runtime resolved via parent module resolution; no explicit outside-file source reads.",
+      "Auth/access/strict body reader/renderer are in-memory mocks, no real DB/HTTP/AI/renderer."
+    ]
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "reason": "양수의 제곱 관계와 주어진 근삿값 표의 입력을 되찾는 요구는 선수학습 후2015중3 학생 절차로 완결된다.",
+      "basis": "MOE9수01-07/10 및 실제 경기 중3 표PDF38쪽. 초등 반올림6수03-02·유리수 연산 선행.",
+      "evidence": "45개 실제 content는 양수a,b/a²=x/100/b² known positive square/표 소수값 그대로 이용을 명시. 자체 oracle은 인쇄문만으로 모든 셀·5열결과와 단일답을 복원했다. 저자BigInt근찾기나 함수/고등 역함수 정리를 학생 방법으로 사용하지 않았다."
+    },
+    "choices": {
+      "status": "passed",
+      "reason": "지원하는 실제 학생 형식은 단답형이며 객관식 선택지는 없다.",
+      "basis": "필수 응답은 표 입력 하나의 소수 scalar; requirement.response와 family.formats는 단답형이다.",
+      "evidence": "45개 draft questionType단답형, distractors/rubric없음. verifier가 MC/서술형/distractors/rubric 변조를 각45건 거부. 공개4형식은 releasehold로 factory0회이지 다른형식의 학년 승인을 의미하지 않음."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "reason": "표의 첫행 입력과 둘째행 근삿값을 같은 열로 대응시키며 측정이나 숨은 그림 정보가 없다.",
+      "basis": "초등 표읽기·어림하기와 실제 중3 제곱근/어림값 학습. 원문문서PDF39-40쪽의 근삿값/반올림 출력 구분을 직접 확인.",
+      "evidence": "45개 실제Markdown표 각각입력5개/근삿값5개.225셀Decimal반올림과225열결과를 별도 계산, 모든 입력/표값 변조450건 거부. figureSpecnull. 표구조의 수학검토이며 브라우저/인쇄실기 렌더 인증 아님."
+    },
+    "notation": {
+      "status": "passed",
+      "reason": "x의 소수2자리,근삿값s의3자리와 양의 제곱근 표기가 일관된다.",
+      "basis": "MOE9수01-07/10,6수03-02 및 소수/분수 표현 유의사항record3833.",
+      "evidence": "실제45문항에서 넷째자리 반올림→셋째자리 표기. a²=x/100와 a=sqrt(x)/10은 정확관계, s/10은 a근삿값으로 구분. 모든 셀 s²!=x와 정확Fraction중간점 범위 확인. notation/rounding text/scale변조 거부."
+    },
+    "answer": {
+      "status": "passed",
+      "reason": "답은 인쇄된5입력 중 유일한 하나이며 정확한 소수입력이다.",
+      "basis": "제곱근양수성과 유리수 연산, 유한 후보별 계산만 요구. actualM3 root/arithmetic placement에 대응.",
+      "evidence": "45개 인쇄문별5결과 모두 서로다르고 target과 일치하는열은 정확히1개. own-decimal-rational-oracle.json의 답을 먼저 봉인한 뒤 generated answer/params와45개일치 확인. 표근삿값을 진짜근호값과 동일시하지 않음."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "reason": "풀이의 양의b/정확한a관계/근삿값s/일차 수치 역산/유일열 찾기가 모두 정당하다.",
+      "basis": "MOE9수01-07/10/9수02-05 및 실제 중3 근호·어림값 배치; 연산은 학생이 배운 소수계산과 한 미지수 수치관계이다.",
+      "evidence": "실제45해설은 정확관계a=sqrt(x)/10와근삿값s를 구분하고100(s/10)+b=printed result에서s를 복원한다. 자체Fraction5열계산으로 검산. solution에근호와소수정확동일주장추가/양수부호교체 각45건 거부. 해설학생방법에 부모BigInt알고리즘 미포함."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "reason": "반올림/소수 사칙·분수배율·양의제곱근 성질과 표읽기 학습 후만 배정한다.",
+      "basis": "MOE 실제records3413/3760/3776/3788/3833/3916; 경기PDF38-40의 실제중3 root/arithmetic/approximate-value 활동.",
+      "evidence": "모든45case는 x1.10~1.14/2.50~2.54/5.10~5.14의 양수, b7/13/23의 양의근,100분의1→10분의1 배율을 사용. unique는5열전수로 가능.2027/2022는별도pending,학교중간고사진도와liveUnit관계는미인증."
+    }
+  },
+  "gradeDecision": {
+    "status": "passed-after-prerequisites-for-current45-and-exact-student-text",
+    "edition": "2015",
+    "grade": "중3",
+    "sourceStudyAcademicYear": 2025,
+    "practiceAcademicYear": 2026,
+    "m3From2027": "pending actual2022 placement",
+    "mathOracleIsNotStudentMethod": true,
+    "manualQ06GradeInherited": false,
+    "basis": "own-primary-grade-evidence.json; actual45printedtasks and solution-stage mapping above",
+    "notCertified": [
+      "unreviewed futureparameters",
+      "MC/writtenformats",
+      "schoolmidterm pacing",
+      "measured student difficulty/learningeffects"
+    ]
+  },
+  "metadata": {
+    "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+    "unitObservation": "capturedUUID28032bdd-3db3-4788-9e7a-2f1909233fdb and unit-snapshot hash are metadata pointers only; no live DB query/registration/semantic currentbank attestation",
+    "liveFamilyKey": null,
+    "registration": "pending",
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "sourceIdentityApproved": false,
+    "loadable": false,
+    "gradeMetadataMutation": false
+  },
+  "studentWordingEditorial": "표값을 그대로 이용한 계산결과와 실제근호관계를 명시적으로 분리하여 자연스럽고 자기완결적인 발문/해설. difficulty응용은 표→양의근배율→소수결합→열역산의 연결에 대한 편집판단이며 실측보정 아님. 수치점수나서술rubric은이단답factory에없어새로만들지 않음.",
+  "revisionEvidence": {
+    "originalScopeSha256": "3de12ea6755cda7af160fe75389df09a16292c0d31cd705decee7e3b72357f72",
+    "currentScopeSha256": "268d6d470e66ced91e6578a50684672baf5d5b9c0f874e1eef4e549b296ed789",
+    "reversedReturnAnnotationMatchesOriginalHash": true,
+    "originalReleaseHash": "8fbfe1b3af33eaed7bb4894466b2c5962e52ae6ab564b94180436d3ac97c7bad",
+    "currentReleaseHash": "cf50bf9d335a10bf06560729de15d0dbdfa01c42ea0937235f1f5de8d4d9eba8",
+    "firstParentTypeFailureRetained": true,
+    "independentTypeOrLintRun": false,
+    "other13ScopeHashesIdentical": true,
+    "supplementalEvidence": "own-solution-and-revision-checks.json"
+  },
+  "parentEvidenceBoundary": "parent257test pass와 첫typefailure는 부모보고로만 기록. 자체실행은 위45oracle/1395mutations/32hold/mockedroutes이며 부모passcount나type/lint성공을 자체run으로 복제하지 않음.",
+  "harnessDiagnosticsRetained": [
+    "Initial own reverse-type regex expectedmultiline annotation and didnotmatch; exactsingleline reversal thenmatchedoldsourcehash. No production failure inferred.",
+    "Own module loader first mishandled erased typeimports becoming sideeffectimports; narrowed binding regex and reran boundedcontrols. No source edits.",
+    "Own diagnostic edit attempted defaultcp949 read and failed beforewrite; corrected UTF8.",
+    "Own result formatting initiallyreferenced uncaptured M1 counter; savedcounter immediatelyafter successfulM1zero-callassert and reran.",
+    "Node stripTypeScriptTypes emits experimentalwarning; no fullTS/lint run by thisworker."
+  ],
+  "sourceHashesBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "1bbd90a0bbd19b5e8ef2c984234f41d22c983931c93fca2e62b9127339bc3c41",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\difficulty.ts": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "a1d0efd3851a379ecdbb411fd128aca929a1e661440e2041bd4296718948e77b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "cf50bf9d335a10bf06560729de15d0dbdfa01c42ea0937235f1f5de8d4d9eba8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "45350afec57a03ddc3c34e966b04e2ddc14c9c77e552aea388bf7f58328ad892",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseRootTable.ts": "cac928c19fd494b76e31cbf06d125f49ae95bd07efdd53e47b9e0a6592547d86",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\support.ts": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\identity.ts": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudyRoutes.ts": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseRootTable.test.ts": "1b03db6cbf048702a84a7664f22abe1b8e623d786a757b32e4bef53f2006d808"
+  },
+  "sourceHashesAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "1bbd90a0bbd19b5e8ef2c984234f41d22c983931c93fca2e62b9127339bc3c41",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\difficulty.ts": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "a1d0efd3851a379ecdbb411fd128aca929a1e661440e2041bd4296718948e77b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "cf50bf9d335a10bf06560729de15d0dbdfa01c42ea0937235f1f5de8d4d9eba8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "45350afec57a03ddc3c34e966b04e2ddc14c9c77e552aea388bf7f58328ad892",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseRootTable.ts": "cac928c19fd494b76e31cbf06d125f49ae95bd07efdd53e47b9e0a6592547d86",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\support.ts": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\identity.ts": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudyRoutes.ts": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseRootTable.test.ts": "1b03db6cbf048702a84a7664f22abe1b8e623d786a757b32e4bef53f2006d808"
+  },
+  "readBoundary": "All explicit parent file reads derive exactpaths fromscopeJSON, no path fallback/enumeration. Other runtime modules not explicitlyread; nonmath dependencies stubbed; zod runtime module resolution only. Official primary docs accessed via exactURLs in memory.",
+  "counts": {
+    "newManualQuestions": 0,
+    "newBlindSolves": 0,
+    "authored125CountIncrease": 0,
+    "finiteEngineCasesAudited": 45
+  },
+  "releaseConclusion": "Source-informed requirement remains permanentlyheld undercurrentpolicy regardless thisfinite math/grade audit. Separate policy revision plus livefamily/registration/source/rights/native review required; no auto-release.",
+  "solutionNumericalAudit": {
+    "cases": 45,
+    "allPassed": true,
+    "evidence": "own-solution-and-revision-checks.json",
+    "scope": "positive b square; exacta=sqrt(x)/10; printed100(s/10)+bresult;10sandsnumeric; uniqueinput; approximationdisclaimer"
+  }
+}

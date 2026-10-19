@@ -1,0 +1,484 @@
+{
+  "revision": {
+    "originalScopeSha256": "3de12ea6755cda7af160fe75389df09a16292c0d31cd705decee7e3b72357f72",
+    "currentScopeSha256": "268d6d470e66ced91e6578a50684672baf5d5b9c0f874e1eef4e549b296ed789",
+    "reversedReturnAnnotationMatchesOriginalHash": true,
+    "originalReleaseHash": "8fbfe1b3af33eaed7bb4894466b2c5962e52ae6ab564b94180436d3ac97c7bad",
+    "currentReleaseHash": "cf50bf9d335a10bf06560729de15d0dbdfa01c42ea0937235f1f5de8d4d9eba8",
+    "firstParentTypeFailureRetained": true,
+    "independentTypeOrLintRun": false
+  },
+  "mathComparison": {
+    "drafts": 45,
+    "oracleRootCells": 225,
+    "oracleColumnOutputs": 225,
+    "allAnswersParametersMatched": true
+  },
+  "mutations": {
+    "rejected": 1395,
+    "byCategory": {
+      "root-cell": 225,
+      "input-cell": 225,
+      "rounding-text": 45,
+      "approximation-text": 45,
+      "positive-condition": 45,
+      "scale-100": 45,
+      "unmatched-result": 45,
+      "solution-assert-exact": 45,
+      "solution-drop-positive": 45,
+      "wrong-answer": 45,
+      "params-index": 45,
+      "params-start": 45,
+      "params-broot": 45,
+      "params-extra": 45,
+      "params-missing": 45,
+      "params-nan": 45,
+      "MC-format": 45,
+      "written-format": 45,
+      "distractors": 45,
+      "rubric": 45,
+      "figure": 45,
+      "difficulty": 45,
+      "difficulty-basis": 45
+    }
+  },
+  "finiteDomain": {
+    "size": 45,
+    "copyIsolation": true,
+    "reproducibilityCases": 40,
+    "invalidSeedVariantRejected": 10
+  },
+  "release": {
+    "testedVariants": 8,
+    "formats": 4,
+    "cases": [
+      {
+        "change": {},
+        "format": "혼합",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {},
+        "format": "단답형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {},
+        "format": "객관식",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {},
+        "format": "서술형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "version": "0"
+        },
+        "format": "혼합",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "version": "0"
+        },
+        "format": "단답형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "version": "0"
+        },
+        "format": "객관식",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "version": "0"
+        },
+        "format": "서술형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "version": "999"
+        },
+        "format": "혼합",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "version": "999"
+        },
+        "format": "단답형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "version": "999"
+        },
+        "format": "객관식",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "version": "999"
+        },
+        "format": "서술형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "id": "renamed-review"
+        },
+        "format": "혼합",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "id": "renamed-review"
+        },
+        "format": "단답형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "id": "renamed-review"
+        },
+        "format": "객관식",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "id": "renamed-review"
+        },
+        "format": "서술형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "source": "native"
+        },
+        "format": "혼합",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "source": "native"
+        },
+        "format": "단답형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "source": "native"
+        },
+        "format": "객관식",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "source": "native"
+        },
+        "format": "서술형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "fulfills": [
+            {
+              "requirement": "number.inverse-root-table",
+              "level": "component"
+            }
+          ]
+        },
+        "format": "혼합",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "fulfills": [
+            {
+              "requirement": "number.inverse-root-table",
+              "level": "component"
+            }
+          ]
+        },
+        "format": "단답형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "fulfills": [
+            {
+              "requirement": "number.inverse-root-table",
+              "level": "component"
+            }
+          ]
+        },
+        "format": "객관식",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "fulfills": [
+            {
+              "requirement": "number.inverse-root-table",
+              "level": "component"
+            }
+          ]
+        },
+        "format": "서술형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "gradeApproved": true,
+          "rightsApproved": true,
+          "nativeProvenanceApproved": true,
+          "confidence": 1
+        },
+        "format": "혼합",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "gradeApproved": true,
+          "rightsApproved": true,
+          "nativeProvenanceApproved": true,
+          "confidence": 1
+        },
+        "format": "단답형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "gradeApproved": true,
+          "rightsApproved": true,
+          "nativeProvenanceApproved": true,
+          "confidence": 1
+        },
+        "format": "객관식",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "gradeApproved": true,
+          "rightsApproved": true,
+          "nativeProvenanceApproved": true,
+          "confidence": 1
+        },
+        "format": "서술형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "id": "renamed-native",
+          "version": "future",
+          "source": "native",
+          "fulfills": [
+            {
+              "requirement": "number.inverse-root-table",
+              "level": "component"
+            }
+          ],
+          "gradeApproved": true,
+          "rightsApproved": true,
+          "confidence": 1
+        },
+        "format": "혼합",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "id": "renamed-native",
+          "version": "future",
+          "source": "native",
+          "fulfills": [
+            {
+              "requirement": "number.inverse-root-table",
+              "level": "component"
+            }
+          ],
+          "gradeApproved": true,
+          "rightsApproved": true,
+          "confidence": 1
+        },
+        "format": "단답형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "id": "renamed-native",
+          "version": "future",
+          "source": "native",
+          "fulfills": [
+            {
+              "requirement": "number.inverse-root-table",
+              "level": "component"
+            }
+          ],
+          "gradeApproved": true,
+          "rightsApproved": true,
+          "confidence": 1
+        },
+        "format": "객관식",
+        "status": "unavailable",
+        "factoryCalls": 0
+      },
+      {
+        "change": {
+          "id": "renamed-native",
+          "version": "future",
+          "source": "native",
+          "fulfills": [
+            {
+              "requirement": "number.inverse-root-table",
+              "level": "component"
+            }
+          ],
+          "gradeApproved": true,
+          "rightsApproved": true,
+          "confidence": 1
+        },
+        "format": "서술형",
+        "status": "unavailable",
+        "factoryCalls": 0
+      }
+    ],
+    "factoryCalls": 0,
+    "coverageUnavailable": true,
+    "requirementLevelHold": true
+  },
+  "M1Precedence": {
+    "status": "unavailable",
+    "releaseCallsBeforeM1Exclusion": 0,
+    "assertedNoReleaseCallAtM1Filter": true
+  },
+  "catalog": {
+    "visibleFamilies": 0,
+    "heldRequirementListed": true,
+    "onlyCustomBoundedFamilyRegistry": true
+  },
+  "outputResolver": {
+    "actualResolver": true,
+    "pureMocks": true,
+    "statuses": [
+      409,
+      409
+    ],
+    "factoryCalls": 0,
+    "renderCalls": 0
+  },
+  "strictRequestInjectionRejected": 5,
+  "manifestPolicyCounterfactual": {
+    "current": "exam-study-manifest-ddf4215a3bd89de234f90bdb",
+    "counterfactualPrevious": "exam-study-manifest-df3d73cf296e700efca4e9f1",
+    "different": true,
+    "limitation": "counterfactual policy label test, not an archived output replay"
+  },
+  "mockBoundaries": [
+    "No default complete registry loaded; custom single-family only.",
+    "Planner empty-pool allocation/selection mocked; unrelated adapters/profiles/MC parser mocked.",
+    "Actual registry/evidence/generate/release/curriculum/contracts/identity/resolver source executed in memory.",
+    "Zod runtime resolved via parent module resolution; no explicit outside-file source reads.",
+    "Auth/access/strict body reader/renderer are in-memory mocks, no real DB/HTTP/AI/renderer."
+  ],
+  "metadata": {
+    "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+    "course": "중3",
+    "section": "무리수와 실수",
+    "liveFamilyKey": null,
+    "registrationStatus": "pending",
+    "targetDirection": "rounded-table-result-to-input-column",
+    "sharedProcedure": [
+      "양의 제곱근",
+      "피제곱수100분의1은제곱근10분의1",
+      "표 소수값의 결합 계산"
+    ],
+    "prerequisite": "유리수 계산과 한 미지수의 수치 관계 역산",
+    "curriculumReview": "pending-actual-template-seven-surface-review",
+    "proposedCurriculumScope": {
+      "sourceStudyAcademicYear": 2025,
+      "sourceStudyEdition": "2015",
+      "practiceAcademicYear": 2026,
+      "practiceEdition": "2015",
+      "m3From2027": "requires-2022-grade-placement-review",
+      "proposalIsNotApproval": true
+    },
+    "representation": "native-markdown-table; no raster required",
+    "approximationContract": "Round roots to nearest thousandth; thereafter use printed cells exactly, never equate them to actual radicals.",
+    "sourceStudyEvidence": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-current4-family-audit-20261019-r1/q06.json",
+    "sourceStudyEvidenceSha256": "a29e3d681a68dddddf4195b5520aa30c967dfeda5ff7abc29b2dc8afa1a4b185",
+    "unitSnapshot": {
+      "capturedAt": "2026-10-19 06:14:08.658144+00",
+      "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+    },
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false
+  },
+  "sourceHashesBefore": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "1bbd90a0bbd19b5e8ef2c984234f41d22c983931c93fca2e62b9127339bc3c41",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\difficulty.ts": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "a1d0efd3851a379ecdbb411fd128aca929a1e661440e2041bd4296718948e77b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "cf50bf9d335a10bf06560729de15d0dbdfa01c42ea0937235f1f5de8d4d9eba8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "45350afec57a03ddc3c34e966b04e2ddc14c9c77e552aea388bf7f58328ad892",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseRootTable.ts": "cac928c19fd494b76e31cbf06d125f49ae95bd07efdd53e47b9e0a6592547d86",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\support.ts": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\identity.ts": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudyRoutes.ts": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseRootTable.test.ts": "1b03db6cbf048702a84a7664f22abe1b8e623d786a757b32e4bef53f2006d808"
+  },
+  "sourceHashesAfter": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "1bbd90a0bbd19b5e8ef2c984234f41d22c983931c93fca2e62b9127339bc3c41",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\difficulty.ts": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "a1d0efd3851a379ecdbb411fd128aca929a1e661440e2041bd4296718948e77b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "cf50bf9d335a10bf06560729de15d0dbdfa01c42ea0937235f1f5de8d4d9eba8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\index.ts": "45350afec57a03ddc3c34e966b04e2ddc14c9c77e552aea388bf7f58328ad892",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\inverseRootTable.ts": "cac928c19fd494b76e31cbf06d125f49ae95bd07efdd53e47b9e0a6592547d86",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\families\\middle\\support.ts": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\identity.ts": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudyRoutes.ts": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\examStudyInverseRootTable.test.ts": "1b03db6cbf048702a84a7664f22abe1b8e623d786a757b32e4bef53f2006d808"
+  }
+}
