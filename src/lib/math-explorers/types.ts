@@ -26,7 +26,8 @@ export type DefinitionAction = {
     | "course"
     | "goal"
     | "chest"
-    | "retry-unresolved";
+    | "retry-unresolved"
+    | "understood";
   definitionRoute?: "unit" | "memory" | "repair";
   questionId?: string;
   grade?: number;
@@ -34,6 +35,10 @@ export type DefinitionAction = {
   cardId?: string;
   chestId?: string;
   tiles?: number[];
+  /** The public choice positions behind `tiles` (kept for «앞에서 고른 답»). */
+  choiceIds?: number[];
+  /** The screen shows «한 번 더 → 풀이» (header `x-explorer-follow-up`). */
+  followUps?: boolean;
 };
 
 export type DefinitionFeedback = {
@@ -44,4 +49,6 @@ export type DefinitionFeedback = {
   stars?: number;
   chestId?: string;
   hint?: boolean;
+  /** The engine attaches this card's solution (`explorerSolutionSchema`). */
+  solutionCardId?: string;
 };

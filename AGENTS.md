@@ -112,16 +112,20 @@ this field.
 may carry `followUp` (`questionId`, `state` again | solution, `firstChoiceIds`)
 and `shown` (activity keys `cardId:kind` whose solution was shown), and the
 public activity may carry `followUp` and `solution` — the reader commit "feat(srs):
-read explorer card follow-ups before anything writes them" accepts them and
-nothing writes them yet. The writer (after the reader is Ready in production)
-must: let the stored state, not the header, drive an open follow-up (reject an
-answer while the solution is open, accept only `understood`); include
-`understood` in the review-only snapshot and the completed-day record; keep
-`shown` out of `passed` · `next` · `unresolved`, count `missed` as the union of
-keys, never copy a shown solution into `hinted`; keep the workshop interlude out
-of an open follow-up; count a waiting activity once in the mission's answered
-number; send the response fields only to screens that ask (GET, POST and
-replayed receipts alike).
+read explorer card follow-ups before anything writes them" is the floor. The
+writer (commit "feat(srs): write explorer card follow-ups for screens that ask")
+opens a follow-up only for requests with `x-explorer-follow-up: 1`
+(`EXPLORER_FOLLOW_UP_HEADER`): a wrong first answer stays on its question
+(`again`), «아직 모르겠어요» or a second miss opens the solution (`shown`, the
+feedback's `solution`), a second right answer is collected like a later round's
+(never a first-try success), and `{ type: "understood" }` moves on. The stored
+state, not the header, drives an open follow-up (an answer is refused while the
+solution is open). `understood` is in the review-only snapshot and the
+completed-day record; `shown` stays out of `passed` · `next` · `unresolved`;
+`missed` counts the union of keys; a shown solution is never copied into
+`hinted`; the workshop interlude never starts during a follow-up; the mission
+counts a waiting activity once; the response fields go only to screens that
+ask. Supplement cards (D-147) keep the old rounds.
 
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**

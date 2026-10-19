@@ -792,6 +792,17 @@ export function applyDefinitionAction(
   const task = s.queue[s.index],
     c = definitionCard(task.cardId),
     key = definitionTaskKey(task);
+  // A follow-up belongs to the question it was opened on.
+  const open = s.followUp?.questionId === a.questionId ? s.followUp : undefined;
+  if (s.followUp && !open) delete s.followUp;
+  if (a.definitionAction === "understood") {
+    if (open?.state !== "solution")
+      throw new Error("확인할 풀이가 없어요. 현재 문항을 확인해주세요.");
+    delete s.followUp;
+    return moveOn(p, record, s, date, starsBefore);
+  }
+  if (a.definitionAction === "answer" && open?.state === "solution")
+    throw new Error("풀이를 확인했으면 «알겠어요»를 눌러 주세요.");
   if (a.definitionAction === "read") {
     if (!definitionNeedsRead(p, s))
       throw new Error("정의 학습 단계가 아니에요.");
@@ -836,6 +847,48 @@ export function applyDefinitionAction(
       : task.kind === 1
         ? c.examples.every((e, i) => e.yes === values.includes(i))
         : values[0] === (c.truth ? 1 : 0);
+  // «한 번 더 → 풀이» (plan §3.2 ②). An open follow-up decides the second answer
+  // even from a tab that did not ask; only a new one needs the header.
+  if (open?.state === "again") {
+    if (!correct) {
+      s.followUp = { ...open, state: "solution" };
+      (s.shown ??= []).push(key);
+      return {
+        correct: false,
+        advance: false,
+        solutionCardId: c.id,
+        message: "정답과 풀이를 확인해요.",
+      };
+    }
+    // Like a later round's right answer: collected, never a first-try success.
+    if (!s.passed.includes(key)) s.passed.push(key);
+    delete s.followUp;
+    return { correct: true, ...moveOn(p, record, s, date, starsBefore) };
+  }
+  if (!correct && a.followUps) {
+    if (s.round === 0 && !s.continuation && !s.initialWrong.includes(c.id))
+      s.initialWrong.push(c.id);
+    if (gaveUp) {
+      s.followUp = {
+        questionId: a.questionId!,
+        state: "solution",
+        firstChoiceIds: [],
+      };
+      (s.shown ??= []).push(key);
+      return {
+        correct: false,
+        advance: false,
+        solutionCardId: c.id,
+        message: "정답과 풀이를 확인해요.",
+      };
+    }
+    s.followUp = {
+      questionId: a.questionId!,
+      state: "again",
+      firstChoiceIds: a.choiceIds ?? [],
+    };
+    return { correct: false, advance: false, message: "다시 해 볼까요." };
+  }
   if (correct) {
     if (!s.passed.includes(key)) s.passed.push(key);
     if (s.round === 0 && !s.continuation) s.first++;
@@ -844,6 +897,26 @@ export function applyDefinitionAction(
     if (s.round === 0 && !s.continuation && !s.initialWrong.includes(c.id))
       s.initialWrong.push(c.id);
   }
+  const moved = moveOn(p, record, s, date, starsBefore);
+  return {
+    correct,
+    ...moved,
+    message: correct
+      ? "정확해! 다음으로."
+      : s.done
+        ? "남은 개념은 정의와 함께 확인해봐."
+        : "기록했어. 틀린 문항은 뒤에서 다시 만나!",
+  };
+}
+
+/** Next activity, next round, or the end of the session with its card records. */
+function moveOn(
+  p: Profile,
+  record: DefinitionRecord,
+  s: DefinitionSession,
+  date: string,
+  starsBefore: number,
+): Omit<Feedback, "correct"> & { message: string } {
   s.index++;
   if (s.index >= s.queue.length) {
     if (s.next.length && s.round < 3) {
@@ -919,7 +992,13 @@ export function applyDefinitionAction(
           // 시도한 날 = 세션을 **시작한** 날. 끝낸 날로 적으면 판(`cardRevisions`) 전날 예전 문장으로 풀기 시작해 판 날
           // 끝낸 학생이 다시 복습에서 빠진다(D-143 ⑦ · 리드 검토 ③).
           attemptedAt: s.date,
-          missed: s.unresolved.filter((t) => t.cardId === card.id).length,
+          // Left over or solution shown — each activity once.
+          missed: ([0, 1, 2] as const).filter(
+            (kind) =>
+              s.unresolved.some(
+                (t) => t.cardId === card.id && t.kind === kind,
+              ) || !!s.shown?.includes(`${card.id}:${kind}`),
+          ).length,
           reviewStep: step,
           reviewedAt,
           lastRecall,
@@ -947,14 +1026,9 @@ export function applyDefinitionAction(
     }
   }
   return {
-    correct,
     advance: true,
     complete: s.done && s.unresolved.length === 0,
     stars: s.done ? p.stars - starsBefore : 0,
-    message: correct
-      ? "정확해! 다음으로."
-      : s.done
-        ? "남은 개념은 정의와 함께 확인해봐."
-        : "기록했어. 틀린 문항은 뒤에서 다시 만나!",
+    message: "다음으로 넘어가요.",
   };
 }

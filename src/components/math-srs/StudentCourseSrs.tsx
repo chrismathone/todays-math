@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Submitted } from "@/components/learn/learnApi";
 import type { CourseStudentState } from "@/contracts/mathSrsCourse.contract";
+import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import CoursePlanForm from "./CoursePlanForm";
@@ -17,6 +18,7 @@ import {
 import homeStyles from "./student-review-home.module.css";
 import {
   answerCourse,
+  followUpCourse,
   getCourseState,
   hintCourse,
   saveOwnCoursePlan,
@@ -39,8 +41,13 @@ type Action = {
 
 export default function StudentCourseSrs({
   expedition,
+  journeyTheme,
   paused: checkPaused = false,
-}: { expedition?: ExpeditionActivityCallbacks; paused?: boolean } = {}) {
+}: {
+  expedition?: ExpeditionActivityCallbacks;
+  paused?: boolean;
+  journeyTheme?: JourneyThemeId;
+} = {}) {
   const router = useRouter();
   const { gesture, play, resetStudent } = useLearningSounds();
   const soundEpoch = useRef(0);
@@ -98,11 +105,20 @@ export default function StudentCourseSrs({
         resetStudent(result.data.student.id);
         setState(result.data);
         setError(null);
+        if (
+          result.data.session?.problems.some(
+            (problem) => problem.followUp && !problem.followUp.done,
+          )
+        )
+          setPracticing(true);
         if (expeditionRef.current) {
           const session = result.data.session;
           const unfinished =
             session &&
-            (!session.completedAt ||
+            (session.problems.some(
+              (problem) => problem.followUp && !problem.followUp.done,
+            ) ||
+              !session.completedAt ||
               (session.retry && !session.retry.completedAt));
           if (unfinished) setPracticing(true);
           else if (
@@ -172,6 +188,14 @@ export default function StudentCourseSrs({
 
   function start() {
     if (
+      state?.session?.problems.some(
+        (problem) => problem.followUp && !problem.followUp.done,
+      )
+    ) {
+      setPracticing(true);
+      return;
+    }
+    if (
       state?.prerequisiteContext?.kind === "unavailable" &&
       !state.prerequisiteContext.canStart
     )
@@ -195,6 +219,41 @@ export default function StudentCourseSrs({
   const unavailable =
     prerequisiteContext?.kind === "unavailable" &&
     !prerequisiteContext.canStart;
+  function nextProblem(next: CourseStudentState) {
+    if (
+      next.session?.problems.some(
+        (problem) => problem.followUp && !problem.followUp.done,
+      )
+    )
+      return;
+    setFeedbackId(null);
+    if (
+      next.session?.completedAt &&
+      (!next.session.retry || next.session.retry.completedAt)
+    ) {
+      if (next.summary.recommendation && !next.journey?.todayComplete) {
+        if (
+          next.prerequisiteContext?.kind === "unavailable" &&
+          !next.prerequisiteContext.canStart
+        )
+          return;
+        void mutate({
+          run: startCourse,
+          after: (data) => {
+            setFeedbackId(null);
+            setPracticing(!!data.session);
+          },
+        });
+      } else {
+        setPracticing(false);
+        if (!(
+          next.prerequisiteContext?.kind === "unavailable" &&
+          !next.prerequisiteContext.canStart
+        ))
+          expedition?.onComplete();
+      }
+    }
+  }
   const section = recommendation
     ? getCourseSection(recommendation.sectionId)
     : summary?.currentSectionId
@@ -273,6 +332,7 @@ export default function StudentCourseSrs({
             session={practice}
             summary={state.summary}
             journey={state.journey}
+            journeyTheme={journeyTheme}
             prerequisiteContext={prerequisiteContext}
             feedbackId={feedbackId}
             busy={blocked}
@@ -284,22 +344,20 @@ export default function StudentCourseSrs({
               expedition?.onExit();
             }}
             onContinue={start}
-            onNext={() => {
-              setFeedbackId(null);
-              if (
-                practice.completedAt &&
-                (!practice.retry || practice.retry.completedAt)
-              ) {
-                if (
-                  state.summary.recommendation &&
-                  !state.journey?.todayComplete
-                )
-                  start();
-                else {
-                  setPracticing(false);
-                  if (!unavailable) expedition?.onComplete();
-                }
-              }
+            onNext={() => nextProblem(state)}
+            onFollowUp={(input) => {
+              void mutate({
+                run: () => followUpCourse(input),
+                after: (next) => {
+                  setFeedbackId(null);
+                  if (input.action === "done") {
+                    // mutate still holds its lock here. Release it before starting a new session.
+                    queueMicrotask(() => {
+                      if (alive.current) nextProblem(next);
+                    });
+                  }
+                },
+              });
             }}
             onHint={(problemId) => {
               void mutate({

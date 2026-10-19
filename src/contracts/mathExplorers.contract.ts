@@ -6,6 +6,8 @@ import {
   mathExpeditionSchema,
 } from "./mathExpedition.contract";
 
+/** Screens that show «한 번 더 → 풀이» on concept cards send `x-explorer-follow-up: 1`. */
+export const EXPLORER_FOLLOW_UP_HEADER = "x-explorer-follow-up";
 const id = z.string().min(1).max(200);
 const text = z.string().max(4000);
 const count = z.number().int().nonnegative();
@@ -201,6 +203,8 @@ export const explorerActionSchema = z.discriminatedUnion("type", [
     dayId: isoDateSchema.optional(),
   }),
   z.strictObject({ type: z.literal("read"), questionId: id }),
+  /** «알겠어요» on an open solution (plan §3.2 ②). */
+  z.strictObject({ type: z.literal("understood"), questionId: id }),
   z.strictObject({
     type: z.literal("answer"),
     questionId: id,
@@ -329,6 +333,7 @@ export const explorerSolutionSchema = z.strictObject({
   statement: text,
   truth: z.boolean(),
 });
+export type ExplorerSolution = z.infer<typeof explorerSolutionSchema>;
 export const explorerFeedbackSchema = z.strictObject({
   message: text,
   correct: z.boolean().optional(),

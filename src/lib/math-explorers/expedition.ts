@@ -775,7 +775,11 @@ export function updateExpedition(
     // An explicit retry-unresolved continuation reopens only the leftover tasks:
     // the original 15 stay answered, and the reopened queue is still owed.
     const reopened = session.round > 0 || !!session.continuation;
-    answered = reopened || session.done ? mission.goal : session.index;
+    // An activity waiting for its second try or «알겠어요» was answered once.
+    answered =
+      reopened || session.done
+        ? mission.goal
+        : session.index + (session.followUp ? 1 : 0);
     remaining = session.done
       ? session.unresolved.length
       : reopened
