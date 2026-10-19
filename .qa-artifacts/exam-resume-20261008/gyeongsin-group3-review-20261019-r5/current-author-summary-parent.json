@@ -1,0 +1,259 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T09:52:56.422Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group3-review-20261019-r5/current-selection-parent.json",
+    "sha256": "ab10e84dc3f66c7ef0352e52d97a663a2f84a98764c4befb8b6d0f0d9375a488"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 1,
+    "contentReviewPassed": 1,
+    "contentReviewHeld": 0,
+    "figureInstances": 1,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [
+    4
+  ],
+  "contentReviewHeldNumbers": [],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 4,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group3-r4-q04",
+      "studentDigest": "fcca4ce290ea6f3e26d0591de1ec75a10e7cb2472a7f2797323d1f081820c4c9",
+      "candidateDigest": "44c3a61fc3cdf15fdc919c29c486b49791a91763f2ce9e50bb714d46ca0d58df",
+      "assetDigest": "ea0c65528f3fb80b76368eb0ad33d1650620a670d7769409a05b7787defeaefe",
+      "solveDigest": "5bdb92976f32624e3cda560e40760673dd0db0c3509e95660c70c7f464ee9c3a",
+      "reportSha256": "1e6fe0bb2c156baeaff4a3a83b87b026b3206094db7601653dca6aeda2a90408",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "verified",
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-4",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group3-r1-q04",
+        "sourceContentSha256": "a6006900595245207da916b3bf99271d70b823f1c35d87ec0d08dd50c0f2f958",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "observed-2025-original-scan-page1-question4; whole-pair header conflict retained",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-source-component-review-20261019-r1/q04-component-review.json",
+          "sha256": "32630eb61922e3c0387aed67c3e0673d2640e82109733148c18fe62139467859"
+        },
+        "originalQuestionCrop": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q04-part1.png",
+          "sha256": "b23d1a8c49e409163583b160763bc98724d69c9da2ca07bc254a5993f1369030"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "서술형",
+        "answerFormat": "numbered-multipart-length",
+        "score": 5,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원의 접선",
+            "semester": 2,
+            "orderIndex": 485,
+            "problemCodePrefix": "J30602"
+          },
+          "evidence": "원의 접선 실제 Unit UUID는 연결했다. 기존 현/접선 family의 풀이 목적, 두 소문항과 역방향 피타고라스 전개를 함께 검토해야 하므로 live family는 확정하지 않았다.",
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          }
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-native-FigureSpec-v2-three-tangents; fresh-coordinate-construction",
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "newVector": true,
+          "visualRevision": "독립 검수에서 R 글자와 PR 사선 사이 여백 보류가 나왔다. 새 r4는 기존 점/선/원 좌표를 유지하고 R 라벨에 왼쪽24·위2 offset을 명시했다. dx는 기본 위치에 더하는 값이 아니라 점 기준 지정값임을 r3 실측에서 확인했다. 본문 조건은 유지하며 문단을 나누었다. r2 및 그 실패·풀이·검수는 변경하지 않고 새 미노출 풀이와 그림 검수를 받는다."
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "subQuestions": [
+          {
+            "n": 1,
+            "score": 2,
+            "asked": "PR+QR",
+            "format": "length-with-proof"
+          },
+          {
+            "n": 2,
+            "score": 3,
+            "asked": "PR",
+            "format": "length-with-proof"
+          }
+        ],
+        "previousCandidate": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group3-r3/q04.json",
+          "sha256": "ab5fce55e90fe8773fe90c48cd667eafaa86400e72791aaea9b96b0314a3f252"
+        },
+        "rubric": {
+          "totalPoints": 5,
+          "status": "author-proposed-requires-independent-review",
+          "criteria": [
+            {
+              "part": 1,
+              "points": 1,
+              "expected": "접점의 수직과 직사각형/접선 길이 관계를 이용해 QS=QE=6, PT=12 또는 동등한 관계를 세운다."
+            },
+            {
+              "part": 1,
+              "points": 1,
+              "expected": "PR+QR=18cm를 옳게 도출한다."
+            },
+            {
+              "part": 2,
+              "points": 1,
+              "expected": "PR=x, QR=18-x 및 피타고라스 식을 세운다."
+            },
+            {
+              "part": 2,
+              "points": 1,
+              "expected": "전개·정리하여 PR=10cm를 얻는다."
+            },
+            {
+              "part": 2,
+              "points": 1,
+              "expected": "QR=8cm와 E의 내부 조건 또는 동등한 길이·순서 조건의 적합성을 확인한다."
+            }
+          ],
+          "alternatives": [
+            "같은 접선·피타고라스 관계를 사용한 올바른 대체 풀이를 인정한다."
+          ],
+          "errors": [
+            "PR+QR를 둘레로 잘못 읽거나 접선의 서로 다른 점에서 출발한 길이를 같다고 두지 않는다.",
+            "길이가 양수이고 접점 E가 변 내부에 있어야 한다."
+          ],
+          "notRequired": "좌표법·특수 원 공식·긴 존재 구성 증명을 학생의 필수 채점 요소로 요구하지 않는다."
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "직각삼각형의 빗변과 한 직각변을 주고 세 접선에 닿는 원의 반지름을 묻는다.",
+        "after": "원 반지름과 한 직각변을 주고, 접선으로 얻는 두 변의 합을 먼저 정리한 뒤 빗변을 구하는 두 소문항으로 바꾸었다.",
+        "sharedConcept": "한 점에서 그은 접선의 길이, 접선과 반지름의 수직, 직각삼각형의 피타고라스 정리",
+        "sharedProcedure": "접선 길이 같음을 통해 원 반지름과 삼각형 변들의 관계를 세우고 피타고라스 관계와 함께 미지량을 결정한다.",
+        "actualStructuralChange": "반지름과 빗변의 조건/질문 역할을 역전하고, 원문에서 뒤에 쓰던 접선 관계를 먼저 도출하도록 풀이 단계와 답 형식을 바꾸었다. 숫자/점 이름 교체만으로 완료시키지 않는다.",
+        "numericalChangeIsNotSufficient": true,
+        "domainProof": "PQ6,QR8,PR10인 직각삼각형이 존재한다. 좌표는 검증용으로만 P(0,0),Q(6,0),R(6,8),O(12,6),S(12,0),E(6,6),T(36/5,48/5)로 잡을 수 있고 반지름6의 원이 세 지정 선에 실제로 접한다. E는QR내부, R은PT내부이다. 접선 관계로PR+QR18이 강제되고 피타고라스 식에서PR10만 나온다.",
+        "difficultyBasis": "같은 접선/피타고라스 관계를 역방향으로 푼다. 두 단계와2/3점으로 안내하여 식의 제곱 전개를 돕는다. 별도 방접원 공식·좌표 계산·원과 비례·상위 학년 도구는 학생에게 요구하지 않는다. 추가 읽기/전개 부담과 난이도는 독립 검토 전 보류한다."
+      },
+      "packageDigest": "2d5b4509a7035ec84baf243a8fe6f7d3d1c7d948dd934d02b6e09a73ee73b290",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group3-r4\\q04.json",
+        "sha256": "174815bb578f82ac6f729e28c66b614d3836ff68f5e34c93b37a5ecca5fd11e9"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "3559be3943f70a6b251a1e9a9f0826257408900cc0933680a9196cd59be951d1",
+          "svgSha256": "1b7391c02598645709fa5d8e8c2dc05f5b06e317908fa65922baef925ad1296a",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q04-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group3-review-20261019-r5\\blind\\solve\\q04.json",
+        "sha256": "741ae7319208640e30bc49bf7f9d1aa4fc0c3b236204b1c0188ecd39b9335ad3"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group3-review-20261019-r5/verification/reports/q04.json",
+        "sha256": "1e6fe0bb2c156baeaff4a3a83b87b026b3206094db7601653dca6aeda2a90408"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group3-review-20261019-r5/verification/verification-manifest.json",
+        "sha256": "f5c2d9e69f0765c19efaf7678f833567441033b5c51bd702297b63189101c9a6"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group3-review-20261019-r5/blind/blind-manifest.json",
+        "sha256": "2fc981eca0f443d06db8c1867055bb2c199da4a10eec75903d88b003769b60eb"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group3-review-20261019-r5/package/private/q04/candidate.json",
+        "sha256": "8aaf3f925c0a49ca11ebfa18c838477248447cb4292f42906b95a9d4762b4633"
+      },
+      "candidateContentWithoutRelocatedPaths": "b5887d7fa7e461b750a37336679b10fc6e7b91546aaf71af11abe0ee983e9281",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group3-r4/q04.json",
+        "sha256": "174815bb578f82ac6f729e28c66b614d3836ff68f5e34c93b37a5ecca5fd11e9"
+      },
+      "authorCandidateDigest": "58a79724feba41b73deaa8d68e85f21fbe06c6ca99703c927e1a2ce06cb78888"
+    }
+  ],
+  "reviewBindingDigest": "2268291396128a5e5f96a4bda59336bcef9d5b45d1ed375e5b85828a94c992f3",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

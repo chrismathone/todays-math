@@ -1,0 +1,121 @@
+{
+  "kind": "exam-continuation-index/v17",
+  "version": 17,
+  "createdAt": "2026-10-19T09:56:11.209Z",
+  "previousIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v16.json",
+    "sha256": "eac59b5ee652c98cb811967c9494271b63c9214cbbe313247e52889fd508355c"
+  },
+  "statusLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v17.json",
+    "sha256": "6eb784a61de5d424c226b1ad8104a286cdf864150022be9255791e0c3bf93e69"
+  },
+  "currentCandidateIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v17.json",
+    "sha256": "3bb2246487d8686b49a39e92bde03bfc67dd146b796a7e2a43588951cf058524"
+  },
+  "progressReport": "docs/planning/tracks/reports/exam-twin-checkpoint-v17-20261019.md",
+  "counts": {
+    "authoredCurrentCandidates": 115,
+    "currentFigureInstances": 91,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 115,
+    "independentMathReviewed": 114,
+    "independentFullGradeReviewed": 114,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 99,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 114,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1
+  },
+  "sourceAccess": {
+    "nDriveAvailable": true,
+    "latestRead": {
+      "path": ".qa-artifacts/exam-resume-20261008/source-reconnection-20261019/run-receipt-r1.json",
+      "sha256": "3cc09f702758a702df7c9673c57b0ba8fecd3aafcafb611cfbafd0d4dba06df1"
+    },
+    "allSourcesExtracted": false
+  },
+  "freshExtraction": {
+    "evidence": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r1/aggregate-receipt.json",
+        "sha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r2/aggregate-receipt.json",
+        "sha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r3/aggregate-receipt.json",
+        "sha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r4/aggregate-receipt.json",
+        "sha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r5/aggregate-receipt.json",
+        "sha256": "7dfed92a5c2019e565a577910dc51baae6ad949535036950d969186b7e86fb9b"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/aggregate-receipt.json",
+        "sha256": "5918ee507fa9f3f23e7c5c182cbd1872a850f8101afeaf35fa1bb991a874c3c1"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r7/aggregate-receipt.json",
+        "sha256": "5a26d0ba285a3d8a78ae0803c82b78771f45e457cb7e7d706ce71a776c4de139"
+      }
+    ],
+    "oldParentObservations": 253,
+    "newFreshParentObservations": 381,
+    "totalParentObservations": 634,
+    "newFreshExams": 18,
+    "freshComponentsApproved": 0,
+    "wholePairsCertified": 0,
+    "countScope": "Parser parent observations, not unique content-certified exams or verified twins",
+    "latestReviewerObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r6/reviewer-observations-r1.json",
+      "sha256": "3eeaf1cc90a8677b850169154fc6ddc83c938d9213e63a9419f4636251267e02"
+    },
+    "latestAttempt": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261019-r7/aggregate-receipt.json",
+      "sha256": "5a26d0ba285a3d8a78ae0803c82b78771f45e457cb7e7d706ce71a776c4de139"
+    },
+    "latestAttemptResult": "N unavailable in current process; three individual file-access holds, new extraction0. Local evidence/code/review work continues."
+  },
+  "engine": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r9.json",
+    "sha256": "dcafae8b676b81d3a4a91724045af309f0463db7611d0677d97525d97c92a47f"
+  },
+  "latestClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-current.json",
+    "sha256": "b298c06ce5b93f9e7527e137962ba888849234e8f4e06339b8670ffbf9949264"
+  },
+  "cleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "sourceQueue": "Preserved initial continuation-index.json and original20261003 inventory; newly successful fresh aggregate receipts exclude repeat extraction jobs.",
+  "nextActions": [
+    "Continue2025+ component correspondence and substantive within-grade twins; never certify unreviewed source regions",
+    "Resolve semantic family recommendations in new reviewed versions; preserve year/custody/rights/similarity/native holds",
+    "Keep q18 curricular/complexity hold and source q03 no-confirmed-in-grade-method hold",
+    "Reuse one Codex review checkout; preserve branches/evidence before unused-checkout removal",
+    "Continue deterministic engine improvements; fetch/integrate/validate immediately before feature pushes"
+  ],
+  "restrictions": [
+    "No DB apply/delete/reload/unlock/deploy",
+    "Protected82, three correction ledgers and permanent exclusion unchanged",
+    "N/originals/old proof bytes/shared dependencies preserved",
+    "Rights/similarity/source identity and curriculum never auto-approved",
+    "No active or unpreserved worktree cleanup"
+  ],
+  "wholeGoalComplete": false
+}

@@ -1,0 +1,202 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-19T09:52:56.307Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group2-review-20261019-r1/current-selection-parent.json",
+    "sha256": "1487eb9aea90cf229633096d6b0e33a254f5960ad9d7aa0a46a705226322c215"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 1,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 1,
+    "figureInstances": 1,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    2
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group2-r1-q02",
+      "studentDigest": "ef764a890044e19cd0193e18785dacd1d771a46f3a3db28a98be886281468a22",
+      "candidateDigest": "41ec7ee3ab6fb501e215ff348bb741133f3a2fe862ce3cf3b60540502caf56f5",
+      "assetDigest": "f8e63d35321d51014560fc40d0a79857a93c466f30c2823aa004b9365a8c4248",
+      "solveDigest": "0f30ceb6450403debed9e616907b0670d07d6d919c194d57e5313a7dd0422a62",
+      "reportSha256": "3cbf033313e7824a61783a07e3717306afc01912b3fc40be37bfb3643fe7c473",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "sourceReference": {
+        "externalId": "2025-gyeongsin-3-2-mid-2",
+        "newSourceReferenceId": "source-ref-gyeongsin-2025-2-mid-group2-r1-q02",
+        "sourceContentSha256": "5f5829e713c3c83495db6413dee96bc8fa1408548c7ba9fac5659ee8f4ab7390",
+        "sourceSchoolInternal": "경신중학교",
+        "sourceExamYear": 2025,
+        "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+        "sourceManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+          "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+            "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+          }
+        ],
+        "actualReference": "observed-2025-original-scan-page1-question2; completed-pair header conflict retained",
+        "componentObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-source-component-review-20261019-r1/q02-component-review.json",
+          "sha256": "49344fa0ead1583a83494c3add80756121639aaeab97dd350c42263cf2078b10"
+        },
+        "originalQuestionCrop": {
+          "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q02-part1.png",
+          "sha256": "6d43e57dc9a2abd9143c9114948004df775990ecfe601e17c480340da1ae963b"
+        },
+        "sourceCropViewed": true,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "author-proposed",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원의 접선",
+            "semester": 2,
+            "orderIndex": 485,
+            "problemCodePrefix": "J30602"
+          },
+          "evidence": "현재 원의 접선 Unit UUID를 확인했다. 반지름을 구하는 원본과 달리 주어진 길이에서 각을 구하는 풀이 목적에 맞는 실제 live family는 별도 검토한다.",
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r1.json",
+            "sha256": "0ea7cd153abd708500ee160cecc1f83d1d396fe3823f404b24162e78fff3ddd0"
+          }
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-native-figTangentPair+single-tangent-role-recomposition",
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "newVector": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "접선과 중심선의 각 및 외부점에서 원까지의 길이로 반지름을 구한다.",
+        "after": "반지름과 외부점에서 원까지의 길이를 주고 접선과 중심선의 각을 구한다. 필요 없는 두 번째 접선은 제거한다.",
+        "sharedConcept": "접선과 접점의 반지름의 수직 관계, 선분 길이의 덧셈, 직각삼각형의 삼각비",
+        "sharedProcedure": "중심까지 거리=반지름+바깥 선분 → 접점의 직각 → 사인비 관계로 미지량 결정",
+        "actualStructuralChange": "주어졌던 각을 질문 대상으로, 물었던 반지름을 주어진 값으로 전환했다. 두 접선의 대칭 배치 대신 한 접선과 실제 계산에 쓰는 반지름·중심선만 새로 그렸다.",
+        "numericalChangeIsNotSufficient": true,
+        "domainProof": "반지름8, 중심과 외부점 거리16은16>8이므로 실제 접선이 존재한다. 가까운 교점까지8이고 삼각형OUT는 비퇴화 직각삼각형이다. 사인비1/2인 예각은30도로 하나뿐이며 위/아래 접선 선택은 그 크기를 바꾸지 않는다.",
+        "difficultyBasis": "원문과 같은 접선 수직·거리 합·삼각비의 관계를 역방향으로 읽는다. 학생 해설에 역삼각함수, 일반각, 삼각비 항등식이나 사인/코사인법칙을 쓰지 않는다. 난이도·배점은 독립 검토 대기."
+      },
+      "packageDigest": "d62bb45bd702446ecd9bce4de5ed4cddc7210a8ac4bca9615a528fb3fe2aad92",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-authoring-group2-r1\\q02.json",
+        "sha256": "acf96c3329dfa977723b432c53c9f702d6dd7935e04784ed68e3ce4c943fbcf4"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "aafd93cccae36579f52cc295d2be6c9f6b3bd9230fd6c0d8ab485a4baa159529",
+          "svgSha256": "d85a7bc950ca01abaa05deb6ab5fa43cfda5c253ef644983b51dbabe68967ad3",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q02-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsin-group2-review-20261019-r1\\blind\\solve\\q02.json",
+        "sha256": "f3f959a291114ad2f2db1f2748171a96114fd3342112466394271f6b15e2aab2"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group2-review-20261019-r1/verification/reports/q02.json",
+        "sha256": "3cbf033313e7824a61783a07e3717306afc01912b3fc40be37bfb3643fe7c473"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group2-review-20261019-r1/verification/verification-manifest.json",
+        "sha256": "e970b130840b6ccab1e8fab542c83d42b62e986f659a66174fb5a1c22f87dbbe"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group2-review-20261019-r1/blind/blind-manifest.json",
+        "sha256": "90b26738600dcfd4741af991716a1dadfd79399f62e7e73e41372d8aeba24634"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group2-review-20261019-r1/package/private/q02/candidate.json",
+        "sha256": "f9e46f6edc9b114a02c7c5bb43d9ca1156eae59f8e2f296bdb627edfe00a64db"
+      },
+      "candidateContentWithoutRelocatedPaths": "6ed46f249f60d5a8d7870f18af20869bd104230632544d7f2d3df704e7b0d4ab",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group2-r1/q02.json",
+        "sha256": "acf96c3329dfa977723b432c53c9f702d6dd7935e04784ed68e3ce4c943fbcf4"
+      },
+      "authorCandidateDigest": "f95d71df5f16fafaf79e0e8355cd3e12ecfbf13b23b7efe476a24c8502768ed5"
+    }
+  ],
+  "reviewBindingDigest": "c99c224993fbdd3b4f2219564eb5f0c41ef84af98f1a7d1797345071523e1fa8",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

@@ -8,6 +8,8 @@ import {
   digest,
   newOutputPath,
   sha256,
+  REVIEW_CHECKS,
+  SURFACES,
 } from "./candidatePack.mjs";
 import { composeImageFigure } from "./compose-image-figure.mjs";
 import { summarizeReviewedBatch } from "./summarize-reviewed-batch.mjs";
@@ -289,6 +291,53 @@ test("batch counts select the exact current ID and never reuse an old question-n
     f.clean();
   }
 });
+test("a verified report cannot inflate content/classification passes while a required dimension is held", () => {
+  const f = fixture();
+  try {
+    const root = path.join(f.root, "review");
+    fs.mkdirSync(root);
+    const source = path.join(f.root, "candidate.json");
+    assert.equal(f.run("freeze", root + "/package", source).status, 0);
+    assert.equal(f.run("blind", root + "/package", root + "/blind").status, 0);
+    const b = bindCandidate(root + "/package/private/q02/candidate.json");
+    const solve = { studentDigest: b.studentDigest, solverId: "independent", answer: "②",
+      solution: "Synthetic independent control only", evidence: "control", status: "solved" };
+    fs.writeFileSync(root + "/blind/solve/q02.json", JSON.stringify(solve));
+    assert.equal(f.run("verify-pack", root + "/package", root + "/blind", root + "/verification").status, 0);
+    const report = { status: "verified", studentDigest: b.studentDigest,
+      candidateDigest: b.candidateDigest, assetDigest: b.assetDigest,
+      method: "independent-solve-then-review", verifierId: "independent", solveDigest: digest(solve),
+      evidence: "Synthetic count control, no actual question approval",
+      checks: Object.fromEntries(REVIEW_CHECKS.map((k) => [k, true])),
+      curriculumSurfaces: Object.fromEntries(SURFACES.map((s) => [s, { status: "passed", evidence: "control" }])) };
+    const reportPath = root + "/verification/reports/q02.json";
+    const indexPath = path.join(f.root, "index.json");
+    fs.writeFileSync(indexPath, JSON.stringify({ questions: [{ n: 2, id: f.candidate.twinExternalId,
+      candidate: source, sha256: sha256(fs.readFileSync(source)) }] }));
+    for (const heldKey of ["unitFamilyFit", "distinctPresentation", "scoreAppropriate", "figureConsistent", "allStudentSurfacesInScope"]) {
+      report.checks[heldKey] = false;
+      fs.writeFileSync(reportPath, JSON.stringify(report));
+      const actual = summarizeReviewedBatch(indexPath, [root]);
+      assert.equal(actual.counts.contentReportVerified, 1);
+      assert.equal(actual.counts.contentReviewPassed, 0, heldKey);
+      assert.equal(actual.counts.contentReviewHeld, 1, heldKey);
+      assert.deepEqual(actual.contentReviewHeldNumbers, [2]);
+      assert.equal(actual.counts.overallVerified, 0);
+      assert.equal(actual.counts.loadable, 0);
+      if (heldKey === "unitFamilyFit") {
+        assert.equal(actual.counts.mathematicalVerified, 1);
+        assert.equal(actual.counts.gradeReviewed, 1);
+      }
+      report.checks[heldKey] = true;
+    }
+    fs.writeFileSync(reportPath, JSON.stringify(report));
+    const passed = summarizeReviewedBatch(indexPath, [root]);
+    assert.equal(passed.counts.contentReviewPassed, 1);
+    assert.equal(passed.counts.contentReviewHeld, 0);
+    assert.equal(passed.counts.loadable, 0);
+  } finally { f.clean(); }
+});
+
 test("image composition binds both generated pixels and generation record", () => {
   const f = fixture();
   try {

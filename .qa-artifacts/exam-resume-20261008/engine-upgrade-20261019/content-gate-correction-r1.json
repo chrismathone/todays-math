@@ -1,0 +1,68 @@
+{
+  "kind": "current-review-aggregate-correction/v1",
+  "utc": "2026-10-19T09:58:09.523001+00:00",
+  "before": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v16.json",
+    "sha256": "6c31a700ec7ec77163eafa8eecba252683d7ea8172b9918cf23a5f7a3f988fb8"
+  },
+  "after": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v17.json",
+    "sha256": "3bb2246487d8686b49a39e92bde03bfc67dd146b796a7e2a43588951cf058524"
+  },
+  "beforeCounts": {
+    "authoredCurrentCandidates": 115,
+    "currentFigureInstances": 91,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 115,
+    "independentMathReviewed": 114,
+    "independentFullGradeReviewed": 114,
+    "contentReviewPassed": 16,
+    "contentReviewHeld": 98,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 114,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1
+  },
+  "afterCounts": {
+    "authoredCurrentCandidates": 115,
+    "currentFigureInstances": 91,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 115,
+    "independentMathReviewed": 114,
+    "independentFullGradeReviewed": 114,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 99,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 114,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1
+  },
+  "sameCandidateIdsAndRawAuthorBytes": true,
+  "actualCounterexample": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-group3-review-20261019-r5/verification/reports/q04.json",
+    "sha256": "1e6fe0bb2c156baeaff4a3a83b87b026b3206094db7601653dca6aeda2a90408"
+  },
+  "reason": "Report verified, but unitFamilyFit=false. Combined content/classification count now requires all12 checks and independent math/grade; report-status diagnostic remains separate.",
+  "newSolverOrCandidateCount": 0,
+  "rawReportEdits": 0,
+  "tests": {
+    "passed": 119,
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/content-gate-regressions-r1.tap",
+      "sha256": "97c2b799cd82f6013d2b6aba0e49224d6684928371b2be957d71632504658c1b"
+    }
+  },
+  "wholeGoalComplete": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

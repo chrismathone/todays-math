@@ -10,6 +10,7 @@ import {
   newOutputPath,
   readJson,
   sha256,
+  REVIEW_CHECKS,
 } from "./candidatePack.mjs";
 import { auditCollectedPack, currentPackage } from "./review-exam-twins.mjs";
 
@@ -17,6 +18,9 @@ const fileEvidence = (file) => ({
   path: path.relative(process.cwd(), file).replaceAll("\\", "/"),
   sha256: sha256(fs.readFileSync(file)),
 });
+const contentAndClassificationPassed = (q) =>
+  q.reportStatus === "verified" && q.mathematicalVerified && q.gradeReviewed &&
+  REVIEW_CHECKS.every((key) => q.reviewChecks?.[key] === true);
 function relocatedCandidateContent(candidate) {
   const copy = structuredClone(candidate);
   for (const asset of copy.figureArtifacts) {
@@ -71,6 +75,7 @@ export function summarizeReviewedBatch(indexFile, reviewRoots) {
       return {
         ...audited.results[i],
         reportStatus: readJson(reportFile).status,
+        reviewChecks: readJson(reportFile).checks,
         sourceReference: b.candidate.sourceReference,
         metadata: b.candidate.metadata,
         variantDelta: b.candidate.variantDelta,
@@ -137,11 +142,10 @@ export function summarizeReviewedBatch(indexFile, reviewRoots) {
       mathematicalVerified: questions.filter((q) => q.mathematicalVerified)
         .length,
       gradeReviewed: questions.filter((q) => q.gradeReviewed).length,
-      contentReviewPassed: questions.filter(
-        (q) => q.reportStatus === "verified",
-      ).length,
-      contentReviewHeld: questions.filter((q) => q.reportStatus === "pending")
-        .length,
+      contentReportVerified: questions.filter((q) => q.reportStatus === "verified").length,
+      contentReviewPassed: questions.filter(contentAndClassificationPassed).length,
+      contentReviewHeld: questions.filter((q) => q.reportStatus === "pending" ||
+        (q.reportStatus === "verified" && !contentAndClassificationPassed(q))).length,
       figureInstances: questions.reduce(
         (sum, q) => sum + q.figureBindings.length,
         0,
@@ -151,10 +155,11 @@ export function summarizeReviewedBatch(indexFile, reviewRoots) {
       productionWrites: 0,
     },
     contentReviewPassedNumbers: questions
-      .filter((q) => q.reportStatus === "verified")
+      .filter(contentAndClassificationPassed)
       .map((q) => q.n),
     contentReviewHeldNumbers: questions
-      .filter((q) => q.reportStatus === "pending")
+      .filter((q) => q.reportStatus === "pending" ||
+        (q.reportStatus === "verified" && !contentAndClassificationPassed(q)))
       .map((q) => q.n),
     supersededReviews: entries
       .filter((e) => !selectedIds.has(e.twinExternalId))

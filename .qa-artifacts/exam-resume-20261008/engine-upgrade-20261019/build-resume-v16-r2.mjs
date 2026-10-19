@@ -16,7 +16,7 @@ for (const c of previousRows) {
   assert.equal(b.candidateFileSha256, c.candidate.sha256);
   for (const k of ['studentDigest', 'assetDigest', 'candidateDigest']) assert.equal(b[k], c[k]);
 }
-const sourceReceipts = [1,2,3,4,5,6].map((n) => ev(base + `fresh-source-extraction-20261019-r${n}/aggregate-receipt.json`));
+const sourceReceipts = [1,2,3,4,5,6,7].map((n) => ev(base + `fresh-source-extraction-20261019-r${n}/aggregate-receipt.json`));
 const sourceIds = new Set(); let total = 253;
 for (const source of sourceReceipts) {
   const s = readJson(source.path);
@@ -31,11 +31,13 @@ assert.equal(total, 634);
 const freshExtraction = { evidence: sourceReceipts, oldParentObservations: 253, newFreshParentObservations: total - 253,
   totalParentObservations: total, newFreshExams: sourceIds.size, freshComponentsApproved: 0, wholePairsCertified: 0,
   countScope: 'Parser parent observations, not unique content-certified exams or verified twins',
-  latestReviewerObservation: ev(base + 'fresh-source-extraction-20261019-r6/reviewer-observations-r1.json') };
+  latestReviewerObservation: ev(base + 'fresh-source-extraction-20261019-r6/reviewer-observations-r1.json'),
+  latestAttempt: ev(base + 'fresh-source-extraction-20261019-r7/aggregate-receipt.json'),
+  latestAttemptResult: 'N unavailable in current process; three individual file-access holds, new extraction0. Local evidence/code/review work continues.' };
 const scopes = [
   { candidate: base + 'gyeongsin-authoring-r2/q01.json', root: base + 'gyeongsin-review-20261019-r2' },
   { candidate: base + 'gyeongsin-authoring-group2-r1/q02.json', root: base + 'gyeongsin-group2-review-20261019-r1' },
-  { candidate: base + 'gyeongsin-authoring-group3-r2/q04.json', root: base + 'gyeongsin-group3-review-20261019-r2' },
+  { candidate: base + 'gyeongsin-authoring-group3-r4/q04.json', root: base + 'gyeongsin-group3-review-20261019-r5' },
 ];
 const candidates = [], summaries = [];
 let newMath = 0, newGrade = 0, newContentPass = 0, newHeld = 0, newCollected = 0;
@@ -84,21 +86,36 @@ write(indexFile, { ...old, version: 16, createdAt, previous: ev(base + 'current-
   groups: [...old.groups, { exam: 'Gyeongsin-first', index: ev(groupIndex), authored: candidates.length,
     pointTotal: candidates.reduce((sum, c) => sum + c.score, 0), figureInstances: figures, candidates }], counts,
   currentIdsDigest: digest(all.map((c) => c.twinExternalId).sort()), latestIndependentSummaries: summaries,
-  note: 'Prior112 current author files/digests revalidated. Three new Gyeongsin inverse-target twins selected by actual current IDs/hashes. q01/q04 r1 drafts preserved and superseded by r2. q18 and all remaining gates stay held.' });
+  note: 'Prior112 current author files/digests revalidated. Three new Gyeongsin inverse-target twins selected by actual current IDs/hashes. q01 selected r2; q04 selected r4. Earlier drafts/failed collectors preserved, never counted as extra items/reviews. q18 and all remaining gates stay held.' });
 const oldEngine = readJson(base + 'engine-upgrades-progress-r7.json');
-const codePaths = [...new Set([...oldEngine.code.map((c) => c.path), 'scripts/import/exam-twin/rebind-identical-review.mjs'])];
+const integratedStudyCode = fs.readdirSync('src/lib/examStudy', { recursive: true, withFileTypes: true })
+  .filter((e) => e.isFile() && e.name.endsWith('.ts')).map((e) => (e.parentPath + '/' + e.name).replaceAll('\\','/'));
+const codePaths = [...new Set([...oldEngine.code.map((c) => c.path), 'scripts/import/exam-twin/rebind-identical-review.mjs',
+  'src/contracts/examStudy.contract.ts', 'src/lib/examStudyRoutes.ts', ...integratedStudyCode])];
 const engineFile = base + 'engine-upgrades-progress-r8.json';
 write(engineFile, { ...oldEngine, kind: 'exam-engine-upgrades-progress/v8', version: 8, createdAt,
   previous: ev(base + 'engine-upgrades-progress-r7.json'), code: codePaths.map((p) => ({ ...ev(p), normalizedLfSourceSha256: sha256(fs.readFileSync(p, 'utf8').replaceAll('\r\n', '\n')) })),
   newAuthoredProblems: candidates.length, newImagegenRasters: 0, currentCounts: counts, freshExtraction,
-  checkpointDelta: 'Three inverse target examples and strict byte-identical review-lineage rebinding. No new production template registration or release.',
+  checkpointDelta: 'Three inverse target manual examples, identical-payload lineage rebinding, figure transport readability, bounded numbered-length punctuation and finite classification-count choices. Preserve/reuse latest main23 authored study families; no duplicate template implementation or release.',
+  integratedMainEngine: { commit: '261a5e263e4e104949d7a21673c9c9ad5850a380', authoredFamilies: 23, reviewedProfiles: 5,
+    requirementIds: 50, remainingUniqueDemands: 12, remainingSchoolCourseDemands: 13,
+    evidence: ev('docs/reports/math-exam-engine-upgrade-20261018/README.md'),
+    remainingAudit: ev('docs/reports/math-exam-engine-remaining-20261019/README.md'),
+    allStudentSurfaceCurriculumCertified: false, wholeSchoolOrCorpusCoverage: false },
   newOfflineSupports: [...oldEngine.newOfflineSupports, 'Rebind nested freeze provenance to current author files only when entire private candidate/assets/Git proof/report bytes match; all holds retained', 'Parse actual figure-spec bytes as a JSON object; fatal SVG UTF-8 and unreadable-control checks, without byte repair or semantic approval'],
   items: [...oldEngine.items, { id: 'U31', area: 'Identical-payload review lineage preservation', productionStatus: 'implemented-offline-bounded-support',
     change: 'Strict CLI/API;17 regressions;actual14-item demonstrations. Changed metadata/answers/solutions/assets require NEW review; no writer/release bypass.' },
-    { id: 'U32', area: 'Figure/spec artifact readability', productionStatus: 'implemented-offline-bounded-support', change: 'NUL/nonobject/invalid-UTF8/unreadable-XML-character inputs reject before binding. Valid Korean/BOM/CRLF keep raw hashes. No XML/geometry/curriculum approval from transport checks.' }],
-  validations: { ...oldEngine.validations, nodePassed: 71, pythonRegionTests: 4, rebindIntegration: ev(engine + 'rebind-integration-r1.json'),
+    { id: 'U32', area: 'Figure/spec artifact readability', productionStatus: 'implemented-offline-bounded-support', change: 'NUL/nonobject/invalid-UTF8/unreadable-XML-character inputs reject before binding. Valid Korean/BOM/CRLF keep raw hashes. No XML/geometry/curriculum approval from transport checks.' },
+    { id: 'U33', area: 'Shared exam-study engine integration', productionStatus: 'implemented-on-feature-reused-main', change: 'Preserve main23 authored families, strict demand planning/identity/verification/figures/API/output;785 latest regression passes,6 conditional skips. Twelve unique reviewed demands still incomplete; no universal curriculum certification.' },
+    { id: 'U34', area: 'Finite count distractor domain', productionStatus: 'implemented-bounded-production-code', change: 'Read only complete printed classification collections in two exact question forms; all choices0..N integer and distinct, bad authored choices or too-small domain reject.64 actual generator samples. No full-requirement promotion.' },
+    { id: 'U35', area: 'Numbered scalar length answer presentation', productionStatus: 'implemented-offline-bounded-support', change: 'Ordered scalar lengths/cm/m/decimal exact values; one interpart comma or semicolon does not erase roles/units/parts. Extra prose/terms/dimensions/ambiguous comma reject; sealed raw unchanged. Actual current q04 recollected in a new container/report.' }],
+  validations: { ...oldEngine.validations, nodePassed: 118, pythonRegionTests: 4,
+    vitest: { files: 53, passed: 785, skipped: 6, failed: 0, evidence: ev(engine + 'integration-checkpoint-r3.json') },
+    numberedLengthGrammar: ev(engine + 'answer-comma-validation-r1.json'),
+    countDomainRegressions: ev(engine + 'count-choice-regressions-r1.json'),
+    rebindIntegration: ev(engine + 'rebind-integration-r1.json'),
     rebindDemo: ev(base + 'rebind-identical-review-demo-20261019-r1/demo-report.json'), latestCollectedReviews: summaries,
-    latestMainIntegration: ev(engine + 'integration-checkpoint-r2.json'), restartTextAudit: ev(engine + 'recovery-r1/text-audit.json'),
+    latestMainIntegration: ev(engine + 'integration-checkpoint-r3.json'), restartTextAudit: ev(engine + 'recovery-r1/text-audit.json'),
     actualCurrentFigureTransport: ev(engine + 'current115-figure-readability-r1.json'),
     figureTransportTests: ev(engine + 'figure-readability-tests-r1.tap'), liveDesignGuide: ev(engine + 'typesafe-live-guide-r2.json') },
   sourceComponentObservations: [1,2,4].map((n) => ev(base + `gyeongsin-source-component-review-20261019-r1/q${String(n).padStart(2,'0')}-component-review.json`)),
