@@ -86,6 +86,23 @@ without a hint" rejects such a student's whole record: once a student has
 answered one, never run older code against the shared database or roll
 production back below that commit.
 
+**Course follow-ups — reader first (2026-10-19, owner «한 번 더 → 풀이» · «그날은
+끝, 다음 복습에 다시»):** a course session may carry `followUps` — one per problem
+whose first answer was wrong: `retry` (the second answer) or `reveal` (the solution
+opened after «모르겠어요» or a self-check «다시 연습»), each with `doneAt` for
+«알겠어요». A followed-up problem leaves the end-of-session retry queue
+(`progress.ts`), the elementary mission's remaining count (`expedition.ts`), and
+the first attempt · memories · activity are never rewritten. The reader ships
+alone (commit "feat(srs): read course follow-ups before anything writes them");
+the writer (transitions · `/api/learn/math-srs/course/follow-up` · response
+`followUp` only for clients that ask · blocking the next session until `doneAt`)
+comes after it is Ready in production, and that reader commit becomes the floor:
+never run older code against the shared database once a student has a follow-up.
+The public problem contract already accepts `followUp` (strict client parse) —
+the server must not send it to clients that did not ask, because tabs opened
+before the reader deploy still parse strictly. Explorer card activities keep their
+own retry state in the explorer record (plan §3.2), not this field.
+
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**
 (concept data contract, schedule, session rules, numbers, storage, tests).

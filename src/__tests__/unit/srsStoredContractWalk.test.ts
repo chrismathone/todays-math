@@ -30,7 +30,9 @@ import {
   setCoursePlan,
   startRecommendedCourse,
   submitCourseAttempt,
+  type StoredCourse,
 } from "@/lib/math-srs/courseAutomation";
+import type { CourseFollowUp } from "@/lib/math-srs/elementary/types";
 import { updateDailyJourney } from "@/lib/math-srs/dailyJourney";
 import { withDefaultCoursePlan } from "@/lib/math-srs/defaultCoursePlan";
 import {
@@ -93,13 +95,80 @@ function solveDefinitionStep(state: StoredSrsState, now: Date) {
   );
 }
 
+/**
+ * What the follow-up writer (plan §3.2) does after «모르겠어요» on a first answer:
+ * record the opened solution and keep the problem out of today's retry queue.
+ */
+function resolveGiveUp(course: StoredCourse, problemId: string): StoredCourse {
+  const session = course.learner.session!;
+  const answeredAt = session.attempts.find(
+    (a) => a.problemId === problemId,
+  )!.answeredAt;
+  const opened: CourseFollowUp = {
+    problemId,
+    kind: "reveal",
+    correct: false,
+    answeredAt,
+    doneAt: answeredAt,
+  };
+  return withoutFollowedRetries(course, [...(session.followUps ?? []), opened]);
+}
+
+/** The follow-up writer's queue rule: a resolved problem is not retried today. */
+function withoutFollowedRetries(
+  course: StoredCourse,
+  followUps = course.learner.session!.followUps ?? [],
+): StoredCourse {
+  const session = course.learner.session!;
+  const { retry, ...rest } = session;
+  const pending = retry?.pendingProblemIds.filter(
+    (id) => !followUps.some((f) => f.problemId === id),
+  );
+  if (!followUps.length) return course;
+  return {
+    ...course,
+    learner: {
+      ...course.learner,
+      session: {
+        ...rest,
+        followUps,
+        ...(retry && pending?.length
+          ? { retry: { ...retry, pendingProblemIds: pending } }
+          : {}),
+      },
+    },
+  };
+}
+
 /** One course answer the way the student screen sends it: right answers, self-checks without a hint. */
-function answerCourse(state: StoredSrsState, now: Date) {
+function answerCourse(state: StoredSrsState, now: Date, giveUpFirst = false) {
   const course = state.course!;
   const session = course.learner.session!;
   if (!session.completedAt) {
     const problem = session.problems[session.attempts.length];
     const selfCheck = problem.input.mode === "self-check";
+    // Give up on the session's first auto-graded problem (5-2-1-1 opens with a self-check).
+    if (
+      giveUpFirst &&
+      session.problems.findIndex((p) => p.input.mode !== "self-check") ===
+        session.attempts.length
+    ) {
+      const gaveUp = submitCourseAttempt(
+        course,
+        {
+          sessionId: session.id,
+          problemId: problem.id,
+          submittedAnswer: "",
+          giveUp: true,
+        },
+        now,
+      );
+      return persist(
+        state,
+        { ...state, course: resolveGiveUp(gaveUp, problem.id) },
+        now,
+      );
+    }
     const next = submitCourseAttempt(
       course,
       {
@@ -110,7 +179,11 @@ function answerCourse(state: StoredSrsState, now: Date) {
       },
       now,
     );
-    return persist(state, { ...state, course: next }, now);
+    return persist(
+      state,
+      { ...state, course: giveUpFirst ? withoutFollowedRetries(next) : next },
+      now,
+    );
   }
   const retry = session.retry!;
   const problem = session.problems.find(
@@ -149,7 +222,12 @@ function startNextCourseSession(state: StoredSrsState, now: Date) {
     : persist(state, { ...seeded, course: next }, now);
 }
 
-function playDay(state: StoredSrsState, now: Date, classGrade = "초5") {
+function playDay(
+  state: StoredSrsState,
+  now: Date,
+  classGrade = "초5",
+  giveUpFirst = false,
+) {
   const kinds: string[] = [];
   // The routes show and start from the class grade's default plan (`withDefaultCoursePlan`).
   const seeded = withDefaultCoursePlan(state, classGrade, now);
@@ -179,7 +257,7 @@ function playDay(state: StoredSrsState, now: Date, classGrade = "초5") {
         session &&
         (!session.completedAt || (session.retry && !session.retry.completedAt));
       state = active
-        ? answerCourse(state, now)
+        ? answerCourse(state, now, giveUpFirst)
         : startNextCourseSession(state, now);
       continue;
     }
@@ -263,5 +341,42 @@ describe("a 초5 student walking the expedition keeps a readable record", () => 
     }
     expect(seen).toContain("elementary");
     expect(selfChecks).toBeGreaterThan(0);
+  });
+
+  it("finishes a bank day whose given-up problems were resolved on the spot (follow-up reader)", () => {
+    let state: StoredSrsState = {
+      ...emptySrsState(),
+      course: setCoursePlan(
+        emptyCourseState(),
+        {
+          startSectionId: "5-2-1-1",
+          dailyQuestionCount: 10,
+          enabled: true,
+          expectedRevision: 0,
+        },
+        firstDay,
+      ),
+    };
+    const bankDays: string[] = [];
+    for (let day = 0; day < 6; day++) {
+      const now = new Date(firstDay.getTime() + day * DAY);
+      const played = playDay(state, now, "초5", true);
+      state = played.state;
+      if (played.kinds.includes("elementary"))
+        bankDays.push(state.expedition!.mission!.status);
+    }
+    const sessions = [
+      ...state.course!.history.map((h) => h.session),
+      ...(state.course!.learner.session ? [state.course!.learner.session] : []),
+    ];
+    expect(sessions.some((s) => s.followUps?.length)).toBe(true);
+    // Resolved problems are never asked again in the same session, and the day ends.
+    for (const s of sessions)
+      for (const f of s.followUps ?? [])
+        expect(
+          s.retry?.attempts.some((a) => a.problemId === f.problemId) ?? false,
+        ).toBe(false);
+    expect(bankDays.length).toBeGreaterThan(0);
+    expect(bankDays.every((status) => status === "complete")).toBe(true);
   });
 });

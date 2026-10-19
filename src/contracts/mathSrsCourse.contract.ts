@@ -86,6 +86,19 @@ export const coursePublicProblemSchema = z.strictObject({
   }),
   hint: solutionSchema.nullable(),
   feedback: z.strictObject({ correct: z.boolean() }).nullable(),
+  /**
+   * After a wrong first answer: `awaiting` a second answer, `correct` on the second
+   * try, or the `solution` is open (second miss · gave up · self-check «다시 연습»).
+   * `done` once the student pressed «알겠어요» · «다음». Read before the server sends it
+   * (plan §3.2 — the reader ships first).
+   */
+  followUp: z
+    .strictObject({
+      state: z.enum(["awaiting", "correct", "solution"]),
+      done: z.boolean(),
+    })
+    .nullable()
+    .optional(),
 });
 export type CoursePublicProblem = z.infer<typeof coursePublicProblemSchema>;
 export const coursePublicAttemptSchema = z.strictObject({

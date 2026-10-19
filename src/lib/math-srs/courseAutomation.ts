@@ -104,6 +104,21 @@ export const storedCourseSchema = z
         if (!z.uuid().safeParse(p.id).success || ids.has(p.id)) fail();
         ids.add(p.id);
       });
+      // «모르겠어요» lives on the request, not the attempt: a second answer follows
+      // only a real wrong answer, an opened solution only giving up or a self-check.
+      for (const entry of session.followUps ?? []) {
+        const request = requests.find((r) => r.problemId === entry.problemId);
+        const selfCheck =
+          session.problems.find((p) => p.id === entry.problemId)?.input.mode ===
+          "self-check";
+        if (
+          !request ||
+          (entry.kind === "retry"
+            ? request.giveUp
+            : !request.giveUp && !selfCheck)
+        )
+          fail();
+      }
       session.attempts.forEach((a, i) => {
         const request = requests[i];
         if (

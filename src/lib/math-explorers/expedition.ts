@@ -806,9 +806,14 @@ export function updateExpedition(
           continue;
         }
         answered += session.attempts.length;
+        // A problem resolved right after its wrong answer is not asked again today.
         remaining +=
           session.retry?.pendingProblemIds.length ??
-          session.attempts.filter((a) => !a.correct).length;
+          session.attempts.filter(
+            (a) =>
+              !a.correct &&
+              !session.followUps?.some((f) => f.problemId === a.problemId),
+          ).length;
         finished &&=
           !!session.completedAt &&
           (!session.retry || !!session.retry.completedAt);
