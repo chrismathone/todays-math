@@ -1,0 +1,9 @@
+{
+  "status": "rejected-before-candidate-output",
+  "error": "angle 'rightM' ray to 'Q' is not covered by a rendered segment",
+  "cause": "Added right-angle markers need explicit split chord segments at M and N for native validation.",
+  "candidateCreated": false,
+  "mathematicalApproval": false,
+  "sourceComponentObservationPreserved": true,
+  "repair": "Replace full chords with PM/MQ and PN/NR in the newly authored FigureSpec. Keep the native coverage validator unchanged."
+}

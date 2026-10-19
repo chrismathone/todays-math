@@ -1,0 +1,27 @@
+{
+  "previous": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-r1/q01.json",
+    "sha256": "74e1caee4a10ded71418f5e91fb66d90c37d25c3f25bc8366127333ba92483a7"
+  },
+  "current": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-r2/q01.json",
+    "sha256": "a55a100e29c46ea07b91bebe2fae5cc7e956000e5637dc319a8d3e9377c42f64"
+  },
+  "reason": "r1의 90도 호/텍스트가 중심 주변에 혼잡해 작은 직각 기호로 새로 렌더했다. 본문·답·해설은 같지만 그림 변경이므로 r1 검수는 재사용하지 않는다.",
+  "candidateDigest": "b27ce365ad6f426b78b14f9406dcd6ac813050255c4089f190cabf2864c78ea2",
+  "studentDigest": "1926b5e6809401ef62d86c962defff8aec71099435d0e8c9a556a225ec9f8811",
+  "assetDigest": "07601ddf2cf96a80e3d6fbb03cd43b315a31effefe0af83da8f8fa142de5a64b",
+  "authorCalculation": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-r1/author-calculation.json",
+    "sha256": "3e4c77dcba14cb459411a8a92db12f7e9da6dbbf0ec943f3422522de861c1b76"
+  },
+  "mathPayloadUnchanged": true,
+  "assetsChanged": true,
+  "newBlindReviewRequired": true,
+  "renderedStrict": true,
+  "typeset": true,
+  "originalCropEmbedded": false,
+  "independentMathApprovals": 0,
+  "gradeApprovals": 0,
+  "loadable": 0
+}

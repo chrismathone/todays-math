@@ -1,0 +1,8 @@
+{
+  "status": "rejected-before-candidate-output",
+  "error": "angle 'askedP' ray to 'Q' is not covered by a rendered segment",
+  "cause": "After splitting chords, native angle rays must reference the incident segment's actual endpoint.",
+  "candidateCreated": false,
+  "mathematicalApproval": false,
+  "repair": "Use PM/PN for the apex angle rays and QM/QR for the given base-angle rays. Their collinearity with PQ/PR is unchanged. Native validation remains strict."
+}

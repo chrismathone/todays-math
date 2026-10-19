@@ -1,0 +1,60 @@
+{
+  "kind": "source-question-component-observation/v1",
+  "createdAt": "2026-10-19T07:54:26.089Z",
+  "reviewer": "codex-parent-engine-upgrade-20261019",
+  "sourceOriginal": {
+    "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+    "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9",
+    "page": 1,
+    "observedGrade": "중3",
+    "observedYear": 2025,
+    "observedSemester": 2,
+    "observedRound": "중간",
+    "schoolFooterOrNoticeObserved": "경신중",
+    "observedExamDate": "2025-09-19",
+    "observedSchool": "경신중학교",
+    "copyrightNoticeObserved": true
+  },
+  "priorCompletedPairManifest": {
+    "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/source-manifest.json",
+    "sha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+  },
+  "oldWholePairStatus": "hold_year_header_conflict",
+  "observedOriginalPages": [
+    1
+  ],
+  "originalAnswerKeyRead": false,
+  "question": {
+    "number": 1,
+    "priorSourceContentDigest": "e5b2e011d9fcb788322419eddc0c38290bc259dba63248e238807b2fd6da4340",
+    "completedCrop": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsin/packet/images/q01-part1.png",
+      "sha256": "bbf1cf477607f8d847d95c54b1880c3366660c0b31738d61284adc38a7856c8f"
+    },
+    "conditionRolesMatch": true,
+    "askedAngleRoleMatch": true,
+    "choiceValuesAndOrderMatch": true,
+    "circleCenterChordPerpendicularRolesMatch": true,
+    "printedScoreMatch": true,
+    "printedScore": 4,
+    "basis": "원본 page1 상단과 완료본 q1을 view_image로 직접 시각 대조했다.",
+    "evidence": "원본 첫 쪽의 시험일·학년·학기와 완료본 q1의 조건 관계, 질문 대상, 선택지 순서, 원/현/수선의 발 역할 및 배점이 일치함을 시각 대조했다. 픽셀로 길이나 각을 측정하지 않았다.",
+    "observationStatus": "matches-2025-original-question-component",
+    "authoringReference": "2025-original-only"
+  },
+  "wholePairCertified": false,
+  "otherQuestionsCertified": false,
+  "oldFilesModified": false,
+  "sourceIdentityApproved": false,
+  "custodyReview": "pending",
+  "rightsReview": "pending-copyright-notice-observed",
+  "similarityReview": "pending-new-authored-candidate",
+  "mathematicalApprovals": 0,
+  "gradeApprovals": 0,
+  "loadable": 0,
+  "limitations": [
+    "완료본 HWP/PDF 전체의 2024/2025 헤더 충돌은 해결하지 않았다.",
+    "이 관찰은 첫 문항의 2025 원본 대응에 한정된다. 이용 허락이나 저작권 위험 해소를 뜻하지 않는다.",
+    "원본 크롭은 로컬 검토 자료이며 Git에 게시하거나 새 그림으로 세지 않는다."
+  ]
+}

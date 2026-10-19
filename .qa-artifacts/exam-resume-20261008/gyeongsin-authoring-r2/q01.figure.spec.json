@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "style": {
+    "show_points": true
+  },
+  "points": {
+    "O": [
+      120,
+      95
+    ],
+    "P": {
+      "type": "on_circle",
+      "circle": "c",
+      "angle": 90
+    },
+    "Q": {
+      "type": "on_circle",
+      "circle": "c",
+      "angle": 316
+    },
+    "R": {
+      "type": "on_circle",
+      "circle": "c",
+      "angle": 224
+    },
+    "M": [
+      147.33,
+      83.4
+    ],
+    "N": [
+      92.67,
+      83.4
+    ]
+  },
+  "circles": {
+    "c": {
+      "center": "O",
+      "radius": 76
+    }
+  },
+  "segments": {
+    "PM": [
+      "P",
+      "M"
+    ],
+    "MQ": [
+      "M",
+      "Q"
+    ],
+    "PN": [
+      "P",
+      "N"
+    ],
+    "NR": [
+      "N",
+      "R"
+    ],
+    "QR": [
+      "Q",
+      "R"
+    ],
+    "OM": [
+      "O",
+      "M"
+    ],
+    "ON": [
+      "O",
+      "N"
+    ]
+  },
+  "angles": {
+    "askedP": {
+      "vertex": "P",
+      "points": [
+        "M",
+        "N"
+      ],
+      "label": "x"
+    },
+    "givenQ": {
+      "vertex": "Q",
+      "points": [
+        "M",
+        "R"
+      ],
+      "label": "67°"
+    },
+    "rightM": {
+      "vertex": "M",
+      "points": [
+        "O",
+        "Q"
+      ],
+      "right": true,
+      "label": ""
+    },
+    "rightN": {
+      "vertex": "N",
+      "points": [
+        "O",
+        "R"
+      ],
+      "right": true,
+      "label": ""
+    }
+  },
+  "labels": {
+    "O": "O",
+    "P": "P",
+    "Q": "Q",
+    "R": "R",
+    "M": "M",
+    "N": "N"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "rebind-integration-check/v1",
+  "utc": "2026-10-19T07:57:08.809Z",
+  "workerCommit": "6393b985d40b22e6b99c041dd1911812ec97eebe",
+  "node": {
+    "command": "node --test scripts/import/exam-twin/*.test.mjs",
+    "tests": 68,
+    "passed": 68,
+    "failed": 0,
+    "exitCode": 0
+  },
+  "python": {
+    "command": "python -B -m unittest discover -s scripts/import/exam-twin -p *_test.py -q",
+    "tests": 4,
+    "passed": 4,
+    "exitCode": 0
+  },
+  "newMathApprovals": 0,
+  "newGradeApprovals": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}

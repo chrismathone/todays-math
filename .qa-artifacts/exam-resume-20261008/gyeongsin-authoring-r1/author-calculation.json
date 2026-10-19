@@ -1,0 +1,53 @@
+{
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "angleP": 46,
+  "angleQ": 67,
+  "otherBaseAngle": 67,
+  "angleSum": 180,
+  "existence": "positive nondegenerate triangle; equal chords symmetric about PO",
+  "uniqueness": "two base angles fixed; vertex uniquely180-2*67",
+  "options": [
+    {
+      "index": 1,
+      "value": 42,
+      "satisfiesAngleSum": false
+    },
+    {
+      "index": 2,
+      "value": 44,
+      "satisfiesAngleSum": false
+    },
+    {
+      "index": 3,
+      "value": 46,
+      "satisfiesAngleSum": true
+    },
+    {
+      "index": 4,
+      "value": 48,
+      "satisfiesAngleSum": false
+    },
+    {
+      "index": 5,
+      "value": 50,
+      "satisfiesAngleSum": false
+    }
+  ],
+  "candidateDigest": "39ca0da033009c68c68b18e3c3bfd23017a1c83bc9a76d7971c237cfb4ee8323",
+  "studentDigest": "e7aea728a7fecd1fc1015b523eed9e407ca15350c323998f30bd8b892e99aa49",
+  "assetDigest": "f6af747cdf2e97e2fa74f5a33a9d8947642b692c3f3e1de9eeb0ad341aff1ac5",
+  "render": {
+    "strict": true,
+    "typeset": true,
+    "unresolvedMath": false,
+    "svg": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-r1/q01.figure.svg",
+      "sha256": "672630c897d1aa466c95396af09883dc3396e1351ccaf9de982acb856d6de89a"
+    }
+  },
+  "originalHashAfter": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9",
+  "originalUnchanged": true,
+  "oldManifestUnchanged": true,
+  "note": "저자 계산은 독립 검산·학년·내용·분류·권리 승인이 아니다. source pixels are not a calculation oracle."
+}
