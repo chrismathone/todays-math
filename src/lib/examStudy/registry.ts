@@ -15,6 +15,10 @@ import { MIDDLE_STUDY_FAMILIES } from "./families/middle";
 import { sha256, stableStringify } from "./identity";
 import { EXAM_STUDY_PROFILES } from "./profiles";
 import { STUDY_REQUIREMENTS } from "./requirements";
+import {
+  STUDY_CURRICULUM_POLICY_VERSION,
+  studyCurriculumHold,
+} from "./curriculumEligibility";
 
 export const EXAM_STUDY_ENGINE_VERSION = "exam-study-1";
 
@@ -112,6 +116,7 @@ export function studyManifestVersion(
 ): string {
   return `exam-study-manifest-${sha256({
     engine: EXAM_STUDY_ENGINE_VERSION,
+    curriculumPolicy: STUDY_CURRICULUM_POLICY_VERSION,
     requirements: STUDY_REQUIREMENTS,
     families: [...families]
       .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
@@ -152,7 +157,11 @@ export function getExamStudyCatalog(
     manifestVersion: studyManifestVersion(all),
     courses: EXAM_STUDY_COURSES,
     families: all
-      .filter((f) => course === undefined || f.course === course)
+      .filter(
+        (f) =>
+          (course === undefined || f.course === course) &&
+          !studyCurriculumHold(f),
+      )
       .map((f) => ({
         id: f.id,
         version: f.version,

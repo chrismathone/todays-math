@@ -1,0 +1,55 @@
+{
+  "source": ".qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+  "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+  "selectedExistingStandardRecords": [
+    {
+      "code": "6수03-08",
+      "verified_text": "원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3445,
+        "record_offset_in_uncompressed_stream": 177155,
+        "extracted_paragraph_1based": 693
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          29
+        ],
+        "printed_pages": [
+          25
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "elementary_grade_band"
+    },
+    {
+      "code": "9수03-03",
+      "verified_text": "정비례, 반비례 관계를 이해하고, 그 관계를 표, 식, 그래프로 나타낼 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4110,
+        "record_offset_in_uncompressed_stream": 208817,
+        "extracted_paragraph_1based": 840
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    }
+  ],
+  "warning": "2015 9수03-03 is inverse proportion. 2022 inverse proportion is 9수02-07; never transplant a standard code without edition. Project records are indexes and were checked against actual official content for relevant methods."
+}

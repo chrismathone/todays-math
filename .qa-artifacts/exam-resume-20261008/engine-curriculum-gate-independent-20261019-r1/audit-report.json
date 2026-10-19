@@ -1,0 +1,198 @@
+{
+  "kind": "independent-actual-curriculum-gate-audit/v1",
+  "status": "passed-for-specific-current-M1-hold-with-trust-boundary-limitation",
+  "root": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
+  "rootHead": "8f72891caa4001dc9260d7e788393d4b78a66b65",
+  "execution": {
+    "cwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+    "explicitTsconfig": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/tsconfig.json",
+    "resolvedPublicCore": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\index.ts",
+    "sourceFiles": 16,
+    "beforeAfterHashesEqual": true,
+    "hashes": {
+      "tsconfig.json": "ca8cecedd4b5c15845f5796037ff788b6f9b03c832d13b0e2957ff1a07a196e1",
+      "src/lib/examStudy/curriculumEligibility.ts": "44f5c606ed553523d98a2d45f4f489a029c433ed7d6e3abf619acddd348ae42a",
+      "src/lib/examStudy/evidence.ts": "3d199918eff793ea20116daa87b0d07bd30a872c9b73a83ca0528e27c91ba5ae",
+      "src/lib/examStudy/registry.ts": "387253476c964d06bfad901eb6732ef4adec56774fd63a79fc3538550bf93bdd",
+      "src/lib/examStudy/generate.ts": "8eb9656939a016fd729edd0835380e5c314aee6f7d2ceb0955577569a78ad1f9",
+      "src/lib/examStudy/index.ts": "7c8a75923289e66dbd7d345e7047a2c43c9b1f5a176466a52bc6211426151e77",
+      "src/lib/examStudy/families/middle/remaining.ts": "515f0de180af740d8bc7e77cdfa2fbfc0a785bcdd0be4acb6510e8f26e76f1f2",
+      "src/lib/examStudy/families/middle/support.ts": "68b7b8f3f35f215eff93679688d7d91eadedd1a2e6d63fbe230a0d5684c32a3f",
+      "src/lib/examStudy/profiles.ts": "8f0ea98553bd6d3ffc2ad2d44414035a7b12cb917ffe3c9f270e5ec113ec2e76",
+      "src/lib/examStudy/requirements.ts": "dc7f9fef3c8d14e6843b6cac434320289987e2053b12bec7be84ee432be07f07",
+      "src/lib/examStudy/identity.ts": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5",
+      "src/lib/examStudyRoutes.ts": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f",
+      "src/contracts/examStudy.contract.ts": "5f5b38ad33b8c08c8d6e59fe1e59ec7af0805b0da7b25d006d81d09dfab283ec",
+      "src/__tests__/unit/examStudyCurriculumEligibility.test.ts": "9e9a3f0a19f6e7fcb2a21a1b54e8bd62db4075304aeb26ab4e94c9a2b26aa07e",
+      "src/app/api/exam/practice/route.ts": "e351493ee9d5047a03cc450c6eb182ac243f8f610624e53c1a28de7b633e067b",
+      "src/app/api/exam/practice/resolve/route.ts": "cebfbdbf8485500c9758d79ebde16e3e69f0a08828af713e97d96f577cbaca07"
+    },
+    "rootEdits": 0,
+    "rootNewEligibilityTests": "Read actual current file, including14 variants, format/profile and renamed-confidence controls, catalog and no-blanket-symbol checks. Independently exercised equivalent/broader runtime matrix from worker evidence, not a claim that root Vitest suite was rerun. Parent53-file run remains separately owned."
+  },
+  "actualSurfaces": {
+    "familyId": "study-middle-coprime-symbolic-sum",
+    "version": "1",
+    "domainSize": 14,
+    "outputFile": "actual-fourteen-surfaces.json",
+    "freshBlindClaim": false,
+    "exposure": "Actual code/answers/solutions explicitly authorized for this audit; prior independent abstract research retained.",
+    "math": {
+      "status": "checked-on-all14-finite-variants",
+      "numericalChecks": 420,
+      "nRange": [
+        1,
+        30
+      ],
+      "generalArgument": "For every positive n, unique quotient/remainder blocks exhaust the printed strict interval, and coprime residues pair to D. Their contribution is n times a linear block expression plus the triangular-index sum; resulting positive quadratic and linear coefficients match every printed answer. No outside-grade method is turned into a student method merely because this reviewer verifies it.",
+      "existenceUniqueness": "For each supported fixed composite D and positive n, finitely many natural a lie in the strict interval; filtering gcd(a,D)=1 uniquely determines the set and sum. n=1 remains valid; residue0 and integer endpoints are excluded. Positive coefficient rules out cancellation of the quadratic term."
+    },
+    "grade": {
+      "status": "excluded-required-out-of-grade-method-on-all14",
+      "basis": "Every stem asks for a polynomial in n, every displayed answer is quadratic with nonzero n² coefficient, and every step4 expands count×n(n−1)/2 plus a linear term to that quadratic. This is the exact previously reviewed method; no legitimate M1 method for this same required output is established. Supplying the identity does not waive later symbolic multiplication/collection. No blanket n² glyph ban.",
+      "primaryDecision": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/curriculum-reference-coprime-symbolic-sum-20261019-r1/curriculum-decision.json",
+        "sha256": "b9eb5fa82ed403763f21dae739dcc7a74fe53badcd0438a5848ac8f6ff34c836"
+      },
+      "notInferredFrom": [
+        "original-school/profile",
+        "family evidence full label",
+        "family verifier valid flag",
+        "mathematical correctness",
+        "sample counts",
+        "claimed confidence"
+      ]
+    },
+    "sevenSurfaces": {
+      "stem": {
+        "status": "rejected-M1",
+        "basis": "Actual14 stems share variable upper interval, explicit coprime selection, request polynomial and complete remainders/justification; supplied sum identity does not clear required operation."
+      },
+      "choices": {
+        "status": "absent-actual14",
+        "basis": "All native outputs are short-answer and carry no distractors or choice list; no MC approval."
+      },
+      "figuresAndTables": {
+        "status": "absent-actual14",
+        "basis": "All14 have figureSpec:null; no diagram/table or print review claimed."
+      },
+      "notation": {
+        "status": "method-linked-out-of-grade;no-blanket-square-ban",
+        "basis": "Actual variable n/k/r ranges, polynomial and quadratic result inspected. The exclusion rests on required operation, not literal2 alone."
+      },
+      "answer": {
+        "status": "mathematically-checked;grade-excluded",
+        "basis": "All14 finite remainder lists and quadratic forms checked; mathematical truth is separate from M1 permission."
+      },
+      "studentSolution": {
+        "status": "rejected-M1",
+        "basis": "All14 step4 explicitly convert triangular-index product to quadratic. Step1/2 symbolic quotient/remainder completeness is additional scope burden; no independent M1 certification asserted."
+      },
+      "prerequisites": {
+        "status": "later-algebra-required;general-residue-grade-held",
+        "basis": "At least later monomial-by-linear/polynomial collection required. Natural-number coprimality alone does not establish general symbolic residue/summation scope."
+      }
+    }
+  },
+  "gates": {
+    "coverage": "familyCoverage unavailable on each14 actual verified drafts",
+    "coreCases": 38,
+    "publicCoreExplicitAndGeneralAndProfileAndAliases": "All target-demand/held-family selections unavailable with zero questions; actual current public index imported through explicit ROOT tsconfig.",
+    "formats": "혼합/단답형/객관식/서술형 all blocked before factory, including mismatched difficulty. No factory call in injected counter controls.",
+    "renamedInjected": "Same course and forbidden requirement retained: renamed ID,new version999,confidence1,gradeApprovedtrue remain held. Factory count0.",
+    "catalog": "All-course and M1 selectable catalogs hide held family; internal registry retains review definition; requirement remains visible as missing.",
+    "generalAndFullProfile": "No-requirement general and full profile generation never returned held family; unrelated items were not grade-reviewed.",
+    "manifest": "Recomputed exact manifest payload independently; curriculumPolicy version is included and a changed policy version changes manifest hash. Version pin relies on deliberate version updates; it is not an automatic source-code digest.",
+    "http": {
+      "actualRouteFiles": true,
+      "actualCoreUnmocked": true,
+      "cases": [
+        {
+          "name": "actual-GET-catalog",
+          "status": 200,
+          "heldHidden": true
+        },
+        {
+          "name": "actual-POST-generate",
+          "status": 200,
+          "delivered": 0,
+          "statusValue": "unavailable"
+        },
+        {
+          "name": "actual-resolve-current-empty-digest",
+          "status": 409,
+          "error": {
+            "code": "CONFLICT",
+            "message": "문항이나 지원 범위가 바뀌었습니다. 다시 만든 뒤 출력해 주세요."
+          }
+        },
+        {
+          "name": "actual-resolve-old-or-forged-digest",
+          "status": 409,
+          "error": {
+            "code": "CONFLICT",
+            "message": "문항이나 지원 범위가 바뀌었습니다. 다시 만든 뒤 출력해 주세요."
+          }
+        },
+        {
+          "name": "strict-http-reject-families",
+          "status": 400
+        },
+        {
+          "name": "strict-http-reject-confidence",
+          "status": 400
+        },
+        {
+          "name": "strict-http-reject-gradeApproved",
+          "status": 400
+        }
+      ],
+      "isolated": [
+        "server-only",
+        "@/lib/accountAccess",
+        "@/lib/accountRouteAccess",
+        "@/lib/routeAccess",
+        "@/lib/figure/renderFigureSpec",
+        "@/lib/errorLog/withErrorLog"
+      ],
+      "limitations": "Authentication authorization accepted by boundary mocks; DB and figure renderer isolated. This checks actual authorized handlers/core, not production authentication/DB/HTTP server end-to-end."
+    },
+    "outputResolution": "Actual resolve handler returned409 for both exact current empty-generation digest and an old/forged digest value. No real historical item generation was replayed; zero/unavailable branch independently prevents output for this recipe. Policy-pinned manifest also changes replay identity."
+  },
+  "findings": [
+    {
+      "id": "I1",
+      "severity": "informational",
+      "status": "observed-trust-boundary",
+      "title": "Trusted injected family metadata is not semantic curriculum verification",
+      "basis": {
+        "studyHold": null,
+        "delivered": 1,
+        "observed": "Trusted options can relabel fulfills and are not semantically screened; HTTP strict recipe does not accept injected families. This is not an HTTP escape or grade certification."
+      },
+      "impact": "Relabeling fulfills to a different requirement permits the same factory through the custom server-side families option (delivered1). HTTP strict schema rejects injected families/confidence/grade flags. No current HTTP bypass demonstrated.",
+      "recommendation": "Treat custom families metadata as reviewed trusted code; do not claim the rule detects deliberately mislabeled code or certifies null-hold templates. A real rewritten family needs separate seven-surface review and policy revision."
+    },
+    {
+      "id": "I2",
+      "severity": "informational",
+      "status": "not-a-release-issue-while-held",
+      "title": "Actual short-answer declaration still asks for explanations",
+      "basis": "Every actual stem asks remainder completeness and interval-sum explanation while questionType/formats are 단답형 and no native rubric exists. Current hold blocks all formats first.",
+      "impact": "This is a format-design question to revisit only if a within-grade rewrite is proposed; this audit does not approve written/native-rubric completeness."
+    }
+  ],
+  "regressionConclusion": "No bypass reproduced through current public core, explicit IDs, general/profile/alias target requests, format selection, selectable catalog or authorized output resolution. Hold is deliberately course+requirement scoped and persists across versions until policy revision. It does not infer broad in-grade status for unrelated templates.",
+  "limits": [
+    "This audit checks one actual excluded finite family, not curriculum clearance of all current families.",
+    "No original-school source, DB, install, push or new worktree. No root code/raw/author/review/old evidence edits.",
+    "Mathematical correctness and route tests do not approve grade, source custody, taxonomy, rights, native provenance or release.",
+    "No fresh independent blind solve claimed."
+  ],
+  "approvals": {
+    "unrelatedFamilyGrade": false,
+    "rights": false,
+    "fullVerified": 0,
+    "loadable": 0
+  }
+}

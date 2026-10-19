@@ -84,7 +84,7 @@ const gaps: readonly [string, StudyRequirementId][] = [
 
 describe("completed selected school-study demands through the actual API", () => {
   it.each(EXAM_STUDY_PROFILES)(
-    "fulfills every selected demand for $id",
+    "provides the selected demands within the grade eligibility gate for $id",
     async (profile) => {
       const data = await generate({
         course: profile.course,
@@ -94,14 +94,22 @@ describe("completed selected school-study demands through the actual API", () =>
         seed: 20261019,
         format: "혼합",
       });
-      expect(data.status).toBe("complete");
+      const gradeHeld = profile.id === "daeryun-m1";
+      expect(data.status).toBe(gradeHeld ? "partial" : "complete");
       expect(data.deliveredCount).toBe(12);
       expect(data.requirements).toHaveLength(profile.requirements.length);
       expect(
-        data.requirements.every(
-          (r) => r.status === "full" && r.delivered >= r.requested,
+        data.requirements.every((r) =>
+          r.id === "number.coprime-symbolic-sum"
+            ? r.status === "unavailable" && r.delivered === 0
+            : r.status === "full" && r.delivered >= r.requested,
         ),
       ).toBe(true);
+      expect(
+        data.questions.some(
+          (q) => q.familyId === "study-middle-coprime-symbolic-sum",
+        ),
+      ).toBe(false);
       expect(new Set(data.questions.map((q) => q.logicalKey)).size).toBe(12);
       expect(new Set(data.questions.map((q) => q.contentDigest)).size).toBe(12);
       expect(
@@ -118,7 +126,7 @@ describe("completed selected school-study demands through the actual API", () =>
   );
 
   it.each(gaps)(
-    "delivers the formerly missing %s / %s without component substitution",
+    "honors eligibility for %s / %s without component substitution",
     async (profileId, id) => {
       const profile = EXAM_STUDY_PROFILES.find((p) => p.id === profileId)!;
       const format = id === "written.rectangle-domain" ? "서술형" : "단답형";
@@ -131,6 +139,27 @@ describe("completed selected school-study demands through the actual API", () =>
         seed: 20261019,
         format,
       });
+      if (id === "number.coprime-symbolic-sum") {
+        expect(data.status).toBe("unavailable");
+        expect(data.questions).toHaveLength(0);
+        expect(data.requirements[0]).toMatchObject({
+          id,
+          status: "unavailable",
+          delivered: 0,
+        });
+        expect(data.requirements[0].reason).toContain("중1 범위");
+        expect(
+          (
+            await resolveExamStudy(
+              request(
+                { recipe: data.recipe, expectedDigest: data.digest },
+                true,
+              ),
+            )
+          ).status,
+        ).toBe(409);
+        return;
+      }
       expect(data.status).toBe("complete");
       expect(data.questions).toHaveLength(1);
       expect(data.requirements[0]).toMatchObject({

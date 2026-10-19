@@ -393,7 +393,9 @@ describe("remaining middle course demands: every finite canonical tuple", () => 
           errors: [],
         });
         expect(familyCoverage(f, f.fulfills[0].requirement, verdict, q)).toBe(
-          "full",
+          f.fulfills[0].requirement === "number.coprime-symbolic-sum"
+            ? "unavailable"
+            : "full",
         );
         const parameters = f.canonicalParams(q),
           key = logicalKey(f, parameters),
@@ -494,7 +496,7 @@ describe("remaining middle course demands: every finite canonical tuple", () => 
         }
     expect(count).toBeGreaterThan(700);
   });
-  it("all five demands deliver full actual drafts through mixed and short-answer planning", async () => {
+  it("holds the M1 symbolic expansion and delivers the other four demands through mixed and short planning", async () => {
     for (const f of families)
       for (const format of ["혼합", "단답형"] as const) {
         const result = await generateExamStudy(
@@ -509,6 +511,16 @@ describe("remaining middle course demands: every finite canonical tuple", () => 
           },
           { families },
         );
+        if (f.fulfills[0].requirement === "number.coprime-symbolic-sum") {
+          expect(result.status).toBe("unavailable");
+          expect(result.questions).toHaveLength(0);
+          expect(result.requirements[0]).toMatchObject({
+            status: "unavailable",
+            delivered: 0,
+          });
+          expect(result.requirements[0].reason).toContain("중1 범위");
+          continue;
+        }
         expect(result.status).toBe("complete");
         expect(result.questions).toHaveLength(1);
         expect(result.requirements[0]).toMatchObject({

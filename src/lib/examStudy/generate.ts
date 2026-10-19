@@ -39,6 +39,7 @@ import {
   validateStudyFamilies,
 } from "./registry";
 import { REQUIREMENT_BY_ID } from "./requirements";
+import { studyCurriculumHold } from "./curriculumEligibility";
 
 export class ExamStudyRequestError extends Error {
   readonly name = "ExamStudyRequestError";
@@ -267,6 +268,13 @@ export async function generateExamStudy(
     failed.set(family.id, reasons);
   };
   eligible = eligible.filter((family) => {
+    const curriculumHold = studyCurriculumHold(family);
+    if (curriculumHold) {
+      note(family, curriculumHold.message);
+      if (!warnings.includes(curriculumHold.message))
+        warnings.push(curriculumHold.message);
+      return false;
+    }
     if (request.format !== "혼합" && !family.formats.includes(request.format)) {
       note(family, "요청 형식을 지원하지 않습니다.");
       return false;

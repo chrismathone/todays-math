@@ -1,0 +1,324 @@
+[
+  {
+    "variant": 0,
+    "parameters": {
+      "denominator": 6,
+      "lower": 1
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 6인 분수 $a/6$ 중에서 $1<a/6<n+1$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,5}; $S=1n^{2}+2n$",
+    "solution": "① 모든 분자는 유일하게 $a=6(k+1)+r$, $0≤k≤n-1$, $1≤r≤5$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+1+r/6$이다.\n② $6$와 공약수가 1뿐인 나머지는 {1,5}, 탈락하는 0 아닌 나머지는 {2,3,4}이다. $a$와 6의 공약수는 $r$와 6의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔5이고 각 짝의 합은 6이다. 따라서 나머지는 2개, 합은 6이다. 한 구간의 분수 합은 $2(k+1)+6/6$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=2×n(n-1)/2+3n=1n^{2}+2n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "bc06a68fefd650a1180337705117a791a8d2d625f55b05359a163cf424d22723",
+    "solutionSha256": "c1ca2b88b01498c42ecd4b6b79b4a63e157149c3d08fc658f4a1f37323ab7833",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 1,
+    "parameters": {
+      "denominator": 6,
+      "lower": 3
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 6인 분수 $a/6$ 중에서 $3<a/6<n+3$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,5}; $S=1n^{2}+6n$",
+    "solution": "① 모든 분자는 유일하게 $a=6(k+3)+r$, $0≤k≤n-1$, $1≤r≤5$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+3+r/6$이다.\n② $6$와 공약수가 1뿐인 나머지는 {1,5}, 탈락하는 0 아닌 나머지는 {2,3,4}이다. $a$와 6의 공약수는 $r$와 6의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔5이고 각 짝의 합은 6이다. 따라서 나머지는 2개, 합은 6이다. 한 구간의 분수 합은 $2(k+3)+6/6$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=2×n(n-1)/2+7n=1n^{2}+6n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "a60265005374aa238ce0fa26b0af76cf7c05859946baa2c2bdc0031468415192",
+    "solutionSha256": "002039b0edb0cdc47f31f1d2cc8590ce8271ea5d250cbdea3358b5bb377a8050",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 2,
+    "parameters": {
+      "denominator": 8,
+      "lower": 1
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 8인 분수 $a/8$ 중에서 $1<a/8<n+1$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,3,5,7}; $S=2n^{2}+4n$",
+    "solution": "① 모든 분자는 유일하게 $a=8(k+1)+r$, $0≤k≤n-1$, $1≤r≤7$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+1+r/8$이다.\n② $8$와 공약수가 1뿐인 나머지는 {1,3,5,7}, 탈락하는 0 아닌 나머지는 {2,4,6}이다. $a$와 8의 공약수는 $r$와 8의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔7, 3↔5이고 각 짝의 합은 8이다. 따라서 나머지는 4개, 합은 16이다. 한 구간의 분수 합은 $4(k+1)+16/8$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=4×n(n-1)/2+6n=2n^{2}+4n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "0c3991eba03486ede6ff66ca53c6d11bb1a6cddc710db7d7e319070941a3ca0a",
+    "solutionSha256": "64efc1054c74da09bcfdb42f07e6ec100fde4d34ab345a294cc59675da202a5b",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 3,
+    "parameters": {
+      "denominator": 8,
+      "lower": 3
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 8인 분수 $a/8$ 중에서 $3<a/8<n+3$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,3,5,7}; $S=2n^{2}+12n$",
+    "solution": "① 모든 분자는 유일하게 $a=8(k+3)+r$, $0≤k≤n-1$, $1≤r≤7$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+3+r/8$이다.\n② $8$와 공약수가 1뿐인 나머지는 {1,3,5,7}, 탈락하는 0 아닌 나머지는 {2,4,6}이다. $a$와 8의 공약수는 $r$와 8의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔7, 3↔5이고 각 짝의 합은 8이다. 따라서 나머지는 4개, 합은 16이다. 한 구간의 분수 합은 $4(k+3)+16/8$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=4×n(n-1)/2+14n=2n^{2}+12n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "0895365f460055d40ad7d17d2cc8d953d6983ebd3fc9f88576b17d33a83919c1",
+    "solutionSha256": "c45baab93e244d7b79ccd0ba3ed342782421820520bcd49a743a1e1fc265c3cb",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 4,
+    "parameters": {
+      "denominator": 9,
+      "lower": 1
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 9인 분수 $a/9$ 중에서 $1<a/9<n+1$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,2,4,5,7,8}; $S=3n^{2}+6n$",
+    "solution": "① 모든 분자는 유일하게 $a=9(k+1)+r$, $0≤k≤n-1$, $1≤r≤8$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+1+r/9$이다.\n② $9$와 공약수가 1뿐인 나머지는 {1,2,4,5,7,8}, 탈락하는 0 아닌 나머지는 {3,6}이다. $a$와 9의 공약수는 $r$와 9의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔8, 2↔7, 4↔5이고 각 짝의 합은 9이다. 따라서 나머지는 6개, 합은 27이다. 한 구간의 분수 합은 $6(k+1)+27/9$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=6×n(n-1)/2+9n=3n^{2}+6n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "ffb9c56aa30b5f2ee9c45b5e09d813334959b961ebaa9900f36c42c6a24b8cd4",
+    "solutionSha256": "3a8445106bdc51ecca522aaa5235ab307f31657959685d13262955a0f219829c",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 5,
+    "parameters": {
+      "denominator": 9,
+      "lower": 3
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 9인 분수 $a/9$ 중에서 $3<a/9<n+3$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,2,4,5,7,8}; $S=3n^{2}+18n$",
+    "solution": "① 모든 분자는 유일하게 $a=9(k+3)+r$, $0≤k≤n-1$, $1≤r≤8$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+3+r/9$이다.\n② $9$와 공약수가 1뿐인 나머지는 {1,2,4,5,7,8}, 탈락하는 0 아닌 나머지는 {3,6}이다. $a$와 9의 공약수는 $r$와 9의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔8, 2↔7, 4↔5이고 각 짝의 합은 9이다. 따라서 나머지는 6개, 합은 27이다. 한 구간의 분수 합은 $6(k+3)+27/9$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=6×n(n-1)/2+21n=3n^{2}+18n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "3eabf885365a6c7f6dcdddcb6398102463a35846275e15cc9f94c07d9e25e68f",
+    "solutionSha256": "b2097a1a8bb659ffc3f965317cc3ca2eb6a97d4a23f55e2795da07625a02426f",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 6,
+    "parameters": {
+      "denominator": 10,
+      "lower": 1
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 10인 분수 $a/10$ 중에서 $1<a/10<n+1$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,3,7,9}; $S=2n^{2}+4n$",
+    "solution": "① 모든 분자는 유일하게 $a=10(k+1)+r$, $0≤k≤n-1$, $1≤r≤9$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+1+r/10$이다.\n② $10$와 공약수가 1뿐인 나머지는 {1,3,7,9}, 탈락하는 0 아닌 나머지는 {2,4,5,6,8}이다. $a$와 10의 공약수는 $r$와 10의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔9, 3↔7이고 각 짝의 합은 10이다. 따라서 나머지는 4개, 합은 20이다. 한 구간의 분수 합은 $4(k+1)+20/10$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=4×n(n-1)/2+6n=2n^{2}+4n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "3fe9ae07edea901faa185604a1c643ab2955e3f02a7bc5c11c5ce5df094d3b45",
+    "solutionSha256": "b2b11e5d045eed24023a125d31fd6d9c9302daa1efddb405fc13ddaf01cd9ef0",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 7,
+    "parameters": {
+      "denominator": 10,
+      "lower": 3
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 10인 분수 $a/10$ 중에서 $3<a/10<n+3$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,3,7,9}; $S=2n^{2}+12n$",
+    "solution": "① 모든 분자는 유일하게 $a=10(k+3)+r$, $0≤k≤n-1$, $1≤r≤9$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+3+r/10$이다.\n② $10$와 공약수가 1뿐인 나머지는 {1,3,7,9}, 탈락하는 0 아닌 나머지는 {2,4,5,6,8}이다. $a$와 10의 공약수는 $r$와 10의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔9, 3↔7이고 각 짝의 합은 10이다. 따라서 나머지는 4개, 합은 20이다. 한 구간의 분수 합은 $4(k+3)+20/10$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=4×n(n-1)/2+14n=2n^{2}+12n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "9cc8ed8469b44735e3b95759e6b49ea467f640e0d60a9fbbec3b46e7a0d941b4",
+    "solutionSha256": "ad5e40a1c0976de25611e3b52532334398b47dda61a7d4a8461294480261f119",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 8,
+    "parameters": {
+      "denominator": 12,
+      "lower": 1
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 12인 분수 $a/12$ 중에서 $1<a/12<n+1$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,5,7,11}; $S=2n^{2}+4n$",
+    "solution": "① 모든 분자는 유일하게 $a=12(k+1)+r$, $0≤k≤n-1$, $1≤r≤11$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+1+r/12$이다.\n② $12$와 공약수가 1뿐인 나머지는 {1,5,7,11}, 탈락하는 0 아닌 나머지는 {2,3,4,6,8,9,10}이다. $a$와 12의 공약수는 $r$와 12의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔11, 5↔7이고 각 짝의 합은 12이다. 따라서 나머지는 4개, 합은 24이다. 한 구간의 분수 합은 $4(k+1)+24/12$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=4×n(n-1)/2+6n=2n^{2}+4n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "71ccb9ddcb2cc74aaa530312f176a116a615c98c8e06311615cc71f350846e9a",
+    "solutionSha256": "c57a3e2f23fc97342a831256513ae751f3a82e1473dc5caf46f62878703798ef",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 9,
+    "parameters": {
+      "denominator": 12,
+      "lower": 3
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 12인 분수 $a/12$ 중에서 $3<a/12<n+3$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,5,7,11}; $S=2n^{2}+12n$",
+    "solution": "① 모든 분자는 유일하게 $a=12(k+3)+r$, $0≤k≤n-1$, $1≤r≤11$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+3+r/12$이다.\n② $12$와 공약수가 1뿐인 나머지는 {1,5,7,11}, 탈락하는 0 아닌 나머지는 {2,3,4,6,8,9,10}이다. $a$와 12의 공약수는 $r$와 12의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔11, 5↔7이고 각 짝의 합은 12이다. 따라서 나머지는 4개, 합은 24이다. 한 구간의 분수 합은 $4(k+3)+24/12$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=4×n(n-1)/2+14n=2n^{2}+12n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "15355ce99093f28317db979b8da0e9681ace4ad6735dc42a832ee14e89e5d3cf",
+    "solutionSha256": "ad4bdafe064fcfb2818210e83d79c722bc5c2882edb5e2bc71886ee5299343ad",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 10,
+    "parameters": {
+      "denominator": 15,
+      "lower": 1
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 15인 분수 $a/15$ 중에서 $1<a/15<n+1$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,2,4,7,8,11,13,14}; $S=4n^{2}+8n$",
+    "solution": "① 모든 분자는 유일하게 $a=15(k+1)+r$, $0≤k≤n-1$, $1≤r≤14$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+1+r/15$이다.\n② $15$와 공약수가 1뿐인 나머지는 {1,2,4,7,8,11,13,14}, 탈락하는 0 아닌 나머지는 {3,5,6,9,10,12}이다. $a$와 15의 공약수는 $r$와 15의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔14, 2↔13, 4↔11, 7↔8이고 각 짝의 합은 15이다. 따라서 나머지는 8개, 합은 60이다. 한 구간의 분수 합은 $8(k+1)+60/15$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=8×n(n-1)/2+12n=4n^{2}+8n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "8a395dc1ed69264897e735cddea26b5f4d60b5bd3374994c99509ebd73c7957b",
+    "solutionSha256": "52048f0b83815a0b3fac7e43418ed542fae9d5fa515a311d519e9a8c00578317",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 11,
+    "parameters": {
+      "denominator": 15,
+      "lower": 3
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 15인 분수 $a/15$ 중에서 $3<a/15<n+3$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,2,4,7,8,11,13,14}; $S=4n^{2}+24n$",
+    "solution": "① 모든 분자는 유일하게 $a=15(k+3)+r$, $0≤k≤n-1$, $1≤r≤14$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+3+r/15$이다.\n② $15$와 공약수가 1뿐인 나머지는 {1,2,4,7,8,11,13,14}, 탈락하는 0 아닌 나머지는 {3,5,6,9,10,12}이다. $a$와 15의 공약수는 $r$와 15의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔14, 2↔13, 4↔11, 7↔8이고 각 짝의 합은 15이다. 따라서 나머지는 8개, 합은 60이다. 한 구간의 분수 합은 $8(k+3)+60/15$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=8×n(n-1)/2+28n=4n^{2}+24n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "d3d6e8662aa1bdc4f8745b1790ad9c8aa3f1b2f89b552cb48422b6afe6940525",
+    "solutionSha256": "955ab856f38f1a0041c7a7f0a2855ce3fce8299bab72886e8120cb9856a73070",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 12,
+    "parameters": {
+      "denominator": 18,
+      "lower": 1
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 18인 분수 $a/18$ 중에서 $1<a/18<n+1$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,5,7,11,13,17}; $S=3n^{2}+6n$",
+    "solution": "① 모든 분자는 유일하게 $a=18(k+1)+r$, $0≤k≤n-1$, $1≤r≤17$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+1+r/18$이다.\n② $18$와 공약수가 1뿐인 나머지는 {1,5,7,11,13,17}, 탈락하는 0 아닌 나머지는 {2,3,4,6,8,9,10,12,14,15,16}이다. $a$와 18의 공약수는 $r$와 18의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔17, 5↔13, 7↔11이고 각 짝의 합은 18이다. 따라서 나머지는 6개, 합은 54이다. 한 구간의 분수 합은 $6(k+1)+54/18$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=6×n(n-1)/2+9n=3n^{2}+6n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "c332f6cd0eaf1426beae6444a85d446feed742161b4e773e61252e269c166b7e",
+    "solutionSha256": "87c5d715c9131e0c7ee8f4562d0486a00c5d76a431f3baefbe6d2b8049a932e9",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  },
+  {
+    "variant": 13,
+    "parameters": {
+      "denominator": 18,
+      "lower": 3
+    },
+    "content": "$n$은 양의 정수이고 $a$는 자연수이다.\n분모가 18인 분수 $a/18$ 중에서 $3<a/18<n+3$이고 기약분수인 것만 모두 고른다.\n그 분수들의 합 $S$를 $n$에 관한 다항식으로 나타내고, 분자 $a$를 분모로 나눌 때 가능한 나머지를 모두 쓰시오. 나머지의 완전성과 각 구간의 합을 설명하시오.\n필요하면 $0+1+\\cdots+(n-1)=n(n-1)/2$를 사용해도 좋다. 여기서 $n=1$일 때 왼쪽 합은 0이다.",
+    "answer": "나머지={1,5,7,11,13,17}; $S=3n^{2}+18n$",
+    "solution": "① 모든 분자는 유일하게 $a=18(k+3)+r$, $0≤k≤n-1$, $1≤r≤17$로 나타난다. $r=0$이면 기약분수가 아니므로 제외한다. 각 분수는 $k+3+r/18$이다.\n② $18$와 공약수가 1뿐인 나머지는 {1,5,7,11,13,17}, 탈락하는 0 아닌 나머지는 {2,3,4,6,8,9,10,12,14,15,16}이다. $a$와 18의 공약수는 $r$와 18의 공약수와 같으므로 이것이 빠짐없는 목록이다.\n③ 나머지의 짝은 1↔17, 5↔13, 7↔11이고 각 짝의 합은 18이다. 따라서 나머지는 6개, 합은 54이다. 한 구간의 분수 합은 $6(k+3)+54/18$이다.\n④ $k=0$부터 $n-1$까지 더하면 $S=6×n(n-1)/2+21n=3n^{2}+18n$이다. 나머지 표현의 유일성으로 중복이나 빠진 분수는 없다.",
+    "questionType": "단답형",
+    "figureSpec": null,
+    "choicesAbsent": true,
+    "contentSha256": "41d023233474c6be5b3b5296a18aa4087ce736f0ee42091c2fa3f6190e4a09ae",
+    "solutionSha256": "bf025f2d94373f1ddac050214834a4d647935a85a5d805a814b591c87946ea97",
+    "independentNumericChecks": {
+      "nFrom": 1,
+      "nTo": 30,
+      "passed": 30
+    },
+    "generalProof": "Every allowed numerator uniquely equals D(L+k)+r; gcd is unchanged by the D multiple. Sum each residue once in each of n blocks; paired residues r and D-r sum to D. Summation gives positive quadratic coefficient count/2 and linear coefficient count*L, agreeing with printed polynomial for all positive n. This is mathematical checking, not grade permission.",
+    "gradeDecision": "excluded-required-out-of-grade-method",
+    "gradeBasis": "Printed request requires a polynomial; supplied n(n-1)/2 and solution step4 still require variable-times-linear expansion and quadratic collection. Same reviewed abstract operation in every variant. No fresh blind solve claim."
+  }
+]

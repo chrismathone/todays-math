@@ -1,0 +1,58 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyAdvancedFigures.test.ts (6 tests) 44095ms
+     ✓ re-solves each printed parabola/line chain and checks every essential dependency  698ms
+     ✓ strictly renders graph-1/v2 combinations with their essential printed labels  3804ms
+     ✓ strictly renders every bounded figure tuple with readable, collision-free print labels  39480ms
+ ✓ src/__tests__/unit/examStudyCompletion.test.ts (29 tests) 22236ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m1'  16336ms
+     ✓ provides the selected demands within the grade eligibility gate for 'daeryun-m2'  518ms
+     ✓ provides the selected demands within the grade eligibility gate for 'kyungmyung-m3'  1984ms
+ ✓ src/__tests__/unit/examStudyCoreLegacy.test.ts (15 tests) 13220ms
+     ✓ preserves original registry identities/counts and exposes actual supported courses only  12511ms
+ ✓ src/__tests__/unit/examStudyIntegration.test.ts (7 tests) 24277ms
+     ✓ keeps all nine courses available without multiplying authored families by response format  19632ms
+     ✓ plans the actual authored and legacy registry for 'daeryun-m1'  415ms
+     ✓ plans the actual authored and legacy registry for 'kyungmyung-m3'  379ms
+     ✓ plans the actual authored and legacy registry for 'kyungshin-common2'  393ms
+     ✓ runs authenticated API → actual math → strict Python SVG → reproducible output confirmation  2923ms
+ ✓ src/__tests__/unit/examStudyAdvanced.test.ts (21 tests) 2738ms
+     ✓ checks every rational integer boundary, excluded point, absolute branch and the infinite tail  1330ms
+ ✓ src/__tests__/unit/examStudyReinforcement.test.ts (20 tests) 4869ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: candidate  454ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: classification  1574ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: model  980ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: simplify  546ms
+     ✓ checks the complete declared finite domain or 512 honest existing-scope samples: rectangle  539ms
+ ✓ src/__tests__/unit/examStudyWorkspace.test.tsx (13 tests) 1857ms
+     ✓ enables generation for the authorized output menu bank  339ms
+     ✓ requires explicit generic types and preserves generic mode for an unreviewed school  460ms
+ ✓ src/__tests__/unit/examStudyMiddle.test.ts (49 tests) 535ms
+ ✓ src/__tests__/unit/examStudyChoiceBounds.test.ts (9 tests) 1484ms
+     ✓ covers every admissible answer at counts 4..12 and 20 option orders, including 0/n  1165ms
+ ✓ src/__tests__/unit/examStudyMiddleRemaining.test.ts (13 tests) 958ms
+     ✓ every printed math span parses with the actual existing KaTeX renderer  416ms
+ ✓ src/__tests__/unit/examStudyAdvancedRemaining.test.ts (11 tests) 588ms
+ ✓ src/__tests__/unit/examStudyCore.test.ts (58 tests) 382ms
+ ✓ src/__tests__/unit/examStudyCoreLabel.test.ts (12 tests) 248ms
+ ✓ src/__tests__/unit/examStudyRoutes.test.ts (23 tests) 195ms
+ ✓ src/__tests__/unit/examStudyMiddleFigures.test.ts (6 tests) 18989ms
+     ✓ study-middle-piecewise-multi-claim: every visual tuple preserves the printed data  4404ms
+     ✓ study-middle-shared-side-square: every visual tuple preserves the printed data  2713ms
+     ✓ study-middle-inverse-area-ratio: every visual tuple preserves the printed data  3860ms
+     ✓ study-middle-ray-area-partition: every visual tuple preserves the printed data  3740ms
+     ✓ study-middle-signed-inverse-trapezoid: every visual tuple preserves the printed data  1460ms
+     ✓ study-middle-intercept-trapezoid-cases: every visual tuple preserves the printed data  2804ms
+ ✓ src/__tests__/unit/examStudyCurriculumEligibility.test.ts (8 tests) 22812ms
+     ✓ hides the held template from selectable catalogs and retains its definition for internal review  22624ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 309ms
+ ✓ src/__tests__/unit/examStudyAccess.test.ts (18 tests) 492ms
+     ✓ uses the same feature boundary for menu home  401ms
+
+ Test Files  18 passed (18)
+      Tests  335 passed (335)
+   Start at  19:29:10
+   Duration  280.88s (transform 8.62s, setup 26.21s, import 52.32s, tests 160.29s, environment 36.20s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/grade-gate-tests-r1.json

@@ -1,0 +1,55 @@
+{
+  "kind": "selective-worker-audit-integration/v1",
+  "utc": "2026-10-19T10:39:44.124016+00:00",
+  "commit": "d23ae2ecab44018b64f2412bf8f7288290c6955b",
+  "sourceBranchPreserved": true,
+  "files": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-curriculum-gate-independent-20261019-r1/actual-fourteen-surfaces.json",
+      "sha256": "ee848305f4fefd8ccff0ee890abb98c777fba2c9d41ceed7fbfe328ea9c73e8c",
+      "bytes": 34026
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-curriculum-gate-independent-20261019-r1/audit-report.json",
+      "sha256": "51d31afaccb7ab9c239d771936007d9d417b5e2fccd804f0b01680510dbfb5b1",
+      "bytes": 12541
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-curriculum-gate-independent-20261019-r1/code-after.json",
+      "sha256": "6cdea0f52a73803170b08aaded4653b3f5d4ac0a9ee0d7e91e813663b26468f7",
+      "bytes": 1730
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-curriculum-gate-independent-20261019-r1/code-before.json",
+      "sha256": "6cdea0f52a73803170b08aaded4653b3f5d4ac0a9ee0d7e91e813663b26468f7",
+      "bytes": 1730
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-curriculum-gate-independent-20261019-r1/core-results.json",
+      "sha256": "8aa309087b06b999c8d724e14776ffb29defee7bf70c353614552c428c3cca68",
+      "bytes": 21286
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-curriculum-gate-independent-20261019-r1/current-audit.mts",
+      "sha256": "1083bfbf21d81140c41bebba156aa2c56e7c5a7e29245707d0496f1e304a8739",
+      "bytes": 13045
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-curriculum-gate-independent-20261019-r1/evidence-manifest.json",
+      "sha256": "91c51c21858fc8a6370125e7703ff261ba288b819d8fe6990e0078adb31de254",
+      "bytes": 1342
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-curriculum-gate-independent-20261019-r1/finalize-audit.mjs",
+      "sha256": "a8ecc7c995b37e65f8a5d670673ddf1d3d57c3ec5e91c4f83e9a5a2f71d6f14c",
+      "bytes": 9472
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-curriculum-gate-independent-20261019-r1/http-route-results.json",
+      "sha256": "2a3ac055ca0f5a92ea3a6f231fe54e9cbe3c0df1a22eced29d7de171fc8c2858",
+      "bytes": 1309
+    }
+  ],
+  "sourceEvidenceEdited": false,
+  "dbWrites": 0
+}
