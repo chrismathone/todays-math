@@ -1,0 +1,4622 @@
+[
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "version": "2-m1-single-variable",
+    "variant": 0,
+    "printedContent": "$k>0$인 반비례 그래프 $y=k/x$ 위에 두 점 $A=(2,u)$, $B=(5,v)$가 있다. $u>v>0$이고, 두 점의 가로 좌표 차와 세로 좌표 차가 같다. $k,u,v$를 모두 구하시오.",
+    "printedAnswer": "k=10, u=5, v=2",
+    "printedStudentSolution": "가로 차는 3이다. $v$를 $t$라 하면 같은 길이 조건에서 $u=t+3$이다. 반비례 관계에서 두 점의 좌표의 곱이 같으므로 $2(t+3)=5t$이다. 분배법칙으로 $2t+6=5t$, 이를 정리하면 $3t=6$이므로 $t=2$이다. 따라서 $v=2$, $u=5$, $k=10$이다. 두 세로 좌표는 양수이고 차는 3이며, $2×5=5×2=10$이므로 원래 조건도 모두 만족한다.",
+    "figureSpec": null,
+    "independent": {
+      "printed": {
+        "p": 2,
+        "q": 5,
+        "d": 3
+      },
+      "equations": [
+        "2(t+3)=5t",
+        "2t+6=5t",
+        "3t=6",
+        "t=2"
+      ],
+      "oneVariable": 2,
+      "computed": {
+        "u": 5,
+        "v": 2,
+        "k": 10
+      },
+      "coefficient": 3,
+      "unique": "Nonzero positive numerical coefficient q-p. One linear equation in t; recover other named values by arithmetic.",
+      "primitives": [
+        "subtract printed positive x-coordinates",
+        "name v=t and u=t+d",
+        "inverse coordinate products equal",
+        "distribute numeric p over t+d",
+        "add/subtract numeric-coefficient linear terms",
+        "divide by positive numeric coefficient",
+        "numeric product for k",
+        "substitute into both printed incidences"
+      ]
+    },
+    "computedAnswer": "k=10, u=5, v=2",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "version": "2-m1-single-variable",
+    "variant": 1,
+    "printedContent": "$k>0$인 반비례 그래프 $y=k/x$ 위에 두 점 $A=(2,u)$, $B=(7,v)$가 있다. $u>v>0$이고, 두 점의 가로 좌표 차와 세로 좌표 차가 같다. $k,u,v$를 모두 구하시오.",
+    "printedAnswer": "k=14, u=7, v=2",
+    "printedStudentSolution": "가로 차는 5이다. $v$를 $t$라 하면 같은 길이 조건에서 $u=t+5$이다. 반비례 관계에서 두 점의 좌표의 곱이 같으므로 $2(t+5)=7t$이다. 분배법칙으로 $2t+10=7t$, 이를 정리하면 $5t=10$이므로 $t=2$이다. 따라서 $v=2$, $u=7$, $k=14$이다. 두 세로 좌표는 양수이고 차는 5이며, $2×7=7×2=14$이므로 원래 조건도 모두 만족한다.",
+    "figureSpec": null,
+    "independent": {
+      "printed": {
+        "p": 2,
+        "q": 7,
+        "d": 5
+      },
+      "equations": [
+        "2(t+5)=7t",
+        "2t+10=7t",
+        "5t=10",
+        "t=2"
+      ],
+      "oneVariable": 2,
+      "computed": {
+        "u": 7,
+        "v": 2,
+        "k": 14
+      },
+      "coefficient": 5,
+      "unique": "Nonzero positive numerical coefficient q-p. One linear equation in t; recover other named values by arithmetic.",
+      "primitives": [
+        "subtract printed positive x-coordinates",
+        "name v=t and u=t+d",
+        "inverse coordinate products equal",
+        "distribute numeric p over t+d",
+        "add/subtract numeric-coefficient linear terms",
+        "divide by positive numeric coefficient",
+        "numeric product for k",
+        "substitute into both printed incidences"
+      ]
+    },
+    "computedAnswer": "k=14, u=7, v=2",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "version": "2-m1-single-variable",
+    "variant": 2,
+    "printedContent": "$k>0$인 반비례 그래프 $y=k/x$ 위에 두 점 $A=(3,u)$, $B=(5,v)$가 있다. $u>v>0$이고, 두 점의 가로 좌표 차와 세로 좌표 차가 같다. $k,u,v$를 모두 구하시오.",
+    "printedAnswer": "k=15, u=5, v=3",
+    "printedStudentSolution": "가로 차는 2이다. $v$를 $t$라 하면 같은 길이 조건에서 $u=t+2$이다. 반비례 관계에서 두 점의 좌표의 곱이 같으므로 $3(t+2)=5t$이다. 분배법칙으로 $3t+6=5t$, 이를 정리하면 $2t=6$이므로 $t=3$이다. 따라서 $v=3$, $u=5$, $k=15$이다. 두 세로 좌표는 양수이고 차는 2이며, $3×5=5×3=15$이므로 원래 조건도 모두 만족한다.",
+    "figureSpec": null,
+    "independent": {
+      "printed": {
+        "p": 3,
+        "q": 5,
+        "d": 2
+      },
+      "equations": [
+        "3(t+2)=5t",
+        "3t+6=5t",
+        "2t=6",
+        "t=3"
+      ],
+      "oneVariable": 3,
+      "computed": {
+        "u": 5,
+        "v": 3,
+        "k": 15
+      },
+      "coefficient": 2,
+      "unique": "Nonzero positive numerical coefficient q-p. One linear equation in t; recover other named values by arithmetic.",
+      "primitives": [
+        "subtract printed positive x-coordinates",
+        "name v=t and u=t+d",
+        "inverse coordinate products equal",
+        "distribute numeric p over t+d",
+        "add/subtract numeric-coefficient linear terms",
+        "divide by positive numeric coefficient",
+        "numeric product for k",
+        "substitute into both printed incidences"
+      ]
+    },
+    "computedAnswer": "k=15, u=5, v=3",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-equal-legs",
+    "version": "2-m1-single-variable",
+    "variant": 3,
+    "printedContent": "$k>0$인 반비례 그래프 $y=k/x$ 위에 두 점 $A=(3,u)$, $B=(7,v)$가 있다. $u>v>0$이고, 두 점의 가로 좌표 차와 세로 좌표 차가 같다. $k,u,v$를 모두 구하시오.",
+    "printedAnswer": "k=21, u=7, v=3",
+    "printedStudentSolution": "가로 차는 4이다. $v$를 $t$라 하면 같은 길이 조건에서 $u=t+4$이다. 반비례 관계에서 두 점의 좌표의 곱이 같으므로 $3(t+4)=7t$이다. 분배법칙으로 $3t+12=7t$, 이를 정리하면 $4t=12$이므로 $t=3$이다. 따라서 $v=3$, $u=7$, $k=21$이다. 두 세로 좌표는 양수이고 차는 4이며, $3×7=7×3=21$이므로 원래 조건도 모두 만족한다.",
+    "figureSpec": null,
+    "independent": {
+      "printed": {
+        "p": 3,
+        "q": 7,
+        "d": 4
+      },
+      "equations": [
+        "3(t+4)=7t",
+        "3t+12=7t",
+        "4t=12",
+        "t=3"
+      ],
+      "oneVariable": 3,
+      "computed": {
+        "u": 7,
+        "v": 3,
+        "k": 21
+      },
+      "coefficient": 4,
+      "unique": "Nonzero positive numerical coefficient q-p. One linear equation in t; recover other named values by arithmetic.",
+      "primitives": [
+        "subtract printed positive x-coordinates",
+        "name v=t and u=t+d",
+        "inverse coordinate products equal",
+        "distribute numeric p over t+d",
+        "add/subtract numeric-coefficient linear terms",
+        "divide by positive numeric coefficient",
+        "numeric product for k",
+        "substitute into both printed incidences"
+      ]
+    },
+    "computedAnswer": "k=21, u=7, v=3",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 0,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(4,3), 넓이=9",
+    "printedStudentSolution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=1:1$이다. 따라서 $x_B=4$. $k=2×6=12$이므로 $y_B=3$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=2×6÷2=6$, $[ABC]=2×6÷2=6$, $[OBC]=2×3÷2=3$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=6+6-3=9$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        5.8
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 12,
+          "domain": [
+            1.44,
+            5.2
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            6
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            4,
+            3
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        },
+        {
+          "at": [
+            4,
+            3
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "A(2,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            3
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "h": 6,
+        "r": 1,
+        "s": 1
+      },
+      "computed": {
+        "offset": 2,
+        "b": 4,
+        "z": 3,
+        "k": 12
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 2,
+          "value": 6
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 2,
+          "value": 6
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 2,
+          "perpendicularHeight": 3,
+          "value": 3,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 9,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(4,3), 넓이=9",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 1,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 2:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(6,2), 넓이=16",
+    "printedStudentSolution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=2:1$이다. 따라서 $x_B=6$. $k=2×6=12$이므로 $y_B=2$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=2×6÷2=6$, $[ABC]=4×6÷2=12$, $[OBC]=2×2÷2=2$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=6+12-2=16$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 12,
+          "domain": [
+            1.44,
+            7.800000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            6
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            6,
+            2
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              6,
+              2
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        },
+        {
+          "at": [
+            6,
+            2
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "A(2,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            2
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "h": 6,
+        "r": 2,
+        "s": 1
+      },
+      "computed": {
+        "offset": 4,
+        "b": 6,
+        "z": 2,
+        "k": 12
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 2,
+          "value": 6
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 4,
+          "value": 12
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 2,
+          "perpendicularHeight": 2,
+          "value": 2,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 16,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(6,2), 넓이=16",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 2,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:2일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(3,4), 넓이=5",
+    "printedStudentSolution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=1:2$이다. 따라서 $x_B=3$. $k=2×6=12$이므로 $y_B=4$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=2×6÷2=6$, $[ABC]=1×6÷2=3$, $[OBC]=2×4÷2=4$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=6+3-4=5$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        4.35
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 12,
+          "domain": [
+            1.44,
+            3.9000000000000004
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            6
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            3,
+            4
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        },
+        {
+          "at": [
+            3,
+            4
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "A(2,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "h": 6,
+        "r": 1,
+        "s": 2
+      },
+      "computed": {
+        "offset": 1,
+        "b": 3,
+        "z": 4,
+        "k": 12
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 2,
+          "value": 6
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 1,
+          "value": 3
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 2,
+          "perpendicularHeight": 4,
+          "value": 4,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 5,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(3,4), 넓이=5",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 3,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(4,6), 넓이=18",
+    "printedStudentSolution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=1:1$이다. 따라서 $x_B=4$. $k=2×12=24$이므로 $y_B=6$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=2×12÷2=12$, $[ABC]=2×12÷2=12$, $[OBC]=2×6÷2=6$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=12+12-6=18$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        5.8
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            1.44,
+            5.2
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            12
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            4,
+            6
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            12
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            12
+          ],
+          "text": "A(2,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "h": 12,
+        "r": 1,
+        "s": 1
+      },
+      "computed": {
+        "offset": 2,
+        "b": 4,
+        "z": 6,
+        "k": 24
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 2,
+          "value": 12
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 2,
+          "value": 12
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 2,
+          "perpendicularHeight": 6,
+          "value": 6,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 18,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(4,6), 넓이=18",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 4,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 2:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(6,4), 넓이=32",
+    "printedStudentSolution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=2:1$이다. 따라서 $x_B=6$. $k=2×12=24$이므로 $y_B=4$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=2×12÷2=12$, $[ABC]=4×12÷2=24$, $[OBC]=2×4÷2=4$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=12+24-4=32$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            1.44,
+            7.800000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            12
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            6,
+            4
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            12
+          ]
+        },
+        {
+          "at": [
+            6,
+            4
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            12
+          ],
+          "text": "A(2,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "h": 12,
+        "r": 2,
+        "s": 1
+      },
+      "computed": {
+        "offset": 4,
+        "b": 6,
+        "z": 4,
+        "k": 24
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 2,
+          "value": 12
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 4,
+          "value": 24
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 2,
+          "perpendicularHeight": 4,
+          "value": 4,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 32,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(6,4), 넓이=32",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 5,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:2일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(3,8), 넓이=10",
+    "printedStudentSolution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-2):2=1:2$이다. 따라서 $x_B=3$. $k=2×12=24$이므로 $y_B=8$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=2×12÷2=12$, $[ABC]=1×12÷2=6$, $[OBC]=2×8÷2=8$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=12+6-8=10$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        4.35
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            1.44,
+            3.9000000000000004
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            2,
+            12
+          ],
+          "to": [
+            2,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            2,
+            0
+          ],
+          "to": [
+            3,
+            8
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              8
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            2,
+            12
+          ]
+        },
+        {
+          "at": [
+            3,
+            8
+          ]
+        },
+        {
+          "at": [
+            2,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            12
+          ],
+          "text": "A(2,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            8
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "h": 12,
+        "r": 1,
+        "s": 2
+      },
+      "computed": {
+        "offset": 1,
+        "b": 3,
+        "z": 8,
+        "k": 24
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 2,
+          "value": 12
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 1,
+          "value": 6
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 2,
+          "perpendicularHeight": 8,
+          "value": 8,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 10,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(3,8), 넓이=10",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 6,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(8,3), 넓이=18",
+    "printedStudentSolution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=1:1$이다. 따라서 $x_B=8$. $k=4×6=24$이므로 $y_B=3$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=4×6÷2=12$, $[ABC]=4×6÷2=12$, $[OBC]=4×3÷2=6$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=12+12-6=18$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        11.6
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            2.88,
+            10.4
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            6
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            8,
+            3
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              8,
+              3
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            8,
+            3
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "A(4,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            8,
+            3
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 4,
+        "h": 6,
+        "r": 1,
+        "s": 1
+      },
+      "computed": {
+        "offset": 4,
+        "b": 8,
+        "z": 3,
+        "k": 24
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 4,
+          "value": 12
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 4,
+          "value": 12
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 4,
+          "perpendicularHeight": 3,
+          "value": 6,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 18,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(8,3), 넓이=18",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 7,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 2:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(12,2), 넓이=32",
+    "printedStudentSolution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=2:1$이다. 따라서 $x_B=12$. $k=4×6=24$이므로 $y_B=2$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=4×6÷2=12$, $[ABC]=8×6÷2=24$, $[OBC]=4×2÷2=4$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=12+24-4=32$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        17.4
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            2.88,
+            15.600000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            6
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            12,
+            2
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              12,
+              2
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            12,
+            2
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "A(4,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            12,
+            2
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 4,
+        "h": 6,
+        "r": 2,
+        "s": 1
+      },
+      "computed": {
+        "offset": 8,
+        "b": 12,
+        "z": 2,
+        "k": 24
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 4,
+          "value": 12
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 8,
+          "value": 24
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 4,
+          "perpendicularHeight": 2,
+          "value": 4,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 32,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(12,2), 넓이=32",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 8,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:2일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(6,4), 넓이=10",
+    "printedStudentSolution": "$AC=6$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=1:2$이다. 따라서 $x_B=6$. $k=4×6=24$이므로 $y_B=4$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=4×6÷2=12$, $[ABC]=2×6÷2=6$, $[OBC]=4×4÷2=8$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=12+6-8=10$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 24,
+          "domain": [
+            2.88,
+            7.800000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            6
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            6,
+            4
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            6,
+            4
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "A(4,6)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 4,
+        "h": 6,
+        "r": 1,
+        "s": 2
+      },
+      "computed": {
+        "offset": 2,
+        "b": 6,
+        "z": 4,
+        "k": 24
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 4,
+          "value": 12
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 6,
+          "perpendicularHeight": 2,
+          "value": 6
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 4,
+          "perpendicularHeight": 4,
+          "value": 8,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 10,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(6,4), 넓이=10",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 9,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(8,6), 넓이=36",
+    "printedStudentSolution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=1:1$이다. 따라서 $x_B=8$. $k=4×12=48$이므로 $y_B=6$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=4×12÷2=24$, $[ABC]=4×12÷2=24$, $[OBC]=4×6÷2=12$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=24+24-12=36$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        11.6
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 48,
+          "domain": [
+            2.88,
+            10.4
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            12
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            8,
+            6
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              8,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            12
+          ]
+        },
+        {
+          "at": [
+            8,
+            6
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            12
+          ],
+          "text": "A(4,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            8,
+            6
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 4,
+        "h": 12,
+        "r": 1,
+        "s": 1
+      },
+      "computed": {
+        "offset": 4,
+        "b": 8,
+        "z": 6,
+        "k": 48
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 4,
+          "value": 24
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 4,
+          "value": 24
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 4,
+          "perpendicularHeight": 6,
+          "value": 12,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 36,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(8,6), 넓이=36",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 10,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 2:1일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(12,4), 넓이=64",
+    "printedStudentSolution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=2:1$이다. 따라서 $x_B=12$. $k=4×12=48$이므로 $y_B=4$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=4×12÷2=24$, $[ABC]=8×12÷2=48$, $[OBC]=4×4÷2=8$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=24+48-8=64$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        17.4
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 48,
+          "domain": [
+            2.88,
+            15.600000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            12
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            12,
+            4
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              12,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            12
+          ]
+        },
+        {
+          "at": [
+            12,
+            4
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            12
+          ],
+          "text": "A(4,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            12,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 4,
+        "h": 12,
+        "r": 2,
+        "s": 1
+      },
+      "computed": {
+        "offset": 8,
+        "b": 12,
+        "z": 4,
+        "k": 48
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 4,
+          "value": 24
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 8,
+          "value": 48
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 4,
+          "perpendicularHeight": 4,
+          "value": 8,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 64,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(12,4), 넓이=64",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-inverse-area-ratio",
+    "version": "2-m1-elementary-area",
+    "variant": 11,
+    "printedContent": "그림의 $A,B$는 $k>0$인 반비례 그래프 $y=k/x$ 위의 제1사분면의 점이고, $B$는 $A$보다 오른쪽에 있다. $C$는 $A$에서 $x$축에 내린 수선의 발이다. 삼각형 $ABC$와 $OAC$의 넓이비가 1:2일 때, $B$의 좌표와 삼각형 $OAB$의 넓이를 구하시오.",
+    "printedAnswer": "B=(6,8), 넓이=20",
+    "printedStudentSolution": "$AC=12$를 공통 밑변으로 보면 높이 비는 $(x_B-4):4=1:2$이다. 따라서 $x_B=6$. $k=4×12=48$이므로 $y_B=8$. 밑변과 높이로 구한 세 삼각형의 넓이는 각각 $[OAC]=4×12÷2=24$, $[ABC]=2×12÷2=12$, $[OBC]=4×8÷2=16$이다. 여기서 $[OAC]$는 삼각형 $OAC$의 넓이를 뜻한다. 사각형 $OABC$는 삼각형 $OAC,ABC$로도, 삼각형 $OAB,OBC$로도 나뉜다. 그러므로 $[OAB]=[OAC]+[ABC]-[OBC]=24+12-16=20$이다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "type": "inverse",
+          "k": 48,
+          "domain": [
+            2.88,
+            7.800000000000001
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            12
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        },
+        {
+          "from": [
+            4,
+            0
+          ],
+          "to": [
+            6,
+            8
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            0,
+            0
+          ]
+        },
+        {
+          "at": [
+            4,
+            12
+          ]
+        },
+        {
+          "at": [
+            6,
+            8
+          ]
+        },
+        {
+          "at": [
+            4,
+            0
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            4,
+            12
+          ],
+          "text": "A(4,12)",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            8
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "C",
+          "dx": 0,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 4,
+        "h": 12,
+        "r": 1,
+        "s": 2
+      },
+      "computed": {
+        "offset": 2,
+        "b": 6,
+        "z": 8,
+        "k": 48
+      },
+      "elementaryTriangles": [
+        {
+          "name": "OAC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 4,
+          "value": 24
+        },
+        {
+          "name": "ABC",
+          "base": "AC",
+          "length": 12,
+          "perpendicularHeight": 2,
+          "value": 12
+        },
+        {
+          "name": "OBC",
+          "base": "OC",
+          "length": 4,
+          "perpendicularHeight": 8,
+          "value": 16,
+          "exteriorHeight": true
+        }
+      ],
+      "partitions": "Convex OABC has diagonals AC and OB: OAC+ABC=OAB+OBC. Move OBC by area additivity.",
+      "area": 20,
+      "unique": "Positive common base AC cancels in printed ratio; horizontal offset uniquely a*r/s>0, b>a uniquely fixed, then inverse relation gives one z>0. No other branch in first quadrant.",
+      "primitives": [
+        "read numeric A and printed ratio",
+        "triangle base times perpendicular height divided by2",
+        "cancel same positive base/2 in ratio",
+        "simple numeric proportion",
+        "inverse relation as numeric product/division",
+        "add two elementary triangle areas and subtract third"
+      ]
+    },
+    "computedAnswer": "B=(6,8), 넓이=20",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": false,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 0,
+    "printedContent": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "printedAnswer": "C=(4,4)",
+    "printedStudentSolution": "$A=(u,1u)$, $D=(u,2u)$라 두면 세로 길이는 1u이다. 정사각형이므로 가로도 같아 $u+1u=4$, $u=2$. 따라서 $C=(4,4)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        5.8
+      ],
+      "yRange": [
+        -1,
+        5.8
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            1,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        },
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            2
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              2,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            2,
+            2
+          ]
+        },
+        {
+          "at": [
+            4,
+            2
+          ]
+        },
+        {
+          "at": [
+            4,
+            4
+          ]
+        },
+        {
+          "at": [
+            2,
+            4
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            2
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            2
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            4
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            4
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.3,
+            1.3
+          ],
+          "text": "$y=1x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2.54,
+            5.08
+          ],
+          "text": "$y=2x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "R=4",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 1,
+        "b": 2,
+        "R": 4
+      },
+      "coefficient": 2,
+      "u": 2,
+      "side": 2,
+      "C": [
+        4,
+        4
+      ],
+      "unique": "One numerical linear equation with coefficient1+(b-a)>0. Axis-parallel side equality fixes unique positive u and all four first-quadrant vertices.",
+      "primitives": [
+        "evaluate direct-proportion expressions at shared x-coordinate u",
+        "subtract numeric-coefficient linear expressions",
+        "equal horizontal and vertical square sides",
+        "solve one-variable numeric linear equation",
+        "evaluate b*u to obtain C ordinate"
+      ]
+    },
+    "computedAnswer": "C=(4,4)",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": true,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 1,
+    "printedContent": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "printedAnswer": "C=(6,6)",
+    "printedStudentSolution": "$A=(u,1u)$, $D=(u,2u)$라 두면 세로 길이는 1u이다. 정사각형이므로 가로도 같아 $u+1u=6$, $u=3$. 따라서 $C=(6,6)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            1,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        },
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            6,
+            3
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              3,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              3,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            3,
+            3
+          ]
+        },
+        {
+          "at": [
+            6,
+            3
+          ]
+        },
+        {
+          "at": [
+            6,
+            6
+          ]
+        },
+        {
+          "at": [
+            3,
+            6
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            3,
+            3
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            3
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            6
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            6
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.9500000000000002,
+            1.9500000000000002
+          ],
+          "text": "$y=1x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3.81,
+            7.62
+          ],
+          "text": "$y=2x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            0
+          ],
+          "text": "R=6",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 1,
+        "b": 2,
+        "R": 6
+      },
+      "coefficient": 2,
+      "u": 3,
+      "side": 3,
+      "C": [
+        6,
+        6
+      ],
+      "unique": "One numerical linear equation with coefficient1+(b-a)>0. Axis-parallel side equality fixes unique positive u and all four first-quadrant vertices.",
+      "primitives": [
+        "evaluate direct-proportion expressions at shared x-coordinate u",
+        "subtract numeric-coefficient linear expressions",
+        "equal horizontal and vertical square sides",
+        "solve one-variable numeric linear equation",
+        "evaluate b*u to obtain C ordinate"
+      ]
+    },
+    "computedAnswer": "C=(6,6)",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": true,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 2,
+    "printedContent": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "printedAnswer": "C=(6,6)",
+    "printedStudentSolution": "$A=(u,1u)$, $D=(u,3u)$라 두면 세로 길이는 2u이다. 정사각형이므로 가로도 같아 $u+2u=6$, $u=2$. 따라서 $C=(6,6)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            1,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        },
+        {
+          "coefficients": [
+            3,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            6,
+            2
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              2,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              2,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            2,
+            2
+          ]
+        },
+        {
+          "at": [
+            6,
+            2
+          ]
+        },
+        {
+          "at": [
+            6,
+            6
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            2
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            2
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            6
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.3,
+            1.3
+          ],
+          "text": "$y=1x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2.54,
+            7.62
+          ],
+          "text": "$y=3x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            0
+          ],
+          "text": "R=6",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 1,
+        "b": 3,
+        "R": 6
+      },
+      "coefficient": 3,
+      "u": 2,
+      "side": 4,
+      "C": [
+        6,
+        6
+      ],
+      "unique": "One numerical linear equation with coefficient1+(b-a)>0. Axis-parallel side equality fixes unique positive u and all four first-quadrant vertices.",
+      "primitives": [
+        "evaluate direct-proportion expressions at shared x-coordinate u",
+        "subtract numeric-coefficient linear expressions",
+        "equal horizontal and vertical square sides",
+        "solve one-variable numeric linear equation",
+        "evaluate b*u to obtain C ordinate"
+      ]
+    },
+    "computedAnswer": "C=(6,6)",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": true,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 3,
+    "printedContent": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "printedAnswer": "C=(9,9)",
+    "printedStudentSolution": "$A=(u,1u)$, $D=(u,3u)$라 두면 세로 길이는 2u이다. 정사각형이므로 가로도 같아 $u+2u=9$, $u=3$. 따라서 $C=(9,9)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        13.049999999999999
+      ],
+      "yRange": [
+        -1,
+        13.049999999999999
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            1,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        },
+        {
+          "coefficients": [
+            3,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            9,
+            3
+          ],
+          "to": [
+            9,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              3,
+              3
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              3,
+              9
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            3,
+            3
+          ]
+        },
+        {
+          "at": [
+            9,
+            3
+          ]
+        },
+        {
+          "at": [
+            9,
+            9
+          ]
+        },
+        {
+          "at": [
+            3,
+            9
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            3,
+            3
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            3
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            9
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            9
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.9500000000000002,
+            1.9500000000000002
+          ],
+          "text": "$y=1x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3.81,
+            11.43
+          ],
+          "text": "$y=3x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            0
+          ],
+          "text": "R=9",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 1,
+        "b": 3,
+        "R": 9
+      },
+      "coefficient": 3,
+      "u": 3,
+      "side": 6,
+      "C": [
+        9,
+        9
+      ],
+      "unique": "One numerical linear equation with coefficient1+(b-a)>0. Axis-parallel side equality fixes unique positive u and all four first-quadrant vertices.",
+      "primitives": [
+        "evaluate direct-proportion expressions at shared x-coordinate u",
+        "subtract numeric-coefficient linear expressions",
+        "equal horizontal and vertical square sides",
+        "solve one-variable numeric linear equation",
+        "evaluate b*u to obtain C ordinate"
+      ]
+    },
+    "computedAnswer": "C=(9,9)",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": true,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 4,
+    "printedContent": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "printedAnswer": "C=(4,6)",
+    "printedStudentSolution": "$A=(u,2u)$, $D=(u,3u)$라 두면 세로 길이는 1u이다. 정사각형이므로 가로도 같아 $u+1u=4$, $u=2$. 따라서 $C=(4,6)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        8.7
+      ],
+      "yRange": [
+        -1,
+        8.7
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        },
+        {
+          "coefficients": [
+            3,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            4,
+            4
+          ],
+          "to": [
+            4,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              2,
+              6
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "at": [
+            4,
+            4
+          ]
+        },
+        {
+          "at": [
+            4,
+            6
+          ]
+        },
+        {
+          "at": [
+            2,
+            6
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            4
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            6
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            6
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.3,
+            2.6
+          ],
+          "text": "$y=2x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2.54,
+            7.62
+          ],
+          "text": "$y=3x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            4,
+            0
+          ],
+          "text": "R=4",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "b": 3,
+        "R": 4
+      },
+      "coefficient": 2,
+      "u": 2,
+      "side": 2,
+      "C": [
+        4,
+        6
+      ],
+      "unique": "One numerical linear equation with coefficient1+(b-a)>0. Axis-parallel side equality fixes unique positive u and all four first-quadrant vertices.",
+      "primitives": [
+        "evaluate direct-proportion expressions at shared x-coordinate u",
+        "subtract numeric-coefficient linear expressions",
+        "equal horizontal and vertical square sides",
+        "solve one-variable numeric linear equation",
+        "evaluate b*u to obtain C ordinate"
+      ]
+    },
+    "computedAnswer": "C=(4,6)",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": true,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 5,
+    "printedContent": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "printedAnswer": "C=(6,9)",
+    "printedStudentSolution": "$A=(u,2u)$, $D=(u,3u)$라 두면 세로 길이는 1u이다. 정사각형이므로 가로도 같아 $u+1u=6$, $u=3$. 따라서 $C=(6,9)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        13.049999999999999
+      ],
+      "yRange": [
+        -1,
+        13.049999999999999
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        },
+        {
+          "coefficients": [
+            3,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            6,
+            6
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              3,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              3,
+              9
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            3,
+            6
+          ]
+        },
+        {
+          "at": [
+            6,
+            6
+          ]
+        },
+        {
+          "at": [
+            6,
+            9
+          ]
+        },
+        {
+          "at": [
+            3,
+            9
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            3,
+            6
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            6
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            9
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            9
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.9500000000000002,
+            3.9000000000000004
+          ],
+          "text": "$y=2x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3.81,
+            11.43
+          ],
+          "text": "$y=3x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            0
+          ],
+          "text": "R=6",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "b": 3,
+        "R": 6
+      },
+      "coefficient": 2,
+      "u": 3,
+      "side": 3,
+      "C": [
+        6,
+        9
+      ],
+      "unique": "One numerical linear equation with coefficient1+(b-a)>0. Axis-parallel side equality fixes unique positive u and all four first-quadrant vertices.",
+      "primitives": [
+        "evaluate direct-proportion expressions at shared x-coordinate u",
+        "subtract numeric-coefficient linear expressions",
+        "equal horizontal and vertical square sides",
+        "solve one-variable numeric linear equation",
+        "evaluate b*u to obtain C ordinate"
+      ]
+    },
+    "computedAnswer": "C=(6,9)",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": true,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 6,
+    "printedContent": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "printedAnswer": "C=(6,8)",
+    "printedStudentSolution": "$A=(u,2u)$, $D=(u,4u)$라 두면 세로 길이는 2u이다. 정사각형이므로 가로도 같아 $u+2u=6$, $u=2$. 따라서 $C=(6,8)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        11.6
+      ],
+      "yRange": [
+        -1,
+        11.6
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        },
+        {
+          "coefficients": [
+            4,
+            0
+          ],
+          "domain": [
+            0,
+            2.5
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            6,
+            4
+          ],
+          "to": [
+            6,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              2,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            2,
+            4
+          ]
+        },
+        {
+          "at": [
+            6,
+            4
+          ]
+        },
+        {
+          "at": [
+            6,
+            8
+          ]
+        },
+        {
+          "at": [
+            2,
+            8
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            2,
+            4
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            4
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            8
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2,
+            8
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.3,
+            2.6
+          ],
+          "text": "$y=2x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            2.54,
+            10.16
+          ],
+          "text": "$y=4x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            6,
+            0
+          ],
+          "text": "R=6",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "b": 4,
+        "R": 6
+      },
+      "coefficient": 3,
+      "u": 2,
+      "side": 4,
+      "C": [
+        6,
+        8
+      ],
+      "unique": "One numerical linear equation with coefficient1+(b-a)>0. Axis-parallel side equality fixes unique positive u and all four first-quadrant vertices.",
+      "primitives": [
+        "evaluate direct-proportion expressions at shared x-coordinate u",
+        "subtract numeric-coefficient linear expressions",
+        "equal horizontal and vertical square sides",
+        "solve one-variable numeric linear equation",
+        "evaluate b*u to obtain C ordinate"
+      ]
+    },
+    "computedAnswer": "C=(6,8)",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": true,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  },
+  {
+    "familyId": "study-middle-shared-side-square",
+    "version": "1",
+    "variant": 7,
+    "printedContent": "그림의 정사각형 $ABCD$는 각 변이 좌표축과 평행하다. 아래쪽 왼쪽 꼭짓점 $A$와 위쪽 왼쪽 꼭짓점 $D$는 각각 그림의 아래쪽 직선과 위쪽 직선 위에 있다. 오른쪽 두 꼭짓점의 $x$좌표는 그림에 표시된 $R$이다. 제1사분면에 있는 꼭짓점 $C$의 좌표를 구하시오.",
+    "printedAnswer": "C=(9,12)",
+    "printedStudentSolution": "$A=(u,2u)$, $D=(u,4u)$라 두면 세로 길이는 2u이다. 정사각형이므로 가로도 같아 $u+2u=9$, $u=3$. 따라서 $C=(9,12)$이다. 두 그래프 입사와 공통 변을 모두 썼다.",
+    "figureSpec": {
+      "version": "graph-1",
+      "xRange": [
+        -1,
+        17.4
+      ],
+      "yRange": [
+        -1,
+        17.4
+      ],
+      "width": 400,
+      "height": 400,
+      "curves": [
+        {
+          "coefficients": [
+            2,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        },
+        {
+          "coefficients": [
+            4,
+            0
+          ],
+          "domain": [
+            0,
+            3.75
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "from": [
+            9,
+            6
+          ],
+          "to": [
+            9,
+            0
+          ],
+          "dashed": true
+        }
+      ],
+      "polygons": [
+        {
+          "points": [
+            [
+              3,
+              6
+            ],
+            [
+              9,
+              6
+            ],
+            [
+              9,
+              12
+            ],
+            [
+              3,
+              12
+            ]
+          ],
+          "fill": "none"
+        }
+      ],
+      "points": [
+        {
+          "at": [
+            3,
+            6
+          ]
+        },
+        {
+          "at": [
+            9,
+            6
+          ]
+        },
+        {
+          "at": [
+            9,
+            12
+          ]
+        },
+        {
+          "at": [
+            3,
+            12
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            0,
+            0
+          ],
+          "text": "O",
+          "dx": -14,
+          "dy": 21,
+          "size": 20
+        },
+        {
+          "at": [
+            3,
+            6
+          ],
+          "text": "A",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            6
+          ],
+          "text": "B",
+          "dx": 10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            12
+          ],
+          "text": "C",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3,
+            12
+          ],
+          "text": "D",
+          "dx": -22,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            1.9500000000000002,
+            3.9000000000000004
+          ],
+          "text": "$y=2x$",
+          "dx": 12,
+          "dy": 35,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            3.81,
+            15.24
+          ],
+          "text": "$y=4x$",
+          "dx": 10,
+          "dy": -12,
+          "size": 20,
+          "anchor": "start"
+        },
+        {
+          "at": [
+            9,
+            0
+          ],
+          "text": "R=9",
+          "dx": -10,
+          "dy": 23,
+          "size": 20,
+          "anchor": "start"
+        }
+      ]
+    },
+    "independent": {
+      "printed": {
+        "a": 2,
+        "b": 4,
+        "R": 9
+      },
+      "coefficient": 3,
+      "u": 3,
+      "side": 6,
+      "C": [
+        9,
+        12
+      ],
+      "unique": "One numerical linear equation with coefficient1+(b-a)>0. Axis-parallel side equality fixes unique positive u and all four first-quadrant vertices.",
+      "primitives": [
+        "evaluate direct-proportion expressions at shared x-coordinate u",
+        "subtract numeric-coefficient linear expressions",
+        "equal horizontal and vertical square sides",
+        "solve one-variable numeric linear equation",
+        "evaluate b*u to obtain C ordinate"
+      ]
+    },
+    "computedAnswer": "C=(9,12)",
+    "priorComparison": {
+      "content": true,
+      "answer": true,
+      "solution": true,
+      "figureSpec": true
+    },
+    "actualVerifier": {
+      "valid": true,
+      "checks": [
+        "independent-solution",
+        "essential-conditions",
+        "visual-information"
+      ],
+      "errors": []
+    },
+    "format": "단답형"
+  }
+]
