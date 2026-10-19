@@ -1,0 +1,196 @@
+{
+  "representation": "sum(coefficient[n]*sqrt(n)); positive squarefree n, rational coefficients; key1 is rational part",
+  "records": [
+    {
+      "label": "가",
+      "leftFactor": {
+        "1": "-1",
+        "2": "3"
+      },
+      "rightFactor": {
+        "1": "-1",
+        "2": "3"
+      },
+      "computed": {
+        "1": "19",
+        "2": "-6"
+      },
+      "stated": {
+        "1": "19",
+        "2": "-6"
+      },
+      "residual": {},
+      "recordCorrect": true
+    },
+    {
+      "label": "나",
+      "leftFactor": {
+        "6": "1",
+        "10": "1"
+      },
+      "rightFactor": {
+        "6": "1",
+        "10": "1"
+      },
+      "computed": {
+        "1": "16",
+        "15": "4"
+      },
+      "stated": {
+        "1": "16",
+        "15": "2"
+      },
+      "residual": {
+        "15": "2"
+      },
+      "recordCorrect": false
+    },
+    {
+      "label": "다",
+      "leftFactor": {
+        "1": "3",
+        "11": "1"
+      },
+      "rightFactor": {
+        "1": "-3",
+        "11": "1"
+      },
+      "computed": {
+        "1": "2"
+      },
+      "stated": {
+        "1": "2"
+      },
+      "residual": {},
+      "recordCorrect": true
+    },
+    {
+      "label": "라",
+      "leftFactor": {
+        "1": "2",
+        "7": "1"
+      },
+      "rightFactor": {
+        "1": "-4",
+        "7": "1"
+      },
+      "computed": {
+        "1": "-1",
+        "7": "-2"
+      },
+      "stated": {
+        "1": "-1",
+        "7": "2"
+      },
+      "residual": {
+        "7": "-4"
+      },
+      "recordCorrect": false
+    },
+    {
+      "label": "마",
+      "leftFactor": {
+        "3": "4",
+        "5": "1"
+      },
+      "rightFactor": {
+        "3": "1",
+        "5": "-2"
+      },
+      "computed": {
+        "1": "2",
+        "15": "-7"
+      },
+      "stated": {
+        "1": "2",
+        "15": "-7"
+      },
+      "residual": {},
+      "recordCorrect": true
+    }
+  ],
+  "wrongRecords": [
+    "나",
+    "라"
+  ],
+  "choices": [
+    {
+      "mark": "①",
+      "records": [
+        "가",
+        "나"
+      ],
+      "exactWrongPair": false,
+      "wrongRecordsIncluded": [
+        "나"
+      ],
+      "correctRecordsIncorrectlyIncluded": [
+        "가"
+      ]
+    },
+    {
+      "mark": "②",
+      "records": [
+        "가",
+        "다"
+      ],
+      "exactWrongPair": false,
+      "wrongRecordsIncluded": [],
+      "correctRecordsIncorrectlyIncluded": [
+        "가",
+        "다"
+      ]
+    },
+    {
+      "mark": "③",
+      "records": [
+        "나",
+        "라"
+      ],
+      "exactWrongPair": true,
+      "wrongRecordsIncluded": [
+        "나",
+        "라"
+      ],
+      "correctRecordsIncorrectlyIncluded": []
+    },
+    {
+      "mark": "④",
+      "records": [
+        "다",
+        "마"
+      ],
+      "exactWrongPair": false,
+      "wrongRecordsIncluded": [],
+      "correctRecordsIncorrectlyIncluded": [
+        "다",
+        "마"
+      ]
+    },
+    {
+      "mark": "⑤",
+      "records": [
+        "라",
+        "마"
+      ],
+      "exactWrongPair": false,
+      "wrongRecordsIncluded": [
+        "라"
+      ],
+      "correctRecordsIncorrectlyIncluded": [
+        "마"
+      ]
+    }
+  ],
+  "exactErrors": {
+    "나": "actual-stated=2√15>0",
+    "라": "actual-stated=-4√7<0"
+  },
+  "domain": "피제곱수2,6,10,11,7,3,5는모두양수라모든근호가정의된다. 분모나변수가없어추가제외조건은없다. 단위와도형조건도없다.",
+  "signChecks": [
+    "(√7+2)>0,(√7-4)<0:7<16이므로(라)의실제곱은음수이다.",
+    "(4√3+√5)>0,(√3-2√5)<0:3<20이므로(마)의실제곱은음수이다.",
+    "제곱인(가),(나)는0이상이면서실제로양수이고,(다)=11-9=2>0이다."
+  ],
+  "uniqueness": "다섯기록을모두계산한결과잘못된기록은나와라정확히두개이다. 다섯보기중이집합과일치하는것은③하나뿐이므로선택답이존재하고유일하다."
+}
