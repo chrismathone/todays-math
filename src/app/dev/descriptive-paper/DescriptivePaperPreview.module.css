@@ -1,0 +1,82 @@
+.root {
+  min-width: 0;
+  padding: 24px;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
+}
+.tools {
+  max-width: 1000px;
+  margin: 0 auto 24px;
+}
+.tools h1 {
+  font-size: var(--text-title);
+}
+.tools p {
+  color: var(--learn-muted);
+  margin: 8px 0 16px;
+}
+.tools form {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.tools label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+.tools :is(button, select) {
+  min-height: 44px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  cursor: pointer;
+}
+.tools button {
+  border-color: var(--learn-accent);
+  color: var(--learn-accent);
+}
+.tools button:enabled:hover {
+  background: var(--learn-soft);
+}
+.tools :is(button, select, input):focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 3px;
+}
+.tools button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.papers {
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+@media (max-width: 800px) {
+  .root {
+    padding: 16px;
+  }
+  .papers {
+    align-items: flex-start;
+  }
+}
+@media print {
+  .root {
+    padding: 0;
+    background: white;
+  }
+  .tools {
+    display: none;
+  }
+  .papers {
+    display: block;
+    overflow: visible;
+  }
+}

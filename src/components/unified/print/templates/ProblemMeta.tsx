@@ -5,6 +5,7 @@
 
 import React from "react";
 import { MathText } from "@/components/math/MathText";
+import { DescriptiveScore } from "@/components/print/DescriptiveScore";
 import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 import { arithmeticGroupInstructionMarkup } from "@/lib/arithmeticOutputLayout";
 import { PAPER_COLORS } from "../tokens";
@@ -88,6 +89,11 @@ export function ProblemHeader({
             accent={accent}
           />
         </span>
+        {problem.nativeDescriptive && (
+          <DescriptiveScore
+            points={problem.nativeDescriptive.rubric.totalPoints}
+          />
+        )}
         {metadata && (
           <span
             data-problem-metadata

@@ -33,7 +33,7 @@ export function YuhyungTemplate({
   const gap = Math.max(0, options.spacing);
 
   const renderItem = (p: ProblemReview, i: number) => {
-    const num = startingNumber + i;
+    const num = p.number ?? startingNumber + i;
     return (
       <div
         key={p.id}
@@ -105,6 +105,7 @@ export function YuhyungTemplate({
 
       <BodyContainer
         solvingArea={options.solvingArea}
+        omitSolvingArea={problems.map((p) => !!p.variant.nativeDescriptive)}
         columns={columns}
         gap={gap}
         columnGap={22}

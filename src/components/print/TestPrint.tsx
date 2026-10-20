@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 
 import { PrintAnswerKeyPage } from "@/components/print/PrintAnswerKeyPage";
+import { DescriptiveRubricPage } from "@/components/print/DescriptiveRubricPage";
 import { JaseupTemplate } from "@/components/print/templates/JaseupTemplate";
 import type {
   JaseupPrintMeta,
@@ -66,6 +67,19 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
   const [isPrinting, setIsPrinting] = useState(false);
   const title = `${TEST_TYPE_LABEL[data.testType]} · ${data.section}`;
   const problems = data.problems;
+  const ordinaryProblems = useMemo(
+    () => problems.filter((problem) => !problem.nativeDescriptive),
+    [problems],
+  );
+  const descriptiveItems = useMemo(
+    () =>
+      problems.flatMap((problem, index) =>
+        problem.nativeDescriptive
+          ? [{ number: index + 1, data: problem.nativeDescriptive }]
+          : [],
+      ),
+    [problems],
+  );
   const galleryRef = useRef<HTMLDivElement>(null);
   const [measuredAnswers, setMeasuredAnswers] = useState<{
     problems: typeof problems;
@@ -84,12 +98,12 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
   // 정답지는 다른 지면이라 따로 본다 — `.answerSolutions` 는 2단이고 클립이 걸려
   // 있어서, 넘친 해설은 **3번째 단으로 밀려 통째로 사라진다**(부분 잘림이 아니다).
   const answerKeyRisks = useMemo(
-    () => assessAnswerKeyRisk(problems),
-    [problems],
+    () => assessAnswerKeyRisk(ordinaryProblems),
+    [ordinaryProblems],
   );
   const initialAnswerPages = useMemo(
-    () => paginateAnswerKey(problems),
-    [problems],
+    () => (ordinaryProblems.length ? paginateAnswerKey(ordinaryProblems) : []),
+    [ordinaryProblems],
   );
   const answerPages =
     measuredAnswers?.problems === problems
@@ -269,28 +283,41 @@ export function TestPrint({ data, initialMode = "questions" }: TestPrintProps) {
         aria-label="시험지 미리보기"
         tabIndex={0}
       >
-        {mode === "questions"
-          ? questionPages.map((page, index) => (
-              <JaseupTemplate
-                essayLabels={essayLabels}
-                key={`questions-${index + 1}`}
-                meta={meta}
-                page={index + 1}
-                problems={page.problems}
-                startingNumber={page.startingNumber}
-              />
-            ))
-          : answerPages.map((page, index) => (
+        {mode === "questions" ? (
+          questionPages.map((page, index) => (
+            <JaseupTemplate
+              essayLabels={essayLabels}
+              key={`questions-${index + 1}`}
+              meta={meta}
+              page={index + 1}
+              problems={page.problems}
+              startingNumber={page.startingNumber}
+            />
+          ))
+        ) : (
+          <>
+            {answerPages.map((page, index) => (
               <PrintAnswerKeyPage
-                allProblems={problems}
+                allProblems={ordinaryProblems}
+                numberOf={(problem) => problems.indexOf(problem) + 1}
                 key={`answers-${index + 1}`}
                 page={index + 1}
                 pageProblems={page.problems}
                 startingNumber={page.startingNumber}
                 testTitle={title}
-                totalPages={answerPages.length}
+                totalPages={answerPages.length + descriptiveItems.length}
               />
             ))}
+            {descriptiveItems.map((item, index) => (
+              <DescriptiveRubricPage
+                key={`rubric-${item.number}`}
+                title={title}
+                items={[item]}
+                page={answerPages.length + index + 1}
+              />
+            ))}
+          </>
+        )}
       </div>
     </main>
   );

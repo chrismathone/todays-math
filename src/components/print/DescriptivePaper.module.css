@@ -1,0 +1,140 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 13mm 12mm 10mm;
+  background: #fff;
+  color: #1f1f23;
+}
+.header {
+  display: flex;
+  flex: none;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 6mm;
+  border-bottom: 2px solid #b8b8bf;
+  padding-bottom: 4mm;
+  margin-bottom: 5mm;
+  font-family: var(--paper-font-sans);
+}
+.header h2 {
+  margin: 1mm 0 0;
+  font-size: 20px;
+  line-height: 1.4;
+}
+.header p {
+  margin: 0;
+  font-size: 11px;
+}
+.score {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 1px 7px;
+  margin-left: 6px;
+  border: 1px solid var(--paper-gold, #a57f00);
+  border-radius: 2px;
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+  font-weight: 650;
+  color: #424247;
+  line-height: 1.6;
+}
+.answerAreas {
+  display: flex;
+  flex-direction: column;
+  gap: 6mm;
+}
+.rubrics {
+  min-height: 0;
+  font-size: 11px;
+  line-height: 1.55;
+}
+.rubric h3 {
+  margin: 0 0 2mm;
+  font-family: var(--paper-font-sans);
+  font-size: 14px;
+}
+.modelAnswer {
+  white-space: pre-line;
+  margin-bottom: 3mm;
+}
+.rubric table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: var(--paper-font-sans);
+  font-size: 10.5px;
+}
+.rubric caption {
+  text-align: left;
+  font-size: 10px;
+  margin-bottom: 1mm;
+}
+.rubric th,
+.rubric td {
+  border: 1px solid #b8b8bf;
+  padding: 2mm;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.rubric thead th {
+  background: #f4f4f5;
+}
+.rubric thead th:first-child {
+  width: 21%;
+}
+.rubric thead th:nth-child(2) {
+  width: 8%;
+}
+.rubric thead th:nth-child(3) {
+  width: 48%;
+}
+.rubric p {
+  margin: 0;
+}
+.marks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2mm;
+}
+.marks span {
+  white-space: nowrap;
+}
+.notes {
+  margin-top: 3mm;
+  display: grid;
+  gap: 2mm;
+  font-size: 10px;
+}
+.subtotal {
+  text-align: right;
+  padding-top: 2mm;
+}
+.total {
+  margin: 3mm 0 0;
+  border-top: 1px solid #b8b8bf;
+  padding-top: 3mm;
+  text-align: right;
+  font-family: var(--paper-font-sans);
+}
+.footer {
+  margin-top: auto;
+  padding-top: 4mm;
+  text-align: right;
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+}
+:global([data-print-monochrome="true"]) .page {
+  color: #1f1f1f;
+}
+:global([data-print-monochrome="true"]) .score {
+  color: #424242;
+}
+:global([data-print-monochrome="true"]) .rubric thead th {
+  background: #f4f4f4;
+}
+:global([data-print-monochrome="true"])
+  :is(.score, .header, .total, .rubric th, .rubric td) {
+  border-color: #b8b8b8;
+}

@@ -13,6 +13,7 @@ interface PrintAnswerKeyPageProps {
   startingNumber: number;
   testTitle: string;
   totalPages: number;
+  numberOf?: (problem: TestPrintProblem) => number;
 }
 
 export function PrintAnswerKeyPage({
@@ -22,6 +23,7 @@ export function PrintAnswerKeyPage({
   startingNumber,
   testTitle,
   totalPages,
+  numberOf,
 }: PrintAnswerKeyPageProps) {
   const isFirstPage = page === 1;
 
@@ -52,7 +54,7 @@ export function PrintAnswerKeyPage({
                   data-testid={`quick-answer-${index + 1}`}
                   key={problem.id}
                 >
-                  <strong>문 {index + 1}</strong>
+                  <strong>문 {numberOf?.(problem) ?? index + 1}</strong>
                   <MathText as="span" text={problem.answer} />
                 </div>
               ))}
@@ -61,7 +63,7 @@ export function PrintAnswerKeyPage({
         ) : null}
 
         {pageProblems.map((problem, index) => {
-          const problemNumber = startingNumber + index;
+          const problemNumber = numberOf?.(problem) ?? startingNumber + index;
           return (
             <article className={styles.solutionItem} key={problem.id}>
               <div

@@ -1,6 +1,8 @@
 import { memo } from "react";
 
 import { A4Page } from "@/components/print/A4Page";
+import { DescriptiveAnswerArea } from "@/components/print/DescriptiveAnswerArea";
+import { DescriptiveScore } from "@/components/print/DescriptiveScore";
 import type {
   JaseupPrintMeta,
   TestPrintProblem,
@@ -42,7 +44,6 @@ export const JaseupTemplate = memo(function JaseupTemplate({
   page,
   problems,
   startingNumber,
-  essayLabels,
 }: JaseupTemplateProps) {
   const isFirstPage = page === 1;
 
@@ -91,13 +92,21 @@ export const JaseupTemplate = memo(function JaseupTemplate({
           const problemNumber = startingNumber + index;
           return (
             <article
-              className={styles.problemItem}
+              className={`${styles.problemItem} ${problem.nativeDescriptive ? styles.descriptiveItem : ""}`}
               data-problem-number={problemNumber}
               key={problem.id}
             >
               <div className={styles.questionArea}>
                 <div className={styles.questionNumber}>
                   문 {problemNumber}
+                  {problem.nativeDescriptive && (
+                    <DescriptiveScore
+                      points={problem.nativeDescriptive.rubric.totalPoints}
+                    />
+                  )}
+                  {problem.nativeDescriptive && (
+                    <span className={styles.essayBadge}>서술형</span>
+                  )}
                   {problem.problemCode ? (
                     <span className={styles.problemCodeBadge}>
                       {formatShortProblemCode(problem.problemCode)}
@@ -105,19 +114,28 @@ export const JaseupTemplate = memo(function JaseupTemplate({
                   ) : null}
                 </div>
                 <ProblemBody problem={problem} />
-                <div className={styles.answerBlank}>
-                  <strong>내 정답</strong>
-                  <span aria-hidden className={styles.answerLine} />
-                  <span>채점</span>
-                  <span aria-hidden className={styles.checkBox} />
+                {problem.nativeDescriptive ? (
+                  <DescriptiveAnswerArea
+                    data={problem.nativeDescriptive}
+                    number={problemNumber}
+                  />
+                ) : (
+                  <div className={styles.answerBlank}>
+                    <strong>내 정답</strong>
+                    <span aria-hidden className={styles.answerLine} />
+                    <span>채점</span>
+                    <span aria-hidden className={styles.checkBox} />
+                  </div>
+                )}
+              </div>
+              {!problem.nativeDescriptive && (
+                <div
+                  aria-label={`문 ${problemNumber} 풀이 공간`}
+                  className={styles.scratchPad}
+                >
+                  <span>SCRATCH PAD</span>
                 </div>
-              </div>
-              <div
-                aria-label={`문 ${problemNumber} 풀이 공간`}
-                className={styles.scratchPad}
-              >
-                <span>SCRATCH PAD</span>
-              </div>
+              )}
             </article>
           );
         })}

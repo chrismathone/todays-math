@@ -31,7 +31,7 @@ export function PyeonggaTemplate({
   const gap = Math.max(0, options.spacing);
 
   const renderItem = (p: ProblemReview, i: number) => {
-    const num = startingNumber + i;
+    const num = p.number ?? startingNumber + i;
     return (
       <div
         key={p.id}
@@ -42,7 +42,7 @@ export function PyeonggaTemplate({
           paddingBottom: 4,
         }}
       >
-        {/* 배점은 ProblemBody.repositionScore 가 발문 끝에 통일(§45) — 번호 행엔 표시 X. */}
+        {/* Native r2 points belong beside the question number. */}
         <ProblemHeader
           sectionHeading={p.sectionHeading}
           sectionInstruction={p.sectionInstruction}
@@ -105,6 +105,7 @@ export function PyeonggaTemplate({
 
       <BodyContainer
         solvingArea={options.solvingArea}
+        omitSolvingArea={problems.map((p) => !!p.variant.nativeDescriptive)}
         columns={columns}
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}

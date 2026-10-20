@@ -83,6 +83,26 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "descriptive-paper-b-20261020",
+    title: "서술형 답란 B — 일일 · 확인 · 기출 답안지 · 교사용",
+    changed:
+      "주 저자 r2 서술형은 일일·확인 문제 아래 4mm 옅은 모눈 답란, 기출형은 별도 답안지를 쓴다. 소문항 ⑴⑵⑶을 나누고 마지막 칸에 여유를 둔다. 교사용에는 기준별 점수·□·합계·선행 오류 원칙을 넣는다.",
+    look: "/dev/descriptive-paper의 미등록 직사각형 시연을 학생용·교사용, 컬러·흑백으로 출력한다. A4 100%에서 모눈 4mm, 전체 답란 72mm와 16·24·32mm 분할, 문제·그림·답란·푸터 잘림, 번호 옆 8점과 채점표 □·부분점수·합계를 확인한다. 옅은 모눈이 프린터·복사기에서 사라지지 않는지, 손풀이가 칸에 들어가는지는 실물로 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-descriptive-paper-impl-codex.md",
+      "src/components/print/WritingArea.tsx",
+      "src/lib/print/descriptive.ts",
+      "src/components/print/DescriptiveRubricPage.tsx",
+    ],
+    needs:
+      "미등록 rectangleDemo를 /dev/descriptive-paper에서 인쇄. 실제 출제·등록 배선은 범위 밖.",
+    scale:
+      "구조화된 nativeDescriptive r2 렌더 경로. 일반 풀이 공간·개념 백지는 변경하지 않음.",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
+  {
     id: "template-a-t2-20261020",
     title: "시험지 여섯 양식 A · T2 머리·번호·풀이 공간",
     changed:

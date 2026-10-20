@@ -31,6 +31,8 @@ interface BodyContainerProps {
   /** 2단일 때 가운데 세로선. `null` 이면 안 그림. CSS 색상 문자열. */
   columnRule?: string | null;
   solvingArea?: PrintOptions["solvingArea"];
+  /** Native questions already own their writing area (or a separate answer sheet). */
+  omitSolvingArea?: boolean[];
   /**
    * 2단 우측 컬럼 시작 인덱스. usePrintLayout 의 측정 패킹이 정한 분할점.
    * 없으면 children 개수 절반 (Math.ceil(n/2)) — 기존 동작 (회귀 0).
@@ -47,6 +49,7 @@ export function BodyContainer({
   columnGap = 26,
   columnRule = null,
   solvingArea = "off",
+  omitSolvingArea,
   splitIndex,
   distribute,
   itemWhitespace,
@@ -83,6 +86,64 @@ export function BodyContainer({
             </div>
           ))
         : nodes;
+
+  // Only mixed/native pages need row-level scratch areas. Ordinary pages keep
+  // the existing uninterrupted right column, with identical measurement width.
+  if (
+    columns === 1 &&
+    solvingArea !== "off" &&
+    omitSolvingArea?.some(Boolean)
+  ) {
+    const items = React.Children.toArray(children);
+    return (
+      <div
+        className={mergedClass}
+        data-solving-layout
+        style={{
+          flex: 1,
+          minHeight: 0,
+          minWidth: 0,
+          display: "grid",
+          gridTemplateColumns: `minmax(0, ${SOLVING_AREA_LAYOUT.questionRatio}fr) minmax(0, ${1 - SOLVING_AREA_LAYOUT.questionRatio}fr)`,
+          gridTemplateRows: `repeat(${Math.max(1, items.length)}, ${distribute ? "minmax(0, 1fr)" : "max-content"})`,
+          columnGap: SOLVING_AREA_LAYOUT.gap,
+          rowGap: colGap,
+          ...style,
+        }}
+      >
+        {items.map((child, i) => (
+          <React.Fragment key={i}>
+            <div
+              data-question-column
+              data-spacing-slot={itemWhitespace ? "" : undefined}
+              style={{
+                gridColumn: 1,
+                gridRow: i + 1,
+                minWidth: 0,
+                minHeight: 0,
+                paddingBottom: itemWhitespace?.[i] ?? 0,
+              }}
+            >
+              {child}
+            </div>
+            {!omitSolvingArea[i] && (
+              <div
+                data-solving-for={i}
+                style={{
+                  gridColumn: 2,
+                  gridRow: i + 1,
+                  display: "grid",
+                  minHeight: 0,
+                }}
+              >
+                <SolvingArea style={solvingArea} />
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    );
+  }
 
   if (columns === 1 && solvingArea !== "off") {
     return (

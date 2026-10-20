@@ -1,0 +1,83 @@
+{
+  "typeCheck": {
+    "command": "npm run type-check",
+    "exitCode": 0
+  },
+  "eslint": {
+    "changedFiles": [
+      "scripts/qa/examPaperProbe.tsx",
+      "src/__tests__/components/PrintCheck.test.tsx",
+      "src/app/dev/print-check/items.ts",
+      "src/components/print/PrintAnswerKeyPage.tsx",
+      "src/components/print/TestPrint.module.css",
+      "src/components/print/TestPrint.tsx",
+      "src/components/print/templates/JaseupTemplate.tsx",
+      "src/components/print/templates/PastPaperTemplate.tsx",
+      "src/components/print/types.ts",
+      "src/components/unified/print/AnswerPage.tsx",
+      "src/components/unified/print/EnglishAnswerPage.tsx",
+      "src/components/unified/print/WorksheetPrint.tsx",
+      "src/components/unified/print/templates/BodyContainer.tsx",
+      "src/components/unified/print/templates/JaseupTemplate.tsx",
+      "src/components/unified/print/templates/JeongtongTemplate.tsx",
+      "src/components/unified/print/templates/ModernTemplate.tsx",
+      "src/components/unified/print/templates/ProblemBody.tsx",
+      "src/components/unified/print/templates/ProblemMeta.tsx",
+      "src/components/unified/print/templates/PyeonggaTemplate.tsx",
+      "src/components/unified/print/templates/WorkbookTemplate.tsx",
+      "src/components/unified/print/templates/YuhyungTemplate.tsx",
+      "src/components/unified/print/types.ts",
+      "src/components/unified/print/useMeasuredAnswerPages.tsx",
+      "src/components/unified/types.ts",
+      "src/lib/print/pastPaperLayout.ts",
+      "src/lib/printOverflow.ts",
+      "scripts/qa/build-descriptive-paper-fixture.ts",
+      "scripts/qa/measure-descriptive-paper.mjs",
+      "src/__tests__/components/descriptivePaper.test.tsx",
+      "src/__tests__/components/descriptiveUnifiedPrint.test.tsx",
+      "src/app/dev/descriptive-paper/DescriptivePaperPreview.module.css",
+      "src/app/dev/descriptive-paper/DescriptivePaperPreview.tsx",
+      "src/app/dev/descriptive-paper/page.tsx",
+      "src/components/print/DescriptiveAnswerArea.tsx",
+      "src/components/print/DescriptiveAnswerSheet.tsx",
+      "src/components/print/DescriptivePaper.module.css",
+      "src/components/print/DescriptiveRubricPage.tsx",
+      "src/components/print/DescriptiveScore.tsx",
+      "src/components/print/PastPaperPrint.tsx",
+      "src/components/print/WritingArea.module.css",
+      "src/components/print/WritingArea.tsx",
+      "src/components/unified/print/useDescriptivePageReadiness.ts",
+      "src/lib/print/descriptive.ts"
+    ],
+    "exitCode": 0,
+    "recheckedAfterLastEdits": [
+      "src/app/dev/descriptive-paper/page.tsx",
+      "src/app/dev/descriptive-paper/DescriptivePaperPreview.tsx",
+      "scripts/qa/measure-descriptive-paper.mjs"
+    ]
+  },
+  "affordance": {
+    "scope": "changed TSX and CSS",
+    "exitCode": 0
+  },
+  "diffCheck": {
+    "command": "git diff --check",
+    "exitCode": 0
+  },
+  "vitest": {
+    "regressionFiles": 46,
+    "regressionTests": 585,
+    "finalCoreFiles": 3,
+    "finalCoreTests": 37,
+    "distinctFiles": 47,
+    "distinctTests": 592
+  },
+  "browser": {
+    "pdfs": 36,
+    "pages": 54,
+    "screenCases": 36,
+    "errors": 0,
+    "recoveredLoads": 0,
+    "sourceHashesVerified": true
+  }
+}

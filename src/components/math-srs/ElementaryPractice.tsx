@@ -15,6 +15,7 @@ import type {
   CourseSession,
 } from "@/lib/math-srs/elementary/types";
 import { solutionForDisplay } from "@/lib/solutionSteps";
+import { courseFigureFingerprint } from "@/lib/math-srs/elementary/figureFingerprint";
 import s from "./elementary-practice.module.css";
 
 interface ElementaryPracticeProps {
@@ -116,6 +117,7 @@ function useProblemFigure(problem: CourseProblem) {
       sectionId: problem.sectionId,
       seed: String(problem.seed),
       tier: problem.tier,
+      spec: courseFigureFingerprint(problem.figureSpec),
     });
     async function loadFigure() {
       try {
