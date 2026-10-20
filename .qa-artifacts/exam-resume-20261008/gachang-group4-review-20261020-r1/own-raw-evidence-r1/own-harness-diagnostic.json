@@ -1,0 +1,7 @@
+{
+  "classification": "Own Windows path-key assumption, not student/source fault",
+  "error": "KeyError blind/student-problems.json: str(relativePath) uses Windows separator",
+  "correction": "Compare provided packet SHA directly from B/student-problems.json; no student/raw/production modification",
+  "initialScriptPreserved": "own-initial-calculate.py",
+  "authorExposure": false
+}

@@ -1,0 +1,3 @@
+﻿from pathlib import Path
+import json
+P=Path(__file__).resolve().parent;p=P/'own-calculate.py';s=p.read_text(encoding='utf-8-sig');s=s.replace("before['blind/student-problems.json']","sha(B/'student-problems.json')");p.write_text(s,encoding='utf-8');(P/'own-harness-diagnostic.json').write_text(json.dumps({'classification':'Own Windows path-key assumption, not student/source fault','error':'KeyError blind/student-problems.json: str(relativePath) uses Windows separator','correction':'Compare provided packet SHA directly from B/student-problems.json; no student/raw/production modification','initialScriptPreserved':'own-initial-calculate.py','authorExposure':False},indent=2),encoding='utf-8')

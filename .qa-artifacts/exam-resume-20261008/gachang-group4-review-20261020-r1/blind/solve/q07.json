@@ -1,0 +1,138 @@
+{
+  "studentDigest": "b12d42523648f31941e4ccbf574534f37a4e6da1f7829c2eb922c68d7b62532f",
+  "solverId": "independent-helper-gachang-group4-q07-q08-studentonly-20261020-r1",
+  "answer": "②",
+  "solution": "A는 전개하여 이항하면 x²-3x-5=0이므로 이차방정식이다. B는 x²+4x=x²+2x-6에서 양변의 x²항이 없어져 2x+6=0이 되므로 일차방정식이다. 일차항의 계수 2는 0이 아니며 해는 x=-3으로 유일하다. C는 3x²-12x+12=2x²+1을 정리하면 x²-12x+11=0이므로 이차방정식이다. D는 이차식이지만 등호로 나타낸 등식이 아니므로 방정식이 아니다. 따라서 고쳐야 하는 기록은 B 하나이고 바른 판정은 일차방정식이므로 ②이다. ①은 올바른 A를 잘못 고치고, ③도 이차항이 남는 C를 잘못 고친다. ④와 ⑤는 등호가 없는 D를 방정식으로 바꾸어 판정하므로 모두 옳지 않다.",
+  "evidence": {
+    "records": [
+      {
+        "record": "A",
+        "printedExpression": "$(x+2)(x-2)=3x+1$",
+        "equation": true,
+        "ascendingCoefficients": {
+          "0": "-5",
+          "1": "-3",
+          "2": "1"
+        },
+        "polynomialDegree": 2,
+        "recordedClassification": "이차방정식",
+        "correctClassification": "이차방정식",
+        "needsCorrection": false
+      },
+      {
+        "record": "B",
+        "printedExpression": "$x(x+4)=x^2+2x-6$",
+        "equation": true,
+        "ascendingCoefficients": {
+          "0": "6",
+          "1": "2"
+        },
+        "polynomialDegree": 1,
+        "recordedClassification": "이차방정식",
+        "correctClassification": "일차방정식",
+        "needsCorrection": true
+      },
+      {
+        "record": "C",
+        "printedExpression": "$3(x-2)^2=2x^2+1$",
+        "equation": true,
+        "ascendingCoefficients": {
+          "0": "11",
+          "1": "-12",
+          "2": "1"
+        },
+        "polynomialDegree": 2,
+        "recordedClassification": "이차방정식",
+        "correctClassification": "이차방정식",
+        "needsCorrection": false
+      },
+      {
+        "record": "D",
+        "printedExpression": "$5x^2-2x+7$",
+        "equation": false,
+        "ascendingCoefficients": {
+          "0": "7",
+          "1": "-2",
+          "2": "5"
+        },
+        "polynomialDegree": 2,
+        "recordedClassification": "방정식이 아님",
+        "correctClassification": "방정식이 아님",
+        "needsCorrection": false
+      }
+    ],
+    "allFiveOptions": [
+      {
+        "choice": 1,
+        "printed": "A → 방정식이 아님",
+        "recordActuallyWrong": false,
+        "proposedClassificationCorrect": false,
+        "validRepair": false
+      },
+      {
+        "choice": 2,
+        "printed": "B → 일차방정식",
+        "recordActuallyWrong": true,
+        "proposedClassificationCorrect": true,
+        "validRepair": true
+      },
+      {
+        "choice": 3,
+        "printed": "C → 일차방정식",
+        "recordActuallyWrong": false,
+        "proposedClassificationCorrect": false,
+        "validRepair": false
+      },
+      {
+        "choice": 4,
+        "printed": "D → 이차방정식",
+        "recordActuallyWrong": false,
+        "proposedClassificationCorrect": false,
+        "validRepair": false
+      },
+      {
+        "choice": 5,
+        "printed": "D → 일차방정식",
+        "recordActuallyWrong": false,
+        "proposedClassificationCorrect": false,
+        "validRepair": false
+      }
+    ],
+    "ARealRootOptionalCertificate": [
+      {
+        "root": "(3+1*sqrt(29))/2",
+        "constantResidual": "0",
+        "sqrt29Residual": "0"
+      },
+      {
+        "root": "(3+-1*sqrt(29))/2",
+        "constantResidual": "0",
+        "sqrt29Residual": "0"
+      }
+    ],
+    "CIntegerRoots": [
+      1,
+      11
+    ],
+    "DNoEquation": "Do not silently append=0; equation roots/existence doesnotapply toD.",
+    "exposure": {
+      "sameRetainedSession": true,
+      "currentAuthorAnswersSolutionsExposed": false,
+      "currentAuthoringCodeMetadataPrivateSourceContextRead": false,
+      "history": "이전다른학교원문9성분/변형문항들과Gachang·Gangbuk·공개엔진/정책코드검토이력이있다. Gachang원문첫페이지1~6은이전raw봉인후보았고다른문항·손글씨의부수노출을명시했다. 이번Gachang원문q07/q08이나현재새q07/q08저자답·해설·writer·private는열지않았다. 전체코퍼스/개념을처음보는pristineblind주장없음.",
+      "inputsRead": [
+        "blind\\SOLVE-BRIEF.md",
+        "blind\\student-problems.json",
+        "blind\\blind-manifest.json"
+      ],
+      "visual": "NoPNG/figure supplied. Actualstudenttext andnativeMarkdownrecordtable only; noimageinspection/fullnative/print/layoutclaim.",
+      "operations": "OnlyownPython exactinteger/Fraction arithmetic, no Node/browser/catalog/heavytests/CIM/N/API/model/DB/install/newsession/worktree/workers, no rootproductioncode read/edit."
+    },
+    "calculationReceipt": "../../own-raw-evidence-r1/own-calculation-receipt.json",
+    "studentMethod": "2015M3 다항식전개·동류항소거·방정식차수정의/완전제곱식으로이차방정식풀이·정수제곱경계와앞학년정수순서. 판별식/근과계수관계/고등인수정리/함수미분/연속성정리불필요. 코드다항식배열/isqrt열거는검산도구이지학생필수방법아님.",
+    "domainUnits": "x와b는길이/면적이아닌무단위수. q07등호없는D를방정식으로간주하지않음. q08 b는10..99자연수이며두근은모든정수(음수포함),두근서로다름. 변수분모/0나눗셈없음.",
+    "gradeApproval": false,
+    "nativeVisualApproval": false
+  },
+  "status": "solved"
+}
