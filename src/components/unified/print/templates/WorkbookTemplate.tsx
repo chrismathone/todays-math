@@ -24,6 +24,7 @@ export function WorkbookTemplate({
   options,
   splitIndex,
   itemScales,
+  itemWhitespace,
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentRed;
@@ -150,6 +151,7 @@ export function WorkbookTemplate({
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}
         splitIndex={splitIndex}
+        itemWhitespace={itemWhitespace}
         distribute={options.layoutMode === "count"}
         style={{ marginTop: 16 }}
       >

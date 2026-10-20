@@ -1,0 +1,85 @@
+인쇄 smartSpacing 저장 경로 독립 읽기 전용 감사
+기준: 2026-10-20, 현재 print-spacing-audit 작업트리의 소스 정적 조사.
+브리프: C:/Users/user/AppData/Local/Temp/claude/D--todays-math/8608c6aa-377f-4bc8-8e69-7c1ccf44fabb/scratchpad/briefs/brief-print-spacing-codex.md
+수정·커밋·설치·dev·브라우저·타입검사·테스트·푸시 미실행. 저장본 실제 데이터 및 출력물 실측은 하지 않음. 본 보고서만 생성.
+
+1. 우선 조치가 필요한 화이트리스트
+[A] src/components/unified/print/settings.ts:49-88 parsePrintOptions
+- :55 DEFAULT_PRINT_OPTIONS를 복사하고 :70 Object.keys(options)만 순회. PrintOptions 타입에 smartSpacing?: boolean만 추가하면 입력의 해당 필드는 무시되어 저장·복원·패치 과정에서 사라진다.
+- 새 필드를 기본값 객체에 넣으면 마지막 boolean 검증 분기가 검증할 수 있지만, true를 공통 기본값에 넣으면 필드 없는 옛 저장본도 true가 된다. parsePrintOptions(undefined), parsePrintOptions({}) 역시 같은 문제.
+- layoutMode는 spacing/count만, spacing은 유한수 0..150만 허용. 스마트를 기존 필드의 새 문자열로 표현하면 거절.
+- 권장 분리: 저장 파서의 필드 없음은 false 또는 undefined, 새 시험지 생성에서만 true. 선택 필드를 DEFAULT_PRINT_OPTIONS에 두지 않는 설계라면 파서에 명시적으로 읽는 처리 필요.
+[B] src/contracts/printPreset.contract.ts:31-56 printPresetOptionsSchema
+- z.strictObject에 기존 17개 필드 열거. smartSpacing 포함 요청은 현재 거절. presetContentOf(:155-169)는 옵션 전체 spread이므로 새 필드를 누락시키지 않고 오히려 strict 검증까지 보낸다.
+- 필드를 필수 boolean으로 더하면 기존 프리셋(칸 없음)이 거절된다. optional boolean 또는 옛 값 false 정규화가 필요.
+- 서버 src/lib/printPresets.ts:37 저장 payload safeParse, :154 저장 요청 safeParse 모두 영향.
+- 클라이언트 print/printPresetsClient.ts:81 단건, :89 목록 응답 스키마 검증도 영향. 서버만 수정하면 구 클라이언트는 새 필드가 있는 응답을 거절할 수 있다.
+- applyPresetTo(:173) 옵션 전체 복사라 추가 누락 없음. presetDiffers(:191)는 저장 프리셋의 키만 비교하므로 optional 새 필드가 없는 구 프리셋과 현재 smart=true의 차이를 놓칠 수 있음. 없음=false로 비교 정규화 검토.
+[C] src/contracts/arithmeticPresentation.contract.ts:18-36
+- :22 DEFAULT_PRINT_OPTIONS에 없는 키를 명시적으로 거절한 뒤 :26 parsePrintOptions 호출.
+- 타입/파서만 더하고 DEFAULT_PRINT_OPTIONS에 키가 없으면 연산 시험지 저장·복원은 실패.
+- 구 배포판에서는 새 필드가 있는 presentation을 거절한다. “옛 배포판이 모르는 칸 무시하므로 되돌림 가능”은 일반 draft 파서에는 맞지만 연산 presentation과 strict 프리셋에는 그대로 성립하지 않는다. reader-first 범위를 이 두 계약까지 검토할 것.
+- 이 계약은 arithmeticSheet.contract.ts:46 및 arithmeticV2.contract.ts:190의 optional presentation에 연결된다.
+
+2. 저장·복원 및 작업파일
+- draftStore.ts:439 parseImport -> :444 parsePrintOptions(value.printOptions, legacy columns/answers).
+- :464 parseEnvelope -> :489 parseImport. localStorage/복구 캐시의 모든 인쇄 설정은 이 파서를 거침.
+- :661 저장 직전 current.printOptions 재파싱. :869 setPrintOptions는 기존 옵션과 patch를 합쳐 재파싱. 파서에서 새 키를 모르면 첫 변경/저장 때도 사라짐.
+- :574 freshDraft의 기본 프리셋 seed도 parsePrintOptions를 통과. :921 importDraft도 parseImport 사용.
+- :735 hydrate의 envelope 읽기, :747 구 단일 draft 읽기도 위 경로 사용.
+- :701/:763 JSON.stringify(envelope)는 옵션 하위 필드를 열거하지 않음. 파서에서 살아남은 필드는 보존.
+- UnifiedWorkspace.tsx:1317-1327 작업파일 내보내기는 printOptions 객체 전체를 직렬화. 별도 하위 화이트리스트 없음. 불러오기는 importDraft -> parseImport이므로 중앙 파서 지원이 핵심.
+- privateDraftStore.ts:33 cloud 문서 -> parseImport, :171/:337 externalize({...draft, version:1})로 저장. 여기에도 인쇄 하위 필드 재구성 없음.
+- privateWorkspace.contract.ts:64-67 saveDocumentSchema의 바깥은 strict이나 payload는 z.record(string, unknown). payload 내부 smartSpacing 자체를 거절하는 목록은 아님.
+- privateCloudClient.ts:475 externalize/:517 materialize는 일반 객체/자산 변환 경로. 새 옵션 전용 whitelist 발견 안 됨.
+- examPublication/freeze.ts:52 printOptions z.unknown().optional(), :150 그대로 캡처. 별도 새 필드 거절 없음.
+
+3. 새 시험지 기본값 호출부와 저장본 해석 분리
+공통 기본값: print/types.ts:146 DEFAULT_PRINT_OPTIONS (현재 spacing:18, layoutMode:spacing).
+실제 새 초안:
+- draftStore.ts:97 blankDraft -> :105 DEFAULT spread; :553 초기 snapshot.
+- :571 freshDraft -> blankDraft, 기본 프리셋 있으면 :574 저장 옵션 파싱으로 덮음.
+- :885 createDraft, :730/:762/:778 초기화/복구 대체 초안, :680 활성 초안 삭제 후 생성도 freshDraft.
+- :887 seedNewSheet는 손대지 않은 빈 초안에만 기본 프리셋을 적용.
+- UnifiedWorkspace.tsx:537-546 seedFromDefault가 프리셋 options/head를 seedNewSheet로 전달. 구 기본 프리셋에 smartSpacing이 없으면 스마트 아님으로 해석되어야 함; 새 시험지라는 이유로 저장 양식을 강제로 true로 덮지 않을 것.
+독립 출력 초기값:
+- WorksheetEditor.tsx:155 localOptions DEFAULT spread(외부 printOptions 없을 때).
+- EnglishExamBuilder.tsx:40, ExamPracticeWorkspace.tsx:88, test/SavedRetryPanel.tsx:123도 DEFAULT spread.
+- arithmeticPresentation.contract.ts:57-72 defaultArithmeticPresentation도 DEFAULT spread. 호출: ArithmeticWorkflow.tsx:77, GradeArithmeticWorkbench.tsx:134/:384, LegacyArithmeticWorkbench.tsx:172/:391.
+- print/PrintOptionsPanel.tsx:390 “초기화”도 DEFAULT spread. 새 시험지 정책과 초기화 정책을 구분해서 결정 필요.
+개발 fixture에도 DEFAULT 사용 다수(전체 검색 확인): dev/workspace-alignment/previewData.ts, choice-layout/ChoiceLayoutClient.tsx, exam-builder-output/ExamBuilderOutput.tsx, exam-output-hifi/fixtures.ts 및 parts.tsx, print-color-hifi/fixtures.ts, question-formats/QuestionFormatsFixture.tsx.
+중앙 저장 파서 호출부(운영 소스 검색 결과 전부):
+- draftStore.ts:444 가져오기/복원
+- draftStore.ts:574 저장 기본 양식으로 새 초안
+- draftStore.ts:661 저장 직전
+- draftStore.ts:869 옵션 패치
+- arithmeticPresentation.contract.ts:26 연산 presentation 검증
+따라서 “DEFAULT true + 모든 파서 공통 spread”는 금지. 새 생성 helper 또는 생성 지점의 명시 true와 reader의 없음=false를 별도로 마련해야 한다.
+
+4. 프리셋 글
+print/printPresetText.ts:34 optionsLine은 표시할 항목을 명시적으로 배열로 구성.
+현재 count일 때 1단당 N문항만 추가(:41), spacing 값/단계 자체와 스마트 표시는 없음. 새 필드는 저장되어도 요약 글에 자동으로 나타나지 않음. 스마트 표시와 수동 단계 표시를 원하면 별도 분기 필요.
+headLine은 머리 정보만 다루므로 새 인쇄 옵션과 무관.
+단순 출력 요약 누락이며 직렬화 손실은 아님.
+
+5. HWPX / PDF
+WorksheetEditor.tsx:277-286 exportPreviewHwpx/document 또는 exportPreviewPdf/document로 렌더링된 동일 문서 전달. 두 클라이언트 모두 PrintOptions를 API에 보내지 않음.
+HWPX:
+- lib/export/hwpxClient.ts:5 exportPreviewHwpx -> collectHwpxLayout(root) -> {title,pages} 요청.
+- hwpxLayout.ts:144 숨긴 원본 복제, :171 객체 좌표 계산, :428-434 body columns/gap 수집.
+- hwpxServer.ts:7-40 객체 z.object 및 :55-80 HwpxPayloadSchema는 명시 필드 목록; 알려지지 않은 필드는 strip된다(파일 내 주석도 명시). 현재 좌표 x/y/w/h 등으로 배치 전달.
+- api/exports/hwpx/route.ts:17 safeParse -> buildHwpxParts.
+- smartSpacing boolean 자체는 이 프로토콜에 불필요. 지면 배치가 DOM 좌표로 반영되는 경로. 만약 새 몫/문항 여백 메타를 별도 추가해 writer에 전달한다면 수집기만 바꿔서는 안 되고 이 schema와 하위 writer도 함께 검토해야 함.
+- 실제 HWPX writer 결과가 변경된 여백을 재현하는지는 정적 조사만으로 보장하지 않음.
+PDF:
+- pdfClient.ts:cloneNode(true), CSS 링크/스타일 및 HTML 전체 수집, 요청은 {title,html,cssUrls,cssText}. 기존 물리 페이지 단위 배치.
+- pdfServer.ts:25 PdfPayloadSchema도 위 필드 z.object, :87 HTML/CSS 문서 생성. api/exports/pdf/route.ts:16 safeParse.
+- 새 PrintOptions 필드를 재파싱하거나 whitelist로 거절하는 경로 없음. DOM/CSS 반영이 선행되어야 함. API에 smartSpacing을 별도 보내면 schema에서 strip되며 동작에 쓰이지 않음.
+
+6. 구현 담당자용 확인 항목(이번 감사에서는 실행 안 함)
+- 일반 draft: 필드 없음 false/undefined, true/false 왕복, 잘못된 타입 거절, 작업파일/클라우드 복원.
+- 새 초안: 기본 프리셋 없음 true; 구 기본 프리셋은 기존 배치; 새 프리셋의 true/false 보존.
+- strict 프리셋과 연산 presentation: 새 키 허용 및 구 저장본 칸 없음 허용; 구 reader 호환은 일반 draft와 구분.
+- presetDiffers의 없음 vs false 정규화, optionsLine 스마트 표시.
+- unit/printPresetContract.test.ts:49의 DEFAULT_PRINT_OPTIONS 키와 프리셋 스키마 키 일치 검사에 새 필드 정책 반영.
+- 실제 PDF/HWPX 출력의 배치 일치는 별도 렌더링/실물 검증 필요.

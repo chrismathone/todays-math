@@ -128,6 +128,7 @@ export function WorksheetPrint({
           startingNumber={page.indices[0] + 1}
           splitIndex={page.splitIndex}
           itemScales={page.scales}
+          itemWhitespace={page.whitespace}
         />
       ),
     })),

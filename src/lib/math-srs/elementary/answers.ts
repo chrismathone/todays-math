@@ -247,6 +247,15 @@ function sameList(expected: Quantity[] | null, actual: Quantity[] | null) {
 export function getCourseProblemInput(
   problem: AnswerSource,
 ): CourseProblem["input"] {
+  if (courseAnswerIsList(problem)) {
+    const unit = quantityList(problem.answer)?.[0]?.unit?.name;
+    return {
+      mode: "text",
+      label: unit ? `나의 답 (${unit})` : "나의 답",
+      placeholder: "예: 1, 2, 3",
+      help: "답을 모두 쓰고 쉼표(,)로 나눠 주세요.",
+    };
+  }
   const expected = parseCourseAnswerQuantity(problem.answer);
   if (!expected || needsComparison(problem)) {
     return {

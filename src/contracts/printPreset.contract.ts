@@ -27,7 +27,7 @@ export const printPresetNameSchema = z
     `양식 이름은 ${PRINT_PRESET_NAME_MAX}자까지입니다.`,
   );
 
-/** 서식 설정 — `PrintOptions` 의 칸 전부(빠진 칸 · 모르는 칸 모두 거절). 허용 값은 `parsePrintOptions` 와 같다. */
+/** 서식 설정 — 기존 필수 칸과 알려지지 않은 칸은 거절. smartSpacing만 옛 저장본에 없을 수 있다. */
 export const printPresetOptionsSchema = z.strictObject({
   template: z.enum([
     "pyeongga",
@@ -42,6 +42,7 @@ export const printPresetOptionsSchema = z.strictObject({
   layoutMode: z.enum(["spacing", "count"]),
   problemsPerColumn: z.number().int().min(2).max(4),
   spacing: z.number().finite().min(0).max(150),
+  smartSpacing: z.boolean().optional(),
   showAnswers: z.boolean(),
   quickAnswerOnly: z.boolean(),
   showDate: z.boolean(),
@@ -189,7 +190,9 @@ export function presetDiffers(
   meta: PrintMeta,
 ): boolean {
   const now = presetContentOf(options, meta);
+  if (!!preset.options.smartSpacing !== !!options.smartSpacing) return true;
   for (const key of Object.keys(preset.options) as (keyof PrintOptions)[]) {
+    if (key === "smartSpacing") continue;
     const a = preset.options[key];
     const b = now.options[key];
     const same =

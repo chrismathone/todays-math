@@ -95,7 +95,7 @@ describe("elementary course curriculum and generation", () => {
           expect(problem.content.trim()).not.toBe("");
           expect(problem.answer.trim()).not.toBe("");
           expect(problem.solution.trim()).not.toBe("");
-          const automatic = problem.input.mode === "number";
+          const automatic = problem.input.mode !== "self-check";
           expect(gradeCourseAnswer(problem, original.answer)).toBe(
             automatic ? true : null,
           );

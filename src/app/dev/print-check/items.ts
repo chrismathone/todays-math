@@ -99,6 +99,23 @@ export const ITEMS: PrintCheckItem[] = [
       "분수·식·긴 답이 섞인 시험지에서 정답·해설 포함과 정답만을 각각 인쇄한다. 영어 구조화 정답·근거 지면은 기존 경로를 유지한다.",
     changedOn: "2026-10-20",
   },
+  {
+    id: "question-smart-spacing-20261020",
+    title: "문항별 풀이 여백 균등 배분 · 스마트 세로 배치",
+    changed:
+      "여백을 문항마다 같은 몫으로 나누고, 스마트는 순서를 유지하며 최소 쪽 수 안에서 단 경계를 고른다. 최소·좁게는 좁게 16으로 합치고 새 시험지만 스마트가 기본이다.",
+    look: "정통·모던 각각 1단·2단, 짧은 문항과 긴 문항을 섞은 25문항을 출력한다. 첫 문항 상단 정렬, 단 안의 마지막 문항까지 같은 풀이 여백, 번호 순서·누락·잘림, 미리보기/PDF와 실물의 쪽 나눔을 확인한다. 여백 상한 뒤에 남은 종이 공간은 풀이 몫과 구분한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-print-spacing-codex.md",
+      "docs/planning/tracks/reports/print-spacing-20261020/report.md",
+    ],
+    needs:
+      "좁게·보통·넓게·최대·스마트, 기존 spacing 4 저장본, 마지막 단에 한 문항인 시험지",
+    scale: "공통 WorksheetPrint 여섯 템플릿의 문제지",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
   ...(
     [
       ["H1", "H1 (기본)", "명조 이름과 얇은 선, 나란한 점수·맞힌 수의 균형"],

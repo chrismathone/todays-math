@@ -104,6 +104,7 @@ describe("Mathgen print spacing presets", () => {
         options={{
           ...DEFAULT_PRINT_OPTIONS,
           spacing: 26,
+          smartSpacing: false,
           layoutMode: "spacing",
         }}
         meta={DEFAULT_PRINT_META}
@@ -121,14 +122,16 @@ describe("Mathgen print spacing presets", () => {
       screen.queryByRole("spinbutton", { name: "문항 간 여백 (px)" }),
     ).not.toBeInTheDocument();
     for (const [label, spacing] of [
-      ["최소", 4],
       ["좁게", 16],
       ["보통", 32],
       ["넓게", 56],
       ["최대", 88],
     ] as const) {
       fireEvent.click(within(group).getByRole("button", { name: label }));
-      expect(onOptions).toHaveBeenLastCalledWith({ spacing });
+      expect(onOptions).toHaveBeenLastCalledWith({
+        spacing,
+        smartSpacing: false,
+      });
     }
     fireEvent.click(
       within(group).getByRole("button", { name: "문항 수 지정" }),

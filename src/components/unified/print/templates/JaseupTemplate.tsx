@@ -25,6 +25,7 @@ export function JaseupTemplate({
   options,
   splitIndex,
   itemScales,
+  itemWhitespace,
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentGold;
@@ -182,6 +183,7 @@ export function JaseupTemplate({
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}
         splitIndex={splitIndex}
+        itemWhitespace={itemWhitespace}
         distribute={options.layoutMode === "count"}
       >
         {problems.map(renderItem)}
