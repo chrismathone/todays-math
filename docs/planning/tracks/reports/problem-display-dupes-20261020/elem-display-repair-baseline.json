@@ -1,11 +1,11 @@
 {
  "purpose": "원장님 2026-10-20 지면 전수 검사 — 발문의 식을 다시 그린 세로셈 · 정답을 보여 준 그림 · 중복 식 줄 · 깨진 TeX 를 고친 초등 문형의 승인 목록. elementaryReinforcement20261018 문지기가 r3 승인 위에 이 층을 얹는다.",
- "baseCommit": "740ff82b0",
+ "baseCommit": "1b3f05e54",
  "agreedWith": "Codex gpt-6-astra xhigh 검토(2026-10-20) — 문형별 결론은 display-survey/codex/reply-engine.md(저장소 밖)",
  "sourceSha256": {
   "src/lib/elementary/g3.ts": "e7d4946e32dd2c48dc3de870d5e4321fed63ec307bd26784112f1aaa3b143e08",
   "src/lib/elementary/g4.ts": "37a2deed7efb70d9aadeb77baadc1f2ee467e99236afd69393ef7d9684d8df05",
-  "src/lib/elementary/g5.ts": "f39f55002a744e67064a107d258c56024b456ef2d65cb20031b597bbbcddf1cc"
+  "src/lib/elementary/g5.ts": "4a77feb0a7a0ec4d7e596afd93114380e3c2f46b00c4e3c90b73d412d8877c87"
  },
  "changes": [
   {
@@ -2833,7 +2833,7 @@
      "orderIndex": 201,
      "content": "$215\\times66$ 의 곱은 짝수인가? '예' 또는 '아니요'로 답하시오.",
      "answer": "예",
-     "solution": "$215\\times66=14190$ 이고 $14190$는 짝수입니다.",
+     "solution": "$215\\times66=14190$ 이고 $14190$은 짝수입니다.",
      "figureSpec": {
       "version": "elem-1",
       "kind": "columnOp",
@@ -2844,7 +2844,7 @@
      "formId": "10"
     }
    ],
-   "afterRowSha256": "4e9c4249686ecfdefd1c0da8674179acc4d4dbc0b23910a34bf86c6183bb8bee"
+   "afterRowSha256": "f2474364f544ecc7c301a6d4cef03e33cebf59e8ae3c9d3525e1117f92dcd4a6"
   },
   {
    "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|10",
@@ -4203,7 +4203,7 @@
      "chapter": "2-3 소수의 덧셈과 뺄셈",
      "section": "2-3-7 소수 두 자리 수의 뺄셈",
      "orderIndex": 234,
-     "content": "$7.2$과 $4.9$의 차는 얼마인가?",
+     "content": "$7.2$와 $4.9$의 차는 얼마인가?",
      "answer": "$2.3$",
      "solution": "$7.2-4.9=2.3$ 입니다.",
      "figureSpec": {
@@ -4216,7 +4216,7 @@
      "formId": "09"
     }
    ],
-   "afterRowSha256": "8f1a76dee0498fd674d572bb416a881e0877dcb0c00b6928b47b04ca00b30d3e"
+   "afterRowSha256": "15b808243dcd07f450d1138ab2c97574573eb7db6556afe4a27769362caddcf6"
   },
   {
    "familyKey": "elem:초4|2-3-7 소수 두 자리 수의 뺄셈|09",
