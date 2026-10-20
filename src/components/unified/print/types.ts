@@ -84,6 +84,7 @@ export interface PrintTemplateProps {
   splitIndex?: number;
   /** Scale only a single card taller than its available page; never clip content. */
   itemScales?: number[];
+  itemWhitespace?: number[];
   /**
    * 측정 모드 — 화면 밖 측정 viewport 에서만 set. 값이 있으면 템플릿은 헤더/푸터/
    * A4 chrome 없이 *본문만* 1단 flow 로, columnWidthPx 폭으로 렌더하고 각 문항
@@ -106,8 +107,10 @@ export interface PrintOptions {
   layoutMode: "spacing" | "count";
   /** count 모드 — 1단(컬럼)당 문항 수 (2 | 3 | 4). 2단이면 페이지당 ×2. */
   problemsPerColumn: number;
-  /** 문항 간 세로 여백 (px). 0~150. spacing 모드에서만 사용. */
+  /** 문항 아래 최소 풀이 여백 (px). 0~150. spacing 모드에서만 사용. */
   spacing: number;
+  /** Additive storage field; absent in saved settings means false. */
+  smartSpacing?: boolean;
   /** 정답 + 해설 페이지 포함 여부. */
   showAnswers: boolean;
   /** showAnswers true 일 때 — 해설 생략하고 빠른 정답만. */
@@ -147,9 +150,10 @@ export const DEFAULT_PRINT_OPTIONS: PrintOptions = {
   template: "jeongtong", // 한국 학교 시험지 표 양식 — 가장 일반적
   color: "#1B2A4E", // navy — jeongtong / modern 의 default accent
   columns: 1, // jeongtong 기본 1단
-  layoutMode: "spacing", // 기본은 여백 직접 지정 (기존 동작 유지)
+  layoutMode: "spacing", // 새 시험지는 스마트 여백; 저장본의 칸 없음은 파서가 false로 읽는다.
   problemsPerColumn: 3, // count 모드 기본 — 1단당 3문항
   spacing: 18,
+  smartSpacing: false,
   showAnswers: false,
   quickAnswerOnly: false,
   showDate: true,

@@ -52,7 +52,7 @@ export function parsePrintOptions(
 ): PrintOptions {
   if (value !== undefined && !record(value))
     throw new Error("Invalid print options");
-  const options = { ...DEFAULT_PRINT_OPTIONS };
+  const options = { ...DEFAULT_PRINT_OPTIONS, smartSpacing: false };
   if (legacy.columns === 1 || legacy.columns === 2)
     options.columns = legacy.columns;
   if (typeof legacy.answers === "boolean") options.showAnswers = legacy.answers;
