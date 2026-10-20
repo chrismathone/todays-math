@@ -1,0 +1,9 @@
+﻿import fs from 'node:fs';import path from 'node:path';import {inverseEquationDegree as f} from 'C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/examStudy/families/middle/inverseEquationDegree.ts';
+const P=path.dirname(process.argv[1]);const checks:any[]=[];const ck=(name:string,pass:boolean)=>checks.push({name,pass});const domain:any=f.paramDomain;const ds=domain.enumerate();ck('finite-size26',domain.size===26&&ds.length===26&&new Set(ds.map(JSON.stringify)).size===26);
+let excluded=0;
+for(const p of [2,3])for(const q of [1,2])for(const r of [2,4])for(const s of [-2,1])for(const t of [1,5]){
+ const params={p,q,r,s,t}; const L=r*(q-1)-p-s; if(L!==0)continue;excluded++;const d=f.generate(0,0);const sx=s===1?'+x':'-2x';const content=`다음 등식이 $x$에 대한 일차방정식이 되도록 하는 상수 $a$의 값을 구하시오.\n\n$(ax-${p})(x+${q})=ax+${r}x^2${sx}+${t}$`;ck('exclude-degenerate/'+JSON.stringify(params),!f.verify({...d,content,parameters:params,answer:String(r)}).valid&&p*q+t!==0);
+}ck('six-degenerate-not-identities',excluded===6);
+for(let n=0;n<26;n++){const d=f.generate(0,n),before=JSON.stringify(d);f.verify(d);ck(`${n}/verify-no-mutation`,JSON.stringify(d)===before);const params={...d.parameters};ck(`${n}/domain-exact`,ds.some((p:any)=>JSON.stringify(p)===JSON.stringify(params)));for(const key of ['p','q','r','s','t'])for(const value of [0,-1,1.5,'2',null,Infinity]) ck(`${n}/malformed-${key}-${value}`,!f.verify({...d,parameters:{...params,[key]:value}}).valid)}
+for(const v of [null,{},[],{content:12},{parameters:null}])ck('malformed-draft/'+JSON.stringify(v),!f.verify(v as any).valid);
+fs.writeFileSync(path.join(P,'own-extra-results.json'),JSON.stringify({checks,counts:{unique:checks.length,passed:checks.filter(x=>x.pass).length,failed:checks.filter(x=>!x.pass).length}},null,2));console.log(JSON.stringify({count:checks.length,failures:checks.filter(x=>!x.pass)}));

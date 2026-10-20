@@ -62,7 +62,7 @@ function make({ p, q, r, s, t }: Parameters): ExamStudyDraft {
   return {
     content: `다음 등식이 $x$에 대한 일차방정식이 되도록 하는 상수 $a$의 값을 구하시오.\n\n$${equation}$`,
     answer: String(r),
-    solution: `왼쪽을 전개하면 $ax^2+(${term(q, "a")}-${p})x-${p * q}$이다. 오른쪽의 항을 모두 왼쪽으로 이항하면 $(a-${r})x^2+(${term(q, "a")}-${p}-a-(${s}))x-${p * q + t}=0$이다.\n\n일차방정식이 되려면 이차항의 계수가 $0$이어야 하므로 $a-${r}=0$, 즉 $a=${r}$이다. 이 값을 대입하면 $${term(linear, "x")}-${p * q + t}=0$이고 일차항의 계수 $${linear}$은 $0$이 아니다. 따라서 실제로 일차방정식이 된다. $a$가 $${r}$과 다르면 이차항이 남으므로 조건을 만족하는 값은 $${r}$ 하나뿐이다.`,
+    solution: `왼쪽을 전개하면 $ax^2+(${term(q, "a")}-${p})x-${p * q}$이다. 오른쪽의 항을 모두 왼쪽으로 이항하면 $(a-${r})x^2+(${term(q, "a")}-${p}-a-(${s}))x-${p * q + t}=0$이다.\n\n일차방정식이 되려면 이차항의 계수가 $0$이어야 하므로 $a-${r}=0$, 즉 $a=${r}$이다. 이 값을 대입하면 $${term(linear, "x")}-${p * q + t}=0$이다. 여기서 $x$의 계수는 $0$이 아니므로 실제로 일차방정식이 된다. 다른 $a$의 값에서는 이차항이 남으므로 조건을 만족하는 값은 $${r}$ 하나뿐이다.`,
     parameters: { p, q, r, s, t },
     questionType: "단답형",
     difficulty: "기본",
@@ -81,7 +81,7 @@ const sameParameters = (a: CanonicalParams, b: Parameters) =>
 /** Internal study factory. Public selection stays held before generation. */
 export const inverseEquationDegree: ExamStudyFamily = {
   id: "study-middle-inverse-equation-degree",
-  version: "1",
+  version: "2-student-wording",
   title: "일차방정식이 되는 계수 역산",
   course: "중3",
   unitIds: ["중3|이차방정식의 풀이"],

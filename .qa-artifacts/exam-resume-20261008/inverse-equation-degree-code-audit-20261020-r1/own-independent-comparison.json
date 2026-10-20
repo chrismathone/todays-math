@@ -1,0 +1,1614 @@
+{
+  "checks": [
+    {
+      "name": "root/copy/src/lib/examStudy/families/middle/inverseEquationDegree.ts",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "root/copy/src/lib/examStudy/families/middle/index.ts",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "root/copy/src/lib/examStudy/releaseEligibility.ts",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "root/copy/src/lib/examStudy/curriculumEligibility.ts",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "root/copy/src/lib/examStudy/requirements.ts",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "root/copy/src/contracts/examStudy.contract.ts",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "root/copy/src/__tests__/unit/examStudyInverseEquationDegree.test.ts",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "raw-sealed-sha",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "r2-course",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "1/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "1/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "1/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "1/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "1/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "1/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-2)x-2",
+        "(a-2)x^2+(a-2-a-(1))x-3=0",
+        "-3x-3=0"
+      ]
+    },
+    {
+      "name": "1/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "1/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "2/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "2/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "2/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "2/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "2/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "2/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-2)x-2",
+        "(a-2)x^2+(a-2-a-(1))x-7=0",
+        "-3x-7=0"
+      ]
+    },
+    {
+      "name": "2/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "2/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "3/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "3/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "3/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "3/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "3/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "3/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-2)x-2",
+        "(a-4)x^2+(a-2-a-(1))x-3=0",
+        "-3x-3=0"
+      ]
+    },
+    {
+      "name": "3/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "3/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "4/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "4/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "4/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "4/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "4/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "4/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-2)x-2",
+        "(a-4)x^2+(a-2-a-(1))x-7=0",
+        "-3x-7=0"
+      ]
+    },
+    {
+      "name": "4/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "4/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "5/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "5/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "5/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "5/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "5/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "5/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-2)x-4",
+        "(a-2)x^2+(2a-2-a-(-2))x-5=0",
+        "2x-5=0"
+      ]
+    },
+    {
+      "name": "5/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "5/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "6/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "6/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "6/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "6/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "6/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "6/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-2)x-4",
+        "(a-2)x^2+(2a-2-a-(-2))x-9=0",
+        "2x-9=0"
+      ]
+    },
+    {
+      "name": "6/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "6/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "7/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "7/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "7/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "7/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "7/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "7/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-2)x-4",
+        "(a-2)x^2+(2a-2-a-(1))x-5=0",
+        "-x-5=0"
+      ]
+    },
+    {
+      "name": "7/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "7/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "8/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "8/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "8/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "8/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "8/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "8/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-2)x-4",
+        "(a-2)x^2+(2a-2-a-(1))x-9=0",
+        "-x-9=0"
+      ]
+    },
+    {
+      "name": "8/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "8/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "9/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "9/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "9/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "9/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "9/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "9/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-2)x-4",
+        "(a-4)x^2+(2a-2-a-(-2))x-5=0",
+        "4x-5=0"
+      ]
+    },
+    {
+      "name": "9/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "9/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "10/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "10/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "10/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "10/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "10/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "10/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-2)x-4",
+        "(a-4)x^2+(2a-2-a-(-2))x-9=0",
+        "4x-9=0"
+      ]
+    },
+    {
+      "name": "10/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "10/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "11/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "11/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "11/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "11/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "11/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "11/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-2)x-4",
+        "(a-4)x^2+(2a-2-a-(1))x-5=0",
+        "x-5=0"
+      ]
+    },
+    {
+      "name": "11/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "11/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "12/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "12/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "12/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "12/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "12/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "12/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-2)x-4",
+        "(a-4)x^2+(2a-2-a-(1))x-9=0",
+        "x-9=0"
+      ]
+    },
+    {
+      "name": "12/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "12/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "13/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "13/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "13/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "13/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "13/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "13/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-3)x-3",
+        "(a-2)x^2+(a-3-a-(-2))x-4=0",
+        "-x-4=0"
+      ]
+    },
+    {
+      "name": "13/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "13/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "14/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "14/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "14/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "14/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "14/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "14/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-3)x-3",
+        "(a-2)x^2+(a-3-a-(-2))x-8=0",
+        "-x-8=0"
+      ]
+    },
+    {
+      "name": "14/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "14/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "15/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "15/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "15/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "15/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "15/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "15/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-3)x-3",
+        "(a-2)x^2+(a-3-a-(1))x-4=0",
+        "-4x-4=0"
+      ]
+    },
+    {
+      "name": "15/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "15/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "16/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "16/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "16/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "16/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "16/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "16/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-3)x-3",
+        "(a-2)x^2+(a-3-a-(1))x-8=0",
+        "-4x-8=0"
+      ]
+    },
+    {
+      "name": "16/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "16/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "17/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "17/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "17/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "17/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "17/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "17/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-3)x-3",
+        "(a-4)x^2+(a-3-a-(-2))x-4=0",
+        "-x-4=0"
+      ]
+    },
+    {
+      "name": "17/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "17/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "18/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "18/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "18/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "18/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "18/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "18/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-3)x-3",
+        "(a-4)x^2+(a-3-a-(-2))x-8=0",
+        "-x-8=0"
+      ]
+    },
+    {
+      "name": "18/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "18/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "19/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "19/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "19/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "19/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "19/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "19/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-3)x-3",
+        "(a-4)x^2+(a-3-a-(1))x-4=0",
+        "-4x-4=0"
+      ]
+    },
+    {
+      "name": "19/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "19/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "20/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "20/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "20/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "20/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "20/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "20/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(a-3)x-3",
+        "(a-4)x^2+(a-3-a-(1))x-8=0",
+        "-4x-8=0"
+      ]
+    },
+    {
+      "name": "20/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "20/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "21/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "21/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "21/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "21/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "21/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "21/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-3)x-6",
+        "(a-2)x^2+(2a-3-a-(-2))x-7=0",
+        "x-7=0"
+      ]
+    },
+    {
+      "name": "21/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "21/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "22/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "22/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "22/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "22/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "22/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "22/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-3)x-6",
+        "(a-2)x^2+(2a-3-a-(-2))x-11=0",
+        "x-11=0"
+      ]
+    },
+    {
+      "name": "22/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "22/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "23/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "23/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "23/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "23/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "23/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "23/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-3)x-6",
+        "(a-2)x^2+(2a-3-a-(1))x-7=0",
+        "-2x-7=0"
+      ]
+    },
+    {
+      "name": "23/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "23/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "24/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "24/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "24/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "24/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "24/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "24/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-3)x-6",
+        "(a-2)x^2+(2a-3-a-(1))x-11=0",
+        "-2x-11=0"
+      ]
+    },
+    {
+      "name": "24/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "24/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "25/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "25/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "25/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "25/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "25/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "25/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-3)x-6",
+        "(a-4)x^2+(2a-3-a-(-2))x-7=0",
+        "3x-7=0"
+      ]
+    },
+    {
+      "name": "25/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "25/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "26/payload-digest",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "26/metadata-only",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "26/answer-vs-independent-seal",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "26/params-from-own-printed-read",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "26/root-exact",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "26/all-three-solution-formulas",
+      "pass_": true,
+      "detail": [
+        "ax^2+(2a-3)x-6",
+        "(a-4)x^2+(2a-3-a-(-2))x-11=0",
+        "3x-11=0"
+      ]
+    },
+    {
+      "name": "26/nonzero-and-unique-statement",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "26/no-advanced-required-method",
+      "pass_": true,
+      "detail": null
+    },
+    {
+      "name": "full-domain-32-minus6",
+      "pass_": true,
+      "detail": null
+    }
+  ],
+  "counts": {
+    "uniqueAssertions": 218,
+    "passed": 218,
+    "failed": 0
+  },
+  "rows": [
+    {
+      "n": 1,
+      "studentDigest": "d476ebbb6279fce561f5bca97e4da1be797b72ae829c1820d8eafa2d1579f40e",
+      "a": "2",
+      "L": -3,
+      "C": -3,
+      "x": "-1",
+      "studentSolutionSHA256": "83a2f4384fae30b90e8cf8235820cac46500d6ab2f3d2faa0d4fa2d3c8782a87",
+      "formulas": [
+        "ax^2+(a-2)x-2",
+        "(a-2)x^2+(a-2-a-(1))x-3=0",
+        "-3x-3=0"
+      ]
+    },
+    {
+      "n": 2,
+      "studentDigest": "2cdfe19d0a0fdf18bedf146aacb7ac85d671a63aa91bed93aca1575735ac8238",
+      "a": "2",
+      "L": -3,
+      "C": -7,
+      "x": "-7/3",
+      "studentSolutionSHA256": "e9e5ff9f814c6d129c7a966aa0244a68c2516860b12ab0262b5a0d470f4a2e37",
+      "formulas": [
+        "ax^2+(a-2)x-2",
+        "(a-2)x^2+(a-2-a-(1))x-7=0",
+        "-3x-7=0"
+      ]
+    },
+    {
+      "n": 3,
+      "studentDigest": "153cc34c62259a859445b7cce919713012784863aaf46f4fdbe972851efcb668",
+      "a": "4",
+      "L": -3,
+      "C": -3,
+      "x": "-1",
+      "studentSolutionSHA256": "f93d5ec7a626c7aaed2e3c0b0d0f1c00bb72a8a2bffd5173118eba63da514899",
+      "formulas": [
+        "ax^2+(a-2)x-2",
+        "(a-4)x^2+(a-2-a-(1))x-3=0",
+        "-3x-3=0"
+      ]
+    },
+    {
+      "n": 4,
+      "studentDigest": "00fd0f690cfa269eaa0c5370284c9ef5d768af5e356d14ba12775700ac42a920",
+      "a": "4",
+      "L": -3,
+      "C": -7,
+      "x": "-7/3",
+      "studentSolutionSHA256": "d66cb7d7d31b7cac3c5b1d7567847b97a05b691a39ae18973a27378e42004327",
+      "formulas": [
+        "ax^2+(a-2)x-2",
+        "(a-4)x^2+(a-2-a-(1))x-7=0",
+        "-3x-7=0"
+      ]
+    },
+    {
+      "n": 5,
+      "studentDigest": "635eec2f5287f6c9b35b9e895ac8e9661ff51ed1d2a0dc2ecaff50646c7eda07",
+      "a": "2",
+      "L": 2,
+      "C": -5,
+      "x": "5/2",
+      "studentSolutionSHA256": "6e102d6c5b592450eb09130f84ffe023e75f5d678e89a5f586337ee9ac020f3e",
+      "formulas": [
+        "ax^2+(2a-2)x-4",
+        "(a-2)x^2+(2a-2-a-(-2))x-5=0",
+        "2x-5=0"
+      ]
+    },
+    {
+      "n": 6,
+      "studentDigest": "e447a6adb3a4ee98adb3148a5a6149f9e9d45b267bf87a29101f4c8e6482c4bd",
+      "a": "2",
+      "L": 2,
+      "C": -9,
+      "x": "9/2",
+      "studentSolutionSHA256": "86e6fcc7241bc3691301827c8c73f603ae275330651b4c40e8a4b9667f678ec5",
+      "formulas": [
+        "ax^2+(2a-2)x-4",
+        "(a-2)x^2+(2a-2-a-(-2))x-9=0",
+        "2x-9=0"
+      ]
+    },
+    {
+      "n": 7,
+      "studentDigest": "d706d54c5ff79e1e164890d773905e449febd894c61b9e0d1e7cdf7362f47915",
+      "a": "2",
+      "L": -1,
+      "C": -5,
+      "x": "-5",
+      "studentSolutionSHA256": "54ddf5ad2140265bce427cd92d580d66f0d796574e039524ba4ef99552423aa9",
+      "formulas": [
+        "ax^2+(2a-2)x-4",
+        "(a-2)x^2+(2a-2-a-(1))x-5=0",
+        "-x-5=0"
+      ]
+    },
+    {
+      "n": 8,
+      "studentDigest": "ba2f2898b93c10c3b741aff997ccdc138b8b0685c417a28cf183d2eabe991653",
+      "a": "2",
+      "L": -1,
+      "C": -9,
+      "x": "-9",
+      "studentSolutionSHA256": "4115cdbe15a3ca85ef5d419047ec17974d820b1fda5e658b0d2126381d9a59a4",
+      "formulas": [
+        "ax^2+(2a-2)x-4",
+        "(a-2)x^2+(2a-2-a-(1))x-9=0",
+        "-x-9=0"
+      ]
+    },
+    {
+      "n": 9,
+      "studentDigest": "fd2024c34ca20cfd44ee6f654d2e3936507f533f38c14b2d898604dda833b753",
+      "a": "4",
+      "L": 4,
+      "C": -5,
+      "x": "5/4",
+      "studentSolutionSHA256": "778ba308cfa4fd985f906124f84bfc5071e8f26a99cbea349e1a4a8cab5307d7",
+      "formulas": [
+        "ax^2+(2a-2)x-4",
+        "(a-4)x^2+(2a-2-a-(-2))x-5=0",
+        "4x-5=0"
+      ]
+    },
+    {
+      "n": 10,
+      "studentDigest": "00eaa580a73110224ad8b31bb3544ace4206f71e44d8773447e768563c41e32f",
+      "a": "4",
+      "L": 4,
+      "C": -9,
+      "x": "9/4",
+      "studentSolutionSHA256": "4e0df157bc356b86f4fd47abd14660e0c7d6fba4b4ea88cb17853fd954c9938f",
+      "formulas": [
+        "ax^2+(2a-2)x-4",
+        "(a-4)x^2+(2a-2-a-(-2))x-9=0",
+        "4x-9=0"
+      ]
+    },
+    {
+      "n": 11,
+      "studentDigest": "05db7db8636f9ea0852cbd5f52ef853d32fc5358182e19d25a1d48b06c3e6a02",
+      "a": "4",
+      "L": 1,
+      "C": -5,
+      "x": "5",
+      "studentSolutionSHA256": "7c4b93199cea6addd85b205fcbfd6a8694c164b526194277331c7109047ffede",
+      "formulas": [
+        "ax^2+(2a-2)x-4",
+        "(a-4)x^2+(2a-2-a-(1))x-5=0",
+        "x-5=0"
+      ]
+    },
+    {
+      "n": 12,
+      "studentDigest": "679a5905bb5cc12136c62dc200c7726d125e30b1137621fd4578daa279b8bee6",
+      "a": "4",
+      "L": 1,
+      "C": -9,
+      "x": "9",
+      "studentSolutionSHA256": "e0917691b64fbc061afbeaed8ee302612ac428ce5764c937205d4560caf1ff58",
+      "formulas": [
+        "ax^2+(2a-2)x-4",
+        "(a-4)x^2+(2a-2-a-(1))x-9=0",
+        "x-9=0"
+      ]
+    },
+    {
+      "n": 13,
+      "studentDigest": "59f190a3f14e64ec7fa521711676f4a5936aa6687f40353a36e12613f3feab08",
+      "a": "2",
+      "L": -1,
+      "C": -4,
+      "x": "-4",
+      "studentSolutionSHA256": "110125f9e24ea960992181a4c96dc46b11c7569305a97a5c02abf65864aedfd3",
+      "formulas": [
+        "ax^2+(a-3)x-3",
+        "(a-2)x^2+(a-3-a-(-2))x-4=0",
+        "-x-4=0"
+      ]
+    },
+    {
+      "n": 14,
+      "studentDigest": "7251840c159a70831ca9cb48cea6ad1ff60eb6fc0bb2e75810306284b9da3412",
+      "a": "2",
+      "L": -1,
+      "C": -8,
+      "x": "-8",
+      "studentSolutionSHA256": "c11dfbe2053fe6b102032845fa904d7354488a14648a299af06a0bc2db085a53",
+      "formulas": [
+        "ax^2+(a-3)x-3",
+        "(a-2)x^2+(a-3-a-(-2))x-8=0",
+        "-x-8=0"
+      ]
+    },
+    {
+      "n": 15,
+      "studentDigest": "9963e8d00835107f09d0da8570582ca4059727cc87cb54f885eef6d21202e699",
+      "a": "2",
+      "L": -4,
+      "C": -4,
+      "x": "-1",
+      "studentSolutionSHA256": "876da40033daa2527fa6e11597428fbb32b0d46039c60cedbd9d243a41240082",
+      "formulas": [
+        "ax^2+(a-3)x-3",
+        "(a-2)x^2+(a-3-a-(1))x-4=0",
+        "-4x-4=0"
+      ]
+    },
+    {
+      "n": 16,
+      "studentDigest": "430ac4e0fca6b975900909431e69be763233cd0783eaf130d83cdb41e565118b",
+      "a": "2",
+      "L": -4,
+      "C": -8,
+      "x": "-2",
+      "studentSolutionSHA256": "e117723db2fe65fab3c960d6b0ea984cb207e5b11b7f19703a7ee72accdf325c",
+      "formulas": [
+        "ax^2+(a-3)x-3",
+        "(a-2)x^2+(a-3-a-(1))x-8=0",
+        "-4x-8=0"
+      ]
+    },
+    {
+      "n": 17,
+      "studentDigest": "0888cfbdc109f4281b1a174ca5bf5353c1c9ff6dbafbe84d44537e4218af0bd3",
+      "a": "4",
+      "L": -1,
+      "C": -4,
+      "x": "-4",
+      "studentSolutionSHA256": "285453aba0e0cf30ee9dd257549b23ffb3d200288896a272efc8d8d00c67e997",
+      "formulas": [
+        "ax^2+(a-3)x-3",
+        "(a-4)x^2+(a-3-a-(-2))x-4=0",
+        "-x-4=0"
+      ]
+    },
+    {
+      "n": 18,
+      "studentDigest": "40cff312e0b48b37854204c93ce7106e12ce0ef6ddb6d5e2874fe4c58d3b59a8",
+      "a": "4",
+      "L": -1,
+      "C": -8,
+      "x": "-8",
+      "studentSolutionSHA256": "d98a53fc2c7ef5bbded3ef04ef2e5253684d2f09f552bae58c267cb53d1744c4",
+      "formulas": [
+        "ax^2+(a-3)x-3",
+        "(a-4)x^2+(a-3-a-(-2))x-8=0",
+        "-x-8=0"
+      ]
+    },
+    {
+      "n": 19,
+      "studentDigest": "a874ed6bdfb5a040688a77c1b28546eafe339a73023232bf24f5d32f28f9699e",
+      "a": "4",
+      "L": -4,
+      "C": -4,
+      "x": "-1",
+      "studentSolutionSHA256": "f6cce0b26a4bb8779c4e6ae6ebafd8c67d77cbc56871cf8490711d028539b5d7",
+      "formulas": [
+        "ax^2+(a-3)x-3",
+        "(a-4)x^2+(a-3-a-(1))x-4=0",
+        "-4x-4=0"
+      ]
+    },
+    {
+      "n": 20,
+      "studentDigest": "d51e77c66240b769a2ba5afd7848def891b4da5a3a6356dcc9682fd1d3bda019",
+      "a": "4",
+      "L": -4,
+      "C": -8,
+      "x": "-2",
+      "studentSolutionSHA256": "8fc6d5d1dfa964f653319c340128086dd94f0474ee2cfe5c54b95ed172a23df5",
+      "formulas": [
+        "ax^2+(a-3)x-3",
+        "(a-4)x^2+(a-3-a-(1))x-8=0",
+        "-4x-8=0"
+      ]
+    },
+    {
+      "n": 21,
+      "studentDigest": "d1de4a34cc9f4269a1fe96301a6fed5d47cfae247ff67ec6046c31bd705de258",
+      "a": "2",
+      "L": 1,
+      "C": -7,
+      "x": "7",
+      "studentSolutionSHA256": "c566dca3a14ae941aa1b6caad4482bf3324f0fc16f89f42257e6c3beb5e5e641",
+      "formulas": [
+        "ax^2+(2a-3)x-6",
+        "(a-2)x^2+(2a-3-a-(-2))x-7=0",
+        "x-7=0"
+      ]
+    },
+    {
+      "n": 22,
+      "studentDigest": "3ee08d97a06a0322e7c2c9f7f99bbec4a85cb8275abce29137f8b575da951aae",
+      "a": "2",
+      "L": 1,
+      "C": -11,
+      "x": "11",
+      "studentSolutionSHA256": "13c392d48a5d14d89f85b01318c3c774c234ee9656a85c0b4c2a301f8c8fc2f3",
+      "formulas": [
+        "ax^2+(2a-3)x-6",
+        "(a-2)x^2+(2a-3-a-(-2))x-11=0",
+        "x-11=0"
+      ]
+    },
+    {
+      "n": 23,
+      "studentDigest": "71c2c3c52738bf0c6ccde04d4240263a71cf446072e2ff1044a690f505578957",
+      "a": "2",
+      "L": -2,
+      "C": -7,
+      "x": "-7/2",
+      "studentSolutionSHA256": "6e714859930eee0ff5634ab2fdf46abca5ed8d8ddcc49ac932533254e85ecc0c",
+      "formulas": [
+        "ax^2+(2a-3)x-6",
+        "(a-2)x^2+(2a-3-a-(1))x-7=0",
+        "-2x-7=0"
+      ]
+    },
+    {
+      "n": 24,
+      "studentDigest": "d30a9b41970766ed46731ebeaa3e49c107c86a95c675b39b96797f71fba64cbd",
+      "a": "2",
+      "L": -2,
+      "C": -11,
+      "x": "-11/2",
+      "studentSolutionSHA256": "e5f589f14a8475c9660f2c06a34caeed6392466c1199665a92c88174dfd0200c",
+      "formulas": [
+        "ax^2+(2a-3)x-6",
+        "(a-2)x^2+(2a-3-a-(1))x-11=0",
+        "-2x-11=0"
+      ]
+    },
+    {
+      "n": 25,
+      "studentDigest": "5f6cc53303947924316672fac535fa10b2bed296eaac0b14170db76aaa0114e8",
+      "a": "4",
+      "L": 3,
+      "C": -7,
+      "x": "7/3",
+      "studentSolutionSHA256": "50ccf9dc5a187c125044790ffc7f59a8d05b11ef172ed594ba870ddbc5a736b7",
+      "formulas": [
+        "ax^2+(2a-3)x-6",
+        "(a-4)x^2+(2a-3-a-(-2))x-7=0",
+        "3x-7=0"
+      ]
+    },
+    {
+      "n": 26,
+      "studentDigest": "189d0ba5b94a8ded225e0c39d07dfb14edb79d97136ff8d15777d20c069a134f",
+      "a": "4",
+      "L": 3,
+      "C": -11,
+      "x": "11/3",
+      "studentSolutionSHA256": "3ab2c22104b2e3b563af900cd9a766d515f56e2d7b0a86f3f64fa769c30ff48a",
+      "formulas": [
+        "ax^2+(2a-3)x-6",
+        "(a-4)x^2+(2a-3-a-(-2))x-11=0",
+        "3x-11=0"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "p": 2,
+      "q": 1,
+      "r": 2,
+      "s": -2,
+      "t": 1
+    },
+    {
+      "p": 2,
+      "q": 1,
+      "r": 2,
+      "s": -2,
+      "t": 5
+    },
+    {
+      "p": 2,
+      "q": 1,
+      "r": 4,
+      "s": -2,
+      "t": 1
+    },
+    {
+      "p": 2,
+      "q": 1,
+      "r": 4,
+      "s": -2,
+      "t": 5
+    },
+    {
+      "p": 3,
+      "q": 2,
+      "r": 4,
+      "s": 1,
+      "t": 1
+    },
+    {
+      "p": 3,
+      "q": 2,
+      "r": 4,
+      "s": 1,
+      "t": 5
+    }
+  ],
+  "raw421NotRerunOrSummed": true
+}

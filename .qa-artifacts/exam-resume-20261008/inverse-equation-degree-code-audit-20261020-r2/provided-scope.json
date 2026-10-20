@@ -1,0 +1,276 @@
+{
+  "utc": "2026-10-20T09:53:34.881515+00:00",
+  "root": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
+  "code": [
+    {
+      "path": "src/lib/examStudy/families/middle/inverseEquationDegree.ts",
+      "rootReadOnly": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/examStudy/families/middle/inverseEquationDegree.ts",
+      "sha256": "5b5e94235553c2182db537e974e7fdad185f9710bc8a516c99afddc1bfd63590",
+      "immutableCopy": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r2/provided-code/src/lib/examStudy/families/middle/inverseEquationDegree.ts"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/index.ts",
+      "rootReadOnly": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/examStudy/families/middle/index.ts",
+      "sha256": "50fa02d0d4865c6f46c7715f9ceb2f49fb83021d2ea1a4e1fbd4ef0e65a6d457",
+      "immutableCopy": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r2/provided-code/src/lib/examStudy/families/middle/index.ts"
+    },
+    {
+      "path": "src/lib/examStudy/releaseEligibility.ts",
+      "rootReadOnly": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/examStudy/releaseEligibility.ts",
+      "sha256": "7e83611c376eafa7f1fb9c23dd846adc05cac850d61b156b8b04c716b597bdd4",
+      "immutableCopy": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r2/provided-code/src/lib/examStudy/releaseEligibility.ts"
+    },
+    {
+      "path": "src/lib/examStudy/curriculumEligibility.ts",
+      "rootReadOnly": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/examStudy/curriculumEligibility.ts",
+      "sha256": "14dd2463f4ce120907e2c1c121442304ff1de8e0743f976d8da13d3c79e4186e",
+      "immutableCopy": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r2/provided-code/src/lib/examStudy/curriculumEligibility.ts"
+    },
+    {
+      "path": "src/lib/examStudy/requirements.ts",
+      "rootReadOnly": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/examStudy/requirements.ts",
+      "sha256": "62984cd03bfbbc6a1a2a716fad7bfc89f40e8ce693f417d013deb5e9745df934",
+      "immutableCopy": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r2/provided-code/src/lib/examStudy/requirements.ts"
+    },
+    {
+      "path": "src/contracts/examStudy.contract.ts",
+      "rootReadOnly": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/contracts/examStudy.contract.ts",
+      "sha256": "a62b5edf30e0c8108c275090801a6d82b5938e4a79e81b0ac63517c32cc870a6",
+      "immutableCopy": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r2/provided-code/src/contracts/examStudy.contract.ts"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseEquationDegree.test.ts",
+      "rootReadOnly": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/__tests__/unit/examStudyInverseEquationDegree.test.ts",
+      "sha256": "2d9b15fee1650f3e34b7ffd18df41b4eaef68e957063dfd2f3ce68a151f62076",
+      "immutableCopy": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r2/provided-code/src/__tests__/unit/examStudyInverseEquationDegree.test.ts"
+    }
+  ],
+  "actualCurrentCodeReadOnly": true,
+  "producerCodeMayBeReadOnlyAfterRawGitProof": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r1/git-raw-before-private.json",
+  "studentR1MetadataHoldPreserved": true,
+  "studentR2MetadataOnlySame26Bodies": true,
+  "manualTwinsCredited": 0,
+  "knownPublicCatalogBefore4224AfterNewInternal4225": true,
+  "publicNewFamilyAlwaysHeld": true,
+  "elementaryM1M2HardGradeHoldBeforeRelease": true,
+  "parent173SuiteAndIsolated11NotSummed": true,
+  "parentTestEvidence": [
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-equation-degree-vitest-r1.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-equation-degree-vitest-r2.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-equation-degree-eslint-r1.json"
+  ],
+  "rootOtherAllowedReadOnly": [
+    "src/lib/examStudy/**",
+    "src/contracts/**",
+    "src/lib/elementary/**",
+    "src/lib/figure/**",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+    ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+    ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/own-review-evidence-r1/**"
+  ],
+  "forbidden": [
+    "N:/ original reads",
+    "DB/model/API/install",
+    "old raw mutation",
+    "source edits",
+    "new session/worktree"
+  ],
+  "sourceIdentityRightsNativeAnd2027Held": true,
+  "dbWrites": 0,
+  "loadable": 0,
+  "revision": "R2 student wording only + factory version; not a new raw solve",
+  "previousIndependentCommit": "5263b3973c884346f8e8c6772e47f111de351628",
+  "previousIndependentReportSha256": "8d7ad7af4c69e43c9b1c3225b34a31cabdb09431f75d076a3f07db3b6ae6876e",
+  "parentRawProof": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r2/git-raw-before-private.json",
+  "all26PrivateDifferences": [
+    {
+      "n": 1,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "d476ebbb6279fce561f5bca97e4da1be797b72ae829c1820d8eafa2d1579f40e"
+    },
+    {
+      "n": 2,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "2cdfe19d0a0fdf18bedf146aacb7ac85d671a63aa91bed93aca1575735ac8238"
+    },
+    {
+      "n": 3,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "153cc34c62259a859445b7cce919713012784863aaf46f4fdbe972851efcb668"
+    },
+    {
+      "n": 4,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "00fd0f690cfa269eaa0c5370284c9ef5d768af5e356d14ba12775700ac42a920"
+    },
+    {
+      "n": 5,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "635eec2f5287f6c9b35b9e895ac8e9661ff51ed1d2a0dc2ecaff50646c7eda07"
+    },
+    {
+      "n": 6,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "e447a6adb3a4ee98adb3148a5a6149f9e9d45b267bf87a29101f4c8e6482c4bd"
+    },
+    {
+      "n": 7,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "d706d54c5ff79e1e164890d773905e449febd894c61b9e0d1e7cdf7362f47915"
+    },
+    {
+      "n": 8,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "ba2f2898b93c10c3b741aff997ccdc138b8b0685c417a28cf183d2eabe991653"
+    },
+    {
+      "n": 9,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "fd2024c34ca20cfd44ee6f654d2e3936507f533f38c14b2d898604dda833b753"
+    },
+    {
+      "n": 10,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "00eaa580a73110224ad8b31bb3544ace4206f71e44d8773447e768563c41e32f"
+    },
+    {
+      "n": 11,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "05db7db8636f9ea0852cbd5f52ef853d32fc5358182e19d25a1d48b06c3e6a02"
+    },
+    {
+      "n": 12,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "679a5905bb5cc12136c62dc200c7726d125e30b1137621fd4578daa279b8bee6"
+    },
+    {
+      "n": 13,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "59f190a3f14e64ec7fa521711676f4a5936aa6687f40353a36e12613f3feab08"
+    },
+    {
+      "n": 14,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "7251840c159a70831ca9cb48cea6ad1ff60eb6fc0bb2e75810306284b9da3412"
+    },
+    {
+      "n": 15,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "9963e8d00835107f09d0da8570582ca4059727cc87cb54f885eef6d21202e699"
+    },
+    {
+      "n": 16,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "430ac4e0fca6b975900909431e69be763233cd0783eaf130d83cdb41e565118b"
+    },
+    {
+      "n": 17,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "0888cfbdc109f4281b1a174ca5bf5353c1c9ff6dbafbe84d44537e4218af0bd3"
+    },
+    {
+      "n": 18,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "40cff312e0b48b37854204c93ce7106e12ce0ef6ddb6d5e2874fe4c58d3b59a8"
+    },
+    {
+      "n": 19,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "a874ed6bdfb5a040688a77c1b28546eafe339a73023232bf24f5d32f28f9699e"
+    },
+    {
+      "n": 20,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "d51e77c66240b769a2ba5afd7848def891b4da5a3a6356dcc9682fd1d3bda019"
+    },
+    {
+      "n": 21,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "d1de4a34cc9f4269a1fe96301a6fed5d47cfae247ff67ec6046c31bd705de258"
+    },
+    {
+      "n": 22,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "3ee08d97a06a0322e7c2c9f7f99bbec4a85cb8275abce29137f8b575da951aae"
+    },
+    {
+      "n": 23,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "71c2c3c52738bf0c6ccde04d4240263a71cf446072e2ff1044a690f505578957"
+    },
+    {
+      "n": 24,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "d30a9b41970766ed46731ebeaa3e49c107c86a95c675b39b96797f71fba64cbd"
+    },
+    {
+      "n": 25,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "5f6cc53303947924316672fac535fa10b2bed296eaac0b14170db76aaa0114e8"
+    },
+    {
+      "n": 26,
+      "changedKeys": [
+        "solution"
+      ],
+      "studentContentSha256": "189d0ba5b94a8ded225e0c39d07dfb14edb79d97136ff8d15777d20c069a134f"
+    }
+  ],
+  "currentIndexFor170HashChecks": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/current-authored-batches-v48.json",
+  "bindingAuditFor170And275": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/current170-binding-audit-r1.json",
+  "candidateAndReviewHashChecksOnlyNotNewMathReview": true,
+  "latestMainIntegrated": "10722f4971311668945012e8f66974c26b1913f7",
+  "parentHeavyRegressionWillRunDoNotLaunchHeavyUntilItsCompletionNotice": true,
+  "studentR2CorrectGradeLabels": true,
+  "allSourceIdentityRightsNativeAnd2027HoldsRetained": true
+}

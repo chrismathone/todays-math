@@ -1,0 +1,1958 @@
+{
+  "revision": "R2 current explanations fresh review, no new solve/manual count",
+  "primary": {
+    "officialDocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+    "2015PDFSHA256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+    "standards": [
+      {
+        "code": "9수02-04",
+        "verified_text": "방정식과 그 해의 의미를 알고, 등식의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3912,
+          "record_offset_in_uncompressed_stream": 199718,
+          "extracted_paragraph_1based": 796
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-05",
+        "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-12",
+        "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3956,
+          "record_offset_in_uncompressed_stream": 201534,
+          "extracted_paragraph_1based": 807
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-13",
+        "verified_text": "이차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3964,
+          "record_offset_in_uncompressed_stream": 201786,
+          "extracted_paragraph_1based": 809
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "basis": "Previously actually inspected primary text/records/pages re-bound to current authorized curriculum evidence; not inherited Gangbuk/R1 decision. Bandcodes/Unit alone not sufficient; current26complete methods checked."
+  },
+  "unit": {
+    "id": "82399e51-340d-4165-b016-3e941e65f810",
+    "grade": "중3",
+    "chapter": "3. 이차방정식",
+    "section": "이차방정식의 풀이",
+    "semester": 1,
+    "orderIndex": 475,
+    "problemCodePrefix": "J30301"
+  },
+  "items": [
+    {
+      "n": 1,
+      "studentDigest": "d476ebbb6279fce561f5bca97e4da1be797b72ae829c1820d8eafa2d1579f40e",
+      "currentSolutionSHA256": "c9f62b374fd00659e1e5a1737617fc79355028292ec6095ab4bad73cf2fe8377",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n1의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/0",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n1은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/0",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n1현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/0",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n1은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-1의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/0",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n1현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-3는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/0",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n1현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-2)x-2', '(a-2)x^2+(a-2-a-(1))x-3=0', '-3x-3=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-3로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/0",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n1분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/0",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 2,
+      "studentDigest": "2cdfe19d0a0fdf18bedf146aacb7ac85d671a63aa91bed93aca1575735ac8238",
+      "currentSolutionSHA256": "f9ed9cb738af19486e4692c8dadeaf5950a784bac683a5996c8fffbced8c3a28",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n2의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/1",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n2은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/1",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n2현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/1",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n2은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-7/3의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/1",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n2현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-3는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/1",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n2현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-2)x-2', '(a-2)x^2+(a-2-a-(1))x-7=0', '-3x-7=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-3로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/1",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n2분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/1",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 3,
+      "studentDigest": "153cc34c62259a859445b7cce919713012784863aaf46f4fdbe972851efcb668",
+      "currentSolutionSHA256": "462266a73fb66da449db75c3ec7194572e9a85ff5ee82d469e5f1d8f6db2ea79",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n3의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/2",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n3은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/2",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n3현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/2",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n3은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=-1의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/2",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n3현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수-3는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/2",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n3현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-2)x-2', '(a-4)x^2+(a-2-a-(1))x-3=0', '-3x-3=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-3로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/2",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n3분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/2",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 4,
+      "studentDigest": "00fd0f690cfa269eaa0c5370284c9ef5d768af5e356d14ba12775700ac42a920",
+      "currentSolutionSHA256": "ac664d4bdaebe39a0e0fdd4ba6d19b805e0bbaef466ca8149d01e5b400e3f58e",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n4의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/3",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n4은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/3",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n4현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/3",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n4은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=-7/3의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/3",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n4현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수-3는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/3",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n4현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-2)x-2', '(a-4)x^2+(a-2-a-(1))x-7=0', '-3x-7=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-3로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/3",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n4분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/3",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 5,
+      "studentDigest": "635eec2f5287f6c9b35b9e895ac8e9661ff51ed1d2a0dc2ecaff50646c7eda07",
+      "currentSolutionSHA256": "44a2a1cc5ece222f50531131e8472aad4ea3138acd33e1b7c4ffa83da9aaad59",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n5의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/4",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n5은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/4",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n5현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/4",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n5은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=5/2의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/4",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n5현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수2는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/4",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n5현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-2)x-4', '(a-2)x^2+(2a-2-a-(-2))x-5=0', '2x-5=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=2로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/4",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n5분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/4",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 6,
+      "studentDigest": "e447a6adb3a4ee98adb3148a5a6149f9e9d45b267bf87a29101f4c8e6482c4bd",
+      "currentSolutionSHA256": "44ea0ac6d514b72c73736c595466cb2acc5b85907b288a567456babb1e12d92b",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n6의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/5",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n6은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/5",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n6현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/5",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n6은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=9/2의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/5",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n6현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수2는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/5",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n6현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-2)x-4', '(a-2)x^2+(2a-2-a-(-2))x-9=0', '2x-9=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=2로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/5",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n6분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/5",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 7,
+      "studentDigest": "d706d54c5ff79e1e164890d773905e449febd894c61b9e0d1e7cdf7362f47915",
+      "currentSolutionSHA256": "62e077f89f4902178df7dbba77d56a403dffc40be054af5c11fbd2be327333ca",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n7의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/6",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n7은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/6",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n7현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/6",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n7은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-5의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/6",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n7현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/6",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n7현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-2)x-4', '(a-2)x^2+(2a-2-a-(1))x-5=0', '-x-5=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/6",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n7분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/6",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 8,
+      "studentDigest": "ba2f2898b93c10c3b741aff997ccdc138b8b0685c417a28cf183d2eabe991653",
+      "currentSolutionSHA256": "595e5795e2a8a390a06257ba7dd48ae8fef1c52d4ed3f6d48673825237462c38",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n8의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/7",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n8은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/7",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n8현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/7",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n8은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-9의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/7",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n8현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/7",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n8현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-2)x-4', '(a-2)x^2+(2a-2-a-(1))x-9=0', '-x-9=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/7",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n8분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/7",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 9,
+      "studentDigest": "fd2024c34ca20cfd44ee6f654d2e3936507f533f38c14b2d898604dda833b753",
+      "currentSolutionSHA256": "085d0b2a2702a4d823206a71d88f85e6462ecda4a23068719d995d27acc5e947",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n9의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/8",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n9은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/8",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n9현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/8",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n9은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=5/4의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/8",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n9현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수4는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/8",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n9현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-2)x-4', '(a-4)x^2+(2a-2-a-(-2))x-5=0', '4x-5=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=4로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/8",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n9분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/8",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 10,
+      "studentDigest": "00eaa580a73110224ad8b31bb3544ace4206f71e44d8773447e768563c41e32f",
+      "currentSolutionSHA256": "f4a0cc3b23b4105c16bdd514c45057d0aabd7be596667d1369d5105252371a63",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n10의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/9",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n10은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/9",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n10현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/9",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n10은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=9/4의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/9",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n10현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수4는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/9",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n10현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-2)x-4', '(a-4)x^2+(2a-2-a-(-2))x-9=0', '4x-9=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=4로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/9",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n10분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/9",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 11,
+      "studentDigest": "05db7db8636f9ea0852cbd5f52ef853d32fc5358182e19d25a1d48b06c3e6a02",
+      "currentSolutionSHA256": "45c29af28de22dcafb3eee14440d82edc3f8581a05859b0af2ac8c2a63a5d8ad",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n11의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/10",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n11은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/10",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n11현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/10",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n11은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=5의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/10",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n11현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/10",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n11현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-2)x-4', '(a-4)x^2+(2a-2-a-(1))x-5=0', 'x-5=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/10",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n11분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/10",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 12,
+      "studentDigest": "679a5905bb5cc12136c62dc200c7726d125e30b1137621fd4578daa279b8bee6",
+      "currentSolutionSHA256": "11529fbcf5819032305a70c6b73fb139506e79f744b49b6685ccad32371fa2ac",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n12의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/11",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n12은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/11",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n12현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/11",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n12은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=9의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/11",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n12현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/11",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n12현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-2)x-4', '(a-4)x^2+(2a-2-a-(1))x-9=0', 'x-9=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/11",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n12분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/11",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 13,
+      "studentDigest": "59f190a3f14e64ec7fa521711676f4a5936aa6687f40353a36e12613f3feab08",
+      "currentSolutionSHA256": "18c1aa62698ade7c377b191894b619ef7ba6e5ccbb0ef9a3f790bb7bce6259d2",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n13의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/12",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n13은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/12",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n13현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/12",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n13은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-4의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/12",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n13현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/12",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n13현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-3)x-3', '(a-2)x^2+(a-3-a-(-2))x-4=0', '-x-4=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/12",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n13분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/12",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 14,
+      "studentDigest": "7251840c159a70831ca9cb48cea6ad1ff60eb6fc0bb2e75810306284b9da3412",
+      "currentSolutionSHA256": "037f5d98ff15ff58da727dc172bf53014a54ac23473b75d17154d2ce465b4b1d",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n14의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/13",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n14은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/13",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n14현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/13",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n14은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-8의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/13",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n14현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/13",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n14현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-3)x-3', '(a-2)x^2+(a-3-a-(-2))x-8=0', '-x-8=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/13",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n14분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/13",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 15,
+      "studentDigest": "9963e8d00835107f09d0da8570582ca4059727cc87cb54f885eef6d21202e699",
+      "currentSolutionSHA256": "cf74cdcd26969a8762608fb512c3f823ebf84e8b6e792c8c4fbf83bdc87e3f73",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n15의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/14",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n15은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/14",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n15현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/14",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n15은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-1의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/14",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n15현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-4는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/14",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n15현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-3)x-3', '(a-2)x^2+(a-3-a-(1))x-4=0', '-4x-4=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-4로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/14",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n15분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/14",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 16,
+      "studentDigest": "430ac4e0fca6b975900909431e69be763233cd0783eaf130d83cdb41e565118b",
+      "currentSolutionSHA256": "d647f18177f6cbcc7fff6732422ec651ffb601d7840790f37818f62dcc7225d7",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n16의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/15",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n16은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/15",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n16현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/15",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n16은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-2의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/15",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n16현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-4는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/15",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n16현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-3)x-3', '(a-2)x^2+(a-3-a-(1))x-8=0', '-4x-8=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-4로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/15",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n16분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/15",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 17,
+      "studentDigest": "0888cfbdc109f4281b1a174ca5bf5353c1c9ff6dbafbe84d44537e4218af0bd3",
+      "currentSolutionSHA256": "65385817a09873b8e30093286e6d52ba86413462408b3eac1e76c6ac6451ddde",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n17의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/16",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n17은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/16",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n17현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/16",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n17은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=-4의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/16",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n17현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수-1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/16",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n17현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-3)x-3', '(a-4)x^2+(a-3-a-(-2))x-4=0', '-x-4=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/16",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n17분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/16",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 18,
+      "studentDigest": "40cff312e0b48b37854204c93ce7106e12ce0ef6ddb6d5e2874fe4c58d3b59a8",
+      "currentSolutionSHA256": "b0a244edac0e23d7b78bebfe1d2b4df64c90d17c712ac662adf31961c039fa16",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n18의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/17",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n18은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/17",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n18현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/17",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n18은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=-8의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/17",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n18현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수-1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/17",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n18현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-3)x-3', '(a-4)x^2+(a-3-a-(-2))x-8=0', '-x-8=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/17",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n18분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/17",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 19,
+      "studentDigest": "a874ed6bdfb5a040688a77c1b28546eafe339a73023232bf24f5d32f28f9699e",
+      "currentSolutionSHA256": "b0370640bb11a84141ffd3a8d2b1d1f020408cb2674a7adcad0412a4d78ed745",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n19의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/18",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n19은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/18",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n19현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/18",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n19은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=-1의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/18",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n19현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수-4는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/18",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n19현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-3)x-3', '(a-4)x^2+(a-3-a-(1))x-4=0', '-4x-4=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-4로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/18",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n19분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/18",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 20,
+      "studentDigest": "d51e77c66240b769a2ba5afd7848def891b4da5a3a6356dcc9682fd1d3bda019",
+      "currentSolutionSHA256": "4faca3e8a1c95d2fefb4100f4b2e949671df55028a96856e1ad128b6d5871204",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n20의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/19",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n20은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/19",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n20현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/19",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n20은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=-2의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/19",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n20현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수-4는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/19",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n20현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(a-3)x-3', '(a-4)x^2+(a-3-a-(1))x-8=0', '-4x-8=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-4로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/19",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n20분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/19",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 21,
+      "studentDigest": "d1de4a34cc9f4269a1fe96301a6fed5d47cfae247ff67ec6046c31bd705de258",
+      "currentSolutionSHA256": "cd9fc2762c4206424e92a0967cbb3279a997a2bd5b7a613d61a02a3d7d42dc2a",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n21의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/20",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n21은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/20",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n21현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/20",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n21은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=7의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/20",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n21현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/20",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n21현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-3)x-6', '(a-2)x^2+(2a-3-a-(-2))x-7=0', 'x-7=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/20",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n21분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/20",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 22,
+      "studentDigest": "3ee08d97a06a0322e7c2c9f7f99bbec4a85cb8275abce29137f8b575da951aae",
+      "currentSolutionSHA256": "52a29d58431ea24a3200d003e865186cdd9d971589c4c4a7487d7694bdf49b74",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n22의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/21",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n22은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/21",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n22현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/21",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n22은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=11의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/21",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n22현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수1는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/21",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n22현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-3)x-6', '(a-2)x^2+(2a-3-a-(-2))x-11=0', 'x-11=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=1로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/21",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n22분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/21",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 23,
+      "studentDigest": "71c2c3c52738bf0c6ccde04d4240263a71cf446072e2ff1044a690f505578957",
+      "currentSolutionSHA256": "9ebb5eb0adf4d0edfd4ac2e52cd14d71ddbbb21ae2eb5dccaf1e73b6e2c6e373",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n23의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/22",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n23은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/22",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n23현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/22",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n23은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-7/2의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/22",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n23현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-2는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/22",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n23현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-3)x-6', '(a-2)x^2+(2a-3-a-(1))x-7=0', '-2x-7=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-2로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/22",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n23분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/22",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 24,
+      "studentDigest": "d30a9b41970766ed46731ebeaa3e49c107c86a95c675b39b96797f71fba64cbd",
+      "currentSolutionSHA256": "cea3a7e20036a50d503b277d830749e5d6ba0135094094793e5a3cd578e2ac99",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n24의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-2를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/23",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n24은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=2를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/23",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n24현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/23",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n24은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=2와존재확인용x=-11/2의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/23",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n24현재답2는원래봉인독립답과같다. a-2=0은단순일차식이고남는x계수-2는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/23",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n24현재저자해설전체전개→이항/동류항→a-2=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-3)x-6', '(a-2)x^2+(2a-3-a-(1))x-11=0', '-2x-11=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=-2로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/23",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n24분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/23",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 25,
+      "studentDigest": "5f6cc53303947924316672fac535fa10b2bed296eaac0b14170db76aaa0114e8",
+      "currentSolutionSHA256": "c48ce068a63cd1aab83a464dfbc419c2c2015b79703a7ebe3fc5e7828f334d36",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n25의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/24",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n25은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/24",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n25현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/24",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n25은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=7/3의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/24",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n25현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수3는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/24",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n25현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-3)x-6', '(a-4)x^2+(2a-3-a-(-2))x-7=0', '3x-7=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=3로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/24",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n25분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/24",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    },
+    {
+      "n": 26,
+      "studentDigest": "189d0ba5b94a8ded225e0c39d07dfb14edb79d97136ff8d15777d20c069a134f",
+      "currentSolutionSHA256": "39cb5046188f52f610a97a890c98e6801f57b5cc0353acb4e9ddba0e2049bb0b",
+      "surfaces": {
+        "stem": {
+          "status": "passed",
+          "basis": "현재n26의문장은x에대한일차방정식이되도록상수a를묻는다. 봉인본문/digest불변을다시확인. 이차항계수a-4를없애는역입력이며다항식전개9수02-12와방정식차수9수02-04/13기초범위에서완결.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/25",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "choices": {
+          "status": "passed",
+          "basis": "n26은단답형으로보기없음. 현재R2questionType=단답형을확인. 보기/새추론을꾸미지않고상수a=4를한값으로답한다. 고급객관식보기방법불필요.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/25",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed",
+          "basis": "n26현재figureSpec=null이고그림/표없음. 인쇄식으로조건완결;현재해설의전개·이항·마지막일차식표시를모두검산. PNG/시각/네이티브배치검수미실시.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/25",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "notation": {
+          "status": "passed",
+          "basis": "n26은a상수/x미지수,곱/괄호/x²/정수의기학습기호. 숫자뒤조사를없앤중립문장으로읽기개선. 단위없는문제이며답a=4와존재확인용x=11/3의역할이구별된다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/25",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "answer": {
+          "status": "passed",
+          "basis": "n26현재답4는원래봉인독립답과같다. a-4=0은단순일차식이고남는x계수3는0이아니다. 다른a면이차항이남으므로a유일,이때x의해도유일. 답변공식/판별식이필요없다.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/25",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "studentSolution": {
+          "status": "passed",
+          "basis": "n26현재저자해설전체전개→이항/동류항→a-4=0→남는일차식→0아닌계수→다른a배제를다시확인. 세식['ax^2+(2a-3)x-6', '(a-4)x^2+(2a-3-a-(-2))x-11=0', '3x-11=0']은봉인인쇄식독립계산과같다. 새중립문장의비영주장은실제L=3로나온다. 고등항등식계수법/판별식/근합곱/함수정리없음.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/25",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        },
+        "prerequisites": {
+          "status": "passed",
+          "basis": "n26분배법칙·다항식곱셈·동류항9수02-12,상수/계수/차수·방정식/해9수02-04,일차방정식9수02-05,일차/이차방정식기초9수02-13학습후. 실제캡처M3semester1 Unit와전체방법으로2015source2025/practice2026에한정. 2027M3/2022와학교진도는별도pending.",
+          "evidence": {
+            "currentCalculation": "own-current-checks.json#/rows/25",
+            "primary": "own-grade-review-r2.json#/primary",
+            "unit": "own-grade-review-r2.json#/unit"
+          }
+        }
+      }
+    }
+  ],
+  "counts": {
+    "currentOutputs": 26,
+    "currentSurfaces": 182,
+    "passed": 182,
+    "pending": 0,
+    "rejected": 0,
+    "newBlindSolve": 0,
+    "newManualTwins": 0
+  },
+  "limits": {
+    "2015M3": "After specified prerequisites only, source2025/practice2026",
+    "2027M3/2022": "pending",
+    "exactLiveFamily": null,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "nativeApproved": false,
+    "loadable": false,
+    "futureWholeTemplateApproved": false,
+    "visualReview": false
+  },
+  "editorial": "Neutral prose now avoids erroneous numeric particles for everyL and both2/4. Basic difficulty remains a proposal supported by expansion, cancellation, nonzero check, not measured student calibration."
+}
