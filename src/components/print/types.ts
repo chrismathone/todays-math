@@ -1,6 +1,8 @@
 export type TestPrintType = "daily" | "review";
 
 export interface TestPrintProblem {
+  /** Render-only primary-author r2 payload; no DB field or saved contract. */
+  nativeDescriptive?: import("@/lib/print/descriptive").NativeDescriptivePrint;
   id: string;
   orderIndex: number;
   problemCode?: string | null;
@@ -16,9 +18,8 @@ export interface TestPrintProblem {
    */
   questionType?: string | null;
   /**
-   * 배점. **기출·예측 지면만** 찍는다(D-41) — 일일·확인 지면은 배점을 안 쓴다(D-28).
-   * 기출 2단 자(`estimateExamProblemPx`)가 서술형 답란 높이를 여기서 정하므로,
-   * 안 넘기면 답란이 기본값으로 그려지고 **자와 지면이 같이** 틀린다.
+   * 기존 기출 배점. D-163: 서술형만 번호 옆에 찍는다.
+   * 주 저자 r2 문항은 nativeDescriptive.rubric.totalPoints가 정본이다.
    */
   score?: number | null;
   /** 원본 시험지에서 오려 온 그림 경로들. 없으면 빈 배열. */

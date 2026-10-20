@@ -30,7 +30,7 @@ export function EnglishAnswerPage({
   splitIndex,
   itemScales,
 }: PrintTemplateProps) {
-  const items = problems.map(({ id, variant: p }, index) => {
+  const items = problems.map(({ id, number, variant: p }, index) => {
     // 문제지(NativeProblem)와 같은 결정 — 한 문항의 정답·해설·본문이 같은 모양이다.
     const shown = fractionViewFor(p);
     return (
@@ -53,7 +53,7 @@ export function EnglishAnswerPage({
           <>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
               <strong style={{ color: options.color }}>
-                {p.arithmetic?.number ?? startingNumber + index}.
+                {p.arithmetic?.number ?? number ?? startingNumber + index}.
               </strong>
               <MathText text={shown(p.answer || "정답 미입력")} />
             </div>

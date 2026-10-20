@@ -3,6 +3,7 @@ import { memo } from "react";
 import { A4Page } from "@/components/print/A4Page";
 import type { TestPrintProblem } from "@/components/print/types";
 import { isSubjective } from "@/lib/print/pastPaperLayout";
+import { DescriptiveScore } from "@/components/print/DescriptiveScore";
 
 import styles from "../PastPaper.module.css";
 import { ProblemBody } from "./ProblemBody";
@@ -99,7 +100,14 @@ export const PastPaperTemplate = memo(function PastPaperTemplate({
         {columns.map((items, columnIndex) => (
           <div className={styles.column} key={columnIndex}>
             {items.map((problem) => {
-              const score = scoreOf(problem);
+              const descriptive =
+                Boolean(problem.nativeDescriptive) ||
+                problem.questionType === "서술형" ||
+                problem.questionType === "descriptive";
+              const score = descriptive
+                ? (problem.nativeDescriptive?.rubric.totalPoints ??
+                  scoreOf(problem))
+                : null;
               const subjective = isSubjective(problem.questionType);
               return (
                 <article
@@ -116,14 +124,14 @@ export const PastPaperTemplate = memo(function PastPaperTemplate({
                       <span className={styles.numWord}>문</span>{" "}
                       {numberOf(problem)}
                     </span>
+                    {score === null ? null : (
+                      <DescriptiveScore points={score} />
+                    )}
                     {subjective ? (
                       <span className={styles.kind}>
                         {problem.questionType}
                       </span>
                     ) : null}
-                    {score === null ? null : (
-                      <span className={styles.score}>{score}점</span>
-                    )}
                   </div>
                   <div className={styles.body}>
                     <ProblemBody problem={problem} />

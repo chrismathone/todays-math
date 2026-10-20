@@ -35,7 +35,7 @@ export function JaseupTemplate({
     columns === 1 && (!options.solvingArea || options.solvingArea === "off");
 
   const renderItem = (p: ProblemReview, i: number) => {
-    const num = startingNumber + i;
+    const num = p.number ?? startingNumber + i;
     return (
       <div
         key={p.id}
@@ -63,7 +63,7 @@ export function JaseupTemplate({
           />
           <ProblemBody problem={p.variant} fontSize={fs} options={options} />
           {/* 정답 기록 칸 */}
-          {!embeddedSolvingArea && (
+          {!embeddedSolvingArea && !p.variant.nativeDescriptive && (
             <div
               style={{
                 marginTop: 8,
@@ -104,7 +104,7 @@ export function JaseupTemplate({
           )}
         </div>
         {/* 모눈 풀이공간 — 1단만 */}
-        {embeddedSolvingArea && (
+        {embeddedSolvingArea && !p.variant.nativeDescriptive && (
           <div
             data-writing-space="grid"
             style={{
@@ -170,6 +170,7 @@ export function JaseupTemplate({
 
       <BodyContainer
         solvingArea={options.solvingArea}
+        omitSolvingArea={problems.map((p) => !!p.variant.nativeDescriptive)}
         columns={columns}
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}

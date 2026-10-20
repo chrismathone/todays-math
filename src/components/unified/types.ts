@@ -4,10 +4,13 @@ import type { MathgenProblemData } from "@/lib/mathgen/contracts";
 import type { StudioCrop } from "./studioHelpers";
 import type { EnglishBankQuestion } from "@/contracts/englishQuestionBank.contract";
 import type { QuestionRepresentation } from "@/contracts/questionFormats.contract";
+import type { NativeDescriptivePrint } from "@/lib/print/descriptive";
 
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
+  /** Render-only r2 author payload; not part of saved worksheet schemas. */
+  nativeDescriptive?: NativeDescriptivePrint;
   /** Optional for old saved payloads, local crops and English; id remains actual UUID. */
   questionId?: string;
   questionFormats?: QuestionRepresentation[];

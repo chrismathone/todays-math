@@ -1,0 +1,15 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { WorksheetPrint } from '@/components/unified/print/WorksheetPrint';
+import { DEFAULT_PRINT_META, DEFAULT_PRINT_OPTIONS } from '@/components/unified/print/types';
+const params = new URLSearchParams(location.search);
+const base = { id:'ordinary', content:'두 수의 합을 구하시오.', answer:'7', solution:'3과 4를 더하면 7입니다.', grade:'중2', chapter:'방정식', section:'', difficulty:'기본', problemCode:'', figureUrls:[], figureSvg:null, figureDims:[], figureSourceMm:[] };
+const nativeData = {
+  requirements: [1,2,3].map(i=>({requirementId:`r${i}`,text:`(${i}) 이유를 쓰시오.`,criterionIds:[`c${i}`]})),
+  modelAnswer:'(1) 두 식을 세운다.\n(2) 두 식을 더하여 미지수를 소거한다.\n(3) 가로와 세로를 곱한다.',
+  rubric:{revision:2,totalPoints:8,criteria:[1,2,3].map((i)=>({criterionId:`c${i}`,requirementId:`r${i}`,factKey:`f${i}`,role:'method',expected:'두 관계식과 각각의 이유',evidence:'두 관계식과 각각의 이유',points:i===3?2:3,alternatives:['대입법'],errors:['부호를 잘못 처리함'],scoring:{full:'두 관계식과 각각의 이유를 모두 제시',partial:[{points:1,condition:'식은 옳지만 이유가 빠짐'}],zero:'해당 관계의 증거가 없음'},carryForward:{fromFactKeys:i===1?[]:['f1'],rule:'preserve-method-points',condition:'앞에서 잘못 구한 수치를 일관되게 사용하고 방법이 옳음'}}))}
+};
+if (params.get('oversize') === 'rubric') nativeData.modelAnswer = '채점표 높이 넘침 확인 '.repeat(6000);
+const selected=[base,{...base,id:'native',content:'직사각형 판의 둘레는 42cm이고 가로는 세로보다 5cm 길다.\n(1) 두 조건을 식으로 나타내고 이유를 쓰시오.\n(2) 두 길이를 구하는 과정을 쓰시오.\n(3) 두 조건을 확인하고 넓이를 구하시오.',nativeDescriptive:nativeData,answer:'교사용 단답',solution:'교사용 직렬화 해설'}];
+(window as any).__ready=false;
+createRoot(document.getElementById('root')!).render(<WorksheetPrint selected={selected} title="서술형 통합 검수" options={{...DEFAULT_PRINT_OPTIONS, template:params.get('template')||'jeongtong',columns:Number(params.get('columns')||1),showAnswers:params.get('teacher')==='true',solvingArea:params.get('solving')||'off'}} printMeta={DEFAULT_PRINT_META} onReady={(ready)=>(window as any).__ready=ready}/>);

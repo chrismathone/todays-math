@@ -33,7 +33,9 @@ export function WorkbookTemplate({
     columns === 1 && (!options.solvingArea || options.solvingArea === "off");
 
   const renderItem = (p: ProblemReview, i: number) => {
-    const num = startingNumber + i;
+    const num = p.number ?? startingNumber + i;
+    const showEmbeddedSolvingArea =
+      embeddedSolvingArea && !p.variant.nativeDescriptive;
     return (
       <div
         key={p.id}
@@ -42,7 +44,7 @@ export function WorkbookTemplate({
           ...scaledItemStyle(options, itemScales?.[i]),
           // 1단: 카드가 flex: 1 로 균등 stretch → 풀이공간 자동 확장
           flex: columns === 1 ? 1 : undefined,
-          display: embeddedSolvingArea ? "grid" : "block",
+          display: showEmbeddedSolvingArea ? "grid" : "block",
           gridTemplateColumns: "minmax(0, 40%) minmax(0, 1fr)",
           gap: 20,
           padding: 0,
@@ -60,11 +62,11 @@ export function WorkbookTemplate({
             options={options}
             accent={accent}
           />
-          {/* 배점은 ProblemBody.repositionScore 가 발문 끝에(§45) — 번호 행 표시 X. */}
+          {/* Native r2 points belong beside the question number. */}
           <ProblemBody problem={p.variant} fontSize={fs} options={options} />
         </div>
         {/* 풀이공간 — 1단에서만 (카드 flex:1 → grid stretch → 자연 확장) */}
-        {embeddedSolvingArea && (
+        {showEmbeddedSolvingArea && (
           <div
             data-writing-space="right"
             style={{
@@ -144,6 +146,7 @@ export function WorkbookTemplate({
 
       <BodyContainer
         solvingArea={options.solvingArea}
+        omitSolvingArea={problems.map((p) => !!p.variant.nativeDescriptive)}
         columns={columns}
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}

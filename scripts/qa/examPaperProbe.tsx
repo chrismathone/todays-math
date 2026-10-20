@@ -25,6 +25,7 @@ import path from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import { ProblemContent } from "../../src/components/math/ProblemContent";
+import type { NativeDescriptivePrint } from "../../src/lib/print/descriptive";
 import { PAPER_VARS_ATTR, buildTailwindCss, FIGURE_ROOT } from "./paperProbe";
 
 const ROOT = process.cwd();
@@ -35,6 +36,7 @@ export interface ExamSlot {
   content: string;
   questionType?: string | null;
   score?: number | null;
+  nativeDescriptive?: NativeDescriptivePrint;
   figureUrls?: string[];
   figureDims?: number[];
   figureSourceMm?: number[];
@@ -58,7 +60,15 @@ export async function examPaperStyles(): Promise<string> {
     path.join(ROOT, "src/components/print/PastPaper.module.css"),
     "utf8",
   );
-  return `<style>${katex}</style><style>${tailwind}</style><style>${shell}</style><style>${paper}</style>`;
+  // The product now uses B's shared score chip. Do not import the entire
+  // descriptive page CSS: its .page would replace the two-column page geometry.
+  const descriptive = readFileSync(
+    path.join(ROOT, "src/components/print/DescriptivePaper.module.css"),
+    "utf8",
+  );
+  const score = descriptive.match(/^\.score\s*\{[^}]*\}/m)?.[0];
+  if (!score) throw new Error("서술형 배점 스타일을 찾지 못했습니다.");
+  return `<style>${katex}</style><style>${tailwind}</style><style>${shell}</style><style>${paper}</style><style>${score}</style>`;
 }
 
 function bodyMarkup(slot: ExamSlot): string {
@@ -91,12 +101,19 @@ export function renderExamItem(slot: ExamSlot): string {
   const kind = subjective
     ? `<span class="kind">${slot.questionType}</span>`
     : "";
+  const descriptive =
+    Boolean(slot.nativeDescriptive) ||
+    slot.questionType === "서술형" ||
+    slot.questionType === "descriptive";
+  const points = descriptive
+    ? (slot.nativeDescriptive?.rubric.totalPoints ?? slot.score)
+    : null;
   const score =
-    slot.score === null || slot.score === undefined
+    points === null || points === undefined
       ? ""
-      : `<span class="score">${slot.score}점</span>`;
+      : `<span class="score" data-descriptive-score="true">[${points}점]</span>`;
   return `<article class="item" data-pid="${slot.id}" data-number="${slot.number}">
-  <div class="bandRow"><span class="num"><span class="numWord">문</span> ${slot.number}</span>${kind}${score}</div>
+  <div class="bandRow"><span class="num"><span class="numWord">문</span> ${slot.number}</span>${score}${kind}</div>
   <div class="body"><div data-paper-view>${bodyMarkup(slot)}</div></div>
 </article>`;
 }

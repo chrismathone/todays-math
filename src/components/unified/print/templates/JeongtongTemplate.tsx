@@ -32,7 +32,7 @@ export function JeongtongTemplate({
   const gap = Math.max(0, options.spacing);
 
   const renderItem = (p: ProblemReview, i: number) => {
-    const num = startingNumber + i;
+    const num = p.number ?? startingNumber + i;
     // Numbering is display-only; the stored source question and crop stay untouched.
     const printProblem = p.variant;
     return (
@@ -111,6 +111,7 @@ export function JeongtongTemplate({
 
       <BodyContainer
         solvingArea={options.solvingArea}
+        omitSolvingArea={problems.map((p) => !!p.variant.nativeDescriptive)}
         columns={columns}
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}
