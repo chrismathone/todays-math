@@ -127,7 +127,9 @@ function unitJosa(unit: string, withEnd: string, withoutEnd: string): string {
 /** 받침에 따라 조사를 고른다 — 「사과을」 이 지면에 나가지 않게. */
 function josa(word: string, withEnd: string, withoutEnd: string): string {
   const last = word.charCodeAt(word.length - 1);
-  const has = last >= 0xac00 && last <= 0xd7a3 && (last - 0xac00) % 28 !== 0;
+  const final = last >= 0xac00 && last <= 0xd7a3 ? (last - 0xac00) % 28 : 0;
+  // «(으)로» 는 ㄹ 받침(8)도 «로» 다 — `format.ts` `josa` 와 같은 규칙.
+  const has = final !== 0 && !(final === 8 && withEnd === "으로");
   return `${word}${has ? withEnd : withoutEnd}`;
 }
 
@@ -4453,7 +4455,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `${intro} 학생 수가 가장 많은 ${theme.item}과 가장 적은 ${theme.item}의 학생 수의 차는 몇 명인가?`,
+        `${intro} 학생 수가 가장 많은 ${josa(theme.item, "과", "와")} 가장 적은 ${theme.item}의 학생 수의 차는 몇 명인가?`,
         `${n(max - min)}명`,
         `가장 많은 것은 ${josa(top, "으로", "로")} ${n(max)}명, 가장 적은 것은 ` +
           `${josa(bottom, "으로", "로")} ${n(min)}명입니다. ${expr(`${max}-${min}=${max - min}`)}`,
@@ -8588,7 +8590,7 @@ function bar153Total(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 네 ${d.theme.item}을 좋아하는 학생을 모두 더하면 몇 명인가?`,
+    `${d.intro} 네 ${josa(d.theme.item, "을", "를")} 좋아하는 학생을 모두 더하면 몇 명인가?`,
     `${n(d.total)}명`,
     `${expr(`${d.picked.join("+")}=${d.total}`)} 이므로 ${n(d.total)}명입니다.`,
     d.figure,
@@ -8627,7 +8629,7 @@ function bar153EvenCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const even = d.values.filter((v) => v.value % 2 === 0).length;
   return make(
     unit,
-    `${d.intro} 학생 수가 짝수인 ${d.theme.item}은 몇 가지인가?`,
+    `${d.intro} 학생 수가 짝수인 ${josa(d.theme.item, "은", "는")} 몇 가지인가?`,
     n(even),
     `학생 수가 짝수인 것은 ${even}가지입니다.`,
     d.figure,
@@ -15321,7 +15323,7 @@ function quad241Name(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 직각으로 만날 때 두 직선은 서로 무엇이라고 하는가?`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 직각으로 만날 때 두 직선은 서로 무엇이라고 하는가?`,
     "수직",
     `두 직선이 ${deg(90)}로 만나면 서로 수직입니다.`,
   );
@@ -15331,7 +15333,7 @@ function quad241RightCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 수직으로 만나면 생기는 직각은 모두 몇 개인가?`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만나면 생기는 직각은 모두 몇 개인가?`,
     n(4),
     `만나는 점 주위로 직각이 ${n(4)}개 생깁니다.`,
   );
@@ -15341,7 +15343,7 @@ function quad241OneAngle(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 수직으로 만날 때 한 각의 크기는 몇 도인가?`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만날 때 한 각의 크기는 몇 도인가?`,
     deg(90),
     `수직으로 만나면 각의 크기는 ${deg(90)}입니다.`,
   );
@@ -15352,7 +15354,7 @@ function quad241Sum3(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 수직으로 만나서 생긴 네 각 가운데 ${n(k)}개의 각의 크기를 더하면 몇 도인가?`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만나서 생긴 네 각 가운데 ${n(k)}개의 각의 크기를 더하면 몇 도인가?`,
     deg(90 * k),
     `${expr(`90\\times${k}=${90 * k}`)} 입니다.`,
   );
@@ -15362,7 +15364,7 @@ function quad241NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineName(b + 1)}이 수직으로 만날 때 직각이 아닌 각이 있는가? '예' 또는 '아니요'로 답하시오.`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만날 때 직각이 아닌 각이 있는가? '예' 또는 '아니요'로 답하시오.`,
     "아니요",
     `네 각이 모두 직각입니다.`,
   );

@@ -111,7 +111,10 @@ export function josa(
   const trimmed = word.trim();
   const code = trimmed.charCodeAt(trimmed.length - 1);
   if (!(code >= 0xac00 && code <= 0xd7a3)) return withoutBatchim;
-  return (code - 0xac00) % 28 === 0 ? withoutBatchim : withBatchim;
+  const final = (code - 0xac00) % 28;
+  // «(으)로» 는 ㄹ 받침(8)도 «로» 다 — «꿀로» · «길로» (2026-10-20 «꿀으로» 실측).
+  if (final === 8 && withBatchim === "으로") return withoutBatchim;
+  return final === 0 ? withoutBatchim : withBatchim;
 }
 
 /**

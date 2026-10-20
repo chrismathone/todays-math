@@ -1583,7 +1583,9 @@ def _pictograph(spec: Mapping[str, Any]) -> str:
         raise ValueError("items 는 1~6개여야 합니다")
     # viewBox 폭을 240으로 고정 — 칸 수가 달라도 화면 크기가 안 변한다.
     icon_w, icon_h, pad = 22.0, 24.0, 10.0
-    parts: list[str] = [_text(pad, 14, f"□ = {unit}", size=13, anchor="start")]
+    # `hideUnit` — 「□ 한 칸은 몇 …?」 을 묻는 문항은 범례가 곧 답이다 → «□ = ?» (2026-10-20 지면 검사).
+    legend = "?" if spec.get("hideUnit") is True else str(unit)
+    parts: list[str] = [_text(pad, 14, f"□ = {legend}", size=13, anchor="start")]
     y = 32.0
     for i, item in enumerate(items):
         if not isinstance(item, Mapping):
@@ -4904,6 +4906,7 @@ ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "lineChart": frozenset({"yMax", "yStep", "yLabel", "title"}),
     "stripChart": frozenset(),
     "pieChart": frozenset(),
+    "pictograph": frozenset({"hideUnit"}),
     "rotateFlip": frozenset({"n"}),
     "symmetry": frozenset({"n", "cells", "motif"}),
     "stackCubes": frozenset({"views"}),

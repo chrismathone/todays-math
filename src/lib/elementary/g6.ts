@@ -46,7 +46,9 @@ import { lazyTable } from "./lazyTable";
  */
 function josa(word: string, withFinal: string, withoutFinal: string): string {
   const code = word.charCodeAt(word.length - 1) - 0xac00;
-  const hasFinal = code >= 0 && code <= 11171 && code % 28 !== 0;
+  const final = code >= 0 && code <= 11171 ? code % 28 : 0;
+  // «(으)로» 는 ㄹ 받침(8)도 «로» 다(«꿀로») — `format.ts` `josa` 와 같은 규칙.
+  const hasFinal = final !== 0 && !(final === 8 && withFinal === "으로");
   return hasFinal ? withFinal : withoutFinal;
 }
 
@@ -615,7 +617,7 @@ function graphs61(unit: UnitSeed, rng: Rng): ElemProblem {
     const min = Math.min(...pcts);
     return make(
       unit,
-      `학생들의 ${subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목과 가장 낮은 항목의 비율의 차는 몇 %인가?`,
+      `학생들이 ${subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목과 가장 낮은 항목의 비율의 차는 몇 %인가?`,
       num(max - min),
       `가장 높은 비율은 ${expr(`${max}\\%`)}, 가장 낮은 비율은 ${expr(`${min}\\%`)} 입니다. ` +
         `${expr(`${max}-${min}=${max - min}`)}`,
@@ -648,7 +650,7 @@ function graphs61(unit: UnitSeed, rng: Rng): ElemProblem {
     const sum = one.pct + two.pct;
     return make(
       unit,
-      `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. ` +
+      `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. ` +
         `${one.label}${josa(one.label, "과", "와")} ${two.label}의 비율의 합은 몇 %인가?`,
       num(sum),
       `${one.label}${josa(one.label, "은", "는")} ${expr(`${one.pct}\\%`)}, ` +
@@ -665,7 +667,7 @@ function graphs61(unit: UnitSeed, rng: Rng): ElemProblem {
     const len = (width * one.pct) / 100;
     return make(
       unit,
-      `학생들의 ${subject}을 조사한 결과입니다. 이 자료를 전체 길이가 ${unitNum(width, "cm")} 인 띠그래프로 나타낼 때, ` +
+      `학생들이 ${subject}을 조사한 결과입니다. 이 자료를 전체 길이가 ${unitNum(width, "cm")} 인 띠그래프로 나타낼 때, ` +
         `${one.label}${josa(one.label, "이", "가")} 차지하는 부분의 길이는 몇 cm인가?`,
       num(len),
       `${one.label}${josa(one.label, "은", "는")} 전체의 ${expr(`${one.pct}\\%`)} 입니다. ` +
@@ -3660,7 +3662,7 @@ function stripReadCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const one = items[intBetween(rng, 0, items.length - 1)]!;
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
     num(one.pct),
     `띠그래프에서 ${one.label} 부분에 적힌 비율을 읽으면 ${expr(`${one.pct}\\%`)} 입니다.`,
     fig("stripChart", { segments: items }),
@@ -3673,7 +3675,7 @@ function stripReadWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 많은 학생이 고른 항목을 쓰시오.`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 많은 학생이 고른 항목을 쓰시오.`,
     top.label,
     `띠그래프에서 가장 넓은 부분을 찾습니다. 비율이 ${expr(`${top.pct}\\%`)} 로 가장 큰 ${top.label}입니다.`,
     fig("stripChart", { segments: d.items }),
@@ -3708,7 +3710,7 @@ function stripReadDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const n = (total * one.pct) / 100;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}${josa(one.label, "을", "를")} 고른 학생이 ${num(n)}명일 때, ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}${josa(one.label, "을", "를")} 고른 학생이 ${num(n)}명일 때, ` +
       `조사한 전체 학생은 몇 명입니까?`,
     num(total),
     // 「백분의 (pct)」 — 분수는 **분자를 마지막에 읽으므로** 조사는 pct 가 정한다(R-조사).
@@ -3812,7 +3814,7 @@ function pieReadCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const one = items[intBetween(rng, 0, items.length - 1)]!;
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}의 비율은 몇 %입니까?`,
     num(one.pct),
     `원그래프에서 ${one.label} 부분에 적힌 비율을 읽으면 ${expr(`${one.pct}\\%`)} 입니다.`,
     fig("pieChart", { slices: items }),
@@ -3826,7 +3828,7 @@ function pieReadWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const [big, small] = p.pct > q.pct ? [p, q] : [q, p];
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. ` +
       `${big.label}의 비율은 ${small.label}의 비율보다 몇 % 더 높습니까?`,
     num(big.pct - small.pct),
     `${big.label}${josa(big.label, "은", "는")} ${expr(`${big.pct}\\%`)}, ${small.label}${josa(small.label, "은", "는")} ${expr(`${small.pct}\\%`)} 입니다. ` +
@@ -3853,7 +3855,7 @@ function pieReadApply(unit: UnitSeed, rng: Rng): ElemProblem {
   ];
   return make(
     unit,
-    `학생들의 ${theme.subject}을 조사하여 나타낸 원그래프입니다. ` +
+    `학생들이 ${theme.subject}을 조사하여 나타낸 원그래프입니다. ` +
       `${labels[0]}의 비율은 ${labels[1]}의 비율의 몇 배입니까?`,
     num(k),
     `${labels[0]}${josa(labels[0]!, "은", "는")} ${expr(`${xPct}\\%`)}, ${labels[1]}${josa(labels[1]!, "은", "는")} ${expr(`${yPct}\\%`)} 입니다. ` +
@@ -3871,7 +3873,7 @@ function pieReadDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const nY = (total * y.pct) / 100;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${x.label}${josa(x.label, "을", "를")} 고른 학생이 ${num(nX)}명일 때, ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${x.label}${josa(x.label, "을", "를")} 고른 학생이 ${num(nX)}명일 때, ` +
       `${y.label}${josa(y.label, "을", "를")} 고른 학생은 몇 명입니까?`,
     num(nY),
     `${x.label}의 비율이 ${expr(`${x.pct}\\%`)} 이므로 전체는 ${expr(`${nX}\\div\\frac{${x.pct}}{100}=${total}`)} 명입니다. ` +
@@ -3989,7 +3991,7 @@ function cmpChartCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목의 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목의 비율은 몇 %입니까?`,
     num(top.pct),
     `${kindName}에서 가장 넓은 부분은 ${top.label}입니다. 비율은 ${expr(`${top.pct}\\%`)} 입니다.`,
     figure,
@@ -4006,7 +4008,7 @@ function cmpChartWord(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = d.items.filter((i) => i.pct > base.pct).length;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
       `${base.label}보다 비율이 높은 항목은 모두 몇 개입니까?`,
     num(count),
     `${base.label}의 비율은 ${expr(`${base.pct}\\%`)} 입니다. 이보다 비율이 높은 항목은 ` +
@@ -4028,7 +4030,7 @@ function cmpChartApply(unit: UnitSeed, rng: Rng): ElemProblem {
   const sum = sorted[0]!.pct + sorted[1]!.pct;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
       `비율이 가장 높은 항목과 두 번째로 높은 항목의 비율의 합은 전체의 절반보다 몇 % 더 많습니까?`,
     num(sum - 50),
     `두 항목은 ${sorted[0]!.label}${josa(sorted[0]!.label, "과", "와")} ${sorted[1]!.label}이고 비율의 합은 ` +
@@ -4050,7 +4052,7 @@ function cmpChartDeep(unit: UnitSeed, rng: Rng): ElemProblem {
   const nLow = (total * low.pct) / 100;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. ` +
       `비율이 가장 높은 항목을 고른 학생이 ${num(nTop)}명일 때, 비율이 가장 낮은 항목을 고른 학생은 몇 명입니까?`,
     num(nLow),
     `가장 높은 ${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 이므로 전체는 ${expr(`${nTop}\\div\\frac{${top.pct}}{100}=${total}`)} 명입니다. ` +
@@ -12467,7 +12469,7 @@ function stripReadFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const { subject, items } = chartData(rng);
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. 항목은 모두 몇 개입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 띠그래프입니다. 항목은 모두 몇 개입니까?`,
     num(items.length),
     `띠그래프에 나타난 부분은 ${num(items.length)}개입니다.`,
     stripFig(items),
@@ -12480,7 +12482,7 @@ function stripReadFormLeast(unit: UnitSeed, rng: Rng): ElemProblem {
   const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 적은 학생이 고른 항목을 쓰시오.`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 적은 학생이 고른 항목을 쓰시오.`,
     low.label,
     `가장 좁은 부분은 비율 ${expr(`${low.pct}\\%`)} 인 ${low.label}입니다.`,
     stripFig(d.items),
@@ -12492,7 +12494,7 @@ function stripReadFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
   const { subject, items } = chartData(rng);
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 띠그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
     num(100),
     `띠그래프 전체는 ${expr(`100\\%`)} 입니다.`,
     stripFig(items),
@@ -12505,7 +12507,7 @@ function stripReadFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = twoLabels(rng, d.items);
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
     num(a.pct + b.pct),
     `${expr(`${a.pct}+${b.pct}=${a.pct + b.pct}`)} 이므로 ${expr(`${a.pct + b.pct}\\%`)} 입니다.`,
     stripFig(d.items),
@@ -12518,7 +12520,7 @@ function stripReadFormMaxPct(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 높은 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 띠그래프입니다. 가장 높은 비율은 몇 %입니까?`,
     num(top.pct),
     `${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 로 가장 높습니다.`,
     stripFig(d.items),
@@ -12531,7 +12533,7 @@ function stripReadFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
   const one = items[intBetween(rng, 0, items.length - 1)]!;
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}을 고르지 않은 학생의 비율은 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 띠그래프입니다. ${one.label}${josa(one.label, "을", "를")} 고르지 않은 학생의 비율은 몇 %입니까?`,
     num(100 - one.pct),
     `${expr(`100-${one.pct}=${100 - one.pct}`)} 이므로 ${expr(`${100 - one.pct}\\%`)} 입니다.`,
     stripFig(items),
@@ -12545,8 +12547,8 @@ function stripDrawFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
   const p = pick(rng, DRAW_PCTS);
   return make(
     unit,
-    `학생들의 ${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
-      `띠그래프로 나타낼 때 ${item}이 아닌 나머지 항목의 비율의 합은 몇 %입니까?`,
+    `학생들이 ${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
+      `띠그래프로 나타낼 때 ${item}${josa(item, "이", "가")} 아닌 나머지 항목의 비율의 합은 몇 %입니까?`,
     num(100 - p),
     `${expr(`100-${p}=${100 - p}`)} 이므로 ${expr(`${100 - p}\\%`)} 입니다.`,
   );
@@ -12581,7 +12583,7 @@ function stripDrawFormLenRest(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
-      `전체 길이가 ${unitNum(w, "cm")} 인 띠그래프에서 ${item}이 아닌 부분이 차지하는 길이는 몇 cm입니까?`,
+      `전체 길이가 ${unitNum(w, "cm")} 인 띠그래프에서 ${item}${josa(item, "이", "가")} 아닌 부분이 차지하는 길이는 몇 cm입니까?`,
     num(w - len),
     `${item}은 ${expr(`${w}\\times\\frac{${p}}{100}=${len}`)} cm이므로 나머지는 ${expr(`${w}-${len}=${w - len}`)} cm입니다.`,
   );
@@ -12644,7 +12646,7 @@ function pieReadFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const { subject, items } = chartData(rng);
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. 항목은 모두 몇 개입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. 항목은 모두 몇 개입니까?`,
     num(items.length),
     `원그래프에 나타난 부분은 ${num(items.length)}개입니다.`,
     pieFig(items),
@@ -12657,7 +12659,7 @@ function pieReadFormLeast(unit: UnitSeed, rng: Rng): ElemProblem {
   const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. 비율이 가장 낮은 항목을 쓰시오.`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. 비율이 가장 낮은 항목을 쓰시오.`,
     low.label,
     `가장 좁은 부채꼴은 ${low.label}입니다.`,
     pieFig(d.items),
@@ -12669,7 +12671,7 @@ function pieReadFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
   const { subject, items } = chartData(rng);
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
     num(100),
     `원그래프 전체는 ${expr(`100\\%`)} 입니다.`,
     pieFig(items),
@@ -12682,7 +12684,7 @@ function pieReadFormTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = twoLabels(rng, d.items);
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. ${a.label}${josa(a.label, "과", "와")} ${b.label}의 비율의 합은 몇 %입니까?`,
     num(a.pct + b.pct),
     `${expr(`${a.pct}+${b.pct}=${a.pct + b.pct}`)} 이므로 ${expr(`${a.pct + b.pct}\\%`)} 입니다.`,
     pieFig(d.items),
@@ -12695,7 +12697,7 @@ function pieReadFormMaxPct(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 원그래프입니다. 가장 높은 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 원그래프입니다. 가장 높은 비율은 몇 %입니까?`,
     num(top.pct),
     `${top.label}의 비율이 ${expr(`${top.pct}\\%`)} 로 가장 높습니다.`,
     pieFig(d.items),
@@ -12708,7 +12710,7 @@ function pieReadFormRest(unit: UnitSeed, rng: Rng): ElemProblem {
   const one = items[intBetween(rng, 0, items.length - 1)]!;
   return make(
     unit,
-    `학생들의 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}이 아닌 나머지 부분의 비율은 몇 %입니까?`,
+    `학생들이 ${subject}을 조사하여 나타낸 원그래프입니다. ${one.label}${josa(one.label, "이", "가")} 아닌 나머지 부분의 비율은 몇 %입니까?`,
     num(100 - one.pct),
     `${expr(`100-${one.pct}=${100 - one.pct}`)} 이므로 ${expr(`${100 - one.pct}\\%`)} 입니다.`,
     pieFig(items),
@@ -12821,7 +12823,7 @@ function cmpChartFormLowPct(unit: UnitSeed, rng: Rng): ElemProblem {
   const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 낮은 항목의 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 낮은 항목의 비율은 몇 %입니까?`,
     num(low.pct),
     `가장 좁은 부분은 ${low.label}이고 비율은 ${expr(`${low.pct}\\%`)} 입니다.`,
     figure,
@@ -12834,7 +12836,7 @@ function cmpChartFormCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const { kindName, figure } = cmpChartFig(rng, d.items);
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 항목은 모두 몇 개입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 항목은 모두 몇 개입니까?`,
     num(d.items.length),
     `나타난 항목은 ${num(d.items.length)}개입니다.`,
     figure,
@@ -12847,7 +12849,7 @@ function cmpChartFormAll100(unit: UnitSeed, rng: Rng): ElemProblem {
   const { kindName, figure } = cmpChartFig(rng, d.items);
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 모든 항목의 비율을 더하면 몇 %입니까?`,
     num(100),
     `그래프 전체는 ${expr(`100\\%`)} 입니다.`,
     figure,
@@ -12861,7 +12863,7 @@ function cmpChartFormTopName(unit: UnitSeed, rng: Rng): ElemProblem {
   const top = d.items.reduce((a, b) => (a.pct > b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목을 쓰시오.`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 비율이 가장 높은 항목을 쓰시오.`,
     top.label,
     `가장 넓은 부분은 ${top.label}입니다.`,
     figure,
@@ -12876,7 +12878,7 @@ function cmpChartFormSpread(unit: UnitSeed, rng: Rng): ElemProblem {
   const low = d.items.reduce((a, b) => (a.pct < b.pct ? a : b));
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 가장 높은 비율과 가장 낮은 비율의 차는 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 가장 높은 비율과 가장 낮은 비율의 차는 몇 %입니까?`,
     num(top.pct - low.pct),
     `${expr(`${top.pct}-${low.pct}=${top.pct - low.pct}`)} 이므로 ${expr(`${top.pct - low.pct}\\%`)} 입니다.`,
     figure,
@@ -12891,7 +12893,7 @@ function cmpChartFormSecond(unit: UnitSeed, rng: Rng): ElemProblem {
   const second = sorted[1]!;
   return make(
     unit,
-    `학생들의 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 두 번째로 높은 비율은 몇 %입니까?`,
+    `학생들이 ${d.subject}을 조사하여 나타낸 ${kindName}입니다. 두 번째로 높은 비율은 몇 %입니까?`,
     num(second.pct),
     `두 번째로 넓은 부분은 ${second.label}이고 비율은 ${expr(`${second.pct}\\%`)} 입니다.`,
     figure,
@@ -13127,7 +13129,7 @@ function cubicFormDiffM(unit: UnitSeed, rng: Rng): ElemProblem {
   const thing = pick(rng, BIG_THINGS);
   return make(
     unit,
-    `부피가 ${num(a)} m³인 ${thing}과 부피가 ${num(b)} m³인 ${thing}의 부피의 차는 몇 m³입니까?`,
+    `부피가 ${num(a)} m³인 ${thing}${josa(thing, "과", "와")} 부피가 ${num(b)} m³인 ${thing}의 부피의 차는 몇 m³입니까?`,
     num(a - b),
     `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
   );
