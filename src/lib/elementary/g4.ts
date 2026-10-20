@@ -7778,7 +7778,8 @@ function mul133EstHundreds(unit: UnitSeed, rng: Rng): ElemProblem {
   const est = aa * bb;
   return make(
     unit,
-    `${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 어림하여 곱하면 얼마인가?\n\n${expr(`${a}\\times${b}`)}`,
+    // 곱셈 줄을 따로 찍지 않는다 — 두 수가 이미 발문에 있다(원장님 2026-10-20 «식이 한 번 더 찍힌다»).
+    `${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 어림하여 곱하면 얼마인가?`,
     n(est),
     `${expr(`${aa}\\times${bb}=${est}`)} 이므로 약 ${n(est)}입니다.`,
     mulCol(aa, bb),
@@ -7996,6 +7997,7 @@ function pair36(rng: Rng): { a: number; b: number; q: number } {
   return { a: b * q, b, q };
 }
 
+// 1-3-6 몫의 자리 숫자 두 문형에는 세로셈을 붙이지 않는다 — `q × b` 그림이 몫(정답의 바탕)을 그대로 보여 줬다(2026-10-20).
 function div136TensDigit(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, b, q } = pair36(rng);
   return make(
@@ -8003,7 +8005,6 @@ function div136TensDigit(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\div${b}`)} 의 몫에서 십의 자리 숫자를 쓰시오.`,
     n(Math.floor(q / 10)),
     `몫은 ${n(q)}이므로 십의 자리 숫자는 ${n(Math.floor(q / 10))}입니다.`,
-    mulCol(q, b),
   );
 }
 
@@ -8014,7 +8015,6 @@ function div136OnesDigit(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\div${b}`)} 의 몫에서 일의 자리 숫자를 쓰시오.`,
     n(q % 10),
     `몫은 ${n(q)}이므로 일의 자리 숫자는 ${n(q % 10)}입니다.`,
-    mulCol(q, b),
   );
 }
 
@@ -13855,7 +13855,8 @@ function dec236Tape(unit: UnitSeed, rng: Rng): ElemProblem {
     `리본 ${n(dec1(a))} m와 ${n(dec1(b))} m를 이어 붙였습니다. 모두 몇 m인가?`,
     n(dec1(a + b)),
     `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)} 입니다.`,
-    fig("tape", { length: a + b, label: `${dec1(a + b)} m`, segments: 2 }),
+    // 라벨은 «? m» — 합을 적으면 그림이 정답을 보여 준다(원장님 2026-10-20 지면 전수 검사).
+    fig("tape", { length: a + b, label: "? m", segments: 2 }),
   );
 }
 

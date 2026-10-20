@@ -4430,7 +4430,7 @@ function time155Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const stem = pick(rng, [
     `다음 두 시간의 합은 몇 시간 몇 분인지 쓰시오.\n\n${A}, ${B}`,
     `${A}에 ${B}을 더한 시간은 몇 시간 몇 분인지 쓰시오.`,
-    `두 시간 ${A}과 ${B}의 합을 구하시오.`,
+    `${A}과 ${B}의 합을 구하시오.`,
     `합이 몇 시간 몇 분인지 쓰시오.\n\n${A} $+$ ${B}`,
     `${A}보다 ${B} 더 긴 시간은 몇 시간 몇 분인지 쓰시오.`,
     `다음 시간을 모두 더하면 몇 시간 몇 분인지 구하시오.\n\n${A}, ${B}`,
@@ -10795,7 +10795,7 @@ function secMissingMin(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = m * 60 + s;
   return make(
     unit,
-    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square$분 ${n(s)}초 $=${n(t)}$초`,
+    `$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square$분 ${n(s)}초 $=$ ${n(t)}초`,
     n(m),
     `$60$ 초는 $1$ 분이므로 ${n(m)}분입니다.`,
   );

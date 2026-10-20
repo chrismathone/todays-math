@@ -11777,7 +11777,8 @@ function cong232Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `합동인 두 도형은 둘레가 같으므로 이 이등변삼각형의 둘레도 ${n(total)} cm입니다. 밑변을 빼면 ${expr(`${total}-${base}=${2 * leg}`)} cm이고, 이것이 길이가 같은 두 변의 합이므로 ${expr(`${2 * leg}\\div2=${leg}`)}, 곧 ${n(leg)} cm입니다.`,
     fig("markedShape", {
       shape: "isoTri",
-      sides: [`${base} cm`, `${leg} cm`, `${leg} cm`],
+      // 같은 두 변은 표지(equal)만 — 길이를 적으면 그림이 정답을 보여 준다(2026-10-20 지면 전수 검사).
+      sides: [`${base} cm`, null, null],
       equal: [[1, 2]],
     }),
   );
