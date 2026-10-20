@@ -123,6 +123,18 @@ against the shared database or roll production back below it. The writer
 `getCourseProblemInput` return `text` for these problems. `text` problems get no
 answer choices and never enter the bank or prerequisite supply (`number` only).
 
+**Print smart spacing — reader first (2026-10-20, owner «스마트 여백 · 새 시험지만
+기본»):** `PrintOptions.smartSpacing` is an optional boolean, never a new value of
+`layoutMode` or `spacing`. `parsePrintOptions` reads a missing field as `false`
+(a saved sheet keeps its layout); only a new sheet starts from
+`DEFAULT_PRINT_OPTIONS` (smart once the writer ships). The preset contract
+(strict) and the arithmetic presentation contract (keys of
+`DEFAULT_PRINT_OPTIONS`) reject unknown keys, so the reader commit "feat(print):
+read additive smart spacing before enabling writers" (6b29db4ed) is the floor:
+once a sheet, preset or arithmetic presentation saves the field, never run older
+code against the shared database or roll production back below it. The writer
+is "feat(print): distribute question whitespace and add smart pagination".
+
 **Explorer card follow-ups — reader first (2026-10-20):** a definitions session
 may carry `followUp` (`questionId`, `state` again | solution, `firstChoiceIds`)
 and `shown` (activity keys `cardId:kind` whose solution was shown), and the

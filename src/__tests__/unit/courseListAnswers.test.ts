@@ -30,12 +30,19 @@ const DIVISORS =
   "다음 곱셈식에서 알 수 있는 $6$의 약수를 모두 쓰시오. $2\\times3=6$";
 const MULTIPLES =
   "어떤 두 수의 최소공배수가 $8$입니다. 두 수의 공배수를 가장 작은 수부터 $3$개 쓰시오.";
-/** The input the writer will store for a list problem. */
+/** The input the writer stores for a list problem. */
 const LIST_INPUT: CourseProblem["input"] = {
   mode: "text",
   label: "나의 답",
   placeholder: "예: 1, 2, 3",
   help: "답을 모두 쓰고 쉼표(,)로 나눠 주세요.",
+};
+/** What a list problem was stored with before the writer. */
+const SELF_CHECK_INPUT: CourseProblem["input"] = {
+  mode: "self-check",
+  label: "연습장에 풀어 주세요",
+  placeholder: "",
+  help: "풀이를 마친 뒤 스스로 확인해요. 정답과 풀이는 이번 학습을 마친 뒤 볼 수 있어요.",
 };
 
 function problem(
@@ -132,8 +139,7 @@ describe("저장된 모드로 채점", () => {
   });
 
   it("예전처럼 self-check 로 저장된 목록 문제는 그대로 스스로 확인", () => {
-    const old = problem("$1,\\ 2,\\ 3,\\ 6$", DIVISORS);
-    expect(old.input.mode).toBe("self-check");
+    const old = problem("$1,\\ 2,\\ 3,\\ 6$", DIVISORS, SELF_CHECK_INPUT);
     expect(gradeCourseAnswer(old, "1, 2, 3, 6")).toBeNull();
   });
 
@@ -263,9 +269,7 @@ describe("읽는 쪽 — 쓰는 쪽이 저장할 기록을 받는다", () => {
         session: {
           ...session,
           problems: session.problems.map((p) =>
-            p.input.mode === "text"
-              ? { ...p, input: getCourseProblemInput(p) }
-              : p,
+            p.input.mode === "text" ? { ...p, input: SELF_CHECK_INPUT } : p,
           ),
         },
       },
@@ -314,11 +318,48 @@ describe("읽는 쪽 — 쓰는 쪽이 저장할 기록을 받는다", () => {
   });
 });
 
-describe("쓰는 쪽은 아직 그대로(읽는 쪽이 운영에 나간 뒤 연다)", () => {
-  it("새 회차의 목록 문제는 아직 self-check", () => {
+describe("쓰는 쪽 — 읽는 쪽이 운영에 나간 뒤", () => {
+  it("목록 문제는 text 로 묻는다", () => {
     expect(
-      getCourseProblemInput({ answer: "$1,\\ 2,\\ 3,\\ 6$", content: DIVISORS })
+      getCourseProblemInput({
+        answer: "$1,\\ 2,\\ 3,\\ 6$",
+        content: DIVISORS,
+      }),
+    ).toEqual(LIST_INPUT);
+    expect(
+      getCourseProblemInput({ answer: "$8,\\ 16,\\ 24$", content: MULTIPLES })
+        .mode,
+    ).toBe("text");
+  });
+
+  it("목록이 아닌 문제는 그대로", () => {
+    expect(
+      getCourseProblemInput({ answer: "㉠", content: "기호를 모두 쓰시오." })
         .mode,
     ).toBe("self-check");
+    expect(
+      getCourseProblemInput({ answer: "$12$", content: "구하시오." }).mode,
+    ).toBe("number");
+  });
+
+  it("새 5-1-2-2 회차가 목록 문제를 text 로 저장하고, 보기를 붙이지 않는다", () => {
+    const planned = setCoursePlan(
+      emptyCourseState(),
+      {
+        startSectionId: "5-1-2-2",
+        dailyQuestionCount: 10,
+        enabled: true,
+        expectedRevision: 0,
+      },
+      now,
+    );
+    const state = startAutomaticCourse(planned, now, 7, randomUUID);
+    const lists = state.learner.session!.problems.filter(courseAnswerIsList);
+    expect(lists.length).toBeGreaterThan(0);
+    for (const p of lists) {
+      expect(p.input.mode).toBe("text");
+      expect(p.answerChoices ?? null).toBeNull();
+    }
+    expect(storedCourseSchema.safeParse(state).success).toBe(true);
   });
 });

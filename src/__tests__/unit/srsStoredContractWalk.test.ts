@@ -279,8 +279,9 @@ describe("a 초5 student walking the expedition keeps a readable record", () => 
       course: setCoursePlan(
         emptyCourseState(),
         {
-          // 5-2-1-1 «이상과 이하» generates a self-check «모두 쓰시오» problem.
-          startSectionId: "5-2-1-1",
+          // 5-1-2-2 «약수와 배수의 관계» asks for a symbol or a word (self-check);
+          // its «모두 쓰시오» lists are graded since plan §3.3.
+          startSectionId: "5-1-2-2",
           dailyQuestionCount: 10,
           enabled: true,
           expectedRevision: 0,
