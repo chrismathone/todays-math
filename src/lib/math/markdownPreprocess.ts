@@ -40,6 +40,11 @@ const protectBoxHeaders = (text: string) =>
 
 /** mathgen 원본 보정: 인라인 수식에서 lim 첨자가 옆에 붙는 문제 → 아래로 내린다. */
 const BARE_LIM = /\\lim(?!(?:[a-zA-Z]|\s*\\limits))/g;
+/**
+ * 앞 첨자 «$_{n}\mathrm{C}_{r}$» — 앞에 아무것도 없거나 연산 기호 뒤면 KaTeX 가 첨자를 **앞 기호에** 붙인다
+ * («$+_{n}C$» 가 «+ₙ C» 로). TeX 관례대로 빈 묶음 `{}` 을 앞에 둔다(2026-10-20 교차 검수 · 교과서 13행).
+ */
+const LEFT_SUBSCRIPT = /(^|\$|\\displaystyle|[+\-=(,]|\\times|\\cdot)(\s*)_\{/g;
 
 /**
  * 전처리 결과 캐시. `preprocessMathText` 는 순수 함수(같은 입력 → 같은 출력)라
@@ -66,7 +71,9 @@ export function preprocessMarkdown(content: string): string {
   const result = applyHardBreaks(
     preprocessMathText(
       protectBoxHeaders(layoutQuotedBoxes(decodeHtmlEntities(content))),
-    ).replace(BARE_LIM, "\\lim\\limits"),
+    )
+      .replace(BARE_LIM, "\\lim\\limits")
+      .replace(LEFT_SUBSCRIPT, "$1$2{}_{"),
   );
 
   if (preprocessCache.size >= PREPROCESS_CACHE_LIMIT) {

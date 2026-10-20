@@ -39,6 +39,7 @@ const PAGE_INPUT_FILES = [
   "src/components/math/ProblemContent.tsx",
   "src/components/math/MarkdownRenderer.tsx",
   "src/components/math/remarkFormulaLines.ts",
+  "src/components/math/rehypeMathNowrap.ts",
   "src/lib/math/formulaLine.ts",
   "src/app/globals.css",
   "src/lib/math/displayWidth.ts",

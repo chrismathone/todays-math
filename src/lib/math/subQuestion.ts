@@ -162,6 +162,8 @@ function collect(text: string): Candidate[] {
     if (num < 1) return;
     if (checkBefore && REJECT_BEFORE.test(charBefore(text, index))) return;
     if (REFERENCE_AFTER.test(text.slice(index + length))) return;
+    // 계산 줄 끝의 «⋯⋯ ⑴» 은 그 줄에 붙인 이름표다(교과서 계산 과정 — 2026-10-20 교차 검수).
+    if (/[⋯…]\s*$/.test(text.slice(Math.max(0, index - 4), index))) return;
     // `(1)(2)(3)` 처럼 붙어 있으면 표의 칸이지 하위 문항이 아니다(실측 33786c96).
     if (text[index + length] === "(") return;
     found.push({ index, length, number: num, priority });

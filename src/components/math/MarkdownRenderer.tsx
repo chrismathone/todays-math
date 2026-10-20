@@ -37,6 +37,8 @@ import {
 import ReactMarkdown, { type Components } from "react-markdown";
 import type { PluggableList } from "unified";
 import rehypeKatex from "rehype-katex";
+
+import { rehypeMathNowrap } from "./rehypeMathNowrap";
 import remarkMath from "remark-math";
 import {
   remarkEmptyBlockquotes,
@@ -89,7 +91,11 @@ const REMARK_PLUGINS_FORMULA = [...REMARK_PLUGINS, remarkFormulaLines];
  * 즉 우리가 만든 글자를 우리 렌더가 거부하고 있었다. 실측 320행 · 수식 787곳.
  * 근거와 옵션 내용은 `katexRender.ts` 의 `UI_KATEX_OPTIONS` 주석.
  */
-const REHYPE_PLUGINS: PluggableList = [[rehypeKatex, UI_KATEX_OPTIONS]];
+const REHYPE_PLUGINS: PluggableList = [
+  [rehypeKatex, UI_KATEX_OPTIONS],
+  // 짧은 인라인 식은 안에서 줄을 안 바꾸고 붙은 낱말과도 안 떨어진다 — 근거는 `rehypeMathNowrap.ts`.
+  rehypeMathNowrap,
+];
 
 /* ──────────────────────────────────────────────────────────────────────────
  * `<보기>` · `<조건>` 상자 카드 — mathgen MarkdownRenderer 1011~1028행 이식.
