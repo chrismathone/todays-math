@@ -186,7 +186,7 @@ describe("course learn preview", () => {
 
 describe("relearn preview", () => {
   it("opens only on request and returns to the first problem", async () => {
-    const run = { ...session(), relearn: true };
+    const run: CoursePublicSession = { ...session(), relearn: true };
     render(<StudentCoursePractice {...props(run)} />);
     expect(
       await screen.findByText("첫 문제와 다음 문제 0"),
