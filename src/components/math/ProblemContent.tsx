@@ -216,7 +216,11 @@ export function ProblemContent({
       {practiceLayout ? (
         <PracticeProblemText content={question} />
       ) : (
-        <MarkdownRenderer content={question} staticLayout={staticLayout} />
+        <MarkdownRenderer
+          content={question}
+          staticLayout={staticLayout}
+          formulaLines
+        />
       )}
       {figureSvg ? (
         // 발문 뒤 — 스캔 그림과 같은 자리다. 장식 없음(05 §0).

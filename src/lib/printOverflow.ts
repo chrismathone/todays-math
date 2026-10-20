@@ -34,6 +34,8 @@
  *    `scripts/qa/measure-print-overflow.tsx` 가 그걸 하고,
  *    `scripts/qa/eval-overflow-rules.ts` 가 이 판정을 그 실측과 대조해 채점한다.
  */
+import { formulaGapLines } from "@/lib/math/formulaLine";
+import { preprocessMarkdown } from "@/lib/math/markdownPreprocess";
 import type { TestPrintProblem } from "@/components/print/types";
 import { descriptiveWritingLayout } from "@/lib/print/descriptive";
 import {
@@ -574,6 +576,8 @@ export function estimateProblemPx(
    * 있든 그 줄이 높아지기 때문이다 — 자리를 가리지 않는다.
    */
   px += countTallMath(content) * TALL_MATH_EXTRA_PX;
+  // 발문의 «글 뒤 식만 있는 문단»은 지면이 위에 한 줄 띄운다 — 같은 규칙 함수로, 지면과 같은 전처리를 거친 글로 센다(`formulaLine.ts`).
+  px += formulaGapLines(preprocessMarkdown(question)) * line;
   return px;
 }
 
