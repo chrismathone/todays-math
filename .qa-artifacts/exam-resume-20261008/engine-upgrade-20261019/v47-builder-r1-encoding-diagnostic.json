@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-20T08:58:04.856801+00:00",
+  "failure": "UTF8-only builder read PowerShell UTF16LE redirected TAP/log, before outputs existed",
+  "nodePrefixHex": "fffe540041005000",
+  "pythonPrefixHex": "fffe700079007400",
+  "sourceLogsPreserved": true,
+  "testFailures": 0,
+  "repair": "New builder r2 reads explicit BOM-aware encoding without replacing original logs"
+}

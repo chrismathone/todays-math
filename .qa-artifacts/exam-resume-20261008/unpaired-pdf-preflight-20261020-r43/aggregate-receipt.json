@@ -1,0 +1,920 @@
+{
+  "kind": "unselected-pair-original-pdf-preflight/v1",
+  "utc": "2026-10-20T08:04:53.822392+00:00",
+  "inventory": {
+    "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+    "bytes": 8404909
+  },
+  "tools": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\preflight-unpaired-pdfs.py",
+      "sha256": "dd4a0f2d2082a024665a0eed59d5fb3bfd0dcf946bb216030abe9765b803cb88",
+      "bytes": 9223
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\unpaired_pdf_scope.py",
+      "sha256": "4de6945b35335d80e3a0ccacfde5fe580b4fc546578d3e610fba1dc5e046e5eb",
+      "bytes": 3800
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_inventory_scope_v2.py",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04",
+      "bytes": 1892
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\textlayer.py",
+      "sha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743",
+      "bytes": 32795
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\pua_table.json",
+      "sha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22",
+      "bytes": 2189
+    }
+  ],
+  "explicitJobIds": [
+    "personal-177d2c36918f4a4e9cd5c198e07f4e80",
+    "personal-638117f75d8cd6c59c090f3e47127b0c",
+    "personal-bd72d766441c644762389c7c5eca9da5"
+  ],
+  "scopeAsProvided": {
+    "level": "middle",
+    "grade": 2,
+    "minimumYear": 2025
+  },
+  "entries": [
+    {
+      "examId": "personal-177d2c36918f4a4e9cd5c198e07f4e80",
+      "school": "대구동부중",
+      "level": "중",
+      "year": 2025,
+      "grade": 2,
+      "semester": 1,
+      "round": "중간",
+      "selectedPairRemainsNone": true,
+      "references": [
+        {
+          "index": 1,
+          "status": "visual-reference-held-parser-unavailable",
+          "input": {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중2\\[대구동부중][2][25-1-중간](원본)(삼동).pdf",
+            "sha256": "8ebb4c1b1e813b80ed12807fd907ca8ada2b398b3078b3d8352e6c66ad3980a3",
+            "bytes": 2192156
+          },
+          "pages": [
+            {
+              "page": 1,
+              "width": 1080.0,
+              "height": 1440.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 2,
+              "width": 1080.0,
+              "height": 1440.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 3,
+              "width": 1080.0,
+              "height": 1440.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 4,
+              "width": 1080.0,
+              "height": 1440.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            }
+          ],
+          "firstPage": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-177d2c36918f4a4e9cd5c198e07f4e80\\1\\original-first-page.local.png",
+            "sha256": "2d4fc61b6eaf8136f812c938801cfeefc0b80620c1a0ce705f1fdae3cd6ddc0c",
+            "bytes": 3091023
+          },
+          "firstPageActuallyViewed": false,
+          "parserErrorType": "ValueError",
+          "parserError": "수식 글리프가 없다 — 텍스트 레이어 없는 스캔본",
+          "sourceBytesUnchanged": true
+        }
+      ],
+      "sourceIdentityApproved": false,
+      "curriculumApproved": false,
+      "rightsApproved": false,
+      "contentPairApproved": false,
+      "authorDistributionAllowed": false,
+      "actualNewQuestionObservations": 0,
+      "status": "preflight-recorded-not-source-approved"
+    },
+    {
+      "examId": "personal-638117f75d8cd6c59c090f3e47127b0c",
+      "school": "대구동부중",
+      "level": "중",
+      "year": 2025,
+      "grade": 2,
+      "semester": 2,
+      "round": "중간",
+      "selectedPairRemainsNone": true,
+      "references": [
+        {
+          "index": 1,
+          "status": "visual-reference-held-parser-unavailable",
+          "input": {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[대구동부중][2][25-2-중간](원본)(삼동).pdf",
+            "sha256": "ab0b272a9acae5ad27c8b061c1bc938a9607bf2193d25bde2c1f6bfb04512024",
+            "bytes": 16122082
+          },
+          "pages": [
+            {
+              "page": 1,
+              "width": 3024.0,
+              "height": 4032.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 2,
+              "width": 3024.0,
+              "height": 4032.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 3,
+              "width": 3024.0,
+              "height": 4032.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 4,
+              "width": 3024.0,
+              "height": 4032.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            }
+          ],
+          "firstPage": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-638117f75d8cd6c59c090f3e47127b0c\\1\\original-first-page.local.png",
+            "sha256": "267d99419624bed6662e9b0a2cce82ca2bb7041fa96d9db9ef79033b708287d2",
+            "bytes": 20111404
+          },
+          "firstPageActuallyViewed": false,
+          "parserErrorType": "ValueError",
+          "parserError": "수식 글리프가 없다 — 텍스트 레이어 없는 스캔본",
+          "sourceBytesUnchanged": true
+        }
+      ],
+      "sourceIdentityApproved": false,
+      "curriculumApproved": false,
+      "rightsApproved": false,
+      "contentPairApproved": false,
+      "authorDistributionAllowed": false,
+      "actualNewQuestionObservations": 0,
+      "status": "preflight-recorded-not-source-approved"
+    },
+    {
+      "examId": "personal-bd72d766441c644762389c7c5eca9da5",
+      "school": "대구동중",
+      "level": "중",
+      "year": 2025,
+      "grade": 2,
+      "semester": 1,
+      "round": "기말",
+      "selectedPairRemainsNone": true,
+      "references": [
+        {
+          "index": 1,
+          "status": "visual-reference-held-parser-unavailable",
+          "input": {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말] (원본) (ㄱAtoZ).pdf",
+            "sha256": "032157a0476c148f812f3516d759dad4dd8b2cb792daccceb4d464e81fdaaddd",
+            "bytes": 477272
+          },
+          "pages": [
+            {
+              "page": 1,
+              "width": 595.0,
+              "height": 842.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 2,
+              "width": 595.0,
+              "height": 842.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 3,
+              "width": 595.0,
+              "height": 842.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 4,
+              "width": 595.0,
+              "height": 842.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            }
+          ],
+          "firstPage": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\1\\original-first-page.local.png",
+            "sha256": "9574364ac638cb6db85e17490baa7ff5892429a9131b0653346a532ed1f5dc58",
+            "bytes": 414915
+          },
+          "firstPageActuallyViewed": false,
+          "parserErrorType": "ValueError",
+          "parserError": "수식 글리프가 없다 — 텍스트 레이어 없는 스캔본",
+          "sourceBytesUnchanged": true
+        },
+        {
+          "index": 2,
+          "status": "visual-reference-held-parser-unavailable",
+          "input": {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말] (원본) (연).pdf",
+            "sha256": "032157a0476c148f812f3516d759dad4dd8b2cb792daccceb4d464e81fdaaddd",
+            "bytes": 477272
+          },
+          "pages": [
+            {
+              "page": 1,
+              "width": 595.0,
+              "height": 842.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 2,
+              "width": 595.0,
+              "height": 842.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 3,
+              "width": 595.0,
+              "height": 842.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 4,
+              "width": 595.0,
+              "height": 842.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            }
+          ],
+          "firstPage": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\2\\original-first-page.local.png",
+            "sha256": "9574364ac638cb6db85e17490baa7ff5892429a9131b0653346a532ed1f5dc58",
+            "bytes": 414915
+          },
+          "firstPageActuallyViewed": false,
+          "parserErrorType": "ValueError",
+          "parserError": "수식 글리프가 없다 — 텍스트 레이어 없는 스캔본",
+          "sourceBytesUnchanged": true
+        },
+        {
+          "index": 3,
+          "status": "visual-reference-held-parser-unavailable",
+          "input": {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말] (원본)(엠수학) (1).pdf",
+            "sha256": "55561f8795320535bf593a6ac42d82718826668f8305a11a2c9441c0323ffbaf",
+            "bytes": 2210966
+          },
+          "pages": [
+            {
+              "page": 1,
+              "width": 2041.0,
+              "height": 2883.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 2,
+              "width": 2037.0,
+              "height": 2875.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 3,
+              "width": 1980.0,
+              "height": 2811.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 4,
+              "width": 2015.0,
+              "height": 2861.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            }
+          ],
+          "firstPage": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\3\\original-first-page.local.png",
+            "sha256": "26fe4467f1fe1103fe065c4fe839ee1b1e175ad3805569a8c36fda7e3b9654f0",
+            "bytes": 3036109
+          },
+          "firstPageActuallyViewed": false,
+          "parserErrorType": "ValueError",
+          "parserError": "수식 글리프가 없다 — 텍스트 레이어 없는 스캔본",
+          "sourceBytesUnchanged": true
+        },
+        {
+          "index": 4,
+          "status": "visual-reference-held-parser-unavailable",
+          "input": {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말] (원본)(엠수학).pdf",
+            "sha256": "55561f8795320535bf593a6ac42d82718826668f8305a11a2c9441c0323ffbaf",
+            "bytes": 2210966
+          },
+          "pages": [
+            {
+              "page": 1,
+              "width": 2041.0,
+              "height": 2883.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 2,
+              "width": 2037.0,
+              "height": 2875.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 3,
+              "width": 1980.0,
+              "height": 2811.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 4,
+              "width": 2015.0,
+              "height": 2861.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            }
+          ],
+          "firstPage": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\4\\original-first-page.local.png",
+            "sha256": "26fe4467f1fe1103fe065c4fe839ee1b1e175ad3805569a8c36fda7e3b9654f0",
+            "bytes": 3036109
+          },
+          "firstPageActuallyViewed": false,
+          "parserErrorType": "ValueError",
+          "parserError": "수식 글리프가 없다 — 텍스트 레이어 없는 스캔본",
+          "sourceBytesUnchanged": true
+        },
+        {
+          "index": 5,
+          "status": "visual-reference-held-parser-unavailable",
+          "input": {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말](원본) (뿌라스).pdf",
+            "sha256": "b4bd1231cab76cb463a678e05734be3c8f08f8e019bda03dfbb1177fbab5028b",
+            "bytes": 633492
+          },
+          "pages": [
+            {
+              "page": 1,
+              "width": 1190.52001953125,
+              "height": 841.7999877929688,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 2,
+              "width": 1190.52001953125,
+              "height": 841.7999877929688,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 3,
+              "width": 1190.52001953125,
+              "height": 841.7999877929688,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 4,
+              "width": 1190.52001953125,
+              "height": 841.7999877929688,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            }
+          ],
+          "firstPage": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\5\\original-first-page.local.png",
+            "sha256": "4c200bdd19261798572571c35dbb5da24fa17cbda172214939aed30c4be133c3",
+            "bytes": 281257
+          },
+          "firstPageActuallyViewed": false,
+          "parserErrorType": "ValueError",
+          "parserError": "수식 글리프가 없다 — 텍스트 레이어 없는 스캔본",
+          "sourceBytesUnchanged": true
+        },
+        {
+          "index": 6,
+          "status": "visual-reference-held-parser-unavailable",
+          "input": {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말](원본)(삼동).pdf",
+            "sha256": "d212a94696e3e09c2040439adf34538db7076d126a3bd02b58fe997db51fe56e",
+            "bytes": 4184242
+          },
+          "pages": [
+            {
+              "page": 1,
+              "width": 1230.0,
+              "height": 1650.75,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 2,
+              "width": 1206.0,
+              "height": 1668.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 3,
+              "width": 1281.0,
+              "height": 1765.5,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 4,
+              "width": 1664.0,
+              "height": 2268.0,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            }
+          ],
+          "firstPage": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\6\\original-first-page.local.png",
+            "sha256": "a69b8efe93c289270bc89cca4119b27e83a7de0460c76b9dc056165d331b71dd",
+            "bytes": 2937293
+          },
+          "firstPageActuallyViewed": false,
+          "parserErrorType": "ValueError",
+          "parserError": "수식 글리프가 없다 — 텍스트 레이어 없는 스캔본",
+          "sourceBytesUnchanged": true
+        },
+        {
+          "index": 7,
+          "status": "visual-reference-held-parser-unavailable",
+          "input": {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말](원본)(숙제).pdf",
+            "sha256": "0871de1f1aab159346591b6817f1e097b1fe4415edd8109f046f4a40254d8126",
+            "bytes": 1846483
+          },
+          "pages": [
+            {
+              "page": 1,
+              "width": 1031.760009765625,
+              "height": 728.4000244140625,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 2,
+              "width": 1031.760009765625,
+              "height": 728.4000244140625,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 3,
+              "width": 1031.760009765625,
+              "height": 728.4000244140625,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            },
+            {
+              "page": 4,
+              "width": 1031.760009765625,
+              "height": 728.4000244140625,
+              "nativeTextCharacters": 0,
+              "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rawPuaCharacters": 0
+            }
+          ],
+          "firstPage": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\7\\original-first-page.local.png",
+            "sha256": "724373cbecfd1190f67958890bd87b684b77f8608975e61d6be1357b9fbf1cd0",
+            "bytes": 593781
+          },
+          "firstPageActuallyViewed": false,
+          "parserErrorType": "ValueError",
+          "parserError": "수식 글리프가 없다 — 텍스트 레이어 없는 스캔본",
+          "sourceBytesUnchanged": true
+        }
+      ],
+      "sourceIdentityApproved": false,
+      "curriculumApproved": false,
+      "rightsApproved": false,
+      "contentPairApproved": false,
+      "authorDistributionAllowed": false,
+      "actualNewQuestionObservations": 0,
+      "status": "preflight-recorded-not-source-approved"
+    }
+  ],
+  "localCopyrightedOutputs": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-177d2c36918f4a4e9cd5c198e07f4e80\\1\\original-first-page.local.png",
+      "sha256": "2d4fc61b6eaf8136f812c938801cfeefc0b80620c1a0ce705f1fdae3cd6ddc0c",
+      "bytes": 3091023
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-638117f75d8cd6c59c090f3e47127b0c\\1\\original-first-page.local.png",
+      "sha256": "267d99419624bed6662e9b0a2cce82ca2bb7041fa96d9db9ef79033b708287d2",
+      "bytes": 20111404
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\1\\original-first-page.local.png",
+      "sha256": "9574364ac638cb6db85e17490baa7ff5892429a9131b0653346a532ed1f5dc58",
+      "bytes": 414915
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\2\\original-first-page.local.png",
+      "sha256": "9574364ac638cb6db85e17490baa7ff5892429a9131b0653346a532ed1f5dc58",
+      "bytes": 414915
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\3\\original-first-page.local.png",
+      "sha256": "26fe4467f1fe1103fe065c4fe839ee1b1e175ad3805569a8c36fda7e3b9654f0",
+      "bytes": 3036109
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\4\\original-first-page.local.png",
+      "sha256": "26fe4467f1fe1103fe065c4fe839ee1b1e175ad3805569a8c36fda7e3b9654f0",
+      "bytes": 3036109
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\5\\original-first-page.local.png",
+      "sha256": "4c200bdd19261798572571c35dbb5da24fa17cbda172214939aed30c4be133c3",
+      "bytes": 281257
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\6\\original-first-page.local.png",
+      "sha256": "a69b8efe93c289270bc89cca4119b27e83a7de0460c76b9dc056165d331b71dd",
+      "bytes": 2937293
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r43\\personal-bd72d766441c644762389c7c5eca9da5\\7\\original-first-page.local.png",
+      "sha256": "724373cbecfd1190f67958890bd87b684b77f8608975e61d6be1357b9fbf1cd0",
+      "bytes": 593781
+    }
+  ],
+  "preservation": [
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+      "beforeSha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "afterSha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\preflight-unpaired-pdfs.py",
+      "beforeSha256": "dd4a0f2d2082a024665a0eed59d5fb3bfd0dcf946bb216030abe9765b803cb88",
+      "afterSha256": "dd4a0f2d2082a024665a0eed59d5fb3bfd0dcf946bb216030abe9765b803cb88"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\unpaired_pdf_scope.py",
+      "beforeSha256": "4de6945b35335d80e3a0ccacfde5fe580b4fc546578d3e610fba1dc5e046e5eb",
+      "afterSha256": "4de6945b35335d80e3a0ccacfde5fe580b4fc546578d3e610fba1dc5e046e5eb"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_inventory_scope_v2.py",
+      "beforeSha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04",
+      "afterSha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\textlayer.py",
+      "beforeSha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743",
+      "afterSha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\pua_table.json",
+      "beforeSha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22",
+      "afterSha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+      "beforeSha256": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+      "afterSha256": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r10\\aggregate-receipt.json",
+      "beforeSha256": "1c1de778f9c261edbb2e0a29bcb971a8e003b595893c69cccd5ec28deb424093",
+      "afterSha256": "1c1de778f9c261edbb2e0a29bcb971a8e003b595893c69cccd5ec28deb424093"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r11\\aggregate-receipt.json",
+      "beforeSha256": "9e5a5dd18257ea4810986ef09141aed6d7ce0cb3d44f8f78fe13f48225061519",
+      "afterSha256": "9e5a5dd18257ea4810986ef09141aed6d7ce0cb3d44f8f78fe13f48225061519"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r12\\aggregate-receipt.json",
+      "beforeSha256": "a00ee0cddc1ff3830b0d47ded62d02211b9d3d003b97094e98656210e56066dc",
+      "afterSha256": "a00ee0cddc1ff3830b0d47ded62d02211b9d3d003b97094e98656210e56066dc"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r13\\aggregate-receipt.json",
+      "beforeSha256": "51888f1c8f0d2d2f095966b3b3af0768ef0a8f6987eafb95444df270039baaae",
+      "afterSha256": "51888f1c8f0d2d2f095966b3b3af0768ef0a8f6987eafb95444df270039baaae"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r14\\aggregate-receipt.json",
+      "beforeSha256": "d5cab35ce4710780333e50af801800316d6da857fb46808b353c9edf66cb5662",
+      "afterSha256": "d5cab35ce4710780333e50af801800316d6da857fb46808b353c9edf66cb5662"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r15\\aggregate-receipt.json",
+      "beforeSha256": "88cd07c5f924926df871d1354379c3d9704dfe720e8a736c6667d65eeb235f63",
+      "afterSha256": "88cd07c5f924926df871d1354379c3d9704dfe720e8a736c6667d65eeb235f63"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r16\\aggregate-receipt.json",
+      "beforeSha256": "2d19c49d32754a4851c362045a461f2faf9c9ac1db274beda1dafef59b8975ae",
+      "afterSha256": "2d19c49d32754a4851c362045a461f2faf9c9ac1db274beda1dafef59b8975ae"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r17\\aggregate-receipt.json",
+      "beforeSha256": "96605adf65384c383a6ee243c84932ce77b9ea608c4406ffa8a6ec6ec99b9773",
+      "afterSha256": "96605adf65384c383a6ee243c84932ce77b9ea608c4406ffa8a6ec6ec99b9773"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r18\\aggregate-receipt.json",
+      "beforeSha256": "20c8155f932beba9bedf94de46773cb6878eb2ae40641870a5a375af699fae54",
+      "afterSha256": "20c8155f932beba9bedf94de46773cb6878eb2ae40641870a5a375af699fae54"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r19\\aggregate-receipt.json",
+      "beforeSha256": "cfa63b69cde1c0f41eb4499a2af31599f006c1aa73367aaf654ba4106378cbb5",
+      "afterSha256": "cfa63b69cde1c0f41eb4499a2af31599f006c1aa73367aaf654ba4106378cbb5"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r2\\aggregate-receipt.json",
+      "beforeSha256": "38f7703927138ec5770f283f1a7314e74d76d750bd79f3fa680ed9b999ce218a",
+      "afterSha256": "38f7703927138ec5770f283f1a7314e74d76d750bd79f3fa680ed9b999ce218a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r20\\aggregate-receipt.json",
+      "beforeSha256": "1b8b000633f683972507d7df02993d7d11f7416d4a1395edf9b623906318e862",
+      "afterSha256": "1b8b000633f683972507d7df02993d7d11f7416d4a1395edf9b623906318e862"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r21\\aggregate-receipt.json",
+      "beforeSha256": "7b0c31ae6b03f23d2359ddf5f9c0a5ce0ffce8595cf3e66777ecd1dfb89e0a1e",
+      "afterSha256": "7b0c31ae6b03f23d2359ddf5f9c0a5ce0ffce8595cf3e66777ecd1dfb89e0a1e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r22\\aggregate-receipt.json",
+      "beforeSha256": "f1edad48f99ca9c5858abef014c265062922b49aa3b1367dd48188ac3a23f5a2",
+      "afterSha256": "f1edad48f99ca9c5858abef014c265062922b49aa3b1367dd48188ac3a23f5a2"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r23\\aggregate-receipt.json",
+      "beforeSha256": "be2ff3e2cda3bb252fcf63371d2a46e72019c5ebed7512515f2273dc014f3aeb",
+      "afterSha256": "be2ff3e2cda3bb252fcf63371d2a46e72019c5ebed7512515f2273dc014f3aeb"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r24\\aggregate-receipt.json",
+      "beforeSha256": "f18f75e43bfa8d2cc1a839dd36d629b775633082dd4d12cb503e0f8dbd091e9c",
+      "afterSha256": "f18f75e43bfa8d2cc1a839dd36d629b775633082dd4d12cb503e0f8dbd091e9c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r25\\aggregate-receipt.json",
+      "beforeSha256": "a19fef60382e3ed4e091e67d5020374886c50b65ba55feaf78e6d7ab3b0c63ae",
+      "afterSha256": "a19fef60382e3ed4e091e67d5020374886c50b65ba55feaf78e6d7ab3b0c63ae"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r26\\aggregate-receipt.json",
+      "beforeSha256": "7d4747c9107d37287735a9a0e5fe74b25893a4f756346e588ac8eb974b2f16d4",
+      "afterSha256": "7d4747c9107d37287735a9a0e5fe74b25893a4f756346e588ac8eb974b2f16d4"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r27\\aggregate-receipt.json",
+      "beforeSha256": "d7bd1b81494ec0ae9ec8587f403307385a3ff5229ba260a4b9b90d111e2b159d",
+      "afterSha256": "d7bd1b81494ec0ae9ec8587f403307385a3ff5229ba260a4b9b90d111e2b159d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r28\\aggregate-receipt.json",
+      "beforeSha256": "798883c4ab6f5375e4ea1197011e9a84747aaab532469cc4eae25452a2403702",
+      "afterSha256": "798883c4ab6f5375e4ea1197011e9a84747aaab532469cc4eae25452a2403702"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r29\\aggregate-receipt.json",
+      "beforeSha256": "b892f40d88547aaaaa5d0d6f456b78b755abd4624347a1f09575456a0cc11e31",
+      "afterSha256": "b892f40d88547aaaaa5d0d6f456b78b755abd4624347a1f09575456a0cc11e31"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r3\\aggregate-receipt.json",
+      "beforeSha256": "7545f1c4873c29a68f18b2151eeb8c65396453709fe3c6c9de71a9af3d372a59",
+      "afterSha256": "7545f1c4873c29a68f18b2151eeb8c65396453709fe3c6c9de71a9af3d372a59"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r30\\aggregate-receipt.json",
+      "beforeSha256": "f5f424d119dc954aa78c263ab537acb1041dfde259eb8f876f3fb21eedf81f3c",
+      "afterSha256": "f5f424d119dc954aa78c263ab537acb1041dfde259eb8f876f3fb21eedf81f3c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r31\\aggregate-receipt.json",
+      "beforeSha256": "57eb2ac7bff4ca2b7b1a844f22113614a80f423e9c542c3a509cac1179b7cf32",
+      "afterSha256": "57eb2ac7bff4ca2b7b1a844f22113614a80f423e9c542c3a509cac1179b7cf32"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r32\\aggregate-receipt.json",
+      "beforeSha256": "ce71c3747c77c5db6967e699c2f33254308fce810803350f78e37a2624663dd5",
+      "afterSha256": "ce71c3747c77c5db6967e699c2f33254308fce810803350f78e37a2624663dd5"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r33\\aggregate-receipt.json",
+      "beforeSha256": "d9c4633963674d13964aee4cc3b75b060a469bb9ef5e8b551bc17f7536716891",
+      "afterSha256": "d9c4633963674d13964aee4cc3b75b060a469bb9ef5e8b551bc17f7536716891"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r34\\aggregate-receipt.json",
+      "beforeSha256": "8a18ca451aba545a2b7dcdfc85af29ecda67af21fe4f9b362ce67a9da504e718",
+      "afterSha256": "8a18ca451aba545a2b7dcdfc85af29ecda67af21fe4f9b362ce67a9da504e718"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r35\\aggregate-receipt.json",
+      "beforeSha256": "bd9c4d54d8c0e353577cfe515640d5b2631054c6e9e117f86f3ab95b61bbdee5",
+      "afterSha256": "bd9c4d54d8c0e353577cfe515640d5b2631054c6e9e117f86f3ab95b61bbdee5"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r36\\aggregate-receipt.json",
+      "beforeSha256": "1ae46e95da42a102201395c1239c24d546b0fb9a53278342c8f6bcea4392ca30",
+      "afterSha256": "1ae46e95da42a102201395c1239c24d546b0fb9a53278342c8f6bcea4392ca30"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r37\\aggregate-receipt.json",
+      "beforeSha256": "62ed5e6bae63860642f2b79c9d1059f0b7dde0edf36530a59bf9726fc7d4b137",
+      "afterSha256": "62ed5e6bae63860642f2b79c9d1059f0b7dde0edf36530a59bf9726fc7d4b137"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r38\\aggregate-receipt.json",
+      "beforeSha256": "1a72efcdc82f6a7f3044369c43959a2103f5a2f425390081d7181cd24b019810",
+      "afterSha256": "1a72efcdc82f6a7f3044369c43959a2103f5a2f425390081d7181cd24b019810"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r39\\aggregate-receipt.json",
+      "beforeSha256": "bca5fe17e8c8d9e4af30e5326ce5e58ad22f05b549594e071264632756090e70",
+      "afterSha256": "bca5fe17e8c8d9e4af30e5326ce5e58ad22f05b549594e071264632756090e70"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r4\\aggregate-receipt.json",
+      "beforeSha256": "cf713dbd5721a688c87e1aab8e23de11034e85b20392a229e8822a5633ff96a2",
+      "afterSha256": "cf713dbd5721a688c87e1aab8e23de11034e85b20392a229e8822a5633ff96a2"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r40\\aggregate-receipt.json",
+      "beforeSha256": "0e6d4cfd6c38f56cf02792b489f38fcafd58c50e4c3cf5e9ebdab362071593ad",
+      "afterSha256": "0e6d4cfd6c38f56cf02792b489f38fcafd58c50e4c3cf5e9ebdab362071593ad"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r41\\aggregate-receipt.json",
+      "beforeSha256": "b1cf7a3215db9a0788cfd7739e2b453c5eeea3beb1279d6bf791b4351ee21406",
+      "afterSha256": "b1cf7a3215db9a0788cfd7739e2b453c5eeea3beb1279d6bf791b4351ee21406"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r42\\aggregate-receipt.json",
+      "beforeSha256": "6f050783c86e2b4b9d25018d233115cb0e14964342de02f35da41dc11c1f3727",
+      "afterSha256": "6f050783c86e2b4b9d25018d233115cb0e14964342de02f35da41dc11c1f3727"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r5\\aggregate-receipt.json",
+      "beforeSha256": "9670bc987d27df6b084aff821e24122c594a84d41c69b8bc8e6f61aa780e7ed4",
+      "afterSha256": "9670bc987d27df6b084aff821e24122c594a84d41c69b8bc8e6f61aa780e7ed4"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r6\\aggregate-receipt.json",
+      "beforeSha256": "957f9f1cd06b03e5443f223b226d6ce2730106ef1196370a112855b4fe40ddd8",
+      "afterSha256": "957f9f1cd06b03e5443f223b226d6ce2730106ef1196370a112855b4fe40ddd8"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r7\\aggregate-receipt.json",
+      "beforeSha256": "1ab7149487cb5cd42156373966d945ee0f8f79a9bd6acdabdd71ac897d9ec505",
+      "afterSha256": "1ab7149487cb5cd42156373966d945ee0f8f79a9bd6acdabdd71ac897d9ec505"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r8\\aggregate-receipt.json",
+      "beforeSha256": "1681657d419f6ad604b53c1b195d74c4f03829513bc20ef44b7d5593133b8d03",
+      "afterSha256": "1681657d419f6ad604b53c1b195d74c4f03829513bc20ef44b7d5593133b8d03"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r9\\aggregate-receipt.json",
+      "beforeSha256": "d1e061bd7a7e82d51f717d1ea0de1e7438e985be6e520e6779fe44065577adb1",
+      "afterSha256": "d1e061bd7a7e82d51f717d1ea0de1e7438e985be6e520e6779fe44065577adb1"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중2\\[대구동부중][2][25-1-중간](원본)(삼동).pdf",
+      "beforeSha256": "8ebb4c1b1e813b80ed12807fd907ca8ada2b398b3078b3d8352e6c66ad3980a3",
+      "afterSha256": "8ebb4c1b1e813b80ed12807fd907ca8ada2b398b3078b3d8352e6c66ad3980a3"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[대구동부중][2][25-2-중간](원본)(삼동).pdf",
+      "beforeSha256": "ab0b272a9acae5ad27c8b061c1bc938a9607bf2193d25bde2c1f6bfb04512024",
+      "afterSha256": "ab0b272a9acae5ad27c8b061c1bc938a9607bf2193d25bde2c1f6bfb04512024"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말] (원본) (ㄱAtoZ).pdf",
+      "beforeSha256": "032157a0476c148f812f3516d759dad4dd8b2cb792daccceb4d464e81fdaaddd",
+      "afterSha256": "032157a0476c148f812f3516d759dad4dd8b2cb792daccceb4d464e81fdaaddd"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말] (원본) (연).pdf",
+      "beforeSha256": "032157a0476c148f812f3516d759dad4dd8b2cb792daccceb4d464e81fdaaddd",
+      "afterSha256": "032157a0476c148f812f3516d759dad4dd8b2cb792daccceb4d464e81fdaaddd"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말] (원본)(엠수학) (1).pdf",
+      "beforeSha256": "55561f8795320535bf593a6ac42d82718826668f8305a11a2c9441c0323ffbaf",
+      "afterSha256": "55561f8795320535bf593a6ac42d82718826668f8305a11a2c9441c0323ffbaf"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말] (원본)(엠수학).pdf",
+      "beforeSha256": "55561f8795320535bf593a6ac42d82718826668f8305a11a2c9441c0323ffbaf",
+      "afterSha256": "55561f8795320535bf593a6ac42d82718826668f8305a11a2c9441c0323ffbaf"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말](원본) (뿌라스).pdf",
+      "beforeSha256": "b4bd1231cab76cb463a678e05734be3c8f08f8e019bda03dfbb1177fbab5028b",
+      "afterSha256": "b4bd1231cab76cb463a678e05734be3c8f08f8e019bda03dfbb1177fbab5028b"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말](원본)(삼동).pdf",
+      "beforeSha256": "d212a94696e3e09c2040439adf34538db7076d126a3bd02b58fe997db51fe56e",
+      "afterSha256": "d212a94696e3e09c2040439adf34538db7076d126a3bd02b58fe997db51fe56e"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중2\\[대구동중][2][25-1-기말](원본)(숙제).pdf",
+      "beforeSha256": "0871de1f1aab159346591b6817f1e097b1fe4415edd8109f046f4a40254d8126",
+      "afterSha256": "0871de1f1aab159346591b6817f1e097b1fe4415edd8109f046f4a40254d8126"
+    }
+  ],
+  "sourcePairNotManufactured": true,
+  "preserved": true,
+  "actualNewQuestionObservations": 0,
+  "gradeApprovals": 0,
+  "rightsApprovals": 0,
+  "twins": 0,
+  "dbWrites": 0,
+  "loadable": 0,
+  "limitations": [
+    "filename/metadata selection is not source identity or absence-of-answers proof",
+    "PDF parser output is not reviewed text, equations, boundary or figure fidelity",
+    "separate HWP may exist; selectedPair stays None until content correspondence is reviewed"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "utc": "2026-10-20T08:40:22.503Z",
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "19428686098030c08fb29e50fd462c68ae420539859729ce946e595d4834572f"
+    },
+    {
+      "path": "scripts/import/exam-twin/review-exam-twins.mjs",
+      "sha256": "99f2405eaf9dc676b0a2fdf19af8fb47eaa53e51174f00ff758631f5c81ff5e7"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.mjs",
+      "sha256": "18c9c50a6c43b0db33e625706ae3ee8d7c008d4818e76b9ba07f754d2ad9b6b6"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.test.mjs",
+      "sha256": "b58a18be5a6e5467a5615c24f3b1ca5b2e7a10edd3252977aba7784b1fe74dfa"
+    }
+  ],
+  "nodeFiles": 17,
+  "nodeSummary": "nce\nok 188 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 35.3117\n  type: 'test'\n  ...\n1..188\n# tests 188\n# suites 0\n# pass 188\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 35304.2702\n",
+  "lintExit": 0,
+  "originalR1TechnicalHold": {
+    "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-audit-report.json",
+    "sha256": "59970a15cd2bd02b5a860613c1e24b8286d61a762485de8ab1e1272b05b32b48"
+  },
+  "repair": "Single optional bracket wrapper also unwraps an empty interior; existing normalized-empty guard now rejects it. Unknown nonempty labels retain consistency-only behavior, never semantic permission.",
+  "newActualEmptyPlaceholderCliRejectedBeforeOutput": true,
+  "current166And25ComparableMetadataUnchanged": true,
+  "actualGachangR2StudentsRawAssetsAndCurrentReportsUnchanged": true,
+  "newStudentSolves": 0,
+  "independentR2AuditPending": true,
+  "dbWrites": 0,
+  "loadable": 0
+}

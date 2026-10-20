@@ -1,0 +1,132 @@
+{
+  "utc": "2026-10-20T08:49:48.315967+00:00",
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "19428686098030c08fb29e50fd462c68ae420539859729ce946e595d4834572f"
+    },
+    {
+      "path": "scripts/import/exam-twin/review-exam-twins.mjs",
+      "sha256": "99f2405eaf9dc676b0a2fdf19af8fb47eaa53e51174f00ff758631f5c81ff5e7"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.mjs",
+      "sha256": "18c9c50a6c43b0db33e625706ae3ee8d7c008d4818e76b9ba07f754d2ad9b6b6"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.test.mjs",
+      "sha256": "b58a18be5a6e5467a5615c24f3b1ca5b2e7a10edd3252977aba7784b1fe74dfa"
+    }
+  ],
+  "readOnlyDependencies": [
+    {
+      "path": "scripts/import/exam-twin/answerPresentation.mjs",
+      "sha256": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.mjs",
+      "sha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f"
+    },
+    {
+      "path": "scripts/import/exam-twin/compose-image-figure.mjs",
+      "sha256": "ed238cc17d6d64a5f99f4cf5a294545d1d94616c460f4970ea18cfa81d91e821"
+    },
+    {
+      "path": "scripts/import/exam-twin/computedChoiceChecks.mjs",
+      "sha256": "2ca6128f01b4d0419952132d0b3f7a8a6d22948c23971a92cb6adc1a73b5ab3d"
+    },
+    {
+      "path": "scripts/import/exam-twin/constantAnswers.mjs",
+      "sha256": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseDispersionConditions.mjs",
+      "sha256": "b068d7340d56443c61cf06eab128299a4d7b9f31d213c1d4f960890ef8d79706"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "sha256": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14"
+    },
+    {
+      "path": "scripts/import/exam-twin/numberedConstantAssignments.mjs",
+      "sha256": "0f964790e34bb92481c51ce035f2a6b28024d663e39813678fc93d20cfce4949"
+    },
+    {
+      "path": "scripts/import/exam-twin/prepare-sealed-review.mjs",
+      "sha256": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe"
+    },
+    {
+      "path": "scripts/import/exam-twin/rebind-identical-review.mjs",
+      "sha256": "17b2e3ae3c808c3acdfabfe357ca7ded6025e1c3cf6e7a1a6c6c74794543912e"
+    },
+    {
+      "path": "scripts/import/exam-twin/recordCorrectionAnswer.mjs",
+      "sha256": "883a1320c36106d2f0bf582614ea2ea7e1758f5327dd2eff8d451362d80b64da"
+    },
+    {
+      "path": "scripts/import/exam-twin/replay-vector-figures.mjs",
+      "sha256": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce"
+    },
+    {
+      "path": "scripts/import/exam-twin/singleLengthPresentation.mjs",
+      "sha256": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1"
+    },
+    {
+      "path": "scripts/import/exam-twin/sourceIdentity.mjs",
+      "sha256": "b5933369ff1063b6cdc96de53510047008e728a83adc402af90d8515730096c3"
+    },
+    {
+      "path": "scripts/import/exam-twin/statisticsConditions.mjs",
+      "sha256": "e14bbc414bf959203ca70a7d1ef4478a8f27512068603d9e412aa37e45d27754"
+    },
+    {
+      "path": "scripts/import/exam-twin/summarize-reviewed-batch.mjs",
+      "sha256": "08494568df8f67922c0c9bd19d750b77b55ed0d6892e27246036baa5752d08b8"
+    },
+    {
+      "path": "scripts/import/exam-twin/vectorReplay.mjs",
+      "sha256": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a"
+    }
+  ],
+  "data": [
+    {
+      "path": "scripts/import/exam-paper/solver_rules.json",
+      "sha256": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab"
+    }
+  ],
+  "metadata": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/gachang-first2-metadata-repair-r2.json",
+      "sha256": "446cdbd4736d6820195805b8966c676d8c0042b3d534bfbde0033396144c37e2"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/curriculum-declarations-parent-validation-r1.json",
+      "sha256": "3457b1074dc592eec745d1085d28993d6a1a93171defe8dcd27a0d1949457700"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v46.json",
+      "sha256": "1142332e4c46cbf75ad49902ef43df1256f4bb12b30b95205ba3beb9655c5939"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/curriculum-declarations-parent-validation-r2.json",
+      "sha256": "4da95d4cc3dc4e27da4d5ecca410d6aa810a3c3be3faa0a9e82c460fd337b651"
+    }
+  ],
+  "rootReadOnlyNewGachangR1R2AuthorAndReviewPaths": [
+    ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r1/**",
+    ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r2/**",
+    ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/**",
+    ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/**"
+  ],
+  "existing166IndexAllowsDeclaredMetadataHashChecksOnly": true,
+  "oldRawCommit": "3193b0a43828b8d32b11cc1c87e974f35640b002",
+  "noNOrOtherRawOriginalReads": true,
+  "metadataRevisionNotNewBlindSolve": true,
+  "sourceRightsNativeAlwaysHeld": true,
+  "dbWrites": 0,
+  "loadable": 0,
+  "revision": "R2 empty-wrapper rejection only",
+  "previousAuditCommit": "22a2933b9bc6fa609872f3b062359387589c401f",
+  "parentCodeCommit": "72a69274a",
+  "originalR1EvidencePreserved": true
+}

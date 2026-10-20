@@ -1,0 +1,562 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-20T08:58:07.315Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/current-author-index-parent-r1.json",
+    "sha256": "c7ca0522bdd037689519a6ff7dcec077e5ff06aa1dcd4846b9c95d07efa48645"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 2,
+    "historicalCandidateVersions": 2,
+    "independentSolvesBound": 2,
+    "mathematicalVerified": 2,
+    "gradeReviewed": 2,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 2,
+    "figureInstances": 1,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    1,
+    2
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group1-r1-q01",
+      "studentDigest": "7339433c7a843c18986f1b4544cba554d74caa34c92696558666a5f3fbd3cd40",
+      "candidateDigest": "d403b573928dc2b614d483e58dc071f96655efdf1cd7bacf1a9083d563c0a0fc",
+      "assetDigest": "515c6361b828ba6998912ea97d0733387197390ba8ee06ce7f352de1243dee6d",
+      "solveDigest": "7813c9f1a6b9d09061a6b89dbffd2d0413dd0f77d637c96d8be1af5e1e6c1ae8",
+      "reportSha256": "8b1c983fde98fab6f683bf6d971ef15ca1cf62e0feb86b72255830e89840bc36",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-gachang-3-1-final-1",
+        "inventoryExamId": "personal-273b85b46b6ea294fef26b4de34becfc",
+        "sourceQuestionNumber": 1,
+        "newSourceReferenceId": "source-ref-gachang-2025-1-final-group1-r1-q01",
+        "sourceContentSha256": "ef31b135453919e319c89bed5a1d043e9ce57523319117a1c1857eb4bb031022",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/component-only-input/q01.local.json",
+          "sha256": "50170f767a0916773290a4461a92fb89460fae6d1210c9d444d624d285660043"
+        },
+        "sourceSchoolInternal": "가창중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "extractionManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/hwp-question-only-manifest.local.json",
+          "sha256": "c0eb3644b8a251f067811a600da62c342f7de20e1ac2ec27002983fc312cd870"
+        },
+        "hwpOnlyExtractionAggregate": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+          "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[가창중][3][25-1-기말][천재이] (완료).hwp",
+            "sha256": "8c78d3758f25a078316daed76e722286ec79d0506f09faef23b347aa6ce06ce9",
+            "bytes": 1428480
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+            "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+            "bytes": 1778571
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+          "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+          "bytes": 1778571
+        },
+        "parentOriginalFirstPageObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+          "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+        },
+        "sourceComponentReview": {
+          "status": "parent-first-page-q01-q02-observed-against-HWP-only-normalization-independent-source-review-pending",
+          "whole19ParentHwpPdfPairApproved": false,
+          "partialPdfParserHeld": true
+        },
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "parentIncidentalHandwrittenMarksExposure": true,
+        "marksUsedForAnswerApproval": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "차의 제곱을 잘라 낸 뒤 남는 정사각형 넓이로 표현하고, 순서가 반대인 차의 제곱을 전개해 미지 계수를 역으로 결정한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "캡처된 실제 중3 Unit UUID와2015 성취기준을 연결한다. 새 도형/역추론의 정확한live family는 미확정."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-graph-1-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "a>3으로 실제 길이와 넓이가 양수이다. (3−a)²=(a−3)²=a²−6a+9이며 a≠0이므로 주어진 넓이 식의 k는−6으로 유일하다. 바깥에 음수를 붙인 넓이와 혼동하지 않는다. 도형 좌표10/7은 양수인 한 예를 그리기 위한 내부 작도값이고 a를10으로 정하는 문제 조건이 아니다. 학생은 픽셀·좌표가 아닌 발문 조건과 항등적 전개를 사용한다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gachang-first2-20261020-r1.ts",
+          "reproductionScriptSha256": "5451a469fb9772ee1be16962a190c4dba813ccbc96589c4808393f294c9b5410",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "다항식의 곱셈",
+            "semester": 1,
+            "orderIndex": 472,
+            "problemCodePrefix": "J30201"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "다항식의 곱셈과 차의 제곱 공식",
+            "반대 부호인 두 수의 제곱",
+            "상수항과 계수",
+            "정사각형 넓이",
+            "양수 길이와 cm/cm²"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty",
+        "metadataRevision": {
+          "id": "gachang-2025-sem1-final-q01-curriculum-metadata-r2",
+          "kind": "correct-contradictory-primary-standard-declaration-only",
+          "previousCandidate": {
+            "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r1/gachang/q01.json",
+            "sha256": "bacd9d7e120144f8da3bd58cbcc7b09cbc173ba82dcfab32082debe23ba37184"
+          },
+          "repairScript": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/repair-gachang-curriculum-metadata-r2.mjs",
+            "sha256": "b409ee40697c259d3406610a1c72b5a80463fcd6bdd831e85e118be07a3f0882"
+          },
+          "changedPath": "curriculumReview.officialBasis.primaryStandardCodes",
+          "previousPrimaryCodes": [
+            "9수01-07"
+          ],
+          "correctedPrimaryCodes": [
+            "9수02-12"
+          ],
+          "actualMathVariantIdPreserved": true,
+          "studentAnswersSolutionsAndFiguresUnchanged": true,
+          "newBlindMathSolveClaim": false,
+          "requiresFreshMetadataReview": true,
+          "sourceRightsAndFamilyStillHeld": true
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "algebra-to-geometry",
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "차의 제곱과 부호/순서를 바꾼 여섯 표현의 전개식이 같은지 구별하여 개수를 센다.",
+        "after": "차의 제곱을 잘라 낸 뒤 남는 정사각형 넓이로 표현하고, 순서가 반대인 차의 제곱을 전개해 미지 계수를 역으로 결정한다.",
+        "sharedConcept": "차의 제곱 전개와 괄호 안 전체 부호 반전의 제곱값 불변",
+        "sharedProcedure": "a>3인 남은 길이a−3 → 반대 부호 차3−a의 제곱도 같은 넓이 → 곱셈공식 전개 → a의 계수−6 결정",
+        "actualStructuralChange": "차의 제곱을 잘라 낸 뒤 남는 정사각형 넓이로 표현하고, 순서가 반대인 차의 제곱을 전개해 미지 계수를 역으로 결정한다.",
+        "domainProof": "a>3으로 실제 길이와 넓이가 양수이다. (3−a)²=(a−3)²=a²−6a+9이며 a≠0이므로 주어진 넓이 식의 k는−6으로 유일하다. 바깥에 음수를 붙인 넓이와 혼동하지 않는다. 도형 좌표10/7은 양수인 한 예를 그리기 위한 내부 작도값이고 a를10으로 정하는 문제 조건이 아니다. 학생은 픽셀·좌표가 아닌 발문 조건과 항등적 전개를 사용한다.",
+        "difficultyBasis": "인쇄 배점3/4를 근거로 목표 난도를 제안하되 원문의 부수 절차 전부를 복제하지 않는다. 새 표현·역추론의 실제 난도와 정확한 family는 독립 검수 전 보류."
+      },
+      "packageDigest": "66d947d62922d3c5354ad3ade6f3c5ac78e8e40cc151944cc98bdf0980f29979",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gachang-first2-authoring-20261020-r2\\gachang\\q01.json",
+        "sha256": "b1290a4eb22e6a57701726f312b22668c38a432b185c5cfc873e01ce6f18231b"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "c4979e5e30f9db300a02a4512173a83cad28b0ece7372f79a77b2df48836876a",
+          "svgSha256": "b6880b41da0f6e6015b904acd58748e3347f3d56cb1ae66f316c08bbb3f9cbf4",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q01-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gachang-first2-review-20261020-r2\\blind\\solve\\q01.json",
+        "sha256": "ac33489baf9bb8f06e8ad670ab5c5ba20d130d2ffd2442ce80eedaa1ace9e975"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/verification/reports/q01.json",
+        "sha256": "8b1c983fde98fab6f683bf6d971ef15ca1cf62e0feb86b72255830e89840bc36"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/verification/verification-manifest.json",
+        "sha256": "0616518b002da4d51bc6342138f3bdedf60fedb88bc2e61a151ec6280f975ec5"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/blind/blind-manifest.json",
+        "sha256": "9252027267c7189eee6a31c1e228c4610dc5439199c63572f633456a03bcf88f"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/package/private/q01/candidate.json",
+        "sha256": "8d1a5b292d940f6a632416c5abf762e40bd3a69a440da59a1ccd3266d179dcc1"
+      },
+      "candidateContentWithoutRelocatedPaths": "d4e03a595abcdd096d02830e8d28b7bdf686a914e2a14507b2a8519bf1d2087f",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r2/gachang/q01.json",
+        "sha256": "b1290a4eb22e6a57701726f312b22668c38a432b185c5cfc873e01ce6f18231b"
+      },
+      "authorCandidateDigest": "ba6c0764d9cfcc22ae70c8a494f9928698ac0585a864c612331ed1fd965893d4"
+    },
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group1-r1-q02",
+      "studentDigest": "28a8648ddba4665e305efd40df057c26e9c164051f776b85fcc263f5280ab257",
+      "candidateDigest": "e1e4f7090e624ae450f3ba7a84b1a729e39dfac2b8af3c2ca1a45bfef8f72a05",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "a2f52fb9dc148681b396893deddfb842a4d70bb5694174e45c941d6214989b42",
+      "reportSha256": "b910d323bb5fb9a5a23b4e30d4be8c94d40bb3d508ef243145f0cc8404657fe1",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-gachang-3-1-final-2",
+        "inventoryExamId": "personal-273b85b46b6ea294fef26b4de34becfc",
+        "sourceQuestionNumber": 2,
+        "newSourceReferenceId": "source-ref-gachang-2025-1-final-group1-r1-q02",
+        "sourceContentSha256": "d3b13172444e4da5e46dda7f8c134039f9655bb1b27288abeaf4e6390e124201",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/component-only-input/q02.local.json",
+          "sha256": "626157f68b0a62edafe15d8c3b003d825152c1febb346f6b8e4b0b0ecd5689fe"
+        },
+        "sourceSchoolInternal": "가창중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "extractionManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/hwp-question-only-manifest.local.json",
+          "sha256": "c0eb3644b8a251f067811a600da62c342f7de20e1ac2ec27002983fc312cd870"
+        },
+        "hwpOnlyExtractionAggregate": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+          "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[가창중][3][25-1-기말][천재이] (완료).hwp",
+            "sha256": "8c78d3758f25a078316daed76e722286ec79d0506f09faef23b347aa6ce06ce9",
+            "bytes": 1428480
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+            "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+            "bytes": 1778571
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+          "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+          "bytes": 1778571
+        },
+        "parentOriginalFirstPageObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+          "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+        },
+        "sourceComponentReview": {
+          "status": "parent-first-page-q01-q02-observed-against-HWP-only-normalization-independent-source-review-pending",
+          "whole19ParentHwpPdfPairApproved": false,
+          "partialPdfParserHeld": true
+        },
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "parentIncidentalHandwrittenMarksExposure": true,
+        "marksUsedForAnswerApproval": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "두 분수의 분자에 같은 유리수 미지수를 넣은 표를 주고 두 값의 평균 조건에서 분자의 입력을 역추론한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "근호를 포함한 식의 계산",
+            "semester": 1,
+            "orderIndex": 471,
+            "problemCodePrefix": "J30103"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "캡처된 실제 중3 Unit UUID와2015 성취기준을 연결한다. 새 도형/역추론의 정확한live family는 미확정."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "두 분모의 곱1이어서 항상 정의된다. 모든 유리수k에 대해 합이4k−6이고 평균이2k−3이므로 k5가 유일하며 원식 대입으로 존재를 확인한다. 일반 무리방정식의 제곱 풀이·유리수와 무리수의 계수 비교 증명·고등 함수가 필요하지 않다. 평균은 초등 선수 개념이다. 원문 답은 승인 기준으로 사용하지 않는다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gachang-first2-20261020-r1.ts",
+          "reproductionScriptSha256": "5451a469fb9772ee1be16962a190c4dba813ccbc96589c4808393f294c9b5410",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "근호를 포함한 식의 계산",
+            "semester": 1,
+            "orderIndex": 471,
+            "problemCodePrefix": "J30103"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "근호를 포함한 식의 곱셈과 나눗셈",
+            "합과 차의 곱 공식",
+            "분모 유리화",
+            "동류 근호항의 덧셈",
+            "평균의 뜻",
+            "일차방정식"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty",
+        "metadataRevision": {
+          "id": "gachang-2025-sem1-final-q02-curriculum-metadata-r2",
+          "kind": "correct-contradictory-primary-standard-declaration-only",
+          "previousCandidate": {
+            "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r1/gachang/q02.json",
+            "sha256": "0fbf8750ab46ab2287ddd0d78820d25bae19f85fb590f8485314f17584b6a3a3"
+          },
+          "repairScript": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/repair-gachang-curriculum-metadata-r2.mjs",
+            "sha256": "b409ee40697c259d3406610a1c72b5a80463fcd6bdd831e85e118be07a3f0882"
+          },
+          "changedPath": "curriculumReview.officialBasis.primaryStandardCodes",
+          "previousPrimaryCodes": [
+            "9수01-07"
+          ],
+          "correctedPrimaryCodes": [
+            "9수01-10"
+          ],
+          "actualMathVariantIdPreserved": true,
+          "studentAnswersSolutionsAndFiguresUnchanged": true,
+          "newBlindMathSolveClaim": false,
+          "requiresFreshMetadataReview": true,
+          "sourceRightsAndFamilyStillHeld": true
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "data-reorganization",
+          "structure",
+          "new-table"
+        ],
+        "before": "근호가 있는 두 분수를 유리화하여 합의 유리수/근호 계수를 구하고 계수의 차를 직접 계산한다.",
+        "after": "두 분수의 분자에 같은 유리수 미지수를 넣은 표를 주고 두 값의 평균 조건에서 분자의 입력을 역추론한다.",
+        "sharedConcept": "서로 반대 부호 근호를 이용한 분모 유리화와 동류 근호항 정리",
+        "sharedProcedure": "두 분모의 곱1 확인 → 각각 유리화 → 두 근호항의 상쇄로 평균2k−3 구함 → 평균조건7에서k5 → 원래 두 값으로 대입 확인",
+        "actualStructuralChange": "두 분수의 분자에 같은 유리수 미지수를 넣은 표를 주고 두 값의 평균 조건에서 분자의 입력을 역추론한다.",
+        "domainProof": "두 분모의 곱1이어서 항상 정의된다. 모든 유리수k에 대해 합이4k−6이고 평균이2k−3이므로 k5가 유일하며 원식 대입으로 존재를 확인한다. 일반 무리방정식의 제곱 풀이·유리수와 무리수의 계수 비교 증명·고등 함수가 필요하지 않다. 평균은 초등 선수 개념이다. 원문 답은 승인 기준으로 사용하지 않는다.",
+        "difficultyBasis": "인쇄 배점3/4를 근거로 목표 난도를 제안하되 원문의 부수 절차 전부를 복제하지 않는다. 새 표현·역추론의 실제 난도와 정확한 family는 독립 검수 전 보류."
+      },
+      "packageDigest": "66d947d62922d3c5354ad3ade6f3c5ac78e8e40cc151944cc98bdf0980f29979",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gachang-first2-authoring-20261020-r2\\gachang\\q02.json",
+        "sha256": "2ea2029518ae1e57a75578106f1bca058f74a2a6c4411ae863cb43b0914d1f53"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gachang-first2-review-20261020-r2\\blind\\solve\\q02.json",
+        "sha256": "b00ba993a859d49134dcdd9a7655995084ec85407842394ed121b7a766ea639a"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/verification/reports/q02.json",
+        "sha256": "b910d323bb5fb9a5a23b4e30d4be8c94d40bb3d508ef243145f0cc8404657fe1"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/verification/verification-manifest.json",
+        "sha256": "0616518b002da4d51bc6342138f3bdedf60fedb88bc2e61a151ec6280f975ec5"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/blind/blind-manifest.json",
+        "sha256": "9252027267c7189eee6a31c1e228c4610dc5439199c63572f633456a03bcf88f"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r2/package/private/q02/candidate.json",
+        "sha256": "2ea2029518ae1e57a75578106f1bca058f74a2a6c4411ae863cb43b0914d1f53"
+      },
+      "candidateContentWithoutRelocatedPaths": "d1b15f9187da8c7101d16af85116da7fd38cfb55d0aa35cd2b42f9026788ac45",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r2/gachang/q02.json",
+        "sha256": "2ea2029518ae1e57a75578106f1bca058f74a2a6c4411ae863cb43b0914d1f53"
+      },
+      "authorCandidateDigest": "e1e4f7090e624ae450f3ba7a84b1a729e39dfac2b8af3c2ca1a45bfef8f72a05"
+    }
+  ],
+  "reviewBindingDigest": "5f7791a1f977b066b90dac2176c5b39c4b935e514920486b895c1fcabf29e82f",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

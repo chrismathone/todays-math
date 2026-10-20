@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-20T08:48:32.411821+00:00",
+  "parity": {
+    "registryFamilies": true,
+    "catalogDigest": true,
+    "catalogCanonicalDigest": true,
+    "totalGuardCalls": true,
+    "uniqueGuardInputs": true,
+    "truncated": true,
+    "rows": true
+  },
+  "capturedCalls": 384073,
+  "uniqueInputs": 331590,
+  "instrumentedBeforeMs": 15738.272599999998,
+  "instrumentedPrototypeMs": 19781.483500000002,
+  "slowerRatio": 1.2569030924016402,
+  "adopted": false,
+  "reason": "One observed instrumented run became slower despite complete captured result parity. Prototype archived; production restored byte-for-byte. No production latency claim.",
+  "restoredSourceSha256": "6da7a911922ab323a061b61d56bc6b74b6327b24028279c04d031440c3c700da",
+  "dbWrites": 0
+}
