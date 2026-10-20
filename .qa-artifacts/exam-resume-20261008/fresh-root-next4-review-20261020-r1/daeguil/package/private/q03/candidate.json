@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group3-r1-q03",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 3,
+  "content": "다음 표의 다섯 수 중 $0$보다 크고 $1$보다 작은 수는 모두 몇 개인가?\n\n| A | B | C | D | E |\n| --- | --- | --- | --- | --- |\n| $\\sqrt{11}-3$ | $\\sqrt3-2$ | $\\sqrt{10}-2$ | $2-\\sqrt2$ | $4-\\sqrt{15}$ |",
+  "choices": [
+    "$0$개",
+    "$1$개",
+    "$2$개",
+    "$3$개",
+    "$4$개"
+  ],
+  "answer": "④",
+  "solution": "A. $9<11<16$이므로 $3<\\sqrt{11}<4$이다. 따라서 $0<\\sqrt{11}-3<1$이다.\n\nB. $1<3<4$이므로 $1<\\sqrt3<2$이다. 따라서 $\\sqrt3-2<0$이어서 조건에 맞지 않는다.\n\nC. $9<10<16$이므로 $3<\\sqrt{10}<4$이다. 따라서 $\\sqrt{10}-2>1$이어서 조건에 맞지 않는다.\n\nD. $1<2<4$이므로 $1<\\sqrt2<2$이다. 따라서 $0<2-\\sqrt2<1$이다.\n\nE. $9<15<16$이므로 $3<\\sqrt{15}<4$이다. 따라서 $0<4-\\sqrt{15}<1$이다.\n\n조건에 맞는 것은 A, D, E의 $3$개이다. 정답은 ④이다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "externalId": "2025-daeguil-3-1-mid-3",
+    "inventoryExamId": "personal-1c6091af710ddaaa7e6671a2ef018a1c",
+    "sourceQuestionNumber": 3,
+    "newSourceReferenceId": "source-ref-daeguil-2025-1-mid-group3-r1-q03",
+    "sourceContentSha256": "c6cbd8706c609c337879b5e2fc207be80343ab3dac875e70f30b3a6ce0edeef6",
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-1c6091af710ddaaa7e6671a2ef018a1c/q03.local.json",
+      "sha256": "5096f62b9f7831c5c53231804606279a195a3645f05b410ff792055d9f381951"
+    },
+    "sourceSchoolInternal": "대구일중",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "extractionManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-1c6091af710ddaaa7e6671a2ef018a1c\\source-manifest.local.json",
+      "sha256": "5aaa4fbf03d34bd9ea27fe7beeee55307d0f9cc4f2f9564298269d1dcc5b44f9",
+      "bytes": 1468326
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구일중][3][25-1-중간][천재류] (완료).hwp",
+        "sha256": "cec264431ab5ac28805a06fe799542218e765a6682351852b01197cea0b900c7",
+        "bytes": 534528
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구일중][3][25-1-중간][천재류] (완료).PDF",
+        "sha256": "d6be21c3806068dca6d890171591058b62d60020817f8c7f1bb345b7f2bf7532",
+        "bytes": 168723
+      }
+    ],
+    "originalIdentityReference": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구일중][3][25-1-중간] (원본) (로뚱) (1).pdf",
+      "sha256": "90546e1ce4d215fdd3dc9a5bc015bd8e3057df7825b77b89c57c7a8b1e25f091",
+      "bytes": 341179
+    },
+    "sourceComponentEvidence": null,
+    "sourceComponentReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+      "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "component": "대구일중-q03",
+      "originalR1ProposalResolvedBySeparateLocalR3Observation": true
+    },
+    "gradeMethodProposal": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+      "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+      "component": "대구일중-q03"
+    },
+    "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write",
+    "originalUnchangedStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-1c6091af710ddaaa7e6671a2ef018a1c/q03.json",
+      "sha256": "1a1ff755e46ce650a10f4ccced705e8f33eb9f4e05f2e52b31924884f25a81e0"
+    },
+    "localNormalizationObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-nine-local-normalization-observations-r3.json",
+      "sha256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0"
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "data-reorganization",
+      "question-target-change",
+      "structure",
+      "new-table"
+    ],
+    "before": "근호를 포함한 두 실수의 대소 관계 진술 중 옳은 것을 고른다.",
+    "after": "주어진 다섯 근호식 각각을 두 경계0과1에 비교하여 조건을 만족하는 항목 수를 구한다.",
+    "sharedConcept": "제곱수와 비교하여 근호의 크기를 정하고 같은 수의 덧셈·뺄셈으로 실수를 비교한다.",
+    "sharedProcedure": "각 근호를 양쪽 정수 제곱으로 끼워 크기 확인 → 더하거나 빼는 수를 반영 → 두 엄격 경계 모두 만족하는A,D,E 집계",
+    "actualStructuralChange": "주어진 다섯 근호식 각각을 두 경계0과1에 비교하여 조건을 만족하는 항목 수를 구한다.",
+    "domainProof": "모든 근호 안 수는 양수이고 정수가 아닌 근이므로0과1의 경계 일치는 없다. 근삿값·그림 픽셀·함수·구간 기호 없이 중3 실수 비교와 이미 배운 부등식 성질로 판단한다. 여러 항목의 비교로 바뀐 실제 난도는 독립 보류한다.",
+    "difficultyBasis": "원문과 동일한 핵심 개념·풀이 관계를 사용한 저자 제안이다. 단순 숫자/학교명 치환으로 통과하지 않는다. 실제 목표 난도·정확한 family·모든 학년 면은 별도 검수 전 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수01-07",
+      "9수01-09"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수01-07"
+      ]
+    },
+    "legitimateMethodDraft": "각 근호를 양쪽 정수 제곱으로 끼워 크기 확인 → 더하거나 빼는 수를 반영 → 두 엄격 경계 모두 만족하는A,D,E 집계",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+    "sourceExamYear": 2025,
+    "targetAcademicYear": 2026,
+    "curriculum": "2015",
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "standard": "9수01-07, 9수01-09",
+      "capturedPrimaryReceipt": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+        "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+      },
+      "providedMOEEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      "actualScope": "2015 중3 실수·제곱근과 이미 배운 수직선/정사각형/유리수 성질. 2027년 중3의2022 적용으로 자동 전용하지 않는다."
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 3,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본~응용 저자 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "주어진 다섯 근호식 각각을 두 경계0과1에 비교하여 조건을 만족하는 항목 수를 구한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "무리수와 실수",
+        "semester": 1,
+        "orderIndex": 470,
+        "problemCodePrefix": "J30102"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "캡처된 실제2015중3 Unit UUID. 새 구조에 정확히 맞는 live family는 불명이며 자동 배정하지 않는다."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "new-native-Markdown-table",
+      "newFigures": 0,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "모든 근호 안 수는 양수이고 정수가 아닌 근이므로0과1의 경계 일치는 없다. 근삿값·그림 픽셀·함수·구간 기호 없이 중3 실수 비교와 이미 배운 부등식 성질로 판단한다. 여러 항목의 비교로 바뀐 실제 난도는 독립 보류한다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next4-20261020-r1.ts",
+      "reproductionScriptSha256": "83c51c9d38dadc0e0395aa68b68814edf0626cb924d133e26c14344f1dbc1ec6",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "무리수와 실수",
+        "semester": 1,
+        "orderIndex": 470,
+        "problemCodePrefix": "J30102"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "양수의 제곱근 크기 비교",
+        "정수의 제곱",
+        "부등식의 덧셈과 뺄셈"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+  }
+}

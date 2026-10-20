@@ -1,0 +1,107 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/components/exam-builder/ExamBuilder.test.tsx (40 tests) 9747ms
+     ✓ disables empty and unconfirmed math grades without calling unknown inventory empty  578ms
+     ✓ composes from the table footer and removes a scope immediately without discarding questions or undo history  665ms
+     ✓ preserves allocated counts when reviewing or adding scopes  316ms
+     ✓ has one global add action and explicitly scoped add actions  353ms
+     ✓ keeps a long scope catalog paged, unchecking takes a scope back out, and composes only selected scopes  470ms
+     ✓ moves, deletes, undoes and keeps edits across output and scope navigation  469ms
+     ✓ adds matching difficulty candidates once and replaces in the original position  1067ms
+     ✓ starts from the current table with no counts of its own, recent exclusion on, and uses it for counts · candidates · composition  347ms
+     ✓ M3 — a step fills the difficulty cells for the rows' total, counts by format go to the server, and multiple choice comes first  581ms
+ ✓ src/components/exam-builder/ExamBuilder.h2.test.tsx (16 tests) 3941ms
+     ✓ 상위 선택은 하위 검색·쪽만 초기화하고 다른 학년까지 담은 수·고정·순서를 유지한다  737ms
+     ✓ 여섯 난이도 단계와 직접 입력을 제공하고 지정 없음과 0을 구별한다  535ms
+     ✓ 실제 표현을 가진 문항의 총수가 지정과 다르면 막고 조건을 고치면 원문 그대로 출력한다  336ms
+     ✓ 총수가 같아도 형식별 지정 0을 포함한 불일치를 막고 null로 비우면 풀린다  406ms
+ ✓ src/__tests__/api/unifiedBankAvailability.test.ts (16 tests) 1662ms
+     ✓ 72개 조합  1415ms
+stdout | src/__tests__/unit/nativeDescriptive20261018.test.ts > native exact contract and three source consumers > refresh rebuild uses precisely the same rows including rubric serialization
+   계획 plan.json — 12행
+
+ ✓ src/__tests__/unit/nativeDescriptive20261018.test.ts (30 tests) 5786ms
+     ✓ blocks actual protected rows from 2026-09-02-대량확대-초4.json before any DB lookup  2800ms
+     ✓ blocks actual protected rows from 2026-09-02-대량확대-중3.json before any DB lookup  2208ms
+ ✓ src/__tests__/unit/examStudyInverseMinimum.test.ts (9 tests) 12496ms
+     ✓ independently solves all24 printed data sets, including positive and negative fourth values  510ms
+     ✓ retains a captured Unit proposal while the internal factory stays hidden in public catalogs  11898ms
+ ✓ src/__tests__/unit/examStudyInverseTangentRectangle.test.ts (9 tests) 12115ms
+     ✓ registers the internal requirement while hiding it from public catalogs and retaining grade/rights holds  11608ms
+ ✓ src/__tests__/unit/courseSessionVariety.test.ts (4 tests) 6349ms
+     ✓ 숫자만 다른 같은 문장은 같은 틀이다  330ms
+     ✓ 되풀이는 다른 틀을 뽑을 수 없을 때만 남는다  5504ms
+     ✓ 다시 뽑은 문제도 저장한 씨앗으로 엔진이 그대로 다시 만든다  493ms
+ ✓ src/components/exam-builder/ExamBuilder.demand.test.tsx (16 tests) 4537ms
+     ✓ sends a large material selection by read-only POST for curriculum availability  380ms
+     ✓ keeps a selected lesson visible when the new source has zero eligible questions  514ms
+     ✓ counts only uncached visible lessons and preserves manual allocations through search, pages and grade changes  683ms
+     ✓ shows lesson names before counts resolve, then checks and unchecks without hiding the list or requesting counts again  335ms
+     ✓ retains confirmed counts during a new page request and does not restart it when a cached selection is removed  535ms
+     ✓ keeps recent and all counts separate and reuses each after toggling back  561ms
+     ✓ isolates counts by source and reuses a previously confirmed source without sharing pending counts  529ms
+ ✓ src/__tests__/api/unifiedBankCurriculum.test.ts (32 tests) 546ms
+ ✓ src/__tests__/api/unifiedBankFilters.test.ts (41 tests) 286ms
+ ✓ src/__tests__/unit/mathExamBuilderSource.test.ts (33 tests) 195ms
+ ✓ src/__tests__/api/unifiedBankPickerDemand.test.ts (12 tests) 206ms
+ ❯ src/__tests__/unit/nativeDescriptiveCore.test.ts (24 tests | 1 failed) 193ms
+     ✓ reads the frozen six definitions without changing any exported byte 96ms
+     ✓ accepts 초4 with a FigureSpec and explicit r2 criteria 2ms
+     ✓ accepts 중1 with a FigureSpec and explicit r2 criteria 1ms
+     ✓ accepts 중2 with a FigureSpec and explicit r2 criteria 1ms
+     ✓ accepts 중3 with a FigureSpec and explicit r2 criteria 1ms
+     ✓ rejects incomplete r2 authorship rather than treating it as legacy 2ms
+     ✓ rejects incomplete r2 authorship rather than treating it as legacy 1ms
+     ✓ rejects incomplete r2 authorship rather than treating it as legacy 1ms
+     ✓ rejects incomplete r2 authorship rather than treating it as legacy 1ms
+     ✓ rejects incomplete r2 authorship rather than treating it as legacy 1ms
+     ✓ rejects incomplete r2 authorship rather than treating it as legacy 1ms
+     ✓ requires curriculum evidence in r2 1ms
+     ✓ allows independent subquestions without inventing an earlier dependency 1ms
+     × does not change the registered definition source 8ms
+     ✓ passes an unregistered, independently verified fixture with four mutation classes 20ms
+     ✓ G1 rejects a renamed twin with the same evidence or model answer 5ms
+     ✓ G2 rejects an absent intermediate, orphan criterion, and unit-only step 16ms
+     ✓ G3 receives only printed content and a detached frozen FigureSpec 6ms
+     ✓ G3 checks all scored intermediate values, not only the final answer 2ms
+     ✓ G4 rejects an unasked criterion and equal answer-only/full scores 6ms
+     ✓ G5 rejects omitted boundaries, invariant seeded criteria, and a surviving corruption 8ms
+     ✓ G6 rejects sum 2ms
+     ✓ G6 rejects zero 2ms
+     ✓ G6 rejects answer-share 3ms
+ ✓ src/__tests__/unit/nativeDescriptiveAuthor.test.ts (9 tests) 12924ms
+     ✓ 주 저자가 목표·상황·소문항·채점표를 소유하고 계산·그림은 보조한다  12094ms
+     ✓ 실제 수치 범위·두 상황 갈래·네 훼손 부류를 모두 검사한다  803ms
+ ✓ src/__tests__/unit/nativeDescriptiveGateReview.test.ts (17 tests) 175ms
+ ✓ src/__tests__/components/nativeDescriptiveAuthorPrint.test.tsx (2 tests) 1186ms
+ ✓ src/__tests__/unit/nativeDescriptiveLegacyAudit.test.ts (3 tests) 1174ms
+     ✓ reports missing r2 proof as failed gates while preserving all six definitions  1050ms
+ ✓ src/__tests__/unit/lockProblemRows.test.ts (1 test) 66ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 123ms
+
+ Test Files  1 failed | 18 passed (19)
+      Tests  1 failed | 330 passed (331)
+   Start at  16:30:14
+   Duration  151.37s (transform 13.82s, setup 19.75s, import 27.17s, tests 73.71s, environment 26.44s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v45-post-main-vitest-r1.json
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/unit/nativeDescriptiveCore.test.ts > native descriptive r2 — legacy reader and rubric evidence > does not change the registered definition source
+AssertionError: expected '08203d158c3fcedb55e498da2e00e7201f6cb…' to be 'ab312bcf46eaddc2b934feb88f370f6e83969…' // Object.is equality
+
+Expected: "ab312bcf46eaddc2b934feb88f370f6e83969b774e1e03e7dc48d98ba19d1483"
+Received: "08203d158c3fcedb55e498da2e00e7201f6cb01d47f7d404ebd2baf292f822f5"
+
+ ❯ src/__tests__/unit/nativeDescriptiveCore.test.ts:96:17
+     94|       .update(readFileSync("src/lib/engine/nativeDescriptive20261018.t…
+     95|       .digest("hex");
+     96|     expect(sha).toBe(
+       |                 ^
+     97|       "ab312bcf46eaddc2b934feb88f370f6e83969b774e1e03e7dc48d98ba19d148…
+     98|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

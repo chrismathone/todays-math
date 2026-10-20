@@ -1,0 +1,52 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-20T07:14:10.897Z",
+  "questionNumbers": [
+    1,
+    3
+  ],
+  "packageDigest": "d12296852b78ec2ab773f81508c13419134febd699d78cfd64a78a2fb2672602",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "privateCandidatePath": "private/q01/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next4-authoring-20261020-r1\\daegubuk\\q01.json",
+        "sha256": "525c9d6a3ac7daa2ecdc9a2044bd7533d51c600af4cd96d5f3f45602f81e5b5b"
+      },
+      "candidateFileSha256": "3af6378e43eb352238d93c31b090764e535d0ab4acae2ce867ab5a0b405b1fa6",
+      "candidateDigest": "e7bd4b9a2e5895b57229f6342d961512bb71663070d2500443bf94f84db0b2e2",
+      "studentDigest": "1457138e33c8d74f2d5cd8ecef5020c69631d4e5d498a5a23ada1d43fbf8fa0f",
+      "assetDigest": "d7f51469a207e0d4d36d5888f5d3da9507ebaca2daca47a30574e1712ae0c7df",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "34d0b57740b68d352083fa0a89ee4b1a2aff3f0411a25079ef8f1338de22e953",
+          "svgSha256": "a3b20d65e6998a41457934dc9117b71abff7011f647111cb7807426f2e4535f4",
+          "intendedWidthMm": 80,
+          "studentPath": "figures/q01-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q03/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next4-authoring-20261020-r1\\daegubuk\\q03.json",
+        "sha256": "9b83a60b4791a24881f1fd4046808defc54860e41788af53eda84522caadb56c"
+      },
+      "candidateFileSha256": "9b83a60b4791a24881f1fd4046808defc54860e41788af53eda84522caadb56c",
+      "candidateDigest": "ab3992701fc79833b905787f855d72164e9c3090b3be7808d31cfdb62be92475",
+      "studentDigest": "a6921ad1dbff81357594be8db798968a002e40ae55e1cb5373f2fbe7cf8719b3",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

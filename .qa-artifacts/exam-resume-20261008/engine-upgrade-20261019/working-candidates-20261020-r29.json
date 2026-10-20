@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-20T07:36:27.508Z",
+  "canonicalSelected": 166,
+  "canonicalMathGrade": 165,
+  "additionalUnselectedAuthored": 0,
+  "currentBindingAudit": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/current166-binding-audit-r1.json",
+    "sha256": "3dc01ef777db016359ac5a8a46e6f9f6778325e7aa2cdacb551b3168247a95e3"
+  },
+  "newFourIndependentFullReview": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/own-review-report-r1.json",
+    "sha256": "ef4c37f09c2da7ffb9b463e7de59943a89b15ff936e6c99122050383b33871a0"
+  },
+  "sourceObservationTotalNotContentDedupCertified": 12080,
+  "unpairedPreflight": {
+    "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-preflight-20261020-r1/aggregate-receipt.json",
+    "sha256": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c"
+  },
+  "preflightCredit": 0,
+  "partial19Vs5AndScanHolds": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+    "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+  },
+  "gangbukPrintedPageOrderMapping": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-gangbuk-pdf-alias-content-observations-r1.json",
+    "sha256": "927f6c6bb321fd3be7320a06e19b4c8322a62c4d6a3b88f2d5a2b4359c36a1f5"
+  },
+  "catalogProfile": {
+    "path": ".qa-artifacts/exam-resume-20261008/catalog-profile-20261020-r1/own-report.json",
+    "sha256": "2d1eda1cb47b30e7e57891df61f92f6a494091019f2a7f125d67c642f9193e60"
+  },
+  "catalogProfileWasCapturedBeforeLatestMain": true,
+  "productionCatalogOptimizationImplemented": false,
+  "independentPdfCodeAuditPending": {
+    "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/provided-scope.json",
+    "sha256": "bc04e15e59365383dc1acbccae3f23cb7bf44e995091598b5e96f58dfb1d0238"
+  },
+  "dbWrites": 0,
+  "loadable": 0
+}

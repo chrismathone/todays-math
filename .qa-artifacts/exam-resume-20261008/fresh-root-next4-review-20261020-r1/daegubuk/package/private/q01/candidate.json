@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q01",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 3,
+  "content": "양수 $k$의 두 제곱근을 작은 것부터 $a$, $b$라 하자. 수직선 위에서 좌표가 $a$, $b$인 점을 각각 A, B라 할 때, 선분 AB의 길이가 $8$이다. $k$의 값은?",
+  "choices": [
+    "$4$",
+    "$8$",
+    "$16$",
+    "$32$",
+    "$64$"
+  ],
+  "answer": "③",
+  "solution": "양수의 두 제곱근은 부호가 서로 다르고 절댓값은 같다. 따라서 A와 B는 원점의 양쪽에 있고 원점에서 같은 거리만큼 떨어져 있다.\n\n선분 AB의 길이가 $8$이므로 원점에서 각 점까지의 거리는 $8\\div2=4$이다. 따라서 $a=-4$, $b=4$이다. 이 두 수를 제곱한 값이 $k$이므로 $k=4^2=16$이다. 실제로 $16$의 두 제곱근 $-4$, $4$에 대응하는 두 점 사이의 거리는 $8$이다. 정답은 ③이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 80
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-daegubuk-3-1-mid-1",
+    "inventoryExamId": "personal-dc9efb798219b732ebd608105298f220",
+    "sourceQuestionNumber": 1,
+    "newSourceReferenceId": "source-ref-daegubuk-2025-1-mid-group3-r1-q01",
+    "sourceContentSha256": "6edeb3a06b51109710db8e39c905889d033a84b5b7d2590819f46b6130efb11e",
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-dc9efb798219b732ebd608105298f220/q01.local.json",
+      "sha256": "3181a8ee614607c9193974e1afc5971ac0d03d789282acdf000a306d1ba16350"
+    },
+    "sourceSchoolInternal": "대구북중",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "extractionManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-dc9efb798219b732ebd608105298f220\\source-manifest.local.json",
+      "sha256": "890a7d4ed291f70b6f5f03d5ce7a0f17ef281f657158dcfda7b602b50c09d51b",
+      "bytes": 1546963
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구북중][3][25-1-중간][비상] (완료).hwp",
+        "sha256": "2f89044cdfdbe4873b487b6a4ce9b6b17fd6a1f5ea62168a110294787c4ae8e5",
+        "bytes": 366080
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구북중][3][25-1-중간][비상] (완료).PDF",
+        "sha256": "848fd7e57fc4d42fb112b3c6a0bd9cb46c496ded6cd875c3a803a4a21d5092c0",
+        "bytes": 171567
+      }
+    ],
+    "originalIdentityReference": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구북중][3][25-1-중간] (원본) (간짬뽕).pdf",
+      "sha256": "8f599954067c085ff2461e8aa53876960d652e9828e653729c3e69608fb8471f",
+      "bytes": 423901
+    },
+    "sourceComponentEvidence": null,
+    "sourceComponentReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+      "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "component": "대구북중-q01",
+      "originalR1ProposalResolvedBySeparateLocalR3Observation": true
+    },
+    "gradeMethodProposal": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+      "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+      "component": "대구북중-q01"
+    },
+    "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write",
+    "originalUnchangedStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q01.json",
+      "sha256": "c85d07a8d2b8688468d74cc51d1bb7d57a6e5a2afeafe8ba9b1aebd0f8da7e3a"
+    },
+    "localNormalizationObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-nine-local-normalization-observations-r3.json",
+      "sha256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0"
+    }
+  },
+  "variantDelta": {
+    "modes": [
+      "algebra-to-geometry",
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "제곱근의 뜻·부호와 근호의 값을 여러 일반 진술에서 구별한다.",
+    "after": "같은 수의 두 제곱근을 두 좌표로 제시하고 그 사이 거리에서 원래 양수를 역추론한다.",
+    "sharedConcept": "양수의 두 제곱근이 서로 반대 부호이고 제곱값은 같다는 정의",
+    "sharedProcedure": "두 근은 원점에 대칭 → 주어진 거리8의 절반4 → 좌표−4와4 → 제곱값16 확인",
+    "actualStructuralChange": "같은 수의 두 제곱근을 두 좌표로 제시하고 그 사이 거리에서 원래 양수를 역추론한다.",
+    "domainProof": "k>0이고 a<b이므로 a<0<b이다. 두 근의 크기가 같아 거리8에서 크기4가 유일하고 k16>0이 존재한다. 수직선 거리와 제곱근 정의만 사용한다. 원문의 모든 부수 근호 계산을 복제하지 않아 목표 난도 동등성과 정확한 family는 독립 보류한다.",
+    "difficultyBasis": "원문과 동일한 핵심 개념·풀이 관계를 사용한 저자 제안이다. 단순 숫자/학교명 치환으로 통과하지 않는다. 실제 목표 난도·정확한 family·모든 학년 면은 별도 검수 전 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수01-07"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수01-07"
+      ]
+    },
+    "legitimateMethodDraft": "두 근은 원점에 대칭 → 주어진 거리8의 절반4 → 좌표−4와4 → 제곱값16 확인",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+    "sourceExamYear": 2025,
+    "targetAcademicYear": 2026,
+    "curriculum": "2015",
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "standard": "9수01-07",
+      "capturedPrimaryReceipt": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+        "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+      },
+      "providedMOEEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      "actualScope": "2015 중3 실수·제곱근과 이미 배운 수직선/정사각형/유리수 성질. 2027년 중3의2022 적용으로 자동 전용하지 않는다."
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 3,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본~응용 저자 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "같은 수의 두 제곱근을 두 좌표로 제시하고 그 사이 거리에서 원래 양수를 역추론한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "캡처된 실제2015중3 Unit UUID. 새 구조에 정확히 맞는 live family는 불명이며 자동 배정하지 않는다."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-graph-1-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "k>0이고 a<b이므로 a<0<b이다. 두 근의 크기가 같아 거리8에서 크기4가 유일하고 k16>0이 존재한다. 수직선 거리와 제곱근 정의만 사용한다. 원문의 모든 부수 근호 계산을 복제하지 않아 목표 난도 동등성과 정확한 family는 독립 보류한다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next4-20261020-r1.ts",
+      "reproductionScriptSha256": "83c51c9d38dadc0e0395aa68b68814edf0626cb924d133e26c14344f1dbc1ec6",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "양수의 두 제곱근",
+        "양수·음수와 수직선",
+        "두 점 사이 거리",
+        "정수의 제곱"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+  }
+}

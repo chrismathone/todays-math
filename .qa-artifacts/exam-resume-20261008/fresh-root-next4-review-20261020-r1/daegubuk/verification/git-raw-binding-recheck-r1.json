@@ -1,0 +1,34 @@
+{
+  "kind": "git-bound-post-review-raw-recheck/v1",
+  "createdAt": "2026-10-20T07:36:27.189Z",
+  "rawCommit": "617a23934a60be011fb89c09e4cf36ff6bfc97f0",
+  "workerRawCommit": "96e8765a780ca382f8ea44ddcb658c566a63dd30",
+  "proofs": [
+    {
+      "n": 1,
+      "gitPath": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/blind/solve/q01.json",
+      "sha256": "905c0e988b846dd32aceceda9a6134b8b82e30e160a30c5439ad854c2a454445",
+      "studentDigest": "1457138e33c8d74f2d5cd8ecef5020c69631d4e5d498a5a23ada1d43fbf8fa0f"
+    },
+    {
+      "n": 3,
+      "gitPath": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/blind/solve/q03.json",
+      "sha256": "cc36582143d2799bda8dcd4030b876ea004fcfb87d5507ae1d1bde2818a0de14",
+      "studentDigest": "a6921ad1dbff81357594be8db798968a002e40ae55e1cb5373f2fbe7cf8719b3"
+    }
+  ],
+  "actualPriorPrivateExposureEvent": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-root-next4-private-after-seal-transport-r1.json",
+    "sha256": "1782104055a70a0f37c52b2391f273c360f6633419eb23757efce0b06460ef61",
+    "utc": "2026-10-20T07:21:10.394800+00:00"
+  },
+  "originalTool": "verify-pack called after explicit manual Git raw sealing, not prepareSealedReview wrapper",
+  "receiptCreatedAfterReview": true,
+  "notANewPreExposureSeal": true,
+  "priorManualPreExposureSealsAndTransportPreserved": true,
+  "personPriorExposureVerified": false,
+  "exposureDeclarationRequired": true,
+  "rawFilesModified": false,
+  "loadable": false,
+  "dbWrites": 0
+}

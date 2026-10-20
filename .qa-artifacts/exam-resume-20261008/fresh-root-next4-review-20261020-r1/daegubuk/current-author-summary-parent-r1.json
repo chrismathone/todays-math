@@ -1,0 +1,525 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-20T07:35:20.043Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/current-author-index-parent-r1.json",
+    "sha256": "e48f028d37ea62cca12f1fda65ff62707cea926d3d4288443ef869ffc1989d15"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 2,
+    "historicalCandidateVersions": 2,
+    "independentSolvesBound": 2,
+    "mathematicalVerified": 2,
+    "gradeReviewed": 2,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 2,
+    "figureInstances": 1,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    1,
+    3
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q01",
+      "studentDigest": "1457138e33c8d74f2d5cd8ecef5020c69631d4e5d498a5a23ada1d43fbf8fa0f",
+      "candidateDigest": "e7bd4b9a2e5895b57229f6342d961512bb71663070d2500443bf94f84db0b2e2",
+      "assetDigest": "d7f51469a207e0d4d36d5888f5d3da9507ebaca2daca47a30574e1712ae0c7df",
+      "solveDigest": "a4b2c7029d56bdecd01f93d4029e5f634292ebe636b22d9b814198db24298f22",
+      "reportSha256": "339d7d72079397145948adba7d02fdc4445d1c0d167e3ce8ec0da7077f6dec27",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-daegubuk-3-1-mid-1",
+        "inventoryExamId": "personal-dc9efb798219b732ebd608105298f220",
+        "sourceQuestionNumber": 1,
+        "newSourceReferenceId": "source-ref-daegubuk-2025-1-mid-group3-r1-q01",
+        "sourceContentSha256": "6edeb3a06b51109710db8e39c905889d033a84b5b7d2590819f46b6130efb11e",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-dc9efb798219b732ebd608105298f220/q01.local.json",
+          "sha256": "3181a8ee614607c9193974e1afc5971ac0d03d789282acdf000a306d1ba16350"
+        },
+        "sourceSchoolInternal": "대구북중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-dc9efb798219b732ebd608105298f220\\source-manifest.local.json",
+          "sha256": "890a7d4ed291f70b6f5f03d5ce7a0f17ef281f657158dcfda7b602b50c09d51b",
+          "bytes": 1546963
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구북중][3][25-1-중간][비상] (완료).hwp",
+            "sha256": "2f89044cdfdbe4873b487b6a4ce9b6b17fd6a1f5ea62168a110294787c4ae8e5",
+            "bytes": 366080
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구북중][3][25-1-중간][비상] (완료).PDF",
+            "sha256": "848fd7e57fc4d42fb112b3c6a0bd9cb46c496ded6cd875c3a803a4a21d5092c0",
+            "bytes": 171567
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구북중][3][25-1-중간] (원본) (간짬뽕).pdf",
+          "sha256": "8f599954067c085ff2461e8aa53876960d652e9828e653729c3e69608fb8471f",
+          "bytes": 423901
+        },
+        "sourceComponentEvidence": null,
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구북중-q01",
+          "originalR1ProposalResolvedBySeparateLocalR3Observation": true
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구북중-q01"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write",
+        "originalUnchangedStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q01.json",
+          "sha256": "c85d07a8d2b8688468d74cc51d1bb7d57a6e5a2afeafe8ba9b1aebd0f8da7e3a"
+        },
+        "localNormalizationObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-nine-local-normalization-observations-r3.json",
+          "sha256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0"
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "같은 수의 두 제곱근을 두 좌표로 제시하고 그 사이 거리에서 원래 양수를 역추론한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "캡처된 실제2015중3 Unit UUID. 새 구조에 정확히 맞는 live family는 불명이며 자동 배정하지 않는다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-graph-1-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "k>0이고 a<b이므로 a<0<b이다. 두 근의 크기가 같아 거리8에서 크기4가 유일하고 k16>0이 존재한다. 수직선 거리와 제곱근 정의만 사용한다. 원문의 모든 부수 근호 계산을 복제하지 않아 목표 난도 동등성과 정확한 family는 독립 보류한다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next4-20261020-r1.ts",
+          "reproductionScriptSha256": "83c51c9d38dadc0e0395aa68b68814edf0626cb924d133e26c14344f1dbc1ec6",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "양수의 두 제곱근",
+            "양수·음수와 수직선",
+            "두 점 사이 거리",
+            "정수의 제곱"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      },
+      "variantDelta": {
+        "modes": [
+          "algebra-to-geometry",
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "제곱근의 뜻·부호와 근호의 값을 여러 일반 진술에서 구별한다.",
+        "after": "같은 수의 두 제곱근을 두 좌표로 제시하고 그 사이 거리에서 원래 양수를 역추론한다.",
+        "sharedConcept": "양수의 두 제곱근이 서로 반대 부호이고 제곱값은 같다는 정의",
+        "sharedProcedure": "두 근은 원점에 대칭 → 주어진 거리8의 절반4 → 좌표−4와4 → 제곱값16 확인",
+        "actualStructuralChange": "같은 수의 두 제곱근을 두 좌표로 제시하고 그 사이 거리에서 원래 양수를 역추론한다.",
+        "domainProof": "k>0이고 a<b이므로 a<0<b이다. 두 근의 크기가 같아 거리8에서 크기4가 유일하고 k16>0이 존재한다. 수직선 거리와 제곱근 정의만 사용한다. 원문의 모든 부수 근호 계산을 복제하지 않아 목표 난도 동등성과 정확한 family는 독립 보류한다.",
+        "difficultyBasis": "원문과 동일한 핵심 개념·풀이 관계를 사용한 저자 제안이다. 단순 숫자/학교명 치환으로 통과하지 않는다. 실제 목표 난도·정확한 family·모든 학년 면은 별도 검수 전 보류."
+      },
+      "packageDigest": "d12296852b78ec2ab773f81508c13419134febd699d78cfd64a78a2fb2672602",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next4-authoring-20261020-r1\\daegubuk\\q01.json",
+        "sha256": "525c9d6a3ac7daa2ecdc9a2044bd7533d51c600af4cd96d5f3f45602f81e5b5b"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "34d0b57740b68d352083fa0a89ee4b1a2aff3f0411a25079ef8f1338de22e953",
+          "svgSha256": "a3b20d65e6998a41457934dc9117b71abff7011f647111cb7807426f2e4535f4",
+          "intendedWidthMm": 80,
+          "studentPath": "figures/q01-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-root-next4-review-20261020-r1\\daegubuk\\blind\\solve\\q01.json",
+        "sha256": "905c0e988b846dd32aceceda9a6134b8b82e30e160a30c5439ad854c2a454445"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/verification/reports/q01.json",
+        "sha256": "339d7d72079397145948adba7d02fdc4445d1c0d167e3ce8ec0da7077f6dec27"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/verification/verification-manifest.json",
+        "sha256": "20a261f79075c677201fad17ea35d8a3b5eb3121dc5b7a284231156ee97db494"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/blind/blind-manifest.json",
+        "sha256": "6074370a2fdb817a3866d1a8c7bcd29416d9eed116e13e094ec63a6a2583fc78"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/package/private/q01/candidate.json",
+        "sha256": "3af6378e43eb352238d93c31b090764e535d0ab4acae2ce867ab5a0b405b1fa6"
+      },
+      "candidateContentWithoutRelocatedPaths": "8e90ec390d0c3e14aab07b56c708ca4c9b41bf21eb811d9e7cf5d3b28340e61b",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-authoring-20261020-r1/daegubuk/q01.json",
+        "sha256": "525c9d6a3ac7daa2ecdc9a2044bd7533d51c600af4cd96d5f3f45602f81e5b5b"
+      },
+      "authorCandidateDigest": "1a56333d20e48edb8019663e57bf167ea0fbec42e414434803016b064d6155dc"
+    },
+    {
+      "n": 3,
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q03",
+      "studentDigest": "a6921ad1dbff81357594be8db798968a002e40ae55e1cb5373f2fbe7cf8719b3",
+      "candidateDigest": "ab3992701fc79833b905787f855d72164e9c3090b3be7808d31cfdb62be92475",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "111a9c925465fd110e6bd8d828acaaf005d65d89cd642299d4c9c5f50669dbdd",
+      "reportSha256": "77b2850568dc62d0a38a6d3fb05a11b0b0141be209ed133dd906f4aae8ddeb99",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-daegubuk-3-1-mid-3",
+        "inventoryExamId": "personal-dc9efb798219b732ebd608105298f220",
+        "sourceQuestionNumber": 3,
+        "newSourceReferenceId": "source-ref-daegubuk-2025-1-mid-group3-r1-q03",
+        "sourceContentSha256": "fa2f527e3cdb50af950f2f2a6c3fc9580c0fec6d81f38ec6553532ce7c8acd05",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-dc9efb798219b732ebd608105298f220/q03.local.json",
+          "sha256": "6bb12f39fb24f277f274df09ee2de60db997221d190ef0b2eb66b8c36ae3a533"
+        },
+        "sourceSchoolInternal": "대구북중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-dc9efb798219b732ebd608105298f220\\source-manifest.local.json",
+          "sha256": "890a7d4ed291f70b6f5f03d5ce7a0f17ef281f657158dcfda7b602b50c09d51b",
+          "bytes": 1546963
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구북중][3][25-1-중간][비상] (완료).hwp",
+            "sha256": "2f89044cdfdbe4873b487b6a4ce9b6b17fd6a1f5ea62168a110294787c4ae8e5",
+            "bytes": 366080
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구북중][3][25-1-중간][비상] (완료).PDF",
+            "sha256": "848fd7e57fc4d42fb112b3c6a0bd9cb46c496ded6cd875c3a803a4a21d5092c0",
+            "bytes": 171567
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구북중][3][25-1-중간] (원본) (간짬뽕).pdf",
+          "sha256": "8f599954067c085ff2461e8aa53876960d652e9828e653729c3e69608fb8471f",
+          "bytes": 423901
+        },
+        "sourceComponentEvidence": null,
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구북중-q03",
+          "originalR1ProposalResolvedBySeparateLocalR3Observation": true
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구북중-q03"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write",
+        "originalUnchangedStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q03.json",
+          "sha256": "02baec10eaf137c4982ad99ba10366d0102826de7a3ad7fe130616f6d21cb66a"
+        },
+        "localNormalizationObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-nine-local-normalization-observations-r3.json",
+          "sha256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0"
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "다섯 수를 단일 표로 재조직하고 유리수를 제거한 뒤 남는 칸 수를 구한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "캡처된 실제2015중3 Unit UUID. 새 구조에 정확히 맞는 live family는 불명이며 자동 배정하지 않는다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "A3/10,C−3/11,D7/3은 분모가0이 아닌 정수비이고 B√7은 무리수이다. E는 유리수의 덧셈에 닫힘과 √5의 무리수 성질로 판단한다. 학생용 해설은 형식적 고등 증명 용어나 무한급수를 사용하지 않는다. 이 설명의 실제 중3 적합성은 별도 일곱 면 검수 전 보류한다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next4-20261020-r1.ts",
+          "reproductionScriptSha256": "83c51c9d38dadc0e0395aa68b68814edf0626cb924d133e26c14344f1dbc1ec6",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "제곱근의 뜻",
+            "유리수·무리수의 뜻",
+            "순환소수의 분수 표현",
+            "유리수끼리의 덧셈"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      },
+      "variantDelta": {
+        "modes": [
+          "data-reorganization",
+          "question-target-change",
+          "structure",
+          "new-table"
+        ],
+        "before": "근호·순환소수·유리수와 무리수의 합을 포함한 수 쌍 중 무리수만 있는 쌍을 고른다.",
+        "after": "다섯 수를 단일 표로 재조직하고 유리수를 제거한 뒤 남는 칸 수를 구한다.",
+        "sharedConcept": "근호가 있어도 유리수인 수와 순환소수, 무리수에 유리수를 더하거나 빼는 경우의 분류",
+        "sharedProcedure": "유한소수 근호·순환소수·분수 근호를 유리수로 확인 → 제곱수가 아닌 자연수의 근호와 유리수 이동을 무리수로 판단 → 남는 칸2개",
+        "actualStructuralChange": "다섯 수를 단일 표로 재조직하고 유리수를 제거한 뒤 남는 칸 수를 구한다.",
+        "domainProof": "A3/10,C−3/11,D7/3은 분모가0이 아닌 정수비이고 B√7은 무리수이다. E는 유리수의 덧셈에 닫힘과 √5의 무리수 성질로 판단한다. 학생용 해설은 형식적 고등 증명 용어나 무한급수를 사용하지 않는다. 이 설명의 실제 중3 적합성은 별도 일곱 면 검수 전 보류한다.",
+        "difficultyBasis": "원문과 동일한 핵심 개념·풀이 관계를 사용한 저자 제안이다. 단순 숫자/학교명 치환으로 통과하지 않는다. 실제 목표 난도·정확한 family·모든 학년 면은 별도 검수 전 보류."
+      },
+      "packageDigest": "d12296852b78ec2ab773f81508c13419134febd699d78cfd64a78a2fb2672602",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next4-authoring-20261020-r1\\daegubuk\\q03.json",
+        "sha256": "9b83a60b4791a24881f1fd4046808defc54860e41788af53eda84522caadb56c"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-root-next4-review-20261020-r1\\daegubuk\\blind\\solve\\q03.json",
+        "sha256": "cc36582143d2799bda8dcd4030b876ea004fcfb87d5507ae1d1bde2818a0de14"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/verification/reports/q03.json",
+        "sha256": "77b2850568dc62d0a38a6d3fb05a11b0b0141be209ed133dd906f4aae8ddeb99"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/verification/verification-manifest.json",
+        "sha256": "20a261f79075c677201fad17ea35d8a3b5eb3121dc5b7a284231156ee97db494"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/blind/blind-manifest.json",
+        "sha256": "6074370a2fdb817a3866d1a8c7bcd29416d9eed116e13e094ec63a6a2583fc78"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/package/private/q03/candidate.json",
+        "sha256": "9b83a60b4791a24881f1fd4046808defc54860e41788af53eda84522caadb56c"
+      },
+      "candidateContentWithoutRelocatedPaths": "fbcf810010b8bb139ac779145debfc965e048894709fa30a5d734fa74676c179",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-authoring-20261020-r1/daegubuk/q03.json",
+        "sha256": "9b83a60b4791a24881f1fd4046808defc54860e41788af53eda84522caadb56c"
+      },
+      "authorCandidateDigest": "ab3992701fc79833b905787f855d72164e9c3090b3be7808d31cfdb62be92475"
+    }
+  ],
+  "reviewBindingDigest": "4f5f041a5c2116e8b52061b296dbf0f9a614dc3e031aa2800724713b7843d69d",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

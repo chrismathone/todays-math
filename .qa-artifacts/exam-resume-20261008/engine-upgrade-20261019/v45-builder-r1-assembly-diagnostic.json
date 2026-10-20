@@ -1,0 +1,15 @@
+{
+  "utc": "2026-10-20T07:36:27.418463+00:00",
+  "kind": "ledger-assembly-missing-optional-wrapper-receipt",
+  "failedBuilder": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/build-resume-v45-r1.mjs",
+  "partialOutputsPreserved": [
+    "fresh-root-next4-review-20261020-r1/daegubuk/current-author-index-parent-r1.json",
+    "fresh-root-next4-review-20261020-r1/daegubuk/current-author-summary-parent-r1.json"
+  ],
+  "reason": "Initial builder assumed prepareSealedReview wrapper receipt. Actual four raw files were manually Git-sealed before verify-pack and private transport; those Git/transport events are preserved. A separately labelled POST-review Git recheck binds the unchanged files, not a retroactively invented pre-exposure receipt.",
+  "candidateStudentRawReportChanged": false,
+  "mathReviewDuplicatedOrReused": false,
+  "newBuilder": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/build-resume-v45-r2.mjs",
+  "loadable": 0,
+  "dbWrites": 0
+}

@@ -1,0 +1,524 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-20T07:36:28.747Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/current-author-index-parent-r2.json",
+    "sha256": "1d9e158acccf2fea3adbe51f8243540080c58c6be311c74df9694c36ce8b00d2"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 2,
+    "historicalCandidateVersions": 2,
+    "independentSolvesBound": 2,
+    "mathematicalVerified": 2,
+    "gradeReviewed": 2,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 2,
+    "figureInstances": 1,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    1,
+    3
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group3-r1-q01",
+      "studentDigest": "b1dfc83b10dabbd5b421cfda90e7f6bd62ee9f13e1a6dcc587ed98f9da54935f",
+      "candidateDigest": "a3563fcb64abb27fb3ea2f08c10830fe37031e547068be3f4f6b83d86f71d3df",
+      "assetDigest": "b72192017b7cd7273765bfba333ea875dbcc8f656015d52e107237ed90fcf57d",
+      "solveDigest": "fcfde04bd846f42570c70bf003648dcf13134839ecabffe55f34c64ede49b0b2",
+      "reportSha256": "fbba336a612bf76abdb6f084922eb347e1653e135473fdb5109ab707586c91ed",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-daeguil-3-1-mid-1",
+        "inventoryExamId": "personal-1c6091af710ddaaa7e6671a2ef018a1c",
+        "sourceQuestionNumber": 1,
+        "newSourceReferenceId": "source-ref-daeguil-2025-1-mid-group3-r1-q01",
+        "sourceContentSha256": "2f39cb3c1b58c5539d7a3818cbc11b715e7462d201f00a7532f853ffb2d38fdd",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-1c6091af710ddaaa7e6671a2ef018a1c/q01.local.json",
+          "sha256": "be8409ac984f95c129088c7a1dea4d0d22fc4227ca24c67bdef823d1a6b0202f"
+        },
+        "sourceSchoolInternal": "대구일중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-1c6091af710ddaaa7e6671a2ef018a1c\\source-manifest.local.json",
+          "sha256": "5aaa4fbf03d34bd9ea27fe7beeee55307d0f9cc4f2f9564298269d1dcc5b44f9",
+          "bytes": 1468326
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구일중][3][25-1-중간][천재류] (완료).hwp",
+            "sha256": "cec264431ab5ac28805a06fe799542218e765a6682351852b01197cea0b900c7",
+            "bytes": 534528
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구일중][3][25-1-중간][천재류] (완료).PDF",
+            "sha256": "d6be21c3806068dca6d890171591058b62d60020817f8c7f1bb345b7f2bf7532",
+            "bytes": 168723
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구일중][3][25-1-중간] (원본) (로뚱) (1).pdf",
+          "sha256": "90546e1ce4d215fdd3dc9a5bc015bd8e3057df7825b77b89c57c7a8b1e25f091",
+          "bytes": 341179
+        },
+        "sourceComponentEvidence": null,
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구일중-q01",
+          "originalR1ProposalResolvedBySeparateLocalR3Observation": true
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구일중-q01"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write",
+        "originalUnchangedStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-1c6091af710ddaaa7e6671a2ef018a1c/q01.json",
+          "sha256": "5e136450651e4444def25294eebce750a591bdbc0e1fb24ef0e3a9680aa7a5b0"
+        },
+        "localNormalizationObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-nine-local-normalization-observations-r3.json",
+          "sha256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0"
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "동일한 양수의 두 제곱근을 모두 묻는 기록과 정사각형의 양수 길이를 묻는 기록을 나란히 완성한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "캡처된 실제2015중3 Unit UUID. 새 구조에 정확히 맞는 live family는 불명이며 자동 배정하지 않는다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-graph-1-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "정사각형 넓이81/100cm²이고 실제 길이9/10cm>0이다. 수학적 두 근과 물리적 길이의 답 형식을 분리한다. 소수 제곱과 초등 정사각형 넓이 외 새 선수 개념은 요구하지 않는다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next4-20261020-r1.ts",
+          "reproductionScriptSha256": "83c51c9d38dadc0e0395aa68b68814edf0626cb924d133e26c14344f1dbc1ec6",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "양수의 두 제곱근",
+            "소수의 제곱",
+            "정사각형의 넓이",
+            "양수인 길이와 cm/cm²"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      },
+      "variantDelta": {
+        "modes": [
+          "algebra-to-geometry",
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "제곱근의 뜻과 양수의 두 제곱근을 일반 진술의 정오로 구별한다.",
+        "after": "동일한 양수의 두 제곱근을 모두 묻는 기록과 정사각형의 양수 길이를 묻는 기록을 나란히 완성한다.",
+        "sharedConcept": "두 제곱근 전체와 근호의 양의 값, 길이의 양수 조건 구별",
+        "sharedProcedure": "제곱하여81/100이 되는 두 수±9/10 확인 → 길이는 양수이므로9/10cm 선택",
+        "actualStructuralChange": "동일한 양수의 두 제곱근을 모두 묻는 기록과 정사각형의 양수 길이를 묻는 기록을 나란히 완성한다.",
+        "domainProof": "정사각형 넓이81/100cm²이고 실제 길이9/10cm>0이다. 수학적 두 근과 물리적 길이의 답 형식을 분리한다. 소수 제곱과 초등 정사각형 넓이 외 새 선수 개념은 요구하지 않는다.",
+        "difficultyBasis": "원문과 동일한 핵심 개념·풀이 관계를 사용한 저자 제안이다. 단순 숫자/학교명 치환으로 통과하지 않는다. 실제 목표 난도·정확한 family·모든 학년 면은 별도 검수 전 보류."
+      },
+      "packageDigest": "254851f08dfbf9e25fb8bbcda1f2ce81364065cc132140b28ce3c83eedbe0547",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next4-authoring-20261020-r1\\daeguil\\q01.json",
+        "sha256": "528bff32510c7d7540e9d64d298327d1275a6fa842382a27e2431f227cc5c24b"
+      },
+      "figureBindings": [
+        {
+          "role": "stem",
+          "specSha256": "82f3a0851081dcda217ea570b3b840e9983dc19e69ef2c0255a3bbb825392027",
+          "svgSha256": "f64cd047c7f5fa7e1df66078de53ca262b94f4841219009346fbeb8af730a6be",
+          "intendedWidthMm": 55,
+          "studentPath": "figures/q01-1.svg"
+        }
+      ],
+      "independentSolveFile": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-root-next4-review-20261020-r1\\daeguil\\blind\\solve\\q01.json",
+        "sha256": "5f2d0a130e43dd6d99b08071a651a6bdb9000de24bd2d9dfde9e63bd925f96d0"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/verification/reports/q01.json",
+        "sha256": "fbba336a612bf76abdb6f084922eb347e1653e135473fdb5109ab707586c91ed"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/verification/verification-manifest.json",
+        "sha256": "cd118a99beb5bd938b7253b73ed81354938bc884e0ffabbdc1376f5559fc9fa9"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/blind/blind-manifest.json",
+        "sha256": "52ab9e3dd4df7004e00611ee2359e1eb33864e3a59a90ae2f7e3c39f18e33a3e"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/package/private/q01/candidate.json",
+        "sha256": "ad14488cd04c5e0bdf2be88e5cca10d3c3617174828c863f8a5ef8fc1c1fe4c7"
+      },
+      "candidateContentWithoutRelocatedPaths": "b0423d40f3915e8618726ab15cf05e14abcc6f6e9f9d92e125ab44e966a8a46d",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-authoring-20261020-r1/daeguil/q01.json",
+        "sha256": "528bff32510c7d7540e9d64d298327d1275a6fa842382a27e2431f227cc5c24b"
+      },
+      "authorCandidateDigest": "91d64406b4dc4e58af7325dace9fdd83c939c0ea07a615bfbab7fce95f10e270"
+    },
+    {
+      "n": 3,
+      "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group3-r1-q03",
+      "studentDigest": "353675a5a861e6dd7100f27338744c817afb22cc8a1ba88f939cec009727b65b",
+      "candidateDigest": "ca02b8c89d9c7426401c1763f54adc9343b9cee8924afda99f4cddfe1382afa3",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "c746d9365606d3fcceeb2fbef0e2f4dd9a869576472e69275e9f823101fe0341",
+      "reportSha256": "c6b563590a205e3efd2e5468eb53f7450b718aaaf93f7a72e9f9a473ce647450",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-daeguil-3-1-mid-3",
+        "inventoryExamId": "personal-1c6091af710ddaaa7e6671a2ef018a1c",
+        "sourceQuestionNumber": 3,
+        "newSourceReferenceId": "source-ref-daeguil-2025-1-mid-group3-r1-q03",
+        "sourceContentSha256": "c6cbd8706c609c337879b5e2fc207be80343ab3dac875e70f30b3a6ce0edeef6",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-1c6091af710ddaaa7e6671a2ef018a1c/q03.local.json",
+          "sha256": "5096f62b9f7831c5c53231804606279a195a3645f05b410ff792055d9f381951"
+        },
+        "sourceSchoolInternal": "대구일중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-1c6091af710ddaaa7e6671a2ef018a1c\\source-manifest.local.json",
+          "sha256": "5aaa4fbf03d34bd9ea27fe7beeee55307d0f9cc4f2f9564298269d1dcc5b44f9",
+          "bytes": 1468326
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구일중][3][25-1-중간][천재류] (완료).hwp",
+            "sha256": "cec264431ab5ac28805a06fe799542218e765a6682351852b01197cea0b900c7",
+            "bytes": 534528
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구일중][3][25-1-중간][천재류] (완료).PDF",
+            "sha256": "d6be21c3806068dca6d890171591058b62d60020817f8c7f1bb345b7f2bf7532",
+            "bytes": 168723
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구일중][3][25-1-중간] (원본) (로뚱) (1).pdf",
+          "sha256": "90546e1ce4d215fdd3dc9a5bc015bd8e3057df7825b77b89c57c7a8b1e25f091",
+          "bytes": 341179
+        },
+        "sourceComponentEvidence": null,
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구일중-q03",
+          "originalR1ProposalResolvedBySeparateLocalR3Observation": true
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구일중-q03"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write",
+        "originalUnchangedStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-1c6091af710ddaaa7e6671a2ef018a1c/q03.json",
+          "sha256": "1a1ff755e46ce650a10f4ccced705e8f33eb9f4e05f2e52b31924884f25a81e0"
+        },
+        "localNormalizationObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-nine-local-normalization-observations-r3.json",
+          "sha256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0"
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "주어진 다섯 근호식 각각을 두 경계0과1에 비교하여 조건을 만족하는 항목 수를 구한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "캡처된 실제2015중3 Unit UUID. 새 구조에 정확히 맞는 live family는 불명이며 자동 배정하지 않는다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "모든 근호 안 수는 양수이고 정수가 아닌 근이므로0과1의 경계 일치는 없다. 근삿값·그림 픽셀·함수·구간 기호 없이 중3 실수 비교와 이미 배운 부등식 성질로 판단한다. 여러 항목의 비교로 바뀐 실제 난도는 독립 보류한다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next4-20261020-r1.ts",
+          "reproductionScriptSha256": "83c51c9d38dadc0e0395aa68b68814edf0626cb924d133e26c14344f1dbc1ec6",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "양수의 제곱근 크기 비교",
+            "정수의 제곱",
+            "부등식의 덧셈과 뺄셈"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      },
+      "variantDelta": {
+        "modes": [
+          "data-reorganization",
+          "question-target-change",
+          "structure",
+          "new-table"
+        ],
+        "before": "근호를 포함한 두 실수의 대소 관계 진술 중 옳은 것을 고른다.",
+        "after": "주어진 다섯 근호식 각각을 두 경계0과1에 비교하여 조건을 만족하는 항목 수를 구한다.",
+        "sharedConcept": "제곱수와 비교하여 근호의 크기를 정하고 같은 수의 덧셈·뺄셈으로 실수를 비교한다.",
+        "sharedProcedure": "각 근호를 양쪽 정수 제곱으로 끼워 크기 확인 → 더하거나 빼는 수를 반영 → 두 엄격 경계 모두 만족하는A,D,E 집계",
+        "actualStructuralChange": "주어진 다섯 근호식 각각을 두 경계0과1에 비교하여 조건을 만족하는 항목 수를 구한다.",
+        "domainProof": "모든 근호 안 수는 양수이고 정수가 아닌 근이므로0과1의 경계 일치는 없다. 근삿값·그림 픽셀·함수·구간 기호 없이 중3 실수 비교와 이미 배운 부등식 성질로 판단한다. 여러 항목의 비교로 바뀐 실제 난도는 독립 보류한다.",
+        "difficultyBasis": "원문과 동일한 핵심 개념·풀이 관계를 사용한 저자 제안이다. 단순 숫자/학교명 치환으로 통과하지 않는다. 실제 목표 난도·정확한 family·모든 학년 면은 별도 검수 전 보류."
+      },
+      "packageDigest": "254851f08dfbf9e25fb8bbcda1f2ce81364065cc132140b28ce3c83eedbe0547",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next4-authoring-20261020-r1\\daeguil\\q03.json",
+        "sha256": "95885bfc8e9ef761849a6aa37c1b20eccdebfb1e91f713c7b888c5a2ffb79de6"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-root-next4-review-20261020-r1\\daeguil\\blind\\solve\\q03.json",
+        "sha256": "5e4b0c2cdcd94514548148144fca10d7549ca7fac22afbb28d65b8c07a2273a1"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/verification/reports/q03.json",
+        "sha256": "c6b563590a205e3efd2e5468eb53f7450b718aaaf93f7a72e9f9a473ce647450"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/verification/verification-manifest.json",
+        "sha256": "cd118a99beb5bd938b7253b73ed81354938bc884e0ffabbdc1376f5559fc9fa9"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/blind/blind-manifest.json",
+        "sha256": "52ab9e3dd4df7004e00611ee2359e1eb33864e3a59a90ae2f7e3c39f18e33a3e"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/package/private/q03/candidate.json",
+        "sha256": "95885bfc8e9ef761849a6aa37c1b20eccdebfb1e91f713c7b888c5a2ffb79de6"
+      },
+      "candidateContentWithoutRelocatedPaths": "c82aac6cb5b5761e04be5db937d981106e90a2e2cf0b05494cb19bb3dda76b7c",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-authoring-20261020-r1/daeguil/q03.json",
+        "sha256": "95885bfc8e9ef761849a6aa37c1b20eccdebfb1e91f713c7b888c5a2ffb79de6"
+      },
+      "authorCandidateDigest": "ca02b8c89d9c7426401c1763f54adc9343b9cee8924afda99f4cddfe1382afa3"
+    }
+  ],
+  "reviewBindingDigest": "836a3727fa2fe757d9a620a8e056b18043a40655d569a81e55c6f192a56469fa",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

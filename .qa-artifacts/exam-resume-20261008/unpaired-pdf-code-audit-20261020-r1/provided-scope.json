@@ -1,0 +1,47 @@
+{
+  "utc": "2026-10-20T07:31:11.694262+00:00",
+  "kind": "unpaired-pdf-readonly-code-audit-scope/v1",
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/unpaired_pdf_scope.py",
+      "sha256": "513b8483981b20fee373ab989916f097849e0ccf74192e4433111af4ba9265b2"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_unpaired_pdf_scope.py",
+      "sha256": "fa14743acfddf52d1c3bc5987c10f03064464fadaad11baa173066afed9f4d22"
+    },
+    {
+      "path": "scripts/import/exam-twin/preflight-unpaired-pdfs.py",
+      "sha256": "482e2bdce82d505731a9eb4873759716f3d9d163e4f3083139bc4a818dfd12c7"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_inventory_scope_v2.py",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    }
+  ],
+  "allowedMetadataOnly": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-preflight-20261020-r1/aggregate-receipt.json",
+      "sha256": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-pdf-parent-validation-r1.json",
+      "sha256": "3f6302dab4d130bcb3816d2bff4b6f0efe6046acc19d392f3c816da48070191d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+      "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-gangbuk-pdf-alias-content-observations-r1.json",
+      "sha256": "927f6c6bb321fd3be7320a06e19b4c8322a62c4d6a3b88f2d5a2b4359c36a1f5"
+    }
+  ],
+  "historicalInventoryMetadataOnly": "C:/Users/user/orca/artifacts/outputs/exam-inventory-20261003/extraction-job-manifest-reviewed.json",
+  "rootReadOnly": true,
+  "noOriginalNReads": true,
+  "noRawLocalParserOrOriginalImages": true,
+  "noProductionEdits": true,
+  "dbWrites": 0,
+  "loadable": 0
+}

@@ -1,0 +1,285 @@
+{
+  "status": "pending",
+  "studentDigest": "b1dfc83b10dabbd5b421cfda90e7f6bd62ee9f13e1a6dcc587ed98f9da54935f",
+  "candidateDigest": "a3563fcb64abb27fb3ea2f08c10830fe37031e547068be3f4f6b83d86f71d3df",
+  "assetDigest": "b72192017b7cd7273765bfba333ea875dbcc8f656015d52e107237ed90fcf57d",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-current-next4-full-review-20261020-r1",
+  "solveDigest": "fcfde04bd846f42570c70bf003648dcf13134839ecabffe55f34c64ede49b0b2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "ownExactCurrentCalculations": {
+      "area": "81/100",
+      "twoRoots": [
+        "-9/10",
+        "9/10"
+      ],
+      "positiveSideCm": "9/10",
+      "rootSquared": "81/100",
+      "wrong0.81Squared": "6561/10000"
+    },
+    "answerCorrect": {
+      "basis": "봉인 전 독립 계산을 그대로 보존하여 현재 답과 비교했고 모든 보기를 직접 검산했다.",
+      "rawSHA256": "5f2d0a130e43dd6d99b08071a651a6bdb9000de24bd2d9dfde9e63bd925f96d0",
+      "answer": "③"
+    },
+    "solutionCorrect": {
+      "basis": "실제 해설은0.9²와(-0.9)²를 확인한 뒤 길이는 양수라0.9cm라고 한다. 근호 방정식의 허근 처리나 고교 이차방정식 공식은 전혀 필요 없다.",
+      "currentAuthorSolutionSHA256": "16336827ba0270fa5fc31827ab7385bf176a6b451cf64cb1feeb19e229cff8ea",
+      "solutionPNGViewed": true
+    },
+    "existenceUniqueness": {
+      "basis": "③의 ㄱ=±0.9는 수 두 개, ㄴ=0.9cm는 양의 길이 한 개다. [9수01-07] 정의 및 초등 단위 규칙으로 유일하게 결정된다.",
+      "details": {
+        "area": "81/100",
+        "twoRoots": [
+          "-9/10",
+          "9/10"
+        ],
+        "positiveSideCm": "9/10",
+        "rootSquared": "81/100",
+        "wrong0.81Squared": "6561/10000"
+      }
+    },
+    "choicesCorrect": {
+      "basis": "다섯 보기의 ±0.9,0.9,-0.9,±0.81을 정의와 길이 양수 조건으로 판별한다. 제곱0.81²=0.6561도 유한소수 사칙 범위다.",
+      "all5Checked": true,
+      "rawDetailedChecksRetained": true
+    },
+    "figureConsistent": {
+      "basis": "정사각형 그림의 라벨은0.81cm²이며 표 ㄱ은 모든 제곱근, ㄴ은 한 변이라는 다른 역할을 구분한다. 새 도형 정리나 픽셀 측정은 없다.",
+      "assets": [
+        {
+          "specSHA256": "82f3a0851081dcda217ea570b3b840e9983dc19e69ef2c0255a3bbb825392027",
+          "svgSHA256": "f64cd047c7f5fa7e1df66078de53ca262b94f4841219009346fbeb8af730a6be",
+          "sameStudentSVG": true,
+          "authorCoordinateConsistencyOnlyAfterSeal": true,
+          "pixelsAsOracle": false
+        }
+      ],
+      "solutionAndStudentPNGActuallyViewed": true,
+      "nativeReaderParity": false
+    },
+    "sameCoreConceptAndProcedure": {
+      "basis": "원문 일반 설명의 두 제곱근/양의 근호값 구별을 보존했다. 두 수를 모두 쓰는 일과 물리 길이를 정하는 일은 같은 양수의 제곱 정의에 근거한다.",
+      "priorOwnComponent": "대구일중-q01",
+      "priorSourceEvidenceSHA256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "normalizationObservationSHA256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0",
+      "boundedLocalNormalizationResolved": true,
+      "wholeSourceIdentityApproved": false
+    },
+    "distinctPresentation": {
+      "basis": "일반 명제 정오에서 넓이가 주어진 정사각형의 ㄱ/ㄴ 두 기록을 나란히 완성하도록 바뀌었다. 수학적 두 근과 양수 길이라는 답 역할을 분리하는 실제 맥락 변화가 있다.",
+      "moreThanNumericSubstitution": true
+    },
+    "naturalKorean": {
+      "basis": "지문의 요청 대상과 표/그림 라벨, 5개 보기의 대응이 명확하다. 두 기록의 모든 수와 한 양의 길이를 분리하는 표현이 자연스럽다."
+    },
+    "curriculumAppropriate": {
+      "basis": "2015M3 실제 현재 전체 방법은 아래7면별 근거 및 선수학습 조건 내에 있다. 원본 학교·저자 제안·코드 통과만으로 승인한 것이 아니다.",
+      "primary": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "allStudentSurfacesInScope": {
+      "basis": "현재 stem/choices/figuresAndTables/notation/answer/full studentSolution/prerequisites 각각 실제 내용을 구분해 판단했다.",
+      "appliesAfterListedPrerequisites": true,
+      "2022": "pending"
+    },
+    "unitFamilyFit": {
+      "basis": "캡처된 Unit UUID와 현재 목표 개념은 위와 같이 대응하지만 정확한 live family 정의/전체 목표·도메인·형식 적합성은 증명하지 못했다. null family를 추정 키로 채우지 않는다.",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "course": "중3",
+      "unitSection": "제곱근의 뜻과 성질",
+      "liveFamilyKey": null,
+      "status": "pending"
+    },
+    "scoreAppropriate": {
+      "basis": "현재 네 문항은 각3점의 짧은 개념/분류/비교형으로 편집상 과도하지 않다. 0.9² 확인과 길이 양수 조건만 필요한 기본 개념 구별형이다. 원문 하 라벨과 같다는 경험적 승인은 아니다.",
+      "score": 3,
+      "sourcePrintedScoreObserved": 3,
+      "sourceDifficultyLabelObserved": "하",
+      "sourceLabelAuthority": "completed-preparation label, not measured original-school difficulty",
+      "targetDifficultyJudgement": "기본",
+      "authorBroadProposal": "기본~응용 저자 제안",
+      "empiricalCalibration": "pending",
+      "sameDifficultyApproved": false
+    },
+    "exposure": {
+      "priorSourceNineAndRelatedPublicCode": true,
+      "currentAuthorExposedOnlyAfterRawCommit": "96e8765a780ca382f8ea44ddcb658c566a63dd30",
+      "parentPreExposureSeal": "617a23934a60be011fb89c09e4cf36ff6bfc97f0",
+      "rawUnchanged": true,
+      "notNewBlindClaimAfterExposure": true
+    },
+    "separateHolds": {
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolPacingCertified": false
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "지문은 넓이0.81cm²의 정사각형에서 같은 양수의 모든 제곱근과 실제 변 길이를 구별한다. [9수01-07]의 두 근 정의를 초등 넓이와 연결한다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "다섯 보기의 ±0.9,0.9,-0.9,±0.81을 정의와 길이 양수 조건으로 판별한다. 제곱0.81²=0.6561도 유한소수 사칙 범위다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "정사각형 그림의 라벨은0.81cm²이며 표 ㄱ은 모든 제곱근, ㄴ은 한 변이라는 다른 역할을 구분한다. 새 도형 정리나 픽셀 측정은 없다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "±는 두 수를 함께 쓰는 표기이고 cm²는 넓이, cm는 길이다. 실제 PNG에서 수학 명령이 정상 렌더되고0.81의 소수점과 제곱 지수가 구별된다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "③의 ㄱ=±0.9는 수 두 개, ㄴ=0.9cm는 양의 길이 한 개다. [9수01-07] 정의 및 초등 단위 규칙으로 유일하게 결정된다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 해설은0.9²와(-0.9)²를 확인한 뒤 길이는 양수라0.9cm라고 한다. 근호 방정식의 허근 처리나 고교 이차방정식 공식은 전혀 필요 없다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "M3 제곱근 정의 [9수01-07], M1 부호·제곱과 사칙, 초등 정사각형 넓이 및 cm/cm²를 이미 배운 뒤 배정한다. M3 Unit469 배치와 일치하며 2022 전용은 별도다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    }
+  }
+}

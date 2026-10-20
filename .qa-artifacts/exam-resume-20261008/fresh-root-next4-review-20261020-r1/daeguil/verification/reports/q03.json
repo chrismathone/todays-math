@@ -1,0 +1,397 @@
+{
+  "status": "pending",
+  "studentDigest": "353675a5a861e6dd7100f27338744c817afb22cc8a1ba88f939cec009727b65b",
+  "candidateDigest": "ca02b8c89d9c7426401c1763f54adc9343b9cee8924afda99f4cddfe1382afa3",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-current-next4-full-review-20261020-r1",
+  "solveDigest": "c746d9365606d3fcceeb2fbef0e2f4dd9a869576472e69275e9f823101fe0341",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "ownExactCurrentCalculations": {
+      "bounds": [
+        {
+          "record": "A",
+          "integerSquareBounds": [
+            9,
+            11,
+            16
+          ],
+          "strictExpressionBounds": [
+            0,
+            1
+          ]
+        },
+        {
+          "record": "B",
+          "integerSquareBounds": [
+            1,
+            3,
+            4
+          ],
+          "strictExpressionBounds": [
+            -1,
+            0
+          ]
+        },
+        {
+          "record": "C",
+          "integerSquareBounds": [
+            9,
+            10,
+            16
+          ],
+          "strictExpressionBounds": [
+            1,
+            2
+          ]
+        },
+        {
+          "record": "D",
+          "integerSquareBounds": [
+            1,
+            2,
+            4
+          ],
+          "strictExpressionBounds": [
+            0,
+            1
+          ]
+        },
+        {
+          "record": "E",
+          "integerSquareBounds": [
+            9,
+            15,
+            16
+          ],
+          "strictExpressionBounds": [
+            0,
+            1
+          ]
+        }
+      ],
+      "selectedRecords": [
+        "A",
+        "D",
+        "E"
+      ],
+      "count": 3
+    },
+    "answerCorrect": {
+      "basis": "봉인 전 독립 계산을 그대로 보존하여 현재 답과 비교했고 모든 보기를 직접 검산했다.",
+      "rawSHA256": "5e4b0c2cdcd94514548148144fca10d7549ca7fac22afbb28d65b8c07a2273a1",
+      "answer": "④"
+    },
+    "solutionCorrect": {
+      "basis": "실제 해설 모든 행에서 인접한 정수 제곱 비교→양의 근 범위→정수 이동만 사용한다. D/E는 빼는 근호의 양끝을 바르게 뒤집어0<값<1을 얻었다. B/C를 단 한 경계로 배제하는 것도 충분하다.",
+      "currentAuthorSolutionSHA256": "accbfb77823aaffbdde33b528c4ebed2152f8735de9b951c8f0c3f1b44677607",
+      "solutionPNGViewed": true
+    },
+    "existenceUniqueness": {
+      "basis": "④=3개이다. A,D,E는(0,1),B는(-1,0),C는(1,2)에 있으므로 끝값 일치 없이 답이 고정된다. 괄호 구간 표기는 검수용이고 학생에게 추가로 요구하지 않는다.",
+      "details": {
+        "bounds": [
+          {
+            "record": "A",
+            "integerSquareBounds": [
+              9,
+              11,
+              16
+            ],
+            "strictExpressionBounds": [
+              0,
+              1
+            ]
+          },
+          {
+            "record": "B",
+            "integerSquareBounds": [
+              1,
+              3,
+              4
+            ],
+            "strictExpressionBounds": [
+              -1,
+              0
+            ]
+          },
+          {
+            "record": "C",
+            "integerSquareBounds": [
+              9,
+              10,
+              16
+            ],
+            "strictExpressionBounds": [
+              1,
+              2
+            ]
+          },
+          {
+            "record": "D",
+            "integerSquareBounds": [
+              1,
+              2,
+              4
+            ],
+            "strictExpressionBounds": [
+              0,
+              1
+            ]
+          },
+          {
+            "record": "E",
+            "integerSquareBounds": [
+              9,
+              15,
+              16
+            ],
+            "strictExpressionBounds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "selectedRecords": [
+          "A",
+          "D",
+          "E"
+        ],
+        "count": 3
+      }
+    },
+    "choicesCorrect": {
+      "basis": "보기0~4개는 A,D,E의3개라는 유일한 집계와 비교한다. 정밀 소수 근삿값이나 일반 해집합 구조를 써야 할 보기는 없다.",
+      "all5Checked": true,
+      "rawDetailedChecksRetained": true
+    },
+    "figureConsistent": {
+      "basis": "A~E 표의 √11-3,√3-2,√10-2,2-√2,4-√15를 각각 읽는다. 좌표그래프/수치 측정 없이 양의 제곱근의 순서로 비교한다.",
+      "assets": [],
+      "solutionAndStudentPNGActuallyViewed": true,
+      "nativeReaderParity": false
+    },
+    "sameCoreConceptAndProcedure": {
+      "basis": "원문의 근호 실수 대소 비교와 공통 정수항의 더하기/빼기, 양의 근 크기 비교를 보존했다. 복잡한 근호합 제곱이나 상위 부등식으로 바꾸지 않았다.",
+      "priorOwnComponent": "대구일중-q03",
+      "priorSourceEvidenceSHA256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "normalizationObservationSHA256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0",
+      "boundedLocalNormalizationResolved": true,
+      "wholeSourceIdentityApproved": false
+    },
+    "distinctPresentation": {
+      "basis": "진술 중 옳은 부등식 한 개 선택에서 다섯 수를 두 공통 경계0,1에 동시 비교해 개수를 고르는 표 구조로 바뀌었다. 양끝 조건과 음의 근호항 방향을 모두 확인한다.",
+      "moreThanNumericSubstitution": true
+    },
+    "naturalKorean": {
+      "basis": "지문의 요청 대상과 표/그림 라벨, 5개 보기의 대응이 명확하다. 현재 solution PNG에서 기호·줄바꿈·근호 범위가 읽힌다."
+    },
+    "curriculumAppropriate": {
+      "basis": "2015M3 실제 현재 전체 방법은 아래7면별 근거 및 선수학습 조건 내에 있다. 원본 학교·저자 제안·코드 통과만으로 승인한 것이 아니다.",
+      "primary": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "allStudentSurfacesInScope": {
+      "basis": "현재 stem/choices/figuresAndTables/notation/answer/full studentSolution/prerequisites 각각 실제 내용을 구분해 판단했다.",
+      "appliesAfterListedPrerequisites": true,
+      "2022": "pending"
+    },
+    "unitFamilyFit": {
+      "basis": "캡처된 Unit UUID와 현재 목표 개념은 위와 같이 대응하지만 정확한 live family 정의/전체 목표·도메인·형식 적합성은 증명하지 못했다. null family를 추정 키로 채우지 않는다.",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "course": "중3",
+      "unitSection": "무리수와 실수",
+      "liveFamilyKey": null,
+      "status": "pending"
+    },
+    "scoreAppropriate": {
+      "basis": "현재 네 문항은 각3점의 짧은 개념/분류/비교형으로 편집상 과도하지 않다. 다섯 번의 간단한 끼워 비교와 개수 집계라 기본 상단, 응용 초입까지의 편집 제안은 가능하다. 새 난도와 원문 난도 동등성은 실측하지 않았다.",
+      "score": 3,
+      "sourcePrintedScoreObserved": 3,
+      "sourceDifficultyLabelObserved": "하",
+      "sourceLabelAuthority": "completed-preparation label, not measured original-school difficulty",
+      "targetDifficultyJudgement": "기본 상단",
+      "authorBroadProposal": "기본~응용 저자 제안",
+      "empiricalCalibration": "pending",
+      "sameDifficultyApproved": false
+    },
+    "exposure": {
+      "priorSourceNineAndRelatedPublicCode": true,
+      "currentAuthorExposedOnlyAfterRawCommit": "96e8765a780ca382f8ea44ddcb658c566a63dd30",
+      "parentPreExposureSeal": "617a23934a60be011fb89c09e4cf36ff6bfc97f0",
+      "rawUnchanged": true,
+      "notNewBlindClaimAfterExposure": true
+    },
+    "separateHolds": {
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolPacingCertified": false
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "다섯 근호식에서0보다 크고1보다 작은 것을 고르는 조건은 [9수01-09] 실수 대소 비교다. 연속함수·극값이나 고교 무리부등식 풀이를 요구하지 않는다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "보기0~4개는 A,D,E의3개라는 유일한 집계와 비교한다. 정밀 소수 근삿값이나 일반 해집합 구조를 써야 할 보기는 없다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "A~E 표의 √11-3,√3-2,√10-2,2-√2,4-√15를 각각 읽는다. 좌표그래프/수치 측정 없이 양의 제곱근의 순서로 비교한다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "지문의 크다/작다는 엄격 부등호이며 두 끝값0,1을 제외한다. 학생 해설 부등호 방향은 양변에 같은 수를 더하거나 빼는 M2 성질과 [9수01-09]로 설명된다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "④=3개이다. A,D,E는(0,1),B는(-1,0),C는(1,2)에 있으므로 끝값 일치 없이 답이 고정된다. 괄호 구간 표기는 검수용이고 학생에게 추가로 요구하지 않는다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 해설 모든 행에서 인접한 정수 제곱 비교→양의 근 범위→정수 이동만 사용한다. D/E는 빼는 근호의 양끝을 바르게 뒤집어0<값<1을 얻었다. B/C를 단 한 경계로 배제하는 것도 충분하다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "M3 양의 제곱근과 실수 비교 [9수01-07/09], 정수 제곱·사칙 및 M2 부등식 성질 [9수02-09] 후 배정한다. 원문 학교/중1~3 band코드만으로 진도를 승인한 것이 아니다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    }
+  }
+}

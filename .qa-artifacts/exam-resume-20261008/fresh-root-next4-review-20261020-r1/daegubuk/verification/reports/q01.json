@@ -1,0 +1,305 @@
+{
+  "status": "pending",
+  "studentDigest": "1457138e33c8d74f2d5cd8ecef5020c69631d4e5d498a5a23ada1d43fbf8fa0f",
+  "candidateDigest": "e7bd4b9a2e5895b57229f6342d961512bb71663070d2500443bf94f84db0b2e2",
+  "assetDigest": "d7f51469a207e0d4d36d5888f5d3da9507ebaca2daca47a30574e1712ae0c7df",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-current-next4-full-review-20261020-r1",
+  "solveDigest": "a4b2c7029d56bdecd01f93d4029e5f634292ebe636b22d9b814198db24298f22",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "ownExactCurrentCalculations": {
+      "kChoices": [
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "distanceSquared": [
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "requiredDistanceSquared": 64,
+      "a": -4,
+      "b": 4,
+      "k": 16
+    },
+    "answerCorrect": {
+      "basis": "봉인 전 독립 계산을 그대로 보존하여 현재 답과 비교했고 모든 보기를 직접 검산했다.",
+      "rawSHA256": "905c0e988b846dd32aceceda9a6134b8b82e30e160a30c5439ad854c2a454445",
+      "answer": "③"
+    },
+    "solutionCorrect": {
+      "basis": "실제 해설은 두 근의 절댓값 같음→거리의 절반4→a=-4,b=4→제곱16→대입검산이다. 제곱근 정의·거리·나눗셈만으로 끝나며 상위 정리가 필요 없다.",
+      "currentAuthorSolutionSHA256": "1ae442d68982377ae7e27dd43de525bc9955a4a782bec7a00b3672f5149190b7",
+      "solutionPNGViewed": true
+    },
+    "existenceUniqueness": {
+      "basis": "③은 k=16에 해당한다. (-4)²=4²=16과4-(-4)=8로 검산하며 답의 대상은 k 하나다. 단위 cm를 새로 붙이지 않는다.",
+      "details": {
+        "kChoices": [
+          4,
+          8,
+          16,
+          32,
+          64
+        ],
+        "distanceSquared": [
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "requiredDistanceSquared": 64,
+        "a": -4,
+        "b": 4,
+        "k": 16
+      }
+    },
+    "choicesCorrect": {
+      "basis": "4,8,16,32,64의 다섯 선택값을 제곱근의 거리와 대조한다. 근호식의 고교 방정식이 아니라 [9수01-07] 정의와 정수 사칙계산이다.",
+      "all5Checked": true,
+      "rawDetailedChecksRetained": true
+    },
+    "figureConsistent": {
+      "basis": "A와 B가 O의 양쪽에 있는 수직선은 음수·양수 및 두 근의 대칭을 표시한다. 별도 함수·좌표거리공식이나 길이 측정이 필요 없다.",
+      "assets": [
+        {
+          "specSHA256": "34d0b57740b68d352083fa0a89ee4b1a2aff3f0411a25079ef8f1338de22e953",
+          "svgSHA256": "a3b20d65e6998a41457934dc9117b71abff7011f647111cb7807426f2e4535f4",
+          "sameStudentSVG": true,
+          "authorCoordinateConsistencyOnlyAfterSeal": true,
+          "pixelsAsOracle": false
+        }
+      ],
+      "solutionAndStudentPNGActuallyViewed": true,
+      "nativeReaderParity": false
+    },
+    "sameCoreConceptAndProcedure": {
+      "basis": "원문 일반 진술의 제곱근 뜻·두 근/부호를 판단하는 핵심 중 양수의 두 근이라는 부분을 보존한다. 원문에 있던 근호계산·비교의 모든 부수 기능을 보존한 것은 아니다.",
+      "priorOwnComponent": "대구북중-q01",
+      "priorSourceEvidenceSHA256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "normalizationObservationSHA256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0",
+      "boundedLocalNormalizationResolved": true,
+      "wholeSourceIdentityApproved": false
+    },
+    "distinctPresentation": {
+      "basis": "여러 일반 진술의 정오 선택에서 수직선의 결과 거리8을 주고 원래 k를 찾는 역방향으로 바뀌었다. 새 거리→절반→두 근→제곱이라는 연결이 필요하여 숫자 치환만은 아니다.",
+      "moreThanNumericSubstitution": true
+    },
+    "naturalKorean": {
+      "basis": "지문의 요청 대상과 표/그림 라벨, 5개 보기의 대응이 명확하다. 현재 solution PNG에서 기호·줄바꿈·근호 범위가 읽힌다."
+    },
+    "curriculumAppropriate": {
+      "basis": "2015M3 실제 현재 전체 방법은 아래7면별 근거 및 선수학습 조건 내에 있다. 원본 학교·저자 제안·코드 통과만으로 승인한 것이 아니다.",
+      "primary": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "allStudentSurfacesInScope": {
+      "basis": "현재 stem/choices/figuresAndTables/notation/answer/full studentSolution/prerequisites 각각 실제 내용을 구분해 판단했다.",
+      "appliesAfterListedPrerequisites": true,
+      "2022": "pending"
+    },
+    "unitFamilyFit": {
+      "basis": "캡처된 Unit UUID와 현재 목표 개념은 위와 같이 대응하지만 정확한 live family 정의/전체 목표·도메인·형식 적합성은 증명하지 못했다. null family를 추정 키로 채우지 않는다.",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "course": "중3",
+      "unitSection": "제곱근의 뜻과 성질",
+      "liveFamilyKey": null,
+      "status": "pending"
+    },
+    "scoreAppropriate": {
+      "basis": "현재 네 문항은 각3점의 짧은 개념/분류/비교형으로 편집상 과도하지 않다. 대칭에 따른 절반과 제곱의 두 단순 단계라 기본이 적절하며 응용 상단은 근거가 약하다.",
+      "score": 3,
+      "sourcePrintedScoreObserved": 3,
+      "sourceDifficultyLabelObserved": "하",
+      "sourceLabelAuthority": "completed-preparation label, not measured original-school difficulty",
+      "targetDifficultyJudgement": "기본",
+      "authorBroadProposal": "기본~응용 저자 제안",
+      "empiricalCalibration": "pending",
+      "sameDifficultyApproved": false
+    },
+    "exposure": {
+      "priorSourceNineAndRelatedPublicCode": true,
+      "currentAuthorExposedOnlyAfterRawCommit": "96e8765a780ca382f8ea44ddcb658c566a63dd30",
+      "parentPreExposureSeal": "617a23934a60be011fb89c09e4cf36ff6bfc97f0",
+      "rawUnchanged": true,
+      "notNewBlindClaimAfterExposure": true
+    },
+    "separateHolds": {
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolPacingCertified": false
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "지문은 양수 k의 두 제곱근과 순서 a<b, 거리8만 사용한다. [9수01-07]의 양수의 두 근 정의에 이미 배운 수직선을 연결한다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "4,8,16,32,64의 다섯 선택값을 제곱근의 거리와 대조한다. 근호식의 고교 방정식이 아니라 [9수01-07] 정의와 정수 사칙계산이다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "A와 B가 O의 양쪽에 있는 수직선은 음수·양수 및 두 근의 대칭을 표시한다. 별도 함수·좌표거리공식이나 길이 측정이 필요 없다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "k>0 및 작은 근 a, 큰 근 b의 순서를 사용하는 기호는 중학교 문자와 수직선이다. ±를 별도 해집합 이론으로 확장하지 않는다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "③은 k=16에 해당한다. (-4)²=4²=16과4-(-4)=8로 검산하며 답의 대상은 k 하나다. 단위 cm를 새로 붙이지 않는다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 해설은 두 근의 절댓값 같음→거리의 절반4→a=-4,b=4→제곱16→대입검산이다. 제곱근 정의·거리·나눗셈만으로 끝나며 상위 정리가 필요 없다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "배정 전 [9수01-07], 양수·음수와 정수 사칙 [9수01-03/05], 원점과 수직선 거리를 배워야 한다. 현재 정규화된 M3 Unit469는 보조 배치 근거이며 학교 진도 승인은 아니다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    }
+  }
+}
