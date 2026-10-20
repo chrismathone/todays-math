@@ -20,7 +20,8 @@ export const MATH_NOWRAP_MAX_UNITS = 24;
 const NOWRAP = "white-space:nowrap";
 
 function classes(node: Element): unknown[] {
-  const cls = node.properties?.className;
+  // hast 의 className 형은 string 을 안 받는다 — unknown 으로 받아 좁힌다(그대로면 string 갈래가 never 라 tsc 가 죽는다)
+  const cls: unknown = node.properties?.className;
   return Array.isArray(cls) ? cls : typeof cls === "string" ? cls.split(/\s+/) : [];
 }
 
