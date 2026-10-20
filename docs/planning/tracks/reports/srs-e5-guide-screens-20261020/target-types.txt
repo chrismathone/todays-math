@@ -1,0 +1,18 @@
+﻿src/lib/bankReadFingerprint.ts(31,12): error TS2339: Property 'sql' does not exist on type 'typeof Prisma'.
+src/lib/bankReadFingerprint.ts(55,12): error TS2339: Property 'sql' does not exist on type 'typeof Prisma'.
+src/lib/bankReadFingerprint.ts(65,30): error TS2347: Untyped function calls may not accept type arguments.
+src/lib/bankReadFingerprint.ts(75,31): error TS2347: Untyped function calls may not accept type arguments.
+src/lib/db.ts(35,30): error TS7031: Binding element 'operation' implicitly has an 'any' type.
+src/lib/db.ts(35,41): error TS7031: Binding element 'args' implicitly has an 'any' type.
+src/lib/db.ts(35,47): error TS7031: Binding element 'query' implicitly has an 'any' type.
+src/lib/db.ts(38,28): error TS2694: Namespace '"C:/Users/user/orca/workspaces/todays-math/srs-e5-guide-screens/node_modules/.prisma/client/default".Prisma' has no exported member 'ProblemWhereInput'.
+src/lib/db.ts(48,30): error TS7031: Binding element 'operation' implicitly has an 'any' type.
+src/lib/db.ts(48,41): error TS7031: Binding element 'args' implicitly has an 'any' type.
+src/lib/db.ts(48,47): error TS7031: Binding element 'query' implicitly has an 'any' type.
+src/lib/db.ts(55,30): error TS7031: Binding element 'operation' implicitly has an 'any' type.
+src/lib/db.ts(55,41): error TS7031: Binding element 'args' implicitly has an 'any' type.
+src/lib/db.ts(55,47): error TS7031: Binding element 'query' implicitly has an 'any' type.
+src/lib/db.ts(62,30): error TS7031: Binding element 'operation' implicitly has an 'any' type.
+src/lib/db.ts(62,41): error TS7031: Binding element 'args' implicitly has an 'any' type.
+src/lib/db.ts(62,47): error TS7031: Binding element 'query' implicitly has an 'any' type.
+src/lib/math-srs/courseBank.ts(45,24): error TS7006: Parameter 'row' implicitly has an 'any' type.

@@ -1,0 +1,77 @@
+﻿[guide-preview-red.log]
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/__tests__/components/StudentCoursePreview.test.tsx > relearn preview > opens only on request and returns to 
+TestingLibraryElementError: Unable to find an element with the text: 첫 문제와 다음 문제 0. This could be because the text is b
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Duration  17.36s (transform 1.63s, setup 1.88s, import 622ms, tests 13.14s, environment 1.36s)
+
+[guide-timing-red.log]
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/__tests__/components/StudentCourseSrs.test.tsx > one-screen student answers > guards repeated taps and advan
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+ FAIL  src/__tests__/components/StudentCourseSrs.test.tsx > one-screen student answers > waits for Enter before retry w
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+ FAIL  src/__tests__/components/StudentCourseSrs.test.tsx > one-screen student answers > correct answer timing preferen
+TestingLibraryElementError: Unable to find an element with the text: 문제 1: 1 + 1. This could be because the text is bro
+ Test Files  1 failed (1)
+      Tests  4 failed | 46 passed (50)
+   Duration  26.50s (transform 4.23s, setup 1.92s, import 3.79s, tests 19.04s, environment 1.44s)
+ FAIL  src/__tests__/components/StudentCourseSrs.test.tsx > one-screen student answers > correct answer timing preferen
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+[guide-choice-red.log]
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/__tests__/components/ExplorerGuide.test.tsx [ src/__tests__/components/ExplorerGuide.test.tsx ]
+Error: Failed to resolve import "@/components/math-explorers/ExplorerGuide" from "src/__tests__/components/ExplorerGuid
+ Test Files  1 failed (1)
+   Duration  4.22s (transform 1.16s, setup 2.23s, import 0ms, tests 0ms, environment 1.55s)
+
+[guide-choice-slow-red.log]
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/__tests__/components/ExplorerGuide.test.tsx > student chooses a guide > starts study while a slow save is st
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "오늘 공부 시작"
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Duration  5.34s (transform 1.28s, setup 1.97s, import 240ms, tests 966ms, environment 1.76s)
+
+[guide-assets-red.log]
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  src/__tests__/components/ExplorerGuideAssets.test.ts > guide delivery assets > delivers five small transparent e
+Error: Input file is missing: C:\Users\user\orca\workspaces\todays-math\srs-e5-guide-screens\public\lab\guides\peer-rec
+ FAIL  src/__tests__/components/ExplorerGuideAssets.test.ts > guide delivery assets > delivers five small transparent e
+Error: Input file is missing: C:\Users\user\orca\workspaces\todays-math\srs-e5-guide-screens\public\lab\guides\marten\g
+ FAIL  src/__tests__/components/ExplorerGuideAssets.test.ts > guide delivery assets > delivers five small transparent e
+Error: Input file is missing: C:\Users\user\orca\workspaces\todays-math\srs-e5-guide-screens\public\lab\guides\paper-sw
+ FAIL  src/__tests__/components/ExplorerGuideAssets.test.ts > guide delivery assets > delivers five small transparent e
+Error: Input file is missing: C:\Users\user\orca\workspaces\todays-math\srs-e5-guide-screens\public\lab\guides\bookmark
+ FAIL  src/__tests__/components/ExplorerGuideAssets.test.ts > guide delivery assets > delivers five small transparent e
+Error: Input file is missing: C:\Users\user\orca\workspaces\todays-math\srs-e5-guide-screens\public\lab\guides\wood-fri
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Duration  2.78s (transform 1.12s, setup 1.99s, import 128ms, tests 259ms, environment 0ms)
+
+[guide-final-tests.log]
+ Test Files  6 passed (6)
+      Tests  83 passed (83)
+   Duration  38.99s (transform 6.46s, setup 10.03s, import 6.67s, tests 11.21s, environment 9.34s)
+
+[guide-lint.log]
+✖ 4 problems (0 errors, 4 warnings)
+
+[guide-browser.log]
+PASS 72 browser screens
+
+[guide-typecheck.log]
+ms  (average mu = 0.102, current mu = 0.030) allocation failure; scavenge might not succeed
+ms  (average mu = 0.089, current mu = 0.071) allocation failure; scavenge might not succeed
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+
+
+[guide-preview-final.log]
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Duration  8.16s (transform 2.07s, setup 2.71s, import 1.07s, tests 1.87s, environment 2.26s)
+
+[focused typecheck]
+Exit 2; 18 Prisma-related diagnostics in 3 unchanged library files; 0 diagnostics in changed files. See target-types.txt.
