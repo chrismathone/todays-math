@@ -1,0 +1,351 @@
+{
+  "method": "Independent exact Fraction coefficient convolution and square magnitudes; no producer answers/parameters/pixels. Numeric samples supplement symbolic domain arguments, not floating oracle.",
+  "checks": [
+    {
+      "name": "student-packet-sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "svg-sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vector-labels-without-length-measurement",
+      "passed": true,
+      "detail": [
+        "$(4a+1)\\,\\mathrm{cm}$",
+        "$(3a+2)\\,\\mathrm{cm}$",
+        "$b\\,\\mathrm{cm}$",
+        "$b\\,\\mathrm{cm}$"
+      ]
+    },
+    {
+      "name": "printed-ID-order",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3-options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6-options",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice1/direct-factor-vs-expansion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice1/domain-at-independent-witness",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice2/direct-factor-vs-expansion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice2/domain-at-independent-witness",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice3/direct-factor-vs-expansion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice3/domain-at-independent-witness",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice4/direct-factor-vs-expansion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice4/domain-at-independent-witness",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice5/direct-factor-vs-expansion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/choice5/domain-at-independent-witness",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3-only-choice3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3-constant-and-linear-coefficients",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3-all-real-b-uniqueness",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3-dimension-proof-bound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/positive-and-original-area/2001/1000",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/positive-and-original-area/5/2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/positive-and-original-area/3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q3/positive-and-original-area/1000",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6-square-A",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6-square-B",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice1/exact-root-squares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice1/branch-on-domain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice2/exact-root-squares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice2/branch-on-domain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice3/exact-root-squares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice3/branch-on-domain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice4/exact-root-squares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice4/branch-on-domain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice5/exact-root-squares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6/choice5/branch-on-domain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6-only-choice2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6-linear-unique",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "q6-positive-witness-and-equations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all-inputs-unchanged",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "counts": {
+    "assertions": 40,
+    "passed": 40,
+    "failed": 0
+  },
+  "q03": [
+    {
+      "choice": 1,
+      "b": "2",
+      "ascendingAreaCoefficients": [
+        "0",
+        "-3",
+        "12"
+      ],
+      "areaAtA3": "99",
+      "targetAtA3": "63",
+      "matchesWholePolynomial": false
+    },
+    {
+      "choice": 2,
+      "b": "3",
+      "ascendingAreaCoefficients": [
+        "2",
+        "-10",
+        "12"
+      ],
+      "areaAtA3": "80",
+      "targetAtA3": "63",
+      "matchesWholePolynomial": false
+    },
+    {
+      "choice": 3,
+      "b": "4",
+      "ascendingAreaCoefficients": [
+        "6",
+        "-17",
+        "12"
+      ],
+      "areaAtA3": "63",
+      "targetAtA3": "63",
+      "matchesWholePolynomial": true
+    },
+    {
+      "choice": 4,
+      "b": "5",
+      "ascendingAreaCoefficients": [
+        "12",
+        "-24",
+        "12"
+      ],
+      "areaAtA3": "48",
+      "targetAtA3": "63",
+      "matchesWholePolynomial": false
+    },
+    {
+      "choice": 5,
+      "b": "6",
+      "ascendingAreaCoefficients": [
+        "20",
+        "-31",
+        "12"
+      ],
+      "areaAtA3": "35",
+      "targetAtA3": "63",
+      "matchesWholePolynomial": false
+    }
+  ],
+  "q06": [
+    {
+      "choice": 1,
+      "t": "-2",
+      "strictDomain": false,
+      "areaA_cm2": "25",
+      "areaB_cm2": "0",
+      "sideA_cm": "5",
+      "sideB_cm": "0",
+      "difference_cm": "5",
+      "matches": false
+    },
+    {
+      "choice": 2,
+      "t": "-1",
+      "strictDomain": true,
+      "areaA_cm2": "16",
+      "areaB_cm2": "1",
+      "sideA_cm": "4",
+      "sideB_cm": "1",
+      "difference_cm": "3",
+      "matches": true
+    },
+    {
+      "choice": 3,
+      "t": "0",
+      "strictDomain": true,
+      "areaA_cm2": "9",
+      "areaB_cm2": "4",
+      "sideA_cm": "3",
+      "sideB_cm": "2",
+      "difference_cm": "1",
+      "matches": false
+    },
+    {
+      "choice": 4,
+      "t": "1",
+      "strictDomain": true,
+      "areaA_cm2": "4",
+      "areaB_cm2": "9",
+      "sideA_cm": "2",
+      "sideB_cm": "3",
+      "difference_cm": "-1",
+      "matches": false
+    },
+    {
+      "choice": 5,
+      "t": "2",
+      "strictDomain": true,
+      "areaA_cm2": "1",
+      "areaB_cm2": "16",
+      "sideA_cm": "1",
+      "sideB_cm": "4",
+      "difference_cm": "-3",
+      "matches": false
+    }
+  ],
+  "before": {
+    "blind\\SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+    "blind\\student-problems.json": "6428fe0ee7f188ccca6bc4a5750e7b4976e63816b4145f6d0502fe58b85a24c3",
+    "blind\\blind-manifest.json": "535fee3c02ce1b3fb8a8951cdd6b5faaa5cfb7f20cda38f7ecba818e4a33eef5",
+    "blind\\figures\\q03-1.svg": "6830eb4a1fb5bc182d46febd02419e4f6aa4271e267fd6335628eeaf35997c58"
+  },
+  "after": {
+    "blind\\SOLVE-BRIEF.md": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c",
+    "blind\\student-problems.json": "6428fe0ee7f188ccca6bc4a5750e7b4976e63816b4145f6d0502fe58b85a24c3",
+    "blind\\blind-manifest.json": "535fee3c02ce1b3fb8a8951cdd6b5faaa5cfb7f20cda38f7ecba818e4a33eef5",
+    "blind\\figures\\q03-1.svg": "6830eb4a1fb5bc182d46febd02419e4f6aa4271e267fd6335628eeaf35997c58"
+  },
+  "rawSHA256": {
+    "q03": "091f47d50766dfeebf27128537a169d5bd95470561f957a6f94ea4d94b0df011",
+    "q06": "c8baff3233b50ae49382ffbde3d562580008008a1217369e71272f399958532a"
+  },
+  "noAutomaticGradeContentFamilyRightsNativeReleaseApproval": true
+}
