@@ -70,9 +70,14 @@ function problem(
   };
 }
 
-function setup(selected: StudioProblem[], arithmetic = false) {
+function setup(
+  selected: StudioProblem[],
+  arithmetic = false,
+  builderScrollFrame = false,
+) {
   const reorder = vi.fn();
   const props = {
+    builderScrollFrame,
     selected,
     title: "시험지",
     columns: 2,
@@ -99,6 +104,23 @@ function setup(selected: StudioProblem[], arithmetic = false) {
 }
 
 describe("문제 순서 칸 — 이름", () => {
+  it("opts only the builder into a measured output frame", () => {
+    setup([problem("frame", 1)], false, true);
+    const inspector = screen.getByRole("complementary", {
+      name: "시험지 설정",
+    });
+    expect(inspector.parentElement).toHaveAttribute("data-output-layout");
+    expect(inspector.closest("main")?.className).toContain("builderFrame");
+    expect(inspector.parentElement?.children).toHaveLength(2);
+  });
+  it("keeps the shared editor outside the builder frame by default", () => {
+    setup([problem("default", 1)]);
+    const inspector = screen.getByRole("complementary", {
+      name: "시험지 설정",
+    });
+    expect(inspector.parentElement).not.toHaveAttribute("data-output-layout");
+    expect(inspector.closest("main")?.className).not.toContain("builderFrame");
+  });
   it("shows type counts and number ranges once per group for arithmetic", () => {
     const selected = Array.from({ length: 6 }, (_, index) => ({
       ...problem(`arithmetic-${index}`, 1),

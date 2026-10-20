@@ -112,6 +112,15 @@ const count = (name: string) =>
   screen.getByRole("spinbutton", { name }) as HTMLInputElement;
 const formSwitch = (label: string) =>
   screen.getByRole("switch", { name: `${label} 켜기` });
+function enableAvailableForms() {
+  for (const toggle of screen.getAllByRole("switch")) {
+    if (
+      !(toggle as HTMLButtonElement).disabled &&
+      toggle.getAttribute("aria-checked") !== "true"
+    )
+      fireEvent.click(toggle);
+  }
+}
 function printUrl(): URL {
   const link = screen.getByRole("link", { name: "인쇄하기" });
   return new URL(link.getAttribute("href")!, "http://localhost");
@@ -182,6 +191,7 @@ describe("나무 — 학년 → 대단원 → 소단원", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-1 수의 범위와 어림하기"));
+    enableAvailableForms();
     expect(box("2-1-1 이상과 이하 알아보기")).toBeChecked();
     expect(box("2-1-2 초과와 미만 알아보기")).toBeChecked();
     expect(box("2-1-6 반올림 알아보기와 어림의 활용")).toBeChecked();
@@ -189,17 +199,21 @@ describe("나무 — 학년 → 대단원 → 소단원", () => {
     expect(box("2-1 수의 범위와 어림하기")).toBeChecked();
 
     fireEvent.click(box("2-1-2 초과와 미만 알아보기"));
+    enableAvailableForms();
     expect(box("2-1 수의 범위와 어림하기")).toBePartiallyChecked();
 
     // 반쯤인 대단원을 누르면 전부 켠다, 다시 누르면 전부 끈다
     fireEvent.click(box("2-1 수의 범위와 어림하기"));
+    enableAvailableForms();
     expect(box("2-1-2 초과와 미만 알아보기")).toBeChecked();
     fireEvent.click(box("2-1 수의 범위와 어림하기"));
+    enableAvailableForms();
     expect(box("2-1-1 이상과 이하 알아보기")).not.toBeChecked();
     expect(box("2-1-6 반올림 알아보기와 어림의 활용")).not.toBeChecked();
 
     // 학년 단추가 고른 수를 보인다
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     expect(tree().getByRole("button", { name: /^초5/ })).toHaveTextContent(
       "4개 고름",
     );
@@ -226,6 +240,20 @@ describe("나무 — 학년 → 대단원 → 소단원", () => {
     // 재고가 하나도 없는 대단원은 대단원 칸도 고를 수 없다
     expect(box("1-1 자연수의 혼합 계산")).toBeDisabled();
   });
+});
+
+it("새 고르기는 소단원을 골라도 형식이 모두 꺼지고 저장 · 인쇄 · 미리보기를 막는다", () => {
+  render(<ConceptBlankView bank={FIXTURE_BANK} storageScope="owner-a" />);
+  openGrade("초5");
+  fireEvent.click(box("2-3 합동과 대칭"));
+  for (const toggle of screen.getAllByRole("switch"))
+    expect(toggle).not.toBeChecked();
+  expect(screen.getByRole("button", { name: "인쇄하기" })).toBeDisabled();
+  expect(
+    screen.getByRole("button", { name: "내 시험지에 저장" }),
+  ).toBeDisabled();
+  expect(screen.queryByTestId("paper")).toBeNull();
+  expect(screen.getByText("형식을 하나 이상 켜세요.")).toBeInTheDocument();
 });
 
 describe("형식 카드 다섯", () => {
@@ -270,6 +298,7 @@ describe("형식 카드 다섯", () => {
     render(<ConceptBlankView bank={bank} active />);
     openGrade("초5");
     fireEvent.click(box("2-1-1 이상과 이하 알아보기"));
+    enableAvailableForms();
     expect(count("완전 백지 개념 수 하").value).toBe("10");
     expect(
       Number(count("완전 백지 개념 수 하").getAttribute("max")),
@@ -290,6 +319,7 @@ describe("형식 카드 다섯", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     // 2-3 개념: 하 2 · 중 3 · 상 1
     expect(count("완전 백지 개념 수 하").value).toBe("2");
     expect(count("완전 백지 개념 수 중").value).toBe("3");
@@ -314,6 +344,7 @@ describe("형식 카드 다섯", () => {
 
     // 고른 소단원을 줄이면 최대도 따라 줄어든다
     fireEvent.click(box("2-3-1 도형의 합동 알아보기"));
+    enableAvailableForms();
     expect(count("완전 백지 개념 수 하")).toHaveAttribute("max", "1");
     expect(Number(count("완전 백지 개념 수 하").value)).toBeLessThanOrEqual(1);
   });
@@ -322,6 +353,7 @@ describe("형식 카드 다섯", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-1 수의 범위와 어림하기"));
+    enableAvailableForms();
     const figure = formSwitch("그림 보고 쓰기");
     expect(figure).toBeDisabled();
     expect(figure).not.toBeChecked();
@@ -333,6 +365,7 @@ describe("형식 카드 다섯", () => {
     );
 
     fireEvent.click(box("2-3-3 선대칭도형과 그 성질 알아보기"));
+    enableAvailableForms();
     expect(formSwitch("그림 보고 쓰기")).toBeEnabled();
     expect(formSwitch("그림 보고 쓰기")).toBeChecked();
     expect(
@@ -345,6 +378,7 @@ describe("형식 카드 다섯", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     fireEvent.click(formSwitch("개념 지도"));
     expect(formSwitch("개념 지도")).not.toBeChecked();
     expect(count("개념 지도 개념 수 하")).toBeDisabled();
@@ -368,6 +402,7 @@ describe("인쇄 옵션 — 날짜 · 인쇄할 지면 · 인쇄 단추 (원장�
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     expect(screen.getByLabelText("날짜")).toHaveValue("2026-10-02");
     expect(printedSelection()!.date).toBe("2026-10-02");
 
@@ -381,6 +416,7 @@ describe("인쇄 옵션 — 날짜 · 인쇄할 지면 · 인쇄 단추 (원장�
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     const group = screen.getByRole("group", { name: "인쇄할 지면" });
     const choice = (name: string) =>
       within(group).getByRole("button", { name });
@@ -399,6 +435,7 @@ describe("인쇄 옵션 — 날짜 · 인쇄할 지면 · 인쇄 단추 (원장�
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     expect(printUrl().searchParams.get("print")).toBe("1");
   });
 });
@@ -418,6 +455,7 @@ describe("인쇄 · 미리보기", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     fireEvent.change(count("완전 백지 개념 수 하"), { target: { value: "1" } });
     fireEvent.click(formSwitch("개념 지도"));
     fireEvent.change(screen.getByRole("textbox", { name: "제목" }), {
@@ -451,7 +489,9 @@ describe("인쇄 · 미리보기", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-1-6 반올림 알아보기와 어림의 활용"));
+    enableAvailableForms();
     fireEvent.click(box("2-1-1 이상과 이하 알아보기"));
+    enableAvailableForms();
     expect(printedSelection()!.sections).toEqual([S.atLeast, S.round]);
   });
 
@@ -459,6 +499,7 @@ describe("인쇄 · 미리보기", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     const paper = screen.getByTestId("paper");
     expect(paper).toHaveTextContent("recall,term,cloze,map,figure");
     expect(paper).toHaveAttribute("data-view", "student");
@@ -478,6 +519,7 @@ describe("인쇄 · 미리보기", () => {
     renderView();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     const code = screen.getByTestId("paper").getAttribute("data-code");
     expect(code).toBe(encodeSheetCode(printedSelection()!, FIXTURE_BANK));
     fireEvent.change(screen.getByRole("textbox", { name: "제목" }), {
@@ -529,6 +571,7 @@ describe("주소로 고르기 되살리기", () => {
     const { rerender } = renderView();
     openGrade("초5");
     fireEvent.click(box("2-3-3 선대칭도형과 그 성질 알아보기"));
+    enableAvailableForms();
     const code = new URL(window.location.href).searchParams.get("blank");
     expect(decodeSelection(code)?.sections).toEqual([S.line]);
     expect(window.location.hash).toBe("#conceptBlank");
@@ -628,6 +671,7 @@ describe("내 시험지에 저장 · 다시 열기", () => {
     );
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     const button = screen.getByRole("button", {
       name: "우리학원 시험지에 저장",
     });
@@ -673,6 +717,7 @@ describe("내 시험지에 저장 · 다시 열기", () => {
     expect(saveButton()).toBeDisabled();
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     expect(saveButton()).toHaveTextContent("내 시험지에 저장");
     expect(saveButton()).toBeEnabled();
 
@@ -728,6 +773,7 @@ describe("내 시험지에 저장 · 다시 열기", () => {
     );
     openGrade("초5");
     fireEvent.click(box("2-3 합동과 대칭"));
+    enableAvailableForms();
     await act(async () => {
       fireEvent.click(saveButton());
     });

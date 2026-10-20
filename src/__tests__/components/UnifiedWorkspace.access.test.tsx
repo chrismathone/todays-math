@@ -427,13 +427,17 @@ function nav() {
   return within(screen.getByRole("navigation", { name: "작업실 메뉴" }));
 }
 /**
- * 시험지 화면으로 — 옆 메뉴에 «시험지 · 내보내기» 줄이 없다(원장님 2026-10-01). 시험지 쪽 화면이 아니면
- * «시험지 만들기»로 간 뒤 옆 «현재 시험지 · 편집 이어가기»로 연다.
+ * 빈 시험지에도 남아 있는 빠른 실행으로 편집 화면을 연다. 옆 메뉴에는 출력 줄이 없고,
+ * 담은 문항이 없는 시험지에는 «현재 시험지» 카드도 없다(2026-10-20).
  */
 async function openWorksheet() {
-  if (!screen.queryByRole("button", { name: /편집 이어가기/ }))
-    fireEvent.click(nav().getByRole("button", { name: "시험지 만들기" }));
-  fireEvent.click(await screen.findByRole("button", { name: /편집 이어가기/ }));
+  fireEvent.keyDown(window, { key: "k", ctrlKey: true });
+  fireEvent.click(
+    within(
+      await screen.findByRole("dialog", { name: "무엇을 찾으시나요?" }),
+    ).getByRole("button", { name: "시험지 · 내보내기" }),
+  );
+  await screen.findByRole("heading", { name: "시험지 만들기" });
 }
 function nextCheck() {
   vi.spyOn(Date, "now").mockReturnValue(Date.now() + 2000);
@@ -1278,11 +1282,8 @@ describe("per-account workspace menu access", () => {
     expect(
       nav().queryByRole("button", { name: "시험지 · 내보내기" }),
     ).not.toBeInTheDocument();
-    // 화면은 그대로 있다 — 시험지 만들기에서 옆 «현재 시험지 · 편집 이어가기»로
-    fireEvent.click(nav().getByRole("button", { name: "시험지 만들기" }));
-    fireEvent.click(
-      await screen.findByRole("button", { name: /편집 이어가기/ }),
-    );
+    // 빈 편집 화면도 빠른 실행으로 계속 열 수 있다.
+    await openWorksheet();
     // 빈 시험지 화면 — 담는 길 셋이 뜬다
     expect(
       await screen.findByRole("button", { name: /문제은행에서 담기/ }),
@@ -2131,6 +2132,13 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     });
     window.history.replaceState(null, "", "/#export");
     render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    // 새로고침은 빈 시험지로 시작하므로 저장본을 명시적으로 연다.
+    fireEvent.click(
+      await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
+    );
+    await waitFor(() =>
+      expect(screen.getByRole("textbox", { name: "제목" })).toHaveValue("수학 시험지"),
+    );
     expect(await screen.findByText("현재 시험지")).toBeVisible();
     fireEvent.click(brand());
     fireEvent.click(screen.getByRole("option", { name: "오늘 영어" }));
@@ -2138,5 +2146,10 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(screen.queryByRole("textbox", { name: "제목" })).toBeNull();
     fireEvent.click(await screen.findByRole("button", { name: "영어 알림" }));
     expect(screen.getByRole("status")).toHaveTextContent("영어 알림 줄");
+    fireEvent.click(brand());
+    fireEvent.click(screen.getByRole("option", { name: "오늘 수학" }));
+    fireEvent.click(nav().getByRole("button", { name: "시험지 만들기" }));
+    expect(await screen.findByText("현재 시험지")).toBeVisible();
+    expect(screen.getByRole("textbox", { name: "제목" })).toHaveValue("수학 시험지");
   });
 });

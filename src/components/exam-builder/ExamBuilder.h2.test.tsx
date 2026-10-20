@@ -245,6 +245,12 @@ function outputAdvice(reason?: RegExp) {
   const next = within(advice).getByRole("button", {
     name: "다음: 양식 구성·출력",
   });
+  expect(
+    screen.getAllByRole("button", { name: "다음: 양식 구성·출력" }),
+  ).toHaveLength(1);
+  expect(
+    screen.getAllByRole("button", { name: "이전: 범위 설정" }),
+  ).toHaveLength(1);
   const describedBy = next.getAttribute("aria-describedby")?.split(/\s+/) ?? [];
   expect(explanation.id).not.toBe("");
   expect(describedBy).toContain(explanation.id);
@@ -668,7 +674,7 @@ describe("H2 순서표 바로 다음의 출력 차단 안내", () => {
     expect(onIntentIssueChange).toHaveBeenLastCalledWith(
       expect.stringContaining("총 4문항 지정 · 현재 2문항"),
     );
-    fireEvent.click(screen.getAllByRole("button", { name: "이전: 범위 설정" })[0]);
+    fireEvent.click(screen.getByRole("button", { name: "이전: 범위 설정" }));
     changeNumber(
       allocations().getByRole("spinbutton", { name: "총 문항 수" }),
       "2",
@@ -766,7 +772,7 @@ describe("H2 순서표 바로 다음의 출력 차단 안내", () => {
     );
     fireEvent.click(next);
     expect(adapter.prepareOutput).not.toHaveBeenCalled();
-    fireEvent.click(screen.getAllByRole("button", { name: "이전: 범위 설정" })[0]);
+    fireEvent.click(screen.getByRole("button", { name: "이전: 범위 설정" }));
     fireEvent.click(
       allocations().getByText(/^형식별 수/, { selector: "summary" }),
     );
