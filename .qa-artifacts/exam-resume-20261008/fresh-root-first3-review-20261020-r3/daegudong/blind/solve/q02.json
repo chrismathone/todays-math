@@ -1,0 +1,185 @@
+{
+  "studentDigest": "5c5ee5e427138b176f6f88c4dfc70ae70fbf02edb059d5188037d96b6ef039ab",
+  "solverId": "codex-helper-independent-fresh-roots-20261020",
+  "answer": "④",
+  "solution": "정사각형의 한 변이 자연수 cm이려면 넓이의 수 45n이 자연수의 제곱이어야 한다. 45=3²×5이므로 소인수 5의 개수를 짝수로 만들려면 n에는 적어도 5가 곱해져야 한다. 따라서 가능한 양의 자연수 n은 5 이상이고, n=5이면 45n=225=15²이 되어 실제로 조건을 만족한다. 그러므로 n의 최솟값은 5이다. 이때 한 변의 길이는 양수인 15 cm이고, 둘레는 4×15=60 cm이다. 넓이 225 cm²와 둘레의 단위를 구별해야 한다. 보기 15, 30, 45, 60, 225 cm 중 요구된 둘레는 60 cm 하나이므로 ④이다.",
+  "evidence": {
+    "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r3-q02",
+    "exposureDeclaration": {
+      "priorOriginalSourceExposure": true,
+      "priorScope": "Previously reviewed these schools original first3 question components, whole first-page reference images with incidental handwritten markings, and related root-property problems in earlier independent scopes. This is not an unseen-original-corpus claim.",
+      "currentTransformedAuthorAnswerExposed": false,
+      "currentTransformedAuthorSolutionExposed": false,
+      "currentPrivateSpecMetadataRead": false,
+      "allowedCurrentInputsOnly": true,
+      "authorAnswerSearch": false,
+      "calculationsFrom": "Current printed student conditions, not original handwritten marks, prior source answers, pixels, SVG coordinates or hidden model."
+    },
+    "ownExactCalculation": {
+      "factorizationOf45": {
+        "3": 2,
+        "5": 1
+      },
+      "necessaryMissingPrimeMultiplier": 5,
+      "minimumProof": "45=3^2*5. For45n to be an integer square, the exponent of5 must be even, so5 divides n. Any positive natural such n is at least5. n5 attains square225. Thus global minimum5, not merely the smallest listed choice.",
+      "smallNaturalCrossCheck": [
+        {
+          "n": 1,
+          "areaCm2": 45,
+          "integerSide": false
+        },
+        {
+          "n": 2,
+          "areaCm2": 90,
+          "integerSide": false
+        },
+        {
+          "n": 3,
+          "areaCm2": 135,
+          "integerSide": false
+        },
+        {
+          "n": 4,
+          "areaCm2": 180,
+          "integerSide": false
+        },
+        {
+          "n": 5,
+          "areaCm2": 225,
+          "integerSide": true
+        }
+      ],
+      "minimumN": 5,
+      "areaCm2": 225,
+      "positiveSideCm": 15,
+      "negativeRootRejectedAsLength": -15,
+      "perimeterCm": 60,
+      "allChoices": [
+        {
+          "index": 1,
+          "mark": "①",
+          "perimeterCm": 15,
+          "impliedSideCm": {
+            "numerator": "15",
+            "denominator": "4"
+          },
+          "impliedN": {
+            "numerator": "5",
+            "denominator": "16"
+          },
+          "naturalPositiveSide": false,
+          "naturalPositiveN": false,
+          "isRequiredMinimumCase": false
+        },
+        {
+          "index": 2,
+          "mark": "②",
+          "perimeterCm": 30,
+          "impliedSideCm": {
+            "numerator": "15",
+            "denominator": "2"
+          },
+          "impliedN": {
+            "numerator": "5",
+            "denominator": "4"
+          },
+          "naturalPositiveSide": false,
+          "naturalPositiveN": false,
+          "isRequiredMinimumCase": false
+        },
+        {
+          "index": 3,
+          "mark": "③",
+          "perimeterCm": 45,
+          "impliedSideCm": {
+            "numerator": "45",
+            "denominator": "4"
+          },
+          "impliedN": {
+            "numerator": "45",
+            "denominator": "16"
+          },
+          "naturalPositiveSide": false,
+          "naturalPositiveN": false,
+          "isRequiredMinimumCase": false
+        },
+        {
+          "index": 4,
+          "mark": "④",
+          "perimeterCm": 60,
+          "impliedSideCm": {
+            "numerator": "15",
+            "denominator": "1"
+          },
+          "impliedN": {
+            "numerator": "5",
+            "denominator": "1"
+          },
+          "naturalPositiveSide": true,
+          "naturalPositiveN": true,
+          "isRequiredMinimumCase": true
+        },
+        {
+          "index": 5,
+          "mark": "⑤",
+          "perimeterCm": 225,
+          "impliedSideCm": {
+            "numerator": "225",
+            "denominator": "4"
+          },
+          "impliedN": {
+            "numerator": "1125",
+            "denominator": "16"
+          },
+          "naturalPositiveSide": false,
+          "naturalPositiveN": false,
+          "isRequiredMinimumCase": false
+        }
+      ],
+      "domain": "n is a natural integer at least1; positive area45n and unique positive side sqrt(45n). At the unique minimum n5, side15 and perimeter60 are unique. cm^2 area and cm perimeter are kept separate.",
+      "figure": "Printed square and its45n cm^2 area label only; no dimension obtained by measuring image or reading SVG geometry.",
+      "method2015M3": "M1 prime factorization and even prime exponents of an integer square, M3 square-root properties, elementary square area/perimeter. No high-school number theory."
+    },
+    "inputs": {
+      "filesBefore": [
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/SOLVE-BRIEF.md",
+          "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/student-problems.json",
+          "sha256": "2844d405754c7eb28cfd9ad7c678f6fb4f138440f8dadb2126f38e822e1fc194"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/blind-manifest.json",
+          "sha256": "bfb3c3987d7c9c22b368737e985c4c20da62ad6f85086b5641acb5558ae29503"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/figures/q01-1.svg",
+          "sha256": "3f014f8efe71848e24ee6555238216b0205768adc6824dfc08dd8b464506ec92"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/figures/q02-1.svg",
+          "sha256": "5bf0f4ac4f00312a7c8278fd8294480a239bf0bd9e64214c36440fd85eb1a2f0"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/student-preview/q01.png",
+          "sha256": "09715746c07b44caa4f717248bb2bd41d962cdc8f7100fedfb1251674a4636be"
+        },
+        {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/student-preview/q02.png",
+          "sha256": "25e7a1b64b68d5b5cd193083e47bb0676649ac9a2925c9cbc54826553d2f9d3a"
+        }
+      ],
+      "manifestSha256": "bfb3c3987d7c9c22b368737e985c4c20da62ad6f85086b5641acb5558ae29503",
+      "packageDigestAsProvided": "68ab261cc45f8609e8daae94860dbf3e31f7f300de1d6a7c62ace86fcbd1412e",
+      "utf8ProbeSha256": "2fffc3a408e96157e51bd9fe4f1be2b4e29e875f0f57e2f1ff1db307c80c4b45",
+      "pngsActuallyViewed": true,
+      "svgReadForHashOnly": true
+    },
+    "pngInspection": "Actual current PNG viewed. Stem, all5 choices and printed diagram/table labels match the student JSON. No pixels/coordinates used for numerical lengths or answers.",
+    "denominators": "No variable denominator; all own Fraction denominators used for checking choices are explicit positive integers.",
+    "gradeMethodStatus": "Student route uses2015 M3 root properties after its prior arithmetic/prime-factorization/elementary-measurement prerequisites. This raw math solve grants no formal grade/content/family/rights/native/release approval."
+  },
+  "status": "solved"
+}
