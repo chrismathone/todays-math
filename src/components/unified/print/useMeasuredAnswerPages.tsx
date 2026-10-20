@@ -267,6 +267,8 @@ export function useMeasuredAnswerPages(
         message: "",
       };
     }
+    const numberOf = (index: number) =>
+      problems[index].variant.arithmetic?.number ?? index + 1;
     try {
       return {
         pages: groups.flatMap((group, groupIndex) => {
@@ -275,6 +277,7 @@ export function useMeasuredAnswerPages(
           const rows = packAnswerRows(
             measured.cells.slice(group.start, group.end),
             group.start,
+            numberOf,
           );
           const solutions = options.quickAnswerOnly
             ? []
@@ -290,6 +293,7 @@ export function useMeasuredAnswerPages(
             gap: Math.max(0, options.spacing),
             columns: options.columns,
             groupStart: group.start,
+            numberOf,
           });
         }),
         message: "",
@@ -304,7 +308,7 @@ export function useMeasuredAnswerPages(
       };
     }
   }, [
-    problems.length,
+    problems,
     measured,
     contentKey,
     groups,

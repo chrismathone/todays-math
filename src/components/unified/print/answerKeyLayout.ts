@@ -42,15 +42,25 @@ export function answerSpan(metrics: AnswerMetrics): AnswerSpan {
     "정답의 수식이 지면 너비보다 깁니다. 정답의 줄 구성을 확인해 주세요.",
   );
 }
+/** A refusal names the printed number, so the director knows which answer to fix. */
+const defaultNumber = (index: number) => index + 1;
 export function packAnswerRows(
   metrics: AnswerMetrics[],
   startIndex = 0,
+  numberOf: (index: number) => number = defaultNumber,
 ): AnswerKeyRow[] {
   const rows: AnswerKeyRow[] = [];
   let row: AnswerKeyRow = { cells: [], height: 0 };
   let used = 0;
   metrics.forEach((item, index) => {
-    const span = answerSpan(item);
+    let span: AnswerSpan;
+    try {
+      span = answerSpan(item);
+    } catch (error) {
+      throw new Error(
+        `${numberOf(startIndex + index)}번 ${(error as Error).message}`,
+      );
+    }
     if (used + span > 5) {
       rows.push(row);
       row = { cells: [], height: 0 };
@@ -75,6 +85,7 @@ export function paginateAnswerPages(
     gap: number;
     columns: 1 | 2;
     groupStart?: number;
+    numberOf?: (index: number) => number;
   },
 ): AnswerPageLayout[] {
   if (config.available < 1) throw new Error("정답지 머리가 한 쪽보다 깁니다.");
@@ -96,7 +107,7 @@ export function paginateAnswerPages(
   for (const row of rows) {
     if (row.height > config.available)
       throw new Error(
-        "한 정답 행이 한 쪽보다 깁니다. 정답의 줄 구성을 확인해 주세요.",
+        `${(config.numberOf ?? defaultNumber)(row.cells[0].index)}번 정답이 든 행이 한 쪽보다 깁니다. 정답의 줄 구성을 확인해 주세요.`,
       );
     if (!page || used + row.height > config.available) {
       page = create();

@@ -50,6 +50,24 @@ describe("H2 measured answers", () => {
     });
     expect(() => answerSpan(tooWide)).toThrow();
   });
+  it("names the printed number of the answer it refuses, so the director can find it", () => {
+    const tooWide = metrics(false, 5);
+    tooWide.candidates.forEach((candidate) => {
+      candidate.overflow = true;
+    });
+    expect(() =>
+      packAnswerRows([metrics(true, 1), metrics(true, 1), tooWide], 10),
+    ).toThrow(/^13번 /);
+    expect(() =>
+      packAnswerRows([metrics(true, 1), tooWide], 0, (index) => index + 101),
+    ).toThrow(/^102번 /);
+    expect(() =>
+      paginateAnswerPages(packAnswerRows([metrics(true, 1, 120)], 4), [], {
+        ...config,
+        numberOf: (index) => index + 31,
+      }),
+    ).toThrow(/^35번 /);
+  });
   it("preserves order and moves a merged answer to the next row when needed", () => {
     const rows = packAnswerRows([
       metrics(true, 1),
