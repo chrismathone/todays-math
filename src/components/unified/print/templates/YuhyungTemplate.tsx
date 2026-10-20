@@ -25,6 +25,7 @@ export function YuhyungTemplate({
   options,
   splitIndex,
   itemScales,
+  itemWhitespace,
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentSlate;
@@ -108,6 +109,7 @@ export function YuhyungTemplate({
         columnGap={22}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}
         splitIndex={splitIndex}
+        itemWhitespace={itemWhitespace}
         distribute={options.layoutMode === "count"}
         style={{ fontSize: fs, lineHeight: 1.65 }}
       >
