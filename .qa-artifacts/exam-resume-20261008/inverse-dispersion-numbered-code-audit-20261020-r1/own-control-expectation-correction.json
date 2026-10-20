@@ -1,0 +1,9 @@
+{
+  "initialFailures": 7,
+  "productionDefectsInThoseFailures": 0,
+  "explanation": [
+    "Four syntactically valid but different role/order/additional-part answers are equivalent to themselves. The comparator does not prove those statements or their question-role truth.",
+    "The initial JavaScript replacement string $$M=40$$ converted each $$ to $, producing valid $M=40$. That valid fixture caused three failed expectations. Changed construction to function returning literal $$M=40$$; also made M=$40$ construction explicit. Four other failures were self-comparison expectations for syntactically valid different role/order/extra-part strings, not production failures.",
+    "Original failed results retained unchanged in own-initial-control-results.json; corrected controls remain bounded and do not relax any malformed-input expectation."
+  ]
+}
