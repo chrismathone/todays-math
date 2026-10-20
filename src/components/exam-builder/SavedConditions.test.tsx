@@ -412,7 +412,7 @@ describe("이름 붙인 출제 조건 (W5 · Hi-fi 1)", () => {
       /«단원 마무리 25»의 조건을 가져왔습니다/,
     );
     const box = report.closest("[data-apply-report]") as HTMLElement;
-    expect(box).toHaveTextContent("[문항 구성 →]을 누르면 새로 고릅니다");
+    expect(box).toHaveTextContent("[문항 검토 →]을 누르면 새로 고릅니다");
     expect(box).toHaveTextContent(
       "일차부등식의 활용 — 범위에서 뺐습니다(지금 출제 가능 문항이 없음)",
     );
@@ -440,7 +440,7 @@ describe("이름 붙인 출제 조건 (W5 · Hi-fi 1)", () => {
     expect(screen.getByRole("spinbutton", { name: "기본" })).toHaveValue(3);
     expect(line().getByText("단원 마무리 25")).toBeInTheDocument();
     expect(line().getByText(/적용함/)).toBeInTheDocument();
-    // 문항은 [문항 구성 →]을 눌러야 고른다.
+    // 문항은 [문항 검토 →]을 눌러야 고른다.
     expect(compose).not.toHaveBeenCalled();
   });
 

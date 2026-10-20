@@ -276,13 +276,13 @@ describe("shared exam builder workflow", () => {
     const adapter = source();
     render(<Harness adapter={adapter} initial={questions} />);
     await waitFor(() =>
-      expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeEnabled(),
+      expect(screen.getByRole("button", { name: "문항 검토 →" })).toBeEnabled(),
     );
     const table = within(screen.getByRole("region", { name: "출제 구성표" }));
     expect(
-      table.getByRole("button", { name: "문항 구성 →" }).closest("footer"),
+      table.getByRole("button", { name: "문항 검토 →" }).closest("footer"),
     ).toHaveTextContent("합계 3문항");
-    expect(screen.getAllByRole("button", { name: "문항 구성 →" })).toHaveLength(
+    expect(screen.getAllByRole("button", { name: "문항 검토 →" })).toHaveLength(
       1,
     );
     fireEvent.change(
@@ -316,7 +316,7 @@ describe("shared exam builder workflow", () => {
     fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
     const last = within(screen.getByRole("region", { name: "출제 구성표" }));
     fireEvent.click(last.getByRole("button", { name: "범위 2 범위 제거" }));
-    expect(last.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
+    expect(last.getByRole("button", { name: "문항 검토 →" })).toBeDisabled();
     expect(last.getByText("합계 0문항")).toBeInTheDocument();
   });
   it("preserves allocated counts when reviewing or adding scopes", async () => {
@@ -388,7 +388,7 @@ describe("shared exam builder workflow", () => {
         />
       </StrictMode>,
     );
-    await screen.findByRole("button", { name: "문항 구성 →" });
+    await screen.findByRole("button", { name: "문항 검토 →" });
     expect(onStepChange).not.toHaveBeenCalled();
     expect(adapter.prepareOutput).not.toHaveBeenCalled();
   });
@@ -496,7 +496,7 @@ describe("shared exam builder workflow", () => {
     expect(panel.getByRole("checkbox", { name: /범위 2/ })).toBeDisabled();
     expect(panel.getByText("출제 가능 수 확인 필요")).toBeInTheDocument();
     fireEvent.click(panel.getByRole("checkbox", { name: /범위 3/ }));
-    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
         [{ scopeId: "u3", count: 3 }],
@@ -512,7 +512,7 @@ describe("shared exam builder workflow", () => {
     render(<Harness adapter={adapter} initial={[questions[0]]} />);
     await screen.findByText(/없는 1개 범위를 구성에서 제외/);
     expect(screen.queryByRole("spinbutton")).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "문항 검토 →" })).toBeDisabled();
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a");
     expect(adapter.compose).not.toHaveBeenCalled();
   });
@@ -551,17 +551,17 @@ describe("shared exam builder workflow", () => {
     expect(
       screen.getByRole("spinbutton", { name: "범위 1 구성 수" }),
     ).toHaveValue(5);
-    expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "문항 검토 →" })).toBeEnabled();
     fireEvent.click(
       pickerPanel().getByRole("checkbox", { name: "범위 1 중1" }),
     );
     expect(screen.queryByRole("spinbutton")).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "문항 검토 →" })).toBeDisabled();
     fireEvent.change(screen.getByLabelText("범위 검색"), {
       target: { value: "범위 35" },
     });
     fireEvent.click(screen.getByRole("checkbox", { name: "범위 35 중2" }));
-    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await waitFor(() =>
       expect(
         screen.getByRole("button", { name: "2 문항 검토" }),
@@ -936,7 +936,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     // 검토에서 c(범위 2)를 지우고 1단계로 — 다시 구성하면 남은 a · b 는 두고 범위 2 의 한 자리만 뽑는다.
     fireEvent.click(screen.getAllByRole("button", { name: "삭제" })[2]);
     fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
-    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
         [{ scopeId: "u2", count: 1 }],
@@ -1033,7 +1033,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     fireEvent.click(
       screen.getByRole("button", { name: "범위 2 문항 수 늘리기" }),
     );
-    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
         [{ scopeId: "u2", count: 1 }],
@@ -1071,7 +1071,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     );
     fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
     expect(summaryOf().getByText("기본 1 · 심화 2")).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
         expect.any(Array),
@@ -1108,7 +1108,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
       target: { value: "2" },
     });
     fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
-    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
         [{ scopeId: "u2", count: 1 }],
@@ -1143,7 +1143,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     expect(summaryOf().getByRole("status")).toHaveTextContent(
       "난이도 합(3)이 총 문항(4)과 다릅니다.",
     );
-    expect(screen.getByRole("button", { name: "문항 구성 →" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "문항 검토 →" })).toBeDisabled();
   });
 
   it("M3 — a step fills the difficulty cells for the rows' total, counts by format go to the server, and multiple choice comes first", async () => {
@@ -1207,7 +1207,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
     ).toBeChecked();
     fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
     expect(summaryOf().getByText("객관식 3 · 객관식 먼저")).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await waitFor(() =>
       expect(adapter.compose).toHaveBeenCalledWith(
         expect.any(Array),
@@ -1247,7 +1247,7 @@ describe("구성 조건 (W4 · Hi-fi 2)", () => {
       within(dialog).getByRole("checkbox", { name: /객관식을 앞에/ }),
     );
     fireEvent.click(within(dialog).getByRole("button", { name: "적용" }));
-    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await waitFor(() =>
       expect(screen.getByLabelText("문항 순서")).toHaveTextContent("s1,m1"),
     );
