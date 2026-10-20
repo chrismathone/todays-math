@@ -66,6 +66,8 @@ import {
   type LedgerRow,
   type Scope,
   type Snapshot,
+  figureLabelBag,
+  wantsFigureRedraw,
 } from "./refreshEngineContentCore";
 
 const prisma = new PrismaClient();
@@ -340,6 +342,15 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
   const refusedBy = new Map<string, number>();
   const refused: { externalId: string; risk: string; familyKey: string }[] = [];
 
+  // 적재본 가운데 그림이 붙은 행 — 엔진이 그림을 뺀 행을 «same» 으로 흘리지 않으려고(그림 본문은 안 읽는다).
+  const withFigure = new Set(
+    (
+      await prisma.$queryRawUnsafe<{ id: string }[]>(
+        `select id::text id from problem where external_id like 'engine-%' and figure_svg is not null`,
+      )
+    ).map((r) => r.id),
+  );
+
   // ── 갈래 세기 ─────────────────────────────────────────────────────────────
   let figureOnly = 0;
   const byClass = new Map<string, number>();
@@ -426,9 +437,11 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
       });
     } else if (
       cls === "same" &&
-      !!row.familyKey &&
-      figureFamilies.has(row.familyKey) &&
-      m.figureSpec
+      wantsFigureRedraw({
+        inFigureFamily: !!row.familyKey && figureFamilies.has(row.familyKey),
+        madeHasFigure: !!m.figureSpec,
+        dbHasFigure: withFigure.has(row.id),
+      })
     ) {
       figureOnly += 1;
       todo.push({ db: row, made: m, cls, broken });
@@ -614,6 +627,30 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
   );
   for (const s of skipped.slice(0, 20)) console.log(`   ⚠️ ${s}`);
   if (skipped.length > 20) console.log(`   … ${skipped.length - 20}건 더`);
+
+  // 바뀌는 행 전부의 전후(글 · 그림 유무 · 그림 라벨) — 드라이런 묶음을 사람이 행마다 읽게(그림 본문은 안 쓴다).
+  const dumpFile = arg("--dump-changes");
+  if (dumpFile) {
+    const fig = (svg: string | null) => (svg ? figureLabelBag(svg) : null);
+    const refusedSet = new Map(refused.map((r) => [r.externalId, r.risk]));
+    const famById = new Map(db.map((r) => [r.id, r.familyKey ?? "?"]));
+    const famOfId = (id: string) => famById.get(id) ?? "?";
+    writeFileSync(
+      dumpFile,
+      JSON.stringify(
+        changes.map((c) => ({
+          externalId: c.externalId,
+          problemCode: c.problemCode,
+          familyKey: famOfId(c.problemId),
+          confirmedSame: confirmedSame.has(c.externalId),
+          wouldRefuse: refusedSet.get(c.externalId) ?? null,
+          before: { ...c.before, figureSvg: undefined, figureLabels: fig(c.before.figureSvg) },
+          after: { ...c.after, figureSvg: undefined, figureLabels: fig(c.after.figureSvg) },
+        })),
+      ),
+    );
+    console.log(`전후 ${changes.length}행 → ${dumpFile}`);
+  }
 
   // ── 보고(눈으로 볼 표본) ──────────────────────────────────────────────────
   mkdirSync(REPORTS, { recursive: true });

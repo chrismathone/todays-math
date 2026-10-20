@@ -15,6 +15,7 @@ import {
   classifyDiff,
   shouldApply,
   type Scope,
+  wantsFigureRedraw,
 } from "../../../scripts/qa/refreshEngineContentCore";
 
 const STEM =
@@ -280,5 +281,20 @@ describe("[적재본 갱신] appendLedger — 누적만", () => {
   it("🔴 빈 회차는 원장을 안 건드린다", () => {
     const prev = { runs: [], rows: [row("p1")] };
     expect(appendLedger(prev, "2", "t2", [])).toBe(prev);
+  });
+});
+
+describe("[적재본 갱신] wantsFigureRedraw — 글은 같고 그림만 고친 문항류", () => {
+  it("엔진이 그림을 그리면 다시 그려 견준다", () => {
+    expect(wantsFigureRedraw({ inFigureFamily: true, madeHasFigure: true, dbHasFigure: true })).toBe(true);
+    expect(wantsFigureRedraw({ inFigureFamily: true, madeHasFigure: true, dbHasFigure: false })).toBe(true);
+  });
+  it("🔴 엔진이 그림을 **뺐는데** 적재본에 그림이 있으면 덮을 행이다 — 2026-10-20 세로셈 1,088행이 «same» 으로 빠졌다", () => {
+    expect(wantsFigureRedraw({ inFigureFamily: true, madeHasFigure: false, dbHasFigure: true })).toBe(true);
+  });
+  it("둘 다 그림이 없거나 그림 문항류가 아니면 아니다", () => {
+    expect(wantsFigureRedraw({ inFigureFamily: true, madeHasFigure: false, dbHasFigure: false })).toBe(false);
+    expect(wantsFigureRedraw({ inFigureFamily: false, madeHasFigure: false, dbHasFigure: true })).toBe(false);
+    expect(wantsFigureRedraw({ inFigureFamily: false, madeHasFigure: true, dbHasFigure: true })).toBe(false);
   });
 });

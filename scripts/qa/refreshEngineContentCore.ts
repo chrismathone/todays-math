@@ -233,6 +233,19 @@ export function decideApply(
   return risk !== null && !confirmed ? "refuse" : "apply";
 }
 
+/**
+ * 글은 같은(«same») 행을 그림 때문에 덮을 목록에 넣는가 — `--figure-families` 문항류에서만.
+ * 🔴 엔진이 그림을 **뺀** 행도 넣는다: 예전에는 «엔진 사양이 있을 때만» 넣어서, 발문의 식을 다시 그린 세로셈을
+ *    걷은 초등 1,088행(2026-10-20 지면 전수 검사)이 «same» 으로 지나가 적재본에 옛 그림이 남았다.
+ */
+export function wantsFigureRedraw(o: {
+  inFigureFamily: boolean;
+  madeHasFigure: boolean;
+  dbHasFigure: boolean;
+}): boolean {
+  return o.inFigureFamily && (o.madeHasFigure || o.dbHasFigure);
+}
+
 export type Snapshot = {
   content: string;
   answer: string;
