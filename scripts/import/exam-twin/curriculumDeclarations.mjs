@@ -10,7 +10,7 @@ export function compareCurriculumDeclarations(candidate) {
     return { ...base, status: 'not-comparable-missing-declaration' };
   const normalized = (values) => Array.isArray(values) && values.length > 0 &&
     values.every(v => typeof v === 'string' && v.trim())
-    ? values.map(v => v.trim().replace(/^\[([^\[\]]+)\]$/u, '$1').trim()) : null;
+    ? values.map(v => v.trim().replace(/^\[([^\[\]]*)\]$/u, '$1').trim()) : null;
   const p = normalized(primary), d = normalized(declared);
   if (!p || !d || [...p, ...d].some(v => !v))
     return { ...base, status: 'conflict', comparisonPerformed: true, conflicts: [{
