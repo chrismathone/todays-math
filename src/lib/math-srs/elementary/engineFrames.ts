@@ -9,7 +9,7 @@ import { getCourseProblemInput } from "./answers";
 import { extraCourseFrames } from "./extraFrames";
 
 /** Opt in chapter by chapter after reviewing the existing authored forms. */
-const CHAPTERS = new Set(["2-1", "2-2", "2-3", "2-4"]);
+const CHAPTERS = new Set(["2-1", "2-2", "2-3", "2-4", "2-5"]);
 
 // Incomplete conditions or questions that only count objects without using the concept.
 const EXCLUDED: Record<string, readonly string[]> = {
@@ -21,6 +21,12 @@ const EXCLUDED: Record<string, readonly string[]> = {
   "2-3-4:기본": ["05"], // The shown cells have not yet been completed into point symmetry.
   "2-4-5:응용": ["10"], // Comparing two numbers does not practice multiplication.
   "2-4-6:응용": ["10"],
+  "2-5-1:응용": ["08", "09", "10"],
+  "2-5-2:응용": ["08", "09"],
+  "2-5-3:응용": ["09", "10"],
+  "2-5-4:응용": ["08", "10"],
+  "2-5-5:응용": ["10"],
+  "2-5-6:응용": ["08"],
 };
 
 /** Explicit SRS redraw entry point; the bank's default generator stays unchanged. */

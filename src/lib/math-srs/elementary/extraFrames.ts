@@ -4,6 +4,7 @@ import { make } from "../../elementary/make";
 import { n } from "../../elementary/format";
 import { createRng, intBetween } from "../../elementary/rng";
 import { generateElementaryForm } from "../../elementary/forms";
+import { extraBoxFrames } from "./boxFrames";
 
 /** New frames are reachable only through the explicit SRS redraw path. */
 export function extraCourseFrames(
@@ -12,6 +13,7 @@ export function extraCourseFrames(
   tier: ElemTier,
 ) {
   const code = unit.section.split(" ")[0];
+  if (code.startsWith("2-5-")) return extraBoxFrames(unit, seed, tier);
   const rng = createRng(seed);
   if ((code === "2-4-5" || code === "2-4-6") && tier === "응용") {
     if (code === "2-4-5") {
