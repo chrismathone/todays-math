@@ -3743,7 +3743,7 @@ function fac121InnerCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const inner = divisors(num).filter((v) => v !== 1 && v !== num);
   return make(
     unit,
-    `${n(num)}의 약수 중에서 ${n(1)}과 자기 자신을 뺀 수는 모두 몇 개입니까?`,
+    `${n(num)}의 약수 중에서 ${n(1)}과 자기 자신을 제외한 수는 모두 몇 개입니까?`,
     n(inner.length),
     `${n(num)}의 약수는 ${nums(divisors(num))}입니다. ${n(1)}과 ${nj(num, "을", "를")} 빼면 ${nums(inner)}이므로 ${n(inner.length)}개입니다.`,
   );
@@ -4513,7 +4513,9 @@ function commul125SmallestEven(unit: UnitSeed, rng: Rng): ElemProblem {
   const ans = m % 2 === 0 ? m : 2 * m;
   return make(
     unit,
-    `${nj(a, "과", "와")} ${n(b)}의 공배수 중에서 짝수인 수 중 가장 작은 수를 구하시오.`,
+    m % 2 === 0
+      ? `${nj(a, "과", "와")} ${n(b)}의 공배수 중 가장 작은 수를 구하시오.`
+      : `${nj(a, "과", "와")} ${n(b)}의 짝수인 공배수 중 가장 작은 수를 구하시오.`,
     n(ans),
     `최소공배수는 ${n(m)}입니다. 짝수인 공배수 중 가장 작은 수는 ${n(ans)}입니다.`,
   );
@@ -7803,7 +7805,7 @@ function rng213MinPass(unit: UnitSeed, rng: Rng): ElemProblem {
   const mn = Math.min(...ok);
   return make(
     unit,
-    `${s.head} ${n(s.limit)} ${s.unitName} 이상이어야 합니다. ${s.who}의 ${wj(s.what, "이", "가")} ${nums(s.values)} ${s.unitName}일 때, 조건에 맞는 ${wj(s.what, "중", "중")} 가장 작은 값은 얼마입니까?`,
+    `${s.head} ${n(s.limit)} ${s.unitName} 이상이어야 합니다. ${s.who}의 ${wj(s.what, "이", "가")} ${nums(s.values)} ${s.unitName}일 때, 조건에 맞는 ${s.what} 중 가장 작은 값은 얼마입니까?`,
     n(mn),
     `${n(s.limit)} 이상인 값 중 가장 작은 것은 ${n(mn)}입니다.`,
   );
@@ -7935,7 +7937,7 @@ function up214HundredDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   const up = ceilTo(x, 100);
   return make(
     unit,
-    `${nj(x, "을", "를")} 올림하여 백의 자리까지 나타낼 때 더해지는 수는 얼마입니까?`,
+    `${nj(x, "을", "를")} 올림하여 백의 자리까지 나타낸 수와 처음 수의 차는 얼마입니까?`,
     n(up - x),
     `올림하면 ${n(up)}이므로 ${expr(`${up}-${x}=${up - x}`)}만큼 더해집니다.`,
   );
@@ -11872,7 +11874,7 @@ function sym233Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
   return make(
     unit,
-    `${name}의 ${ask}`,
+    `${name}${shape === "isoTri" ? "(정삼각형이 아닌)" : shape === "rect" ? "(정사각형이 아닌)" : ""}의 ${ask}`,
     n(count),
     `${name}은 접었을 때 완전히 겹치는 직선이 ${n(count)}개 있으므로 대칭축은 ${n(count)}개입니다.`,
     fig("markedShape", { shape }),
@@ -11912,7 +11914,7 @@ function sym233Read(unit: UnitSeed, rng: Rng): ElemProblem {
   const { cells, off } = halfCells(rng, size);
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. ${pick(rng, [
+    `점선을 대칭축으로 하는 선대칭인 무늬를 만들려고 합니다. ${pick(rng, [
       "몇 칸을 더 색칠해야 합니까?",
       "색칠해야 할 칸은 몇 칸입니까?",
       "더 칠할 칸의 수를 구하시오.",
@@ -11931,9 +11933,9 @@ function sym233Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const done = off * 2 + on;
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 완성하려고 합니다. ${pick(rng, [
+    `점선을 대칭축으로 하는 선대칭인 무늬를 완성하려고 합니다. ${pick(rng, [
       "완성했을 때 색칠된 칸은 모두 몇 칸입니까?",
-      "완성한 도형의 색칠된 칸 수를 구하시오.",
+      "완성한 무늬의 색칠된 칸 수를 구하시오.",
       "다 칠하고 나면 색칠된 칸은 모두 몇 칸입니까?",
     ])}`,
     n(done),
@@ -11953,7 +11955,7 @@ function sym233Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const done = off * 2 + on;
   return make(
     unit,
-    `선대칭도형을 완성했더니 색칠된 칸이 모두 ${n(done)}칸이었고, 그중 대칭축 위에 있는 칸이 ${n(on)}칸이었습니다. 완성하기 전에 색칠되어 있던 칸은 몇 칸입니까?`,
+    `선대칭인 무늬를 완성했더니 색칠된 칸이 모두 ${n(done)}칸이었고, 그중 대칭축 위에 있는 칸이 ${n(on)}칸이었습니다. 완성하기 전에 색칠되어 있던 칸은 몇 칸입니까?`,
     n(off + on),
     `대칭축 위의 ${n(on)}칸을 빼면 ${expr(`${done}-${on}=${off * 2}`)}칸이 남고, 이 칸들은 대칭축 양쪽에 똑같이 나뉘므로 한쪽에 ${expr(`${off * 2}\\div2=${off}`)}칸입니다. 완성 전에는 한쪽 ${n(off)}칸과 대칭축 위 ${n(on)}칸이 색칠되어 있었으므로 ${expr(`${off}+${on}=${off + on}`)}칸입니다.`,
   );
@@ -11990,7 +11992,7 @@ function sym233OnAxis(unit: UnitSeed, rng: Rng): ElemProblem {
   const { cells, on } = halfCells(rng, size);
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸 중 대칭축 위에 있는 칸은 몇 칸입니까?`,
+    `점선을 대칭축으로 하는 선대칭인 무늬를 만들려고 합니다. 지금 색칠된 칸 중 대칭축 위에 있는 칸은 몇 칸입니까?`,
     n(on),
     `대칭축 위에 있는 칸은 ${n(on)}칸입니다.`,
     fig("symmetry", { axis: "v", n: size, cells }),
@@ -12003,7 +12005,7 @@ function sym233OffAfter(unit: UnitSeed, rng: Rng): ElemProblem {
   const { cells, off } = halfCells(rng, size);
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 완성했을 때, 대칭축에서 떨어진 색칠된 칸은 모두 몇 칸입니까?`,
+    `점선을 대칭축으로 하는 선대칭인 무늬를 완성했을 때, 대칭축에서 떨어진 색칠된 칸은 모두 몇 칸입니까?`,
     n(off * 2),
     `떨어진 칸은 양쪽에 ${n(off)}칸씩이므로 ${expr(`${off}\\times2=${off * 2}`)}칸입니다.`,
     fig("symmetry", { axis: "v", n: size, cells }),
@@ -12028,7 +12030,7 @@ function sym233NowCells(unit: UnitSeed, rng: Rng): ElemProblem {
   const { cells, off, on } = halfCells(rng, size);
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸은 몇 칸입니까?`,
+    `점선을 대칭축으로 하는 선대칭인 무늬를 만들려고 합니다. 지금 색칠된 칸은 몇 칸입니까?`,
     n(off + on),
     `지금 색칠된 칸은 ${n(off + on)}칸입니다.`,
     fig("symmetry", { axis: "v", n: size, cells }),
