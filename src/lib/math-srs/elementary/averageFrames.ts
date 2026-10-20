@@ -15,6 +15,17 @@ export function extraAverageFrames(
     const size = intBetween(rng, 3, 5),
       avg = intBetween(rng, 8, 15),
       increase = intBetween(rng, 2, 5);
+    if (tier === "기본" && code === "2-6-2") {
+      const known = (size - 1) * avg - increase;
+      return [
+        make(
+          unit,
+          `${n(size)}경기의 평균 점수는 ${n(avg)}점이고, 그중 ${n(size - 1)}경기의 점수 합은 ${n(known)}점입니다. 나머지 한 경기의 점수는 몇 점입니까?`,
+          n(avg + increase),
+          `전체 점수는 $${size}\\times${avg}=${size * avg}$점입니다. 알려진 점수를 빼면 $${size * avg}-${known}=${avg + increase}$점입니다.`,
+        ),
+      ];
+    }
     if (tier === "기본")
       return [
         make(

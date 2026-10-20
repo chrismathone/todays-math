@@ -37,6 +37,12 @@ it("recalculates fraction redraws from the printed quantities and inverse constr
             { length: numerators[0] },
             () => numerators[1],
           ).reduce((a, b) => a + b, 0);
+        } else if (id === "08" && code.endsWith("-3")) {
+          const product = multiply(parts[0]);
+          const denominator = Array.from({ length: 200 }, (_, i) => i + 1).find(
+            (d) => Math.abs(product * d - Math.round(product * d)) < 1e-9,
+          )!;
+          expected = denominator + Math.round(product * denominator);
         } else if (id === "08") {
           const [left, right] = parts[0].split("=");
           const factor = left
@@ -73,9 +79,9 @@ it("recalculates fraction redraws from the printed quantities and inverse constr
           const m = parts[0].match(/(\d+)\\frac\{(\d+)\}\{(\d+)\}/)!;
           expected = Number(m[1]) * Number(m[3]) + Number(m[2]);
         } else if (tier === "기본" && id === "06" && code.endsWith("-4")) {
-          expected = multiply(
-            parts[0].replace(/(\d+)\\frac\{\d+\}\{\d+\}/, "$1"),
-          );
+          expected = Array.from({ length: value(parts[1]) }, () =>
+            Math.floor(value(parts[0])),
+          ).reduce((a, b) => a + b, 0);
         } else if (tier === "기본") {
           expected = value(parts[0]) * value(parts[1]);
         } else if (id === "09") {

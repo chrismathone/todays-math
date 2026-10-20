@@ -575,9 +575,9 @@ describe("초5 1-2-2 약수와 배수의 관계", () => {
   it("10 곱셈식에서 알 수 있는 약수 개수", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
-      const m = p.content.match(/\$(\d+)\\times(\d+)=(\d+)\$/);
-      expect(m, p.content).toBeTruthy();
-      const uniq = new Set([1, Number(m![1]), Number(m![2]), Number(m![3])]);
+      const equations = [...p.content.matchAll(/\$(\d+)\\times(\d+)=(\d+)\$/g)];
+      expect(equations, p.content).toHaveLength(2);
+      const uniq = new Set(equations.flatMap((m) => m.slice(1).map(Number)));
       expect(answerInt(p.answer)).toBe(uniq.size);
     }
   });
@@ -629,7 +629,7 @@ describe("초5 1-2-3 공약수와 최대공약수", () => {
   it("08 몫의 합", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "08");
-      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$를 최대공약수/);
+      const m = p.content.match(/\$(\d+)\$.*\$(\d+)\$(?:을|를) 최대공약수/);
       expect(m, p.content).toBeTruthy();
       const a = Number(m![1]);
       const b = Number(m![2]);
@@ -679,7 +679,9 @@ describe("초5 1-2-4 최대공약수 구하는 방법", () => {
   it("05 더 큰 몫", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const m = p.content.match(/두 수 \$(\d+)\$, \$(\d+)\$를 최대공약수/);
+      const m = p.content.match(
+        /두 수 \$(\d+)\$, \$(\d+)\$(?:을|를) 최대공약수/,
+      );
       expect(m, p.content).toBeTruthy();
       const a = Number(m![1]);
       const b = Number(m![2]);
@@ -690,18 +692,25 @@ describe("초5 1-2-4 최대공약수 구하는 방법", () => {
     }
   });
 
-  it("06 나머지는 0", () => {
+  it("06 최대공약수로 나눈 몫", () => {
     for (const seed of SEEDS) {
-      expect(answerInt(generateElementaryForm(unit, seed, "06").answer)).toBe(
-        0,
+      const p = generateElementaryForm(unit, seed, "06");
+      const values = [...p.content.matchAll(/\$(\d+)\$/g)].map((m) =>
+        Number(m[1]),
       );
+      const [a, b, x] = values;
+      const common = ownDivisors(a).filter((d) => b % d === 0);
+      expect(p.content).toContain("나눈 몫");
+      expect(answerInt(p.answer)).toBe(x / Math.max(...common));
     }
   });
 
   it("09 두 몫의 차", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "09");
-      const m = p.content.match(/두 수 \$(\d+)\$, \$(\d+)\$를 최대공약수/);
+      const m = p.content.match(
+        /두 수 \$(\d+)\$, \$(\d+)\$(?:을|를) 최대공약수/,
+      );
       expect(m, p.content).toBeTruthy();
       const a = Number(m![1]);
       const b = Number(m![2]);
@@ -712,14 +721,17 @@ describe("초5 1-2-4 최대공약수 구하는 방법", () => {
     }
   });
 
-  it("10 최대공약수와 몫의 곱은 처음 수", () => {
+  it("10 최대공약수로 나눈 두 몫의 곱", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "10");
       const m = p.content.match(
-        /두 수 \$(\d+)\$, \$(\d+)\$의 최대공약수와, \$(\d+)\$/,
+        /두 수 \$(\d+)\$, \$(\d+)\$(?:을|를) 각각 최대공약수/,
       );
       expect(m, p.content).toBeTruthy();
-      expect(answerInt(p.answer)).toBe(Number(m![3]));
+      const a = Number(m![1]),
+        b = Number(m![2]);
+      const g = Math.max(...ownDivisors(a).filter((d) => b % d === 0));
+      expect(answerInt(p.answer)).toBe((a / g) * (b / g));
     }
   });
 });
