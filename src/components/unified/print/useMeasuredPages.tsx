@@ -159,7 +159,12 @@ export function useMeasuredPages(
             measured.heights,
             measured.avail,
             answer
-              ? { ...options, template: "jeongtong", layoutMode: "spacing" }
+              ? {
+                  ...options,
+                  template: "jeongtong",
+                  layoutMode: "spacing",
+                  smartSpacing: false,
+                }
               : options,
             problems.flatMap((problem, index) =>
               index > 0 &&
@@ -168,6 +173,7 @@ export function useMeasuredPages(
                 ? [index]
                 : [],
             ),
+            !answer,
           )
         : [],
     [contentKey, layoutError, measured, options, answer, problems],

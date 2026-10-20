@@ -85,8 +85,9 @@ describe("restored Mathgen options and measured pagination", () => {
       ...DEFAULT_PRINT_OPTIONS,
       columns: 2 as const,
       spacing: 20,
+      smartSpacing: false,
     };
-    const pages = packMeasured(heights, { first: 450, cont: 700 }, options);
+    const pages = packMeasured(heights, { first: 460, cont: 700 }, options);
     expect(pages.map((p) => p.indices)).toEqual([
       [0, 1, 2, 3],
       [4, 5, 6],
@@ -124,7 +125,9 @@ describe("restored Mathgen options and measured pagination", () => {
         { ...DEFAULT_PRINT_OPTIONS, layoutMode },
       );
       expect(pages.flatMap((p) => p.indices)).toEqual([0, 1]);
-      expect(pages[0].scales[0] * 1800).toBeCloseTo(688);
+      expect(pages[0].scales[0] * 1800).toBeCloseTo(
+        layoutMode === "spacing" ? 672 : 688,
+      );
     },
   );
   it("workbook stretch mode also measures tall crops instead of blindly fitting four", () => {

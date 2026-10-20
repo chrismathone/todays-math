@@ -153,7 +153,7 @@ export const DEFAULT_PRINT_OPTIONS: PrintOptions = {
   layoutMode: "spacing", // 새 시험지는 스마트 여백; 저장본의 칸 없음은 파서가 false로 읽는다.
   problemsPerColumn: 3, // count 모드 기본 — 1단당 3문항
   spacing: 18,
-  smartSpacing: false,
+  smartSpacing: true,
   showAnswers: false,
   quickAnswerOnly: false,
   showDate: true,

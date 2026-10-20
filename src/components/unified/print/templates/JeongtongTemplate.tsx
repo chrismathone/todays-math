@@ -24,6 +24,7 @@ export function JeongtongTemplate({
   options,
   splitIndex,
   itemScales,
+  itemWhitespace,
   measure,
 }: PrintTemplateProps) {
   const isFirstPage = firstPage ?? page === 1;
@@ -113,6 +114,7 @@ export function JeongtongTemplate({
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}
         splitIndex={splitIndex}
+        itemWhitespace={itemWhitespace}
         distribute={options.layoutMode === "count"}
         style={{
           marginTop: isFirstPage ? 18 : 0,

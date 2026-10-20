@@ -35,7 +35,6 @@ export const CHOICE_LAYOUTS = [
   ["auto", "자동"],
 ] as const;
 export const SPACING_PRESETS = [
-  ["최소", 4],
   ["좁게", 16],
   ["보통", 32],
   ["넓게", 56],
