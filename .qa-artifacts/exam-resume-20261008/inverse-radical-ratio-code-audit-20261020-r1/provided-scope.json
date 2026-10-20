@@ -1,0 +1,48 @@
+{
+  "utc": "2026-10-20T05:57:41.131462+00:00",
+  "kind": "bounded-independent-inverse-radical-ratio-calculation-audit/v1",
+  "files": [
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "snapshot": "provided-code-snapshots/inverseRadicalRatioConditions.mjs.snapshot",
+      "runtime": "provided-code-runtime-local/inverseRadicalRatioConditions.mjs",
+      "sha256": "82c9f573334c1f1624a36d173ac843d8c2dc9779b95a25edcb95a8069d2ec316"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.test.mjs",
+      "snapshot": "provided-code-snapshots/inverseRadicalRatioConditions.test.mjs.snapshot",
+      "runtime": "provided-code-runtime-local/inverseRadicalRatioConditions.test.mjs",
+      "sha256": "2fa2907ff1877a8dabd0fcb6fec6610b93ec881ba9ef2ba3ee09186220498fba"
+    }
+  ],
+  "actualPrintedExampleAndSealedRawAlreadySupplied": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/package/private/q03/candidate.json",
+      "sha256": "5dc280d921e735bde950948e1d8c242b1c1ced2be8e50df21f3de31ab85d18f8"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/solve/q03.json",
+      "sha256": "e19bc037022cb45b61205f0d8a8ec84ec5105ec2ec0b10a599d391b502dc9c3f"
+    }
+  ],
+  "model": "sqrt(m*k)=a*sqrt(m), sqrt(s)=b/(c*sqrt(s)), a*b=R; a,b,k explicitly positive; m/s/c positive bounded integers",
+  "schemaKeys": [
+    "domain",
+    "rootCoefficient",
+    "reciprocalRadicand",
+    "reciprocalScale",
+    "ratioProduct"
+  ],
+  "focus": [
+    "Own independent exact rational oracle and substitution checks on printed model",
+    "Positive branch, nonzero denominator, existence and uniqueness; zero/negative product unsatisfiable",
+    "Primitive finite decimal/strict integer/bounds/unknown keys/domain/no input mutation/determinism",
+    "Calculation flags always false for studentMethodProved/curriculumApproved/rightsApproved/permitsLoad; no public template or routing integration claim"
+  ],
+  "parentOwn5TestsInclude1296ConstructedWitnessesNotIndependentCodeReview": true,
+  "noSharedDependencyChanges": true,
+  "noModelCalls": true,
+  "dbWrites": 0,
+  "loadable": 0,
+  "provideScopeNowButDoNotReadBeforeCurrentTwoFullReviewsFinished": true
+}

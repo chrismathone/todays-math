@@ -1,0 +1,793 @@
+{
+  "utc": "2026-10-20T05:59:13.635174+00:00",
+  "before": [
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+      "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\extract-fresh-sources-20261019.py",
+      "sha256": "866d9c41bc08f19ff65af611bd197fdf90325e5465dee3a87880c4ab3458b455"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\extract-remaining-ready-m3-20261020-r1.py",
+      "sha256": "8925a804919e7b6b04f7fdc9a223b7e35ee9286a41c560dcdf79d58f7d5e1d90"
+    }
+  ],
+  "historicalEligibleUnattemptedReadyM3": 79,
+  "batches": [
+    {
+      "output": "fresh-source-extraction-20261020-r4",
+      "jobs": [
+        {
+          "examId": "personal-1d3861128311dabc42716dc7a93a2da6",
+          "school": "도원중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-955a804ef041b82f094b025296059c91",
+          "school": "도원중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-f062f726deac3ac5806219f0a77911f2",
+          "school": "동부중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r5",
+      "jobs": [
+        {
+          "examId": "personal-051364cbbf2fed7ed13aad777ff70976",
+          "school": "동원중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-bed0befdab55025d6dddadb138cacede",
+          "school": "동평중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-996cba42c5898602e59c1a62f70be378",
+          "school": "매천중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r6",
+      "jobs": [
+        {
+          "examId": "personal-7954bf9ad11fbfe3b3175ad458d85f07",
+          "school": "매천중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-6da8a9852b569e6f5501690db2d55fff",
+          "school": "매호중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-9ffce5fcadc11b752bc17e031e175173",
+          "school": "매호중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r7",
+      "jobs": [
+        {
+          "examId": "personal-3c13b22b3e3f2a600b485d61a6dc750c",
+          "school": "문명중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-54b7a6d7b7dc6366519cb6a5a80b0a71",
+          "school": "범물중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-2c45a98a166b021f4667ce09ad1530f7",
+          "school": "범물중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r8",
+      "jobs": [
+        {
+          "examId": "personal-8cd42a7d35cf555574dcd75be860b3e0",
+          "school": "범일중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-85c8d0d088fa6a46169a6ffbb3211b19",
+          "school": "사동중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-3b91c70eef3cdc7c136d81b68f0727c0",
+          "school": "산격중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r9",
+      "jobs": [
+        {
+          "examId": "personal-996c8dfc31d26297a6237b776ce08fea",
+          "school": "삼성현중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-64d8eb4cabeed9e32afc4ea703751eef",
+          "school": "상인중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-75d6b3492ffbd61633e3bcdeb9e91dbc",
+          "school": "새론중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r10",
+      "jobs": [
+        {
+          "examId": "personal-1f6bac246161e0178229793bc7851f61",
+          "school": "새론중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-32f214c8758a4151a5d6230a5a210462",
+          "school": "새본리중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-46f3d169f954fec673f10fcf65143105",
+          "school": "성광중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r11",
+      "jobs": [
+        {
+          "examId": "personal-e9216024dc22ca5f5086a290a7867020",
+          "school": "성광중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-ef04a43101a1e38d9e32d9b876ff41d6",
+          "school": "성명여중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-2078fea0a32d6133f18774515bdecc2d",
+          "school": "성명여중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r12",
+      "jobs": [
+        {
+          "examId": "personal-557c504aff81443fafe6f57c5c7e1edf",
+          "school": "성지중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-154d4ca2b18fc616bb060b56ea7e5d17",
+          "school": "성화중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-e0947fd63d103f122ddffaf4093e1d2f",
+          "school": "성화중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r13",
+      "jobs": [
+        {
+          "examId": "personal-f9062b1ea800071621666a2bdea86a28",
+          "school": "소선여중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-a41b1e854f8113d0f65dcea21b1d3250",
+          "school": "소선여중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-3b1255c64a94cf1769eb86e441ff8875",
+          "school": "송현여중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r14",
+      "jobs": [
+        {
+          "examId": "personal-067cbbf77febe5e957cd876354a77ddc",
+          "school": "송현여중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-ba74a1d32efc4f1552f624e328750527",
+          "school": "수성중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-d41dd3d4218b88051a5735330c78fd1b",
+          "school": "시지중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r15",
+      "jobs": [
+        {
+          "examId": "personal-3f5f412ddce8f84291c587c26f6d86d0",
+          "school": "신기중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-a1cb4e76d4493322524818b9319a92bb",
+          "school": "신명여중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-627c4418e3ecf77588dc0b0fd53901f9",
+          "school": "신명여중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r16",
+      "jobs": [
+        {
+          "examId": "personal-dd24aa3ef0a940043f51f0d234c91d27",
+          "school": "심인중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-612db54be5a40e0bc65681ac04c7977d",
+          "school": "안심중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-dd7df7fac7aeb5432ed1f0de651d5e52",
+          "school": "안심중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r17",
+      "jobs": [
+        {
+          "examId": "personal-968f7a6e56ddc929310fd4667aadab9b",
+          "school": "압량중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-aeafe14bb23f939fb71d680690a9ab9d",
+          "school": "영남삼육중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-f6f5aa9ffc1ad33b61d99c89c16627ad",
+          "school": "영남삼육중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r18",
+      "jobs": [
+        {
+          "examId": "personal-d2cfab7043fc4bd20ad5a90d45f1c267",
+          "school": "영남중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-054b82857e5c3382b510377f9564fb0c",
+          "school": "영남중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-63c2eda227a5f7967aef92406d65bf2a",
+          "school": "오성중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r19",
+      "jobs": [
+        {
+          "examId": "personal-22b117705c71b7493abd32200e062c9d",
+          "school": "왕선중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-9dfc8d997eb6b04778425d9ead93a30b",
+          "school": "왕선중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-0e73ce348d9f0b53648eb1fabeb5a6be",
+          "school": "운암중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r20",
+      "jobs": [
+        {
+          "examId": "personal-b9a2ce5895d4b01035bfc071d50efece",
+          "school": "월배중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-6913396860dad174dc6b14a33cf27cfc",
+          "school": "월배중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-e504dbe26045eb78c4097c579c62d89f",
+          "school": "월서중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r21",
+      "jobs": [
+        {
+          "examId": "personal-cc35f59cb7d4d8e59af494009dbb3df5",
+          "school": "월서중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-b10074735e972da941a0d519779e0932",
+          "school": "월성중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-12841e1ca66033a8b6e06aa1e67c7fd3",
+          "school": "월암중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r22",
+      "jobs": [
+        {
+          "examId": "personal-37fd6f1d712bbc02f28ff109e688148a",
+          "school": "월암중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-0628b6c385c03a657b9b4a9c5419104c",
+          "school": "유가중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-605218f0557c324095dc25447c22019a",
+          "school": "율원중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r23",
+      "jobs": [
+        {
+          "examId": "personal-b91966bb18f7d04e689deb7e4d7fb18b",
+          "school": "이곡중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-66efdebdae97162c8741474ac621eb8f",
+          "school": "이서중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-d76435db020c7dcb5875cb2ed612168b",
+          "school": "입석중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r24",
+      "jobs": [
+        {
+          "examId": "personal-2de82fabed4b0c8ab72526d59d7869ac",
+          "school": "장산중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-6711117bb26457ed76732404d314ded9",
+          "school": "제일중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-cc4729e94e1af5274d48c23d9dde1277",
+          "school": "조암중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r25",
+      "jobs": [
+        {
+          "examId": "personal-47aeb37f3570c27e0c2a74f903ab45a0",
+          "school": "조암중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-3cc4e78c2e29981b4425f3a06647afcd",
+          "school": "지산중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-7d5ac05f4a18e5be4b94338985b96a83",
+          "school": "지산중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r26",
+      "jobs": [
+        {
+          "examId": "personal-a36b2d9e32fb6e11d0f974c4c6e89e50",
+          "school": "칠곡중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-ebc5b41b487576cd4535ba90b9a6a829",
+          "school": "칠곡중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-2e586234e2bfba31684f664442421d1e",
+          "school": "침산중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r27",
+      "jobs": [
+        {
+          "examId": "personal-2f602b055fd7a4cacdec25a818cd11e6",
+          "school": "침산중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-4e4bb2d2c3e38738c73433790853d046",
+          "school": "팔달중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-b57ae1c9cabc0df1aa76a7e8a984f23b",
+          "school": "평리중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r28",
+      "jobs": [
+        {
+          "examId": "personal-825493b856c55850d1178db7d72803ae",
+          "school": "학남중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-1732edbb9a296d9dd721f3a90b1a1b9f",
+          "school": "학산중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-a0ded8250faa0718ca258b4bebf3d8b4",
+          "school": "학산중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r29",
+      "jobs": [
+        {
+          "examId": "personal-1d3ec15cd1a1e13a23843493deb47156",
+          "school": "협성경복중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-fb60104e7efa829d6838f6eee5f38866",
+          "school": "협성경복중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    },
+    {
+      "output": "fresh-source-extraction-20261020-r30",
+      "jobs": [
+        {
+          "examId": "personal-53619ca23488216238e1b2591a635ec8",
+          "school": "효성중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 1,
+          "round": "중간"
+        },
+        {
+          "examId": "personal-7ef4123279fb4361f8b24397bb0e9cff",
+          "school": "효성중",
+          "year": 2025,
+          "grade": 3,
+          "semester": 2,
+          "round": "중간"
+        }
+      ]
+    }
+  ],
+  "earlierIndividualHoldsNotRetried": true,
+  "scope": "2025+ middle3 ready selected-pair subset of 2026-10-03 inventory; not all N sources",
+  "original82AndProtectedSchoolsExcluded": true,
+  "originalTextsImagesLocalOnly": true,
+  "componentsOrRightsApproved": 0,
+  "dbWrites": 0
+}

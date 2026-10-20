@@ -1,0 +1,408 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group2-r1-q02",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "세 수를 아래와 같이 분류했다. 잘못 분류한 항목을 모두 고른 것은? (순환소수는 순환하는 부분의 처음과 끝 숫자 위에 점을 찍어 나타냈다.)\n\n| 항목 | 수 | 분류 |\n| --- | --- | --- |\n| ㄱ | $\\sqrt{0.16}$ | 무리수 |\n| ㄴ | $0.\\dot2\\dot7$ | 무리수 |\n| ㄷ | $\\sqrt5$ | 무리수 |",
+      "choices": [
+        "ㄱ",
+        "ㄴ",
+        "ㄱ, ㄴ",
+        "ㄱ, ㄷ",
+        "ㄴ, ㄷ"
+      ],
+      "answer": "③",
+      "solution": "ㄱ. $\\sqrt{0.16}=0.4=\\dfrac25$이므로 유리수이다. 무리수로 분류한 것이 잘못되었다.\n\nㄴ. $0.\\dot2\\dot7=0.272727\\cdots=\\dfrac{27}{99}=\\dfrac3{11}$이므로 유리수이다. 순환소수는 소수점 아래에 숫자가 끝없이 이어져도 유리수이므로 이 분류도 잘못되었다.\n\nㄷ. $5$는 자연수의 제곱이 아니므로 $\\sqrt5$는 무리수이다. 이 분류는 옳다.\n\n따라서 잘못 분류한 항목은 ㄱ, ㄴ이고 정답은 ③이다.",
+      "figureArtifacts": [],
+      "sourceReference": {
+        "externalId": "2025-daeguil-3-1-mid-2",
+        "inventoryExamId": "personal-1c6091af710ddaaa7e6671a2ef018a1c",
+        "sourceQuestionNumber": 2,
+        "newSourceReferenceId": "source-ref-daeguil-2025-1-mid-group2-r1-q02",
+        "sourceContentSha256": "fa6c5dcf87509ad144209298af95d1b999a5cdac8d8d2344abbcf1b419423e21",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-1c6091af710ddaaa7e6671a2ef018a1c/q02.json",
+          "sha256": "ed4f493a4ae4d58ec079763b82e8290591632e5f890391f79e7b9b6951898c67"
+        },
+        "sourceSchoolInternal": "대구일중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-1c6091af710ddaaa7e6671a2ef018a1c\\source-manifest.local.json",
+          "sha256": "5aaa4fbf03d34bd9ea27fe7beeee55307d0f9cc4f2f9564298269d1dcc5b44f9",
+          "bytes": 1468326
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구일중][3][25-1-중간][천재류] (완료).hwp",
+            "sha256": "cec264431ab5ac28805a06fe799542218e765a6682351852b01197cea0b900c7",
+            "bytes": 534528
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구일중][3][25-1-중간][천재류] (완료).PDF",
+            "sha256": "d6be21c3806068dca6d890171591058b62d60020817f8c7f1bb345b7f2bf7532",
+            "bytes": 168723
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구일중][3][25-1-중간] (원본) (로뚱) (1).pdf",
+          "sha256": "90546e1ce4d215fdd3dc9a5bc015bd8e3057df7825b77b89c57c7a8b1e25f091",
+          "bytes": 341179
+        },
+        "sourceComponentEvidence": null,
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구일중-q02"
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구일중-q02"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write"
+      },
+      "variantDelta": {
+        "modes": [
+          "classification-repair",
+          "structure",
+          "new-table"
+        ],
+        "before": "유리수·무리수에 관한 일반 진술 다섯 개 중 옳은 진술을 고른다.",
+        "after": "근호·순환소수로 적힌 세 수의 분류 기록을 주고 잘못된 분류 두 개를 모두 찾아 바로잡는다.",
+        "sharedConcept": "유한소수·순환소수로 나타낼 수 있는 유리수와 무리수의 뜻, 근호 표현만으로 무리수라고 판단할 수 없다는 점을 구별한다.",
+        "sharedProcedure": "양의 제곱근을 계산하여 유한소수 확인 → 순환소수를 분수로 표현 → 제곱수가 아닌 자연수의 제곱근을 무리수로 구별",
+        "actualStructuralChange": "근호·순환소수로 적힌 세 수의 분류 기록을 주고 잘못된 분류 두 개를 모두 찾아 바로잡는다.",
+        "domainProof": "ㄱ은2/5, ㄴ은3/11로 각각 분모가0이 아닌 정수 비이다. ㄷ은중3에서 다루는 제곱수가 아닌 자연수의 제곱근 성질로 판단한다. 순환소수 점 표기를 본문에서 명시하며 유한소수와 순환소수의 성질은 중2 선수 개념이다. 무리수의 엄밀한 모순 증명이나 일반 무한급수를 필수로 요구하지 않는다. 원문 보기의 모든 부수 개념을 복제한 것은 아니며 핵심 유리수/무리수 구별의 난도 동등성은 별도 검수 전 보류다.",
+        "difficultyBasis": "새 조건과 목표 난도 동등성은 독립 검수 전 저자 제안이며 자동 승인하지 않는다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-03",
+          "9수01-07",
+          "9수01-08"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수01-07"
+          ]
+        },
+        "legitimateMethodDraft": "양의 제곱근을 계산하여 유한소수 확인 → 순환소수를 분수로 표현 → 제곱수가 아닌 자연수의 제곱근을 무리수로 구별",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+        "sourceExamYear": 2025,
+        "targetAcademicYear": 2026,
+        "curriculum": "2015",
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "standard": "9수01-03, 9수01-07, 9수01-08",
+          "capturedPrimaryReceipt": {
+            "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+            "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+          },
+          "providedMOEEvidence": {
+            "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+            "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+          },
+          "actualScope": "2015 중3 1학기의 근호 계산/실수 분류. 중2 이하 선수 지식만 사용하며 현재 일곱 면 독립 학년 검수 전이다."
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "근호·순환소수로 적힌 세 수의 분류 기록을 주고 잘못된 분류 두 개를 모두 찾아 바로잡는다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "현재 캡처된 실제 Unit UUID와 성취기준을 연결한다. 새 역추론/분류 기록의 정확한 live family는 보류."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next2-20261020-r1.mjs",
+          "reproductionScriptSha256": "726512cd7648bd5acacdd019d323baa78a99643d44a522cdfdb8b9e64f7b5884",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "유리수의 뜻",
+            "유한소수와 순환소수",
+            "순환소수를 분수로 나타내기",
+            "무리수의 뜻",
+            "제곱근의 뜻"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      }
+    },
+    "assets": [],
+    "studentDigest": "cd419ce5848d1631a758075f0913081bce78acc3bbd5d56ee958ef05a3f1d094",
+    "candidateDigest": "cf659f73443cbf156f4ae73f714a2af040c084c3e2a67be0368a66ce6bd8d338",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "cd419ce5848d1631a758075f0913081bce78acc3bbd5d56ee958ef05a3f1d094",
+      "solverId": "codex-helper-independent-next2-student-20261020",
+      "answer": "③",
+      "solution": "ㄱ의 √0.16=0.4=2/5는 유리수이므로 무리수라는 분류는 잘못되었다. ㄴ은 2와 7 위에 점이 있으므로 순환마디가 27인 0.272727…이다. 순환소수는 유리수이고, 이 수는 27/99=3/11이므로 이 분류도 잘못되었다. ㄷ의 √5는 제곱수가 아닌 자연수 5의 제곱근이므로 무리수이며 분류가 옳다. 따라서 잘못 분류한 항목은 ㄱ, ㄴ 모두이고 ㄷ은 포함하지 않는다. ①은 ㄴ을, ②는 ㄱ을 빠뜨리고, ④와 ⑤는 옳게 분류한 ㄷ을 포함하므로 답은 ③이다. 세 수의 근호와 순환마디가 정해져 있어 분류 및 정답도 유일하다.",
+      "evidence": {
+        "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group2-r1-q02",
+        "exposureDeclaration": {
+          "priorOriginalSourceComponentsReviewed": true,
+          "priorRelatedExposure": "Completed source9 first-question components and their full original first-page images with incidental handwritten marks; earlier root variants, source-method proposals and U54/U55/U56 code audits. This is not an unseen-source-corpus claim.",
+          "currentTransformedAuthorAnswerSeenBeforeRawSeal": false,
+          "currentTransformedAuthorSolutionSeenBeforeRawSeal": false,
+          "currentAuthorMetadataOrPrivatePackageRead": false,
+          "parentWorktreeOrAuthorHistoryRead": false,
+          "answerSearchUsed": false,
+          "method": "Solve current printed student conditions afresh; original answers, handwritten markings, prior variant outputs and image pixels are not answer oracles."
+        },
+        "ownExactCalculation": {
+          "sqrt016": {
+            "radicand": {
+              "numerator": "4",
+              "denominator": "25"
+            },
+            "positiveRoot": {
+              "numerator": "2",
+              "denominator": "5"
+            },
+            "decimalRoot": "0.4",
+            "rational": true
+          },
+          "repeatingDecimal": {
+            "printedDotDigits": [
+              "2",
+              "7"
+            ],
+            "repeatingBlock": "27",
+            "meaning": "0.272727...",
+            "exactFraction": {
+              "numerator": "3",
+              "denominator": "11"
+            },
+            "repeatFractionCheck99r": {
+              "numerator": "27",
+              "denominator": "1"
+            },
+            "rational": true
+          },
+          "sqrt5": {
+            "radicand": 5,
+            "positive": true,
+            "betweenSquares": [
+              4,
+              9
+            ],
+            "irrational": true,
+            "justification": "Use the2015 M3 property that the square root of a nonsquare natural number is irrational. The code check4<5<9 identifies nonsquareness; it is not by itself a floating or finite-search proof of irrationality, and no high-school theorem is required from the student."
+          },
+          "printedClasses": {
+            "ㄱ": "irrational",
+            "ㄴ": "irrational",
+            "ㄷ": "irrational"
+          },
+          "trueClasses": {
+            "ㄱ": "rational",
+            "ㄴ": "rational",
+            "ㄷ": "irrational"
+          },
+          "allWrongItems": [
+            "ㄱ",
+            "ㄴ"
+          ],
+          "allFiveChoices": [
+            {
+              "index": 1,
+              "mark": "①",
+              "items": [
+                "ㄱ"
+              ],
+              "exactlyAllWrongItems": false,
+              "omittedWrongItems": [
+                "ㄴ"
+              ],
+              "includedCorrectlyClassifiedItems": []
+            },
+            {
+              "index": 2,
+              "mark": "②",
+              "items": [
+                "ㄴ"
+              ],
+              "exactlyAllWrongItems": false,
+              "omittedWrongItems": [
+                "ㄱ"
+              ],
+              "includedCorrectlyClassifiedItems": []
+            },
+            {
+              "index": 3,
+              "mark": "③",
+              "items": [
+                "ㄱ",
+                "ㄴ"
+              ],
+              "exactlyAllWrongItems": true,
+              "omittedWrongItems": [],
+              "includedCorrectlyClassifiedItems": []
+            },
+            {
+              "index": 4,
+              "mark": "④",
+              "items": [
+                "ㄱ",
+                "ㄷ"
+              ],
+              "exactlyAllWrongItems": false,
+              "omittedWrongItems": [
+                "ㄴ"
+              ],
+              "includedCorrectlyClassifiedItems": [
+                "ㄷ"
+              ]
+            },
+            {
+              "index": 5,
+              "mark": "⑤",
+              "items": [
+                "ㄴ",
+                "ㄷ"
+              ],
+              "exactlyAllWrongItems": false,
+              "omittedWrongItems": [
+                "ㄱ"
+              ],
+              "includedCorrectlyClassifiedItems": [
+                "ㄷ"
+              ]
+            }
+          ],
+          "domainAndNonzero": "Radicands0.16 and5 are positive. Their principal roots are unique and positive. The explicitly stated first/last-dot convention uniquely specifies the two-digit repeating block27. Denominators25,5,99,11 are positive nonzero integers.",
+          "existenceUniqueness": "All three printed real constants are well-defined. Each table classification has a determined truth value; the complete wrong-label set is uniquely {ㄱ,ㄴ}, exactly one of the five distinct options.",
+          "studentMethod": "Exact decimal square-root evaluation, M2 repeating-decimal rationality, and M3 irrational-number/root definitions. The optional99r=27 verification uses ordinary subtraction, not a geometric-series formula or higher-grade machinery.",
+          "units": "Pure number classification, no physical lengths or units."
+        },
+        "currentStudentInputs": {
+          "studentDigest": "cd419ce5848d1631a758075f0913081bce78acc3bbd5d56ee958ef05a3f1d094",
+          "packageDigestAsProvided": "69565bdecc59d73a169b34b8b21171ab64d66616f95c81630869e536baabd0ef",
+          "filesBefore": [
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/SOLVE-BRIEF.md",
+              "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/student-problems.json",
+              "sha256": "e8db1c8c93d1dde4e0fd73a0dd7e7da7990c1836c2c6328a0028febbd1607953"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/blind-manifest.json",
+              "sha256": "409f7e48b8f6b4669c830819fc9efb127aa1b3d5ceef324a45d164975b6098d8"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/student-preview/q02.png",
+              "sha256": "a7cbd3a1f90d01eed1c421c96ff7eb14cdf3e3d0ee00d6bd16fdc401973cba57"
+            }
+          ],
+          "utf8ProbeSha256": "645816a59566f4f4fe052cf13704ecf80d5c82df413399ca095c6c5405a5909b",
+          "actualStudentPngViewed": true,
+          "noExternalFiguresOrModel": true
+        },
+        "pngInspection": "Actual current student PNG viewed; all table rows, formulas, explicit conditions, repeating-dot placement when present, and all5 options match the JSON. No pixels/hidden model used for numerical inference.",
+        "gradeMethodScope": "2015 M3 semester1 after square-root definitions and required radical arithmetic/irrationality concepts; prior recurring-decimal and rational arithmetic as applicable. Raw solved status is not formal grade/content/rights/family/native/release approval."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "9e57ffea836a9445ff00d11c75cbf389a73c6be62efbe4badf9dad37d9798e5b"
+  }
+]

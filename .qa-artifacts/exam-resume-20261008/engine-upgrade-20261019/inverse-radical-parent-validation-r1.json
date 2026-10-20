@@ -1,0 +1,37 @@
+{
+  "utc": "2026-10-20T05:57:43.537Z",
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "sha256": "82c9f573334c1f1624a36d173ac843d8c2dc9779b95a25edcb95a8069d2ec316"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.test.mjs",
+      "sha256": "2fa2907ff1877a8dabd0fcb6fec6610b93ec881ba9ef2ba3ee09186220498fba"
+    }
+  ],
+  "currentPrintedCandidateReplay": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-radical-current-q03-replay-r1.json",
+    "sha256": "7bc5182967fbd88da694dafc8e716a9ef1a7c0f40894457538feb2aeab0e6e1c"
+  },
+  "nodeFiles": 16,
+  "nodeSummary": "nce\nok 179 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 26.2699\n  type: 'test'\n  ...\n1..179\n# tests 179\n# suites 0\n# pass 179\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 24877.0825\n",
+  "ownConstructedRationalWitnessesInsideOneTest": 1296,
+  "lintPassed": true,
+  "previous91CodeFilesUnchanged": true,
+  "candidateBytesUnchanged": true,
+  "logs": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-radical-node-r1.tap",
+      "sha256": "c934c2db515add0ab77367a99bbb3eeedcc3a45d81658252fdb98c774c77faf1"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-radical-lint-r1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "independentCodeAuditPending": true,
+  "standaloneAuthoringHelperNotPublicAppTemplate": true,
+  "dbWrites": 0,
+  "loadable": 0
+}
