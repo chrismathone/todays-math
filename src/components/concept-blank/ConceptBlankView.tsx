@@ -173,7 +173,7 @@ const sum = (c: LevelCounts) => c.하 + c.중 + c.상;
 const isReadyGrade = (grade: string) =>
   (CONCEPT_BLANK_GRADES as readonly string[]).includes(grade);
 
-/** 주소의 `?blank=` 를 읽어 처음 고르기를 세운다 — 없거나 틀리면 빈 고르기(형식은 다 켠 채). */
+/** 주소의 `?blank=` 를 읽어 처음 고르기를 세운다 — 없거나 틀리면 형식도 꺼진 빈 고르기. */
 function initialDraft(): Draft {
   return draftFrom(
     typeof window === "undefined"
@@ -189,7 +189,7 @@ function draftFrom(saved: ConceptBlankSelection | null): Draft {
   const forms = Object.fromEntries(
     CONCEPT_BLANK_FORMS.map((form) => [
       form,
-      { on: !saved, counts: {}, extras: {} },
+      { on: false, counts: {}, extras: {} },
     ]),
   ) as Record<ConceptBlankForm, FormDraft>;
   for (const f of saved?.forms ?? [])
@@ -1142,7 +1142,9 @@ export default function ConceptBlankView({
         ) : (
           <p className={s.empty}>
             {ready
-              ? "소단원과 형식을 고르면 지면이 나옵니다."
+              ? chosen.length > 0 && !CONCEPT_BLANK_FORMS.some(isOn)
+                ? "형식을 하나 이상 켜세요."
+                : "소단원과 형식을 고르면 지면이 나옵니다."
               : "문항을 불러오는 중입니다."}
           </p>
         )}
