@@ -141,6 +141,18 @@ describe("answer row and solution pagination", () => {
       [[4], 1],
     ]);
   });
+  it("also moves a tall solution encountered at the second column off the key remainder", () => {
+    const pages = paginateAnswerPages(
+      packAnswerRows([metrics(true, 1, 40)]),
+      [
+        { index: 0, height: 30 },
+        { index: 1, height: 70 },
+      ],
+      { ...config, columns: 2 },
+    );
+    expect(pages.map((page) => page.solutionIndices)).toEqual([[0], [1]]);
+    expect(pages.flatMap((page) => page.scales)).toEqual([1, 1]);
+  });
   it("bounds a single oversized solution exactly as the existing answer flow does", () => {
     const [page] = paginateAnswerPages([], [{ index: 0, height: 200 }], config);
     expect(page.scales).toEqual([0.5]);

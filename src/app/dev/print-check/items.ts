@@ -82,6 +82,23 @@ export const SPECIMEN_ITEM_IDS = [
 ] as const;
 
 export const ITEMS: PrintCheckItem[] = [
+  {
+    id: "answer-quick-key-h2",
+    title: "빠른 채점표 H2 · 정답·해설 / 정답만",
+    changed:
+      "정답지 앞에 번호를 분리한 5열 가변 격자를 두고, 정답만 출력도 같은 표를 사용한다. 긴 답은 실측한 폭·높이에 따라 2·3·5칸을 합치며 행 단위로 쪽을 넘긴다.",
+    look: "25·50·100문항에서 번호가 빠지거나 뒤섞이지 않는지, 분수와 긴 답이 칸·종이 밖으로 잘리지 않는지, 이어지는 쪽에도 표 머리가 나오는지 확인한다. 정답만 판에는 해설이 없어야 하고 정답·해설 판은 표 뒤에 전체 해설이 이어져야 한다. 수식 글자는 기존 정답지의 먹색을 유지해야 한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-quick-key-h2-and-template-a-hifi-codex.md",
+      "docs/design/mockups/answer-quick-key-hifi-20261020.html",
+    ],
+    scale: "통합 수학 출력의 정답·해설지와 정답만 출력",
+    status: "대기",
+    needs:
+      "분수·식·긴 답이 섞인 시험지에서 정답·해설 포함과 정답만을 각각 인쇄한다. 영어 구조화 정답·근거 지면은 기존 경로를 유지한다.",
+    changedOn: "2026-10-20",
+  },
   ...(
     [
       ["H1", "H1 (기본)", "명조 이름과 얇은 선, 나란한 점수·맞힌 수의 균형"],

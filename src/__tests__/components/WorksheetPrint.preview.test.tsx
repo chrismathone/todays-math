@@ -18,6 +18,28 @@ vi.mock("@/components/unified/print/useMeasuredPages", () => ({
     measureNode: null,
   }),
 }));
+vi.mock("@/components/unified/print/useMeasuredAnswerPages", () => ({
+  useMeasuredAnswerPages: (problems: ProblemReview[]) => ({
+    pages: problems.length
+      ? [
+          {
+            keyRows: [{ cells: [{ index: 0, span: 1 }], height: 40 }],
+            solutionIndices: [0],
+            scales: [1],
+            splitIndex: 1,
+            indices: [0],
+            groupStart: 0,
+          },
+        ]
+      : [],
+    ready: true,
+    layoutError: false,
+    layoutMessage: "",
+    fontError: false,
+    fontStyle: { "--paper-font-serif": "serif" },
+    measureNode: null,
+  }),
+}));
 
 const selected: StudioProblem[] = [
   {

@@ -130,6 +130,7 @@ export function paginateAnswerPages(
       let count = 0;
       while (next < solutions.length) {
         const item = solutions[next];
+        if (page.keyRows.length && item.height > budget) break;
         const gap = count ? config.gap : 0;
         if (count && columnUsed + gap + item.height > budget) break;
         const scale = Math.min(1, budget / Math.max(1, item.height));

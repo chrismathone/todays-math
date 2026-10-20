@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { PaperStrip } from "@/components/paper-strip/PaperStrip";
 import type { StudioProblem } from "../types";
 import { AnswerPage } from "./AnswerPage";
+import { EnglishAnswerPage } from "./EnglishAnswerPage";
+import { useMeasuredAnswerPages } from "./useMeasuredAnswerPages";
 import WorkProgress from "../WorkProgress";
 import { TEMPLATE_COMPONENTS } from "./templateComponents";
 import { useMeasuredPages } from "./useMeasuredPages";
@@ -67,13 +69,20 @@ export function WorksheetPrint({
   }, [printMeta, title, selected]);
   const Template = TEMPLATE_COMPONENTS[options.template];
   const questions = useMeasuredPages(Template, problems, options, meta);
-  const answers = useMeasuredPages(
-    AnswerPage,
-    options.showAnswers ? problems : EMPTY,
+  const hasEnglish = problems.some((problem) => problem.variant.english);
+  const englishAnswers = useMeasuredPages(
+    EnglishAnswerPage,
+    hasEnglish && options.showAnswers ? problems : EMPTY,
     options,
     meta,
     true,
   );
+  const mathAnswers = useMeasuredAnswerPages(
+    !hasEnglish && options.showAnswers ? problems : EMPTY,
+    options,
+    meta,
+  );
+  const answers = hasEnglish ? englishAnswers : mathAnswers;
   const scaled =
     questions.pages.some((page) => page.scales.some((scale) => scale < 1)) ||
     answers.pages.some((page) => page.scales.some((scale) => scale < 1));
@@ -134,8 +143,13 @@ export function WorksheetPrint({
           columns={options.columns}
           meta={meta}
           options={{ ...options, solvingArea: "off" }}
-          problems={page.indices.map((index) => problems[index])}
-          startingNumber={page.indices[0] + 1}
+          problems={
+            "keyRows" in page
+              ? problems
+              : page.indices.map((index) => problems[index])
+          }
+          startingNumber={"keyRows" in page ? 1 : page.indices[0] + 1}
+          layout={"keyRows" in page ? page : undefined}
           splitIndex={page.splitIndex}
           itemScales={page.scales}
         />
@@ -169,7 +183,9 @@ export function WorksheetPrint({
         answers.layoutError) ? (
         questions.layoutError || answers.layoutError ? (
           <p className={editor.subtle} role="alert">
-            시험지 정보가 한 쪽보다 깁니다. 개념 정리나 제목을 줄여 주세요.
+            {mathAnswers.layoutError
+              ? mathAnswers.layoutMessage
+              : "시험지 정보가 한 쪽보다 깁니다. 개념 정리나 제목을 줄여 주세요."}
           </p>
         ) : (
           <WorkProgress
