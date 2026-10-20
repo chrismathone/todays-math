@@ -1,0 +1,86 @@
+{
+  "studentDigest": "a2c3f3460a1ab54eb4c521c45d0a2bc1cd526dcad64586761ca72c3f19dad519",
+  "solverId": "independent-helper-gachang-next2-student-only-20261020-r1",
+  "answer": "②",
+  "solution": "12u²v=6uv·2u이고 -18uv²=6uv·(-3v)이므로 12u²v-18uv²=6uv(2u-3v)이다. 따라서 ㉠에는 2u-3v가 들어간다. 여러 항으로 된 다항식을 인수의 곱으로 나타낸 (가)는 인수분해이고, 그 곱을 분배법칙으로 원래 다항식으로 나타낸 (나)는 전개이다. u나 v로 나누어 푼 것이 아니므로 u=0 또는 v=0인 경우에도 이 식은 성립한다. 보기 ①은 두 과정의 이름을 반대로 썼고, ③은 전개했을 때 둘째 항이 +18uv²가 되어 부호가 틀리다. ④는 (나)의 이름이 전개여야 하는데 인수분해라고 했다. ⑤는 전개하면 12u²v-18uv가 되어 v의 차수가 다르다. 식과 두 이름이 모두 맞는 것은 ②이다.",
+  "evidence": {
+    "exposure": {
+      "solverId": "independent-helper-gachang-next2-student-only-20261020-r1",
+      "history": "원문9개 구성요소, 이전 Gachang/Gangbuk 학생·저자검토와 원문 첫페이지를 보았으며 그 안의 다른 문항/손글씨가 부수적으로 노출되었다. 공개 엔진·관련 코드 감사와 current166 metadata/hash 이력도 있다. 이번 q04/q05와 유사한 기존 원문을 포함한 전체 corpus를 미노출이라고 주장하지 않는다.",
+      "currentNewAuthorAnswerSolutionPrivateExposed": false,
+      "currentScopeRead": "현재 r3 학생 JSON/manifest/brief3파일만 읽음. 현재 author/private/script/new source/root candidate/N/원문 body는 읽지 않음.",
+      "visualReviewPerformed": false,
+      "whyNoVisual": "PNG rendering deferred by supplied memory constraint; no figure files or PNGs supplied/used. Native Markdown table text inspected, not visual layout.",
+      "pixelOrImageMeasurementOracle": false,
+      "newApprovalCounts": 0
+    },
+    "allChoiceChecks": [
+      {
+        "choice": "①",
+        "expandedProduct": {
+          "1,2": "-18",
+          "2,1": "12"
+        },
+        "polynomialIdentity": true,
+        "processGaName": "전개",
+        "processNaName": "인수분해",
+        "bothNamesCorrect": false,
+        "fulfillsAllRoles": false
+      },
+      {
+        "choice": "②",
+        "expandedProduct": {
+          "1,2": "-18",
+          "2,1": "12"
+        },
+        "polynomialIdentity": true,
+        "processGaName": "인수분해",
+        "processNaName": "전개",
+        "bothNamesCorrect": true,
+        "fulfillsAllRoles": true
+      },
+      {
+        "choice": "③",
+        "expandedProduct": {
+          "1,2": "18",
+          "2,1": "12"
+        },
+        "polynomialIdentity": false,
+        "processGaName": "인수분해",
+        "processNaName": "전개",
+        "bothNamesCorrect": true,
+        "fulfillsAllRoles": false
+      },
+      {
+        "choice": "④",
+        "expandedProduct": {
+          "1,2": "-18",
+          "2,1": "12"
+        },
+        "polynomialIdentity": true,
+        "processGaName": "인수분해",
+        "processNaName": "인수분해",
+        "bothNamesCorrect": false,
+        "fulfillsAllRoles": false
+      },
+      {
+        "choice": "⑤",
+        "expandedProduct": {
+          "1,1": "-18",
+          "2,1": "12"
+        },
+        "polynomialIdentity": false,
+        "processGaName": "인수분해",
+        "processNaName": "전개",
+        "bothNamesCorrect": true,
+        "fulfillsAllRoles": false
+      }
+    ],
+    "recordChecks": null,
+    "domainAndUniqueness": "u,v는 다항식의 문자이며 모든 실수 대입에서 인수분해 항등식이 성립. uv=0이나2u-3v=0에서도 성립하며 변수로 나누지 않는다. 특수한 값에서 잘못된 보기의 수치도 같을 수 있으나 다항식 변형 전체의 항등식과 두 과정 이름을 모두 묻는다. 단위/양수길이조건 없음.",
+    "studentMethod": "2015M3 공통인수 인수분해/분배법칙 전개와 두 과정 이름의 뜻.",
+    "visualLimitation": "허용된 native table 텍스트만 읽음; PNG 미제공 및 메모리제약으로 시각/레이아웃 검토를 하지 않았다. 수학적 풀이 solved는 visual/grade/family/권리/native/release 승인 아님.",
+    "calculationScript": "../../own-raw-evidence-r1/own-calculate.py"
+  },
+  "status": "solved"
+}

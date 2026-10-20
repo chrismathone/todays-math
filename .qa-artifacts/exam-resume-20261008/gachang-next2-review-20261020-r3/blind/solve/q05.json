@@ -1,0 +1,114 @@
+{
+  "studentDigest": "aa9e5b58a8f301e3e062b296c25db6c01e0006191eae53bdd87587e39af1fa30",
+  "solverId": "independent-helper-gachang-next2-student-only-20261020-r1",
+  "answer": "④",
+  "solution": "완전제곱식의 곱셈공식 (px+qy)²=p²x²+2pqxy+q²y²를 이용한다. A는 4x²+12xy+9y²=(2x+3y)²이므로 기록한 k=12가 맞다. B는 (x/3-5y/2)²=x²/9-(5/3)xy+(25/4)y²이므로 k=-5/3의 기록이 맞다. C에서 9x²의 제곱 항을 3x로 놓으면 xy항 -12xy를 만들기 위해 다른 항은 -2y여야 한다. (3x-2y)²=9x²-12xy+4y²이므로 k=4이다. 첫 항을 -3x로 잡아도 다른 항은 2y가 되어 같은 제곱식이므로 k는 여전히 4로 유일하다. 기록한 C의 k=2만 틀렸다. A에서 가능한 k는 ±12이므로 보기 ①과 ②의 ±6은 맞지 않으며, A는 원래도 잘못된 행이 아니다. B에서는 가능한 k가 ±5/3이므로 ③의 -5/6은 틀리고 B의 원래 기록도 맞다. ④는 틀린 C행을 4로 고친 옳은 짝이다. ⑤의 k=16은 (3x±4y)²의 xy항이 ±24xy가 되어 주어진 -12xy와 맞지 않는다. 따라서 정답은 ④이다. 이 판단은 다항식 전체의 항등식에 대한 것으로, x나 y가 특정 값일 때만 제곱이 되는지를 묻는 것이 아니다.",
+  "evidence": {
+    "exposure": {
+      "solverId": "independent-helper-gachang-next2-student-only-20261020-r1",
+      "history": "원문9개 구성요소, 이전 Gachang/Gangbuk 학생·저자검토와 원문 첫페이지를 보았으며 그 안의 다른 문항/손글씨가 부수적으로 노출되었다. 공개 엔진·관련 코드 감사와 current166 metadata/hash 이력도 있다. 이번 q04/q05와 유사한 기존 원문을 포함한 전체 corpus를 미노출이라고 주장하지 않는다.",
+      "currentNewAuthorAnswerSolutionPrivateExposed": false,
+      "currentScopeRead": "현재 r3 학생 JSON/manifest/brief3파일만 읽음. 현재 author/private/script/new source/root candidate/N/원문 body는 읽지 않음.",
+      "visualReviewPerformed": false,
+      "whyNoVisual": "PNG rendering deferred by supplied memory constraint; no figure files or PNGs supplied/used. Native Markdown table text inspected, not visual layout.",
+      "pixelOrImageMeasurementOracle": false,
+      "newApprovalCounts": 0
+    },
+    "allChoiceChecks": [
+      {
+        "choice": "①",
+        "row": "A",
+        "proposedK": "6",
+        "rowActuallyWrong": false,
+        "wouldMakePolynomialSquare": false,
+        "fulfillsWrongRowAndCorrection": false
+      },
+      {
+        "choice": "②",
+        "row": "A",
+        "proposedK": "-6",
+        "rowActuallyWrong": false,
+        "wouldMakePolynomialSquare": false,
+        "fulfillsWrongRowAndCorrection": false
+      },
+      {
+        "choice": "③",
+        "row": "B",
+        "proposedK": "-5/6",
+        "rowActuallyWrong": false,
+        "wouldMakePolynomialSquare": false,
+        "fulfillsWrongRowAndCorrection": false
+      },
+      {
+        "choice": "④",
+        "row": "C",
+        "proposedK": "4",
+        "rowActuallyWrong": true,
+        "wouldMakePolynomialSquare": true,
+        "fulfillsWrongRowAndCorrection": true
+      },
+      {
+        "choice": "⑤",
+        "row": "C",
+        "proposedK": "16",
+        "rowActuallyWrong": true,
+        "wouldMakePolynomialSquare": false,
+        "fulfillsWrongRowAndCorrection": false
+      }
+    ],
+    "recordChecks": [
+      {
+        "row": "A",
+        "recordedK": "12",
+        "coefficientsConstantOrder": "x²,xy,y²",
+        "recordedCoefficients": [
+          "4",
+          "12",
+          "9"
+        ],
+        "squareWitness": "(2x+3y)^2",
+        "validRecord": true,
+        "allPossibleK": [
+          "12",
+          "-12"
+        ]
+      },
+      {
+        "row": "B",
+        "recordedK": "-5/3",
+        "coefficientsConstantOrder": "x²,xy,y²",
+        "recordedCoefficients": [
+          "1/9",
+          "-5/3",
+          "25/4"
+        ],
+        "squareWitness": "(x/3-5y/2)^2",
+        "validRecord": true,
+        "allPossibleK": [
+          "5/3",
+          "-5/3"
+        ]
+      },
+      {
+        "row": "C",
+        "recordedK": "2",
+        "coefficientsConstantOrder": "x²,xy,y²",
+        "recordedCoefficients": [
+          "9",
+          "-12",
+          "2"
+        ],
+        "squareWitnessAfterCorrection": "(3x-2y)^2",
+        "validRecord": false,
+        "allPossibleK": [
+          "4"
+        ]
+      }
+    ],
+    "domainAndUniqueness": "x,y는 다항식의 문자, k는 상수. 분모9,4,3,2,6은 고정 비영수. A/B의 가능한k는각각±12/±5/3이라 기록값이맞고, C는xy항으로제곱안의y계수가±2로정해져k4만가능. 유일한 잘못된행C와 수정4의 짝④만답. x=0/y=0의 특수대입을 다항식 항등식 판단으로 오인하지 않는다.",
+    "studentMethod": "2015M3 완전제곱식 곱셈공식의 전개·분수/부호연산·간단한 일차계수 확인. 판별식/근의합곱/고등학교 공식 불필요.",
+    "visualLimitation": "허용된 native table 텍스트만 읽음; PNG 미제공 및 메모리제약으로 시각/레이아웃 검토를 하지 않았다. 수학적 풀이 solved는 visual/grade/family/권리/native/release 승인 아님.",
+    "calculationScript": "../../own-raw-evidence-r1/own-calculate.py"
+  },
+  "status": "solved"
+}

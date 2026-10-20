@@ -1,0 +1,470 @@
+{
+  "inputHashesBefore": [
+    {
+      "path": "blind\\SOLVE-BRIEF.md",
+      "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+    },
+    {
+      "path": "blind\\student-problems.json",
+      "sha256": "01e83d46e2d87042b40e0fafadca1a3599fd1dbe80d2db1c0f0ef5b6030d6ed9"
+    },
+    {
+      "path": "blind\\blind-manifest.json",
+      "sha256": "c749988c99f0bb3ba9cc7f24aa8f32e94fe74962333e98b282a152ad38bc9c36"
+    }
+  ],
+  "inputHashesAfter": [
+    {
+      "path": "blind\\SOLVE-BRIEF.md",
+      "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+    },
+    {
+      "path": "blind\\student-problems.json",
+      "sha256": "01e83d46e2d87042b40e0fafadca1a3599fd1dbe80d2db1c0f0ef5b6030d6ed9"
+    },
+    {
+      "path": "blind\\blind-manifest.json",
+      "sha256": "c749988c99f0bb3ba9cc7f24aa8f32e94fe74962333e98b282a152ad38bc9c36"
+    }
+  ],
+  "passed": 67,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "q04 exact factor identity",
+      "passed": true
+    },
+    {
+      "id": "q04 only correct expression-and-two-names",
+      "passed": true
+    },
+    {
+      "id": "q04 sign-error expansion",
+      "passed": true
+    },
+    {
+      "id": "q04 missing-v expansion",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -2,-2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -2,-1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -2,0",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -2,1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -2,2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -2,3/2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -1,-2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -1,-1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -1,0",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -1,1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -1,2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness -1,3/2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 0,-2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 0,-1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 0,0",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 0,1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 0,2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 0,3/2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 1,-2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 1,-1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 1,0",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 1,1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 1,2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 1,3/2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 2,-2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 2,-1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 2,0",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 2,1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 2,2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 2,3/2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 3/2,-2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 3/2,-1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 3/2,0",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 3/2,1",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 3/2,2",
+      "passed": true
+    },
+    {
+      "id": "q04 identity witness 3/2,3/2",
+      "passed": true
+    },
+    {
+      "id": "q04 zero blank witness",
+      "passed": true
+    },
+    {
+      "id": "q05 A expansion",
+      "passed": true
+    },
+    {
+      "id": "q05 B fractional negative expansion",
+      "passed": true
+    },
+    {
+      "id": "q05 C corrected expansion",
+      "passed": true
+    },
+    {
+      "id": "q05 C y coefficient forced",
+      "passed": true
+    },
+    {
+      "id": "q05 unique incorrect row",
+      "passed": true
+    },
+    {
+      "id": "q05 C recorded2 mismatch",
+      "passed": true
+    },
+    {
+      "id": "q05 A negative alternate",
+      "passed": true
+    },
+    {
+      "id": "q05 B positive alternate",
+      "passed": true
+    },
+    {
+      "id": "q05 only correct correction",
+      "passed": true
+    },
+    {
+      "id": "q05 fractions denominators fixed nonzero",
+      "passed": true
+    },
+    {
+      "id": "q05 C16 forced cross term differs",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness A/0,0",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness B/0,0",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness C/0,0",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness A/0,-2",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness B/0,-2",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness C/0,-2",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness A/-3,0",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness B/-3,0",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness C/-3,0",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness A/-2,3",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness B/-2,3",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness C/-2,3",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness A/1/2,-3/2",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness B/1/2,-3/2",
+      "passed": true
+    },
+    {
+      "id": "q05 identity witness C/1/2,-3/2",
+      "passed": true
+    }
+  ],
+  "q04AllChoices": [
+    {
+      "choice": "①",
+      "expandedProduct": {
+        "1,2": "-18",
+        "2,1": "12"
+      },
+      "polynomialIdentity": true,
+      "processGaName": "전개",
+      "processNaName": "인수분해",
+      "bothNamesCorrect": false,
+      "fulfillsAllRoles": false
+    },
+    {
+      "choice": "②",
+      "expandedProduct": {
+        "1,2": "-18",
+        "2,1": "12"
+      },
+      "polynomialIdentity": true,
+      "processGaName": "인수분해",
+      "processNaName": "전개",
+      "bothNamesCorrect": true,
+      "fulfillsAllRoles": true
+    },
+    {
+      "choice": "③",
+      "expandedProduct": {
+        "1,2": "18",
+        "2,1": "12"
+      },
+      "polynomialIdentity": false,
+      "processGaName": "인수분해",
+      "processNaName": "전개",
+      "bothNamesCorrect": true,
+      "fulfillsAllRoles": false
+    },
+    {
+      "choice": "④",
+      "expandedProduct": {
+        "1,2": "-18",
+        "2,1": "12"
+      },
+      "polynomialIdentity": true,
+      "processGaName": "인수분해",
+      "processNaName": "인수분해",
+      "bothNamesCorrect": false,
+      "fulfillsAllRoles": false
+    },
+    {
+      "choice": "⑤",
+      "expandedProduct": {
+        "1,1": "-18",
+        "2,1": "12"
+      },
+      "polynomialIdentity": false,
+      "processGaName": "인수분해",
+      "processNaName": "전개",
+      "bothNamesCorrect": true,
+      "fulfillsAllRoles": false
+    }
+  ],
+  "q05Records": [
+    {
+      "row": "A",
+      "recordedK": "12",
+      "coefficientsConstantOrder": "x²,xy,y²",
+      "recordedCoefficients": [
+        "4",
+        "12",
+        "9"
+      ],
+      "squareWitness": "(2x+3y)^2",
+      "validRecord": true,
+      "allPossibleK": [
+        "12",
+        "-12"
+      ]
+    },
+    {
+      "row": "B",
+      "recordedK": "-5/3",
+      "coefficientsConstantOrder": "x²,xy,y²",
+      "recordedCoefficients": [
+        "1/9",
+        "-5/3",
+        "25/4"
+      ],
+      "squareWitness": "(x/3-5y/2)^2",
+      "validRecord": true,
+      "allPossibleK": [
+        "5/3",
+        "-5/3"
+      ]
+    },
+    {
+      "row": "C",
+      "recordedK": "2",
+      "coefficientsConstantOrder": "x²,xy,y²",
+      "recordedCoefficients": [
+        "9",
+        "-12",
+        "2"
+      ],
+      "squareWitnessAfterCorrection": "(3x-2y)^2",
+      "validRecord": false,
+      "allPossibleK": [
+        "4"
+      ]
+    }
+  ],
+  "q05AllChoices": [
+    {
+      "choice": "①",
+      "row": "A",
+      "proposedK": "6",
+      "rowActuallyWrong": false,
+      "wouldMakePolynomialSquare": false,
+      "fulfillsWrongRowAndCorrection": false
+    },
+    {
+      "choice": "②",
+      "row": "A",
+      "proposedK": "-6",
+      "rowActuallyWrong": false,
+      "wouldMakePolynomialSquare": false,
+      "fulfillsWrongRowAndCorrection": false
+    },
+    {
+      "choice": "③",
+      "row": "B",
+      "proposedK": "-5/6",
+      "rowActuallyWrong": false,
+      "wouldMakePolynomialSquare": false,
+      "fulfillsWrongRowAndCorrection": false
+    },
+    {
+      "choice": "④",
+      "row": "C",
+      "proposedK": "4",
+      "rowActuallyWrong": true,
+      "wouldMakePolynomialSquare": true,
+      "fulfillsWrongRowAndCorrection": true
+    },
+    {
+      "choice": "⑤",
+      "row": "C",
+      "proposedK": "16",
+      "rowActuallyWrong": true,
+      "wouldMakePolynomialSquare": false,
+      "fulfillsWrongRowAndCorrection": false
+    }
+  ],
+  "exactMethod": "Own Fraction and bivariate polynomial coefficient convolution; evaluations only supplementary checks, not definition or floating/pixel oracle.",
+  "currentAuthorExposure": false,
+  "visualReviewPerformed": false,
+  "scriptSHA256": "c7d75b8145faab2c9b47fce641dfc8b078c9b22565bf1ea7bcf74afb52dd3292",
+  "utf8ProbeSHA256": "fe9c63e27be62969dcca6d972fc65c8cc9bbf93618f9191d46ce532dc2f985c6",
+  "raws": [
+    {
+      "path": "blind/solve/q04.json",
+      "sha256": "9bcd6e58c17672d2b7e35e04f935dc04532f389376f8445b250227d199e3edbc"
+    },
+    {
+      "path": "blind/solve/q05.json",
+      "sha256": "9de9fedc0088ba2cb30ee58287fb41eb06447ca971b5492e4604b47f7d5a7dac"
+    }
+  ]
+}
