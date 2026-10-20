@@ -4,6 +4,7 @@ import type { ElemProblem } from "../../elementary/types";
 import { fig, make } from "../../elementary/make";
 import { n } from "../../elementary/format";
 import { createRng, intBetween } from "../../elementary/rng";
+import { mixedSubtractionFrames } from "./mixedSubtractionFrames";
 
 export function extraFirstSemesterFrames(
   unit: UnitSeed,
@@ -11,6 +12,8 @@ export function extraFirstSemesterFrames(
   tier: ElemTier,
 ): ElemProblem[] {
   const code = unit.section.split(" ")[0];
+  if (code === "1-5-4" && tier === "응용")
+    return mixedSubtractionFrames(unit, seed);
   const rng = createRng(seed);
   if (code === "1-4-2") {
     const den = [3, 5, 7, 11][intBetween(rng, 0, 3)];

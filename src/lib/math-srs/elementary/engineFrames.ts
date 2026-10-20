@@ -20,6 +20,7 @@ const CHAPTERS = new Set([
   "1-2",
   "1-3",
   "1-4",
+  "1-5",
 ]);
 
 // Incomplete conditions or questions that only count objects without using the concept.

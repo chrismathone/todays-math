@@ -22,7 +22,7 @@ const sections = COURSE_SECTIONS.filter((s) => s.grade === 5);
 const enabled = sections.filter(
   (s) =>
     s.semester === 2 ||
-    ["5-1-1", "5-1-2", "5-1-3", "5-1-4"].includes(s.chapterId),
+    ["5-1-1", "5-1-2", "5-1-3", "5-1-4", "5-1-5"].includes(s.chapterId),
 );
 
 describe("SRS-only grade-five engine frames", () => {
