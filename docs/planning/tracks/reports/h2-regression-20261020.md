@@ -55,7 +55,7 @@ node scripts/qa/print-templates/run-h2-regressions.mjs
 | branchLibrary API | 18 | 작업트리의 생성 Prisma 런타임에 `Prisma.sql`이 없어 실패. main의 node_modules에는 함수가 있음 |
 | workspaceArithmeticV2 API | 5 | 400 응답 때 오류 기록이 한 번 호출되는데 시험은 호출 없음으로 기대 |
 
-추가 API 실패의 시험·API·lib·contract·mock·Vitest 설정·Prisma schema·package 소스는 `git diff origin/main HEAD -- ...`로 **차이 0**을 확인했다. H2 변경이 서버/API 경로를 바꾼 것으로 보고하지 않는다. 다만 API 23개를 별도 main 실행으로 재확인한 것은 아니다. 다른 무거운 단계로 메모리가 0.3GiB까지 낮아져 추가 실행을 시작하지 않았다. `Prisma.sql`의 local=undefined / main=function은 같은 Node에서 읽기 전용으로 확인했다. install·Prisma 생성·API 제품 코드는 수정하지 않았다.
+추가 API 실패의 시험·API·lib·contract·mock·Vitest 설정·Prisma schema·package 소스는 `git diff origin/main HEAD -- ...`로 **차이 0**을 확인했다. 메모리가 0.3GiB였을 때는 추가 실행을 보류했고, 6.28GiB로 회복한 뒤 **기존 main 작업공간**(`D:/todays-math`, HEAD=`ed17a8acb`)에서 두 API 파일을 같은 `--maxWorkers=2`로 실행했다. 새 작업트리는 만들지 않았다. 결과는 **82 통과 / 5 실패**: branchLibrary **66/66 통과**, workspaceArithmeticV2 **16 통과 / 같은 5실패**였다. 따라서 추가 18개는 이 작업트리의 Prisma 런타임 환경 차이, 나머지 5개는 main에서도 재현된 기존 API 기대 실패로 구분된다. `Prisma.sql`의 local=undefined / main=function도 같은 Node에서 읽기 전용으로 확인했다. install·Prisma 생성·API 제품 코드는 수정하지 않았다.
 
 보류 3개는 `textbookRecoveryAnswerCheckHeading.integration.test.ts`의 기존 skipped 시험이다. 임의 제외나 새 skip을 추가하지 않았다.
 

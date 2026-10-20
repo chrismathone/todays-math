@@ -1164,5 +1164,23 @@
   "prismaSqlEnvironment": {
     "local": "undefined",
     "main": "function"
+  },
+  "mainApi": {
+    "commit": "ed17a8acbfa15712888e681f5cb561ab5560bfe5",
+    "checkout": "existing main, no new worktree",
+    "passed": 82,
+    "failed": 5,
+    "files": [
+      {
+        "file": "src/__tests__/api/branchLibrary.test.ts",
+        "passed": 66,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/api/workspaceArithmeticV2.test.ts",
+        "passed": 16,
+        "failed": 5
+      }
+    ]
   }
 }
