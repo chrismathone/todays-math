@@ -8,7 +8,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { ExamBuilderSource, ExamScope } from "./types";
+import type { ExamBuilderSource, ExamScope, ExamScopeBranch } from "./types";
 import { canSelectScope } from "./scopeAvailability";
 import s from "./ExamBuilder.module.css";
 
@@ -65,8 +65,8 @@ export default function ScopeSequencePicker({
   const [pathResult, setPathResult] = useState<{
     navigation: typeof navigation;
     key: string;
-    groups?: string[];
-    details?: string[];
+    groups?: ExamScopeBranch[];
+    details?: ExamScopeBranch[];
     scopes?: ExamScope[];
     error?: string;
   }>();
@@ -172,7 +172,7 @@ export default function ScopeSequencePicker({
     setStage(next);
     setFocusRequest((value) => value + 1);
   }
-  function availability(rows: ExamScope[]) {
+  function availability(rows: Pick<ExamScope, "count">[]) {
     return rows.some((scope) => canSelectScope(scope, true))
       ? ""
       : rows.every((scope) => scope.count === 0)
@@ -243,9 +243,13 @@ export default function ScopeSequencePicker({
                 tabIndex={0}
               >
                 {stage === "group" &&
-                  groups.map((value) => {
+                  groups.map((branch) => {
+                    const value =
+                      typeof branch === "string" ? branch : branch.label;
                     const suffix = navigation
-                      ? ""
+                      ? typeof branch === "string"
+                        ? ""
+                        : availability([branch])
                       : availability(
                           scopes.filter((scope) => scope.group === value),
                         );
@@ -269,9 +273,13 @@ export default function ScopeSequencePicker({
                     );
                   })}
                 {stage === "detail" &&
-                  details.map((value) => {
+                  details.map((branch) => {
+                    const value =
+                      typeof branch === "string" ? branch : branch.label;
                     const suffix = navigation
-                      ? ""
+                      ? typeof branch === "string"
+                        ? ""
+                        : availability([branch])
                       : availability(
                           inGroup.filter(
                             (scope) => (scope.detail ?? "") === value,

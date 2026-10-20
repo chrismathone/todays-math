@@ -189,6 +189,165 @@ const query = (extra: Record<string, string> = {}) =>
   });
 
 describe("S2 curriculum demand reads", () => {
+  it("returns zero for elementary grade 1 and eligible textbooks for grade 3 through the authorized route", async () => {
+    await seedBuilderSpeedFixture(8);
+    const first = await db.unit.update({
+      where: { id: MOCK_UNITS[0].id },
+      data: {
+        grade: "초1",
+        orderIndex: 1,
+      },
+    });
+    const third = await db.unit.update({
+      where: { id: MOCK_UNITS[2].id },
+      data: {
+        grade: "초3",
+        orderIndex: 3,
+      },
+    });
+    // Fixture row 7 is an approved, directly usable short-answer textbook question.
+    await db.problem.update({
+      where: { id: builderId(7) },
+      data: { unitId: third.id },
+    });
+    await db.problem.update({
+      where: { id: builderId(2) },
+      data: { unitId: first.id, source: "manual" },
+    });
+    const params = query({
+      ...Object.fromEntries(builderParams({ sourceGroup: "school_textbook" })),
+      availability: "1",
+    });
+    access.mockResolvedValue({
+      user: { id: "10000000-0000-4000-8000-000000000001" },
+    });
+    const response = await studioGet(
+      new Request(`http://localhost/api/studio/problems?${params}`),
+    );
+    expect(response.status).toBe(200);
+    const result = unifiedBankCurriculumSchema.parse(await response.json());
+    expect(result.gradeCounts).toMatchObject({ 초1: 0, 초3: 1 });
+    const scopeParams = new URLSearchParams(params);
+    scopeParams.delete("availability");
+    scopeParams.set("view", "scope-counts");
+    scopeParams.set("unitIds", `${first.id},${third.id}`);
+    const counts = await loadQuestionScopeCounts(scopeParams);
+    expect(counts.unitCounts[first.id] ?? 0).toBe(0);
+    expect(counts.unitCounts[third.id]).toBe(1);
+  });
+
+  it("keeps legacy strict response shape and treats absent availability as unknown", async () => {
+    const legacy = await loadUnifiedBankCurriculum(query());
+    expect(Object.keys(legacy)).toEqual([
+      "view",
+      "grades",
+      "chapters",
+      "units",
+    ]);
+    const oldStrictSchema = unifiedBankCurriculumSchema.omit({
+      gradeCounts: true,
+      chapterCounts: true,
+    });
+    expect(oldStrictSchema.parse(legacy)).toEqual(legacy);
+    expect(
+      unifiedBankCurriculumSchema.parse(legacy).gradeCounts,
+    ).toBeUndefined();
+    expect(
+      unifiedBankCurriculumSchema.parse(legacy).chapterCounts,
+    ).toBeUndefined();
+  });
+
+  it.each<Record<string, string>>([
+    {},
+    { sourceGroup: "engine" },
+    { sourceGroup: "school_textbook" },
+    { recent: "1" },
+    { availableFormat: "multiple_choice" },
+    {
+      sourceGroup: "school_textbook",
+      books: "00000000-0000-4000-8000-000000000001",
+      materials: "00000000-0000-4000-8000-000000000002",
+      materialKinds: "기초 연산",
+    },
+  ])(
+    "opt-in grouped counts equal scope-counts with identical filters and account: %j",
+    async (filters) => {
+      await seedBuilderSpeedFixture();
+      const context = {
+        recentProblemIds: vi.fn(async () => [builderId(6), builderId(10)]),
+      };
+      const allUnits = await db.unit.findMany({});
+      const base = Object.fromEntries(builderParams(filters));
+      const scopes = await loadQuestionScopeCounts(
+        new URLSearchParams({
+          ...base,
+          view: "scope-counts",
+          unitIds: allUnits.map((u) => u.id).join(","),
+        }),
+        context,
+      );
+      const expected = (field: "grade" | "chapter", value: string) =>
+        allUnits
+          .filter((u) => u[field] === value)
+          .reduce((sum, u) => sum + (scopes.unitCounts[u.id] ?? 0), 0);
+      const grades = await loadUnifiedBankCurriculum(
+        query({ ...base, availability: "1" }),
+        context,
+      );
+      expect(unifiedBankCurriculumSchema.parse(grades)).toEqual(grades);
+      expect(grades.gradeCounts).toEqual(
+        Object.fromEntries(grades.grades.map((g) => [g, expected("grade", g)])),
+      );
+      const grade = MOCK_UNITS[0].grade;
+      const chapters = await loadUnifiedBankCurriculum(
+        query({ ...base, availability: "1", grade }),
+        context,
+      );
+      expect(chapters.chapterCounts).toEqual(
+        Object.fromEntries(
+          chapters.chapters.map((c) => [
+            c,
+            allUnits
+              .filter((u) => u.grade === grade && u.chapter === c)
+              .reduce((sum, u) => sum + (scopes.unitCounts[u.id] ?? 0), 0),
+          ]),
+        ),
+      );
+      if (filters.recent)
+        expect(context.recentProblemIds).toHaveBeenCalledTimes(3);
+    },
+  );
+
+  it("keeps empty grades and chapters in navigation with explicit zero counts", async () => {
+    const legacy = await loadUnifiedBankCurriculum(query());
+    const empty = await loadUnifiedBankCurriculum(
+      query({ availability: "1", q: "no-scope-availability-match-20261020" }),
+    );
+    expect(empty.grades).toEqual(legacy.grades);
+    expect(empty.gradeCounts).toEqual(
+      Object.fromEntries(legacy.grades.map((g) => [g, 0])),
+    );
+    const grade = MOCK_UNITS[0].grade;
+    const chapters = await loadUnifiedBankCurriculum(query({ grade }));
+    const emptyChapters = await loadUnifiedBankCurriculum(
+      query({
+        grade,
+        availability: "1",
+        q: "no-scope-availability-match-20261020",
+      }),
+    );
+    expect(emptyChapters.chapters).toEqual(chapters.chapters);
+    expect(emptyChapters.chapterCounts).toEqual(
+      Object.fromEntries(chapters.chapters.map((c) => [c, 0])),
+    );
+  });
+
+  it("rejects opt-in recent filtering without authenticated context", async () => {
+    await expect(
+      loadUnifiedBankCurriculum(query({ availability: "1", recent: "1" })),
+    ).rejects.toThrow("계정");
+  });
+
   it("reads grade names, then chapters, then just the selected lesson metadata without any problem read or tally", async () => {
     const problemRows = vi.spyOn(db.problem, "findMany");
     const counts = vi.spyOn(db.problem, "count");
@@ -260,6 +419,9 @@ describe("S2 curriculum demand reads", () => {
 
   it.each([
     "view=curriculum",
+    "identity=question&view=curriculum&availability=0",
+    "identity=question&view=curriculum&availability=1&arbitrary=1",
+    "identity=question&view=curriculum&availability=1&books=invalid",
     "identity=question&view=curriculum&recent=1",
     "identity=question&view=curriculum&chapter=one",
     "identity=question&view=curriculum&unitIds=invalid",

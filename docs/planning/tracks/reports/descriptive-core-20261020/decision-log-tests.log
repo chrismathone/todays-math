@@ -1,0 +1,15 @@
+
+> todays-math@0.1.0 test
+> node scripts/qa/run-tests.mjs src/__tests__/unit/decisionLogNumbers.test.ts
+
+
+ RUN  v4.1.11 /Users/pss/Desktop/creative/today-desc-core
+
+ ✓ src/__tests__/unit/decisionLogNumbers.test.ts (5 tests) 90ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  16:02:33
+   Duration  598ms (transform 210ms, setup 284ms, import 4ms, tests 90ms, environment 172ms)
+
+JSON report written to /var/folders/yx/bh5nhdtj7xz72rx_1rzymc4m0000gn/T/vitest-gate-u0Vk3I/result.json

@@ -1,0 +1,133 @@
+ Test Files  26 failed | 1585 passed | 32 skipped (1643)
+      Tests  121 failed | 42064 passed | 371 skipped (42557)
+   Start at  15:53:49
+   Duration  492.95s (transform 37.63s, setup 277.60s, import 186.26s, tests 1101.05s, environment 298.74s)
+
+JSON report written to /var/folders/yx/bh5nhdtj7xz72rx_1rzymc4m0000gn/T/vitest-gate-wJOqoL/result.json
+판정기 37개를 실데이터에 댔다 · 빨강 1 · 울타리 2
+
+⚠️ 울타리에 걸려 **못 잰** 판정기 2개 — 결함이 아니지만 «깨끗»도 아니다. 사유는 판정기가 말한 그대로다:
+   · probe-middle-algebra-combo.ts
+     ⛔ 울타리 — 말뭉치가 없다: C:/tmp/middle-combo/corpus-0825.json
+        이 판정기는 저장소 밖 말뭉치를 읽는다. 아래로 만든 뒤 다시 돌린다(약 1분 · 토큰 0):
+          npx tsx scripts/qa/build-middle-corpus.ts --out=C:/tmp/middle-combo/corpus-0825.json
+        ⚠️ 말뭉치는 **낡는다.** 생성기가 바뀐 뒤의 것을 써야 한다 — 이어받는 날 다시 만들 것.
+        (눈금은 말뭉치 없이 돈다: --selftest)
+   · probe-middle-combo.ts
+     울타리 — 읽을 파일이 없어 못 돈다 (2개 없음)
+        없음: /Users/pss/Desktop/creative/today-desc-core/C:/tmp/middle-combo/today-desc-core-c2f81b0d/corpus.json
+          → npx tsx scripts/qa/build-middle-corpus.ts
+        없음: /Users/pss/Desktop/creative/today-desc-core/C:/tmp/middle-combo/today-desc-core-c2f81b0d/solution-vocab2.json
+          → npx tsx scripts/qa/census-middle-solution-vocab.ts
+
+🔴 판정기가 결함을 찾았다 —
+   · probe-figure-dependent.ts (종료 143) — · 그림 있음           24341 / · 그림 없음           91380   ← 이 도구의 대상 / · elem:초3|1-2-5 정사각형 알아보기|04  E30205-A04-003 / · elem:초3|1-2-5 정사각형 알아보기|08  E30205-A08-001
+
+   (이 쓸기는 `scripts/qa/sweep-elem-probes.mjs` 다.
+    해당 판정기를 직접 돌려 자리를 보라: `npx tsx scripts/qa/<이름>.ts`)
+
+🔴 게이트가 막는다 —
+   · 실패한 파일 26개 · 스위트 66개 (스위트는 describe 블록 수다)
+       ⏱ 그중 **1/121건이 «시간 초과»로 보인다**(20초 이상 걸렸다) — 틀린 것과 다르다.
+         다른 세션이 CPU 를 같이 쓰면 난다. **그 파일만 단독으로 다시 돌려** 보라:
+         npx vitest run <파일> --reporter=dot
+         단독으로 통과하면 부하 경합이다(고칠 것이 없다). 그래도 빨가면 진짜다.
+       · src/__tests__/api/adminSeesAll.test.ts
+         ✕ D-130 쓰기 — '관리자' 남의 반에 출제한다 — 🔴 시험지 소유자는 **반의 소유자**다(역할 계정 화면에서도 보인다)
+         ✕ D-130 쓰기 — '관리자' 남의 시험지 문항을 바꾸고 확정하고 인쇄한다
+         ✕ D-130 ⑸ 아침 8시 자동 초안 — 소유자가 '관리자' 전 반을 돈다 — 시험지는 그 반 소유자 것
+         ✕ D-130 ⑶ 개인 작업물은 넘지 않는다 — '관리자 아님' 장바구니 — 남의 바구니는 안 보이고, 내 바구니로 남의 반 시험지를 못 만든다
+         ✕ D-130 ⑶ 개인 작업물은 넘지 않는다 — '관리자' 장바구니 — 남의 바구니는 안 보이고, 내 바구니로 남의 반 시험지를 못 만든다
+       · src/__tests__/api/autoDraftCron.test.ts
+         ✕ [매일 자동 출제 ③] GET /api/tests/auto-draft/cron — 아침 8시 초안 계획이 있는 학생에게 초안을 세운다 — 진도 기록을 기다리지 않는다
+         ✕ [매일 자동 출제 ③] GET /api/tests/auto-draft/cron — 아침 8시 초안 초안까지만 — 확정·인쇄를 부르지 않는다
+         ✕ [매일 자동 출제 ③] GET /api/tests/auto-draft/cron — 아침 8시 초안 같은 날 두 번 돌려도 하나다 — 이미 있으면 «already» 로 건너뛴다
+         ✕ [매일 자동 출제 ③] GET /api/tests/auto-draft/cron — 아침 8시 초안 회차 기록에 만든 수·건너뛴 까닭이 남는다
+         ✕ [D-133] 아침 회차 — 만든 초안마다 회차 id · 합계는 끝에서 🔴 합계는 끝에서 고쳐 쓴다 — 회차 행이 응답과 같다(합계 0 으로 남지 않는다)
+       · src/__tests__/api/autoDraftRunLink.test.ts
+         ✕ [D-133] 시험지의 아침 회차 칸 — test.auto_draft_run_id 🔴 단추 길(POST /api/tests/generate)로 선 시험지는 칸이 비어 있다 — 같은 날 아침 회차가 있어도
+         ✕ [D-133] 시험지의 아침 회차 칸 — test.auto_draft_run_id 응답 계약에는 칸이 없다 — 화면은 daily-review 의 autoDraft 만 본다
+         ✕ [D-133] 시험지의 아침 회차 칸 — test.auto_draft_run_id 서버 안 인자로 넘긴 회차 id 만 시험지에 적힌다
+         ✕ [D-133] 시험지의 아침 회차 칸 — test.auto_draft_run_id 인자를 안 넘기면 칸이 비어 있다
+         ✕ [D-133] 시험지의 아침 회차 칸 — test.auto_draft_run_id 없는 회차 id 는 FK 가 막는다(P2003) — 시험지도 문항도 남지 않는다
+       · src/__tests__/api/basket.test.ts
+         ✕ POST /api/basket — 담기 담으면 «담은 뒤의 바구니»가 통째로 온다 — 화면이 다시 안 물어도 된다
+         ✕ POST /api/basket — 담기 🔴 적힌 수의 **합이 곧 `total`** 이다
+         ✕ POST /api/basket — 담기 🔴 **멱등** — 같은 문항을 두 번 담아도 한 칸이고 차례가 안 바뀐다
+         ✕ POST /api/basket — 담기 🔴 차례는 **최댓값+1** 이다 — 구멍이 있어도 부딪히지 않는다
+         ✕ POST /api/basket — 담기 공유 풀이면 **남의 문항도** 담을 수 있다 (D-31)
+       · src/__tests__/api/defaultReviewRange.test.ts
+         ✕ [S-04] GET /api/tests/default-range — 확인테스트 기본 범위 확정하지 않은 초안 확인테스트는 기본 범위를 밀어내지 않는다
+       · src/__tests__/api/questionBasket.test.ts
+         ✕ one question in the account basket shows an old double-format basket as one unresolved question and does not clean it on GET
+         ✕ one question in the account basket rejects an alternate format as an extra item; an explicit switch preserves its seat
+         ✕ one question in the account basket keeps the basket and creates no test when the actual selection became stale
+         ✕ one question in the account basket blocks duplicate-format issuance even for a legacy request without new metadata
+       · src/__tests__/api/questionDaily.test.ts
+         ✕ daily/review issuance formats issues actual choice rows and keeps that format on replacement
+       · src/__tests__/api/test.test.ts
+         ✕ [T4.2] POST /api/tests/generate — draft TEST + TEST_PROBLEM 생성 정상 요청이면 draft 테스트와 문항을 생성한다(201, shortfall=[])
+         ✕ [T4.2] POST /api/tests/generate — draft TEST + TEST_PROBLEM 생성 진도가 없는 반 🔴 확인테스트에 범위를 직접 주면 만들어진다 — 화면이 「고치기로 직접 고르세요」라고 안내하는 그 길
+         ✕ [T4.2] POST /api/tests/generate — draft TEST + TEST_PROBLEM 생성 진도가 없는 반 🔴 진도가 있는 반이어도 **요청한 범위**가 시험지에 적힌다
+         ✕ [T4.2] PUT /api/tests/{id}/problems/{seq} — 1클릭 교체(중복 제외 유지) 교체하면 modified=true, 해당 문항 replaced=true가 된다
+         ✕ [T4.2] PUT /api/tests/{id}/problems/{seq} — 1클릭 교체(중복 제외 유지) 교체는 같은 단원 안에서만 한다 — 범위 밖 문항이 들어오지 않는다
+       · src/__tests__/components/JeongtongHeader.test.tsx
+         ✕ school exam header prints each exam field once in the table, including the semester
+       · src/__tests__/components/ProblemSourceReference.test.tsx
+         ✕ teacher problem source references shows the same supplied reference in a bank card and its selected detail without a request
+         ✕ teacher problem source references keeps a missing exam readable through its source code in the selected detail
+         ✕ teacher problem source references omits the reference row in the selected detail when the response has none
+       · src/__tests__/components/mathgenTemplates.test.tsx
+         ✕ original Mathgen template adapters renders workbook with real metadata and the unchanged crop
+         ✕ original Mathgen template adapters renders jaseup with real metadata and the unchanged crop
+         ✕ original Mathgen template adapters renders yuhyung with real metadata and the unchanged crop
+       · src/__tests__/components/mixedFractionScreens.test.tsx
+         ✕ 배선 — 단원 목록으로 학년을 찾아 카드에 넘긴다 문제은행(/problems)
+       · src/__tests__/components/perProblemFractionView.test.tsx
+         ✕ 같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '초6 «(가분수)÷(분수)» — 해설이 «가분수»를 부른다'
+         ✕ 같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '초4 받아내림 — 이름을 안 부른다(«고칩니다»)'
+         ✕ 같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '초4 받아내림 — 본문이 «대분수»를 부른다'
+         ✕ 같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '평범한 초5'
+         ✕ 같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '중1'
+       · src/__tests__/unit/arithmeticV2Geometry.test.ts
+         ✕ live geometry arithmetic projects saved SVG and degree answers without calling a geometry generator
+       · src/__tests__/unit/bankDecideMiddleLoader.test.ts
+         ✕ B5: 중등 적재 행의 실제 오답 배선 등록 유형 전부 × 씨앗 세 개: 삼각비 18 객관식 외의 산출은 한 글자도 바뀌지 않는다
+       · src/__tests__/unit/decisionLogNumbers.test.ts
+         ✕ [등록부] Decision Log 번호는 겹치지 않는다 머리글이 말하는 범위가 표와 맞는다 — 낡은 머리글이 겹친 번호를 부른다
+       · src/__tests__/unit/examStudyCompletion.test.ts
+         ✕ completed selected school-study demands through the actual API fulfills every selected demand for 'daeryun-m1'
+         ✕ completed selected school-study demands through the actual API fulfills every selected demand for 'daeryun-m2'
+         ✕ completed selected school-study demands through the actual API fulfills every selected demand for 'kyungmyung-m1'
+         ✕ completed selected school-study demands through the actual API fulfills every selected demand for 'kyungmyung-m3'
+         ✕ completed selected school-study demands through the actual API fulfills every selected demand for 'kyungshin-common2'
+       · src/__tests__/unit/examStudyIntegration.test.ts
+         ✕ integrated registered exam-study generation runs authenticated API → actual math → strict Python SVG → reproducible output confirmation
+       · src/__tests__/unit/examStudyRoutes.test.ts
+         ✕ exam study authenticated route boundary authorizes an approved teacher and keeps generated questions private
+         ✕ exam study authenticated route boundary rejects original fields, unbounded bodies and duplicate JSON keys before generation
+         ✕ exam study authenticated route boundary rejects original fields, unbounded bodies and duplicate JSON keys before generation
+         ✕ exam study authenticated route boundary rejects original fields, unbounded bodies and duplicate JSON keys before generation
+         ✕ exam study authenticated route boundary rejects original fields, unbounded bodies and duplicate JSON keys before generation
+       · src/__tests__/unit/examWiringAudit.test.ts
+         ✕ auditCodePaths — 저장소 전수 ⭐ 기출을 넣는 경로 중 배선 없는 곳이 하나도 없다
+       · src/__tests__/unit/exportPerMenu.test.ts
+         ✕ 공용 출력 API 전수 관문 POST /api/exam/practice/resolve는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다
+         ✕ 공용 출력 API 전수 관문 GET /api/exam/practice는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다
+         ✕ 공용 출력 API 전수 관문 POST /api/exam/practice는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다
+       · src/__tests__/unit/mathSrsQuickFence.test.ts
+         ✕ 한 걸음 문항 격리 울타리 문제은행·시험지·엔진·스크립트 쪽에서는 몇 단계를 돌아가도 quick 에 닿지 않는다
+       · src/__tests__/unit/noRmSync.test.ts
+         ✕ `rmSync` 금지 — 한글 경로에서 노드가 죽는다 저장소 어디에도 `rmSync` 호출이 없다
+       · src/__tests__/unit/planDailyReview.test.ts
+         ✕ [planDailyReview] 오늘의 학생별 확인테스트 계획 오늘 진도 행이 없으면 examOrUnread — 원문 줄 그대로, 중복 제거
+       · src/__tests__/unit/problemOrder.test.ts
+         ✕ 문제은행 정렬 — 화면이 두 번째 규칙을 만들지 않는다 ProblemBank 의 모든 .sort( 는 compareProblemsForBank 를 지난다
+       · src/__tests__/unit/proxyStudentGate.test.ts
+         ✕ 🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합이 정확히 이것이다 학생 학습 화면 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐
+         ✕ 🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간다 지나가는 것은 바꾸기 화면·바꾸기 API · 나가기 · 세션 · 브랜드 · 랩실 읽기뿐
+   · vitest 종료 코드 1
+   · 초등 판정기 쓸기가 막았다 (종료 1) — 위 «판정기가 결함을 찾았다» 줄을 보라
+
+   (이 검사는 `scripts/qa/run-tests.mjs` 다. 요약 줄의 「N passed」는
+    안 돈 파일을 말해 주지 않는다 — 2026-08-19 에 실제로 그렇게 지나갔다.)

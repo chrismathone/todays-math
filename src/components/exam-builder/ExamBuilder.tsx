@@ -468,11 +468,13 @@ export default function ExamBuilder<T>({
     () => new Map(scopes.map((scope) => [scope.id, scope])),
     [scopes],
   );
-  // Preserve restored questions, but never restore a confirmed empty scope as
-  // a new composition request. Unknown counts remain visible and block math.
-  const allocations = configuredAllocations.filter(
-    (row) => scopeMap.get(row.scopeId)?.count !== 0,
-  );
+  // Navigation keeps explicit selections when a source change makes them empty.
+  // They block composition and remain removable by the teacher.
+  const allocations = source.scopeNavigation
+    ? configuredAllocations
+    : configuredAllocations.filter(
+        (row) => scopeMap.get(row.scopeId)?.count !== 0,
+      );
   const unavailableRestored = configuredAllocations.length - allocations.length;
   const selectedScopes = allocations.flatMap((row) => {
     const scope = scopeMap.get(row.scopeId);
@@ -822,8 +824,11 @@ export default function ExamBuilder<T>({
   }
   /** 1단계에서 범위를 체크 · 풀었을 때 — 남은 범위의 수는 그대로, 새 범위는 남은 자리를 나눠 5문항까지. */
   function chooseScopes(ids: string[]) {
-    const selectedIds = ids.filter((id) =>
-      canSelectScope(scopeMap.get(id), source.requireScopeCounts),
+    const selectedIds = ids.filter(
+      (id) =>
+        (source.scopeNavigation &&
+          allocations.some((row) => row.scopeId === id)) ||
+        canSelectScope(scopeMap.get(id), source.requireScopeCounts),
     );
     const retained = new Map(
       allocations
@@ -1527,7 +1532,9 @@ export default function ExamBuilder<T>({
                                 <small>
                                   {scope?.count === undefined
                                     ? "출제 가능 수 확인 필요"
-                                    : `출제 가능 ${scope.count}${scope.countUnit ?? "문항"}${excludeRecent ? "(최근 출제 뺀 뒤)" : ""}`}
+                                    : scope.count === 0
+                                      ? "출제 가능 문항 없음"
+                                      : `출제 가능 ${scope.count}${scope.countUnit ?? "문항"}${excludeRecent ? "(최근 출제 뺀 뒤)" : ""}`}
                                 </small>
                               </span>
                               <small

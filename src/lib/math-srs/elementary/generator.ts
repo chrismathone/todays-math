@@ -18,6 +18,18 @@ const SESSION_TIERS: readonly ElemTier[] = [
   "응용",
 ];
 
+/** Engine seeds tried for a slot whose frame an earlier slot already asked. */
+export const COURSE_FRAME_REDRAWS = 8;
+
+/** The question with its numbers removed: two of these equal means the same frame. */
+export function courseProblemFrame(content: string): string {
+  return content
+    .replace(/\$[^$]*\$/g, "#")
+    .replace(/\d+/g, "#")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export function generateCourseSession(
   sectionId: string,
   seed: number,
@@ -32,12 +44,14 @@ export function generateCourseSession(
   const startedAt = now.toISOString();
   const available = supportedTiers(section.unit);
   const usedBank = new Set<number>();
+  const frames = new Set<string>();
   const problems: CourseProblem[] = SESSION_TIERS.map((tier, index) => {
     if (!available.includes(tier)) {
       throw new Error(`등록되지 않은 초등 난이도입니다: ${sectionId} ${tier}`);
     }
     // Each item stores the exact engine seed so diagrams can be reproduced remotely.
-    const problemSeed = ((seed >>> 0) + Math.imul(index + 1, 104729)) >>> 0;
+    const slotSeed = ((seed >>> 0) + Math.imul(index + 1, 104729)) >>> 0;
+    let problemSeed = slotSeed;
     const eligibleBank = bankCandidates
       .map((candidate, candidateIndex) => ({ candidate, candidateIndex }))
       .filter(
@@ -45,12 +59,27 @@ export function generateCourseSession(
           candidate.tier === tier && !usedBank.has(candidateIndex),
       );
     const chosen = eligibleBank.length
-      ? eligibleBank[problemSeed % eligibleBank.length]
+      ? eligibleBank[slotSeed % eligibleBank.length]
       : null;
     if (chosen) usedBank.add(chosen.candidateIndex);
-    const source = chosen
+    let source = chosen
       ? { ...chosen.candidate, figureSpec: null }
-      : generateElementaryProblem(section.unit, problemSeed, tier);
+      : generateElementaryProblem(section.unit, slotSeed, tier);
+    // Plan §3.5: the same frame twice in five problems reads as one problem.
+    for (
+      let k = 1;
+      !chosen &&
+      k <= COURSE_FRAME_REDRAWS &&
+      frames.has(courseProblemFrame(source.content));
+      k++
+    ) {
+      const next = (slotSeed + k * 7919) >>> 0;
+      const other = generateElementaryProblem(section.unit, next, tier);
+      if (frames.has(courseProblemFrame(other.content))) continue;
+      problemSeed = next;
+      source = other;
+    }
+    frames.add(courseProblemFrame(source.content));
     return {
       id: `${sectionId}:${problemSeed}:${tier}`,
       sectionId,
