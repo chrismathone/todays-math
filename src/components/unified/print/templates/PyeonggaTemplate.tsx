@@ -24,6 +24,7 @@ export function PyeonggaTemplate({
   options,
   splitIndex,
   itemScales,
+  itemWhitespace,
   measure,
 }: PrintTemplateProps) {
   const fs = bodyFontSize("pyeongga", columns);
@@ -107,6 +108,7 @@ export function PyeonggaTemplate({
         gap={gap}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}
         splitIndex={splitIndex}
+        itemWhitespace={itemWhitespace}
         distribute={options.layoutMode === "count"}
         style={{ padding: "0 0 16px", fontSize: fs, lineHeight: 1.75 }}
       >

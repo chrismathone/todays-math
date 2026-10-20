@@ -39,6 +39,7 @@ export function optionsLine(o: PrintOptions) {
     o.columns === 1 ? SOLVING[o.solvingArea] : "",
     MARGIN[o.marginPreset],
     o.layoutMode === "count" ? `1단당 ${o.problemsPerColumn}문항` : "",
+    o.layoutMode === "spacing" && o.smartSpacing ? "스마트 여백" : "",
     CHOICE[o.choiceLayout],
     o.hideScores ? "" : "배점 보임",
     o.showDifficulty ? "" : "난이도 라벨 끔",

@@ -309,12 +309,20 @@ export function PrintOptionsPanel({
             {SPACING_PRESETS.map(([label, spacing]) => (
               <button
                 key={spacing}
-                aria-pressed={spacingPreset[1] === spacing}
-                onClick={() => onOptions({ spacing })}
+                aria-pressed={
+                  !options.smartSpacing && spacingPreset[1] === spacing
+                }
+                onClick={() => onOptions({ spacing, smartSpacing: false })}
               >
                 {label}
               </button>
             ))}
+            <button
+              aria-pressed={!!options.smartSpacing}
+              onClick={() => onOptions({ smartSpacing: true, spacing: 16 })}
+            >
+              스마트
+            </button>
           </div>
         ) : (
           <>

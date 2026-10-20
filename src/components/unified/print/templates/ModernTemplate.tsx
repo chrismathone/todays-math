@@ -26,6 +26,7 @@ export function ModernTemplate({
   options,
   splitIndex,
   itemScales,
+  itemWhitespace,
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentNavy;
@@ -111,6 +112,7 @@ export function ModernTemplate({
         columnGap={32}
         columnRule={options.columnDivider ? PAPER_COLORS.ink15 : null}
         splitIndex={splitIndex}
+        itemWhitespace={itemWhitespace}
         distribute={options.layoutMode === "count"}
         style={{ fontSize: fs, lineHeight: 1.85 }}
       >

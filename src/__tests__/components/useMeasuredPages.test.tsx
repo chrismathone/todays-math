@@ -57,7 +57,11 @@ describe("stable measured preview", () => {
         },
       },
     ];
-    const options = { ...DEFAULT_PRINT_OPTIONS, spacing: 0 };
+    const options = {
+      ...DEFAULT_PRINT_OPTIONS,
+      spacing: 0,
+      smartSpacing: false,
+    };
     let current: ReturnType<typeof useMeasuredPages>;
     function Harness({
       title,
