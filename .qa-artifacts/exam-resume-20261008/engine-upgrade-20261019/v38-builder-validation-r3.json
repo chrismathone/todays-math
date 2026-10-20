@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-20T04:49:11.481Z",
+  "head": "5e0a848e430b575ad7b8d03f4f69749f8df7f11c",
+  "main": "560c6a0fa0d0fcb7908e0628b86bb62e6395c505",
+  "reason": "Default Vitest includes only src/__tests__; prior r2 actually ran1file17tests. Explicit isolated include now requires all3 adjacent builder tests plus contract.",
+  "previousOneFileResultPreserved": true,
+  "actualFiles": 4,
+  "passed": 83,
+  "failed": 0,
+  "before": {
+    "src/components/exam-builder/ExamBuilder.tsx": "d11b56eeea56c51287af829e41a3c475cb664017f52557fd5d673d5b2b8fde47",
+    "src/components/exam-builder/ExamBuilder.test.tsx": "046a2d94158b2c6eee2fdb941507db2d473b301cf0074f3c50f7db0b6cf36c2c",
+    "src/components/exam-builder/ExamBuilder.demand.test.tsx": "d3e136c3842a7bc9eb16ddac931f8f16bf0c53c89b4de29d87bae63e3ed407d5",
+    "src/components/exam-builder/ExamBuilder.h2.test.tsx": "7db6e526ed595e6f7b3b3ea398662bf6e421654564ce0aadce18e30e67bb7abe",
+    "src/__tests__/unit/examStudyContract.test.ts": "53fbb892e08519c7260f5419c1e85c3e55c4a8c2407bdb4c16ee551974a71624"
+  },
+  "after": {
+    "src/components/exam-builder/ExamBuilder.tsx": "d11b56eeea56c51287af829e41a3c475cb664017f52557fd5d673d5b2b8fde47",
+    "src/components/exam-builder/ExamBuilder.test.tsx": "046a2d94158b2c6eee2fdb941507db2d473b301cf0074f3c50f7db0b6cf36c2c",
+    "src/components/exam-builder/ExamBuilder.demand.test.tsx": "d3e136c3842a7bc9eb16ddac931f8f16bf0c53c89b4de29d87bae63e3ed407d5",
+    "src/components/exam-builder/ExamBuilder.h2.test.tsx": "7db6e526ed595e6f7b3b3ea398662bf6e421654564ce0aadce18e30e67bb7abe",
+    "src/__tests__/unit/examStudyContract.test.ts": "53fbb892e08519c7260f5419c1e85c3e55c4a8c2407bdb4c16ee551974a71624"
+  },
+  "sourceOrTestFilesModified": false,
+  "sharedDependenciesChanged": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

@@ -1,0 +1,38 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/components/exam-builder/ExamBuilder.test.tsx (40 tests) 9381ms
+     ✓ disables empty and unconfirmed math grades without calling unknown inventory empty  547ms
+     ✓ composes from the table footer and removes a scope immediately without discarding questions or undo history  623ms
+     ✓ has one global add action and explicitly scoped add actions  308ms
+     ✓ keeps a long scope catalog paged, unchecking takes a scope back out, and composes only selected scopes  399ms
+     ✓ moves, deletes, undoes and keeps edits across output and scope navigation  435ms
+     ✓ adds matching difficulty candidates once and replaces in the original position  1100ms
+     ✓ keeps one problem family per sheet when adding (D-111)  301ms
+     ✓ starts from the current table with no counts of its own, recent exclusion on, and uses it for counts · candidates · composition  364ms
+     ✓ M3 — a step fills the difficulty cells for the rows' total, counts by format go to the server, and multiple choice comes first  500ms
+ ✓ src/components/exam-builder/ExamBuilder.h2.test.tsx (16 tests) 4499ms
+     ✓ 처음에는 학년만 만들며 숨긴 단원·차시 DOM이나 검색도 만들지 않는다  322ms
+     ✓ 상위 선택은 하위 검색·쪽만 초기화하고 다른 학년까지 담은 수·고정·순서를 유지한다  904ms
+     ✓ 여섯 난이도 단계와 직접 입력을 제공하고 지정 없음과 0을 구별한다  514ms
+     ✓ 실제 표현을 가진 문항의 총수가 지정과 다르면 막고 조건을 고치면 원문 그대로 출력한다  340ms
+     ✓ 부분 구성은 검토할 수 있지만 총수를 비웠어도 요청한 행의 합보다 적으면 출력을 막는다  317ms
+     ✓ 총수가 같아도 형식별 지정 0을 포함한 불일치를 막고 null로 비우면 풀린다  504ms
+     ✓ 본문 7번의 Space·방향키·Enter 이동도 전역 번호를 쓰고 Escape는 취소한다  328ms
+ ✓ src/components/exam-builder/ExamBuilder.demand.test.tsx (10 tests) 5344ms
+     ✓ restores legacy saved allocations from their selected curriculum path without global counts or changing saved questions  620ms
+     ✓ requests only grade names initially and only chapters after choosing a grade  331ms
+     ✓ counts only uncached visible lessons and preserves manual allocations through search, pages and grade changes  1095ms
+     ✓ shows lesson names before counts resolve, then checks and unchecks without hiding the list or requesting counts again  481ms
+     ✓ retains confirmed counts during a new page request and does not restart it when a cached selection is removed  807ms
+     ✓ keeps recent and all counts separate and reuses each after toggling back  823ms
+     ✓ isolates counts by source and reuses a previously confirmed source without sharing pending counts  730ms
+     ✓ retains a failed selection and retries only the requested scope with unchanged source and recent conditions  414ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 134ms
+
+ Test Files  4 passed (4)
+      Tests  83 passed (83)
+   Start at  13:48:36
+   Duration  35.39s (transform 2.07s, setup 5.89s, import 1.23s, tests 19.36s, environment 7.47s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v38-builder-vitest-r3.json
