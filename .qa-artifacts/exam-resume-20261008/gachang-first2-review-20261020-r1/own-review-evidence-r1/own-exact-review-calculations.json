@@ -1,0 +1,384 @@
+{
+  "checks": [
+    {
+      "id": "q1/raw-seal-sha",
+      "passed": true
+    },
+    {
+      "id": "q1/raw-git-own-seal",
+      "passed": true
+    },
+    {
+      "id": "q1/candidate-file-hash",
+      "passed": true
+    },
+    {
+      "id": "q1/candidate-current",
+      "passed": true
+    },
+    {
+      "id": "q1/raw-current",
+      "passed": true
+    },
+    {
+      "id": "q1/student-binding",
+      "passed": true
+    },
+    {
+      "id": "q1/student-fields",
+      "passed": true
+    },
+    {
+      "id": "q1/answer-independent",
+      "passed": true
+    },
+    {
+      "id": "q1/unit",
+      "passed": true
+    },
+    {
+      "id": "q1/family-unassigned",
+      "passed": true
+    },
+    {
+      "id": "q2/raw-seal-sha",
+      "passed": true
+    },
+    {
+      "id": "q2/raw-git-own-seal",
+      "passed": true
+    },
+    {
+      "id": "q2/candidate-file-hash",
+      "passed": true
+    },
+    {
+      "id": "q2/candidate-current",
+      "passed": true
+    },
+    {
+      "id": "q2/raw-current",
+      "passed": true
+    },
+    {
+      "id": "q2/student-binding",
+      "passed": true
+    },
+    {
+      "id": "q2/student-fields",
+      "passed": true
+    },
+    {
+      "id": "q2/answer-independent",
+      "passed": true
+    },
+    {
+      "id": "q2/unit",
+      "passed": true
+    },
+    {
+      "id": "q2/family-unassigned",
+      "passed": true
+    },
+    {
+      "id": "q01 unique k at every nonzero a",
+      "passed": true
+    },
+    {
+      "id": "q01 geometric-algebraic area 3001/1000",
+      "passed": true
+    },
+    {
+      "id": "q01 geometric-algebraic area 7/2",
+      "passed": true
+    },
+    {
+      "id": "q01 geometric-algebraic area 4",
+      "passed": true
+    },
+    {
+      "id": "q01 geometric-algebraic area 10",
+      "passed": true
+    },
+    {
+      "id": "q01 geometric-algebraic area 100",
+      "passed": true
+    },
+    {
+      "id": "q02 authored P expansion -2",
+      "passed": true
+    },
+    {
+      "id": "q02 authored Q expansion -2",
+      "passed": true
+    },
+    {
+      "id": "q02 mean -2",
+      "passed": true
+    },
+    {
+      "id": "q02 authored P expansion 2",
+      "passed": true
+    },
+    {
+      "id": "q02 authored Q expansion 2",
+      "passed": true
+    },
+    {
+      "id": "q02 mean 2",
+      "passed": true
+    },
+    {
+      "id": "q02 authored P expansion 3",
+      "passed": true
+    },
+    {
+      "id": "q02 authored Q expansion 3",
+      "passed": true
+    },
+    {
+      "id": "q02 mean 3",
+      "passed": true
+    },
+    {
+      "id": "q02 authored P expansion 5",
+      "passed": true
+    },
+    {
+      "id": "q02 authored Q expansion 5",
+      "passed": true
+    },
+    {
+      "id": "q02 mean 5",
+      "passed": true
+    },
+    {
+      "id": "q02 authored P expansion 7",
+      "passed": true
+    },
+    {
+      "id": "q02 authored Q expansion 7",
+      "passed": true
+    },
+    {
+      "id": "q02 mean 7",
+      "passed": true
+    },
+    {
+      "id": "q02 authored P expansion 1/2",
+      "passed": true
+    },
+    {
+      "id": "q02 authored Q expansion 1/2",
+      "passed": true
+    },
+    {
+      "id": "q02 mean 1/2",
+      "passed": true
+    },
+    {
+      "id": "q02 authored P expansion -3/2",
+      "passed": true
+    },
+    {
+      "id": "q02 authored Q expansion -3/2",
+      "passed": true
+    },
+    {
+      "id": "q02 mean -3/2",
+      "passed": true
+    },
+    {
+      "id": "q02 unique exact solution",
+      "passed": true
+    },
+    {
+      "id": "q02 denominators strictly positive",
+      "passed": true
+    },
+    {
+      "id": "q02 correct existence by substitution",
+      "passed": true
+    },
+    {
+      "id": "q01 outer square in private model only",
+      "passed": true
+    },
+    {
+      "id": "q01 inner square in private model only",
+      "passed": true
+    },
+    {
+      "id": "q01 three-wide model",
+      "passed": true
+    },
+    {
+      "id": "q01 private svg byte-identical to student svg",
+      "passed": true
+    },
+    {
+      "id": "q01 private spec binding",
+      "passed": true
+    },
+    {
+      "id": "source q1 local sha bound",
+      "passed": true
+    },
+    {
+      "id": "source q1 printed score",
+      "passed": true
+    },
+    {
+      "id": "source q2 local sha bound",
+      "passed": true
+    },
+    {
+      "id": "source q2 printed score",
+      "passed": true
+    }
+  ],
+  "passed": 59,
+  "failed": 0,
+  "q01Options": [
+    {
+      "k": -9,
+      "residualCoefficient": 3,
+      "permitted": false
+    },
+    {
+      "k": -6,
+      "residualCoefficient": 0,
+      "permitted": true
+    },
+    {
+      "k": -3,
+      "residualCoefficient": -3,
+      "permitted": false
+    },
+    {
+      "k": 3,
+      "residualCoefficient": -9,
+      "permitted": false
+    },
+    {
+      "k": 6,
+      "residualCoefficient": -12,
+      "permitted": false
+    }
+  ],
+  "q02OptionsAndAdditionalRationalControls": [
+    {
+      "k": "-2",
+      "P": [
+        "-7",
+        "4"
+      ],
+      "Q": [
+        "-7",
+        "-4"
+      ],
+      "mean": "-7",
+      "matches7": false
+    },
+    {
+      "k": "2",
+      "P": [
+        "1",
+        "0"
+      ],
+      "Q": [
+        "1",
+        "0"
+      ],
+      "mean": "1",
+      "matches7": false
+    },
+    {
+      "k": "3",
+      "P": [
+        "3",
+        "-1"
+      ],
+      "Q": [
+        "3",
+        "1"
+      ],
+      "mean": "3",
+      "matches7": false
+    },
+    {
+      "k": "5",
+      "P": [
+        "7",
+        "-3"
+      ],
+      "Q": [
+        "7",
+        "3"
+      ],
+      "mean": "7",
+      "matches7": true
+    },
+    {
+      "k": "7",
+      "P": [
+        "11",
+        "-5"
+      ],
+      "Q": [
+        "11",
+        "5"
+      ],
+      "mean": "11",
+      "matches7": false
+    },
+    {
+      "k": "1/2",
+      "P": [
+        "-2",
+        "3/2"
+      ],
+      "Q": [
+        "-2",
+        "-3/2"
+      ],
+      "mean": "-2",
+      "matches7": false
+    },
+    {
+      "k": "-3/2",
+      "P": [
+        "-6",
+        "7/2"
+      ],
+      "Q": [
+        "-6",
+        "-7/2"
+      ],
+      "mean": "-6",
+      "matches7": false
+    }
+  ],
+  "contextMetadataOnly": [
+    {
+      "number": 1,
+      "sha256": "50170f767a0916773290a4461a92fb89460fae6d1210c9d444d624d285660043",
+      "score": 3,
+      "topic": "다항식의 곱셈",
+      "completedPreparationDifficultyLabel": "하",
+      "printedFirstPageActuallyViewed": true,
+      "originalAnswerUsed": false
+    },
+    {
+      "number": 2,
+      "sha256": "626157f68b0a62edafe15d8c3b003d825152c1febb346f6b8e4b0b0ecd5689fe",
+      "score": 4,
+      "topic": "근호를 포함한 식의 계산",
+      "completedPreparationDifficultyLabel": "하",
+      "printedFirstPageActuallyViewed": true,
+      "originalAnswerUsed": false
+    }
+  ],
+  "privateCoordinates": "Checked only after raw seal as author existence/figure model; never used to infer student answer.",
+  "rawPreserved": true
+}

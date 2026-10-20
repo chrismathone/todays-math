@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gachang-2025-1-final-author-group1-r1-q02",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "유리수 $k$에 대하여 두 수 P, Q를 다음 표와 같이 정했다. P와 Q의 평균이 $7$일 때, $k$의 값은?\n\n| 수 | 값 |\n| --- | --- |\n| P | $\\dfrac{k+\\sqrt3}{2+\\sqrt3}$ |\n| Q | $\\dfrac{k-\\sqrt3}{2-\\sqrt3}$ |",
+  "choices": [
+    "$-2$",
+    "$2$",
+    "$3$",
+    "$5$",
+    "$7$"
+  ],
+  "answer": "④",
+  "solution": "$(2+\\sqrt3)(2-\\sqrt3)=4-3=1$이므로 두 분모는 모두 $0$이 아니다. 분모를 유리화하면\n\nP의 값은 $(k+\\sqrt3)(2-\\sqrt3)=(2k-3)+(2-k)\\sqrt3$이고,\n\nQ의 값은 $(k-\\sqrt3)(2+\\sqrt3)=(2k-3)+(k-2)\\sqrt3$이다.\n\n두 수를 더하면 근호가 있는 항이 없어져 P와 Q의 합은 $4k-6$이다. 따라서 평균은 $(4k-6)\\div2=2k-3$이다.\n\n평균이 $7$이므로 $2k-3=7$에서 $k=5$이다. $k=5$를 대입하면 P와 Q는 각각 $7-3\\sqrt3$, $7+3\\sqrt3$이고 평균이 $7$이 된다. $k=5$는 유리수이며 이를 만족하는 값은 하나뿐이다. 정답은 ④이다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "externalId": "2025-gachang-3-1-final-2",
+    "inventoryExamId": "personal-273b85b46b6ea294fef26b4de34becfc",
+    "sourceQuestionNumber": 2,
+    "newSourceReferenceId": "source-ref-gachang-2025-1-final-group1-r1-q02",
+    "sourceContentSha256": "d3b13172444e4da5e46dda7f8c134039f9655bb1b27288abeaf4e6390e124201",
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/component-only-input/q02.local.json",
+      "sha256": "626157f68b0a62edafe15d8c3b003d825152c1febb346f6b8e4b0b0ecd5689fe"
+    },
+    "sourceSchoolInternal": "가창중",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "기말",
+    "extractionManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/hwp-question-only-manifest.local.json",
+      "sha256": "c0eb3644b8a251f067811a600da62c342f7de20e1ac2ec27002983fc312cd870"
+    },
+    "hwpOnlyExtractionAggregate": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+      "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[가창중][3][25-1-기말][천재이] (완료).hwp",
+        "sha256": "8c78d3758f25a078316daed76e722286ec79d0506f09faef23b347aa6ce06ce9",
+        "bytes": 1428480
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+        "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+        "bytes": 1778571
+      }
+    ],
+    "originalIdentityReference": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+      "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+      "bytes": 1778571
+    },
+    "parentOriginalFirstPageObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+      "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+    },
+    "sourceComponentReview": {
+      "status": "parent-first-page-q01-q02-observed-against-HWP-only-normalization-independent-source-review-pending",
+      "whole19ParentHwpPdfPairApproved": false,
+      "partialPdfParserHeld": true
+    },
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "originalAnswerKeyUsed": false,
+    "parentIncidentalHandwrittenMarksExposure": true,
+    "marksUsedForAnswerApproval": false,
+    "sourceTextCopiedToCandidate": false,
+    "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "data-reorganization",
+      "structure",
+      "new-table"
+    ],
+    "before": "근호가 있는 두 분수를 유리화하여 합의 유리수/근호 계수를 구하고 계수의 차를 직접 계산한다.",
+    "after": "두 분수의 분자에 같은 유리수 미지수를 넣은 표를 주고 두 값의 평균 조건에서 분자의 입력을 역추론한다.",
+    "sharedConcept": "서로 반대 부호 근호를 이용한 분모 유리화와 동류 근호항 정리",
+    "sharedProcedure": "두 분모의 곱1 확인 → 각각 유리화 → 두 근호항의 상쇄로 평균2k−3 구함 → 평균조건7에서k5 → 원래 두 값으로 대입 확인",
+    "actualStructuralChange": "두 분수의 분자에 같은 유리수 미지수를 넣은 표를 주고 두 값의 평균 조건에서 분자의 입력을 역추론한다.",
+    "domainProof": "두 분모의 곱1이어서 항상 정의된다. 모든 유리수k에 대해 합이4k−6이고 평균이2k−3이므로 k5가 유일하며 원식 대입으로 존재를 확인한다. 일반 무리방정식의 제곱 풀이·유리수와 무리수의 계수 비교 증명·고등 함수가 필요하지 않다. 평균은 초등 선수 개념이다. 원문 답은 승인 기준으로 사용하지 않는다.",
+    "difficultyBasis": "인쇄 배점3/4를 근거로 목표 난도를 제안하되 원문의 부수 절차 전부를 복제하지 않는다. 새 표현·역추론의 실제 난도와 정확한 family는 독립 검수 전 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수01-10"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수01-07"
+      ]
+    },
+    "legitimateMethodDraft": "두 분모의 곱1 확인 → 각각 유리화 → 두 근호항의 상쇄로 평균2k−3 구함 → 평균조건7에서k5 → 원래 두 값으로 대입 확인",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+    "sourceExamYear": 2025,
+    "targetAcademicYear": 2026,
+    "curriculum": "2015",
+    "officialPrimary": {
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+      "standard": "9수01-10",
+      "providedMOEEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      "actualScope": "2015중3 1학기 근호 계산/다항식 곱셈 및 이미 배운 평균·일차 관계·정사각형 넓이. 학년군 성취기준은 중3 실제 Unit/선수 조건과 함께 검토한다. 2027중3/2022 자동 전용 금지."
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "기말",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 4,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본~응용 저자 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "두 분수의 분자에 같은 유리수 미지수를 넣은 표를 주고 두 값의 평균 조건에서 분자의 입력을 역추론한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "근호를 포함한 식의 계산",
+        "semester": 1,
+        "orderIndex": 471,
+        "problemCodePrefix": "J30103"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "캡처된 실제 중3 Unit UUID와2015 성취기준을 연결한다. 새 도형/역추론의 정확한live family는 미확정."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "new-native-Markdown-table",
+      "newFigures": 0,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "두 분모의 곱1이어서 항상 정의된다. 모든 유리수k에 대해 합이4k−6이고 평균이2k−3이므로 k5가 유일하며 원식 대입으로 존재를 확인한다. 일반 무리방정식의 제곱 풀이·유리수와 무리수의 계수 비교 증명·고등 함수가 필요하지 않다. 평균은 초등 선수 개념이다. 원문 답은 승인 기준으로 사용하지 않는다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gachang-first2-20261020-r1.ts",
+      "reproductionScriptSha256": "5451a469fb9772ee1be16962a190c4dba813ccbc96589c4808393f294c9b5410",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "근호를 포함한 식의 계산",
+        "semester": 1,
+        "orderIndex": 471,
+        "problemCodePrefix": "J30103"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "근호를 포함한 식의 곱셈과 나눗셈",
+        "합과 차의 곱 공식",
+        "분모 유리화",
+        "동류 근호항의 덧셈",
+        "평균의 뜻",
+        "일차방정식"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+  }
+}

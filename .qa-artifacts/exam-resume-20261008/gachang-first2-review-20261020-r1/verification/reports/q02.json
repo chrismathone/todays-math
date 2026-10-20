@@ -1,0 +1,119 @@
+{
+  "status": "pending",
+  "studentDigest": "28a8648ddba4665e305efd40df057c26e9c164051f776b85fcc263f5280ab257",
+  "candidateDigest": "35a4f4a584fbd9f2474f82a1d9d7c6361917731748432a40c81551a8e6b4af56",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gachang-first2-full-review-20261020-r1",
+  "solveDigest": "a2f52fb9dc148681b396893deddfb842a4d70bb5694174e45c941d6214989b42",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "currentRawSeal": {
+      "helperCommit": "e06f9e1bd6be8625655ac72b2103137ebd77ea5d",
+      "parentCommit": "3193b0a43828b8d32b11cc1c87e974f35640b002",
+      "rawNeverModifiedAfterExposure": true
+    },
+    "exposure": "기존 원문9개 구성요소·공개 엔진·Gachang 메타데이터/코드 감사 이력이 있으며 pristine corpus blindness를 주장하지 않는다. 현재 저자 답/해설/스펙 및 이번 원문 두 구성요소·첫페이지는 raw Git봉인 뒤 처음 읽었다. 원문 페이지의 손글씨와 다른 문항이 부수적으로 보였으나 답 일치나 정답표를 승인 근거로 쓰지 않았다.",
+    "primaryEvidence": {
+      "receipt": "../../own-review-evidence-r1/own-primary-and-unit-receipt.json",
+      "receiptSHA256": "673077ed0b710c1c0055c549dea583a6a14a08dcf9a44058f874e4ce0a89729c",
+      "edition": "2015 source2025/practice2026 M3;2027M3/2022 pending separately",
+      "limitations": "기존 검증된 실제 공식문서 텍스트/record/page 포인터와 현재 제공 원문·Unit 캡처를 범위 한정 사용. 새 다운로드나 완전 개정연혁/학교 진도 승인 주장 없음."
+    },
+    "unresolved": {
+      "liveExactFamily": null,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeReaderParity": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false,
+      "whole19HwpPdfPairApproved": false,
+      "pdfParser5Versus19": "partial-held; no fidelity/count credit",
+      "2022M3From2027": "pending"
+    },
+    "ownCalculations": {
+      "path": "../../own-review-evidence-r1/own-exact-review-calculations.json",
+      "sha256": "a14d477e0bc6bfbdc9d915e5e5bc817e273aea97e846ec0e3cab3b8554c702dd",
+      "passed": 59,
+      "failed": 0,
+      "method": "Own Fraction coefficient/radical pair arithmetic; original raw oracle separate from author. Private coordinates checked only post-seal for model consistency, never answer oracle."
+    },
+    "imagesActuallyViewed": [
+      "solution-preview/q01.solution.png",
+      "solution-preview/q02.solution.png",
+      "local-only original-first-page.local.png"
+    ],
+    "metadataConcern": "두 후보 curriculumReview.officialBasis.primaryStandardCodes의9수01-07은 실제 핵심 기준과 일치하지 않는 잔존 필드다. q01의 실제 주기준9수02-12, q02의9수01-10을 독립 확인했다. 기존후보를 수정하지 않으며 이 메타데이터 불일치와 가족 미확정을 content hold에 보존한다.",
+    "questionNumber": 2,
+    "checkBasis": {
+      "answerCorrect": "독립 raw④, 저자④. 두 값을 유리화한 평균2k-3=7의 유일해5를 Fraction/근호쌍 코드로 재검산했다.",
+      "solutionCorrect": "저자 해설 전체의 분모곱1, P=(2k-3)+(2-k)√3, Q=(2k-3)+(k-2)√3, 합4k-6, 평균2k-3 및 원식대입을 독립 확인했다. 무리수/유리수 계수 유일성 정리나 고등 무리방정식 제곱풀이를 쓰지 않는다.",
+      "existenceUniqueness": "1<√3<2에서 두 분모>0, 곱1이라 항상 비영. k∈Q에서 평균식은 계수2≠0의 일차방정식이므로5가 유일. 원래 P,Q가7∓3√3이어서 평균7로 존재 확인. P,Q의 부호 조건을 임의로 추가하지 않는다.",
+      "choicesCorrect": "보기 k=-2,2,3,5,7의 평균은 순서대로-7,1,3,7,11.④만 조건을 만족하며 다른 네 보기와 중복/경계 문제 없음.",
+      "figureConsistent": "외부 도형 자산은 없고 실제 두 PNG의 표는 P,Q 분자 k±√3, 분모2±√3로 JSON과 일치한다. 표는 정보정리이며 그래프해석/좌표추론을 요구하지 않는다.",
+      "sameCoreConceptAndProcedure": "원문 질문-only 두 분수의 근호 분모를 유리화하고 동류 근호항을 정리하는 절차를 실제 관찰했다. 현재도 분모의 합차곱과 유리화·덧셈이 핵심이다. 원문의 최종 유리수/근호 계수차 목표는 새로 그대로 요구하지 않는다.",
+      "distinctPresentation": "고정된 근호식에서 결과 계수를 직접 계산하던 역할이, 두 분자의 공통 유리수 입력k와 표/평균 조건으로 바뀌고 k를 역추론한다. 근호항 상쇄와 평균 일차조건이 실제 새 구조를 이룬다.",
+      "naturalKorean": "유리수k, P/Q 정의표, 평균7과 k를 묻는 역할이 명확하다. 이름표P/Q를 변수곱이나 좌표로 오인할 문맥이 없고 해설은 각 값을 구분해 설명한다. 평균은 두 값 합을2로 나누는 통상 뜻이다.",
+      "curriculumAppropriate": "2015 9수01-10 HWP Section0record3788/offset193301;PDF physical33/printed29 근호식 사칙. 캡처 Unit99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1=중3semester1 근호를 포함한 식의 계산. 기학습 분배/합차곱 및 평균·일차방정식으로 전체풀이가 닫힌다. 역입력 형식이 모든 무리방정식 학년허용을 뜻하지 않는다.",
+      "allStudentSurfacesInScope": "표/기호/보기/답/현재저자전체해설/선수조건을 아래7면으로 분리해 검토했다. 자기 계산용 근호쌍 코드는 학생 필수 방법이 아니고 학생은 유리화·상쇄만 사용한다.",
+      "unitFamilyFit": "근호 계산 Unit UUID는 캡처와 일치. 그러나 평균 역입력 목표까지 맞는 실제 family 정의를 확인하지 않았으므로 familyKey=null/false. 카운트나 이름만으로 exact fit을 추론하지 않는다.",
+      "scoreAppropriate": "원문 첫 페이지4점과 현재4점 확인. 유리화 두 번, 상쇄, 평균 역추론, 대입확인으로 기본~표준4점 제안은 수용 가능. 원문보다 계수차 계산은 줄고 입력역추론이 추가되므로 원문하와 동난도/실측난도를 보장하지 않는다."
+    },
+    "rawFileSHA256": "b00ba993a859d49134dcdd9a7655995084ec85407842394ed121b7a766ea639a",
+    "unit": {
+      "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "근호를 포함한 식의 계산",
+      "semester": 1,
+      "orderIndex": 471,
+      "problemCodePrefix": "J30103"
+    },
+    "scoreAndDifficulty": "출처 첫페이지3/4점은 관찰. completed preparation의하 라벨은 학교 실측 난도 증거가 아니다. 현재 목표는 위 scoreAppropriate 근거의 편집 제안으로만 수용하며 실측/동난도/출시 보류.",
+    "currentBinding": "현재candidate/asset/student/solveDigest는 verification manifest/package 실제 바이트와 자체59개 검산으로 바인딩. collector는 별도 실제 실행 결과에 기록하며 형식통과를 수학 승인으로 대신하지 않음."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "근호 분모를 가진 두 수를 유리수k로 정의하고 평균에서k를 역으로 정한다. 2015 9수01-10(record3788,PDF33/29) 및 현재 M3semester1 근호계산 Unit 학습 후. 평균·일차관계가 전부이며 일반 무리방정식 허용을 주장하지 않는다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "다섯 정수 입력에 대한 평균을 근호계산으로 구분한다. 9수01-10과 이전 일차대입 수준. 양/음의 정수 입력은 유리수 조건 내이고 각 분모는 입력에 의존하지 않는다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "P,Q행의 분수식 표는 같은 성취기준의 두 식을 정리한 것이다. 단순2행표 읽기 외 산점도/고급 통계가 필요하지 않으며 평균은 기학습 산술평균."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "√3는 양의 제곱근, 분수선과±항, P/Q 이름표를 구분한다. 2015 9수01-10의 근호표기와 기학습 유리수·분배법칙 범위. 반복소수나 복소수/주가지정 없음."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "정수5인 입력을 단일④로 선택. 2015 근호 계산의 결과를 평균/일차방정식(9수02-05;record3916,PDF34/30)으로 정하는 수준이며 수학적 유일성의 고급 정리 불필요."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자 전체풀이: 분모곱1→각유리화→근호항 상쇄→평균2k-3→일차방정식→원식검산. 9수01-10+기학습 분배/합차곱(9수02-12 관련 elementary전개)·평균·9수02-04/05로 충분. 무리수 계수 비교 정리나 양변 제곱을 필수로 쓰지 않음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "제곱근의 의미/대소비교, 근호식 곱·나눗셈과 분모유리화, 분배법칙/합차곱, 동류항 덧셈, 두 수 평균, 일차방정식을 학습한 뒤 배정. 캡처 주Unit만으로 선수 완료를 대체하지 않는다.2027M3/2022는 별도 pending."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-20T08:12:04.602Z",
+  "head": "a0e47fce6a0a4406cbc49dfd9078e38410850c6c",
+  "main": "35e24ccf143be00d9d3cd8104d4af8da220766ec",
+  "vitestFiles": 6,
+  "passed": 113,
+  "failed": 0,
+  "report": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v46-post-main-vitest-r1.json",
+    "sha256": "39c5239cd6aeef7d9f95e8f65685c0828dc43eab200ad61a90e5f5666a392698"
+  },
+  "conflictResolution": "Preserved both actual same-origin guard fixture intents, adopted main AUTH_URL localhost and cleared NEXTAUTH_URL; assertions and real guards unchanged",
+  "code100AndCurrent166Unchanged": true,
+  "sourceQueueReaderCodeNotChanged": true,
+  "latestMainRemainingTwoToolFailuresNotClaimedFixed": true,
+  "gachangTwoMetadataDeclarationMismatchesPending": true,
+  "dbWrites": 0,
+  "loadable": 0
+}

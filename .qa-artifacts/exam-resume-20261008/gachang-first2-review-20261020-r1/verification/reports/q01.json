@@ -1,0 +1,119 @@
+{
+  "status": "pending",
+  "studentDigest": "7339433c7a843c18986f1b4544cba554d74caa34c92696558666a5f3fbd3cd40",
+  "candidateDigest": "36d6b5516b7f1d7a27fbc4da236f12bc1e7ff8cd6ce8b49f79f74b4ff664e9fd",
+  "assetDigest": "515c6361b828ba6998912ea97d0733387197390ba8ee06ce7f352de1243dee6d",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gachang-first2-full-review-20261020-r1",
+  "solveDigest": "7813c9f1a6b9d09061a6b89dbffd2d0413dd0f77d637c96d8be1af5e1e6c1ae8",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "currentRawSeal": {
+      "helperCommit": "e06f9e1bd6be8625655ac72b2103137ebd77ea5d",
+      "parentCommit": "3193b0a43828b8d32b11cc1c87e974f35640b002",
+      "rawNeverModifiedAfterExposure": true
+    },
+    "exposure": "기존 원문9개 구성요소·공개 엔진·Gachang 메타데이터/코드 감사 이력이 있으며 pristine corpus blindness를 주장하지 않는다. 현재 저자 답/해설/스펙 및 이번 원문 두 구성요소·첫페이지는 raw Git봉인 뒤 처음 읽었다. 원문 페이지의 손글씨와 다른 문항이 부수적으로 보였으나 답 일치나 정답표를 승인 근거로 쓰지 않았다.",
+    "primaryEvidence": {
+      "receipt": "../../own-review-evidence-r1/own-primary-and-unit-receipt.json",
+      "receiptSHA256": "673077ed0b710c1c0055c549dea583a6a14a08dcf9a44058f874e4ce0a89729c",
+      "edition": "2015 source2025/practice2026 M3;2027M3/2022 pending separately",
+      "limitations": "기존 검증된 실제 공식문서 텍스트/record/page 포인터와 현재 제공 원문·Unit 캡처를 범위 한정 사용. 새 다운로드나 완전 개정연혁/학교 진도 승인 주장 없음."
+    },
+    "unresolved": {
+      "liveExactFamily": null,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeReaderParity": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false,
+      "whole19HwpPdfPairApproved": false,
+      "pdfParser5Versus19": "partial-held; no fidelity/count credit",
+      "2022M3From2027": "pending"
+    },
+    "ownCalculations": {
+      "path": "../../own-review-evidence-r1/own-exact-review-calculations.json",
+      "sha256": "a14d477e0bc6bfbdc9d915e5e5bc817e273aea97e846ec0e3cab3b8554c702dd",
+      "passed": 59,
+      "failed": 0,
+      "method": "Own Fraction coefficient/radical pair arithmetic; original raw oracle separate from author. Private coordinates checked only post-seal for model consistency, never answer oracle."
+    },
+    "imagesActuallyViewed": [
+      "solution-preview/q01.solution.png",
+      "solution-preview/q02.solution.png",
+      "local-only original-first-page.local.png"
+    ],
+    "metadataConcern": "두 후보 curriculumReview.officialBasis.primaryStandardCodes의9수01-07은 실제 핵심 기준과 일치하지 않는 잔존 필드다. q01의 실제 주기준9수02-12, q02의9수01-10을 독립 확인했다. 기존후보를 수정하지 않으며 이 메타데이터 불일치와 가족 미확정을 content hold에 보존한다.",
+    "questionNumber": 1,
+    "checkBasis": {
+      "answerCorrect": "봉인 raw②와 저자② 일치. (3-a)^2=a²-6a+9, a≠0에서 유일한 k=-6. 원문 답 비교를 사용하지 않았다.",
+      "solutionCorrect": "저자 전체 해설의 남은 변a-3>0, (3-a)=-(a-3), 제곱값 동일, 전개9-6a+a²를 각각 확인했다. 마지막 계수 비교는 (k+6)a=0과 a>3으로 초등적 정당화 가능하며 고등학교 다항식 항등식 판정법을 요구하지 않는다.",
+      "existenceUniqueness": "임의의 a>3에서 변a-3>0, 넓이(a-3)²>0이다. k=-6은 모든 a>3에서 존재하고 다른 k는 비영인 a에 대해 불가. a 자체의 유일성은 묻지 않는다.",
+      "choicesCorrect": "보기 -9,-6,-3,3,6의 a계수 잔차 -6-k는3,0,-3,-9,-12로②만0. 선택지는 중복되지 않는다.",
+      "figureConsistent": "student SVG와private SVG SHA동일, spec SHA바인딩확인. 실제 학생/solution PNG의 위·오른쪽 회색 띠와 아래왼쪽 남은 부분, a/3cm표기가 발문과 맞는다. post-seal spec의 두 정사각형은 직교·같은변, 차3인 한 양수 예이나 a를10으로 정하지 않는다. 라벨에는 치수선이 없으나 폭3은 본문에 명시되어 계산조건이 충분하다. 출력 비율/픽셀은 계산에 쓰지 않았고 full reader/native 인증은 별도다.",
+      "sameCoreConceptAndProcedure": "직접 본 원문 구성요소는 차의 제곱과 괄호 내부 부호 반전·외부 음수의 전개 구별을 평가한다. 현재 문항도 차의 제곱과 전체 부호 반전의 제곱값 불변을 실제 사용한다. 원문의 모든 분류 부수절차를 보존한 것은 아니며 핵심 전개·부호 절차를 보존한다.",
+      "distinctPresentation": "원문의 여러 표현에 대한 동치 분류·개수에서 새 절단 정사각형 넓이 모델과 미지 계수 역결정으로 데이터역할/표현/목표가 바뀐다. 단순 숫자교체가 아니다.",
+      "naturalKorean": "위·오른쪽 폭, 남은 정사각형, a>3, 상수k라는 지시가 연결되고 선택 역할이 명확하다. 음수3-a를 물리 길이라고 하지 않고 그 제곱을 넓이로 제시하며 해설은 양수a-3을 먼저 설명한다. cm와cm²구분이 명확하다.",
+      "curriculumAppropriate": "공식2015 9수02-12 HWP Section0 record3956/offset201534;PDF physical34/printed30. 캡처 Unit e63d61c6-2b41-4c83-a74b-a605fd343c42는 중3semester1 다항식의 곱셈이다. 실제 요구는 차의제곱 전개와 기학습 넓이·일차등식뿐, 학년군코드나 원문학교만으로 승인하지 않는다. 학습완료 조건부2025/2026M3에 한정한다.",
+      "allStudentSurfacesInScope": "아래7면 각각의 실제 요구/근거를 별도로 기록했다. figure는 초등 정사각형 넓이 보조이고 고급기하/좌표풀이 불필요하다.",
+      "unitFamilyFit": "캡처 Unit의 주제는 맞지만 정확한 live family의 조건·목적·출력과 호환성을 이 검토에서 증명하지 않았다. familyKey=null 유지하며 key/count만으로 true를 주지 않는다.",
+      "scoreAppropriate": "원문 첫 페이지의3점과 현재3점을 확인. 한 번의 차의제곱 전개와 부호해석/짧은 역추론이라 기본3점 제안은 타당하다. 추가 도형독해 부담은 있지만 초등 넓이 수준이고 새 변형의 실측난도/원문 동난도 인증은 보류한다."
+    },
+    "rawFileSHA256": "ac33489baf9bb8f06e8ad670ab5c5ba20d130d2ffd2442ce80eedaa1ace9e975",
+    "unit": {
+      "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "다항식의 곱셈",
+      "semester": 1,
+      "orderIndex": 472,
+      "problemCodePrefix": "J30201"
+    },
+    "scoreAndDifficulty": "출처 첫페이지3/4점은 관찰. completed preparation의하 라벨은 학교 실측 난도 증거가 아니다. 현재 목표는 위 scoreAppropriate 근거의 편집 제안으로만 수용하며 실측/동난도/출시 보류.",
+    "currentBinding": "현재candidate/asset/student/solveDigest는 verification manifest/package 실제 바이트와 자체59개 검산으로 바인딩. collector는 별도 실제 실행 결과에 기록하며 형식통과를 수학 승인으로 대신하지 않음."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "a>3인 정사각형 절단의 넓이를 차의제곱으로 표현해 k를 묻는다. 2015 9수02-12(record3956;PDF34/30)+현재 중3semester1 다항식 곱셈 Unit 및 초등 넓이 후에 해당. 고급기하 조건 없음."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "다섯 정수는 a항의 계수 후보다. 음의수 사칙과 식 전개(9수02-12)를 사용하며 고등 계수정리나 무리방정식 도구 없음."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "정사각형 두 개와 폭3 띠를 보여 주는 보조 그림. 초등 넓이/양의 길이와 9수02-12의 넓이표현에 한정되며 픽셀·좌표의 측정은 학생 절차가 아니다. 앞 학년 정사각형 넓이 선행 필요."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "(3-a)^2와(a-3)^2의 전체 부호를 구분하고 a²+ka+9를 읽는다. 2015 다항식 곱셈 및 앞 학년 거듭제곱/계수/단위 cm·cm² 표기 수준."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "단일 MC기호② 또는 k=-6을 고르는 정수 계수 결과. elementary 비교·일차등식 범위이고 새 고급 개념이 필요하지 않다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재 저자 풀이의 모든 단계는 남은 변a-3→넓이제곱→전체부호반전 제곱값동일→전개와 계수확인. 9수02-12와 기학습 일차등식(9수02-04/05;HWP3912/3916,PDF34/30)으로 끝난다. a>3으로 양수/비영 근거도 있음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "정사각형 넓이와 길이/넓이 단위, 음수의 제곱, 분배법칙, 상수항·계수, 일차등식이 이미 학습되어야 한다. 핵심 M3semester1 곱셈 Unit을 배운 뒤에만 배정하며 학교별 기말 진도나2027M3의2022배치를 인증하지 않는다."
+    }
+  }
+}

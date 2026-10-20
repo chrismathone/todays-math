@@ -1,0 +1,3 @@
+﻿from pathlib import Path
+import hashlib,json
+P=Path('.qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/own-review-evidence-r1');runtime=Path('.qa-artifacts/exam-resume-20261008/bare-unit-notation-code-audit-20261020-r1/provided-code-runtime-local');paths=sorted(runtime.glob('*.mjs'))+[runtime.parent/'exam-paper/solver_rules.json'];rows=[{'path':str(p),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}for p in paths];(P/'own-collector-runtime-before.json').write_text(json.dumps(rows,indent=2)+'\n',encoding='utf-8');r=P/'own-collector-result.json';(P/'own-collector-initial-result.json').write_bytes(r.read_bytes());print({'runtimeAndDataHashes':len(rows)})

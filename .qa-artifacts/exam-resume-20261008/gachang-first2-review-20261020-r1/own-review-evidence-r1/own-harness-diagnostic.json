@@ -1,0 +1,5 @@
+{
+  "ownHarnessFailure": "Initial git show used absolute Windows path after commit colon; Git interpreted invalid object path and rejected before raw comparison.",
+  "correction": "Repo-relative exact allowed raw path; no raw/candidate/source changes.",
+  "productionFault": false
+}

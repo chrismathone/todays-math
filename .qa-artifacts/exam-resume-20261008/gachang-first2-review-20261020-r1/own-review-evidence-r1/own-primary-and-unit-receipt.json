@@ -1,0 +1,212 @@
+{
+  "receiptSHA256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+  "snapshotSHA256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+  "snapshotCapturedAt": "2026-10-19 18:07:30.165227+00",
+  "scope": "Provided verified primary extracts/locators and prior primary review; no new download or claim complete amendment-chain audit. Exact-grade evidence uses captured actual M3semester1 Units plus bounded whole methods after learned prerequisites, not band/school/keys alone.",
+  "standards": [
+    {
+      "code": "9수01-10",
+      "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3788,
+        "record_offset_in_uncompressed_stream": 193301,
+        "extracted_paragraph_1based": 771
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          33
+        ],
+        "printed_pages": [
+          29
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-04",
+      "verified_text": "방정식과 그 해의 의미를 알고, 등식의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3912,
+        "record_offset_in_uncompressed_stream": 199718,
+        "extracted_paragraph_1based": 796
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-05",
+      "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3916,
+        "record_offset_in_uncompressed_stream": 199888,
+        "extracted_paragraph_1based": 797
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-12",
+      "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3956,
+        "record_offset_in_uncompressed_stream": 201534,
+        "extracted_paragraph_1based": 807
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    }
+  ],
+  "sources": [
+    {
+      "id": "moe-2015-74-math-pdf",
+      "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c"
+    },
+    {
+      "id": "moe-2020-236-math-hwp",
+      "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84"
+    }
+  ],
+  "rollout": {
+    "2015": {
+      "source_id": "moe-60747",
+      "locator": "부칙 1 가~라",
+      "phases": [
+        {
+          "date": "2017-03-01",
+          "grades": [
+            "elementary1",
+            "elementary2"
+          ]
+        },
+        {
+          "date": "2018-03-01",
+          "grades": [
+            "elementary3",
+            "elementary4",
+            "middle1",
+            "high1"
+          ]
+        },
+        {
+          "date": "2019-03-01",
+          "grades": [
+            "elementary5",
+            "elementary6",
+            "middle2",
+            "high2"
+          ]
+        },
+        {
+          "date": "2020-03-01",
+          "grades": [
+            "middle3",
+            "high3"
+          ]
+        }
+      ]
+    },
+    "2022": {
+      "source_id": "moe-93458",
+      "locator": "부칙 1 가~라",
+      "phases": [
+        {
+          "date": "2024-03-01",
+          "grades": [
+            "elementary1",
+            "elementary2"
+          ]
+        },
+        {
+          "date": "2025-03-01",
+          "grades": [
+            "elementary3",
+            "elementary4",
+            "middle1",
+            "high1"
+          ]
+        },
+        {
+          "date": "2026-03-01",
+          "grades": [
+            "elementary5",
+            "elementary6",
+            "middle2",
+            "high2"
+          ]
+        },
+        {
+          "date": "2027-03-01",
+          "grades": [
+            "middle3",
+            "high3"
+          ]
+        }
+      ]
+    },
+    "pilot_reference_2025_middle3": "2015_revision",
+    "middle3_2026": "2015_revision",
+    "middle3_2027": "2022_revision_requires_separate_mapping",
+    "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+  },
+  "bandCaveat": {
+    "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+    "source_id": "moe-2020-236-math-hwp",
+    "locator": {
+      "stream": "BodyText/Section0",
+      "record_1based": 3713,
+      "record_offset_in_uncompressed_stream": 190162,
+      "text": "[중학교 1~3학년]"
+    },
+    "original_pdf_page_1based": 32,
+    "original_pdf_printed_page": 28
+  },
+  "2022M3From2027": "pending-separate-placement-and-whole-method-review",
+  "sourceIdentityRightsNative": false
+}
