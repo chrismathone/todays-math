@@ -3847,7 +3847,7 @@ function rel122Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const hi = Math.max(p, q);
   return make(
     unit,
-    `다음 곱셈식에서 알 수 있는 ${n(c)}의 약수를 모두 쓰시오.  ${expr(`${p}\\times${q}=${c}`)}`,
+    `다음 두 곱셈식에 나타난 수 중에서 ${n(c)}의 약수를 모두 쓰시오.  ${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}`,
     nums([1, lo, hi, c]),
     `${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}이므로 이 식에서 알 수 있는 약수는 ${nums([1, lo, hi, c])}입니다.`,
   );
@@ -3957,7 +3957,7 @@ function rel122FactorCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const uniq = [...new Set([1, Math.min(p, q), Math.max(p, q), c])];
   return make(
     unit,
-    `${expr(`${p}\\times${q}=${c}`)}에서 알 수 있는 ${n(c)}의 약수는 모두 몇 개입니까?`,
+    `다음 두 곱셈식에 나타난 수 중에서 ${n(c)}의 약수는 모두 몇 개입니까?  ${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}`,
     n(uniq.length),
     `${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}이므로 약수는 ${nums(uniq)}의 ${n(uniq.length)}개입니다.`,
   );
@@ -7201,7 +7201,7 @@ function sub154WholeDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   const w2 = intBetween(rng, 1, w1 - 2);
   return make(
     unit,
-    `${mxj(w1, a, d1, "에서", "에서")} ${mx(w2, b, d2)}를 뺄 때, 자연수부끼리 뺀 값은 얼마입니까?`,
+    `${mxj(w1, a, d1, "에서", "에서")} ${mxj(w2, b, d2, "을", "를")} 뺄 때, 받아내림을 하기 전 두 대분수의 자연수부끼리 뺀 값은 얼마입니까?`,
     n(w1 - w2),
     `${expr(`${w1}-${w2}=${w1 - w2}`)}입니다.`,
   );
@@ -8884,7 +8884,7 @@ function fm224WrongOnly(unit: UnitSeed, rng: Rng): ElemProblem {
   const w = intBetween(rng, 1, 4);
   return make(
     unit,
-    `${lj(`${mixedLatex(w, a, d)}\\times${k}`, "을", "를")} 계산할 때, 잘못하여 자연수 부분만 곱하면 얼마가 됩니까?`,
+    `${mx(w, a, d)}에서 분수 부분을 빼고 자연수 부분에만 ${nj(k, "을", "를")} 곱한 값은 얼마입니까?`,
     n(w * k),
     `자연수 부분만 곱하면 ${expr(`${w}\\times${k}=${w * k}`)}입니다.`,
   );
