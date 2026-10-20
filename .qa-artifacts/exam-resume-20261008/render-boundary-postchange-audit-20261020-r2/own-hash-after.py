@@ -1,0 +1,3 @@
+from pathlib import Path
+import json,hashlib
+P=Path(__file__).resolve().parent;read=lambda p:json.loads(p.read_text(encoding='utf-8-sig'));sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest();r=read(P/'own-runtime-results.json');before={**read(P/'own-before.json'),**r['moduleHashesAtFirstImport']};after={p:sha(p) for p in before};changed=[p for p in before if before[p]!=after[p]];assert not changed;assert r['heapLimit']<=256*1024**2;(P/'own-after.json').write_text(json.dumps({'before':before,'after':after,'changed':changed,'uniqueFiles':len(after)},indent=2),encoding='utf-8');print(json.dumps({'sourcesAndPrechangeUnchanged':len(after),'changed':changed}))
