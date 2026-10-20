@@ -342,7 +342,7 @@ function factor(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${nj(a, "과", "와")} ${n(b)}의 공약수는 모두 몇 개인가?`,
+      `${nj(a, "과", "와")} ${n(b)}의 공약수는 모두 몇 개입니까?`,
       n(common.length),
       `공약수는 ${nums(common)}이므로 ${n(common.length)}개입니다.`,
     );
@@ -420,7 +420,7 @@ function factor(unit: UnitSeed, rng: Rng): ElemProblem {
   if (roll === 1) {
     return make(
       unit,
-      `${n(num)}의 약수는 모두 몇 개인가?`,
+      `${n(num)}의 약수는 모두 몇 개입니까?`,
       n(divisors(num).length),
       `약수는 ${nums(divisors(num))}이므로 ${n(divisors(num).length)}개입니다.`,
     );
@@ -710,7 +710,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
       const side = intBetween(rng, 4, 14);
       return make(
         unit,
-        `한 변의 길이가 ${n(side)} cm인 ${polyName(sides, true)}의 둘레는 몇 cm인가?`,
+        `한 변의 길이가 ${n(side)} cm인 ${polyName(sides, true)}의 둘레는 몇 cm입니까?`,
         n(sides * side),
         `${wj(polyName(sides, true), "은", "는")} 변이 ${n(sides)}개이고 길이가 모두 같으므로 ${expr(`${side}\\times${sides}=${sides * side}`)}입니다.`,
       );
@@ -720,7 +720,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
       const h = intBetween(rng, 3, w - 1);
       return make(
         unit,
-        `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형의 둘레는 몇 cm인가?`,
+        `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형의 둘레는 몇 cm입니까?`,
         n(2 * (w + h)),
         `${expr(`(${w}+${h})\\times2=${2 * (w + h)}`)}입니다.`,
         fig("areaPoly", { shape: "rect", base: w, height: h }),
@@ -730,7 +730,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
       const side = intBetween(rng, 4, 15);
       return make(
         unit,
-        `한 변의 길이가 ${n(side)} cm인 마름모의 둘레는 몇 cm인가?`,
+        `한 변의 길이가 ${n(side)} cm인 마름모의 둘레는 몇 cm입니까?`,
         n(4 * side),
         `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${side}\\times4=${4 * side}`)}입니다.`,
       );
@@ -739,7 +739,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
     const q = intBetween(rng, 3, 12);
     return make(
       unit,
-      `이웃한 두 변의 길이가 ${n(p)} cm, ${n(q)} cm인 평행사변형의 둘레는 몇 cm인가?`,
+      `이웃한 두 변의 길이가 ${n(p)} cm, ${n(q)} cm인 평행사변형의 둘레는 몇 cm입니까?`,
       n(2 * (p + q)),
       `평행사변형은 마주 보는 두 변의 길이가 같으므로 ${expr(`(${p}+${q})\\times2=${2 * (p + q)}`)}입니다.`,
     );
@@ -752,7 +752,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
       const k = intBetween(rng, 2, 9);
       return make(
         unit,
-        `${expr(`${k}\\,\\mathrm{m}^2`)}는 몇 ${expr("\\mathrm{cm}^2")}인가?`,
+        `${expr(`${k}\\,\\mathrm{m}^2`)}는 몇 ${expr("\\mathrm{cm}^2")}입니까?`,
         n(k * 10000),
         `${expr("1\\,\\mathrm{m}=100\\,\\mathrm{cm}")}이므로 ${expr("1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2")}입니다. 따라서 ${expr(`${k}\\times10000=${k * 10000}`)}입니다.`,
       );
@@ -761,7 +761,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
       const k = intBetween(rng, 2, 9);
       return make(
         unit,
-        `${expr(`${k}\\,\\mathrm{km}^2`)}는 몇 ${expr("\\mathrm{m}^2")}인가?`,
+        `${expr(`${k}\\,\\mathrm{km}^2`)}는 몇 ${expr("\\mathrm{m}^2")}입니까?`,
         n(k * 1000000),
         `${expr("1\\,\\mathrm{km}=1000\\,\\mathrm{m}")}이므로 ${expr("1\\,\\mathrm{km}^2=1000000\\,\\mathrm{m}^2")}입니다. 따라서 ${expr(`${k}\\times1000000=${k * 1000000}`)}입니다.`,
       );
@@ -770,7 +770,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
     const h = intBetween(rng, 4, 20);
     return make(
       unit,
-      `가로가 ${n(w)} m, 세로가 ${n(h)} m인 직사각형 모양 텃밭의 넓이는 몇 ${expr("\\mathrm{m}^2")}인가?`,
+      `가로가 ${n(w)} m, 세로가 ${n(h)} m인 직사각형 모양 텃밭의 넓이는 몇 ${expr("\\mathrm{m}^2")}입니까?`,
       n(w * h),
       `직사각형의 넓이는 가로와 세로의 곱이므로 ${expr(`${w}\\times${h}=${w * h}`)}입니다.`,
     );
@@ -782,7 +782,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
       const side = intBetween(rng, 4, 14);
       return make(
         unit,
-        `한 변의 길이가 ${n(side)} cm인 정사각형의 넓이는 몇 cm²인가?`,
+        `한 변의 길이가 ${n(side)} cm인 정사각형의 넓이는 몇 cm²입니까?`,
         n(side * side),
         `${expr(`${side}\\times${side}=${side * side}`)}입니다.`,
         fig("areaPoly", { shape: "rect", base: side, height: side }),
@@ -793,7 +793,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
     const h = intBetween(rng, 3, w - 1);
     return make(
       unit,
-      `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형의 넓이는 몇 cm²인가?`,
+      `가로가 ${n(w)} cm, 세로가 ${n(h)} cm인 직사각형의 넓이는 몇 cm²입니까?`,
       n(w * h),
       `${expr(`${w}\\times${h}=${w * h}`)}입니다.`,
       fig("areaPoly", { shape: "rect", base: w, height: h }),
@@ -807,7 +807,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 1) === 0) {
       return make(
         unit,
-        `밑변의 길이가 ${n(b)} cm, 높이가 ${n(h)} cm인 삼각형의 넓이는 몇 cm²인가?`,
+        `밑변의 길이가 ${n(b)} cm, 높이가 ${n(h)} cm인 삼각형의 넓이는 몇 cm²입니까?`,
         n((b * h) / 2),
         `삼각형의 넓이는 밑변과 높이를 곱한 뒤 ${n(2)}로 나눕니다. ${expr(`${b}\\times${h}\\div2=${(b * h) / 2}`)}입니다.`,
         fig("areaPoly", { shape: "tri", base: b, height: h }),
@@ -815,7 +815,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `밑변의 길이가 ${n(b)} cm, 높이가 ${n(h)} cm인 평행사변형의 넓이는 몇 cm²인가?`,
+      `밑변의 길이가 ${n(b)} cm, 높이가 ${n(h)} cm인 평행사변형의 넓이는 몇 cm²입니까?`,
       n(b * h),
       `평행사변형의 넓이는 밑변과 높이의 곱이므로 ${expr(`${b}\\times${h}=${b * h}`)}입니다.`,
       fig("areaPoly", { shape: "para", base: b, height: h }),
@@ -833,7 +833,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
     );
     return make(
       unit,
-      `두 대각선의 길이가 ${n(d1)} cm, ${n(d2)} cm인 마름모의 넓이는 몇 cm²인가?`,
+      `두 대각선의 길이가 ${n(d1)} cm, ${n(d2)} cm인 마름모의 넓이는 몇 cm²입니까?`,
       n((d1 * d2) / 2),
       `마름모의 넓이는 두 대각선을 곱한 뒤 ${n(2)}로 나눕니다. ${expr(`${d1}\\times${d2}\\div2=${(d1 * d2) / 2}`)}입니다.`,
       fig("areaPoly", { shape: "rhombus", base: d1, height: d2, d2 }),
@@ -847,7 +847,7 @@ function area(unit: UnitSeed, rng: Rng): ElemProblem {
   const h = 2 * intBetween(rng, 2, Math.min(5, Math.floor(bot / 2)));
   return make(
     unit,
-    `윗변의 길이가 ${n(top)} cm, 아랫변의 길이가 ${n(bot)} cm, 높이가 ${n(h)} cm인 사다리꼴의 넓이는 몇 cm²인가?`,
+    `윗변의 길이가 ${n(top)} cm, 아랫변의 길이가 ${n(bot)} cm, 높이가 ${n(h)} cm인 사다리꼴의 넓이는 몇 cm²입니까?`,
     n(((top + bot) * h) / 2),
     `사다리꼴의 넓이는 두 변의 길이를 더해 높이를 곱한 뒤 ${n(2)}로 나눕니다. ${expr(`(${top}+${bot})\\times${h}\\div2=${((top + bot) * h) / 2}`)}입니다.`,
     fig("areaPoly", { shape: "trap", base: bot, height: h, top }),
@@ -872,7 +872,7 @@ function estimate(unit: UnitSeed, rng: Rng): ElemProblem {
     const gap = intBetween(rng, 5, 20);
     return make(
       unit,
-      `${n(a)} 이상 ${n(a + gap)} 이하인 자연수는 모두 몇 개인가?`,
+      `${n(a)} 이상 ${n(a + gap)} 이하인 자연수는 모두 몇 개입니까?`,
       n(gap + 1),
       `${nj(a, "과", "와")} ${nj(a + gap, "을", "를")} 모두 포함하므로 ${expr(`${a + gap}-${a}+1=${gap + 1}`)}개입니다.`,
     );
@@ -884,7 +884,7 @@ function estimate(unit: UnitSeed, rng: Rng): ElemProblem {
     const gap = intBetween(rng, 5, 20);
     return make(
       unit,
-      `${n(a)} 초과 ${n(a + gap)} 미만인 자연수는 모두 몇 개인가?`,
+      `${n(a)} 초과 ${n(a + gap)} 미만인 자연수는 모두 몇 개입니까?`,
       n(gap - 1),
       `${nj(a, "과", "와")} ${nj(a + gap, "을", "를")} 모두 빼야 하므로 ${expr(`${a + gap}-${a}-1=${gap - 1}`)}개입니다.`,
     );
@@ -901,7 +901,7 @@ function estimate(unit: UnitSeed, rng: Rng): ElemProblem {
     const ok = values.filter((v) => v >= limit).length;
     return make(
       unit,
-      `${wj(place, "을", "를")} 타려면 ${wj(what, "이", "가")} ${n(limit)} ${unitName} 이상이어야 합니다. 네 사람의 ${wj(what, "이", "가")} ${nums(values)} ${unitName}일 때 탈 수 있는 사람은 몇 명인가?`,
+      `${wj(place, "을", "를")} 타려면 ${wj(what, "이", "가")} ${n(limit)} ${unitName} 이상이어야 합니다. 네 사람의 ${wj(what, "이", "가")} ${nums(values)} ${unitName}일 때 탈 수 있는 사람은 몇 명입니까?`,
       n(ok),
       `${n(limit)} ${unitName} 이상인 ${wj(what, "을", "를")} 셉니다. ${nums(values.filter((v) => v >= limit))} ${unitName}이므로 ${n(ok)}명입니다.`,
     );
@@ -937,7 +937,7 @@ function estimate(unit: UnitSeed, rng: Rng): ElemProblem {
     const total = boxes * per + left;
     return make(
       unit,
-      `사탕 ${n(total)}개를 한 상자에 ${n(per)}개씩 담아 팔려고 합니다. 팔 수 있는 사탕은 모두 몇 개인가?`,
+      `사탕 ${n(total)}개를 한 상자에 ${n(per)}개씩 담아 팔려고 합니다. 팔 수 있는 사탕은 모두 몇 개입니까?`,
       n(boxes * per),
       `${n(per)}개씩 ${n(boxes)}상자를 담으면 ${n(left)}개가 남습니다. 남은 것은 팔 수 없으므로 버림하면 ${expr(`${boxes}\\times${per}=${boxes * per}`)}개입니다.`,
     );
@@ -1097,7 +1097,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
     if (roll === 0) {
       return make(
         unit,
-        "점선을 따라 접었을 때 완전히 겹치는 이런 도형을 무엇이라고 하는가?",
+        "점선을 따라 접었을 때 완전히 겹치는 이런 도형을 무엇이라고 합니까?",
         "선대칭도형",
         "한 직선을 따라 접어서 완전히 겹치는 도형을 선대칭도형이라고 하고, 그 직선을 대칭축이라고 합니다.",
         figure,
@@ -1107,7 +1107,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
       const len = intBetween(rng, 3, 14);
       return make(
         unit,
-        `점선을 대칭축으로 하는 선대칭도형입니다. 한 변의 길이가 ${n(len)} cm일 때 이와 대응하는 변의 길이는 몇 cm인가?`,
+        `점선을 대칭축으로 하는 선대칭도형입니다. 한 변의 길이가 ${n(len)} cm일 때 이와 대응하는 변의 길이는 몇 cm입니까?`,
         n(len),
         `선대칭도형에서 대응하는 변의 길이는 서로 같으므로 ${n(len)} cm입니다.`,
         figure,
@@ -1117,7 +1117,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
       const deg = intBetween(rng, 35, 140);
       return make(
         unit,
-        `점선을 대칭축으로 하는 선대칭도형입니다. 한 각의 크기가 ${expr(`${deg}^\\circ`)}일 때 이와 대응하는 각의 크기는 몇 도인가?`,
+        `점선을 대칭축으로 하는 선대칭도형입니다. 한 각의 크기가 ${expr(`${deg}^\\circ`)}일 때 이와 대응하는 각의 크기는 몇 도입니까?`,
         expr(`${deg}^\\circ`),
         `선대칭도형에서 대응하는 각의 크기는 서로 같으므로 ${expr(`${deg}^\\circ`)}입니다.`,
         figure,
@@ -1126,7 +1126,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
     const gap = intBetween(rng, 2, 12);
     return make(
       unit,
-      `점선을 대칭축으로 하는 선대칭도형입니다. 대칭축에서 ${n(gap)} cm 떨어진 점의 대응점은 대칭축에서 몇 cm 떨어져 있는가?`,
+      `점선을 대칭축으로 하는 선대칭도형입니다. 대칭축에서 ${n(gap)} cm 떨어진 점의 대응점은 대칭축에서 몇 cm 떨어져 있습니까?`,
       n(gap),
       `대응하는 두 점을 이은 선분은 대칭축과 수직으로 만나고 대칭축이 그 선분을 반으로 나누므로 ${n(gap)} cm입니다.`,
       figure,
@@ -1141,7 +1141,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
     if (roll === 0) {
       return make(
         unit,
-        `가운데 점을 중심으로 ${expr("180^\\circ")} 돌렸을 때 처음 도형과 완전히 겹치는 이런 도형을 무엇이라고 하는가?`,
+        `가운데 점을 중심으로 ${expr("180^\\circ")} 돌렸을 때 처음 도형과 완전히 겹치는 이런 도형을 무엇이라고 합니까?`,
         "점대칭도형",
         `한 점을 중심으로 ${expr("180^\\circ")} 돌렸을 때 처음 도형과 완전히 겹치면 점대칭도형이고, 그 점을 대칭의 중심이라고 합니다.`,
         figure,
@@ -1150,7 +1150,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
     if (roll === 1) {
       return make(
         unit,
-        "점대칭도형에서 대응하는 두 점을 이은 선분은 모두 어느 점을 지나는가?",
+        "점대칭도형에서 대응하는 두 점을 이은 선분은 모두 어느 점을 지납니까?",
         "대칭의 중심",
         "대응점을 이은 선분은 모두 대칭의 중심을 지나고, 대칭의 중심이 그 선분을 반으로 나눕니다.",
         figure,
@@ -1160,7 +1160,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
       const len = intBetween(rng, 3, 14);
       return make(
         unit,
-        `점대칭도형입니다. 한 변의 길이가 ${n(len)} cm일 때 이와 대응하는 변의 길이는 몇 cm인가?`,
+        `점대칭도형입니다. 한 변의 길이가 ${n(len)} cm일 때 이와 대응하는 변의 길이는 몇 cm입니까?`,
         n(len),
         `점대칭도형에서 대응하는 변의 길이는 서로 같으므로 ${n(len)} cm입니다.`,
         figure,
@@ -1169,7 +1169,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
     const gap = intBetween(rng, 2, 12);
     return make(
       unit,
-      `점대칭도형입니다. 대칭의 중심에서 한 점까지의 거리가 ${n(gap)} cm일 때, 그 점의 대응점까지의 거리는 몇 cm인가?`,
+      `점대칭도형입니다. 대칭의 중심에서 한 점까지의 거리가 ${n(gap)} cm일 때, 그 점의 대응점까지의 거리는 몇 cm입니까?`,
       n(gap),
       `대칭의 중심은 대응점을 이은 선분을 반으로 나누므로 ${n(gap)} cm입니다.`,
       figure,
@@ -1189,7 +1189,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
       const len = intBetween(rng, 4, 15);
       return make(
         unit,
-        `두 도형은 서로 합동입니다. 도형 가의 어떤 변의 길이가 ${n(len)} cm일 때, 도형 나에서 이와 대응하는 변의 길이는 몇 cm인가?`,
+        `두 도형은 서로 합동입니다. 도형 가의 어떤 변의 길이가 ${n(len)} cm일 때, 도형 나에서 이와 대응하는 변의 길이는 몇 cm입니까?`,
         n(len),
         `합동인 두 도형에서 대응하는 변의 길이는 서로 같으므로 ${n(len)} cm입니다.`,
         figure,
@@ -1198,7 +1198,7 @@ function congSym(unit: UnitSeed, rng: Rng): ElemProblem {
     const deg = intBetween(rng, 35, 145);
     return make(
       unit,
-      `두 도형은 서로 합동입니다. 도형 가의 어떤 각의 크기가 ${expr(`${deg}^\\circ`)}일 때, 도형 나에서 이와 대응하는 각의 크기는 몇 도인가?`,
+      `두 도형은 서로 합동입니다. 도형 가의 어떤 각의 크기가 ${expr(`${deg}^\\circ`)}일 때, 도형 나에서 이와 대응하는 각의 크기는 몇 도입니까?`,
       expr(`${deg}^\\circ`),
       `합동인 두 도형에서 대응하는 각의 크기는 서로 같으므로 ${expr(`${deg}^\\circ`)}입니다.`,
       figure,
@@ -1370,7 +1370,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `한 모서리의 길이가 ${n(e)} cm인 정육면체의 모든 모서리 길이의 합은 몇 cm인가?`,
+      `한 모서리의 길이가 ${n(e)} cm인 정육면체의 모든 모서리 길이의 합은 몇 cm입니까?`,
       n(12 * e),
       `정육면체의 모서리는 ${n(12)}개이고 길이가 모두 같으므로 ${expr(`${e}\\times12=${12 * e}`)}입니다.`,
       fig("cuboid", { w: e, d: e, h: e }),
@@ -1394,7 +1394,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     if (roll === 1) {
       return make(
         unit,
-        `${given} 모서리는 모두 몇 개인가?`,
+        `${given} 모서리는 모두 몇 개입니까?`,
         n(12),
         `직육면체의 모서리는 길이가 같은 것끼리 ${n(4)}개씩 세 묶음이므로 ${expr("4\\times3=12")}개입니다.`,
         figure,
@@ -1402,7 +1402,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${given} 꼭짓점은 모두 몇 개인가?`,
+      `${given} 꼭짓점은 모두 몇 개입니까?`,
       n(8),
       `밑면에 ${n(4)}개, 윗면에 ${n(4)}개이므로 ${expr("4+4=8")}개입니다.`,
       figure,
@@ -1417,7 +1417,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     if (roll === 0) {
       return make(
         unit,
-        `${given} 서로 평행한 면은 모두 몇 쌍인가?`,
+        `${given} 서로 평행한 면은 모두 몇 쌍입니까?`,
         n(3),
         `마주 보는 두 면끼리 평행하고 그런 쌍이 ${n(3)}개 있습니다.`,
         figure,
@@ -1426,7 +1426,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     if (roll === 1) {
       return make(
         unit,
-        `${given} 한 면과 수직인 면은 모두 몇 개인가?`,
+        `${given} 한 면과 수직인 면은 모두 몇 개입니까?`,
         n(4),
         `한 면과 마주 보는 면만 평행하고 나머지 ${n(4)}개는 모두 수직입니다.`,
         figure,
@@ -1434,7 +1434,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${given} 한 모서리와 평행한 모서리는 모두 몇 개인가?`,
+      `${given} 한 모서리와 평행한 모서리는 모두 몇 개입니까?`,
       n(3),
       `길이가 같은 모서리가 ${n(4)}개씩 있고 그중 자기 자신을 뺀 ${n(3)}개가 평행합니다.`,
       figure,
@@ -1449,7 +1449,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     if (roll === 0) {
       return make(
         unit,
-        `${given} 겨냥도에서 보이는 면은 모두 몇 개인가?`,
+        `${given} 겨냥도에서 보이는 면은 모두 몇 개입니까?`,
         n(3),
         `여섯 면 중 앞·옆·위의 ${n(3)}개가 보입니다.`,
         figure,
@@ -1458,7 +1458,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     if (roll === 1) {
       return make(
         unit,
-        `${given} 겨냥도에서 보이는 모서리는 모두 몇 개인가?`,
+        `${given} 겨냥도에서 보이는 모서리는 모두 몇 개입니까?`,
         n(9),
         `모서리 ${n(12)}개 중 보이지 않는 ${n(3)}개를 빼면 ${expr("12-3=9")}개입니다.`,
         figure,
@@ -1466,7 +1466,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${given} 겨냥도에서 보이는 꼭짓점은 모두 몇 개인가?`,
+      `${given} 겨냥도에서 보이는 꼭짓점은 모두 몇 개입니까?`,
       n(7),
       `꼭짓점 ${n(8)}개 중 뒤쪽에 가려진 ${n(1)}개를 빼면 ${expr("8-1=7")}개입니다.`,
       figure,
@@ -1479,7 +1479,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 1) === 0) {
       return make(
         unit,
-        `한 모서리의 길이가 ${n(e)} cm인 정육면체의 전개도입니다. 이 전개도를 접었을 때 서로 마주 보는 면은 모두 몇 쌍인가?`,
+        `한 모서리의 길이가 ${n(e)} cm인 정육면체의 전개도입니다. 이 전개도를 접었을 때 서로 마주 보는 면은 모두 몇 쌍입니까?`,
         n(3),
         `정육면체는 면이 ${n(6)}개이고 마주 보는 면끼리 짝을 이루므로 ${expr("6\\div2=3")}쌍입니다.`,
         fig("netCuboid", { w: e, d: e, h: e }),
@@ -1487,7 +1487,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `한 모서리의 길이가 ${n(e)} cm인 정육면체의 전개도입니다. 이 전개도를 접어 만든 정육면체의 모든 모서리 길이의 합은 몇 cm인가?`,
+      `한 모서리의 길이가 ${n(e)} cm인 정육면체의 전개도입니다. 이 전개도를 접어 만든 정육면체의 모든 모서리 길이의 합은 몇 cm입니까?`,
       n(12 * e),
       `정육면체의 모서리는 ${n(12)}개이므로 ${expr(`${e}\\times12=${12 * e}`)}입니다.`,
       fig("netCuboid", { w: e, d: e, h: e }),
@@ -1498,7 +1498,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
   if (intBetween(rng, 0, 1) === 0) {
     return make(
       unit,
-      `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 전개도입니다. 이 전개도를 접어 만든 직육면체의 모든 모서리 길이의 합은 몇 cm인가?`,
+      `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 전개도입니다. 이 전개도를 접어 만든 직육면체의 모든 모서리 길이의 합은 몇 cm입니까?`,
       n(4 * (w + d + h)),
       `가로·세로·높이가 각각 ${n(4)}개씩이므로 ${expr(`(${w}+${d}+${h})\\times4=${4 * (w + d + h)}`)}입니다.`,
       fig("netCuboid", { w, d, h }),
@@ -1506,7 +1506,7 @@ function cuboid(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 전개도입니다. 이 전개도에서 가장 넓은 면의 넓이는 몇 cm²인가?`,
+    `가로가 ${n(w)} cm, 세로가 ${n(d)} cm, 높이가 ${n(h)} cm인 직육면체의 전개도입니다. 이 전개도에서 가장 넓은 면의 넓이는 몇 cm²입니까?`,
     n(w * d),
     `면의 넓이는 ${expr(`${w}\\times${d}=${w * d}`)}, ${expr(`${w}\\times${h}=${w * h}`)}, ${expr(`${d}\\times${h}=${d * h}`)}이므로 가장 넓은 면은 ${n(w * d)}입니다.`,
     fig("netCuboid", { w, d, h }),
@@ -1587,7 +1587,7 @@ function average(unit: UnitSeed, rng: Rng): ElemProblem {
       const avg = intBetween(rng, lo, hi);
       return make(
         unit,
-        `${who} ${n(count)}명의 ${wj(what, "을", "를")} 조사했더니 평균이 ${n(avg)}${sp}${unitName}입니다. ${who} ${n(count)}명의 ${wj(what, "을", "를")} 모두 더하면 몇 ${unitName}인가?`,
+        `${who} ${n(count)}명의 ${wj(what, "을", "를")} 조사했더니 평균이 ${n(avg)}${sp}${unitName}입니다. ${who} ${n(count)}명의 ${wj(what, "을", "를")} 모두 더하면 몇 ${unitName}입니까?`,
         n(count * avg),
         `합은 평균에 자료의 수를 곱한 값이므로 ${expr(`${avg}\\times${count}=${count * avg}`)}입니다.`,
       );
@@ -1615,7 +1615,7 @@ function average(unit: UnitSeed, rng: Rng): ElemProblem {
     const shownSum = shown.reduce((x, y) => x + y, 0);
     return make(
       unit,
-      `${who} ${n(count)}명의 ${wj(what, "을", "를")} 조사했습니다. 그중 ${n(count - 1)}명의 ${wj(what, "은", "는")} ${nums(shown)}${sp}${unitName}이고, ${n(count)}명의 평균은 ${n(avg)}${sp}${unitName}입니다. 나머지 한 명의 ${wj(what, "은", "는")} 몇 ${unitName}인가?`,
+      `${who} ${n(count)}명의 ${wj(what, "을", "를")} 조사했습니다. 그중 ${n(count - 1)}명의 ${wj(what, "은", "는")} ${nums(shown)}${sp}${unitName}이고, ${n(count)}명의 평균은 ${n(avg)}${sp}${unitName}입니다. 나머지 한 명의 ${wj(what, "은", "는")} 몇 ${unitName}입니까?`,
       n(missing),
       `${n(count)}명의 합은 ${expr(`${avg}\\times${count}=${total}`)}입니다. 여기에서 ${n(count - 1)}명의 합 ${nj(shownSum, "을", "를")} 빼면 ${expr(`${total}-${shownSum}=${missing}`)}입니다.`,
     );

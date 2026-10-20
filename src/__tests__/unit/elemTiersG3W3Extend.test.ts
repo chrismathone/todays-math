@@ -78,7 +78,7 @@ function intAnswer(answer: string): number {
   return Number(answer.slice(1, -1));
 }
 
-/** $(\text{몇십몇})\times(\text{몇})$ 의 올림 종류 — 여기서 다시 센다. */
+/** $(\text{몇십몇})\times(\text{몇})$의 올림 종류 — 여기서 다시 센다. */
 function carryOf(a: number, k: number): Carry {
   const t = Math.floor(a / 10);
   const o = a % 10;
@@ -153,10 +153,10 @@ function checkMul14Why(
     const re =
       onesCarry !== wantOnes
         ? new RegExp(
-            `곱하는 수가 \\$${k}\\$ 일 때는 일의 자리끼리의 곱이 \\$(\\d+)\\$ 입니다\\. 그래서 일의 자리에서 올림이 (생깁니다|생기지 않습니다)`,
+            `곱하는 수가 \\$${k}\\$일 때는 일의 자리끼리의 곱이 \\$(\\d+)\\$입니다\\. 그래서 일의 자리에서 올림이 (생깁니다|생기지 않습니다)`,
           )
         : new RegExp(
-            `곱하는 수가 \\$${k}\\$ 일 때는 십의 자리끼리의 곱에 올림까지 더하면 \\$(\\d+)\\$ 입니다\\. 그래서 십의 자리에서 올림이 (생깁니다|생기지 않습니다)`,
+            `곱하는 수가 \\$${k}\\$일 때는 십의 자리끼리의 곱에 올림까지 더하면 \\$(\\d+)\\$입니다\\. 그래서 십의 자리에서 올림이 (생깁니다|생기지 않습니다)`,
           );
     const m = sol.match(re);
     expect(
@@ -204,13 +204,13 @@ function checkMul14Why(
   //     올림까지 더하면 $X$ 입니다. 그래서 {소단원 문구}.」
   //    버릴 후보 쪽만 보던 검사는 이 문장을 구조적으로 못 본다.
   const m = sol.match(
-    /곱하는 수가 \$(\d+)\$ 일 때는 일의 자리끼리의 곱이 \$(\d+)\\times(\d+)=(\d+)\$, 십의 자리끼리의 곱에 올림까지 더하면 \$(\d+)\$ 입니다\. 그래서 ([^.]+)\./,
+    /곱하는 수가 \$(\d+)\$일 때는 일의 자리끼리의 곱이 \$(\d+)\\times(\d+)=(\d+)\$, 십의 자리끼리의 곱에 올림까지 더하면 \$(\d+)\$입니다\. 그래서 ([^.]+)\./,
   );
   expect(m, `${at}: 정답 문장을 못 읽었다\n${sol}`).toBeTruthy();
   expect(Number(m![1]), `${at}: 정답 문장의 곱하는 수가 답이 아니다`).toBe(ans);
   expect(
     Number(m![2]),
-    `${at}: 정답 문장의 일의 자리가 $a$ 의 것이 아니다`,
+    `${at}: 정답 문장의 일의 자리가 $a$의 것이 아니다`,
   ).toBe(o);
   expect(Number(m![3]), `${at}: 정답 문장의 곱하는 수가 답이 아니다`).toBe(ans);
   expect(
@@ -262,7 +262,7 @@ function checkMul14(code: string, want: Carry): void {
     expect(carryOf(a, ans), `${at}: 답의 곱셈이 소단원 이름 밖이다`).toBe(want);
     expect(
       ans,
-      `${at}: 곱하는 수가 $2$ 보다 작으면 곱셈이 아니다`,
+      `${at}: 곱하는 수가 $2$보다 작으면 곱셈이 아니다`,
     ).toBeGreaterThan(1);
     expect((a * ans) % 10, `${at}: 곱의 일의 자리가 발문과 다르다`).toBe(r);
 
@@ -362,7 +362,9 @@ describe("초3 물결 3 — 1-4 의 심화중 (D-113 · D-115)", () => {
         const m = p.answer.match(/^\$(\d+)\$$/);
         if (!m) continue;
         n += 1;
-        if (pmOneStepReachable(pageNumbers(p.content), rat(Number(m[1])))) {
+        // 지면의 수 — «세로셈으로 계산하시오»는 두 수가 세로셈 그림에 있다(D-164 ⑥)
+        const col = p.figureSpec?.kind === "columnOp" ? [rat(Number(p.figureSpec.top)), rat(Number(p.figureSpec.bottom))] : [];
+        if (pmOneStepReachable([...pageNumbers(p.content), ...col], rat(Number(m[1])))) {
           hit += 1;
         }
       }

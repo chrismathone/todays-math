@@ -198,7 +198,7 @@ describe("초4 1-1-3 10000이 몇십·몇백·몇천", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
       const m = p.content.match(
-        /\$10000\$이 \$(\d+)\$개인 수는 \$100\$이 몇 개인 수인가/,
+        /\$10000\$이 \$(\d+)\$개인 수는 \$100\$이 몇 개인 수입니까/,
       );
       expect(m, p.content).toBeTruthy();
       expect(answerInt(p.answer)).toBe(Number(m![1]) * 100);
@@ -208,7 +208,7 @@ describe("초4 1-1-3 10000이 몇십·몇백·몇천", () => {
   it("06 값은 몇 만인가", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
-      const m = p.content.match(/\$(\d+)\$은 몇 만인가/);
+      const m = p.content.match(/\$(\d+)\$은 몇 만입니까/);
       expect(m, p.content).toBeTruthy();
       expect(p.answer).toBe(`$${Number(m![1]) / 10000}$만`);
     }
@@ -217,7 +217,7 @@ describe("초4 1-1-3 10000이 몇십·몇백·몇천", () => {
   it("07 10000이 n개인 수는 n만", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
-      const m = p.content.match(/\$10000\$이 \$(\d+)\$개인 수는 몇 만인가/);
+      const m = p.content.match(/\$10000\$이 \$(\d+)\$개인 수는 몇 만입니까/);
       expect(m, p.content).toBeTruthy();
       expect(p.answer).toBe(`$${m![1]}$만`);
     }
@@ -263,7 +263,7 @@ describe("초4 1-1-4 억", () => {
   it("05 억은 만이 a×10000개", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const m = p.content.match(/\$(\d+)\$억은 만이 몇 개인 수인가/);
+      const m = p.content.match(/\$(\d+)\$억은 만이 몇 개인 수입니까/);
       expect(m, p.content).toBeTruthy();
       expect(answerInt(p.answer)).toBe(Number(m![1]) * 10000);
     }
@@ -281,7 +281,7 @@ describe("초4 1-1-4 억", () => {
   it("07 만이 n개인 수는 n/10000억", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
-      const m = p.content.match(/만이 \$(\d+)\$개인 수는 몇 억인가/);
+      const m = p.content.match(/만이 \$(\d+)\$개인 수는 몇 억입니까/);
       expect(m, p.content).toBeTruthy();
       expect(p.answer).toBe(`$${Number(m![1]) / 10000}$억`);
     }
@@ -327,7 +327,7 @@ describe("초4 1-1-5 조", () => {
   it("05 조는 억이 a×10000개", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      const m = p.content.match(/\$(\d+)\$조는 억이 몇 개인 수인가/);
+      const m = p.content.match(/\$(\d+)\$조는 억이 몇 개인 수입니까/);
       expect(m, p.content).toBeTruthy();
       expect(answerInt(p.answer)).toBe(Number(m![1]) * 10000);
     }
@@ -345,7 +345,7 @@ describe("초4 1-1-5 조", () => {
   it("07 억이 n개인 수는 n/10000조", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
-      const m = p.content.match(/억이 \$(\d+)\$개인 수는 몇 조인가/);
+      const m = p.content.match(/억이 \$(\d+)\$개인 수는 몇 조입니까/);
       expect(m, p.content).toBeTruthy();
       expect(p.answer).toBe(`$${Number(m![1]) / 10000}$조`);
     }
@@ -500,7 +500,7 @@ describe("초4 1-1-7 수의 크기 비교", () => {
   it("06 부등호는 두 수의 크기", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
-      const m = p.content.match(/\$(\d+)\$ □ \$(\d+)\$ 에서/);
+      const m = p.content.match(/\$(\d+)\$ □ \$(\d+)\$에서/);
       expect(m, p.content).toBeTruthy();
       const a = Number(m![1]);
       const b = Number(m![2]);

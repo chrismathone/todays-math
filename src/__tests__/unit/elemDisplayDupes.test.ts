@@ -98,7 +98,7 @@ describe("발문에 이미 있는 식을 식 줄로 또 찍지 않는다", () =>
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
       expect(p.content, p.content).not.toMatch(/\n\n\$\d+\\times\d+\$\s*$/);
-      expect(p.content).toMatch(/어림하여 곱하면 얼마인가\?$/);
+      expect(p.content).toMatch(/어림하여 곱하면 얼마입니까\?$/);
     }
   });
 });
@@ -168,7 +168,7 @@ describe("TeX · 낱말이 지면에서 어긋나지 않는다", () => {
     const unit = unitOf("초3", "1-1-3");
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
-      const m = /^\$(\d+)\$ 의 일의 자리 숫자에서 \$(\d+)\$ 의/.exec(p.content);
+      const m = /^\$(\d+)\$의 일의 자리 숫자에서 \$(\d+)\$의/.exec(p.content);
       expect(m, p.content).toBeTruthy();
       const borrow = Number(m![1]) % 10 < Number(m![2]) % 10;
       expect(p.content.includes("받아내림하여"), p.content).toBe(borrow);
@@ -258,7 +258,7 @@ describe("3차 교차 검수 — 문장", () => {
       for (const tier of supportedTiers(unit))
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, tier);
-          expect(p.content, `${code} ${tier} @${seed}`).not.toMatch(/에서 \$\d+\$ 만큼 더한/);
+          expect(p.content, `${code} ${tier} @${seed}`).not.toMatch(/에서 \$\d+\$만큼 더한/);
         }
     }
   });
@@ -400,7 +400,7 @@ describe("5차 교차 검수 — 초등 그림 · 문장", () => {
       const m = /=(\d+):(\d+)\$ ([은는]) 비례식/.exec(p.content);
       if (m) expect(m[3], p.content).toBe("2459".includes(m[2]!.at(-1)!) ? "는" : "은");
     }
-    for (const p of allOf("초3", "2-5-2")) expect(p.content).not.toMatch(/mathrm\{mL\}\$ 과 /);
+    for (const p of allOf("초3", "2-5-2")) expect(p.content).not.toMatch(/mathrm\{mL\}\$과 /);
   });
 
   it("초6 2-3-1 «놓이지 않은 칸» — 위에서 본 그림 하나로 묻는다 · 초6 2-5-3 «원 밖 정사각형» 에 원만 그린 그림이 없다", () => {

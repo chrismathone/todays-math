@@ -1,7 +1,7 @@
 import type { UnitSeed } from "../../../prisma/seed-data/units";
 
 import type { ElemProblem } from "./types";
-import { mathJosa } from "./format";
+import { attachMathWords, mathJosa } from "./format";
 
 export function make(
   unit: UnitSeed,
@@ -15,9 +15,9 @@ export function make(
     chapter: unit.chapter,
     section: unit.section,
     orderIndex: unit.orderIndex,
-    content: mathJosa(content),
+    content: mathJosa(attachMathWords(content)),
     answer,
-    solution: mathJosa(solution),
+    solution: mathJosa(attachMathWords(solution)),
     figureSpec,
   };
 }

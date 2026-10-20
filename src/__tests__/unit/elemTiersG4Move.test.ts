@@ -349,9 +349,9 @@ describe("[초4 4단] 1-4 평면도형의 이동 — 네 소단원", () => {
       const spec = basic.figureSpec as MoveSpec;
       expect(spec.kind).toBe("rotateFlip");
       expect(["flipH", "flipV"]).toContain(spec.op);
-      const askedV = /위아래로 뒤집은 것인가/.test(basic.content);
+      const askedV = /위아래로 뒤집은 것입니까/.test(basic.content);
       expect(
-        askedV || /좌우로 뒤집은 것인가/.test(basic.content),
+        askedV || /좌우로 뒤집은 것입니까/.test(basic.content),
         basic.content,
       ).toBe(true);
       const yes = (spec.op === "flipV") === askedV;

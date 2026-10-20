@@ -239,12 +239,12 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
     const applyKinds = new Set<string>();
     for (const seed of SEEDS) {
       const calc = gen("1-1-1", seed, "연산");
-      let m = calc.content.match(/^\$10000\$은 \$(\d+)\$보다 얼마나 큰 수인가/);
+      let m = calc.content.match(/^\$10000\$은 \$(\d+)\$보다 얼마나 큰 수입니까/);
       if (m) {
         calcKinds.add("보다");
         expect(answerNum(calc.answer), calc.content).toBe(10000 - Number(m[1]));
       } else {
-        m = calc.content.match(/^\$10000\$은 \$(10|100)\$이 몇 개인 수인가/);
+        m = calc.content.match(/^\$10000\$은 \$(10|100)\$이 몇 개인 수입니까/);
         expect(m, `연산 발문 꼴이 아니다: ${calc.content}`).toBeTruthy();
         calcKinds.add("몇개");
         expect(answerNum(calc.answer)).toBe(10000 / Number(m![1]));
@@ -437,7 +437,7 @@ describe("[초4 4단] 1-1 큰 수 — 일곱 소단원", () => {
           Number(m[1]) * 100000000 + Number(m[2]) * 10000,
         );
       } else {
-        m = basic.content.match(/^\$(\d+)\$은 몇 억 몇 만인가/);
+        m = basic.content.match(/^\$(\d+)\$은 몇 억 몇 만입니까/);
         expect(m, basic.content).toBeTruthy();
         const v = Number(m![1]);
         expect(v % 10000, "만 아래 자리가 남는다").toBe(0);

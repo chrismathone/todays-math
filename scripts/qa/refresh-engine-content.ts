@@ -59,7 +59,10 @@ import {
   decideApply,
   identityRisk,
   norm,
+  figureSourceAfter,
+  revertStep,
   sameSnapshot,
+  writeSnapshotsCas,
   type BrokenReason,
   type DiffClass,
   type Ledger,
@@ -526,6 +529,7 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         answer: true,
         solution: true,
         figureSvg: true,
+        figureSource: true,
         directUseAllowed: true,
       },
     });
@@ -536,6 +540,7 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         solution: p.solution,
         figureSvg: p.figureSvg,
         directUseAllowed: p.directUseAllowed,
+        figureSource: p.figureSource,
       });
   }
 
@@ -571,6 +576,7 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
       solution: t.made.solution,
       figureSvg,
       directUseAllowed: b.directUseAllowed,
+      figureSource: figureSourceAfter(b, figureSvg),
     };
     const dead = [
       ...deadBackslashHits(after.content),
@@ -751,25 +757,20 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     `원장 ${path.relative(REPO, ledgerFile)} (누적 ${prev.rows.length + changes.length}행)`,
   );
 
+  // 쓰는 순간 «앞» 값인 행만 쓴다 — 한 행이라도 어긋나면 그 100행 거래를 되돌리고 멈춘다(앞 거래들은 원장으로 되돌린다).
+  let written = 0;
   for (let i = 0; i < changes.length; i += 100) {
     const part = changes.slice(i, i + 100);
-    await prisma.$transaction(
-      part.map((c) =>
-        prisma.problem.update({
-          where: { id: c.problemId },
-          data: {
-            content: c.after.content,
-            answer: c.after.answer,
-            solution: c.after.solution,
-            figureSvg: c.after.figureSvg,
-            figureSource: c.after.figureSvg ? "engine" : null,
-            directUseAllowed: c.after.directUseAllowed,
-          },
-        }),
-      ),
+    written += await prisma.$transaction(
+      (tx) =>
+        writeSnapshotsCas(
+          tx,
+          part.map((c) => ({ problemId: c.problemId, from: c.before, to: c.after })),
+        ),
+      { timeout: 120_000, maxWait: 20_000 },
     );
   }
-  console.log(`덮음 ${changes.length}행`);
+  console.log(`덮음 ${written}행`);
 
   // ── 🔴 믿지 않고 다시 읽는다 ──────────────────────────────────────────────
   let wrong = 0;
@@ -783,6 +784,7 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         answer: true,
         solution: true,
         figureSvg: true,
+        figureSource: true,
         directUseAllowed: true,
       },
     });
@@ -804,14 +806,11 @@ async function revert(ledgerFile: string): Promise<void> {
     );
   const led = readLedger(ledgerFile);
   console.log(`원장 ${led.rows.length}행 · 회차 ${led.runs.length}`);
-  // 같은 행이 여러 회차에 걸치면 **처음의 before** 로 되돌리고, **마지막 after** 와 견준다.
-  const first = new Map<string, LedgerRow>();
-  const last = new Map<string, LedgerRow>();
-  for (const r of led.rows) {
-    if (!first.has(r.problemId)) first.set(r.problemId, r);
-    last.set(r.problemId, r);
-  }
-  const ids = [...first.keys()];
+  // 같은 행이 여러 회차에 걸치면 **처음의 before** 로 되돌린다. 지금 값을 기록의 «뒤» 가운데 어느 것과 같은지로 읽는다 —
+  // 원장은 쓰기 **전에** 적으니, 거래가 실패한 회차의 «뒤»는 DB 에 없다(`revertStep`).
+  const entries = new Map<string, LedgerRow[]>();
+  for (const r of led.rows) entries.set(r.problemId, [...(entries.get(r.problemId) ?? []), r]);
+  const ids = [...entries.keys()];
   let restored = 0;
   let skipped = 0;
   for (let i = 0; i < ids.length; i += 200) {
@@ -823,28 +822,21 @@ async function revert(ledgerFile: string): Promise<void> {
         answer: true,
         solution: true,
         figureSvg: true,
+        figureSource: true,
         directUseAllowed: true,
       },
     });
     for (const p of now) {
       // 🔴 지금 값이 내가 쓴 값일 때만 되돌린다 — 그 사이 남이 고쳤으면 둔다.
-      if (!sameSnapshot(p, last.get(p.id)!.after)) {
+      const step = revertStep(entries.get(p.id)!, p);
+      if (!step) {
         skipped += 1;
         continue;
       }
-      const b = first.get(p.id)!.before;
-      await prisma.problem.update({
-        where: { id: p.id },
-        data: {
-          content: b.content,
-          answer: b.answer,
-          solution: b.solution,
-          figureSvg: b.figureSvg,
-          figureSource: b.figureSvg ? "engine" : null,
-          directUseAllowed: b.directUseAllowed,
-        },
-      });
-      restored += 1;
+      // 읽은 뒤 쓰기 전에 남이 고쳤을 수 있다 — 쓰는 순간에도 «지금 값»일 때만 되돌린다.
+      restored += await prisma.$transaction((tx) =>
+        writeSnapshotsCas(tx, [{ problemId: p.id, from: step.from, to: step.to }]),
+      );
     }
   }
   console.log(`되돌림 ${restored} · 남이 고쳐서 건너뜀 ${skipped}`);

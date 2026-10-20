@@ -229,7 +229,7 @@ function bigNum(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `${n(10000)}은 ${n(1000)}이 몇 개인 수인가?`,
+        `${n(10000)}은 ${n(1000)}이 몇 개인 수입니까?`,
         n(10),
         `${n(10000)}은 ${n(1000)}이 ${n(10)}개 모인 수입니다.`,
       );
@@ -237,7 +237,7 @@ function bigNum(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 2) {
       return make(
         unit,
-        `${n(1000)}원짜리 지폐 ${n(10)}장은 모두 얼마인가?`,
+        `${n(1000)}원짜리 지폐 ${n(10)}장은 모두 얼마입니까?`,
         `${n(10000)}원`,
         `${expr("1000\\times10=10000")} 이므로 ${n(10000)}원입니다.`,
       );
@@ -294,7 +294,7 @@ function bigNum(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${n(value)}은 ${n(10000)}이 몇 개인 수인가?`,
+      `${n(value)}은 ${n(10000)}이 몇 개인 수입니까?`,
       n(count),
       `${expr(`${value}\\div10000=${count}`)} 이므로 ${n(10000)}이 ${n(count)}개인 수입니다.`,
     );
@@ -306,7 +306,7 @@ function bigNum(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `${n(1000)}만이 ${n(10 * a)}개인 수는 몇 억인가?`,
+        `${n(1000)}만이 ${n(10 * a)}개인 수는 몇 억입니까?`,
         `${n(a)}억`,
         `${n(1000)}만이 ${n(10)}개이면 ${n(1)}억입니다. ${n(10 * a)}개이면 ${n(a)}억입니다.`,
       );
@@ -314,14 +314,14 @@ function bigNum(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `${n(a)}억은 ${n(1000)}만이 몇 개인 수인가?`,
+        `${n(a)}억은 ${n(1000)}만이 몇 개인 수입니까?`,
         n(10 * a),
         `${n(1)}억은 ${n(1000)}만이 ${n(10)}개인 수이므로 ${n(a)}억은 ${n(10 * a)}개입니다.`,
       );
     }
     return make(
       unit,
-      `${n(a)}억을 숫자로 쓰면 ${n(0)}은 모두 몇 개인가?`,
+      `${n(a)}억을 숫자로 쓰면 ${n(0)}은 모두 몇 개입니까?`,
       n(8),
       `${n(1)}억은 ${n(1)} 다음에 ${n(0)}이 ${n(8)}개인 수입니다.`,
     );
@@ -333,7 +333,7 @@ function bigNum(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `${n(1000)}억이 ${n(10 * a)}개인 수는 몇 조인가?`,
+        `${n(1000)}억이 ${n(10 * a)}개인 수는 몇 조입니까?`,
         `${n(a)}조`,
         `${n(1000)}억이 ${n(10)}개이면 ${n(1)}조입니다. ${n(10 * a)}개이면 ${n(a)}조입니다.`,
       );
@@ -341,14 +341,14 @@ function bigNum(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `${n(a)}조는 ${n(1)}억이 몇 개인 수인가?`,
+        `${n(a)}조는 ${n(1)}억이 몇 개인 수입니까?`,
         n(10000 * a),
         `${n(1)}조는 ${n(1)}억이 ${n(10000)}개인 수이므로 ${n(a)}조는 ${n(10000 * a)}개입니다.`,
       );
     }
     return make(
       unit,
-      `${n(a)}조를 숫자로 쓰면 ${n(0)}은 모두 몇 개인가?`,
+      `${n(a)}조를 숫자로 쓰면 ${n(0)}은 모두 몇 개입니까?`,
       n(12),
       `${n(1)}조는 ${n(1)} 다음에 ${n(0)}이 ${n(12)}개인 수입니다.`,
     );
@@ -436,7 +436,7 @@ function tier11Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     const base = 10000 - d;
     return make(
       unit,
-      `${n(10000)}은 ${n(base)}보다 얼마나 큰 수인가?`,
+      `${n(10000)}은 ${n(base)}보다 얼마나 큰 수입니까?`,
       n(d),
       `${expr(`${base}+${d}=10000`)} 이므로 ${n(10000)}은 ${n(base)}보다 ${n(d)} 큰 수입니다.`,
     );
@@ -444,14 +444,14 @@ function tier11Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   if (kind === 2) {
     return make(
       unit,
-      `${n(10000)}은 ${n(10)}이 몇 개인 수인가?`,
+      `${n(10000)}은 ${n(10)}이 몇 개인 수입니까?`,
       n(1000),
       `${expr("10\\times1000=10000")} 이므로 ${n(10)}이 ${n(1000)}개인 수입니다.`,
     );
   }
   return make(
     unit,
-    `${n(10000)}은 ${n(100)}이 몇 개인 수인가?`,
+    `${n(10000)}은 ${n(100)}이 몇 개인 수입니까?`,
     n(100),
     `${expr("100\\times100=10000")} 이므로 ${n(100)}이 ${n(100)}개인 수입니다.`,
   );
@@ -470,7 +470,7 @@ function tier11Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${josa(t.obj, "이", "가")} ${n(1000)}${t.cnt}씩 ${n(b)}묶음 있습니다. ` +
-        `${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}인가?`,
+        `${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}입니까?`,
       `${n(v)}${t.cnt}`,
       `${expr(`1000\\times${b}=${v}`)} 이므로 모두 ${n(v)}${t.cnt}입니다.`,
     );
@@ -478,14 +478,14 @@ function tier11Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   if (kind === 2) {
     return make(
       unit,
-      `${n(100)}원짜리 동전 ${n(100)}개는 모두 얼마인가?`,
+      `${n(100)}원짜리 동전 ${n(100)}개는 모두 얼마입니까?`,
       `${n(10000)}원`,
       `${expr("100\\times100=10000")} 이므로 ${n(10000)}원입니다.`,
     );
   }
   return make(
     unit,
-    `${n(10)}원짜리 동전 ${n(1000)}개는 모두 얼마인가?`,
+    `${n(10)}원짜리 동전 ${n(1000)}개는 모두 얼마입니까?`,
     `${n(10000)}원`,
     `${expr("10\\times1000=10000")} 이므로 ${n(10000)}원입니다.`,
   );
@@ -500,7 +500,7 @@ function tier11Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     const coins = (10 - a) * 10;
     return make(
       unit,
-      `${n(1000)}원짜리 지폐 ${n(a)}장과 ${n(100)}원짜리 동전 ${n(coins)}개를 모으면 모두 얼마인가?`,
+      `${n(1000)}원짜리 지폐 ${n(a)}장과 ${n(100)}원짜리 동전 ${n(coins)}개를 모으면 모두 얼마입니까?`,
       `${n(10000)}원`,
       `${expr(`1000\\times${a}=${a * 1000}`)} 이고 ${expr(`100\\times${coins}=${coins * 100}`)} 입니다. ` +
         `${expr(`${a * 1000}+${coins * 100}=10000`)} 이므로 모두 ${n(10000)}원입니다.`,
@@ -509,7 +509,7 @@ function tier11Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${n(1000)}원짜리 지폐가 ${n(a)}장 있습니다. ${n(10000)}원이 되려면 ` +
-      `${n(1000)}원짜리 지폐가 몇 장 더 필요한가?`,
+      `${n(1000)}원짜리 지폐가 몇 장 더 필요합니까?`,
     n(10 - a),
     `${n(10000)}원은 ${n(1000)}원짜리 지폐 ${n(10)}장과 같습니다. ` +
       `${expr(`10-${a}=${10 - a}`)} 이므로 ${n(10 - a)}장 더 필요합니다.`,
@@ -530,7 +530,7 @@ function tier11Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return makeDeep(
       unit,
       `${n(1000)}원짜리 지폐 ${n(a)}장과 ${n(100)}원짜리 동전을 모았더니 ${n(10000)}원이 되었습니다. ` +
-        `${n(100)}원짜리 동전은 몇 개인가?`,
+        `${n(100)}원짜리 동전은 몇 개입니까?`,
       n(coins),
       [
         `${n(1000)}원짜리 지폐 ${n(a)}장은 ${expr(`1000\\times${a}=${a * 1000}`)} 원입니다.`,
@@ -545,7 +545,7 @@ function tier11Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(
     unit,
     `${n(1000)}이 ${n(b)}개인 수보다 ${n(k)} 큰 수가 있습니다. ` +
-      `이 수에 얼마를 더하면 ${n(10000)}이 되는가?`,
+      `이 수에 얼마를 더하면 ${n(10000)}이 됩니까?`,
     n(10000 - base),
     [
       `${n(1000)}이 ${n(b)}개인 수는 ${n(b * 1000)}이므로 그 수는 ` +
@@ -600,7 +600,7 @@ function tier12Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${josa(t.obj, "을", "를")} ${n(10000)}${t.cnt}씩 ${t.big} ${n(a)}개에, ` +
       `${n(1000)}${t.cnt}씩 ${t.small} ${n(b)}개에 담았습니다. ` +
-      `${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}인가?`,
+      `${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}입니까?`,
     `${n(v)}${t.cnt}`,
     `${n(10000)}이 ${n(a)}개이면 ${n(a * 10000)}, ${n(1000)}이 ${n(b)}개이면 ${n(b * 1000)}입니다. ` +
       `${expr(`${a * 10000}+${b * 1000}=${v}`)} 이므로 모두 ${n(v)}${t.cnt}입니다.`,
@@ -672,7 +672,7 @@ function tier13Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const value = 10000 * count;
   return make(
     unit,
-    `${n(value)}은 ${n(1000)}이 몇 개인 수인가?`,
+    `${n(value)}은 ${n(1000)}이 몇 개인 수입니까?`,
     n(count * 10),
     `${expr(`${value}\\div1000=${count * 10}`)} 이므로 ${n(1000)}이 ${n(count * 10)}개인 수입니다.`,
   );
@@ -687,7 +687,7 @@ function tier13Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const value = 10000 * count;
   return make(
     unit,
-    `은행에 ${n(10000)}원짜리 지폐가 ${n(count)}장 있습니다. 모두 얼마인가?`,
+    `은행에 ${n(10000)}원짜리 지폐가 ${n(count)}장 있습니다. 모두 얼마입니까?`,
     `${n(value)}원`,
     `${expr(`10000\\times${count}=${value}`)} 이므로 모두 ${n(value)}원입니다.`,
   );
@@ -703,7 +703,7 @@ function tier13Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     const bundle = 10000 * 100;
     return make(
       unit,
-      `${n(10000)}원짜리 지폐를 ${n(100)}장씩 묶은 다발이 ${n(k)}개 있습니다. 모두 얼마인가?`,
+      `${n(10000)}원짜리 지폐를 ${n(100)}장씩 묶은 다발이 ${n(k)}개 있습니다. 모두 얼마입니까?`,
       `${n(bundle * k)}원`,
       `한 다발은 ${expr(`10000\\times100=${bundle}`)} 원입니다. ` +
         `${expr(`${bundle}\\times${k}=${bundle * k}`)} 이므로 모두 ${n(bundle * k)}원입니다.`,
@@ -734,7 +734,7 @@ function tier13Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     const ans = a * 100 + b * 10;
     return makeDeep(
       unit,
-      `${n(10000)}이 ${n(a)}개, ${n(1000)}이 ${n(b)}개인 수는 ${n(100)}이 모두 몇 개인 수인가?`,
+      `${n(10000)}이 ${n(a)}개, ${n(1000)}이 ${n(b)}개인 수는 ${n(100)}이 모두 몇 개인 수입니까?`,
       n(ans),
       [
         `${n(10000)}은 ${n(100)}이 ${n(100)}개이므로 ${n(10000)}이 ${n(a)}개이면 ` +
@@ -747,7 +747,7 @@ function tier13Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const hundreds = a * 100 + b * 10;
   return makeDeep(
     unit,
-    `${n(100)}이 ${n(hundreds)}개인 수는 ${n(10000)}이 ${n(a)}개, ${n(1000)}이 몇 개인 수인가?`,
+    `${n(100)}이 ${n(hundreds)}개인 수는 ${n(10000)}이 ${n(a)}개, ${n(1000)}이 몇 개인 수입니까?`,
     n(b),
     [
       `${n(100)}이 ${n(hundreds)}개인 수는 ${expr(`100\\times${hundreds}=${hundreds * 100}`)} 입니다.`,
@@ -767,7 +767,7 @@ function tier14Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const base = 10000 - d;
   return make(
     unit,
-    `${n(1)}억은 ${n(base)}만보다 얼마나 큰 수인가?`,
+    `${n(1)}억은 ${n(base)}만보다 얼마나 큰 수입니까?`,
     `${n(d)}만`,
     `${n(1)}억은 만이 ${n(10000)}개인 수입니다. ${expr(`${base}+${d}=10000`)} 이므로 ` +
       `${n(base)}만보다 ${n(d)}만 큰 수입니다.`,
@@ -792,7 +792,7 @@ function tier14Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `${n(value)}은 몇 억 몇 만인가?`,
+    `${n(value)}은 몇 억 몇 만입니까?`,
     `${n(x)}억 ${n(y)}만`,
     `${n(value)}은 억이 ${n(x)}개, 만이 ${n(y)}개인 수이므로 ${n(x)}억 ${n(y)}만입니다.`,
   );
@@ -819,7 +819,7 @@ function tier14Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const v = m * 10000000;
   return make(
     unit,
-    `${n(1000)}만 원짜리 수표 ${n(m)}장은 모두 얼마인가?`,
+    `${n(1000)}만 원짜리 수표 ${n(m)}장은 모두 얼마입니까?`,
     `${n(v)}원`,
     `${n(1000)}만 원은 ${n(10000000)}원입니다. ${expr(`10000000\\times${m}=${v}`)} 이므로 ` +
       `모두 ${n(v)}원입니다.`,
@@ -849,7 +849,7 @@ function tier14Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const q = intBetween(rng, 1, 9 - p / 10) * 10;
   return makeDeep(
     unit,
-    `${n(1000)}만이 ${n(p)}개인 수보다 ${n(1000)}만이 ${n(q)}개 더 큰 수는 몇 억인가?`,
+    `${n(1000)}만이 ${n(p)}개인 수보다 ${n(1000)}만이 ${n(q)}개 더 큰 수는 몇 억입니까?`,
     `${n((p + q) / 10)}억`,
     [
       `${n(1000)}만이 ${expr(`${p}+${q}=${p + q}`)} 개인 수입니다.`,
@@ -869,7 +869,7 @@ function tier15Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const base = x * 10000 - d;
   return make(
     unit,
-    `${n(base)}억보다 ${n(d)}억 큰 수는 몇 조인가?`,
+    `${n(base)}억보다 ${n(d)}억 큰 수는 몇 조입니까?`,
     `${n(x)}조`,
     `${n(1)}조는 억이 ${n(10000)}개인 수입니다. ${expr(`${base}+${d}=${x * 10000}`)} 이므로 ` +
       `${n(x * 10000)}억, 곧 ${n(x)}조입니다.`,
@@ -894,7 +894,7 @@ function tier15Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `${n(value)}은 몇 조 몇 억인가?`,
+    `${n(value)}은 몇 조 몇 억입니까?`,
     `${n(x)}조 ${n(y)}억`,
     `${n(value)}은 조가 ${n(x)}개, 억이 ${n(y)}개인 수이므로 ${n(x)}조 ${n(y)}억입니다.`,
   );
@@ -912,7 +912,7 @@ function tier15Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   if (intBetween(rng, 0, 1) === 0) {
     return make(
       unit,
-      `${n(1000)}억이 ${n(cnt)}개인 수는 몇 조 몇 억인가?`,
+      `${n(1000)}억이 ${n(cnt)}개인 수는 몇 조 몇 억입니까?`,
       `${n(a)}조 ${n(b * 1000)}억`,
       `${n(1000)}억이 ${n(10)}개이면 ${n(1)}조입니다. ${n(cnt)}개는 ${n(10)}개씩 ${n(a)}묶음과 ` +
         `${n(b)}개이므로 ${n(a)}조 ${n(b * 1000)}억입니다.`,
@@ -920,7 +920,7 @@ function tier15Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   }
   return make(
     unit,
-    `${n(a)}조 ${n(b * 1000)}억은 ${n(1000)}억이 몇 개인 수인가?`,
+    `${n(a)}조 ${n(b * 1000)}억은 ${n(1000)}억이 몇 개인 수입니까?`,
     n(cnt),
     `${n(a)}조는 ${n(1000)}억이 ${n(a * 10)}개, ${n(b * 1000)}억은 ${n(1000)}억이 ${n(b)}개인 ` +
       `수입니다. ${expr(`${a * 10}+${b}=${cnt}`)} 이므로 ${n(cnt)}개입니다.`,
@@ -954,7 +954,7 @@ function tier15Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const q = intBetween(rng, 1, 9 - p / 10) * 10;
   return makeDeep(
     unit,
-    `${n(1000)}억이 ${n(p)}개인 수보다 ${n(1000)}억이 ${n(q)}개 더 큰 수는 몇 조인가?`,
+    `${n(1000)}억이 ${n(p)}개인 수보다 ${n(1000)}억이 ${n(q)}개 더 큰 수는 몇 조입니까?`,
     `${n((p + q) / 10)}조`,
     [
       `${n(1000)}억이 ${expr(`${p}+${q}=${p + q}`)} 개인 수입니다.`,
@@ -975,7 +975,7 @@ function tier16Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `뛰어 센 수를 차례로 쓰면 ${seq.map((v) => n(v)).join(", ")}입니다. ` +
-      `얼마씩 뛰어 센 것인가?`,
+      `얼마씩 뛰어 센 것입니까?`,
     `${n(step)}씩`,
     `${expr(`${seq[1]}-${seq[0]}=${step}`)} 이므로 ${n(step)}씩 뛰어 세었습니다.`,
   );
@@ -992,7 +992,7 @@ function tier16Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `저금통에 ${n(start)}원이 들어 있습니다. 매달 ${n(step)}원씩 저금하면 ` +
-      `${n(t)}달 뒤에는 모두 얼마가 되는가?`,
+      `${n(t)}달 뒤에는 모두 얼마가 됩니까?`,
     `${n(end)}원`,
     `${n(step)}원씩 ${n(t)}달이면 ${expr(`${step}\\times${t}=${step * t}`)} 원입니다. ` +
       `${expr(`${start}+${step * t}=${end}`)} 이므로 모두 ${n(end)}원입니다.`,
@@ -1040,7 +1040,7 @@ function tier16Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `어떤 수에서 ${n(s)}씩 ${n(t)}번 뛰어 세어야 할 것을 잘못하여 ${n(sw)}씩 ${n(t)}번 ` +
-        `뛰어 세었더니 ${n(wrong)}이 되었습니다. 바르게 뛰어 세면 얼마인가?`,
+        `뛰어 세었더니 ${n(wrong)}이 되었습니다. 바르게 뛰어 세면 얼마입니까?`,
       n(right),
       `잘못 센 것을 되돌리면 어떤 수는 ${expr(`${wrong}-${sw}\\times${t}=${start}`)} 입니다. ` +
         `바르게 뛰어 세면 ${expr(`${start}+${s}\\times${t}=${right}`)} 입니다.`,
@@ -1051,7 +1051,7 @@ function tier16Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${n(start)}에서 ${n(t)}번 뛰어 세었더니 ${josaNum(end, "이", "가")} 되었습니다. ` +
-      `얼마씩 뛰어 센 것인가?`,
+      `얼마씩 뛰어 센 것입니까?`,
     `${n(step)}씩`,
     `${expr(`${end}-${start}=${step * t}`)} 이고 ${expr(`${step * t}\\div${t}=${step}`)} 이므로 ` +
       `${n(step)}씩 뛰어 세었습니다.`,
@@ -1158,7 +1158,7 @@ function tier17Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${n(0)}부터 ${n(9)}까지의 숫자 중에서 ${expr("\\square")} 안에 들어갈 수 있는 숫자는 ` +
-      `모두 몇 개인가? ${expr(`${left}\\square${right}${less ? "<" : ">"}${numB}`)}`,
+      `모두 몇 개입니까? ${expr(`${left}\\square${right}${less ? "<" : ">"}${numB}`)}`,
     n(okXs.length),
     `${place}의 자리보다 높은 자리 숫자가 서로 같으므로 ${place}의 자리를 비교합니다.${tie} ` +
       `${expr("\\square")} 안에 들어갈 수 있는 숫자는 ${okXs.map((x) => n(x)).join(", ")}이므로 ` +
@@ -1179,7 +1179,7 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 2) === 0) {
       return make(
         unit,
-        "변의 길이가 더 긴 각이 항상 더 큰 각인가? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
+        "변의 길이가 더 긴 각이 항상 더 큰 각입니까? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
         "아니요",
         "각의 크기는 두 변이 벌어진 정도로 정해집니다. 변의 길이와는 관계가 없습니다.",
       );
@@ -1202,14 +1202,14 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 3) === 0) {
       return make(
         unit,
-        `직각을 ${n(90)}등분한 것 중 하나의 크기가 ${deg(1)}입니다. ${deg(d)}는 ${deg(1)}가 몇 개 모인 각인가?`,
+        `직각을 ${n(90)}등분한 것 중 하나의 크기가 ${deg(1)}입니다. ${deg(d)}는 ${deg(1)}가 몇 개 모인 각입니까?`,
         n(d),
         `${deg(1)}가 ${n(d)}개 모이면 ${deg(d)}입니다.`,
       );
     }
     return make(
       unit,
-      "각도기로 잰 각의 크기는 몇 도인가?",
+      "각도기로 잰 각의 크기는 몇 도입니까?",
       deg(d),
       `각도기의 중심을 각의 꼭짓점에, 밑금을 각의 한 변에 맞추고 눈금을 읽으면 ${deg(d)}입니다.`,
       fig("protractor", { deg: d }),
@@ -1225,7 +1225,7 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
       const wide = three.filter((d) => d > 90).length;
       return make(
         unit,
-        `크기가 ${deg(three[0]!)}, ${deg(three[1]!)}, ${deg(three[2]!)}인 세 각 중 둔각은 모두 몇 개인가?`,
+        `크기가 ${deg(three[0]!)}, ${deg(three[1]!)}, ${deg(three[2]!)}인 세 각 중 둔각은 모두 몇 개입니까?`,
         n(wide),
         `${deg(90)}보다 큰 각이 둔각입니다. 둔각은 ${n(wide)}개입니다.`,
       );
@@ -1233,7 +1233,7 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
     const d = pick(rng, pool);
     return make(
       unit,
-      `${deg(d)}인 각은 예각과 둔각 중 무엇인가?`,
+      `${deg(d)}인 각은 예각과 둔각 중 무엇입니까?`,
       angleKind(d),
       `${deg(90)}보다 작으면 예각, ${deg(90)}보다 크면 둔각입니다. ` +
         `${deg(d)}는 ${deg(90)}보다 ${d < 90 ? "작으므로 예각" : "크므로 둔각"}입니다.`,
@@ -1265,7 +1265,7 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
     const gap = intBetween(rng, 3, 12);
     return make(
       unit,
-      `각의 크기를 ${deg(x)}쯤으로 어림하고 각도기로 재었더니 ${deg(x + gap)}였습니다. 어림한 각도와 잰 각도의 차는 몇 도인가?`,
+      `각의 크기를 ${deg(x)}쯤으로 어림하고 각도기로 재었더니 ${deg(x + gap)}였습니다. 어림한 각도와 잰 각도의 차는 몇 도입니까?`,
       deg(gap),
       `${expr(`${x + gap}-${x}=${gap}`)} 이므로 ${deg(gap)} 차이가 납니다.`,
     );
@@ -1275,7 +1275,7 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 3) === 0) {
       return make(
         unit,
-        "삼각형의 세 각의 크기의 합은 몇 도인가?",
+        "삼각형의 세 각의 크기의 합은 몇 도입니까?",
         deg(180),
         `삼각형의 세 각을 잘라 한 점에 모으면 직선이 됩니다. 직선이 이루는 각은 ${deg(180)}입니다.`,
       );
@@ -1285,7 +1285,7 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
     const rest = 180 - a - b;
     return make(
       unit,
-      `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+      `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 나머지 한 각의 크기는 몇 도입니까?`,
       deg(rest),
       `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다. ${expr(`180-${a}-${b}=${rest}`)}`,
     );
@@ -1295,7 +1295,7 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 3) === 0) {
       return make(
         unit,
-        "사각형의 네 각의 크기의 합은 몇 도인가?",
+        "사각형의 네 각의 크기의 합은 몇 도입니까?",
         deg(360),
         `사각형은 대각선으로 삼각형 ${n(2)}개로 나눌 수 있으므로 ${expr("180\\times2=360")} 입니다.`,
       );
@@ -1306,7 +1306,7 @@ function angle(unit: UnitSeed, rng: Rng): ElemProblem {
     const rest = 360 - a - b - c3;
     return make(
       unit,
-      `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c3)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+      `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c3)}입니다. 나머지 한 각의 크기는 몇 도입니까?`,
       deg(rest),
       `사각형의 네 각의 크기의 합은 ${deg(360)}입니다. ${expr(`360-${a}-${b}-${c3}=${rest}`)}`,
     );
@@ -1341,7 +1341,7 @@ function tier21Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `크기가 ${deg(x)}인 각보다 더 ${wantBig ? "큰" : "작은"} 각을 만들려면 두 변을 ` +
-        `더 벌려야 하는가, 더 오므려야 하는가?`,
+        `더 벌려야 합니까, 더 오므려야 합니까?`,
       wantBig ? "벌려야 한다" : "오므려야 한다",
       `각의 크기는 두 변이 벌어진 정도로 정해집니다. 더 ${wantBig ? "큰" : "작은"} 각을 ` +
         `만들려면 두 변을 더 ${wantBig ? "벌려야" : "오므려야"} 합니다.`,
@@ -1352,7 +1352,7 @@ function tier21Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `꼭짓점을 맞추어 두 각을 겹쳤더니 ${outer} 각의 두 변 사이에 ${inner} 각이 꼭 ` +
-      `들어갑니다. 두 각 중 더 큰 각은 어느 것인가?`,
+      `들어갑니다. 두 각 중 더 큰 각은 어느 것입니까?`,
     outer,
     `${inner} 각이 ${outer} 각 안에 들어가므로 ${outer} 각의 두 변이 더 많이 벌어져 ` +
       `있습니다. 더 큰 각은 ${outer} 각입니다.`,
@@ -1392,7 +1392,7 @@ function tier21Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     const ans = asc === wantBig ? "가" : "다";
     return make(
       unit,
-      `${chain} 세 각 중 가장 ${wantBig ? "큰" : "작은"} 각은 어느 것인가?`,
+      `${chain} 세 각 중 가장 ${wantBig ? "큰" : "작은"} 각은 어느 것입니까?`,
       ans,
       `두 관계를 이으면 ${asc ? "각 가, 각 나, 각 다의 차례로 작아집니다" : "각 가, 각 나, 각 다의 차례로 커집니다"}. ` +
         `가장 ${wantBig ? "큰" : "작은"} 각은 ${ans} 각입니다.`,
@@ -1408,7 +1408,7 @@ function tier21Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `각 가의 크기는 ${deg(x)}입니다. 각 나는 각 가보다 더 ${more ? "큽니다" : "작습니다"}. ` +
-      `${deg(first)}와 ${deg(second)} 중 각 나의 크기로 알맞은 것은 어느 것인가?`,
+      `${deg(first)}와 ${deg(second)} 중 각 나의 크기로 알맞은 것은 어느 것입니까?`,
     deg(win),
     `각 나는 ${deg(x)}보다 ${more ? "커야" : "작아야"} 하므로 ` +
       `${expr(more ? `${win}>${x}` : `${win}<${x}`)} 인 ${deg(win)}입니다.`,
@@ -1441,7 +1441,7 @@ function tier21Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. ` +
-      `${deg(loV)}보다 크고 ${deg(hiV)}보다 작은 각은 모두 몇 개인가?`,
+      `${deg(loV)}보다 크고 ${deg(hiV)}보다 작은 각은 모두 몇 개입니까?`,
     n(inRange.length),
     `${deg(loV)}보다 크고 ${deg(hiV)}보다 작은 각은 ${inRange.map((v) => deg(v)).join(", ")}입니다. ` +
       `모두 ${n(inRange.length)}개입니다.`,
@@ -1457,14 +1457,14 @@ function tier22Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     const d = intBetween(rng, 11, 169);
     return make(
       unit,
-      `${deg(1)}가 ${n(d)}개 모인 각의 크기는 몇 도인가?`,
+      `${deg(1)}가 ${n(d)}개 모인 각의 크기는 몇 도입니까?`,
       deg(d),
       `${deg(1)}가 ${n(d)}개 모이면 ${deg(d)}입니다.`,
     );
   }
   return make(
     unit,
-    `직각은 ${deg(1)}가 몇 개 모인 각인가?`,
+    `직각은 ${deg(1)}가 몇 개 모인 각입니까?`,
     n(90),
     `직각의 크기는 ${deg(90)}이므로 ${deg(1)}가 ${n(90)}개 모인 각입니다.`,
   );
@@ -1476,7 +1476,7 @@ function tier22Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     const k = pick(rng, [2, 3, 5, 6, 9, 10, 15]);
     return make(
       unit,
-      `직각을 똑같이 ${n(k)}개로 나누면 나누어진 한 각의 크기는 몇 도인가?`,
+      `직각을 똑같이 ${n(k)}개로 나누면 나누어진 한 각의 크기는 몇 도입니까?`,
       deg(90 / k),
       `직각은 ${deg(90)}입니다. ${expr(`90\\div${k}=${90 / k}`)} 이므로 ${deg(90 / k)}입니다.`,
     );
@@ -1484,7 +1484,7 @@ function tier22Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = pick(rng, [2, 3, 4, 5, 6, 9, 10, 12, 15]);
   return make(
     unit,
-    `직선이 이루는 각을 똑같이 ${n(k)}개로 나누면 나누어진 한 각의 크기는 몇 도인가?`,
+    `직선이 이루는 각을 똑같이 ${n(k)}개로 나누면 나누어진 한 각의 크기는 몇 도입니까?`,
     deg(180 / k),
     `직선이 이루는 각은 ${deg(180)}입니다. ${expr(`180\\div${k}=${180 / k}`)} 이므로 ` +
       `${deg(180 / k)}입니다.`,
@@ -1500,7 +1500,7 @@ function tier22Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `직각을 똑같이 ${n(k)}개로 나눈 것 중 ${n(m)}개를 겹치지 않게 이어 붙인 각의 ` +
-        `크기는 몇 도인가?`,
+        `크기는 몇 도입니까?`,
       deg(one * m),
       `${expr(`90\\div${k}=${one}`)} 이므로 나누어진 한 각은 ${deg(one)}입니다. ` +
         `${expr(`${one}\\times${m}=${one * m}`)} 이므로 ${deg(one * m)}입니다.`,
@@ -1512,7 +1512,7 @@ function tier22Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `직선이 이루는 각을 똑같이 ${n(k)}개로 나눈 것 중 ${n(m)}개를 겹치지 않게 이어 ` +
-      `붙인 각의 크기는 몇 도인가?`,
+      `붙인 각의 크기는 몇 도입니까?`,
     deg(one * m),
     `직선이 이루는 각은 ${deg(180)}이므로 ${expr(`180\\div${k}=${one}`)} 에서 한 각은 ` +
       `${deg(one)}입니다. ${expr(`${one}\\times${m}=${one * m}`)} 이므로 ${deg(one * m)}입니다.`,
@@ -1534,7 +1534,7 @@ function tier22Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return makeDeep(
       unit,
       `직각을 똑같이 몇 개로 나누었더니 나누어진 한 각의 크기가 ${deg(d)}가 되었습니다. ` +
-        `나누어진 각 ${n(take)}개를 겹치지 않게 이어 붙이면 몇 도인가?`,
+        `나누어진 각 ${n(take)}개를 겹치지 않게 이어 붙이면 몇 도입니까?`,
       deg(d * take),
       [
         `직각은 ${deg(90)}이므로 ${expr(`90\\div${d}=${k}`)} 에서 ${n(k)}개로 나눈 것입니다.`,
@@ -1554,7 +1554,7 @@ function tier22Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `각도기로 각을 잴 때 각의 한 변이 눈금 ${josaNum(a, "을", "를")} 가리키고 있습니다. ` +
       `각의 크기가 ${deg(d)}라면 같은 쪽 눈금에서 다른 변이 가리키는 눈금은 직각을 나타내는 ` +
-      `눈금보다 얼마나 큰가?`,
+      `눈금보다 얼마나 큽니까?`,
     n(a + d - 90),
     [
       `다른 변이 가리키는 눈금은 ${expr(`${a}+${d}=${a + d}`)} 입니다.`,
@@ -1571,7 +1571,7 @@ function tier23Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = pick(rng, pool);
   return make(
     unit,
-    `크기가 ${deg(d)}인 각은 직각보다 큰가, 작은가?`,
+    `크기가 ${deg(d)}인 각은 직각보다 큽니까, 작습니까?`,
     d > 90 ? "크다" : "작다",
     `직각은 ${deg(90)}입니다. ${expr(d > 90 ? `${d}>90` : `${d}<90`)} 이므로 ` +
       `${deg(d)}인 각은 직각보다 ${d > 90 ? "큽니다" : "작습니다"}.`,
@@ -1617,7 +1617,7 @@ function tier23Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `시계가 ${n(h)}시를 가리킬 때 긴바늘과 짧은바늘이 이루는 작은 쪽 각은 ` +
-        `예각, 직각, 둔각 중 무엇인가?`,
+        `예각, 직각, 둔각 중 무엇입니까?`,
       angleKind(angle2),
       `시계의 큰 눈금 한 칸의 각도는 ${expr("360\\div12=30")} 에서 ${deg(30)}입니다. ` +
         `${n(h)}시에는 두 바늘 사이가 ${n(cells(h))}칸이므로 ` +
@@ -1634,7 +1634,7 @@ function tier23Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${n(h1)}시와 ${n(h2)}시 중 긴바늘과 짧은바늘이 이루는 작은 쪽 각이 더 큰 시각은 ` +
-      `언제인가?`,
+      `언제입니까?`,
     `${n(win)}시`,
     `두 바늘 사이는 ${n(h1)}시에 ${n(cells(h1))}칸, ${n(h2)}시에 ${n(cells(h2))}칸입니다. ` +
       `한 칸의 각도가 같으므로 칸이 더 많은 ${n(win)}시의 각이 더 큽니다.`,
@@ -1666,7 +1666,7 @@ function tier23Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `네 각의 크기가 ${four.map((v) => deg(v)).join(", ")}입니다. 예각이면서 ` +
-      `${deg(t)}보다 큰 각은 모두 몇 개인가?`,
+      `${deg(t)}보다 큰 각은 모두 몇 개입니까?`,
     n(hit.length),
     `예각은 ${deg(90)}보다 작은 각입니다. 예각이면서 ${deg(t)}보다 큰 각은 ` +
       `${hit.map((v) => deg(v)).join(", ")}이므로 모두 ${n(hit.length)}개입니다.`,
@@ -1679,7 +1679,7 @@ function tier24Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const y = intBetween(rng, 15, 60);
   return make(
     unit,
-    `두 각 ${deg(x)}와 ${deg(y)}를 겹치지 않게 이어 붙인 각의 크기는 몇 도인가?`,
+    `두 각 ${deg(x)}와 ${deg(y)}를 겹치지 않게 이어 붙인 각의 크기는 몇 도입니까?`,
     deg(x + y),
     `이어 붙인 각의 크기는 두 각의 크기의 합입니다. ${expr(`${x}+${y}=${x + y}`)} 이므로 ` +
       `${deg(x + y)}입니다.`,
@@ -1692,7 +1692,7 @@ function tier24Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     const x = intBetween(rng, 15, 75);
     return make(
       unit,
-      `${deg(x)}와 더하면 직각이 되는 각도는 몇 도인가?`,
+      `${deg(x)}와 더하면 직각이 되는 각도는 몇 도입니까?`,
       deg(90 - x),
       `직각은 ${deg(90)}입니다. ${expr(`90-${x}=${90 - x}`)} 이므로 ${deg(90 - x)}입니다.`,
     );
@@ -1700,7 +1700,7 @@ function tier24Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const x = intBetween(rng, 25, 155);
   return make(
     unit,
-    `${deg(x)}와 더하면 직선이 이루는 각이 되는 각도는 몇 도인가?`,
+    `${deg(x)}와 더하면 직선이 이루는 각이 되는 각도는 몇 도입니까?`,
     deg(180 - x),
     `직선이 이루는 각은 ${deg(180)}입니다. ${expr(`180-${x}=${180 - x}`)} 이므로 ` +
       `${deg(180 - x)}입니다.`,
@@ -1716,7 +1716,7 @@ function tier24Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `두 각 ${deg(x)}와 ${deg(y)}를 이어 붙인 각에서 ${deg(z)}만큼 줄이면 몇 도가 ` +
-        `되는가?`,
+        `됩니까?`,
       deg(x + y - z),
       `${expr(`${x}+${y}=${x + y}`)} 이고 ${expr(`${x + y}-${z}=${x + y - z}`)} 이므로 ` +
         `${deg(x + y - z)}가 됩니다.`,
@@ -1727,7 +1727,7 @@ function tier24Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `두 각 ${deg(x)}와 ${deg(y)}를 겹치지 않게 이어 붙인 각은 직선이 이루는 각보다 ` +
-      `몇 도 더 큰가?`,
+      `몇 도 더 큽니까?`,
     deg(x + y - 180),
     `${expr(`${x}+${y}=${x + y}`)} 이고 직선이 이루는 각은 ${deg(180)}이므로 ` +
       `${expr(`${x + y}-180=${x + y - 180}`)} 에서 ${deg(x + y - 180)} 더 큽니다.`,
@@ -1744,7 +1744,7 @@ function tier24Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `어떤 각도에 ${deg(y)}를 더해야 할 것을 잘못하여 뺐더니 ${deg(wrong)}가 ` +
-        `되었습니다. 바르게 계산하면 몇 도인가?`,
+        `되었습니다. 바르게 계산하면 몇 도입니까?`,
       deg(right),
       `${expr(`${wrong}+${y}=${x}`)} 이므로 어떤 각도는 ${deg(x)}입니다. ` +
         `바르게 계산하면 ${expr(`${x}+${y}=${right}`)} 에서 ${deg(right)}입니다.`,
@@ -1755,7 +1755,7 @@ function tier24Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 각도에서 ${deg(y)}를 빼야 할 것을 잘못하여 더했더니 ${deg(wrong)}가 ` +
-      `되었습니다. 바르게 계산하면 몇 도인가?`,
+      `되었습니다. 바르게 계산하면 몇 도입니까?`,
     deg(right),
     `${expr(`${wrong}-${y}=${x}`)} 이므로 어떤 각도는 ${deg(x)}입니다. ` +
       `바르게 계산하면 ${expr(`${x}-${y}=${right}`)} 에서 ${deg(right)}입니다.`,
@@ -1767,7 +1767,7 @@ function tier25Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 60, 150);
   return make(
     unit,
-    `삼각형에서 두 각의 크기의 합이 ${deg(s)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+    `삼각형에서 두 각의 크기의 합이 ${deg(s)}입니다. 나머지 한 각의 크기는 몇 도입니까?`,
     deg(180 - s),
     `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다. ${expr(`180-${s}=${180 - s}`)} 이므로 ` +
       `${deg(180 - s)}입니다.`,
@@ -1780,7 +1780,7 @@ function tier25Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `직각삼각형에서 직각이 아닌 두 각 중 한 각의 크기가 ${deg(a)}입니다. ` +
-      `나머지 한 각의 크기는 몇 도인가?`,
+      `나머지 한 각의 크기는 몇 도입니까?`,
     deg(90 - a),
     `직각은 ${deg(90)}이고 삼각형의 세 각의 합은 ${deg(180)}이므로 ` +
       `${expr(`180-90-${a}=${90 - a}`)} 입니다.`,
@@ -1798,7 +1798,7 @@ function tier25Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const sum = a + b + c3;
   return make(
     unit,
-    `세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c3)}인 삼각형을 그릴 수 있는가? ` +
+    `세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c3)}인 삼각형을 그릴 수 있습니까? ` +
       `'예' 또는 '아니요'로 답하시오.`,
     valid ? "예" : "아니요",
     `세 각의 크기의 합을 구하면 ${expr(`${a}+${b}+${c3}=${sum}`)} 입니다. ` +
@@ -1819,7 +1819,7 @@ function tier25Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `삼각형의 한 각의 크기는 ${deg(a)}이고, 나머지 두 각의 크기는 서로 같습니다. ` +
-        `나머지 한 각의 크기는 몇 도인가?`,
+        `나머지 한 각의 크기는 몇 도입니까?`,
       deg(rest / 2),
       `${expr(`180-${a}=${rest}`)} 이고 두 각의 크기가 같으므로 ` +
         `${expr(`${rest}\\div2=${rest / 2}`)} 입니다.`,
@@ -1834,7 +1834,7 @@ function tier25Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(
     unit,
     `삼각형의 한 각의 크기는 ${deg(a2)}이고, 다른 한 각은 그보다 ${deg(gap)} 더 큽니다. ` +
-      `나머지 한 각의 크기는 몇 도인가?`,
+      `나머지 한 각의 크기는 몇 도입니까?`,
     deg(rest2),
     [
       `다른 한 각은 ${expr(`${a2}+${gap}=${a2 + gap}`)} 입니다.`,
@@ -1848,7 +1848,7 @@ function tier26Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 220, 330);
   return make(
     unit,
-    `사각형에서 세 각의 크기의 합이 ${deg(s)}일 때 나머지 한 각의 크기는 몇 도인가?`,
+    `사각형에서 세 각의 크기의 합이 ${deg(s)}일 때 나머지 한 각의 크기는 몇 도입니까?`,
     deg(360 - s),
     `사각형의 네 각의 크기의 합은 ${deg(360)}입니다. ${expr(`360-${s}=${360 - s}`)} 이므로 ` +
       `${deg(360 - s)}입니다.`,
@@ -1861,7 +1861,7 @@ function tier26Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `두 각이 직각인 사각형에서 다른 한 각의 크기가 ${deg(c3)}입니다. ` +
-      `나머지 한 각의 크기는 몇 도인가?`,
+      `나머지 한 각의 크기는 몇 도입니까?`,
     deg(180 - c3),
     `직각 두 개의 합은 ${expr("90+90=180")} 이고 사각형의 네 각의 합은 ${deg(360)}이므로 ` +
       `${expr(`360-180-${c3}=${180 - c3}`)} 입니다.`,
@@ -1880,7 +1880,7 @@ function tier26Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c3)}입니다. 나머지 한 각은 ` +
-      `예각, 직각, 둔각 중 무엇인가?`,
+      `예각, 직각, 둔각 중 무엇입니까?`,
     angleKind(rest),
     `${expr(`360-${a}-${b}-${c3}=${rest}`)} 이고 ${deg(rest)}는 ${angleKind(rest)}입니다.`,
   );
@@ -1895,7 +1895,7 @@ function tier26Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `사각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}이고, 나머지 두 각의 크기는 서로 ` +
-        `같습니다. 나머지 한 각의 크기는 몇 도인가?`,
+        `같습니다. 나머지 한 각의 크기는 몇 도입니까?`,
       deg(rest / 2),
       `${expr(`360-${a}-${b}=${rest}`)} 이고 두 각의 크기가 같으므로 ` +
         `${expr(`${rest}\\div2=${rest / 2}`)} 입니다.`,
@@ -1908,7 +1908,7 @@ function tier26Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(
     unit,
     `사각형의 한 각의 크기는 ${deg(one)}이고, 나머지 세 각의 크기는 서로 같습니다. ` +
-      `나머지 한 각의 크기는 몇 도인가?`,
+      `나머지 한 각의 크기는 몇 도입니까?`,
     deg(rest3 / 3),
     [
       `나머지 세 각의 크기의 합은 ${expr(`360-${one}=${rest3}`)} 입니다.`,
@@ -2075,7 +2075,7 @@ function tier31Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 2, 9) * 10;
   return make(
     unit,
-    `${josaNum(a, "의", "의")} ${n(b)}배는 얼마인가?`,
+    `${josaNum(a, "의", "의")} ${n(b)}배는 얼마입니까?`,
     n(a * b),
     `${expr(`${a}\\times${b}=${a * b}`)} 입니다.`,
   );
@@ -2089,7 +2089,7 @@ function tier31Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `한 ${t.box}에 ${n(a)}${t.cnt}씩 들어 있는 ${josa(t.obj, "이", "가")} ` +
-      `${n(b)}${t.box} 있습니다. ${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}인가?`,
+      `${n(b)}${t.box} 있습니다. ${josa(t.obj, "은", "는")} 모두 몇 ${t.cnt}입니까?`,
     `${n(a * b)}${t.cnt}`,
     `${expr(`${a}\\times${b}=${a * b}`)} 이므로 모두 ${n(a * b)}${t.cnt}입니다.`,
   );
@@ -2104,7 +2104,7 @@ function tier31Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `한 개에 ${n(a)}원인 물건을 ${n(b)}개 사고 ${n(pay)}원을 냈습니다. ` +
-      `거스름돈은 얼마인가?`,
+      `거스름돈은 얼마입니까?`,
     `${n(pay - total)}원`,
     `물건값은 ${expr(`${a}\\times${b}=${total}`)} 원입니다. ` +
       `${expr(`${pay}-${total}=${pay - total}`)} 이므로 거스름돈은 ${n(pay - total)}원입니다.`,
@@ -2119,7 +2119,7 @@ function tier31Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 수에 ${josaNum(b, "을", "를")} 곱해야 할 것을 잘못하여 더했더니 ` +
-      `${josaNum(wrong, "이", "가")} 되었습니다. 바르게 계산하면 얼마인가?`,
+      `${josaNum(wrong, "이", "가")} 되었습니다. 바르게 계산하면 얼마입니까?`,
     n(x * b),
     `${expr(`${wrong}-${b}=${x}`)} 이므로 어떤 수는 ${n(x)}입니다. ` +
       `바르게 계산하면 ${expr(`${x}\\times${b}=${x * b}`)} 입니다.`,
@@ -2151,14 +2151,14 @@ function tier32Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `공장에서 하루에 인형을 ${n(a)}개씩 만듭니다. ${n(b)}일 동안 만드는 인형은 ` +
-        `모두 몇 개인가?`,
+        `모두 몇 개입니까?`,
       `${n(a * b)}개`,
       `${expr(`${a}\\times${b}=${a * b}`)} 이므로 모두 ${n(a * b)}개입니다.`,
     );
   }
   return make(
     unit,
-    `종이학을 하루에 ${n(a)}개씩 ${n(b)}일 동안 접으면 종이학은 모두 몇 개가 되는가?`,
+    `종이학을 하루에 ${n(a)}개씩 ${n(b)}일 동안 접으면 종이학은 모두 몇 개가 됩니까?`,
     `${n(a * b)}개`,
     `${expr(`${a}\\times${b}=${a * b}`)} 이므로 모두 ${n(a * b)}개입니다.`,
   );
@@ -2173,7 +2173,7 @@ function tier32Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `한 상자에 ${n(a)}개씩 들어 있는 클립 ${n(b)}상자에서 클립 ${n(k)}개를 ` +
-      `사용했습니다. 남은 클립은 몇 개인가?`,
+      `사용했습니다. 남은 클립은 몇 개입니까?`,
     `${n(total - k)}개`,
     `클립은 모두 ${expr(`${a}\\times${b}=${total}`)} 개입니다. ` +
       `${expr(`${total}-${k}=${total - k}`)} 이므로 ${n(total - k)}개가 남습니다.`,
@@ -2197,7 +2197,7 @@ function tier32Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `어떤 수에 ${josaNum(b, "을", "를")} 곱해야 할 것을 잘못하여 십의 자리와 일의 자리 ` +
       `숫자를 바꾼 ${josaNum(bs, "을", "를")} 곱했더니 ${josaNum(wrong, "이", "가")} ` +
-      `되었습니다. 바르게 계산하면 얼마인가?`,
+      `되었습니다. 바르게 계산하면 얼마입니까?`,
     n(x * b),
     `${josaNum(bs, "을", "를")} 곱하여 ${josaNum(wrong, "이", "가")} 되는 수를 찾으면 ` +
       `${expr(`${bs}\\times${x}=${wrong}`)} 에서 어떤 수는 ${n(x)}입니다. ` +
@@ -2220,7 +2220,7 @@ function tier33Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const aa = Math.round(a / 100) * 100;
   return make(
     unit,
-    `${josaNum(a, "은", "는")} 몇백에 가장 가까운가?`,
+    `${josaNum(a, "은", "는")} 몇백에 가장 가깝습니까?`,
     n(aa),
     `${josaNum(a, "은", "는")} ${josaNum(lo, "과", "와")} ${n(hi)} 사이의 수이며 ` +
       `${n(aa)}에 더 가깝습니다.`,
@@ -2287,7 +2287,7 @@ function tier34Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = b * q;
   return make(
     unit,
-    `${josaNum(a, "을", "를")} ${n(b)}씩 묶으면 몇 묶음이 되는가?`,
+    `${josaNum(a, "을", "를")} ${n(b)}씩 묶으면 몇 묶음이 됩니까?`,
     `${n(q)}묶음`,
     `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}묶음이 됩니다.`,
   );
@@ -2301,7 +2301,7 @@ function tier34Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     const a = b * q;
     return make(
       unit,
-      `색종이 ${n(a)}장을 한 명에게 ${n(b)}장씩 나누어 주면 몇 명에게 줄 수 있는가?`,
+      `색종이 ${n(a)}장을 한 명에게 ${n(b)}장씩 나누어 주면 몇 명에게 줄 수 있습니까?`,
       `${n(q)}명`,
       `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}명에게 줄 수 있습니다.`,
     );
@@ -2310,7 +2310,7 @@ function tier34Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = b * q + r;
   return make(
     unit,
-    `귤 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으면 몇 봉지가 되고 몇 개가 남는가?`,
+    `귤 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으면 몇 봉지가 되고 몇 개가 남습니까?`,
     `${n(q)}봉지, ${n(r)}개`,
     `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 이므로 ` +
       `${n(q)}봉지가 되고 ${n(r)}개가 남습니다.`,
@@ -2326,7 +2326,7 @@ function tier34Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `학생 ${n(a)}명이 한 대에 ${n(b)}명씩 버스에 타려고 합니다. 버스는 적어도 ` +
-      `몇 대 필요한가?`,
+      `몇 대 필요합니까?`,
     `${n(q + 1)}대`,
     `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 이므로 ${n(q)}대에 ` +
       `타면 ${n(r)}명이 남습니다. 남은 학생도 타야 하므로 ${expr(`${q}+1=${q + 1}`)} 대가 ` +
@@ -2379,7 +2379,7 @@ function tier35Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = b * q;
   return make(
     unit,
-    `길이가 ${cm(a)}인 색 테이프를 ${cm(b)}씩 자르면 몇 도막이 되는가?`,
+    `길이가 ${cm(a)}인 색 테이프를 ${cm(b)}씩 자르면 몇 도막이 됩니까?`,
     `${n(q)}도막`,
     `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}도막이 됩니다.`,
   );
@@ -2395,7 +2395,7 @@ function tier35Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `구슬 ${n(a)}개 중에서 ${n(k)}개를 동생에게 주고, 남은 구슬을 한 통에 ${n(b)}개씩 ` +
-      `담았습니다. 통은 몇 개가 되는가?`,
+      `담았습니다. 통은 몇 개가 됩니까?`,
     `${n(q)}개`,
     `남은 구슬은 ${expr(`${a}-${k}=${rest}`)} 개입니다. ${expr(`${rest}\\div${b}=${q}`)} 이므로 ` +
       `통은 ${n(q)}개가 됩니다.`,
@@ -2438,7 +2438,7 @@ function tier36Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = b * q;
   return make(
     unit,
-    `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으면 몇 봉지가 되는가?`,
+    `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담으면 몇 봉지가 됩니까?`,
     `${n(q)}봉지`,
     `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}봉지가 됩니다.`,
   );
@@ -2452,7 +2452,7 @@ function tier36Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = b * q + r;
   return make(
     unit,
-    `동화책 ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽으면 다 읽는 데 며칠이 걸리는가?`,
+    `동화책 ${n(a)}쪽을 하루에 ${n(b)}쪽씩 읽으면 다 읽는 데 며칠이 걸립니까?`,
     `${n(q + 1)}일`,
     `${expr(`${b}\\times${q}=${b * q}`)}, ${expr(`${a}-${b * q}=${r}`)} 이므로 ${n(q)}일 ` +
       `동안 읽으면 ${n(r)}쪽이 남습니다. 남은 쪽을 읽는 날이 하루 더 필요하므로 ` +
@@ -2502,7 +2502,7 @@ function tier37Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const bb = Math.round(b / 10) * 10;
   return make(
     unit,
-    `다음 나눗셈에서 나누는 수 ${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마인가?\n\n` +
+    `다음 나눗셈에서 나누는 수 ${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마입니까?\n\n` +
       `${expr(`${a}\\div${b}`)}`,
     n(bb),
     `${josaNum(b, "은", "는")} ${n(bb)}에 가장 가깝습니다.`,
@@ -2566,7 +2566,7 @@ function tier37Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return makeDeep(
       unit,
       `${expr(`${a}\\div${b}`)} 에서 나누는 수를 몇십으로 어림하여 몫을 어림했습니다. ` +
-        `어림한 몫과 실제 몫의 차는 얼마인가?`,
+        `어림한 몫과 실제 몫의 차는 얼마입니까?`,
       n(Math.abs(q - real)),
       [
         `${josaNum(b, "을", "를")} 몇십으로 어림하면 ${n(bb)}이므로 어림한 몫은 ` +
@@ -3607,7 +3607,7 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `모눈에서 점 ㄱ을 왼쪽으로 ${n(a)}칸 옮긴 다음 오른쪽으로 ${n(b)}칸 옮겼습니다. ` +
-          `점 ㄱ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+          `점 ㄱ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것입니까?`,
         `왼쪽으로 ${n(a - b)}칸`,
         `${expr(`${a}-${b}=${a - b}`)} 이므로 왼쪽으로 ${n(a - b)}칸 옮겨진 것입니다.`,
       );
@@ -3615,7 +3615,7 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `모눈에서 점 ㄴ을 위쪽으로 ${n(a)}칸, 오른쪽으로 ${n(b)}칸 옮겼습니다. ` +
-        `처음 자리로 되돌아오려면 아래쪽으로 ${n(a)}칸 옮긴 뒤 어느 쪽으로 몇 칸 더 옮겨야 하는가?`,
+        `처음 자리로 되돌아오려면 아래쪽으로 ${n(a)}칸 옮긴 뒤 어느 쪽으로 몇 칸 더 옮겨야 합니까?`,
       `왼쪽으로 ${n(b)}칸`,
       `오른쪽으로 ${n(b)}칸 옮겼으므로 되돌아오려면 왼쪽으로 ${n(b)}칸 옮겨야 합니다.`,
     );
@@ -3627,7 +3627,7 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 1) === 0) {
       return make(
         unit,
-        `한 변이 ${cm(side)}인 정사각형을 오른쪽으로 ${cm(dist)} 밀었습니다. 민 도형의 한 변은 몇 cm인가?`,
+        `한 변이 ${cm(side)}인 정사각형을 오른쪽으로 ${cm(dist)} 밀었습니다. 민 도형의 한 변은 몇 cm입니까?`,
         cm(side),
         `도형을 밀면 모양과 크기는 변하지 않고 위치만 바뀝니다. 한 변은 그대로 ${cm(side)}입니다.`,
       );
@@ -3635,7 +3635,7 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `직사각형을 왼쪽으로 ${cm(dist)} 민 다음 다시 오른쪽으로 ${cm(dist)} 밀었습니다. ` +
-        `처음 도형과 위치가 같은가? 같으면 '예', 다르면 '아니요'를 쓰시오.`,
+        `처음 도형과 위치가 같습니까? 같으면 '예', 다르면 '아니요'를 쓰시오.`,
       "예",
       `왼쪽으로 ${cm(dist)} 민 것을 오른쪽으로 ${cm(dist)} 다시 밀면 처음 자리로 돌아옵니다.`,
     );
@@ -3647,7 +3647,7 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
       const same = times % 2 === 0;
       return make(
         unit,
-        `도형을 위쪽으로 ${n(times)}번 뒤집었습니다. 처음 도형과 모양이 같은가? 같으면 '예', 다르면 '아니요'를 쓰시오.`,
+        `도형을 위쪽으로 ${n(times)}번 뒤집었습니다. 처음 도형과 모양이 같습니까? 같으면 '예', 다르면 '아니요'를 쓰시오.`,
         same ? "예" : "아니요",
         `위쪽으로 ${n(2)}번 뒤집으면 처음 도형과 같아집니다. ${josaNum(times, "은", "는")} ` +
           `${same ? `${n(2)}로 나누어떨어지므로 처음 도형과 같습니다.` : `홀수이므로 ${n(1)}번 뒤집은 것과 같습니다.`}`,
@@ -3672,7 +3672,7 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
       const times = intBetween(rng, 2, 4);
       return make(
         unit,
-        `도형을 시계 방향으로 ${deg(90)}씩 ${n(times)}번 돌렸습니다. 모두 몇 도 돌린 것인가?`,
+        `도형을 시계 방향으로 ${deg(90)}씩 ${n(times)}번 돌렸습니다. 모두 몇 도 돌린 것입니까?`,
         deg(90 * times),
         `${expr(`90\\times${times}=${90 * times}`)} 이므로 ${deg(90 * times)} 돌린 것입니다.`,
       );
@@ -3681,7 +3681,7 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
       const d = pick(rng, [90, 180, 270]);
       return make(
         unit,
-        `도형을 시계 방향으로 ${deg(d)} 돌린 것은 시계 반대 방향으로 몇 도 돌린 것과 같은가?`,
+        `도형을 시계 방향으로 ${deg(d)} 돌린 것은 시계 반대 방향으로 몇 도 돌린 것과 같습니까?`,
         deg(360 - d),
         `한 바퀴는 ${deg(360)}입니다. ${expr(`360-${d}=${360 - d}`)}`,
       );
@@ -3690,7 +3690,7 @@ function move(unit: UnitSeed, rng: Rng): ElemProblem {
     const op = pick(rng, ["rot90", "rot180", "rot270"] as const);
     return make(
       unit,
-      "왼쪽 도형을 시계 방향으로 돌려 오른쪽 도형을 만들었습니다. 몇 도 돌린 것인가?",
+      "왼쪽 도형을 시계 방향으로 돌려 오른쪽 도형을 만들었습니다. 몇 도 돌린 것입니까?",
       deg(TURN_NAME[op]!),
       `색칠한 칸의 방향이 시계 방향으로 ${deg(TURN_NAME[op]!)}만큼 돌아갔습니다.`,
       fig("rotateFlip", { cells: shape.cells, op, n: shape.n }),
@@ -3724,7 +3724,7 @@ function tier41Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `모눈에서 점 ㄷ을 ${dir}으로 ${n(a)}칸 옮긴 다음 ${dir}으로 ${n(b)}칸 더 옮겼습니다. ` +
-      `점 ㄷ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+      `점 ㄷ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것입니까?`,
     `${dir}으로 ${n(a + b)}칸`,
     `같은 쪽으로 두 번 옮기면 옮긴 칸수를 더합니다. ${expr(`${a}+${b}=${a + b}`)} 이므로 ` +
       `${dir}으로 ${n(a + b)}칸 옮겨진 것입니다.`,
@@ -3742,7 +3742,7 @@ function tier41Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `모눈에서 점 ㄹ을 ${first}으로 ${n(a)}칸 옮긴 다음 ${second}으로 ${n(b)}칸 옮겼습니다. ` +
-      `점 ㄹ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+      `점 ㄹ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것입니까?`,
     `${second}으로 ${n(b - a)}칸`,
     `${first} ${n(a)}칸과 ${second} ${n(a)}칸은 서로 지워집니다. ` +
       `${expr(`${b}-${a}=${b - a}`)} 이므로 ${second}으로 ${n(b - a)}칸 옮겨진 것입니다.`,
@@ -3762,7 +3762,7 @@ function tier41Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `모눈에서 점 ㅁ을 ${h1}으로 ${n(a)}칸, ${v}으로 ${n(b)}칸, ${h2}으로 ${n(c3)}칸 차례로 ` +
-      `옮겼습니다. 점 ㅁ은 처음 자리에서 ${h1}으로 몇 칸, ${v}으로 몇 칸 옮겨진 것인가?`,
+      `옮겼습니다. 점 ㅁ은 처음 자리에서 ${h1}으로 몇 칸, ${v}으로 몇 칸 옮겨진 것입니까?`,
     `${h1}으로 ${n(a - c3)}칸, ${v}으로 ${n(b)}칸`,
     `가로로는 ${expr(`${a}-${c3}=${a - c3}`)} 에서 ${h1}으로 ${n(a - c3)}칸, ` +
       `세로로는 ${v}으로 ${n(b)}칸 옮겨진 것입니다.`,
@@ -3776,7 +3776,7 @@ function tier41Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `모눈에서 점 ㅂ을 ${want}으로 ${n(a)}칸 옮겨야 할 것을 잘못하여 ${did}으로 ${n(a)}칸 ` +
-      `옮겼습니다. 바른 자리로 가려면 ${want}으로 몇 칸 옮겨야 하는가?`,
+      `옮겼습니다. 바른 자리로 가려면 ${want}으로 몇 칸 옮겨야 합니까?`,
     `${n(2 * a)}칸`,
     `잘못 간 ${n(a)}칸을 되돌아오는 데 ${n(a)}칸, 처음 자리에서 바른 자리까지 ${n(a)}칸이 ` +
       `더 필요합니다. ${expr(`${a}+${a}=${2 * a}`)} 이므로 ${n(2 * a)}칸입니다.`,
@@ -3791,7 +3791,7 @@ function tier42Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `도형을 ${dir}으로 ${cm(a)} 민 다음 ${dir}으로 ${cm(b)} 더 밀었습니다. ` +
-      `도형은 처음 자리에서 ${dir}으로 몇 cm 밀린 것인가?`,
+      `도형은 처음 자리에서 ${dir}으로 몇 cm 밀린 것입니까?`,
     cm(a + b),
     `같은 쪽으로 이어 밀면 민 거리를 더합니다. ${expr(`${a}+${b}=${a + b}`)} 이므로 ` +
       `${cm(a + b)} 밀린 것입니다.`,
@@ -3808,14 +3808,14 @@ function tier42Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. ` +
-        `민 도형의 세로는 몇 cm인가?`,
+        `민 도형의 세로는 몇 cm입니까?`,
       cm(h),
       `도형을 밀어도 모양과 크기는 변하지 않습니다. 세로는 그대로 ${cm(h)}입니다.`,
     );
   }
   return make(
     unit,
-    `도형을 밀었을 때 바뀌는 것은 '모양'과 '위치' 중 무엇인가?`,
+    `도형을 밀었을 때 바뀌는 것은 '모양'과 '위치' 중 무엇입니까?`,
     "위치",
     `도형을 밀면 모양과 크기는 변하지 않고 위치만 바뀝니다.`,
   );
@@ -3837,7 +3837,7 @@ function tier42Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `도형을 ${d1}으로 ${cm(a)} 민 다음 ${d2}으로 ${cm(b)} 밀었습니다. ` +
-      `도형은 처음 자리에서 어느 쪽으로 몇 cm 밀린 것과 같은가?`,
+      `도형은 처음 자리에서 어느 쪽으로 몇 cm 밀린 것과 같습니까?`,
     `${netDir}으로 ${cm(netDist)}`,
     `두 방향이 반대이므로 먼 쪽이 남습니다. ${expr(`${hi}-${lo}=${netDist}`)} 이므로 ` +
       `${netDir}으로 ${cm(netDist)} 밀린 것과 같습니다.`,
@@ -3852,7 +3852,7 @@ function tier42Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `도형을 ${want}으로 ${cm(a)} 밀어야 할 것을 잘못하여 ${did}으로 ${cm(b)} 밀었습니다. ` +
-      `바른 자리로 가려면 ${want}으로 몇 cm 밀어야 하는가?`,
+      `바른 자리로 가려면 ${want}으로 몇 cm 밀어야 합니까?`,
     cm(a + b),
     `잘못 민 ${cm(b)}을 되돌아오고 다시 ${cm(a)}을 더 밀어야 합니다. ` +
       `${expr(`${b}+${a}=${a + b}`)} 이므로 ${cm(a + b)} 밀어야 합니다.`,
@@ -3867,7 +3867,7 @@ function tier43Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `가로가 ${n(cols)}칸인 모눈 도형을 좌우로 뒤집었습니다. 왼쪽에서 ${n(k)}번째 세로줄은 ` +
-        `뒤집은 도형에서 왼쪽에서 몇 번째 세로줄이 되는가?`,
+        `뒤집은 도형에서 왼쪽에서 몇 번째 세로줄이 됩니까?`,
       `${n(cols + 1 - k)}번째`,
       `좌우로 뒤집으면 왼쪽에서 ${n(k)}번째 줄이 오른쪽에서 ${n(k)}번째 줄이 됩니다. ` +
         `${expr(`${cols}+1-${k}=${cols + 1 - k}`)} 이므로 왼쪽에서 ${n(cols + 1 - k)}번째 줄입니다.`,
@@ -3876,7 +3876,7 @@ function tier43Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `세로가 ${n(cols)}칸인 모눈 도형을 위아래로 뒤집었습니다. 위에서 ${n(k)}번째 가로줄은 ` +
-      `뒤집은 도형에서 위에서 몇 번째 가로줄이 되는가?`,
+      `뒤집은 도형에서 위에서 몇 번째 가로줄이 됩니까?`,
     `${n(cols + 1 - k)}번째`,
     `위아래로 뒤집으면 위에서 ${n(k)}번째 줄이 아래에서 ${n(k)}번째 줄이 됩니다. ` +
       `${expr(`${cols}+1-${k}=${cols + 1 - k}`)} 이므로 위에서 ${n(cols + 1 - k)}번째 줄입니다.`,
@@ -3896,7 +3896,7 @@ function tier43Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const askedName = asked === "flipH" ? "좌우로" : "위아래로";
   return make(
     unit,
-    `왼쪽 도형을 한 번 뒤집어 오른쪽 도형을 만들었습니다. ${askedName} 뒤집은 것인가? ` +
+    `왼쪽 도형을 한 번 뒤집어 오른쪽 도형을 만들었습니다. ${askedName} 뒤집은 것입니까? ` +
       `'예' 또는 '아니요'로 답하시오.`,
     yes ? "예" : "아니요",
     `색칠한 칸이 ${op === "flipH" ? "왼쪽과 오른쪽" : "위쪽과 아래쪽"}이 서로 바뀌었으므로 ` +
@@ -3945,7 +3945,7 @@ function tier43Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `도형을 ${axis} 몇 번 뒤집었더니 처음 도형과 같았습니다. 뒤집은 횟수가 ${n(lo)}번보다 ` +
-      `많고 ${n(hi)}번보다 적다면 몇 번 뒤집은 것인가?`,
+      `많고 ${n(hi)}번보다 적다면 몇 번 뒤집은 것입니까?`,
     `${n(ans)}번`,
     `같은 방향으로 ${n(2)}번 뒤집으면 처음 도형과 같으므로 횟수는 ${n(2)}의 배수입니다. ` +
       `${n(lo)}번보다 많고 ${n(hi)}번보다 적은 ${n(2)}의 배수는 ${n(ans)}뿐입니다.`,
@@ -3964,9 +3964,9 @@ function tier44Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     intBetween(rng, 0, 1) === 0
       ? `도형을 시계 방향으로 ${deg(90)}씩 ${n(t)}번 돌렸습니다. 시계 방향으로 몇 도 돌린 ` +
-          `것과 같은가?`
+          `것과 같습니까?`
       : `시계 방향으로 ${deg(90)}씩 ${n(t)}번 돌린 도형과 같은 도형을 한 번에 만들려면 ` +
-          `시계 방향으로 몇 도 돌리면 되는가?`,
+          `시계 방향으로 몇 도 돌리면 됩니까?`,
     deg(ans),
     `${expr(`90\\times${t}=${total}`)} 입니다. 한 바퀴(${deg(360)})를 돌면 처음과 같으므로 ` +
       `${expr(`${total}-${whole}=${ans}`)} 에서 ${deg(ans)} 돌린 것과 같습니다.`,
@@ -3988,7 +3988,7 @@ function tier44Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     intBetween(rng, 0, 1) === 0
       ? `왼쪽 도형을 시계 반대 방향으로 돌려 오른쪽 도형을 만들었습니다. 시계 반대 방향으로 ` +
-          `몇 도 돌린 것인가?`
+          `몇 도 돌린 것입니까?`
       : `오른쪽 도형은 왼쪽 도형을 시계 반대 방향으로 돌린 것입니다. 몇 도 돌린 것인지 구하시오.`,
     deg(ccw),
     `이 도형은 시계 방향으로 ${deg(cw)} 돌린 것과 같습니다. 시계 반대 방향으로는 ` +
@@ -4010,7 +4010,7 @@ function tier44Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `도형을 시계 방향으로 ${deg(d1)} 돌린 다음 시계 반대 방향으로 ${deg(d2)} 돌렸습니다. ` +
-        `처음 도형을 시계 방향으로 몇 도 돌린 것과 같은가?`,
+        `처음 도형을 시계 방향으로 몇 도 돌린 것과 같습니까?`,
       deg(ans),
       `반대 방향 돌리기는 그만큼 되돌리는 것입니다. ` +
         `${d1 > d2 ? expr(`${d1}-${d2}=${ans}`) : `${expr(`${d2}-${d1}=${d2 - d1}`)} 만큼 시계 반대 방향이 남고, 이는 시계 방향 ${expr(`360-${d2 - d1}=${ans}`)}`} 이므로 ` +
@@ -4026,7 +4026,7 @@ function tier44Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `도형을 시계 방향으로 ${deg(d1)} 돌린 다음 다시 시계 방향으로 ${deg(d2)} 돌렸습니다. ` +
-      `처음 도형을 시계 방향으로 몇 도 돌린 것과 같은가?`,
+      `처음 도형을 시계 방향으로 몇 도 돌린 것과 같습니까?`,
     deg(ans),
     `같은 방향으로 이어 돌리면 두 각을 더합니다. ${expr(`${d1}+${d2}=${d1 + d2}`)} 이고 ` +
       `${d1 + d2 > 360 ? `한 바퀴(${deg(360)})를 덜어 내면 ${expr(`${d1 + d2}-360=${ans}`)} 에서 ` : ""}` +
@@ -4041,7 +4041,7 @@ function tier44Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `어떤 도형을 시계 방향으로 ${deg(d)} 돌렸더니 가 도형이 되었습니다. 가 도형을 시계 ` +
-        `방향으로 몇 도 돌리면 처음 도형이 되는가?`,
+        `방향으로 몇 도 돌리면 처음 도형이 됩니까?`,
       deg(360 - d),
       `한 바퀴(${deg(360)})를 돌면 처음 도형과 같습니다. ${expr(`360-${d}=${360 - d}`)} 이므로 ` +
         `시계 방향으로 ${deg(360 - d)} 돌리면 처음 도형이 됩니다.`,
@@ -4054,7 +4054,7 @@ function tier44Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `도형을 시계 방향으로 ${deg(90)}씩 몇 번 돌렸더니 처음 도형과 같았습니다. 돌린 횟수가 ` +
-      `${n(lo)}번보다 많고 ${n(hi)}번보다 적다면 몇 번 돌린 것인가?`,
+      `${n(lo)}번보다 많고 ${n(hi)}번보다 적다면 몇 번 돌린 것입니까?`,
     `${n(ans)}번`,
     `${deg(90)}씩 ${n(4)}번 돌리면 한 바퀴가 되어 처음 도형과 같으므로 횟수는 ${n(4)}의 ` +
       `배수입니다. ${n(lo)}번보다 많고 ${n(hi)}번보다 적은 ${n(4)}의 배수는 ${n(ans)}뿐입니다.`,
@@ -4374,7 +4374,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 1) === 0) {
       return make(
         unit,
-        `${intro} 학생 수가 가장 많은 것은 어느 ${theme.item}인가?`,
+        `${intro} 학생 수가 가장 많은 것은 어느 ${theme.item}입니까?`,
         top,
         `${josa(top, "의", "의")} 막대가 가장 높습니다. ${n(max)}명입니다.`,
         figure,
@@ -4382,7 +4382,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${intro} ${josa(one.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+      `${intro} ${josa(one.label, "을", "를")} 좋아하는 학생은 몇 명입니까?`,
       `${n(one.value)}명`,
       `${josa(one.label, "의", "의")} 막대가 눈금 ${n(one.value)}에 닿아 있으므로 ${n(one.value)}명입니다.`,
       figure,
@@ -4399,7 +4399,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `${intro} 세로 눈금 한 칸은 몇 명을 나타내는가?`,
+        `${intro} 세로 눈금 한 칸은 몇 명을 나타냅니까?`,
         `${n(scale.step)}명`,
         `세로축 눈금이 ${n(0)}, ${n(scale.step)}, ${n(scale.step * 2)}, … 로 매겨져 있으므로 ` +
           `한 칸은 ${n(scale.step)}명입니다.`,
@@ -4409,7 +4409,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `${intro} ${josa(one.label, "은", "는")} 눈금 몇 칸인가?`,
+        `${intro} ${josa(one.label, "은", "는")} 눈금 몇 칸입니까?`,
         `${n(one.value / scale.step)}칸`,
         `한 칸이 ${n(scale.step)}명이고 ${josa(one.label, "은", "는")} ${n(one.value)}명이므로 ` +
           `${expr(`${one.value}\\div${scale.step}=${one.value / scale.step}`)} 칸입니다.`,
@@ -4421,7 +4421,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `${intro} 세로 눈금 한 칸은 ${n(scale.step)}명입니다. ` +
-          `막대가 ${n(pairA.value / scale.step)}칸인 것은 몇 명인가?`,
+          `막대가 ${n(pairA.value / scale.step)}칸인 것은 몇 명입니까?`,
         `${n(pairA.value)}명`,
         `${expr(`${scale.step}\\times${pairA.value / scale.step}=${pairA.value}`)} 이므로 ${n(pairA.value)}명입니다.`,
         figure,
@@ -4430,7 +4430,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 3) {
       return make(
         unit,
-        `${intro} 학생 수가 두 번째로 많은 것은 어느 ${theme.item}인가?`,
+        `${intro} 학생 수가 두 번째로 많은 것은 어느 ${theme.item}입니까?`,
         second,
         `${josa(top, "이", "가")} ${n(max)}명으로 가장 많고, 그다음이 ` +
           `${josa(second, "으로", "로")} ${n(secondValue)}명입니다.`,
@@ -4439,7 +4439,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${intro} ${josa(pairA.label, "을", "를")} 좋아하는 학생은 ${josa(pairB.label, "을", "를")} 좋아하는 학생보다 몇 명 더 많은가?`,
+      `${intro} ${josa(pairA.label, "을", "를")} 좋아하는 학생은 ${josa(pairB.label, "을", "를")} 좋아하는 학생보다 몇 명 더 많습니까?`,
       `${n(pairA.value - pairB.value)}명`,
       `${josa(pairA.label, "이", "가")} ${n(pairA.value)}명, ${josa(pairB.label, "이", "가")} ` +
         `${n(pairB.value)}명이므로 ${expr(`${pairA.value}-${pairB.value}=${pairA.value - pairB.value}`)} 입니다.`,
@@ -4455,7 +4455,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `${intro} 학생 수가 가장 많은 ${josa(theme.item, "과", "와")} 가장 적은 ${theme.item}의 학생 수의 차는 몇 명인가?`,
+        `${intro} 학생 수가 가장 많은 ${josa(theme.item, "과", "와")} 가장 적은 ${theme.item}의 학생 수의 차는 몇 명입니까?`,
         `${n(max - min)}명`,
         `가장 많은 것은 ${josa(top, "으로", "로")} ${n(max)}명, 가장 적은 것은 ` +
           `${josa(bottom, "으로", "로")} ${n(min)}명입니다. ${expr(`${max}-${min}=${max - min}`)}`,
@@ -4534,7 +4534,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     // 합계는 «막는 문턱»이 아니라 **구성으로 참이 되는 값**이다 — 곧 그 규모의 총원이다.
     return make(
       unit,
-      `${intro} 조사한 학생은 모두 몇 명인가?`,
+      `${intro} 조사한 학생은 모두 몇 명입니까?`,
       `${n(total)}명`,
       `${expr(`${picked.join("+")}=${total}`)} 이므로 모두 ${n(total)}명입니다.`,
       figure,
@@ -4707,7 +4707,7 @@ function buildSaleCombo(rng: Rng): SaleCombo {
     content:
       `${theme.place}에서 오늘 팔린 종류별 ${josa(theme.goods, "의", "의")} 수와 ` +
       `${theme.goods} 한 ${theme.counter}의 가격을 조사하여 나타낸 막대그래프입니다. ` +
-      `오늘 ${josa(name, "을", "를")} 팔고 받은 돈은 얼마인가?`,
+      `오늘 ${josa(name, "을", "를")} 팔고 받은 돈은 얼마입니까?`,
     answer: `${n(money)}원`,
     solution:
       `${josa(name, "은", "는")} ${n(count)}${theme.counter} 팔렸고, ` +
@@ -4811,7 +4811,7 @@ function tier53Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     const v = c.counts[at]!;
     return make(
       unit,
-      `${intro} 오늘 ${josa(name, "은", "는")} 몇 ${c.theme.counter} 팔렸는가?`,
+      `${intro} 오늘 ${josa(name, "은", "는")} 몇 ${c.theme.counter} 팔렸습니까?`,
       `${n(v)}${c.theme.counter}`,
       `「팔린 수」 그래프에서 ${josa(name, "의", "의")} 막대가 눈금 ${n(v)}에 닿아 있으므로 ` +
         `${n(v)}${c.theme.counter}입니다.`,
@@ -4821,7 +4821,7 @@ function tier53Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const v = c.prices[at]!;
   return make(
     unit,
-    `${intro} ${name} 한 ${c.theme.counter}의 가격은 얼마인가?`,
+    `${intro} ${name} 한 ${c.theme.counter}의 가격은 얼마입니까?`,
     `${n(v)}원`,
     `「한 ${c.theme.counter}의 가격」 그래프에서 ${josa(name, "의", "의")} 막대가 눈금 ` +
       `${n(v)}에 닿아 있으므로 ${n(v)}원입니다.`,
@@ -4840,7 +4840,7 @@ function tier53Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     // «가장 많은 책은 가장 적은 책보다 몇 명 더 많은가» 는 주어(책)와 단위(명)가 어긋났다(2026-10-20 교차 검수 2회차).
-    `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}보다 좋아하는 학생이 몇 명 더 많은가?`,
+    `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}보다 좋아하는 학생이 몇 명 더 많습니까?`,
     `${n(d.max - d.min)}명`,
     `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
       `${josa(d.bottom, "으로", "로")} ${n(d.min)}명입니다. ` +
@@ -4862,7 +4862,7 @@ function tier53Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   if (Number.isInteger(times) && times >= 2 && intBetween(rng, 0, 1) === 0) {
     return make(
       unit,
-      `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}의 몇 배인가?`,
+      `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}의 몇 배입니까?`,
       `${n(times)}배`,
       `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
         `${josa(d.bottom, "으로", "로")} ${n(d.min)}명입니다. ` +
@@ -4874,7 +4874,7 @@ function tier53Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const cells = d.one.value / d.scale.step;
   return make(
     unit,
-    `${d.intro} ${josa(d.one.label, "의", "의")} 막대는 눈금 몇 칸인가?`,
+    `${d.intro} ${josa(d.one.label, "의", "의")} 막대는 눈금 몇 칸입니까?`,
     `${n(cells)}칸`,
     `세로 눈금 한 칸은 ${n(d.scale.step)}명이고 ${josa(d.one.label, "은", "는")} ` +
       `${n(d.one.value)}명이므로 ${expr(`${d.one.value}\\div${d.scale.step}=${cells}`)} 칸입니다.`,
@@ -4919,7 +4919,7 @@ function tier53Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${d.intro} 조사한 학생이 모두 ${n(d.total)}명일 때, ` +
-      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 명입니까?`,
     `${n(hidden.value)}명`,
     `그래프에 나타난 ${shown.map((v) => v.label).join(", ")}의 학생 수를 더하면 ` +
       `${expr(`${shown.map((v) => v.value).join("+")}=${rest}`)} 입니다. ` +
@@ -4959,7 +4959,7 @@ function tier51Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   if (kind === 0) {
     return make(
       unit,
-      `${d.intro} 가로와 세로는 각각 무엇을 나타내는가?`,
+      `${d.intro} 가로와 세로는 각각 무엇을 나타냅니까?`,
       `가로는 ${d.theme.item}, 세로는 학생 수`,
       `가로는 조사한 ${josa(d.theme.item, "을", "를")} 나타내고, ` +
         `세로는 ${josa(d.theme.item, "을", "를")} 좋아하는 학생 수를 나타냅니다.`,
@@ -4969,7 +4969,7 @@ function tier51Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   if (kind === 1) {
     return make(
       unit,
-      `${d.intro} 막대의 길이는 무엇을 나타내는가?`,
+      `${d.intro} 막대의 길이는 무엇을 나타냅니까?`,
       `${josa(d.theme.item, "을", "를")} 좋아하는 학생 수`,
       `막대의 길이는 ${josa(d.theme.item, "을", "를")} 좋아하는 학생 수를 나타냅니다. ` +
         `막대가 길수록 좋아하는 학생이 많습니다.`,
@@ -4979,7 +4979,7 @@ function tier51Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "을", "를")} 한눈에 찾으려면 ` +
-      `그래프에서 무엇을 비교하면 되는가?`,
+      `그래프에서 무엇을 비교하면 됩니까?`,
     "막대의 길이",
     `막대의 길이가 학생 수를 나타내므로, 막대의 길이를 비교하면 가장 긴 막대가 ` +
       `학생 수가 가장 많은 ${d.theme.item}입니다.`,
@@ -5003,7 +5003,7 @@ function tier51Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${d.intro} ${josa(x.label, "과", "와")} ${josa(y.label, "을", "를")} 좋아하는 학생은 ` +
-      `모두 몇 명인가?`,
+      `모두 몇 명입니까?`,
     `${n(sum)}명`,
     `${josa(x.label, "은", "는")} ${n(x.value)}명, ${josa(y.label, "은", "는")} ` +
       `${n(y.value)}명입니다. ${expr(`${x.value}+${y.value}=${sum}`)} 이므로 모두 ${n(sum)}명입니다.`,
@@ -5023,7 +5023,7 @@ function tier51Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${d.intro} 학생 수가 가장 많은 ${d.theme.item}의 막대는 가장 적은 ${d.theme.item}의 ` +
-        `막대보다 눈금 몇 칸 더 긴가?`,
+        `막대보다 눈금 몇 칸 더 깁니까?`,
       `${n(cells)}칸`,
       `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
         `${josa(d.bottom, "으로", "로")} ${n(d.min)}명이므로 차는 ` +
@@ -5043,7 +5043,7 @@ function tier51Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${d.intro} ${josa(big.label, "의", "의")} 막대는 ${josa(small.label, "의", "의")} 막대보다 ` +
-      `눈금 몇 칸 더 긴가?`,
+      `눈금 몇 칸 더 깁니까?`,
     `${n(cells)}칸`,
     `${josa(big.label, "은", "는")} ${n(big.value)}명, ${josa(small.label, "은", "는")} ` +
       `${n(small.value)}명이므로 차는 ${expr(`${big.value}-${small.value}=${diff}`)} 입니다. ` +
@@ -5082,7 +5082,7 @@ function tier51Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${d.intro} ${josa(hidden.label, "을", "를")} 좋아하는 학생은 ` +
       `${josa(ref.label, "을", "를")} 좋아하는 학생보다 ${n(k)}명 더 ${more ? "많다" : "적다"}고 ` +
-      `합니다. ${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+      `합니다. ${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 명입니까?`,
     `${n(hidden.value)}명`,
     `그래프에서 ${josa(ref.label, "을", "를")} 좋아하는 학생은 ${n(ref.value)}명입니다. ` +
       `${expr(`${ref.value}${more ? "+" : "-"}${k}=${hidden.value}`)} 이므로 ` +
@@ -5124,7 +5124,7 @@ function tier52Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 ` +
       `${n(s)}명으로 하면 ${josa(d.one.label, "의", "의")} 막대는 몇 칸으로 ` +
-      `그려야 하는가?`,
+      `그려야 합니까?`,
     `${n(cells)}칸`,
     `표에서 ${josa(d.one.label, "은", "는")} ${n(d.one.value)}명입니다. ${how}`,
     barTable(d),
@@ -5141,7 +5141,7 @@ function tier52Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금은 적어도 ` +
-        `몇 명까지 나타낼 수 있어야 하는가?`,
+        `몇 명까지 나타낼 수 있어야 합니까?`,
       `${n(d.max)}명`,
       `표에서 가장 큰 수는 ${josa(d.top, "의", "의")} ${n(d.max)}명입니다. 세로 눈금은 ` +
         `가장 큰 수까지 나타낼 수 있어야 하므로 적어도 ${n(d.max)}명까지 나타내야 합니다.`,
@@ -5151,7 +5151,7 @@ function tier52Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 막대를 가장 길게 그려야 ` +
-      `하는 것은 어느 ${d.theme.item}인가?`,
+      `하는 것은 어느 ${d.theme.item}입니까?`,
     d.top,
     `막대의 길이는 학생 수를 나타내므로 학생 수가 가장 많은 ${josa(d.top, "의", "의")} ` +
       `막대를 가장 길게 그려야 합니다. ${josa(d.top, "은", "는")} ${n(d.max)}명입니다.`,
@@ -5176,7 +5176,7 @@ function tier52Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 ` +
-        `${n(s)}명으로 하면 세로 눈금은 적어도 몇 칸 있어야 하는가?`,
+        `${n(s)}명으로 하면 세로 눈금은 적어도 몇 칸 있어야 합니까?`,
       `${n(cells)}칸`,
       `표에서 가장 큰 수는 ${josa(d.top, "의", "의")} ${n(d.max)}명입니다. ${how}`,
       barTable(d),
@@ -5192,7 +5192,7 @@ function tier52Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 ${n(s)}명으로 ` +
       `하면 ${josa(d.pairA.label, "의", "의")} 막대는 ${josa(d.pairB.label, "의", "의")} 막대보다 ` +
-      `몇 칸 더 길게 그려야 하는가?`,
+      `몇 칸 더 길게 그려야 합니까?`,
     `${n(cells)}칸`,
     `표에서 ${josa(d.pairA.label, "은", "는")} ${n(d.pairA.value)}명, ` +
       `${josa(d.pairB.label, "은", "는")} ${n(d.pairB.value)}명이므로 차는 ` +
@@ -5218,7 +5218,7 @@ function tier52Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${drawIntro(d)} 표를 보고 막대그래프를 그렸더니 ${josa(x.label, "의", "의")} 막대가 ` +
-        `${n(c)}칸이 되었습니다. 세로 눈금 한 칸을 몇 명으로 한 것인가?`,
+        `${n(c)}칸이 되었습니다. 세로 눈금 한 칸을 몇 명으로 한 것입니까?`,
       `${n(s)}명`,
       `표에서 ${josa(x.label, "은", "는")} ${n(x.value)}명입니다. ${n(x.value)}명을 ` +
         `${n(c)}칸으로 나타냈으므로 세로 눈금 한 칸은 ${expr(`${x.value}\\div${c}=${s}`)} 명으로 ` +
@@ -5238,7 +5238,7 @@ function tier52Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${drawIntro(d)} 표를 보고 ${josa(x.label, "의", "의")} 막대를 ${n(c)}칸으로 그렸습니다. ` +
-      `같은 눈금으로 ${josa(y.label, "의", "의")} 막대는 몇 칸으로 그려야 하는가?`,
+      `같은 눈금으로 ${josa(y.label, "의", "의")} 막대는 몇 칸으로 그려야 합니까?`,
     `${n(cells)}칸`,
     `표에서 ${josa(x.label, "은", "는")} ${n(x.value)}명인데 그 막대가 ${n(c)}칸이므로 ` +
       `세로 눈금 한 칸은 ${expr(`${x.value}\\div${c}=${s}`)} 명입니다. ${how}`,
@@ -5794,7 +5794,7 @@ function pattern(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 2) === 0) {
       return make(
         unit,
-        `모형을 정사각형 모양으로 늘어놓았습니다. 첫째는 ${n(1)}개, 둘째는 ${n(4)}개, 셋째는 ${n(9)}개일 때 다섯째는 몇 개인가?`,
+        `모형을 정사각형 모양으로 늘어놓았습니다. 첫째는 ${n(1)}개, 둘째는 ${n(4)}개, 셋째는 ${n(9)}개일 때 다섯째는 몇 개입니까?`,
         n(25),
         `${expr("1\\times1=1")}, ${expr("2\\times2=4")}, ${expr("3\\times3=9")} 이므로 ` +
           `다섯째는 ${expr("5\\times5=25")} 입니다.`,
@@ -5805,7 +5805,7 @@ function pattern(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `도형을 규칙에 따라 늘어놓았습니다. 첫째는 모형이 ${n(start)}개, 둘째는 ${n(start + step)}개, ` +
-        `셋째는 ${n(start + step * 2)}개일 때 다섯째는 몇 개인가?`,
+        `셋째는 ${n(start + step * 2)}개일 때 다섯째는 몇 개입니까?`,
       n(start + step * 4),
       `${n(step)}개씩 늘어나는 규칙입니다. ${expr(`${start + step * 2}+${step}+${step}=${start + step * 4}`)}`,
     );
@@ -5959,7 +5959,7 @@ function tier61Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${n(d)}씩 커지는 규칙으로 수를 늘어놓았습니다. 다섯째 수가 ${josaNum(fifth, "이", "가")} ` +
-        `되었다면 첫째 수는 얼마인가?`,
+        `되었다면 첫째 수는 얼마입니까?`,
       n(a),
       `다섯째 수는 첫째 수보다 ${n(d)}씩 ${n(4)}번 큰 수입니다. ` +
         `${expr(`${fifth}-${d}\\times4=${a}`)} 이므로 첫째 수는 ${n(a)}입니다.`,
@@ -5972,7 +5972,7 @@ function tier61Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `규칙에 따라 수를 늘어놓을 때 처음으로 ${josaNum(L, "을", "를")} 넘는 수는 몇째에 ` +
-      `오는가? ${terms.map((v) => n(v)).join(", ")}`,
+      `옵니까? ${terms.map((v) => n(v)).join(", ")}`,
     ORDINAL[k - 1]!,
     `${n(d)}씩 커지는 규칙입니다. ${ORDINAL[k - 2]!} 수는 ${expr(`${a}+${d}\\times${k - 2}=${a + d * (k - 2)}`)}${numRo(a + d * (k - 2))} ` +
       `${n(L)}보다 크지 않고, ${ORDINAL[k - 1]!} 수는 ${expr(`${a}+${d}\\times${k - 1}=${a + d * (k - 1)}`)}${numRo(a + d * (k - 1))} ` +
@@ -6009,7 +6009,7 @@ function tier62Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(t2)}개, ` +
-      `셋째는 ${n(t3)}개입니다. ${askFive ? "다섯째" : "넷째"}는 몇 개인가?`,
+      `셋째는 ${n(t3)}개입니다. ${askFive ? "다섯째" : "넷째"}는 몇 개입니까?`,
     `${n(askFive ? t5 : t4)}개`,
     `늘어나는 개수가 ${n(inc)}개, ${n(inc + 1)}개로 ${n(1)}개씩 커지는 규칙입니다. ` +
       `${expr(`${t3}+${inc + 2}=${t4}`)}${askFive ? ` 이고 ${expr(`${t4}+${inc + 3}=${t5}`)}` : ""} 이므로 ` +
@@ -6026,7 +6026,7 @@ function tier62Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, ` +
-      `셋째는 ${n(s + d * 2)}개입니다. 모형이 ${n(target)}개인 것은 몇째인가?`,
+      `셋째는 ${n(s + d * 2)}개입니다. 모형이 ${n(target)}개인 것은 몇째입니까?`,
     ORDINAL[k - 1]!,
     `${n(d)}개씩 늘어나는 규칙입니다. 첫째보다 ${expr(`${target}-${s}=${target - s}`)} 개 많고 ` +
       `${expr(`${target - s}\\div${d}=${k - 1}`)} 이므로 ${n(d)}개씩 ${n(k - 1)}번 늘어난 ` +
@@ -6048,7 +6048,7 @@ function tier62Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, ` +
       `셋째는 ${n(s + d * 2)}개입니다. 첫째부터 몇째까지 놓으면 모형이 모두 ` +
-      `${n(total)}개가 되는가?`,
+      `${n(total)}개가 됩니까?`,
     ORDINAL[upto - 1]!,
     [
       `${n(d)}개씩 늘어나므로 넷째부터는 ${expr(`${t[2]}+${d}=${t[3]}`)} 개, ` +
@@ -6255,7 +6255,7 @@ function tier65Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const rightB = ok ? b - gap : b - gap + pick(rng, [-2, -1, 1, 2]);
   return make(
     unit,
-    `다음 식은 옳은가? 옳으면 '예', 옳지 않으면 '아니요'로 답하시오. ` +
+    `다음 식은 옳습니까? 옳으면 '예', 옳지 않으면 '아니요'로 답하시오. ` +
       `${expr(`${a}+${b}=${a + gap}+${rightB}`)}`,
     ok ? "예" : "아니요",
     `왼쪽은 ${expr(`${a}+${b}=${a + b}`)} 이고 오른쪽은 ${expr(`${a + gap}+${rightB}=${a + gap + rightB}`)} 입니다. ` +
@@ -6447,7 +6447,7 @@ function big111MinusThousands(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 1, 8);
   return make(
     unit,
-    `${n(10000)}에서 ${n(1000)}을 ${n(k)}번 빼면 얼마인가?`,
+    `${n(10000)}에서 ${n(1000)}을 ${n(k)}번 빼면 얼마입니까?`,
     n(10000 - 1000 * k),
     `${expr(`1000\\times${k}=${1000 * k}`)} 이고 ${expr(`10000-${1000 * k}=${10000 - 1000 * k}`)} 입니다.`,
   );
@@ -6460,7 +6460,7 @@ function big111BundleCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const total = k * 1000;
   return make(
     unit,
-    `${josa(t.obj, "이", "가")} ${n(total)}${t.cnt} 있습니다. ${n(1000)}${t.cnt}씩 묶으면 몇 묶음인가?`,
+    `${josa(t.obj, "이", "가")} ${n(total)}${t.cnt} 있습니다. ${n(1000)}${t.cnt}씩 묶으면 몇 묶음입니까?`,
     `${n(k)}묶음`,
     `${expr(`${total}\\div1000=${k}`)} 이므로 ${n(k)}묶음입니다.`,
   );
@@ -6475,7 +6475,7 @@ function big111Shortfall(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${n(1000)}원짜리 지폐 ${n(a)}장과 ${n(100)}원짜리 동전 ${n(b)}개를 모았습니다. ` +
-      `${n(10000)}원이 되려면 얼마가 모자라는가?`,
+      `${n(10000)}원이 되려면 얼마가 모자랍니까?`,
     `${n(need)}원`,
     `지금 모은 돈은 ${expr(`1000\\times${a}+100\\times${b}=${have}`)} 원입니다. ` +
       `${expr(`10000-${have}=${need}`)} 이므로 ${n(need)}원 모자랍니다.`,
@@ -6504,7 +6504,7 @@ function big111ThousandsLeft(unit: UnitSeed, rng: Rng): ElemProblem {
   const left = 10000 - k;
   return make(
     unit,
-    `${n(10000)}보다 ${n(k)} 작은 수는 ${n(1000)}이 몇 개인 수인가?`,
+    `${n(10000)}보다 ${n(k)} 작은 수는 ${n(1000)}이 몇 개인 수입니까?`,
     n(left / 1000),
     `${expr(`10000-${k}=${left}`)} 이고 ${expr(`${left}\\div1000=${left / 1000}`)} 이므로 ` +
       `${n(1000)}이 ${n(left / 1000)}개인 수입니다.`,
@@ -6627,7 +6627,7 @@ function big112NonzeroCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const cnt = d.filter((x) => x !== 0).length;
   return make(
     unit,
-    `${n(value)}에서 ${n(0)}이 아닌 자리 숫자는 모두 몇 개인가?`,
+    `${n(value)}에서 ${n(0)}이 아닌 자리 숫자는 모두 몇 개입니까?`,
     n(cnt),
     `${n(0)}이 아닌 자리 숫자는 ${cnt}개입니다.`,
   );
@@ -6644,7 +6644,7 @@ function big113TimesMan(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = manCount(rng);
   return make(
     unit,
-    `${n(10000)}이 ${n(count)}개인 수는 ${n(100)}이 몇 개인 수인가?`,
+    `${n(10000)}이 ${n(count)}개인 수는 ${n(100)}이 몇 개인 수입니까?`,
     n(count * 100),
     `${n(10000)}은 ${n(100)}이 ${n(100)}개이므로 ${expr(`100\\times${count}=${count * 100}`)} 개입니다.`,
   );
@@ -6656,7 +6656,7 @@ function big113HowManyMan(unit: UnitSeed, rng: Rng): ElemProblem {
   const value = 10000 * count;
   return make(
     unit,
-    `${n(value)}은 몇 만인가?`,
+    `${n(value)}은 몇 만입니까?`,
     `${n(count)}만`,
     `${n(10000)}은 ${n(1)}만이므로 ${expr(`${value}\\div10000=${count}`)} 에서 ${n(count)}만입니다.`,
   );
@@ -6667,7 +6667,7 @@ function big113AsManUnit(unit: UnitSeed, rng: Rng): ElemProblem {
   const count = intBetween(rng, 2, 9) * 10;
   return make(
     unit,
-    `${n(10000)}이 ${n(count)}개인 수는 몇 만인가?`,
+    `${n(10000)}이 ${n(count)}개인 수는 몇 만입니까?`,
     `${n(count)}만`,
     `${n(10000)}은 ${n(1)}만이므로 ${n(10000)}이 ${n(count)}개인 수는 ${n(count)}만입니다.`,
   );
@@ -6680,7 +6680,7 @@ function big113MixBills(unit: UnitSeed, rng: Rng): ElemProblem {
   const v = 10000 * a + 1000 * b;
   return make(
     unit,
-    `${n(10000)}원짜리 지폐 ${n(a)}장과 ${n(1000)}원짜리 지폐 ${n(b)}장의 합은 얼마인가?`,
+    `${n(10000)}원짜리 지폐 ${n(a)}장과 ${n(1000)}원짜리 지폐 ${n(b)}장의 합은 얼마입니까?`,
     `${n(v)}원`,
     `${expr(`10000\\times${a}=${10000 * a}`)} 이고 ${expr(`1000\\times${b}=${1000 * b}`)} 입니다. ` +
       `${expr(`${10000 * a}+${1000 * b}=${v}`)} 이므로 모두 ${n(v)}원입니다.`,
@@ -6693,7 +6693,7 @@ function big113AsTens(unit: UnitSeed, rng: Rng): ElemProblem {
   const value = 10000 * count;
   return make(
     unit,
-    `${josaNum(value, "을", "를")} ${roJosa(10)} 나누면 얼마인가?`,
+    `${josaNum(value, "을", "를")} ${roJosa(10)} 나누면 얼마입니까?`,
     n(value / 10),
     `${expr(`${value}\\div10=${value / 10}`)} 입니다.`,
   );
@@ -6719,7 +6719,7 @@ function big114MansInEok(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = intBetween(rng, 2, 9);
   return make(
     unit,
-    `${n(a)}억은 만이 몇 개인 수인가?`,
+    `${n(a)}억은 만이 몇 개인 수입니까?`,
     n(a * 10000),
     `${n(1)}억은 만이 ${n(10000)}개인 수이므로 ${n(a)}억은 ${n(a * 10000)}개입니다.`,
   );
@@ -6730,7 +6730,7 @@ function big114ThousandManBundles(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = intBetween(rng, 2, 9);
   return make(
     unit,
-    `${n(a)}억을 ${n(1000)}만씩 묶으면 몇 묶음인가?`,
+    `${n(a)}억을 ${n(1000)}만씩 묶으면 몇 묶음입니까?`,
     `${n(a * 10)}묶음`,
     `${n(1)}억은 ${n(1000)}만이 ${n(10)}개이므로 ${expr(`10\\times${a}=${a * 10}`)} 묶음입니다.`,
   );
@@ -6741,7 +6741,7 @@ function big114MansToEok(unit: UnitSeed, rng: Rng): ElemProblem {
   const mans = intBetween(rng, 2, 9) * 10000;
   return make(
     unit,
-    `만이 ${n(mans)}개인 수는 몇 억인가?`,
+    `만이 ${n(mans)}개인 수는 몇 억입니까?`,
     `${n(mans / 10000)}억`,
     `만이 ${n(10000)}개이면 ${n(1)}억이므로 ${expr(`${mans}\\div10000=${mans / 10000}`)} 에서 ${n(mans / 10000)}억입니다.`,
   );
@@ -6769,7 +6769,7 @@ function big114EokMinusMan(unit: UnitSeed, rng: Rng): ElemProblem {
   const v = a * 100000000 - b * 10000;
   return make(
     unit,
-    `${n(a)}억에서 ${n(b)}만을 빼면 얼마인가?`,
+    `${n(a)}억에서 ${n(b)}만을 빼면 얼마입니까?`,
     n(v),
     `${n(a)}억은 ${n(a * 100000000)}, ${n(b)}만은 ${n(b * 10000)}이므로 ` +
       `${expr(`${a * 100000000}-${b * 10000}=${v}`)} 입니다.`,
@@ -6796,7 +6796,7 @@ function big115EoksInJo(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = intBetween(rng, 2, 9);
   return make(
     unit,
-    `${n(a)}조는 억이 몇 개인 수인가?`,
+    `${n(a)}조는 억이 몇 개인 수입니까?`,
     n(a * 10000),
     `${n(1)}조는 억이 ${n(10000)}개인 수이므로 ${n(a)}조는 ${n(a * 10000)}개입니다.`,
   );
@@ -6807,7 +6807,7 @@ function big115ThousandEokBundles(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = intBetween(rng, 2, 9);
   return make(
     unit,
-    `${n(a)}조를 ${n(1000)}억씩 묶으면 몇 묶음인가?`,
+    `${n(a)}조를 ${n(1000)}억씩 묶으면 몇 묶음입니까?`,
     `${n(a * 10)}묶음`,
     `${n(1)}조는 ${n(1000)}억이 ${n(10)}개이므로 ${expr(`10\\times${a}=${a * 10}`)} 묶음입니다.`,
   );
@@ -6818,7 +6818,7 @@ function big115EoksToJo(unit: UnitSeed, rng: Rng): ElemProblem {
   const eoks = intBetween(rng, 2, 9) * 10000;
   return make(
     unit,
-    `억이 ${n(eoks)}개인 수는 몇 조인가?`,
+    `억이 ${n(eoks)}개인 수는 몇 조입니까?`,
     `${n(eoks / 10000)}조`,
     `억이 ${n(10000)}개이면 ${n(1)}조이므로 ${expr(`${eoks}\\div10000=${eoks / 10000}`)} 에서 ${n(eoks / 10000)}조입니다.`,
   );
@@ -6847,7 +6847,7 @@ function big115JoMinusEok(unit: UnitSeed, rng: Rng): ElemProblem {
   const v = a * 1000000000000 - c * 100000000;
   return make(
     unit,
-    `${n(a)}조에서 ${n(c)}억을 빼면 얼마인가?`,
+    `${n(a)}조에서 ${n(c)}억을 빼면 얼마입니까?`,
     n(v),
     `${n(a)}조는 ${n(a * 1000000000000)}, ${n(c)}억은 ${n(c * 100000000)}이므로 ` +
       `${expr(`${a * 1000000000000}-${c * 100000000}=${v}`)} 입니다.`,
@@ -6928,7 +6928,7 @@ function big116HowManyHops(unit: UnitSeed, rng: Rng): ElemProblem {
   const end = start + step * t;
   return make(
     unit,
-    `${n(start)}에서 ${n(step)}씩 뛰어 세어 ${josaNum(end, "이", "가")} 되었습니다. 몇 번 뛰어 센 것인가?`,
+    `${n(start)}에서 ${n(step)}씩 뛰어 세어 ${josaNum(end, "이", "가")} 되었습니다. 몇 번 뛰어 센 것입니까?`,
     n(t),
     `${expr(`${end}-${start}=${step * t}`)} 이고 ${expr(`${step * t}\\div${step}=${t}`)} 이므로 ${n(t)}번입니다.`,
   );
@@ -7029,7 +7029,7 @@ function big117Diff(unit: UnitSeed, rng: Rng): ElemProblem {
   const second = first === a ? b : a;
   return make(
     unit,
-    `${josaNum(first, "과", "와")} ${n(second)}의 차는 얼마인가?`,
+    `${josaNum(first, "과", "와")} ${n(second)}의 차는 얼마입니까?`,
     n(b - a),
     `${expr(`${b}-${a}=${b - a}`)} 이므로 차는 ${n(b - a)}입니다.`,
   );
@@ -7057,7 +7057,7 @@ function big117Range(unit: UnitSeed, rng: Rng): ElemProblem {
   const shown = shuffled(rng, [lo, mid, hi]);
   return make(
     unit,
-    `세 수 ${shown.map((v) => n(v)).join(", ")} 중 가장 큰 수와 가장 작은 수의 차는 얼마인가?`,
+    `세 수 ${shown.map((v) => n(v)).join(", ")} 중 가장 큰 수와 가장 작은 수의 차는 얼마입니까?`,
     n(hi - lo),
     `가장 큰 수는 ${n(hi)}, 가장 작은 수는 ${n(lo)}이므로 ${expr(`${hi}-${lo}=${hi - lo}`)} 입니다.`,
   );
@@ -7085,7 +7085,7 @@ function ang121Diff(unit: UnitSeed, rng: Rng): ElemProblem {
   const y = x + intBetween(rng, 10, 60);
   return make(
     unit,
-    `크기가 ${deg(y)}인 각과 ${deg(x)}인 각의 크기의 차는 몇 도인가?`,
+    `크기가 ${deg(y)}인 각과 ${deg(x)}인 각의 크기의 차는 몇 도입니까?`,
     deg(y - x),
     `${expr(`${y}-${x}=${y - x}`)} 이므로 ${deg(y - x)}입니다.`,
   );
@@ -7117,7 +7117,7 @@ function ang121BiggerPairSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const big = Math.max(left, right);
   return make(
     unit,
-    `${deg(a)}와 ${deg(b)}의 합과 ${deg(c)}와 ${deg(d)}의 합 중 더 큰 합은 몇 도인가?`,
+    `${deg(a)}와 ${deg(b)}의 합과 ${deg(c)}와 ${deg(d)}의 합 중 더 큰 합은 몇 도입니까?`,
     deg(big),
     `${expr(`${a}+${b}=${left}`)}, ${expr(`${c}+${d}=${right}`)} 이므로 더 큰 합은 ${deg(big)}입니다.`,
   );
@@ -7131,7 +7131,7 @@ function ang121Offset(unit: UnitSeed, rng: Rng): ElemProblem {
   const y = more ? x + d : x - d;
   return make(
     unit,
-    `각 가의 크기는 ${deg(x)}입니다. 각 나는 각 가보다 ${deg(d)} 더 ${more ? "큽니다" : "작습니다"}. 각 나의 크기는 몇 도인가?`,
+    `각 가의 크기는 ${deg(x)}입니다. 각 나는 각 가보다 ${deg(d)} 더 ${more ? "큽니다" : "작습니다"}. 각 나의 크기는 몇 도입니까?`,
     deg(y),
     `각 나는 ${expr(more ? `${x}+${d}=${y}` : `${x}-${d}=${y}`)} 이므로 ${deg(y)}입니다.`,
   );
@@ -7162,7 +7162,7 @@ function ang122ReadProtractor(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = pick(rng, PROTRACTOR_DEGS);
   return make(
     unit,
-    "각도기로 잰 각의 크기는 몇 도인가?",
+    "각도기로 잰 각의 크기는 몇 도입니까?",
     deg(d),
     `각도기의 중심을 각의 꼭짓점에, 밑금을 각의 한 변에 맞추고 눈금을 읽으면 ${deg(d)}입니다.`,
     fig("protractor", { deg: d }),
@@ -7174,7 +7174,7 @@ function ang122HowManyOnes(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 11, 169);
   return make(
     unit,
-    `${deg(d)}는 ${deg(1)}가 몇 개 모인 각인가?`,
+    `${deg(d)}는 ${deg(1)}가 몇 개 모인 각입니까?`,
     n(d),
     `${deg(1)}가 ${n(d)}개 모이면 ${deg(d)}입니다.`,
   );
@@ -7185,7 +7185,7 @@ function ang122TickCells(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 15, 165);
   return make(
     unit,
-    `각도기의 작은 눈금 한 칸이 ${deg(1)}일 때, 눈금이 ${n(d)}칸인 각의 크기는 몇 도인가?`,
+    `각도기의 작은 눈금 한 칸이 ${deg(1)}일 때, 눈금이 ${n(d)}칸인 각의 크기는 몇 도입니까?`,
     deg(d),
     `한 칸이 ${deg(1)}이므로 ${n(d)}칸이면 ${deg(d)}입니다.`,
   );
@@ -7197,7 +7197,7 @@ function ang122Sum(unit: UnitSeed, rng: Rng): ElemProblem {
   const y = intBetween(rng, 15, 70);
   return make(
     unit,
-    `각도기로 잰 두 각의 크기가 ${deg(x)}, ${deg(y)}입니다. 두 각의 크기의 합은 몇 도인가?`,
+    `각도기로 잰 두 각의 크기가 ${deg(x)}, ${deg(y)}입니다. 두 각의 크기의 합은 몇 도입니까?`,
     deg(x + y),
     `${expr(`${x}+${y}=${x + y}`)} 이므로 ${deg(x + y)}입니다.`,
   );
@@ -7208,7 +7208,7 @@ function ang122RightPlus(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 5, 80);
   return make(
     unit,
-    `직각보다 ${deg(d)} 큰 각의 크기는 몇 도인가?`,
+    `직각보다 ${deg(d)} 큰 각의 크기는 몇 도입니까?`,
     deg(90 + d),
     `직각은 ${deg(90)}이므로 ${expr(`90+${d}=${90 + d}`)} 에서 ${deg(90 + d)}입니다.`,
   );
@@ -7219,7 +7219,7 @@ function ang122StraightMinus(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 10, 80);
   return make(
     unit,
-    `직선이 이루는 각보다 ${deg(d)} 작은 각의 크기는 몇 도인가?`,
+    `직선이 이루는 각보다 ${deg(d)} 작은 각의 크기는 몇 도입니까?`,
     deg(180 - d),
     `직선이 이루는 각은 ${deg(180)}이므로 ${expr(`180-${d}=${180 - d}`)} 에서 ${deg(180 - d)}입니다.`,
   );
@@ -7241,7 +7241,7 @@ function ang123ClassifyFig(unit: UnitSeed, rng: Rng): ElemProblem {
         : pick(rng, OBTUSE);
   return make(
     unit,
-    "그림의 각은 예각, 직각, 둔각 중 무엇인가?",
+    "그림의 각은 예각, 직각, 둔각 중 무엇입니까?",
     klass,
     `직각은 ${deg(90)}입니다. ${deg(d)}는 ${klass}입니다.`,
     fig("protractor", { deg: d }),
@@ -7258,7 +7258,7 @@ function ang123ObtuseCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const wide = three.filter((v) => v > 90).length;
   return make(
     unit,
-    `크기가 ${deg(three[0]!)}, ${deg(three[1]!)}, ${deg(three[2]!)}인 세 각 중 둔각은 모두 몇 개인가?`,
+    `크기가 ${deg(three[0]!)}, ${deg(three[1]!)}, ${deg(three[2]!)}인 세 각 중 둔각은 모두 몇 개입니까?`,
     n(wide),
     `${deg(90)}보다 큰 각이 둔각입니다. 둔각은 ${n(wide)}개입니다.`,
   );
@@ -7308,7 +7308,7 @@ function ang123AcuteCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const acute = shown.filter((v) => v < 90);
   return make(
     unit,
-    `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. 예각은 모두 몇 개인가?`,
+    `네 각의 크기가 ${shown.map((v) => deg(v)).join(", ")}입니다. 예각은 모두 몇 개입니까?`,
     n(acute.length),
     `${deg(90)}보다 작은 각이 예각이므로 예각은 ${n(acute.length)}개입니다.`,
   );
@@ -7340,7 +7340,7 @@ function ang124AddExpr(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = half * 2;
   return make(
     unit,
-    `이어 붙인 각의 크기가 ${deg(s)}입니다. 크기가 같은 두 각으로 나누면 한 각의 크기는 몇 도인가?`,
+    `이어 붙인 각의 크기가 ${deg(s)}입니다. 크기가 같은 두 각으로 나누면 한 각의 크기는 몇 도입니까?`,
     deg(half),
     `${expr(`${s}\\div2=${half}`)} 이므로 ${deg(half)}입니다.`,
   );
@@ -7364,7 +7364,7 @@ function ang124EstimateGap(unit: UnitSeed, rng: Rng): ElemProblem {
   const gap = intBetween(rng, 3, 12);
   return make(
     unit,
-    `각의 크기를 ${deg(x)}쯤으로 어림하고 각도기로 재었더니 ${deg(x + gap)}였습니다. 어림한 각도와 잰 각도의 차는 몇 도인가?`,
+    `각의 크기를 ${deg(x)}쯤으로 어림하고 각도기로 재었더니 ${deg(x + gap)}였습니다. 어림한 각도와 잰 각도의 차는 몇 도입니까?`,
     deg(gap),
     `${expr(`${x + gap}-${x}=${gap}`)} 이므로 ${deg(gap)} 차이가 납니다.`,
   );
@@ -7377,7 +7377,7 @@ function ang124ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const z = intBetween(rng, 20, 50);
   return make(
     unit,
-    `세 각 ${deg(x)}, ${deg(y)}, ${deg(z)}를 겹치지 않게 이어 붙인 각의 크기는 몇 도인가?`,
+    `세 각 ${deg(x)}, ${deg(y)}, ${deg(z)}를 겹치지 않게 이어 붙인 각의 크기는 몇 도입니까?`,
     deg(x + y + z),
     `${expr(`${x}+${y}+${z}=${x + y + z}`)} 이므로 ${deg(x + y + z)}입니다.`,
   );
@@ -7391,7 +7391,7 @@ function ang124VsRight(unit: UnitSeed, rng: Rng): ElemProblem {
   const gap = Math.abs(sum - 90);
   return make(
     unit,
-    `두 각 ${deg(x)}와 ${deg(y)}를 이어 붙인 각은 직각과 몇 도 차이인가?`,
+    `두 각 ${deg(x)}와 ${deg(y)}를 이어 붙인 각은 직각과 몇 도 차이입니까?`,
     deg(gap),
     `${expr(`${x}+${y}=${sum}`)} 이고 직각은 ${deg(90)}이므로 ${expr(`${Math.max(sum, 90)}-${Math.min(sum, 90)}=${gap}`)} 입니다.`,
   );
@@ -7403,7 +7403,7 @@ function ang124SumMinus(unit: UnitSeed, rng: Rng): ElemProblem {
   const y = intBetween(rng, 20, 50);
   return make(
     unit,
-    `직선이 이루는 각에서 ${deg(x)}와 ${deg(y)}를 이어 붙인 각을 빼면 몇 도인가?`,
+    `직선이 이루는 각에서 ${deg(x)}와 ${deg(y)}를 이어 붙인 각을 빼면 몇 도입니까?`,
     deg(180 - x - y),
     `${expr(`${x}+${y}=${x + y}`)} 이고 ${expr(`180-${x + y}=${180 - x - y}`)} 이므로 ${deg(180 - x - y)}입니다.`,
   );
@@ -7418,7 +7418,7 @@ function ang125RestFromTwo(unit: UnitSeed, rng: Rng): ElemProblem {
   const rest = 180 - a - b;
   return make(
     unit,
-    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 나머지 한 각의 크기는 몇 도입니까?`,
     deg(rest),
     `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다. ${expr(`180-${a}-${b}=${rest}`)}`,
   );
@@ -7430,7 +7430,7 @@ function ang125OtherTwoSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 25, 135 - a);
   return make(
     unit,
-    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 이 두 각의 크기의 합은 몇 도인가?`,
+    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 이 두 각의 크기의 합은 몇 도입니까?`,
     deg(a + b),
     `${expr(`${a}+${b}=${a + b}`)} 이므로 ${deg(a + b)}입니다.`,
   );
@@ -7443,7 +7443,7 @@ function ang125ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = 180 - a - b;
   return make(
     unit,
-    `세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}인 삼각형에서 세 각의 크기의 합은 몇 도인가?`,
+    `세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}인 삼각형에서 세 각의 크기의 합은 몇 도입니까?`,
     deg(180),
     `${expr(`${a}+${b}+${c}=180`)} 입니다.`,
   );
@@ -7457,7 +7457,7 @@ function ang125Biggest(unit: UnitSeed, rng: Rng): ElemProblem {
   const hi = Math.max(a, b, c);
   return make(
     unit,
-    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 세 각 중 가장 큰 각의 크기는 몇 도인가?`,
+    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 세 각 중 가장 큰 각의 크기는 몇 도입니까?`,
     deg(hi),
     `나머지 한 각은 ${expr(`180-${a}-${b}=${c}`)} 입니다. 가장 큰 각은 ${deg(hi)}입니다.`,
   );
@@ -7470,7 +7470,7 @@ function ang125RestVsRight(unit: UnitSeed, rng: Rng): ElemProblem {
   const rest = 180 - a - b;
   return make(
     unit,
-    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 나머지 한 각은 직각보다 큰가, 작은가?`,
+    `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 나머지 한 각은 직각보다 큽니까, 작습니까?`,
     rest > 90 ? "크다" : rest < 90 ? "작다" : "같다",
     `나머지 한 각은 ${expr(`180-${a}-${b}=${rest}`)} 이고 직각은 ${deg(90)}이므로 ` +
       `직각보다 ${rest > 90 ? "큽니다" : rest < 90 ? "작습니다" : "같습니다"}.`,
@@ -7485,7 +7485,7 @@ function ang125SumAndOne(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `삼각형의 한 각의 크기가 ${deg(a)}이고, 다른 두 각의 크기의 합이 ${deg(s)}입니다. ` +
-      `크기가 ${deg(a)}가 아닌 나머지 한 각의 크기는 몇 도인가?`,
+      `크기가 ${deg(a)}가 아닌 나머지 한 각의 크기는 몇 도입니까?`,
     deg(b),
     `다른 두 각의 합이 ${deg(s)}이고 그 중 한 각이 ${deg(a)}이므로 ${expr(`${s}-${a}=${b}`)} 입니다.`,
   );
@@ -7501,7 +7501,7 @@ function ang126RestFromThree(unit: UnitSeed, rng: Rng): ElemProblem {
   const rest = 360 - a - b - c;
   return make(
     unit,
-    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}입니다. 나머지 한 각의 크기는 몇 도입니까?`,
     deg(rest),
     `사각형의 네 각의 크기의 합은 ${deg(360)}입니다. ${expr(`360-${a}-${b}-${c}=${rest}`)}`,
   );
@@ -7513,7 +7513,7 @@ function ang126OtherThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 50, 120);
   return make(
     unit,
-    `사각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 이 두 각의 크기의 합은 몇 도인가?`,
+    `사각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. 이 두 각의 크기의 합은 몇 도입니까?`,
     deg(a + b),
     `${expr(`${a}+${b}=${a + b}`)} 이므로 ${deg(a + b)}입니다.`,
   );
@@ -7527,7 +7527,7 @@ function ang126FourSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = 360 - a - b - c;
   return make(
     unit,
-    `네 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}, ${deg(d)}인 사각형에서 네 각의 크기의 합은 몇 도인가?`,
+    `네 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}, ${deg(d)}인 사각형에서 네 각의 크기의 합은 몇 도입니까?`,
     deg(360),
     `${expr(`${a}+${b}+${c}+${d}=360`)} 입니다.`,
   );
@@ -7542,7 +7542,7 @@ function ang126Biggest(unit: UnitSeed, rng: Rng): ElemProblem {
   const hi = Math.max(a, b, c, rest);
   return make(
     unit,
-    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}입니다. 네 각 중 가장 큰 각의 크기는 몇 도인가?`,
+    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}입니다. 네 각 중 가장 큰 각의 크기는 몇 도입니까?`,
     deg(hi),
     `나머지 한 각은 ${expr(`360-${a}-${b}-${c}=${rest}`)} 입니다. 가장 큰 각은 ${deg(hi)}입니다.`,
   );
@@ -7556,7 +7556,7 @@ function ang126RestVsRight(unit: UnitSeed, rng: Rng): ElemProblem {
   const rest = 360 - a - b - c;
   return make(
     unit,
-    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}입니다. 나머지 한 각은 직각보다 큰가, 작은가?`,
+    `사각형의 세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(c)}입니다. 나머지 한 각은 직각보다 큽니까, 작습니까?`,
     rest > 90 ? "크다" : rest < 90 ? "작다" : "같다",
     `나머지 한 각은 ${expr(`360-${a}-${b}-${c}=${rest}`)} 이고 직각은 ${deg(90)}이므로 ` +
       `직각보다 ${rest > 90 ? "큽니다" : rest < 90 ? "작습니다" : "같습니다"}.`,
@@ -7571,7 +7571,7 @@ function ang126SumAndOne(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `사각형의 두 각의 크기의 합이 ${deg(s)}이고, 그 중 한 각의 크기가 ${deg(a)}입니다. ` +
-      `다른 한 각의 크기는 몇 도인가?`,
+      `다른 한 각의 크기는 몇 도입니까?`,
     deg(b),
     `${expr(`${s}-${a}=${b}`)} 이므로 ${deg(b)}입니다.`,
   );
@@ -7650,7 +7650,7 @@ function mul131ToMan(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = Math.abs(p - 10000);
   return make(
     unit,
-    `${expr(`${a}\\times${b}`)} 의 곱과 ${n(10000)}의 차는 얼마인가?`,
+    `${expr(`${a}\\times${b}`)} 의 곱과 ${n(10000)}의 차는 얼마입니까?`,
     n(d),
     `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${Math.max(p, 10000)}-${Math.min(p, 10000)}=${d}`)} 입니다.`,
   );
@@ -7671,7 +7671,7 @@ function mul131NextTen(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, b, p } = pair31(rng);
   return make(
     unit,
-    `${expr(`${a}\\times${b}`)} 의 곱과 ${expr(`${a}\\times${b + 10}`)} 의 곱의 차는 얼마인가?`,
+    `${expr(`${a}\\times${b}`)} 의 곱과 ${expr(`${a}\\times${b + 10}`)} 의 곱의 차는 얼마입니까?`,
     n(a * 10),
     `${expr(`${a}\\times10=${a * 10}`)} 이므로 차는 ${n(a * 10)}입니다.`,
   );
@@ -7731,7 +7731,7 @@ function mul132Partial(unit: UnitSeed, rng: Rng): ElemProblem {
   const ones = b % 10;
   return make(
     unit,
-    `${expr(`${a}\\times${b}`)} 를 계산할 때 ${expr(`${a}\\times${ones}`)} 의 값은 얼마인가?`,
+    `${expr(`${a}\\times${b}`)} 를 계산할 때 ${expr(`${a}\\times${ones}`)} 의 값은 얼마입니까?`,
     n(a * ones),
     `일의 자리 ${n(ones)}와의 곱은 ${expr(`${a}\\times${ones}=${a * ones}`)} 입니다.`,
   );
@@ -7742,7 +7742,7 @@ function mul132Even(unit: UnitSeed, rng: Rng): ElemProblem {
   const even = p % 2 === 0;
   return make(
     unit,
-    `${expr(`${a}\\times${b}`)} 의 곱은 짝수인가? '예' 또는 '아니요'로 답하시오.`,
+    `${expr(`${a}\\times${b}`)} 의 곱은 짝수입니까? '예' 또는 '아니요'로 답하시오.`,
     even ? "예" : "아니요",
     `${expr(`${a}\\times${b}=${p}`)} 이고 ${n(p)}${even ? "는 짝수" : "는 홀수"}입니다.`,
   );
@@ -7772,7 +7772,7 @@ function mul133EstHundreds(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     // 곱셈 줄을 따로 찍지 않는다 — 두 수가 이미 발문에 있다(원장님 2026-10-20 «식이 한 번 더 찍힌다»).
-    `${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 어림하여 곱하면 얼마인가?`,
+    `${josaNum(a, "은", "는")} 몇백으로, ${josaNum(b, "은", "는")} 몇십으로 어림하여 곱하면 얼마입니까?`,
     n(est),
     `${expr(`${aa}\\times${bb}=${est}`)} 이므로 약 ${n(est)}입니다.`,
     mulCol(aa, bb),
@@ -7789,7 +7789,7 @@ function mul133Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     // 어림하는 자리를 정한다 — 안 정하면 $644\times48$ 을 $600\times50$ 으로도 $640\times50$ 으로도 읽어 답이 갈린다(2026-10-20 교차 검수).
-    `${josaNum(a, "을", "를")} 몇백으로, ${josaNum(b, "을", "를")} 몇십으로 어림하여 곱한 값이 실제로 계산한 곱보다 큰가? '예' 또는 '아니요'로 답하시오.`,
+    `${josaNum(a, "을", "를")} 몇백으로, ${josaNum(b, "을", "를")} 몇십으로 어림하여 곱한 값이 실제로 계산한 곱보다 큽니까? '예' 또는 '아니요'로 답하시오.`,
     est > act ? "예" : "아니요",
     `어림한 곱은 ${n(est)}, 실제 곱은 ${n(act)}입니다.`,
   );
@@ -7803,7 +7803,7 @@ function mul133EstDiv10(unit: UnitSeed, rng: Rng): ElemProblem {
   const est = aa * bb;
   return make(
     unit,
-    `${josaNum(a, "과", "와")} ${n(b)}의 곱을 어림한 값을 ${n(10)}으로 나누면 얼마인가?`,
+    `${josaNum(a, "과", "와")} ${n(b)}의 곱을 어림한 값을 ${n(10)}으로 나누면 얼마입니까?`,
     n(est / 10),
     `어림한 곱은 ${n(est)}이고 ${expr(`${est}\\div10=${est / 10}`)} 입니다.`,
   );
@@ -7814,7 +7814,7 @@ function mul133RoundBOnly(unit: UnitSeed, rng: Rng): ElemProblem {
   const bb = Math.round(b / 10) * 10;
   return make(
     unit,
-    `${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마인가?`,
+    `${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마입니까?`,
     n(bb),
     `${josaNum(b, "은", "는")} ${n(bb)}에 가장 가깝습니다.`,
   );
@@ -7829,7 +7829,7 @@ function mul133EstMinusActSign(unit: UnitSeed, rng: Rng): ElemProblem {
   const act = a * b;
   return make(
     unit,
-    `다음 곱셈에서 어림한 곱에서 실제 곱을 뺀 값은 양수인가? '예' 또는 '아니요'로 답하시오.\n\n${expr(`${a}\\times${b}`)}`,
+    `다음 곱셈에서 어림한 곱에서 실제 곱을 뺀 값은 양수입니까? '예' 또는 '아니요'로 답하시오.\n\n${expr(`${a}\\times${b}`)}`,
     est - act > 0 ? "예" : "아니요",
     `어림한 곱 ${n(est)}에서 실제 곱 ${n(act)}를 빼면 ${n(est - act)}입니다.`,
   );
@@ -7890,7 +7890,7 @@ function div134AskB(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, b, q } = pair34(rng);
   return make(
     unit,
-    `${josaNum(a, "을", "를")} 몇십씩 묶었더니 ${n(q)}묶음이 되었습니다. 몇씩 묶은 것인가?`,
+    `${josaNum(a, "을", "를")} 몇십씩 묶었더니 ${n(q)}묶음이 되었습니다. 몇씩 묶은 것입니까?`,
     n(b),
     `${expr(`${a}\\div${q}=${b}`)} 이므로 ${n(b)}씩 묶은 것입니다.`,
   );
@@ -7901,7 +7901,7 @@ function div134LeftIfExtra(unit: UnitSeed, rng: Rng): ElemProblem {
   const extra = intBetween(rng, 1, b - 1);
   return make(
     unit,
-    `${josaNum(a, "을", "를")} ${n(b)}씩 묶으면 ${n(q)}묶음입니다. ${n(extra)}개를 더하면 남는 것은 몇 개인가?`,
+    `${josaNum(a, "을", "를")} ${n(b)}씩 묶으면 ${n(q)}묶음입니다. ${n(extra)}개를 더하면 남는 것은 몇 개입니까?`,
     n(extra),
     `처음에는 나누어떨어지므로 더한 ${n(extra)}개가 그대로 남습니다.`,
   );
@@ -7929,7 +7929,7 @@ function div135Tape(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, b, q } = pair35(rng);
   return make(
     unit,
-    `길이가 ${cm(a)}인 리본을 ${cm(b)}씩 자르면 몇 도막이 되는가?`,
+    `길이가 ${cm(a)}인 리본을 ${cm(b)}씩 자르면 몇 도막이 됩니까?`,
     `${n(q)}도막`,
     `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}도막입니다.`,
     fig("tape", { length: a, label: `${a} cm`, segments: 1 }),
@@ -7974,7 +7974,7 @@ function div135DaysLeft(unit: UnitSeed, rng: Rng): ElemProblem {
   const done = intBetween(rng, 1, q - 1);
   return make(
     unit,
-    `색 테이프 ${cm(a)}를 하루에 ${cm(b)}씩 자릅니다. ${n(done)}일 동안 자르고 남은 날은 며칠인가?`,
+    `색 테이프 ${cm(a)}를 하루에 ${cm(b)}씩 자릅니다. ${n(done)}일 동안 자르고 남은 날은 며칠입니까?`,
     n(q - done),
     `${expr(`${a}\\div${b}=${q}`)} 일이고 ${expr(`${q}-${done}=${q - done}`)} 일입니다.`,
   );
@@ -8046,7 +8046,7 @@ function div136Bags(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, b, q } = pair36(rng);
   return make(
     unit,
-    `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담았습니다. 봉지는 몇 개인가?`,
+    `사탕 ${n(a)}개를 한 봉지에 ${n(b)}개씩 담았습니다. 봉지는 몇 개입니까?`,
     `${n(q)}개`,
     `${expr(`${a}\\div${b}=${q}`)} 이므로 ${n(q)}개입니다.`,
   );
@@ -8059,7 +8059,7 @@ function div137RoundDivisor(unit: UnitSeed, rng: Rng): ElemProblem {
   const bb = Math.round(b / 10) * 10;
   return make(
     unit,
-    `${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마인가?`,
+    `${josaNum(b, "을", "를")} 몇십으로 어림하면 얼마입니까?`,
     n(bb),
     `${josaNum(b, "은", "는")} ${n(bb)}에 가장 가깝습니다.`,
   );
@@ -8086,7 +8086,7 @@ function div137EstBigger(unit: UnitSeed, rng: Rng): ElemProblem {
   const real = Math.floor(a / b);
   return make(
     unit,
-    `${expr(`${a}\\div${b}`)} 에서 나누는 수를 몇십으로 어림한 몫이 실제 몫보다 큰가? '예' 또는 '아니요'로 답하시오.`,
+    `${expr(`${a}\\div${b}`)} 에서 나누는 수를 몇십으로 어림한 몫이 실제 몫보다 큽니까? '예' 또는 '아니요'로 답하시오.`,
     k > real ? "예" : "아니요",
     `어림한 몫은 ${n(k)}, 실제 몫은 ${n(real)}입니다.`,
   );
@@ -8112,7 +8112,7 @@ function div137WhichCloser(unit: UnitSeed, rng: Rng): ElemProblem {
   const win = Math.abs(b - bb) <= Math.abs(b - other) ? bb : other;
   return make(
     unit,
-    `${n(b)}에 더 가까운 몇십은 ${n(bb)}과 ${n(other)} 중 어느 것인가?`,
+    `${n(b)}에 더 가까운 몇십은 ${n(bb)}과 ${n(other)} 중 어느 것입니까?`,
     n(win),
     `${n(b)}은 ${n(win)}에 더 가깝습니다.`,
   );
@@ -8178,7 +8178,7 @@ function move141OneWay(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = intBetween(rng, 2, 8);
   return make(
     unit,
-    `모눈에서 점 ㄱ을 ${dir}으로 ${n(a)}칸 옮겼습니다. 점 ㄱ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+    `모눈에서 점 ㄱ을 ${dir}으로 ${n(a)}칸 옮겼습니다. 점 ㄱ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것입니까?`,
     `${dir}으로 ${n(a)}칸`,
     `${dir}으로 ${n(a)}칸 옮겼으므로 처음 자리에서 ${dir}으로 ${n(a)}칸 옮겨진 것입니다.`,
     gridDot("ㄱ", [[dir, a]]),
@@ -8193,7 +8193,7 @@ function move141ThreeSame(unit: UnitSeed, rng: Rng): ElemProblem {
   const c = intBetween(rng, 1, 2);
   return make(
     unit,
-    `모눈에서 점 ㄴ을 ${dir}으로 ${n(a)}칸, 또 ${n(b)}칸, 또 ${n(c)}칸 옮겼습니다. 처음 자리에서 ${dir}으로 몇 칸 옮겨진 것인가?`,
+    `모눈에서 점 ㄴ을 ${dir}으로 ${n(a)}칸, 또 ${n(b)}칸, 또 ${n(c)}칸 옮겼습니다. 처음 자리에서 ${dir}으로 몇 칸 옮겨진 것입니까?`,
     n(a + b + c),
     `${expr(`${a}+${b}+${c}=${a + b + c}`)} 이므로 ${n(a + b + c)}칸입니다.`,
     gridDot("ㄴ", [[dir, a + b + c]]),
@@ -8209,7 +8209,7 @@ function move141HorizCancel(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = a + intBetween(rng, 1, 3);
   return make(
     unit,
-    `모눈에서 점 ㄷ을 ${first}으로 ${n(a)}칸 옮긴 다음 ${second}으로 ${n(b)}칸 옮겼습니다. 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
+    `모눈에서 점 ㄷ을 ${first}으로 ${n(a)}칸 옮긴 다음 ${second}으로 ${n(b)}칸 옮겼습니다. 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것입니까?`,
     `${second}으로 ${n(b - a)}칸`,
     `${expr(`${b}-${a}=${b - a}`)} 이므로 ${second}으로 ${n(b - a)}칸입니다.`,
     gridDot("ㄷ", [[first, a], [second, b]]),
@@ -8222,7 +8222,7 @@ function move141BackHome(unit: UnitSeed, rng: Rng): ElemProblem {
   const back = DIR_PAIRS.find((p) => p[0] === dir)![1];
   return make(
     unit,
-    `모눈에서 점 ㄹ을 ${dir}으로 ${n(a)}칸 옮겼습니다. 처음 자리로 되돌아오려면 어느 쪽으로 몇 칸 옮겨야 하는가?`,
+    `모눈에서 점 ㄹ을 ${dir}으로 ${n(a)}칸 옮겼습니다. 처음 자리로 되돌아오려면 어느 쪽으로 몇 칸 옮겨야 합니까?`,
     `${back}으로 ${n(a)}칸`,
     `${dir}의 반대는 ${back}이므로 ${back}으로 ${n(a)}칸 옮기면 됩니다.`,
     gridDot("ㄹ", [[dir, a]]),
@@ -8234,7 +8234,7 @@ function move141HOnly(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 2, 6);
   return make(
     unit,
-    `모눈에서 점 ㅁ을 오른쪽으로 ${n(a)}칸, 위쪽으로 ${n(b)}칸 옮겼습니다. 가로 방향으로는 몇 칸 옮겨진 것인가?`,
+    `모눈에서 점 ㅁ을 오른쪽으로 ${n(a)}칸, 위쪽으로 ${n(b)}칸 옮겼습니다. 가로 방향으로는 몇 칸 옮겨진 것입니까?`,
     n(a),
     `가로 방향은 오른쪽 ${n(a)}칸입니다.`,
     gridDot("ㅁ", [["오른쪽", a], ["위쪽", b]]),
@@ -8246,7 +8246,7 @@ function move141Manhattan(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 2, 6);
   return make(
     unit,
-    `점 ㄱ에서 점 ㄴ까지 오른쪽으로 ${n(a)}칸, 위쪽으로 ${n(b)}칸입니다. 가로와 세로로 옮긴 칸 수의 합은 얼마인가?`,
+    `점 ㄱ에서 점 ㄴ까지 오른쪽으로 ${n(a)}칸, 위쪽으로 ${n(b)}칸입니다. 가로와 세로로 옮긴 칸 수의 합은 얼마입니까?`,
     n(a + b),
     `${expr(`${a}+${b}=${a + b}`)} 이므로 ${n(a + b)}칸입니다.`,
     fig("pointGrid", {
@@ -8268,7 +8268,7 @@ function move142SideSame(unit: UnitSeed, rng: Rng): ElemProblem {
   const dir = pick(rng, DIR_PAIRS)[0];
   return make(
     unit,
-    `한 변이 ${cm(side)}인 정사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. 민 도형의 한 변은 몇 cm인가?`,
+    `한 변이 ${cm(side)}인 정사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. 민 도형의 한 변은 몇 cm입니까?`,
     cm(side),
     `밀어도 크기는 변하지 않으므로 한 변은 ${cm(side)}입니다.`,
     fig("markedShape", { shape: "square" }),
@@ -8282,7 +8282,7 @@ function move142WidthSame(unit: UnitSeed, rng: Rng): ElemProblem {
   const dist = intBetween(rng, 2, 8);
   return make(
     unit,
-    `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. 민 도형의 가로는 몇 cm인가?`,
+    `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. 민 도형의 가로는 몇 cm입니까?`,
     cm(w),
     `밀어도 크기는 변하지 않으므로 가로는 ${cm(w)}입니다.`,
     // 그림(치수 없는 기본 직사각형)은 걷었다 — 세로가 더 긴 모양으로 그려져 «가로 5 · 세로 4» 와 어긋났고 민 모습도 없었다(2026-10-20 교차 검수 2회차).
@@ -8293,7 +8293,7 @@ function move142ShapeNo(unit: UnitSeed, rng: Rng): ElemProblem {
   const dist = intBetween(rng, 2, 8);
   return make(
     unit,
-    `도형을 오른쪽으로 ${cm(dist)} 밀었습니다. 도형의 모양이 바뀌는가? '예' 또는 '아니요'로 답하시오.`,
+    `도형을 오른쪽으로 ${cm(dist)} 밀었습니다. 도형의 모양이 바뀝니까? '예' 또는 '아니요'로 답하시오.`,
     "아니요",
     `밀면 위치만 바뀌고 모양은 그대로입니다.`,
     fig("markedShape", { shape: "square" }),
@@ -8306,7 +8306,7 @@ function move142Area(unit: UnitSeed, rng: Rng): ElemProblem {
   const dist = intBetween(rng, 2, 8);
   return make(
     unit,
-    `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 왼쪽으로 ${cm(dist)} 밀었습니다. 민 도형의 넓이는 몇 cm²인가?`,
+    `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 왼쪽으로 ${cm(dist)} 밀었습니다. 민 도형의 넓이는 몇 cm²입니까?`,
     n(w * h),
     `밀어도 넓이는 ${expr(`${w}\\times${h}=${w * h}`)} 으로 같습니다.`,
     fig("markedShape", { shape: "rect" }),
@@ -8317,7 +8317,7 @@ function move142RoundTrip(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 2, 8);
   return make(
     unit,
-    `도형을 위로 ${cm(d)} 민 다음 아래로 ${cm(d)} 밀었습니다. 처음 위치와 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `도형을 위로 ${cm(d)} 민 다음 아래로 ${cm(d)} 밀었습니다. 처음 위치와 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `같은 거리로 반대 방향이면 처음 자리로 돌아옵니다.`,
     fig("markedShape", { shape: "square" }),
@@ -8329,7 +8329,7 @@ function move142Net(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 1, a - 1);
   return make(
     unit,
-    `도형을 오른쪽으로 ${cm(a)} 민 다음 왼쪽으로 ${cm(b)} 밀었습니다. 처음보다 오른쪽으로 몇 cm 밀린 것인가?`,
+    `도형을 오른쪽으로 ${cm(a)} 민 다음 왼쪽으로 ${cm(b)} 밀었습니다. 처음보다 오른쪽으로 몇 cm 밀린 것입니까?`,
     cm(a - b),
     `${expr(`${a}-${b}=${a - b}`)} 이므로 ${cm(a - b)}입니다.`,
     fig("markedShape", { shape: "rect" }),
@@ -8363,7 +8363,7 @@ function move143TwiceYes(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = intBetween(rng, 1, 4) * 2;
   return make(
     unit,
-    `도형을 ${axis} ${n(t)}번 뒤집었습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `도형을 ${axis} ${n(t)}번 뒤집었습니다. 처음 도형과 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `${n(2)}번마다 처음과 같아지므로 짝수 번은 처음과 같습니다.`,
     flipFig(rng, axis === "좌우로" ? "flipH" : "flipV"),
@@ -8374,7 +8374,7 @@ function move143OddOnce(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = intBetween(rng, 0, 3) * 2 + 1;
   return make(
     unit,
-    `도형을 좌우로 ${n(t)}번 뒤집었습니다. 좌우로 한 번 뒤집은 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `도형을 좌우로 ${n(t)}번 뒤집었습니다. 좌우로 한 번 뒤집은 도형과 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `홀수 번은 한 번 뒤집은 것과 같습니다.`,
     flipFig(rng, "flipH"),
@@ -8386,7 +8386,7 @@ function move143CellCount(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     // 칸 수를 발문에 적으면 묻는 것이 없어진다(4차 교차 검수) — 그림의 처음 도형에서 세게 한다.
-    `그림의 도형을 위아래로 뒤집었습니다. 뒤집은 도형의 색칠한 칸은 몇 개인가?`,
+    `그림의 도형을 위아래로 뒤집었습니다. 뒤집은 도형의 색칠한 칸은 몇 개입니까?`,
     n(shape.cells.length),
     `뒤집어도 칸 수는 변하지 않으므로 ${n(shape.cells.length)}개입니다.`,
     fig("rotateFlip", { cells: shape.cells, op: "flipV", n: shape.n, showAfter: false }),
@@ -8396,7 +8396,7 @@ function move143CellCount(unit: UnitSeed, rng: Rng): ElemProblem {
 function move143HThenH(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
-    `도형을 좌우로 뒤집은 다음 다시 좌우로 뒤집었습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `도형을 좌우로 뒤집은 다음 다시 좌우로 뒤집었습니다. 처음 도형과 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     "같은 방향으로 두 번 뒤집으면 처음과 같습니다.",
     flipFig(rng, "flipH"),
@@ -8409,7 +8409,7 @@ function move144Sum90(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = intBetween(rng, 2, 5);
   return make(
     unit,
-    `도형을 시계 방향으로 ${deg(90)}씩 ${n(t)}번 돌렸습니다. 모두 몇 도 돌린 것인가?`,
+    `도형을 시계 방향으로 ${deg(90)}씩 ${n(t)}번 돌렸습니다. 모두 몇 도 돌린 것입니까?`,
     deg(90 * t),
     `${expr(`90\\times${t}=${90 * t}`)} 이므로 ${deg(90 * t)}입니다.`,
     flipFig(rng, "rot90"),
@@ -8420,7 +8420,7 @@ function move144Clockwise(unit: UnitSeed, rng: Rng): ElemProblem {
   const op = pick(rng, ["rot90", "rot180", "rot270"] as const);
   return make(
     unit,
-    "왼쪽 도형을 시계 방향으로 돌려 오른쪽 도형을 만들었습니다. 몇 도 돌린 것인가?",
+    "왼쪽 도형을 시계 방향으로 돌려 오른쪽 도형을 만들었습니다. 몇 도 돌린 것입니까?",
     deg(TURN_NAME[op]!),
     `시계 방향으로 ${deg(TURN_NAME[op]!)} 돌린 것입니다.`,
     flipFig(rng, op),
@@ -8432,7 +8432,7 @@ function move144Ccw(unit: UnitSeed, rng: Rng): ElemProblem {
   const cw = TURN_NAME[op]!;
   return make(
     unit,
-    `시계 방향으로 ${deg(cw)} 돌린 것과 같은 도형을 시계 반대 방향으로 돌리려면 몇 도 돌리면 되는가?`,
+    `시계 방향으로 ${deg(cw)} 돌린 것과 같은 도형을 시계 반대 방향으로 돌리려면 몇 도 돌리면 됩니까?`,
     deg(360 - cw),
     `${expr(`360-${cw}=${360 - cw}`)} 이므로 ${deg(360 - cw)}입니다.`,
     flipFig(rng, op),
@@ -8443,7 +8443,7 @@ function move144FourYes(unit: UnitSeed, rng: Rng): ElemProblem {
   const turns = intBetween(rng, 1, 4) * 4;
   return make(
     unit,
-    `도형을 시계 방향으로 ${deg(90)}씩 ${n(turns)}번 돌렸습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `도형을 시계 방향으로 ${deg(90)}씩 ${n(turns)}번 돌렸습니다. 처음 도형과 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `${expr(`90\\times${turns}=${90 * turns}`)} 이고 ${n(90 * turns)}은 ${n(360)}의 배수이므로 처음과 같습니다.`,
     flipFig(rng, "rot90"),
@@ -8453,7 +8453,7 @@ function move144FourYes(unit: UnitSeed, rng: Rng): ElemProblem {
 function move144Two180(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
-    `도형을 시계 방향으로 ${deg(180)} 돌린 다음 다시 ${deg(180)} 돌렸습니다. 처음 도형과 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `도형을 시계 방향으로 ${deg(180)} 돌린 다음 다시 ${deg(180)} 돌렸습니다. 처음 도형과 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `${expr(`180+180=360`)} 이므로 처음과 같습니다.`,
     flipFig(rng, "rot180"),
@@ -8463,7 +8463,7 @@ function move144Two180(unit: UnitSeed, rng: Rng): ElemProblem {
 function move144Two90(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
-    `도형을 시계 방향으로 ${deg(90)} 돌린 다음 다시 ${deg(90)} 돌렸습니다. 시계 방향으로 몇 도 돌린 것과 같은가?`,
+    `도형을 시계 방향으로 ${deg(90)} 돌린 다음 다시 ${deg(90)} 돌렸습니다. 시계 방향으로 몇 도 돌린 것과 같습니까?`,
     deg(180),
     `${expr(`90+90=180`)} 이므로 ${deg(180)}입니다.`,
     flipFig(rng, "rot180"),
@@ -8480,7 +8480,7 @@ function bar151Least(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 학생 수가 가장 적은 것은 어느 ${d.theme.item}인가?`,
+    `${d.intro} 학생 수가 가장 적은 것은 어느 ${d.theme.item}입니까?`,
     d.bottom,
     `${josa(d.bottom, "의", "의")} 막대가 가장 짧습니다. ${n(d.min)}명입니다.`,
     d.figure,
@@ -8491,7 +8491,7 @@ function bar151Read(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} ${josa(d.one.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+    `${d.intro} ${josa(d.one.label, "을", "를")} 좋아하는 학생은 몇 명입니까?`,
     `${n(d.one.value)}명`,
     `${josa(d.one.label, "의", "의")} 막대가 눈금 ${n(d.one.value)}에 닿아 있으므로 ${n(d.one.value)}명입니다.`,
     d.figure,
@@ -8502,7 +8502,7 @@ function bar151Second(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 학생 수가 두 번째로 많은 것은 어느 ${d.theme.item}인가?`,
+    `${d.intro} 학생 수가 두 번째로 많은 것은 어느 ${d.theme.item}입니까?`,
     d.second,
     `${josa(d.top, "이", "가")} ${n(d.max)}명으로 가장 많고, 그다음이 ${josa(d.second, "으로", "로")} ${n(d.secondValue)}명입니다.`,
     d.figure,
@@ -8513,7 +8513,7 @@ function bar151Most(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 학생 수가 가장 많은 것은 어느 ${d.theme.item}인가?`,
+    `${d.intro} 학생 수가 가장 많은 것은 어느 ${d.theme.item}입니까?`,
     d.top,
     `${josa(d.top, "의", "의")} 막대가 가장 높습니다. ${n(d.max)}명입니다.`,
     d.figure,
@@ -8524,7 +8524,7 @@ function bar151Total(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 조사한 학생은 모두 몇 명인가?`,
+    `${d.intro} 조사한 학생은 모두 몇 명입니까?`,
     `${n(d.total)}명`,
     `${expr(`${d.picked.join("+")}=${d.total}`)} 이므로 모두 ${n(d.total)}명입니다.`,
     d.figure,
@@ -8535,7 +8535,7 @@ function bar151MaxMinSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 학생 수가 가장 많은 ${d.theme.item}과 가장 적은 ${d.theme.item}의 학생 수의 합은 몇 명인가?`,
+    `${d.intro} 학생 수가 가장 많은 ${d.theme.item}과 가장 적은 ${d.theme.item}의 학생 수의 합은 몇 명입니까?`,
     `${n(d.max + d.min)}명`,
     `${josa(d.top, "은", "는")} ${n(d.max)}명, ${josa(d.bottom, "은", "는")} ${n(d.min)}명입니다. ${expr(`${d.max}+${d.min}=${d.max + d.min}`)} 입니다.`,
     d.figure,
@@ -8548,7 +8548,7 @@ function bar152Shortest(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 막대를 가장 짧게 그려야 하는 것은 어느 ${d.theme.item}인가?`,
+    `${drawIntro(d)} 표를 보고 막대그래프를 그리려고 합니다. 막대를 가장 짧게 그려야 하는 것은 어느 ${d.theme.item}입니까?`,
     d.bottom,
     `학생 수가 가장 적은 ${josa(d.bottom, "의", "의")} 막대를 가장 짧게 그립니다. ${n(d.min)}명입니다.`,
     barTable(d),
@@ -8559,7 +8559,7 @@ function bar152ReadTable(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${drawIntro(d)} 표에서 ${josa(d.one.label, "을", "를")} 좋아하는 학생은 몇 명인가?`,
+    `${drawIntro(d)} 표에서 ${josa(d.one.label, "을", "를")} 좋아하는 학생은 몇 명입니까?`,
     `${n(d.one.value)}명`,
     `표에서 ${josa(d.one.label, "은", "는")} ${n(d.one.value)}명입니다.`,
     barTable(d),
@@ -8571,7 +8571,7 @@ function bar152PairSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const sum = d.pairA.value + d.pairB.value;
   return make(
     unit,
-    `${drawIntro(d)} 표에서 ${josa(d.pairA.label, "과", "와")} ${josa(d.pairB.label, "을", "를")} 좋아하는 학생은 모두 몇 명인가?`,
+    `${drawIntro(d)} 표에서 ${josa(d.pairA.label, "과", "와")} ${josa(d.pairB.label, "을", "를")} 좋아하는 학생은 모두 몇 명입니까?`,
     `${n(sum)}명`,
     `${josa(d.pairA.label, "은", "는")} ${n(d.pairA.value)}명, ${josa(d.pairB.label, "은", "는")} ${n(d.pairB.value)}명입니다. ${expr(`${d.pairA.value}+${d.pairB.value}=${sum}`)} 입니다.`,
     barTable(d),
@@ -8582,7 +8582,7 @@ function bar152MinValue(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${drawIntro(d)} 표에서 학생 수가 가장 적은 ${d.theme.item}의 학생 수는 몇 명인가?`,
+    `${drawIntro(d)} 표에서 학생 수가 가장 적은 ${d.theme.item}의 학생 수는 몇 명입니까?`,
     `${n(d.min)}명`,
     `가장 적은 것은 ${josa(d.bottom, "으로", "로")} ${n(d.min)}명입니다.`,
     barTable(d),
@@ -8593,7 +8593,7 @@ function bar152Diff(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${drawIntro(d)} 표에서 학생 수가 가장 많은 ${d.theme.item}과 가장 적은 ${d.theme.item}의 차는 몇 명인가?`,
+    `${drawIntro(d)} 표에서 학생 수가 가장 많은 ${d.theme.item}과 가장 적은 ${d.theme.item}의 차는 몇 명입니까?`,
     `${n(d.max - d.min)}명`,
     `${josa(d.top, "은", "는")} ${n(d.max)}명, ${josa(d.bottom, "은", "는")} ${n(d.min)}명입니다. ${expr(`${d.max}-${d.min}=${d.max - d.min}`)} 입니다.`,
     barTable(d),
@@ -8606,7 +8606,7 @@ function bar152MaxCells(unit: UnitSeed, rng: Rng): ElemProblem {
   const cells = d.max / s;
   return make(
     unit,
-    `${drawIntro(d)} 세로 눈금 한 칸을 ${n(s)}명으로 하여 막대그래프를 그리려고 합니다. 가장 긴 막대는 몇 칸인가?`,
+    `${drawIntro(d)} 세로 눈금 한 칸을 ${n(s)}명으로 하여 막대그래프를 그리려고 합니다. 가장 긴 막대는 몇 칸입니까?`,
     `${n(cells)}칸`,
     `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명입니다. ${expr(`${d.max}\\div${s}=${cells}`)} 칸입니다.`,
     barTable(d),
@@ -8619,7 +8619,7 @@ function bar153Total(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 네 ${josa(d.theme.item, "을", "를")} 좋아하는 학생을 모두 더하면 몇 명인가?`,
+    `${d.intro} 네 ${josa(d.theme.item, "을", "를")} 좋아하는 학생을 모두 더하면 몇 명입니까?`,
     `${n(d.total)}명`,
     `${expr(`${d.picked.join("+")}=${d.total}`)} 이므로 ${n(d.total)}명입니다.`,
     d.figure,
@@ -8630,7 +8630,7 @@ function bar153SecondValue(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 학생 수가 두 번째로 많은 ${d.theme.item}의 학생 수는 몇 명인가?`,
+    `${d.intro} 학생 수가 두 번째로 많은 ${d.theme.item}의 학생 수는 몇 명입니까?`,
     `${n(d.secondValue)}명`,
     `두 번째로 많은 것은 ${josa(d.second, "으로", "로")} ${n(d.secondValue)}명입니다.`,
     d.figure,
@@ -8658,7 +8658,7 @@ function bar153EvenCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const even = d.values.filter((v) => v.value % 2 === 0).length;
   return make(
     unit,
-    `${d.intro} 학생 수가 짝수인 ${josa(d.theme.item, "은", "는")} 몇 가지인가?`,
+    `${d.intro} 학생 수가 짝수인 ${josa(d.theme.item, "은", "는")} 몇 가지입니까?`,
     n(even),
     `학생 수가 짝수인 것은 ${even}가지입니다.`,
     d.figure,
@@ -8669,7 +8669,7 @@ function bar153HalfTotal(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 조사한 학생의 절반은 몇 명인가?`,
+    `${d.intro} 조사한 학생의 절반은 몇 명입니까?`,
     `${n(d.total / 2)}명`,
     `모두 ${n(d.total)}명이므로 ${expr(`${d.total}\\div2=${d.total / 2}`)} 명입니다.`,
     d.figure,
@@ -8697,7 +8697,7 @@ function pat161Diff(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = [a, a + d, a + d * 2, a + d * 3];
   return make(
     unit,
-    `수의 배열에서 이웃한 두 수의 차는 얼마인가? ${t.map((v) => n(v)).join(", ")}`,
+    `수의 배열에서 이웃한 두 수의 차는 얼마입니까? ${t.map((v) => n(v)).join(", ")}`,
     n(d),
     `${expr(`${a + d}-${a}=${d}`)} 이므로 ${n(d)}씩 커집니다.`,
     cards(t),
@@ -8738,7 +8738,7 @@ function pat161HowMany(unit: UnitSeed, rng: Rng): ElemProblem {
   const last = a + d * (k - 1);
   return make(
     unit,
-    `${n(d)}씩 커지는 규칙으로 ${n(a)}부터 ${n(last)}까지 늘어놓았습니다. 수는 모두 몇 개인가?`,
+    `${n(d)}씩 커지는 규칙으로 ${n(a)}부터 ${n(last)}까지 늘어놓았습니다. 수는 모두 몇 개입니까?`,
     n(k),
     `${expr(`${last}-${a}=${last - a}`)} 이고 ${expr(`${last - a}\\div${d}=${k - 1}`)} 이므로 첫째를 더하면 ${n(k)}개입니다.`,
     cards([a, a + d, a + d * 2, "…", last]),
@@ -8750,7 +8750,7 @@ function pat161DoubleStep(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = intBetween(rng, 3, 20);
   return make(
     unit,
-    `규칙에 따라 수를 늘어놓았습니다. ${n(a)}, ${n(a + d)}, ${n(a + d * 2)}, ${n(a + d * 3)}. 같은 규칙으로 두 칸씩 뛰면 이웃한 두 수의 차는 얼마인가?`,
+    `규칙에 따라 수를 늘어놓았습니다. ${n(a)}, ${n(a + d)}, ${n(a + d * 2)}, ${n(a + d * 3)}. 같은 규칙으로 두 칸씩 뛰면 이웃한 두 수의 차는 얼마입니까?`,
     n(d * 2),
     `${n(d)}씩 커지므로 두 칸을 뛰면 ${expr(`${d}\\times2=${d * 2}`)} 입니다.`,
     cards([a, a + d, a + d * 2, a + d * 3]),
@@ -8764,7 +8764,7 @@ function pat162Fifth(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 2, 6);
   return make(
     unit,
-    `같은 수만큼씩 늘어나는 모형입니다. 첫째 ${n(s)}개, 둘째 ${n(s + d)}개, 셋째 ${n(s + d * 2)}개일 때 다섯째 모형은 몇 개인가?`,
+    `같은 수만큼씩 늘어나는 모형입니다. 첫째 ${n(s)}개, 둘째 ${n(s + d)}개, 셋째 ${n(s + d * 2)}개일 때 다섯째 모형은 몇 개입니까?`,
     `${n(s + d * 4)}개`,
     `${n(d)}개씩 늘어나므로 다섯째는 ${expr(`${s}+${d}\\times4=${s + d * 4}`)} 개입니다.`,
     cards([s, s + d, s + d * 2]),
@@ -8778,7 +8778,7 @@ function pat162ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const sum = t.reduce((x, y) => x + y, 0);
   return make(
     unit,
-    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, 셋째는 ${n(s + d * 2)}개입니다. 첫째부터 셋째까지 모형은 모두 몇 개인가?`,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, 셋째는 ${n(s + d * 2)}개입니다. 첫째부터 셋째까지 모형은 모두 몇 개입니까?`,
     `${n(sum)}개`,
     `${expr(`${t.join("+")}=${sum}`)} 이므로 ${n(sum)}개입니다.`,
     cards(t),
@@ -8790,7 +8790,7 @@ function pat162FromEnds(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 2, 6);
   return make(
     unit,
-    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 셋째는 ${n(s + d * 2)}개입니다. 모형은 몇 개씩 늘어나는가?`,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 셋째는 ${n(s + d * 2)}개입니다. 모형은 몇 개씩 늘어납니까?`,
     `${n(d)}개씩`,
     `첫째와 셋째 사이가 ${n(2)}칸이므로 ${expr(`(${s + d * 2}-${s})\\div2=${d}`)} 개씩입니다.`,
     cards([s, "?", s + d * 2]),
@@ -8802,7 +8802,7 @@ function pat162Fourth(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 2, 6);
   return make(
     unit,
-    `같은 수만큼씩 늘어나는 모형입니다. 첫째 ${n(s)}개, 둘째 ${n(s + d)}개, 셋째 ${n(s + d * 2)}개일 때 넷째 모형은 몇 개인가?`,
+    `같은 수만큼씩 늘어나는 모형입니다. 첫째 ${n(s)}개, 둘째 ${n(s + d)}개, 셋째 ${n(s + d * 2)}개일 때 넷째 모형은 몇 개입니까?`,
     `${n(s + d * 3)}개`,
     `${n(d)}개씩 늘어나므로 ${expr(`${s + d * 2}+${d}=${s + d * 3}`)} 개입니다.`,
     cards([s, s + d, s + d * 2]),
@@ -8814,7 +8814,7 @@ function pat162SecondMinus(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 2, 6);
   return make(
     unit,
-    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개입니다. 둘째는 첫째보다 몇 개 더 많은가?`,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개입니다. 둘째는 첫째보다 몇 개 더 많습니까?`,
     `${n(d)}개`,
     `${expr(`${s + d}-${s}=${d}`)} 이므로 ${n(d)}개 더 많습니다.`,
     cards([s, s + d]),
@@ -8826,7 +8826,7 @@ function pat162Tenth(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 2, 5);
   return make(
     unit,
-    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, 셋째는 ${n(s + d * 2)}개입니다. 열째는 몇 개인가?`,
+    `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(s)}개, 둘째는 ${n(s + d)}개, 셋째는 ${n(s + d * 2)}개입니다. 열째는 몇 개입니까?`,
     `${n(s + d * 9)}개`,
     `${n(d)}개씩 늘어나므로 열째는 ${expr(`${s}+${d}\\times9=${s + d * 9}`)} 개입니다.`,
     cards([s, s + d, s + d * 2]),
@@ -8849,7 +8849,7 @@ function pat163SubStep(unit: UnitSeed, rng: Rng): ElemProblem {
   const m = intBetween(rng, 6, 9) * 100 + intBetween(rng, 11, 89);
   return make(
     unit,
-    `계산식의 배열에서 빼는 수는 얼마씩 커지는가? ${expr(`${m}-100=${m - 100}`)}, ${expr(`${m}-200=${m - 200}`)}, ${expr(`${m}-300=${m - 300}`)}`,
+    `계산식의 배열에서 빼는 수는 얼마씩 커집니까? ${expr(`${m}-100=${m - 100}`)}, ${expr(`${m}-200=${m - 200}`)}, ${expr(`${m}-300=${m - 300}`)}`,
     n(100),
     `빼는 수가 ${n(100)}, ${n(200)}, ${n(300)}이므로 ${n(100)}씩 커집니다.`,
   );
@@ -8869,7 +8869,7 @@ function pat163SumGrows(unit: UnitSeed, rng: Rng): ElemProblem {
   const r = addRows(rng);
   return make(
     unit,
-    `계산식의 배열에서 합은 ${n(200)}씩 커지는가? '예' 또는 '아니요'로 답하시오. ${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    `계산식의 배열에서 합은 ${n(200)}씩 커집니까? '예' 또는 '아니요'로 답하시오. ${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
     "예",
     `${expr(`${r.sum(2)}-${r.sum(1)}=200`)} 이고 ${expr(`${r.sum(3)}-${r.sum(2)}=200`)} 입니다.`,
   );
@@ -8890,7 +8890,7 @@ function pat163ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = r.sum(1) + r.sum(2) + r.sum(3);
   return make(
     unit,
-    `계산식의 배열에서 첫째부터 셋째까지 합을 모두 더하면 얼마인가? ${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
+    `계산식의 배열에서 첫째부터 셋째까지 합을 모두 더하면 얼마입니까? ${expr(`${r.left(1)}+${r.right(1)}=${r.sum(1)}`)}, ${expr(`${r.left(2)}+${r.right(2)}=${r.sum(2)}`)}, ${expr(`${r.left(3)}+${r.right(3)}=${r.sum(3)}`)}`,
     n(s),
     `${expr(`${r.sum(1)}+${r.sum(2)}+${r.sum(3)}=${s}`)} 입니다.`,
   );
@@ -8938,7 +8938,7 @@ function pat164MulFactor(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 3, 9);
   return make(
     unit,
-    `계산식의 배열에서 곱하는 수는 얼마인가? ${expr(`${a}\\times${b}=${a * b}`)}, ${expr(`${a * 10}\\times${b}=${a * 10 * b}`)}, ${expr(`${a * 100}\\times${b}=${a * 100 * b}`)}`,
+    `계산식의 배열에서 곱하는 수는 얼마입니까? ${expr(`${a}\\times${b}=${a * b}`)}, ${expr(`${a * 10}\\times${b}=${a * 10 * b}`)}, ${expr(`${a * 100}\\times${b}=${a * 100 * b}`)}`,
     n(b),
     `세 식 모두 ${n(b)}를 곱하고 있습니다.`,
   );
@@ -8962,7 +8962,7 @@ function pat164HowManyTens(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = b * q;
   return make(
     unit,
-    `${expr(`${a}\\div${b}=${q}`)} 에서 나누어지는 수를 ${n(10)}배로 ${n(2)}번 키우면 몫은 얼마인가?`,
+    `${expr(`${a}\\div${b}=${q}`)} 에서 나누어지는 수를 ${n(10)}배로 ${n(2)}번 키우면 몫은 얼마입니까?`,
     n(q * 100),
     `${n(10)}배로 ${n(2)}번이면 ${n(100)}배가 되므로 몫은 ${expr(`${q}\\times100=${q * 100}`)} 입니다.`,
   );
@@ -9764,7 +9764,7 @@ function fracAdd42(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `색칠한 부분은 전체의 ${expr(`\\frac{${a}}{${den}}`)}입니다. ` +
-          `여기에 ${expr(`\\frac{${b}}{${den}}`)}만큼 더 색칠하면 색칠한 부분은 전체의 얼마인가?`,
+          `여기에 ${expr(`\\frac{${b}}{${den}}`)}만큼 더 색칠하면 색칠한 부분은 전체의 얼마입니까?`,
         expr(`\\frac{${a + b}}{${den}}`),
         // (으)로는 받침표가 아니라 소리표(roJosa)다 — den 7·8 이 «7으로/8으로»로 나가던 자리.
         `전체를 ${roJosa(den)} 똑같이 나눈 것 중 ${n(a)}칸에 ${n(b)}칸을 더 색칠하면 ${n(a + b)}칸입니다. ` +
@@ -9793,7 +9793,7 @@ function fracAdd42(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `색칠한 부분은 전체의 ${expr(`\\frac{${a}}{${den}}`)}입니다. ` +
-          `여기에서 ${expr(`\\frac{${b}}{${den}}`)}만큼 지우면 남은 부분은 전체의 얼마인가?`,
+          `여기에서 ${expr(`\\frac{${b}}{${den}}`)}만큼 지우면 남은 부분은 전체의 얼마입니까?`,
         expr(`\\frac{${a - b}}{${den}}`),
         `색칠한 ${n(a)}칸에서 ${n(b)}칸을 지우면 ${n(a - b)}칸이 남습니다. ` +
           `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}=\\frac{${a - b}}{${den}}`)}`,
@@ -10591,7 +10591,7 @@ function fracAddDen(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = pick(rng, fracPairs(den, "add"));
   return make(
     unit,
-    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 의 합에서 분모는 얼마인가?`,
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 의 합에서 분모는 얼마입니까?`,
     n(den),
     `분모가 같은 분수의 덧셈은 분모를 그대로 쓰므로 ${n(den)}입니다.`,
     fracSpec(rng, den, a),
@@ -10617,7 +10617,7 @@ function fracAddImproper(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = pick(rng, fracPairs(den, "add"));
   return make(
     unit,
-    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 의 합은 ${expr("1")}보다 큰가? '예' 또는 '아니요'로 답하시오.`,
+    `${expr(`\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 의 합은 ${expr("1")}보다 큽니까? '예' 또는 '아니요'로 답하시오.`,
     a + b > den ? "예" : "아니요",
     `${expr(`${a}+${b}=${a + b}`)} 이고 분모는 ${n(den)}이므로 ${a + b > den ? "가분수입니다." : "진분수입니다."}`,
   );
@@ -10628,7 +10628,7 @@ function fracAddPainted(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a] = pick(rng, properSumPairs(den));
   return make(
     unit,
-    `전체를 ${n(den)}칸으로 나눈 그림에서 색칠한 칸은 몇 칸인가?`,
+    `전체를 ${n(den)}칸으로 나눈 그림에서 색칠한 칸은 몇 칸입니까?`,
     n(a),
     `색칠한 칸은 ${n(a)}칸입니다.`,
     fracSpec(rng, den, a),
@@ -10640,7 +10640,7 @@ function fracAddEmpty(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a] = pick(rng, properSumPairs(den));
   return make(
     unit,
-    `전체를 ${n(den)}칸으로 나눈 그림에서 색칠하지 않은 칸은 몇 칸인가?`,
+    `전체를 ${n(den)}칸으로 나눈 그림에서 색칠하지 않은 칸은 몇 칸입니까?`,
     n(den - a),
     `${expr(`${den}-${a}=${den - a}`)} 칸입니다.`,
     fracSpec(rng, den, a),
@@ -10689,7 +10689,7 @@ function fracSubPainted(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a] = pick(rng, fracPairs(den, "sub"));
   return make(
     unit,
-    `그림에서 색칠한 부분은 전체의 얼마인가?`,
+    `그림에서 색칠한 부분은 전체의 얼마입니까?`,
     expr(`\\frac{${a}}{${den}}`),
     `${n(den)}칸 중 ${n(a)}칸이 색칠되어 ${expr(`\\frac{${a}}{${den}}`)} 입니다.`,
     fracSpec(rng, den, a),
@@ -10704,7 +10704,7 @@ function fracSubLeftCells(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = pick(rng, fracPairs(den, "sub"));
   return make(
     unit,
-    `색칠한 ${n(a)}칸에서 ${n(b)}칸을 지우면 색칠한 칸은 몇 칸이 남는가?`,
+    `색칠한 ${n(a)}칸에서 ${n(b)}칸을 지우면 색칠한 칸은 몇 칸이 남습니까?`,
     n(a - b),
     `${expr(`${a}-${b}=${a - b}`)} 칸입니다.`,
     fracSpec(rng, den, a),
@@ -10716,7 +10716,7 @@ function fracSubDen(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = pick(rng, fracPairs(den, "sub"));
   return make(
     unit,
-    `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}`)} 의 차에서 분모는 얼마인가?`,
+    `${expr(`\\frac{${a}}{${den}}-\\frac{${b}}{${den}}`)} 의 차에서 분모는 얼마입니까?`,
     n(den),
     `분모가 같은 분수의 뺄셈은 분모를 그대로 쓰므로 ${n(den)}입니다.`,
   );
@@ -10748,7 +10748,7 @@ function mixedAddFracNum(unit: UnitSeed, rng: Rng): ElemProblem {
   const w2 = intBetween(rng, 1, 3);
   return make(
     unit,
-    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 에서 분수 부분의 분자를 더하면 얼마인가?`,
+    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 에서 분수 부분의 분자를 더하면 얼마입니까?`,
     n(a + b),
     `${expr(`${a}+${b}=${a + b}`)} 입니다.`,
     fracSpec(rng, den, Math.min(a, den)),
@@ -10765,7 +10765,7 @@ function mixedAddCarry(unit: UnitSeed, rng: Rng): ElemProblem {
   const w2 = intBetween(rng, 1, 3);
   return make(
     unit,
-    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 를 계산할 때 분수 부분에서 받아올림이 있는가? '예' 또는 '아니요'로 답하시오.`,
+    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 를 계산할 때 분수 부분에서 받아올림이 있습니까? '예' 또는 '아니요'로 답하시오.`,
     a + b >= den ? "예" : "아니요",
     `${expr(`${a}+${b}=${a + b}`)} 이고 분모는 ${n(den)}입니다.`,
   );
@@ -10797,7 +10797,7 @@ function mixedAddFracDen(unit: UnitSeed, rng: Rng): ElemProblem {
   const w1 = intBetween(rng, 1, 4);
   return make(
     unit,
-    `${expr(`${w1}\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 의 분수 부분 분모는 얼마인가?`,
+    `${expr(`${w1}\\frac{${a}}{${den}}+\\frac{${b}}{${den}}`)} 의 분수 부분 분모는 얼마입니까?`,
     n(den),
     `분모가 같은 대분수의 덧셈이므로 분모는 ${n(den)}입니다.`,
     fracSpec(rng, den, a),
@@ -10811,7 +10811,7 @@ function mixedAddWholeOnly(unit: UnitSeed, rng: Rng): ElemProblem {
   const w2 = intBetween(rng, 1, 3);
   return make(
     unit,
-    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 의 합에서 자연수 부분은 얼마인가?`,
+    `${expr(`${w1}\\frac{${a}}{${den}}+${w2}\\frac{${b}}{${den}}`)} 의 합에서 자연수 부분은 얼마입니까?`,
     n(w1 + w2),
     `분수끼리 더해도 ${expr("1")}을 넘지 않으므로 자연수 부분은 ${expr(`${w1}+${w2}=${w1 + w2}`)} 입니다.`,
   );
@@ -10824,7 +10824,7 @@ function mixedSubWholes(unit: UnitSeed, rng: Rng): ElemProblem {
   const w1 = w2 + intBetween(rng, 1, 3);
   return make(
     unit,
-    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 에서 받아내림이 필요한가? '예' 또는 '아니요'로 답하시오.`,
+    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 에서 받아내림이 필요합니까? '예' 또는 '아니요'로 답하시오.`,
     borrow ? "예" : "아니요",
     `분수끼리 ${borrow ? "뺄 수 없으므로 받아내림이 필요합니다." : "뺄 수 있으므로 받아내림이 없습니다."}`,
   );
@@ -10862,7 +10862,7 @@ function mixedSubFracNum(unit: UnitSeed, rng: Rng): ElemProblem {
   const w1 = w2 + intBetween(rng, 1, 3);
   return make(
     unit,
-    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 에서 분수 부분의 분자를 빼면 얼마인가?`,
+    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 에서 분수 부분의 분자를 빼면 얼마입니까?`,
     n(a - b),
     `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
     fracSpec(rng, den, a),
@@ -10896,7 +10896,7 @@ function mixedSubDen(unit: UnitSeed, rng: Rng): ElemProblem {
   const w2 = intBetween(rng, 1, 2);
   return make(
     unit,
-    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 의 분수 부분 분모는 얼마인가?`,
+    `${expr(`${w1}\\frac{${a}}{${den}}-${w2}\\frac{${b}}{${den}}`)} 의 분수 부분 분모는 얼마입니까?`,
     n(den),
     `분모가 같은 대분수의 뺄셈이므로 분모는 ${n(den)}입니다.`,
   );
@@ -10914,7 +10914,7 @@ function mixedSubPainted(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     // 어떤 대분수인지 발문에 없었다(5차 교차 검수) — 자연수 부분을 붙여 적는다
-    `대분수 ${expr(`${1 + (a % 3)}\\frac{${a}}{${den}}`)}의 분수 부분을 그림으로 나타냈습니다. 색칠한 칸은 몇 칸인가?`,
+    `대분수 ${expr(`${1 + (a % 3)}\\frac{${a}}{${den}}`)}의 분수 부분을 그림으로 나타냈습니다. 색칠한 칸은 몇 칸입니까?`,
     n(a),
     `색칠한 칸은 ${n(a)}칸입니다.`,
     fracSpec(rng, den, a),
@@ -11436,7 +11436,7 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
       const base = (180 - apex) / 2;
       return make(
         unit,
-        `이등변삼각형의 꼭지각의 크기가 ${deg(apex)}입니다. 한 밑각의 크기는 몇 도인가?`,
+        `이등변삼각형의 꼭지각의 크기가 ${deg(apex)}입니다. 한 밑각의 크기는 몇 도입니까?`,
         deg(base),
         `이등변삼각형은 두 밑각의 크기가 같습니다. ${expr(`(180-${apex})\\div2=${base}`)}`,
       );
@@ -11445,7 +11445,7 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
       const base = intBetween(rng, 40, 75);
       return make(
         unit,
-        `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 꼭지각의 크기는 몇 도인가?`,
+        `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 꼭지각의 크기는 몇 도입니까?`,
         deg(180 - base * 2),
         `두 밑각의 크기가 같으므로 ${expr(`180-${base}-${base}=${180 - base * 2}`)} 입니다.`,
       );
@@ -11455,7 +11455,7 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `이등변삼각형의 길이가 같은 두 변이 각각 ${cm(same)}이고 나머지 한 변이 ${cm(other)}입니다. ` +
-        `세 변의 길이의 합은 몇 cm인가?`,
+        `세 변의 길이의 합은 몇 cm입니까?`,
       cm(same * 2 + other),
       `${expr(`${same}+${same}+${other}=${same * 2 + other}`)} 이므로 ${cm(same * 2 + other)}입니다.`,
     );
@@ -11466,7 +11466,7 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        "정삼각형의 한 각의 크기는 몇 도인가?",
+        "정삼각형의 한 각의 크기는 몇 도입니까?",
         deg(60),
         `정삼각형은 세 각의 크기가 모두 같고 세 각의 합은 ${deg(180)}입니다. ${expr("180\\div3=60")}`,
       );
@@ -11475,14 +11475,14 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `한 변이 ${cm(side)}인 정삼각형의 세 변의 길이의 합은 몇 cm인가?`,
+        `한 변이 ${cm(side)}인 정삼각형의 세 변의 길이의 합은 몇 cm입니까?`,
         cm(side * 3),
         `정삼각형은 세 변의 길이가 같으므로 ${expr(`${side}\\times3=${side * 3}`)} 입니다.`,
       );
     }
     return make(
       unit,
-      `세 변의 길이의 합이 ${cm(side * 3)}인 정삼각형의 한 변은 몇 cm인가?`,
+      `세 변의 길이의 합이 ${cm(side * 3)}인 정삼각형의 한 변은 몇 cm입니까?`,
       cm(side),
       `정삼각형은 세 변의 길이가 같으므로 ${expr(`${side * 3}\\div3=${side}`)} 입니다.`,
     );
@@ -11509,7 +11509,7 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `삼각형의 두 각의 크기가 ${deg(a)}, ${deg(b)}입니다. ` +
-          `이 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+          `이 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇입니까?`,
         triClass(a, b, rest),
         `나머지 한 각은 ${expr(`180-${a}-${b}=${rest}`)} 입니다. ` +
           `가장 큰 각이 ${deg(big)}이므로 ${triClass(a, b, rest)}입니다.`,
@@ -11518,7 +11518,7 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `세 각의 크기가 ${deg(a)}, ${deg(b)}, ${deg(rest)}인 삼각형은 ` +
-        `예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+        `예각삼각형, 직각삼각형, 둔각삼각형 중 무엇입니까?`,
       triClass(a, b, rest),
       `가장 큰 각이 ${deg(big)}입니다. ${deg(90)}보다 ` +
         `${big > 90 ? "크므로 둔각삼각형" : big === 90 ? "같으므로 직각삼각형" : "작아 세 각이 모두 예각이므로 예각삼각형"}입니다.`,
@@ -11529,7 +11529,7 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
     if (intBetween(rng, 0, 2) === 0) {
       return make(
         unit,
-        "세 변의 길이가 모두 같은 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?",
+        "세 변의 길이가 모두 같은 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇입니까?",
         "예각삼각형",
         `세 변의 길이가 같은 삼각형은 정삼각형이고 세 각이 모두 ${deg(60)}입니다. ` +
           `세 각이 모두 ${deg(90)}보다 작으므로 예각삼각형입니다.`,
@@ -11540,7 +11540,7 @@ function triangle(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `두 밑각의 크기가 각각 ${deg(base)}이고 나머지 한 각이 ${deg(apex)}인 삼각형을 ` +
-        `변의 길이와 각의 크기 두 가지 기준으로 각각 무엇이라고 하는가?`,
+        `변의 길이와 각의 크기 두 가지 기준으로 각각 무엇이라고 합니까?`,
       `이등변삼각형, ${triClass(base, base, apex)}`,
       `두 각의 크기가 같으므로 두 변의 길이도 같아 이등변삼각형입니다. ` +
         `가장 큰 각이 ${deg(Math.max(base, apex))}이므로 ${triClass(base, base, apex)}입니다.`,
@@ -11648,7 +11648,7 @@ function tier221Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `삼각형의 세 변의 길이가 ${cm(s)}, ${cm(s)}, ${cm(s)}입니다. ` +
-        `길이가 같은 변은 몇 개인가?`,
+        `길이가 같은 변은 몇 개입니까?`,
       `${n(3)}개`,
       `세 변의 길이가 모두 ${cm(s)}로 같으므로 길이가 같은 변은 ${n(3)}개입니다.`,
     );
@@ -11663,7 +11663,7 @@ function tier221Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `삼각형의 세 변의 길이가 ${cm(sides[0]!)}, ${cm(sides[1]!)}, ${cm(sides[2]!)}입니다. ` +
-        `길이가 같은 변은 몇 개인가?`,
+        `길이가 같은 변은 몇 개입니까?`,
       `${n(2)}개`,
       `${cm(same)}인 변이 ${n(2)}개, ${cm(odd)}인 변이 ${n(1)}개입니다. ` +
         `길이가 같은 변은 ${n(2)}개입니다.`,
@@ -11675,7 +11675,7 @@ function tier221Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `삼각형의 세 변의 길이가 ${cm(a)}, ${cm(b)}, ${cm(c)}입니다. ` +
-      `길이가 같은 변은 몇 개인가?`,
+      `길이가 같은 변은 몇 개입니까?`,
     `${n(0)}개`,
     `세 변의 길이 ${cm(a)}, ${cm(b)}, ${cm(c)}가 서로 모두 다르므로 ` +
       `길이가 같은 변은 ${n(0)}개입니다.`,
@@ -11714,7 +11714,7 @@ function tier221Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `세 변의 길이의 합이 ${cm(total)}인 이등변삼각형이 있습니다. ` +
       `길이가 같은 두 변이 아닌 나머지 한 변의 길이가 ${cm(other)}일 때, ` +
-      `길이가 같은 두 변의 길이는 각각 몇 cm인가?`,
+      `길이가 같은 두 변의 길이는 각각 몇 cm입니까?`,
     cm(leg),
     `길이가 같은 두 변의 길이의 합은 ${expr(`${total}-${other}=${total - other}`)} 입니다. ` +
       `두 변의 길이가 서로 같으므로 ${expr(`${total - other}\\div2=${leg}`)} 입니다.`,
@@ -11781,7 +11781,7 @@ function tier222Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. ` +
-        `다른 한 밑각의 크기는 몇 도인가?`,
+        `다른 한 밑각의 크기는 몇 도입니까?`,
       deg(base),
       `이등변삼각형은 두 밑각의 크기가 같습니다. 한 밑각이 ${deg(base)}이므로 ` +
         `다른 한 밑각도 ${deg(base)}입니다.`,
@@ -11790,7 +11790,7 @@ function tier222Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 삼각형에 크기가 같은 두 각이 있고 그중 한 각의 크기가 ${deg(base)}입니다. ` +
-      `크기가 같은 나머지 한 각의 크기는 몇 도인가?`,
+      `크기가 같은 나머지 한 각의 크기는 몇 도입니까?`,
     deg(base),
     `두 각의 크기가 같은 삼각형은 이등변삼각형입니다. 크기가 같은 두 각이므로 ` +
       `나머지 한 각의 크기도 ${deg(base)}입니다.`,
@@ -11804,7 +11804,7 @@ function tier222Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `이등변삼각형에서 두 밑각의 크기의 합이 ${deg(sum)}입니다. ` +
-      `꼭지각의 크기는 몇 도인가?`,
+      `꼭지각의 크기는 몇 도입니까?`,
     deg(180 - sum),
     `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다. 두 밑각의 합이 ${deg(sum)}이므로 ` +
       `꼭지각은 ${expr(`180-${sum}=${180 - sum}`)} 입니다.`,
@@ -11827,7 +11827,7 @@ function tier222Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `이등변삼각형에서 꼭지각의 크기가 한 밑각의 크기보다 ${deg(d)} ` +
-      `${smaller ? "작습니다" : "큽니다"}. 꼭지각의 크기는 몇 도인가?`,
+      `${smaller ? "작습니다" : "큽니다"}. 꼭지각의 크기는 몇 도입니까?`,
     deg(apex),
     `한 밑각의 크기를 ${expr("\\square")}라고 하면 세 각의 크기의 합은 ` +
       `${expr(`\\square+\\square+(\\square${sign}${d})=180`)} 입니다. ` +
@@ -11862,7 +11862,7 @@ function tier222Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `${expr(`180\\div${parts}=${one}`)} 이므로 꼭지각은 ${deg(apex)}입니다.`;
   return make(
     unit,
-    `${head} ${askApex ? "꼭지각" : "한 밑각"}의 크기는 몇 도인가?`,
+    `${head} ${askApex ? "꼭지각" : "한 밑각"}의 크기는 몇 도입니까?`,
     deg(askApex ? apex : baseAngle),
     `${build} 세 각의 크기는 ${deg(baseAngle)}, ${deg(baseAngle)}, ${deg(apex)}이므로 ` +
       `${askApex ? "꼭지각" : "한 밑각"}의 크기는 ${deg(askApex ? apex : baseAngle)}입니다.`,
@@ -11876,7 +11876,7 @@ function tier223Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `정삼각형 모양의 ${josa(item, "이", "가")} 있습니다. 한 변의 길이가 ${cm(s)}일 때 ` +
-      `나머지 두 변의 길이는 각각 몇 cm인가?`,
+      `나머지 두 변의 길이는 각각 몇 cm입니까?`,
     cm(s),
     `정삼각형은 세 변의 길이가 모두 같습니다. 한 변이 ${cm(s)}이므로 ` +
       `나머지 두 변도 각각 ${cm(s)}입니다.`,
@@ -11896,7 +11896,7 @@ function tier223Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `세 각의 크기가 모두 같은 삼각형이 있습니다. 한 변의 길이가 ${cm(s)}일 때 ` +
-      `${wholeSum ? "세 변의 길이의 합" : "나머지 두 변의 길이의 합"}은 몇 cm인가?`,
+      `${wholeSum ? "세 변의 길이의 합" : "나머지 두 변의 길이의 합"}은 몇 cm입니까?`,
     cm(value),
     `세 각의 크기가 모두 같은 삼각형은 정삼각형이고, 정삼각형은 세 변의 길이가 모두 같습니다. ` +
       `${expr(`${s}\\times${wholeSum ? 3 : 2}=${value}`)} 이므로 ${cm(value)}입니다.`,
@@ -11912,7 +11912,7 @@ function tier223Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `길이가 ${cm(total)}인 ${josa(item, "을", "를")} 사용하여 한 변의 길이가 ${cm(side)}인 ` +
-      `정삼각형을 한 개 만들었습니다. 남은 ${josa(item, "은", "는")} 몇 cm인가?`,
+      `정삼각형을 한 개 만들었습니다. 남은 ${josa(item, "은", "는")} 몇 cm입니까?`,
     cm(left),
     `정삼각형은 세 변의 길이가 같으므로 만드는 데 쓴 ${item}의 길이는 ` +
       `${expr(`${side}\\times3=${side * 3}`)} 입니다. ` +
@@ -11930,7 +11930,7 @@ function tier223Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `길이가 ${cm(each * count)}인 ${josa(item, "을", "를")} 남김없이 사용하여 ` +
       `한 변의 길이가 ${cm(side)}인 정삼각형을 여러 개 만들었습니다. ` +
-      `정삼각형을 몇 개 만들었는가?`,
+      `정삼각형을 몇 개 만들었습니까?`,
     `${n(count)}개`,
     `정삼각형 한 개를 만드는 데 필요한 ${item}의 길이는 ` +
       `${expr(`${side}\\times3=${each}`)} 입니다. ` +
@@ -11971,7 +11971,7 @@ function tier224Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `삼각형의 세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}입니다. ` +
-      `이 삼각형에서 ${ask}은 몇 개인가?`,
+      `이 삼각형에서 ${ask}은 몇 개입니까?`,
     `${n(hit.length)}개`,
     `${ask}은 ${rule}입니다. 세 각 중 ${ask}은 ` +
       `${hit.length > 0 ? `${hit.map((v) => deg(v)).join(", ")}로 ${n(hit.length)}개` : `없으므로 ${n(0)}개`}입니다.`,
@@ -11988,7 +11988,7 @@ function tier224Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   if (intBetween(rng, 0, 3) === 0) {
     return make(
       unit,
-      `직각삼각형에서 직각이 아닌 두 각의 크기의 합은 몇 도인가?`,
+      `직각삼각형에서 직각이 아닌 두 각의 크기의 합은 몇 도입니까?`,
       deg(90),
       `직각삼각형에는 크기가 ${deg(90)}인 각이 하나 있고 세 각의 크기의 합은 ${deg(180)}입니다. ` +
         `나머지 두 각의 합은 ${expr("180-90=90")} 입니다.`,
@@ -11998,7 +11998,7 @@ function tier224Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `직각삼각형에서 직각이 아닌 한 각의 크기가 ${deg(one)}입니다. ` +
-      `나머지 한 각의 크기는 몇 도인가?`,
+      `나머지 한 각의 크기는 몇 도입니까?`,
     deg(90 - one),
     `직각삼각형에는 크기가 ${deg(90)}인 각이 하나 있습니다. ` +
       `세 각의 크기의 합이 ${deg(180)}이므로 나머지 한 각은 ` +
@@ -12028,7 +12028,7 @@ function tier224Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `삼각형에서 두 각의 크기가 서로 같고 나머지 한 각의 크기가 ${deg(given)}입니다. ` +
-      `이 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+      `이 삼각형은 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇입니까?`,
     triClass(given, same, same),
     `크기가 같은 두 각의 합은 ${expr(`180-${given}=${180 - given}`)} 이고 ` +
       `두 각이 같으므로 각각 ${expr(`${180 - given}\\div2=${same}`)} 입니다. ` +
@@ -12094,7 +12094,7 @@ function tier225Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 ` +
       `이등변삼각형이 있습니다. 이 삼각형을 각의 크기에 따라 분류하면 ` +
-      `예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+      `예각삼각형, 직각삼각형, 둔각삼각형 중 무엇입니까?`,
     triClass(same, same, apex),
     `${deg(same)}인 각이 ${n(2)}개 있어 두 변의 길이가 같으므로 이등변삼각형입니다. ` +
       `각의 크기에 따라 분류할 때는 가장 큰 각을 봅니다. ` +
@@ -12117,8 +12117,8 @@ function tier225Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `이등변삼각형이면서 ${word}삼각형인 삼각형이 있습니다. ` +
       (isRight
-        ? `직각이 아닌 두 각의 크기는 각각 몇 도인가?`
-        : `둔각의 크기가 ${deg(apex)}일 때 나머지 두 각의 크기는 각각 몇 도인가?`),
+        ? `직각이 아닌 두 각의 크기는 각각 몇 도입니까?`
+        : `둔각의 크기가 ${deg(apex)}일 때 나머지 두 각의 크기는 각각 몇 도입니까?`),
     deg(base),
     `크기가 같은 두 각이 모두 ${word}일 수는 없으므로 ${word}은 꼭지각입니다. ` +
       `나머지 두 각의 합은 ${expr(`180-${apex}=${180 - apex}`)} 이고 ` +
@@ -12139,7 +12139,7 @@ function tier225Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 이 삼각형을 각의 크기에 따라 ` +
-      `분류하면 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇인가?`,
+      `분류하면 예각삼각형, 직각삼각형, 둔각삼각형 중 무엇입니까?`,
     name,
     `두 밑각의 크기가 같으므로 꼭지각은 ${expr(`180-${base}-${base}=${apex}`)} 입니다. ` +
       `세 각 중 가장 큰 각이 ${deg(Math.max(base, apex))}이므로 ${name}입니다.`,
@@ -12196,7 +12196,7 @@ function tri221Perim(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 4, 12);
   return make(
     unit,
-    `한 변이 ${cm(s)}인 정삼각형의 세 변의 길이의 합은 몇 cm인가?`,
+    `한 변이 ${cm(s)}인 정삼각형의 세 변의 길이의 합은 몇 cm입니까?`,
     cm(s * 3),
     `${expr(`${s}\\times3=${s * 3}`)} 이므로 ${cm(s * 3)}입니다.`,
     // 하나뿐인 도형에 쓰지 않는 이름표 «가» 만 있었다(4차 교차 검수) — 한 변 길이와 같은 변 표시를 단다.
@@ -12232,7 +12232,7 @@ function tri221PickIso(unit: UnitSeed, rng: Rng): ElemProblem {
 function tri221Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
-    `그림의 삼각형에서 꼭짓점은 몇 개인가?`,
+    `그림의 삼각형에서 꼭짓점은 몇 개입니까?`,
     n(3),
     `삼각형의 꼭짓점은 ${n(3)}개입니다.`,
     fig("namedShapes", {
@@ -12249,7 +12249,7 @@ function tri221Vertices(unit: UnitSeed, rng: Rng): ElemProblem {
 function tri222Sum180(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `이등변삼각형의 세 각의 크기의 합은 몇 도인가?`,
+    `이등변삼각형의 세 각의 크기의 합은 몇 도입니까?`,
     deg(180),
     `삼각형의 세 각의 크기의 합은 ${deg(180)}입니다.`,
     fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
@@ -12260,7 +12260,7 @@ function tri222BaseSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const base = pick(rng, baseAngles(25, 80));
   return make(
     unit,
-    `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 두 밑각의 크기의 합은 몇 도인가?`,
+    `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 두 밑각의 크기의 합은 몇 도입니까?`,
     deg(base * 2),
     `${expr(`${base}+${base}=${base * 2}`)} 이므로 ${deg(base * 2)}입니다.`,
   );
@@ -12270,7 +12270,7 @@ function tri222Apex(unit: UnitSeed, rng: Rng): ElemProblem {
   const base = pick(rng, baseAngles(25, 80));
   return make(
     unit,
-    `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 꼭지각의 크기는 몇 도인가?`,
+    `이등변삼각형의 한 밑각의 크기가 ${deg(base)}입니다. 꼭지각의 크기는 몇 도입니까?`,
     deg(180 - base * 2),
     `${expr(`180-${base}-${base}=${180 - base * 2}`)} 이므로 ${deg(180 - base * 2)}입니다.`,
   );
@@ -12281,7 +12281,7 @@ function tri222Biggest(unit: UnitSeed, rng: Rng): ElemProblem {
   const apex = 180 - base * 2;
   return make(
     unit,
-    `이등변삼각형의 밑각이 ${deg(base)}입니다. 가장 큰 각의 크기는 몇 도인가?`,
+    `이등변삼각형의 밑각이 ${deg(base)}입니다. 가장 큰 각의 크기는 몇 도입니까?`,
     deg(Math.max(base, apex)),
     `꼭지각은 ${deg(apex)}이므로 가장 큰 각은 ${deg(Math.max(base, apex))}입니다.`,
     fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
@@ -12305,7 +12305,7 @@ function tri222Pick(unit: UnitSeed, rng: Rng): ElemProblem {
 function tri222EqualBase(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `이등변삼각형에서 두 밑각의 크기는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `이등변삼각형에서 두 밑각의 크기는 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `이등변삼각형은 두 밑각의 크기가 같습니다.`,
     fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
@@ -12316,7 +12316,7 @@ function tri223Side(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 4, 15);
   return make(
     unit,
-    `정삼각형의 한 변의 길이가 ${cm(s)}입니다. 다른 한 변의 길이는 몇 cm인가?`,
+    `정삼각형의 한 변의 길이가 ${cm(s)}입니다. 다른 한 변의 길이는 몇 cm입니까?`,
     cm(s),
     `정삼각형은 세 변의 길이가 모두 같으므로 ${cm(s)}입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -12326,7 +12326,7 @@ function tri223Side(unit: UnitSeed, rng: Rng): ElemProblem {
 function tri223Angle(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `정삼각형의 한 각의 크기는 몇 도인가?`,
+    `정삼각형의 한 각의 크기는 몇 도입니까?`,
     deg(60),
     `정삼각형은 세 각의 크기가 모두 ${deg(60)}입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -12336,7 +12336,7 @@ function tri223Angle(unit: UnitSeed): ElemProblem {
 function tri223AngleSum(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `정삼각형의 세 각의 크기의 합은 몇 도인가?`,
+    `정삼각형의 세 각의 크기의 합은 몇 도입니까?`,
     deg(180),
     `${expr(`60+60+60=180`)} 이므로 ${deg(180)}입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -12358,7 +12358,7 @@ function tri223HalfPerim(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 4, 14);
   return make(
     unit,
-    `세 변의 길이의 합이 ${cm(s * 3)}인 정삼각형의 한 변은 몇 cm인가?`,
+    `세 변의 길이의 합이 ${cm(s * 3)}인 정삼각형의 한 변은 몇 cm입니까?`,
     cm(s),
     `${expr(`${s * 3}\\div3=${s}`)} 이므로 ${cm(s)}입니다.`,
   );
@@ -12367,7 +12367,7 @@ function tri223HalfPerim(unit: UnitSeed, rng: Rng): ElemProblem {
 function tri223Name(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `그림처럼 세 변의 길이가 모두 같은 삼각형을 무엇이라고 하는가?`,
+    `그림처럼 세 변의 길이가 모두 같은 삼각형을 무엇이라고 합니까?`,
     "정삼각형",
     `세 변의 길이가 모두 같은 삼각형은 정삼각형입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -12380,7 +12380,7 @@ function tri224CountAcute(unit: UnitSeed, rng: Rng): ElemProblem {
   const hit = shown.filter((v) => v < 90).length;
   return make(
     unit,
-    `삼각형의 세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}입니다. 예각은 몇 개인가?`,
+    `삼각형의 세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}입니다. 예각은 몇 개입니까?`,
     `${n(hit)}개`,
     `${deg(90)}보다 작은 각이 ${n(hit)}개입니다.`,
   );
@@ -12417,7 +12417,7 @@ function tri224HasRight(unit: UnitSeed, rng: Rng): ElemProblem {
   const yes = angles.includes(90);
   return make(
     unit,
-    `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 삼각형에 직각이 있는가? '예' 또는 '아니요'로 답하시오.`,
+    `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 삼각형에 직각이 있습니까? '예' 또는 '아니요'로 답하시오.`,
     yes ? "예" : "아니요",
     yes ? `직각이 ${n(1)}개 있습니다.` : `직각이 없습니다.`,
   );
@@ -12428,7 +12428,7 @@ function tri224Biggest(unit: UnitSeed, rng: Rng): ElemProblem {
   const shown = pick(rng, TRI_PERMS).map((i) => angles[i]!);
   return make(
     unit,
-    `삼각형의 세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}입니다. 가장 큰 각의 크기는 몇 도인가?`,
+    `삼각형의 세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}입니다. 가장 큰 각의 크기는 몇 도입니까?`,
     deg(Math.max(...shown)),
     `가장 큰 각은 ${deg(Math.max(...shown))}입니다.`,
   );
@@ -12438,7 +12438,7 @@ function tri224Rest(unit: UnitSeed, rng: Rng): ElemProblem {
   const angles = triAnglesOfClass(rng, intBetween(rng, 0, 2));
   return make(
     unit,
-    `삼각형의 두 각의 크기가 ${deg(angles[0]!)}, ${deg(angles[1]!)}입니다. 나머지 한 각의 크기는 몇 도인가?`,
+    `삼각형의 두 각의 크기가 ${deg(angles[0]!)}, ${deg(angles[1]!)}입니다. 나머지 한 각의 크기는 몇 도입니까?`,
     deg(angles[2]!),
     `${expr(`180-${angles[0]}-${angles[1]}=${angles[2]}`)} 이므로 ${deg(angles[2]!)}입니다.`,
   );
@@ -12450,7 +12450,7 @@ function tri225BothNames(unit: UnitSeed, rng: Rng): ElemProblem {
   const shown = pick(rng, TRI_PERMS).map((i) => [same, same, apex][i]!);
   return make(
     unit,
-    `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 이등변삼각형을 각의 크기에 따라 분류하면 무엇인가?`,
+    `세 각의 크기가 ${deg(shown[0]!)}, ${deg(shown[1]!)}, ${deg(shown[2]!)}인 이등변삼각형을 각의 크기에 따라 분류하면 무엇입니까?`,
     triClass(same, same, apex),
     `가장 큰 각이 ${deg(Math.max(same, apex))}이므로 ${triClass(same, same, apex)}입니다.`,
     fig("namedShapes", { items: [{ shape: "isoTri", label: "가" }] }),
@@ -12471,7 +12471,7 @@ function tri225PickRightIso(unit: UnitSeed, rng: Rng): ElemProblem {
 function tri225EqIsAcute(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `정삼각형은 예각삼각형인가? '예' 또는 '아니요'로 답하시오.`,
+    `정삼각형은 예각삼각형입니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `정삼각형의 세 각은 모두 ${deg(60)}이므로 예각삼각형입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -12482,7 +12482,7 @@ function tri225SideClass(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 5, 12);
   return make(
     unit,
-    `세 변의 길이가 ${cm(s)}, ${cm(s)}, ${cm(s)}인 삼각형을 변의 길이에 따라 분류하면 무엇인가?`,
+    `세 변의 길이가 ${cm(s)}, ${cm(s)}, ${cm(s)}인 삼각형을 변의 길이에 따라 분류하면 무엇입니까?`,
     "정삼각형",
     `세 변의 길이가 모두 같으므로 정삼각형입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -12492,7 +12492,7 @@ function tri225SideClass(unit: UnitSeed, rng: Rng): ElemProblem {
 function tri225AngleClass(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `정삼각형을 각의 크기에 따라 분류하면 무엇인가?`,
+    `정삼각형을 각의 크기에 따라 분류하면 무엇입니까?`,
     "예각삼각형",
     `세 각이 모두 ${deg(60)}이므로 예각삼각형입니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -12502,7 +12502,7 @@ function tri225AngleClass(unit: UnitSeed): ElemProblem {
 function tri225Vertices(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `직각삼각형에서 직각인 꼭짓점은 몇 개인가?`,
+    `직각삼각형에서 직각인 꼭짓점은 몇 개입니까?`,
     n(1),
     `직각삼각형의 직각은 ${n(1)}개입니다.`,
     fig("namedShapes", { items: [{ shape: "rightTri", label: "가" }] }),
@@ -12607,7 +12607,7 @@ function decAdd(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `${n(dec2(base))}의 ${n(10)}배는 얼마인가?`,
+        `${n(dec2(base))}의 ${n(10)}배는 얼마입니까?`,
         n(dec1(base)),
         `${n(10)}배를 하면 각 자리의 숫자가 한 자리씩 왼쪽으로 옮겨져 ` +
           `소수점이 오른쪽으로 한 자리 옮겨집니다. 그래서 ${josaNum(dec2(base), "은", "는")} ${josaNum(dec1(base), "이", "가")} 됩니다.`,
@@ -12616,7 +12616,7 @@ function decAdd(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `${n(dec2(base))}의 ${n(100)}배는 얼마인가?`,
+        `${n(dec2(base))}의 ${n(100)}배는 얼마입니까?`,
         n(base),
         `${n(100)}배를 하면 소수점이 오른쪽으로 두 자리 옮겨집니다. ` +
           `그래서 ${josaNum(dec2(base), "은", "는")} ${josaNum(base, "이", "가")} 됩니다.`,
@@ -12624,7 +12624,7 @@ function decAdd(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${n(dec1(base))}의 $\\frac{1}{10}$은 얼마인가?`,
+      `${n(dec1(base))}의 $\\frac{1}{10}$은 얼마입니까?`,
       n(dec2(base)),
       `$\\frac{1}{10}$을 하면 각 자리의 숫자가 한 자리씩 오른쪽으로 옮겨져 ` +
         `소수점이 왼쪽으로 한 자리 옮겨집니다. 그래서 ${josaNum(dec1(base), "은", "는")} ${josaNum(dec2(base), "이", "가")} 됩니다.`,
@@ -12978,7 +12978,7 @@ function tier233Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const mid = dec1(x);
   return make(
     unit,
-    `${n(dec2(x))}의 ${n(10)}배의 $\\frac{1}{100}$은 얼마인가?`,
+    `${n(dec2(x))}의 ${n(10)}배의 $\\frac{1}{100}$은 얼마입니까?`,
     n(dec3(x)),
     `${n(10)}배를 하면 소수점이 오른쪽으로 한 자리 옮겨져 ${n(mid)}입니다. ` +
       `여기에 $\\frac{1}{100}$을 하면 소수점이 왼쪽으로 두 자리 옮겨져 ${n(dec3(x))}입니다.`,
@@ -13513,7 +13513,7 @@ function dec231HowManyPlaces(unit: UnitSeed, rng: Rng): ElemProblem {
   const value = `${intBetween(rng, 1, 9)}.${frac}`;
   return make(
     unit,
-    `${n(value)}은 소수 몇 자리 수인가?`,
+    `${n(value)}은 소수 몇 자리 수입니까?`,
     `${n(digits)}자리`,
     `소수점 아래가 ${n(digits)}자리이므로 소수 ${n(digits)}자리 수입니다.`,
     cards([value]),
@@ -13587,7 +13587,7 @@ function dec232Places(unit: UnitSeed, rng: Rng): ElemProblem {
   const v = pick(rng, DEC2_POOL);
   return make(
     unit,
-    `${n(dec2(v))}은 소수 몇 자리 수인가?`,
+    `${n(dec2(v))}은 소수 몇 자리 수입니까?`,
     `${n(2)}자리`,
     `소수점 아래가 ${n(2)}자리입니다.`,
     cards([dec2(v)]),
@@ -13598,7 +13598,7 @@ function dec233Times10(unit: UnitSeed, rng: Rng): ElemProblem {
   const x = pick(rng, DEC1_POOL);
   return make(
     unit,
-    `${josaNum(dec1(x), "의", "의")} ${n(10)}배는 얼마인가?`,
+    `${josaNum(dec1(x), "의", "의")} ${n(10)}배는 얼마입니까?`,
     n(x),
     `소수점이 오른쪽으로 한 자리 옮겨져 ${n(x)}입니다.`,
   );
@@ -13608,7 +13608,7 @@ function dec233Div10(unit: UnitSeed, rng: Rng): ElemProblem {
   const x = pick(rng, DEC1_POOL);
   return make(
     unit,
-    `${josaNum(dec1(x), "의", "의")} $\\frac{1}{10}$은 얼마인가?`,
+    `${josaNum(dec1(x), "의", "의")} $\\frac{1}{10}$은 얼마입니까?`,
     n(dec2(x)),
     `소수점이 왼쪽으로 한 자리 옮겨져 ${n(dec2(x))}입니다.`,
   );
@@ -13628,7 +13628,7 @@ function dec233HowManyTimes(unit: UnitSeed, rng: Rng): ElemProblem {
   const x = pick(rng, DEC1_POOL);
   return make(
     unit,
-    `${josaNum(dec1(x), "은", "는")} ${n(dec2(x))}의 몇 배인가?`,
+    `${josaNum(dec1(x), "은", "는")} ${n(dec2(x))}의 몇 배입니까?`,
     n(10),
     `소수점이 한 자리 옮겨지므로 ${n(10)}배입니다.`,
   );
@@ -13706,7 +13706,7 @@ function dec234VsTen(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = a + b;
   return make(
     unit,
-    `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합은 ${n(10)}보다 큰가? '예' 또는 '아니요'로 답하시오.`,
+    `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합은 ${n(10)}보다 큽니까? '예' 또는 '아니요'로 답하시오.`,
     s > 100 ? "예" : "아니요",
     `합은 ${n(dec1(s))}입니다.`,
   );
@@ -13857,7 +13857,7 @@ function dec236Tape(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `리본 ${n(dec1(a))} m와 ${n(dec1(b))} m를 이어 붙였습니다. 모두 몇 m인가?`,
+    `리본 ${n(dec1(a))} m와 ${n(dec1(b))} m를 이어 붙였습니다. 모두 몇 m입니까?`,
     n(dec1(a + b)),
     `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)} 입니다.`,
     // 라벨은 «? m» — 합을 적으면 그림이 정답을 보여 준다(원장님 2026-10-20 지면 전수 검사).
@@ -13873,7 +13873,7 @@ function dec236GapToTen(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `${n(dec1(a))} m인 끈을 ${n(10)} m로 만들려면 몇 m가 더 필요한가?`,
+    `${n(dec1(a))} m인 끈을 ${n(10)} m로 만들려면 몇 m가 더 필요합니까?`,
     n(dec1(100 - a)),
     `${expr(`10-${dec1(a)}=${dec1(100 - a)}`)} 입니다.`,
     fig("tape", { length: a, label: `${dec1(a)} m`, segments: 1 }),
@@ -13895,7 +13895,7 @@ function dec236ThreeSum(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `${n(dec1(a))} L, ${n(dec1(b))} L, ${n(dec1(c))} L의 물을 한 통에 담았습니다. 모두 몇 L인가?`,
+    `${n(dec1(a))} L, ${n(dec1(b))} L, ${n(dec1(c))} L의 물을 한 통에 담았습니다. 모두 몇 L입니까?`,
     n(dec1(a + b + c)),
     `${expr(`${dec1(a)}+${dec1(b)}+${dec1(c)}=${dec1(a + b + c)}`)} 입니다.`,
   );
@@ -13908,7 +13908,7 @@ function dec236Twice(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `한 변의 길이가 ${n(dec1(a))} cm인 정사각형의 이웃한 두 변의 길이의 합은 몇 cm인가?`,
+    `한 변의 길이가 ${n(dec1(a))} cm인 정사각형의 이웃한 두 변의 길이의 합은 몇 cm입니까?`,
     n(dec1(a * 2)),
     `${expr(`${dec1(a)}+${dec1(a)}=${dec1(a * 2)}`)} 입니다.`,
     fig("markedShape", { shape: "square" }),
@@ -13926,7 +13926,7 @@ function dec236LeftIfAdd(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `물이 ${n(dec1(a))} L 있었습니다. ${n(dec1(add))} L를 더 부었습니다. 지금은 몇 L인가?`,
+    `물이 ${n(dec1(a))} L 있었습니다. ${n(dec1(add))} L를 더 부었습니다. 지금은 몇 L입니까?`,
     n(dec1(a + add)),
     `${expr(`${dec1(a)}+${dec1(add)}=${dec1(a + add)}`)} 입니다.`,
   );
@@ -13967,7 +13967,7 @@ function dec237Cut(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `길이가 ${n(dec1(a))} m인 끈에서 ${n(dec1(b))} m를 잘라 냈습니다. 남은 끈은 몇 m인가?`,
+    `길이가 ${n(dec1(a))} m인 끈에서 ${n(dec1(b))} m를 잘라 냈습니다. 남은 끈은 몇 m입니까?`,
     n(dec1(a - b)),
     `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)} 입니다.`,
     fig("tape", { length: a, label: `${dec1(a)} m`, segments: 1 }),
@@ -13985,7 +13985,7 @@ function dec237Left(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `주스 ${n(dec1(a))} L 중에서 ${n(dec1(b))} L를 마셨습니다. 남은 주스는 몇 L인가?`,
+    `주스 ${n(dec1(a))} L 중에서 ${n(dec1(b))} L를 마셨습니다. 남은 주스는 몇 L입니까?`,
     n(dec1(a - b)),
     `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)} 입니다.`,
   );
@@ -14002,7 +14002,7 @@ function dec237HowMuchMore(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `${n(dec1(a))} kg인 상자 A는 ${n(dec1(b))} kg인 상자 B보다 몇 kg 더 무거운가?`,
+    `${n(dec1(a))} kg인 상자 A는 ${n(dec1(b))} kg인 상자 B보다 몇 kg 더 무겁습니까?`,
     n(dec1(a - b)),
     `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)} 입니다.`,
   );
@@ -14020,7 +14020,7 @@ function dec237Need(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     // «한 통에 $8.6$ L가 필요합니다» 는 무엇을 채우는지 빠졌다(2026-10-20 교차 검수).
-    `물통 하나를 가득 채우려면 물이 ${n(dec1(need))} L 필요합니다. 지금 물통에는 물이 ${n(dec1(have))} L 있습니다. 몇 L가 모자라는가?`,
+    `물통 하나를 가득 채우려면 물이 ${n(dec1(need))} L 필요합니다. 지금 물통에는 물이 ${n(dec1(have))} L 있습니다. 몇 L가 모자랍니까?`,
     n(dec1(need - have)),
     `${expr(`${dec1(need)}-${dec1(have)}=${dec1(need - have)}`)} 입니다.`,
   );
@@ -14034,7 +14034,7 @@ function dec237Gap(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `${n(dec1(a))}과 ${n(dec1(b))}의 차는 얼마인가?`,
+    `${n(dec1(a))}과 ${n(dec1(b))}의 차는 얼마입니까?`,
     n(dec1(Math.abs(a - b))),
     `${expr(`${dec1(Math.max(a, b))}-${dec1(Math.min(a, b))}=${dec1(Math.abs(a - b))}`)} 입니다.`,
   );
@@ -14055,7 +14055,7 @@ function dec237RemainAfterTwo(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `페인트 ${n(dec1(a))} L 중에서 ${n(dec1(b))} L와 ${n(dec1(c))} L를 썼습니다. 남은 페인트는 몇 L인가?`,
+    `페인트 ${n(dec1(a))} L 중에서 ${n(dec1(b))} L와 ${n(dec1(c))} L를 썼습니다. 남은 페인트는 몇 L입니까?`,
     n(dec1(a - b - c)),
     `${expr(`${dec1(a)}-${dec1(b)}-${dec1(c)}=${dec1(a - b - c)}`)} 입니다.`,
   );
@@ -14073,7 +14073,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `직선 ㄱㄴ과 직선 ㄷㄹ이 만나서 이루는 네 각 중 한 각이 ${deg(90)}입니다. ` +
-          `나머지 ${n(3)}개의 각 중 ${n(count)}개의 각의 크기를 더하면 몇 도인가?`,
+          `나머지 ${n(3)}개의 각 중 ${n(count)}개의 각의 크기를 더하면 몇 도입니까?`,
         deg(90 * count),
         `두 직선이 수직으로 만나면 네 각이 모두 ${deg(90)}입니다. ${expr(`90\\times${count}=${90 * count}`)}`,
       );
@@ -14081,7 +14081,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        "두 직선이 만나서 이루는 각이 직각일 때 이 두 직선은 서로 무엇이라고 하는가?",
+        "두 직선이 만나서 이루는 각이 직각일 때 이 두 직선은 서로 무엇이라고 합니까?",
         "수직",
         `두 직선이 ${deg(90)}로 만나면 두 직선은 서로 수직이라고 합니다.`,
       );
@@ -14089,14 +14089,14 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        "직선 ㄱㄴ에 대한 수선은 직선 ㄱㄴ과 몇 도를 이루며 만나는가?",
+        "직선 ㄱㄴ에 대한 수선은 직선 ㄱㄴ과 몇 도를 이루며 만납니까?",
         deg(90),
         `한 직선에 대한 수선은 그 직선과 직각으로 만납니다. 직각은 ${deg(90)}입니다.`,
       );
     }
     return make(
       unit,
-      "직사각형에서 한 변에 수직인 변은 몇 개인가?",
+      "직사각형에서 한 변에 수직인 변은 몇 개입니까?",
       n(2),
       `직사각형은 네 각이 모두 직각이므로 한 변과 만나는 두 변이 모두 그 변에 수직입니다.`,
     );
@@ -14138,7 +14138,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 3) {
       return make(
         unit,
-        "평행한 두 직선을 양쪽으로 아무리 길게 늘이면 두 직선이 만나는 점은 몇 개인가?",
+        "평행한 두 직선을 양쪽으로 아무리 길게 늘이면 두 직선이 만나는 점은 몇 개입니까?",
         `${n(0)}개`,
         `평행한 두 직선은 아무리 늘여도 만나지 않습니다. 그러므로 만나는 점은 ${n(0)}개입니다.`,
       );
@@ -14146,7 +14146,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        "서로 만나지 않는 두 직선을 무엇이라고 하는가?",
+        "서로 만나지 않는 두 직선을 무엇이라고 합니까?",
         "평행선",
         "한 평면에서 아무리 늘여도 만나지 않는 두 직선을 평행하다고 하고, 그 두 직선을 평행선이라고 합니다.",
       );
@@ -14154,14 +14154,14 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        "한 직선에 수직인 두 직선은 서로 어떤 관계인가?",
+        "한 직선에 수직인 두 직선은 서로 어떤 관계입니까?",
         "평행",
         "한 직선에 수직인 두 직선은 아무리 늘여도 만나지 않으므로 서로 평행합니다.",
       );
     }
     return make(
       unit,
-      "직사각형에서 서로 평행한 변은 몇 쌍인가?",
+      "직사각형에서 서로 평행한 변은 몇 쌍입니까?",
       n(2),
       `직사각형은 마주 보는 두 변끼리 평행하므로 평행한 변이 ${n(2)}쌍 있습니다.`,
     );
@@ -14187,7 +14187,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `평행한 두 직선 사이에 수선을 그었더니 길이가 ${cm(dist)}였습니다. 이 평행선 사이의 거리는 몇 cm인가?`,
+        `평행한 두 직선 사이에 수선을 그었더니 길이가 ${cm(dist)}였습니다. 이 평행선 사이의 거리는 몇 cm입니까?`,
         cm(dist),
         `평행선 사이의 거리는 평행선 사이에 그은 수선의 길이입니다. 그러므로 ${cm(dist)}입니다.`,
         // ⚠️ **`distance` 를 안 싣는다** — 그 값이 곧 답이다. `perpCount: 1` 만 실어
@@ -14200,7 +14200,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
       const count = intBetween(rng, 2, 5);
       return make(
         unit,
-        `평행한 두 직선 사이에 수선을 ${n(count)}개 그었습니다. 이 수선들의 길이는 서로 어떠한가?`,
+        `평행한 두 직선 사이에 수선을 ${n(count)}개 그었습니다. 이 수선들의 길이는 서로 어떠합니까?`,
         "모두 같다",
         "평행선 사이에 그은 수선의 길이는 어디에서 재어도 모두 같습니다.",
       );
@@ -14208,7 +14208,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `평행선 사이의 거리가 ${cm(dist)}일 때, 두 평행선 사이에 그은 수선이 아닌 비스듬한 선분의 길이는 ` +
-        `${cm(dist)}보다 긴가, 짧은가?`,
+        `${cm(dist)}보다 깁니까, 짧습니까?`,
       "길다",
       `평행선 사이에서 가장 짧은 선분이 수선입니다. 그러므로 비스듬한 선분은 ${cm(dist)}보다 깁니다.`,
     );
@@ -14219,7 +14219,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        "평행한 변이 한 쌍이라도 있는 사각형을 무엇이라고 하는가?",
+        "평행한 변이 한 쌍이라도 있는 사각형을 무엇이라고 합니까?",
         "사다리꼴",
         "평행한 변이 한 쌍이라도 있으면 사다리꼴입니다.",
       );
@@ -14227,7 +14227,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        "평행사변형은 사다리꼴이라고 할 수 있는가? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
+        "평행사변형은 사다리꼴이라고 할 수 있습니까? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
         "예",
         "평행사변형은 평행한 변이 두 쌍이므로 한 쌍이라도 평행하다는 조건을 만족합니다. 그러므로 사다리꼴입니다.",
       );
@@ -14249,7 +14249,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `평행사변형의 한 각의 크기가 ${deg(a)}입니다. 이 각과 이웃한 각의 크기는 몇 도인가?`,
+        `평행사변형의 한 각의 크기가 ${deg(a)}입니다. 이 각과 이웃한 각의 크기는 몇 도입니까?`,
         deg(180 - a),
         `평행사변형에서 이웃한 두 각의 크기의 합은 ${deg(180)}입니다. ${expr(`180-${a}=${180 - a}`)}`,
       );
@@ -14257,7 +14257,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `평행사변형의 한 각의 크기가 ${deg(a)}입니다. 이 각과 마주 보는 각의 크기는 몇 도인가?`,
+        `평행사변형의 한 각의 크기가 ${deg(a)}입니다. 이 각과 마주 보는 각의 크기는 몇 도입니까?`,
         deg(a),
         `평행사변형은 마주 보는 두 각의 크기가 서로 같습니다. 그러므로 ${deg(a)}입니다.`,
       );
@@ -14266,7 +14266,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     const y = intBetween(rng, 3, 11);
     return make(
       unit,
-      `평행사변형에서 이웃한 두 변의 길이가 ${cm(x)}, ${cm(y)}입니다. 네 변의 길이의 합은 몇 cm인가?`,
+      `평행사변형에서 이웃한 두 변의 길이가 ${cm(x)}, ${cm(y)}입니다. 네 변의 길이의 합은 몇 cm입니까?`,
       cm((x + y) * 2),
       `평행사변형은 마주 보는 두 변의 길이가 같으므로 ${expr(`(${x}+${y})\\times2=${(x + y) * 2}`)} 입니다.`,
     );
@@ -14277,7 +14277,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        "네 변의 길이가 모두 같은 사각형을 무엇이라고 하는가?",
+        "네 변의 길이가 모두 같은 사각형을 무엇이라고 합니까?",
         "마름모",
         "네 변의 길이가 모두 같은 사각형을 마름모라고 합니다.",
       );
@@ -14286,7 +14286,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
       const side = intBetween(rng, 4, 13);
       return make(
         unit,
-        `한 변이 ${cm(side)}인 마름모의 네 변의 길이의 합은 몇 cm인가?`,
+        `한 변이 ${cm(side)}인 마름모의 네 변의 길이의 합은 몇 cm입니까?`,
         cm(side * 4),
         `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${side}\\times4=${side * 4}`)} 입니다.`,
       );
@@ -14307,7 +14307,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        "네 각이 모두 직각이고 네 변의 길이도 모두 같은 사각형을 무엇이라고 하는가?",
+        "네 각이 모두 직각이고 네 변의 길이도 모두 같은 사각형을 무엇이라고 합니까?",
         "정사각형",
         "네 각이 모두 직각인 사각형은 직사각형이고, 그중 네 변의 길이까지 같은 것이 정사각형입니다.",
       );
@@ -14315,7 +14315,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        "직사각형은 평행사변형이라고 할 수 있는가? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
+        "직사각형은 평행사변형이라고 할 수 있습니까? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
         "예",
         "직사각형은 마주 보는 두 쌍의 변이 서로 평행하므로 평행사변형입니다.",
       );
@@ -14323,7 +14323,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 2) {
       return make(
         unit,
-        "정사각형은 마름모라고 할 수 있는가? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
+        "정사각형은 마름모라고 할 수 있습니까? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
         "예",
         "정사각형은 네 변의 길이가 모두 같으므로 마름모입니다.",
       );
@@ -14331,7 +14331,7 @@ function quad(unit: UnitSeed, rng: Rng): ElemProblem {
     const side = intBetween(rng, 4, 13);
     return make(
       unit,
-      `한 변이 ${cm(side)}인 정사각형의 네 변의 길이의 합은 몇 cm인가?`,
+      `한 변이 ${cm(side)}인 정사각형의 네 변의 길이의 합은 몇 cm입니까?`,
       cm(side * 4),
       `정사각형은 네 변의 길이가 모두 같으므로 ${expr(`${side}\\times4=${side * 4}`)} 입니다.`,
     );
@@ -14408,7 +14408,7 @@ function tier241Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 서로 수직으로 ` +
-        `만납니다. 두 직선이 만나서 이루는 각 중 직각은 몇 개인가?`,
+        `만납니다. 두 직선이 만나서 이루는 각 중 직각은 몇 개입니까?`,
       `${n(4)}개`,
       `두 직선이 만나면 만나는 점에 각이 ${n(4)}개 생깁니다. 두 직선이 서로 수직이면 ` +
         `그 네 각이 모두 직각이므로 직각은 ${n(4)}개입니다.`,
@@ -14418,7 +14418,7 @@ function tier241Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 만나서 이루는 각이 ` +
-        `직각입니다. ${lineJosa(b + 1, "은", "는")} ${lineName(b)}에 대한 무엇인가?`,
+        `직각입니다. ${lineJosa(b + 1, "은", "는")} ${lineName(b)}에 대한 무엇입니까?`,
       "수선",
       `두 직선이 서로 수직으로 만날 때 한 직선을 다른 직선에 대한 수선이라고 합니다. ` +
         `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 직각으로 만나므로 ` +
@@ -14428,7 +14428,7 @@ function tier241Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineJosa(b + 1, "은", "는")} ${lineName(b)}에 대한 수선입니다. ` +
-      `${lineJosa(b, "은", "는")} ${lineName(b + 1)}에 대한 무엇인가?`,
+      `${lineJosa(b, "은", "는")} ${lineName(b + 1)}에 대한 무엇입니까?`,
     "수선",
     `${lineJosa(b + 1, "이", "가")} ${lineName(b)}에 대한 수선이면 두 직선은 서로 ` +
       `수직입니다. 수직인 두 직선은 어느 쪽에서 보아도 직각으로 만나므로 ` +
@@ -14449,7 +14449,7 @@ function tier241Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 3, 9);
   return make(
     unit,
-    `${lineName(b)}에 수선을 ${n(k)}개 그었습니다. 이때 생기는 직각은 모두 몇 개인가?`,
+    `${lineName(b)}에 수선을 ${n(k)}개 그었습니다. 이때 생기는 직각은 모두 몇 개입니까?`,
     `${n(4 * k)}개`,
     `한 점을 지나 ${lineName(b)}에 수직인 직선은 하나뿐이므로 수선 ${n(k)}개는 서로 ` +
       `다른 ${n(k)}개의 점에서 ${lineJosa(b, "과", "와")} 만납니다. 만나는 점마다 ` +
@@ -14476,7 +14476,7 @@ function tier241Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${lineName(b)}에 수선을 ${n(k)}개 그었습니다. 이때 생긴 직각 중 ` +
-        `${n(painted)}개에 색칠했습니다. 색칠하지 않은 직각은 몇 개인가?`,
+        `${n(painted)}개에 색칠했습니다. 색칠하지 않은 직각은 몇 개입니까?`,
       `${n(total - painted)}개`,
       `수선 한 개마다 직각이 ${n(4)}개씩 생기므로 직각은 모두 ` +
         `${expr(`4\\times${k}=${total}`)} 개입니다. ` +
@@ -14488,7 +14488,7 @@ function tier241Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineName(b)}에 수선을 ${n(k)}개 그은 다음 수선을 ${n(more)}개 더 ` +
-      `그었습니다. ${lineName(b)}에 생긴 직각은 모두 몇 개인가?`,
+      `그었습니다. ${lineName(b)}에 생긴 직각은 모두 몇 개입니까?`,
     `${n(4 * (k + more))}개`,
     `그은 수선은 모두 ${expr(`${k}+${more}=${k + more}`)} 개입니다. 수선 한 개마다 ` +
       `직각이 ${n(4)}개씩 생기므로 ${expr(`4\\times${k + more}=${4 * (k + more)}`)} ` +
@@ -14518,7 +14518,7 @@ function tier241Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       unit,
       `${lineName(b)}에 수선을 몇 개 그었더니 직각이 모두 ${n(had)}개 생겼습니다. ` +
         `여기에 수선을 ${n(extra)}개 더 그으면 수선이 ${lineJosa(b, "과", "와")} ` +
-        `만나는 점은 모두 몇 개가 되는가?`,
+        `만나는 점은 모두 몇 개가 됩니까?`,
       `${n(first + extra)}개`,
       `수선 한 개마다 직각이 ${n(4)}개씩 생기므로 처음에 그은 수선은 ` +
         `${expr(`${had}\\div4=${first}`)} 개입니다. 여기에 ${n(extra)}개를 더 그으면 ` +
@@ -14531,7 +14531,7 @@ function tier241Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineName(b)}에 수선을 몇 개 그었더니 직각이 모두 ${n(had)}개 생겼습니다. ` +
-      `직각이 모두 ${n(want)}개가 되게 하려면 수선을 몇 개 더 그어야 하는가?`,
+      `직각이 모두 ${n(want)}개가 되게 하려면 수선을 몇 개 더 그어야 합니까?`,
     `${n(extra)}개`,
     `더 생겨야 하는 직각은 ${expr(`${want}-${had}=${4 * extra}`)} 개입니다. 수선 한 ` +
       `개마다 직각이 ${n(4)}개씩 생기므로 ${expr(`${4 * extra}\\div4=${extra}`)} 이고 ` +
@@ -14622,7 +14622,7 @@ function tier242Calc(unit: UnitSeed, rng: Rng): ElemProblem {
       unit,
       `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "은", "는")} 서로 수직이고, ` +
         `${lineJosa(b + 1, "과", "와")} ${lineName(b + 2)}도 서로 수직입니다. ` +
-        `${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 어떤 관계인가?`,
+        `${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 어떤 관계입니까?`,
       "평행",
       `${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} 둘 다 ` +
         `${lineName(b + 1)}에 대한 수선입니다. 한 직선에 수직인 두 직선은 서로 ` +
@@ -14635,7 +14635,7 @@ function tier242Calc(unit: UnitSeed, rng: Rng): ElemProblem {
       `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "은", "는")} 서로 평행하고, ` +
         `${lineJosa(b + 1, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 ` +
         `수직입니다. ${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} ` +
-        `서로 어떤 관계인가?`,
+        `서로 어떤 관계입니까?`,
       "수직",
       `${lineJosa(b + 2, "은", "는")} ${lineName(b + 1)}에 수직입니다. ` +
         `${lineJosa(b, "은", "는")} ${lineJosa(b + 1, "과", "와")} 평행해서 방향이 ` +
@@ -14648,7 +14648,7 @@ function tier242Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "은", "는")} 서로 수직이고, ` +
       `${lineJosa(b + 1, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 ` +
       `평행합니다. ${lineJosa(b, "과", "와")} ${lineJosa(b + 2, "은", "는")} ` +
-      `서로 어떤 관계인가?`,
+      `서로 어떤 관계입니까?`,
     "수직",
     `${lineJosa(b + 2, "은", "는")} ${lineJosa(b + 1, "과", "와")} 평행해서 방향이 ` +
       `같습니다. ${lineJosa(b, "은", "는")} ${lineName(b + 1)}에 수직이므로 ` +
@@ -14674,7 +14674,7 @@ function tier242Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${lineList(b, links + 1)}가 있습니다. ${pairs.join(", ")}가 각각 서로 ` +
       `수직입니다. ${lineJosa(b, "과", "와")} ${lineJosa(b + links, "은", "는")} ` +
-      `서로 어떤 관계인가?`,
+      `서로 어떤 관계입니까?`,
     even ? "평행" : "수직",
     `수직으로 한 번 꺾일 때마다 직선의 방향이 바뀝니다. ${lineName(b)}에서 ` +
       `${lineName(b + links)}까지 수직으로 ${n(links)}번 꺾였으므로 ` +
@@ -14702,7 +14702,7 @@ function tier242Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     `직선 ${n(count)}개가 ${LINE_NAMES.slice(b, b + count).join(", ")} 순서로 ` +
       `있습니다. 이웃한 두 직선끼리는 모두 서로 수직입니다. ` +
       `${lineJosa(b, "과", "와")} 서로 ${wantParallel ? "평행한" : "수직인"} 직선은 ` +
-      `${lineJosa(b, "을", "를")} 빼고 모두 몇 개인가?`,
+      `${lineJosa(b, "을", "를")} 빼고 모두 몇 개입니까?`,
     `${n(hits.length)}개`,
     `수직으로 한 번 꺾일 때마다 방향이 바뀌므로 ${lineName(b)}에서 ` +
       `${wantParallel ? "짝수" : "홀수"} 번 꺾인 직선이 ${lineJosa(b, "과", "와")} ` +
@@ -14731,7 +14731,7 @@ function tier242Deep(unit: UnitSeed, rng: Rng): ElemProblem {
       `${lineName(b + 3)}도 서로 수직입니다. ${lineJosa(b, "과", "와")} ` +
       `${lineJosa(b + 3, "이", "가")} 서로 ${word}하려면 ` +
       `${lineJosa(b + 1, "과", "와")} ${lineJosa(b + 2, "은", "는")} 서로 어떤 ` +
-      `관계여야 하는가?`,
+      `관계여야 합니까?`,
     word,
     `${lineName(b)}에서 ${lineName(b + 1)}로, ${lineName(b + 2)}에서 ` +
       `${lineName(b + 3)}로 수직으로 한 번씩 꺾이므로 이 둘만으로는 방향이 처음으로 ` +
@@ -14779,7 +14779,7 @@ function tier243Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `평행한 두 직선 사이에 수선을 그었더니 그 수선의 길이가 ${cm(dist)}였습니다. ` +
-        `이 두 직선 사이의 거리는 몇 cm인가?`,
+        `이 두 직선 사이의 거리는 몇 cm입니까?`,
       cm(dist),
       `평행선 사이의 거리는 평행선 사이에 그은 수선의 길이입니다. ` +
         `그러므로 ${cm(dist)}입니다.`,
@@ -14788,7 +14788,7 @@ function tier243Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `평행한 두 직선 사이의 거리가 ${cm(dist)}입니다. 이 두 직선 사이에 그은 수선의 ` +
-      `길이는 몇 cm인가?`,
+      `길이는 몇 cm입니까?`,
     cm(dist),
     `평행선 사이에 그은 수선의 길이가 곧 평행선 사이의 거리입니다. ` +
       `그러므로 ${cm(dist)}입니다.`,
@@ -14808,7 +14808,7 @@ function tier243Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `직선 가, 직선 나, 직선 다가 이 순서로 나란히 놓여 있고 세 직선은 모두 서로 ` +
       `평행합니다. 직선 가와 직선 나 사이의 거리는 ${cm(near)}, 직선 나와 직선 다 사이의 ` +
-      `거리는 ${cm(far)}입니다. 직선 가와 직선 다 사이의 거리는 몇 cm인가?`,
+      `거리는 ${cm(far)}입니다. 직선 가와 직선 다 사이의 거리는 몇 cm입니까?`,
     cm(near + far),
     `직선 나가 직선 가와 직선 다 사이에 있으므로 두 거리를 더하면 됩니다. ` +
       `${expr(`${near}+${far}=${near + far}`)} 이므로 ${cm(near + far)}입니다.`,
@@ -14833,7 +14833,7 @@ function tier243Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     `직선 가, 직선 나, 직선 다가 이 순서로 나란히 놓여 있고 세 직선은 모두 서로 ` +
       `평행합니다. 직선 가와 직선 나 사이의 거리는 ${cm(near)}이고, 직선 나와 직선 다 ` +
       `사이의 거리는 그보다 ${cm(diff)} 더 ${farther ? "깁니다" : "짧습니다"}. ` +
-      `직선 가와 직선 다 사이의 거리는 몇 cm인가?`,
+      `직선 가와 직선 다 사이의 거리는 몇 cm입니까?`,
     cm(near + far),
     `직선 나와 직선 다 사이의 거리는 ` +
       `${expr(`${near}${farther ? "+" : "-"}${diff}=${far}`)} 입니다. ` +
@@ -14870,7 +14870,7 @@ function tier243Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `직선 가, 직선 나, 직선 다가 이 순서로 나란히 놓여 있고 세 직선은 모두 서로 ` +
       `평행합니다. ${drawn} 사이에 수선을 ${n(count)}개 그었더니 그 수선들의 길이의 ` +
       `합이 ${cm(sum)}였습니다. 직선 가와 직선 다 사이의 거리가 ${cm(total)}일 때, ` +
-      `${wanted} 사이의 거리는 몇 cm인가?`,
+      `${wanted} 사이의 거리는 몇 cm입니까?`,
     cm(asked),
     `평행선 사이에 그은 수선의 길이는 어디에서 재어도 모두 같으므로 수선 한 개의 길이는 ` +
       `${expr(`${sum}\\div${count}=${measured}`)} 입니다. 이것이 ${drawn} 사이의 ` +
@@ -14939,7 +14939,7 @@ function tier244Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `사다리꼴 모양의 ${josa(item, "이", "가")} 있습니다. 평행한 두 변의 길이가 ` +
       `${cm(short)}, ${cm(long)}이고 나머지 두 변의 길이가 ${cm(legA)}, ${cm(legB)}입니다. ` +
-      `네 변의 길이의 합은 몇 cm인가?`,
+      `네 변의 길이의 합은 몇 cm입니까?`,
     cm(total),
     `${expr(`${short}+${long}+${legA}+${legB}=${total}`)} 이므로 ${cm(total)}입니다.`,
   );
@@ -14969,7 +14969,7 @@ function tier244Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `사다리꼴 모양의 ${josa(item, "이", "가")} 있습니다. 네 변의 길이의 합이 ${cm(total)}이고, ` +
       `평행하지 않은 두 변의 길이가 ${cm(legA)}, ${cm(legB)}입니다. ` +
-      `평행한 두 변의 길이의 합은 몇 cm인가?`,
+      `평행한 두 변의 길이의 합은 몇 cm입니까?`,
     cm(short + long),
     `평행하지 않은 두 변의 길이의 합은 ${expr(`${legA}+${legB}=${legA + legB}`)} 입니다. ` +
       `${expr(`${total}-${legA + legB}=${short + long}`)} 이므로 ${cm(short + long)}입니다.`,
@@ -15006,7 +15006,7 @@ function tier244Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `사다리꼴의 네 변의 길이의 합이 ${cm(total)}입니다. 평행하지 않은 두 변의 길이는 ` +
       `각각 ${cm(leg)}로 같고, 평행한 두 변 중 긴 변은 짧은 변보다 ${cm(gap)} 깁니다. ` +
-      `긴 변의 길이는 몇 cm인가?`,
+      `긴 변의 길이는 몇 cm입니까?`,
     cm(long),
     `평행한 두 변의 길이의 합은 ${expr(`${total}-${leg}-${leg}=${short + long}`)} 입니다. ` +
       `짧은 변을 ${expr("\\square")}라고 하면 ` +
@@ -15043,7 +15043,7 @@ function tier245Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `평행사변형입니다. 한 변의 길이가 ${cm(side)}일 때 그 변과 마주 보는 변의 길이는 ` +
-      `몇 cm인가?`,
+      `몇 cm입니까?`,
     cm(side),
     `평행사변형은 마주 보는 두 변의 길이가 서로 같습니다. 그러므로 ${cm(side)}입니다.`,
     // 적힌 변은 하나뿐이다 — 마주 보는 변은 **그림에서 같게 그려지고** 라벨은 없다.
@@ -15079,7 +15079,7 @@ function tier245Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `평행사변형의 네 변의 길이의 합이 ${cm((a + b) * 2)}이고 한 변의 길이가 ${cm(a)}입니다. ` +
-      `이 변과 이웃한 변의 길이는 몇 cm인가?`,
+      `이 변과 이웃한 변의 길이는 몇 cm입니까?`,
     cm(b),
     `평행사변형은 마주 보는 두 변의 길이가 같으므로 이웃한 두 변의 길이의 합은 ` +
       `${expr(`${(a + b) * 2}\\div2=${a + b}`)} 입니다. ` +
@@ -15100,7 +15100,7 @@ function tier245Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `평행사변형에서 이웃한 두 각의 크기의 차가 ${deg(gap)}입니다. ` +
-      `두 각 중 큰 각의 크기는 몇 도인가?`,
+      `두 각 중 큰 각의 크기는 몇 도입니까?`,
     deg(small + gap),
     `평행사변형은 이웃한 두 각의 크기의 합이 ${deg(180)}입니다. 작은 각을 ` +
       `${expr("\\square")}라고 하면 ${expr(`\\square+(\\square+${gap})=180`)} 이므로 ` +
@@ -15116,7 +15116,7 @@ function tier246Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `마름모 모양의 ${josa(item, "이", "가")} 있습니다. 네 변의 길이의 합이 ` +
-      `${cm(side * 4)}일 때 한 변의 길이는 몇 cm인가?`,
+      `${cm(side * 4)}일 때 한 변의 길이는 몇 cm입니까?`,
     cm(side),
     `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${side * 4}\\div4=${side}`)} 입니다.`,
     // ⚠️ **그림을 안 붙인다 — 두 부류가 동시에 걸리는 자리다.**
@@ -15142,7 +15142,7 @@ function tier246Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `한 변의 길이가 ${cm(rhombus)}인 마름모와 한 변의 길이가 ${cm(triangle)}인 정삼각형이 ` +
-      `있습니다. 두 도형 중 모든 변의 길이의 합이 더 긴 것은 무엇인가?`,
+      `있습니다. 두 도형 중 모든 변의 길이의 합이 더 긴 것은 무엇입니까?`,
     bigger,
     `마름모는 네 변의 길이가 모두 같으므로 ${expr(`${rhombus}\\times4=${rhombus * 4}`)}, ` +
       `정삼각형은 세 변의 길이가 모두 같으므로 ${expr(`${triangle}\\times3=${triangle * 3}`)} 입니다. ` +
@@ -15157,7 +15157,7 @@ function tier246Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `마름모의 네 변의 길이의 합이 ${cm(side * 4)}입니다. 이 마름모의 한 변과 길이가 같은 ` +
-      `변을 가진 정삼각형의 세 변의 길이의 합은 몇 cm인가?`,
+      `변을 가진 정삼각형의 세 변의 길이의 합은 몇 cm입니까?`,
     cm(side * 3),
     `마름모의 한 변은 ${expr(`${side * 4}\\div4=${side}`)} 입니다. ` +
       `정삼각형은 세 변의 길이가 모두 같으므로 ${expr(`${side}\\times3=${side * 3}`)} 입니다.`,
@@ -15180,7 +15180,7 @@ function tier246Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `어떤 마름모의 각 변을 ${cm(more)}씩 늘여 새로운 마름모를 만들었더니 ` +
       `네 변의 길이의 합이 ${cm(grown)}가 되었습니다. ` +
-      `처음 마름모의 한 변의 길이는 몇 cm인가?`,
+      `처음 마름모의 한 변의 길이는 몇 cm입니까?`,
     cm(side),
     `새로운 마름모의 한 변은 ${expr(`${grown}\\div4=${side + more}`)} 입니다. ` +
       `각 변을 ${cm(more)}씩 늘인 것이므로 처음 마름모의 한 변은 ` +
@@ -15230,8 +15230,8 @@ function tier247Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${josa(q.name, "은", "는")} ${others.join(", ")} 중에서 ` +
       (asksCount
-        ? "몇 가지라고 할 수 있는가?"
-        : "무엇이라고도 할 수 있는가? 모두 쓰시오."),
+        ? "몇 가지라고 할 수 있습니까?"
+        : "무엇이라고도 할 수 있습니까? 모두 쓰시오."),
     asksCount ? `${n(q.also.length)}가지` : q.also.join(", "),
     asksCount ? `${why} 그러므로 ${n(q.also.length)}가지입니다.` : why,
   );
@@ -15351,7 +15351,7 @@ function quad241Name(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 직각으로 만날 때 두 직선은 서로 무엇이라고 하는가?`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 직각으로 만날 때 두 직선은 서로 무엇이라고 합니까?`,
     "수직",
     `두 직선이 ${deg(90)}로 만나면 서로 수직입니다.`,
   );
@@ -15361,7 +15361,7 @@ function quad241RightCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만나면 생기는 직각은 모두 몇 개인가?`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만나면 생기는 직각은 모두 몇 개입니까?`,
     n(4),
     `만나는 점 주위로 직각이 ${n(4)}개 생깁니다.`,
   );
@@ -15371,7 +15371,7 @@ function quad241OneAngle(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만날 때 한 각의 크기는 몇 도인가?`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만날 때 한 각의 크기는 몇 도입니까?`,
     deg(90),
     `수직으로 만나면 각의 크기는 ${deg(90)}입니다.`,
   );
@@ -15382,7 +15382,7 @@ function quad241Sum3(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만나서 생긴 네 각 가운데 ${n(k)}개의 각의 크기를 더하면 몇 도인가?`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만나서 생긴 네 각 가운데 ${n(k)}개의 각의 크기를 더하면 몇 도입니까?`,
     deg(90 * k),
     `${expr(`90\\times${k}=${90 * k}`)} 입니다.`,
   );
@@ -15392,7 +15392,7 @@ function quad241NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만날 때 직각이 아닌 각이 있는가? '예' 또는 '아니요'로 답하시오.`,
+    `${lineJosa(b, "과", "와")} ${lineJosa(b + 1, "이", "가")} 수직으로 만날 때 직각이 아닌 각이 있습니까? '예' 또는 '아니요'로 답하시오.`,
     "아니요",
     `네 각이 모두 직각입니다.`,
   );
@@ -15402,7 +15402,7 @@ function quad241PerpName(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = lineBase(rng, 2);
   return make(
     unit,
-    `${lineName(b)}에 수직인 직선을 무엇이라고 하는가?`,
+    `${lineName(b)}에 수직인 직선을 무엇이라고 합니까?`,
     "수선",
     `한 직선에 수직인 직선이 수선입니다.`,
   );
@@ -15411,7 +15411,7 @@ function quad241PerpName(unit: UnitSeed, rng: Rng): ElemProblem {
 function quad242Name(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `그림처럼 아무리 늘여도 만나지 않는 두 직선을 무엇이라고 하는가?`,
+    `그림처럼 아무리 늘여도 만나지 않는 두 직선을 무엇이라고 합니까?`,
     "평행",
     `만나지 않는 두 직선은 서로 평행합니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 1 }),
@@ -15422,7 +15422,7 @@ function quad242Dist(unit: UnitSeed, rng: Rng): ElemProblem {
   const dist = intBetween(rng, 3, 12);
   return make(
     unit,
-    `평행한 두 직선 사이에 그은 수선의 길이가 ${cm(dist)}입니다. 두 직선 사이의 거리는 몇 cm인가?`,
+    `평행한 두 직선 사이에 그은 수선의 길이가 ${cm(dist)}입니다. 두 직선 사이의 거리는 몇 cm입니까?`,
     cm(dist),
     `평행선 사이의 거리는 수선의 길이이므로 ${cm(dist)}입니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 1 }),
@@ -15432,7 +15432,7 @@ function quad242Dist(unit: UnitSeed, rng: Rng): ElemProblem {
 function quad242Same(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `평행선 사이에 그은 수선의 길이는 모두 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `평행선 사이에 그은 수선의 길이는 모두 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `평행선 사이의 수선의 길이는 모두 같습니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 2 }),
@@ -15442,7 +15442,7 @@ function quad242Same(unit: UnitSeed): ElemProblem {
 function quad242Meet(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `그림처럼 평행한 두 직선을 늘이면 만나는가? '예' 또는 '아니요'로 답하시오.`,
+    `그림처럼 평행한 두 직선을 늘이면 만납니까? '예' 또는 '아니요'로 답하시오.`,
     "아니요",
     `평행한 두 직선은 만나지 않습니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 1 }),
@@ -15453,7 +15453,7 @@ function quad242PerpCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 5);
   return make(
     unit,
-    "그림에서 평행한 두 직선 사이에 그은 수선은 모두 몇 개인가?",
+    "그림에서 평행한 두 직선 사이에 그은 수선은 모두 몇 개입니까?",
     n(k),
     `그은 수선은 ${n(k)}개입니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: k }),
@@ -15463,7 +15463,7 @@ function quad242PerpCount(unit: UnitSeed, rng: Rng): ElemProblem {
 function quad242Angle(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `그림에서 평행선에 그은 수선이 이루는 각의 크기는 몇 도인가?`,
+    `그림에서 평행선에 그은 수선이 이루는 각의 크기는 몇 도입니까?`,
     deg(90),
     `수선이므로 각의 크기는 ${deg(90)}입니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 1 }),
@@ -15475,7 +15475,7 @@ function quad243Sum(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 3, 9);
   return make(
     unit,
-    `세 평행선에서 이웃한 두 거리의 합이 ${cm(a)}와 ${cm(b)}일 때 양쪽 직선 사이의 거리는 몇 cm인가?`,
+    `세 평행선에서 이웃한 두 거리의 합이 ${cm(a)}와 ${cm(b)}일 때 양쪽 직선 사이의 거리는 몇 cm입니까?`,
     cm(a + b),
     `${expr(`${a}+${b}=${a + b}`)} 이므로 ${cm(a + b)}입니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 1 }),
@@ -15486,7 +15486,7 @@ function quad243One(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = intBetween(rng, 4, 15);
   return make(
     unit,
-    `평행선 사이의 거리가 ${cm(d)}일 때 그 사이에 그은 수선의 길이는 몇 cm인가?`,
+    `평행선 사이의 거리가 ${cm(d)}일 때 그 사이에 그은 수선의 길이는 몇 cm입니까?`,
     cm(d),
     `거리는 수선의 길이와 같으므로 ${cm(d)}입니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 1 }),
@@ -15498,7 +15498,7 @@ function quad243Farther(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = a + intBetween(rng, 2, 6);
   return make(
     unit,
-    `직선 가와 나 사이의 거리는 ${cm(a)}, 나와 다 사이의 거리는 ${cm(b)}입니다. 더 먼 쪽의 거리는 몇 cm인가?`,
+    `직선 가와 나 사이의 거리는 ${cm(a)}, 나와 다 사이의 거리는 ${cm(b)}입니다. 더 먼 쪽의 거리는 몇 cm입니까?`,
     cm(b),
     `${cm(b)}이 ${cm(a)}보다 멉니다.`,
   );
@@ -15509,7 +15509,7 @@ function quad243Diff(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 2, a - 1);
   return make(
     unit,
-    `두 평행선 사이의 거리가 ${cm(a)}와 ${cm(b)}입니다. 두 거리의 차는 몇 cm인가?`,
+    `두 평행선 사이의 거리가 ${cm(a)}와 ${cm(b)}입니다. 두 거리의 차는 몇 cm입니까?`,
     cm(a - b),
     `${expr(`${a}-${b}=${a - b}`)} 이므로 ${cm(a - b)}입니다.`,
   );
@@ -15518,7 +15518,7 @@ function quad243Diff(unit: UnitSeed, rng: Rng): ElemProblem {
 function quad243Equal(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `평행선에서 어디에 수선을 그어도 길이가 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `평행선에서 어디에 수선을 그어도 길이가 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `평행선 사이의 거리는 어디서 재어도 같습니다.`,
     fig("lineRelation", { relation: "parallel", perpCount: 2 }),
@@ -15529,7 +15529,7 @@ function quad243Triple(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = intBetween(rng, 2, 6);
   return make(
     unit,
-    `세 평행선이 같은 간격 ${cm(a)}로 놓여 있습니다. 양쪽 직선 사이의 거리는 몇 cm인가?`,
+    `세 평행선이 같은 간격 ${cm(a)}로 놓여 있습니다. 양쪽 직선 사이의 거리는 몇 cm입니까?`,
     cm(a * 2),
     `${expr(`${a}\\times2=${a * 2}`)} 이므로 ${cm(a * 2)}입니다.`,
   );
@@ -15552,7 +15552,7 @@ function quad244Pick(unit: UnitSeed, rng: Rng): ElemProblem {
 function quad244Pairs(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `사다리꼴에서 평행한 변은 몇 쌍인가?`,
+    `사다리꼴에서 평행한 변은 몇 쌍입니까?`,
     `${n(1)}쌍`,
     `사다리꼴은 평행한 변이 ${n(1)}쌍입니다.`,
     fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
@@ -15563,7 +15563,7 @@ function quad244Perim(unit: UnitSeed, rng: Rng): ElemProblem {
   const { short, long, legA, legB } = trapSides(rng);
   return make(
     unit,
-    `네 변의 길이가 ${cm(short)}, ${cm(long)}, ${cm(legA)}, ${cm(legB)}인 사다리꼴의 네 변의 길이의 합은 몇 cm인가?`,
+    `네 변의 길이가 ${cm(short)}, ${cm(long)}, ${cm(legA)}, ${cm(legB)}인 사다리꼴의 네 변의 길이의 합은 몇 cm입니까?`,
     cm(short + long + legA + legB),
     `${expr(`${short}+${long}+${legA}+${legB}=${short + long + legA + legB}`)} 입니다.`,
   );
@@ -15572,7 +15572,7 @@ function quad244Perim(unit: UnitSeed, rng: Rng): ElemProblem {
 function quad244Name(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `그림처럼 평행한 변이 한 쌍만 있는 사각형을 무엇이라고 하는가?`,
+    `그림처럼 평행한 변이 한 쌍만 있는 사각형을 무엇이라고 합니까?`,
     "사다리꼴",
     `평행한 변이 한 쌍인 사각형은 사다리꼴입니다.`,
     fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
@@ -15582,7 +15582,7 @@ function quad244Name(unit: UnitSeed): ElemProblem {
 function quad244Vertices(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `사다리꼴의 꼭짓점은 몇 개인가?`,
+    `사다리꼴의 꼭짓점은 몇 개입니까?`,
     n(4),
     `사각형의 꼭짓점은 ${n(4)}개입니다.`,
     fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
@@ -15592,7 +15592,7 @@ function quad244Vertices(unit: UnitSeed): ElemProblem {
 function quad244Sides(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `사다리꼴에서 평행하지 않은 변은 몇 개인가?`,
+    `사다리꼴에서 평행하지 않은 변은 몇 개입니까?`,
     n(2),
     `사다리꼴은 평행한 변이 ${n(1)}쌍이고 평행하지 않은 변은 ${n(2)}개입니다.`,
     fig("namedShapes", { items: [{ shape: "trap", label: "가" }] }),
@@ -15603,7 +15603,7 @@ function quad245OppSide(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 4, 15);
   return make(
     unit,
-    `평행사변형의 한 변의 길이가 ${cm(s)}입니다. 마주 보는 변의 길이는 몇 cm인가?`,
+    `평행사변형의 한 변의 길이가 ${cm(s)}입니다. 마주 보는 변의 길이는 몇 cm입니까?`,
     cm(s),
     `평행사변형은 마주 보는 두 변의 길이가 같습니다.`,
     paraFigure({ sides: [`${s} cm`, null, null, null] }),
@@ -15614,7 +15614,7 @@ function quad245NeighborSum(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = pick(rng, [50, 60, 70, 80, 100, 110, 120]);
   return make(
     unit,
-    `평행사변형의 한 각이 ${deg(a)}입니다. 이웃한 각의 크기는 몇 도인가?`,
+    `평행사변형의 한 각이 ${deg(a)}입니다. 이웃한 각의 크기는 몇 도입니까?`,
     deg(180 - a),
     `${expr(`180-${a}=${180 - a}`)} 입니다.`,
     paraFigure({ angles: [`${a}°`, null, null, null] }),
@@ -15625,7 +15625,7 @@ function quad245OppAngle(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = pick(rng, [50, 60, 70, 80, 100, 110, 120]);
   return make(
     unit,
-    `평행사변형의 한 각이 ${deg(a)}입니다. 마주 보는 각의 크기는 몇 도인가?`,
+    `평행사변형의 한 각이 ${deg(a)}입니다. 마주 보는 각의 크기는 몇 도입니까?`,
     deg(a),
     `평행사변형은 마주 보는 두 각의 크기가 같습니다.`,
     paraFigure({ angles: [`${a}°`, null, null, null] }),
@@ -15637,7 +15637,7 @@ function quad245Perim(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 3, 11);
   return make(
     unit,
-    `이웃한 두 변의 길이가 ${cm(a)}, ${cm(b)}인 평행사변형의 네 변의 길이의 합은 몇 cm인가?`,
+    `이웃한 두 변의 길이가 ${cm(a)}, ${cm(b)}인 평행사변형의 네 변의 길이의 합은 몇 cm입니까?`,
     cm((a + b) * 2),
     `${expr(`(${a}+${b})\\times2=${(a + b) * 2}`)} 입니다.`,
   );
@@ -15646,7 +15646,7 @@ function quad245Perim(unit: UnitSeed, rng: Rng): ElemProblem {
 function quad245Vertices(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `평행사변형의 꼭짓점은 몇 개인가?`,
+    `평행사변형의 꼭짓점은 몇 개입니까?`,
     n(4),
     `사각형의 꼭짓점은 ${n(4)}개입니다.`,
     paraFigure({}),
@@ -15656,7 +15656,7 @@ function quad245Vertices(unit: UnitSeed): ElemProblem {
 function quad245Name(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `그림처럼 마주 보는 두 쌍의 변이 각각 평행한 사각형을 무엇이라고 하는가?`,
+    `그림처럼 마주 보는 두 쌍의 변이 각각 평행한 사각형을 무엇이라고 합니까?`,
     "평행사변형",
     `마주 보는 두 쌍의 변이 평행한 사각형은 평행사변형입니다.`,
     paraFigure({}),
@@ -15667,7 +15667,7 @@ function quad246Side(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 4, 15);
   return make(
     unit,
-    `마름모의 한 변의 길이가 ${cm(s)}입니다. 다른 한 변의 길이는 몇 cm인가?`,
+    `마름모의 한 변의 길이가 ${cm(s)}입니다. 다른 한 변의 길이는 몇 cm입니까?`,
     cm(s),
     `마름모는 네 변의 길이가 모두 같습니다.`,
     fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
@@ -15678,7 +15678,7 @@ function quad246Perim(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 4, 15);
   return make(
     unit,
-    `한 변이 ${cm(s)}인 마름모의 네 변의 길이의 합은 몇 cm인가?`,
+    `한 변이 ${cm(s)}인 마름모의 네 변의 길이의 합은 몇 cm입니까?`,
     cm(s * 4),
     `${expr(`${s}\\times4=${s * 4}`)} 입니다.`,
     fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
@@ -15700,7 +15700,7 @@ function quad246FromPerim(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 4, 15);
   return make(
     unit,
-    `네 변의 길이의 합이 ${cm(s * 4)}인 마름모의 한 변은 몇 cm인가?`,
+    `네 변의 길이의 합이 ${cm(s * 4)}인 마름모의 한 변은 몇 cm입니까?`,
     cm(s),
     `${expr(`${s * 4}\\div4=${s}`)} 입니다.`,
   );
@@ -15709,7 +15709,7 @@ function quad246FromPerim(unit: UnitSeed, rng: Rng): ElemProblem {
 function quad246AllEqual(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `마름모의 네 변의 길이는 모두 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `마름모의 네 변의 길이는 모두 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `마름모는 네 변의 길이가 모두 같습니다.`,
     fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
@@ -15719,7 +15719,7 @@ function quad246AllEqual(unit: UnitSeed): ElemProblem {
 function quad246Vertices(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `마름모의 꼭짓점은 몇 개인가?`,
+    `마름모의 꼭짓점은 몇 개입니까?`,
     n(4),
     `사각형의 꼭짓점은 ${n(4)}개입니다.`,
     fig("namedShapes", { items: [{ shape: "tallDiamond", label: "가" }] }),
@@ -15729,7 +15729,7 @@ function quad246Vertices(unit: UnitSeed): ElemProblem {
 function quad247SqIsRect(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `정사각형은 직사각형이라고 할 수 있는가? '예' 또는 '아니요'로 답하시오.`,
+    `정사각형은 직사각형이라고 할 수 있습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `정사각형은 네 각이 모두 직각이므로 직사각형입니다.`,
     fig("markedShape", { shape: "square" }),
@@ -15739,7 +15739,7 @@ function quad247SqIsRect(unit: UnitSeed): ElemProblem {
 function quad247NameRight(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `그림처럼 네 각의 크기가 모두 직각인 사각형을 무엇이라고 하는가?`,
+    `그림처럼 네 각의 크기가 모두 직각인 사각형을 무엇이라고 합니까?`,
     "직사각형",
     `네 각이 모두 직각인 사각형은 직사각형입니다.`,
     fig("markedShape", { shape: "rect" }),
@@ -15749,7 +15749,7 @@ function quad247NameRight(unit: UnitSeed): ElemProblem {
 function quad247NameEq(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `그림처럼 네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형을 무엇이라고 하는가?`,
+    `그림처럼 네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형을 무엇이라고 합니까?`,
     "정사각형",
     `네 변의 길이가 같고 네 각이 직각인 사각형은 정사각형입니다.`,
     fig("markedShape", { shape: "square" }),
@@ -15760,7 +15760,7 @@ function quad247SqSide(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 4, 15);
   return make(
     unit,
-    `한 변이 ${cm(s)}인 정사각형의 네 변의 길이의 합은 몇 cm인가?`,
+    `한 변이 ${cm(s)}인 정사각형의 네 변의 길이의 합은 몇 cm입니까?`,
     cm(s * 4),
     `${expr(`${s}\\times4=${s * 4}`)} 입니다.`,
     fig("markedShape", { shape: "square" }),
@@ -15772,7 +15772,7 @@ function quad247RectPerim(unit: UnitSeed, rng: Rng): ElemProblem {
   const h = intBetween(rng, 3, w - 1);
   return make(
     unit,
-    `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형의 네 변의 길이의 합은 몇 cm인가?`,
+    `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형의 네 변의 길이의 합은 몇 cm입니까?`,
     cm((w + h) * 2),
     `${expr(`(${w}+${h})\\times2=${(w + h) * 2}`)} 입니다.`,
     fig("markedShape", { shape: "rect" }),
@@ -15783,7 +15783,7 @@ function quad247SqFromPerim(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 4, 15);
   return make(
     unit,
-    `네 변의 길이의 합이 ${cm(s * 4)}인 정사각형의 한 변은 몇 cm인가?`,
+    `네 변의 길이의 합이 ${cm(s * 4)}인 정사각형의 한 변은 몇 cm입니까?`,
     cm(s),
     `${expr(`${s * 4}\\div4=${s}`)} 입니다.`,
     fig("markedShape", { shape: "square" }),
@@ -16038,7 +16038,7 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
       const label = theme.labels[at]!;
       return make(
         unit,
-        `${intro} ${label.math}의 ${josa(theme.topic, "은", "는")} 몇 ${theme.unit}인가?`,
+        `${intro} ${label.math}의 ${josa(theme.topic, "은", "는")} 몇 ${theme.unit}입니까?`,
         `${n(nums[at]!)}${theme.unit}`,
         // ⚠️ 「**눈금** ${v} 에 있으므로」 라고 쓰지 않는다. 꺾은선 값은 `theme.step` 의
         // 배수인데 **그려지는 눈금은 `_y_step` 이 따로 정하므로**(대개 더 성기다) 값이
@@ -16050,7 +16050,7 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${intro} ${theme.topic}의 값이 가장 큰 때는 언제인가?`,
+      `${intro} ${theme.topic}의 값이 가장 큰 때는 언제입니까?`,
       topLabel.math,
       `점이 가장 높이 찍힌 때는 ${topLabel.math}이고 그때의 값은 ${n(max)}${theme.unit}입니다.`,
       figure,
@@ -16070,7 +16070,7 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
       const change = Math.abs(nums[at + 1]! - nums[at]!);
       return make(
         unit,
-        `${intro} ${theme.topic}의 값이 가장 많이 변한 때는 어느 때와 어느 때 사이인가?`,
+        `${intro} ${theme.topic}의 값이 가장 많이 변한 때는 어느 때와 어느 때 사이입니까?`,
         // 때 이름 뒤 「과/와」는 **낱말의 받침**이 정한다 — 「$3$월과」·「$9$시와」.
         // 「과」로 박아 두어 「$12$시과」가 나가고 있었다(2-5 갈래 작업 중 실측, 695자리 중 1).
         // 수 뒤 조사(R조사)는 이 자리를 구조적으로 못 본다 — 조사가 붙은 것이 수가 아니라 낱말이다.
@@ -16086,7 +16086,7 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${intro} ${theme.labels[theme.labels.length - 1]!.math}의 값은 ` +
-        `${theme.labels[0]!.math}의 값보다 몇 ${theme.unit} 더 ${rise ? "큰가" : "작은가"}?`,
+        `${theme.labels[0]!.math}의 값보다 몇 ${theme.unit} 더 ${rise ? "큽니까" : "작습니까"}?`,
       `${n(Math.abs(last - first))}${theme.unit}`,
       `${expr(`${Math.max(first, last)}-${Math.min(first, last)}=${Math.abs(last - first)}`)} 이므로 ` +
         `${n(Math.abs(last - first))}${theme.unit} 더 ${rise ? "큽니다" : "작습니다"}.`,
@@ -16102,7 +16102,7 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
       // 아니게 되므로 막대에서만 묻는다. 걸음 값은 그림에 실은 `theme.yStep` 그대로다.
       return make(
         unit,
-        `${intro} 세로 눈금 한 칸은 몇 ${unitJosa(theme.unit, "을", "를")} 나타내는가?`,
+        `${intro} 세로 눈금 한 칸은 몇 ${unitJosa(theme.unit, "을", "를")} 나타냅니까?`,
         `${n(theme.yStep)}${theme.unit}`,
         `세로축 눈금이 ${n(0)}, ${n(theme.yStep)}, ${n(theme.yStep * 2)}, … 로 매겨져 있으므로 ` +
           `한 칸은 ${n(theme.yStep)}${theme.unit}입니다.`,
@@ -16112,7 +16112,7 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `${intro} ${theme.topic}의 값이 늘어난 구간은 모두 몇 번인가?`,
+        `${intro} ${theme.topic}의 값이 늘어난 구간은 모두 몇 번입니까?`,
         `${n(rises)}번`,
         `이웃한 두 점을 차례로 견주면 값이 늘어난 구간이 ${n(rises)}번, ` +
           `줄어든 구간이 ${n(nums.length - 1 - rises)}번입니다.`,
@@ -16121,7 +16121,7 @@ function lineGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${intro} ${theme.topic}의 값이 가장 큰 때와 가장 작은 때의 차는 몇 ${theme.unit}인가?`,
+      `${intro} ${theme.topic}의 값이 가장 큰 때와 가장 작은 때의 차는 몇 ${theme.unit}입니까?`,
       `${n(max - min)}${theme.unit}`,
       `가장 큰 값이 ${n(max)}${theme.unit}, 가장 작은 값이 ${n(min)}${theme.unit}입니다. ` +
         `${expr(`${max}-${min}=${max - min}`)}`,
@@ -16226,7 +16226,7 @@ function tier251Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${lineIntro(theme)} ${josa(theme.labels[a]!.math, "과", "와")} ` +
       `${theme.labels[b]!.math} 중 ${josa(theme.topic, "이", "가")} 더 작은 때의 값은 ` +
-      `몇 ${theme.unit}인가?`,
+      `몇 ${theme.unit}입니까?`,
     `${n(nums[lower]!)}${theme.unit}`,
     `${theme.labels[a]!.math}의 값은 ${n(nums[a]!)}${theme.unit}, ` +
       `${theme.labels[b]!.math}의 값은 ${n(nums[b]!)}${theme.unit}입니다. ` +
@@ -16245,7 +16245,7 @@ function tier252Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const at = onGrid.length ? pick(rng, onGrid) : intBetween(rng, 0, nums.length - 1);
   return make(
     unit,
-    `${lineIntro(theme)} ${josa(theme.topic, "이", "가")} ${n(nums[at]!)}${theme.unit}인 때는 언제인가?`,
+    `${lineIntro(theme)} ${josa(theme.topic, "이", "가")} ${n(nums[at]!)}${theme.unit}인 때는 언제입니까?`,
     theme.labels[at]!.math,
     `세로축에서 ${n(nums[at]!)}${theme.unit}인 곳을 찾아 점이 그 높이에 찍힌 때를 보면 ` +
       `${theme.labels[at]!.math}입니다.`,
@@ -16265,7 +16265,7 @@ function tier251Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     // «책 수의 값이 $4$월의 값보다 큰 때» 는 어색하다(4차 교차 검수) — 소재에 맞는 말로 견준다.
     `${lineIntro(theme)} ${josa(theme.topic, "이", "가")} ${theme.labels[at]!.math}보다 ` +
-      `${lineMore(theme.topic)} 때는 모두 몇 번인가?`,
+      `${lineMore(theme.topic)} 때는 모두 몇 번입니까?`,
     `${n(more)}번`,
     `${theme.labels[at]!.math}의 값은 ${n(nums[at]!)}${theme.unit}입니다. ` +
       `점이 그보다 높이 찍힌 때를 세면 ${n(more)}번입니다.`,
@@ -16286,7 +16286,7 @@ function tier251Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineIntro(theme)} ${josa(theme.labels[at]!.math, "과", "와")} ` +
-      `${theme.labels[at + 1]!.math} 사이의 ${pick(rng, ["가운데 시점", "한가운데쯤"])}의 값은 약 몇 ${theme.unit}인가?`,
+      `${theme.labels[at + 1]!.math} 사이의 ${pick(rng, ["가운데 시점", "한가운데쯤"])}의 값은 약 몇 ${theme.unit}입니까?`,
     `${n(mid)}${theme.unit}`,
     // 「약」이 붙는 유일한 갈래다 — **왜 그렇게 읽어도 되는지**를 말한다(리드 2026-08-23).
     `꺾은선그래프는 이웃한 두 점을 선분으로 이어 그리므로, 그 사이의 값은 선분 위에서 ` +
@@ -16311,7 +16311,7 @@ function tier251Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${lineIntro(theme)} ${theme.labels[from]!.math}부터 마지막 때까지에서 ` +
       `${josa(theme.topic, "이", "가")} 늘어난 구간만 골라 늘어난 양을 모두 더하면 ` +
-      `몇 ${theme.unit}인가?`,
+      `몇 ${theme.unit}입니까?`,
     `${n(total)}${theme.unit}`,
     `${theme.labels[from]!.math} 뒤로 선이 오른쪽 위로 올라간 구간만 봅니다. 늘어난 양은 ` +
       `${rises.map((d) => n(d)).join(", ")}${theme.unit}이고, 모두 더하면 ` +
@@ -16337,7 +16337,7 @@ function tier252Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineIntro(theme)} ${josa(theme.topic, "이", "가")} ${n(bar)}${theme.unit}보다 ` +
-      `높은 때는 모두 몇 번인가?`,
+      `높은 때는 모두 몇 번입니까?`,
     `${n(over)}번`,
     `세로축에서 ${n(bar)}${theme.unit}인 곳을 찾아 그보다 위에 찍힌 점을 세면 ` +
       `${n(over)}번입니다.`,
@@ -16357,7 +16357,7 @@ function tier252Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineIntro(theme)} 이웃한 두 때 사이에서 ${josa(theme.topic, "이", "가")} ` +
-      `${n(bar)}${theme.unit}보다 많이 변한 구간은 모두 몇 번인가?`,
+      `${n(bar)}${theme.unit}보다 많이 변한 구간은 모두 몇 번입니까?`,
     `${n(over)}번`,
     `이웃한 두 점의 값의 차를 차례로 구하면 ${gaps.map((g) => n(g)).join(", ")}${theme.unit}입니다. ` +
       `이 중 ${n(bar)}${theme.unit}보다 큰 것은 ${n(over)}개이므로 ${n(over)}번입니다.`,
@@ -16375,7 +16375,7 @@ function tier252Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineIntro(theme)} ${theme.topic}의 값이 처음으로 ${n(bar)}${theme.unit} 이상이 된 ` +
-      `때부터 마지막 때까지 값은 몇 ${theme.unit} 늘었는가?`,
+      `때부터 마지막 때까지 값은 몇 ${theme.unit} 늘었습니까?`,
     `${n(last - bar)}${theme.unit}`,
     `값이 ${n(bar)}${theme.unit} 이상이 된 것은 ` +
       `${josa(theme.labels[1]!.math, "이", "가")} 처음입니다` +
@@ -16464,7 +16464,7 @@ function tier253Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${tableIntro(theme)} ${theme.labels[at]!.math}의 ${josa(theme.topic, "은", "는")} ` +
-      `몇 ${theme.unit}인가?`,
+      `몇 ${theme.unit}입니까?`,
     `${n(nums[at]!)}${theme.unit}`,
     `표에서 ${theme.labels[at]!.math} 칸의 수를 읽으면 ${n(nums[at]!)}${theme.unit}입니다.`,
     tableFigure(theme, nums),
@@ -16486,7 +16486,7 @@ function tier253Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${tableIntro(theme)} 이 표를 꺾은선그래프로 나타내려고 합니다. 세로 눈금 한 칸이 ` +
       `${n(theme.step)}${theme.unit}일 때 ${theme.labels[at]!.math}의 값을 나타내려면 ` +
-      `눈금이 아래에서부터 몇 칸 올라가야 하는가?`,
+      `눈금이 아래에서부터 몇 칸 올라가야 합니까?`,
     `${n(ticks)}칸`,
     `${theme.labels[at]!.math}의 값은 ${n(nums[at]!)}${theme.unit}입니다. ` +
       `한 칸이 ${n(theme.step)}${theme.unit}이므로 ` +
@@ -16520,7 +16520,7 @@ function tier253Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${tableIntro(theme)} 이 표를 꺾은선그래프로 나타낼 때 물결선을 넣어 세로 눈금을 ` +
       `${n(start)}${theme.unit}부터 시작하려고 합니다. 세로 눈금 한 칸은 ` +
-      `${n(theme.step)}${theme.unit}입니다. ${which}은 물결선 위로 몇째 눈금에 찍히는가?`,
+      `${n(theme.step)}${theme.unit}입니다. ${which}은 물결선 위로 몇째 눈금에 찍힙니까?`,
     `${n(nth)}째`,
     `${which}은 ${n(target)}${theme.unit}이고 눈금은 ${n(start)}${theme.unit}부터 시작합니다. ` +
       `${expr(`${target}-${start}=${target - start}`)} 이고 한 칸이 ${n(theme.step)}${theme.unit}이므로 ` +
@@ -16550,7 +16550,7 @@ function tier253Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${tableIntro(theme)} 이 표를 꺾은선그래프로 나타낼 때, 선이 가장 가파른 구간의 ` +
       `변화량은 ${josa(theme.labels[other]!.math, "과", "와")} ` +
-      `${theme.labels[other + 1]!.math} 사이의 변화량보다 몇 ${theme.unit} 더 큰가?`,
+      `${theme.labels[other + 1]!.math} 사이의 변화량보다 몇 ${theme.unit} 더 큽니까?`,
     `${n(most - gaps[other]!)}${theme.unit}`,
     `이웃한 두 때의 값의 차를 차례로 구하면 ${gaps.map((g) => n(g)).join(", ")}${theme.unit}입니다. ` +
       `가장 가파른 구간은 ${josa(theme.labels[top]!.math, "과", "와")} ` +
@@ -16585,7 +16585,7 @@ function line251LeastWhen(unit: UnitSeed, rng: Rng): ElemProblem {
   const at = d.nums.indexOf(d.min);
   return make(
     unit,
-    `${d.intro} ${d.theme.topic}의 값이 가장 작은 때는 언제인가?`,
+    `${d.intro} ${d.theme.topic}의 값이 가장 작은 때는 언제입니까?`,
     d.theme.labels[at]!.math,
     `${d.theme.labels[at]!.math}일 때 ${n(d.min)}${unitJosa(d.theme.unit, "으로", "로")} 가장 작습니다.`,
     d.figure,
@@ -16598,7 +16598,7 @@ function line251Read(unit: UnitSeed, rng: Rng): ElemProblem {
   const label = d.theme.labels[at]!;
   return make(
     unit,
-    `${d.intro} ${label.math}의 ${josa(d.theme.topic, "은", "는")} 몇 ${d.theme.unit}인가?`,
+    `${d.intro} ${label.math}의 ${josa(d.theme.topic, "은", "는")} 몇 ${d.theme.unit}입니까?`,
     `${n(d.nums[at]!)}${d.theme.unit}`,
     `${label.math}의 점이 가리키는 값은 ${n(d.nums[at]!)}${d.theme.unit}입니다.`,
     d.figure,
@@ -16609,7 +16609,7 @@ function line251MaxValue(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = linePack(unit, rng);
   return make(
     unit,
-    `${d.intro} ${d.theme.topic}의 가장 큰 값은 몇 ${d.theme.unit}인가?`,
+    `${d.intro} ${d.theme.topic}의 가장 큰 값은 몇 ${d.theme.unit}입니까?`,
     `${n(d.max)}${d.theme.unit}`,
     `가장 큰 값은 ${n(d.max)}${d.theme.unit}입니다.`,
     d.figure,
@@ -16620,7 +16620,7 @@ function line251First(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = linePack(unit, rng);
   return make(
     unit,
-    `${d.intro} 맨 처음에 조사한 때의 값은 몇 ${d.theme.unit}인가?`,
+    `${d.intro} 맨 처음에 조사한 때의 값은 몇 ${d.theme.unit}입니까?`,
     `${n(d.nums[0]!)}${d.theme.unit}`,
     `${d.theme.labels[0]!.math}의 값은 ${n(d.nums[0]!)}${d.theme.unit}입니다.`,
     d.figure,
@@ -16632,7 +16632,7 @@ function line251Last(unit: UnitSeed, rng: Rng): ElemProblem {
   const last = d.theme.labels.length - 1;
   return make(
     unit,
-    `${d.intro} 맨 나중에 조사한 때의 값은 몇 ${d.theme.unit}인가?`,
+    `${d.intro} 맨 나중에 조사한 때의 값은 몇 ${d.theme.unit}입니까?`,
     `${n(d.nums[last]!)}${d.theme.unit}`,
     `${d.theme.labels[last]!.math}의 값은 ${n(d.nums[last]!)}${d.theme.unit}입니다.`,
     d.figure,
@@ -16643,7 +16643,7 @@ function line251Points(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = linePack(unit, rng);
   return make(
     unit,
-    `${d.intro} 꺾은선그래프에 찍힌 점은 모두 몇 개인가?`,
+    `${d.intro} 꺾은선그래프에 찍힌 점은 모두 몇 개입니까?`,
     n(d.nums.length),
     `점이 ${n(d.nums.length)}개 찍혀 있습니다.`,
     d.figure,
@@ -16656,7 +16656,7 @@ function line252RiseCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const rises = nums.slice(1).filter((v, i) => v > nums[i]!).length;
   return make(
     unit,
-    `${tableIntro(theme)} 값이 늘어난 구간은 모두 몇 번인가?`,
+    `${tableIntro(theme)} 값이 늘어난 구간은 모두 몇 번입니까?`,
     `${n(rises)}번`,
     `값이 늘어난 구간이 ${n(rises)}번입니다.`,
     tableFigure(theme, nums),
@@ -16670,7 +16670,7 @@ function line252Range(unit: UnitSeed, rng: Rng): ElemProblem {
   const min = Math.min(...nums);
   return make(
     unit,
-    `${tableIntro(theme)} 가장 큰 값과 가장 작은 값의 차는 몇 ${theme.unit}인가?`,
+    `${tableIntro(theme)} 가장 큰 값과 가장 작은 값의 차는 몇 ${theme.unit}입니까?`,
     `${n(max - min)}${theme.unit}`,
     `${expr(`${max}-${min}=${max - min}`)} 입니다.`,
     tableFigure(theme, nums),
@@ -16685,7 +16685,7 @@ function line252PairDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     // «사이의 차» 는 무엇의 차인지 빠졌다(2026-10-20 교차 검수) — «무게의 차» · «기온의 차».
-    `${tableIntro(theme)} ${josa(theme.labels[i]!.math, "과", "와")} ${theme.labels[i + 1]!.math}의 ${theme.topic.split("의 ").pop()}의 차는 몇 ${theme.unit}인가?`,
+    `${tableIntro(theme)} ${josa(theme.labels[i]!.math, "과", "와")} ${theme.labels[i + 1]!.math}의 ${theme.topic.split("의 ").pop()}의 차는 몇 ${theme.unit}입니까?`,
     `${n(gap)}${theme.unit}`,
     `${expr(`${Math.max(nums[i]!, nums[i + 1]!)}-${Math.min(nums[i]!, nums[i + 1]!)}=${gap}`)} 입니다.`,
     tableFigure(theme, nums),
@@ -16698,7 +16698,7 @@ function line252MaxWhen(unit: UnitSeed, rng: Rng): ElemProblem {
   const at = nums.indexOf(Math.max(...nums));
   return make(
     unit,
-    `${tableIntro(theme)} 값이 가장 큰 때는 언제인가?`,
+    `${tableIntro(theme)} 값이 가장 큰 때는 언제입니까?`,
     theme.labels[at]!.math,
     `${theme.labels[at]!.math}일 때 가장 큽니다.`,
     tableFigure(theme, nums),
@@ -16711,7 +16711,7 @@ function line252MinValue(unit: UnitSeed, rng: Rng): ElemProblem {
   const min = Math.min(...nums);
   return make(
     unit,
-    `${tableIntro(theme)} 가장 작은 값은 몇 ${theme.unit}인가?`,
+    `${tableIntro(theme)} 가장 작은 값은 몇 ${theme.unit}입니까?`,
     `${n(min)}${theme.unit}`,
     `가장 작은 값은 ${n(min)}${theme.unit}입니다.`,
     tableFigure(theme, nums),
@@ -16723,7 +16723,7 @@ function line252HowManyRows(unit: UnitSeed, rng: Rng): ElemProblem {
   const nums = tableValues(rng, theme);
   return make(
     unit,
-    `${tableIntro(theme)} 조사한 때는 모두 몇 개인가?`,
+    `${tableIntro(theme)} 조사한 때는 모두 몇 개입니까?`,
     n(theme.labels.length),
     `때가 ${n(theme.labels.length)}개입니다.`,
     tableFigure(theme, nums),
@@ -16734,7 +16734,7 @@ function line253Step(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = linePack(unit, rng);
   return make(
     unit,
-    `${d.intro} 세로 눈금 한 칸은 몇 ${unitJosa(d.theme.unit, "을", "를")} 나타내는가?`,
+    `${d.intro} 세로 눈금 한 칸은 몇 ${unitJosa(d.theme.unit, "을", "를")} 나타냅니까?`,
     `${n(d.theme.yStep)}${d.theme.unit}`,
     `한 칸은 ${n(d.theme.yStep)}${d.theme.unit}입니다.`,
     d.figure,
@@ -16746,7 +16746,7 @@ function line253Rise(unit: UnitSeed, rng: Rng): ElemProblem {
   const rises = d.nums.slice(1).filter((v, i) => v > d.nums[i]!).length;
   return make(
     unit,
-    `${d.intro} ${d.theme.topic}의 값이 늘어난 구간은 모두 몇 번인가?`,
+    `${d.intro} ${d.theme.topic}의 값이 늘어난 구간은 모두 몇 번입니까?`,
     `${n(rises)}번`,
     `늘어난 구간이 ${n(rises)}번입니다.`,
     d.figure,
@@ -16757,7 +16757,7 @@ function line253Range(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = linePack(unit, rng);
   return make(
     unit,
-    `${d.intro} 가장 큰 값과 가장 작은 값의 차는 몇 ${d.theme.unit}인가?`,
+    `${d.intro} 가장 큰 값과 가장 작은 값의 차는 몇 ${d.theme.unit}입니까?`,
     `${n(d.max - d.min)}${d.theme.unit}`,
     `${expr(`${d.max}-${d.min}=${d.max - d.min}`)} 입니다.`,
     d.figure,
@@ -16770,7 +16770,7 @@ function line253FirstLast(unit: UnitSeed, rng: Rng): ElemProblem {
   const first = d.nums[0]!;
   return make(
     unit,
-    `${d.intro} ${d.theme.labels[d.theme.labels.length - 1]!.math}의 값은 ${d.theme.labels[0]!.math}의 값보다 몇 ${d.theme.unit} 더 ${last >= first ? "큰가" : "작은가"}?`,
+    `${d.intro} ${d.theme.labels[d.theme.labels.length - 1]!.math}의 값은 ${d.theme.labels[0]!.math}의 값보다 몇 ${d.theme.unit} 더 ${last >= first ? "큽니까" : "작습니까"}?`,
     `${n(Math.abs(last - first))}${d.theme.unit}`,
     `${expr(`${Math.max(first, last)}-${Math.min(first, last)}=${Math.abs(last - first)}`)} 입니다.`,
     d.figure,
@@ -16782,7 +16782,7 @@ function line253MaxWhen(unit: UnitSeed, rng: Rng): ElemProblem {
   const at = d.nums.indexOf(d.max);
   return make(
     unit,
-    `${d.intro} ${d.theme.topic}의 값이 가장 큰 때는 언제인가?`,
+    `${d.intro} ${d.theme.topic}의 값이 가장 큰 때는 언제입니까?`,
     d.theme.labels[at]!.math,
     `${d.theme.labels[at]!.math}일 때 가장 큽니다.`,
     d.figure,
@@ -16793,7 +16793,7 @@ function line253Unit(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = linePack(unit, rng);
   return make(
     unit,
-    `${d.intro} 세로축의 단위는 무엇인가?`,
+    `${d.intro} 세로축의 단위는 무엇입니까?`,
     d.theme.unit,
     `세로축의 단위는 ${d.theme.unit}입니다.`,
     d.figure,
@@ -16823,14 +16823,14 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `${polyName(sides)}의 꼭짓점은 모두 몇 개인가?`,
+        `${polyName(sides)}의 꼭짓점은 모두 몇 개입니까?`,
         `${n(sides)}개`,
         `${polyName(sides)}은 변이 ${n(sides)}개이고 꼭짓점도 ${n(sides)}개입니다.`,
       );
     }
     return make(
       unit,
-      "곡선이 있는 도형도 다각형이라고 할 수 있는가? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
+      "곡선이 있는 도형도 다각형이라고 할 수 있습니까? 맞으면 '예', 아니면 '아니요'를 쓰시오.",
       "아니요",
       "다각형은 선분으로만 둘러싸인 도형입니다. 곡선이 있으면 다각형이 아닙니다.",
     );
@@ -16843,7 +16843,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `한 변이 ${cm(side)}인 ${polyName(sides, true)}의 모든 변의 길이의 합은 몇 cm인가?`,
+        `한 변이 ${cm(side)}인 ${polyName(sides, true)}의 모든 변의 길이의 합은 몇 cm입니까?`,
         cm(side * sides),
         `${polyName(sides, true)}은 변이 ${n(sides)}개이고 길이가 모두 같습니다. ` +
           `${expr(`${side}\\times${sides}=${side * sides}`)}`,
@@ -16852,7 +16852,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `모든 변의 길이의 합이 ${cm(side * sides)}인 ${polyName(sides, true)}의 한 변은 몇 cm인가?`,
+        `모든 변의 길이의 합이 ${cm(side * sides)}인 ${polyName(sides, true)}의 한 변은 몇 cm입니까?`,
         cm(side),
         `${polyName(sides, true)}은 변이 ${n(sides)}개이고 길이가 모두 같으므로 ` +
           `${expr(`${side * sides}\\div${sides}=${side}`)} 입니다.`,
@@ -16860,7 +16860,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      "변의 길이가 모두 같고 각의 크기도 모두 같은 다각형을 무엇이라고 하는가?",
+      "변의 길이가 모두 같고 각의 크기도 모두 같은 다각형을 무엇이라고 합니까?",
       "정다각형",
       "변의 길이가 모두 같고 각의 크기도 모두 같은 다각형을 정다각형이라고 합니다.",
     );
@@ -16873,7 +16873,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 0) {
       return make(
         unit,
-        `${polyName(sides)}에 그을 수 있는 대각선은 모두 몇 개인가?`,
+        `${polyName(sides)}에 그을 수 있는 대각선은 모두 몇 개입니까?`,
         `${n(diag)}개`,
         `한 꼭짓점에서 자기 자신과 이웃한 두 꼭짓점을 뺀 ${n(sides - 3)}개에 대각선을 그을 수 있습니다. ` +
           `꼭짓점이 ${n(sides)}개인데 대각선을 두 번씩 세었으므로 ` +
@@ -16883,7 +16883,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
     if (kind === 1) {
       return make(
         unit,
-        `${polyName(sides)}의 한 꼭짓점에서 그을 수 있는 대각선은 몇 개인가?`,
+        `${polyName(sides)}의 한 꼭짓점에서 그을 수 있는 대각선은 몇 개입니까?`,
         `${n(sides - 3)}개`,
         `자기 자신과 이웃한 두 꼭짓점에는 대각선을 그을 수 없으므로 ` +
           `${expr(`${sides}-3=${sides - 3}`)} 개입니다.`,
@@ -16891,7 +16891,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      "직사각형의 두 대각선의 길이는 서로 어떠한가?",
+      "직사각형의 두 대각선의 길이는 서로 어떠합니까?",
       "같다",
       "직사각형은 두 대각선의 길이가 서로 같고, 한 대각선이 다른 대각선을 반으로 나눕니다.",
     );
@@ -16916,7 +16916,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `한 변이 ${cm(side)}인 정삼각형 모양 조각으로 한 변이 ${cm(side * 2)}인 정삼각형을 ` +
-          `빈틈없이 채우려면 조각이 몇 개 필요한가?`,
+          `빈틈없이 채우려면 조각이 몇 개 필요합니까?`,
         n(4),
         `한 변이 ${n(2)}배가 되면 조각은 ${expr("2\\times2=4")} 개가 필요합니다.`,
         fig("tiling", {
@@ -16931,7 +16931,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
       return make(
         unit,
         `한 변이 ${cm(side)}인 정사각형 모양 조각으로 한 변이 ${cm(side * 3)}인 정사각형을 ` +
-          `빈틈없이 채우려면 조각이 몇 개 필요한가?`,
+          `빈틈없이 채우려면 조각이 몇 개 필요합니까?`,
         n(9),
         `한 변이 ${n(3)}배가 되면 조각은 ${expr("3\\times3=9")} 개가 필요합니다.`,
         fig("tiling", {
@@ -16944,7 +16944,7 @@ function polygon(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${polyName(6, true)} 모양은 정삼각형 모양 조각 몇 개로 빈틈없이 채울 수 있는가?`,
+      `${polyName(6, true)} 모양은 정삼각형 모양 조각 몇 개로 빈틈없이 채울 수 있습니까?`,
       `${n(6)}개`,
       `${polyName(6, true)}의 한가운데에서 각 꼭짓점으로 선분을 그으면 정삼각형이 ${n(6)}개 생깁니다.`,
       fig("tiling", { piece: "eqTri", target: "hexagon" }),
@@ -16992,7 +16992,7 @@ function tier261Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     intBetween(rng, 0, 1) === 0
       ? `꼭짓점이 ${n(sides)}개인 다각형의 이름을 쓰시오.`
-      : `어떤 다각형의 꼭짓점이 ${n(sides)}개입니다. 이 다각형을 무엇이라고 하는가?`,
+      : `어떤 다각형의 꼭짓점이 ${n(sides)}개입니다. 이 다각형을 무엇이라고 합니까?`,
     polyName(sides),
     `다각형은 변의 수와 꼭짓점의 수가 같습니다. 꼭짓점이 ${n(sides)}개이면 변도 ` +
       `${n(sides)}개이므로 ${polyName(sides)}입니다.`,
@@ -17008,7 +17008,7 @@ function tier261Basic(unit: UnitSeed, rng: Rng): ElemProblem {
       ? `어떤 다각형의 변의 수와 꼭짓점의 수를 더하면 ${n(sides * 2)}입니다. ` +
           `이 다각형의 이름을 쓰시오.`
       : `변의 수와 꼭짓점의 수의 합이 ${n(sides * 2)}인 다각형이 있습니다. ` +
-          `이 다각형을 무엇이라고 하는가?`,
+          `이 다각형을 무엇이라고 합니까?`,
     polyName(sides),
     `다각형은 변의 수와 꼭짓점의 수가 같으므로 ` +
       `${expr(`${sides * 2}\\div2=${sides}`)} 입니다. 변이 ${n(sides)}개이므로 ` +
@@ -17023,7 +17023,7 @@ function tier261Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `다각형 ㉠은 변이 ${n(a)}개이고, 다각형 ㉡은 꼭짓점이 ${n(b)}개입니다. ` +
-      `두 다각형의 꼭짓점의 수의 합은 몇 개인가?`,
+      `두 다각형의 꼭짓점의 수의 합은 몇 개입니까?`,
     `${n(a + b)}개`,
     `㉠은 변이 ${n(a)}개이므로 꼭짓점도 ${n(a)}개입니다. ㉡의 꼭짓점은 ${n(b)}개입니다. ` +
       `${expr(`${a}+${b}=${a + b}`)} 이므로 ${n(a + b)}개입니다.`,
@@ -17123,7 +17123,7 @@ function tier262Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `한 변이 ${cm(side)}인 ${polyName(from, true)}이 있습니다. 이 도형과 모든 변의 길이의 ` +
-      `합이 같은 ${polyName(to, true)}의 한 변은 몇 cm인가?`,
+      `합이 같은 ${polyName(to, true)}의 한 변은 몇 cm입니까?`,
     cm(total / to),
     `${polyName(from, true)}의 모든 변의 길이의 합은 ` +
       `${expr(`${side}\\times${from}=${total}`)} 입니다. ` +
@@ -17171,7 +17171,7 @@ function tier263Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     `어떤 다각형의 한 꼭짓점에서 그을 수 있는 대각선이 ${n(d.each)}개입니다. ` +
       (asksName
         ? `이 다각형의 이름을 쓰시오.`
-        : `이 다각형의 꼭짓점은 몇 개인가?`),
+        : `이 다각형의 꼭짓점은 몇 개입니까?`),
     asksName ? polyName(d.sides) : `${n(d.sides)}개`,
     asksName ? `${why} 따라서 ${polyName(d.sides)}입니다.` : why,
   );
@@ -17190,7 +17190,7 @@ function tier263Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${polyName(big.sides)}의 한 꼭짓점에서 그을 수 있는 대각선은 ` +
-      `${polyName(small.sides)}보다 몇 개 더 많은가?`,
+      `${polyName(small.sides)}보다 몇 개 더 많습니까?`,
     `${n(big.each - small.each)}개`,
     `한 꼭짓점에서 그을 수 있는 대각선은 ${polyName(big.sides)}이 ` +
       `${expr(`${big.sides}-3=${big.each}`)} 개, ${polyName(small.sides)}이 ` +
@@ -17212,8 +17212,8 @@ function tier263Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `어떤 다각형의 한 꼭짓점에서 그을 수 있는 대각선이 ${n(d.each)}개입니다. ` +
       (withSides
-        ? `이 다각형의 변의 수와 대각선의 수를 더하면 얼마인가?`
-        : `이 다각형에 그을 수 있는 대각선은 모두 몇 개인가?`),
+        ? `이 다각형의 변의 수와 대각선의 수를 더하면 얼마입니까?`
+        : `이 다각형에 그을 수 있는 대각선은 모두 몇 개입니까?`),
     withSides ? `${n(d.sides + d.total)}개` : `${n(d.total)}개`,
     withSides
       ? `${count} 변은 ${n(d.sides)}개이므로 ` +
@@ -17245,7 +17245,7 @@ function tier263Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `어떤 정다각형에 그을 수 있는 대각선이 모두 ${n(d.total)}개입니다. ` +
-      `이 정다각형의 한 변이 ${cm(side)}일 때 모든 변의 길이의 합은 몇 cm인가?`,
+      `이 정다각형의 한 변이 ${cm(side)}일 때 모든 변의 길이의 합은 몇 cm입니까?`,
     cm(side * d.sides),
     `대각선의 수를 차례로 세어 보면 ${table} 입니다. ` +
       `${n(d.total)}개인 것은 ${polyName(d.sides)}이므로 변이 ${n(d.sides)}개입니다. ` +
@@ -17306,7 +17306,7 @@ function tier264Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `모양 조각으로 모양을 빈틈없이 채웁니다. ${pieceRule(p.name, p.tris)} ` +
       `${p.name} 모양 조각 ${n(k)}개는 ${polyName(3, true)} 모양 조각 몇 개로 ` +
-      `채울 수 있는가?`,
+      `채울 수 있습니까?`,
     `${n(p.tris * k)}개`,
     `${p.name} 모양 조각 한 개가 ${polyName(3, true)} 모양 조각 ${n(p.tris)}개이므로 ` +
       `${n(k)}개이면 ${expr(`${p.tris}\\times${k}=${p.tris * k}`)} 이고 ` +
@@ -17341,7 +17341,7 @@ function tier264Basic(unit: UnitSeed, rng: Rng): ElemProblem {
     return make(
       unit,
       `${given} ${whole.name} 모양 조각 ${n(k)}개는 ${part.name} 모양 조각 몇 개로 ` +
-        `빈틈없이 채울 수 있는가?`,
+        `빈틈없이 채울 수 있습니까?`,
       `${n(times * k)}개`,
       `${why} ${n(k)}개이면 ${expr(`${times}\\times${k}=${times * k}`)} 이고 ` +
         `${n(times * k)}개입니다.`,
@@ -17350,7 +17350,7 @@ function tier264Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${given} ${part.name} 모양 조각 몇 개를 모으면 ${whole.name} 모양 조각 ${n(k)}개를 ` +
-      `빈틈없이 채울 수 있는가?`,
+      `빈틈없이 채울 수 있습니까?`,
     `${n(times * k)}개`,
     `${why} ${whole.name} 모양 조각이 ${n(k)}개이므로 ` +
       `${expr(`${times}\\times${k}=${times * k}`)} 이고 ${n(times * k)}개를 모아야 합니다.`,
@@ -17378,7 +17378,7 @@ function tier264Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     `${pieceRule(first.name, first.tris)} 또 ${pieceRule(second.name, second.tris)} ` +
       `${first.name} 모양 조각 ${n(a)}개와 ${second.name} 모양 조각 ${n(b)}개를 모두 ` +
       `${polyName(3, true)} 모양 조각으로 바꾸면 ${polyName(3, true)} 모양 조각은 ` +
-      `모두 몇 개인가?`,
+      `모두 몇 개입니까?`,
     `${n(left + right)}개`,
     `${first.name} 모양 조각 ${n(a)}개는 ${expr(`${first.tris}\\times${a}=${left}`)} ` +
       `개이고, ${second.name} 모양 조각 ${n(b)}개는 ` +
@@ -17414,7 +17414,7 @@ function tier264Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     `${from.name} 모양 조각 ${n(have)}개로 빈틈없이 채운 모양이 있습니다. ` +
       `${pieceRule(from.name, from.tris)} 또 ${pieceRule(to.name, to.tris)} ` +
       `같은 모양을 ${to.name} 모양 조각만으로 빈틈없이 채우려면 ${to.name} 모양 조각은 ` +
-      `몇 개 필요한가?`,
+      `몇 개 필요합니까?`,
     `${n(want)}개`,
     `${from.name} 모양 조각 ${n(have)}개는 ${polyName(3, true)} 모양 조각 ` +
       `${expr(`${from.tris}\\times${have}=${tris}`)} 개와 같습니다. 채운 모양이 같으므로 ` +
@@ -17639,7 +17639,7 @@ function tier264MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
       `${from.name} 모양 조각 몇 개를 ${polyName(3, true)} 모양 조각으로 남김없이 ` +
       `바꾸었더니 ${josaNum(f.lo, "보다", "보다")} 많고 ${josaNum(f.hi, "보다", "보다")} ` +
       `적었습니다. 같은 수의 ${polyName(3, true)} 모양 조각을 ${to.name} 모양 조각으로 ` +
-      `남김없이 바꿀 수 있을 때 ${to.name} 모양 조각은 몇 개인가?`,
+      `남김없이 바꿀 수 있을 때 ${to.name} 모양 조각은 몇 개입니까?`,
     `${n(answer)}개`,
     [
       `${from.name} 모양 조각은 한 개가 ${polyName(3, true)} 모양 조각 ${n(from.tris)}개` +
@@ -17703,7 +17703,7 @@ function tier264TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     `${pieceRule(rhomb.name, rhomb.tris)} 또 ${pieceRule(trap.name, trap.tris)} ` +
       `${polyName(3, true)} 모양 조각 ${n(f.tris)}개를 ${rhomb.name} 모양 조각과 ` +
       `${trap.name} 모양 조각으로 남김없이 바꾸려고 합니다. 두 조각을 모두 쓰면서 ` +
-      `조각의 수를 가장 적게 하려면 조각은 모두 몇 개인가?`,
+      `조각의 수를 가장 적게 하려면 조각은 모두 몇 개입니까?`,
     `${n(min)}개`,
     [
       `${rhomb.name} 모양 조각 한 개는 ${polyName(3, true)} 모양 조각 ${n(rhomb.tris)}개, ` +
@@ -17729,7 +17729,7 @@ function poly261Verts(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 3, 10);
   return make(
     unit,
-    `${polyName(sides)}의 꼭짓점은 몇 개인가?`,
+    `${polyName(sides)}의 꼭짓점은 몇 개입니까?`,
     n(sides),
     `변의 수와 꼭짓점의 수는 같으므로 ${n(sides)}개입니다.`,
   );
@@ -17739,7 +17739,7 @@ function poly261SidesOfName(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 5, 10);
   return make(
     unit,
-    `${polyName(sides)}을 한 바퀴 돌며 변을 세면 몇 개인가?`,
+    `${polyName(sides)}을 한 바퀴 돌며 변을 세면 몇 개입니까?`,
     n(sides),
     `${polyName(sides)}을 한 바퀴 돌면 변은 ${n(sides)}개입니다.`,
   );
@@ -17749,7 +17749,7 @@ function poly261Same(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 4, 9);
   return make(
     unit,
-    `${polyName(sides)}에서 변의 수와 꼭짓점의 수는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `${polyName(sides)}에서 변의 수와 꼭짓점의 수는 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `다각형은 변의 수와 꼭짓점의 수가 같습니다.`,
   );
@@ -17759,7 +17759,7 @@ function poly261Sum(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 3, 10);
   return make(
     unit,
-    `${polyName(sides)}의 변의 수와 꼭짓점의 수의 합은 얼마인가?`,
+    `${polyName(sides)}의 변의 수와 꼭짓점의 수의 합은 얼마입니까?`,
     n(sides * 2),
     `${expr(`${sides}+${sides}=${sides * 2}`)} 입니다.`,
   );
@@ -17768,7 +17768,7 @@ function poly261Sum(unit: UnitSeed, rng: Rng): ElemProblem {
 function poly261Pent(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `오각형의 변은 몇 개인가?`,
+    `오각형의 변은 몇 개입니까?`,
     n(5),
     `오각형의 변은 ${n(5)}개입니다.`,
   );
@@ -17779,7 +17779,7 @@ function poly262AllDiag(unit: UnitSeed, rng: Rng): ElemProblem {
   const diag = (sides * (sides - 3)) / 2;
   return make(
     unit,
-    `${polyName(sides)}에 그을 수 있는 대각선은 모두 몇 개인가?`,
+    `${polyName(sides)}에 그을 수 있는 대각선은 모두 몇 개입니까?`,
     `${n(diag)}개`,
     `${expr(`${sides}\\times${sides - 3}\\div2=${diag}`)} 개입니다.`,
   );
@@ -17789,7 +17789,7 @@ function poly262FromVertex(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 5, 10);
   return make(
     unit,
-    `${polyName(sides)}의 한 꼭짓점에서 그을 수 있는 대각선은 몇 개인가?`,
+    `${polyName(sides)}의 한 꼭짓점에서 그을 수 있는 대각선은 몇 개입니까?`,
     `${n(sides - 3)}개`,
     `${expr(`${sides}-3=${sides - 3}`)} 개입니다.`,
   );
@@ -17798,7 +17798,7 @@ function poly262FromVertex(unit: UnitSeed, rng: Rng): ElemProblem {
 function poly262TriDiag(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `삼각형에 그을 수 있는 대각선은 몇 개인가?`,
+    `삼각형에 그을 수 있는 대각선은 몇 개입니까?`,
     n(0),
     `삼각형에는 대각선을 그을 수 없습니다.`,
     fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
@@ -17808,7 +17808,7 @@ function poly262TriDiag(unit: UnitSeed): ElemProblem {
 function poly262QuadDiag(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `사각형에 그을 수 있는 대각선은 모두 몇 개인가?`,
+    `사각형에 그을 수 있는 대각선은 모두 몇 개입니까?`,
     n(2),
     `사각형의 대각선은 ${n(2)}개입니다.`,
     fig("markedShape", { shape: "rect" }),
@@ -17819,7 +17819,7 @@ function poly262HexFrom(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 5, 10);
   return make(
     unit,
-    `${polyName(sides)}의 한 꼭짓점에서 대각선을 모두 그으면 삼각형은 몇 개로 나뉘는가?`,
+    `${polyName(sides)}의 한 꼭짓점에서 대각선을 모두 그으면 삼각형은 몇 개로 나뉩니까?`,
     n(sides - 2),
     `한 꼭짓점에서 대각선을 그으면 삼각형 ${n(sides - 2)}개로 나뉩니다.`,
   );
@@ -17828,7 +17828,7 @@ function poly262HexFrom(unit: UnitSeed, rng: Rng): ElemProblem {
 function poly262EqualDiag(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `직사각형의 두 대각선의 길이는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `직사각형의 두 대각선의 길이는 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `직사각형의 두 대각선의 길이는 같습니다.`,
     fig("markedShape", { shape: "rect" }),
@@ -17840,7 +17840,7 @@ function poly263Side(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 3, 12);
   return make(
     unit,
-    `한 변이 ${cm(s)}인 ${polyName(sides, true)}의 다른 한 변의 길이는 몇 cm인가?`,
+    `한 변이 ${cm(s)}인 ${polyName(sides, true)}의 다른 한 변의 길이는 몇 cm입니까?`,
     cm(s),
     `정다각형은 모든 변의 길이가 같습니다.`,
   );
@@ -17851,7 +17851,7 @@ function poly263Perim(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 3, 9);
   return make(
     unit,
-    `한 변이 ${cm(s)}인 ${polyName(sides, true)}의 모든 변의 길이의 합은 몇 cm인가?`,
+    `한 변이 ${cm(s)}인 ${polyName(sides, true)}의 모든 변의 길이의 합은 몇 cm입니까?`,
     cm(s * sides),
     `${expr(`${s}\\times${sides}=${s * sides}`)} 입니다.`,
   );
@@ -17862,7 +17862,7 @@ function poly263FromPerim(unit: UnitSeed, rng: Rng): ElemProblem {
   const s = intBetween(rng, 3, 9);
   return make(
     unit,
-    `모든 변의 길이의 합이 ${cm(s * sides)}인 ${polyName(sides, true)}의 한 변은 몇 cm인가?`,
+    `모든 변의 길이의 합이 ${cm(s * sides)}인 ${polyName(sides, true)}의 한 변은 몇 cm입니까?`,
     cm(s),
     `${expr(`${s * sides}\\div${sides}=${s}`)} 입니다.`,
   );
@@ -17872,7 +17872,7 @@ function poly263EqualSides(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 5, 8);
   return make(
     unit,
-    `${polyName(sides, true)}의 모든 변의 길이는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `${polyName(sides, true)}의 모든 변의 길이는 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `정다각형은 모든 변의 길이가 같습니다.`,
   );
@@ -17882,7 +17882,7 @@ function poly263EqualAngles(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 5, 8);
   return make(
     unit,
-    `${polyName(sides, true)}의 모든 각의 크기는 같은가? '예' 또는 '아니요'로 답하시오.`,
+    `${polyName(sides, true)}의 모든 각의 크기는 같습니까? '예' 또는 '아니요'로 답하시오.`,
     "예",
     `정다각형은 모든 각의 크기가 같습니다.`,
   );
@@ -17892,7 +17892,7 @@ function poly263Name(unit: UnitSeed, rng: Rng): ElemProblem {
   const sides = intBetween(rng, 5, 8);
   return make(
     unit,
-    `모든 변의 길이가 같고 모든 각의 크기가 같은, 변이 ${n(sides)}개인 다각형을 무엇이라고 하는가?`,
+    `모든 변의 길이가 같고 모든 각의 크기가 같은, 변이 ${n(sides)}개인 다각형을 무엇이라고 합니까?`,
     polyName(sides, true),
     `모든 변의 길이가 같고 모든 각의 크기가 같은 ${polyName(sides)}은 ${polyName(sides, true)}입니다.`,
   );
@@ -17902,7 +17902,7 @@ function poly264TriFill(unit: UnitSeed, rng: Rng): ElemProblem {
   const side = intBetween(rng, 2, 6);
   return make(
     unit,
-    `한 변이 ${cm(side)}인 정삼각형 모양 조각으로 한 변이 ${cm(side * 2)}인 정삼각형을 빈틈없이 채우려면 조각이 몇 개 필요한가?`,
+    `한 변이 ${cm(side)}인 정삼각형 모양 조각으로 한 변이 ${cm(side * 2)}인 정삼각형을 빈틈없이 채우려면 조각이 몇 개 필요합니까?`,
     n(4),
     `${expr("2\\times2=4")} 개가 필요합니다.`,
     fig("tiling", {
@@ -17918,7 +17918,7 @@ function poly264SqFill(unit: UnitSeed, rng: Rng): ElemProblem {
   const side = intBetween(rng, 2, 5);
   return make(
     unit,
-    `한 변이 ${cm(side)}인 정사각형 모양 조각으로 한 변이 ${cm(side * 3)}인 정사각형을 빈틈없이 채우려면 조각이 몇 개 필요한가?`,
+    `한 변이 ${cm(side)}인 정사각형 모양 조각으로 한 변이 ${cm(side * 3)}인 정사각형을 빈틈없이 채우려면 조각이 몇 개 필요합니까?`,
     n(9),
     `${expr("3\\times3=9")} 개가 필요합니다.`,
     fig("tiling", {
@@ -17933,7 +17933,7 @@ function poly264SqFill(unit: UnitSeed, rng: Rng): ElemProblem {
 function poly264Hex(unit: UnitSeed): ElemProblem {
   return make(
     unit,
-    `그림처럼 정삼각형 모양 조각으로 정육각형을 빈틈없이 채우려면 조각이 몇 개 필요한가?`,
+    `그림처럼 정삼각형 모양 조각으로 정육각형을 빈틈없이 채우려면 조각이 몇 개 필요합니까?`,
     n(6),
     `정육각형은 정삼각형 ${n(6)}개로 채울 수 있습니다.`,
     fig("tiling", { piece: "eqTri", target: "hexagon" }),
@@ -17944,7 +17944,7 @@ function poly264Rhombus(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 6);
   return make(
     unit,
-    `마름모 모양 조각 한 개는 정삼각형 모양 조각 ${n(2)}개와 같습니다. 마름모 모양 조각 ${n(k)}개는 정삼각형 모양 조각 몇 개인가?`,
+    `마름모 모양 조각 한 개는 정삼각형 모양 조각 ${n(2)}개와 같습니다. 마름모 모양 조각 ${n(k)}개는 정삼각형 모양 조각 몇 개입니까?`,
     n(k * 2),
     `${expr(`${k}\\times2=${k * 2}`)} 개입니다.`,
   );
@@ -17954,7 +17954,7 @@ function poly264Trap(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 5);
   return make(
     unit,
-    `사다리꼴 모양 조각 한 개는 정삼각형 모양 조각 ${n(3)}개와 같습니다. 사다리꼴 모양 조각 ${n(k)}개는 정삼각형 모양 조각 몇 개인가?`,
+    `사다리꼴 모양 조각 한 개는 정삼각형 모양 조각 ${n(3)}개와 같습니다. 사다리꼴 모양 조각 ${n(k)}개는 정삼각형 모양 조각 몇 개입니까?`,
     n(k * 3),
     `${expr(`${k}\\times3=${k * 3}`)} 개입니다.`,
   );
@@ -17964,7 +17964,7 @@ function poly264FromTris(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 5);
   return make(
     unit,
-    `정삼각형 모양 조각 ${n(k * 2)}개로 마름모 모양 조각을 만들면 마름모 모양 조각은 몇 개인가?`,
+    `정삼각형 모양 조각 ${n(k * 2)}개로 마름모 모양 조각을 만들면 마름모 모양 조각은 몇 개입니까?`,
     n(k),
     `${expr(`${k * 2}\\div2=${k}`)} 개입니다.`,
   );
@@ -18157,7 +18157,7 @@ function tier51MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
       `나타내었습니다. ${josa(hidden.label, "을", "를")} 좋아하는 학생은 나머지 세 가지 ` +
       `가운데 어느 한 가지를 좋아하는 학생보다 ${n(gap)}${theme.unit} 더 많습니다. ` +
       `어느 것보다 많은지는 알려 주지 않습니다. ` +
-      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 ${theme.unit}인가?`,
+      `${josa(hidden.label, "을", "를")} 좋아하는 학생은 몇 ${theme.unit}입니까?`,
     `${n(hidden.value)}${theme.unit}`,
     [
       `지워진 막대도 이 그래프 안에 그려져 있으므로 ` +
@@ -18227,7 +18227,7 @@ function tier61MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${n(f.step)}씩 커지는 규칙으로 수를 늘어놓았습니다. 이 배열에 ` +
       `${josaNum(shown, "이", "가")} 들어 있고, 첫째 수는 한 자리 수입니다. ` +
-      `첫째 수는 얼마인가?`,
+      `첫째 수는 얼마입니까?`,
     n(f.first),
     [
       `${n(f.step)}씩 커지는 규칙이므로 배열의 수는 첫째 수에 ${josaNum(f.step, "을", "를")} ` +
@@ -18338,7 +18338,7 @@ function tier62TopRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     `모형을 규칙에 따라 늘어놓았습니다. 첫째는 ${n(f.first)}개이고 같은 개수씩 ` +
       `늘어납니다. 첫째부터 어떤 째까지 놓았더니 모형이 모두 ${n(f.total)}개였고, ` +
       `늘어나는 개수는 ${n(f.lo)}개보다 많고 ${n(f.hi)}개보다 적습니다. ` +
-      `첫째부터 몇째까지 놓았는가?`,
+      `첫째부터 몇째까지 놓았습니까?`,
     ORDINAL[f.upto - 1]!,
     [
       `늘어나는 개수는 ${n(f.lo + 1)}개부터 ${n(f.hi - 1)}개까지 가운데 하나입니다. ` +
@@ -18399,7 +18399,7 @@ function tier242MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     `직선 여러 개가 차례로 있습니다. 이웃한 두 직선끼리는 모두 서로 수직입니다. ` +
       `맨 앞에 있는 직선과 서로 ${kindWord} 직선은 그 직선을 빼고 모두 ${n(cnt)}개이고, ` +
       `맨 뒤에 있는 직선은 맨 앞에 있는 직선과 서로 ${lastSentence}. ` +
-      `직선은 모두 몇 개인가?`,
+      `직선은 모두 몇 개입니까?`,
     `${n(answer)}개`,
     [
       `수직으로 한 번 꺾일 때마다 방향이 바뀌므로, 맨 앞 직선에서 짝수 번 꺾인 직선은 ` +
@@ -18474,7 +18474,7 @@ function tier243MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
       `${cm(f.near)}이고, 직선 나와 직선 다 사이의 거리는 ${cm(f.far)}입니다. 세 직선이 ` +
       `놓인 차례는 알려 주지 않습니다. 직선 가와 직선 다 사이의 거리가 직선 가와 직선 나 ` +
       `사이의 거리보다 ${wantShorter ? "짧을" : "길"} 때, 직선 가와 직선 다 사이의 ` +
-      `거리는 몇 cm인가?`,
+      `거리는 몇 cm입니까?`,
     cm(answer),
     [
       `직선 나가 직선 가와 직선 다 사이에 있으면 직선 가와 직선 다 사이의 거리는 두 ` +
@@ -18636,7 +18636,7 @@ function tier23Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     `어느 정각에 시계의 긴바늘과 짧은바늘이 이루는 작은 쪽 각의 크기가 ` +
       `${deg(f.angle)}입니다. 그 시각은 ${n(6)}시보다 ` +
       `${f.early ? "이릅니다" : "늦습니다"}. 그 시각에서 ${n(f.after)}시간 뒤 정각에 ` +
-      `두 바늘이 이루는 작은 쪽 각은 예각, 직각, 둔각 중 무엇인가?`,
+      `두 바늘이 이루는 작은 쪽 각은 예각, 직각, 둔각 중 무엇입니까?`,
     f.kind,
     [
       `시계의 큰 눈금 한 칸의 각도는 ${expr("360\\div12=30")} 에서 ${deg(30)}입니다. ` +
@@ -18746,7 +18746,7 @@ function tier221MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     `세 변의 길이의 합이 ${cm(f.total)}인 이등변삼각형이 있습니다. 이 삼각형의 한 변의 ` +
       `길이는 ${cm(f.side)}이고, 길이가 같은 두 변이 아닌 나머지 한 변의 길이는 ` +
       `${cm(f.bar)}보다 ${f.longer ? "깁니다" : "짧습니다"}. 길이가 같은 두 변의 길이의 ` +
-      `합은 몇 cm인가?`,
+      `합은 몇 cm입니까?`,
     cm(pairSum),
     [
       `이등변삼각형은 길이가 같은 변이 두 개입니다. ${cm(f.side)}인 변이 길이가 같은 두 ` +
@@ -18843,7 +18843,7 @@ function tier222MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `이등변삼각형의 한 각의 크기가 ${deg(f.given)}입니다. 이 삼각형에서 크기가 같은 두 ` +
       `각의 크기의 합은 ${deg(f.bar)}보다 ${f.bigger ? "큽니다" : "작습니다"}. ` +
-      `이 삼각형에서 가장 큰 각과 가장 작은 각의 크기의 차는 몇 도인가?`,
+      `이 삼각형에서 가장 큰 각과 가장 작은 각의 크기의 차는 몇 도입니까?`,
     deg(big - small),
     [
       `이등변삼각형은 크기가 같은 두 각이 있습니다. ${deg(f.given)}가 그 두 각 중 ` +
@@ -18920,7 +18920,7 @@ function tier252MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${lineIntro(theme)} ${theme.topic}의 값이 처음으로 어떤 수를 넘은 때부터 마지막 ` +
       `때까지 값은 ${n(grew)}${theme.unit} 늘었습니다. 그 어떤 수가 될 수 있는 수 중 ` +
-      `가장 작은 수는 몇 ${theme.unit}인가?`,
+      `가장 작은 수는 몇 ${theme.unit}입니까?`,
     `${n(peak)}${theme.unit}`,
     [
       `마지막 ${theme.labels[nums.length - 1]!.math}의 값은 ${n(last)}${theme.unit}이고 ` +

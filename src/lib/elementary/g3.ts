@@ -519,7 +519,7 @@ function rightTriCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const ask = pick(rng, [
     `${list} 중에서 직각삼각형은 모두 몇 개인지 쓰시오.`,
     `${list} 중에서 직각삼각형의 수를 쓰시오.`,
-    `다음 삼각형 ${list} 가운데 직각삼각형은 모두 몇 개인가?`,
+    `다음 삼각형 ${list} 가운데 직각삼각형은 모두 몇 개입니까?`,
   ]);
   return make(
     unit,
@@ -731,7 +731,7 @@ function division(unit: UnitSeed, rng: Rng): ElemProblem {
   if (s.includes("똑같이")) {
     return make(
       unit,
-      `사탕 ${n(a)}개를 ${n(b)}묶음으로 똑같이 나누면 한 묶음은 몇 개인가?`,
+      `사탕 ${n(a)}개를 ${n(b)}묶음으로 똑같이 나누면 한 묶음은 몇 개입니까?`,
       n(q),
       `${n(a)}개를 ${n(b)}묶음으로 똑같이 나누면 한 묶음은 ${n(q)}개입니다. 식으로 쓰면 ${expr(`${a}\\div${b}=${q}`)} 입니다.`,
       fig("groupDots", { groups: b, each: q }),
@@ -1808,11 +1808,18 @@ function calcForm(
   const wordJosa = josa(word, "을", "를");
   switch (form % CALC_FORM_COUNT) {
     // 식과 세로셈을 같이 내지 않는다 — 같은 계산이 두 번, 답 칸도 둘이 된다(원장님 2026-10-20 지면 전수 검사).
-    // «세로셈으로 계산하시오»도 식 하나로 낸다 — 세로셈 그림만 남기면 발문 글자가 씨앗마다 같아진다.
     case 0:
       return make(unit, `다음을 계산하시오.\n\n${eq}`, n(result), solution);
+    // «세로셈으로 계산하시오»는 세로셈 하나로 — 두 수와 연산 기호를 놓고 답 칸은 비운다(D-164 ⑥). 발문 글자는
+    // 씨앗마다 같아지지만 다름의 열쇠가 그림까지 본다(`distinctKey`). 세 자리 ± 세 자리라 네 칸 안에 든다.
     case 1:
-      return make(unit, `세로셈으로 계산하시오.\n\n${eq}`, n(result), solution);
+      return make(
+        unit,
+        "세로셈으로 계산하시오.",
+        n(result),
+        solution,
+        fig("columnOp", { top: String(a), op: op === "+" ? "+" : "−", bottom: String(b) }),
+      );
     case 2:
       return make(unit, eq, n(result), solution);
     case 3:

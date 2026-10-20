@@ -311,7 +311,7 @@ describe("[초4 4단] 1-2 각도 — 여섯 소단원", () => {
         expect(answerDeg(calc.answer)).toBe(Number(m[1]));
       } else {
         expect(
-          /직각은 .*몇 개 모인 각인가/.test(calc.content),
+          /직각은 .*몇 개 모인 각입니까/.test(calc.content),
           calc.content,
         ).toBe(true);
         expect(answerNum(calc.answer)).toBe(90);

@@ -99,7 +99,7 @@ function reverseOnes(o: number, r: number): number[] {
  */
 function baseOf(content: string, min: number, max: number): number | null {
   const said = new Set<number>();
-  for (const m of content.matchAll(/\$(\d+)\$ 보다 [크작]/g))
+  for (const m of content.matchAll(/\$(\d+)\$보다 [크작]/g))
     said.add(Number(m[1]));
   for (const m of content.matchAll(/일의 자리 숫자가 \$(\d+)\$/g))
     said.add(Number(m[1]));
@@ -147,11 +147,11 @@ function digitWordOf(content: string): number | null {
  *    대신 빨개진다.
  */
 function rangeOf(content: string): [number | null, number | null] | null {
-  const both = [...content.matchAll(/\$(\d+)\$ 보다 크고 \$(\d+)\$ 보다 작/g)];
+  const both = [...content.matchAll(/\$(\d+)\$보다 크고 \$(\d+)\$보다 작/g)];
   if (both.length === 1) return [Number(both[0]![1]), Number(both[0]![2])];
   if (both.length > 1) return null;
-  const less = [...content.matchAll(/\$(\d+)\$ 보다 작/g)];
-  const more = [...content.matchAll(/\$(\d+)\$ 보다 [크큰큽]/g)];
+  const less = [...content.matchAll(/\$(\d+)\$보다 작/g)];
+  const more = [...content.matchAll(/\$(\d+)\$보다 [크큰큽]/g)];
   if (less.length === 1 && more.length === 0)
     return [null, Number(less[0]![1])];
   if (more.length === 1 && less.length === 0)

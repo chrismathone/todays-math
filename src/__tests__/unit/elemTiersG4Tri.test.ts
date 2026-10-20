@@ -57,15 +57,15 @@ function gen(code: string, seed: number, tier?: ElemTier) {
 
 /* ─────────────────────── 도구 (제품을 안 쓴다) ─────────────────────── */
 
-/** `$12\,\mathrm{cm}$` 에서 $12$ 를 뽑는다. 순서를 지킨다 — 발문의 차례가 뜻을 가진다. */
+/** `$12\,\mathrm{cm}$` 에서 $12$를 뽑는다. 순서를 지킨다 — 발문의 차례가 뜻을 가진다. */
 const cmsIn = (t: string): number[] =>
   [...t.matchAll(/\$(\d+)\\,\\mathrm\{cm\}\$/g)].map((m) => Number(m[1]));
 
-/** `$46^\circ$` 에서 $46$ 을 뽑는다. */
+/** `$46^\circ$` 에서 $46$을 뽑는다. */
 const degsIn = (t: string): number[] =>
   [...t.matchAll(/\$(\d+)\^\\circ\$/g)].map((m) => Number(m[1]));
 
-/** `$3$개` 에서 $3$ 을 뽑는다. 「개」가 붙은 것만 — 길이·각도와 섞이지 않게. */
+/** `$3$개` 에서 $3$을 뽑는다. 「개」가 붙은 것만 — 길이·각도와 섞이지 않게. */
 const countIn = (t: string): number | null => {
   const m = t.match(/\$(\d+)\$개/);
   return m ? Number(m[1]) : null;
@@ -346,7 +346,7 @@ describe("[초4 2-2-2] 이등변삼각형의 성질", () => {
       );
       expect(b1, `씨앗 ${s}: $1$배면 정삼각형이다`).not.toBe(apex);
       expect(degsIn(p.answer)[0], `씨앗 ${s}: 답이 세 각 중에 없다`).toBe(
-        p.content.includes("꼭지각의 크기는 몇 도인가") ? apex : b1,
+        p.content.includes("꼭지각의 크기는 몇 도입니까") ? apex : b1,
       );
       looked += 1;
     }

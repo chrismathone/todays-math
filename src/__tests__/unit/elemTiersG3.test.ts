@@ -7,6 +7,8 @@
  */
 import { describe, expect, it } from "vitest";
 
+import { distinctKey } from "@/lib/engine/variants";
+
 import { ELEM_TIERS } from "@/lib/elementary/difficulty";
 import { fracFigParts } from "@/lib/elementary/fracFig";
 import {
@@ -257,7 +259,8 @@ describe("[초3 4단] 1-1 덧셈과 뺄셈 — 파일럿 밖 세 소단원", () 
           (x) => x.grade === "초3" && x.section.startsWith(code),
         )!;
         for (const tier of tiersOf(u)) {
-          seen.add(generateElementaryProblem(u, seed, tier).content);
+          // 발문 글자가 같아도 세로셈 그림이 다르면 다른 문항이다(D-164 ⑥ · 다름의 열쇠)
+          seen.add(distinctKey(generateElementaryProblem(u, seed, tier)));
           made += 1;
         }
       }
@@ -270,7 +273,7 @@ describe("[초3 4단] 1-1 덧셈과 뺄셈 — 파일럿 밖 세 소단원", () 
       for (const tier of tiersOf(unitOf(code))) {
         const seen = new Set(
           SEEDS.map(
-            (s) => generateElementaryProblem(unitOf(code), s, tier).content,
+            (s) => distinctKey(generateElementaryProblem(unitOf(code), s, tier)),
           ),
         );
         expect(seen.size, `${code} ${tier} 가 씨앗에 반응하지 않는다`).toBe(
@@ -3050,7 +3053,7 @@ describe("[초3 4단] 2-2 나눗셈 — 네 소단원 (표준 포함)", () => {
       );
       const dn = nums(deep.content);
       // 문장 틀 «$a$ 에 … 나누는 수가 $b$ 인 나눗셈» 은 두 수를 글로 세운다 — 같은 나눗셈 줄을 또 찍지 않는다(2026-10-20).
-      const said = /^\$(\d+)\$ 에 적어도 얼마를 더해야 나누는 수가 \$(\d+)\$ 인 나눗셈/.exec(deep.content);
+      const said = /^\$(\d+)\$에 적어도 얼마를 더해야 나누는 수가 \$(\d+)\$인 나눗셈/.exec(deep.content);
       const pairs: [number, number][] = said
         ? [[Number(said[1]), Number(said[2])]]
         : divPairs(deep.content);
@@ -3977,14 +3980,14 @@ describe("[초3 4단] 2-4 — 답을 발문에서 다시 세운다", () => {
     for (const seed of SEEDS_R) {
       const p = generateElementaryProblem(unitOf2("2-4-4"), seed, "기본");
       expect(p.content, `씨앗 ${seed} — 0 만큼 옮기라고 한다`).not.toMatch(
-        /\$0\$ 만큼/,
+        /\$0\$만큼/,
       );
       const base = fracs2(p.content)[0]!;
       const got = fracs2(p.answer)[0]!;
       expect(got[0], `씨앗 ${seed} — 옮길 것이 없다`).not.toBe(base[0]);
       expect(got[1], `씨앗 ${seed} — 분모가 바뀌었다`).toBe(base[1]);
       // 발문이 말한 만큼 실제로 옮겼는가.
-      const m = /분자를 \$(\d+)\$ 만큼 (크게|작게)/.exec(p.content)!;
+      const m = /분자를 \$(\d+)\$만큼 (크게|작게)/.exec(p.content)!;
       const step = Number(m[1]) * (m[2] === "크게" ? 1 : -1);
       expect(got[0], `씨앗 ${seed}`).toBe(base[0] + step);
     }
@@ -4143,7 +4146,9 @@ describe("[초3 4단] 2-5 들이와 무게 — 여섯 소단원", () => {
         .replace(/\\mathrm\{(?:mL|kg|mm|cm|km|L|g|m)\}/g, "\\mathrm{U}")
         .replace(/(?<![A-Za-z])(?:mL|kg|km|cm|mm|L|g|m)(?![A-Za-z])/g, "U")
         .replace(/\d+/g, "#")
-        .replace(/[가-힣]+(?: +[가-힣]+)*/g, "·");
+        .replace(/[가-힣]+(?: +[가-힣]+)*/g, "·")
+        // 식 뒤 조사는 붙이고 낱말은 띄운다(D-164 ①) — «$□$에» 와 «$□$ 안에» 는 같은 틀이다
+        .replace(/\$ ·/g, "$·");
     for (const { kind, codes } of CAP_FAMILY) {
       const [capCode, massCode] = codes;
       for (const tier of tiersOf(planeUnit(capCode))) {

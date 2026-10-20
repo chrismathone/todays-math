@@ -11,6 +11,12 @@ import {
 
 // 독립 검산: 숫자를 한국어 끝 음절로 옮긴 뒤 유니코드 받침을 검사한다.
 function finalSound(latex: string): string | null {
+  // 단위로 끝나면 단위를 읽는 끝 음절 — «밀리리터» → «터» · «킬로그램» → «램» · «톤» · «퍼센트» → «트» · «도»
+  const unit = /[\d}]\s*\\,\s*\\mathrm\{([A-Za-z]+)\}(?:\^\{?[23]\}?)?$/.exec(latex);
+  if (unit) return ({ mm: "터", cm: "터", m: "터", km: "터", mL: "터", L: "터", kL: "터", g: "램", kg: "램", mg: "램", t: "톤" } as Record<string, string>)[unit[1]!] ?? null;
+  if (/\d\s*\\%$/.test(latex)) return "트";
+  if (/\d\s*\^\{?\\circ\}?$/.test(latex)) return "도";
+  if (/\\square$/.test(latex)) return "모";
   // 연산 기호 뒤 끝 토막(수 · 분수)이 끝소리다 — «$\frac16\times\frac38$» → «3»
   const tail = /(?:\\times|\\div|\\le|\\ge|\\leq|\\geq|[-+=<>:])\s*((?:\d+)?\\frac\{\d+\}\{\d+\}|\d+(?:\.\d+)?)$/.exec(latex);
   if (tail) return finalSound(tail[1]!);

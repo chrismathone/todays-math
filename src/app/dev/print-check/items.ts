@@ -3810,6 +3810,29 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "2026-10-21",
   },
+  {
+    id: "elem-consensus-josa-hapsho-column",
+    title: "초등 엔진 D-164 — 식 뒤 조사 붙임 · 합쇼체 물음 · «세로셈으로 계산하시오» 세로셈",
+    changed:
+      "초등 발문 · 해설에서 식 뒤 조사와 «이다» 활용을 붙인다(«$x$ 의» → «$x$의» · «$25$ 입니다» → «$25$입니다»). 단위 · 의존 명사 · «이상 · 이하» 는 띄운 그대로. " +
+      "붙이면서 받침이 틀려 있던 조사도 읽는 소리로 고쳤다(«$1030$ 가» → «이» · «$10\\,\\mathrm{mm}$ 이» → «가» · «$8\\times\\square$ 이» → «가»). " +
+      "물음은 합쇼체로(«몇 개인가?» → «몇 개입니까?» · «더 긴가?» → «더 깁니까?» — 활용 표). 참거짓 문항의 판단 대상 문장(«…같다.»)은 그대로. " +
+      "초3 «세로셈으로 계산하시오» 는 가로식을 빼고 두 수 · 연산 기호를 놓은 세로셈과 빈 답 칸으로 낸다.",
+    look:
+      "(제안) ① 식과 바로 뒤 조사(«$\\frac{3}{4}$을» · «$25$입니다»)가 붙어 보이고 그 사이에서 줄이 갈리지 않는가(렌더 갈래의 이음과 함께). " +
+      "② «세로셈으로 계산하시오.» 아래 세로셈의 두 수 · 기호가 자리에 맞고, 빈 답 칸에 학생이 숫자를 쓸 만한가. ③ 합쇼체 물음이 긴 줄 끝에서 어색하게 갈리지 않는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/elementary/format.ts(`MATH_ATTACHED_WORDS` · `attachMathWords` · `mathFinal` 단위 · □) · make.ts · g3.ts(`calcForm`) · g3~g6.ts 물음",
+      "src/__tests__/unit/elemConsensus20261021.test.ts · elementaryMathJosa.test.ts",
+      "합의 docs/planning/tracks/reports/problem-display-decisions-consensus-20261021.md ①⑥⑨",
+    ],
+    scale: "초등 출력 128,310 중 발문 · 해설이 바뀐 것 약 7만(문형 30씨앗 · 난이도 경로 · SRS) · 세로셈 3문형",
+    needs: "엔진으로 새로 뽑은 초3 1-1 연산 · 초4 큰 수 · 초6 비례식 문항이 든 일일테스트",
+    blockedBy: "공유 DB 적재본 갱신(리드 적용) 전에는 옛 지면이다",
+    status: "대기",
+    changedOn: "2026-10-21",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

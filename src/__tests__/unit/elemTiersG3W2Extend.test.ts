@@ -67,14 +67,14 @@ function fracAnswer(answer: string): [number, number] {
   return [Number(m![1]), Number(m![2])];
 }
 
-/** `나누는 수가 $b$ 인 나눗셈 … $r$` 짝을 나온 순서대로. */
+/** `나누는 수가 $b$인 나눗셈 … $r$` 짝을 나온 순서대로. */
 function divisorPairs(text: string): [number, number][] {
   return [
-    ...text.matchAll(/나누는 수가 \$(\d+)\$ 인 나눗셈[^.]*?\$(\d+)\$/g),
+    ...text.matchAll(/나누는 수가 \$(\d+)\$인 나눗셈[^.]*?\$(\d+)\$/g),
   ].map((m) => [Number(m[1]), Number(m[2])] as [number, number]);
 }
 
-/** `$L$ 보다 크고 $U$ 보다 작` — 단위가 끼어도 읽는다. */
+/** `$L$보다 크고 $U$보다 작` — 단위가 끼어도 읽는다. */
 function bounds(text: string): [number, number] {
   const m = text.match(
     /\$(\d+)\$[^$]*보다 (?:크|많)고 \$(\d+)\$[^$]*보다 (?:작|적)/,
@@ -391,7 +391,7 @@ describe("초3 물결2 — 확대 갈래의 잣대", () => {
       const w = Number(wm![1]);
 
       // 나머지를 안 주면 마디가 안 굳는다 — 분모마다 나머지 후보가 $d-1$ 개다.
-      expect(ans, `${at}: 분모는 $2$ 보다 커야 한다`).toBeGreaterThan(2);
+      expect(ans, `${at}: 분모는 $2$보다 커야 한다`).toBeGreaterThan(2);
       const rest = N - w * ans;
       expect(rest, `${at}: 나머지는 분모보다 $1$ 작은 수다`).toBe(ans - 1);
       expect(
