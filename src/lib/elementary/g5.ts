@@ -8829,15 +8829,15 @@ function fm223AfterDen(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 08 — 두 진분수의 곱. 분수의 나눗셈을 요구하지 않는다. */
+/** 문형 08 — 곱을 기약분수로 나타낸 뒤 분자와 분모의 합. */
 function fm223FindFirst(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, d, b, e } = twoReducible(rng);
   const [num, den] = simplify(a * b, d * e);
   return make(
     unit,
-    `계산하시오.  ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}`)}`,
-    expr(fracLatex(num, den)),
-    `분자끼리, 분모끼리 곱한 뒤 약분합니다. ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}입니다.`,
+    `${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}`)}의 값을 기약분수로 나타낼 때, 분자와 분모의 합은 얼마입니까?`,
+    n(num + den),
+    `분자끼리, 분모끼리 곱한 뒤 약분하면 ${expr(fracLatex(num, den))}입니다. 분자와 분모의 합은 ${expr(`${num}+${den}=${num + den}`)}입니다.`,
   );
 }
 
