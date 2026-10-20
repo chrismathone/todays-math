@@ -83,9 +83,7 @@ export function T2PrintHeader({ meta, options, round, totalProblems }: Props) {
       head = (
         <>
           {heading(<>{field("subject", true)} 영역</>)}
-          <div className={s.subTitle}>
-            {field("title", true)} · {totalProblems ?? 0}문항
-          </div>
+          <div className={s.subTitle}>{field("title", true)}</div>
           {row(active.filter((key) => !["title", "subject"].includes(key)))}
           {student}
         </>

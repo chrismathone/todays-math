@@ -48,6 +48,26 @@ const problems: ProblemReview[] = [
 ];
 
 describe("selected template A T2", () => {
+  it("keeps an authored assessment title containing the question count exactly once", () => {
+    const Template = TEMPLATE_COMPONENTS.pyeongga;
+    const view = render(
+      <Template
+        page={1}
+        totalPages={1}
+        totalProblems={25}
+        columns={2}
+        startingNumber={1}
+        problems={problems}
+        meta={{ ...meta, title: "종합 확인 · 25문항" }}
+        options={{ ...DEFAULT_PRINT_OPTIONS, template: "pyeongga" }}
+      />,
+    );
+    expect(
+      view.container
+        .querySelector("[data-print-header]")!
+        .textContent!.match(/25문항/g),
+    ).toHaveLength(1);
+  });
   it("keeps missing school fields and an absent concept box omitted without filling saved values", () => {
     const empty = { ...meta, schoolName: "", conceptNote: "", todayGoal: "" };
     const before = JSON.stringify(empty);
