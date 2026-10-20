@@ -298,7 +298,7 @@ describe("one question, actual representation selection", () => {
         target: { value },
       });
     await user.click(within(dialog).getByRole("button", { name: "적용" }));
-    await user.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    await user.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await waitFor(() =>
       expect(screen.getByRole("alert")).toHaveTextContent(
         "총 4문항 지정 · 현재 2문항",

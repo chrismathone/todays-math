@@ -2,11 +2,16 @@
   container: exam-builder / inline-size;
   min-width: 0;
   width: 100%;
-  max-width: 1040px;
+  /* 원장님 2026-10-20 «공간 활용을 못 하고 잘린다» — 넓은 화면에서 1040px 에 묶여 양옆이 비었다 */
+  max-width: 1440px;
   margin-inline: auto;
   color: var(--learn-ink);
   --builder-border: var(--learn-track);
   --builder-control: var(--learn-control);
+  --builder-band-height: 60px;
+  --builder-column-top: calc(
+    var(--workspace-sticky-inset, 0px) + var(--builder-band-height) + 12px
+  );
 }
 @media screen {
   html:has(.root),
@@ -67,7 +72,12 @@
 .root :is(button, input, select):focus-visible,
 .dialog :is(button, input, select):focus-visible {
   outline: 2px solid var(--learn-accent);
-  outline-offset: 3px;
+  outline-offset: 1px;
+}
+/* 원장님 2026-10-20 «선택 시 테두리가 넘어감» — 마우스로 누른 단추에는 초점 테두리를 그리지 않는다(키보드는 위 규칙) */
+.root button:focus:not(:focus-visible),
+.dialog button:focus:not(:focus-visible) {
+  outline: none;
 }
 .root input,
 .dialog input:not([type="checkbox"]),
@@ -97,7 +107,7 @@
   align-items: start;
 }
 .sequenceLayout {
-  grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 28%, 380px);
 }
 .settings,
 .review,
@@ -110,6 +120,7 @@
 .settings,
 .reviewStep {
   margin-top: 12px;
+  scroll-margin-top: var(--builder-column-top);
 }
 .settings > .layout {
   margin-top: 0;
@@ -911,10 +922,6 @@
 }
 .stageList {
   min-width: 0;
-  max-height: 360px;
-  overflow: auto;
-  overscroll-behavior: contain;
-  scrollbar-gutter: stable;
 }
 .root .stageList > button {
   display: block;
@@ -1157,7 +1164,7 @@ label.sequenceLesson {
 }
 .reviewLayout {
   display: grid;
-  grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: clamp(300px, 28%, 380px) minmax(0, 1fr);
   gap: 20px;
   align-items: start;
 }
@@ -1304,6 +1311,13 @@ label.sequenceLesson {
   display: grid;
   gap: 8px;
 }
+.reviewFooterNav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid var(--builder-border);
+}
 @container exam-builder (max-width: 900px) {
   .layout,
   .reviewLayout {
@@ -1350,4 +1364,103 @@ label.sequenceLesson {
   margin-top: 4px;
   color: var(--learn-muted);
   font-size: 12px;
+}
+
+.selectedScopeMeta {
+  grid-column: 1 / -1;
+  color: var(--learn-muted);
+  font-size: var(--text-caption);
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.selectedScopeSummary small {
+  color: var(--learn-muted);
+  font-size: var(--text-caption);
+}
+.root button.reviewAction {
+  color: var(--learn-accent);
+}
+.review > .toolbar {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.review > .toolbar > .actions {
+  justify-content: flex-end;
+  margin-left: auto;
+  gap: 8px;
+}
+.review .panelHeader {
+  flex-wrap: wrap;
+}
+.review .panelHeader > button {
+  margin-left: auto;
+}
+.question > .actions {
+  gap: 8px;
+}
+.questionFormats {
+  display: block;
+  margin-top: 4px;
+  color: var(--learn-muted);
+  font-size: var(--text-caption);
+}
+@container exam-builder (min-width: 901px) {
+  .sequenceLayout > *,
+  .reviewLayout > * {
+    position: sticky;
+    top: var(--builder-column-top);
+    max-height: calc(
+      100dvh -
+        max(var(--builder-column-top), var(--builder-viewport-top, 0px)) - 12px
+    );
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    scroll-padding-block: 12px;
+  }
+  .selectedScope {
+    grid-template-columns: minmax(0, 1fr) 64px auto auto;
+    align-items: center;
+    gap: 4px 8px;
+  }
+  .selectedScope > .selectedScopeSummary {
+    grid-column: 1 / -1;
+  }
+  .selectedScopeSummary small {
+    display: inline;
+  }
+  .selectedScopeSummary small::before {
+    content: " · ";
+  }
+  .selectedScope > .selectedScopeMeta {
+    grid-column: 1;
+    grid-row: 2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .selectedScope > label:first-of-type {
+    grid-column: 2;
+    grid-row: 2;
+    width: 64px;
+  }
+  .selectedCountLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .selectedScope > .quickCheck {
+    grid-column: 3;
+    grid-row: 2;
+  }
+  .selectedScope > button {
+    grid-column: 4;
+    grid-row: 2;
+    padding-inline: 8px;
+  }
+  .review > .toolbar > .actions {
+    flex-wrap: nowrap;
+  }
 }

@@ -56,6 +56,7 @@ import { FORMAT_LABEL } from "@/lib/problem/questionSelectionClient";
 import QuestionPicker from "./QuestionPicker";
 import ReplaceDialog from "./ReplaceDialog";
 import { moveQuestion, useQuestionReorder } from "./useQuestionReorder";
+import { useBuilderScrollFrame } from "./useBuilderScrollFrame";
 import s from "./ExamBuilder.module.css";
 
 export default function ExamBuilder<T>({
@@ -198,17 +199,26 @@ export default function ExamBuilder<T>({
       scopes: ExamScope[];
       error?: string;
       retry: number;
-      demandIds?: string;
+      scopeIds?: string[];
+      errorIds?: string[];
     }[]
   >([]);
-  const loadedFor = (recent: boolean) =>
+  const cachedFor = (recent: boolean) =>
     loadedList.find(
       (entry) =>
         entry.source === source &&
         entry.recent === recent &&
-        entry.retry === retry &&
-        (!source.scopeNavigation || entry.demandIds === demandIds),
+        entry.retry === retry,
     );
+  const loadedFor = (recent: boolean) => {
+    const entry = cachedFor(recent);
+    if (!entry || !source.scopeNavigation) return entry;
+    const ids = demandIds ? demandIds.split(",") : [];
+    if (entry.errorIds?.some((id) => ids.includes(id))) return entry;
+    if (ids.every((id) => entry.scopeIds?.includes(id)))
+      return entry.error ? { ...entry, error: undefined } : entry;
+  };
+  const cached = cachedFor(excludeRecent);
   const loaded = loadedFor(excludeRecent);
   const scopes = useMemo<ExamScope[]>(
     () =>
@@ -225,12 +235,12 @@ export default function ExamBuilder<T>({
                   }),
                 ),
                 ...knownScopes,
-                ...(loaded?.scopes ?? []),
+                ...(cached?.scopes ?? []),
               ].map((scope) => [scope.id, scope]),
             ).values(),
           ]
-        : (loaded?.scopes ?? source.initialScopes ?? []),
-    [loaded, source, knownScopes],
+        : (cached?.scopes ?? source.initialScopes ?? []),
+    [cached, source, knownScopes],
   );
   const scopeLoading =
     !loaded && (!!source.scopeNavigation || !source.initialScopes);
@@ -323,38 +333,112 @@ export default function ExamBuilder<T>({
   const orderRef = useRef<HTMLTableElement>(null);
   const scopeRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const { rootRef, bandRef } = useBuilderScrollFrame(step);
   const [focusRequest, setFocusRequest] = useState(0);
   useEffect(() => {
     if (!focusRequest || step === "output") return;
     const element = step === "scope" ? scopeRef.current : headingRef.current;
     element?.focus({ preventScroll: true });
-    element?.scrollIntoView({ block: "start", behavior: "smooth" });
-  }, [focusRequest, step]);
-  useEffect(() => () => operation.current?.abort(), [source]);
-  useEffect(() => {
-    if (loaded) return;
-    const controller = new AbortController();
-    const store = (entry: { scopes: ExamScope[]; error?: string }) =>
-      setLoadedList((current) => [
-        ...current.filter(
-          (item) => item.source === source && item.recent !== excludeRecent,
-        ),
-        { source, recent: excludeRecent, retry, demandIds, ...entry },
-      ]);
-    void source
-      .loadScopes(
-        controller.signal,
-        source.scopeNavigation
-          ? { excludeRecent, scopeIds: demandIds ? demandIds.split(",") : [] }
-          : conditions
-            ? { excludeRecent }
-            : undefined,
+    rootRef.current
+      ?.querySelector(
+        step === "scope" ? "[data-builder-settings]" : "[data-builder-review]",
       )
-      .then((result) => {
-        if (!controller.signal.aborted) store({ scopes: result });
-      })
-      .catch((cause) => {
-        if (!controller.signal.aborted)
+      ?.scrollIntoView({ block: "start", behavior: "smooth" });
+  }, [focusRequest, step, rootRef]);
+  useEffect(() => () => operation.current?.abort(), [source]);
+  // Demand changes keep both confirmed counts and in-flight reads. Only a
+  // different source, an explicit retry or unmount cancels those reads.
+  const scopeRequests = useRef<
+    { recent: boolean; ids: string[]; controller: AbortController }[]
+  >([]);
+  useEffect(
+    () => () => {
+      scopeRequests.current.forEach(({ controller }) => controller.abort());
+      scopeRequests.current = [];
+    },
+    [source, retry],
+  );
+  useEffect(() => {
+    const loadScopeCounts = (recent: boolean) => {
+      const previous = loadedList.find(
+        (entry) =>
+          entry.source === source &&
+          entry.recent === recent &&
+          entry.retry === retry,
+      );
+      const pending = scopeRequests.current.filter(
+        (request) => request.recent === recent,
+      );
+      const ids = (demandIds ? demandIds.split(",") : []).filter(
+        (id) =>
+          !previous?.scopeIds?.includes(id) &&
+          !previous?.errorIds?.includes(id) &&
+          !pending.some((request) => request.ids.includes(id)),
+      );
+      if (
+        source.scopeNavigation
+          ? !ids.length && (!!previous || !!pending.length)
+          : !!previous || !!pending.length
+      )
+        return;
+      const controller = new AbortController();
+      const request = { recent, ids, controller };
+      scopeRequests.current.push(request);
+      const store = (result: { scopes: ExamScope[]; error?: string }) => {
+        // Reserve these IDs until this source/retry ends, including the gap
+        // between a response and React committing its cache update.
+        if (controller.signal.aborted) return;
+        setLoadedList((current) => {
+          const entry = current.find(
+            (item) =>
+              item.source === source &&
+              item.recent === recent &&
+              item.retry === retry,
+          );
+          return [
+            ...current.filter((item) => item !== entry),
+            {
+              source,
+              recent,
+              retry,
+              scopes: [
+                ...new Map(
+                  [...(entry?.scopes ?? []), ...result.scopes].map((scope) => [
+                    scope.id,
+                    scope,
+                  ]),
+                ).values(),
+              ],
+              scopeIds: [
+                ...new Set([
+                  ...(entry?.scopeIds ?? []),
+                  ...(result.error ? [] : ids),
+                ]),
+              ],
+              errorIds: [
+                ...new Set([
+                  ...(entry?.errorIds ?? []),
+                  ...(result.error ? ids : []),
+                ]),
+              ],
+              error: result.error ?? entry?.error,
+            },
+          ];
+        });
+      };
+      void source
+        .loadScopes(
+          controller.signal,
+          source.scopeNavigation
+            ? { excludeRecent: recent, scopeIds: ids }
+            : conditions
+              ? { excludeRecent: recent }
+              : undefined,
+        )
+        .then((result) => {
+          store({ scopes: result });
+        })
+        .catch((cause) => {
           store({
             scopes: [],
             error:
@@ -362,41 +446,19 @@ export default function ExamBuilder<T>({
                 ? cause.message
                 : "출제 범위를 불러오지 못했습니다.",
           });
-      });
-    return () => controller.abort();
-  }, [source, retry, excludeRecent, conditions, loaded, demandIds]);
-  // 창이 열려 있으면 반대쪽(최근 출제를 넣은 · 뺀) 수도 센다 — «지금 해당» · 켜고 끈 나뉠 모습에 쓴다.
-  const otherLoaded = !!loadedFor(!excludeRecent);
-  useEffect(() => {
-    if (!conditionsOpen || !conditions || otherLoaded) return;
-    const controller = new AbortController();
-    const recent = !excludeRecent;
-    void source
-      .loadScopes(controller.signal, {
-        excludeRecent: recent,
-        ...(source.scopeNavigation
-          ? { scopeIds: demandIds ? demandIds.split(",") : [] }
-          : {}),
-      })
-      .then((result) => {
-        if (!controller.signal.aborted)
-          setLoadedList((current) => [
-            ...current.filter(
-              (item) => item.source === source && item.recent !== recent,
-            ),
-            { source, recent, retry, demandIds, scopes: result },
-          ]);
-      })
-      .catch(() => {});
-    return () => controller.abort();
+        });
+    };
+    loadScopeCounts(excludeRecent);
+    // 창이 열리면 반대쪽(최근 출제를 넣은 · 뺀) 수도 따로 센다.
+    if (conditionsOpen && conditions) loadScopeCounts(!excludeRecent);
   }, [
-    conditionsOpen,
-    conditions,
     source,
-    excludeRecent,
-    otherLoaded,
     retry,
+    conditions,
+    loadedList,
     demandIds,
+    excludeRecent,
+    conditionsOpen,
   ]);
   const scopeMap = useMemo(
     () => new Map(scopes.map((scope) => [scope.id, scope])),
@@ -484,7 +546,7 @@ export default function ExamBuilder<T>({
         (scope?.count === undefined || row.count <= scope.count)
       );
     });
-  // W5 «이름 붙인 출제 조건» — 구성 조건(W4)이 있는 출처에서만(수학). 조건만 오간다 — 문항은 [문항 구성 →]으로 새로.
+  // W5 «이름 붙인 출제 조건» — 구성 조건(W4)이 있는 출처에서만(수학). 조건만 오간다 — 문항은 [문항 검토 →]으로 새로.
   const named = conditions ? namedConditions : undefined;
   const namedClient = named?.client;
   const [saved, setSaved] = useState<{
@@ -813,7 +875,7 @@ export default function ExamBuilder<T>({
     setScopePage(1);
   }
   /**
-   * 다시 «문항 구성 →» — 검토하던 문항 가운데 아직 범위 · 수 안에 있는 것은 차례 그대로 두고 모자란 자리만 새로 뽑는다
+   * 다시 «문항 검토 →» — 검토하던 문항 가운데 아직 범위 · 수 안에 있는 것은 차례 그대로 두고 모자란 자리만 새로 뽑는다
    * (Wire B 의 기본값 · 원장님 «추천으로 진행» 2026-10-17). 난이도 조건이 남긴 문항과 안 맞으면 전부 새로 짠다.
    */
   function keepPlan(
@@ -1235,8 +1297,14 @@ export default function ExamBuilder<T>({
   );
 
   return (
-    <section className={s.root} data-exam-builder aria-label="시험지 만들기">
+    <section
+      ref={rootRef}
+      className={s.root}
+      data-exam-builder
+      aria-label="시험지 만들기"
+    >
       <StudioStepBar
+        barRef={bandRef}
         headerTitle="시험지 만들기"
         step="review"
         pickedCount={questions.length}
@@ -1282,7 +1350,12 @@ export default function ExamBuilder<T>({
         </p>
       )}
       {step === "scope" ? (
-        <div className={s.settings} aria-label="시험지 설정" role="group">
+        <div
+          className={s.settings}
+          data-builder-settings
+          aria-label="시험지 설정"
+          role="group"
+        >
           {!(named && source.requireScopeCounts) && (
             <div className={s.toolbar}>
               <label htmlFor={`${uid}-title`}>제목</label>
@@ -1318,6 +1391,7 @@ export default function ExamBuilder<T>({
             />
           )}
           <div
+            data-scope-layout
             className={`${s.layout} ${source.requireScopeCounts ? s.sequenceLayout : ""}`}
           >
             {source.requireScopeCounts ? (
@@ -1444,12 +1518,7 @@ export default function ExamBuilder<T>({
                               key={row.scopeId}
                               data-selected-scope={row.scopeId}
                             >
-                              <span>
-                                <small>
-                                  {[scope?.group, scope?.detail]
-                                    .filter(Boolean)
-                                    .join(" · ")}
-                                </small>
+                              <span className={s.selectedScopeSummary}>
                                 {scope?.label ?? "선택 범위 확인 필요"}
                                 <small>
                                   {scope?.count === undefined
@@ -1457,8 +1526,20 @@ export default function ExamBuilder<T>({
                                     : `출제 가능 ${scope.count}${scope.countUnit ?? "문항"}${excludeRecent ? "(최근 출제 뺀 뒤)" : ""}`}
                                 </small>
                               </span>
+                              <small
+                                className={s.selectedScopeMeta}
+                                title={[scope?.group, scope?.detail]
+                                  .filter(Boolean)
+                                  .join(" · ")}
+                              >
+                                {[scope?.group, scope?.detail]
+                                  .filter(Boolean)
+                                  .join(" · ")}
+                              </small>
                               <label>
-                                문항 수
+                                <span className={s.selectedCountLabel}>
+                                  문항 수
+                                </span>
                                 <input
                                   type="number"
                                   min={0}
@@ -1822,7 +1903,7 @@ export default function ExamBuilder<T>({
                     }
                     onClick={() => void run("compose")}
                   >
-                    {busy ? "준비 중…" : "문항 구성 →"}
+                    {busy ? "준비 중…" : "문항 검토 →"}
                   </button>
                 </div>
               </footer>
@@ -1854,7 +1935,7 @@ export default function ExamBuilder<T>({
           </div>
         </div>
       ) : (
-        <div className={s.reviewStep}>
+        <div className={s.reviewStep} data-builder-review>
           <div className={s.toolbar}>
             <label htmlFor={`${uid}-review-title`}>제목</label>
             <input
@@ -2128,7 +2209,7 @@ export default function ExamBuilder<T>({
                   {renderAnswer && (
                     <button
                       type="button"
-                      className={s.textButton}
+                      className={s.reviewAction}
                       aria-pressed={answersShown}
                       onClick={() => setAnswersShown((shown) => !shown)}
                     >
@@ -2137,7 +2218,7 @@ export default function ExamBuilder<T>({
                   )}
                   <button
                     type="button"
-                    className={s.textButton}
+                    className={s.reviewAction}
                     disabled={actionsDisabled || !history.length}
                     onClick={() => {
                       const previous = history.at(-1);
@@ -2271,6 +2352,24 @@ export default function ExamBuilder<T>({
                                     .filter(Boolean)
                                     .join(" · ")}
                                 </small>
+                                {source.questionFormats && (
+                                  <small className={s.questionFormats}>
+                                    {[
+                                      ...new Set(
+                                        source.questionFormats
+                                          .options(item)
+                                          .filter(
+                                            (row) =>
+                                              row.state === "available" &&
+                                              row.format,
+                                          )
+                                          .map(
+                                            (row) => FORMAT_LABEL[row.format!],
+                                          ),
+                                      ),
+                                    ].join(" · ")}
+                                  </small>
+                                )}
                                 <div className={s.questionBody}>
                                   {renderQuestion(item)}
                                 </div>
@@ -2289,24 +2388,6 @@ export default function ExamBuilder<T>({
                                 >
                                   형식 변경 · {info.format ?? "미분류"}
                                 </button>
-                              )}
-                              {source.questionFormats && (
-                                <small>
-                                  {[
-                                    ...new Set(
-                                      source.questionFormats
-                                        .options(item)
-                                        .filter(
-                                          (row) =>
-                                            row.state === "available" &&
-                                            row.format,
-                                        )
-                                        .map(
-                                          (row) => FORMAT_LABEL[row.format!],
-                                        ),
-                                    ),
-                                  ].join(" · ")}
-                                </small>
                               )}
                               <button
                                 type="button"
@@ -2381,6 +2462,27 @@ export default function ExamBuilder<T>({
                 ))
               )}
               {pagination("문항 목록 쪽 이동")}
+              {/* 원장님 2026-10-20 — 목록 끝에서도 3단계로(위 단계 띠까지 올라가지 않게). 왼쪽 열 단추와 같은 동작 · 같은 막힘 판정 */}
+              <div className={s.reviewFooterNav}>
+                <button
+                  type="button"
+                  disabled={actionsDisabled}
+                  onClick={() => go("scope")}
+                >
+                  이전: 범위 설정
+                </button>
+                <button
+                  type="button"
+                  className={s.primary}
+                  disabled={
+                    actionsDisabled || !questions.length || !outputAllowed
+                  }
+                  aria-describedby={`${uid}-output-reason`}
+                  onClick={() => void run("output")}
+                >
+                  다음: 양식 구성·출력
+                </button>
+              </div>
             </section>
           </div>
         </div>

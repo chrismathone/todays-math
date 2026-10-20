@@ -15,7 +15,7 @@ import sc from "./SavedConditions.module.css";
 /**
  * «이름 붙인 출제 조건»(W5 · Hi-fi 1안 + 4안의 한 줄 — 원장님 2026-10-16).
  * `src/app/dev/exam-builder-hifi/W5Saved.tsx` 의 1안(줄 목록 — 이름 · 내용 · 범위 세 줄)과 4안의 «출제 조건 — ○○ 적용함» 줄.
- * 적용은 조건만 · 문항은 [문항 구성 →]으로 새로 · 삭제는 그 줄 안에서 한 번 묻는다.
+ * 적용은 조건만 · 문항은 [문항 검토 →]으로 새로 · 삭제는 그 줄 안에서 한 번 묻는다.
  */
 
 export const RESTORE_RULE =
@@ -146,7 +146,7 @@ export function ApplyReport({
         {hasQuestions
           ? "구성한 문항은 그대로입니다"
           : "문항은 아직 고르지 않았습니다"}{" "}
-        — [문항 구성 →]을 누르면 새로 고릅니다.
+        — [문항 검토 →]을 누르면 새로 고릅니다.
       </span>
       {issues > 0 && (
         <ul>

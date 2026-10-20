@@ -602,7 +602,7 @@ function ScopeFooter({ scenario }: { scenario: Scenario }) {
       </div>
       <div className={s.row}>
         <Action>조건 저장</Action>
-        <Action strong>문항 구성 →</Action>
+        <Action strong>문항 검토 →</Action>
       </div>
     </footer>
   );
@@ -1339,7 +1339,7 @@ export function SimpleWire() {
               <div className={s.row}>
                 <Action blocked={title !== "누른 뒤 확인 실패"}>
                   {title.startsWith("1")
-                    ? "문항 구성 →"
+                    ? "문항 검토 →"
                     : "다음: 양식 구성·출력 →"}
                 </Action>
                 <Action blocked={action === "확인 중…"}>{action}</Action>

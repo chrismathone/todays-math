@@ -42,7 +42,7 @@ function StepBar({ on }: { on: 1 | 2 }) {
       <span className={s.stepOff}>3 양식 구성·출력</span>
       <span className={s.spacer} />
       {on === 1 ? (
-        <Btn strong>문항 구성 →</Btn>
+        <Btn strong>문항 검토 →</Btn>
       ) : (
         <Btn strong>다음: 양식 구성·출력 →</Btn>
       )}
@@ -376,7 +376,7 @@ export function StepsWire() {
         <h2 className={s.h2}>네 안이 같은 것</h2>
         <ol className={s.must}>
           <li>
-            <b>1단계 → 2단계</b>는 «문항 구성 →» 하나 — 지금처럼 범위 · 구성에
+            <b>1단계 → 2단계</b>는 «문항 검토 →» 하나 — 지금처럼 범위 · 구성에
             맞춰 문항을 뽑고 2단계로 넘어갑니다.
           </li>
           <li>
@@ -405,7 +405,7 @@ export function StepsWire() {
                 ["화면", "A · B · C · D 가운데 하나 — 추천 B"],
                 [
                   "1단계로 돌아가 범위를 바꿨을 때",
-                  "다시 «문항 구성 →» — 교체 · 순서를 바꾼 문항 가운데 범위에 남은 것은 그대로 두고 모자란 자리만 채움",
+                  "다시 «문항 검토 →» — 교체 · 순서를 바꾼 문항 가운데 범위에 남은 것은 그대로 두고 모자란 자리만 채움",
                 ],
                 [
                   "2단계 맨 위 요약 한 줄",

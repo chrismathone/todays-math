@@ -321,7 +321,7 @@ function PanelFoot({ total, extra }: { total: number; extra?: ReactNode }) {
       <div className={eb.actions} style={{ marginLeft: "auto", gap: 8 }}>
         {extra}
         <button type="button" className={eb.primary}>
-          문항 구성 →
+          문항 검토 →
         </button>
       </div>
     </footer>
@@ -712,7 +712,7 @@ function Behind({
         <section className={eb.panel}>
           <div className={eb.empty}>
             <h2>범위를 정하고 문항을 구성하세요.</h2>
-            <p>왼쪽 구성표의 [문항 구성 →]을 누르면 여기에 문항이 놓입니다.</p>
+            <p>왼쪽 구성표의 [문항 검토 →]을 누르면 여기에 문항이 놓입니다.</p>
           </div>
         </section>
       </section>

@@ -362,7 +362,7 @@ function Behind({
         <section className={eb.panel}>
           <div className={eb.empty}>
             <h2>범위를 정하고 문항을 구성하세요.</h2>
-            <p>조건을 적용해도 문항은 [문항 구성 →]을 눌러야 고릅니다.</p>
+            <p>조건을 적용해도 문항은 [문항 검토 →]을 눌러야 고릅니다.</p>
           </div>
         </section>
       </section>
