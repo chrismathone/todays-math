@@ -9,7 +9,7 @@ import { getCourseProblemInput } from "./answers";
 import { extraCourseFrames } from "./extraFrames";
 
 /** Opt in chapter by chapter after reviewing the existing authored forms. */
-const CHAPTERS = new Set(["2-1"]);
+const CHAPTERS = new Set(["2-1", "2-2"]);
 
 /** Explicit SRS redraw entry point; the bank's default generator stays unchanged. */
 export function generateCourseEngineRedraw(
