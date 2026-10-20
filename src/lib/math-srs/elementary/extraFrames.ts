@@ -6,6 +6,7 @@ import { createRng, intBetween } from "../../elementary/rng";
 import { generateElementaryForm } from "../../elementary/forms";
 import { extraBoxFrames } from "./boxFrames";
 import { extraAverageFrames } from "./averageFrames";
+import { extraFirstSemesterFrames } from "./firstSemesterFrames";
 
 /** New frames are reachable only through the explicit SRS redraw path. */
 export function extraCourseFrames(
@@ -14,6 +15,7 @@ export function extraCourseFrames(
   tier: ElemTier,
 ) {
   const code = unit.section.split(" ")[0];
+  if (code.startsWith("1-")) return extraFirstSemesterFrames(unit, seed, tier);
   if (code.startsWith("2-5-")) return extraBoxFrames(unit, seed, tier);
   if (code.startsWith("2-6-")) return extraAverageFrames(unit, seed, tier);
   const rng = createRng(seed);
