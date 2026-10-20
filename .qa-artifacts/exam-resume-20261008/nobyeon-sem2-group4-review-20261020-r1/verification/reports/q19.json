@@ -1,0 +1,183 @@
+{
+  "status": "pending",
+  "studentDigest": "023dd4d8f9ad6ff29b14db539de9106310d12b64aaa7c82be00daf1ba758ce4c",
+  "candidateDigest": "13054e4b7f12cf80292f8ea1de20d07a1dadb3600ec0b1a13b50a5900ee2114a",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-nobyeon-sem2-group4-full-review-20261020",
+  "solveDigest": "545bdd88a8a5c4a385b2f5191e47a8090c9cf431c50bc92e683ba6062de54b1d",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-required-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExactReproduction": {
+      "specialAnglesSubstitutedSeparately": true,
+      "A": "1/2",
+      "B": "(√2+1)/2",
+      "E": "√2−1",
+      "recordTruth": {
+        "ㄱ": true,
+        "ㄴ": false,
+        "ㄷ": true
+      },
+      "exactRingBE": "B·E=1/2 in Q(√2)",
+      "denominators": "B>0;√2+1>0;유리화분모2−1=1",
+      "answerRoles": [
+        "wrongrecordㄴ",
+        "correctedB",
+        "totalE"
+      ],
+      "schemaBinding": {
+        "version": 1,
+        "kind": "record-correction-and-total",
+        "recordLabels": [
+          "ㄱ",
+          "ㄴ",
+          "ㄷ"
+        ],
+        "correctedExpression": "B",
+        "totalExpression": "E"
+      },
+      "uniqueness": "세기록중ㄴ만거짓. 모든특수각값과근호사칙식이정의되고E의값도유일. 표기만다른raw는고치지않음."
+    },
+    "wholeAuthorStudentMethod": "저자전체해설은sin30=1/2,cos60=1/2,cos45=√2/2,tan30=√3/3,cos30=√3/2,tan45=1을각각대입한다. A1/2로ㄱ참,ㄷ참,B=(√2+1)/2라ㄴ만오류. B>0에서E=1/(√2+1),켤레식곱으로E√2−1. 분모와기록/출력역할을모두검사했다.",
+    "sourceConceptProcedureAndChange": {
+      "sourceObserved": "원문질문은특수각삼각비들을포함하는한개의근호분수값을직접구하고분모를유리화하라고한다. 원문답은계산하지않았다.",
+      "sameCore": "특수각값개별대입,분자/분모합의근호사칙계산,양의분모확인후유리화라는핵심이같다. 원문에있는표현을허용근거로자동채택하지않고현재각대입만으로완결됨을확인했다.",
+      "substantiveChange": "현재는A/B/E역할을나누고세기록의진위를진단하여오류기호·바른B·전체E의순서로답한다. 새오류분석표/입출력역할과독립검산이추가되어단순숫자/동의어변형과다르다."
+    },
+    "originalKeyUsed": false,
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "edition": "2015 tab",
+        "actualRead": "earlier 2015 geometry/statistics viewed, algebra whole-method provisions reread for this review",
+        "locators": [
+          "line469 실수/분모유리화 학습요소",
+          "line491 9수02-12 다항식곱셈/인수분해",
+          "lines505–506 허용곱셈공식 (x+y)^2 포함",
+          "line513 근과계수관계 제외: 사용하지않음",
+          "line540 9수04-17/18 삼각비의정의/값/활용",
+          "lines555–557 삼각비사이관계 제외 및0~90도값/거리높이활용",
+          "line570 9수05-06/07 대표값·분산/표준편차"
+        ],
+        "limit": "같은중학밴드코드만으로새문항통과를추정하지않고아래실제전체해설의필수수학을일일이대조했다."
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "PDFindex73/physical74/printed72:중3수학2학기8~9월삼각비9수04-17/18",
+          "PDFindex73~74/printed72~73:중3대표값9수05-06/분산표준편차9수05-07"
+        ],
+        "conditions": "q20은이전다항식곱셈공식/곱0성질학습후배정.그선수개념의개별학생이수나특정노변시험진도는확인하지않음. 2022별도보류."
+      }
+    },
+    "sourceContextBinding": {
+      "aggregateManifestSha256": "0b5ddc139829c861eff46012d6887ac7b156103feee92e9bd7b94d3c971d51a3",
+      "stagedQuestionSha256": "3f202868ee63864381313a640dff47fb5fb1b3eac7be4e80d298518f63550dc6",
+      "priorPrintedReviewSha256": "6ae5c7dae0cef4c18a6a666637345a32b1d5ea4c87ef3847b9964432bef5d78d",
+      "afterParentRawSeal": "9452e3637e06f03cdd2c8c575063fdfa91a3e721",
+      "priorReportsArePointersNotApproval": true,
+      "fullTextAndCropsLocalOnly": true
+    },
+    "renderReview": {
+      "studentPreviewPngSha256": "5f66f05191c70541454edc3ab3d7345db9e6cdeb3991525f8a5d19d9cdf7b6af",
+      "solutionPreviewPngSha256": "14838e9415461101b778a4c0cb4f7b11caf4684e17233f02e3d2a3ff7cfab34d",
+      "actualViewBoth": true,
+      "assetBindings": [],
+      "nativeReaderPrintParityApproved": false
+    },
+    "naturalWording": "요청역할과과정서술을명확히구분한다. 오류기호·바른B·E의순서를직접지시해답역할이명확하다.",
+    "scoreDifficulty": {
+      "score": 5,
+      "basis": "원문과같은5점서술형으로관계식/계산/근거서술을평가할수있어배점제안은수용가능. 인쇄부분점존재를참고하되구체적새rubric배분을발명하지않는다.",
+      "proposal": "기본~응용 제안",
+      "observedSourceLabelAsProvided": "하",
+      "difficultyApproval": "pending",
+      "reason": "역추론·오류분석또는추가대수단계로원문과체감난도가같다는증거는없다. 원문하라벨을새기본~응용측정값으로전환하지않는다."
+    },
+    "unitFamily": {
+      "capturedUnitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "capturedSection": "삼각비의 값",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "제공캡처단원과개념대응은확인하나새입출력/기록교정/통계역추론전체목적을충족하는정확한livefamily정의/현재상태는미검증. q20의대수선수까지포함해단원명만으로family적합을주장하지않는다."
+    },
+    "rawProofBinding": {
+      "helperCommit": "9855ca6da6848acce4f39120962ae55fd0e74c7c",
+      "parentCommit": "9452e3637e06f03cdd2c8c575063fdfa91a3e721",
+      "rawSha256": "1144496e589040216cfb6e2795a68f94d1734332091824e91b9009b106f990df",
+      "gitBlobByteIdentical": true,
+      "priorDeclarationUnchanged": {
+        "currentAuthorAnswerSolutionPrivatePackageExposed": false,
+        "priorSourceAndRelatedExposure": "이전노변1학기문항,노변2학기q09~14학생/저자/질문전용원문및q15~17소유범위검토에서원본페이지와관련삼각비·대표값·편차·분산에노출되었다. 이번currentq18~20저자답/해설/비공개패키지나원문질문은열지않았다. 원본전체코퍼스의완전미노출을주장하지않는다.",
+        "studentOnlyInputs": "허용된학생JSON/brief/blindmanifest/SVG및student-preview q18/q19/q20 PNG만읽었다. 세PNG를실제view했다.",
+        "pixelsOrCoordinatesAsNumericalOracle": false
+      },
+      "newExposure": "현재저자답·해설·원문질문은rawGit봉인이후이번검토에서읽었다. 이전원문페이지소유/관련문항노출은raw선언에남아있으며완전미노출주장없음."
+    },
+    "answerGrammar": "수학적동일성과실제collector표현지원은다르다. raw답/receipt는후속형식통과를위해고치지않았다.",
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "familyApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolSpecificPacing": "pending",
+      "difficultyEquivalence": "pending"
+    },
+    "newTwinOrBlindCount": 0
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "특수각대입으로계산기록오류를찾고전체분수를구하는과제이다. 9수04-17 및이전실수/분모유리화범위이며삼각비사이일반항등식은없다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제choices=[]인서술형이다. 세계산기록ㄱ/ㄴ/ㄷ는모두따로검산했고오류ㄴ하나다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생및현재solutionPNG를실제view했고A/B/E식·세기록표·출력순서를대조했다. 그림은없고표에모든필요값이있다. 픽셀길이를답의수치오라클로쓰지않았다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "A/B/E와기록기호의역할을유지하고분모유리화결과는무차원수이다. 잘못된B와바른B를명시적으로구별한다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "저자와독립raw의수학적내용/역할은 오류ㄴ,바른B=(√2+1)/2,E=√2−1순서로일치한다. 쉼표/세미콜론/TeX/Unicode차이는raw불변으로보존한다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자전체해설은sin30=1/2,cos60=1/2,cos45=√2/2,tan30=√3/3,cos30=√3/2,tan45=1을각각대입한다. A1/2로ㄱ참,ㄷ참,B=(√2+1)/2라ㄴ만오류. B>0에서E=1/(√2+1),켤레식곱으로E√2−1. 분모와기록/출력역할을모두검사했다. 그림과수식이현재solutionPNG에서정상표시됨을확인했다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "특수각30/45/60삼각비와근호사칙·분모유리화·(u+v)(u−v)곱셈공식학습후배정. 공식2015학습요소와허용공식및중3삼각비배치에대응한다. 개별학생이수·노변중시험진도·2022배치는미확인이다."
+    }
+  }
+}

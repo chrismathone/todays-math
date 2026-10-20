@@ -1,0 +1,101 @@
+{
+  "results": [
+    {
+      "q": 18,
+      "reportSha256": "057a1a85b704c37aad81be9bf9e5c75b227975ecbfe1590fdd126475f5bf54e2",
+      "passedChecks": 11,
+      "passedGradeSurfaces": 7,
+      "math": "passed",
+      "grade": "passed-after-prerequisites",
+      "content": "held"
+    },
+    {
+      "q": 19,
+      "reportSha256": "56c568f472e4164447b30a37f75a52e7abbb317433e8757ba9449c05710e1a8e",
+      "passedChecks": 11,
+      "passedGradeSurfaces": 7,
+      "math": "passed",
+      "grade": "passed-after-prerequisites",
+      "content": "held"
+    },
+    {
+      "q": 20,
+      "reportSha256": "7bc77c3734523e42831db225584afe7b5e5a81c736aa808381df3839dee642c1",
+      "passedChecks": 11,
+      "passedGradeSurfaces": 7,
+      "math": "passed",
+      "grade": "passed-after-prerequisites",
+      "content": "held"
+    }
+  ],
+  "inputBeforeAfterHashes": {
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\source-only-context\\q18-staged.json": "453bf5f09071c445c0581d9addb39da7aab834fee92e6cf6928c739942af7100",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\source-only-context\\q18-prior-review.json": "100d86c0e184e009cb0eff2db65159f41d46dcee73899e54276dffab0be94e20",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\source-only-context\\q19-staged.json": "3f202868ee63864381313a640dff47fb5fb1b3eac7be4e80d298518f63550dc6",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\source-only-context\\q19-prior-review.json": "6ae5c7dae0cef4c18a6a666637345a32b1d5ea4c87ef3847b9964432bef5d78d",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\source-only-context\\q20-staged.json": "608b4780494c9e200095735f300da93c4cf62fa2570678a62a7f7e08bb842d0a",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\source-only-context\\q20-prior-review.json": "b141c774c4322751a1a37fe1b1ec502c906eacb8bfcf5f82ad009d8830db460f",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\source-only-context\\q18-part1.png": "50ba1a6398b0fa694f498fcd4a6a3fed75e3154392c3bf6fd95aeed7d42efc35",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\blind\\solve\\q18.json": "48b8ded317d5e4357738beae4b5175a297c4188afe5792d1e92e97c89ae73d6d",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\package\\private\\q18\\candidate.json": "1d3b086f7116aaf64ec4b2d3647f4c7697c38fc53ba16f1ffceefdd41a2ab1be",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\blind\\own-nobyeon4-blind-check.py": "118b5c621c09bef3b8a0149e7364c260bd7d6866331b7ceb1650eefd264aa422",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\blind\\own-nobyeon4-blind-check-receipt.json": "76cadd78e52d0a7ea66a6405a600a68ca4c08393417846cd21fe73e7939ee555",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\blind\\own-nobyeon4-blind-utf8.txt": "892293ed34023f6e2242ba03756c47e3262dedd9c043e7cbffbe0e448d51e6d6",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\solution-preview\\q18.solution.png": "045ff28e3c636d3bb0da52afa589b1f0498fbc05779cc158aa1c1caca4287eea",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\student-preview\\q18.png": "5b462473b27eff82933be4339fb2acf28e09a1258d904f07f342d03d6b84e975",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\package\\private\\q18\\figure-1.spec.json": "110a875d88480167a111e80b877ab11d61012e30a44476467e305d8b9eeb305a",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\package\\private\\q18\\figure-1.svg": "a87b10b590a453ac036cc55b8014f21ad29d83d0450ce0fbaf92d79c77629552",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\blind\\solve\\q19.json": "1144496e589040216cfb6e2795a68f94d1734332091824e91b9009b106f990df",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\package\\private\\q19\\candidate.json": "c66bca011c5eba551f14c1acf5771a56ff8ae693d6e19813e76390a1bd06b730",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\solution-preview\\q19.solution.png": "14838e9415461101b778a4c0cb4f7b11caf4684e17233f02e3d2a3ff7cfab34d",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\student-preview\\q19.png": "5f66f05191c70541454edc3ab3d7345db9e6cdeb3991525f8a5d19d9cdf7b6af",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\blind\\solve\\q20.json": "a308e3ba67c8c8fab8a6836781a218feaeb7647a02b535810601859d2a455f4f",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\package\\private\\q20\\candidate.json": "e19378d5b2dcc34b9df5142ae0f2640945f5f8878c0db9756b193e3f3c9d4590",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\solution-preview\\q20.solution.png": "ec53317c81583647e2bcad3c8fb0027f067cbba364a13809d60dd306632a9821",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group4-review-20261020-r1\\student-preview\\q20.png": "354ce3652690849c061422655f14e1485624d49ecc21bc468f6eb5dcef031bf2"
+  },
+  "rawAndReceiptUnchanged": true,
+  "requiredDispersionControls": [
+    {
+      "a": 39,
+      "b": 44,
+      "mean": "40",
+      "variance": "38/5"
+    },
+    {
+      "a": 41,
+      "b": 42,
+      "mean": "40",
+      "variance": "26/5"
+    }
+  ],
+  "primaryEvidence": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "edition": "2015 tab",
+      "actualRead": "earlier 2015 geometry/statistics viewed, algebra whole-method provisions reread for this review",
+      "locators": [
+        "line469 실수/분모유리화 학습요소",
+        "line491 9수02-12 다항식곱셈/인수분해",
+        "lines505–506 허용곱셈공식 (x+y)^2 포함",
+        "line513 근과계수관계 제외: 사용하지않음",
+        "line540 9수04-17/18 삼각비의정의/값/활용",
+        "lines555–557 삼각비사이관계 제외 및0~90도값/거리높이활용",
+        "line570 9수05-06/07 대표값·분산/표준편차"
+      ],
+      "limit": "같은중학밴드코드만으로새문항통과를추정하지않고아래실제전체해설의필수수학을일일이대조했다."
+    },
+    "actualM3Placement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "previouslyActuallyViewed": true,
+      "locators": [
+        "PDFindex73/physical74/printed72:중3수학2학기8~9월삼각비9수04-17/18",
+        "PDFindex73~74/printed72~73:중3대표값9수05-06/분산표준편차9수05-07"
+      ],
+      "conditions": "q20은이전다항식곱셈공식/곱0성질학습후배정.그선수개념의개별학생이수나특정노변시험진도는확인하지않음. 2022별도보류."
+    }
+  },
+  "allThreeSolutionPngsActuallyViewed": true,
+  "noComputerAlgebraOrSourceAnswerOracle": true
+}

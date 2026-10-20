@@ -1,0 +1,175 @@
+{
+  "status": "pending",
+  "studentDigest": "a79b13a29a0d2303e78d63c352465fe2e3bb852d13cb601dcaa23cf0df6db1f5",
+  "candidateDigest": "71e47598db6f8e99f5958162ed9ba64988f180761100ecf50282f0542b990532",
+  "assetDigest": "e724a88f94a0bb9c7d03919bf49f101d25e6a917e9ac726cf3cf07bb7704bb12",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-nobyeon-sem2-group4-full-review-20261020",
+  "solveDigest": "3816b31cd58a91cabd55d0842f1ac6735b20844407752fc47bc9292d5aa16d3c",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-required-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExactReproduction": {
+      "printedHeight": "342/5",
+      "printedSine": "171/500",
+      "exactDivisionOnPrintedApproximation": "200",
+      "output": "200.0m",
+      "rationalLengthBoundsIfSineRounded4dp": [
+        "1368000/6841",
+        "1368000/6839"
+      ],
+      "roundingBin": [
+        "199.95",
+        "200.05"
+      ],
+      "existenceUniqueness": "68.4>0,20°예각,양의사인0.3420≠0. 제공표사용빗변유일하고200.0>높이. 정확실제sin20을0.3420이라고동일시하지않음."
+    },
+    "wholeAuthorStudentMethod": "저자전체해설은맞은편QR/빗변PQ를확인하여sin20°=QR/PQ를세우고제공0.3420으로68.4를나누어200,소수첫째자리200.0m로쓴다. ≃와약을사용해근삿값임을표현하고20°값유도/임의삼각비항등식은쓰지않는다.",
+    "sourceConceptProcedureAndChange": {
+      "sourceObserved": "원문질문과실제참고crop은비탈길빗변거리와제공15°삼각비에서높이를구하는서술형이다.",
+      "sameCore": "실제직각삼각형의맞은편변/빗변인사인정의와제공근삿값의길이계산이동일한핵심절차이다.",
+      "substantiveChange": "현재는높이를입력으로빗변을역복원하고새20°근삿값표/소수첫째자리목표를명시한다. 단순숫자교체가아니라높이/경사거리의입출력역전과근사계약재조직이다."
+    },
+    "originalKeyUsed": false,
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "edition": "2015 tab",
+        "actualRead": "earlier 2015 geometry/statistics viewed, algebra whole-method provisions reread for this review",
+        "locators": [
+          "line469 실수/분모유리화 학습요소",
+          "line491 9수02-12 다항식곱셈/인수분해",
+          "lines505–506 허용곱셈공식 (x+y)^2 포함",
+          "line513 근과계수관계 제외: 사용하지않음",
+          "line540 9수04-17/18 삼각비의정의/값/활용",
+          "lines555–557 삼각비사이관계 제외 및0~90도값/거리높이활용",
+          "line570 9수05-06/07 대표값·분산/표준편차"
+        ],
+        "limit": "같은중학밴드코드만으로새문항통과를추정하지않고아래실제전체해설의필수수학을일일이대조했다."
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "PDFindex73/physical74/printed72:중3수학2학기8~9월삼각비9수04-17/18",
+          "PDFindex73~74/printed72~73:중3대표값9수05-06/분산표준편차9수05-07"
+        ],
+        "conditions": "q20은이전다항식곱셈공식/곱0성질학습후배정.그선수개념의개별학생이수나특정노변시험진도는확인하지않음. 2022별도보류."
+      }
+    },
+    "sourceContextBinding": {
+      "aggregateManifestSha256": "0b5ddc139829c861eff46012d6887ac7b156103feee92e9bd7b94d3c971d51a3",
+      "stagedQuestionSha256": "453bf5f09071c445c0581d9addb39da7aab834fee92e6cf6928c739942af7100",
+      "priorPrintedReviewSha256": "100d86c0e184e009cb0eff2db65159f41d46dcee73899e54276dffab0be94e20",
+      "afterParentRawSeal": "9452e3637e06f03cdd2c8c575063fdfa91a3e721",
+      "priorReportsArePointersNotApproval": true,
+      "fullTextAndCropsLocalOnly": true
+    },
+    "renderReview": {
+      "studentPreviewPngSha256": "5b462473b27eff82933be4339fb2acf28e09a1258d904f07f342d03d6b84e975",
+      "solutionPreviewPngSha256": "045ff28e3c636d3bb0da52afa589b1f0498fbc05779cc158aa1c1caca4287eea",
+      "actualViewBoth": true,
+      "assetBindings": [
+        {
+          "specSha256": "110a875d88480167a111e80b877ab11d61012e30a44476467e305d8b9eeb305a",
+          "svgSha256": "a87b10b590a453ac036cc55b8014f21ad29d83d0450ce0fbaf92d79c77629552",
+          "studentPrivateByteEqual": true,
+          "geometry": "right triangle/20degree verified; floats used for drawing only"
+        }
+      ],
+      "nativeReaderPrintParityApproved": false
+    },
+    "naturalWording": "요청역할과과정서술을명확히구분한다. 제공표와자릿수지시가있어근삿값사용계약이분명하다.",
+    "scoreDifficulty": {
+      "score": 4,
+      "basis": "원문과같은4점서술형으로관계식/계산/근거서술을평가할수있어배점제안은수용가능. 인쇄부분점존재를참고하되구체적새rubric배분을발명하지않는다.",
+      "proposal": "기본~응용 제안",
+      "observedSourceLabelAsProvided": "하",
+      "difficultyApproval": "pending",
+      "reason": "역추론·오류분석또는추가대수단계로원문과체감난도가같다는증거는없다. 원문하라벨을새기본~응용측정값으로전환하지않는다."
+    },
+    "unitFamily": {
+      "capturedUnitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "capturedSection": "삼각비의 활용",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "제공캡처단원과개념대응은확인하나새입출력/기록교정/통계역추론전체목적을충족하는정확한livefamily정의/현재상태는미검증. q20의대수선수까지포함해단원명만으로family적합을주장하지않는다."
+    },
+    "rawProofBinding": {
+      "helperCommit": "9855ca6da6848acce4f39120962ae55fd0e74c7c",
+      "parentCommit": "9452e3637e06f03cdd2c8c575063fdfa91a3e721",
+      "rawSha256": "48b8ded317d5e4357738beae4b5175a297c4188afe5792d1e92e97c89ae73d6d",
+      "gitBlobByteIdentical": true,
+      "priorDeclarationUnchanged": {
+        "currentAuthorAnswerSolutionPrivatePackageExposed": false,
+        "priorSourceAndRelatedExposure": "이전노변1학기문항,노변2학기q09~14학생/저자/질문전용원문및q15~17소유범위검토에서원본페이지와관련삼각비·대표값·편차·분산에노출되었다. 이번currentq18~20저자답/해설/비공개패키지나원문질문은열지않았다. 원본전체코퍼스의완전미노출을주장하지않는다.",
+        "studentOnlyInputs": "허용된학생JSON/brief/blindmanifest/SVG및student-preview q18/q19/q20 PNG만읽었다. 세PNG를실제view했다.",
+        "pixelsOrCoordinatesAsNumericalOracle": false
+      },
+      "newExposure": "현재저자답·해설·원문질문은rawGit봉인이후이번검토에서읽었다. 이전원문페이지소유/관련문항노출은raw선언에남아있으며완전미노출주장없음."
+    },
+    "answerGrammar": "수학적동일성과실제collector표현지원은다르다. raw답/receipt는후속형식통과를위해고치지않았다.",
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "familyApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolSpecificPacing": "pending",
+      "difficultyEquivalence": "pending"
+    },
+    "newTwinOrBlindCount": 0
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "실제경사로의높이와예각20°,제공근삿값표에서빗변을구한다. 9수04-17/18의실제직각삼각비활용으로완결되고20°자체유도는요구하지않는다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제choices=[]인서술형이다. 존재하지않는5보기를가정하지않고요구결과와서술과정을검토했다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생PNG와현재solutionPNG를실제view했다. 경사도/직각/라벨과삼각비표세값이본문에맞고현재spec/SVG해시가봉인학생자산과동일하다. 원문crop은참조뿐이며현재자산에사용하지않았다. 픽셀길이를답의수치오라클로쓰지않았다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "sin20의정의와표의근삿값·≃·약표현을구분한다.200.0m의소수첫째자리/단위가요구에맞는다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "저자와독립raw의수학적내용/역할은 200.0m로일치하고반올림구간도정확검사했다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자전체해설은맞은편QR/빗변PQ를확인하여sin20°=QR/PQ를세우고제공0.3420으로68.4를나누어200,소수첫째자리200.0m로쓴다. ≃와약을사용해근삿값임을표현하고20°값유도/임의삼각비항등식은쓰지않는다. 그림과수식이현재solutionPNG에서정상표시됨을확인했다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "삼각비정의9수04-17/활용9수04-18 및비례식·소수나눗셈·반올림이후배정. 실제중3배치는공식계획printed72의8~9월삼각비에서확인했다. 개별학생이수·노변중시험진도·2022배치는미확인이다."
+    }
+  }
+}
