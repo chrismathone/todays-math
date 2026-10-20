@@ -1,0 +1,101 @@
+{
+  "audit": "U57 R2 repaired plain-data boundary, standalone offline helper",
+  "status": "bounded-code-audit-passed",
+  "scopeSHA256": "dd0513b73315768eb6bf7d3b72f05fcf3e00acdda03c08762eb43eae5855369f",
+  "ownRuns": {
+    "r1ControlsReplayed": 654,
+    "r1ControlsPassed": 654,
+    "newControls": 622,
+    "newControlsPassed": 622,
+    "total": 1276,
+    "passed": 1276,
+    "failed": 0,
+    "parentTestsRun": 0,
+    "validationMocks": 0,
+    "modelsApiDbCalls": 0,
+    "runtime": "Actual supplied export, byte-identical to both authorized root and snapshot for each of two files. Parent tests statically read only, not run or counted."
+  },
+  "r1Preservation": {
+    "commit": "29a6f49b61d6eba80a28c70bb02b8fd3d2f052f5",
+    "reportSHA256": "a057659e73ce38e2ed1ee830bf3f2a947c6ca225f1987cc0743e638ade3cdac3",
+    "originalReportStatus": "technical-hold remains historically immutable; no rewording to pass. R2 is a new independent result.",
+    "fiveReusedEvidenceFilesGitBlobEqual": true,
+    "oracle": "Reuse unchanged own Python Fraction 530-witness oracle, not parent1296 witness enumeration. R2 replay changes only relative oracle and output paths in own script; R1 files untouched.",
+    "original3Resolution": [
+      {
+        "kind": "original-r1-changing-getter",
+        "key": "rootCoefficient",
+        "reads": 0
+      },
+      {
+        "kind": "original-r1-changing-getter",
+        "key": "reciprocalRadicand",
+        "reads": 0
+      },
+      {
+        "kind": "original-r1-changing-getter",
+        "key": "reciprocalScale",
+        "reads": 0
+      }
+    ],
+    "oldHiddenKeyObservations": "R1 accepted symbol/nonenumerable extras. Same observations now both rejected; explicit new boundary rejection controls pass."
+  },
+  "mathematicalChecks": {
+    "positiveWitnesses": 530,
+    "proof": "Known positive rational a, k=a^2, fixed b factorized in multiple c*s pairs and varied m construct exact decimal R=a*b; no floating root oracle. Actual output compared to known witnesses. Returned certificate independently rechecked against RETURNED printedModel by rational cross multiplication: b=c*s, a*b=R, k=a^2, radicand=m*k, and s=b^2/(c^2*s); every radical side/denominator positive. These positive branches establish all three original relations, existence and forced unique a,b,k.",
+    "nonpositiveProduct": "R1 controls retained: R<=0 returns no-solution with no positive squared extraneous branch.",
+    "extremes": "Unchanged 530 include exact small/large decimal products and maximum m/s/c; bounded malformed decimal/integer/domain/missing/extra inputs retained.",
+    "currentPrintedQ03": {
+      "m": 3,
+      "s": 5,
+      "c": 2,
+      "R": "8",
+      "a": "4/5",
+      "b": "10",
+      "k": "16/25",
+      "choice": "③",
+      "printedCoefficientBinding": "Original own oracle extracts actual printed coefficients, not parameters/answer as oracle; current candidate/raw/sealed full report hashes unchanged.",
+      "wholeStudentMethod": "Earlier sealed current q03 full review alone establishes bounded 2015 M3 after root arithmetic/definitions and earlier linear arithmetic. Positive-root product/cancellation reduces to sqrt(k)=a; definition gives k=a^2. This helper replay introduces no unrestricted high-school radical-equation permission."
+    }
+  },
+  "boundaryChecks": {
+    "allFiveFields": "20 getter/get+set/set-only/hidden-get controls, plus3 exact original changing getter reproductions. All rejected and get/set counts zero.",
+    "proxyCases": "Plain/null/array/function/nested/revoked proxies rejected, all13 installed trap counters remain zero; function/array shape can reject before proxy-specific check and revoked proxy may throw internally without calling traps.",
+    "hiddenAndSymbols": "Each of five required fields hidden => reject; symbol data/accessor and nonenumerable extra data/accessor reject, callbacks zero.",
+    "prototypes": "Custom empty/prototype-getter/class/Date/Map/array/proxy-prototype records rejected, callback counts zero.",
+    "primitiveSnapshot": "Five nonprimitive field values with Symbol.toPrimitive/toString/valueOf callbacks reject without coercion. Source statically rejects proxy before prototype/descriptor access, checks exact Reflect.ownKeys and own enumerable data descriptors, then takes descriptor.value primitives for both calculation and returned model; input coefficients never reread.",
+    "allowed": "32 variants: plain/null prototype x normal/frozen/sealed/nonextensible x4 representative oracle cases accepted, unchanged descriptors/determinism/witnesses. Reordered nonwritable enumerable data accepted.",
+    "copiesAndFlags": "Output mutation does not mutate input or a fresh result. All four approval/load flags false in returned witness/no-solution results; eight forged approval/native/family/version/course keys reject."
+  },
+  "limitations": {
+    "runtime": "Node standalone export only, no new public app template, collector, catalog, routing, source parser, native renderer or actual registration tested.",
+    "inputs": "Current JSON data and specified direct JS object boundaries tested; not a general hostile-JavaScript/global-intrinsic-tampering guarantee or full TeX/semantic proof. Number product represents String(number), not recoverable original lexical precision; exact strings avoid that loss.",
+    "approvals": {
+      "curriculumApproved": false,
+      "studentMethodProved": false,
+      "rightsApproved": false,
+      "permitsLoad": false,
+      "familyRegistrationNativeSimilarityWholeSourceIdentity": "unapproved",
+      "2022Placement": "pending"
+    },
+    "counts": "No new student/manual/blind question count or grade approval. U58 held source scope and active505 parser were not read or changed."
+  },
+  "preservation": {
+    "twoRootSnapshotRuntimeSourcesBeforeAfterIdentical": true,
+    "priorEvidenceFiles": 5,
+    "actualCandidateRawFullReport": 3,
+    "rawAndFullReportGitBlobEqual": true,
+    "utf8ProbeSHA256": "47d0afa3088fe52da781b42872ff18c7bd5c7cd12055ac9a1ab8f2f2f62b3de8",
+    "sourceEdits": 0
+  },
+  "artifacts": {
+    "own-prepare.py": "5bf09e869f8358c5cbb133f664e59aaca6a0156478103c04cc98f53a5e50b7bd",
+    "own-before.json": "dc714d19b1c650e4d433a0d320520c646c2d36d8204c547df15c862f2261f6ee",
+    "own-utf8-probe.txt": "47d0afa3088fe52da781b42872ff18c7bd5c7cd12055ac9a1ab8f2f2f62b3de8",
+    "own-r1-replay.mjs": "a90f155df71567804f8ae6d12043333c8e0e8c033b88589b0fd1ec97090af41c",
+    "own-r1-replay-results.json": "090fddf2d77d6167349b346980f66948d25a5f9e2ee3aeb8e65e9fa3a96ddd4b",
+    "own-boundary-controls.mjs": "cde9002d95f930d9ad839fd89b9f954509b651c2383be453a04ba22e00372410",
+    "own-boundary-results.json": "ae6d070125a5b3a5376a39400ff64192fc628912ef0ad0abf05f8a810949d486",
+    "own-after.json": "dc714d19b1c650e4d433a0d320520c646c2d36d8204c547df15c862f2261f6ee"
+  }
+}

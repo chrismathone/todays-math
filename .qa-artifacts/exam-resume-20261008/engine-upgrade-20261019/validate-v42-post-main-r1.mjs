@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {readJson,sha256} from '../../../scripts/import/exam-twin/candidatePack.mjs';
+const e='.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/',git=(...a)=>{const x=spawnSync('git',a,{encoding:'utf8'});assert.equal(x.status,0,x.stderr);return x.stdout.trim();},head=git('rev-parse','HEAD'),main=git('rev-parse','origin/main');git('merge-base','--is-ancestor',main,head);
+const latest=readJson(e+'inverse-radical-parent-validation-r2.json').code,overrides=new Map(latest.map(r=>[r.path,r]));const code=readJson('.qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r34.json').code.map(r=>overrides.get(r.path)??r);
+for(const r of code)assert.equal(sha256(fs.readFileSync(r.path)),r.sha256);
+const tests=fs.readdirSync('scripts/import/exam-twin').filter(p=>p.endsWith('.test.mjs')).map(p=>'scripts/import/exam-twin/'+p),units=['courseListAnswers','mathSrsElementaryCourse','srsStoredContractWalk','printSpacingReader','mathgenPrint','examStudyContract','examStudyInverseMinimum','examStudyInverseTangentRectangle','lockProblemRows'].map(p=>'src/__tests__/unit/'+p+'.test.ts'),jobs=[
+ ['v42-post-main-node-r1.tap',['--test',...tests]],
+ ['v42-post-main-vitest-r1.log',['node_modules/vitest/vitest.mjs','run',...units,'--maxWorkers=1','--reporter=json','--reporter=default','--outputFile.json='+e+'v42-post-main-vitest-r1.json']]
+];
+for(const[name,args]of jobs){const r=spawnSync(process.execPath,args,{encoding:'utf8',maxBuffer:16*1024*1024});fs.writeFileSync(e+name,r.stdout+r.stderr,{flag:'wx'});console.log(JSON.stringify({name,status:r.status}));assert.equal(r.status,0,(r.stdout+r.stderr).slice(-4000));}
+const v=readJson(e+'v42-post-main-vitest-r1.json');assert.equal(v.numFailedTests,0);for(const r of code)assert.equal(sha256(fs.readFileSync(r.path)),r.sha256);assert.equal(git('rev-parse','HEAD'),head);
+const receipt={utc:new Date().toISOString(),head,main,mainIsAncestorOfTestedHead:true,priorBuilderIntegrationValidation:e+'working-post-main-validation-r1.json',priorReaderFloorValidation:e+'working-post-main-validation-r2.json',historicalCurrent160Bindings:e+'v40-binding-validation-r1.json',newMainDelta:'Latest main course list-answer writer and additive print smart-spacing reader floor, plus descriptive-engine planning docs; preserve all coauthor changes',nodeFiles:tests.length,nodeSummary:fs.readFileSync(e+'v42-post-main-node-r1.tap','utf8').slice(-250),vitestFiles:v.testResults.length,vitestPassed:v.numPassedTests,vitestFailed:v.numFailedTests,code,logs:jobs.map(([p])=>({path:e+p,sha256:sha256(fs.readFileSync(e+p))})),dbWrites:0,loadable:0};fs.writeFileSync(e+'v42-post-main-validation-r1.json',JSON.stringify(receipt,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(receipt));

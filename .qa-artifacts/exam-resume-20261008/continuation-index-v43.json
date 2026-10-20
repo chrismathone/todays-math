@@ -1,0 +1,147 @@
+{
+  "kind": "exam-continuation-index/v43",
+  "version": 43,
+  "createdAt": "2026-10-20T06:33:05.704Z",
+  "previousIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v42.json",
+    "sha256": "a24262175d84be441eda93842f91e28b1b059d21b680b04a4319c4c730a3ce7e"
+  },
+  "statusLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v43.json",
+    "sha256": "bf836cf8a92f20515d35aa27a1ce58fcd870a0c7b7a7aaeeb969b68d61653f57"
+  },
+  "currentCandidateIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v43.json",
+    "sha256": "ed615c361d42c5b823dd5e96d52ce28b2c11802d0af6a7e6bcf6b0abe11c15f7"
+  },
+  "progressReport": "docs/planning/tracks/reports/exam-twin-engine-checkpoint-v43-20261020.md",
+  "counts": {
+    "authoredCurrentCandidates": 162,
+    "currentFigureInstances": 113,
+    "recreatedStatTables": 20,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 162,
+    "independentMathReviewed": 161,
+    "independentFullGradeReviewed": 161,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 146,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 161,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 5,
+    "failedStudentRenderDraftVersions": 1,
+    "currentRawPointTranscriptionLimitations": 1
+  },
+  "sourceAccess": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/source-access-current-r10.json",
+    "sha256": "fd21940c7da538567e7946f6c310a54a9d41ea1a51e7562a66494388b24de37e"
+  },
+  "freshExtraction": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261020-r3/aggregate-receipt.json",
+    "sha256": "ce53d49ce0f6693d3280b66e16810ef7d52a9cbc031fd72cfacf243971278d4b"
+  },
+  "engine": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r35.json",
+    "sha256": "5e0a16dc0c12bf09db111d8a77979a2957ed181f76bbd8d3c2f5939693600f46"
+  },
+  "latestClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-20261020-r3.json",
+    "sha256": "353cdf1f3afe482521e3a059432489c5ef0fc6fa20b0cb4870a26b16cc02c052"
+  },
+  "cleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "sourceQueue": {
+    "currentFirst9SourceComponentReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+      "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5"
+    },
+    "latestFreshReceipt": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261020-r3/aggregate-receipt.json",
+      "sha256": "ce53d49ce0f6693d3280b66e16810ef7d52a9cbc031fd72cfacf243971278d4b"
+    },
+    "historicalInventoryNotCurrentCorpus": true,
+    "individualHoldsDoNotStopOtherSources": true,
+    "currentFirst9LocalObservationOverlay": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-nine-local-normalization-observations-r3.json",
+      "sha256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0"
+    },
+    "originalNineReportPreserved": true,
+    "wholePaperOrRightsApproved": false,
+    "completedRemaining79M3": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-m3-extraction-20261020-r1/aggregate-queue-receipt.json",
+      "sha256": "7cd5ee9f2d833346109e041d76c9cebf06e560627f427ba1b77f502c5863cfde"
+    },
+    "newScopePilots": {
+      "path": ".qa-artifacts/exam-resume-20261008/source-scope-generalization-20261020-r1/parent-validation-r1.json",
+      "sha256": "c6c45bab0604a017e8d0434cd071fce52b70695675980af1a0549c0bf6cd0a06"
+    },
+    "open505OtherGradePlan": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/explicit-plan.json",
+      "sha256": "6d376976a9b5ea72c35896f1891ef03cebe949d0c93b7f6bd543ddc197b635d7"
+    },
+    "openProgressPath": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/progress.ndjson",
+    "closedObservationCountThroughR34": 2439,
+    "wholeNExtractionComplete": false,
+    "partial505ProgressSnapshot": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/other-scopes-progress-summary-20261020-r1.json",
+      "sha256": "45a31bcabcf1db8a121fa6a91ec78df555b0a93f03fde1c497ee959253f89b74"
+    },
+    "policyCorrections113ClosedReceipts": {
+      "path": ".qa-artifacts/exam-resume-20261008/source-scope-policy-overlays-20261020-r1/parent-validation-r1.json",
+      "sha256": "8c34d80336629a678fc140279df1d231ee3a8730c5bcc74e4746b2bb886c740f"
+    },
+    "activeReaderUnchangedUntilQueueEnds": true
+  },
+  "nextActions": [
+    "Complete independent U58 future strict helper/policy-overlay audit. Keepr1technicalhold and raw receipt text unchanged.",
+    "Let505reader finish; then wire independently checked strict scope and dynamic policy into a new reader version, rerun current contract/actual pipeline checks.",
+    "Continue actual source component/grade/Unit/live-family reviews and substantively new twins; no auto approvals from source metadata.",
+    "Preserve original82locks, permanent exclusion, rights/similarity/native/raw limitation and shared reader floors; no operational writes.",
+    "Fetch/preserve-integrate main and target and rerun relevant checks before feature checkpoint push."
+  ],
+  "restrictions": [
+    "No DB apply/delete/reload/unlock/deploy",
+    "Protected82, three correction ledgers and permanent exclusion unchanged",
+    "N/originals/old proof bytes/shared dependencies preserved",
+    "Rights/similarity/source identity and curriculum never auto-approved",
+    "No active or unpreserved worktree cleanup"
+  ],
+  "wholeGoalComplete": false,
+  "latestMainIntegration": {
+    "ref": "cef516cd7a50b8667cb8b16b2232ba18a97c157d",
+    "validatedHead": "80e6393c99f65b54308685161bcf7026413832ac",
+    "featurePushPending": true,
+    "previousVerifiedFeaturePush": "6f2b7cb07e0ac6d9f7d8db2c4808a81cae7760a0",
+    "validation": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v42-post-main-validation-r1.json",
+      "sha256": "473c3387c81a295b382dda1b76a1fd064517cd7c3360c0d56aec25246f7840fd"
+    },
+    "readerFloors": [
+      "course-list-answer-reader-and-writer",
+      "additive-print-smart-spacing-reader"
+    ],
+    "node181Passed": true,
+    "vitest9Files154Passed": true
+  },
+  "currentSourceAccess": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/source-access-current-r10.json",
+    "sha256": "fd21940c7da538567e7946f6c310a54a9d41ea1a51e7562a66494388b24de37e"
+  },
+  "liveClassification": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+    "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+  },
+  "workingDrafts": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-candidates-20261020-r25.json",
+    "sha256": "afa17e42f68957d443c4522a01963bd6240c989f2b199524b42142437a03fc7d"
+  },
+  "previousSourceQueue": "Preserved initial continuation-index.json and original20261003 inventory; newly successful fresh aggregate receipts exclude repeat extraction jobs."
+}

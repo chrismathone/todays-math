@@ -1,0 +1,502 @@
+{
+  "utc": "2026-10-20T06:26:48.593Z",
+  "head": "80e6393c99f65b54308685161bcf7026413832ac",
+  "main": "cef516cd7a50b8667cb8b16b2232ba18a97c157d",
+  "mainIsAncestorOfTestedHead": true,
+  "priorBuilderIntegrationValidation": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-validation-r1.json",
+  "priorReaderFloorValidation": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-validation-r2.json",
+  "historicalCurrent160Bindings": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v40-binding-validation-r1.json",
+  "newMainDelta": "Latest main course list-answer writer and additive print smart-spacing reader floor, plus descriptive-engine planning docs; preserve all coauthor changes",
+  "nodeFiles": 16,
+  "nodeSummary": "nce\nok 181 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 37.6048\n  type: 'test'\n  ...\n1..181\n# tests 181\n# suites 0\n# pass 181\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 28295.8867\n",
+  "vitestFiles": 9,
+  "vitestPassed": 154,
+  "vitestFailed": 0,
+  "code": [
+    {
+      "path": "src/lib/math/exactChoiceValue.ts",
+      "sha256": "413f130acfc79fcc0cc1e06576debb6636b636eb9fc4ea62cc22a99cddd7adbd",
+      "normalizedLfSourceSha256": "413f130acfc79fcc0cc1e06576debb6636b636eb9fc4ea62cc22a99cddd7adbd"
+    },
+    {
+      "path": "src/lib/engine/deriveFormats.ts",
+      "sha256": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50",
+      "normalizedLfSourceSha256": "7640ebad4371cdef906be9b62b6e71bf3299c73bd7ca4517410c446ddb62ad50"
+    },
+    {
+      "path": "src/lib/engine/expandEngine.ts",
+      "sha256": "4ec4dcaa8857685c755928912f927c5ba7bda9c6fcabb031a147b6295e9f8330",
+      "normalizedLfSourceSha256": "4ec4dcaa8857685c755928912f927c5ba7bda9c6fcabb031a147b6295e9f8330"
+    },
+    {
+      "path": "src/lib/engine/authoredImage.ts",
+      "sha256": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324",
+      "normalizedLfSourceSha256": "76bb397e74c4257ec9ebfd187368c0966b484d677f0778076c38473c7d210324"
+    },
+    {
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "sha256": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df",
+      "normalizedLfSourceSha256": "19c10c1cb1aa416cbb376314931bb9dcdce45d17b3f707fb3c2b9dfb157598df"
+    },
+    {
+      "path": "src/app/api/problems/transform/adopt/route.ts",
+      "sha256": "03d8b91838ae83e9a2d0145b669cfcd1a310a7adfbfd58333f3f73f5a96e41aa",
+      "normalizedLfSourceSha256": "03d8b91838ae83e9a2d0145b669cfcd1a310a7adfbfd58333f3f73f5a96e41aa"
+    },
+    {
+      "path": "scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "13da6274441c78cb7c5eb9df1c83cc55dd6a9489aec0ac4205a5764aa3ddafb4",
+      "normalizedLfSourceSha256": "13da6274441c78cb7c5eb9df1c83cc55dd6a9489aec0ac4205a5764aa3ddafb4"
+    },
+    {
+      "path": "scripts/import/exam-twin/sourceIdentity.mjs",
+      "sha256": "b5933369ff1063b6cdc96de53510047008e728a83adc402af90d8515730096c3",
+      "normalizedLfSourceSha256": "661e2d641ce4e257200fdf155520d67d0fe8e1be14b13df1e157f7bf96cf4053"
+    },
+    {
+      "path": "scripts/qa/scan-choice-exact-values.ts",
+      "sha256": "470e4c9b02e350c16626e12e8fbd869f054851aadcff17b6f7c1eaf6289f44a8",
+      "normalizedLfSourceSha256": "470e4c9b02e350c16626e12e8fbd869f054851aadcff17b6f7c1eaf6289f44a8"
+    },
+    {
+      "path": "scripts/qa/audit-past-exam-closure.mjs",
+      "sha256": "fe8ca8de4cacdb80a6c60e4093f90986500c313ee41f65c4319b1feefc7ce44e",
+      "normalizedLfSourceSha256": "fe8ca8de4cacdb80a6c60e4093f90986500c313ee41f65c4319b1feefc7ce44e"
+    },
+    {
+      "path": "scripts/qa/verify-authored-image-support.ts",
+      "sha256": "57c4701a427de3fcef492e0ec6e7aff72c71222e2d1ea43dea09ced935a8f108",
+      "normalizedLfSourceSha256": "57c4701a427de3fcef492e0ec6e7aff72c71222e2d1ea43dea09ced935a8f108"
+    },
+    {
+      "path": "scripts/db/problem-actual-format.ts",
+      "sha256": "4be3e863e61ac082b1ee90b234b4b83158c26bd3aa3102e83ca7d17c9c94cc1a",
+      "normalizedLfSourceSha256": "fb2b284d2ae877a6389c41bc65d9ab7be86795ef34966e89bbf4361096fd9f77"
+    },
+    {
+      "path": "scripts/qa/capture-exam-family-snapshot.mjs",
+      "sha256": "b0fdd3fb404b52aa9deaffa72d136c3a17900e9ef3a458cc362e112d23d97c58",
+      "normalizedLfSourceSha256": "b0fdd3fb404b52aa9deaffa72d136c3a17900e9ef3a458cc362e112d23d97c58"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_region_ownership.py",
+      "sha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1",
+      "normalizedLfSourceSha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1"
+    },
+    {
+      "path": "scripts/import/exam-twin/extract-fresh-sources-20261019.py",
+      "sha256": "fc2754cd702dcefc91a85e254259055342cf5c6350b3c6296fc128274ac68d89",
+      "normalizedLfSourceSha256": "2d1bdd23c9ce60408b1ec34a5c5ad9c5ea9c1761e5252b5ee2a49ab1cc6dec5e"
+    },
+    {
+      "path": "scripts/import/exam-twin/answerPresentation.mjs",
+      "sha256": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1",
+      "normalizedLfSourceSha256": "d03f9a60ef871770af9692cd3f50a92b65c7294059d150f9ff17cf87b6c121ea"
+    },
+    {
+      "path": "scripts/import/exam-twin/constantAnswers.mjs",
+      "sha256": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+      "normalizedLfSourceSha256": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674"
+    },
+    {
+      "path": "scripts/import/exam-twin/review-exam-twins.mjs",
+      "sha256": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1",
+      "normalizedLfSourceSha256": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1"
+    },
+    {
+      "path": "scripts/import/exam-twin/prepare-sealed-review.mjs",
+      "sha256": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe",
+      "normalizedLfSourceSha256": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe"
+    },
+    {
+      "path": "scripts/import/exam-twin/rebind-identical-review.mjs",
+      "sha256": "17b2e3ae3c808c3acdfabfe357ca7ded6025e1c3cf6e7a1a6c6c74794543912e",
+      "normalizedLfSourceSha256": "5338e001e91c0a48c3b65beabfc337fa6c67620b668c5619f415d0a602a8cf28"
+    },
+    {
+      "path": "scripts/import/exam-twin/summarize-reviewed-batch.mjs",
+      "sha256": "08494568df8f67922c0c9bd19d750b77b55ed0d6892e27246036baa5752d08b8",
+      "normalizedLfSourceSha256": "08494568df8f67922c0c9bd19d750b77b55ed0d6892e27246036baa5752d08b8"
+    },
+    {
+      "path": "src/contracts/examStudy.contract.ts",
+      "sha256": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21",
+      "normalizedLfSourceSha256": "21184e4d4f3da04783547fa9745eec8515add9cca0071309b0e7172a147cde21"
+    },
+    {
+      "path": "src/lib/examStudyRoutes.ts",
+      "sha256": "22e94bf55c25d41455561681f4ee7f6c1a41187bbf1eaa877d6ff3960b3a085f",
+      "normalizedLfSourceSha256": "a3815a863656aafed1daa5c2d60de680a22a0cbc52ee15b7e8211fadb581fb20"
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "sha256": "199734c48116d1115754339c8f3e45a24a0cbf81f100d0581d320942950dd712",
+      "normalizedLfSourceSha256": "6394311ffc4b671d7433bfd9d022744209d23c0cb3fe5d1a87b113ea3995cb25"
+    },
+    {
+      "path": "src/lib/examStudy/evidence.ts",
+      "sha256": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+      "normalizedLfSourceSha256": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8"
+    },
+    {
+      "path": "src/lib/examStudy/generate.ts",
+      "sha256": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+      "normalizedLfSourceSha256": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc"
+    },
+    {
+      "path": "src/lib/examStudy/identity.ts",
+      "sha256": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5",
+      "normalizedLfSourceSha256": "b629b2b9118f264a956e32036506333a600c467129cb30059b391d75c8a352d3"
+    },
+    {
+      "path": "src/lib/examStudy/index.ts",
+      "sha256": "7c8a75923289e66dbd7d345e7047a2c43c9b1f5a176466a52bc6211426151e77",
+      "normalizedLfSourceSha256": "923e360c828f00784ed8bd4b2c53c2c3cb481aa67b3a018019bf28999a4776ee"
+    },
+    {
+      "path": "src/lib/examStudy/legacyVerification.ts",
+      "sha256": "82275b3cac3d776b4682ccb3d3f8ac330d7608d6037c6278f1e16792d4866e4f",
+      "normalizedLfSourceSha256": "2ea685576e5a77f20a534895b353ca225723319a2a4e4c669273baba504e5904"
+    },
+    {
+      "path": "src/lib/examStudy/planner.ts",
+      "sha256": "1446df2e9e71d0e1e6e548fc97aa1234b0bb6f82e6357ae4368ea07e6e3961e6",
+      "normalizedLfSourceSha256": "434a7bad527f48ad6f5c9be037dc674eaf53587d7ecd414ae15f8934f53d96ce"
+    },
+    {
+      "path": "src/lib/examStudy/profiles.ts",
+      "sha256": "8f0ea98553bd6d3ffc2ad2d44414035a7b12cb917ffe3c9f270e5ec113ec2e76",
+      "normalizedLfSourceSha256": "25370538b3d290cfc0bcf078db42916864bd576b45b7bfdd809b1a9225879de6"
+    },
+    {
+      "path": "src/lib/examStudy/registry.ts",
+      "sha256": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+      "normalizedLfSourceSha256": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378"
+    },
+    {
+      "path": "src/lib/examStudy/requirements.ts",
+      "sha256": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246",
+      "normalizedLfSourceSha256": "6a658cba843b54c78108e49f7e59cc84b8c861693d39e06eb14d3177efb58246"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/continuous.ts",
+      "sha256": "a3047e8f290694451f950fe587589c7851900c3ab8c43645fdf86d992234d9b1",
+      "normalizedLfSourceSha256": "ecdfd37782d7e8db2574ed081d8b78f7dfa2254b89637fc00be4105dc28d8270"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/finite.ts",
+      "sha256": "31a4703d421ba5043ac374d3d0c598df4965f871c547f4f8ce936881e574813e",
+      "normalizedLfSourceSha256": "d3ed53f3db341517d18498f5ea94f843c88e71ef1991665f35cf97a0fa76ec62"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/geometry.ts",
+      "sha256": "b8c6c2710ec1e5ffa5f8c0106aa80d7068ba25eb8de8989733f9f853876a9798",
+      "normalizedLfSourceSha256": "875ca67d24ac5812fdb179015f1a5b1ccfea2f53fd006df1f2afdc0b51ef71eb"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/graph.ts",
+      "sha256": "97a41ec61c8baa9ea2f8de7660c61f3bb5fa599781b800ae92de13af0219672a",
+      "normalizedLfSourceSha256": "216567f4a87ad14d034905bf8619df86ea338a7642e48a04df157232126f1efb"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/incircle.ts",
+      "sha256": "01471c5d6e592c9684d33b689fdbf7cc8205491e36736ec55e4c9be048c2f674",
+      "normalizedLfSourceSha256": "aaf7530dcd3d466b10cd4feb9e8f64769ca6ee4511b1e4b6f2be69bfd7d6be47"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/index.ts",
+      "sha256": "7a7245e0b8842b4ab76d1c1f87078fd41f085b7ff619706573d57718d72adf8f",
+      "normalizedLfSourceSha256": "aac5fc7705178d093ddb635d98d79ce8b333e4f1bda52b1543eac2263501d409"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/logic.ts",
+      "sha256": "4b496eadc02b28d834553e1b955ce5e56776c0fffbcf2f5b5381fb6e7565692c",
+      "normalizedLfSourceSha256": "b238dd713e8032af59af04492ec9f732574ed95bbb27ac5a51d9ad0e6a0f0bcc"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/shared.ts",
+      "sha256": "3176e56702bbf468f8da2590246a49819e4135b494e4328c0bde0f6a7b3b4ba7",
+      "normalizedLfSourceSha256": "de570f1f719f1710b7286e37bdcf9268eefda06f2eaedd2a4e4d84ae035dd755"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/algebra.ts",
+      "sha256": "86e909f20bc56e93aef2c95aa0991c32a668334a77b4fb83bfe979b2394fe7ed",
+      "normalizedLfSourceSha256": "86e909f20bc56e93aef2c95aa0991c32a668334a77b4fb83bfe979b2394fe7ed"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/graphs.ts",
+      "sha256": "197b1f343d38fe65ef082a741de9917fa77459accc801fc389384e617a61e47f",
+      "normalizedLfSourceSha256": "197b1f343d38fe65ef082a741de9917fa77459accc801fc389384e617a61e47f"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/index.ts",
+      "sha256": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2",
+      "normalizedLfSourceSha256": "41937596d7a70d22f384caa67d4c168ce2a89c19d0d9fa57e75bcead6e2ec6f2"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/signedTrapezoid.ts",
+      "sha256": "f3f48bca7564f5240affabc41cc70bd26368773c151a2d5802360fc0cd392f85",
+      "normalizedLfSourceSha256": "be7e7869ecf3ef8b26f733277e7fcfc28aefefe30c43faa95737937e42b89a00"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/support.ts",
+      "sha256": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c",
+      "normalizedLfSourceSha256": "e89345bd78a46a3c793e01273684885efc654a205c15896854fcd0caa979aa1c"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/written.ts",
+      "sha256": "6ae8d2dd21c563bb8e6f40ab8857ec276be118d8a97ef3b717834957df20195d",
+      "normalizedLfSourceSha256": "94f356913e6674c350ccb2d69afc4d05169402682ce15e2d4908b208f2322e6d"
+    },
+    {
+      "path": "src/lib/examStudy/curriculumEligibility.ts",
+      "sha256": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013",
+      "normalizedLfSourceSha256": "2ef9871e67f090f8ef90a804660762e1810e837656f1a447396e75149979e013"
+    },
+    {
+      "path": "src/lib/examStudy/legacyReinforcement.ts",
+      "sha256": "1ce2ac49a74e9e77a93aed428519468977ea63995f3e7654fe65dafb141a5915",
+      "normalizedLfSourceSha256": "0e1aae8a51e2d7c1bd588dfddbc0bab3c71557866558d73a66a969e2e07a4318"
+    },
+    {
+      "path": "src/lib/examStudy/reinforcementMath.ts",
+      "sha256": "c13ca232218fd3a39b25ddfaa908ce553b0246ce2afdff4152223c9fe65fc612",
+      "normalizedLfSourceSha256": "e4ff06d37b86961c01473ed8aa0491edc1d3269b6fef7f1e001a5580ddb9cee4"
+    },
+    {
+      "path": "src/lib/examStudy/reinforcementVerification.ts",
+      "sha256": "063478f94b4ba8165889e5ceb456a13067f8a406742015c7aedd229aa21bad62",
+      "normalizedLfSourceSha256": "f49d15aae3970084f745be4c78b330796a709b6bc2de19da52ff979d6281de57"
+    },
+    {
+      "path": "src/lib/examStudy/studyChoiceBounds.ts",
+      "sha256": "552dfd4c086e12f237dd878e1dc75c933891c1d093f0ad7b617010e994b4abad",
+      "normalizedLfSourceSha256": "c61863aa2dcae1c02b65e45883f817cb24ce8b24c6a03d3000b2fc6c0be359c4"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/remaining.ts",
+      "sha256": "e58de3e8ee9a1acacde479952bfef7ec9b9f0d523a6ee60d340541683f47bb5b",
+      "normalizedLfSourceSha256": "8da4e488e66ad3627e03784a11f8be479e3633fa7c6396ebe1e2a5198eac020d"
+    },
+    {
+      "path": "src/lib/examStudy/families/advanced/remainingExact.ts",
+      "sha256": "b00ad980a7c34134f8dc1d053077024ccd7627e258cfcc250ecfd0ccd2f9a159",
+      "normalizedLfSourceSha256": "c63186aa3cce6461a7597c9f5a825feac6fcc3231fbc7495179de42d3fc0dff9"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/remaining.ts",
+      "sha256": "edf091c50462e1bd9d99b7a793a9dcbc2bcdd9220b02c8ea85bbdf7df92e4a5e",
+      "normalizedLfSourceSha256": "e31fdabc4652f0385a708151787b945c03b22f16688ae99cedc3f8a506cdc521"
+    },
+    {
+      "path": "src/lib/examStudyAccess.ts",
+      "sha256": "047188ef81c127a018c635acd4a38920bb546575e6e2d26cffac898a1c4f2605",
+      "normalizedLfSourceSha256": "46821d9fd52e8b6ff9e2a661bd723e9c5a6477e55dcf722fd1a3976bf718ff1b"
+    },
+    {
+      "path": "src/lib/accountRouteAccess.ts",
+      "sha256": "15dca89fa1f3d2abf7bb35ce70640d78239394e6a54e85d694a68a35d56b201b",
+      "normalizedLfSourceSha256": "2b9f42da5c1699049b507667e7ec8465c67e7c615730ddf6edc0c94f00398273"
+    },
+    {
+      "path": "src/lib/middle/m3.ts",
+      "sha256": "26b3bc42750d6c70a22989c71a45fc4003d5ea3f30df1947ed1bab54858b8b80",
+      "normalizedLfSourceSha256": "a2e40d2d85b494275aca1b60700473b31c218c89ede8b80631cd1abf67c06083"
+    },
+    {
+      "path": "src/lib/middle/m3Figures.ts",
+      "sha256": "56cd9f00f752b2145ce2b0e0edc731aed02649a37259b53678f743bec9c07051",
+      "normalizedLfSourceSha256": "68017e1823a25ffac242c4fb4ddab63645cf4fc7b111521807edb7e0c0f81a4d"
+    },
+    {
+      "path": "src/lib/middle/m3Root.ts",
+      "sha256": "047c2d34ac6347fcf99dc91ea76957f6ec0245ead0e8d1ad4c9fa2f2d8df76fc",
+      "normalizedLfSourceSha256": "1113fdf2c3b994001326a74fab0804d2eb174c4eb26520d2b9e0dffa535101ea"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyM1StudentMethods.test.ts",
+      "sha256": "ea0f363c66f1f3d7cdcf643f5bd04ea6c68a214f286e069f37f20c84c59f1fd2",
+      "normalizedLfSourceSha256": "ea0f363c66f1f3d7cdcf643f5bd04ea6c68a214f286e069f37f20c84c59f1fd2"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyCurriculumEligibility.test.ts",
+      "sha256": "2bbf5aa5837842e6d87108703774c2a1cc0cc970e0370229c7bd0094da60593a",
+      "normalizedLfSourceSha256": "2bbf5aa5837842e6d87108703774c2a1cc0cc970e0370229c7bd0094da60593a"
+    },
+    {
+      "path": "src/lib/examStudy/releaseEligibility.ts",
+      "sha256": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e",
+      "normalizedLfSourceSha256": "29c59cbdd968984f8193d4286a8d8d681ffbb085f8bbbab5e184130b04f2747e"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseCoefficient.ts",
+      "sha256": "d83369af0e4e8117305d03d50d6376c54a316a2860115587444ba31cdf3d16eb",
+      "normalizedLfSourceSha256": "d83369af0e4e8117305d03d50d6376c54a316a2860115587444ba31cdf3d16eb"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseCoefficient.test.ts",
+      "sha256": "c1800bcd3497f7df2a3d90d186b369e546d56eaf1cbce880397fc596c95656a5",
+      "normalizedLfSourceSha256": "c1800bcd3497f7df2a3d90d186b369e546d56eaf1cbce880397fc596c95656a5"
+    },
+    {
+      "path": "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+      "sha256": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2",
+      "normalizedLfSourceSha256": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2"
+    },
+    {
+      "path": "scripts/import/exam-twin/candidatePack.test.mjs",
+      "sha256": "28023b10404214dfcdecbfd712ab25be6ba6d5a55ef5b6e9dddbe59adf75ceed",
+      "normalizedLfSourceSha256": "28023b10404214dfcdecbfd712ab25be6ba6d5a55ef5b6e9dddbe59adf75ceed"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseRootTable.ts",
+      "sha256": "3de1646b7373c9528d86f3b01cb92e4fa8d95597fdf5b61d406e76090b580a51",
+      "normalizedLfSourceSha256": "3de1646b7373c9528d86f3b01cb92e4fa8d95597fdf5b61d406e76090b580a51"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseRootTable.test.ts",
+      "sha256": "1b03db6cbf048702a84a7664f22abe1b8e623d786a757b32e4bef53f2006d808",
+      "normalizedLfSourceSha256": "1b03db6cbf048702a84a7664f22abe1b8e623d786a757b32e4bef53f2006d808"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.mjs",
+      "sha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f",
+      "normalizedLfSourceSha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.test.mjs",
+      "sha256": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de",
+      "normalizedLfSourceSha256": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de"
+    },
+    {
+      "path": "scripts/import/exam-twin/recordCorrectionAnswer.mjs",
+      "sha256": "883a1320c36106d2f0bf582614ea2ea7e1758f5327dd2eff8d451362d80b64da",
+      "normalizedLfSourceSha256": "883a1320c36106d2f0bf582614ea2ea7e1758f5327dd2eff8d451362d80b64da"
+    },
+    {
+      "path": "scripts/import/exam-twin/recordCorrectionAnswer.test.mjs",
+      "sha256": "5b490df946af4fac792d47ef8d8c073b42deedc8faee281bd7faef47c588fd4e",
+      "normalizedLfSourceSha256": "5b490df946af4fac792d47ef8d8c073b42deedc8faee281bd7faef47c588fd4e"
+    },
+    {
+      "path": "src/contracts/difficulty.ts",
+      "sha256": "9a26abf49ca126b06f98051c10b964b423018186b1f5a2011d94b787b853a2fc",
+      "normalizedLfSourceSha256": "c3e658045d467fc07532ef0881bd06f1b052fdb21fb349010b0936189bd50a41"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseMinimum.ts",
+      "sha256": "b1fc51f29efa75f1c54ea02cba81bf29c29655f8a49a742350de2aabf664284e",
+      "normalizedLfSourceSha256": "b1fc51f29efa75f1c54ea02cba81bf29c29655f8a49a742350de2aabf664284e"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseMinimum.test.ts",
+      "sha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+      "normalizedLfSourceSha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222"
+    },
+    {
+      "path": "scripts/import/exam-twin/vectorReplay.mjs",
+      "sha256": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a",
+      "normalizedLfSourceSha256": "b40e21897d5a3fbcdc8c3d48f47ada04bf018a30ab2dd9959456ca88abb6066a"
+    },
+    {
+      "path": "scripts/import/exam-twin/replay-vector-figures.mjs",
+      "sha256": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce",
+      "normalizedLfSourceSha256": "26a110d499684bc5398499f5f83aa10c7f5e32009a0e68adc962a82739b02dce"
+    },
+    {
+      "path": "scripts/import/exam-twin/vectorReplay.test.mjs",
+      "sha256": "27c99e5766511b4658ba74bb56b8ccf7004183be4c39e2e07142374f05f6d5b6",
+      "normalizedLfSourceSha256": "27c99e5766511b4658ba74bb56b8ccf7004183be4c39e2e07142374f05f6d5b6"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseTangentRectangle.ts",
+      "sha256": "009c8208e563c16055340bf7151741d9dcb573def0ef332b093237e76ceed3bc",
+      "normalizedLfSourceSha256": "009c8208e563c16055340bf7151741d9dcb573def0ef332b093237e76ceed3bc"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+      "sha256": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d",
+      "normalizedLfSourceSha256": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/tangentRectangleGeometry.ts",
+      "sha256": "71f90c810277d4d3628a42e312527cef815258f8357707a8b8f77d6ab26ae39c",
+      "normalizedLfSourceSha256": "71f90c810277d4d3628a42e312527cef815258f8357707a8b8f77d6ab26ae39c"
+    },
+    {
+      "path": "scripts/import/exam-twin/answerPresentation.test.mjs",
+      "sha256": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86",
+      "normalizedLfSourceSha256": "32d83395964ebd1110086d248cb23ad0f4a3fff5a88c6331674a5344aea394af"
+    },
+    {
+      "path": "scripts/import/exam-twin/singleLengthPresentation.mjs",
+      "sha256": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+      "normalizedLfSourceSha256": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1"
+    },
+    {
+      "path": "scripts/import/exam-twin/singleLengthPresentation.test.mjs",
+      "sha256": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7",
+      "normalizedLfSourceSha256": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+    },
+    {
+      "path": "scripts/import/exam-twin/statisticsConditions.mjs",
+      "sha256": "e14bbc414bf959203ca70a7d1ef4478a8f27512068603d9e412aa37e45d27754",
+      "normalizedLfSourceSha256": "e14bbc414bf959203ca70a7d1ef4478a8f27512068603d9e412aa37e45d27754"
+    },
+    {
+      "path": "scripts/import/exam-twin/statisticsConditions.test.mjs",
+      "sha256": "fcd129705b430af8ad0ac2706afe80a984160d0a979f682699c725b85fbfff37",
+      "normalizedLfSourceSha256": "fcd129705b430af8ad0ac2706afe80a984160d0a979f682699c725b85fbfff37"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseDispersionConditions.mjs",
+      "sha256": "b068d7340d56443c61cf06eab128299a4d7b9f31d213c1d4f960890ef8d79706",
+      "normalizedLfSourceSha256": "b068d7340d56443c61cf06eab128299a4d7b9f31d213c1d4f960890ef8d79706"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseDispersionConditions.test.mjs",
+      "sha256": "7dad66929ef2a61cf99efa703eb03e4ca425f39ff5b5017dc319e7cb627b1031",
+      "normalizedLfSourceSha256": "7dad66929ef2a61cf99efa703eb03e4ca425f39ff5b5017dc319e7cb627b1031"
+    },
+    {
+      "path": "scripts/import/exam-twin/numberedConstantAssignments.mjs",
+      "sha256": "0f964790e34bb92481c51ce035f2a6b28024d663e39813678fc93d20cfce4949",
+      "normalizedLfSourceSha256": "0f964790e34bb92481c51ce035f2a6b28024d663e39813678fc93d20cfce4949"
+    },
+    {
+      "path": "scripts/import/exam-twin/numberedConstantAssignments.test.mjs",
+      "sha256": "9e6c5fb257e9fea9c96595f751ace8cdc25b91e27550313f6bf33bb49a0e2937",
+      "normalizedLfSourceSha256": "9e6c5fb257e9fea9c96595f751ace8cdc25b91e27550313f6bf33bb49a0e2937"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "sha256": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.test.mjs",
+      "sha256": "665ed0467d44884b501ed755d3dc72823d0df4b44763d672846a8e7e1e38d9b4"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_inventory_scope.py",
+      "sha256": "c4c035bc1341726051cc1816b5f3b679b7e7a08532252d9ddfcb1e7c1c263535",
+      "normalizedLfSourceSha256": "c4c035bc1341726051cc1816b5f3b679b7e7a08532252d9ddfcb1e7c1c263535"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_source_inventory_scope.py",
+      "sha256": "b75433eafd7ea7e50005fd490ce1c0cc8f17d56d6ec73b36d69c0159a2d58569",
+      "normalizedLfSourceSha256": "b75433eafd7ea7e50005fd490ce1c0cc8f17d56d6ec73b36d69c0159a2d58569"
+    }
+  ],
+  "logs": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v42-post-main-node-r1.tap",
+      "sha256": "0b76f3e21615c2653a4de9f45f125d8e31febb1c56a8fb6672057f9dca06b404"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v42-post-main-vitest-r1.log",
+      "sha256": "ed6d5c440c6948becee6cde5f4089ef4413624b19803626693d6704f21d4c5d7"
+    }
+  ],
+  "dbWrites": 0,
+  "loadable": 0
+}

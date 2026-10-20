@@ -1,0 +1,42 @@
+{
+  "utc": "2026-10-20T06:29:53.693365+00:00",
+  "kind": "strict-future-source-scope-and-policy-overlay-independent-audit/v2",
+  "files": [
+    {
+      "path": "scripts/import/exam-twin/source_inventory_scope_v2.py",
+      "snapshot": "provided-code-snapshots/source_inventory_scope_v2.py.snapshot",
+      "runtime": "provided-code-runtime-local/source_inventory_scope_v2.py",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_source_inventory_scope_v2.py",
+      "snapshot": "provided-code-snapshots/test_source_inventory_scope_v2.py.snapshot",
+      "runtime": "provided-code-runtime-local/test_source_inventory_scope_v2.py",
+      "sha256": "1936c50a7f568f86cecb21b3727cdb7c300b34cbb769a01bc2c571dabae52d09"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/build-source-policy-overlays-20261020-r1.py",
+      "snapshot": "provided-code-snapshots/build-source-policy-overlays-20261020-r1.py.snapshot",
+      "runtime": "provided-code-runtime-local/build-source-policy-overlays-20261020-r1.py",
+      "sha256": "742aed259cf8d5e516e5155d619d3d173ae503ccd9ea0638effd09c2027e3d35"
+    }
+  ],
+  "priorTechnicalHold": {
+    "commit": "c4896c7b39a3c842106b64f6b744f4af524af9df",
+    "reportSha256": "1f5d04a1355bf9f288bce28f368078e1d26988a7db219f22c94fe30145dffbf9",
+    "path": ".qa-artifacts/exam-resume-20261008/source-scope-code-audit-20261020-r1/own-audit-report.json"
+  },
+  "parentValidation": ".qa-artifacts/exam-resume-20261008/source-scope-policy-overlays-20261020-r1/parent-validation-r1.json",
+  "actual505Plan": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/explicit-plan.json",
+  "actualClosedPolicyOverlays": 113,
+  "additionalInventoryMetadataRead": {
+    "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+  },
+  "activeReaderCodeUnchangedAndNOTUsingV2Yet": true,
+  "mustNotRunCopiedOverlayScriptForWritesOrOriginalExtraction": true,
+  "allowed": "Independently test pure v2 helper and selection_policy; inspect snapshot of overlay builder; read supplied closed overlay/receipt metadata plus exact historical inventory only. No source question bodies/images/N files.",
+  "recheck": "Prior20faults and all1715 default parity/six scopes, pergrade policylabels, strict505plan validity; all113overlays bound unchanged original metadata with correct unique entry scope; closure flags remainfalse. Preserve r1 errors; no whole active-route repair or full source-fidelity claim until future reader wiring after active queue ends.",
+  "dbWrites": 0,
+  "loadable": 0
+}

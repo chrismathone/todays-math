@@ -1,0 +1,57 @@
+{
+  "scopeSHA256": "dd0513b73315768eb6bf7d3b72f05fcf3e00acdda03c08762eb43eae5855369f",
+  "sources": [
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "expected": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14",
+      "root": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14",
+      "snapshot": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14",
+      "runtime": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.test.mjs",
+      "expected": "665ed0467d44884b501ed755d3dc72823d0df4b44763d672846a8e7e1e38d9b4",
+      "root": "665ed0467d44884b501ed755d3dc72823d0df4b44763d672846a8e7e1e38d9b4",
+      "snapshot": "665ed0467d44884b501ed755d3dc72823d0df4b44763d672846a8e7e1e38d9b4",
+      "runtime": "665ed0467d44884b501ed755d3dc72823d0df4b44763d672846a8e7e1e38d9b4"
+    }
+  ],
+  "r1ImmutableEvidence": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-radical-ratio-code-audit-20261020-r1/own-audit-report.json",
+      "sha256": "a057659e73ce38e2ed1ee830bf3f2a947c6ca225f1987cc0743e638ade3cdac3"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-radical-ratio-code-audit-20261020-r1/own-rational-oracle.json",
+      "sha256": "d786e5c18fdc502ec8cea291bf03f4007a75aa015df8bef9985f98fcff5abe07"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-radical-ratio-code-audit-20261020-r1/own-controls-results.json",
+      "sha256": "69dd169083aeed40c56dd9d08462017bdddba2c60c6f02634b057df6a8de8ac4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-radical-ratio-code-audit-20261020-r1/own-controls.mjs",
+      "sha256": "6a205efd15d8f9d7b12ce598878fb6784018b5e2524bd4cce76638b7d8650bce"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/inverse-radical-ratio-code-audit-20261020-r1/own-before.json",
+      "sha256": "1c592a717678aa6e73959cfc57a19d692f6d5eb92d66f1ae374955079a843b3b"
+    }
+  ],
+  "actualInputsAndOwnReview": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/package/private/q03/candidate.json",
+      "sha256": "5dc280d921e735bde950948e1d8c242b1c1ced2be8e50df21f3de31ab85d18f8"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/solve/q03.json",
+      "sha256": "e19bc037022cb45b61205f0d8a8ec84ec5105ec2ec0b10a599d391b502dc9c3f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/verification/reports/q03.json",
+      "sha256": "648e63c8451e949542939767e436ad61af456586122cc021a0002229fced9ae4",
+      "commit": "d3d60410118f23f029a34d1f2135a0fe59a51927"
+    }
+  ],
+  "probeSHA256": "47d0afa3088fe52da781b42872ff18c7bd5c7cd12055ac9a1ab8f2f2f62b3de8"
+}

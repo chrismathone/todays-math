@@ -1,0 +1,296 @@
+{
+  "actualProductionMain": true,
+  "validationMocks": 0,
+  "filesystemFence": "Audit hook denies all writes and non-inventory reads; no successful extraction invoked.",
+  "cases": [
+    {
+      "mode": "mixed-grade",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--level",
+        "middle",
+        "--grade",
+        "1"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "mixed-level",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-8eec901cfcf0f5f6e58dec34775bc19f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--level",
+        "middle",
+        "--grade",
+        "1"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "default-m3-reject-m1",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-57992c45fa81adc2866b0dd6fc4972b1",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "grade-zero",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--grade",
+        "0"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "level-invalid",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--level",
+        "elementary"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "duplicates",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "one-id",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "seven-ids",
+      "args": [
+        "--job-ids",
+        "own-0",
+        "own-1",
+        "own-2",
+        "own-3",
+        "own-4",
+        "own-5",
+        "own-6",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "traversal",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "../own-u58-outside"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "absolute-output",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r1\\own-never-created-output"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    },
+    {
+      "mode": "help",
+      "args": [
+        "--help"
+      ],
+      "exit": -1,
+      "stdout": "",
+      "stderr": "",
+      "exception": "RuntimeError:Own audit fence denied unsupplied read",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": false
+    }
+  ],
+  "total": 11,
+  "passed": 0
+}
