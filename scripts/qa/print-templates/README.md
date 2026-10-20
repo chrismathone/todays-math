@@ -7,11 +7,11 @@
 - 빠른 채점표 4안 완료: `6c52d6869`.
 - `build-quick-key.mjs`는 제품의 `fractionViewFor`, `MathText`, `SolutionText`를 가져와 자체 제작 정답을 조판하고 서버 없이 여는 HTML을 저장한다.
 - `verify-wires.mjs --quick-only`로 저장 HTML을 다시 열어 12사례의 문항 번호 완전성, 셀·쪽 넘침과 외부 요청을 확인했다.
-- 템플릿 실측은 별도 Orca Codex 워크트리 `print-template-measure`에서 준비 중이다. 그 결과를 통합한 뒤 템플릿 Wire를 생성한다.
+- 템플릿 실측은 별도 Orca Codex 워크트리 `print-template-measure`에서 완료해 `7e0e09382`로 통합했다. 실제 첫/마지막 12면, 30쌍 픽셀 비교와 한글 글꼴 확인을 보존했다.
 - Hi-fi B의 5안·두 판·25/50/100문항, 총 30사례 검증과 캡처 완료: `ce23d039f`. 결과와 30장 캡처는 `docs/planning/tracks/reports/answer-quick-key-hifi-20261020.md`를 참조한다.
 - 리드가 실행을 재개했다. **Hi-fi → 템플릿 측정 → Wire 순서로 한 단계씩 실행하며 Vite·브라우저 기동 전 가용 메모리 3GiB 이상을 확인한다.** 전체 타입 검사는 이 트랙에서 실행하지 않는다.
 
-## 재개 뒤 차례
+## 재현 순서
 
 한 단계가 끝나고 프로세스가 종료된 것을 확인한 뒤 다음 단계를 실행한다. 작업 관리자 또는 `Get-CimInstance`로 해당 작업의 프로세스와 가용 메모리를 확인한다. 다른 작업의 프로세스는 종료하지 않는다.
 
