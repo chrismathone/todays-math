@@ -1,0 +1,999 @@
+{
+  "command": "npm run type-check",
+  "exitCode": 1,
+  "source": "tsconfig.tsbuildinfo from the single full check",
+  "diagnosticFiles": 483,
+  "changedAreaDiagnostics": [],
+  "examples": [
+    {
+      "file": "./src/lib/bankreadfingerprint.ts",
+      "diagnostics": [
+        {
+          "start": 1405,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 2674,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 3139,
+          "length": 84,
+          "messageText": "Untyped function calls may not accept type arguments.",
+          "category": 1,
+          "code": 2347
+        },
+        {
+          "start": 3695,
+          "length": 57,
+          "messageText": "Untyped function calls may not accept type arguments.",
+          "category": 1,
+          "code": 2347
+        }
+      ]
+    },
+    {
+      "file": "./src/lib/problem/questioncountsql.ts",
+      "diagnostics": [
+        {
+          "start": 1697,
+          "length": 3,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'Sql'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 1737,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 1751,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 1789,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 1827,
+          "length": 3,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'Sql'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 1867,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 1881,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 1918,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 2338,
+          "length": 3,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'Sql'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 2367,
+          "length": 3,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'Sql'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 2800,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 3309,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 3344,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 3382,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 3613,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 3927,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 3946,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 3976,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 4039,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 4148,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 4886,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 4930,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 5224,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 5272,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 5983,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 6022,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 6281,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 6377,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 6903,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 6956,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 7271,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 7326,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 7580,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 7600,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 7887,
+          "length": 3,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'Sql'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 7938,
+          "length": 17,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'ProblemWhereInput'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 8115,
+          "length": 31,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'ProblemOrderByWithRelationInput'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 8921,
+          "length": 3,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'Sql'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 8959,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9016,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9044,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9071,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9105,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9138,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9169,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9219,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9277,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9370,
+          "length": 3,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'Sql'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 9557,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9728,
+          "length": 17,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'ProblemWhereInput'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 9870,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9952,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 9977,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 10076,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 10100,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 10192,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 10215,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 10733,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 10766,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 11143,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 11178,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 11305,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 11346,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 11407,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 11756,
+          "length": 17,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'ProblemWhereInput'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 12119,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 12137,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 12212,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 13295,
+          "length": 3,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'Sql'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 13535,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 13924,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 13946,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 13990,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14189,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14232,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14247,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14271,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14366,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14499,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14624,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14705,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14865,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14878,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14912,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 14943,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15235,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15248,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15283,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15549,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15585,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15638,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15707,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15722,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15756,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15786,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15842,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15901,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 15991,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 16028,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 16078,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 16117,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 16536,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 16997,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17046,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17073,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17268,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17293,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17350,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17404,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17465,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17525,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17596,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17694,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17791,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17833,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17857,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17921,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 17942,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 18029,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 18051,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 18378,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 18487,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 18541,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 18597,
+          "length": 5,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'empty' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 18825,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 19681,
+          "length": 17,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'ProblemWhereInput'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 19719,
+          "length": 31,
+          "messageText": "Namespace '\"C:/Users/user/orca/workspaces/todays-math/builder-layout/node_modules/.prisma/client/default\".Prisma' has no exported member 'ProblemOrderByWithRelationInput'.",
+          "category": 1,
+          "code": 2694
+        },
+        {
+          "start": 20287,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 20314,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 20650,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 20663,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 20705,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'raw' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 20951,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 21045,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 21119,
+          "length": 3,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'sql' does not exist on type 'typeof Prisma'."
+        },
+        {
+          "start": 21411,
+          "length": 4,
+          "code": 2339,
+          "category": 1,
+          "messageText": "Property 'join' does not exist on type 'typeof Prisma'."
+        }
+      ]
+    }
+  ]
+}
