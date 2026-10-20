@@ -1,0 +1,220 @@
+"""Explicit-job, offline question extraction. Raw outputs stay local/quarantined.
+
+Only aggregate-receipt.json is intended for Git. No source text/images are released.
+Run with python -B; original reader/converter/textlayer are imported unchanged.
+"""
+import argparse
+import datetime
+import hashlib
+import importlib.util
+import json
+import pathlib
+import sys
+
+sys.dont_write_bytecode = True
+ROOT = pathlib.Path(__file__).resolve().parents[3]
+BASE = ROOT / '.qa-artifacts/exam-resume-20261008'
+INVENTORY = pathlib.Path('C:/Users/user/orca/artifacts/outputs/exam-inventory-20261003/extraction-job-manifest-reviewed.json')
+PROTECTED = {'동도중', '강동중', '경산여중', '정화중'}
+BUMIL = 'personal-9967cfbb759aa6d369883bac4c986aaa'
+
+
+def load(p):
+    return json.loads(pathlib.Path(p).read_text('utf-8-sig'))
+
+
+def ref(p):
+    p = pathlib.Path(p)
+    raw = p.read_bytes()
+    return {'path': str(p), 'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw)}
+
+
+def module(p, name):
+    spec = importlib.util.spec_from_file_location(name, p)
+    obj = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(obj)
+    return obj
+
+
+SOURCE_SCOPE = module(pathlib.Path(__file__).with_name('source_inventory_scope_v2.py'),
+                      'fresh_extraction_inventory_scope_v2')
+
+
+def eligible(job, seen, *, level='middle', grade=3):
+    return SOURCE_SCOPE.eligible_source_job(job, seen, level=level, grade=grade)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--job-ids', nargs='+', required=True)
+    parser.add_argument('--out', required=True)
+    parser.add_argument('--max-success', type=int, choices=[2, 3], default=3)
+    parser.add_argument('--level', choices=['middle', 'high'], default='middle')
+    parser.add_argument('--grade', type=int, choices=[1, 2, 3], default=3)
+    args = parser.parse_args()
+    if not 2 <= len(args.job_ids) <= 6 or len(set(args.job_ids)) != len(args.job_ids):
+        parser.error('Supply 2–6 unique explicit IDs, including optional fallbacks')
+    output = (BASE / args.out).resolve()
+    if output.parent != BASE.resolve() or output.exists():
+        parser.error('A new immediate evidence directory is required')
+    prior = sorted(BASE.glob('next-*/**/source-manifest.json'))
+    seen = {BUMIL}
+    old = [ref(INVENTORY)] + [ref(p) for p in prior]
+    previous_parents = 21
+    for p in prior:
+        d = load(p)
+        seen.add(d['inventoryExamId'])
+        previous_parents += len(d.get('questions', []))
+    # Future invocations must exclude successful fresh batches too. Their
+    # metadata receipts avoid opening any additional copyrighted question text.
+    for p in sorted(BASE.glob('fresh-source-extraction-*/aggregate-receipt.json')):
+        old.append(ref(p))
+        for entry in load(p)['entries']:
+            if entry.get('status') == 'parsed-quarantined' and entry['examId'] not in seen:
+                seen.add(entry['examId'])
+                previous_parents += entry['hwpParents']
+    jobs = {j['examId']: j for j in load(INVENTORY)['jobs']}
+    for job_id in args.job_ids:
+        if job_id not in jobs or not eligible(jobs[job_id], seen, level=args.level, grade=args.grade):
+            parser.error('Ineligible, protected, duplicate or previously parsed job: ' + job_id)
+    output.mkdir()
+
+    def write(p, value):
+        p = pathlib.Path(p).resolve()
+        if not p.is_relative_to(output):
+            raise ValueError('Output escapes fresh evidence directory')
+        p.parent.mkdir(parents=True, exist_ok=True)
+        with p.open('x', encoding='utf-8', newline='\n') as f:
+            json.dump(value, f, ensure_ascii=False, indent=2)
+            f.write('\n')
+
+    reader_path = BASE / 'next-five-extraction-r1/extract_source.py'
+    converter_path = ROOT / 'scripts/qa/convert-hwp-spans.py'
+    pdf_path = pathlib.Path('D:/시험지 한글화/db/textlayer.py')
+    region_path = ROOT / 'scripts/import/exam-twin/source_region_ownership.py'
+    tool_refs = [ref(p) for p in [pathlib.Path(__file__), pathlib.Path(__file__).with_name('source_inventory_scope_v2.py'), reader_path, converter_path, pdf_path, region_path]]
+    reader = module(reader_path, 'fresh_positional_reader')
+    converter = module(converter_path, 'fresh_formula_converter')
+    pdf = module(pdf_path, 'fresh_pdf_textlayer')
+    region_auditor = module(region_path, 'fresh_region_ownership')
+    import fitz
+    for name in ['tc_paths', 'hwpeq_unglue', 'core.hwpeq_to_latex']:
+        tool_refs.append(ref(sys.modules[name].__file__))
+    tool_refs.append(ref(pdf_path.parent / 'pua_table.json'))
+    # Only redirect the captured reader's output fence in memory, never its file.
+    reader.HERE, reader.ROOT = output, ROOT
+    old += tool_refs
+    entries, sources, local_files = [], [], []
+    for job_id in args.job_ids:
+        if sum(e['status'] == 'parsed-quarantined' for e in entries) >= args.max_success:
+            break
+        job = jobs[job_id]
+        folder = output / job_id
+        folder.mkdir()
+        entry = {k: job[k] for k in ['examId', 'school', 'level', 'year', 'grade', 'semester', 'round']}
+        entry.update(componentsApproved=0, twins=0, identityApproved=False,
+                     wholePairCertified=False, gradeApprovals=0, rightsApprovals=0)
+        entry['extractionScopeAsProvided'] = {
+            'level': args.level, 'grade': args.grade, 'examYear': job['year'],
+            'curriculumEdition': 'pending-original-year-grade-evidence',
+            'studentCurriculumApproval': False,
+        }
+        try:
+            selected = [ref(job[k]) for k in ['selectedHwp', 'selectedPdf']]
+            sources.extend(selected)
+            originals = [f['path'] for f in job['files'] if f['role'] == '원본'
+                         and f['ext'].lower() == 'pdf' and '답안' not in f['path']]
+            originals = list(dict.fromkeys(originals))
+            original = ref(originals[0]) if originals else None
+            if original:
+                sources.append(original)
+            hwp = reader.HwpReader(job['selectedHwp'])
+            questions = [reader.normalize_hwp(q, converter, {'hand': []})
+                         for q in reader.organize_shared_sources(hwp.questions())]
+            parsed_pdf = pdf.extract(pathlib.Path(job['selectedPdf']), with_answers=False)
+            with fitz.open(job['selectedPdf']) as doc:
+                answer_start, positions = reader.pdf_question_positions(doc, pdf, len(questions))
+                if ([q['number'] for q in questions] != [q['number'] for q in parsed_pdf['questions']]
+                        or len(positions) != len(questions) or not questions):
+                    raise ValueError('HWP/PDF question boundaries differ; held without certification')
+                region_audit = region_auditor.audit_region_ownership(positions)
+                headers = [{'page': n+1,
+                            'header': pdf.decode(doc[n].get_text(clip=fitz.Rect(0, 0, doc[n].rect.width, 100))),
+                            'footer': pdf.decode(doc[n].get_text(clip=fitz.Rect(0, doc[n].rect.height-80, doc[n].rect.width, doc[n].rect.height)))}
+                           for n in range(answer_start)]
+                for q, pos, pq in zip(questions, positions, parsed_pdf['questions']):
+                    q['pdfReference'] = {**pos, 'freshParserQuestion': pq}
+                    q['figureCorrespondence'] = reader.bitmap_correspondence(hwp, doc, pos['regions'])
+                    q['contentApproved'] = False
+                entry.update(hwpParents=len(questions), pdfParents=len(parsed_pdf['questions']),
+                             questionPages=answer_start, answerPageFirstOneBased=answer_start+1,
+                             endnotesWithheld=len(hwp.excluded), unknownControls=len(hwp.unknown))
+            # Reviewer-only identity crops, never full original pages or answer pages.
+            original_preview = []
+            if original:
+                with fitz.open(original['path']) as doc:
+                    page = doc[0]
+                    for label, box in [('header', fitz.Rect(0, 0, page.rect.width, page.rect.height*.24)),
+                                       ('footer', fitz.Rect(0, page.rect.height*.88, page.rect.width, page.rect.height))]:
+                        target = folder / 'reviewer-only' / (label + '.png')
+                        target.parent.mkdir(exist_ok=True)
+                        page.get_pixmap(matrix=fitz.Matrix(1.5, 1.5), clip=box).save(target)
+                        original_preview.append({**ref(target), 'reviewerOnly': True, 'viewed': False})
+                        local_files.append(ref(target))
+            details = []
+            for q in questions:
+                pq = q['pdfReference']['freshParserQuestion']
+                details.append({'number': q['number'], 'hwpChoiceCount': len(q['choices']),
+                                'pdfChoiceCount': len(pq.get('choices', [])),
+                                'hwpFormulaCount': len(q['mathExpressions']),
+                                'hwpFigureCount': len(q['hwpFigureRecords']),
+                                'pdfFigureCorrespondenceCount': len(q['figureCorrespondence']),
+                                'scoreOccurrenceCount': len(q['printedScoreOccurrences']),
+                                'unmappedCount': len(q['unmappedItems']),
+                                'contentDigest': q['sourceContentDigest'],
+                                'pdfRegionOwnership': 'overlap-review-required' if q['number'] in region_audit['flaggedQuestionNumbers'] else 'no-overlap-observed-not-certified',
+                                'uncertainties': ['whole-question-text', 'formula-equivalence', 'figure-correspondence',
+                                                  'choices', 'printed-score', 'source-identity', 'grade', 'rights'],
+                                'componentsApproved': 0})
+            manifest = {'kind': 'fresh-question-only-quarantine/v1', **entry,
+                        'inventoryExamId': job_id, 'inputs': selected, 'originalIdentitySource': original,
+                        'hwpHeadersFooters': hwp.headers, 'pdfHeadersFooters': headers,
+                        'hwpSections': hwp.sections, 'excludedNotes': hwp.excluded,
+                        'regionOwnershipAudit': region_audit,
+                        'originalHeaderPreviews': original_preview, 'questions': questions,
+                        'originalAnswersExported': False, 'legacyHandCorrectionsUsed': False,
+                        'authorDistributionAllowed': False, 'quarantined': True}
+            write(folder / 'source-manifest.local.json', manifest)
+            manifest_ref = ref(folder / 'source-manifest.local.json')
+            local_files.append(manifest_ref)
+            entry.update(status='parsed-quarantined', inputs=selected, originalIdentitySource=original,
+                         regionOwnershipAudit=region_audit,
+                         localManifest=manifest_ref, questions=details,
+                         originalHeaderPreviews=original_preview,
+                         headerObservations={'status': 'pending-reviewer-observation',
+                                             'schoolYearGradeSemesterRound': 'not-certified'})
+        except Exception as error:
+            entry.update(status='individual-source-hold', errorType=type(error).__name__,
+                         error=str(error), doesNotBlockOtherSources=True)
+        entries.append(entry)
+        print(json.dumps({k:v for k,v in entry.items() if k not in ['questions', 'inputs', 'originalHeaderPreviews', 'localManifest', 'originalIdentitySource']}, ensure_ascii=False), flush=True)
+    preservation = [{'path': r['path'], 'beforeSha256': r['sha256'],
+                     'afterSha256': ref(r['path'])['sha256']} for r in old + sources]
+    if not all(r['beforeSha256'] == r['afterSha256'] for r in preservation):
+        raise RuntimeError('Immutable input changed during extraction')
+    receipt = {'kind': 'fresh-source-aggregate-receipt/v1',
+               'createdAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+               'inventory': old[0], 'tools': tool_refs, 'explicitJobIds': args.job_ids,
+               'selectionPolicy': SOURCE_SCOPE.selection_policy(args.level, args.grade),
+               'previousParentObservations': previous_parents, 'entries': entries,
+               'actualNewParents': sum(e.get('hwpParents', 0) for e in entries if e['status']=='parsed-quarantined'),
+               'componentsApproved': 0, 'twins': 0, 'dbWrites': 0,
+               'wholePairCertifications': 0, 'gradeApprovals': 0, 'rightsApprovals': 0,
+               'preservation': preservation, 'preserved': True, 'localCopyrightedOutputs': local_files,
+               'allSourcesExtracted': False, 'authorDistributionAllowed': False}
+    write(output / 'aggregate-receipt.json', receipt)
+
+
+if __name__ == '__main__':
+    sys.stdout.reconfigure(encoding='utf-8')
+    main()

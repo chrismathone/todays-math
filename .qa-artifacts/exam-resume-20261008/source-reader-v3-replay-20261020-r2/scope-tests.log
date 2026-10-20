@@ -1,0 +1,12 @@
+test_protected_existing_or_unready_sources_never_eligible (test_source_inventory_scope.SourceInventoryScopeTest.test_protected_existing_or_unready_sources_never_eligible) ... ok
+test_six_explicit_year_grade_scopes_and_old_default (test_source_inventory_scope.SourceInventoryScopeTest.test_six_explicit_year_grade_scopes_and_old_default) ... ok
+test_types_and_explicit_scope_refuse_grade_or_year_coercion (test_source_inventory_scope.SourceInventoryScopeTest.test_types_and_explicit_scope_refuse_grade_or_year_coercion) ... ok
+test_all_six_explicit_scopes_and_matching_policy_labels (test_source_inventory_scope_v2.StrictSourceScopeTest.test_all_six_explicit_scopes_and_matching_policy_labels) ... ok
+test_malformed_pair_and_unknown_registration_metadata_are_held (test_source_inventory_scope_v2.StrictSourceScopeTest.test_malformed_pair_and_unknown_registration_metadata_are_held) ... ok
+test_protected_seen_and_scalar_corruption_preserve_exclusions (test_source_inventory_scope_v2.StrictSourceScopeTest.test_protected_seen_and_scalar_corruption_preserve_exclusions) ... ok
+test_scope_validation_and_no_caller_mutation (test_source_inventory_scope_v2.StrictSourceScopeTest.test_scope_validation_and_no_caller_mutation) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+OK

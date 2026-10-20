@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-20T06:40:16.975975+00:00",
+  "queueCompletedBeforeReaderMutation": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/aggregate-queue-receipt.json",
+    "sha256": "f3dcc023039766cfa02bd27859b637613ffc3053aea23e63fed92ceeff6bc0d9"
+  },
+  "planned": 505,
+  "parsed": 458,
+  "held": 47,
+  "newParentObservations": 9641,
+  "activeR1ReaderHistoricalSnapshot": ".qa-artifacts/exam-resume-20261008/source-scope-code-audit-20261020-r1/provided-code-snapshots/extract-fresh-sources-20261019.py.snapshot",
+  "wiredStrictHelper": "scripts/import/exam-twin/source_inventory_scope_v2.py",
+  "dynamicScopeSelectionPolicyWired": true,
+  "oldReceiptBytesRewritten": false,
+  "actualReplayAndIndependentWiringAuditPending": true,
+  "dbWrites": 0,
+  "loadable": 0
+}

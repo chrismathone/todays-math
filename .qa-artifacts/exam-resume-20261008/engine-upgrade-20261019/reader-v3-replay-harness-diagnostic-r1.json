@@ -1,0 +1,8 @@
+{
+  "initialHarness": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/validate-reader-v3-replay-20261020-r1.py",
+  "sha256": "b1e3798d7702d5c8b162235f377fbd805f7e2c814b9a3d82259c49a78fd9c81f",
+  "failure": "Isolated BASE lacked captured reader code dependency; stopped before any replay source reads",
+  "fix": "Copied exact existing immutable extract_source.py code into separate r2 spool; old r1 preserved",
+  "productionSourceFaultClaim": false,
+  "actualFourReplaysPassed": true
+}

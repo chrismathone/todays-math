@@ -36,8 +36,8 @@ def module(p, name):
     return obj
 
 
-SOURCE_SCOPE = module(pathlib.Path(__file__).with_name('source_inventory_scope.py'),
-                      'fresh_extraction_inventory_scope')
+SOURCE_SCOPE = module(pathlib.Path(__file__).with_name('source_inventory_scope_v2.py'),
+                      'fresh_extraction_inventory_scope_v2')
 
 
 def eligible(job, seen, *, level='middle', grade=3):
@@ -92,7 +92,7 @@ def main():
     converter_path = ROOT / 'scripts/qa/convert-hwp-spans.py'
     pdf_path = pathlib.Path('D:/시험지 한글화/db/textlayer.py')
     region_path = ROOT / 'scripts/import/exam-twin/source_region_ownership.py'
-    tool_refs = [ref(p) for p in [pathlib.Path(__file__), pathlib.Path(__file__).with_name('source_inventory_scope.py'), reader_path, converter_path, pdf_path, region_path]]
+    tool_refs = [ref(p) for p in [pathlib.Path(__file__), pathlib.Path(__file__).with_name('source_inventory_scope_v2.py'), reader_path, converter_path, pdf_path, region_path]]
     reader = module(reader_path, 'fresh_positional_reader')
     converter = module(converter_path, 'fresh_formula_converter')
     pdf = module(pdf_path, 'fresh_pdf_textlayer')
@@ -205,7 +205,7 @@ def main():
     receipt = {'kind': 'fresh-source-aggregate-receipt/v1',
                'createdAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                'inventory': old[0], 'tools': tool_refs, 'explicitJobIds': args.job_ids,
-               'selectionPolicy': 'unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded',
+               'selectionPolicy': SOURCE_SCOPE.selection_policy(args.level, args.grade),
                'previousParentObservations': previous_parents, 'entries': entries,
                'actualNewParents': sum(e.get('hwpParents', 0) for e in entries if e['status']=='parsed-quarantined'),
                'componentsApproved': 0, 'twins': 0, 'dbWrites': 0,

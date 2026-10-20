@@ -1,0 +1,112 @@
+{
+  "utc": "2026-10-20T06:44:18.053600+00:00",
+  "before": [
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+      "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\remaining-ready-scopes-extraction-20261020-r1\\aggregate-queue-receipt.json",
+      "sha256": "f3dcc023039766cfa02bd27859b637613ffc3053aea23e63fed92ceeff6bc0d9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\extract-fresh-sources-20261019.py",
+      "sha256": "d82fa32da80f7c0902a2b1c0bae983bcdcd5598581d4d689fb97dd1715ae153a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_inventory_scope_v2.py",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    }
+  ],
+  "all1715DefaultM3ChoicesPreserved": true,
+  "strictHelperActuallyWired": true,
+  "dynamicPolicyActuallyWired": true,
+  "unitTests": 7,
+  "actualReplays": [
+    {
+      "level": "middle",
+      "grade": 1,
+      "receipt": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\source-reader-v3-replay-20261020-r2\\isolated-local-spool\\replay-middle1\\aggregate-receipt.json",
+        "sha256": "02e863508ce50f394cabe72f84269b6ee5ffcac53174ec8038ebf0d7381144ec"
+      },
+      "correctDynamicPolicy": "unparsed 2025+ middle grade1 selected HWP/PDF pair; protected schools and known parsed/registered IDs excluded; original questions quarantined; source identity, student curriculum and rights approvals remain separate and pending",
+      "sources": [
+        {
+          "examId": "personal-324e5308ec33be22e950f921204b6a5a",
+          "questionCount": 21,
+          "oldManifest": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r31\\personal-324e5308ec33be22e950f921204b6a5a\\source-manifest.local.json",
+            "sha256": "54a10acdca3b44ffe2cf94d90f7f8cc1b18cc0f3623b38feb99d0ce1c6375374"
+          },
+          "replayManifest": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\source-reader-v3-replay-20261020-r2\\isolated-local-spool\\replay-middle1\\personal-324e5308ec33be22e950f921204b6a5a\\source-manifest.local.json",
+            "sha256": "1a303bef6e992e4372a3d25bf0baf0079c5461b5898212babe082e6c8ecb403f"
+          },
+          "originalInputHashesAndAllQuestionDigestsEqual": true
+        },
+        {
+          "examId": "personal-57992c45fa81adc2866b0dd6fc4972b1",
+          "questionCount": 20,
+          "oldManifest": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r31\\personal-57992c45fa81adc2866b0dd6fc4972b1\\source-manifest.local.json",
+            "sha256": "67bc49194ee96989259c87fce7857f909c10454a2988218d55a266113506d573"
+          },
+          "replayManifest": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\source-reader-v3-replay-20261020-r2\\isolated-local-spool\\replay-middle1\\personal-57992c45fa81adc2866b0dd6fc4972b1\\source-manifest.local.json",
+            "sha256": "70266c1b66144b9dc92efb8be919514e8a1419308afa1c269020f6109aaef4c1"
+          },
+          "originalInputHashesAndAllQuestionDigestsEqual": true
+        }
+      ],
+      "replayOnlyNotNewObservations": true
+    },
+    {
+      "level": "high",
+      "grade": 1,
+      "receipt": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\source-reader-v3-replay-20261020-r2\\isolated-local-spool\\replay-high1\\aggregate-receipt.json",
+        "sha256": "68f0305ea130fd19678e99aa3f3c5a319af91f1635b9c141ac1cbf317cf3089c"
+      },
+      "correctDynamicPolicy": "unparsed 2025+ high grade1 selected HWP/PDF pair; protected schools and known parsed/registered IDs excluded; original questions quarantined; source identity, student curriculum and rights approvals remain separate and pending",
+      "sources": [
+        {
+          "examId": "personal-8eec901cfcf0f5f6e58dec34775bc19f",
+          "questionCount": 23,
+          "oldManifest": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r33\\personal-8eec901cfcf0f5f6e58dec34775bc19f\\source-manifest.local.json",
+            "sha256": "86abb3e3a91e98b2dd66d59b934882834ea2391487c123c1ce6a8f655d2c2201"
+          },
+          "replayManifest": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\source-reader-v3-replay-20261020-r2\\isolated-local-spool\\replay-high1\\personal-8eec901cfcf0f5f6e58dec34775bc19f\\source-manifest.local.json",
+            "sha256": "d23c2f98ee4bd130d4093009507e813de94fccafddb586fe348c2bbfe3d60a32"
+          },
+          "originalInputHashesAndAllQuestionDigestsEqual": true
+        },
+        {
+          "examId": "personal-827a7963c912f3d9171b762651b56918",
+          "questionCount": 22,
+          "oldManifest": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r33\\personal-827a7963c912f3d9171b762651b56918\\source-manifest.local.json",
+            "sha256": "ce9991a2f5cc0bf027429c4cac2057a0add9988c9ab4b324ee18f0c84860eddc"
+          },
+          "replayManifest": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\source-reader-v3-replay-20261020-r2\\isolated-local-spool\\replay-high1\\personal-827a7963c912f3d9171b762651b56918\\source-manifest.local.json",
+            "sha256": "02d1ae3575349ffb034cacbd6410b8f7c7c47e9cea08693ddf71dd9e7527a964"
+          },
+          "originalInputHashesAndAllQuestionDigestsEqual": true
+        }
+      ],
+      "replayOnlyNotNewObservations": true
+    }
+  ],
+  "replayedSourcePapers": 4,
+  "newSourceObservations": 0,
+  "isolatedReplayCountersNotCorpusCounts": true,
+  "originalQuestionsAndReceiptsUnchanged": true,
+  "noOriginalTextImagesStaged": true,
+  "independentWiringAuditPending": true,
+  "studentGradeRightsApproval": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

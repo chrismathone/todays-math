@@ -1,0 +1,2434 @@
+{
+  "kind": "fresh-source-aggregate-receipt/v1",
+  "createdAt": "2026-10-20T06:33:53.706498+00:00",
+  "inventory": {
+    "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+    "bytes": 8404909
+  },
+  "tools": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\extract-fresh-sources-20261019.py",
+      "sha256": "fc2754cd702dcefc91a85e254259055342cf5c6350b3c6296fc128274ac68d89",
+      "bytes": 13261
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_inventory_scope.py",
+      "sha256": "c4c035bc1341726051cc1816b5f3b679b7e7a08532252d9ddfcb1e7c1c263535",
+      "bytes": 1087
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\extract_source.py",
+      "sha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb",
+      "bytes": 29209
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\convert-hwp-spans.py",
+      "sha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00",
+      "bytes": 12470
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\textlayer.py",
+      "sha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743",
+      "bytes": 32795
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_region_ownership.py",
+      "sha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1",
+      "bytes": 3092
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\tc_paths.py",
+      "sha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e",
+      "bytes": 1320
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\hwpeq_unglue.py",
+      "sha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415",
+      "bytes": 12710
+    },
+    {
+      "path": "D:\\시험지 한글화\\core\\hwpeq_to_latex.py",
+      "sha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861",
+      "bytes": 9013
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\pua_table.json",
+      "sha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22",
+      "bytes": 2189
+    }
+  ],
+  "explicitJobIds": [
+    "personal-c83d55b47e6af54c85101af65719a2b7",
+    "personal-a579777c8e616ec8f8f9499f5207a23d",
+    "personal-45a816a33fdd37a7ab19d5f8fc401c4f"
+  ],
+  "selectionPolicy": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+  "previousParentObservations": 10993,
+  "entries": [
+    {
+      "examId": "personal-c83d55b47e6af54c85101af65719a2b7",
+      "school": "영송여고",
+      "level": "고",
+      "year": 2025,
+      "grade": 2,
+      "semester": 2,
+      "round": "중간",
+      "componentsApproved": 0,
+      "twins": 0,
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "gradeApprovals": 0,
+      "rightsApprovals": 0,
+      "extractionScopeAsProvided": {
+        "level": "high",
+        "grade": 2,
+        "examYear": 2025,
+        "curriculumEdition": "pending-original-year-grade-evidence",
+        "studentCurriculumApproval": false
+      },
+      "hwpParents": 20,
+      "pdfParents": 20,
+      "questionPages": 8,
+      "answerPageFirstOneBased": 9,
+      "endnotesWithheld": 20,
+      "unknownControls": 0,
+      "status": "parsed-quarantined",
+      "inputs": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\미적분\\[영송여고][2][미적분][25-2-중간][비상] (완료).hwp",
+          "sha256": "b794420993754530ac5108d00584620089df85b070eb4943c41314a8cf1742a1",
+          "bytes": 197120
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\미적분\\[영송여고][2][미적분][25-2-중간][비상] (완료).PDF",
+          "sha256": "f97692ff84ba05376204e327fbec4917d5bb4bcac56b5858f655dbb8026aa30e",
+          "bytes": 14698256
+        }
+      ],
+      "originalIdentitySource": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\고2\\[영송여고][2][미적분][25-2-중간].pdf",
+        "sha256": "fa9bdc5698e3bf9e3b1eb19bd22c96ea1351fabc075bd2354fd6c286dfc2233d",
+        "bytes": 493917
+      },
+      "regionOwnershipAudit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 20,
+        "overlaps": [
+          {
+            "questions": [
+              1,
+              2
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              546.2542114257812,
+              375,
+              550.699462890625
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              3,
+              4
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              536.121826171875,
+              688.0,
+              540.86669921875
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              5,
+              6
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 2,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              581.2130737304688,
+              375,
+              583.3154907226562
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      },
+      "localManifest": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-c83d55b47e6af54c85101af65719a2b7\\source-manifest.local.json",
+        "sha256": "c6acea38d814a960d187c9a5ba71863a8621e4ff536cfb10b3ed3d3964502dc5",
+        "bytes": 1534084
+      },
+      "questions": [
+        {
+          "number": 1,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 5,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "de232fadf313a599ca17c7d94888d803a1fd47a57fda2ffc1ab615adf582f6d3",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 2,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "8cf52c01855cc528502abf4faa49ba7c4503328aa2f5b47c99d4854176d6fde9",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 3,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "32240779f1fdc3b9d7561a434c9242bffc379882c47e387fe9677b416bb3f8c9",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 4,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "0ceab177a5f1c35bf9bb14e8f2727191ea603b0fec46d116cb4ae2863d2ebf73",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 5,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "6bd6ca4c6aaefbd87a7542d87282c55660f623792850245c05efa856f3b227ef",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 6,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "f88e3a09c287f4acc040a95fbb3a6699bdd70f763a8a336c4efd7c2a49f12548",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 7,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "0f852df5edc779b0004fbfdb33e385b7dcaa5a2f037a8e93876ad6e74f9f592b",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 8,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "9eb6d5b32fb58d0e8a40c66072e551f41a5b2105defbd5eed6eccc1ff750d29b",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 9,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 15,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "a4a4e150167c932d955c37a6360e896d7e7095db597d4149941ccf7ee2fd6a8f",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 10,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "0e06ea66806e4bb2549cd42bee014836356750dd23245089d9a7aefb582a077f",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 11,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "c98cec0e8800d200196e122986a09e253e871f88a45fc5cdb0978d5369831f0c",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 12,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 11,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "c1e34f9def208c0c93ecd1a8e922e5ea03adfac638af023e76bc1f0d8007721b",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 13,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 17,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "4b5e62008febf6b88958c27fba27d18371c111dc594c08a76cc03ef30552a267",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 14,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 14,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "ad9d01c3b32bf75a8045b68ec72b354c63914461527a3576a3e117a90916e9a8",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 15,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 5,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "b87aea70ae9fa8710790e6c388993ef51a002979a9f321154b09eb6b0dca0cd4",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 16,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 5,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "57db1ed00ba7bd1ad5b257caae62e3c29a6ca689e6639383b79ae791a55d523d",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 17,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 21,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "d1beddc0183ece72190b6484abd951a108d102121d7db4cdab23ac6482990bad",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 18,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 5,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "711e7f2d2b63888636e622fe7a0b96ac47a9c0a1a255828c462a5f7d626b369b",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 19,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 12,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "761dcf3c7393bc5abd14012925226eca843b2775ba2b6c7c0ed236ba3ee0c460",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 20,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "3469644786caaeed5541cd11a2607d3f729ca62c55e7be227df31e7b422bd957",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        }
+      ],
+      "originalHeaderPreviews": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-c83d55b47e6af54c85101af65719a2b7\\reviewer-only\\header.png",
+          "sha256": "ae9a6350ff3375ba2e4a147e7daa4413e64e363b92197fd690985913a6b3ec7c",
+          "bytes": 76772,
+          "reviewerOnly": true,
+          "viewed": false
+        },
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-c83d55b47e6af54c85101af65719a2b7\\reviewer-only\\footer.png",
+          "sha256": "ab19a03ac9d413ef92ad474a858b42824072ad22fdf2c7897f7c69af1be2bb11",
+          "bytes": 26731,
+          "reviewerOnly": true,
+          "viewed": false
+        }
+      ],
+      "headerObservations": {
+        "status": "pending-reviewer-observation",
+        "schoolYearGradeSemesterRound": "not-certified"
+      }
+    },
+    {
+      "examId": "personal-a579777c8e616ec8f8f9499f5207a23d",
+      "school": "영신고",
+      "level": "고",
+      "year": 2025,
+      "grade": 2,
+      "semester": 2,
+      "round": "중간",
+      "componentsApproved": 0,
+      "twins": 0,
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "gradeApprovals": 0,
+      "rightsApprovals": 0,
+      "extractionScopeAsProvided": {
+        "level": "high",
+        "grade": 2,
+        "examYear": 2025,
+        "curriculumEdition": "pending-original-year-grade-evidence",
+        "studentCurriculumApproval": false
+      },
+      "status": "individual-source-hold",
+      "errorType": "FileNotFoundError",
+      "error": "[Errno 2] No such file or directory: 'N:\\\\개인\\\\기출\\\\2025 기출모음\\\\2025년 2학기 중간고사 모음\\\\워드\\\\[영신고][2][수2][25-2-중간][미래엔] (완료).hwp'",
+      "doesNotBlockOtherSources": true
+    },
+    {
+      "examId": "personal-45a816a33fdd37a7ab19d5f8fc401c4f",
+      "school": "영진고",
+      "level": "고",
+      "year": 2025,
+      "grade": 2,
+      "semester": 1,
+      "round": "중간",
+      "componentsApproved": 0,
+      "twins": 0,
+      "identityApproved": false,
+      "wholePairCertified": false,
+      "gradeApprovals": 0,
+      "rightsApprovals": 0,
+      "extractionScopeAsProvided": {
+        "level": "high",
+        "grade": 2,
+        "examYear": 2025,
+        "curriculumEdition": "pending-original-year-grade-evidence",
+        "studentCurriculumApproval": false
+      },
+      "hwpParents": 20,
+      "pdfParents": 20,
+      "questionPages": 6,
+      "answerPageFirstOneBased": 7,
+      "endnotesWithheld": 20,
+      "unknownControls": 0,
+      "status": "parsed-quarantined",
+      "inputs": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\수1\\[영진고][2][수1][25-1중간][신사고] (완료).hwp",
+          "sha256": "e5477819f01383f692f1e4eebf6ff4a92b508d7bf3e19bb114e79f06630728a5",
+          "bytes": 1189888
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\수1\\[영진고][2][수1][25-1중간][신사고] (완료).PDF",
+          "sha256": "f1cea36ec8492b917d1c21a16b7996a94f8ffe29e9df85ab6525523a9a7fb35a",
+          "bytes": 287168
+        }
+      ],
+      "originalIdentitySource": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\고등학교\\수1\\[영진고][2][수1][25-1-중간] (원본) (SK).pdf",
+        "sha256": "0ff75d9b02ccc3ef6e1745afbd91fa1af0b7de600c0feaba3c6cbb28f9fe01ee",
+        "bytes": 1090901
+      },
+      "regionOwnershipAudit": {
+        "kind": "source-region-ownership-audit/v1",
+        "questions": 20,
+        "overlaps": [
+          {
+            "questions": [
+              1,
+              2
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 0,
+            "intersectionBbox": [
+              55,
+              373.42877197265625,
+              375,
+              374.66864013671875
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          },
+          {
+            "questions": [
+              4,
+              5
+            ],
+            "regionIndexes": [
+              0,
+              0
+            ],
+            "page": 1,
+            "column": 1,
+            "intersectionBbox": [
+              370,
+              369.5270690917969,
+              688.0,
+              372.8699645996094
+            ],
+            "status": "shared-material-or-misrouting-review-required"
+          }
+        ],
+        "flaggedQuestionNumbers": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "status": "review-required",
+        "mathPixelsUsed": false,
+        "questionContentCertified": false,
+        "authorDistributionAllowed": false,
+        "regionsModified": false,
+        "limitation": "Disjoint boxes do not prove correct ownership, complete figures or text equivalence"
+      },
+      "localManifest": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-45a816a33fdd37a7ab19d5f8fc401c4f\\source-manifest.local.json",
+        "sha256": "14ab788c970023656396a7f0c6a9f8c58c7ee8d67f1ded74e070ced04e486876",
+        "bytes": 1567596
+      },
+      "questions": [
+        {
+          "number": 1,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 15,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "d8f66646d9f63ec9a82a5c5e69d408f671c1bedc19d28e49151eafb5b7321795",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 2,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 9,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "f0be1176473a44accf1173822d09137275ba71d3f615c0daff1d86fbd8a8c66a",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 3,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "a312cc5a125472f8cade83cd815d4e5998b4c074da9f029a5051c1f39b41a080",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 4,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "4bcf8db6117eab1b9be239a0a3eedac277caf5fddf52c7db6e5d63c68c247061",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 5,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 7,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "7df8f821626a79b40bc96bae365ca1b73557e329ea0a09acc7836bec538a58e6",
+          "pdfRegionOwnership": "overlap-review-required",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 6,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "7d2c8eda0a787cc1c754dc653b842cffc3e24624322b6a75b9eb0ab41452b921",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 7,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "ebffced68ae306dd4ff425618b003da498bd5efa4ab612b0b9c46585763e1ea1",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 8,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 8,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "019632405a48a33ef300a3fe415a2cb15779ced468fecba06207dc7cb187fe94",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 9,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 13,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "3494606c2d5d034ae543467d1a344ef9a7f18c1bf42caa2aa738082e73b4f4fa",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 10,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 15,
+          "hwpFigureCount": 1,
+          "pdfFigureCorrespondenceCount": 1,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "a32bef1533822333348c17a64f8d78555510da8ffc4de6b409448703c0e0b773",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 11,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 11,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "3ea58705760f24b1beb5a38c6045420a61e7281b420b587a5713ddc20fe48bd5",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 12,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 11,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "04eb588b5ce152d34e1797b75afbc6b4d5f5c9e494fc3765c7c4a0f49019c16a",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 13,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 10,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "ca3ea397b5157cdcb326a800141e9dd8771a7259506dafd80503480f8d9996d7",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 14,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 11,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "693d46085f3c27200964b1a0e9c64f827ea5f8d28cd5198482d5d9dd9e133580",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 15,
+          "hwpChoiceCount": 5,
+          "pdfChoiceCount": 5,
+          "hwpFormulaCount": 13,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "e79cedc1db888429e99cc64ea353f3daf7e3aa2801aa833736676e391841f96a",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 16,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 11,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "e970089beb7de578ce2e81c9db76f0e6989c3615c85294f65b803ab6401b0b4b",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 17,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 3,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "e760e7b0d7be11f6943c99c4c77a8f719fd8a7a3eafe82bec45dea03fd41c157",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 18,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 14,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 1,
+          "unmappedCount": 0,
+          "contentDigest": "f4b92e28e1a047858de12586ff430f9319c56076339ee32dd3a402ad17e9eb56",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 19,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 14,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 4,
+          "unmappedCount": 0,
+          "contentDigest": "c0b4ea4796faa4798444739675a1cba97fa501f963dcef3a295d9716ef5d306a",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        },
+        {
+          "number": 20,
+          "hwpChoiceCount": 0,
+          "pdfChoiceCount": 0,
+          "hwpFormulaCount": 15,
+          "hwpFigureCount": 0,
+          "pdfFigureCorrespondenceCount": 0,
+          "scoreOccurrenceCount": 3,
+          "unmappedCount": 0,
+          "contentDigest": "e2a4bbb173a01a4ff3a4420e636468ea962881a80c917fe911513ac9eb3ae21b",
+          "pdfRegionOwnership": "no-overlap-observed-not-certified",
+          "uncertainties": [
+            "whole-question-text",
+            "formula-equivalence",
+            "figure-correspondence",
+            "choices",
+            "printed-score",
+            "source-identity",
+            "grade",
+            "rights"
+          ],
+          "componentsApproved": 0
+        }
+      ],
+      "originalHeaderPreviews": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-45a816a33fdd37a7ab19d5f8fc401c4f\\reviewer-only\\header.png",
+          "sha256": "62e659387407b17eab2543b0997521124e313625bd558de98f39fc32e41777ac",
+          "bytes": 161417,
+          "reviewerOnly": true,
+          "viewed": false
+        },
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-45a816a33fdd37a7ab19d5f8fc401c4f\\reviewer-only\\footer.png",
+          "sha256": "6d336d60f21b253b8041c714b7ce2ca11b299e80dcb2242f2c1190ed216b4877",
+          "bytes": 29579,
+          "reviewerOnly": true,
+          "viewed": false
+        }
+      ],
+      "headerObservations": {
+        "status": "pending-reviewer-observation",
+        "schoolYearGradeSemesterRound": "not-certified"
+      }
+    }
+  ],
+  "actualNewParents": 40,
+  "componentsApproved": 0,
+  "twins": 0,
+  "dbWrites": 0,
+  "wholePairCertifications": 0,
+  "gradeApprovals": 0,
+  "rightsApprovals": 0,
+  "preservation": [
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+      "beforeSha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "afterSha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\source-manifest.json",
+      "beforeSha256": "5a082d1c9da1eb72ff0f69e017ecc127fa90c65f54f0aca6a80c67272fb319ae",
+      "afterSha256": "5a082d1c9da1eb72ff0f69e017ecc127fa90c65f54f0aca6a80c67272fb319ae"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\source-manifest.json",
+      "beforeSha256": "87e05a69d85524fe20dc178e6da190414f36193984807f1673356f299fb53b4b",
+      "afterSha256": "87e05a69d85524fe20dc178e6da190414f36193984807f1673356f299fb53b4b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsan\\source-manifest.json",
+      "beforeSha256": "3429d54484b3676efe2a4ba3564e68f005ed431a899dab5fa979b91a57f66b6c",
+      "afterSha256": "3429d54484b3676efe2a4ba3564e68f005ed431a899dab5fa979b91a57f66b6c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsang\\source-manifest.json",
+      "beforeSha256": "eff360204432f6b0c39aa2468cc59fbdf34ec1bc213a58c33de72d023f905e5d",
+      "afterSha256": "eff360204432f6b0c39aa2468cc59fbdf34ec1bc213a58c33de72d023f905e5d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongsin\\source-manifest.json",
+      "beforeSha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249",
+      "afterSha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\source-manifest.json",
+      "beforeSha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6",
+      "afterSha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeseong\\source-manifest.json",
+      "beforeSha256": "97ebf0fdf3ca4f6b3eab4b5737083410b94f57bf53863a4be568635618b4f4f9",
+      "afterSha256": "97ebf0fdf3ca4f6b3eab4b5737083410b94f57bf53863a4be568635618b4f4f9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "beforeSha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454",
+      "afterSha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r2-attempt1\\daegok\\source-manifest.json",
+      "beforeSha256": "d3fd0fe0b3d3b47f74afe8780811b900b069c2b833b6a7bd26f516e7a843c8df",
+      "afterSha256": "d3fd0fe0b3d3b47f74afe8780811b900b069c2b833b6a7bd26f516e7a843c8df"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r2-attempt1\\daegudong\\source-manifest.json",
+      "beforeSha256": "f9fe06d8b846d264bf1982372677e2f6a6002ab196c1032dd410fcfbe5e68865",
+      "afterSha256": "f9fe06d8b846d264bf1982372677e2f6a6002ab196c1032dd410fcfbe5e68865"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r2-attempt1\\neungin\\source-manifest.json",
+      "beforeSha256": "9aba65d89cecaebcba70cea98040192ac70f73f26529c48275e3e602738a70c3",
+      "afterSha256": "9aba65d89cecaebcba70cea98040192ac70f73f26529c48275e3e602738a70c3"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r1\\aggregate-receipt.json",
+      "beforeSha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367",
+      "afterSha256": "7b8cf0c4538b619f4d24fdbf3bfe74079f6da18eef457804c99079df0a9e2367"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r2\\aggregate-receipt.json",
+      "beforeSha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b",
+      "afterSha256": "553685f863cda90cdd94480763cb46a769e97c2daaee5234f32b0ee82193d07b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r3\\aggregate-receipt.json",
+      "beforeSha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12",
+      "afterSha256": "2507ed4923dcc8738cc2b35f95db6bb97db48dc69bc8e63a76758099c7b4fe12"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r4\\aggregate-receipt.json",
+      "beforeSha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f",
+      "afterSha256": "a44cb9b9d871d6363aeea0decc8390e4af7065b33879cb36c2b37bf08f77572f"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r5\\aggregate-receipt.json",
+      "beforeSha256": "7dfed92a5c2019e565a577910dc51baae6ad949535036950d969186b7e86fb9b",
+      "afterSha256": "7dfed92a5c2019e565a577910dc51baae6ad949535036950d969186b7e86fb9b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r6\\aggregate-receipt.json",
+      "beforeSha256": "5918ee507fa9f3f23e7c5c182cbd1872a850f8101afeaf35fa1bb991a874c3c1",
+      "afterSha256": "5918ee507fa9f3f23e7c5c182cbd1872a850f8101afeaf35fa1bb991a874c3c1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261019-r7\\aggregate-receipt.json",
+      "beforeSha256": "5a26d0ba285a3d8a78ae0803c82b78771f45e457cb7e7d706ce71a776c4de139",
+      "afterSha256": "5a26d0ba285a3d8a78ae0803c82b78771f45e457cb7e7d706ce71a776c4de139"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\aggregate-receipt.json",
+      "beforeSha256": "cbecc6cde07a4aef3ccaa546e61e794a41e61c3e64e689d0ba86df8f41664105",
+      "afterSha256": "cbecc6cde07a4aef3ccaa546e61e794a41e61c3e64e689d0ba86df8f41664105"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r10\\aggregate-receipt.json",
+      "beforeSha256": "6590631d52cdcc534e2cadf9b60c7fdf6d6a3f03f004064422fc2a62b5f4b4ad",
+      "afterSha256": "6590631d52cdcc534e2cadf9b60c7fdf6d6a3f03f004064422fc2a62b5f4b4ad"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r100\\aggregate-receipt.json",
+      "beforeSha256": "6c2acb2dca65b1971bb7cb15be1009f2df9a88cb1e46516150595784971f9430",
+      "afterSha256": "6c2acb2dca65b1971bb7cb15be1009f2df9a88cb1e46516150595784971f9430"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r101\\aggregate-receipt.json",
+      "beforeSha256": "c0aa58e34fad7cb9cc2fb0089d45da06ec1dc28343d152f4614c06b705a9ddac",
+      "afterSha256": "c0aa58e34fad7cb9cc2fb0089d45da06ec1dc28343d152f4614c06b705a9ddac"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r102\\aggregate-receipt.json",
+      "beforeSha256": "c0e5cc5118e774d5620d98565dedf85d6f95f330f8e92bf48c847acc4be8fe2c",
+      "afterSha256": "c0e5cc5118e774d5620d98565dedf85d6f95f330f8e92bf48c847acc4be8fe2c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r103\\aggregate-receipt.json",
+      "beforeSha256": "bee940fd714954e867d2541faf94799d6e28fe4be5fbecdbac469c85173beb0d",
+      "afterSha256": "bee940fd714954e867d2541faf94799d6e28fe4be5fbecdbac469c85173beb0d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r104\\aggregate-receipt.json",
+      "beforeSha256": "d824bdc1bea39b6baeb1229c73c4db3ff4ec194cb7fdbcdc635a5af4cb5fbe61",
+      "afterSha256": "d824bdc1bea39b6baeb1229c73c4db3ff4ec194cb7fdbcdc635a5af4cb5fbe61"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r105\\aggregate-receipt.json",
+      "beforeSha256": "de97772fb37848a204955680bc3cc15027540e1a3f6022e451d7cf73f70e9771",
+      "afterSha256": "de97772fb37848a204955680bc3cc15027540e1a3f6022e451d7cf73f70e9771"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r106\\aggregate-receipt.json",
+      "beforeSha256": "fc21de1fd0bff624c544c8190b0d37b2b601269ccfcd8abc741630f2b4de4bda",
+      "afterSha256": "fc21de1fd0bff624c544c8190b0d37b2b601269ccfcd8abc741630f2b4de4bda"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r107\\aggregate-receipt.json",
+      "beforeSha256": "fa086ee4591ca2aecd925cc5794db3537ba6ef36097e2eff86c61b351603afae",
+      "afterSha256": "fa086ee4591ca2aecd925cc5794db3537ba6ef36097e2eff86c61b351603afae"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r108\\aggregate-receipt.json",
+      "beforeSha256": "e1a4a97a1f4f7015b23707bed6db3599baad4e162cd9289c4e371281d7e4404e",
+      "afterSha256": "e1a4a97a1f4f7015b23707bed6db3599baad4e162cd9289c4e371281d7e4404e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r109\\aggregate-receipt.json",
+      "beforeSha256": "c097744f6c0569f6535b4d23345e90e417160748c691dde8c339d55af05bfb9c",
+      "afterSha256": "c097744f6c0569f6535b4d23345e90e417160748c691dde8c339d55af05bfb9c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r11\\aggregate-receipt.json",
+      "beforeSha256": "81f2e68cf048abd7c8c0e9956cc758f7b94ad76afe304938aae213fb36390c66",
+      "afterSha256": "81f2e68cf048abd7c8c0e9956cc758f7b94ad76afe304938aae213fb36390c66"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r110\\aggregate-receipt.json",
+      "beforeSha256": "41638cd6f891a404de867ba5fd5984c87edb5db08a8f30c271e6a6b9e5e76cfb",
+      "afterSha256": "41638cd6f891a404de867ba5fd5984c87edb5db08a8f30c271e6a6b9e5e76cfb"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r111\\aggregate-receipt.json",
+      "beforeSha256": "9bcdc3169aa910dba22ebb6b2cc792981fbdda453f4d5c9fc693f93282bee798",
+      "afterSha256": "9bcdc3169aa910dba22ebb6b2cc792981fbdda453f4d5c9fc693f93282bee798"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r112\\aggregate-receipt.json",
+      "beforeSha256": "c333092aeb2f5d424fe6f4c711a51933fc45e1d7dc8bde3bfa814bc7e4977f85",
+      "afterSha256": "c333092aeb2f5d424fe6f4c711a51933fc45e1d7dc8bde3bfa814bc7e4977f85"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r113\\aggregate-receipt.json",
+      "beforeSha256": "cbaede50885f1bbd31c4bc9d0ce3c6b44f94d2d6adce191656afcb0ac2596f1e",
+      "afterSha256": "cbaede50885f1bbd31c4bc9d0ce3c6b44f94d2d6adce191656afcb0ac2596f1e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r114\\aggregate-receipt.json",
+      "beforeSha256": "5f8db504230db8764c962f3d130400a9b3990c4f2d70fc1e1544c2c65f54a438",
+      "afterSha256": "5f8db504230db8764c962f3d130400a9b3990c4f2d70fc1e1544c2c65f54a438"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r115\\aggregate-receipt.json",
+      "beforeSha256": "acdf3dbac4e4f91af04ceb09ec0d270df6724be0bc37dab2c1f6b25a99e8ba52",
+      "afterSha256": "acdf3dbac4e4f91af04ceb09ec0d270df6724be0bc37dab2c1f6b25a99e8ba52"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r116\\aggregate-receipt.json",
+      "beforeSha256": "b6fe2e05eeb4ba74ced4820fc8ced036ac81ce7549aa821314b0ef04641df9ef",
+      "afterSha256": "b6fe2e05eeb4ba74ced4820fc8ced036ac81ce7549aa821314b0ef04641df9ef"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r117\\aggregate-receipt.json",
+      "beforeSha256": "8492905b53a3c98435eb6f9e0f0490f84cbcd63ab7bb8caa538747666dfe18d1",
+      "afterSha256": "8492905b53a3c98435eb6f9e0f0490f84cbcd63ab7bb8caa538747666dfe18d1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r118\\aggregate-receipt.json",
+      "beforeSha256": "1a2425fb04889e60bf6915c80de112c1bceee4e0f9d56031eabfa09dc724ca0a",
+      "afterSha256": "1a2425fb04889e60bf6915c80de112c1bceee4e0f9d56031eabfa09dc724ca0a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r119\\aggregate-receipt.json",
+      "beforeSha256": "d944c70e77ca811693eca09dbadc4af36e0aaef60f83d3dafc3bcb60f8c05f74",
+      "afterSha256": "d944c70e77ca811693eca09dbadc4af36e0aaef60f83d3dafc3bcb60f8c05f74"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r12\\aggregate-receipt.json",
+      "beforeSha256": "82806b6b8cb2dc0529ea45ce54877caea2ff152746df7aff33bdf410d39e8b57",
+      "afterSha256": "82806b6b8cb2dc0529ea45ce54877caea2ff152746df7aff33bdf410d39e8b57"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r120\\aggregate-receipt.json",
+      "beforeSha256": "79eea03286d15f15b6240f6b79a58fd60b9a799cc0ef2dc818b02f1d4c3d8f9f",
+      "afterSha256": "79eea03286d15f15b6240f6b79a58fd60b9a799cc0ef2dc818b02f1d4c3d8f9f"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r121\\aggregate-receipt.json",
+      "beforeSha256": "52b64258ea31ace9e8b1d146bfebd3c7197b2c6e450722d560b4cd2a5a8563a3",
+      "afterSha256": "52b64258ea31ace9e8b1d146bfebd3c7197b2c6e450722d560b4cd2a5a8563a3"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r122\\aggregate-receipt.json",
+      "beforeSha256": "c09c9e33ad5de66b73e245bbc0006324b3dbb228498099a6d6ba2a874ceea67e",
+      "afterSha256": "c09c9e33ad5de66b73e245bbc0006324b3dbb228498099a6d6ba2a874ceea67e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r123\\aggregate-receipt.json",
+      "beforeSha256": "9e2c2958c67df358875a505163dc435805481a1e43badf3ea672a21352b55eaf",
+      "afterSha256": "9e2c2958c67df358875a505163dc435805481a1e43badf3ea672a21352b55eaf"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r124\\aggregate-receipt.json",
+      "beforeSha256": "1c8c857a5206526219ed548014eec265aac0773f056e37f960d2ca3ffd3905de",
+      "afterSha256": "1c8c857a5206526219ed548014eec265aac0773f056e37f960d2ca3ffd3905de"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r125\\aggregate-receipt.json",
+      "beforeSha256": "d0605f0170bd1098332dc49c4ddf69edb9bf81c8806ecfab0d0cc0e6257d018b",
+      "afterSha256": "d0605f0170bd1098332dc49c4ddf69edb9bf81c8806ecfab0d0cc0e6257d018b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r126\\aggregate-receipt.json",
+      "beforeSha256": "a39b775c33235a572ca43000b0bb629774e647a1e1a52cb7a35f6294209a9b6f",
+      "afterSha256": "a39b775c33235a572ca43000b0bb629774e647a1e1a52cb7a35f6294209a9b6f"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r127\\aggregate-receipt.json",
+      "beforeSha256": "ccab09fb6a4c5378643b0933844744b7f96c275f2aebe2a757480821a3930bcc",
+      "afterSha256": "ccab09fb6a4c5378643b0933844744b7f96c275f2aebe2a757480821a3930bcc"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r128\\aggregate-receipt.json",
+      "beforeSha256": "6214fd3b1ea41e37eb987eba460c7091dbf39e08cc3f5e47affdc8ed85524845",
+      "afterSha256": "6214fd3b1ea41e37eb987eba460c7091dbf39e08cc3f5e47affdc8ed85524845"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r129\\aggregate-receipt.json",
+      "beforeSha256": "4d4a53fd8f934f9431d7889fe3412dcd63ba44773df3ca4ff0792ef0d0528811",
+      "afterSha256": "4d4a53fd8f934f9431d7889fe3412dcd63ba44773df3ca4ff0792ef0d0528811"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r13\\aggregate-receipt.json",
+      "beforeSha256": "5d530274ced0ff25ab2bfd3ef5d6e87aa1df6871ce5d5dfe1e0fc19ffd052a9a",
+      "afterSha256": "5d530274ced0ff25ab2bfd3ef5d6e87aa1df6871ce5d5dfe1e0fc19ffd052a9a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r130\\aggregate-receipt.json",
+      "beforeSha256": "cad42e68e0dd96995f8c6c122ce180c5be2075abf7bc973f6320e4b3c8c1d6c9",
+      "afterSha256": "cad42e68e0dd96995f8c6c122ce180c5be2075abf7bc973f6320e4b3c8c1d6c9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r131\\aggregate-receipt.json",
+      "beforeSha256": "02f2008dbb7ba7fb02dcabb64836f9bfd2c0c09e6f1bee767c830137c2f8437e",
+      "afterSha256": "02f2008dbb7ba7fb02dcabb64836f9bfd2c0c09e6f1bee767c830137c2f8437e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r132\\aggregate-receipt.json",
+      "beforeSha256": "53f7f3a9a304cfcf455c7a0aab50ec99b81f38937d72c258759f39980d121a0d",
+      "afterSha256": "53f7f3a9a304cfcf455c7a0aab50ec99b81f38937d72c258759f39980d121a0d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r133\\aggregate-receipt.json",
+      "beforeSha256": "c05b17ad928970be8c9d8489aac31e5eed405c161898c03595d734fe10e9ede2",
+      "afterSha256": "c05b17ad928970be8c9d8489aac31e5eed405c161898c03595d734fe10e9ede2"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r134\\aggregate-receipt.json",
+      "beforeSha256": "15110db2d36843e2650b9eba523d0f7cfdb698f63f605ee0023564a370609792",
+      "afterSha256": "15110db2d36843e2650b9eba523d0f7cfdb698f63f605ee0023564a370609792"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r135\\aggregate-receipt.json",
+      "beforeSha256": "a7084e14e09149133c227cd5404e0e6415ca5fd1aa10da73e46104c31a3906ff",
+      "afterSha256": "a7084e14e09149133c227cd5404e0e6415ca5fd1aa10da73e46104c31a3906ff"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r136\\aggregate-receipt.json",
+      "beforeSha256": "871372f27e06cfd44f61e59a2caecfeae9848c41e41c2bde6659a2e6dda190dc",
+      "afterSha256": "871372f27e06cfd44f61e59a2caecfeae9848c41e41c2bde6659a2e6dda190dc"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r137\\aggregate-receipt.json",
+      "beforeSha256": "8523dc9955f8ef40614711273e8c4dbb095760fac6e0bf3c2aa3ab1ac8111432",
+      "afterSha256": "8523dc9955f8ef40614711273e8c4dbb095760fac6e0bf3c2aa3ab1ac8111432"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r138\\aggregate-receipt.json",
+      "beforeSha256": "a0ed52a7fc3b84c7859aa73048ce672c4ea245a51dd8eb3ef6049b4e07b6b7c1",
+      "afterSha256": "a0ed52a7fc3b84c7859aa73048ce672c4ea245a51dd8eb3ef6049b4e07b6b7c1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r139\\aggregate-receipt.json",
+      "beforeSha256": "3075d99d3ee9f0101c4f035cefae55077a0e02c076ff3ebc052b6d34ddfe42f8",
+      "afterSha256": "3075d99d3ee9f0101c4f035cefae55077a0e02c076ff3ebc052b6d34ddfe42f8"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r14\\aggregate-receipt.json",
+      "beforeSha256": "75586398f4f1058c774d2f699d6be1556aeeadd0b86e073393a1903d791b0b1c",
+      "afterSha256": "75586398f4f1058c774d2f699d6be1556aeeadd0b86e073393a1903d791b0b1c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r140\\aggregate-receipt.json",
+      "beforeSha256": "fa78c02202ec157f47f0b4c62d25307b7a03b04d30fc1d01507f600fd6a12a23",
+      "afterSha256": "fa78c02202ec157f47f0b4c62d25307b7a03b04d30fc1d01507f600fd6a12a23"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r141\\aggregate-receipt.json",
+      "beforeSha256": "89bf9ab5676eba2b0e71ffc7769b0ee5c3be6be44d7b051847c69c037e3d3e67",
+      "afterSha256": "89bf9ab5676eba2b0e71ffc7769b0ee5c3be6be44d7b051847c69c037e3d3e67"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r142\\aggregate-receipt.json",
+      "beforeSha256": "3820425ce39fb1ae8c8fff5424aad5933570d54bc12847dbd9b449efb173260a",
+      "afterSha256": "3820425ce39fb1ae8c8fff5424aad5933570d54bc12847dbd9b449efb173260a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r143\\aggregate-receipt.json",
+      "beforeSha256": "4643dc6fff5a5de9250af81d29b3287e127fe661323a190db8d23717d6d0f299",
+      "afterSha256": "4643dc6fff5a5de9250af81d29b3287e127fe661323a190db8d23717d6d0f299"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r144\\aggregate-receipt.json",
+      "beforeSha256": "f3c4238d33e96e7c6ba91bb22ecd9031f059088be1b9f40acf24fbbe05010cb9",
+      "afterSha256": "f3c4238d33e96e7c6ba91bb22ecd9031f059088be1b9f40acf24fbbe05010cb9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r145\\aggregate-receipt.json",
+      "beforeSha256": "63973c58045f7025eeb02e2a6f9f523945c86476dace0115e99e5d2473be6774",
+      "afterSha256": "63973c58045f7025eeb02e2a6f9f523945c86476dace0115e99e5d2473be6774"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r146\\aggregate-receipt.json",
+      "beforeSha256": "12b8105dfedd0a440e6e182b305d0e6d463fa84031e99d9f30f3bb789ed6d81a",
+      "afterSha256": "12b8105dfedd0a440e6e182b305d0e6d463fa84031e99d9f30f3bb789ed6d81a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r147\\aggregate-receipt.json",
+      "beforeSha256": "dbcf67ca74006dabd098d4b68c215d3b7222dfe7c3bd1e7385e766043bae1abd",
+      "afterSha256": "dbcf67ca74006dabd098d4b68c215d3b7222dfe7c3bd1e7385e766043bae1abd"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r148\\aggregate-receipt.json",
+      "beforeSha256": "4149c6060d206efc5b49a013f0faee05e963b09f32f9f9d435fc0d04f8f0bbdf",
+      "afterSha256": "4149c6060d206efc5b49a013f0faee05e963b09f32f9f9d435fc0d04f8f0bbdf"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r149\\aggregate-receipt.json",
+      "beforeSha256": "5251db8f1fe997213dc55e468c8df0207d0b8b8009a05e7e5c440f9ad4741cbe",
+      "afterSha256": "5251db8f1fe997213dc55e468c8df0207d0b8b8009a05e7e5c440f9ad4741cbe"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r15\\aggregate-receipt.json",
+      "beforeSha256": "640950ad74b1a4dd9e5cf97f758dd23a2d1aec9dd70abea5ede5afba7a8b36a5",
+      "afterSha256": "640950ad74b1a4dd9e5cf97f758dd23a2d1aec9dd70abea5ede5afba7a8b36a5"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r150\\aggregate-receipt.json",
+      "beforeSha256": "5d39ccd6f34b956146bcb1d246cbb28734aaab1dba1f64cdaba512e0f1635f77",
+      "afterSha256": "5d39ccd6f34b956146bcb1d246cbb28734aaab1dba1f64cdaba512e0f1635f77"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r151\\aggregate-receipt.json",
+      "beforeSha256": "276f9647b8499a10bd607093cceda7d0c16e98c98fb920edb7745fdecb474f2a",
+      "afterSha256": "276f9647b8499a10bd607093cceda7d0c16e98c98fb920edb7745fdecb474f2a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r152\\aggregate-receipt.json",
+      "beforeSha256": "a8612a7013c1ffa861b3a60867d1af7ae86bb38a7f46bd1716a9f7c0f2ea13c3",
+      "afterSha256": "a8612a7013c1ffa861b3a60867d1af7ae86bb38a7f46bd1716a9f7c0f2ea13c3"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r153\\aggregate-receipt.json",
+      "beforeSha256": "06dad0d5980df7079128bad8b415e9babee5ed4e9ce0323ab1d676b22889496c",
+      "afterSha256": "06dad0d5980df7079128bad8b415e9babee5ed4e9ce0323ab1d676b22889496c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r154\\aggregate-receipt.json",
+      "beforeSha256": "21ec35a038b7220225caa18e3948ab09c43d8774879b424e1b6bf392d84650b6",
+      "afterSha256": "21ec35a038b7220225caa18e3948ab09c43d8774879b424e1b6bf392d84650b6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r155\\aggregate-receipt.json",
+      "beforeSha256": "8e3c6325dd5af660a224a58e4ba815c5a0871efb2b4b7b247eba5080e203b33e",
+      "afterSha256": "8e3c6325dd5af660a224a58e4ba815c5a0871efb2b4b7b247eba5080e203b33e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r156\\aggregate-receipt.json",
+      "beforeSha256": "364948d3bddbb2f1928024349c9ce8b33f1d32f6d7cb7d020a3abac0a1b9da1d",
+      "afterSha256": "364948d3bddbb2f1928024349c9ce8b33f1d32f6d7cb7d020a3abac0a1b9da1d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r157\\aggregate-receipt.json",
+      "beforeSha256": "498c23920d10d0fb8f4431bdf75f36f740ffd23155b2a2686b72ea2c3c82c34b",
+      "afterSha256": "498c23920d10d0fb8f4431bdf75f36f740ffd23155b2a2686b72ea2c3c82c34b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r158\\aggregate-receipt.json",
+      "beforeSha256": "cb3c71cc9d4a6b07cdee528b466179bd724ecfd6b207e36b84b697480fad47a0",
+      "afterSha256": "cb3c71cc9d4a6b07cdee528b466179bd724ecfd6b207e36b84b697480fad47a0"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r159\\aggregate-receipt.json",
+      "beforeSha256": "021d089e1e3e0ba0df10c9bfb7148ab1a1daeed750fbc2980396bd40409e0388",
+      "afterSha256": "021d089e1e3e0ba0df10c9bfb7148ab1a1daeed750fbc2980396bd40409e0388"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r16\\aggregate-receipt.json",
+      "beforeSha256": "e3a06d28bb4afe94d80675960d81ca1647cc358197a293dc4c920c8176039e72",
+      "afterSha256": "e3a06d28bb4afe94d80675960d81ca1647cc358197a293dc4c920c8176039e72"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r160\\aggregate-receipt.json",
+      "beforeSha256": "65c78823e47043869e1828eee843b47e389a600f24552b36a4af3b3954756d1b",
+      "afterSha256": "65c78823e47043869e1828eee843b47e389a600f24552b36a4af3b3954756d1b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r161\\aggregate-receipt.json",
+      "beforeSha256": "6ad667cca60e151528ef2b7c1d420d8cefe2457e1563ade3d8e99dd3ecbaa006",
+      "afterSha256": "6ad667cca60e151528ef2b7c1d420d8cefe2457e1563ade3d8e99dd3ecbaa006"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r162\\aggregate-receipt.json",
+      "beforeSha256": "1297a03128b2a430bcab2eccc6f5dec0aae6800a30cabd5257cc58b29d06e095",
+      "afterSha256": "1297a03128b2a430bcab2eccc6f5dec0aae6800a30cabd5257cc58b29d06e095"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r163\\aggregate-receipt.json",
+      "beforeSha256": "fd50f5cc51f333e9fdd6202c0785e25c0d9507be5871ff38d98973198658c46f",
+      "afterSha256": "fd50f5cc51f333e9fdd6202c0785e25c0d9507be5871ff38d98973198658c46f"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r164\\aggregate-receipt.json",
+      "beforeSha256": "31ebee343ad6470150157c779305b58e575ea383cb65ced7a2f2c1ba6341b7da",
+      "afterSha256": "31ebee343ad6470150157c779305b58e575ea383cb65ced7a2f2c1ba6341b7da"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r165\\aggregate-receipt.json",
+      "beforeSha256": "75e2a99ff290243b74279a5ba302e6413727dc04b8cca70c9bfda6b094d62ed5",
+      "afterSha256": "75e2a99ff290243b74279a5ba302e6413727dc04b8cca70c9bfda6b094d62ed5"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r166\\aggregate-receipt.json",
+      "beforeSha256": "2ee0cc39babf93a417c13fc1a2aa666adbdb065716634c1d74da9ddc651a5985",
+      "afterSha256": "2ee0cc39babf93a417c13fc1a2aa666adbdb065716634c1d74da9ddc651a5985"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r167\\aggregate-receipt.json",
+      "beforeSha256": "43207583e3f8eb4a97a90cb30618aaa40e44b00e3f6d9d8b96249fd007e77f27",
+      "afterSha256": "43207583e3f8eb4a97a90cb30618aaa40e44b00e3f6d9d8b96249fd007e77f27"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r168\\aggregate-receipt.json",
+      "beforeSha256": "e1472d791fa8400ce16ac1a2c85418c71707796b2c8f956a610072ad37f25519",
+      "afterSha256": "e1472d791fa8400ce16ac1a2c85418c71707796b2c8f956a610072ad37f25519"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r169\\aggregate-receipt.json",
+      "beforeSha256": "c9294841eb3005f940b0a2ab7f25f5c99505fc83d388872bc84f969cb612ed3e",
+      "afterSha256": "c9294841eb3005f940b0a2ab7f25f5c99505fc83d388872bc84f969cb612ed3e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r17\\aggregate-receipt.json",
+      "beforeSha256": "8f3c637c83183713dba6780a8fb65a145c74119ee0e80ab98a59f4d3bc1f4956",
+      "afterSha256": "8f3c637c83183713dba6780a8fb65a145c74119ee0e80ab98a59f4d3bc1f4956"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r170\\aggregate-receipt.json",
+      "beforeSha256": "3c4daae09cc454ed065690165d11810716262296a961151ebf449c13a045a17b",
+      "afterSha256": "3c4daae09cc454ed065690165d11810716262296a961151ebf449c13a045a17b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r171\\aggregate-receipt.json",
+      "beforeSha256": "bba3aee9dfaa9c7e0e3caca65b5a1181d5333e586ce4d9e63e33415af94d1021",
+      "afterSha256": "bba3aee9dfaa9c7e0e3caca65b5a1181d5333e586ce4d9e63e33415af94d1021"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r172\\aggregate-receipt.json",
+      "beforeSha256": "8b25f8b1d858fc25c67081817d60921e8990373a94f9a4467754133ec57b2190",
+      "afterSha256": "8b25f8b1d858fc25c67081817d60921e8990373a94f9a4467754133ec57b2190"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r173\\aggregate-receipt.json",
+      "beforeSha256": "f49f701b6e4fc9cc0af1765a2712a76d586de939d403a4cfddbafa6887b5cec0",
+      "afterSha256": "f49f701b6e4fc9cc0af1765a2712a76d586de939d403a4cfddbafa6887b5cec0"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r174\\aggregate-receipt.json",
+      "beforeSha256": "028d7508c64e1ac85cf2329c93c6427cd4ef2280b2005cd9884e66baaa894076",
+      "afterSha256": "028d7508c64e1ac85cf2329c93c6427cd4ef2280b2005cd9884e66baaa894076"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r175\\aggregate-receipt.json",
+      "beforeSha256": "2d87d25d29b20cbaf560a7f0766de58c95ce308cafd746a630484ea99c97ae3e",
+      "afterSha256": "2d87d25d29b20cbaf560a7f0766de58c95ce308cafd746a630484ea99c97ae3e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r176\\aggregate-receipt.json",
+      "beforeSha256": "e7b1645a8747a9a0729ba4a0a62d4546525092ab041e81f090ecfb929ab1a53b",
+      "afterSha256": "e7b1645a8747a9a0729ba4a0a62d4546525092ab041e81f090ecfb929ab1a53b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r177\\aggregate-receipt.json",
+      "beforeSha256": "3ca8f4cc66cf37c610dbe993aca657bb4875787443450e78d7868ec6ae59dfc1",
+      "afterSha256": "3ca8f4cc66cf37c610dbe993aca657bb4875787443450e78d7868ec6ae59dfc1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r178\\aggregate-receipt.json",
+      "beforeSha256": "79bb9f5dbdcc4ad2b80d7c28a18562df03f85b1bd96e14d1e3405c3ef1d02e05",
+      "afterSha256": "79bb9f5dbdcc4ad2b80d7c28a18562df03f85b1bd96e14d1e3405c3ef1d02e05"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r179\\aggregate-receipt.json",
+      "beforeSha256": "c1e02bf7acd332edf450ee1b37edad3c3e35ddb8a1ab65415a5e7db2b5061377",
+      "afterSha256": "c1e02bf7acd332edf450ee1b37edad3c3e35ddb8a1ab65415a5e7db2b5061377"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r18\\aggregate-receipt.json",
+      "beforeSha256": "28d7064a2a870f8e2fd7b63192cc2373173c9f02713aa98f70304cf54b8d80d8",
+      "afterSha256": "28d7064a2a870f8e2fd7b63192cc2373173c9f02713aa98f70304cf54b8d80d8"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r180\\aggregate-receipt.json",
+      "beforeSha256": "85f4560b83ca3236c3049e1a55a760a846a430ab89fc0a57078bac45c57a5b44",
+      "afterSha256": "85f4560b83ca3236c3049e1a55a760a846a430ab89fc0a57078bac45c57a5b44"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r181\\aggregate-receipt.json",
+      "beforeSha256": "a3c12bfdbb3141d9767c2d6bc38e1f46b7f2021f09ea613f11e2f6767898a890",
+      "afterSha256": "a3c12bfdbb3141d9767c2d6bc38e1f46b7f2021f09ea613f11e2f6767898a890"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r182\\aggregate-receipt.json",
+      "beforeSha256": "fb7d5393c30c9ea522c39b1c91bc9c2d1eb8c5a2acc1b4ba4233c766e53afcd2",
+      "afterSha256": "fb7d5393c30c9ea522c39b1c91bc9c2d1eb8c5a2acc1b4ba4233c766e53afcd2"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r183\\aggregate-receipt.json",
+      "beforeSha256": "c1a7038af47f3f20ba12a6fa1176f8b506a695cbeb7c5ddf4dfb80e6a638a6aa",
+      "afterSha256": "c1a7038af47f3f20ba12a6fa1176f8b506a695cbeb7c5ddf4dfb80e6a638a6aa"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r184\\aggregate-receipt.json",
+      "beforeSha256": "d062a1caa46a8a0fd6fd6bc3f9dacb82d069f0f17447b7029dd42791a158093b",
+      "afterSha256": "d062a1caa46a8a0fd6fd6bc3f9dacb82d069f0f17447b7029dd42791a158093b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r19\\aggregate-receipt.json",
+      "beforeSha256": "d6d5a96004bf4916aad140f623b5dee961d71f99727b2b4215149c9c379a8a65",
+      "afterSha256": "d6d5a96004bf4916aad140f623b5dee961d71f99727b2b4215149c9c379a8a65"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r2\\aggregate-receipt.json",
+      "beforeSha256": "49a1d6eee6d9d86c3e4341f1366e8eecc6356e6566898abb8868796bb0ad8fab",
+      "afterSha256": "49a1d6eee6d9d86c3e4341f1366e8eecc6356e6566898abb8868796bb0ad8fab"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r20\\aggregate-receipt.json",
+      "beforeSha256": "25cc9ce512a7046769ef0d39196f3ef84905847bc17cdc3edfe08f684efcba9b",
+      "afterSha256": "25cc9ce512a7046769ef0d39196f3ef84905847bc17cdc3edfe08f684efcba9b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r21\\aggregate-receipt.json",
+      "beforeSha256": "42de1b412844005371abd8291117b18b7458df1e69f42e16432d7420f6a877d9",
+      "afterSha256": "42de1b412844005371abd8291117b18b7458df1e69f42e16432d7420f6a877d9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r22\\aggregate-receipt.json",
+      "beforeSha256": "96d36cc9d63c53f1011f7d6ad0956c5c1d0392bccee4a8658d9cd92f6d2d3221",
+      "afterSha256": "96d36cc9d63c53f1011f7d6ad0956c5c1d0392bccee4a8658d9cd92f6d2d3221"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r23\\aggregate-receipt.json",
+      "beforeSha256": "1a67c14f98af5b1bd831f402eb8cae902045488d7a8da544797c8a4bca6f76d6",
+      "afterSha256": "1a67c14f98af5b1bd831f402eb8cae902045488d7a8da544797c8a4bca6f76d6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r24\\aggregate-receipt.json",
+      "beforeSha256": "b55d3f5e578a2066969468fa0a9a276959c61db357288a34af6bdbd7277055c4",
+      "afterSha256": "b55d3f5e578a2066969468fa0a9a276959c61db357288a34af6bdbd7277055c4"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r25\\aggregate-receipt.json",
+      "beforeSha256": "ace238139181bbd0fde1c51317e7f28eb6ffe909a5db813d7f5a34ca50ed7cfc",
+      "afterSha256": "ace238139181bbd0fde1c51317e7f28eb6ffe909a5db813d7f5a34ca50ed7cfc"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r26\\aggregate-receipt.json",
+      "beforeSha256": "981ace6d64f3532f20299788436fa242b00efd024edd9030486437dd0f246796",
+      "afterSha256": "981ace6d64f3532f20299788436fa242b00efd024edd9030486437dd0f246796"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r27\\aggregate-receipt.json",
+      "beforeSha256": "f950cf96a7d53df96c336380bcd0f12304bac668aa980a1e2fe067961c4a1d63",
+      "afterSha256": "f950cf96a7d53df96c336380bcd0f12304bac668aa980a1e2fe067961c4a1d63"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r28\\aggregate-receipt.json",
+      "beforeSha256": "88dddd494ba9cd8c45af469150eb086d4c8a82dc1bcfac7bf074c687dd618cb6",
+      "afterSha256": "88dddd494ba9cd8c45af469150eb086d4c8a82dc1bcfac7bf074c687dd618cb6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r29\\aggregate-receipt.json",
+      "beforeSha256": "7351279b005da894a44cc00d3cb9e02e88540a9c4907abbe03dd0705554cf8de",
+      "afterSha256": "7351279b005da894a44cc00d3cb9e02e88540a9c4907abbe03dd0705554cf8de"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r3\\aggregate-receipt.json",
+      "beforeSha256": "ce53d49ce0f6693d3280b66e16810ef7d52a9cbc031fd72cfacf243971278d4b",
+      "afterSha256": "ce53d49ce0f6693d3280b66e16810ef7d52a9cbc031fd72cfacf243971278d4b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r30\\aggregate-receipt.json",
+      "beforeSha256": "ac4664142d756002aaffb047d66f3bd7581fbf0b81333f1ac4a3a88e94eef40f",
+      "afterSha256": "ac4664142d756002aaffb047d66f3bd7581fbf0b81333f1ac4a3a88e94eef40f"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r31\\aggregate-receipt.json",
+      "beforeSha256": "d7be08427a2c5c6c4375ebbc27a2c980b6e6ac019ba84f6ef82d21cccb38a14d",
+      "afterSha256": "d7be08427a2c5c6c4375ebbc27a2c980b6e6ac019ba84f6ef82d21cccb38a14d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r32\\aggregate-receipt.json",
+      "beforeSha256": "9c05adf4698e6f15ce64ab746bd90c471b6e4cb14b0ecb2ed5f8ff4abef1b670",
+      "afterSha256": "9c05adf4698e6f15ce64ab746bd90c471b6e4cb14b0ecb2ed5f8ff4abef1b670"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r33\\aggregate-receipt.json",
+      "beforeSha256": "52354937b7d3512dca9518e0a551455fa0ffb8869ae6c1d5e596a1a161046419",
+      "afterSha256": "52354937b7d3512dca9518e0a551455fa0ffb8869ae6c1d5e596a1a161046419"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r34\\aggregate-receipt.json",
+      "beforeSha256": "c25e43b313a68e4ad3a54e919d34bc5bf77c25227d1da3310fd0a80f65f6c916",
+      "afterSha256": "c25e43b313a68e4ad3a54e919d34bc5bf77c25227d1da3310fd0a80f65f6c916"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r35\\aggregate-receipt.json",
+      "beforeSha256": "c1762c15bba297c456026b71d5a440013ceb7ac0ef2904411e5f2ec0ed500498",
+      "afterSha256": "c1762c15bba297c456026b71d5a440013ceb7ac0ef2904411e5f2ec0ed500498"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r36\\aggregate-receipt.json",
+      "beforeSha256": "cc3091f944410ac4349dbb34fde03afa185f2a5338581d9d717dd0d0197d76e9",
+      "afterSha256": "cc3091f944410ac4349dbb34fde03afa185f2a5338581d9d717dd0d0197d76e9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r37\\aggregate-receipt.json",
+      "beforeSha256": "a5eee55b9100614d6fa8428452337d96682563e189c78bd5372629c9ff1aac6c",
+      "afterSha256": "a5eee55b9100614d6fa8428452337d96682563e189c78bd5372629c9ff1aac6c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r38\\aggregate-receipt.json",
+      "beforeSha256": "e01035dd224c4f31ef7236211e3ff19252749482fc52b2bb4e8a195872a5d9b0",
+      "afterSha256": "e01035dd224c4f31ef7236211e3ff19252749482fc52b2bb4e8a195872a5d9b0"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r39\\aggregate-receipt.json",
+      "beforeSha256": "565389ce58f7375218cdd5bc3b9a019170ba0dd38c536e893f93c9ab88c1ec34",
+      "afterSha256": "565389ce58f7375218cdd5bc3b9a019170ba0dd38c536e893f93c9ab88c1ec34"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r4\\aggregate-receipt.json",
+      "beforeSha256": "8872f123cde88ad864cbae0485004098af8166f005bcb8262549bcaf506049ca",
+      "afterSha256": "8872f123cde88ad864cbae0485004098af8166f005bcb8262549bcaf506049ca"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r40\\aggregate-receipt.json",
+      "beforeSha256": "2ce61b9e9726afbd9e05420ead7771b9c1326f23c43eac571460a1a4dad89e0b",
+      "afterSha256": "2ce61b9e9726afbd9e05420ead7771b9c1326f23c43eac571460a1a4dad89e0b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r41\\aggregate-receipt.json",
+      "beforeSha256": "8fba463e8fa0bdbc9669c91157402a3e922dc720af2a9fb542959f1439d5356c",
+      "afterSha256": "8fba463e8fa0bdbc9669c91157402a3e922dc720af2a9fb542959f1439d5356c"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r42\\aggregate-receipt.json",
+      "beforeSha256": "02c297b56b356acee1484c6888dd3712312a16d2af3289abab5e276b1bae71e0",
+      "afterSha256": "02c297b56b356acee1484c6888dd3712312a16d2af3289abab5e276b1bae71e0"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r43\\aggregate-receipt.json",
+      "beforeSha256": "e80e42361e185484ca1812b2db75a8fbb6d3e181390c5b3feb0bc613beac7019",
+      "afterSha256": "e80e42361e185484ca1812b2db75a8fbb6d3e181390c5b3feb0bc613beac7019"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r44\\aggregate-receipt.json",
+      "beforeSha256": "5b4a4dbae5cdde9acfd040f8d0f617786f9c16ffd21fb0c387afa184850fafba",
+      "afterSha256": "5b4a4dbae5cdde9acfd040f8d0f617786f9c16ffd21fb0c387afa184850fafba"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r45\\aggregate-receipt.json",
+      "beforeSha256": "029e517fc360f41358378c80821ce48ee4728f986a7ea7bbe92a00131d8e0c33",
+      "afterSha256": "029e517fc360f41358378c80821ce48ee4728f986a7ea7bbe92a00131d8e0c33"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r46\\aggregate-receipt.json",
+      "beforeSha256": "10aac319644d70ec87a5e4b26543bb4a221739353f879d9a74ee9b67917df9ce",
+      "afterSha256": "10aac319644d70ec87a5e4b26543bb4a221739353f879d9a74ee9b67917df9ce"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r47\\aggregate-receipt.json",
+      "beforeSha256": "c16c33380e802a0ed21609575968bb10a6ae707442fb251312e9ece36a20b605",
+      "afterSha256": "c16c33380e802a0ed21609575968bb10a6ae707442fb251312e9ece36a20b605"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r48\\aggregate-receipt.json",
+      "beforeSha256": "25e196833e938f7dd061cf8b7b2790a70adfbfa1209fa8e22ea450086b44eac0",
+      "afterSha256": "25e196833e938f7dd061cf8b7b2790a70adfbfa1209fa8e22ea450086b44eac0"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r49\\aggregate-receipt.json",
+      "beforeSha256": "2a88747ab9b51379bf290ef44430959396f6ae0c4278dd364047df072c376dfe",
+      "afterSha256": "2a88747ab9b51379bf290ef44430959396f6ae0c4278dd364047df072c376dfe"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r5\\aggregate-receipt.json",
+      "beforeSha256": "767a12c495a88fe3fea455745f459ed7a18718560898ce22a8484c4ffd7aeef1",
+      "afterSha256": "767a12c495a88fe3fea455745f459ed7a18718560898ce22a8484c4ffd7aeef1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r50\\aggregate-receipt.json",
+      "beforeSha256": "ba1e6a9c955e38030fd4d1c43bbe26af67283921d1a6f324ab1ab3f96b7e91bb",
+      "afterSha256": "ba1e6a9c955e38030fd4d1c43bbe26af67283921d1a6f324ab1ab3f96b7e91bb"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r51\\aggregate-receipt.json",
+      "beforeSha256": "022bd406540b64e8cae4361d1dea81ee886a36ed0e0ce2ad89f3ac7aa3457e93",
+      "afterSha256": "022bd406540b64e8cae4361d1dea81ee886a36ed0e0ce2ad89f3ac7aa3457e93"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r52\\aggregate-receipt.json",
+      "beforeSha256": "e4e5c80967e78f90442511e88a174d0da12942b74531bc455d71df180a2e486b",
+      "afterSha256": "e4e5c80967e78f90442511e88a174d0da12942b74531bc455d71df180a2e486b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r53\\aggregate-receipt.json",
+      "beforeSha256": "ec612c441fc0da5f09a7e8612cb2604c8cc9df67289dbd403f30ff21d8169cf8",
+      "afterSha256": "ec612c441fc0da5f09a7e8612cb2604c8cc9df67289dbd403f30ff21d8169cf8"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r54\\aggregate-receipt.json",
+      "beforeSha256": "3008bf8b471ae215ad5aed8e8b064e286179e6abbbbfd001f8863a742addc60f",
+      "afterSha256": "3008bf8b471ae215ad5aed8e8b064e286179e6abbbbfd001f8863a742addc60f"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r55\\aggregate-receipt.json",
+      "beforeSha256": "5174dfab45cabd235fa6eb201136a8a0d977da8401e591dde2d8133bc067657a",
+      "afterSha256": "5174dfab45cabd235fa6eb201136a8a0d977da8401e591dde2d8133bc067657a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r56\\aggregate-receipt.json",
+      "beforeSha256": "694dba0f4070f1b5d3b5e13509094a20d6b806906c2bb5c2f1d3686094f3a7ed",
+      "afterSha256": "694dba0f4070f1b5d3b5e13509094a20d6b806906c2bb5c2f1d3686094f3a7ed"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r57\\aggregate-receipt.json",
+      "beforeSha256": "4175932b252e611f5bd7c54beab4e0b6bb6be7a86ed4dcedbfad543ae96bddff",
+      "afterSha256": "4175932b252e611f5bd7c54beab4e0b6bb6be7a86ed4dcedbfad543ae96bddff"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r58\\aggregate-receipt.json",
+      "beforeSha256": "49f8ca4c20262e889f50e67f431f2c55bb1dc900ea973d8a9a2db34439595268",
+      "afterSha256": "49f8ca4c20262e889f50e67f431f2c55bb1dc900ea973d8a9a2db34439595268"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r59\\aggregate-receipt.json",
+      "beforeSha256": "cef74b6f86eadf0673dce71ab02f346c96cf9d2dd0809c45001f9451193b51a2",
+      "afterSha256": "cef74b6f86eadf0673dce71ab02f346c96cf9d2dd0809c45001f9451193b51a2"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r6\\aggregate-receipt.json",
+      "beforeSha256": "bf6e066349e29382ee1a16543ead27406029d6f437c287189567891a2a4fdc7b",
+      "afterSha256": "bf6e066349e29382ee1a16543ead27406029d6f437c287189567891a2a4fdc7b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r60\\aggregate-receipt.json",
+      "beforeSha256": "3be145aae79952191c1af1eb7bfb23e1a171836c54a7be96ab255c5b994956cf",
+      "afterSha256": "3be145aae79952191c1af1eb7bfb23e1a171836c54a7be96ab255c5b994956cf"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r61\\aggregate-receipt.json",
+      "beforeSha256": "2626797d612d750454ab1ce2015439fc315d073abdade691c6a855b8e788b007",
+      "afterSha256": "2626797d612d750454ab1ce2015439fc315d073abdade691c6a855b8e788b007"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r62\\aggregate-receipt.json",
+      "beforeSha256": "dcd2adf238ae7b43fcf0913f30fdc3c883b772381acd758d8297993a8da47952",
+      "afterSha256": "dcd2adf238ae7b43fcf0913f30fdc3c883b772381acd758d8297993a8da47952"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r63\\aggregate-receipt.json",
+      "beforeSha256": "d3d7c471fadf897e659c8577a48186d9133649013a2f01ceab895d417c182875",
+      "afterSha256": "d3d7c471fadf897e659c8577a48186d9133649013a2f01ceab895d417c182875"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r64\\aggregate-receipt.json",
+      "beforeSha256": "bf35654569aedcff71cd6fa19049a965b19f81c61f9d77b48d1723ad7731f419",
+      "afterSha256": "bf35654569aedcff71cd6fa19049a965b19f81c61f9d77b48d1723ad7731f419"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r65\\aggregate-receipt.json",
+      "beforeSha256": "dff1e62474f3a67f82e4bff6816bbd1b69e47ea5a1240d684539f63bb6dea598",
+      "afterSha256": "dff1e62474f3a67f82e4bff6816bbd1b69e47ea5a1240d684539f63bb6dea598"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r66\\aggregate-receipt.json",
+      "beforeSha256": "0ee94c7cc22b9666a50252d5591416ba892a80dc403b4ffea2ab7cd92454af48",
+      "afterSha256": "0ee94c7cc22b9666a50252d5591416ba892a80dc403b4ffea2ab7cd92454af48"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r67\\aggregate-receipt.json",
+      "beforeSha256": "3f04f8da972c21d0efcf4a13ae41e62f6aba7598b5316d0d57635ab566584c4a",
+      "afterSha256": "3f04f8da972c21d0efcf4a13ae41e62f6aba7598b5316d0d57635ab566584c4a"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r68\\aggregate-receipt.json",
+      "beforeSha256": "93cc681c35ee256e2b1673ce16842bd2689508147383b3b16dfa19a973c51e13",
+      "afterSha256": "93cc681c35ee256e2b1673ce16842bd2689508147383b3b16dfa19a973c51e13"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r69\\aggregate-receipt.json",
+      "beforeSha256": "04e4c413c99601321128dfa43aaaf5ff892a0c3c6a2ddc7f9b3619a0b4dfe24b",
+      "afterSha256": "04e4c413c99601321128dfa43aaaf5ff892a0c3c6a2ddc7f9b3619a0b4dfe24b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r7\\aggregate-receipt.json",
+      "beforeSha256": "c667d9bb908899a66c4c8fab7397c2f6a09096775952bf51727e35bc9bf45a55",
+      "afterSha256": "c667d9bb908899a66c4c8fab7397c2f6a09096775952bf51727e35bc9bf45a55"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r70\\aggregate-receipt.json",
+      "beforeSha256": "12f0da3884e604c387e5d92bd9de7917dc52b3c7f78749815535edc967c3782e",
+      "afterSha256": "12f0da3884e604c387e5d92bd9de7917dc52b3c7f78749815535edc967c3782e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r71\\aggregate-receipt.json",
+      "beforeSha256": "7ee0d46920420138c6d2de747f405a0055ec56a138e95350ef4ba3b47389ebc1",
+      "afterSha256": "7ee0d46920420138c6d2de747f405a0055ec56a138e95350ef4ba3b47389ebc1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r72\\aggregate-receipt.json",
+      "beforeSha256": "e01f396820205c77160a16b81fcead87c8e666683d8b1152155505138446170e",
+      "afterSha256": "e01f396820205c77160a16b81fcead87c8e666683d8b1152155505138446170e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r73\\aggregate-receipt.json",
+      "beforeSha256": "c1849e97aacd205be112f07a34c71323f7290209f8465b37c64e76fe40235288",
+      "afterSha256": "c1849e97aacd205be112f07a34c71323f7290209f8465b37c64e76fe40235288"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r74\\aggregate-receipt.json",
+      "beforeSha256": "456344df4fe092526d7feaa5643fbc82988374a552fc3ef9836cfd7a44b58c21",
+      "afterSha256": "456344df4fe092526d7feaa5643fbc82988374a552fc3ef9836cfd7a44b58c21"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r75\\aggregate-receipt.json",
+      "beforeSha256": "c1e5007bd98956a768a9802f7b25c9ef14f6c1e5c713e373bacd078762445af4",
+      "afterSha256": "c1e5007bd98956a768a9802f7b25c9ef14f6c1e5c713e373bacd078762445af4"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r76\\aggregate-receipt.json",
+      "beforeSha256": "9a5aa08adb3210b067e69f73db3361c3f2638ad23764b19408bc307cc0186437",
+      "afterSha256": "9a5aa08adb3210b067e69f73db3361c3f2638ad23764b19408bc307cc0186437"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r77\\aggregate-receipt.json",
+      "beforeSha256": "a3a245e6d78e42fea0f5bc05664a3737f1efb73d3bcfad3b4f4050763aa995d0",
+      "afterSha256": "a3a245e6d78e42fea0f5bc05664a3737f1efb73d3bcfad3b4f4050763aa995d0"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r78\\aggregate-receipt.json",
+      "beforeSha256": "f01918eb54914ba2a4efee2ee167105636b945fb97451c94e52912a478b5815d",
+      "afterSha256": "f01918eb54914ba2a4efee2ee167105636b945fb97451c94e52912a478b5815d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r79\\aggregate-receipt.json",
+      "beforeSha256": "174abb47a34144e86848af41b1da4a146bdec32edbc160babcf0e75e6f796663",
+      "afterSha256": "174abb47a34144e86848af41b1da4a146bdec32edbc160babcf0e75e6f796663"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r8\\aggregate-receipt.json",
+      "beforeSha256": "b1351d519ec472d8efb795a8ef0db3149aa9c8d976af30929b5514a213029365",
+      "afterSha256": "b1351d519ec472d8efb795a8ef0db3149aa9c8d976af30929b5514a213029365"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r80\\aggregate-receipt.json",
+      "beforeSha256": "440d81a9bb9da2d7d71425684d459de5af40b2d951c0c626c82285494f421eb0",
+      "afterSha256": "440d81a9bb9da2d7d71425684d459de5af40b2d951c0c626c82285494f421eb0"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r81\\aggregate-receipt.json",
+      "beforeSha256": "2d1422da74261c2189421439e73a6131f63ed7778927134da2393e636ae9e383",
+      "afterSha256": "2d1422da74261c2189421439e73a6131f63ed7778927134da2393e636ae9e383"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r82\\aggregate-receipt.json",
+      "beforeSha256": "84ff1728e7c771d18ef58d09922139f9f216124f9079cf83b68c01a6122d5497",
+      "afterSha256": "84ff1728e7c771d18ef58d09922139f9f216124f9079cf83b68c01a6122d5497"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r83\\aggregate-receipt.json",
+      "beforeSha256": "48ecc2b3a470abdaf8fac53530ee5c5c8953cd7f1ece708c1a8ccd48c64204a1",
+      "afterSha256": "48ecc2b3a470abdaf8fac53530ee5c5c8953cd7f1ece708c1a8ccd48c64204a1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r84\\aggregate-receipt.json",
+      "beforeSha256": "28281916a9f339e5fbf41e9079825114ab3ebb4d58a298287ce704e215bc8bb9",
+      "afterSha256": "28281916a9f339e5fbf41e9079825114ab3ebb4d58a298287ce704e215bc8bb9"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r85\\aggregate-receipt.json",
+      "beforeSha256": "512facfe876fa01aca57461f21421901c613f6c31ed25672e112e9b24d911c9d",
+      "afterSha256": "512facfe876fa01aca57461f21421901c613f6c31ed25672e112e9b24d911c9d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r86\\aggregate-receipt.json",
+      "beforeSha256": "9334ddd70202a37160aac2c2aad33d33af76718f344beeddc664580b380ebbff",
+      "afterSha256": "9334ddd70202a37160aac2c2aad33d33af76718f344beeddc664580b380ebbff"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r87\\aggregate-receipt.json",
+      "beforeSha256": "7727be9bd43fb8fbea84a5783f4a5ebd25b919b92bb16dc019225b00bd99dab3",
+      "afterSha256": "7727be9bd43fb8fbea84a5783f4a5ebd25b919b92bb16dc019225b00bd99dab3"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r88\\aggregate-receipt.json",
+      "beforeSha256": "6e4882da1caeee00c0dd5de6b7c9af1cdf452ea22252de4c3b41f8215ee64463",
+      "afterSha256": "6e4882da1caeee00c0dd5de6b7c9af1cdf452ea22252de4c3b41f8215ee64463"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r89\\aggregate-receipt.json",
+      "beforeSha256": "72eb6ca681a0a11758c4982729d4da99a40a652ab5242c3bfb62f1fdd925d5bc",
+      "afterSha256": "72eb6ca681a0a11758c4982729d4da99a40a652ab5242c3bfb62f1fdd925d5bc"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r9\\aggregate-receipt.json",
+      "beforeSha256": "cf3ed632ca60b70d0b6792e75cdeaabed6f1cabd056e4686bc81ff76a9bc1c8b",
+      "afterSha256": "cf3ed632ca60b70d0b6792e75cdeaabed6f1cabd056e4686bc81ff76a9bc1c8b"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r90\\aggregate-receipt.json",
+      "beforeSha256": "9e2d04b79a55335e99d25b9ac29d434b5301420cd81875e878b5f8e7d5fa5715",
+      "afterSha256": "9e2d04b79a55335e99d25b9ac29d434b5301420cd81875e878b5f8e7d5fa5715"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r91\\aggregate-receipt.json",
+      "beforeSha256": "e68c9349b6bae532cc22ac99ac96259ffe4d752fb3f6d1c11e3f935d159448c6",
+      "afterSha256": "e68c9349b6bae532cc22ac99ac96259ffe4d752fb3f6d1c11e3f935d159448c6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r92\\aggregate-receipt.json",
+      "beforeSha256": "3271215112081d4877a59290115a73a298801af2fadb999758d2a058a20d04c1",
+      "afterSha256": "3271215112081d4877a59290115a73a298801af2fadb999758d2a058a20d04c1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r93\\aggregate-receipt.json",
+      "beforeSha256": "d57851b6103d766d411f94e41842162f933c019fc4f53a29cb6205941d83eb07",
+      "afterSha256": "d57851b6103d766d411f94e41842162f933c019fc4f53a29cb6205941d83eb07"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r94\\aggregate-receipt.json",
+      "beforeSha256": "86bf581ef5eb3d1e4007a9ad097049e8da2fd7d800416704a31a5f140a7c8e97",
+      "afterSha256": "86bf581ef5eb3d1e4007a9ad097049e8da2fd7d800416704a31a5f140a7c8e97"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r95\\aggregate-receipt.json",
+      "beforeSha256": "09a9ad2668cb26afeef03a3da04c5c6b92dc480692b02d0153f2ca97d8423ce7",
+      "afterSha256": "09a9ad2668cb26afeef03a3da04c5c6b92dc480692b02d0153f2ca97d8423ce7"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r96\\aggregate-receipt.json",
+      "beforeSha256": "50235274f7b68d536c2a177d4e19580d34a5dc9e8c52d6a2a623217f08b71d4e",
+      "afterSha256": "50235274f7b68d536c2a177d4e19580d34a5dc9e8c52d6a2a623217f08b71d4e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r97\\aggregate-receipt.json",
+      "beforeSha256": "6c7fcfae632c30214065477ba766abc21516b22dfadd83ef9eab5ffb93963229",
+      "afterSha256": "6c7fcfae632c30214065477ba766abc21516b22dfadd83ef9eab5ffb93963229"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r98\\aggregate-receipt.json",
+      "beforeSha256": "87ee314c89dcee2e389de7bb14d2f334266ad1dc67a443872377165192e41654",
+      "afterSha256": "87ee314c89dcee2e389de7bb14d2f334266ad1dc67a443872377165192e41654"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r99\\aggregate-receipt.json",
+      "beforeSha256": "c1300b5aefe10c45c05f521b3fc291446b8102c35b017ce55951cc3eb95eb944",
+      "afterSha256": "c1300b5aefe10c45c05f521b3fc291446b8102c35b017ce55951cc3eb95eb944"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\extract-fresh-sources-20261019.py",
+      "beforeSha256": "fc2754cd702dcefc91a85e254259055342cf5c6350b3c6296fc128274ac68d89",
+      "afterSha256": "fc2754cd702dcefc91a85e254259055342cf5c6350b3c6296fc128274ac68d89"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_inventory_scope.py",
+      "beforeSha256": "c4c035bc1341726051cc1816b5f3b679b7e7a08532252d9ddfcb1e7c1c263535",
+      "afterSha256": "c4c035bc1341726051cc1816b5f3b679b7e7a08532252d9ddfcb1e7c1c263535"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\extract_source.py",
+      "beforeSha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb",
+      "afterSha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\convert-hwp-spans.py",
+      "beforeSha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00",
+      "afterSha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\textlayer.py",
+      "beforeSha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743",
+      "afterSha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_region_ownership.py",
+      "beforeSha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1",
+      "afterSha256": "81b25cb662722df427766260849593d62090abb6dbb80a598a546f5642ac00f1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\tc_paths.py",
+      "beforeSha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e",
+      "afterSha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\hwpeq_unglue.py",
+      "beforeSha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415",
+      "afterSha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415"
+    },
+    {
+      "path": "D:\\시험지 한글화\\core\\hwpeq_to_latex.py",
+      "beforeSha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861",
+      "afterSha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\pua_table.json",
+      "beforeSha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22",
+      "afterSha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\미적분\\[영송여고][2][미적분][25-2-중간][비상] (완료).hwp",
+      "beforeSha256": "b794420993754530ac5108d00584620089df85b070eb4943c41314a8cf1742a1",
+      "afterSha256": "b794420993754530ac5108d00584620089df85b070eb4943c41314a8cf1742a1"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\미적분\\[영송여고][2][미적분][25-2-중간][비상] (완료).PDF",
+      "beforeSha256": "f97692ff84ba05376204e327fbec4917d5bb4bcac56b5858f655dbb8026aa30e",
+      "afterSha256": "f97692ff84ba05376204e327fbec4917d5bb4bcac56b5858f655dbb8026aa30e"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\고2\\[영송여고][2][미적분][25-2-중간].pdf",
+      "beforeSha256": "fa9bdc5698e3bf9e3b1eb19bd22c96ea1351fabc075bd2354fd6c286dfc2233d",
+      "afterSha256": "fa9bdc5698e3bf9e3b1eb19bd22c96ea1351fabc075bd2354fd6c286dfc2233d"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\수1\\[영진고][2][수1][25-1중간][신사고] (완료).hwp",
+      "beforeSha256": "e5477819f01383f692f1e4eebf6ff4a92b508d7bf3e19bb114e79f06630728a5",
+      "afterSha256": "e5477819f01383f692f1e4eebf6ff4a92b508d7bf3e19bb114e79f06630728a5"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\수1\\[영진고][2][수1][25-1중간][신사고] (완료).PDF",
+      "beforeSha256": "f1cea36ec8492b917d1c21a16b7996a94f8ffe29e9df85ab6525523a9a7fb35a",
+      "afterSha256": "f1cea36ec8492b917d1c21a16b7996a94f8ffe29e9df85ab6525523a9a7fb35a"
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\고등학교\\수1\\[영진고][2][수1][25-1-중간] (원본) (SK).pdf",
+      "beforeSha256": "0ff75d9b02ccc3ef6e1745afbd91fa1af0b7de600c0feaba3c6cbb28f9fe01ee",
+      "afterSha256": "0ff75d9b02ccc3ef6e1745afbd91fa1af0b7de600c0feaba3c6cbb28f9fe01ee"
+    }
+  ],
+  "preserved": true,
+  "localCopyrightedOutputs": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-c83d55b47e6af54c85101af65719a2b7\\reviewer-only\\header.png",
+      "sha256": "ae9a6350ff3375ba2e4a147e7daa4413e64e363b92197fd690985913a6b3ec7c",
+      "bytes": 76772
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-c83d55b47e6af54c85101af65719a2b7\\reviewer-only\\footer.png",
+      "sha256": "ab19a03ac9d413ef92ad474a858b42824072ad22fdf2c7897f7c69af1be2bb11",
+      "bytes": 26731
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-c83d55b47e6af54c85101af65719a2b7\\source-manifest.local.json",
+      "sha256": "c6acea38d814a960d187c9a5ba71863a8621e4ff536cfb10b3ed3d3964502dc5",
+      "bytes": 1534084
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-45a816a33fdd37a7ab19d5f8fc401c4f\\reviewer-only\\header.png",
+      "sha256": "62e659387407b17eab2543b0997521124e313625bd558de98f39fc32e41777ac",
+      "bytes": 161417
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-45a816a33fdd37a7ab19d5f8fc401c4f\\reviewer-only\\footer.png",
+      "sha256": "6d336d60f21b253b8041c714b7ce2ca11b299e80dcb2242f2c1190ed216b4877",
+      "bytes": 29579
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r185\\personal-45a816a33fdd37a7ab19d5f8fc401c4f\\source-manifest.local.json",
+      "sha256": "14ab788c970023656396a7f0c6a9f8c58c7ee8d67f1ded74e070ced04e486876",
+      "bytes": 1567596
+    }
+  ],
+  "allSourcesExtracted": false,
+  "authorDistributionAllowed": false
+}

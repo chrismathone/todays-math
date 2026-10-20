@@ -1,0 +1,30 @@
+{
+  "utc": "2026-10-20T06:50:49.311435+00:00",
+  "canonicalManual": 162,
+  "canonicalMathGrade": 161,
+  "additionalDrafts": 0,
+  "sourceObservedClosedTotalNotDedup": 12080,
+  "remaining505Queue": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/aggregate-queue-receipt.json",
+    "sha256": "f3dcc023039766cfa02bd27859b637613ffc3053aea23e63fed92ceeff6bc0d9",
+    "planned": 505,
+    "parsed": 458,
+    "held": 47,
+    "newSourceObservations": 9641
+  },
+  "actualWiredReaderReplay": {
+    "path": ".qa-artifacts/exam-resume-20261008/source-reader-v3-replay-20261020-r2/parent-validation-r1.json",
+    "sha256": "2f149b47e30767d1767704292de43d9a03760ad6ee4d7b1749e881e0c33b002c",
+    "replayedExistingPapers": 4,
+    "newObservationCredit": 0
+  },
+  "newReaderIndependentWiringAuditPending": true,
+  "oldCorruptMetadataAndPolicyFindingsPreserved": true,
+  "latestOriginalUseClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-20261020-r4.json",
+    "sha256": "24776d20ab96b7dbe08328fcab207d0b8403f6857699ab7f7c131d970011ef72"
+  },
+  "studentGradeRightsSourceIdentityOrLoadApproval": false,
+  "dbWrites": 0,
+  "loadable": 0
+}
