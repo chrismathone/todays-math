@@ -192,3 +192,30 @@ describe("⑦ 어림한 수의 세로셈은 그대로(원장님 «표시만»)",
     }
   });
 });
+
+describe("SRS «확실한 일» — 보기 세 문장이 서로 다르다(2026-10-21 리드)", () => {
+  it("초등 출력 전부에서 ①②③ · ㉠㉡㉢ 보기에 같은 문장이 둘 없다", () => {
+    const dup: string[] = [];
+    for (const o of ALL) {
+      const items = o.content.split(/(?=[①②③④⑤㉠㉡㉢㉣㉤])/).slice(1).map((x) => x.slice(1).replace(/\s+/g, " ").trim().replace(/[.,]$/, ""));
+      if (new Set(items).size !== items.length) dup.push(`${o.where}: ${o.content.slice(0, 120)}`);
+    }
+    expect(dup.slice(0, 10)).toEqual([]);
+  });
+
+  it("초5 2-6-3 기본 — 셋이 다르고, 답은 «top 이상» 인 문장의 수(0 ~ 3이 다 나온다)", () => {
+    const sec = COURSE_SECTIONS.find((s) => s.unit.grade === "초5" && s.unit.section.startsWith("2-6-3 "))!;
+    const answers = new Set<string>();
+    const now = new Date("2026-10-21T00:00:00Z");
+    for (let s = 0; s < 400; s++)
+      for (const p of generateCourseSession(sec.id, 7 + s * 104729, now).problems) {
+        const m = /\$1\$부터 \$(\d+)\$까지의 자연수가[\s\S]*① 뽑은 수가 \$(\d+)\$ 이하이다\. ② 뽑은 수가 \$(\d+)\$ 이하이다\. ③ 뽑은 수가 \$(\d+)\$ 이하이다\./.exec(p.content);
+        if (!m) continue;
+        const [top, ...ks] = m.slice(1).map(Number) as [number, ...number[]];
+        expect(new Set(ks).size, p.content).toBe(3);
+        expect(p.answer).toBe(`$${ks.filter((k) => k >= top).length}$`);
+        answers.add(p.answer);
+      }
+    expect([...answers].sort()).toEqual(["$0$", "$1$", "$2$", "$3$"]);
+  });
+});
