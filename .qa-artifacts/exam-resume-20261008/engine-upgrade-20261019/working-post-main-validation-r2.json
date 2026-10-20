@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-20T05:39:16.040Z",
+  "head": "08f5cd40b276e61e10eb43059cf9c9fb0b12fe08",
+  "main": "daa2630edf8338707adaa5c4e55d35a88627e342",
+  "mainIsAncestorOfTestedHead": true,
+  "priorBuilderIntegrationValidation": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-validation-r1.json",
+  "newMainDelta": "list-answer course reader floor plus planning docs; preserve new stored text mode reader",
+  "nodeFiles": 15,
+  "nodeSummary": "nce\nok 174 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 24.6952\n  type: 'test'\n  ...\n1..174\n# tests 174\n# suites 0\n# pass 174\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 18101.7827\n",
+  "vitestFiles": 5,
+  "vitestPassed": 64,
+  "vitestFailed": 0,
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.mjs",
+      "sha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.test.mjs",
+      "sha256": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de"
+    },
+    {
+      "path": "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+      "sha256": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2"
+    }
+  ],
+  "logs": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-node-r2.tap",
+      "sha256": "a2c05e4c9479aa2260a0210e4359d0b655939b32b00534969e239999b6ad339a"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-vitest-r2.log",
+      "sha256": "125b201afb966fa95d17b77c07ebf6a5f6cb4f76b46152ae68437769ea83a7e3"
+    }
+  ],
+  "dbWrites": 0,
+  "loadable": 0
+}
