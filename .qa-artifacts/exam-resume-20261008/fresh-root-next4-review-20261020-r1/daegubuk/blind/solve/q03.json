@@ -1,0 +1,77 @@
+{
+  "studentDigest": "a6921ad1dbff81357594be8db798968a002e40ae55e1cb5373f2fbe7cf8719b3",
+  "solverId": "independent-helper-current-next4-20261020-r1",
+  "answer": "③",
+  "solution": "A의 √0.09=0.3=3/10은 유리수이다. B의 √7은7이 제곱수가 아니므로 무리수이다. C는 -0.272727…이다. x=0.272727…라 하면100x-x=27이므로 x=27/99=3/11이고, C=-3/11은 유리수이다. D의 √(49/9)=7/3도 유리수이다. E의 √5-2는 무리수인 √5에서 정수2를 뺀 수이므로 무리수이다. E가 유리수라면2를 더한 √5도 유리수가 되어 맞지 않는다. 따라서 유리수가 적힌 A,C,D를 지우면 B,E의2칸이 남는다. 보기의0,1,2,3,4개 중 맞는 것은2개이므로 ③이다. 모든 근호 안의 수는 양수이고 C의 분모99,11은0이 아니다.",
+  "evidence": {
+    "status": "independently-solved-current-student-only",
+    "exposureDeclaration": {
+      "solverId": "independent-helper-current-next4-20261020-r1",
+      "priorExposure": "Previously viewed original nine source components/first-page references, prior related root variants, and public engine code. No pristine-corpus-blindness claim.",
+      "currentAuthorAnswerExposureBeforeSeal": false,
+      "currentPrivateSolutionsSpecsMetadataRead": false,
+      "currentStudentInputsReadOnly": [
+        "two SOLVE-BRIEFs",
+        "two student-problems.json",
+        "two blind manifests",
+        "two student SVGs",
+        "four student PNGs"
+      ],
+      "studentPNGsActuallyViewed": 4,
+      "svgDirectView": "view_image does not support SVG; Cairo rasterization unavailable. Original SVG labels/hashes inspected, and each figure actually viewed within its provided student PNG. No pixel/coordinate math oracle.",
+      "scope": "Raw independent student solving, not formal current author/source comparison or grade/rights/family/native/loadability approval."
+    },
+    "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q03",
+    "ownExactCalculation": {
+      "classifications": [
+        {
+          "record": "A",
+          "rational": true,
+          "exact": "3/10",
+          "sign": "positive"
+        },
+        {
+          "record": "B",
+          "rational": false,
+          "exact": "sqrt(7)",
+          "strictBounds": "2<sqrt(7)<3",
+          "squareBounds": [
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "record": "C",
+          "rational": true,
+          "exact": "-3/11",
+          "sign": "negative",
+          "repeatingBlock": "27",
+          "fractionEquation": "100x-x=27; x=27/99 before negative sign"
+        },
+        {
+          "record": "D",
+          "rational": true,
+          "exact": "7/3",
+          "sign": "positive"
+        },
+        {
+          "record": "E",
+          "rational": false,
+          "exact": "sqrt(5)-2",
+          "strictBounds": "0<sqrt(5)-2<1",
+          "basis": "sqrt(5) irrational; subtracting integer2 cannot make it rational"
+        }
+      ],
+      "remaining": 2,
+      "uniqueness": "All five real records have one rationality classification; exactly B,E remain."
+    },
+    "ownCalculationReceiptSHA256": "a2f042faa975919fdb960ec2718da75588bd87579ed281b1ced2c069396334fc",
+    "studentProblemsSHA256": "2a38f1ace325e3d098c645a566e079ec590fa1f4b9e63948c7f788d23685c71a",
+    "figureSHA256s": [],
+    "methodGrade": "Proposed2015M3 after root definitions/comparison/irrationality, <=M2 prerequisites; no automatic formal grade/release approval.",
+    "everyChoiceChecked": true,
+    "pixelsOrCoordinatesUsedAsNumericOracle": false
+  },
+  "status": "solved"
+}

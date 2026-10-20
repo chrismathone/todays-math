@@ -1,0 +1,76 @@
+{
+  "studentDigest": "b1dfc83b10dabbd5b421cfda90e7f6bd62ee9f13e1a6dcc587ed98f9da54935f",
+  "solverId": "independent-helper-current-next4-20261020-r1",
+  "answer": "③",
+  "solution": "0.9²=0.81이고 (-0.9)²=0.81이므로 제곱하여0.81이 되는 두 수는 ±0.9이다. 정사각형의 변 길이는 양수여야 하므로 한 변은0.9cm이다. 이때 넓이는0.9cm×0.9cm=0.81cm²로 조건과 맞고, 양의 제곱근은 하나뿐이다. ①은 음의 제곱근을 빠뜨렸고 ②는 길이가 음수여서 틀리다. ③은 두 기록이 모두 맞다. ④의0.81을 제곱하면0.6561이므로 틀리고, ⑤는 변 길이에 음수를 포함하므로 틀리다. 따라서 ③이다.",
+  "evidence": {
+    "status": "independently-solved-current-student-only",
+    "exposureDeclaration": {
+      "solverId": "independent-helper-current-next4-20261020-r1",
+      "priorExposure": "Previously viewed original nine source components/first-page references, prior related root variants, and public engine code. No pristine-corpus-blindness claim.",
+      "currentAuthorAnswerExposureBeforeSeal": false,
+      "currentPrivateSolutionsSpecsMetadataRead": false,
+      "currentStudentInputsReadOnly": [
+        "two SOLVE-BRIEFs",
+        "two student-problems.json",
+        "two blind manifests",
+        "two student SVGs",
+        "four student PNGs"
+      ],
+      "studentPNGsActuallyViewed": 4,
+      "svgDirectView": "view_image does not support SVG; Cairo rasterization unavailable. Original SVG labels/hashes inspected, and each figure actually viewed within its provided student PNG. No pixel/coordinate math oracle.",
+      "scope": "Raw independent student solving, not formal current author/source comparison or grade/rights/family/native/loadability approval."
+    },
+    "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group3-r1-q01",
+    "ownExactCalculation": {
+      "areaCm2": "81/100",
+      "allRoots": [
+        "-9/10",
+        "9/10"
+      ],
+      "positiveSideCm": "9/10",
+      "choices": [
+        {
+          "choice": "①",
+          "allSquareRootsCorrect": false,
+          "singlePositiveLengthWithCorrectArea": true,
+          "valid": false
+        },
+        {
+          "choice": "②",
+          "allSquareRootsCorrect": true,
+          "singlePositiveLengthWithCorrectArea": false,
+          "valid": false
+        },
+        {
+          "choice": "③",
+          "allSquareRootsCorrect": true,
+          "singlePositiveLengthWithCorrectArea": true,
+          "valid": true
+        },
+        {
+          "choice": "④",
+          "allSquareRootsCorrect": false,
+          "singlePositiveLengthWithCorrectArea": false,
+          "valid": false
+        },
+        {
+          "choice": "⑤",
+          "allSquareRootsCorrect": true,
+          "singlePositiveLengthWithCorrectArea": false,
+          "valid": false
+        }
+      ],
+      "uniqueness": "Two numbers ±9/10 square to81/100, exactly one is positive and can be a side; no arbitrary cm² as length."
+    },
+    "ownCalculationReceiptSHA256": "a2f042faa975919fdb960ec2718da75588bd87579ed281b1ced2c069396334fc",
+    "studentProblemsSHA256": "19219ba42354f0a29087bf960c4bf0290584f745bd5f6dacebe9e754dfaad70d",
+    "figureSHA256s": [
+      "f64cd047c7f5fa7e1df66078de53ca262b94f4841219009346fbeb8af730a6be"
+    ],
+    "methodGrade": "Proposed2015M3 after root definitions/comparison/irrationality, <=M2 prerequisites; no automatic formal grade/release approval.",
+    "everyChoiceChecked": true,
+    "pixelsOrCoordinatesUsedAsNumericOracle": false
+  },
+  "status": "solved"
+}
