@@ -6,10 +6,12 @@ import { FadingMath } from "./FadingMath";
 import { FadingFigureView } from "./FadingFigureView";
 import { FadingSentenceCaption } from "./FadingSentenceCaption";
 import { FadingSentencePager } from "./FadingSentencePager";
-import { curriculumName, dueLabel } from "./labels";
+import { curriculumName, dueLabel, studentDueLabel } from "./labels";
+import { studentSessionLocation } from "./studentSessionCopy";
 import s from "./fading.module.css";
 
 export function FadingConceptReader({
+  student = false,
   detail,
   busy,
   canDrop,
@@ -18,6 +20,7 @@ export function FadingConceptReader({
   onPractice,
   onDrop,
 }: {
+  student?: boolean;
   detail: FadingConceptDetail;
   busy: boolean;
   canDrop: boolean;
@@ -85,23 +88,42 @@ export function FadingConceptReader({
       </div>
       <header className={s.singleCardIdentity}>
         <p className={s.small}>
-          {chapter.map(curriculumName).join(" · ")} · {concept.level} ·{" "}
-          {concept.ordinal}/{concept.siblings}
+          {student ? (
+            studentSessionLocation(concept.section)
+          ) : (
+            <>
+              {chapter.map(curriculumName).join(" · ")} · {concept.level} ·{" "}
+              {concept.ordinal}/{concept.siblings}
+            </>
+          )}
         </p>
-        <h2 className={s.subheading}>{curriculumName(chapter.at(-1))}</h2>
+        <h2 className={s.subheading}>
+          {student
+            ? studentSessionLocation(chapter.at(-1) ?? "")
+            : curriculumName(chapter.at(-1))}
+        </h2>
         {detail.status && (
           <p className={s.pill}>
-            {detail.status.step}단계 · {dueLabel(detail.status.daysUntil)}
+            {detail.status.step}단계 ·{" "}
+            {student
+              ? studentDueLabel(detail.status.daysUntil)
+              : dueLabel(detail.status.daysUntil)}
           </p>
         )}
       </header>
       <div className={s.singleCardReadingIntro}>
-        <span className={s.stepPill}>STEP 01 · 정독</span>
+        <span className={s.stepPill}>
+          STEP 01 · {student ? "문장 읽기" : "정독"}
+        </span>
         <p className={s.muted}>
           문장을 하나씩 읽고 강조된 핵심어의 뜻을 살펴보세요.
         </p>
       </div>
-      <FadingFigureView figure={detail.content.figure} answers />
+      <FadingFigureView
+        student={student}
+        figure={detail.content.figure}
+        answers
+      />
       <article
         className={`${s.proposition} ${s.singleCard}`}
         data-fading-sentence={proposition.id}
@@ -110,7 +132,11 @@ export function FadingConceptReader({
           <FadingSentenceCaption
             proposition={proposition}
             index={index}
-            section={concept.section}
+            section={
+              student
+                ? studentSessionLocation(concept.section)
+                : concept.section
+            }
           />
           <span className={s.readingCheck} aria-hidden="true">
             ✓
@@ -142,7 +168,9 @@ export function FadingConceptReader({
       </p>
       {beforeDue && (
         <p className={s.muted}>
-          복습일 전에는 연습할 수 있어요. 평가와 일정은 바뀌지 않습니다.
+          {student
+            ? "미리 연습해도 괜찮아요. 다음 복습 날은 그대로예요."
+            : "복습일 전에는 연습할 수 있어요. 평가와 일정은 바뀌지 않습니다."}
         </p>
       )}
       <button

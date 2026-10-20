@@ -6,7 +6,13 @@ import {
 import { fadingDateOf, fadingDayOfDate } from "@/lib/fading/schedule";
 import { toPercent } from "@/lib/fading/numbers";
 import { FadingIcon } from "./FadingIcon";
-import { curriculumName, stepNames } from "./labels";
+import {
+  curriculumName as defaultCurriculumName,
+  stepNames as defaultStepNames,
+  studentCurriculumName,
+  studentStepNames,
+  studentDateLabel,
+} from "./labels";
 import s from "./FadingStats.module.css";
 
 const periods = [
@@ -33,12 +39,20 @@ function LockIcon() {
 }
 
 export function FadingStats({
+  student = false,
   state,
   onCatalog,
 }: {
+  student?: boolean;
   state: FadingState;
   onCatalog: () => void;
 }) {
+  const curriculumName = student
+    ? studentCurriculumName
+    : defaultCurriculumName;
+  const stepNames = student ? studentStepNames : defaultStepNames;
+  const dateLabel = (date: string) =>
+    student ? studentDateLabel(date, state.today) : date;
   const [period, setPeriod] = useState<number>(7);
   const { summary } = state;
   const today = fadingDayOfDate(state.today);
@@ -67,19 +81,21 @@ export function FadingStats({
   );
   const metrics = [
     {
-      title: "평가로 닫은 풀이",
+      title: student ? "마친 복습" : "평가로 닫은 풀이",
       value: totals.reviews,
       unit: "개",
-      note: "자가 평가까지 마친 풀이",
-      label: `평가로 닫은 풀이 ${totals.reviews}개`,
+      note: student ? "느낌까지 고른 공부" : "자가 평가까지 마친 풀이",
+      label: `${student ? "마친 복습" : "평가로 닫은 풀이"} ${totals.reviews}개`,
       icon: "book",
     },
     {
-      title: "다시가 아닌 평가",
+      title: student ? "다시 말고 고른 것" : "다시가 아닌 평가",
       value: totals.passed,
       unit: "개",
-      note: "스스로 고른 평가의 수",
-      label: `다시가 아닌 평가 ${totals.passed}개`,
+      note: student
+        ? "어려움 · 알맞음 · 쉬움을 고른 수"
+        : "스스로 고른 평가의 수",
+      label: `${student ? "다시 말고 고른 것" : "다시가 아닌 평가"} ${totals.passed}개`,
       icon: "erase",
     },
     {
@@ -165,7 +181,9 @@ export function FadingStats({
                 <h2 className={s.sectionTitle}>
                   <FadingIcon name="stats" /> 날마다 마친 풀이
                 </h2>
-                <p className={s.small}>평가로 닫은 풀이 수 · {period}일</p>
+                <p className={s.small}>
+                  {student ? "마친 복습" : "평가로 닫은 풀이 수"} · {period}일
+                </p>
               </div>
               <span className={s.tag}>{totals.reviews}개</span>
             </div>
@@ -179,7 +197,7 @@ export function FadingStats({
               <div
                 className={s.dailyBars}
                 role="img"
-                aria-label={`${start}부터 ${state.today}까지 날마다 마친 풀이`}
+                aria-label={`${dateLabel(start)}부터 ${dateLabel(state.today)}까지 날마다 마친 풀이`}
                 data-fading-daily-bars="true"
                 data-days={period}
               >
@@ -191,7 +209,7 @@ export function FadingStats({
                     <div
                       className={s.barColumn}
                       key={date}
-                      title={`${date} · 평가로 닫은 풀이 ${reviews}개 · 다시가 아닌 평가 ${passed}개`}
+                      title={`${dateLabel(date)} · ${student ? "마친 복습" : "평가로 닫은 풀이"} ${reviews}개 · ${student ? "다시 말고 고른 것" : "다시가 아닌 평가"} ${passed}개`}
                     >
                       {period === 7 ? (
                         <span className={s.barCount}>{reviews}</span>
@@ -217,7 +235,9 @@ export function FadingStats({
                       </div>
                       {period === 7 ? (
                         <span className={s.barDate}>
-                          {date.slice(5).replace("-", "/")}
+                          {student
+                            ? dateLabel(date)
+                            : date.slice(5).replace("-", "/")}
                         </span>
                       ) : null}
                     </div>
@@ -234,17 +254,17 @@ export function FadingStats({
               ) : null}
             </div>
             <div className={s.chartDates}>
-              <span>{start}</span>
-              <span>{state.today}</span>
+              <span>{dateLabel(start)}</span>
+              <span>{dateLabel(state.today)}</span>
             </div>
             <div className={s.chartLegend}>
               <span>
                 <i className={s.passedKey} />
-                다시가 아닌 평가
+                {student ? "다시 말고 고른 것" : "다시가 아닌 평가"}
               </span>
               <span>
                 <i className={s.againKey} />
-                다시 평가
+                {student ? "다시를 고른 것" : "다시 평가"}
               </span>
             </div>
             {!empty && totals.reviews === 0 ? (
@@ -266,8 +286,8 @@ export function FadingStats({
                   <span
                     key={date}
                     data-active={count > 0}
-                    title={`${date} · ${count}개`}
-                    aria-label={`${date} · ${count}개`}
+                    title={`${dateLabel(date)} · ${count}개`}
+                    aria-label={`${dateLabel(date)} · ${count}개`}
                   >
                     {count || "·"}
                   </span>
@@ -275,8 +295,9 @@ export function FadingStats({
               })}
             </div>
             <p className={s.chartExplanation}>
-              자가 평가까지 마친 풀이만 기록됩니다. 칩을 보고 문장을 채운
-              기록이며, 스스로 떠올려 쓴 결과를 뜻하지 않습니다.
+              {student
+                ? "여기에는 복습을 마친 기록이 모여요. 보기를 보고 고른 것이 혼자 떠올려 쓴 것과 같지는 않아요."
+                : "자가 평가까지 마친 풀이만 기록됩니다. 칩을 보고 문장을 채운 기록이며, 스스로 떠올려 쓴 결과를 뜻하지 않습니다."}
             </p>
           </section>
           <section className={s.funnel} aria-label="전체 개념 단계">
@@ -324,11 +345,12 @@ export function FadingStats({
                   <article className={s.unitCard} key={unit.key}>
                     <div className={s.unitHeader}>
                       <span className={s.ordinal}>{index + 1}</span>
-                      <h3>{curriculumName(name)}</h3>
+                      <h3>{curriculumName(name ?? "")}</h3>
                       <strong>고른 개념 {unit.picked}개</strong>
                     </div>
                     <div className={s.small}>
-                      {grade} · {curriculumName(chapter)}
+                      {!student && <>{grade} · </>}
+                      {curriculumName(chapter ?? "")}
                     </div>
                     <div
                       className={s.unitTrack}

@@ -39,6 +39,7 @@ export default async function LearnHomePage({
         />
       )}
       <StudentMathExplorers
+        student
         key={view ?? "home"}
         initialView={view}
         journeyTheme={theme}

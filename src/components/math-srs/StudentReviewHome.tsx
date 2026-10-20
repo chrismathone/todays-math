@@ -58,6 +58,7 @@ export function StudentReviewPage({
   practicePageClassName,
   practiceMainClassName,
   setupClassName,
+  hideHeading = false,
   children,
 }: {
   kind: keyof typeof reviewCopy;
@@ -68,6 +69,7 @@ export function StudentReviewPage({
   practicePageClassName?: string;
   practiceMainClassName?: string;
   setupClassName?: string;
+  hideHeading?: boolean;
   children: ReactNode;
 }) {
   const chrome = useStudentChrome();
@@ -97,7 +99,7 @@ export function StudentReviewPage({
         ) : (
           <>
             {!chrome.managed && <StudentMobileNav desktop />}
-            <StudentReviewHeading {...reviewCopy[kind]} />
+            {!hideHeading && <StudentReviewHeading {...reviewCopy[kind]} />}
           </>
         )}
         {children}

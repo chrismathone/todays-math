@@ -53,16 +53,23 @@ import { FadingComparisonSheet } from "./FadingComparisonSheet";
 import { FadingFigureView } from "./FadingFigureView";
 import { FadingSentencePager } from "./FadingSentencePager";
 import { FadingIcon } from "./FadingIcon";
-import { conceptSentenceLabel, curriculumName, ratingNames } from "./labels";
+import {
+  studentDateLabel,
+  conceptSentenceLabel,
+  curriculumName,
+  ratingNames,
+} from "./labels";
 import {
   fadingChipChoices,
   useFadingKeyboard,
   useFadingPendingScroll,
 } from "./FadingChipInput";
 import { useFadingSessionActions } from "./useFadingSessionActions";
+import { studentSessionLocation } from "./studentSessionCopy";
 import s from "./fading.module.css";
 
 export type FadingSessionScreenProps = {
+  student?: boolean;
   source: FadingSource;
   state: FadingState;
   practice?: FadingConceptDetail;
@@ -84,6 +91,7 @@ const cardStepNames = {
 } as const;
 
 export function FadingCardSessionScreen({
+  student = false,
   source,
   state,
   practice,
@@ -173,11 +181,15 @@ export function FadingCardSessionScreen({
         ? [numbered[1]!]
         : [];
   });
-  const identity = [
-    ...safeSections.map(curriculumName),
-    ...(fadingSafeLabel(concept.level, identityTargets) ? [concept.level] : []),
-    `개념 ${concept.ordinal}/${concept.siblings}`,
-  ].join(" · ");
+  const identity = student
+    ? studentSessionLocation(concept.section, identityTargets)
+    : [
+        ...safeSections.map(curriculumName),
+        ...(fadingSafeLabel(concept.level, identityTargets)
+          ? [concept.level]
+          : []),
+        `개념 ${concept.ordinal}/${concept.siblings}`,
+      ].join(" · ");
   const caption = [
     conceptSentenceLabel(cardIndex),
     ...(fadingSafeLabel(proposition.kind, identityTargets)
@@ -320,7 +332,9 @@ export function FadingCardSessionScreen({
       setLocal(next);
       setWrong({ targetId, text });
       setFeedback(
-        "맞지 않는 답이에요. 다시 입력하거나 아직 모르겠어요를 눌러 주세요. 틀림 기록은 남습니다.",
+        student
+          ? "다시 써 볼까요? 어려우면 아직 모르겠어요를 눌러 주세요."
+          : "맞지 않는 답이에요. 다시 입력하거나 아직 모르겠어요를 눌러 주세요. 틀림 기록은 남습니다.",
       );
       focusInput.current = true;
       return;
@@ -328,7 +342,9 @@ export function FadingCardSessionScreen({
     setWrong(null);
     setFeedback(
       inputKind === "typed"
-        ? "입력했어요. 기준안은 모든 문장을 마친 뒤에 확인해요."
+        ? student
+          ? "썼어요. 문장을 모두 마치면 답을 볼 수 있어요."
+          : "입력했어요. 기준안은 모든 문장을 마친 뒤에 확인해요."
         : "",
     );
     if (next.results.length > local.results.length) {
@@ -609,7 +625,8 @@ export function FadingCardSessionScreen({
     fadingComparison(concept, result ?? { missed: [] }).flatMap((card) =>
       card.blanks.map((blank) => [
         blank.target.id,
-        blank.text ?? "[입력 원문 없음]",
+        blank.text ??
+          (student ? "[쓴 답을 다시 볼 수 없어요]" : "[입력 원문 없음]"),
       ]),
     ),
   );
@@ -717,9 +734,11 @@ export function FadingCardSessionScreen({
             STEP {String(visibleStep).padStart(2, "0")} ·{" "}
             {cardStepNames[visibleStep]}
           </span>
-          <span className={s.erasurePill}>
-            소거율 {toPercent(erasureRate(concept, visibleStep))}%
-          </span>
+          {!student && (
+            <span className={s.erasurePill}>
+              소거율 {toPercent(erasureRate(concept, visibleStep))}%
+            </span>
+          )}
           <span className={s.code}>
             {progressDone} / {progressTotal} 완료
           </span>
@@ -758,11 +777,18 @@ export function FadingCardSessionScreen({
           <h1 className={s.heading}>
             {practice ? "연습을 마쳤어요" : "풀이를 마쳤어요"}
           </h1>
-          <p className={s.muted}>핵심 답을 직접 쓰고 기준안과 대조했어요.</p>
+          <p className={s.muted}>
+            {student
+              ? "내가 쓴 답을 살펴봤어요."
+              : "핵심 답을 직접 쓰고 기준안과 대조했어요."}
+          </p>
           {state.receipt && !practice && (
             <p>
-              고른 평가 {ratingNames[state.receipt.rating]} · 다음 복습{" "}
-              {state.receipt.dueOn}
+              {student ? "내가 고른 느낌" : "고른 평가"}{" "}
+              {ratingNames[state.receipt.rating]} · 다음 복습{" "}
+              {student
+                ? studentDateLabel(state.receipt.dueOn, state.today)
+                : state.receipt.dueOn}
             </p>
           )}
           <button type="button" className={s.primary} onClick={onExit}>
@@ -772,20 +798,33 @@ export function FadingCardSessionScreen({
       ) : compare ? (
         <section className={`${s.card} ${s.compareWide} ${s.stack}`}>
           <p className={s.caps}>
-            STEP {String(compare.step).padStart(2, "0")} · 대조
+            STEP {String(compare.step).padStart(2, "0")} ·{" "}
+            {student ? "답 살펴보기" : "대조"}
           </p>
           <h1 className={s.heading}>{compare.step}단계를 마쳤어요</h1>
           {compare.step === 4 ? (
             <>
               <p className={s.muted}>
-                내 답과 기준안의 핵심 뜻을 비교해 주세요.
+                {student
+                  ? "내 답이 아래 답과 같은 뜻인지 살펴보세요."
+                  : "내 답과 기준안의 핵심 뜻을 비교해 주세요."}
               </p>
-              {!stale && <FadingFigureView figure={content.figure} answers />}
+              {!stale && (
+                <FadingFigureView
+                  student={student}
+                  figure={content.figure}
+                  answers
+                />
+              )}
               {stale ? (
                 <div className={s.stack}>
                   <p className={s.notice}>
-                    풀이 뒤에 기준안이 바뀌어 이전 답을 대조할 수 없어요.
-                    이번에는 «다시»로 이어 갑니다.
+                    {student
+                      ? "답이 바뀌어서 전에 쓴 답과 비교하기 어려워요."
+                      : "풀이 뒤에 기준안이 바뀌어 이전 답을 대조할 수 없어요."}
+                    {student
+                      ? "이번에는 «다시»를 눌러 주세요."
+                      : "이번에는 «다시»로 이어 갑니다."}
                   </p>
                   {state.session?.unjudged?.map((answer) => (
                     <p key={answer.targetId} className={s.typedWritten}>
@@ -795,6 +834,7 @@ export function FadingCardSessionScreen({
                 </div>
               ) : (
                 <FadingTypedComparison
+                  student={student}
                   concept={concept}
                   answers={comparisonAnswers}
                   unjudged={unjudged}
@@ -826,23 +866,33 @@ export function FadingCardSessionScreen({
                   onClick={advanceComparison}
                 >
                   {comparisonIndex < concept.propositions.length - 1
-                    ? "다음 문장 대조"
-                    : "대조 마치기"}
+                    ? student
+                      ? "다음 문장 보기"
+                      : "다음 문장 대조"
+                    : student
+                      ? "살펴보기 마치기"
+                      : "대조 마치기"}
                 </button>
               )}
               {!judgingDone && (
                 <p className={s.notice}>
-                  대조가 필요한 답마다 같은 뜻인지 골라 주세요.
+                  {student
+                    ? "내가 쓴 답이 같은 뜻인지 골라 주세요."
+                    : "대조가 필요한 답마다 같은 뜻인지 골라 주세요."}
                 </p>
               )}
               {permitted.length === 1 && (
                 <p className={s.notice}>
-                  4단계에 틀림이나 넘긴 빈칸이 있어 이번 평가는 «다시»입니다.
+                  {student
+                    ? "틀렸거나 모르는 빈칸이 있어요. «다시»로 한 번 더 연습해요."
+                    : "4단계에 틀림이나 넘긴 빈칸이 있어 이번 평가는 «다시»입니다."}
                 </p>
               )}
               {partial && (
                 <p className={s.notice}>
-                  틀린 빈칸이 적어 «어려움»도 고를 수 있습니다.
+                  {student
+                    ? "«어려움»도 고를 수 있어요."
+                    : "틀린 빈칸이 적어 «어려움»도 고를 수 있습니다."}
                 </p>
               )}
               {comparisonFinished &&
@@ -893,10 +943,11 @@ export function FadingCardSessionScreen({
                 className={s.secondary}
                 onClick={() => setCanonical(true)}
               >
-                기준안 보기
+                {student ? "답 보기" : "기준안 보기"}
               </button>
               {canonical && (
                 <FadingComparisonSheet
+                  student={student}
                   concept={concept}
                   result={compare}
                   placements={comparisonPlacements.filter(
@@ -930,12 +981,14 @@ export function FadingCardSessionScreen({
           <h1 className={s.heading}>{cardStepNames[local.step]}</h1>
           <div className={s.sessionGrid}>
             <FadingFigureView
+              student={student}
               figure={content.figure}
               answers={local.phase === "reading" && revealed}
             />
             <section className={s.propositions} aria-label="개념 문장">
               {local.phase === "reading" ? (
                 <FadingAnkiCard
+                  student={student}
                   proposition={proposition}
                   revealed={revealed}
                   disabled={disabled || exit}
@@ -1067,6 +1120,7 @@ export function FadingCardSessionScreen({
       )}
       {exit && (
         <FadingCardExitDialog
+          student={student}
           practice={!!practice}
           onStay={() => {
             setExit(false);

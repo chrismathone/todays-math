@@ -21,7 +21,13 @@ import {
   type FadingStepResult,
 } from "@/lib/fading/session";
 import { FadingSourceError, newFadingId } from "@/lib/fading/source";
-import { curriculumName, ratingNames, stepNames } from "./labels";
+import {
+  studentStepNames,
+  studentDateLabel,
+  curriculumName,
+  ratingNames,
+  stepNames,
+} from "./labels";
 import { FadingIcon } from "./FadingIcon";
 import { FadingFigureView } from "./FadingFigureView";
 import { FadingComparisonSheet } from "./FadingComparisonSheet";
@@ -34,6 +40,7 @@ import {
   useFadingPendingScroll,
   fadingChipChoices,
 } from "./FadingChipInput";
+import { studentSessionLocation } from "./studentSessionCopy";
 import s from "./fading.module.css";
 import fill from "./FadingFillCard.module.css";
 import type { FadingSessionScreenProps } from "./FadingCardSessionScreen";
@@ -64,6 +71,7 @@ function resumed(state: FadingState): FadingSession {
 }
 
 function ExitDialog({
+  student = false,
   onStay,
   onExit,
   practice,
@@ -74,6 +82,7 @@ function ExitDialog({
   onStay: () => void;
   onExit: () => void;
   practice: boolean;
+  student?: boolean;
   session: FadingSession;
   filled: number;
   blanks: number;
@@ -104,13 +113,18 @@ function ExitDialog({
       </h2>
       <p className={s.muted}>
         {practice
-          ? "연습 기록은 남지 않습니다."
-          : "마친 단계는 남아 있어요. 다음에 같은 단계부터 이어 할 수 있습니다. 지금 채우던 답은 다시 입력해요."}
+          ? student
+            ? "연습한 내용은 저장되지 않아요."
+            : "연습 기록은 남지 않습니다."
+          : student
+            ? "마친 단계는 저장돼요. 다음에 이어서 풀 수 있어요. 지금 풀던 단계의 답은 다시 써야 해요."
+            : "마친 단계는 남아 있어요. 다음에 같은 단계부터 이어 할 수 있습니다. 지금 채우던 답은 다시 입력해요."}
       </p>
       <div className={s.exitProgress}>
         <div className={s.row}>
           <strong>
-            {session.step}단계 · {stepNames[session.step]}
+            {session.step}단계 ·{" "}
+            {(student ? studentStepNames : stepNames)[session.step]}
           </strong>
           <span className={s.code}>
             {filled} / {blanks} 채움
@@ -121,7 +135,7 @@ function ExitDialog({
             style={{ width: `${toPercent(blanks ? filled / blanks : 0)}%` }}
           />
         </div>
-        <p className={s.caps}>단계별 보존 상태</p>
+        <p className={s.caps}>{student ? "마친 단계" : "단계별 보존 상태"}</p>
         <div className={s.exitStageTiles}>
           {([1, 2, 3, 4] as const).map((step) => (
             <div key={step} data-current={session.step === step}>
@@ -139,7 +153,11 @@ function ExitDialog({
             </div>
           ))}
         </div>
-        <p className={s.exitNotice}>개념 소거 탭에서 이어 할 수 있습니다.</p>
+        <p className={s.exitNotice}>
+          {student
+            ? "다음에 이어서 풀 수 있어요."
+            : "개념 소거 탭에서 이어 할 수 있습니다."}
+        </p>
       </div>
       <div className={s.actions}>
         <button ref={stay} className={s.primary} onClick={onStay}>
@@ -154,6 +172,7 @@ function ExitDialog({
 }
 
 export function FadingSessionScreen({
+  student = false,
   source,
   state,
   practice,
@@ -553,11 +572,13 @@ export function FadingSessionScreen({
     (name) => fadingSafeTopic(name, identityTargets) !== undefined,
   );
   const safeLevel = fadingSafeTopic(concept.level, identityTargets);
-  const identityMeta = [
-    ...safeChapter.slice(0, -1).map(curriculumName),
-    ...(safeLevel !== undefined ? [safeLevel] : []),
-    `${concept.ordinal}/${concept.siblings}`,
-  ].join(" · ");
+  const identityMeta = student
+    ? studentSessionLocation(concept.section, identityTargets)
+    : [
+        ...safeChapter.slice(0, -1).map(curriculumName),
+        ...(safeLevel !== undefined ? [safeLevel] : []),
+        `${concept.ordinal}/${concept.siblings}`,
+      ].join(" · ");
   const disabled = paused || saving || !!failure;
   function chooseNumber(index: number) {
     if (disabled || compare || done) return;
@@ -635,11 +656,13 @@ export function FadingSessionScreen({
           <div className={s.left}>
             <span className={s.stepPill}>
               STEP {String(local.step).padStart(2, "0")} ·{" "}
-              {stepNames[local.step]}
+              {(student ? studentStepNames : stepNames)[local.step]}
             </span>
-            <span className={s.erasurePill}>
-              소거율 {toPercent(erasureRate(concept, local.step))}%
-            </span>
+            {!student && (
+              <span className={s.erasurePill}>
+                소거율 {toPercent(erasureRate(concept, local.step))}%
+              </span>
+            )}
           </div>
           {local.step !== 1 && (
             <span className={s.code}>
@@ -657,9 +680,11 @@ export function FadingSessionScreen({
       </header>
       <div className={s.singleCardIdentity}>
         <p className={s.caps}>{identityMeta}</p>
-        <p className={s.small}>
-          {curriculumName(safeChapter.at(-1)) || "개념 문장"}
-        </p>
+        {!student && (
+          <p className={s.small}>
+            {curriculumName(safeChapter.at(-1)) || "개념 문장"}
+          </p>
+        )}
       </div>
       {practice && <p className={s.notice}>연습 · 기록되지 않음</p>}
       {!done && !compare && local.phase !== "rating" && (
@@ -671,7 +696,7 @@ export function FadingSessionScreen({
               key={step}
             >
               <span className={s.code}>{String(step).padStart(2, "0")}</span>
-              <strong>{stepNames[step]}</strong>
+              <strong>{(student ? studentStepNames : stepNames)[step]}</strong>
             </div>
           ))}
         </div>
@@ -697,7 +722,8 @@ export function FadingSessionScreen({
           <section className={s.summaryHero}>
             <span className={s.heroBadge}>
               {local.rating
-                ? ratingNames[local.rating] + " · 자가 평가"
+                ? ratingNames[local.rating] +
+                  (student ? " · 내가 고른 느낌" : " · 자가 평가")
                 : "기록 없는 연습"}
             </span>
             <h1>{practice ? "연습을 마쳤어요" : "풀이를 마쳤어요"}</h1>
@@ -716,7 +742,7 @@ export function FadingSessionScreen({
                 </strong>
               </div>
               <div>
-                <span>고른 평가</span>
+                <span>{student ? "내가 고른 느낌" : "고른 평가"}</span>
                 <strong>
                   {local.rating ? ratingNames[local.rating] : "연습"}
                 </strong>
@@ -725,9 +751,11 @@ export function FadingSessionScreen({
                 <span>다음 복습</span>
                 <strong>
                   {!practice && state.receipt
-                    ? fadingDayOfDate(state.receipt.dueOn) -
-                      fadingDayOfDate(state.today) +
-                      "일 뒤"
+                    ? student
+                      ? studentDateLabel(state.receipt.dueOn, state.today)
+                      : fadingDayOfDate(state.receipt.dueOn) -
+                        fadingDayOfDate(state.today) +
+                        "일 뒤"
                     : "기록 안 함"}
                 </strong>
               </div>
@@ -745,11 +773,15 @@ export function FadingSessionScreen({
                   <div key={step} className={s.summaryStep}>
                     <span className={s.roundNumber}>{step}</span>
                     <div>
-                      <strong>{stepNames[step]}</strong>
+                      <strong>
+                        {(student ? studentStepNames : stepNames)[step]}
+                      </strong>
                       <p>
                         {step === 1
                           ? local.startStep === 1
-                            ? "정독을 마쳤어요"
+                            ? student
+                              ? "문장을 읽었어요"
+                              : "정독을 마쳤어요"
                             : "이번 풀이에서 건너뜀"
                           : result
                             ? result.blanks + "개 빈칸"
@@ -761,7 +793,9 @@ export function FadingSessionScreen({
                       data-state={result?.missed.length ? "waiting" : "filled"}
                     >
                       {step === 1
-                        ? "정독"
+                        ? student
+                          ? "문장 읽기"
+                          : "정독"
                         : result
                           ? "틀림 " + result.missed.length + "개"
                           : "—"}
@@ -776,7 +810,9 @@ export function FadingSessionScreen({
               <h2>다음 복습</h2>
               <span className={s.code}>
                 {!practice && state.receipt
-                  ? state.receipt.dueOn
+                  ? student
+                    ? studentDateLabel(state.receipt.dueOn, state.today)
+                    : state.receipt.dueOn
                   : "일정 변경 없음"}
               </span>
             </div>
@@ -798,7 +834,8 @@ export function FadingSessionScreen({
       ) : compare ? (
         <div className={`${s.card} ${s.compare} ${s.compareWide} ${s.stack}`}>
           <p className={s.caps}>
-            STEP {String(compare.step).padStart(2, "0")} · 대조
+            STEP {String(compare.step).padStart(2, "0")} ·{" "}
+            {student ? "답 살펴보기" : "대조"}
           </p>
           <h1 className={s.heading}>{compare.step}단계를 마쳤어요</h1>
           <p className={s.muted}>
@@ -832,10 +869,17 @@ export function FadingSessionScreen({
             className={s.secondary}
             onClick={() => setCanonical((v) => !v)}
           >
-            {canonical ? "기준안 접기" : "기준안 보기"}
+            {canonical
+              ? student
+                ? "답 접기"
+                : "기준안 접기"
+              : student
+                ? "답 보기"
+                : "기준안 보기"}
           </button>
           {canonical && (
             <FadingComparisonSheet
+              student={student}
               concept={concept}
               result={compare}
               placements={comparisonPlacements}
@@ -862,21 +906,31 @@ export function FadingSessionScreen({
             {local.phase === "rating"
               ? practice
                 ? "연습 마치기"
-                : "자가 평가하기"
+                : student
+                  ? "느낌 고르기"
+                  : "자가 평가하기"
               : "다음 단계"}
           </button>
         </div>
       ) : local.phase === "rating" ? (
         <div className={`${s.card} ${s.compare} ${s.stack}`}>
-          <p className={s.caps}>자가 평가</p>
+          <p className={s.caps}>{student ? "느낌 고르기" : "자가 평가"}</p>
           <h1 className={s.heading}>어느 정도 떠올랐나요</h1>
           <p className={s.muted}>
-            답을 떠올릴 때의 느낌을 평가해 주세요. 다음 복습일을 정하는 데
-            쓰입니다.
+            {student ? (
+              "얼마나 잘 떠올랐는지 골라 주세요. 다음에 복습할 날을 정해 줄게요."
+            ) : (
+              <>
+                답을 떠올릴 때의 느낌을 평가해 주세요. 다음 복습일을 정하는 데
+                쓰입니다.
+              </>
+            )}
           </p>
           {state.session?.missedAtFour.length ? (
             <p className={s.notice}>
-              4단계에 틀림이 있어 이번 평가는 «다시»입니다.
+              {student
+                ? "틀린 빈칸이 있어요. «다시»로 한 번 더 연습해요."
+                : "4단계에 틀림이 있어 이번 평가는 «다시»입니다."}
             </p>
           ) : null}
           <div className={s.ratingGrid}>
@@ -923,13 +977,17 @@ export function FadingSessionScreen({
         <>
           <header className={s.sessionHeading}>
             <h1 className={s.heading}>
-              {curriculumName(safeChapter.at(-1)) || "개념 문장"}
+              {student
+                ? studentSessionLocation(chapter.at(-1) ?? "", identityTargets)
+                : curriculumName(safeChapter.at(-1)) || "개념 문장"}
             </h1>
             <p className={s.muted}>
               {local.step === 1
                 ? "문장을 읽고 핵심어의 뜻을 살펴보세요."
                 : local.step === 4
-                  ? "모든 표적을 비웠어요. 답을 떠올려 문장을 채워 보세요."
+                  ? student
+                    ? "답을 떠올려 빈칸을 채워 보세요."
+                    : "모든 표적을 비웠어요. 답을 떠올려 문장을 채워 보세요."
                   : "빈칸의 답을 떠올려 입력해 주세요."}
             </p>
           </header>
@@ -941,6 +999,7 @@ export function FadingSessionScreen({
           )}
           <div className={s.sessionGrid}>
             <FadingFigureView
+              student={student}
               figure={content.figure}
               answers={local.phase === "reading"}
             />
@@ -969,7 +1028,14 @@ export function FadingSessionScreen({
                         <FadingSentenceCaption
                           proposition={p}
                           index={i}
-                          section={concept.section}
+                          section={
+                            student
+                              ? studentSessionLocation(
+                                  concept.section,
+                                  identityTargets,
+                                )
+                              : concept.section
+                          }
                           erased={blanks}
                         />
                       </span>
@@ -1287,6 +1353,7 @@ export function FadingSessionScreen({
       )}
       {exit && (
         <ExitDialog
+          student={student}
           session={local}
           filled={Object.keys(local.filled).length}
           blanks={blanks.length}

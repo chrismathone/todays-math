@@ -134,6 +134,7 @@ export default function StudentMathExplorers({
   fadingRelearnSource,
   initialState,
   preview = false,
+  student = false,
 }: {
   initialView?: "collection";
   journeyTheme?: JourneyThemeId;
@@ -144,6 +145,7 @@ export default function StudentMathExplorers({
   initialState?: ExplorerState;
   /** A local concept source plus an explorer snapshot; old actions cannot save. */
   preview?: boolean;
+  student?: boolean;
 } = {}) {
   // 테마 소품(상자 · 기지 · 별) — 효과 · 은행 미션까지 한 벌로 따른다.
   return (
@@ -159,6 +161,7 @@ export default function StudentMathExplorers({
             fadingRelearnSource={fadingRelearnSource}
             initialState={initialState}
             preview={preview}
+            student={student}
           />
         </JourneyArtProvider>
       </LearningSoundsProvider>
@@ -174,6 +177,7 @@ function ExplorerGame({
   fadingRelearnSource,
   initialState,
   preview,
+  student,
 }: {
   initialView?: "collection";
   journeyTheme?: JourneyThemeId;
@@ -182,6 +186,7 @@ function ExplorerGame({
   fadingRelearnSource?: FadingRelearnSource;
   initialState?: ExplorerState;
   preview: boolean;
+  student: boolean;
 }) {
   const router = useRouter();
   const { gesture, play, resetStudent } = useLearningSounds();
@@ -1093,7 +1098,7 @@ function ExplorerGame({
             }}
           />
         </div>
-        <FadingRelearnModal controller={relearn} />
+        <FadingRelearnModal student={student} controller={relearn} />
       </>
     );
 
@@ -1105,6 +1110,12 @@ function ExplorerGame({
           student={state?.student ?? null}
           practicing={inPractice || inSupplement || inConceptMemory || !state}
           boardReady={!!state}
+          hideHeading={
+            student &&
+            !preview &&
+            conceptMemoryEnabled &&
+            (!fadingSource || !!fadingSource.dailyPlan)
+          }
           practiceTitle="수학 탐험"
           practicePageClassName={s.practicePage}
           practiceMainClassName={s.practiceMain}
@@ -1216,6 +1227,7 @@ function ExplorerGame({
               )
             ) : conceptMemoryEnabled ? (
               <ExplorerConceptMemory
+                student={student}
                 key={state.student.id}
                 source={fadingSource}
                 relearnController={relearn}
@@ -1327,7 +1339,7 @@ function ExplorerGame({
           <TileRewardEffect stars={tileStars} />
         </StudentReviewPage>
       </div>
-      <FadingRelearnModal controller={relearn} />
+      <FadingRelearnModal student={student} controller={relearn} />
     </>
   );
 }

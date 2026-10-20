@@ -3,7 +3,14 @@ import type { FadingCatalog } from "@/contracts/fadingApi.contract";
 import { FadingMath } from "./FadingMath";
 import { toPercent } from "@/lib/fading/numbers";
 import { FadingIcon } from "./FadingIcon";
-import { curriculumName, dueLabel, stepNames } from "./labels";
+import {
+  curriculumName as defaultCurriculumName,
+  dueLabel as defaultDueLabel,
+  stepNames as defaultStepNames,
+  studentCurriculumName,
+  studentDueLabel,
+  studentStepNames,
+} from "./labels";
 import s from "./FadingCatalogScreen.module.css";
 
 type CatalogSection = FadingCatalog["sections"][number];
@@ -17,16 +24,23 @@ const stepDescriptions = {
 } as const;
 
 export function FadingCatalogScreen({
+  student = false,
   catalog,
   busy,
   onGrade,
   onConcept,
 }: {
+  student?: boolean;
   catalog: FadingCatalog;
   busy: boolean;
   onGrade: (grade: string) => void;
   onConcept: (id: string) => void;
 }) {
+  const curriculumName = student
+    ? studentCurriculumName
+    : defaultCurriculumName;
+  const stepNames = student ? studentStepNames : defaultStepNames;
+  const dueLabel = student ? studentDueLabel : defaultDueLabel;
   const [search, setSearch] = useState("");
   const [section, setSection] = useState<string | null>(null);
   const [sort, setSort] = useState<"unit" | "risk">("risk");
@@ -93,7 +107,8 @@ export function FadingCatalogScreen({
             </div>
             <section className={s.unitHero}>
               <div className={s.kicker}>
-                {catalog.grade} · {curriculumName(selected.chapter)}
+                {!student && <>{catalog.grade} · </>}
+                {curriculumName(selected.chapter)}
               </div>
               <h1 className={s.unitTitle}>{curriculumName(selected.unit)}</h1>
               <div className={s.tags}>
@@ -171,7 +186,11 @@ export function FadingCatalogScreen({
                     >
                       <span className={s.stepBadge}>STEP 0{step}</span>
                       <strong>{stepNames[step]}</strong>
-                      <span className={s.small}>{stepDescriptions[step]}</span>
+                      <span className={s.small}>
+                        {student && step === 4
+                          ? "답이 들어갈 자리를 모두 빈칸으로 바꿔요"
+                          : stepDescriptions[step]}
+                      </span>
                       <span className={s.stageCount}>{count}개</span>
                     </div>
                   );
@@ -193,15 +212,26 @@ export function FadingCatalogScreen({
                   key={concept.id}
                   disabled={busy}
                   onClick={() => onConcept(concept.id)}
-                  aria-label={`${concept.level} · ${concept.ordinal}/${concept.siblings} · ${concept.terms.join(" · ")} · 개념 읽기`}
+                  aria-label={
+                    student
+                      ? `${concept.terms.join(" · ")} · 개념 읽기`
+                      : `${concept.level} · ${concept.ordinal}/${concept.siblings} · ${concept.terms.join(" · ")} · 개념 읽기`
+                  }
                 >
                   <span className={s.conceptRowTop}>
                     <span className={s.ordinal}>
-                      {String(index + 1).padStart(2, "0")}
+                      {student ? "·" : String(index + 1).padStart(2, "0")}
                     </span>
                     <span className={s.rowCopy}>
                       <span className={s.rowTitle}>
-                        {concept.level} · {concept.ordinal}/{concept.siblings}
+                        {student ? (
+                          "개념 읽기"
+                        ) : (
+                          <>
+                            {concept.level} · {concept.ordinal}/
+                            {concept.siblings}
+                          </>
+                        )}
                       </span>
                       <span
                         className={s.rowTerms}
@@ -218,8 +248,8 @@ export function FadingCatalogScreen({
                   </span>
                   <span className={s.conceptRowMeta}>
                     <span>
-                      {concept.level} · 개념 문장 {concept.propositions}개 ·
-                      빈칸 {concept.targets}개
+                      {!student && <>{concept.level} · </>}개념 문장{" "}
+                      {concept.propositions}개 · 빈칸 {concept.targets}개
                     </span>
                     <span>
                       {concept.status
@@ -292,7 +322,11 @@ export function FadingCatalogScreen({
                       onGrade(grade);
                     }}
                   >
-                    {grade}
+                    {student
+                      ? grade
+                          .replace(/^초(\d)$/, "초등학교 $1학년")
+                          .replace(/^중(\d)$/, "중학교 $1학년")
+                      : grade}
                   </button>
                 ))}
               </div>
@@ -306,7 +340,7 @@ export function FadingCatalogScreen({
                       setPage(1);
                     }}
                   >
-                    망각 위험순
+                    {student ? "다시 떠올려 볼 순서" : "망각 위험순"}
                   </button>
                   <button
                     aria-pressed={sort === "unit"}
@@ -326,7 +360,8 @@ export function FadingCatalogScreen({
                   <div className={s.featuredKickers}>
                     <span className={s.featuredTag}>단원</span>
                     <div className={s.small}>
-                      {catalog.grade} · {curriculumName(featured.chapter)}
+                      {!student && <>{catalog.grade} · </>}
+                      {curriculumName(featured.chapter)}
                     </div>
                   </div>
                   <h2>{curriculumName(featured.unit)}</h2>
@@ -367,7 +402,9 @@ export function FadingCatalogScreen({
             ) : null}
             <section className={s.cardsSection}>
               <div className={s.row}>
-                <h2 className={s.sectionTitle}>{catalog.grade}의 개념</h2>
+                <h2 className={s.sectionTitle}>
+                  {student ? "둘러볼 개념" : `${catalog.grade}의 개념`}
+                </h2>
                 <span className={s.small}>
                   표시 {shown.length} / {matches.length}개
                 </span>
@@ -387,7 +424,8 @@ export function FadingCatalogScreen({
                       <div className={s.cardHeader}>
                         <div className={s.cardHeaderMain}>
                           <div className={s.small}>
-                            {catalog.grade} · {curriculumName(unit.chapter)}
+                            {!student && <>{catalog.grade} · </>}
+                            {curriculumName(unit.chapter)}
                           </div>
                           <span className={s.badge}>
                             {concept.status
@@ -395,7 +433,8 @@ export function FadingCatalogScreen({
                               : "시작 전"}
                           </span>
                         </div>
-                        {concept.status?.risk !== null &&
+                        {!student &&
+                        concept.status?.risk !== null &&
                         concept.status?.risk !== undefined ? (
                           <div className={s.risk}>
                             <strong>{toPercent(concept.status.risk)}%</strong>
@@ -404,8 +443,14 @@ export function FadingCatalogScreen({
                         ) : null}
                       </div>
                       <h3 className={s.conceptTitle}>
-                        {curriculumName(unit.unit)} · {concept.level} ·{" "}
-                        {concept.ordinal}/{concept.siblings}
+                        {curriculumName(unit.unit)}
+                        {!student && (
+                          <>
+                            {" "}
+                            · {concept.level} · {concept.ordinal}/
+                            {concept.siblings}
+                          </>
+                        )}
                       </h3>
                       <div className={s.termPreview}>
                         <span className={s.small}>개념 미리 보기</span>
@@ -455,7 +500,11 @@ export function FadingCatalogScreen({
                         <button
                           className={s.readButton}
                           disabled={busy}
-                          aria-label={`${curriculumName(unit.unit)} · ${concept.level} · ${concept.ordinal}/${concept.siblings} · 개념 읽기`}
+                          aria-label={
+                            student
+                              ? `${curriculumName(unit.unit)} · ${concept.terms.join(" · ")} · 개념 읽기`
+                              : `${curriculumName(unit.unit)} · ${concept.level} · ${concept.ordinal}/${concept.siblings} · 개념 읽기`
+                          }
                           onClick={() => onConcept(concept.id)}
                         >
                           개념 읽기 <FadingIcon name="arrow" />

@@ -11,9 +11,11 @@ import { FadingFigureView } from "./FadingFigureView";
 import { FadingSentenceCaption } from "./FadingSentenceCaption";
 import { FadingSentencePager } from "./FadingSentencePager";
 import { curriculumName } from "./labels";
+import { studentSessionLocation } from "./studentSessionCopy";
 import s from "./fading.module.css";
 
 export function FadingComparisonSheet({
+  student = false,
   concept,
   result,
   placements,
@@ -23,6 +25,7 @@ export function FadingComparisonSheet({
   onClose,
   onNext,
 }: {
+  student?: boolean;
   concept: FadingConcept;
   result: FadingStepResult;
   placements: readonly FadingPlacement[];
@@ -100,21 +103,28 @@ export function FadingComparisonSheet({
       <div className={s.row}>
         <div>
           <p className={s.caps}>
-            기준안 대조 · STEP {String(result.step).padStart(2, "0")}
+            {student ? "답 살펴보기" : "기준안 대조"} · STEP{" "}
+            {String(result.step).padStart(2, "0")}
           </p>
           <h2 id="fading-compare-title" className={s.subheading}>
-            {curriculumName(concept.section.split("::").at(-1))} · 기준안
+            {student
+              ? studentSessionLocation(concept.section)
+              : curriculumName(concept.section.split("::").at(-1))}{" "}
+            · {student ? "답 살펴보기" : "기준안"}
           </h2>
         </div>
         <button
           className={s.closeButton}
           onClick={onClose}
-          aria-label="기준안 접기"
+          aria-label={student ? "답 접기" : "기준안 접기"}
         >
           ×
         </button>
       </div>
-      <section aria-label="기준안" className={s.canonical}>
+      <section
+        aria-label={student ? "답 살펴보기" : "기준안"}
+        className={s.canonical}
+      >
         <p className={s.comparisonMeter}>
           첫 시도에 맞힌 빈칸{" "}
           <strong>
@@ -124,13 +134,21 @@ export function FadingComparisonSheet({
             className={s.propositionState}
             data-state={result.missed.length ? "waiting" : "filled"}
           >
-            {result.missed.length ? "검토 필요" : "일치"}
+            {result.missed.length
+              ? student
+                ? "다시 살펴봐요"
+                : "검토 필요"
+              : student
+                ? "같아요"
+                : "일치"}
           </span>
         </p>
-        <FadingFigureView figure={figure} answers />
+        <FadingFigureView student={student} figure={figure} answers />
         <div className={s.sectionTitle}>
-          <h3>개념별 대조</h3>
-          <span className={s.code}>틀림 기록 유지</span>
+          <h3>{student ? "문장 살펴보기" : "개념별 대조"}</h3>
+          <span className={s.code}>
+            {student ? "틀린 답도 살펴봐요" : "틀림 기록 유지"}
+          </span>
         </div>
         {(() => {
           const i = index;
@@ -165,19 +183,29 @@ export function FadingComparisonSheet({
                   <FadingSentenceCaption
                     proposition={p}
                     index={i}
-                    section={concept.section}
+                    section={
+                      student
+                        ? studentSessionLocation(concept.section)
+                        : concept.section
+                    }
                   />
                 </strong>
                 <span
                   className={s.propositionState}
                   data-state={missed ? "waiting" : "filled"}
                 >
-                  {missed ? "검토" : "일치"}
+                  {missed
+                    ? student
+                      ? "다시 보기"
+                      : "검토"
+                    : student
+                      ? "같아요"
+                      : "일치"}
                 </span>
               </div>
               <div className={s.comparisonColumns}>
                 <div>
-                  <p className={s.caps}>기준안</p>
+                  <p className={s.caps}>{student ? "답 살펴보기" : "기준안"}</p>
                   <ExplorerMath text={canon} />
                 </div>
                 <div data-missed={missed}>
@@ -194,14 +222,16 @@ export function FadingComparisonSheet({
           onChange={setIndex}
         />
         <p className={`${s.small} ${s.singleCardKeyboard}`}>
-          Space·Enter 다음 문장 · 마지막 문장에서 대조 마치기 · ← → 문장 이동
+          {student
+            ? "Space·Enter 다음 문장 · 마지막 문장에서 살펴보기 마치기 · ← → 문장 이동"
+            : "Space·Enter 다음 문장 · 마지막 문장에서 대조 마치기 · ← → 문장 이동"}
         </p>
       </section>
       <button
         className={`${s.primary} ${s.full} ${s.sheetContinue}`}
         onClick={onNext}
       >
-        대조 마치기 · 계속
+        {student ? "살펴보기 마치고 계속" : "대조 마치기 · 계속"}
       </button>
     </dialog>
   );

@@ -33,7 +33,13 @@ import {
   FadingRelearnModal,
   FadingRelearnStatus,
 } from "@/components/fading/FadingRelearnCheck";
-import { curriculumName, dueLabel } from "@/components/fading/labels";
+import {
+  curriculumName,
+  dueLabel,
+  studentCurriculumName,
+  studentDateLabel,
+  studentDueLabel,
+} from "@/components/fading/labels";
 import { DailyStudy } from "./ExplorerStudyBook";
 import { ExplorerMath } from "./ExplorerMath";
 import f from "@/components/fading/fading.module.css";
@@ -76,20 +82,38 @@ function DailyPlanCards({
   preview,
   onStart,
   startId,
+  student = false,
 }: {
   plan: FadingDailyPlan;
   busy: boolean;
   preview: boolean;
   onStart: (activity: FadingDailyActivity) => void;
   startId: string;
+  student?: boolean;
 }) {
   const next = plan.activities.find((activity) => activity.key === plan.next);
+  const bucketName = (bucket: keyof typeof bucketNames) =>
+    student
+      ? {
+          review: "다시 만나기",
+          prerequisite: "먼저 떠올려 보기",
+          progress: "새로 배우기",
+        }[bucket]
+      : bucketNames[bucket];
   return (
     <section className={s.daily} aria-label="오늘의 자동 학습 계획">
       <h3>오늘의 학습</h3>
       <p className={s.note}>
-        기본 분량 {plan.counts.done} / {plan.quota.total}개 · 오늘 배정{" "}
-        {plan.counts.total}개
+        {student ? (
+          <>
+            오늘 공부 {plan.counts.done} / {plan.counts.total}개
+          </>
+        ) : (
+          <>
+            기본 분량 {plan.counts.done} / {plan.quota.total}개 · 오늘 배정{" "}
+            {plan.counts.total}개
+          </>
+        )}
       </p>
       <dl className={s.dailyCounts}>
         <div>
@@ -117,20 +141,20 @@ function DailyPlanCards({
           </dd>
         </div>
       </dl>
-      {plan.held.recalls > 0 ? (
+      {!student && plan.held.recalls > 0 ? (
         <p className={s.note}>
           분량 밖에 복습할 개념 {plan.held.recalls}묶음 · {plan.held.prompts}
           문장이 남아 있어요.
         </p>
       ) : null}
-      {plan.quota.over > 0 ? (
+      {!student && plan.quota.over > 0 ? (
         <p className={s.note}>
           진행 중인 학습을 포함해 기본 분량보다 {plan.quota.over}개 많아요.
         </p>
       ) : null}
       {next ? (
         <div className={s.nextCard}>
-          <p className={s.eyebrow}>{bucketNames[next.bucket]}</p>
+          <p className={s.eyebrow}>{bucketName(next.bucket)}</p>
           <strong>
             <ExplorerMath
               text={
@@ -140,7 +164,9 @@ function DailyPlanCards({
               }
             />
           </strong>
-          <p className={s.note}>{next.reason.text}</p>
+          <p className={s.note}>
+            {student ? "차례대로 공부를 이어 가요." : next.reason.text}
+          </p>
           <button
             id={startId}
             type="button"
@@ -158,10 +184,14 @@ function DailyPlanCards({
       ) : (
         <p className={s.result}>
           {plan.status === "done"
-            ? "오늘 배정된 학습을 마쳤어요."
+            ? student
+              ? "오늘 공부를 마쳤어요."
+              : "오늘 배정된 학습을 마쳤어요."
             : plan.status === "short"
               ? "지금 할 수 있는 학습을 마쳤어요."
-              : "지금 배정된 학습이 없어요."}
+              : student
+                ? "지금 할 공부를 모두 마쳤어요."
+                : "지금 배정된 학습이 없어요."}
         </p>
       )}
       <details className={s.prerequisites}>
@@ -175,7 +205,7 @@ function DailyPlanCards({
             >
               <div>
                 <span className={s.eyebrow}>
-                  {bucketNames[activity.bucket]} ·{" "}
+                  {bucketName(activity.bucket)} ·{" "}
                   {activity.state === "done"
                     ? "완료"
                     : activity.state === "active"
@@ -193,7 +223,11 @@ function DailyPlanCards({
                     }
                   />
                 </strong>
-                <p className={s.note}>{activity.reason.text}</p>
+                <p className={s.note}>
+                  {student
+                    ? "차례대로 공부를 이어 가요."
+                    : activity.reason.text}
+                </p>
               </div>
               <span className={s.activityCount}>
                 {activity.done} /{" "}
@@ -210,21 +244,40 @@ function DailyPlanCards({
       </details>
       {plan.shortfall.map((short, index) => (
         <p className={s.note} key={`${short.bucket}-${index}`}>
-          {bucketNames[short.bucket]}: {short.reason}
+          {student ? (
+            "지금 할 수 있는 공부부터 이어 가요."
+          ) : (
+            <>
+              {bucketNames[short.bucket]}: {short.reason}
+            </>
+          )}
         </p>
       ))}
       {plan.prerequisite ? (
         <details className={s.prerequisites}>
-          <summary>선수 개념 살펴보기</summary>
+          <summary>
+            {student ? "먼저 배운 내용 살펴보기" : "선수 개념 살펴보기"}
+          </summary>
           <p className={s.note}>
-            목표: <ExplorerMath text={plan.prerequisite.target.title} />
+            {student ? "이번에 배울 내용" : "목표"}:{" "}
+            <ExplorerMath
+              text={(student
+                ? studentCurriculumName
+                : (value: string) => value)(plan.prerequisite.target.title)}
+            />
           </p>
           {plan.prerequisite.coverage.status === "unknown" ? (
             <p className={s.note}>
-              이 단원에 확인된 선수 개념 연결이 아직 없어요.
+              {student
+                ? "이 단원부터 차근차근 배워요."
+                : "이 단원에 확인된 선수 개념 연결이 아직 없어요."}
             </p>
           ) : plan.prerequisite.coverage.status === "partial" ? (
-            <p className={s.note}>일부 선수 개념의 연결만 확인돼 있어요.</p>
+            <p className={s.note}>
+              {student
+                ? "먼저 배운 내용을 함께 떠올려 봐요."
+                : "일부 선수 개념의 연결만 확인돼 있어요."}
+            </p>
           ) : null}
           <ul className={s.concepts}>
             {plan.prerequisite.links.map((link, index) => (
@@ -232,15 +285,21 @@ function DailyPlanCards({
                 <strong>
                   <ExplorerMath text={link.prerequisite.title} />
                 </strong>
-                {link.reason ? <p className={s.note}>{link.reason}</p> : null}
-                <p className={s.note}>
-                  개념 기억: {evidenceNames[link.evidence.fading.status]} · 탐험
-                  카드: {evidenceNames[link.evidence.card.status]} · 문제 풀이:{" "}
-                  {evidenceNames[link.evidence.course.status]}
-                </p>
+                {link.reason && !student ? (
+                  <p className={s.note}>{link.reason}</p>
+                ) : null}
+                {!student ? (
+                  <p className={s.note}>
+                    개념 기억: {evidenceNames[link.evidence.fading.status]} ·
+                    탐험 카드: {evidenceNames[link.evidence.card.status]} · 문제
+                    풀이: {evidenceNames[link.evidence.course.status]}
+                  </p>
+                ) : null}
                 {link.mapping === "unmapped" ? (
                   <p className={s.note}>
-                    바로 시작할 개념 자료는 아직 연결되지 않았어요.
+                    {student
+                      ? "지금 할 수 있는 공부부터 이어 가요."
+                      : "바로 시작할 개념 자료는 아직 연결되지 않았어요."}
                   </p>
                 ) : null}
               </li>
@@ -260,6 +319,7 @@ export default function ExplorerConceptMemory({
   studentId,
   preview = false,
   studyBook = false,
+  student = false,
   busy: explorerBusy = false,
   onSessionChange,
   onAccessFailure,
@@ -273,6 +333,7 @@ export default function ExplorerConceptMemory({
   studentId?: string;
   preview?: boolean;
   studyBook?: boolean;
+  student?: boolean;
   busy?: boolean;
   onSessionChange?: (active: boolean) => void;
   onAccessFailure?: (error: FadingSourceError) => void;
@@ -520,9 +581,14 @@ export default function ExplorerConceptMemory({
             </p>
           ) : null}
           {!practice ? (
-            <FadingRelearnStatus controller={relearn} allowStart={false} />
+            <FadingRelearnStatus
+              student={student}
+              controller={relearn}
+              allowStart={false}
+            />
           ) : null}
           <FadingSessionView
+            student={student}
             key={sessionKey}
             source={source}
             state={sessionState}
@@ -576,7 +642,7 @@ export default function ExplorerConceptMemory({
             </div>
           ) : null}
           {relearnController ? null : (
-            <FadingRelearnModal controller={relearn} />
+            <FadingRelearnModal student={student} controller={relearn} />
           )}
         </div>
       </div>
@@ -593,7 +659,9 @@ export default function ExplorerConceptMemory({
             </button>
           </div>
         ) : null}
-        {relearnController ? null : <FadingRelearnModal controller={relearn} />}
+        {relearnController ? null : (
+          <FadingRelearnModal student={student} controller={relearn} />
+        )}
         {failure ? (
           <div role="alert" className={s.failure}>
             <p>{failure}</p>
@@ -666,8 +734,10 @@ export default function ExplorerConceptMemory({
       </header>
       <p className={s.note}>먼저 떠올려 보고, 빈칸에 직접 답을 써 보세요.</p>
       {preview ? <p className={s.note}>미리 보기 · 저장되지 않음</p> : null}
-      <FadingRelearnStatus controller={relearn} />
-      {relearnController ? null : <FadingRelearnModal controller={relearn} />}
+      <FadingRelearnStatus student={student} controller={relearn} />
+      {relearnController ? null : (
+        <FadingRelearnModal student={student} controller={relearn} />
+      )}
       {!source ? (
         <p role="status" className={s.note}>
           미리 보기용 개념 자료를 준비해 주세요.
@@ -715,6 +785,7 @@ export default function ExplorerConceptMemory({
               </div>
             ) : dailyPlan ? (
               <DailyPlanCards
+                student={student}
                 plan={dailyPlan}
                 busy={disabled || dailyBusy}
                 preview={preview}
@@ -740,7 +811,18 @@ export default function ExplorerConceptMemory({
           </div>
           {state.receipt ? (
             <p role="status" className={s.result}>
-              복습 기록을 저장했어요. 다음 복습은 {state.receipt.dueOn}이에요.
+              {student ? (
+                <>
+                  복습 기록을 저장했어요.{" "}
+                  {studentDateLabel(state.receipt.dueOn, state.today)} 다시
+                  만나요.
+                </>
+              ) : (
+                <>
+                  복습 기록을 저장했어요. 다음 복습은 {state.receipt.dueOn}
+                  이에요.
+                </>
+              )}
             </p>
           ) : null}
           <div className={s.actions}>
@@ -767,7 +849,9 @@ export default function ExplorerConceptMemory({
                 {dailySource?.dailyPlan
                   ? "복습과 새 학습은 오늘 계획에서 이어 가요."
                   : state.summary.nextReview
-                    ? `다음 개념 복습은 ${state.summary.nextReview.dueOn}이에요.`
+                    ? student
+                      ? `${studentDateLabel(state.summary.nextReview.dueOn, state.today)} 다시 만나요.`
+                      : `다음 개념 복습은 ${state.summary.nextReview.dueOn}이에요.`
                     : "오늘 복습할 개념이 없어요. 배울 개념을 골라 보세요."}
               </p>
             )}
@@ -830,11 +914,17 @@ export default function ExplorerConceptMemory({
                     return (
                       <section key={section.key} className={s.unit}>
                         <h3>
-                          <ExplorerMath text={curriculumName(section.unit)} />
+                          <ExplorerMath
+                            text={(student
+                              ? studentCurriculumName
+                              : curriculumName)(section.unit)}
+                          />
                         </h3>
                         <p className={s.note}>
                           <ExplorerMath
-                            text={curriculumName(section.chapter)}
+                            text={(student
+                              ? studentCurriculumName
+                              : curriculumName)(section.chapter)}
                           />
                         </p>
                         <ul className={s.concepts}>
@@ -852,10 +942,16 @@ export default function ExplorerConceptMemory({
                                     />
                                   </strong>
                                   <p className={s.note}>
-                                    {concept.level} · {concept.ordinal}/
-                                    {concept.siblings} ·{" "}
+                                    {!student ? (
+                                      <>
+                                        {concept.level} · {concept.ordinal}/
+                                        {concept.siblings} ·{" "}
+                                      </>
+                                    ) : null}
                                     {concept.status
-                                      ? dueLabel(concept.status.daysUntil)
+                                      ? (student ? studentDueLabel : dueLabel)(
+                                          concept.status.daysUntil,
+                                        )
                                       : "아직 고르지 않은 개념"}
                                   </p>
                                 </div>
@@ -920,7 +1016,9 @@ export default function ExplorerConceptMemory({
           dailyExplorerNote: dailyFailure
             ? "오늘 계획을 다시 불러온 뒤 탐험을 시작할 수 있어요."
             : !dailyPlan
-              ? "오늘 학습 분량을 확인하고 있어요."
+              ? student
+                ? "오늘 공부를 준비하고 있어요."
+                : "오늘 학습 분량을 확인하고 있어요."
               : (dailyPlan.activities.find(
                   (activity) =>
                     activity.kind === "practice" &&

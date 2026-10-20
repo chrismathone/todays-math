@@ -7,12 +7,21 @@ import type { FadingSource } from "@/lib/fading/source";
 import type { FadingCatalog } from "@/contracts/fadingApi.contract";
 import { FadingIcon } from "./FadingIcon";
 import { FadingHomeHistory } from "./FadingHomeHistory";
-import { curriculumName, dueLabel, stepNames } from "./labels";
+import {
+  curriculumName as defaultCurriculumName,
+  dueLabel as defaultDueLabel,
+  stepNames as defaultStepNames,
+  studentCurriculumName,
+  studentDueLabel,
+  studentStepNames,
+  studentDateLabel,
+} from "./labels";
 import { fadingRiskTone } from "./riskAppearance";
 import { FadingTerms } from "./FadingTerms";
 import s from "./fading.module.css";
 
 export function FadingHome({
+  student = false,
   state,
   busy,
   onCatalog,
@@ -20,6 +29,7 @@ export function FadingHome({
   onMode,
   source,
 }: {
+  student?: boolean;
   state: FadingState;
   busy: boolean;
   onCatalog: () => void;
@@ -27,6 +37,11 @@ export function FadingHome({
   onMode: (on: boolean) => void;
   source: FadingSource;
 }) {
+  const curriculumName = student
+    ? studentCurriculumName
+    : defaultCurriculumName;
+  const stepNames = student ? studentStepNames : defaultStepNames;
+  const dueLabel = student ? studentDueLabel : defaultDueLabel;
   const [all, setAll] = useState(false);
   const [recommendations, setRecommendations] = useState<FadingCatalog | null>(
     null,
@@ -102,14 +117,18 @@ export function FadingHome({
             </svg>
           </span>
           <h2>오늘 할 복습을 마쳤어요</h2>
-          <p>자가 평가까지 마친 풀이가 오늘의 기록으로 남았어요.</p>
+          <p>
+            {student
+              ? "공부를 마치고 고른 느낌도 함께 기록했어요."
+              : "자가 평가까지 마친 풀이가 오늘의 기록으로 남았어요."}
+          </p>
           <div className={s.completedMetrics}>
             <div>
               <span>오늘 한 복습</span>
               <strong>{summary.plan.done}개</strong>
             </div>
             <div>
-              <span>다시 아닌 평가</span>
+              <span>{student ? "다시 말고 고른 것" : "다시 아닌 평가"}</span>
               <strong>{summary.todayCount.passed}개</strong>
             </div>
             <div>
@@ -237,14 +256,22 @@ export function FadingHome({
             </div>
             <strong>
               {summary.nextReview
-                ? (summary.nextReview.daysUntil === 1
-                    ? "내일 "
-                    : summary.nextReview.daysUntil + "일 뒤 ") +
+                ? (student
+                    ? studentDueLabel(summary.nextReview.daysUntil) + " "
+                    : summary.nextReview.daysUntil === 1
+                      ? "내일 "
+                      : summary.nextReview.daysUntil + "일 뒤 ") +
                   summary.nextReview.count +
                   "개"
                 : "예약된 복습이 없습니다"}
             </strong>
-            {summary.nextReview && <p>{summary.nextReview.dueOn}</p>}
+            {summary.nextReview && (
+              <p>
+                {student
+                  ? studentDateLabel(summary.nextReview.dueOn, state.today)
+                  : summary.nextReview.dueOn}
+              </p>
+            )}
           </section>
           <section>
             <div className={s.sectionTitle}>
@@ -294,7 +321,9 @@ export function FadingHome({
                         ? "그 학년의 첫 단원부터 살펴보세요"
                         : i === 1
                           ? "핵심어와 수식을 함께 읽어요"
-                          : "네 단계 뒤에 자가 평가로 마쳐요"}
+                          : student
+                            ? "네 단계를 마치면 느낌을 골라요"
+                            : "네 단계 뒤에 자가 평가로 마쳐요"}
                     </p>
                   </div>
                 </div>
@@ -314,14 +343,14 @@ export function FadingHome({
                 .map((item) => (
                   <article className={s.recommendCard} key={item.id}>
                     <span className={s.sectionTag}>
-                      {recommendations.grade} ·{" "}
+                      {!student && <>{recommendations.grade} · </>}
                       {curriculumName(recommendations.sections[0]!.chapter)}
                     </span>
                     <h3>
-                      {curriculumName(recommendations.sections[0]!.unit)} ·{" "}
-                      {item.level}
+                      {curriculumName(recommendations.sections[0]!.unit)}
+                      {!student && <> · {item.level}</>}
                     </h3>
-                    <FadingTerms terms={item.terms} />
+                    <FadingTerms student={student} terms={item.terms} />
                     <div className={s.formulaPreview}>
                       <span className={s.caps}>개념 미리 보기</span>
                       <ExplorerMath text={item.terms[0]!} />
@@ -366,7 +395,7 @@ export function FadingHome({
             <section className={s.homeQueue}>
               <div className={s.sectionTitle}>
                 <h2>
-                  오늘의 복습 대기열{" "}
+                  {student ? "오늘 복습할 개념" : "오늘의 복습 대기열"}{" "}
                   <span className={s.queueCount}>{ids.length}개</span>
                 </h2>
                 <button
@@ -392,22 +421,28 @@ export function FadingHome({
                         <span className={s.riskRail} />
                         <div className={s.queueMeta}>
                           <span className={s.sectionTag}>
-                            {section[0]} · {curriculumName(section[1])}
+                            {!student && <>{section[0]} · </>}
+                            {curriculumName(section[1] ?? "")}
                           </span>
                           <span className={s.code}>
                             {dueLabel(item.daysUntil)}
                           </span>
-                          {item.risk !== null && (
+                          {!student && item.risk !== null && (
                             <span className={s.riskTag}>
                               망각 위험 {toPercent(item.risk)}% · 추정
                             </span>
                           )}
                         </div>
                         <h3>
-                          {curriculumName(section.at(-1))} · {item.level} ·{" "}
-                          {item.ordinal}/{item.siblings}
+                          {curriculumName(section.at(-1) ?? "")}
+                          {!student && (
+                            <>
+                              {" "}
+                              · {item.level} · {item.ordinal}/{item.siblings}
+                            </>
+                          )}
                         </h3>
-                        <FadingTerms terms={item.terms} />
+                        <FadingTerms student={student} terms={item.terms} />
                         <div className={s.queueAction}>
                           <span>
                             <FadingIcon name="erase" /> {item.step}단계 ·{" "}
@@ -450,7 +485,9 @@ export function FadingHome({
             <section className={s.pipeline}>
               <div className={s.sectionTitle}>
                 <div>
-                  <h2>점진적 개념 소거</h2>
+                  <h2>
+                    {student ? "단서를 지우며 연습해요" : "점진적 개념 소거"}
+                  </h2>
                   <p className={s.small}>문장에서 단서를 조금씩 지워요</p>
                 </div>
                 <FadingIcon name="erase" />
@@ -469,7 +506,7 @@ export function FadingHome({
                 ))}
               </div>
             </section>
-            <FadingHomeHistory state={state} />
+            <FadingHomeHistory student={student} state={state} />
           </div>
         )}
         <aside className={s.homeAside}>
@@ -515,10 +552,21 @@ export function FadingHome({
           {showDailyDetails &&
             (summary.queue.held.length > 0 || summary.mode === "all") && (
               <section className={`${s.card} ${s.stack}`}>
-                <h2 className={s.subheading}>복습 분량을 정해요</h2>
+                <h2 className={s.subheading}>
+                  {student ? "어떻게 복습할까요?" : "복습 분량을 정해요"}
+                </h2>
                 <p className={s.muted}>
-                  나눠서 하면 하루 분량은 문장 {state.cap}개까지입니다. 처음
-                  배우는 개념도 함께 셉니다.
+                  {student ? (
+                    <>
+                      나눠서 하면 오늘 문장 {state.cap}개까지 연습해요. 처음
+                      배우는 개념도 함께 세요.
+                    </>
+                  ) : (
+                    <>
+                      나눠서 하면 하루 분량은 문장 {state.cap}개까지입니다. 처음
+                      배우는 개념도 함께 셉니다.
+                    </>
+                  )}
                 </p>
                 <div className={s.left}>
                   <button
