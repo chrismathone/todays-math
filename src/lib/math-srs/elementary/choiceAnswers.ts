@@ -39,7 +39,10 @@ function answerFormat(raw: string) {
       : /\d\.\d/.test(text)
         ? "decimal"
         : "integer",
-    unit: text.match(/([A-Za-z가-힣²³°%]+)$/)?.[1] ?? "",
+    unit:
+      parseCourseAnswerQuantity(text)?.unit?.name ??
+      text.replaceAll("$", "").match(/([A-Za-z가-힣²³°%]+)$/)?.[1] ??
+      "",
   };
 }
 
@@ -51,7 +54,7 @@ function nearbyAnswers(answer: string): string[] {
   const degree = /^\$([+-]?\d+)\^\\circ\$$/.exec(text);
   if (degree) {
     const value = Number(degree[1]);
-    return [90, -90, 45, -45, 180, -180]
+    return [1, -1, 2, -2, 3, -3, 90, -90, 45, -45, 180, -180]
       .map((offset) => value + offset)
       .filter((candidate) => candidate > 0 && candidate <= 360)
       .map((candidate) => `$${candidate}^\\circ$`);
