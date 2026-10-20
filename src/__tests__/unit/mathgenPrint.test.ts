@@ -20,6 +20,7 @@ describe("restored Mathgen options and measured pagination", () => {
       layoutMode: "spacing",
       problemsPerColumn: 3,
       spacing: 18,
+      smartSpacing: false,
       showAnswers: false,
       quickAnswerOnly: false,
       showDate: true,
