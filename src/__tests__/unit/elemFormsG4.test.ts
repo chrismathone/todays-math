@@ -356,9 +356,9 @@ describe("초4 1-1-5 조", () => {
       const p = generateElementaryForm(unit, seed, "08");
       const m = p.content.match(/\$(\d+)\$조와 \$(\d+)\$억 중 더 큰 수/);
       expect(m, p.content).toBeTruthy();
-      expect(answerInt(p.answer)).toBe(
-        Math.max(Number(m![1]) * 1000000000000, Number(m![2]) * 100000000),
-      );
+      // 답은 물은 꼴(«$a$조» · «$b$억»)로 낸다(2026-10-21 교차 검수 5회차)
+      const jo = Number(m![1]) * 1000000000000, eok = Number(m![2]) * 100000000;
+      expect(p.answer).toBe(jo > eok ? `$${m![1]}$조` : `$${m![2]}$억`);
     }
   });
 

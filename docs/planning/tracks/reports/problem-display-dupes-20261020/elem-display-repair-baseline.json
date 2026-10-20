@@ -3,10 +3,10 @@
  "baseCommit": "1b3f05e54",
  "agreedWith": "Codex gpt-6-astra xhigh 검토(2026-10-20) — 문형별 결론은 display-survey/codex/reply-engine.md(저장소 밖)",
  "sourceSha256": {
-  "src/lib/elementary/g3.ts": "749a972ade0fbc12276696d6fda5d245a597686003de0b76202743a01a0a7155",
-  "src/lib/elementary/g4.ts": "0d5383ee22489d5d171072c8b927f1c6bfac8e73d2aa0822ac5c353128e1211b",
-  "src/lib/elementary/g5.ts": "24c011598bef458c70d6c240aac08a95837ccc325698920f5f5adb8be793d4b2",
-  "src/lib/elementary/g6.ts": "632672bcdfaee8c9667b57bded1126f344a306d65beee37cd0166face253a982"
+  "src/lib/elementary/g3.ts": "92385cf9a83bf479ef3e0672b4dd9c8ccd9bf5ae61c6b08cb50362f8471663f9",
+  "src/lib/elementary/g4.ts": "e96606ce596c927d967b7ebd57ed84d296f3a35ec5b224dddf0596c3d3c8e19f",
+  "src/lib/elementary/g5.ts": "614bd064087cc6e3a5b8941e10342e76199fe0cc87b59bdb17bf37a086055866",
+  "src/lib/elementary/g6.ts": "0305b1a96b3344b7b77e9aef500708f283f3a4d180361a45f64da0e3ddc22efc"
  },
  "changes": [
   {
@@ -3002,6 +3002,479 @@
     }
    ],
    "afterRowSha256": "28e95e7ae5f1bf3567ff149e9354896d12e94f4ff09700e442d5fa8561760883"
+  },
+  {
+   "familyKey": "elem:초3|1-2-2 각, 직각 알아보기|10",
+   "beforeRow": [
+    "초3",
+    "1-2-2 각, 직각 알아보기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-2 평면도형",
+     "section": "1-2-2 각, 직각 알아보기",
+     "orderIndex": 136,
+     "content": "가, 나, 다 각을 각각 이루는 변이 2개일 때, 변은 모두 몇 개인지 쓰시오.",
+     "answer": "$6$",
+     "solution": "각 $3$개에 변이 각각 2개이므로 $3\\times2=6$ 개입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 10,
+      "rows": 2,
+      "dots": [
+       {
+        "c": 1,
+        "r": 2,
+        "label": "가",
+        "side": "down"
+       },
+       {
+        "c": 2,
+        "r": 2,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 1,
+        "r": 0,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 5,
+        "r": 2,
+        "label": "나",
+        "side": "down"
+       },
+       {
+        "c": 4,
+        "r": 0,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 6,
+        "r": 0,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 9,
+        "r": 2,
+        "label": "다",
+        "side": "down"
+       },
+       {
+        "c": 10,
+        "r": 1,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 8,
+        "r": 1,
+        "label": "",
+        "side": "down"
+       }
+      ],
+      "lines": [
+       [
+        [
+         1,
+         2
+        ],
+        [
+         2,
+         2
+        ]
+       ],
+       [
+        [
+         1,
+         2
+        ],
+        [
+         1,
+         0
+        ]
+       ],
+       [
+        [
+         5,
+         2
+        ],
+        [
+         4,
+         0
+        ]
+       ],
+       [
+        [
+         5,
+         2
+        ],
+        [
+         6,
+         0
+        ]
+       ],
+       [
+        [
+         9,
+         2
+        ],
+        [
+         10,
+         1
+        ]
+       ],
+       [
+        [
+         9,
+         2
+        ],
+        [
+         8,
+         1
+        ]
+       ]
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "9367d1a1d55b0311bd34643c525cfae5138b7760072e36d776557a16eaefbf48"
+  },
+  {
+   "familyKey": "elem:초3|1-2-2 각, 직각 알아보기|10",
+   "beforeRow": [
+    "초3",
+    "1-2-2 각, 직각 알아보기",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-2 평면도형",
+     "section": "1-2-2 각, 직각 알아보기",
+     "orderIndex": 136,
+     "content": "가, 나, 다 각을 각각 이루는 변이 2개일 때, 변은 모두 몇 개인지 쓰시오.",
+     "answer": "$6$",
+     "solution": "각 $3$개에 변이 각각 2개이므로 $3\\times2=6$ 개입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 10,
+      "rows": 2,
+      "dots": [
+       {
+        "c": 1,
+        "r": 2,
+        "label": "가",
+        "side": "down"
+       },
+       {
+        "c": 2,
+        "r": 2,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 0,
+        "r": 0,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 5,
+        "r": 2,
+        "label": "나",
+        "side": "down"
+       },
+       {
+        "c": 4,
+        "r": 2,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 5,
+        "r": 0,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 9,
+        "r": 2,
+        "label": "다",
+        "side": "down"
+       },
+       {
+        "c": 10,
+        "r": 2,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 9,
+        "r": 0,
+        "label": "",
+        "side": "down"
+       }
+      ],
+      "lines": [
+       [
+        [
+         1,
+         2
+        ],
+        [
+         2,
+         2
+        ]
+       ],
+       [
+        [
+         1,
+         2
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       [
+        [
+         5,
+         2
+        ],
+        [
+         4,
+         2
+        ]
+       ],
+       [
+        [
+         5,
+         2
+        ],
+        [
+         5,
+         0
+        ]
+       ],
+       [
+        [
+         9,
+         2
+        ],
+        [
+         10,
+         2
+        ]
+       ],
+       [
+        [
+         9,
+         2
+        ],
+        [
+         9,
+         0
+        ]
+       ]
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "6f3473b46c94ec00dd2807a4317e4dc5c861e985fe5293b9514046376b1a73f9"
+  },
+  {
+   "familyKey": "elem:초3|1-2-2 각, 직각 알아보기|10",
+   "beforeRow": [
+    "초3",
+    "1-2-2 각, 직각 알아보기",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-2 평면도형",
+     "section": "1-2-2 각, 직각 알아보기",
+     "orderIndex": 136,
+     "content": "가, 나, 다, 라 각을 각각 이루는 변이 2개일 때, 변은 모두 몇 개인지 쓰시오.",
+     "answer": "$8$",
+     "solution": "각 $4$개에 변이 각각 2개이므로 $4\\times2=8$ 개입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 8,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 1,
+        "r": 2,
+        "label": "가",
+        "side": "down"
+       },
+       {
+        "c": 0,
+        "r": 1,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 2,
+        "r": 1,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 4,
+        "r": 2,
+        "label": "나",
+        "side": "down"
+       },
+       {
+        "c": 5,
+        "r": 2,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 3,
+        "r": 1,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 7,
+        "r": 2,
+        "label": "다",
+        "side": "down"
+       },
+       {
+        "c": 8,
+        "r": 2,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 6,
+        "r": 1,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 1,
+        "r": 6,
+        "label": "라",
+        "side": "down"
+       },
+       {
+        "c": 0,
+        "r": 6,
+        "label": "",
+        "side": "down"
+       },
+       {
+        "c": 2,
+        "r": 4,
+        "label": "",
+        "side": "down"
+       }
+      ],
+      "lines": [
+       [
+        [
+         1,
+         2
+        ],
+        [
+         0,
+         1
+        ]
+       ],
+       [
+        [
+         1,
+         2
+        ],
+        [
+         2,
+         1
+        ]
+       ],
+       [
+        [
+         4,
+         2
+        ],
+        [
+         5,
+         2
+        ]
+       ],
+       [
+        [
+         4,
+         2
+        ],
+        [
+         3,
+         1
+        ]
+       ],
+       [
+        [
+         7,
+         2
+        ],
+        [
+         8,
+         2
+        ]
+       ],
+       [
+        [
+         7,
+         2
+        ],
+        [
+         6,
+         1
+        ]
+       ],
+       [
+        [
+         1,
+         6
+        ],
+        [
+         0,
+         6
+        ]
+       ],
+       [
+        [
+         1,
+         6
+        ],
+        [
+         2,
+         4
+        ]
+       ]
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "aea905a55cc0935658ca7ef7aa5bb0f90617bf1de5746ad943203f069efc7c6c"
   },
   {
    "familyKey": "elem:초3|1-2-3 직각삼각형 알아보기|01",
@@ -10410,6 +10883,62 @@
    "afterRowSha256": "a26974c9cc69b5c7414a213d6e5873323405c80c1749de6edf87358a0d1d3966"
   },
   {
+   "familyKey": "elem:초3|1-6-1 똑같이 나누기|08",
+   "beforeRow": [
+    "초3",
+    "1-6-1 똑같이 나누기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-6 분수와 소수",
+     "section": "1-6-1 똑같이 나누기",
+     "orderIndex": 155,
+     "content": "그림처럼 전체를 똑같이 $7$조각으로 나누었습니다. 두 조각은 전체의 얼마인지 분수로 쓰시오.",
+     "answer": "$\\frac{2}{7}$",
+     "solution": "두 조각은 $\\frac{2}{7}$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "triRow",
+      "n": 7,
+      "filled": 2,
+      "fill": "#e0a87a"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "f2022d2d714681ada3c4ac3f6d0ae25dc389cd0bc7881bb3c3be9700352b5ffb"
+  },
+  {
+   "familyKey": "elem:초3|1-6-1 똑같이 나누기|08",
+   "beforeRow": [
+    "초3",
+    "1-6-1 똑같이 나누기",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-6 분수와 소수",
+     "section": "1-6-1 똑같이 나누기",
+     "orderIndex": 155,
+     "content": "그림처럼 전체를 똑같이 $8$조각으로 나누었습니다. 두 조각은 전체의 얼마인지 분수로 쓰시오.",
+     "answer": "$\\frac{2}{8}$",
+     "solution": "두 조각은 $\\frac{2}{8}$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "fracPie",
+      "n": 8,
+      "filled": 2,
+      "fill": "#c9b56a"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "f095ef275099aee1106b719234231c559d06466224b328c7e9415189f2c93efb"
+  },
+  {
    "familyKey": "elem:초3|2-1-1 (세 자리 수)×(한 자리 수) (1)|06",
    "beforeRow": [
     "초3",
@@ -10998,6 +11527,28 @@
    "afterRowSha256": "5cd8a2c04aac463973ed44e960f22f8559934e3df6343951c879ab8588138ac9"
   },
   {
+   "familyKey": "elem:초3|2-4-4 진분수와 가분수 알아보기|08",
+   "beforeRow": [
+    "초3",
+    "2-4-4 진분수와 가분수 알아보기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-4 분수",
+     "section": "2-4-4 진분수와 가분수 알아보기",
+     "orderIndex": 176,
+     "content": "$\\frac{5}{9}$ 은 가분수입니까? 예 또는 아니요로 쓰시오.",
+     "answer": "아니요",
+     "solution": "분자가 분모보다 작으므로 가분수가 아닙니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "15ac787268e2f3b91e8b4ea516c718fb6eed464ae8d531577f18b5d0329fc23a"
+  },
+  {
    "familyKey": "elem:초3|2-5-1 들이 비교하기|02",
    "beforeRow": [
     "초3",
@@ -11086,6 +11637,138 @@
    "afterRowSha256": "f5931a6ac5b0738185993bbb8b56a3c0617e75f799b112f5e6571cd738ca8f96"
   },
   {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|09",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "$1\\,\\mathrm{L}\\ 793\\,\\mathrm{mL}$ 과 $1848\\,\\mathrm{mL}$ 의 차는 몇 mL입니까?",
+     "answer": "$55$",
+     "solution": "$1848-1793=55$ 입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "697830630ea6a55e1ed9c266cea651a119d7e379701c8019ceb0aed2dd01f95c"
+  },
+  {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|09",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "$2\\,\\mathrm{L}\\ 599\\,\\mathrm{mL}$ 과 $2785\\,\\mathrm{mL}$ 의 차는 몇 mL입니까?",
+     "answer": "$186$",
+     "solution": "$2785-2599=186$ 입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "e1900258a0ecfa8dd1463047c7d8597284b961398b0de848bd8bd21950fd9cdf"
+  },
+  {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|09",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "$3\\,\\mathrm{L}\\ 710\\,\\mathrm{mL}$ 과 $4078\\,\\mathrm{mL}$ 의 차는 몇 mL입니까?",
+     "answer": "$368$",
+     "solution": "$4078-3710=368$ 입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "f71012adf991c0bbc76c720ae8132f14c76cb5ffea229067b3702b6a945d53dc"
+  },
+  {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|10",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "$2\\,\\mathrm{L}\\ 505\\,\\mathrm{mL}$ 과 $2417\\,\\mathrm{mL}$ 가운데 더 큰 값은 몇 mL입니까?",
+     "answer": "$2505$",
+     "solution": "둘을 mL 로 고치면 $2505$ 과 $2417$ 이므로 더 큰 값은 $2505$ mL입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "6cc9494f1cfe6d85d3d2775ae5e1b1d8958eeb72532991e1e9e84aeb86cc2ad4"
+  },
+  {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|10",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "$2\\,\\mathrm{L}\\ 457\\,\\mathrm{mL}$ 과 $2495\\,\\mathrm{mL}$ 가운데 더 큰 값은 몇 mL입니까?",
+     "answer": "$2495$",
+     "solution": "둘을 mL 로 고치면 $2457$ 과 $2495$ 이므로 더 큰 값은 $2495$ mL입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "08684d396bbc5fa51da80fe67cc949ec336575fc82f7b854e5415905699c61d5"
+  },
+  {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|10",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "$1\\,\\mathrm{L}\\ 610\\,\\mathrm{mL}$ 과 $1901\\,\\mathrm{mL}$ 가운데 더 큰 값은 몇 mL입니까?",
+     "answer": "$1901$",
+     "solution": "둘을 mL 로 고치면 $1610$ 과 $1901$ 이므로 더 큰 값은 $1901$ mL입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "4d653cd9d6d9492264a31a7d6c813f79843cf28a70e996701df4767d80a89455"
+  },
+  {
    "familyKey": "elem:초3|2-5-2 들이의 단위|02",
    "beforeRow": [
     "초3",
@@ -11128,6 +11811,138 @@
     }
    ],
    "afterRowSha256": "286368180b8e5dd77920fcc39dec51030dce66ac781640db5f72aae9c37aaaf2"
+  },
+  {
+   "familyKey": "elem:초3|2-5-2 들이의 단위|07",
+   "beforeRow": [
+    "초3",
+    "2-5-2 들이의 단위",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-2 들이의 단위",
+     "orderIndex": 180,
+     "content": "$2\\,\\mathrm{L}\\ 700\\,\\mathrm{mL}$ 과 $1\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$ 의 합은 몇 mL입니까?",
+     "answer": "$4500$",
+     "solution": "$2700+1800=4500$ 입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "bcd44c9865c83049cf55e11a80c9c1d48ebb726970e8595599abec7d7a38fc82"
+  },
+  {
+   "familyKey": "elem:초3|2-5-2 들이의 단위|07",
+   "beforeRow": [
+    "초3",
+    "2-5-2 들이의 단위",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-2 들이의 단위",
+     "orderIndex": 180,
+     "content": "$1\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$ 과 $2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$ 의 합은 몇 mL입니까?",
+     "answer": "$4200$",
+     "solution": "$1800+2400=4200$ 입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "797811f6c5bfd97292f115ffeb5deeafbb4a3d361ed5600c44de7d983af25e24"
+  },
+  {
+   "familyKey": "elem:초3|2-5-2 들이의 단위|07",
+   "beforeRow": [
+    "초3",
+    "2-5-2 들이의 단위",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-2 들이의 단위",
+     "orderIndex": 180,
+     "content": "$1\\,\\mathrm{L}\\ 600\\,\\mathrm{mL}$ 과 $1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$ 의 합은 몇 mL입니까?",
+     "answer": "$2900$",
+     "solution": "$1600+1300=2900$ 입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "05c1a556e0a577d0126b2af52ec4c1fe29654e7b9b53408f63f20ad0c5013467"
+  },
+  {
+   "familyKey": "elem:초3|2-5-2 들이의 단위|08",
+   "beforeRow": [
+    "초3",
+    "2-5-2 들이의 단위",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-2 들이의 단위",
+     "orderIndex": 180,
+     "content": "$4\\,\\mathrm{L}\\ 500\\,\\mathrm{mL}$ 과 $3\\,\\mathrm{L}\\ 700\\,\\mathrm{mL}$ 의 차는 몇 mL입니까?",
+     "answer": "$800$",
+     "solution": "$4500-3700=800$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "30a7f8a36650b652ffef04718d0b4ba6f76107b3a421defa4c1f7a71389d63bb"
+  },
+  {
+   "familyKey": "elem:초3|2-5-2 들이의 단위|08",
+   "beforeRow": [
+    "초3",
+    "2-5-2 들이의 단위",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-2 들이의 단위",
+     "orderIndex": 180,
+     "content": "$4\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$ 과 $3\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$ 의 차는 몇 mL입니까?",
+     "answer": "$1000$",
+     "solution": "$4300-3300=1000$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "ed622107b0575117c14fd7a692105f551d2c032be29db998dce3077be3167fac"
+  },
+  {
+   "familyKey": "elem:초3|2-5-2 들이의 단위|08",
+   "beforeRow": [
+    "초3",
+    "2-5-2 들이의 단위",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-2 들이의 단위",
+     "orderIndex": 180,
+     "content": "$4\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$ 과 $2\\,\\mathrm{L}\\ 600\\,\\mathrm{mL}$ 의 차는 몇 mL입니까?",
+     "answer": "$1800$",
+     "solution": "$4400-2600=1800$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "d779e9e097c7426f54d8a9d5d53d1b88c102ba8248a222018d9184d3ee21ab5a"
   },
   {
    "familyKey": "elem:초3|2-5-3 들이의 합과 차|02",
@@ -11262,6 +12077,270 @@
    "afterRowSha256": "f24442683b65907c2e23f7d4285bb3d514300bb60820a625214adef6a7de8e26"
   },
   {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|05",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$2\\,\\mathrm{L}\\ 361\\,\\mathrm{mL}$ 과 $3\\,\\mathrm{L}\\ 234\\,\\mathrm{mL}$ 에서 L끼리만 더한 값은 몇 L입니까?",
+     "answer": "$5$",
+     "solution": "$2+3=5$ 입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "96193c341a55954d4ddf7b6608e0ca6f158d9b27dce0f4f0bcf00dad3f94a8d0"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|05",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$3\\,\\mathrm{L}\\ 241\\,\\mathrm{mL}$ 과 $2\\,\\mathrm{L}\\ 364\\,\\mathrm{mL}$ 에서 L끼리만 더한 값은 몇 L입니까?",
+     "answer": "$5$",
+     "solution": "$3+2=5$ 입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "3427c86bf5fa6ac8619e53e18a04be906aaa59b590f95008fa587508652b70a0"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|05",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$3\\,\\mathrm{L}\\ 251\\,\\mathrm{mL}$ 과 $3\\,\\mathrm{L}\\ 357\\,\\mathrm{mL}$ 에서 L끼리만 더한 값은 몇 L입니까?",
+     "answer": "$6$",
+     "solution": "$3+3=6$ 입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "b5f96e7ad4db5138765f947bbdb26121d46bb115d832e826c935170ba6d2a7e9"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|06",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$2\\,\\mathrm{L}\\ 114\\,\\mathrm{mL}$ 과 $2\\,\\mathrm{L}\\ 122\\,\\mathrm{mL}$ 에서 mL끼리만 더한 값은 몇 mL입니까?",
+     "answer": "$236$",
+     "solution": "$114+122=236$ 입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "04c3dca8ab48ae19d4ee1095cb1d2f64bd3ddd0acb7c5b581fbcccb433858989"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|06",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$2\\,\\mathrm{L}\\ 398\\,\\mathrm{mL}$ 과 $3\\,\\mathrm{L}\\ 175\\,\\mathrm{mL}$ 에서 mL끼리만 더한 값은 몇 mL입니까?",
+     "answer": "$573$",
+     "solution": "$398+175=573$ 입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "c33ff89820cf6823e2f1dd6acb9f07538c17101575a0b491b74b82960f3aadef"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|06",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$2\\,\\mathrm{L}\\ 167\\,\\mathrm{mL}$ 과 $3\\,\\mathrm{L}\\ 159\\,\\mathrm{mL}$ 에서 mL끼리만 더한 값은 몇 mL입니까?",
+     "answer": "$326$",
+     "solution": "$167+159=326$ 입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "b9faa8904db23065f6fa2c9a467bdbf8b19128185e71a9db3c0c5c1678b60c28"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|07",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$2\\,\\mathrm{L}\\ 276\\,\\mathrm{mL}$ 과 $1\\,\\mathrm{L}\\ 532\\,\\mathrm{mL}$ 을 더할 때 mL에서 L으로 올림이 있습니까? 예 또는 아니요로 쓰시오.",
+     "answer": "아니요",
+     "solution": "mL끼리 더하면 $808$ 이므로 올림이 없습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "feaa24559ba0527dc843422d645989d53fa63da5eb09f75cb209504dc0b98857"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|07",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$3\\,\\mathrm{L}\\ 515\\,\\mathrm{mL}$ 과 $3\\,\\mathrm{L}\\ 793\\,\\mathrm{mL}$ 을 더할 때 mL에서 L으로 올림이 있습니까? 예 또는 아니요로 쓰시오.",
+     "answer": "예",
+     "solution": "mL끼리 더하면 $1308$ 이므로 올림이 있습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "082016301d19b1d9a1a954601b4ca5bfba442573869084c8e3e56b4ad6732f23"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|07",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$3\\,\\mathrm{L}\\ 262\\,\\mathrm{mL}$ 과 $2\\,\\mathrm{L}\\ 283\\,\\mathrm{mL}$ 을 더할 때 mL에서 L으로 올림이 있습니까? 예 또는 아니요로 쓰시오.",
+     "answer": "아니요",
+     "solution": "mL끼리 더하면 $545$ 이므로 올림이 없습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "5eeaaa1798ae63999463704363dffd7de0ee14e30c6d52f3774facf2ebc08477"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|10",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$6\\,\\mathrm{L}\\ 222\\,\\mathrm{mL}$ 에서 $3\\,\\mathrm{L}\\ 222\\,\\mathrm{mL}$ 을 뺄 때 L끼리만 빼면 몇 L입니까?",
+     "answer": "$3$",
+     "solution": "$6-3=3$ 입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "62c6d23e158d231442a8aad0cffc67e611d32d23ef03fcd2df58d2eacc7fe13b"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|10",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$6\\,\\mathrm{L}\\ 114\\,\\mathrm{mL}$ 에서 $5\\,\\mathrm{L}\\ 114\\,\\mathrm{mL}$ 을 뺄 때 L끼리만 빼면 몇 L입니까?",
+     "answer": "$1$",
+     "solution": "$6-5=1$ 입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "d0f110e259dc976c53d7b74a622f5d32c192269788083a11172b9399ee251f65"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|10",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "$6\\,\\mathrm{L}\\ 364\\,\\mathrm{mL}$ 에서 $1\\,\\mathrm{L}\\ 364\\,\\mathrm{mL}$ 을 뺄 때 L끼리만 빼면 몇 L입니까?",
+     "answer": "$5$",
+     "solution": "$6-1=5$ 입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "726ad58a0fe24146c032ed1efa4086da7f99ea07e4002cddeac139dfa20e6326"
+  },
+  {
    "familyKey": "elem:초3|2-5-3 들이의 합과 차|11",
    "beforeRow": [
     "초3",
@@ -11326,6 +12405,138 @@
     }
    ],
    "afterRowSha256": "ad4a4aad89f2d66db39c8c5cbe8c6546e5132e75f61143c49c077b1921b5ae52"
+  },
+  {
+   "familyKey": "elem:초3|2-5-4 무게 비교하기|05",
+   "beforeRow": [
+    "초3",
+    "2-5-4 무게 비교하기",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-4 무게 비교하기",
+     "orderIndex": 182,
+     "content": "$2\\,\\mathrm{kg}\\ 133\\,\\mathrm{g}$ 는 몇 g입니까?",
+     "answer": "$2133$",
+     "solution": "$1\\,\\mathrm{kg}=1000\\,\\mathrm{g}$ 이므로 $2133$ g입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "4f2edd18183fbcd4ceb6db9b38bcef4c8792b23165c14ba430abae7d4fd21be5"
+  },
+  {
+   "familyKey": "elem:초3|2-5-4 무게 비교하기|05",
+   "beforeRow": [
+    "초3",
+    "2-5-4 무게 비교하기",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-4 무게 비교하기",
+     "orderIndex": 182,
+     "content": "$2\\,\\mathrm{kg}\\ 476\\,\\mathrm{g}$ 는 몇 g입니까?",
+     "answer": "$2476$",
+     "solution": "$1\\,\\mathrm{kg}=1000\\,\\mathrm{g}$ 이므로 $2476$ g입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "12c5604c4969636e0c24c055dabb102ce523ad6d448f3aa5ad6fb35b9fb317a3"
+  },
+  {
+   "familyKey": "elem:초3|2-5-4 무게 비교하기|05",
+   "beforeRow": [
+    "초3",
+    "2-5-4 무게 비교하기",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-4 무게 비교하기",
+     "orderIndex": 182,
+     "content": "$3\\,\\mathrm{kg}\\ 605\\,\\mathrm{g}$ 는 몇 g입니까?",
+     "answer": "$3605$",
+     "solution": "$1\\,\\mathrm{kg}=1000\\,\\mathrm{g}$ 이므로 $3605$ g입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "b4e0942c42fc9e3087c16a438c199d1af71541899071f6f93fb3c7f154cbfb9e"
+  },
+  {
+   "familyKey": "elem:초3|2-5-6 무게의 합과 차|08",
+   "beforeRow": [
+    "초3",
+    "2-5-6 무게의 합과 차",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-6 무게의 합과 차",
+     "orderIndex": 184,
+     "content": "$3\\,\\mathrm{kg}\\ 636\\,\\mathrm{g}$ 는 몇 g입니까?",
+     "answer": "$3636$",
+     "solution": "$1000\\times3+636=3636$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "b67b1bc7665f739c56816c4731adba3ab8f9717bb11fab6f50e81328d04e2d54"
+  },
+  {
+   "familyKey": "elem:초3|2-5-6 무게의 합과 차|08",
+   "beforeRow": [
+    "초3",
+    "2-5-6 무게의 합과 차",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-6 무게의 합과 차",
+     "orderIndex": 184,
+     "content": "$3\\,\\mathrm{kg}\\ 242\\,\\mathrm{g}$ 는 몇 g입니까?",
+     "answer": "$3242$",
+     "solution": "$1000\\times3+242=3242$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "01734ceaef83bcc525cb2caa2b333fe7e5f593862e8f5e47cea159c9c2fce12d"
+  },
+  {
+   "familyKey": "elem:초3|2-5-6 무게의 합과 차|08",
+   "beforeRow": [
+    "초3",
+    "2-5-6 무게의 합과 차",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-6 무게의 합과 차",
+     "orderIndex": 184,
+     "content": "$3\\,\\mathrm{kg}\\ 573\\,\\mathrm{g}$ 는 몇 g입니까?",
+     "answer": "$3573$",
+     "solution": "$1000\\times3+573=3573$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "303599e968ed788549d31dd8a7e3a0b15b3af97cdb08e644e0e7d4eaacf8d158"
   },
   {
    "familyKey": "elem:초3|2-6-1 그림그래프 알아보기|07",
@@ -11544,6 +12755,72 @@
    "afterRowSha256": "af310ba2c22a24c74b9c892b10af6e444cbedec64d8bdf60742a0d60941ec4f9"
   },
   {
+   "familyKey": "elem:초3|2-6-2 그림그래프로 나타내기|06",
+   "beforeRow": [
+    "초3",
+    "2-6-2 그림그래프로 나타내기",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-6 그림그래프",
+     "section": "2-6-2 그림그래프로 나타내기",
+     "orderIndex": 186,
+     "content": "모둠의 책 수가 $35$권입니다. 작은 그림 한 개가 $1$권일 때 작은 그림은 몇 개 그려야 합니까?",
+     "answer": "$5$",
+     "solution": "일의 자리가 $5$ 이므로 작은 그림은 $5$개입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "37672a8e76ff12f0c5e4a80b1bb8fefe0cc60ffa3741950120615d7a9459bc8b"
+  },
+  {
+   "familyKey": "elem:초3|2-6-2 그림그래프로 나타내기|06",
+   "beforeRow": [
+    "초3",
+    "2-6-2 그림그래프로 나타내기",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-6 그림그래프",
+     "section": "2-6-2 그림그래프로 나타내기",
+     "orderIndex": 186,
+     "content": "반의 어린이 수가 $31$명입니다. 작은 그림 한 개가 $1$명일 때 작은 그림은 몇 개 그려야 합니까?",
+     "answer": "$1$",
+     "solution": "일의 자리가 $1$ 이므로 작은 그림은 $1$개입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "7fafefbae65ae3b3bded2eff001f45c6b3690eb3e2f6da100ecb95759f607f2f"
+  },
+  {
+   "familyKey": "elem:초3|2-6-2 그림그래프로 나타내기|06",
+   "beforeRow": [
+    "초3",
+    "2-6-2 그림그래프로 나타내기",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-6 그림그래프",
+     "section": "2-6-2 그림그래프로 나타내기",
+     "orderIndex": 186,
+     "content": "공원의 나무 수가 $29$그루입니다. 작은 그림 한 개가 $1$그루일 때 작은 그림은 몇 개 그려야 합니까?",
+     "answer": "$9$",
+     "solution": "일의 자리가 $9$ 이므로 작은 그림은 $9$개입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "a5f7f05fb7c455c3423a1ab05a0bbe5f4ff16a451563cc4d87304b45bb1c3ad7"
+  },
+  {
    "familyKey": "elem:초3|2-6-2 그림그래프로 나타내기|09",
    "beforeRow": [
     "초3",
@@ -11608,6 +12885,204 @@
     }
    ],
    "afterRowSha256": "0579dbebd5e13364e817a1b32575a1db0bde400cce4cdc39f60a52a96777c57e"
+  },
+  {
+   "familyKey": "elem:초4|1-1-5 조 알아보기|08",
+   "beforeRow": [
+    "초4",
+    "1-1-5 조 알아보기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-1 큰 수",
+     "section": "1-1-5 조 알아보기",
+     "orderIndex": 191,
+     "content": "$4$조와 $25000$억 중 더 큰 수를 쓰시오.",
+     "answer": "$4000000000000$",
+     "solution": "$4$조는 $4000000000000$, $25000$억은 $2500000000000$입니다. 더 큰 수는 $4000000000000$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "b17ec75c6824f7cf083b68720f5892a696e1cf4243f6f78e0b6bbb52302a56e0"
+  },
+  {
+   "familyKey": "elem:초4|1-1-5 조 알아보기|08",
+   "beforeRow": [
+    "초4",
+    "1-1-5 조 알아보기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-1 큰 수",
+     "section": "1-1-5 조 알아보기",
+     "orderIndex": 191,
+     "content": "$1$조와 $25000$억 중 더 큰 수를 쓰시오.",
+     "answer": "$2500000000000$",
+     "solution": "$1$조는 $1000000000000$, $25000$억은 $2500000000000$입니다. 더 큰 수는 $2500000000000$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "8684f641f06c4c158b1a9eed49e75c66af279d060ed532752b89bcd1e5e6f151"
+  },
+  {
+   "familyKey": "elem:초4|1-1-5 조 알아보기|08",
+   "beforeRow": [
+    "초4",
+    "1-1-5 조 알아보기",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-1 큰 수",
+     "section": "1-1-5 조 알아보기",
+     "orderIndex": 191,
+     "content": "$3$조와 $5000$억 중 더 큰 수를 쓰시오.",
+     "answer": "$3000000000000$",
+     "solution": "$3$조는 $3000000000000$, $5000$억은 $500000000000$입니다. 더 큰 수는 $3000000000000$입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "edc18287440aa42b49f8a7b6ae9c657f0a69210d203edd9aa6ae1af997643ae6"
+  },
+  {
+   "familyKey": "elem:초4|1-2-1 각의 크기 비교하기|03",
+   "beforeRow": [
+    "초4",
+    "1-2-1 각의 크기 비교하기",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-2 각도",
+     "section": "1-2-1 각의 크기 비교하기",
+     "orderIndex": 194,
+     "content": "가 각의 크기는 $64^\\circ$입니다. 나 각은 가 각보다 더 큽니다. $79^\\circ$와 $46^\\circ$ 중 나 각의 크기로 알맞은 것은 어느 것인가?",
+     "answer": "$79^\\circ$",
+     "solution": "나 각은 $64^\\circ$보다 커야 하므로 $79>64$ 인 $79^\\circ$입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "f87df586bcb566e3a8a6c72bb97078bc50acfc86697a5288a7ed1ce75cb592ed"
+  },
+  {
+   "familyKey": "elem:초4|1-2-1 각의 크기 비교하기|03",
+   "beforeRow": [
+    "초4",
+    "1-2-1 각의 크기 비교하기",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-2 각도",
+     "section": "1-2-1 각의 크기 비교하기",
+     "orderIndex": 194,
+     "content": "가 각의 크기는 $140^\\circ$입니다. 나 각은 가 각보다 더 큽니다. $120^\\circ$와 $162^\\circ$ 중 나 각의 크기로 알맞은 것은 어느 것인가?",
+     "answer": "$162^\\circ$",
+     "solution": "나 각은 $140^\\circ$보다 커야 하므로 $162>140$ 인 $162^\\circ$입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "1bfa6069470c3e53c93b1d9fdbfbe5ab6a8d1257e3aa87c5cd33845309219735"
+  },
+  {
+   "familyKey": "elem:초4|1-2-1 각의 크기 비교하기|03",
+   "beforeRow": [
+    "초4",
+    "1-2-1 각의 크기 비교하기",
+    "03",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-2 각도",
+     "section": "1-2-1 각의 크기 비교하기",
+     "orderIndex": 194,
+     "content": "가 각의 크기는 $50^\\circ$입니다. 나 각은 가 각보다 더 작습니다. $30^\\circ$와 $74^\\circ$ 중 나 각의 크기로 알맞은 것은 어느 것인가?",
+     "answer": "$30^\\circ$",
+     "solution": "나 각은 $50^\\circ$보다 작아야 하므로 $30<50$ 인 $30^\\circ$입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "a8ca5a90d9fc3535fff8cff7a70569d0fcf855337c2e5754c5afb963ecd65a9e"
+  },
+  {
+   "familyKey": "elem:초4|1-2-1 각의 크기 비교하기|09",
+   "beforeRow": [
+    "초4",
+    "1-2-1 각의 크기 비교하기",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-2 각도",
+     "section": "1-2-1 각의 크기 비교하기",
+     "orderIndex": 194,
+     "content": "가 각의 크기는 $83^\\circ$입니다. 나 각은 가 각보다 $19^\\circ$ 더 큽니다. 나 각의 크기는 몇 도인가?",
+     "answer": "$102^\\circ$",
+     "solution": "나 각은 $83+19=102$ 이므로 $102^\\circ$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "0ee0422778d86a379c6d360d79e1a8275ec27d305227de501620df7ba0a7f5f6"
+  },
+  {
+   "familyKey": "elem:초4|1-2-1 각의 크기 비교하기|09",
+   "beforeRow": [
+    "초4",
+    "1-2-1 각의 크기 비교하기",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-2 각도",
+     "section": "1-2-1 각의 크기 비교하기",
+     "orderIndex": 194,
+     "content": "가 각의 크기는 $65^\\circ$입니다. 나 각은 가 각보다 $23^\\circ$ 더 큽니다. 나 각의 크기는 몇 도인가?",
+     "answer": "$88^\\circ$",
+     "solution": "나 각은 $65+23=88$ 이므로 $88^\\circ$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "f744a217ad9a80c7f5e2a433d3c604a4043be0da3bcef88824d247b36f389b43"
+  },
+  {
+   "familyKey": "elem:초4|1-2-1 각의 크기 비교하기|09",
+   "beforeRow": [
+    "초4",
+    "1-2-1 각의 크기 비교하기",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-2 각도",
+     "section": "1-2-1 각의 크기 비교하기",
+     "orderIndex": 194,
+     "content": "가 각의 크기는 $51^\\circ$입니다. 나 각은 가 각보다 $23^\\circ$ 더 큽니다. 나 각의 크기는 몇 도인가?",
+     "answer": "$74^\\circ$",
+     "solution": "나 각은 $51+23=74$ 이므로 $74^\\circ$입니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "75fdadd98b1b9dda2cfb8b8f12680a4c4c52c0bc5c642df702d7e34620f36fe0"
   },
   {
    "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|06",
@@ -13018,6 +14493,531 @@
     }
    ],
    "afterRowSha256": "3ad7e43ef70bfb3fc683b2354f943a11c6e98b5f5f90e14d4d87d5148bbc704b"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|05",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄱ을 위쪽으로 $2$칸 옮겼습니다. 점 ㄱ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?",
+     "answer": "위쪽으로 $2$칸",
+     "solution": "위쪽으로 $2$칸 옮겼으므로 처음 자리에서 위쪽으로 $2$칸 옮겨진 것입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 2,
+        "r": 2,
+        "label": "ㄱ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "1d973e2c565d5d4d645c17cdce64ab8249b7fb676874d9448c1b63d0475d2d40"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|05",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄱ을 아래쪽으로 $3$칸 옮겼습니다. 점 ㄱ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?",
+     "answer": "아래쪽으로 $3$칸",
+     "solution": "아래쪽으로 $3$칸 옮겼으므로 처음 자리에서 아래쪽으로 $3$칸 옮겨진 것입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 2,
+        "r": 2,
+        "label": "ㄱ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "95ea9ab00c0331c439c27082a7fc655851b584568db4e540c876e13f010f1951"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|05",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄱ을 왼쪽으로 $8$칸 옮겼습니다. 점 ㄱ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?",
+     "answer": "왼쪽으로 $8$칸",
+     "solution": "왼쪽으로 $8$칸 옮겼으므로 처음 자리에서 왼쪽으로 $8$칸 옮겨진 것입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 2,
+        "r": 2,
+        "label": "ㄱ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "cfb9005f9747475de5859c731d9580f41c9a3fa0350aa6fb183c661a0e0b1e2d"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|06",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄴ을 오른쪽으로 $3$칸, 또 $1$칸, 또 $1$칸 옮겼습니다. 처음 자리에서 오른쪽으로 몇 칸 옮겨진 것인가?",
+     "answer": "$5$",
+     "solution": "$3+1+1=5$ 이므로 $5$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 1,
+        "r": 3,
+        "label": "ㄴ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "f33b86ed5dc362018aff5501b6b89441b5797446a249c651d61e3ddec83400f9"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|06",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄴ을 위쪽으로 $1$칸, 또 $4$칸, 또 $3$칸 옮겼습니다. 처음 자리에서 위쪽으로 몇 칸 옮겨진 것인가?",
+     "answer": "$8$",
+     "solution": "$1+4+3=8$ 이므로 $8$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 1,
+        "r": 3,
+        "label": "ㄴ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "1d5605e4105eefdee6c49e5264e23d75c641dc35718165f93ad02381307b9050"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|06",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄴ을 위쪽으로 $4$칸, 또 $3$칸, 또 $3$칸 옮겼습니다. 처음 자리에서 위쪽으로 몇 칸 옮겨진 것인가?",
+     "answer": "$10$",
+     "solution": "$4+3+3=10$ 이므로 $10$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 1,
+        "r": 3,
+        "label": "ㄴ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "3310d60bac005b7bc729ed041c9a59e1e3aaa2f2a48e8198d8a7a50586fab69f"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|07",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄷ을 왼쪽으로 $3$칸 옮긴 다음 오른쪽으로 $5$칸 옮겼습니다. 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?",
+     "answer": "오른쪽으로 $2$칸",
+     "solution": "$5-3=2$ 이므로 오른쪽으로 $2$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 3,
+        "r": 2,
+        "label": "ㄷ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "e6210ac742f149226281e6f31ae12452a4b6a210b815cce96726dd8a37a46e3a"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|07",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄷ을 왼쪽으로 $4$칸 옮긴 다음 오른쪽으로 $7$칸 옮겼습니다. 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?",
+     "answer": "오른쪽으로 $3$칸",
+     "solution": "$7-4=3$ 이므로 오른쪽으로 $3$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 3,
+        "r": 2,
+        "label": "ㄷ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "c09adcc72bf704bef74b40a44bd63b18f79e5b07e46929fe49284e82db5adc26"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|07",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄷ을 오른쪽으로 $3$칸 옮긴 다음 왼쪽으로 $4$칸 옮겼습니다. 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?",
+     "answer": "왼쪽으로 $1$칸",
+     "solution": "$4-3=1$ 이므로 왼쪽으로 $1$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 3,
+        "r": 2,
+        "label": "ㄷ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "236c184c0675b4cfdae85082a61dbc1381389e6b1706ac942e28e5242e7004a6"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|08",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄹ을 아래쪽으로 $3$칸 옮겼습니다. 처음 자리로 되돌아오려면 어느 쪽으로 몇 칸 옮겨야 하는가?",
+     "answer": "위쪽으로 $3$칸",
+     "solution": "아래쪽의 반대는 위쪽이므로 위쪽으로 $3$칸 옮기면 됩니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 2,
+        "r": 4,
+        "label": "ㄹ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "e773f15e2cee3d8f991d3ccdce40b8c1aa5ea373fd79957fef2f1e33ff3cef74"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|08",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄹ을 위쪽으로 $4$칸 옮겼습니다. 처음 자리로 되돌아오려면 어느 쪽으로 몇 칸 옮겨야 하는가?",
+     "answer": "아래쪽으로 $4$칸",
+     "solution": "위쪽의 반대는 아래쪽이므로 아래쪽으로 $4$칸 옮기면 됩니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 2,
+        "r": 4,
+        "label": "ㄹ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "fa1ba4d0d93b57b6a8444ea05182baf06a90c39dee1235ff34b0501fcebafef6"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|08",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㄹ을 아래쪽으로 $8$칸 옮겼습니다. 처음 자리로 되돌아오려면 어느 쪽으로 몇 칸 옮겨야 하는가?",
+     "answer": "위쪽으로 $8$칸",
+     "solution": "아래쪽의 반대는 위쪽이므로 위쪽으로 $8$칸 옮기면 됩니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 2,
+        "r": 4,
+        "label": "ㄹ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "c71b4970b96b0b91e5f555c3004ddd0c605d1c5beb699d6f66648ff705b0ae58"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|09",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㅁ을 오른쪽으로 $6$칸, 위쪽으로 $4$칸 옮겼습니다. 가로 방향으로는 몇 칸 옮겨진 것인가?",
+     "answer": "$6$",
+     "solution": "가로 방향은 오른쪽 $6$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 1,
+        "r": 1,
+        "label": "ㅁ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "c5d43bfc1aaf8fd14cae772c0193ce6fea44caaa266e939705c0432aa5ef9ff7"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|09",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㅁ을 오른쪽으로 $4$칸, 위쪽으로 $3$칸 옮겼습니다. 가로 방향으로는 몇 칸 옮겨진 것인가?",
+     "answer": "$4$",
+     "solution": "가로 방향은 오른쪽 $4$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 1,
+        "r": 1,
+        "label": "ㅁ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "35fbf88ecb47da6a41d33d5dfa45753ed16f907c45bad997ce2106fc0bb08f92"
+  },
+  {
+   "familyKey": "elem:초4|1-4-1 점의 이동|09",
+   "beforeRow": [
+    "초4",
+    "1-4-1 점의 이동",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-1 점의 이동",
+     "orderIndex": 207,
+     "content": "모눈에서 점 ㅁ을 오른쪽으로 $6$칸, 위쪽으로 $4$칸 옮겼습니다. 가로 방향으로는 몇 칸 옮겨진 것인가?",
+     "answer": "$6$",
+     "solution": "가로 방향은 오른쪽 $6$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 6,
+      "rows": 6,
+      "dots": [
+       {
+        "c": 1,
+        "r": 1,
+        "label": "ㅁ",
+        "side": "down"
+       }
+      ]
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "8e6f7175541d9d0218f8a0061578d4b53ea7d769f4652d6086566ad029e0cd4c"
   },
   {
    "familyKey": "elem:초4|1-4-2 평면도형 밀기|06",
@@ -14639,6 +16639,91 @@
     }
    ],
    "afterRowSha256": "844352d8894c001c962aed6b4b1c53805db6bf7a11d4dbda31f95951126cf12a"
+  },
+  {
+   "familyKey": "elem:초4|2-1-4 대분수의 뺄셈|10",
+   "beforeRow": [
+    "초4",
+    "2-1-4 대분수의 뺄셈",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-1 분수의 덧셈과 뺄셈",
+     "section": "2-1-4 대분수의 뺄셈",
+     "orderIndex": 222,
+     "content": "대분수의 분수 부분을 그림으로 나타냈습니다. 색칠한 칸은 몇 칸인가?",
+     "answer": "$4$",
+     "solution": "색칠한 칸은 $4$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "fracBars",
+      "cols": 8,
+      "rows": 1,
+      "filled": 4,
+      "fill": "#c9b56a"
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "44bee397b453317a944f37fc74b3914e2152c000dcb0ee91be06f73511cb9054"
+  },
+  {
+   "familyKey": "elem:초4|2-1-4 대분수의 뺄셈|10",
+   "beforeRow": [
+    "초4",
+    "2-1-4 대분수의 뺄셈",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-1 분수의 덧셈과 뺄셈",
+     "section": "2-1-4 대분수의 뺄셈",
+     "orderIndex": 222,
+     "content": "대분수의 분수 부분을 그림으로 나타냈습니다. 색칠한 칸은 몇 칸인가?",
+     "answer": "$9$",
+     "solution": "색칠한 칸은 $9$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "fracPie",
+      "n": 10,
+      "filled": 9,
+      "fill": "#e0a87a"
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "82b658183fc8cee7e1c6b7cba19dd09d4c656d7a88332e5ebcbd6f726705ce69"
+  },
+  {
+   "familyKey": "elem:초4|2-1-4 대분수의 뺄셈|10",
+   "beforeRow": [
+    "초4",
+    "2-1-4 대분수의 뺄셈",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-1 분수의 덧셈과 뺄셈",
+     "section": "2-1-4 대분수의 뺄셈",
+     "orderIndex": 222,
+     "content": "대분수의 분수 부분을 그림으로 나타냈습니다. 색칠한 칸은 몇 칸인가?",
+     "answer": "$6$",
+     "solution": "색칠한 칸은 $6$칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "fracPie",
+      "n": 12,
+      "filled": 6,
+      "fill": "#d4a0c8"
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "8537786084a9b84ef9460f963d90390847076931cd0ca5e1516538b8b2cacae5"
   },
   {
    "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|05",
@@ -16317,7 +18402,7 @@
      "formId": "03"
     }
    ],
-   "afterRowSha256": "e694d4e37f979a221c53b78a21b9ff33635d58e68e6e1b7c4d2ecb249c2c937d"
+   "afterRowSha256": "62b36b77657742ee33d188a8451f63030efd59dd405df527c829ed1f9ae48d03"
   },
   {
    "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|03",
@@ -16567,7 +18652,7 @@
      "formId": "01"
     }
    ],
-   "afterRowSha256": "8f42e68752dd3e0a2f930c955eb3e48d19fc91fa103c582e44085dea60597ce1"
+   "afterRowSha256": "52cc69217c65d8d3773fc92d05bee7345bb66e6ce7b0d25a0163fdde0613ffc4"
   },
   {
    "familyKey": "elem:초4|2-5-2 꺾은선그래프 내용 알아보기|01",
@@ -16667,7 +18752,7 @@
      "formId": "01"
     }
    ],
-   "afterRowSha256": "257e11da14cd030b8fc3b6e78fc7dc0d9aca73ddb20b888c2b597c70a74c81e7"
+   "afterRowSha256": "160a823d8730d416935337fd9438243c9d76c24d5e48ff68eecdb2645eb44ab5"
   },
   {
    "familyKey": "elem:초4|2-5-2 꺾은선그래프 내용 알아보기|03",
@@ -17303,6 +19388,129 @@
    "afterRowSha256": "934a0d3047cf734f76291fc51f7c58edcdf0030c29f5579d76e1feb2a1e5dbdd"
   },
   {
+   "familyKey": "elem:초5|1-3-2 대응 관계를 식으로 나타내기|08",
+   "beforeRow": [
+    "초5",
+    "1-3-2 대응 관계를 식으로 나타내기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-3 대응 관계",
+     "section": "1-3-2 대응 관계를 식으로 나타내기",
+     "orderIndex": 259,
+     "content": "표는 □가 $8$부터 $1$씩 커질 때의 △를 나타낸 것입니다. 대응 관계가 $\\triangle=\\square\\times3$이면 맞습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "△는 □의 $3$배이므로 $\\triangle=\\square\\times3$입니다. 따라서 맞습니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "□",
+       "8",
+       "9",
+       "10",
+       "11"
+      ],
+      "rows": [
+       [
+        "△",
+        "24",
+        "27",
+        "30",
+        "33"
+       ]
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "44853147f0ec7b873a5c309954951387cef842de7f55b577dd37f8ac59773247"
+  },
+  {
+   "familyKey": "elem:초5|1-3-2 대응 관계를 식으로 나타내기|08",
+   "beforeRow": [
+    "초5",
+    "1-3-2 대응 관계를 식으로 나타내기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-3 대응 관계",
+     "section": "1-3-2 대응 관계를 식으로 나타내기",
+     "orderIndex": 259,
+     "content": "표는 □가 $8$부터 $1$씩 커질 때의 △를 나타낸 것입니다. 대응 관계가 $\\triangle=\\square\\times7$이면 맞습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "△는 □의 $7$배이므로 $\\triangle=\\square\\times7$입니다. 따라서 맞습니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "□",
+       "8",
+       "9",
+       "10",
+       "11"
+      ],
+      "rows": [
+       [
+        "△",
+        "56",
+        "63",
+        "70",
+        "77"
+       ]
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "ec78f85d275e4a4de4e2d5656f1230ea27d2154abc5f017c0278f1bb157da22f"
+  },
+  {
+   "familyKey": "elem:초5|1-3-2 대응 관계를 식으로 나타내기|08",
+   "beforeRow": [
+    "초5",
+    "1-3-2 대응 관계를 식으로 나타내기",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-3 대응 관계",
+     "section": "1-3-2 대응 관계를 식으로 나타내기",
+     "orderIndex": 259,
+     "content": "표는 □가 $6$부터 $1$씩 커질 때의 △를 나타낸 것입니다. 대응 관계가 $\\triangle=\\square\\times3$이면 맞습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "△는 □의 $3$배이므로 $\\triangle=\\square\\times3$입니다. 따라서 맞습니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "□",
+       "6",
+       "7",
+       "8",
+       "9"
+      ],
+      "rows": [
+       [
+        "△",
+        "18",
+        "21",
+        "24",
+        "27"
+       ]
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "a71684c40e40ba30610b776775b6a69c2b9f82f1576d38168a70d026ceee9ced"
+  },
+  {
    "familyKey": "elem:초5|1-3-2 대응 관계를 식으로 나타내기|09",
    "beforeRow": [
     "초5",
@@ -17424,6 +19632,72 @@
     }
    ],
    "afterRowSha256": "6c1d0adf90154f80423f6892e0ead44eeff36e6e97de877a1c80b7dccb2286df"
+  },
+  {
+   "familyKey": "elem:초5|1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기|07",
+   "beforeRow": [
+    "초5",
+    "1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-3 대응 관계",
+     "section": "1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+     "orderIndex": 260,
+     "content": "곤충 $1$마리에 다리가 $6$개씩 있습니다. 곤충의 수를 □, 다리의 수를 △라고 할 때, 대응 관계가 $\\triangle=\\square\\times6$이면 맞습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "옳은 식은 $\\triangle=\\square\\times6$입니다. 따라서 맞습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "1538944d4731ca5981dc75093c76574efc3af6d39d48e27c0426c5b95f7bfb3a"
+  },
+  {
+   "familyKey": "elem:초5|1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기|07",
+   "beforeRow": [
+    "초5",
+    "1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-3 대응 관계",
+     "section": "1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+     "orderIndex": 260,
+     "content": "곤충 $1$마리에 다리가 $6$개씩 있습니다. 곤충의 수를 □, 다리의 수를 △라고 할 때, 대응 관계가 $\\triangle=\\square\\times6$이면 맞습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "옳은 식은 $\\triangle=\\square\\times6$입니다. 따라서 맞습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "da4d77939288f92e62f46dae7827ec153d3eaabe63d335441b62e6d9b49b3d28"
+  },
+  {
+   "familyKey": "elem:초5|1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기|07",
+   "beforeRow": [
+    "초5",
+    "1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-3 대응 관계",
+     "section": "1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+     "orderIndex": 260,
+     "content": "화분 $1$개에 꽃을 $3$송이씩 심었습니다. 화분의 수를 □, 꽃의 수를 △라고 할 때, 대응 관계가 $\\triangle=\\square\\times3$이면 맞습니까? (예, 아니요)",
+     "answer": "예",
+     "solution": "옳은 식은 $\\triangle=\\square\\times3$입니다. 따라서 맞습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "7883f08325a681f8a03aab34e684a3686f0bb8e0d03a354621cac4c97f87932f"
   },
   {
    "familyKey": "elem:초5|1-4-4 분수의 크기 비교|05",
@@ -23497,7 +25771,7 @@
      "formId": "01"
     }
    ],
-   "afterRowSha256": "dd22c2a49b703a2452f5917dfccfb0991b4c5200f09e93cf9ad941d3e2be9c70"
+   "afterRowSha256": "2f4ff97c20a65f3df0293578f5e4c35178ef656cbe36414a8eef1f34198f99eb"
   },
   {
    "familyKey": "elem:초6|2-3-1 어느 방향에서 보았는지 알아보기|01",
@@ -23568,7 +25842,7 @@
      "formId": "01"
     }
    ],
-   "afterRowSha256": "eef4a673d9974055242a771356e7fcfdf61ba21afcd33abbcd294443464dfdc1"
+   "afterRowSha256": "01d7cde7b127ed746d93693585b351a53a58285abafe6086edf32336f7a4cae9"
   },
   {
    "familyKey": "elem:초6|2-3-1 어느 방향에서 보았는지 알아보기|01",
@@ -23629,7 +25903,7 @@
      "formId": "01"
     }
    ],
-   "afterRowSha256": "5122a8d71a34175fb84f8074ba0a8e1a5cd9df6fd45836f9fd3ac0aec9fc29f9"
+   "afterRowSha256": "74d6cffe496d7501304e793c414636469787703319a030ef2b414d23797c1776"
   },
   {
    "familyKey": "elem:초6|2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)|08",
@@ -23925,6 +26199,150 @@
     }
    ],
    "afterRowSha256": "0e026550465fd0a775eba01462b552f1157bae5e5062313547fe443c5844e214"
+  },
+  {
+   "familyKey": "elem:초6|2-4-3 비례식 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "2-4-3 비례식 알아보기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "2-4 비례식과 비례배분",
+     "section": "2-4-3 비례식 알아보기",
+     "orderIndex": 350,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$5:8=30:48$ 는 비례식이다.",
+     "answer": "예",
+     "solution": "두 비의 비율이 같으므로 비례식입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "fa7196f346977de3d5806a32fcac598e33a5b9e1bc092764aa8c5725c5c07a4f"
+  },
+  {
+   "familyKey": "elem:초6|2-4-3 비례식 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "2-4-3 비례식 알아보기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "2-4 비례식과 비례배분",
+     "section": "2-4-3 비례식 알아보기",
+     "orderIndex": 350,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$4:3=8:6$ 는 비례식이다.",
+     "answer": "예",
+     "solution": "두 비의 비율이 같으므로 비례식입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "02643932a6572fa609f2038b6598b23dc0230a8889582e47e616370a91097e3c"
+  },
+  {
+   "familyKey": "elem:초6|2-4-3 비례식 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "2-4-3 비례식 알아보기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "2-4 비례식과 비례배분",
+     "section": "2-4-3 비례식 알아보기",
+     "orderIndex": 350,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$5:6=25:30$ 는 비례식이다.",
+     "answer": "예",
+     "solution": "두 비의 비율이 같으므로 비례식입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "b403122d3df314f93176cbe616240d8698effd025d0c8abf000e2d7facbd66d1"
+  },
+  {
+   "familyKey": "elem:초6|2-5-3 원의 넓이 어림하기|05",
+   "beforeRow": [
+    "초6",
+    "2-5-3 원의 넓이 어림하기",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "2-5 원의 둘레와 넓이",
+     "section": "2-5-3 원의 넓이 어림하기",
+     "orderIndex": 355,
+     "content": "지름이 $10\\,\\mathrm{cm}$ 인 원 밖에 꼭 맞게 정사각형을 그렸습니다. 이 정사각형의 한 변은 몇 cm입니까? 단, 정사각형의 네 변은 모두 원에 닿습니다.",
+     "answer": "$10$",
+     "solution": "한 변은 지름과 같은 $10\\,\\mathrm{cm}$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "circleParts",
+      "show": "diameter"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "5bd52c423d54608023d25e1a529602aafabd31f4197e76d3e15e8e1a67c1c145"
+  },
+  {
+   "familyKey": "elem:초6|2-5-3 원의 넓이 어림하기|05",
+   "beforeRow": [
+    "초6",
+    "2-5-3 원의 넓이 어림하기",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "2-5 원의 둘레와 넓이",
+     "section": "2-5-3 원의 넓이 어림하기",
+     "orderIndex": 355,
+     "content": "지름이 $16\\,\\mathrm{cm}$ 인 원 밖에 꼭 맞게 정사각형을 그렸습니다. 이 정사각형의 한 변은 몇 cm입니까? 단, 정사각형의 네 변은 모두 원에 닿습니다.",
+     "answer": "$16$",
+     "solution": "한 변은 지름과 같은 $16\\,\\mathrm{cm}$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "circleParts",
+      "show": "diameter"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "591478673b6e9ef4c3752517937df743c152afcbaa707e34795cf988e8ad9b97"
+  },
+  {
+   "familyKey": "elem:초6|2-5-3 원의 넓이 어림하기|05",
+   "beforeRow": [
+    "초6",
+    "2-5-3 원의 넓이 어림하기",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "2-5 원의 둘레와 넓이",
+     "section": "2-5-3 원의 넓이 어림하기",
+     "orderIndex": 355,
+     "content": "지름이 $20\\,\\mathrm{cm}$ 인 원 밖에 꼭 맞게 정사각형을 그렸습니다. 이 정사각형의 한 변은 몇 cm입니까? 단, 정사각형의 네 변은 모두 원에 닿습니다.",
+     "answer": "$20$",
+     "solution": "한 변은 지름과 같은 $20\\,\\mathrm{cm}$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "circleParts",
+      "show": "diameter"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "b630a7f719de66112cf1b6c97d2bfaae9cde1375992258686adbcd946acbb87a"
   }
  ]
 }

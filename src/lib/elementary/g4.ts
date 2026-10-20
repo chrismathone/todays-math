@@ -1387,14 +1387,14 @@ function tier21Apply(unit: UnitSeed, rng: Rng): ElemProblem {
     const asc = intBetween(rng, 0, 1) === 0;
     const wantBig = intBetween(rng, 0, 1) === 0;
     const chain = asc
-      ? "가 각은 나 각보다 크고, 나 각은 다 각보다 큽니다."
-      : "가 각은 나 각보다 작고, 나 각은 다 각보다 작습니다.";
+      ? "각 가는 각 나보다 크고, 각 나는 각 다보다 큽니다."
+      : "각 가는 각 나보다 작고, 각 나는 각 다보다 작습니다.";
     const ans = asc === wantBig ? "가" : "다";
     return make(
       unit,
       `${chain} 세 각 중 가장 ${wantBig ? "큰" : "작은"} 각은 어느 것인가?`,
       ans,
-      `두 관계를 이으면 ${asc ? "가 각, 나 각, 다 각의 차례로 작아집니다" : "가 각, 나 각, 다 각의 차례로 커집니다"}. ` +
+      `두 관계를 이으면 ${asc ? "각 가, 각 나, 각 다의 차례로 작아집니다" : "각 가, 각 나, 각 다의 차례로 커집니다"}. ` +
         `가장 ${wantBig ? "큰" : "작은"} 각은 ${ans} 각입니다.`,
     );
   }
@@ -1407,10 +1407,10 @@ function tier21Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const second = first === bigger ? smaller : bigger;
   return make(
     unit,
-    `가 각의 크기는 ${deg(x)}입니다. 나 각은 가 각보다 더 ${more ? "큽니다" : "작습니다"}. ` +
-      `${deg(first)}와 ${deg(second)} 중 나 각의 크기로 알맞은 것은 어느 것인가?`,
+    `각 가의 크기는 ${deg(x)}입니다. 각 나는 각 가보다 더 ${more ? "큽니다" : "작습니다"}. ` +
+      `${deg(first)}와 ${deg(second)} 중 각 나의 크기로 알맞은 것은 어느 것인가?`,
     deg(win),
-    `나 각은 ${deg(x)}보다 ${more ? "커야" : "작아야"} 하므로 ` +
+    `각 나는 ${deg(x)}보다 ${more ? "커야" : "작아야"} 하므로 ` +
       `${expr(more ? `${win}>${x}` : `${win}<${x}`)} 인 ${deg(win)}입니다.`,
   );
 }
@@ -6834,8 +6834,9 @@ function big115CompareJoEok(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${n(a)}조와 ${n(eoks)}억 중 더 큰 수를 쓰시오.`,
-    n(big),
-    `${n(a)}조는 ${n(x)}, ${n(eoks)}억은 ${n(y)}입니다. 더 큰 수는 ${n(big)}입니다.`,
+    // 물은 꼴(조 · 억)로 답한다 — 자리를 다 편 수만 답으로 두면 어색하다(5차 교차 검수)
+    big === x ? `${n(a)}조` : `${n(eoks)}억`,
+    `${n(a)}조는 ${n(x)}, ${n(eoks)}억은 ${n(y)}이므로 더 큰 수는 ${big === x ? `${n(a)}조` : `${n(eoks)}억`}입니다.`,
   );
 }
 
@@ -7130,9 +7131,9 @@ function ang121Offset(unit: UnitSeed, rng: Rng): ElemProblem {
   const y = more ? x + d : x - d;
   return make(
     unit,
-    `가 각의 크기는 ${deg(x)}입니다. 나 각은 가 각보다 ${deg(d)} 더 ${more ? "큽니다" : "작습니다"}. 나 각의 크기는 몇 도인가?`,
+    `각 가의 크기는 ${deg(x)}입니다. 각 나는 각 가보다 ${deg(d)} 더 ${more ? "큽니다" : "작습니다"}. 각 나의 크기는 몇 도인가?`,
     deg(y),
-    `나 각은 ${expr(more ? `${x}+${d}=${y}` : `${x}-${d}=${y}`)} 이므로 ${deg(y)}입니다.`,
+    `각 나는 ${expr(more ? `${x}+${d}=${y}` : `${x}-${d}=${y}`)} 이므로 ${deg(y)}입니다.`,
   );
 }
 
@@ -8130,11 +8131,35 @@ function div137EstMinus(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function gridDot(label: string, c: number, r: number): Record<string, unknown> {
+const DIR_VEC: Record<string, readonly [number, number]> = {
+  오른쪽: [1, 0],
+  왼쪽: [-1, 0],
+  위쪽: [0, 1],
+  아래쪽: [0, -1],
+};
+
+/**
+ * 점 하나를 찍은 모눈 — 발문의 움직임이 **모눈 안에 다 들어가게** 출발점과 크기를 정한다.
+ * 6×6 모눈의 정한 자리에서 출발해 «위쪽으로 5칸» 이 모눈 밖으로 나가던 것(2026-10-21 5차 교차 검수).
+ */
+function gridDot(label: string, moves: readonly (readonly [string, number])[]): Record<string, unknown> {
+  let x = 0, y = 0, minX = 0, maxX = 0, minY = 0, maxY = 0;
+  for (const [dir, k] of moves) {
+    const v = DIR_VEC[dir]!;
+    x += v[0] * k;
+    y += v[1] * k;
+    minX = Math.min(minX, x); maxX = Math.max(maxX, x);
+    minY = Math.min(minY, y); maxY = Math.max(maxY, y);
+  }
+  // 점은 모눈선의 교점(0..cols)에 찍힌다 — 둘레 한 칸씩 남긴다. 그리는 쪽 상한은 10칸(`_point_grid`).
+  const cols = Math.max(6, maxX - minX + 2);
+  const rows = Math.max(6, maxY - minY + 2);
+  if (cols > 10 || rows > 10) throw new Error(`점의 이동이 모눈(10칸)보다 큽니다: ${cols}×${rows}`);
+  // 행 번호는 아래로 커진다 — 위쪽 끝 둘레 한 칸을 남긴다
   return fig("pointGrid", {
-    cols: 6,
-    rows: 6,
-    dots: [{ c, r, label, side: "down" }],
+    cols,
+    rows,
+    dots: [{ c: 1 - minX, r: 1 + maxY, label, side: "down" }],
   });
 }
 
@@ -8156,21 +8181,22 @@ function move141OneWay(unit: UnitSeed, rng: Rng): ElemProblem {
     `모눈에서 점 ㄱ을 ${dir}으로 ${n(a)}칸 옮겼습니다. 점 ㄱ은 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
     `${dir}으로 ${n(a)}칸`,
     `${dir}으로 ${n(a)}칸 옮겼으므로 처음 자리에서 ${dir}으로 ${n(a)}칸 옮겨진 것입니다.`,
-    gridDot("ㄱ", 2, 2),
+    gridDot("ㄱ", [[dir, a]]),
   );
 }
 
 function move141ThreeSame(unit: UnitSeed, rng: Rng): ElemProblem {
   const dir = pick(rng, DIR_PAIRS)[0];
-  const a = intBetween(rng, 1, 4);
-  const b = intBetween(rng, 1, 4);
-  const c = intBetween(rng, 1, 4);
+  // 세 번 옮긴 합이 모눈(10칸 · 둘레 한 칸씩)에 들어가게 — 합 ≤ 8
+  const a = intBetween(rng, 1, 3);
+  const b = intBetween(rng, 1, 3);
+  const c = intBetween(rng, 1, 2);
   return make(
     unit,
     `모눈에서 점 ㄴ을 ${dir}으로 ${n(a)}칸, 또 ${n(b)}칸, 또 ${n(c)}칸 옮겼습니다. 처음 자리에서 ${dir}으로 몇 칸 옮겨진 것인가?`,
     n(a + b + c),
     `${expr(`${a}+${b}+${c}=${a + b + c}`)} 이므로 ${n(a + b + c)}칸입니다.`,
-    gridDot("ㄴ", 1, 3),
+    gridDot("ㄴ", [[dir, a + b + c]]),
   );
 }
 
@@ -8179,14 +8205,14 @@ function move141HorizCancel(unit: UnitSeed, rng: Rng): ElemProblem {
     ["오른쪽", "왼쪽"],
     ["왼쪽", "오른쪽"],
   ] as const);
-  const a = intBetween(rng, 2, 6);
+  const a = intBetween(rng, 2, 5);
   const b = a + intBetween(rng, 1, 3);
   return make(
     unit,
     `모눈에서 점 ㄷ을 ${first}으로 ${n(a)}칸 옮긴 다음 ${second}으로 ${n(b)}칸 옮겼습니다. 처음 자리에서 어느 쪽으로 몇 칸 옮겨진 것인가?`,
     `${second}으로 ${n(b - a)}칸`,
     `${expr(`${b}-${a}=${b - a}`)} 이므로 ${second}으로 ${n(b - a)}칸입니다.`,
-    gridDot("ㄷ", 3, 2),
+    gridDot("ㄷ", [[first, a], [second, b]]),
   );
 }
 
@@ -8199,7 +8225,7 @@ function move141BackHome(unit: UnitSeed, rng: Rng): ElemProblem {
     `모눈에서 점 ㄹ을 ${dir}으로 ${n(a)}칸 옮겼습니다. 처음 자리로 되돌아오려면 어느 쪽으로 몇 칸 옮겨야 하는가?`,
     `${back}으로 ${n(a)}칸`,
     `${dir}의 반대는 ${back}이므로 ${back}으로 ${n(a)}칸 옮기면 됩니다.`,
-    gridDot("ㄹ", 2, 4),
+    gridDot("ㄹ", [[dir, a]]),
   );
 }
 
@@ -8211,7 +8237,7 @@ function move141HOnly(unit: UnitSeed, rng: Rng): ElemProblem {
     `모눈에서 점 ㅁ을 오른쪽으로 ${n(a)}칸, 위쪽으로 ${n(b)}칸 옮겼습니다. 가로 방향으로는 몇 칸 옮겨진 것인가?`,
     n(a),
     `가로 방향은 오른쪽 ${n(a)}칸입니다.`,
-    gridDot("ㅁ", 1, 1),
+    gridDot("ㅁ", [["오른쪽", a], ["위쪽", b]]),
   );
 }
 
@@ -10887,7 +10913,8 @@ function mixedSubPainted(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `대분수의 분수 부분을 그림으로 나타냈습니다. 색칠한 칸은 몇 칸인가?`,
+    // 어떤 대분수인지 발문에 없었다(5차 교차 검수) — 자연수 부분을 붙여 적는다
+    `대분수 ${expr(`${1 + (a % 3)}\\frac{${a}}{${den}}`)}의 분수 부분을 그림으로 나타냈습니다. 색칠한 칸은 몇 칸인가?`,
     n(a),
     `색칠한 칸은 ${n(a)}칸입니다.`,
     fracSpec(rng, den, a),
@@ -16211,8 +16238,11 @@ function tier251Calc(unit: UnitSeed, rng: Rng): ElemProblem {
 /** **2-5-2 1단 연산 — 값 읽기(역방향).** 표준은 때 → 값, 여기는 **값 → 때**다. */
 function tier252Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const theme = pick(rng, themeShare(unit, LINE_THEMES));
-  const nums = lineValues(rng, theme);
-  const at = intBetween(rng, 0, nums.length - 1);
+  // 묻는 값은 세로 눈금선 위에 있어야 읽힌다(«$14$℃» 를 5 ℃ 눈금에서 찾게 했다 — 5차 교차 검수)
+  let nums = lineValues(rng, theme);
+  for (let t = 0; t < 30 && !nums.some((v) => v % theme.yStep === 0); t += 1) nums = lineValues(rng, theme);
+  const onGrid = nums.map((v, i) => [v, i] as const).filter(([v]) => v % theme.yStep === 0).map(([, i]) => i);
+  const at = onGrid.length ? pick(rng, onGrid) : intBetween(rng, 0, nums.length - 1);
   return make(
     unit,
     `${lineIntro(theme)} ${josa(theme.topic, "이", "가")} ${n(nums[at]!)}${theme.unit}인 때는 언제인가?`,
@@ -16245,7 +16275,8 @@ function tier251Basic(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** **2-5-1 3단 응용 — 한가운데 값 어림.** 두 점을 이은 선분이라 한가운데를 읽을 수 있다. */
 function tier251Apply(unit: UnitSeed, rng: Rng): ElemProblem {
-  const theme = pick(rng, themeShare(unit, LINE_THEMES));
+  // 두 때 사이 «가운데 시점의 값» 은 이어지는 양(기온 · 키 · 무게 · 비의 양)에만 뜻이 있다 — 사람 수 · 책 수는 뺀다(5차 교차 검수)
+  const theme = pick(rng, themeShare(unit, LINE_THEMES.filter((t) => !["명", "권"].includes(t.unit))));
   const nums = lineValues(rng, theme);
   // 이웃 합이 짝수인 짝은 **반드시 있다**(위 `evenSumPairs` 주석의 홀짝 셈).
   const at = pick(rng, evenSumPairs(nums));
@@ -16255,7 +16286,7 @@ function tier251Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineIntro(theme)} ${josa(theme.labels[at]!.math, "과", "와")} ` +
-      `${theme.labels[at + 1]!.math} 사이의 가운데 시점의 값은 약 몇 ${theme.unit}인가?`,
+      `${theme.labels[at + 1]!.math} 사이의 ${pick(rng, ["가운데 시점", "한가운데쯤"])}의 값은 약 몇 ${theme.unit}인가?`,
     `${n(mid)}${theme.unit}`,
     // 「약」이 붙는 유일한 갈래다 — **왜 그렇게 읽어도 되는지**를 말한다(리드 2026-08-23).
     `꺾은선그래프는 이웃한 두 점을 선분으로 이어 그리므로, 그 사이의 값은 선분 위에서 ` +

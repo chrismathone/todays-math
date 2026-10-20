@@ -8029,6 +8029,11 @@ type CapCfg = {
   jGa: string;
   jReul: string;
   jRo: string;
+  /** 작은 단위(`mL`·`g`)를 읽은 소리 뒤 «과/와» — 밀리리터 «와» · 그램 «과»(5차 교차 검수 «$200\,\mathrm{mL}$ 과»). */
+  smallGwa: string;
+  /** 작은 단위 뒤 «을/를» — 밀리리터 «를» · 그램 «을». */
+  smallReul: string;
+  smallNun: string;
   /** 관형형 「많이 담기는」·「무거운」 */
   moreAdj: string;
   /** 연결형 「많이 담기고」·「무겁고」 */
@@ -8053,6 +8058,9 @@ const CAP_L: CapCfg = {
   jGa: "가",
   jReul: "를",
   jRo: "로",
+  smallGwa: "와",
+  smallReul: "를",
+  smallNun: "는",
   moreAdj: "많이 담기는",
   moreConn: "많이 담기고",
   moreVerb: "많이 담깁니다",
@@ -8078,6 +8086,9 @@ const CAP_KG: CapCfg = {
   jGa: "이",
   jReul: "을",
   jRo: "으로",
+  smallGwa: "과",
+  smallReul: "을",
+  smallNun: "은",
   moreAdj: "무거운",
   moreConn: "무겁고",
   moreVerb: "무겁습니다",
@@ -9947,9 +9958,9 @@ function ang122Rays(unit: UnitSeed, rng: Rng): ElemProblem {
   const row = angleRow(rng, count, rightCount);
   return make(
     unit,
-    `${row.labels.join(", ")} 각을 각각 이루는 변이 2개일 때, 변은 모두 몇 개인지 쓰시오.`,
+    `${row.labels.map((l) => `각 ${l}`).join(", ")}를 이루는 변은 모두 몇 개인지 쓰시오.`,
     n(2 * count),
-    `각 ${n(count)}개에 변이 각각 2개이므로 ${expr(`${count}\\times2=${2 * count}`)} 개입니다.`,
+    `각 하나는 변이 ${n(2)}개입니다. 각 ${n(count)}개에 변이 각각 ${n(2)}개이므로 ${expr(`${count}\\times2=${2 * count}`)} 개입니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -10987,7 +10998,8 @@ function part161UnitFrac(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
   // 여러 칸을 칠하면 «한 조각» 이 아니라 칠한 부분을 묻는 것처럼 보인다(4차 교차 검수) — 한 조각만 칠한다.
   const filled = 1;
-  const spec = fracSpec(rng, parts, filled);
+  // 떨어진 삼각형 줄(triRow)은 «전체를 나눈» 모양이 아니다(5차 교차 검수) — 띠 · 원만
+  const spec = fracSpec(rng, parts, filled, ["fracBars", "fracPie"]);
   return make(
     unit,
     `그림처럼 전체를 똑같이 ${n(parts)}조각으로 나누었습니다. 한 조각은 전체의 얼마인지 분수로 쓰시오.`,
@@ -10999,7 +11011,7 @@ function part161UnitFrac(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function part161TwoFrac(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 4, 8);
-  const spec = fracSpec(rng, parts, 2);
+  const spec = fracSpec(rng, parts, 2, ["fracBars", "fracPie"]);
   return make(
     unit,
     `그림처럼 전체를 똑같이 ${n(parts)}조각으로 나누었습니다. 두 조각은 전체의 얼마인지 분수로 쓰시오.`,
@@ -12246,7 +12258,8 @@ function kind244WholeQ(unit: UnitSeed, rng: Rng): ElemProblem {
   const yes = num >= den;
   return make(
     unit,
-    `${expr(`\\frac{${num}}{${den}}`)} 은 가분수입니까? 예 또는 아니요로 쓰시오.`,
+    // 분수는 분자를 끝으로 읽는다(«삼분의 이» → «는») — 5차 교차 검수
+    `${expr(`\\frac{${num}}{${den}}`)} ${"2459".includes(String(num).at(-1)!) ? "는" : "은"} 가분수입니까? 예 또는 아니요로 쓰시오.`,
     yes ? "예" : "아니요",
     yes
       ? `분자가 분모 이상이므로 가분수입니다.`
@@ -12428,7 +12441,7 @@ function capCmpToSmallOf(cfg: CapCfg): ChapterHandler {
     const s = intBetween(rng, 100, 900);
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 는 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallNun} 몇 ${cfg.small}입니까?`,
       n(b * 1000 + s),
       `$1\\,\\mathrm{${cfg.big}}=1000\\,\\mathrm{${cfg.small}}$ 이므로 ${n(b * 1000 + s)} ${cfg.small}입니다.`,
     );
@@ -12482,7 +12495,7 @@ function capCmpGapOf(cfg: CapCfg): ChapterHandler {
     const right = left + gap;
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 과 ${unitNum(right, cfg.small)} 의 차는 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallGwa} ${unitNum(right, cfg.small)} 의 차는 몇 ${cfg.small}입니까?`,
       n(gap),
       `${expr(`${right}-${left}=${gap}`)} 입니다.`,
     );
@@ -12498,7 +12511,7 @@ function capCmpBiggerOf(cfg: CapCfg): ChapterHandler {
     const right = left + gap * (intBetween(rng, 0, 1) === 0 ? 1 : -1);
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 과 ${unitNum(right, cfg.small)} 가운데 더 큰 값은 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallGwa} ${unitNum(right, cfg.small)} 가운데 더 큰 값은 몇 ${cfg.small}입니까?`,
       n(Math.max(left, right)),
       `둘을 ${cfg.small} ${cfg.jRo} 고치면 ${n(left)} 과 ${n(right)} 이므로 더 큰 값은 ${n(Math.max(left, right))} ${cfg.small}입니다.`,
     );
@@ -12542,7 +12555,7 @@ function capUnitSumOf(cfg: CapCfg): ChapterHandler {
     const t2 = j * 1000 + f;
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 과 ${mixedCap(cfg, j, f)} 의 합은 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallGwa} ${mixedCap(cfg, j, f)} 의 합은 몇 ${cfg.small}입니까?`,
       n(t1 + t2),
       `${expr(`${t1}+${t2}=${t1 + t2}`)} 입니다.`,
     );
@@ -12561,7 +12574,7 @@ function capUnitDiffOf(cfg: CapCfg): ChapterHandler {
     const lo = Math.min(t1, t2);
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 과 ${mixedCap(cfg, j, f)} 의 차는 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallGwa} ${mixedCap(cfg, j, f)} 의 차는 몇 ${cfg.small}입니까?`,
       n(hi - lo),
       `${expr(`${hi}-${lo}=${hi - lo}`)} 입니다.`,
     );
@@ -12601,7 +12614,7 @@ function capSumBigOnlyOf(cfg: CapCfg): ChapterHandler {
     const s2 = intBetween(rng, 50, 400);
     return make(
       unit,
-      `${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 에서 ${cfg.big}끼리만 더한 값은 몇 ${cfg.big}입니까?`,
+      `${mixedCap(cfg, b1, s1)} ${cfg.smallGwa} ${mixedCap(cfg, b2, s2)} 에서 ${cfg.big}끼리만 더한 값은 몇 ${cfg.big}입니까?`,
       n(b1 + b2),
       `${expr(`${b1}+${b2}=${b1 + b2}`)} 입니다.`,
     );
@@ -12616,7 +12629,7 @@ function capSumSmallOnlyOf(cfg: CapCfg): ChapterHandler {
     const s2 = intBetween(rng, 50, 400);
     return make(
       unit,
-      `${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 에서 ${cfg.small}끼리만 더한 값은 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b1, s1)} ${cfg.smallGwa} ${mixedCap(cfg, b2, s2)} 에서 ${cfg.small}끼리만 더한 값은 몇 ${cfg.small}입니까?`,
       n(s1 + s2),
       `${expr(`${s1}+${s2}=${s1 + s2}`)} 입니다.`,
     );
@@ -12632,7 +12645,7 @@ function capSumCarryQOf(cfg: CapCfg): ChapterHandler {
     const yes = s1 + s2 >= 1000;
     return make(
       unit,
-      `${mixedCap(cfg, b1, s1)} 과 ${mixedCap(cfg, b2, s2)} 을 더할 때 ${cfg.small}에서 ${cfg.big}으로 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
+      `${mixedCap(cfg, b1, s1)} ${cfg.smallGwa} ${mixedCap(cfg, b2, s2)} ${cfg.smallReul} 더할 때 ${cfg.small}에서 ${cfg.big}${cfg.jRo} 올림이 있습니까? 예 또는 아니요로 쓰시오.`,
       yes ? "예" : "아니요",
       `${cfg.small}끼리 더하면 ${n(s1 + s2)} 이므로 ${yes ? "올림이 있습니다" : "올림이 없습니다"}.`,
     );
@@ -12645,7 +12658,7 @@ function capSumToSmallOf(cfg: CapCfg): ChapterHandler {
     const s = intBetween(rng, 100, 800);
     return make(
       unit,
-      `${mixedCap(cfg, b, s)} 는 몇 ${cfg.small}입니까?`,
+      `${mixedCap(cfg, b, s)} ${cfg.smallNun} 몇 ${cfg.small}입니까?`,
       n(b * 1000 + s),
       `${expr(`1000\\times${b}+${s}=${b * 1000 + s}`)} 입니다.`,
     );
@@ -12672,7 +12685,7 @@ function capSumDiffBigOf(cfg: CapCfg): ChapterHandler {
     const s = intBetween(rng, 100, 400);
     return make(
       unit,
-      `${mixedCap(cfg, b1, s)} 에서 ${mixedCap(cfg, b2, s)} 을 뺄 때 ${cfg.big}끼리만 빼면 몇 ${cfg.big}입니까?`,
+      `${mixedCap(cfg, b1, s)} 에서 ${mixedCap(cfg, b2, s)} ${cfg.smallReul} 뺄 때 ${cfg.big}끼리만 빼면 몇 ${cfg.big}입니까?`,
       n(b1 - b2),
       `${expr(`${b1}-${b2}=${b1 - b2}`)} 입니다.`,
     );
@@ -12804,7 +12817,8 @@ function graph262Ones(unit: UnitSeed, rng: Rng): ElemProblem {
   const value = intBetween(rng, 1, 4) * 10 + intBetween(rng, 1, 9);
   return make(
     unit,
-    `${place}의 ${stuff.name} 수가 ${n(value)}${stuff.unit}입니다. 작은 그림 한 개가 ${n(1)}${stuff.unit}일 때 작은 그림은 몇 개 그려야 합니까?`,
+    // 큰 그림이 몇인지 없으면 작은 그림만으로 ${value}개를 다 그릴 수도 있다(5차 교차 검수 — 세 모델)
+    `${place}의 ${stuff.name} 수가 ${n(value)}${stuff.unit}입니다. 큰 그림 한 개가 ${n(10)}${stuff.unit}, 작은 그림 한 개가 ${n(1)}${stuff.unit}일 때 작은 그림은 몇 개 그려야 합니까?`,
     n(value % 10),
     `일의 자리가 ${n(value % 10)} 이므로 작은 그림은 ${n(value % 10)}개입니다.`,
   );

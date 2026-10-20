@@ -311,9 +311,9 @@ describe("4차 교차 검수 — 초등 그림 · 문장", () => {
       if (p.content.includes("뒤집은 도형의 색칠한 칸")) expect(p.content).not.toMatch(/색칠한 칸이 \$\d+\$개인/);
   });
 
-  it("초6 2-3-1 «위에서 보았을 때 놓이지 않은 칸» — 위에서 본 모양을 같이 그리지 않는다", () => {
+  it("초6 2-3-1 «놓이지 않은 칸» — 겨냥도와 위에서 본 모양을 함께 그려 답을 보이지 않는다(5차에서 위에서 본 그림 하나로 바꿈)", () => {
     for (const p of allOf("초6", "2-3-1"))
-      if (p.content.includes("놓이지 않은 칸")) expect(p.figureSpec?.views, p.content).toEqual(["iso"]);
+      if (p.content.includes("놓이지 않은 칸")) expect(p.figureSpec?.views, p.content).not.toEqual(["iso", "top"]);
   });
 
   it("초4 2-2-1 정삼각형 둘레 — 쓰지 않는 이름표 «가» 를 달지 않는다", () => {
@@ -351,5 +351,69 @@ describe("4차 교차 검수 — 초등 그림 · 문장", () => {
   it("초3 2-3-2 소재 — 반지름 2~9 cm 인 동전 · 단추가 없다 · 초3 1-2-2 직각 정의에 엉뚱한 끝 문장이 없다", () => {
     for (const p of allOf("초3", "2-3-2")) expect(p.content).not.toMatch(/^(?:동전|단추)의 모양이 원/);
     for (const p of allOf("초3", "1-2-2")) expect(p.content).not.toContain("그런 각을");
+  });
+});
+
+/* ── 교차 검수 5회차(2026-10-21) ── */
+
+describe("5차 교차 검수 — 초등 그림 · 문장", () => {
+  const allOf = (grade: string, code: string) => {
+    const unit = unitOf(grade, code);
+    const out = [];
+    for (const seed of SEEDS) {
+      for (const f of listedForms(unit)) out.push(generateElementaryForm(unit, seed, f.id));
+      for (const tier of supportedTiers(unit)) out.push(generateElementaryProblem(unit, seed, tier));
+    }
+    return out;
+  };
+  const DIR: Record<string, [number, number]> = { 오른쪽: [1, 0], 왼쪽: [-1, 0], 위쪽: [0, -1], 아래쪽: [0, 1] };
+
+  it("초4 1-4-1 점의 이동 — 발문의 움직임이 모눈 밖으로 나가지 않는다", () => {
+    let seen = 0;
+    for (const p of allOf("초4", "1-4-1")) {
+      const s = p.figureSpec as { kind?: string; cols?: number; rows?: number; dots?: { c: number; r: number }[] } | null;
+      if (s?.kind !== "pointGrid" || s.dots?.length !== 1 || !/옮겼습니다/.test(p.content)) continue;
+      let [c, r] = [s.dots[0]!.c, s.dots[0]!.r];
+      let dir: [number, number] = [0, 0];
+      for (const m of p.content.matchAll(/(?:(오른쪽|왼쪽|위쪽|아래쪽)으로 |또 )\$(\d+)\$칸/g)) {
+        if (m[1]) dir = DIR[m[1]]!;
+        c += dir[0] * Number(m[2]);
+        r += dir[1] * Number(m[2]);
+        expect(c >= 0 && c <= s.cols! && r >= 0 && r <= s.rows!, `${p.content} → (${c}, ${r}) / ${s.cols}×${s.rows}`).toBe(true);
+      }
+      seen++;
+    }
+    expect(seen).toBeGreaterThan(0);
+  });
+
+  it("그림그래프 «작은 그림은 몇 개» — 큰 그림 하나의 값을 함께 준다", () => {
+    for (const p of allOf("초3", "2-6-2"))
+      if (p.content.includes("작은 그림은 몇 개 그려야")) expect(p.content).toMatch(/큰 그림 한 개가/);
+  });
+
+  it("조사 — 분수 · 비례식은 끝 수를 읽는 소리로(«$\\frac{2}{3}$는» · «$21:6$은»), 밀리리터 «와»", () => {
+    for (const p of allOf("초3", "2-4-4")) {
+      const m = /\\frac\{(\d+)\}\{\d+\}\$ ([은는]) 가분수/.exec(p.content);
+      if (m) expect(m[2], p.content).toBe("2459".includes(m[1]!.at(-1)!) ? "는" : "은");
+    }
+    for (const p of allOf("초6", "2-4-3")) {
+      const m = /=(\d+):(\d+)\$ ([은는]) 비례식/.exec(p.content);
+      if (m) expect(m[3], p.content).toBe("2459".includes(m[2]!.at(-1)!) ? "는" : "은");
+    }
+    for (const p of allOf("초3", "2-5-2")) expect(p.content).not.toMatch(/mathrm\{mL\}\$ 과 /);
+  });
+
+  it("초6 2-3-1 «놓이지 않은 칸» — 위에서 본 그림 하나로 묻는다 · 초6 2-5-3 «원 밖 정사각형» 에 원만 그린 그림이 없다", () => {
+    for (const p of allOf("초6", "2-3-1"))
+      if (p.content.includes("놓이지 않은 칸")) expect(p.figureSpec?.views, p.content).toEqual(["top"]);
+    for (const p of allOf("초6", "2-5-3"))
+      if (/원 밖에 꼭 맞게 정사각형을 그렸습니다\. 이 정사각형의 한 변/.test(p.content)) expect(p.figureSpec, p.content).toBeNull();
+  });
+
+  it("초3 1-6-1 «전체를 똑같이 나누었습니다» — 떨어진 삼각형 줄로 그리지 않는다 · 초4 1-1-5 조 · 억 비교는 물은 꼴로 답한다", () => {
+    for (const p of allOf("초3", "1-6-1"))
+      if (p.content.startsWith("그림처럼 전체를 똑같이")) expect(p.figureSpec?.kind, p.content).not.toBe("triRow");
+    for (const p of allOf("초4", "1-1-5"))
+      if (/조와 \$\d+\$억 중 더 큰 수/.test(p.content)) expect(p.answer, p.content).toMatch(/[조억]$/);
   });
 });

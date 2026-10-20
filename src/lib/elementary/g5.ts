@@ -5210,7 +5210,7 @@ function corr132Judge(unit: UnitSeed, rng: Rng): ElemProblem {
   const shown = wantYes ? k : k === 2 ? 3 : k - 1;
   return make(
     unit,
-    `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. 대응 관계가 ${expr(relMulLatex(shown))}이면 맞습니까? (예, 아니요)`,
+    `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. 대응 관계를 식으로 나타내면 ${expr(relMulLatex(shown))}입니까? (예, 아니요)`,
     shown === k ? "예" : "아니요",
     `△는 □의 ${n(k)}배이므로 ${expr(relMulLatex(k))}입니다. 따라서 ${shown === k ? "맞습니다" : "틀렸습니다"}.`,
     corrTable(
@@ -5443,7 +5443,7 @@ function corr133Judge(unit: UnitSeed, rng: Rng): ElemProblem {
   const shown = wantYes ? per : per === 2 ? 3 : per - 1;
   return make(
     unit,
-    `${setup}, 대응 관계가 ${expr(relMulLatex(shown))}이면 맞습니까? (예, 아니요)`,
+    `${setup}, 대응 관계를 식으로 나타내면 ${expr(relMulLatex(shown))}입니까? (예, 아니요)`,
     shown === per ? "예" : "아니요",
     `옳은 식은 ${expr(relMulLatex(per))}입니다. 따라서 ${shown === per ? "맞습니다" : "틀렸습니다"}.`,
   );

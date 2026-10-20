@@ -7084,14 +7084,15 @@ function viewCalc(unit: UnitSeed, rng: Rng): ElemProblem {
   const empty = b.cols * b.rows - filled;
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓은 모양입니다. 이 모양을 위에서 보았을 때 ` +
+    // 겨냥도만 주면 뒤에 가린 칸을 못 정하고(5차), 겨냥도와 위에서 본 모양을 함께 주면 답이 그대로 보인다(4차) —
+    // 위에서 본 모양을 읽는 1단 문항으로 묻는다
+    `${b.grid} 바닥에 쌓기나무를 쌓은 모양을 위에서 본 그림입니다. ` +
       `쌓기나무가 놓이지 않은 칸은 몇 칸인가?`,
     num(empty),
     `바닥은 모두 ${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다. ` +
       `쌓기나무가 놓인 칸이 ${num(filled)}칸이므로 ` +
       `${expr(`${b.cols * b.rows}-${filled}=${empty}`)} 칸이 비어 있습니다.`,
-    // 위에서 본 모양을 같이 그리면 빈 칸이 그대로 보인다(4차 교차 검수) — 겨냥도만.
-    fig("stackCubes", { voxels: heightsToVoxels(h), views: ["iso"] }),
+    fig("stackCubes", { voxels: heightsToVoxels(h), views: ["top"] }),
   );
 }
 
@@ -14334,7 +14335,8 @@ function propEqFormIsTf(unit: UnitSeed, rng: Rng): ElemProblem {
   const k = intBetween(rng, 2, 6);
   return make(
     unit,
-    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}:${b}=${a * k}:${b * k}`)} 는 비례식이다.`,
+    // 비례식은 마지막 수를 끝으로 읽는다(«$21:6$» → «육은») — 5차 교차 검수
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}:${b}=${a * k}:${b * k}`)} ${"2459".includes(String(b * k).at(-1)!) ? "는" : "은"} 비례식이다.`,
     "예",
     `두 비의 비율이 같으므로 비례식입니다.`,
   );
@@ -14624,7 +14626,7 @@ function circAppFormSqSide(unit: UnitSeed, rng: Rng): ElemProblem {
     `지름이 ${unitNum(d, "cm")} 인 원 밖에 꼭 맞게 정사각형을 그렸습니다. 이 정사각형의 한 변은 몇 cm입니까? ${FIT_SQUARE}`,
     num(d),
     `한 변은 지름과 같은 ${unitNum(d, "cm")} 입니다.`,
-    circShow("diameter"),
+    // 원과 지름만 그린 그림은 «정사각형을 그렸습니다» 와 어긋난다(5차 교차 검수) — 그림 없이
   );
 }
 function circAppFormDiag(unit: UnitSeed, rng: Rng): ElemProblem {
