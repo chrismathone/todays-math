@@ -691,6 +691,7 @@ function breakDisplayMath(text: string): string {
  *   ㉠ 앞부분이 **문장으로 끝난다**(`.` `?` `!`) — 「…하시오.」 「…것은?」
  *   ㉡ 그 수식이 **글의 마지막**이다 — 뒤에 이어지는 말이 없다
  *   ㉢ 홑수식 줄이 **하나뿐**이다 — 여럿이면 «표시 없는 보기»라 갈라선 안 된다
+ *      (한 줄의 쉼표 나열 «$2$, $3$, $x$» 는 줄 하나다 — 2026-10-20)
  *
  * ㉠ 이 「자연수 / $m,n$」 를 막고, ㉡ 가 「$m,n$ / 의 개수는?」 를 막고,
  * ㉢ 이 「…아닌 것은? / $5-3x\ge x+9$ / $6x…$ / …」(보기 넷)를 막는다.
@@ -698,9 +699,12 @@ function breakDisplayMath(text: string): string {
  * ⚠️ **지면 높이가 바뀐다** — 한 줄이 늘어난다. 자(`estimateProblemPx`)도 이 함수를
  *    거치는 같은 파서를 부르므로 갈라지지 않는다. 종이 검수는 따로 남긴다(절대 규칙 6).
  */
-const TRAILING_FORMULA = /^([\s\S]*[.?!])\n\s*(\$[^$\n]+\$)$/;
+// 식 하나, 또는 쉼표로 가른 식 나열 한 줄(«$2$, $3$, $x$» — 2026-10-20 넓힘 · `isFormulaOnlyParagraph` 와 같은 꼴).
+const TRAILING_FORMULA =
+  /^([\s\S]*[.?!])\n\s*(\$[^$\n]+\$(?:[ \t]*[,，][ \t]*\$[^$\n]+\$)*)$/;
 /** 글 **중간**에 있는 홑수식 줄 — 하나라도 있으면 표시 없는 보기로 보고 손대지 않는다. */
-const MIDDLE_FORMULA_LINE = /\n[ \t]*\$[^$\n]+\$[ \t]*(?=\n)/;
+const MIDDLE_FORMULA_LINE =
+  /\n[ \t]*\$[^$\n]+\$(?:[ \t]*[,，][ \t]*\$[^$\n]+\$)*[ \t]*(?=\n)/;
 
 function markStandaloneFormula(text: string): string {
   if (!text.includes("\n")) return text;

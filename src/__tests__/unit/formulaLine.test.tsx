@@ -76,8 +76,21 @@ describe("지면 — ProblemContent 발문", () => {
     expect(html("$141\\times90=\\square$")).not.toContain("data-formula-line");
     expect(html("다음 중 가장 큰 수는?\n① $1$\n② $2$\n③ $3$\n④ $4$\n⑤ $5$")).not.toContain("data-formula-line");
   });
-  it("🔴 현행(후보로 남김): 홑 줄바꿈 뒤 쉼표 나열(중1 «…구하시오.\\n$2$, $3$, $x$») 은 한 문단 안의 줄이라 아직 대상 밖", () => {
-    expect(html("다음 수 중 가장 큰 수를 구하시오.\n$2$, $3$, $5$")).not.toContain("data-formula-line");
+  it("홑 줄바꿈 뒤 쉼표 나열(중1 «…구하시오.\\n$2$, $3$, $x$» — `m1Book2.ts` 꼴)도 문단으로 세워 가운데", () => {
+    const out = html("다음 수 중 가장 큰 수를 구하시오.\n$2$, $3$, $5$");
+    expect(out).toContain(FLAG);
+    expect(out).not.toContain("<br");
+  });
+  it("홑 줄바꿈 뒤 식 줄이 여럿이면(번호 없는 보기) 그대로 — 가르지 않는다", () => {
+    expect(html("다음 중 옳은 것은?\n$2$, $3$\n$5$, $7$")).not.toContain("data-formula-line");
+  });
+  it("🔴 현행: 식 뒤에 글이 이어지는 꼴(«…\\n\\n$식$\\n\\n이때 …»)은 파서가 식과 뒷글을 한 문단으로 합쳐 대상 밖 — 엔진 · 은행 전수에 이 꼴이 0 이라(2026-10-20) 규칙을 두지 않았다", () => {
+    expect(html("다음 식을 보시오.\n\n$2x+3=7$\n\n이때 $x$의 값을 구하시오.")).not.toContain("data-formula-line");
+  });
+  it("OCR 이 문장 가운데를 끊은 꼴(«…자연수\\n\\n$m,n$\\n\\n의 개수는?») 은 그대로 한 문단", () => {
+    const out = html("다음 조건을 만족시키는 자연수\n\n$m,n$\n\n의 개수는?");
+    expect(out).not.toContain("data-formula-line");
+    expect(out.match(/<p/g)).toHaveLength(1);
   });
   it("정답 · 해설(MathText)은 바뀌지 않는다", () => {
     const out = renderToStaticMarkup(<MathText as="div" text={"몫은 다음과 같다.\n\n$563\\times42$"} />);
@@ -95,6 +108,8 @@ describe("높이 자 — 지면이 더한 여백을 같이 센다", () => {
     const samples = [
       "다음 곱셈을 어림하려고 합니다. 합을 구하시오.\n\n$563\\times42$",
       "다음 식을 보시오.\n\n$2x+3=7$\n\n이때 $x$의 값을 구하시오.",
+      "다음 수 중 가장 큰 수를 구하시오.\n$2$, $3$, $5$",
+      "다음 조건을 만족시키는 자연수\n\n$m,n$\n\n의 개수는?",
       "다음 두 분수 중 더 큰 분수를 쓰시오.\n\n$\\frac{5}{7}$,  $\\frac{6}{7}$",
       "다음 등식이 성립할 때, 식을 구하시오.\n$3x\\times\\square=6x^{2}$",
       "다음을 구하시오.\n\n$$x+1=2$$",
