@@ -3,10 +3,10 @@
  "baseCommit": "1b3f05e54",
  "agreedWith": "Codex gpt-6-astra xhigh 검토(2026-10-20) — 문형별 결론은 display-survey/codex/reply-engine.md(저장소 밖)",
  "sourceSha256": {
-  "src/lib/elementary/g3.ts": "c594bf26888524a84091178d9355b0396c7f063d324534b4661c0c81e728d0ea",
-  "src/lib/elementary/g4.ts": "507920a3a8e546f87fff423a8b5bfafae8cc8799571472ebb7b9090b56ab4e84",
-  "src/lib/elementary/g5.ts": "d78762dbc0da50b18cabb834e1d164a387a5c1908b7dc867b9584f8d4f1985f7",
-  "src/lib/elementary/g6.ts": "cffff2f0e68cc68a335792d7689c7be27a5f2c8ef99d45d939ea21bf89a11eaf"
+  "src/lib/elementary/g3.ts": "749a972ade0fbc12276696d6fda5d245a597686003de0b76202743a01a0a7155",
+  "src/lib/elementary/g4.ts": "0d5383ee22489d5d171072c8b927f1c6bfac8e73d2aa0822ac5c353128e1211b",
+  "src/lib/elementary/g5.ts": "24c011598bef458c70d6c240aac08a95837ccc325698920f5f5adb8be793d4b2",
+  "src/lib/elementary/g6.ts": "632672bcdfaee8c9667b57bded1126f344a306d65beee37cd0166face253a982"
  },
  "changes": [
   {
@@ -2936,6 +2936,72 @@
     }
    ],
    "afterRowSha256": "f822e7abc9b5db6c9ad5b2166e17f6121056138c8c89b0d7efda6276e894ade2"
+  },
+  {
+   "familyKey": "elem:초3|1-2-2 각, 직각 알아보기|07",
+   "beforeRow": [
+    "초3",
+    "1-2-2 각, 직각 알아보기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-2 평면도형",
+     "section": "1-2-2 각, 직각 알아보기",
+     "orderIndex": 136,
+     "content": "두 반직선이 한 점에서 반듯하게 만나 이루는 각을 무엇이라고 합니까? 그런 각을 $2$개 그릴 수 있습니다.",
+     "answer": "직각",
+     "solution": "두 반직선이 반듯하게 만나 이루는 각이 직각입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "6f230aec697c52f5abefa2e00f62dfb4b070d9d564b006b424b6fec1c4f4e055"
+  },
+  {
+   "familyKey": "elem:초3|1-2-2 각, 직각 알아보기|07",
+   "beforeRow": [
+    "초3",
+    "1-2-2 각, 직각 알아보기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-2 평면도형",
+     "section": "1-2-2 각, 직각 알아보기",
+     "orderIndex": 136,
+     "content": "두 반직선이 한 점에서 반듯하게 만나 이루는 각을 무엇이라고 합니까? 그런 각을 $4$개 그릴 수 있습니다.",
+     "answer": "직각",
+     "solution": "두 반직선이 반듯하게 만나 이루는 각이 직각입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "14242f373428bd25ee4eb737a00db7b8b0f85092ecd9a575419e23397ea856b0"
+  },
+  {
+   "familyKey": "elem:초3|1-2-2 각, 직각 알아보기|07",
+   "beforeRow": [
+    "초3",
+    "1-2-2 각, 직각 알아보기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-2 평면도형",
+     "section": "1-2-2 각, 직각 알아보기",
+     "orderIndex": 136,
+     "content": "두 반직선이 한 점에서 반듯하게 만나 이루는 각을 무엇이라고 합니까? 그런 각을 $2$개 그릴 수 있습니다.",
+     "answer": "직각",
+     "solution": "두 반직선이 반듯하게 만나 이루는 각이 직각입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "28e95e7ae5f1bf3567ff149e9354896d12e94f4ff09700e442d5fa8561760883"
   },
   {
    "familyKey": "elem:초3|1-2-3 직각삼각형 알아보기|01",
@@ -10260,6 +10326,90 @@
    "afterRowSha256": "901fff48ccf92057ed11e7d51e2662635acda7c54c9dd89a9e30751abdd21ab5"
   },
   {
+   "familyKey": "elem:초3|1-6-1 똑같이 나누기|07",
+   "beforeRow": [
+    "초3",
+    "1-6-1 똑같이 나누기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-6 분수와 소수",
+     "section": "1-6-1 똑같이 나누기",
+     "orderIndex": 155,
+     "content": "그림처럼 전체를 똑같이 $5$조각으로 나누었습니다. 한 조각은 전체의 얼마인지 분수로 쓰시오.",
+     "answer": "$\\frac{1}{5}$",
+     "solution": "똑같이 $5$조각이므로 한 조각은 $\\frac{1}{5}$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "fracPie",
+      "n": 5,
+      "filled": 2,
+      "fill": "#d4a0c8"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "c16f32128c34e760f6bc732024feb5e4b9793f53781c0ec493a7f3c2fa54f454"
+  },
+  {
+   "familyKey": "elem:초3|1-6-1 똑같이 나누기|07",
+   "beforeRow": [
+    "초3",
+    "1-6-1 똑같이 나누기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-6 분수와 소수",
+     "section": "1-6-1 똑같이 나누기",
+     "orderIndex": 155,
+     "content": "그림처럼 전체를 똑같이 $5$조각으로 나누었습니다. 한 조각은 전체의 얼마인지 분수로 쓰시오.",
+     "answer": "$\\frac{1}{5}$",
+     "solution": "똑같이 $5$조각이므로 한 조각은 $\\frac{1}{5}$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "fracPie",
+      "n": 5,
+      "filled": 1,
+      "fill": "#d4a0c8"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "ad51f530991f7a0637e5d236dedd4334aed3c3f3b591a8ec2e316bc3b8cade59"
+  },
+  {
+   "familyKey": "elem:초3|1-6-1 똑같이 나누기|07",
+   "beforeRow": [
+    "초3",
+    "1-6-1 똑같이 나누기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-6 분수와 소수",
+     "section": "1-6-1 똑같이 나누기",
+     "orderIndex": 155,
+     "content": "그림처럼 전체를 똑같이 $8$조각으로 나누었습니다. 한 조각은 전체의 얼마인지 분수로 쓰시오.",
+     "answer": "$\\frac{1}{8}$",
+     "solution": "똑같이 $8$조각이므로 한 조각은 $\\frac{1}{8}$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "triRow",
+      "n": 8,
+      "filled": 1,
+      "fill": "#7eb89a"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "a26974c9cc69b5c7414a213d6e5873323405c80c1749de6edf87358a0d1d3966"
+  },
+  {
    "familyKey": "elem:초3|2-1-1 (세 자리 수)×(한 자리 수) (1)|06",
    "beforeRow": [
     "초3",
@@ -10690,6 +10840,162 @@
     }
    ],
    "afterRowSha256": "cc774c078a82367cd6e52109b3649c093ee23a71035b1479dc78b5fe5c676a05"
+  },
+  {
+   "familyKey": "elem:초3|2-3-2 원의 성질|06",
+   "beforeRow": [
+    "초3",
+    "2-3-2 원의 성질",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-3 원",
+     "section": "2-3-2 원의 성질",
+     "orderIndex": 171,
+     "content": "반지름이 $3\\,\\mathrm{cm}$ 인 원에 반지름을 $3$개 그었습니다. 그은 선분의 길이의 합은 몇 cm입니까?",
+     "answer": "$9$",
+     "solution": "$3\\times3=9$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "circleParts",
+      "radius": "3 cm"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "04a790949a8bab813444f5a8edb646c4a03777387c79b7fe97c809f1b631b8da"
+  },
+  {
+   "familyKey": "elem:초3|2-3-2 원의 성질|06",
+   "beforeRow": [
+    "초3",
+    "2-3-2 원의 성질",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-3 원",
+     "section": "2-3-2 원의 성질",
+     "orderIndex": 171,
+     "content": "반지름이 $8\\,\\mathrm{cm}$ 인 원에 반지름을 $3$개 그었습니다. 그은 선분의 길이의 합은 몇 cm입니까?",
+     "answer": "$24$",
+     "solution": "$8\\times3=24$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "circleParts",
+      "radius": "8 cm"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "8bf0ffeb70683fae4d6e61c0368fb1268f47a3157c5ba36bcfa0d1d6dc5544c9"
+  },
+  {
+   "familyKey": "elem:초3|2-3-2 원의 성질|06",
+   "beforeRow": [
+    "초3",
+    "2-3-2 원의 성질",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-3 원",
+     "section": "2-3-2 원의 성질",
+     "orderIndex": 171,
+     "content": "반지름이 $9\\,\\mathrm{cm}$ 인 원에 반지름을 $3$개 그었습니다. 그은 선분의 길이의 합은 몇 cm입니까?",
+     "answer": "$27$",
+     "solution": "$9\\times3=27$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "circleParts",
+      "radius": "9 cm"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "a0805035368851f1e7164fc4dd46d1cedcb3554972cc96a081b2d31945b6aa43"
+  },
+  {
+   "familyKey": "elem:초3|2-3-2 원의 성질|09",
+   "beforeRow": [
+    "초3",
+    "2-3-2 원의 성질",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-3 원",
+     "section": "2-3-2 원의 성질",
+     "orderIndex": 171,
+     "content": "반지름이 $7\\,\\mathrm{cm}$ 인 원에 반지름을 $3$개 그었습니다. 길이의 합은 몇 cm입니까?",
+     "answer": "$21$",
+     "solution": "$7\\times3=21$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "circleParts",
+      "radius": "7 cm"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "c5a38eeb5826f9b699b809d5231dffe38d2b3ceb57a7fbe60b15c868fb62e72d"
+  },
+  {
+   "familyKey": "elem:초3|2-3-2 원의 성질|09",
+   "beforeRow": [
+    "초3",
+    "2-3-2 원의 성질",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-3 원",
+     "section": "2-3-2 원의 성질",
+     "orderIndex": 171,
+     "content": "반지름이 $6\\,\\mathrm{cm}$ 인 원에 반지름을 $2$개 그었습니다. 길이의 합은 몇 cm입니까?",
+     "answer": "$12$",
+     "solution": "$6\\times2=12$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "circleParts",
+      "radius": "6 cm"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "e33b879f40517347975d0ff5658d4744c4dfb3280f2f0e8fc280799ff23bd151"
+  },
+  {
+   "familyKey": "elem:초3|2-3-2 원의 성질|09",
+   "beforeRow": [
+    "초3",
+    "2-3-2 원의 성질",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-3 원",
+     "section": "2-3-2 원의 성질",
+     "orderIndex": 171,
+     "content": "반지름이 $5\\,\\mathrm{cm}$ 인 원에 반지름을 $5$개 그었습니다. 길이의 합은 몇 cm입니까?",
+     "answer": "$25$",
+     "solution": "$5\\times5=25$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "circleParts",
+      "radius": "5 cm"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "5cd8a2c04aac463973ed44e960f22f8559934e3df6343951c879ab8588138ac9"
   },
   {
    "familyKey": "elem:초3|2-5-1 들이 비교하기|02",
@@ -12900,7 +13206,7 @@
      "formId": "09"
     }
    ],
-   "afterRowSha256": "a69d0c2ba15454288786a706bc4c096944d235540f3720791620a6a1751a3460"
+   "afterRowSha256": "ad18ed733460bc1fd83a1666b5444df5e041f1d3082cf58c61c5b0df662326fd"
   },
   {
    "familyKey": "elem:초4|1-4-3 평면도형 뒤집기|09",
@@ -12941,7 +13247,7 @@
      "formId": "09"
     }
    ],
-   "afterRowSha256": "59dac531579fc588fb285dcc8d6975fb0519290707894d244e9a5c03b9bf9e0a"
+   "afterRowSha256": "27c04553f0062d6218ac941014a911cc58ab81b44fc5cc00773a869f7f27cb02"
   },
   {
    "familyKey": "elem:초4|1-4-3 평면도형 뒤집기|09",
@@ -12986,7 +13292,7 @@
      "formId": "09"
     }
    ],
-   "afterRowSha256": "5aea5aef39ac6f15ac43e979ce51d8e3578443016082a35dcb70ff27d262d391"
+   "afterRowSha256": "65724c72cced9d9f72d4e40a8b3bd0a6d5ef641817ffe4fcd0226a67894dc5c2"
   },
   {
    "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|01",
@@ -14452,6 +14758,99 @@
    "afterRowSha256": "1aced88cf4699e390f2154873e842b2b4ae04f1c247cd32677e027e3c547ec37"
   },
   {
+   "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|07",
+   "beforeRow": [
+    "초4",
+    "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-2 삼각형",
+     "section": "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+     "orderIndex": 223,
+     "content": "한 변이 $7\\,\\mathrm{cm}$인 정삼각형의 세 변의 길이의 합은 몇 cm인가?",
+     "answer": "$21\\,\\mathrm{cm}$",
+     "solution": "$7\\times3=21$ 이므로 $21\\,\\mathrm{cm}$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "namedShapes",
+      "items": [
+       {
+        "shape": "eqTri",
+        "label": "가"
+       }
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "13fa33d58a1c7d763117029ec38fdc239fd442f73706273a327e5e9579a7cdc8"
+  },
+  {
+   "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|07",
+   "beforeRow": [
+    "초4",
+    "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-2 삼각형",
+     "section": "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+     "orderIndex": 223,
+     "content": "한 변이 $12\\,\\mathrm{cm}$인 정삼각형의 세 변의 길이의 합은 몇 cm인가?",
+     "answer": "$36\\,\\mathrm{cm}$",
+     "solution": "$12\\times3=36$ 이므로 $36\\,\\mathrm{cm}$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "namedShapes",
+      "items": [
+       {
+        "shape": "eqTri",
+        "label": "가"
+       }
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "7567f0322581c0605ad57a1bc59127aeeb2bb8620ba2977f5db9f709e452df9a"
+  },
+  {
+   "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|07",
+   "beforeRow": [
+    "초4",
+    "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-2 삼각형",
+     "section": "2-2-1 삼각형을 변의 길이에 따라 분류하기",
+     "orderIndex": 223,
+     "content": "한 변이 $12\\,\\mathrm{cm}$인 정삼각형의 세 변의 길이의 합은 몇 cm인가?",
+     "answer": "$36\\,\\mathrm{cm}$",
+     "solution": "$12\\times3=36$ 이므로 $36\\,\\mathrm{cm}$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "namedShapes",
+      "items": [
+       {
+        "shape": "eqTri",
+        "label": "가"
+       }
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "203488567b566f642b5bb55a977623fb76c7dedf17d825db9e86282dc0cc9174"
+  },
+  {
    "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|08",
    "beforeRow": [
     "초4",
@@ -15721,6 +16120,156 @@
    "afterRowSha256": "0301ca61b38bce4bea7a6ea75b6b2865177104b047e5082e08c55eb29d74af9c"
   },
   {
+   "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|02",
+   "beforeRow": [
+    "초4",
+    "2-5-1 꺾은선그래프 알아보기",
+    "02",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-1 꺾은선그래프 알아보기",
+     "orderIndex": 242,
+     "content": "우리 반이 읽은 책 수를 조사하여 나타낸 꺾은선그래프입니다. 우리 반이 읽은 책 수의 값이 $4$월의 값보다 큰 때는 모두 몇 번인가?",
+     "answer": "$2$번",
+     "solution": "$4$월의 값은 $26$권입니다. 점이 그보다 높이 찍힌 때를 세면 $2$번입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "1월",
+        "value": 12
+       },
+       {
+        "label": "2월",
+        "value": 20
+       },
+       {
+        "label": "3월",
+        "value": 32
+       },
+       {
+        "label": "4월",
+        "value": 26
+       },
+       {
+        "label": "5월",
+        "value": 36
+       }
+      ],
+      "yMax": 39,
+      "yStep": 10,
+      "yLabel": "권"
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "ba068f6378d6a3c3f605f3ad20e91630a51dbb42f4c273b298a33235f7daf988"
+  },
+  {
+   "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|02",
+   "beforeRow": [
+    "초4",
+    "2-5-1 꺾은선그래프 알아보기",
+    "02",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-1 꺾은선그래프 알아보기",
+     "orderIndex": 242,
+     "content": "교실의 기온을 조사하여 나타낸 꺾은선그래프입니다. 교실의 기온의 값이 $4$월의 값보다 큰 때는 모두 몇 번인가?",
+     "answer": "$3$번",
+     "solution": "$4$월의 값은 $14$℃입니다. 점이 그보다 높이 찍힌 때를 세면 $3$번입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "3월",
+        "value": 10
+       },
+       {
+        "label": "4월",
+        "value": 14
+       },
+       {
+        "label": "5월",
+        "value": 15
+       },
+       {
+        "label": "6월",
+        "value": 18
+       },
+       {
+        "label": "7월",
+        "value": 20
+       }
+      ],
+      "yMax": 23,
+      "yStep": 5,
+      "yLabel": "℃"
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "6400b55514ffe335a8c9a78cc7263713f87738100a682be09358d6a045684b4a"
+  },
+  {
+   "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|02",
+   "beforeRow": [
+    "초4",
+    "2-5-1 꺾은선그래프 알아보기",
+    "02",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-1 꺾은선그래프 알아보기",
+     "orderIndex": 242,
+     "content": "우리 반이 읽은 책 수를 조사하여 나타낸 꺾은선그래프입니다. 우리 반이 읽은 책 수의 값이 $5$월의 값보다 큰 때는 모두 몇 번인가?",
+     "answer": "$1$번",
+     "solution": "$5$월의 값은 $26$권입니다. 점이 그보다 높이 찍힌 때를 세면 $1$번입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "1월",
+        "value": 18
+       },
+       {
+        "label": "2월",
+        "value": 22
+       },
+       {
+        "label": "3월",
+        "value": 28
+       },
+       {
+        "label": "4월",
+        "value": 16
+       },
+       {
+        "label": "5월",
+        "value": 26
+       }
+      ],
+      "yMax": 31,
+      "yStep": 10,
+      "yLabel": "권"
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "5b8d75c813181a76b63f47e1a2aec511675c2eaf15ed82d71b28582b35e8ba22"
+  },
+  {
    "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|03",
    "beforeRow": [
     "초4",
@@ -15768,7 +16317,7 @@
      "formId": "03"
     }
    ],
-   "afterRowSha256": "52a1bfa37f0f3d73bf4402650630468d8932338ca1e5ead0a1ccebda10c879e0"
+   "afterRowSha256": "e694d4e37f979a221c53b78a21b9ff33635d58e68e6e1b7c4d2ecb249c2c937d"
   },
   {
    "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|03",
@@ -15818,7 +16367,7 @@
      "formId": "03"
     }
    ],
-   "afterRowSha256": "4e8cd1d45046cc38827eb377759d6df4242e0ace18f322f12c66e85b868b85fa"
+   "afterRowSha256": "559f892297b8da61a962442470dac5596482b1a26fe3a1ffe63bf3a1421ee9ae"
   },
   {
    "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|03",
@@ -15868,7 +16417,7 @@
      "formId": "03"
     }
    ],
-   "afterRowSha256": "b5329620f92dd071b6d80668847b79b925280ef0507af24123b535c2e2a0874b"
+   "afterRowSha256": "82736c49c35ae069861e98854c65bc2d1b74ab089f4bb800ee6fcec910c702e1"
   },
   {
    "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|05",
@@ -15969,6 +16518,306 @@
     }
    ],
    "afterRowSha256": "cc58b8acdd2a1744bf66e648bb4317d69643aa2ffca6e3157796d75e1f50df03"
+  },
+  {
+   "familyKey": "elem:초4|2-5-2 꺾은선그래프 내용 알아보기|01",
+   "beforeRow": [
+    "초4",
+    "2-5-2 꺾은선그래프 내용 알아보기",
+    "01",
+    "연산",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-2 꺾은선그래프 내용 알아보기",
+     "orderIndex": 243,
+     "content": "도서관에 온 학생 수를 조사하여 나타낸 꺾은선그래프입니다. 도서관에 온 학생 수의 값이 $44$명인 때는 언제인가?",
+     "answer": "목요일",
+     "solution": "세로축에서 $44$명인 곳을 찾아 점이 그 높이에 찍힌 때를 보면 목요일입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "월요일",
+        "value": 16
+       },
+       {
+        "label": "화요일",
+        "value": 26
+       },
+       {
+        "label": "수요일",
+        "value": 38
+       },
+       {
+        "label": "목요일",
+        "value": 44
+       },
+       {
+        "label": "금요일",
+        "value": 52
+       }
+      ],
+      "yMax": 55,
+      "yStep": 10,
+      "yLabel": "명"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "8f42e68752dd3e0a2f930c955eb3e48d19fc91fa103c582e44085dea60597ce1"
+  },
+  {
+   "familyKey": "elem:초4|2-5-2 꺾은선그래프 내용 알아보기|01",
+   "beforeRow": [
+    "초4",
+    "2-5-2 꺾은선그래프 내용 알아보기",
+    "01",
+    "연산",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-2 꺾은선그래프 내용 알아보기",
+     "orderIndex": 243,
+     "content": "운동장의 기온을 조사하여 나타낸 꺾은선그래프입니다. 운동장의 기온의 값이 $15$℃인 때는 언제인가?",
+     "answer": "$10$시",
+     "solution": "세로축에서 $15$℃인 곳을 찾아 점이 그 높이에 찍힌 때를 보면 $10$시입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "9시",
+        "value": 14
+       },
+       {
+        "label": "10시",
+        "value": 15
+       },
+       {
+        "label": "11시",
+        "value": 21
+       },
+       {
+        "label": "12시",
+        "value": 17
+       },
+       {
+        "label": "1시",
+        "value": 19
+       }
+      ],
+      "yMax": 24,
+      "yStep": 5,
+      "yLabel": "℃"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "5b07ad638bb2a28a31b0ad9020a01bb716fa167c30fd2ba45319d1913dc28e19"
+  },
+  {
+   "familyKey": "elem:초4|2-5-2 꺾은선그래프 내용 알아보기|01",
+   "beforeRow": [
+    "초4",
+    "2-5-2 꺾은선그래프 내용 알아보기",
+    "01",
+    "연산",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-2 꺾은선그래프 내용 알아보기",
+     "orderIndex": 243,
+     "content": "도서관에 온 학생 수를 조사하여 나타낸 꺾은선그래프입니다. 도서관에 온 학생 수의 값이 $16$명인 때는 언제인가?",
+     "answer": "목요일",
+     "solution": "세로축에서 $16$명인 곳을 찾아 점이 그 높이에 찍힌 때를 보면 목요일입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "월요일",
+        "value": 20
+       },
+       {
+        "label": "화요일",
+        "value": 22
+       },
+       {
+        "label": "수요일",
+        "value": 26
+       },
+       {
+        "label": "목요일",
+        "value": 16
+       },
+       {
+        "label": "금요일",
+        "value": 28
+       }
+      ],
+      "yMax": 31,
+      "yStep": 10,
+      "yLabel": "명"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "257e11da14cd030b8fc3b6e78fc7dc0d9aca73ddb20b888c2b597c70a74c81e7"
+  },
+  {
+   "familyKey": "elem:초4|2-5-2 꺾은선그래프 내용 알아보기|03",
+   "beforeRow": [
+    "초4",
+    "2-5-2 꺾은선그래프 내용 알아보기",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-2 꺾은선그래프 내용 알아보기",
+     "orderIndex": 243,
+     "content": "강아지의 무게를 조사하여 나타낸 꺾은선그래프입니다. 이웃한 두 때 사이에서 강아지의 무게의 값이 $4$kg보다 많이 변한 구간은 모두 몇 번인가?",
+     "answer": "$1$번",
+     "solution": "이웃한 두 점의 값의 차를 차례로 구하면 $2$, $5$, $4$, $3$kg입니다. 이 중 $4$kg보다 큰 것은 $1$개이므로 $1$번입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "1개월",
+        "value": 2
+       },
+       {
+        "label": "2개월",
+        "value": 4
+       },
+       {
+        "label": "3개월",
+        "value": 9
+       },
+       {
+        "label": "4개월",
+        "value": 13
+       },
+       {
+        "label": "5개월",
+        "value": 16
+       }
+      ],
+      "yMax": 19,
+      "yStep": 5,
+      "yLabel": "kg"
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "fc98ce0245f89deae03199365da5fdf494d04dabc12974284700b9edbe58bd1c"
+  },
+  {
+   "familyKey": "elem:초4|2-5-2 꺾은선그래프 내용 알아보기|03",
+   "beforeRow": [
+    "초4",
+    "2-5-2 꺾은선그래프 내용 알아보기",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-2 꺾은선그래프 내용 알아보기",
+     "orderIndex": 243,
+     "content": "도서관에 온 학생 수를 조사하여 나타낸 꺾은선그래프입니다. 이웃한 두 때 사이에서 도서관에 온 학생 수의 값이 $8$명보다 많이 변한 구간은 모두 몇 번인가?",
+     "answer": "$2$번",
+     "solution": "이웃한 두 점의 값의 차를 차례로 구하면 $4$, $8$, $10$, $12$명입니다. 이 중 $8$명보다 큰 것은 $2$개이므로 $2$번입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "월요일",
+        "value": 24
+       },
+       {
+        "label": "화요일",
+        "value": 28
+       },
+       {
+        "label": "수요일",
+        "value": 36
+       },
+       {
+        "label": "목요일",
+        "value": 26
+       },
+       {
+        "label": "금요일",
+        "value": 38
+       }
+      ],
+      "yMax": 41,
+      "yStep": 10,
+      "yLabel": "명"
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "3b0dacdc908dac9d52863963906c3a7876631013a4717618edf5c8b81e8d5d0b"
+  },
+  {
+   "familyKey": "elem:초4|2-5-2 꺾은선그래프 내용 알아보기|03",
+   "beforeRow": [
+    "초4",
+    "2-5-2 꺾은선그래프 내용 알아보기",
+    "03",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-2 꺾은선그래프 내용 알아보기",
+     "orderIndex": 243,
+     "content": "도서관에 온 학생 수를 조사하여 나타낸 꺾은선그래프입니다. 이웃한 두 때 사이에서 도서관에 온 학생 수의 값이 $4$명보다 많이 변한 구간은 모두 몇 번인가?",
+     "answer": "$3$번",
+     "solution": "이웃한 두 점의 값의 차를 차례로 구하면 $10$, $4$, $12$, $8$명입니다. 이 중 $4$명보다 큰 것은 $3$개이므로 $3$번입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "월요일",
+        "value": 24
+       },
+       {
+        "label": "화요일",
+        "value": 34
+       },
+       {
+        "label": "수요일",
+        "value": 38
+       },
+       {
+        "label": "목요일",
+        "value": 50
+       },
+       {
+        "label": "금요일",
+        "value": 58
+       }
+      ],
+      "yMax": 61,
+      "yStep": 10,
+      "yLabel": "명"
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "a64e8332575b9ad285e60ad46a8161090b91912237208138fba92b200161fe20"
   },
   {
    "familyKey": "elem:초4|2-5-2 꺾은선그래프 내용 알아보기|07",
@@ -16124,6 +16973,204 @@
    "afterRowSha256": "be640c45006d79205944236cbe07d02103e47373800307649c47750c580dfd7b"
   },
   {
+   "familyKey": "elem:초5|1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식|10",
+   "beforeRow": [
+    "초5",
+    "1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-1 자연수의 혼합 계산",
+     "section": "1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+     "orderIndex": 249,
+     "content": "값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ $40\\div5\\times2$  ㉡ $40\\div(5\\times2)$",
+     "answer": "㉠",
+     "solution": "$40\\div5\\times2=16$, $40\\div(5\\times2)=4$이므로 더 큰 것은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "23ffe8e119d395299f525e7e99c4125b6f0797391598b7bd75abedcad0493bab"
+  },
+  {
+   "familyKey": "elem:초5|1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식|10",
+   "beforeRow": [
+    "초5",
+    "1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-1 자연수의 혼합 계산",
+     "section": "1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+     "orderIndex": 249,
+     "content": "값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ $48\\div2\\times3$  ㉡ $48\\div(2\\times3)$",
+     "answer": "㉠",
+     "solution": "$48\\div2\\times3=72$, $48\\div(2\\times3)=8$이므로 더 큰 것은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "c14b30c548ce51da10b9ee7754fadfadd7e803ec1e54dcafa8493586dfd4413c"
+  },
+  {
+   "familyKey": "elem:초5|1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식|10",
+   "beforeRow": [
+    "초5",
+    "1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-1 자연수의 혼합 계산",
+     "section": "1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+     "orderIndex": 249,
+     "content": "값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ $36-12+8$  ㉡ $36-(12+8)$",
+     "answer": "㉠",
+     "solution": "$36-12+8=32$, $36-(12+8)=16$이므로 더 큰 것은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "e56bfc65383f0dabd7c3ea9369583d82cce66dac634e33ef919f57a1714a9cfa"
+  },
+  {
+   "familyKey": "elem:초5|1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식|10",
+   "beforeRow": [
+    "초5",
+    "1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-1 자연수의 혼합 계산",
+     "section": "1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+     "orderIndex": 250,
+     "content": "값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ $43-(9\\times3)+15$  ㉡ $(43-9)\\times3+15$",
+     "answer": "㉡",
+     "solution": "$(43-9)\\times3+15=117$, $43-(9\\times3)+15=31$이므로 더 큰 것은 ㉡입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "55da42fb909135bc8496d9f0034e3dcb20455a1e3b0fcecaaf8756eaaf829d41"
+  },
+  {
+   "familyKey": "elem:초5|1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식|10",
+   "beforeRow": [
+    "초5",
+    "1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-1 자연수의 혼합 계산",
+     "section": "1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+     "orderIndex": 250,
+     "content": "값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ $12+(24\\div4)-8$  ㉡ $(12+24)\\div4-8$",
+     "answer": "㉠",
+     "solution": "$12+(24\\div4)-8=10$, $(12+24)\\div4-8=1$이므로 더 큰 것은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "5a9f2d4c139e3919b9ae037f7b0738f8f967c1173d3fda9b01028ce826c096ff"
+  },
+  {
+   "familyKey": "elem:초5|1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식|10",
+   "beforeRow": [
+    "초5",
+    "1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-1 자연수의 혼합 계산",
+     "section": "1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+     "orderIndex": 250,
+     "content": "값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ $(27-7)\\times2+12$  ㉡ $27-(7\\times2)+12$",
+     "answer": "㉠",
+     "solution": "$(27-7)\\times2+12=52$, $27-(7\\times2)+12=25$이므로 더 큰 것은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "09b64c3242e1335e971eadb958c704bf76afa91e2e9fcb1ed4d90821776a5b2a"
+  },
+  {
+   "familyKey": "elem:초5|1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식|10",
+   "beforeRow": [
+    "초5",
+    "1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-1 자연수의 혼합 계산",
+     "section": "1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+     "orderIndex": 251,
+     "content": "값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ $59-9\\times4+24\\div3$  ㉡ $(59-9)\\times4+24\\div3$",
+     "answer": "㉡",
+     "solution": "$(59-9)\\times4+24\\div3=208$, $59-9\\times4+24\\div3=31$이므로 더 큰 것은 ㉡입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "ef184d57d93481adc90cce643f9dcc1b3976318d1c28f537b8194b64e1990f84"
+  },
+  {
+   "familyKey": "elem:초5|1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식|10",
+   "beforeRow": [
+    "초5",
+    "1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-1 자연수의 혼합 계산",
+     "section": "1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+     "orderIndex": 251,
+     "content": "값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ $40-8\\times3+8\\div4$  ㉡ $(40-8)\\times3+8\\div4$",
+     "answer": "㉡",
+     "solution": "$(40-8)\\times3+8\\div4=98$, $40-8\\times3+8\\div4=18$이므로 더 큰 것은 ㉡입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "44fd580c1f4e22f2e7b6e2b48fb6c34ef90ece5b91b95e76e70500b400842730"
+  },
+  {
+   "familyKey": "elem:초5|1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식|10",
+   "beforeRow": [
+    "초5",
+    "1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-1 자연수의 혼합 계산",
+     "section": "1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+     "orderIndex": 251,
+     "content": "값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ $74-9\\times5+24\\div6$  ㉡ $(74-9)\\times5+24\\div6$",
+     "answer": "㉡",
+     "solution": "$(74-9)\\times5+24\\div6=329$, $74-9\\times5+24\\div6=33$이므로 더 큰 것은 ㉡입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "b70e2c154fe8a84a592d7bfe6dc8d3f31ea9a9724685d359be81dfec5f061b3a"
+  },
+  {
    "familyKey": "elem:초5|1-2-1 약수와 배수|10",
    "beforeRow": [
     "초5",
@@ -16168,6 +17215,72 @@
    "afterRowSha256": "cd545040626a986ec918d27529bc2f21fa74101dbc7e888fb402c7da28b383ce"
   },
   {
+   "familyKey": "elem:초5|1-2-2 약수와 배수의 관계|02",
+   "beforeRow": [
+    "초5",
+    "1-2-2 약수와 배수의 관계",
+    "02",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-2 약수와 배수의 관계",
+     "orderIndex": 253,
+     "content": "두 수가 약수와 배수의 관계인 것을 찾아 기호를 쓰시오.  ㉠ $8$, $20$   ㉡ $3$, $18$",
+     "answer": "㉡",
+     "solution": "$3\\times6=18$이므로 $18$은 $3$의 배수이고 두 수는 약수와 배수의 관계입니다. $20$은 $8$로 나누어떨어지지 않습니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "326c0af97ca57f5482933807ce6ae8afc767f614a2c9183ff23f43559c3b0791"
+  },
+  {
+   "familyKey": "elem:초5|1-2-2 약수와 배수의 관계|02",
+   "beforeRow": [
+    "초5",
+    "1-2-2 약수와 배수의 관계",
+    "02",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-2 약수와 배수의 관계",
+     "orderIndex": 253,
+     "content": "두 수가 약수와 배수의 관계인 것을 찾아 기호를 쓰시오.  ㉠ $7$, $16$   ㉡ $8$, $48$",
+     "answer": "㉡",
+     "solution": "$8\\times6=48$이므로 $48$은 $8$의 배수이고 두 수는 약수와 배수의 관계입니다. $16$은 $7$로 나누어떨어지지 않습니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "6eb680c08ffbc0f88c3506a1faf0e61754f40a4e4b14908e0fd3b530bf2bdf64"
+  },
+  {
+   "familyKey": "elem:초5|1-2-2 약수와 배수의 관계|02",
+   "beforeRow": [
+    "초5",
+    "1-2-2 약수와 배수의 관계",
+    "02",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-2 약수와 배수",
+     "section": "1-2-2 약수와 배수의 관계",
+     "orderIndex": 253,
+     "content": "두 수가 약수와 배수의 관계인 것을 찾아 기호를 쓰시오.  ㉠ $3$, $18$   ㉡ $8$, $25$",
+     "answer": "㉠",
+     "solution": "$3\\times6=18$이므로 $18$은 $3$의 배수이고 두 수는 약수와 배수의 관계입니다. $25$는 $8$로 나누어떨어지지 않습니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "cdcca06269a63124bd07e46b11002a6cb8f49cd0623390792155d0923dfacf45"
+  },
+  {
    "familyKey": "elem:초5|1-2-2 약수와 배수의 관계|08",
    "beforeRow": [
     "초5",
@@ -16188,6 +17301,261 @@
     }
    ],
    "afterRowSha256": "934a0d3047cf734f76291fc51f7c58edcdf0030c29f5579d76e1feb2a1e5dbdd"
+  },
+  {
+   "familyKey": "elem:초5|1-3-2 대응 관계를 식으로 나타내기|09",
+   "beforeRow": [
+    "초5",
+    "1-3-2 대응 관계를 식으로 나타내기",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-3 대응 관계",
+     "section": "1-3-2 대응 관계를 식으로 나타내기",
+     "orderIndex": 259,
+     "content": "표는 □가 $6$부터 $1$씩 커질 때의 △를 나타낸 것입니다. 이 표를 나타내는 식을 찾아 기호를 쓰시오.  ㉠ $\\triangle=\\square\\times2$  ㉡ $\\triangle=\\square+4$",
+     "answer": "㉠",
+     "solution": "△는 언제나 □의 $2$배이므로 $\\triangle=\\square\\times2$입니다. 답은 ㉠입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "□",
+       "6",
+       "7",
+       "8",
+       "9"
+      ],
+      "rows": [
+       [
+        "△",
+        "12",
+        "14",
+        "16",
+        "18"
+       ]
+      ]
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "bfc18e232ea4a5ab6ecc1b20310c20754d47f208a0b0b595aed0cd4e9484f2b5"
+  },
+  {
+   "familyKey": "elem:초5|1-3-2 대응 관계를 식으로 나타내기|09",
+   "beforeRow": [
+    "초5",
+    "1-3-2 대응 관계를 식으로 나타내기",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-3 대응 관계",
+     "section": "1-3-2 대응 관계를 식으로 나타내기",
+     "orderIndex": 259,
+     "content": "표는 □가 $1$부터 $1$씩 커질 때의 △를 나타낸 것입니다. 이 표를 나타내는 식을 찾아 기호를 쓰시오.  ㉠ $\\triangle=\\square+4$  ㉡ $\\triangle=\\square\\times8$",
+     "answer": "㉡",
+     "solution": "△는 언제나 □의 $8$배이므로 $\\triangle=\\square\\times8$입니다. 답은 ㉡입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "□",
+       "1",
+       "2",
+       "3",
+       "4"
+      ],
+      "rows": [
+       [
+        "△",
+        "8",
+        "16",
+        "24",
+        "32"
+       ]
+      ]
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "80cbe7a5b75b6e782aa73a3770b9e892e04f3b1b2063b9fb3acd821ce2ba6c93"
+  },
+  {
+   "familyKey": "elem:초5|1-3-2 대응 관계를 식으로 나타내기|09",
+   "beforeRow": [
+    "초5",
+    "1-3-2 대응 관계를 식으로 나타내기",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-3 대응 관계",
+     "section": "1-3-2 대응 관계를 식으로 나타내기",
+     "orderIndex": 259,
+     "content": "표는 □가 $9$부터 $1$씩 커질 때의 △를 나타낸 것입니다. 이 표를 나타내는 식을 찾아 기호를 쓰시오.  ㉠ $\\triangle=\\square\\times7$  ㉡ $\\triangle=\\square+8$",
+     "answer": "㉠",
+     "solution": "△는 언제나 □의 $7$배이므로 $\\triangle=\\square\\times7$입니다. 답은 ㉠입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "□",
+       "9",
+       "10",
+       "11",
+       "12"
+      ],
+      "rows": [
+       [
+        "△",
+        "63",
+        "70",
+        "77",
+        "84"
+       ]
+      ]
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "6c1d0adf90154f80423f6892e0ead44eeff36e6e97de877a1c80b7dccb2286df"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|05",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "값이 더 큰 분수를 찾아 기호를 쓰시오.  ㉠ $\\frac{8}{9}$  ㉡ $\\frac{7}{8}$",
+     "answer": "㉠",
+     "solution": "통분하면 분자가 큰 쪽이 더 큽니다. 답은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "878ac392657f2c64828acb72f3b8601339143accdbb4203873be1a1016bd59ab"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|05",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "값이 더 큰 분수를 찾아 기호를 쓰시오.  ㉠ $\\frac{3}{4}$  ㉡ $\\frac{2}{5}$",
+     "answer": "㉠",
+     "solution": "통분하면 분자가 큰 쪽이 더 큽니다. 답은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "0e725b6814cc33faf10cd62b02e7ce1505551956fad5cc017bf03763318971c1"
+  },
+  {
+   "familyKey": "elem:초5|1-4-4 분수의 크기 비교|05",
+   "beforeRow": [
+    "초5",
+    "1-4-4 분수의 크기 비교",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-4 약분과 통분",
+     "section": "1-4-4 분수의 크기 비교",
+     "orderIndex": 264,
+     "content": "값이 더 큰 분수를 찾아 기호를 쓰시오.  ㉠ $\\frac{5}{6}$  ㉡ $\\frac{3}{4}$",
+     "answer": "㉠",
+     "solution": "통분하면 분자가 큰 쪽이 더 큽니다. 답은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "69a8394d729b82429d2b55db147caca75016602daf6ce76972de881426ce050c"
+  },
+  {
+   "familyKey": "elem:초5|1-6-3 1cm²보다 더 큰 넓이의 단위|10",
+   "beforeRow": [
+    "초5",
+    "1-6-3 1cm²보다 더 큰 넓이의 단위",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "1-6 다각형의 둘레와 넓이",
+     "section": "1-6-3 1cm²보다 더 큰 넓이의 단위",
+     "orderIndex": 272,
+     "content": "더 넓은 쪽을 찾아 기호를 쓰시오.  ㉠ $6\\,\\mathrm{m}^2$  ㉡ $30000\\,\\mathrm{cm}^2$",
+     "answer": "㉠",
+     "solution": "$30000\\,\\mathrm{cm}^2=3\\,\\mathrm{m}^2$이므로 더 넓은 쪽은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "2edb32b2dcc4182c8fd84336a01cc9d52f43736c2e09063fd24953dda4d1a934"
+  },
+  {
+   "familyKey": "elem:초5|1-6-3 1cm²보다 더 큰 넓이의 단위|10",
+   "beforeRow": [
+    "초5",
+    "1-6-3 1cm²보다 더 큰 넓이의 단위",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "1-6 다각형의 둘레와 넓이",
+     "section": "1-6-3 1cm²보다 더 큰 넓이의 단위",
+     "orderIndex": 272,
+     "content": "더 넓은 쪽을 찾아 기호를 쓰시오.  ㉠ $80000\\,\\mathrm{cm}^2$  ㉡ $2\\,\\mathrm{m}^2$",
+     "answer": "㉠",
+     "solution": "$80000\\,\\mathrm{cm}^2=8\\,\\mathrm{m}^2$이므로 더 넓은 쪽은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "24b43d58df920df52acbbb49f1eab96f2306198b01f2072d16ccb03e51b9da37"
+  },
+  {
+   "familyKey": "elem:초5|1-6-3 1cm²보다 더 큰 넓이의 단위|10",
+   "beforeRow": [
+    "초5",
+    "1-6-3 1cm²보다 더 큰 넓이의 단위",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "1-6 다각형의 둘레와 넓이",
+     "section": "1-6-3 1cm²보다 더 큰 넓이의 단위",
+     "orderIndex": 272,
+     "content": "더 넓은 쪽을 찾아 기호를 쓰시오.  ㉠ $40000\\,\\mathrm{cm}^2$  ㉡ $3\\,\\mathrm{m}^2$",
+     "answer": "㉠",
+     "solution": "$40000\\,\\mathrm{cm}^2=4\\,\\mathrm{m}^2$이므로 더 넓은 쪽은 ㉠입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "c696c323815c417b80c77390489684fac0a89d553ee02bcb3400b94851946522"
   },
   {
    "familyKey": "elem:초5|2-1-3 수의 범위를 알고 문제 해결하기|02",
@@ -16454,6 +17822,72 @@
    "afterRowSha256": "342d3fd9ba69ce78bc1e996bd7a920544da3ed0149b4168306ee8e1b1cea9011"
   },
   {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|11",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "11",
+    "심화중",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "어떤 $1$보다 큰 한 자리 자연수와 분모가 $6$인 진분수를 곱했더니 $6\\frac{2}{3}$가 되었습니다. 어떤 자연수를 구하시오.",
+     "answer": "$8$",
+     "solution": "자연수를 분자에 곱하므로, 곱한 결과를 분모가 $6$인 분수로 고치면 $6\\frac{2}{3}=\\frac{40}{6}$입니다. 곧 자연수와 진분수의 분자의 곱이 $40$입니다. 곱이 $40$이고 자연수가 $1$보다 큰 한 자리 수인 (진분수의 분자, 자연수) 짝은 $(5,\\ 8)$, $(8,\\ 5)$, $(10,\\ 4)$, $(20,\\ 2)$입니다. 진분수의 분자는 $6$보다 작아야 하므로 짝은 하나뿐입니다. 검산하면 $8\\times\\frac{5}{6}=6\\frac{2}{3}$이므로 어떤 자연수는 $8$입니다.",
+     "figureSpec": null,
+     "formId": "11"
+    }
+   ],
+   "afterRowSha256": "c0c5da2dc26d3645ba1f3dfc4beda85f8039dad73c6ecb50fcb7442e737bbb22"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|11",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "11",
+    "심화중",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "어떤 $1$보다 큰 한 자리 자연수와 분모가 $4$인 진분수를 곱했더니 $3\\frac{3}{4}$이 되었습니다. 어떤 자연수를 구하시오.",
+     "answer": "$5$",
+     "solution": "자연수를 분자에 곱하므로, 곱한 결과를 분모가 $4$인 분수로 고치면 $3\\frac{3}{4}=\\frac{15}{4}$입니다. 곧 자연수와 진분수의 분자의 곱이 $15$입니다. 곱이 $15$고 자연수가 $1$보다 큰 한 자리 수인 (진분수의 분자, 자연수) 짝은 $(3,\\ 5)$, $(5,\\ 3)$입니다. 진분수의 분자는 $4$보다 작아야 하므로 짝은 하나뿐입니다. 검산하면 $5\\times\\frac{3}{4}=3\\frac{3}{4}$이므로 어떤 자연수는 $5$입니다.",
+     "figureSpec": null,
+     "formId": "11"
+    }
+   ],
+   "afterRowSha256": "a634754b08e2c9a2e2dcac0bbfa1ca14e06e30714b4036da0326a448daf36ecc"
+  },
+  {
+   "familyKey": "elem:초5|2-2-2 (자연수)×(분수)의 계산|11",
+   "beforeRow": [
+    "초5",
+    "2-2-2 (자연수)×(분수)의 계산",
+    "11",
+    "심화중",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-2 분수의 곱셈",
+     "section": "2-2-2 (자연수)×(분수)의 계산",
+     "orderIndex": 282,
+     "content": "어떤 $1$보다 큰 한 자리 자연수와 분모가 $5$인 진분수를 곱했더니 $5\\frac{2}{5}$가 되었습니다. 어떤 자연수를 구하시오.",
+     "answer": "$9$",
+     "solution": "자연수를 분자에 곱하므로, 곱한 결과를 분모가 $5$인 분수로 고치면 $5\\frac{2}{5}=\\frac{27}{5}$입니다. 곧 자연수와 진분수의 분자의 곱이 $27$입니다. 곱이 $27$이고 자연수가 $1$보다 큰 한 자리 수인 (진분수의 분자, 자연수) 짝은 $(3,\\ 9)$, $(9,\\ 3)$입니다. 진분수의 분자는 $5$보다 작아야 하므로 짝은 하나뿐입니다. 검산하면 $9\\times\\frac{3}{5}=5\\frac{2}{5}$이므로 어떤 자연수는 $9$입니다.",
+     "figureSpec": null,
+     "formId": "11"
+    }
+   ],
+   "afterRowSha256": "e6459851c957e0ac803f4552a5a5c91433fa0cd577d344ca6de3d2ad0132d670"
+  },
+  {
    "familyKey": "elem:초5|2-2-3 진분수의 곱셈|07",
    "beforeRow": [
     "초5",
@@ -16540,6 +17974,175 @@
     }
    ],
    "afterRowSha256": "96e0eacee24c112c6a50139859587b55f5413a34a2d9180941cce63c9fedbeab"
+  },
+  {
+   "familyKey": "elem:초5|2-3-1 도형의 합동 알아보기|05",
+   "beforeRow": [
+    "초5",
+    "2-3-1 도형의 합동 알아보기",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-1 도형의 합동 알아보기",
+     "orderIndex": 285,
+     "content": "도형 $8$개 중에서 서로 합동인 도형은 모두 몇 개입니까?",
+     "answer": "$6$",
+     "solution": "합동인 짝이 $3$쌍이므로 합동인 도형은 $3\\times2=6$개입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "namedShapes",
+      "items": [
+       {
+        "shape": "diamond",
+        "label": "가"
+       },
+       {
+        "shape": "isoTri",
+        "label": "나"
+       },
+       {
+        "shape": "diamond",
+        "label": "다"
+       },
+       {
+        "shape": "wideTri",
+        "label": "라"
+       },
+       {
+        "shape": "tallDiamond",
+        "label": "마"
+       },
+       {
+        "shape": "eqTri",
+        "label": "바"
+       },
+       {
+        "shape": "isoTri",
+        "label": "사"
+       },
+       {
+        "shape": "eqTri",
+        "label": "아"
+       }
+      ]
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "30019cdf0c63ce98b99e95c7f094f4c0ada37e59a425afb099e086ac855e30bb"
+  },
+  {
+   "familyKey": "elem:초5|2-3-1 도형의 합동 알아보기|05",
+   "beforeRow": [
+    "초5",
+    "2-3-1 도형의 합동 알아보기",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-1 도형의 합동 알아보기",
+     "orderIndex": 285,
+     "content": "도형 $8$개 중에서 서로 합동인 도형은 모두 몇 개입니까?",
+     "answer": "$6$",
+     "solution": "합동인 짝이 $3$쌍이므로 합동인 도형은 $3\\times2=6$개입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "namedShapes",
+      "items": [
+       {
+        "shape": "rect",
+        "label": "가"
+       },
+       {
+        "shape": "square",
+        "label": "나"
+       },
+       {
+        "shape": "tallDiamond",
+        "label": "다"
+       },
+       {
+        "shape": "diamond",
+        "label": "라"
+       },
+       {
+        "shape": "tallDiamond",
+        "label": "마"
+       },
+       {
+        "shape": "isoTri",
+        "label": "바"
+       },
+       {
+        "shape": "rect",
+        "label": "사"
+       },
+       {
+        "shape": "square",
+        "label": "아"
+       }
+      ]
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "dec6b16e92ff438b8fa5ce4cc9e421d38f0db0557ff5025f9168d16c0bb3ccba"
+  },
+  {
+   "familyKey": "elem:초5|2-3-1 도형의 합동 알아보기|05",
+   "beforeRow": [
+    "초5",
+    "2-3-1 도형의 합동 알아보기",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-1 도형의 합동 알아보기",
+     "orderIndex": 285,
+     "content": "도형 $6$개 중에서 서로 합동인 도형은 모두 몇 개입니까?",
+     "answer": "$6$",
+     "solution": "합동인 짝이 $3$쌍이므로 합동인 도형은 $3\\times2=6$개입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "namedShapes",
+      "items": [
+       {
+        "shape": "isoTri",
+        "label": "가"
+       },
+       {
+        "shape": "rect",
+        "label": "나"
+       },
+       {
+        "shape": "square",
+        "label": "다"
+       },
+       {
+        "shape": "square",
+        "label": "라"
+       },
+       {
+        "shape": "rect",
+        "label": "마"
+       },
+       {
+        "shape": "isoTri",
+        "label": "바"
+       }
+      ]
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "f820173b94a1884aea461ebc0b19867e6cba3db64a88ebe0e7a16a9d6c8999d7"
   },
   {
    "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|01",
@@ -19190,6 +20793,72 @@
    "afterRowSha256": "2dd7d164aaa789896f2e078b9d8b3f7279a0b78a1691b941109b0e4f62aecb43"
   },
   {
+   "familyKey": "elem:초6|1-5-2 띠그래프로 나타내기|08",
+   "beforeRow": [
+    "초6",
+    "1-5-2 띠그래프로 나타내기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "1-5 여러 가지 그래프",
+     "section": "1-5-2 띠그래프로 나타내기",
+     "orderIndex": 325,
+     "content": "띠그래프로 나타낼 좋아하는 운동 조사에서 축구는 $40\\%$, 농구는 $25\\%$ 입니다. 두 비율의 차는 몇 %입니까?",
+     "answer": "$15$",
+     "solution": "$40-25=15$ 이므로 $15\\%$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "1ad1356617158e0e5d9df60f783e6ea615e205d7fc62c29c4a1ad2cec81778d7"
+  },
+  {
+   "familyKey": "elem:초6|1-5-2 띠그래프로 나타내기|08",
+   "beforeRow": [
+    "초6",
+    "1-5-2 띠그래프로 나타내기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "1-5 여러 가지 그래프",
+     "section": "1-5-2 띠그래프로 나타내기",
+     "orderIndex": 325,
+     "content": "띠그래프로 나타낼 좋아하는 운동 조사에서 축구는 $25\\%$, 농구는 $15\\%$ 입니다. 두 비율의 차는 몇 %입니까?",
+     "answer": "$10$",
+     "solution": "$25-15=10$ 이므로 $10\\%$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "17e18d3edfa779a76704d0880c15bba9b1a1a11260771d7c05370eaabb858dea"
+  },
+  {
+   "familyKey": "elem:초6|1-5-2 띠그래프로 나타내기|08",
+   "beforeRow": [
+    "초6",
+    "1-5-2 띠그래프로 나타내기",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "1-5 여러 가지 그래프",
+     "section": "1-5-2 띠그래프로 나타내기",
+     "orderIndex": 325,
+     "content": "띠그래프로 나타낼 좋아하는 과목 조사에서 국어는 $45\\%$, 수학은 $30\\%$ 입니다. 두 비율의 차는 몇 %입니까?",
+     "answer": "$15$",
+     "solution": "$45-30=15$ 이므로 $15\\%$ 입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "704edcb45d2a0969d79311ae156b67e171688d2a25320bb8119477bd58c63dd7"
+  },
+  {
    "familyKey": "elem:초6|1-5-3 원그래프|01",
    "beforeRow": [
     "초6",
@@ -21748,6 +23417,514 @@
     }
    ],
    "afterRowSha256": "9242b2448c70b028bda8fa6999f169f2ce058d2a4be80ce9191b50b278e142a4"
+  },
+  {
+   "familyKey": "elem:초6|2-3-1 어느 방향에서 보았는지 알아보기|01",
+   "beforeRow": [
+    "초6",
+    "2-3-1 어느 방향에서 보았는지 알아보기",
+    "01",
+    "연산",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "2-3 공간과 입체",
+     "section": "2-3-1 어느 방향에서 보았는지 알아보기",
+     "orderIndex": 342,
+     "content": "가로 $4$칸, 세로 $2$칸 바닥에 쌓기나무를 쌓은 모양입니다. 이 모양을 위에서 보았을 때 쌓기나무가 놓이지 않은 칸은 몇 칸인가?",
+     "answer": "$2$",
+     "solution": "바닥은 모두 $4\\times2=8$ 칸입니다. 쌓기나무가 놓인 칸이 $6$칸이므로 $8-6=2$ 칸이 비어 있습니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "stackCubes",
+      "voxels": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        1,
+        0,
+        1
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1,
+        1,
+        0
+       ],
+       [
+        1,
+        1,
+        1
+       ],
+       [
+        2,
+        1,
+        0
+       ],
+       [
+        3,
+        1,
+        0
+       ],
+       [
+        3,
+        1,
+        1
+       ],
+       [
+        3,
+        1,
+        2
+       ]
+      ],
+      "views": [
+       "iso",
+       "top"
+      ]
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "dd22c2a49b703a2452f5917dfccfb0991b4c5200f09e93cf9ad941d3e2be9c70"
+  },
+  {
+   "familyKey": "elem:초6|2-3-1 어느 방향에서 보았는지 알아보기|01",
+   "beforeRow": [
+    "초6",
+    "2-3-1 어느 방향에서 보았는지 알아보기",
+    "01",
+    "연산",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "2-3 공간과 입체",
+     "section": "2-3-1 어느 방향에서 보았는지 알아보기",
+     "orderIndex": 342,
+     "content": "가로 $2$칸, 세로 $4$칸 바닥에 쌓기나무를 쌓은 모양입니다. 이 모양을 위에서 보았을 때 쌓기나무가 놓이지 않은 칸은 몇 칸인가?",
+     "answer": "$3$",
+     "solution": "바닥은 모두 $2\\times4=8$ 칸입니다. 쌓기나무가 놓인 칸이 $5$칸이므로 $8-5=3$ 칸이 비어 있습니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "stackCubes",
+      "voxels": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        1,
+        1
+       ],
+       [
+        1,
+        1,
+        0
+       ],
+       [
+        1,
+        2,
+        0
+       ],
+       [
+        1,
+        2,
+        1
+       ],
+       [
+        0,
+        3,
+        0
+       ],
+       [
+        0,
+        3,
+        1
+       ]
+      ],
+      "views": [
+       "iso",
+       "top"
+      ]
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "eef4a673d9974055242a771356e7fcfdf61ba21afcd33abbcd294443464dfdc1"
+  },
+  {
+   "familyKey": "elem:초6|2-3-1 어느 방향에서 보았는지 알아보기|01",
+   "beforeRow": [
+    "초6",
+    "2-3-1 어느 방향에서 보았는지 알아보기",
+    "01",
+    "연산",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "2-3 공간과 입체",
+     "section": "2-3-1 어느 방향에서 보았는지 알아보기",
+     "orderIndex": 342,
+     "content": "가로 $2$칸, 세로 $2$칸 바닥에 쌓기나무를 쌓은 모양입니다. 이 모양을 위에서 보았을 때 쌓기나무가 놓이지 않은 칸은 몇 칸인가?",
+     "answer": "$1$",
+     "solution": "바닥은 모두 $2\\times2=4$ 칸입니다. 쌓기나무가 놓인 칸이 $3$칸이므로 $4-3=1$ 칸이 비어 있습니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "stackCubes",
+      "voxels": [
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        1,
+        0,
+        1
+       ],
+       [
+        1,
+        0,
+        2
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        1,
+        1
+       ],
+       [
+        1,
+        1,
+        0
+       ]
+      ],
+      "views": [
+       "iso",
+       "top"
+      ]
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "5122a8d71a34175fb84f8074ba0a8e1a5cd9df6fd45836f9fd3ac0aec9fc29f9"
+  },
+  {
+   "familyKey": "elem:초6|2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)|08",
+   "beforeRow": [
+    "초6",
+    "2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "2-3 공간과 입체",
+     "section": "2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+     "orderIndex": 343,
+     "content": "가로 $3$칸, 세로 $3$칸 바닥에 쌓기나무를 쌓았습니다. 가장 높은 층의 수는 얼마입니까?",
+     "answer": "$3$",
+     "solution": "가장 높은 층은 $3$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "stackCubes",
+      "voxels": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        1,
+        0,
+        1
+       ],
+       [
+        1,
+        0,
+        2
+       ],
+       [
+        2,
+        0,
+        0
+       ],
+       [
+        2,
+        0,
+        1
+       ],
+       [
+        1,
+        1,
+        0
+       ],
+       [
+        0,
+        2,
+        0
+       ],
+       [
+        0,
+        2,
+        1
+       ],
+       [
+        1,
+        2,
+        0
+       ],
+       [
+        2,
+        2,
+        0
+       ],
+       [
+        2,
+        2,
+        1
+       ]
+      ],
+      "views": [
+       "iso"
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "4213ac88257eae50005f0b1351a4a7b57c2f954d7c26df41ddf6b9dbc82543a9"
+  },
+  {
+   "familyKey": "elem:초6|2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)|08",
+   "beforeRow": [
+    "초6",
+    "2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "2-3 공간과 입체",
+     "section": "2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+     "orderIndex": 343,
+     "content": "가로 $2$칸, 세로 $3$칸 바닥에 쌓기나무를 쌓았습니다. 가장 높은 층의 수는 얼마입니까?",
+     "answer": "$3$",
+     "solution": "가장 높은 층은 $3$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "stackCubes",
+      "voxels": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        1,
+        0,
+        1
+       ],
+       [
+        1,
+        0,
+        2
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        1,
+        1
+       ],
+       [
+        1,
+        1,
+        0
+       ],
+       [
+        1,
+        2,
+        0
+       ],
+       [
+        1,
+        2,
+        1
+       ],
+       [
+        1,
+        2,
+        2
+       ]
+      ],
+      "views": [
+       "iso"
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "aa26a6ff51d58ce29aa7ec23924608b559d16611c12adef74d8bd151cc0693e1"
+  },
+  {
+   "familyKey": "elem:초6|2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)|08",
+   "beforeRow": [
+    "초6",
+    "2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "2-3 공간과 입체",
+     "section": "2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+     "orderIndex": 343,
+     "content": "가로 $4$칸, 세로 $2$칸 바닥에 쌓기나무를 쌓았습니다. 가장 높은 층의 수는 얼마입니까?",
+     "answer": "$3$",
+     "solution": "가장 높은 층은 $3$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "stackCubes",
+      "voxels": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        1,
+        0,
+        1
+       ],
+       [
+        1,
+        0,
+        2
+       ],
+       [
+        2,
+        0,
+        0
+       ],
+       [
+        2,
+        0,
+        1
+       ],
+       [
+        2,
+        0,
+        2
+       ],
+       [
+        3,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        1,
+        1
+       ],
+       [
+        1,
+        1,
+        0
+       ],
+       [
+        2,
+        1,
+        0
+       ],
+       [
+        2,
+        1,
+        1
+       ],
+       [
+        2,
+        1,
+        2
+       ],
+       [
+        3,
+        1,
+        0
+       ],
+       [
+        3,
+        1,
+        1
+       ],
+       [
+        3,
+        1,
+        2
+       ]
+      ],
+      "views": [
+       "iso"
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "0e026550465fd0a775eba01462b552f1157bae5e5062313547fe443c5844e214"
   }
  ]
 }

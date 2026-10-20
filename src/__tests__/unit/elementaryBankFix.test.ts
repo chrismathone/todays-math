@@ -115,7 +115,7 @@ describe("bank-fix 초등 — 발문이 정하는 수학적 해", () => {
         const product = frac(p.content);
         const P = (product.n * b) / product.d;
         expect(Number.isInteger(P)).toBe(true);
-        const minK = /\$1\$보다 큰 한 자리 자연수/.test(p.content) ? 2 : 1;
+        const minK = /\$1\$보다 큰 (?:어떤 )?한 자리 자연수/.test(p.content) ? 2 : 1;
         const all: [number, number][] = [];
         for (let k = minK; k <= 9; k += 1)
           if (P % k === 0) all.push([P / k, k]);

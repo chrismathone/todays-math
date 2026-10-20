@@ -7090,7 +7090,8 @@ function viewCalc(unit: UnitSeed, rng: Rng): ElemProblem {
     `바닥은 모두 ${expr(`${b.cols}\\times${b.rows}=${b.cols * b.rows}`)} 칸입니다. ` +
       `쌓기나무가 놓인 칸이 ${num(filled)}칸이므로 ` +
       `${expr(`${b.cols * b.rows}-${filled}=${empty}`)} 칸이 비어 있습니다.`,
-    fig("stackCubes", { voxels: heightsToVoxels(h), views: ["iso", "top"] }),
+    // 위에서 본 모양을 같이 그리면 빈 칸이 그대로 보인다(4차 교차 검수) — 겨냥도만.
+    fig("stackCubes", { voxels: heightsToVoxels(h), views: ["iso"] }),
   );
 }
 
@@ -12605,7 +12606,7 @@ function stripDrawFormPctDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `띠그래프로 나타낼 ${theme.subject} 조사에서 ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
+    `${theme.subject}을 조사하여 띠그래프로 나타내려고 합니다. ${a}${josa(a!, "은", "는")} ${expr(`${pa}\\%`)}, ${b}${josa(b!, "은", "는")} ${expr(`${pb}\\%`)} 입니다. ` +
       `두 비율의 차는 몇 %입니까?`,
     num(Math.abs(pa - pb)),
     `${expr(`${Math.max(pa, pb)}-${Math.min(pa, pb)}=${Math.abs(pa - pb)}`)} 이므로 ${expr(`${Math.abs(pa - pb)}\\%`)} 입니다.`,
@@ -13897,9 +13898,9 @@ function cubeOneFormMax(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = stackBase(rng);
   return make(
     unit,
-    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가장 높은 층의 수는 얼마입니까?`,
+    `${b.grid} 바닥에 쌓기나무를 쌓았습니다. 가장 높게 쌓은 곳은 몇 층입니까?`,
     num(Math.max(...b.h.flat())),
-    `가장 높은 층은 ${num(Math.max(...b.h.flat()))}입니다.`,
+    `가장 높게 쌓은 곳은 ${num(Math.max(...b.h.flat()))}층입니다.`,
     fig("stackCubes", { voxels: heightsToVoxels(b.h), views: ["iso"] }),
   );
 }

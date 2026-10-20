@@ -292,3 +292,64 @@ describe("3차 교차 검수 — 문장", () => {
       for (const seed of SEEDS) expect(generateElementaryProblem(g3, seed, tier).content).not.toContain("물뿌리개");
   });
 });
+
+/* ── 교차 검수 4회차(2026-10-21) ── */
+
+describe("4차 교차 검수 — 초등 그림 · 문장", () => {
+  const allOf = (grade: string, code: string) => {
+    const unit = unitOf(grade, code);
+    const out = [];
+    for (const seed of SEEDS) {
+      for (const f of listedForms(unit)) out.push(generateElementaryForm(unit, seed, f.id));
+      for (const tier of supportedTiers(unit)) out.push(generateElementaryProblem(unit, seed, tier));
+    }
+    return out;
+  };
+
+  it("초4 1-4-3 «뒤집은 도형의 색칠한 칸» — 발문이 칸 수를 미리 말하지 않는다", () => {
+    for (const p of allOf("초4", "1-4-3"))
+      if (p.content.includes("뒤집은 도형의 색칠한 칸")) expect(p.content).not.toMatch(/색칠한 칸이 \$\d+\$개인/);
+  });
+
+  it("초6 2-3-1 «위에서 보았을 때 놓이지 않은 칸» — 위에서 본 모양을 같이 그리지 않는다", () => {
+    for (const p of allOf("초6", "2-3-1"))
+      if (p.content.includes("놓이지 않은 칸")) expect(p.figureSpec?.views, p.content).toEqual(["iso"]);
+  });
+
+  it("초4 2-2-1 정삼각형 둘레 — 쓰지 않는 이름표 «가» 를 달지 않는다", () => {
+    for (const p of allOf("초4", "2-2-1"))
+      if (/정삼각형의 세 변의 길이의 합/.test(p.content)) expect(labelsOf(p.figureSpec), p.content).not.toContain("가");
+  });
+
+  it("초3 2-3-2 «반지름을 n개 그었습니다» — 반지름 하나만 그린 그림을 붙이지 않는다", () => {
+    for (const p of allOf("초3", "2-3-2"))
+      if (/반지름을 \$\d+\$개 그었습니다/.test(p.content)) expect(p.figureSpec, p.content).toBeNull();
+  });
+
+  it("초3 1-6-1 «한 조각은 전체의 얼마» — 한 조각만 칠한다", () => {
+    for (const p of allOf("초3", "1-6-1"))
+      if (p.content.includes("한 조각은 전체의 얼마") && p.figureSpec && "filled" in p.figureSpec) expect(p.figureSpec.filled, p.content).toBe(1);
+  });
+
+  it("초5 한 줄 기호 보기 «㉠ … ㉡ …» — 기호와 식이 줄바꿈으로 갈리지 않게 붙인다", () => {
+    for (const [g, c] of [["초5", "1-1-1"], ["초5", "1-2-2"], ["초5", "1-4-4"]] as const)
+      for (const p of allOf(g, c))
+        if (/㉠.*㉡/.test(p.content)) {
+          expect(p.content, p.content).not.toMatch(/㉠ \$|㉡ \$|㉠ \d/);
+          expect(p.content, p.content).toMatch(/㉠ /);
+        }
+  });
+
+  it("초4 2-5 꺾은선 — «…의 값이 $14$℃인 때» · «…의 값이 $4$월의 값보다 큰» 꼴이 없다", () => {
+    for (const c of ["2-5-1", "2-5-2"])
+      for (const p of allOf("초4", c)) {
+        expect(p.content, p.content).not.toMatch(/의 값이 \$\d+\$/);
+        expect(p.content, p.content).not.toMatch(/의 값보다 \S+ 때는 모두/);
+      }
+  });
+
+  it("초3 2-3-2 소재 — 반지름 2~9 cm 인 동전 · 단추가 없다 · 초3 1-2-2 직각 정의에 엉뚱한 끝 문장이 없다", () => {
+    for (const p of allOf("초3", "2-3-2")) expect(p.content).not.toMatch(/^(?:동전|단추)의 모양이 원/);
+    for (const p of allOf("초3", "1-2-2")) expect(p.content).not.toContain("그런 각을");
+  });
+});

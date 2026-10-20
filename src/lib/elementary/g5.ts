@@ -2187,7 +2187,7 @@ function unit63Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
   const ans = firstIsM2 === m2Bigger ? "㉠" : "㉡";
   return make(
     unit,
-    `더 넓은 쪽을 찾아 기호를 쓰시오.  ㉠ ${p1}  ㉡ ${p2}`,
+    `더 넓은 쪽을 찾아 기호를 쓰시오.  ㉠\u00a0${p1}\u3000\u3000㉡\u00a0${p2}`,
     ans,
     `${expr(`${cm}\\,\\mathrm{cm}^2=${b}\\,\\mathrm{m}^2`)}이므로 더 넓은 쪽은 ${ans}입니다.`,
   );
@@ -2881,7 +2881,7 @@ function mix111Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
     const ans = firstIsLeft ? "㉠" : "㉡";
     return make(
       unit,
-      `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+      `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠\u00a0${expr(p1)}\u3000\u3000㉡\u00a0${expr(p2)}`,
       ans,
       `${expr(`${a}-${b}+${c}=${left}`)}, ${expr(`${a}-(${b}+${c})=${paren}`)}이므로 더 큰 것은 ${ans}입니다.`,
     );
@@ -2899,7 +2899,7 @@ function mix111Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
   const ans = firstIsLeft ? "㉠" : "㉡";
   return make(
     unit,
-    `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+    `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠\u00a0${expr(p1)}\u3000\u3000㉡\u00a0${expr(p2)}`,
     ans,
     `${expr(`${a}\\div${b}\\times${c}=${left}`)}, ${expr(`${a}\\div(${b}\\times${c})=${paren}`)}이므로 더 큰 것은 ${ans}입니다.`,
   );
@@ -3213,7 +3213,7 @@ function mix112Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
     const ans = firstIsLtr ? "㉠" : "㉡";
     return make(
       unit,
-      `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+      `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠\u00a0${expr(p1)}\u3000\u3000㉡\u00a0${expr(p2)}`,
       ans,
       `${expr(`${ltrExpr}=${ltr}`)}, ${expr(`${rightExpr}=${right}`)}이므로 더 큰 것은 ${ans}입니다.`,
     );
@@ -3233,7 +3233,7 @@ function mix112Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
   const ans = firstIsRight ? "㉠" : "㉡";
   return make(
     unit,
-    `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+    `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠\u00a0${expr(p1)}\u3000\u3000㉡\u00a0${expr(p2)}`,
     ans,
     `${expr(`${rightExpr}=${right}`)}, ${expr(`${ltrExpr}=${ltr}`)}이므로 더 큰 것은 ${ans}입니다.`,
   );
@@ -3488,7 +3488,7 @@ function mix113Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
   const ans = firstIsParen ? "㉠" : "㉡";
   return make(
     unit,
-    `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+    `값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠\u00a0${expr(p1)}\u3000\u3000㉡\u00a0${expr(p2)}`,
     ans,
     `${expr(`${pExpr}=${withParen}`)}, ${expr(`${nExpr}=${noParen}`)}이므로 더 큰 것은 ${ans}입니다.`,
   );
@@ -3800,7 +3800,7 @@ function rel122Read(unit: UnitSeed, rng: Rng): ElemProblem {
       : [unrelated, related];
     return make(
       unit,
-      `두 수가 약수와 배수의 관계인 것을 찾아 기호를 쓰시오.  ㉠ ${n(p1[0])}, ${n(p1[1])}   ㉡ ${n(p2[0])}, ${n(p2[1])}`,
+      `두 수가 약수와 배수의 관계인 것을 찾아 기호를 쓰시오.  ㉠\u00a0${n(p1[0])}, ${n(p1[1])}\u3000\u3000㉡\u00a0${n(p2[0])}, ${n(p2[1])}`,
       firstIsRelated ? "㉠" : "㉡",
       `${expr(`${a}\\times${k}=${a * k}`)}이므로 ${nj(a * k, "은", "는")} ${n(a)}의 배수이고 두 수는 약수와 배수의 관계입니다. ${nj(y, "은", "는")} ${nro(x)} 나누어떨어지지 않습니다.`,
     );
@@ -5233,7 +5233,7 @@ function corr132PickRel(unit: UnitSeed, rng: Rng): ElemProblem {
   const ans = firstIsMul ? "㉠" : "㉡";
   return make(
     unit,
-    `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. 이 표를 나타내는 식을 찾아 기호를 쓰시오.  ㉠ ${expr(p1)}  ㉡ ${expr(p2)}`,
+    `표는 □가 ${n(from)}부터 ${n(1)}씩 커질 때의 △를 나타낸 것입니다. 이 표를 나타내는 식을 찾아 기호를 쓰시오.  ㉠\u00a0${expr(p1)}\u3000\u3000㉡\u00a0${expr(p2)}`,
     ans,
     `△는 언제나 □의 ${n(k)}배이므로 ${expr(relMulLatex(k))}입니다. 답은 ${ans}입니다.`,
     corrTable(
@@ -6190,7 +6190,7 @@ function cmp144Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
   const ans = leftBig === firstIsLeft ? "㉠" : "㉡";
   return make(
     unit,
-    `값이 더 큰 분수를 찾아 기호를 쓰시오.  ㉠ ${p1}  ㉡ ${p2}`,
+    `값이 더 큰 분수를 찾아 기호를 쓰시오.  ㉠\u00a0${p1}\u3000\u3000㉡\u00a0${p2}`,
     ans,
     `통분하면 분자가 큰 쪽이 더 큽니다. 답은 ${ans}입니다.`,
   );
@@ -11604,7 +11604,7 @@ function cong231TwinCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const items = congSet(rng, pairs, singles);
   return make(
     unit,
-    `도형 ${n(items.length)}개 중에서 서로 합동인 도형은 모두 몇 개입니까?`,
+    `도형 ${n(items.length)}개 중에서 자기와 합동인 도형이 따로 있는 도형은 모두 몇 개입니까?`,
     n(pairs * 2),
     `합동인 짝이 ${n(pairs)}쌍이므로 합동인 도형은 ${expr(`${pairs}\\times2=${pairs * 2}`)}개입니다.`,
     fig("namedShapes", { items }),
@@ -16290,9 +16290,10 @@ function mul222Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = w2Pick(unit, "심화중", rng, pool);
   const P = t.a * t.k;
   const all = w4OneDigitPairs(P);
+  // «어떤 한 자리 자연수» 의 «어떤» 앞으로 조건을 놓는다(«어떤 1보다 큰 …» 은 어순이 어색하다 — 4차 교차 검수)
   const stem = content(t).replace(
-    "한 자리 자연수",
-    `${n(1)}보다 큰 한 자리 자연수`,
+    "어떤 한 자리 자연수",
+    `${n(1)}보다 큰 어떤 한 자리 자연수`,
   );
   return makeDeep(unit, stem, n(t.k), [
     `자연수를 분자에 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 자연수와 진분수의 분자의 곱이 ${nj(P, "입니다", "입니다")}.`,

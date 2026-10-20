@@ -39,7 +39,7 @@ it("solves congruence by grouping figures and symmetry by reflecting actual cell
           else if (p.content.includes("몇 쌍"))
             expected = counts.reduce((a, b) => a + (b * (b - 1)) / 2, 0);
           else if (p.content.includes("몇 종류")) expected = groups.size;
-          else if (p.content.includes("서로 합동인 도형"))
+          else if (/서로 합동인 도형|자기와 합동인 도형이 따로 있는/.test(p.content))
             expected = counts.filter((n) => n > 1).reduce((a, b) => a + b, 0);
           else throw new Error(p.content);
         } else if (spec?.cells) {

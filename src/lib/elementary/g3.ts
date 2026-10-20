@@ -9900,12 +9900,16 @@ function ang122NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 07 — 정의: 두 변이 반듯하게 만나는 각. */
 function ang122Def(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
   return make(
     unit,
-    `두 반직선이 한 점에서 반듯하게 만나 이루는 각을 무엇이라고 합니까? 그런 각을 ${n(many)}개 그릴 수 있습니다.`,
+    // 교과서 정의 그대로 — «반듯하게 만나» 만으로는 직각이 정해지지 않는다 · 끝에 붙던 «그런 각을 n개 그릴 수 있습니다» 는 물음과 무관했다(4차 교차 검수)
+    pick(rng, [
+      `종이를 반듯하게 두 번 접었다 펼쳤을 때 생기는 각을 무엇이라고 합니까?`,
+      `종이를 반듯하게 두 번 접었다 펼쳤을 때 생기는 각의 이름을 쓰시오.`,
+      `종이를 반듯하게 두 번 접었다 펼치면 생기는 각을 무엇이라고 하는지 쓰시오.`,
+    ]),
     "직각",
-    `두 반직선이 반듯하게 만나 이루는 각이 직각입니다.`,
+    `종이를 반듯하게 두 번 접었다 펼쳤을 때 생기는 각을 직각이라고 합니다.`,
   );
 }
 
@@ -10981,7 +10985,8 @@ function part161Empty(unit: UnitSeed, rng: Rng): ElemProblem {
 
 function part161UnitFrac(unit: UnitSeed, rng: Rng): ElemProblem {
   const parts = intBetween(rng, 3, 8);
-  const filled = intBetween(rng, 1, parts - 1);
+  // 여러 칸을 칠하면 «한 조각» 이 아니라 칠한 부분을 묻는 것처럼 보인다(4차 교차 검수) — 한 조각만 칠한다.
+  const filled = 1;
   const spec = fracSpec(rng, parts, filled);
   return make(
     unit,
@@ -11924,7 +11929,7 @@ function circ232ThreeR(unit: UnitSeed, rng: Rng): ElemProblem {
     `반지름이 ${unitNum(r, "cm")} 인 원에 반지름을 $3$개 그었습니다. 그은 선분의 길이의 합은 몇 cm입니까?`,
     n(3 * r),
     `${expr(`${r}\\times3=${3 * r}`)} 입니다.`,
-    circleFig("radius", r),
+    // 반지름 하나만 그린 그림은 «$3$개 그었습니다» 와 어긋난다(4차 교차 검수) — 그림 없이.
   );
 }
 
@@ -11958,7 +11963,7 @@ function circ232ManyR(unit: UnitSeed, rng: Rng): ElemProblem {
     `반지름이 ${unitNum(r, "cm")} 인 원에 반지름을 ${n(k)}개 그었습니다. 길이의 합은 몇 cm입니까?`,
     n(r * k),
     `${expr(`${r}\\times${k}=${r * k}`)} 입니다.`,
-    circleFig("radius", r),
+    // 그림은 반지름을 하나만 그려 «${k}개 그었습니다» 와 어긋났다(4차 교차 검수) — 발문이 반지름을 주므로 그림 없이 낸다.
   );
 }
 
@@ -13459,10 +13464,9 @@ function circ232Calc(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 2단 — 소재를 얹어 문장으로. 그림은 여전히 **준 쪽만**. */
 function circ232Word(unit: UnitSeed, rng: Rng): ElemProblem {
   const thing = pick(rng, [
+    // 동전 · 단추는 반지름 2~9 cm 에 안 맞는다(«반지름 8 cm 동전» — 4차 교차 검수)
     "접시",
     "시계",
-    "동전",
-    "단추",
     "쟁반",
     "탬버린",
     "거울",

@@ -8359,7 +8359,8 @@ function move143CellCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const shape = pick(rng, MOVE_SHAPES);
   return make(
     unit,
-    `색칠한 칸이 ${n(shape.cells.length)}개인 도형을 위아래로 뒤집었습니다. 뒤집은 도형의 색칠한 칸은 몇 개인가?`,
+    // 칸 수를 발문에 적으면 묻는 것이 없어진다(4차 교차 검수) — 그림의 처음 도형에서 세게 한다.
+    `그림의 도형을 위아래로 뒤집었습니다. 뒤집은 도형의 색칠한 칸은 몇 개인가?`,
     n(shape.cells.length),
     `뒤집어도 칸 수는 변하지 않으므로 ${n(shape.cells.length)}개입니다.`,
     fig("rotateFlip", { cells: shape.cells, op: "flipV", n: shape.n, showAfter: false }),
@@ -12171,7 +12172,8 @@ function tri221Perim(unit: UnitSeed, rng: Rng): ElemProblem {
     `한 변이 ${cm(s)}인 정삼각형의 세 변의 길이의 합은 몇 cm인가?`,
     cm(s * 3),
     `${expr(`${s}\\times3=${s * 3}`)} 이므로 ${cm(s * 3)}입니다.`,
-    fig("namedShapes", { items: [{ shape: "eqTri", label: "가" }] }),
+    // 하나뿐인 도형에 쓰지 않는 이름표 «가» 만 있었다(4차 교차 검수) — 한 변 길이와 같은 변 표시를 단다.
+    fig("markedShape", { shape: "eqTri", sides: [`${s} cm`, null, null], equal: [[0, 1, 2]] }),
   );
 }
 
@@ -15809,6 +15811,14 @@ type LineTheme = {
   yStep: number;
 };
 
+/** 꺾은선 소재를 견줄 때의 말 — 기온은 «높은», 키는 «큰», 수 · 양은 «많은», 무게는 «무거운». */
+function lineMore(topic: string): string {
+  if (/기온$/.test(topic)) return "높은";
+  if (/무게$/.test(topic)) return "무거운";
+  if (/(?:수|양)$/.test(topic)) return "많은";
+  return "큰";
+}
+
 /** 그림의 축 이름은 `3월`, 본문은 `$3$월`. 본문에 날 숫자를 남기지 않는다(R1). */
 function timeLabels(values: readonly number[], suffix: string): TimeLabel[] {
   return values.map((v) => ({
@@ -16205,7 +16215,7 @@ function tier252Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   const at = intBetween(rng, 0, nums.length - 1);
   return make(
     unit,
-    `${lineIntro(theme)} ${theme.topic}의 값이 ${n(nums[at]!)}${theme.unit}인 때는 언제인가?`,
+    `${lineIntro(theme)} ${josa(theme.topic, "이", "가")} ${n(nums[at]!)}${theme.unit}인 때는 언제인가?`,
     theme.labels[at]!.math,
     `세로축에서 ${n(nums[at]!)}${theme.unit}인 곳을 찾아 점이 그 높이에 찍힌 때를 보면 ` +
       `${theme.labels[at]!.math}입니다.`,
@@ -16223,8 +16233,9 @@ function tier251Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const more = nums.filter((v) => v > nums[at]!).length;
   return make(
     unit,
-    `${lineIntro(theme)} ${theme.topic}의 값이 ${theme.labels[at]!.math}의 값보다 ` +
-      `큰 때는 모두 몇 번인가?`,
+    // «책 수의 값이 $4$월의 값보다 큰 때» 는 어색하다(4차 교차 검수) — 소재에 맞는 말로 견준다.
+    `${lineIntro(theme)} ${josa(theme.topic, "이", "가")} ${theme.labels[at]!.math}보다 ` +
+      `${lineMore(theme.topic)} 때는 모두 몇 번인가?`,
     `${n(more)}번`,
     `${theme.labels[at]!.math}의 값은 ${n(nums[at]!)}${theme.unit}입니다. ` +
       `점이 그보다 높이 찍힌 때를 세면 ${n(more)}번입니다.`,
@@ -16244,11 +16255,11 @@ function tier251Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineIntro(theme)} ${josa(theme.labels[at]!.math, "과", "와")} ` +
-      `${theme.labels[at + 1]!.math} 사이의 한가운데 때의 값은 약 몇 ${theme.unit}인가?`,
+      `${theme.labels[at + 1]!.math} 사이의 가운데 시점의 값은 약 몇 ${theme.unit}인가?`,
     `${n(mid)}${theme.unit}`,
     // 「약」이 붙는 유일한 갈래다 — **왜 그렇게 읽어도 되는지**를 말한다(리드 2026-08-23).
     `꺾은선그래프는 이웃한 두 점을 선분으로 이어 그리므로, 그 사이의 값은 선분 위에서 ` +
-      `읽습니다. 한가운데 때의 값은 두 값의 한가운데이므로 ` +
+      `읽습니다. 가운데 시점의 값은 두 값의 한가운데이므로 ` +
       `${expr(`(${lo}+${hi})\\div2=${mid}`)} 이므로 약 ${n(mid)}${theme.unit}입니다.`,
     lineFigure(theme, nums),
   );
@@ -16314,7 +16325,7 @@ function tier252Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const over = gaps.filter((g) => g > bar).length;
   return make(
     unit,
-    `${lineIntro(theme)} 이웃한 두 때 사이에서 ${theme.topic}의 값이 ` +
+    `${lineIntro(theme)} 이웃한 두 때 사이에서 ${josa(theme.topic, "이", "가")} ` +
       `${n(bar)}${theme.unit}보다 많이 변한 구간은 모두 몇 번인가?`,
     `${n(over)}번`,
     `이웃한 두 점의 값의 차를 차례로 구하면 ${gaps.map((g) => n(g)).join(", ")}${theme.unit}입니다. ` +
