@@ -19,9 +19,7 @@ import {
 import { makeCourseAnswerChoices } from "@/lib/math-srs/elementary/choiceAnswers";
 
 const sections = COURSE_SECTIONS.filter((s) => s.grade === 5);
-const enabled = sections.filter((s) =>
-  ["5-2-1", "5-2-2", "5-2-3", "5-2-4", "5-2-5"].includes(s.chapterId),
-);
+const enabled = sections.filter((s) => s.semester === 2);
 
 describe("SRS-only grade-five engine frames", () => {
   it("preserves every default tier and untiered output across the captured seeds", () => {
