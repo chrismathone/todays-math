@@ -12,6 +12,10 @@ import { ROOT, readOnly, safeCode, sha256, splitMigration, type SqlClient } from
 
 export const BANK_REVISION_MIGRATION = "20261019160000_bank_read_revision";
 export const BANK_REVISION_PATH = resolve(ROOT, "prisma/migrations", BANK_REVISION_MIGRATION, "migration.sql");
+/** The classifier version this migration baked into its singleton. A later classifier moves the
+ * counter only through the reviewed transition (`apply-bank-format-version-migration.ts`). */
+export const BANK_REVISION_BAKED_VERSION =
+  "format-v1:1c653f6c01b41e1c9e9a78edab82a2e3373923af6d6c88aa9f21233aafa0e42a";
 export const BANK_REVISION_TRIGGERS = [
   ["problem", "problem_bank_revision_insert", 4, null, "new_rows"],
   ["problem", "problem_bank_revision_update", 16, "old_rows", "new_rows"],
@@ -64,7 +68,8 @@ export async function bankRevisionCatalog(tx: SqlClient) {
   return { table, history, columns, constraints, triggers, functions, prerequisite, browserPrivileges, rows };
 }
 
-export function validateBankRevisionCatalog(c: Awaited<ReturnType<typeof bankRevisionCatalog>>, checksum: string): "pending" | "applied" {
+export function validateBankRevisionCatalog(c: Awaited<ReturnType<typeof bankRevisionCatalog>>, checksum: string,
+  formatVersion: string = ACTUAL_FORMAT_VERSION): "pending" | "applied" {
   if (c.prerequisite.length !== 2 || c.prerequisite.some((t) => t.enabled !== "O"))
     throw new Error("BANK_REVISION_READER_FLOOR_REQUIRED");
   if (!c.table.present && !c.history.length && !c.triggers.length && !c.functions.length) return "pending";
@@ -92,9 +97,19 @@ export function validateBankRevisionCatalog(c: Awaited<ReturnType<typeof bankRev
       && sources.some((match) => match[1] === fn.name && match[2].trim() === fn.source.trim()))
     && c.browserPrivileges.length === 2 && c.browserPrivileges.every((role) => !role.allowed)
     && c.rows.length === 1 && c.rows[0].id === 1 && c.rows[0].schemaVersion === 1
-    && c.rows[0].formatVersion === ACTUAL_FORMAT_VERSION && /^\d+$/.test(c.rows[0].invalid) && /^[1-9]\d*$/.test(c.rows[0].revision);
+    && c.rows[0].formatVersion === formatVersion && /^\d+$/.test(c.rows[0].invalid) && /^[1-9]\d*$/.test(c.rows[0].revision);
   if (shape && c.history.length === 1 && c.history[0].checksum === checksum && c.history[0].finished_at && !c.history[0].rolled_back_at) return "applied";
   throw new Error("BANK_REVISION_CATALOG_MISMATCH");
+}
+
+/** Name of the reviewed classifier transition (kept here so the base tool can read its history). */
+export const FORMAT_TRANSITION_MIGRATION = "20261021090000_bank_read_revision_format_version";
+
+/** Which version the singleton must carry right now: baked until the transition is recorded. */
+export async function expectedFormatVersion(tx: SqlClient): Promise<string> {
+  const [h] = await tx.$queryRaw<{ n: number }[]>`SELECT count(*)::int AS n FROM public._prisma_migrations
+    WHERE migration_name=${FORMAT_TRANSITION_MIGRATION} AND finished_at IS NOT NULL AND rolled_back_at IS NULL`;
+  return h?.n ? ACTUAL_FORMAT_VERSION : BANK_REVISION_BAKED_VERSION;
 }
 
 /** Slow audit belongs to the operator, never to a screen request. */
@@ -124,11 +139,11 @@ async function main() {
   if (apply && rollback && process.env.BANK_READ_REVISION !== "off") throw new Error("BANK_REVISION_DISABLE_READER_FIRST");
   const raw = readFileSync(BANK_REVISION_PATH, "utf8");
   const checksum = sha256(raw.replaceAll("\r", "")), statements = splitMigration(raw);
-  if (statements.length !== 15 || !raw.includes(`'${ACTUAL_FORMAT_VERSION}'`)) throw new Error("BANK_REVISION_MIGRATION_CHANGED");
+  if (statements.length !== 15 || !raw.includes(`'${BANK_REVISION_BAKED_VERSION}'`)) throw new Error("BANK_REVISION_MIGRATION_CHANGED");
   const db = new PrismaClient({ log: [] });
   try {
     const status = await readOnly(db, async (tx) => {
-      const status = validateBankRevisionCatalog(await bankRevisionCatalog(tx), checksum);
+      const status = validateBankRevisionCatalog(await bankRevisionCatalog(tx), checksum, await expectedFormatVersion(tx));
       if (status === "applied") await verifyBankRevisionCounter(tx);
       return status;
     });
@@ -139,11 +154,13 @@ async function main() {
       await tx.$executeRaw`SET LOCAL lock_timeout='3s'`;
       await tx.$executeRaw`SET LOCAL statement_timeout='60s'`;
       await tx.$executeRaw`SELECT pg_advisory_xact_lock(20261019,160000)`;
-      if (validateBankRevisionCatalog(await bankRevisionCatalog(tx), checksum) !== (rollback ? "applied" : "pending"))
+      if (validateBankRevisionCatalog(await bankRevisionCatalog(tx), checksum, await expectedFormatVersion(tx)) !== (rollback ? "applied" : "pending"))
         throw new Error("BANK_REVISION_APPLIED_CONCURRENTLY");
       if (rollback) {
         for (const statement of bankRevisionRollbackStatements()) await tx.$executeRawUnsafe(statement);
         await tx.$executeRaw`DELETE FROM public._prisma_migrations WHERE migration_name=${BANK_REVISION_MIGRATION} AND checksum=${checksum}`;
+        // The table is gone, so the classifier transition that moved its singleton is gone with it.
+        await tx.$executeRaw`DELETE FROM public._prisma_migrations WHERE migration_name=${FORMAT_TRANSITION_MIGRATION}`;
         if (validateBankRevisionCatalog(await bankRevisionCatalog(tx), checksum) !== "pending") throw new Error("BANK_REVISION_ROLLBACK_POSTCHECK_FAILED");
         return;
       }
@@ -151,7 +168,7 @@ async function main() {
       await tx.$executeRaw`INSERT INTO public._prisma_migrations
         (id,checksum,finished_at,migration_name,logs,rolled_back_at,started_at,applied_steps_count)
         VALUES (${randomUUID()},${checksum},now(),${BANK_REVISION_MIGRATION},NULL,NULL,now(),1)`;
-      validateBankRevisionCatalog(await bankRevisionCatalog(tx), checksum);
+      validateBankRevisionCatalog(await bankRevisionCatalog(tx), checksum, BANK_REVISION_BAKED_VERSION);
       await verifyBankRevisionCounter(tx);
     }, { timeout: 120_000, maxWait: 20_000 });
     console.log(rollback ? "은행 revision DDL 되돌림 완료." : "은행 revision DDL 검증 완료. BANK_READ_REVISION=on 전까지 기존 reader를 유지합니다.");
