@@ -1,0 +1,45 @@
+[
+  {
+    "twinExternalId": "exam-twin-gachang-2025-1-final-author-group1-r1-q01",
+    "questionNumber": 1,
+    "grade": "중3",
+    "curriculum": "2015",
+    "questionType": "객관식",
+    "score": 3,
+    "content": "한 변의 길이가 $a\\,\\mathrm{cm}$인 정사각형에서 그림과 같이 위쪽과 오른쪽의 폭이 각각 $3\\,\\mathrm{cm}$인 띠 모양 부분을 잘라 냈다. 남은 정사각형의 넓이를 $(3-a)^2\\,\\mathrm{cm}^{2}=(a^2+ka+9)\\,\\mathrm{cm}^{2}$로 나타낼 때, 상수 $k$의 값은? (단, $a>3$이다.)",
+    "choices": [
+      "$-9$",
+      "$-6$",
+      "$-3$",
+      "$3$",
+      "$6$"
+    ],
+    "figures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q01-1.svg",
+        "sha256": "b6880b41da0f6e6015b904acd58748e3347f3d56cb1ae66f316c08bbb3f9cbf4",
+        "intendedWidthMm": 70
+      }
+    ],
+    "studentDigest": "7339433c7a843c18986f1b4544cba554d74caa34c92696558666a5f3fbd3cd40"
+  },
+  {
+    "twinExternalId": "exam-twin-gachang-2025-1-final-author-group1-r1-q02",
+    "questionNumber": 2,
+    "grade": "중3",
+    "curriculum": "2015",
+    "questionType": "객관식",
+    "score": 4,
+    "content": "유리수 $k$에 대하여 두 수 P, Q를 다음 표와 같이 정했다. P와 Q의 평균이 $7$일 때, $k$의 값은?\n\n| 수 | 값 |\n| --- | --- |\n| P | $\\dfrac{k+\\sqrt3}{2+\\sqrt3}$ |\n| Q | $\\dfrac{k-\\sqrt3}{2-\\sqrt3}$ |",
+    "choices": [
+      "$-2$",
+      "$2$",
+      "$3$",
+      "$5$",
+      "$7$"
+    ],
+    "figures": [],
+    "studentDigest": "28a8648ddba4665e305efd40df057c26e9c164051f776b85fcc263f5280ab257"
+  }
+]
