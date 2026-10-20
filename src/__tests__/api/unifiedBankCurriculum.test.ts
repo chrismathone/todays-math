@@ -220,7 +220,7 @@ describe("S2 curriculum demand reads", () => {
       sourceGroup: "school_textbook",
       books: "00000000-0000-4000-8000-000000000001",
       materials: "00000000-0000-4000-8000-000000000002",
-      materialKinds: "?? ??",
+      materialKinds: "기초 연산",
     },
   ])(
     "opt-in grouped counts equal scope-counts with identical filters and account: %j",
@@ -298,7 +298,7 @@ describe("S2 curriculum demand reads", () => {
   it("rejects opt-in recent filtering without authenticated context", async () => {
     await expect(
       loadUnifiedBankCurriculum(query({ availability: "1", recent: "1" })),
-    ).rejects.toThrow("??");
+    ).rejects.toThrow("계정");
   });
 
   it("reads grade names, then chapters, then just the selected lesson metadata without any problem read or tally", async () => {
