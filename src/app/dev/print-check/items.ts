@@ -3788,6 +3788,28 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "2026-10-20",
   },
+  {
+    id: "sheet-fourth-fifth-pass-marks-grids",
+    title: "지면 4 · 5차 — 기호 보기 «㉠ 식» 붙임 · 점 옮기기 모눈 · 답을 보여 주던 초등 그림",
+    changed:
+      "한 줄에 늘어놓은 기호 보기 «㉠ $식$  ㉡ $식$» 에서 «㉠» 이 줄 끝에 홀로 남던 것을 기호와 식을 한 덩어리로 묶어 막았다(`rehypeMathNowrap`). " +
+      "초4 점의 이동 모눈은 발문의 움직임이 다 들어가게 크기와 출발점을 정한다(전에는 6×6 의 정한 자리에서 «위쪽으로 5칸» 이 모눈 밖으로 나갔다). " +
+      "초6 «놓이지 않은 칸» 은 위에서 본 그림 하나로 · «원 밖 정사각형» · «반지름 n개» 는 맞지 않던 그림을 뺐다 · 정삼각형 둘레는 이름표 «가» 대신 한 변 길이와 같은 변 표시.",
+    look:
+      "(제안) ① 초5 «값이 더 큰 식을 찾아 기호를 쓰시오. ㉠ … ㉡ …» 에서 ㉠ 과 식이 한 줄에 같이 있는가(줄이 바뀌면 둘이 함께 내려가는가). " +
+      "② 초4 «모눈에서 점 ㄴ을 위쪽으로 … 옮겼습니다» 의 모눈이 옮긴 칸 수를 다 담는가 · 점과 이름이 칸 안에 있는가. ③ 초6 위에서 본 쌓기나무 그림이 칸 크기에 맞는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/math/rehypeMathNowrap.ts(`glueItemMarks`) · src/lib/elementary/g4.ts(`gridDot`) · g6.ts · g3.ts",
+      "src/__tests__/unit/mathNowrap.test.tsx · src/__tests__/unit/elemDisplayDupes.test.ts(4 · 5차)",
+      "교차 검수 4 · 5회차(세 모델 · 지면 227 · 231문항) — 저장소 밖 보고서 report.md",
+    ],
+    scale: "기호 보기는 초5 문형 9곳(엔진 출력 약 220건) · 점의 이동 5문형 · 초등 그림 넷",
+    needs: "엔진으로 새로 뽑은 초5 1-1-1 응용 · 초4 1-4-1 · 초6 2-3-1 연산 문항",
+    blockedBy: "초등 문항은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 지면이다",
+    status: "대기",
+    changedOn: "2026-10-21",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */
