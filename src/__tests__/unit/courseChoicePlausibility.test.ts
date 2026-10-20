@@ -28,6 +28,31 @@ function far(answer: string, other: string) {
 }
 
 describe("plausible wrong choices", () => {
+  it("fills a new 70-degree base-angle frame with nearby angles before 90-degree offsets", () => {
+    const problem = {
+      ...generateCourseSession("5-2-3-2", 3, now).problems[0],
+      seed: 531567,
+      content: "밑각의 크기를 구하시오.",
+      answer: "$70^\\circ$",
+      input: {
+        mode: "number" as const,
+        label: "답",
+        placeholder: "",
+        help: "",
+      },
+    };
+    const { answerChoices } = makeCourseAnswerChoices(problem, [
+      "$46$",
+      "$69^\\circ$",
+    ]);
+    expect(answerChoices).toHaveLength(4);
+    expect(answerChoices!.every((choice) => choice.includes("\\circ"))).toBe(
+      true,
+    );
+    expect(answerChoices!.some((choice) => far(problem.answer, choice))).toBe(
+      false,
+    );
+  });
   it("does not borrow far answers from other questions of the section", () => {
     const problem = generateCourseSession("5-2-1-1", 11, now).problems[1];
     problem.content =
@@ -57,6 +82,19 @@ describe("plausible wrong choices", () => {
           .problems) {
           if (!problem.answerChoices) continue;
           sets++;
+          const format = (raw: string) => ({
+            unit: parseCourseAnswerQuantity(raw)?.unit?.name ?? "",
+            notation: /\\(?:dfrac|tfrac|frac)\{|\d\s*\/\s*\d/.test(raw)
+              ? "fraction"
+              : /\d\.\d/.test(raw)
+                ? "decimal"
+                : "integer",
+          });
+          for (const choice of problem.answerChoices)
+            expect(
+              format(choice),
+              `${section.id}: ${problem.answer} → ${choice}`,
+            ).toEqual(format(problem.answer));
           const bad = problem.answerChoices.filter((choice) =>
             far(problem.answer, choice),
           );
