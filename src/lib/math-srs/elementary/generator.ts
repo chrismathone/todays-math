@@ -50,7 +50,7 @@ export function generateCourseSession(
     if (!available.includes(tier)) {
       throw new Error(`등록되지 않은 초등 난이도입니다: ${sectionId} ${tier}`);
     }
-    // The stored figureSpec is authoritative for diagrams, including explicit redraw forms.
+    // The student figure route regenerates candidates by seed and selects the saved spec's fingerprint.
     const slotSeed = ((seed >>> 0) + Math.imul(index + 1, 104729)) >>> 0;
     let problemSeed = slotSeed;
     const eligibleBank = bankCandidates
