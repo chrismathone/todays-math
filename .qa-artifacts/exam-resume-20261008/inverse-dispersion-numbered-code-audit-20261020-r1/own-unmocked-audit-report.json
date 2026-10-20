@@ -1,0 +1,272 @@
+{
+  "kind": "independent-U54-U55-unmocked-collector-completion/v1",
+  "status": "bounded-audit-complete-release-held",
+  "priorOwnCommit": "de374451010aeff676e4cd53befc78fced6805af",
+  "priorReportSha256": "81205893ca76c7dc7d7a5137ed789abaef1aae6d1e4b1c55d0707e4361157026",
+  "scope": {
+    "baseScopeSha256": "b717a64d22aa1700792d9ba459d8f1fe3021f4b7cfc6bd946b16d766de081399",
+    "addendumSha256": "2b17fbe009b2d1bfe5ee4d29186fee75d06a5d07abbe56d03f7ef4ce2e63afc2",
+    "codeFiles": 14,
+    "dataFiles": 1,
+    "allRootSnapshotRuntimeBeforeAfterHashesMatch": true,
+    "rulesSha256": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab",
+    "candidatePackSha256": "13da6274441c78cb7c5eb9df1c83cc55dd6a9489aec0ac4205a5764aa3ddafb4"
+  },
+  "actualRuns": {
+    "summary": {
+      "total": 2172,
+      "passed": 2172,
+      "failed": 0,
+      "byCategory": {
+        "wiring": {
+          "total": 1,
+          "failed": 0
+        },
+        "dispersion-exact": {
+          "total": 1734,
+          "failed": 0
+        },
+        "dispersion-boundaries": {
+          "total": 8,
+          "failed": 0
+        },
+        "dispersion-malformed": {
+          "total": 33,
+          "failed": 0
+        },
+        "typed-comparison": {
+          "total": 321,
+          "failed": 0
+        },
+        "collector": {
+          "total": 1,
+          "failed": 0
+        },
+        "collector-adversarial": {
+          "total": 72,
+          "failed": 0
+        },
+        "legacy-limit": {
+          "total": 1,
+          "failed": 0
+        },
+        "integration-counterfactual": {
+          "total": 1,
+          "failed": 0
+        }
+      }
+    },
+    "validationMocked": false,
+    "collector": {
+      "kind": "authored-exam-twin-review-result/v1",
+      "packageDigest": "d2ebb43fb5fd386f1954a0ecb59b2c729b7da8007adec918c11ff4f30bd7c301",
+      "createdAt": "2026-10-20T04:40:16.912Z",
+      "authored": 3,
+      "mathematicalVerified": 3,
+      "gradeReviewed": 3,
+      "overallVerified": 0,
+      "loadable": 0,
+      "productionWrites": false,
+      "results": [
+        {
+          "n": 18,
+          "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q18",
+          "studentDigest": "a79b13a29a0d2303e78d63c352465fe2e3bb852d13cb601dcaa23cf0df6db1f5",
+          "candidateDigest": "71e47598db6f8e99f5958162ed9ba64988f180761100ecf50282f0542b990532",
+          "assetDigest": "e724a88f94a0bb9c7d03919bf49f101d25e6a917e9ac726cf3cf07bb7704bb12",
+          "solveDigest": "3816b31cd58a91cabd55d0842f1ac6735b20844407752fc47bc9292d5aa16d3c",
+          "reportSha256": "057a1a85b704c37aad81be9bf9e5c75b227975ecbfe1590fdd126475f5bf54e2",
+          "mathematicalVerified": true,
+          "gradeReviewed": true,
+          "overallVerified": false,
+          "loadable": false,
+          "reasons": [
+            "review-status-pending",
+            "review-unitFamilyFit-not-passed",
+            "source-identity-held",
+            "taxonomy-held",
+            "rights-review-pending",
+            "similarity-review-pending",
+            "native-exam-twin-provenance-not-implemented"
+          ],
+          "productionWrites": false
+        },
+        {
+          "n": 19,
+          "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q19",
+          "studentDigest": "023dd4d8f9ad6ff29b14db539de9106310d12b64aaa7c82be00daf1ba758ce4c",
+          "candidateDigest": "13054e4b7f12cf80292f8ea1de20d07a1dadb3600ec0b1a13b50a5900ee2114a",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "solveDigest": "545bdd88a8a5c4a385b2f5191e47a8090c9cf431c50bc92e683ba6062de54b1d",
+          "reportSha256": "56c568f472e4164447b30a37f75a52e7abbb317433e8757ba9449c05710e1a8e",
+          "mathematicalVerified": true,
+          "gradeReviewed": true,
+          "overallVerified": false,
+          "loadable": false,
+          "reasons": [
+            "review-status-pending",
+            "review-unitFamilyFit-not-passed",
+            "source-identity-held",
+            "taxonomy-held",
+            "rights-review-pending",
+            "similarity-review-pending",
+            "native-exam-twin-provenance-not-implemented"
+          ],
+          "productionWrites": false
+        },
+        {
+          "n": 20,
+          "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q20",
+          "studentDigest": "38f19f40446fbb15ebfd75f6d6b6c750835a542b1e6691de3829a7e6702d7ae3",
+          "candidateDigest": "206fdee981c47d0bac8ac5eecc52f240d41f7e0c3e92acb3318dbd71497bf1aa",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "solveDigest": "5fef98bc3c9397218f6d2b9b5287affc13ade751a2c25048940529ca8c12f20a",
+          "reportSha256": "7bc77c3734523e42831db225584afe7b5e5a81c736aa808381df3839dee642c1",
+          "mathematicalVerified": true,
+          "gradeReviewed": true,
+          "overallVerified": false,
+          "loadable": false,
+          "reasons": [
+            "review-status-pending",
+            "review-unitFamilyFit-not-passed",
+            "source-identity-held",
+            "taxonomy-held",
+            "rights-review-pending",
+            "similarity-review-pending",
+            "native-exam-twin-provenance-not-implemented"
+          ],
+          "productionWrites": false
+        }
+      ]
+    },
+    "explanation": "Fresh execution of own previously sealed controls against actual currentPackage bindings and actual validateCandidate keyword/notation checks. The one added actual full collector assertion increases2171 to2172; these are not2172 newly invented cases. All1734 exact rational cases rerun against actual exported helper; sealed Fraction oracle bytes reused unchanged. No supplied test count used."
+  },
+  "hostileGates": {
+    "actualBindingControls": 72,
+    "results": "Missing grade surfaces or passed-status objects lacking basis do not receive gradeReviewed. Wrong named roles/order/value, malformed typed syntax and stale candidate/student/asset/solve digests fail the expected math/grade dimensions. Forged release flags and fabricated grade assertions still cannot produce overallVerified, loadable or productionWrites.",
+    "semanticAttestationLimit": "Fabricated but nonempty grade basis can retain gradeReviewed=true; this evaluator trusts review attestations. It does not independently establish student method or rights, and mandatory native hold still prevents release."
+  },
+  "findings": {
+    "productionDefectsObservedInBoundedControls": 0,
+    "initialMissingDependencyResolved": true,
+    "missingDependencyWasNotProductionFault": true,
+    "priorDollarFixtureIssue": "Test expectation/fixture construction correction only. Initial seven and intermediate three failed expectations remain in the sealed prior files; no production fault claimed.",
+    "legacyNormalizer": "Unchanged legacy paths for non-typed formats remain; the separately tested unknown-format normalization bypass is not claimed fixed by U55."
+  },
+  "preservation": {
+    "rawAndCurrentReports": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group4-review-20261020-r1/blind/solve/q18.json",
+        "sha256": "48b8ded317d5e4357738beae4b5175a297c4188afe5792d1e92e97c89ae73d6d"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group4-review-20261020-r1/verification/reports/q18.json",
+        "sha256": "057a1a85b704c37aad81be9bf9e5c75b227975ecbfe1590fdd126475f5bf54e2"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group4-review-20261020-r1/blind/solve/q19.json",
+        "sha256": "1144496e589040216cfb6e2795a68f94d1734332091824e91b9009b106f990df"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group4-review-20261020-r1/verification/reports/q19.json",
+        "sha256": "56c568f472e4164447b30a37f75a52e7abbb317433e8757ba9449c05710e1a8e"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group4-review-20261020-r1/blind/solve/q20.json",
+        "sha256": "a308e3ba67c8c8fab8a6836781a218feaeb7647a02b535810601859d2a455f4f"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-group4-review-20261020-r1/verification/reports/q20.json",
+        "sha256": "7bc77c3734523e42831db225584afe7b5e5a81c736aa808381df3839dee642c1"
+      }
+    ],
+    "priorSealedOwnFiles": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-after-check.py",
+        "sha256": "fa749e0513db188619223f8d0599f18fb0494c9243385c30785df68c2a2f3e20"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-audit-report.json",
+        "sha256": "81205893ca76c7dc7d7a5137ed789abaef1aae6d1e4b1c55d0707e4361157026"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-control-expectation-correction.json",
+        "sha256": "5fea9c1d27afc6379b1507a924a7810652f0f5afe25da9c53aa029701b239cae"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-control-results.json",
+        "sha256": "7cb447e1c0436f00443af382b63a02491c6fd07841c15ea5cc6dbcb036314d35"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-controls.mjs",
+        "sha256": "b840baf4d84b5a91c220af69faab458d706f55c87710a299e980d8ac11c36cd0"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-exact-oracle.json",
+        "sha256": "b0c57d11d651f656c19ea15bd4a3c7fe932605b39e374674ac5ed6a5af8e637c"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-file-hashes.json",
+        "sha256": "23ede17cca5ad89536f526261b0106c549bcc2bc880ab177352a1e1062bae30a"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-finalize.py",
+        "sha256": "896f799ff87c691b96995b2d254b85ef247368802566fb382179dde71e6bbe2f"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-initial-control-results.json",
+        "sha256": "e6b2e7e2ad9dd376ab572877779a88728a03bf7b9992875ff26d7be434bbf7fd"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-initial-runtime-failure.json",
+        "sha256": "07075475ecea32ca8b544b8130706114dcd05fc7467c76c16748fd18f98302a7"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-intermediate-control-results.json",
+        "sha256": "51567263be88318e95f67f386c785f7ef89300b0638d140c3b2f46b7ccf46e90"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-prepare.py",
+        "sha256": "52b60c9cc14794ae6e902ea59eee96bf3b14fc1706e6609b56e811507bf540d3"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-source-after.json",
+        "sha256": "2f122a8344b1cf1c03bb04ffdcfe7513b26e911089568ed9fcc8d10ca29b6f4a"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-source-before.json",
+        "sha256": "313e688fa12db31e835bc87b36adf13ce18c9020f31c9d2c168b56b5761ec748"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-utf8-probe.txt",
+        "sha256": "3e910ad9c64f20ac28eb00fccd3ffead63e34aaaf3df162f9686a3662efa6a93"
+      }
+    ],
+    "sourceRulesEdits": 0,
+    "rawReportEdits": 0,
+    "oldAuditEdits": 0,
+    "allHashesBeforeAfterIdentical": true,
+    "q17Limitation": "Completed group5 full review and sealed q17 raw E80,40 versus actual30,40 observation limitation preserved unchanged; this code audit neither rewrites it nor claims pristine blind point reading."
+  },
+  "limits": [
+    "Actual group4 math3/grade3 reflects collection of existing independently authored/solved/reviewed evidence; helpers do not themselves prove student curriculum or rights. No new manual question/blind/grade approval count.",
+    "Exact live family, source identity, rights, similarity, native provenance/loadability remain held. All three reports still pending with unitFamilyFit=false. 2022 scope remains pending.",
+    "Bounded exact rational arithmetic and explicit typed grammar only; no generic symbolic equivalence, relationship-truth proof, all-format normalizer repair, positive physical-length certification or generalized release approval.",
+    "No DB/API/model calls, no production writes, no source/runtime/snapshot/rules edits, no new workers. Actual collector is offline filesystem validation; no real HTTP/native reader certification.",
+    "Prior incomplete report/mocked collector remain historically valid records of the earlier missing dependency; this new addendum resolves only that run limitation without relabeling prior mocks as actual."
+  ],
+  "reproduction": [
+    "python <prefix>/own-unmocked-prepare.py",
+    "node <prefix>/own-unmocked-controls.mjs",
+    "python <prefix>/own-unmocked-finalize.py"
+  ],
+  "evidenceHashes": {
+    "own-unmocked-after.json": "a30e0f54f76d988bac25d2836e5f3a597a9638cb98a57f8e4ee76060f8896759",
+    "own-unmocked-before.json": "56a226c65822d6650d34f57a42ba60a19541406f413a3cace91a37396ae7946a",
+    "own-unmocked-control-results.json": "f6fe3e9a3e43499c8301d8984345894d2aaf3d9d76a2bc258a78b3863ba7c313",
+    "own-unmocked-controls.mjs": "b2d5e4164b8af7645f84de563db3672618d6e93d05d85caa3d0cb6e262c48e9b",
+    "own-unmocked-finalize.py": "e0517c5953093b461c28c7dab7ad3f32fc45681f469ea2ce61855419a20ffde9",
+    "own-unmocked-prepare.py": "cda524bd2353012a7ac27d3857e79c468a379c6308819f411e96b2cf1cef5b71",
+    "own-unmocked-utf8-probe.txt": "0a670ef68ea748cc553129fc56b424abc559190bd841f8ad7c8bb129d95471dd"
+  }
+}

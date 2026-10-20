@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-20T04:53:56.035Z",
+  "branch": "chrismathone/exam-extraction-resume-20261008",
+  "verifiedRemoteSha": "776884a407edcd9efe8fd65b21079e8448cc4b1f",
+  "mainIntegrated": "560c6a0fa0d0fcb7908e0628b86bb62e6395c505",
+  "fastForward": true,
+  "forcePush": false,
+  "selected": 157,
+  "mathGrade": 156,
+  "final": 0,
+  "dbWrites": 0,
+  "checks": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v38-post-main-validation-r1.json",
+      "sha256": "9c5dee6b3d2f9fcb3c8d6f095fc322beecd916988cae2230e04f7db3cbe54367"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v38-post-main-validation-r2.json",
+      "sha256": "2fa162b2a2200edc9567a7f4469d9910d8c4447029e60497fc958a9c61816a0f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v38-builder-validation-r3.json",
+      "sha256": "6156ff66d7060f9c324cef79cc566802ee7dff04bf62df53097d828fd6dd6b1f"
+    }
+  ],
+  "testRunsNotSummedAcrossOverlappingFiles": true
+}

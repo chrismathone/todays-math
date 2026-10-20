@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-20T04:53:56.035Z",
+  "counts": {
+    "authoredCurrentCandidates": 157,
+    "currentFigureInstances": 111,
+    "recreatedStatTables": 17,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 157,
+    "independentMathReviewed": 156,
+    "independentFullGradeReviewed": 156,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 141,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 156,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 5,
+    "failedStudentRenderDraftVersions": 1,
+    "currentRawPointTranscriptionLimitations": 1
+  },
+  "current157CandidateBindingsAnd91CodeHashesUnchanged": true,
+  "independentCodeAudit": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-dispersion-numbered-code-audit-20261020-r1/own-unmocked-audit-report.json",
+    "sha256": "73b3f52eba3bb362ab3e2eb72c04a466627531d272340e60a70ea6ba9106d97c"
+  },
+  "actualUnmockedControls": 2172,
+  "notNew2172ManualQuestions": true,
+  "newSourceObservations": 57,
+  "totalSourceObservationsNotContentDedupCertified": 753,
+  "rawOrEarlierReportsRewritten": false,
+  "sharedDependenciesChanged": false,
+  "dbWrites": 0,
+  "loadable": 0,
+  "wholeGoalComplete": false
+}

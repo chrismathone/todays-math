@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-20T04:39:27.655724+00:00",
+  "reason": "Actual collector data dependency missing from scoped14code closure; not a production code fault. Add exact existing authoritative rules, preserve initial failure and mocked controls as distinct evidence.",
+  "baseScope": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\inverse-dispersion-numbered-code-audit-20261020-r1\\provided-scope.json",
+    "sha256": "b717a64d22aa1700792d9ba459d8f1fe3021f4b7cfc6bd946b16d766de081399"
+  },
+  "original14SourceFilesChanged": false,
+  "additionalData": {
+    "canonicalPath": "scripts\\import\\exam-paper\\solver_rules.json",
+    "sha256": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab",
+    "snapshot": "provided-data-snapshots/solver_rules.json.snapshot",
+    "runtime": "exam-paper/solver_rules.json"
+  },
+  "authorizeActualUnmockedCollector": true,
+  "rulesModified": false,
+  "gradeOrReleaseApproval": false
+}
