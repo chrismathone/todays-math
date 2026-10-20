@@ -1,0 +1,30 @@
+{
+  "viewport": {
+    "width": 1366,
+    "height": 900
+  },
+  "emptyGradeDisabled": true,
+  "availableGradeEnabled": true,
+  "allSourcesReenabled": true,
+  "disabledCursor": "not-allowed",
+  "pageErrors": [],
+  "requests": [
+    {
+      "identity": "question",
+      "view": "curriculum",
+      "availability": "1"
+    },
+    {},
+    {
+      "sourceGroup": "school_textbook",
+      "identity": "question",
+      "view": "curriculum",
+      "availability": "1"
+    },
+    {
+      "identity": "question",
+      "view": "curriculum",
+      "availability": "1"
+    }
+  ]
+}
