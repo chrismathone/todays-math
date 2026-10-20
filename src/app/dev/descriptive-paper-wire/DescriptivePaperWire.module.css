@@ -1,0 +1,798 @@
+/* Wire only. Print geometry is local: no changes to shipped print tokens/templates. */
+.shell {
+  --wire-ink: #171717;
+  --wire-muted: #555;
+  --wire-rule: #aaa;
+  --wire-light: #ddd;
+  --wire-fill: #f2f2f2;
+  --wire-paper: #fff;
+  min-width: 0;
+  min-height: 100vh;
+  padding: 32px 24px 64px;
+  color: var(--wire-ink);
+  background: #eee;
+  font-family: var(--font-pretendard), Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.shell *,
+.shell *::before,
+.shell *::after {
+  box-sizing: border-box;
+}
+
+.shell :is(h1, h2, h3, h4, p, figure, dl, dd) {
+  margin: 0;
+}
+
+.head,
+.overview,
+.selection,
+.scopeNote {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.head {
+  margin-bottom: 24px;
+}
+
+.head h1 {
+  margin: 4px 0 8px;
+  font-size: 26px;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+}
+
+.eyebrow,
+.baseline,
+.scopeNote,
+.ruleNote {
+  color: var(--wire-muted);
+  font-size: 12px;
+}
+
+.sectionHeading,
+.selectionTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.sectionHeading {
+  margin-bottom: 12px;
+}
+
+.sectionHeading h2,
+.selectionTop h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.sectionHeading > span {
+  font-size: 12px;
+  color: var(--wire-muted);
+}
+
+.comparisonTable {
+  border: 1px solid var(--wire-rule);
+  background: var(--wire-paper);
+}
+
+.comparisonHead,
+.comparisonRow {
+  display: grid;
+  grid-template-columns:
+    minmax(240px, 1.7fr) repeat(3, minmax(90px, 0.6fr))
+    minmax(130px, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+}
+
+.comparisonHead {
+  background: var(--wire-fill);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.comparisonRow {
+  border-top: 1px solid var(--wire-light);
+}
+
+.comparisonRow[data-selected="true"] {
+  background: var(--wire-fill);
+}
+
+.optionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.shell :is(button) {
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--wire-rule);
+  background: var(--wire-paper);
+  color: var(--wire-ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.shell button[aria-pressed="true"] {
+  border-color: var(--wire-ink);
+  background: var(--wire-ink);
+  color: var(--wire-paper);
+}
+
+.shell button:hover {
+  border-color: var(--wire-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.shell button:focus-visible {
+  outline: 3px solid var(--wire-ink);
+  outline-offset: 3px;
+}
+
+.countCell {
+  font-variant-numeric: tabular-nums;
+}
+
+.delta,
+.positionCell {
+  font-size: 12px;
+  color: var(--wire-muted);
+}
+
+.mobileLabel {
+  display: none;
+}
+
+.baseline {
+  margin-top: 10px !important;
+}
+
+.selection {
+  margin-top: 28px;
+  margin-bottom: 24px;
+  padding-top: 20px;
+  border-top: 2px solid var(--wire-ink);
+}
+
+.selectionTop {
+  margin-bottom: 12px;
+}
+
+.weakness {
+  margin-top: 4px !important;
+  color: var(--wire-muted);
+}
+
+.specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  margin-top: 12px !important;
+  font-size: 12px;
+}
+
+.specs > div {
+  display: flex;
+  gap: 8px;
+}
+
+.specs dt {
+  font-weight: 700;
+}
+
+.controls,
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.controls {
+  margin: 20px 0 12px;
+  gap: 12px 24px;
+}
+
+.pageSummary {
+  font-weight: 650;
+}
+
+.ruleNote {
+  margin-top: 6px !important;
+}
+
+.gallery {
+  width: min(100%, 210mm);
+  min-width: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.paperFigure {
+  width: 100%;
+  min-width: 0;
+}
+
+.paperCaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--wire-muted);
+}
+
+.paperFrame {
+  width: 100%;
+  /* Only contains the original, unscaled layout box. Contents are measured independently in QA. */
+  overflow: clip;
+  outline: 1px solid var(--wire-rule);
+}
+
+.paper {
+  width: 210mm;
+  height: 297mm;
+  padding: 10mm 13.23mm 6mm;
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+  transform-origin: top left;
+  background: var(--wire-paper);
+  color: var(--wire-ink);
+  font-family: var(--font-noto-serif-kr), "Noto Serif KR", serif;
+  font-size: 12.5px;
+  line-height: 1.65;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.paper[data-paper-kind="past"] {
+  padding: 13mm 12mm 10mm;
+  gap: 5mm;
+}
+
+.paperHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 7mm;
+  padding-bottom: 3mm;
+  border-bottom: 1.5px solid var(--wire-ink);
+  flex: none;
+}
+
+.paperHeader h3 {
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.academy,
+.paperMeta,
+.nameField,
+.conceptNote,
+.problemHeading,
+.shortAnswer,
+.scratch,
+.answerHeading,
+.answerPointer,
+.score,
+.paperFooter,
+.answerInstruction,
+.teacherIntro,
+.rubric,
+.markingNotes {
+  font-family: var(--font-pretendard), Arial, sans-serif;
+}
+
+.academy {
+  font-size: 10px;
+  margin-bottom: 1mm !important;
+}
+
+.paperMeta {
+  margin-top: 1mm !important;
+  font-size: 10px;
+}
+
+.nameField {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3mm;
+  padding-top: 1mm;
+  font-size: 10px;
+}
+
+.continuationHeader h3 {
+  font-size: 16px;
+}
+
+.continuationHeader .academy,
+.continuationHeader .paperMeta {
+  display: none;
+}
+
+.conceptNote {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+  padding: 3mm 4mm;
+  border: 1px solid var(--wire-rule);
+  font-size: 11px;
+  flex: none;
+}
+
+.paperBody {
+  flex: 1;
+  min-height: 0;
+}
+
+.problemGroup {
+  min-width: 0;
+}
+
+.problem {
+  min-width: 0;
+}
+
+.problemHeading {
+  display: flex;
+  align-items: baseline;
+  gap: 2mm;
+  margin-bottom: 2mm;
+}
+
+.problemHeading strong {
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.problemType,
+.score {
+  font-size: 11px;
+}
+
+.score {
+  white-space: nowrap;
+}
+
+.questionText p {
+  overflow-wrap: anywhere;
+}
+
+.parts {
+  display: grid;
+  gap: 2mm;
+  margin-top: 2mm;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2mm 3mm;
+  margin-top: 3mm;
+}
+
+.shortAnswer {
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+  padding: 1.5mm 2mm;
+  margin-top: 3mm;
+  border: 1px solid var(--wire-rule);
+  font-size: 10px;
+}
+
+.shortAnswer > span {
+  flex: 1;
+  border-bottom: 1px solid var(--wire-rule);
+  min-height: 4mm;
+}
+
+.scratch {
+  display: none;
+  min-height: 28mm;
+  padding: 2mm;
+  border: 1px solid var(--wire-light);
+  font-size: 9px;
+  text-align: right;
+  color: var(--wire-muted);
+}
+
+.daily > .problemGroup,
+.wide > .problemGroup {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.daily .problem,
+.wide .problem {
+  flex: 1 1 0%;
+  padding-top: 4mm;
+  padding-bottom: 4mm;
+  border-bottom: 1px dashed var(--wire-rule);
+}
+
+.daily .problem:first-child,
+.wide .problem:first-child {
+  padding-top: 0;
+}
+
+.daily .normalProblem {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 14px;
+}
+
+.daily .scratch {
+  display: block;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 7mm;
+}
+
+.columns > .problemGroup + .problemGroup {
+  border-left: 1px solid var(--wire-light);
+  padding-left: 3.5mm;
+}
+
+.columns .problem {
+  margin-bottom: 5mm;
+}
+
+.columns .problemHeading {
+  padding: 1mm 2mm;
+  border: 1px solid var(--wire-rule);
+  margin-bottom: 2mm;
+}
+
+.columns .problemHeading strong {
+  font-size: 14px;
+}
+
+.columns .choices {
+  gap: 1mm 2mm;
+}
+
+.paper[data-option="D"] .columns .scratch {
+  display: block;
+  height: 60mm;
+  margin-top: 3mm;
+}
+
+.compact .problem {
+  margin-bottom: 5mm;
+}
+
+.triangle {
+  display: block;
+  width: 62mm;
+  max-width: 100%;
+  height: auto;
+  margin: 3mm auto 1mm;
+  font-family: var(--font-pretendard), Arial, sans-serif;
+  font-size: 12px;
+}
+
+.endScore {
+  margin-top: 1mm;
+  text-align: right;
+}
+
+.answerPointer {
+  margin-top: 2mm !important;
+  font-size: 10px;
+  color: var(--wire-muted);
+}
+
+.answerSpace {
+  margin-top: 3mm;
+  break-inside: avoid;
+}
+
+.answerHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2mm;
+  padding-bottom: 1.5mm;
+  font-size: 11px;
+}
+
+.spaceMeasure {
+  color: var(--wire-muted);
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.writingArea {
+  height: var(--answer-height);
+  outline: 1px solid var(--wire-rule);
+  outline-offset: -1px;
+}
+
+.lines,
+.grid {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--line-height) - 1px),
+    var(--wire-light) calc(var(--line-height) - 1px),
+    var(--wire-light) var(--line-height)
+  );
+}
+
+.grid {
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--line-height) - 1px),
+      var(--wire-light) calc(var(--line-height) - 1px),
+      var(--wire-light) var(--line-height)
+    ),
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(var(--line-height) - 1px),
+      var(--wire-light) calc(var(--line-height) - 1px),
+      var(--wire-light) var(--line-height)
+    );
+}
+
+.blank {
+  background: var(--wire-paper);
+}
+
+.subSpace {
+  padding: 1mm 2mm;
+  border-bottom: 1px solid var(--wire-ink);
+  font-family: var(--font-pretendard), Arial, sans-serif;
+  font-size: 11px;
+}
+
+.subSpace:last-child {
+  border-bottom: 0;
+}
+
+.answerInstruction {
+  font-size: 11px;
+}
+
+.answers .answerSpace {
+  margin: 0 0 6mm;
+}
+
+.paperFooter {
+  display: flex;
+  justify-content: space-between;
+  flex: none;
+  gap: 4mm;
+  padding-top: 2mm;
+  border-top: 1px solid var(--wire-light);
+  font-size: 9px;
+}
+
+.teacherIntro {
+  font-size: 11px;
+}
+
+.teacherBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+}
+
+.rubric h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 1.5mm;
+  border-bottom: 1px solid var(--wire-ink);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.modelAnswer {
+  padding: 2mm 0;
+  font-family: var(--font-noto-serif-kr), "Noto Serif KR", serif;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.rubric table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.rubric :is(th, td) {
+  border: 1px solid var(--wire-rule);
+  padding: 1.5mm;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  font-weight: 400;
+}
+
+.rubric thead th {
+  background: var(--wire-fill);
+  font-weight: 650;
+}
+
+.rubric thead th:first-child {
+  width: 31%;
+}
+
+.rubric thead th:nth-child(2) {
+  width: 8%;
+}
+
+.rubric thead th:nth-child(3) {
+  width: 38%;
+}
+
+.markBoxes span {
+  display: inline-block;
+  margin-right: 2mm;
+  white-space: nowrap;
+}
+
+.subtotal {
+  margin-top: 1mm !important;
+  font-size: 11px;
+  text-align: right;
+}
+
+.markingNotes {
+  border-top: 1px solid var(--wire-ink);
+  padding-top: 2mm;
+  font-size: 10px;
+}
+
+.markingNotes strong {
+  display: block;
+  margin-top: 3mm;
+  text-align: right;
+  font-size: 14px;
+}
+
+.scopeNote {
+  margin-top: 24px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 760px) {
+  .shell {
+    padding: 24px 16px 48px;
+  }
+
+  .head h1 {
+    font-size: 23px;
+  }
+
+  .comparisonHead {
+    display: none;
+  }
+
+  .comparisonRow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 12px;
+  }
+
+  .comparisonRow:first-of-type {
+    border-top: 0;
+  }
+
+  .comparisonRow > :first-child,
+  .positionCell {
+    grid-column: 1 / -1;
+  }
+
+  .mobileLabel {
+    display: inline;
+    font-size: 12px;
+  }
+
+  .countCell,
+  .delta {
+    font-size: 12px;
+  }
+
+  .specs {
+    display: grid;
+    gap: 4px;
+  }
+
+  .specs dd {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .controls {
+    gap: 12px;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  .shell {
+    padding: 0;
+    background: white;
+  }
+
+  .head,
+  .overview,
+  .selection,
+  .paperCaption,
+  .scopeNote {
+    display: none;
+  }
+
+  .gallery {
+    display: block;
+    width: 210mm;
+    max-width: none;
+    margin: 0;
+  }
+
+  .paperFigure {
+    break-after: page;
+    break-inside: avoid;
+  }
+
+  .paperFigure:last-child {
+    break-after: auto;
+  }
+
+  .paperFrame {
+    width: 210mm;
+    height: 297mm !important;
+    overflow: visible;
+    outline: 0;
+  }
+
+  .paper {
+    transform: none !important;
+  }
+}
