@@ -339,11 +339,15 @@ export default function ExamBuilder<T>({
     if (!focusRequest || step === "output") return;
     const element = step === "scope" ? scopeRef.current : headingRef.current;
     element?.focus({ preventScroll: true });
+    // 단계를 바꾸면 따로 스크롤되는 두 열을 맨 위에서 연다. scrollIntoView 는 열 안의 목록까지
+    // 끌어내려 2단계 오른쪽 열이 머리(담은 문항 · 단추 줄)를 지나친 채 열렸다(운영 2026-10-20 실측 653px).
     rootRef.current
-      ?.querySelector(
-        step === "scope" ? "[data-builder-settings]" : "[data-builder-review]",
+      ?.querySelectorAll<HTMLElement>(
+        "[data-scope-layout] > *, [data-review-layout] > *",
       )
-      ?.scrollIntoView({ block: "start", behavior: "smooth" });
+      .forEach((column) => column.scrollTo?.({ top: 0 }));
+    const top = rootRef.current?.getBoundingClientRect().top ?? 0;
+    if (top < 0) window.scrollBy?.({ top, behavior: "smooth" });
   }, [focusRequest, step, rootRef]);
   useEffect(() => () => operation.current?.abort(), [source]);
   // Demand changes keep both confirmed counts and in-flight reads. Only a
