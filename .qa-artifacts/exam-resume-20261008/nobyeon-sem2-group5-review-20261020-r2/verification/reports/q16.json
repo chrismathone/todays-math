@@ -1,0 +1,233 @@
+{
+  "status": "pending",
+  "studentDigest": "bd78abd00caa32b6d87c5496e00cc44e280badd866a62871df23be5024cc1145",
+  "candidateDigest": "4c06fd71a6b9588f94fc9157a3479abc1c8db11b808c9036d88227221e1f0546",
+  "assetDigest": "f3c01787cf504bcbc5a97f57f61a0fcd7314c4a2a3dcdaf75b98e382ae2d7fc9",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-nobyeon-sem2-group5-r2-full-review-20261020",
+  "solveDigest": "f07b4f02cdb85f4c7b0341b01f97faf82259ebf7bf3ec661ab121a72a4387f67",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "currentCandidateMath": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held",
+      "sealedRawEntirePointTranscription": "current-recheck-matched"
+    },
+    "ownCurrentCalculations": {
+      "currentPoints": {
+        "A": [
+          20,
+          30
+        ],
+        "B": [
+          30,
+          50
+        ],
+        "C": [
+          40,
+          60
+        ],
+        "D": [
+          50,
+          40
+        ],
+        "E": [
+          60,
+          30
+        ],
+        "F": [
+          70,
+          60
+        ],
+        "G": [
+          80,
+          80
+        ]
+      },
+      "strictImprovers": [
+        "A",
+        "B",
+        "C"
+      ],
+      "equalExcluded": [
+        "G"
+      ],
+      "plotted": 7,
+      "separateH": 1,
+      "denominator": 8,
+      "requiredCount": "4",
+      "allFiveChoices": [
+        {
+          "a": 30,
+          "count": 3,
+          "denominator": 8,
+          "fraction": "3/8",
+          "valid": false
+        },
+        {
+          "a": 40,
+          "count": 3,
+          "denominator": 8,
+          "fraction": "3/8",
+          "valid": false
+        },
+        {
+          "a": 50,
+          "count": 3,
+          "denominator": 8,
+          "fraction": "3/8",
+          "valid": false
+        },
+        {
+          "a": 60,
+          "count": 3,
+          "denominator": 8,
+          "fraction": "3/8",
+          "valid": false
+        },
+        {
+          "a": 70,
+          "count": 4,
+          "denominator": 8,
+          "fraction": "1/2",
+          "valid": true
+        }
+      ],
+      "possibleRealSet": "a>60, only selected option70; real a not uniquely determined",
+      "witness": "a70 yields4/8=50%, a60 yields3/8"
+    },
+    "wholeAuthorMethod": "현재저자해설은전체8명50%=4명,기지7점에서높은학생A/B/C3명,G동일제외. 표의H가높아야하여a>60,5보기중70만가능으로끝난다. a의실수가능집합전체가70하나라고주장하지않는다.",
+    "originalCoreAndStructuralChange": {
+      "observed": "원문은공통20명의두시험점수를비교하여특정엄격비교를만족하는백분율을구한다. 현재source-only에는독립확인된공통20쌍과명시owner가있다.",
+      "core": "같은학생의두변량을엄격비교하여해당인원수와전체비율을잇는핵심이다. 비교방향변화가있어도같다/큼을구분하는방법은유지된다.",
+      "change": "새7쌍+빠진H의표를주고백분율을입력조건으로반전해누락점수의가능보기를찾는다. 분모8과미도시H를구분하고가능성/유일성을검토해야하므로실질역추론/자료구조변경이다."
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "edition": "2015",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "line570 9수05-08:쌍자료를산점도로나타내고상관관계설명",
+          "line570 9수05-06:평균등대표값",
+          "line573 통계자료학습요소"
+        ],
+        "wholeMethod": "현재필수풀이가축읽기·두점수비교·인원수/백분율·합순위·평균/일차식에한정됨을확인. 고등상관계수/회귀/공분산방법은없음."
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "PDFindex73/printed72:중3수학2학기대표값9수05-06",
+          "PDFindex74/printed73:중3산점도9수05-08"
+        ],
+        "limits": "개별학생선수이수·노변중특정시험진도·2022·원본권리인증아님"
+      }
+    },
+    "sourceOwnershipReevaluation": {
+      "historicalReportSha256": "1f7028b4c1a49fa0c5df6be179bb376105ebc4d20ccd2fc64ca681372b089355",
+      "currentStagedSha256": "5f917af01f0e4e2963bd15e69e8ad9a7ff7dca272994ae456cfbf07997d42aaf",
+      "overlaySha256": "aba36404268bd6b2d38e6181da62367687fc6a6a4eb12d92e4b5b843cc4177ee",
+      "specificConclusion": "Current explicit20pair/shared16-17header ownership and actual crops independently confirmed; old null-context reason obsolete only for these exact current stage hashes.",
+      "independentBasis": "기존본인소유범위r2및실제crop r3의봉인결과/해시와일치함을확인했다. 해당정확한stage해시의null-context/잘못된공통소유사유만해소한다. 이전보고서/원시꼬리미변경.",
+      "doesNotApprove": "전체HWP/PDF동일성/원본답안쌍/권리/학년/family/native/release는이overlay로승인되지않음."
+    },
+    "exposureAndRawBinding": {
+      "helperRawCommit": "2770b86cad41f4ea15a12744d63580ff0716acda",
+      "parentRawCommit": "2e1f735cb8c44fdecc9bf37890bc3d879fdf7ce7",
+      "rawSha256": "98af8b63a21c7d263b939cab252aed9c4b1eb1dbc8153275522ae2e1bab23d62",
+      "byteEqualGit": true,
+      "priorDeclaration": {
+        "currentGroup5r2AuthorAnswersSolutionsPrivatePackageExposed": false,
+        "priorOriginalSourceExposure": "원래노변q15의소득/지출그림과q16/17공통20명국어점수그림을소유범위r2/r3에서실제로보았고20쌍을전사했다. 원문페이지에손글씨선택표시/계산도보였다는점을이미선언했다. 그표시를새문항풀이근거로사용하지않는다. 관련대표값/산포도/산점도및노변다른문항의저자검토이력도있다.",
+        "currentBlindBoundary": "이번currentgroup5-r2의학생JSON/manifest/brief/학생SVG해시와q15/q16/q17학생PNG만확인했다. group5-r1초안·현재저자답/해설·parentworktree·private/source질문·이전저자해설을열지않았다. 전체코퍼스미노출주장없음.",
+        "numericalReadingMethod": "새PNG의인쇄축눈금과10점격자/점라벨로수치쌍을직접읽음. 픽셀길이/SVG좌표비율을점수오라클로쓰지않음."
+      },
+      "currentAuthorExposureAfterSeal": true,
+      "rawRewritten": false
+    },
+    "rawReliabilityLimitation": null,
+    "renderBinding": {
+      "studentPNG": "3672611362b2b27175c7f70e8ef2e054eae9adeb808835de346558cfead64f9c",
+      "solutionPNG": "b0d91ec8d863162c38370e048f60af65c04906a9f77d8d85de552c0d1bdad8f7",
+      "specSha256": "b7a6883e8a84b4ea0814886f4c0a1dc8582b8a5bb7c521a461fe0565ae900eb7",
+      "svgSha256": "195d273205b0447955c217f8471beee8c24d89ec3ed2d67688ba8b5aa6bcb3c1",
+      "sameAsBlind": true,
+      "nativeReaderParityApproved": false
+    },
+    "naturalKorean": "현재r2는전체인원/점위치/누락H와질문조건을명확히한다. 가능한것이라는표현과저자해설a>60/보기70이일치한다.",
+    "scoreDifficulty": {
+      "score": 4,
+      "basis": "원문과동일4점이고엄격비교/전체비율역추론을요구해배점제안은내용상수용가능. 측정난도나새부분점규칙은발명하지않음.",
+      "proposal": "중",
+      "sourceLabelAsProvided": "중",
+      "difficultyApproval": "pending",
+      "reason": "같은하/중라벨이라도새역추론단계의실제난도동등성은확인되지않았다. source-label-unknown일반문구와라벨관측값병존은편집정리대상."
+    },
+    "unitFamily": {
+      "capturedUnitId": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "section": "산점도와 상관관계",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "제공캡처단원과핵심개념은대응하나미도시점/조건교집합/선정집단역추론전체목적을충족하는정확한livefamily정의를확인하지않았다. UUID/이름만으로승인하지않음."
+    },
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "familyApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolSpecificPacing": "pending",
+      "difficultyEquivalence": "pending"
+    },
+    "newBlindOrQuestionCount": 0
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "미도시H를포함한전체8명과기지7점,50%조건이명시된다. 산점도해석과이전백분율/부등비교로완결된다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "30/40/50/60/70을엄격a>60과전체8명비율로전부검사하여⑤70만가능하다. 60의같음은제외한다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "현재학생PNG와전체solutionPNG를실제view하고모든점/라벨을축눈금으로확인했다. 현재spec점/라벨을별도대조하고student/privateSVG바이트와제공해시가일치했다. 7점만그려지고H는별도표로있어중복/누락없이총8명이다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "50%는전체8명의비율이고가능한값질문을a의유일값질문으로바꾸지않는다. y=x인G는제외."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "현재저자답과봉인선택기호가일치하고재검산으로 가능보기70⑤를확인했다. 모든5보기의조건을검토했다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재저자해설은전체8명50%=4명,기지7점에서높은학생A/B/C3명,G동일제외. 표의H가높아야하여a>60,5보기중70만가능으로끝난다. a의실수가능집합전체가70하나라고주장하지않는다. 이방법은2015중3의쌍자료해석/평균과이전비율·일차관계에속하고고등상관계수/회귀/공분산을쓰지않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "9수05-08산점도의한점·두축/점수쌍,이전엄격부등비교·백분율/전체인원수를학습한후배정한다. 실제중3산점도/대표값배치는공식계획printed72/73에서확인했다. 개별학생이수·노변시험진도·2022는미확인이다."
+    }
+  }
+}

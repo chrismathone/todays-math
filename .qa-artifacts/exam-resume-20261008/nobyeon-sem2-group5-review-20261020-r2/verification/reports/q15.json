@@ -1,0 +1,185 @@
+{
+  "status": "pending",
+  "studentDigest": "1059f6c697898bd87e1c079c99bf2b2f251f4d2056dfdecf80c20061752c7aae",
+  "candidateDigest": "f8d8907a2912e41d9e0da2204e9e14be543aeb1c8879cb5cc062956f78244f05",
+  "assetDigest": "6f1f62637a495ad50ee0a1410467dae2e8d29185838a40d060a7d1f702bf2978",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-nobyeon-sem2-group5-r2-full-review-20261020",
+  "solveDigest": "1e3734106e35401c99ea629ed2f7e537b771dbc2077482a1a70bc8363975abc0",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "currentCandidateMath": "passed",
+      "grade": "2015-M3-after-prerequisites-passed",
+      "content": "held",
+      "sealedRawEntirePointTranscription": "current-recheck-matched"
+    },
+    "ownCurrentCalculations": {
+      "currentPoints": {
+        "A": [
+          30,
+          60
+        ],
+        "B": [
+          70,
+          50
+        ],
+        "C": [
+          50,
+          80
+        ],
+        "D": [
+          60,
+          30
+        ],
+        "E": [
+          80,
+          70
+        ]
+      },
+      "strictXAboveA": 30,
+      "strictYBelowB": 50,
+      "allFiveChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": false,
+        "④": true,
+        "⑤": false
+      },
+      "answerStudent": "D",
+      "existenceUniqueness": "D는60>30 및30<50으로존재. A는x등호,B는y등호로제외,C/E는y<50불성립이므로D만유일."
+    },
+    "wholeAuthorMethod": "현재저자해설은가로축첫조건으로B/C/D/E를고르고세로축둘째조건으로D만남긴다. B자신의동일점수를엄격낮다에서제외한다. 5점전체검산과일치한다.",
+    "originalCoreAndStructuralChange": {
+      "observed": "원문질문/5보기와이전실제crop은소득x·지출y의직원A/B/C/D산점도설명판단이다. 소득/지출축의위치비교가필요하다.",
+      "core": "새문항도산점도의축의미·점위치·두변량크기를비교하는핵심을보존한다. 원문의상관방향/상대지출등모든부수설명까지같은평가범위라고주장하지않는다.",
+      "change": "5명연습점수의새데이터/격자에서두엄격조건을동시에만족하는점주인을찾는과제로조직했다. 단순숫자/점이름치환이아니며선택작업이문장진위에서조건교집합으로바뀐다."
+    },
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "edition": "2015",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "line570 9수05-08:쌍자료를산점도로나타내고상관관계설명",
+          "line570 9수05-06:평균등대표값",
+          "line573 통계자료학습요소"
+        ],
+        "wholeMethod": "현재필수풀이가축읽기·두점수비교·인원수/백분율·합순위·평균/일차식에한정됨을확인. 고등상관계수/회귀/공분산방법은없음."
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "PDFindex73/printed72:중3수학2학기대표값9수05-06",
+          "PDFindex74/printed73:중3산점도9수05-08"
+        ],
+        "limits": "개별학생선수이수·노변중특정시험진도·2022·원본권리인증아님"
+      }
+    },
+    "sourceOwnershipReevaluation": {
+      "historicalReportSha256": "66428b5e8693783a3a14fa78e544e296a76db1488d72097b0216e569e2f16875",
+      "currentStagedSha256": "1d64f4bfd366f7b944bc6034390ee502b6b622c1e3253faa8699118a9093b5e9",
+      "overlaySha256": "b890d645b12258fe8c674146c50c08561c6de8f1b1fdb32ca02289e80b9cdafd",
+      "specificConclusion": "Canonical q15 excludes shared16/17header/plot; actual own crop independently confirmed. Historical raw tail retained.",
+      "independentBasis": "기존본인소유범위r2및실제crop r3의봉인결과/해시와일치함을확인했다. 해당정확한stage해시의null-context/잘못된공통소유사유만해소한다. 이전보고서/원시꼬리미변경.",
+      "doesNotApprove": "전체HWP/PDF동일성/원본답안쌍/권리/학년/family/native/release는이overlay로승인되지않음."
+    },
+    "exposureAndRawBinding": {
+      "helperRawCommit": "2770b86cad41f4ea15a12744d63580ff0716acda",
+      "parentRawCommit": "2e1f735cb8c44fdecc9bf37890bc3d879fdf7ce7",
+      "rawSha256": "c259a542dfba429a56219533baae9ff06d1a52720e6310bc11977ea07acb7a00",
+      "byteEqualGit": true,
+      "priorDeclaration": {
+        "currentGroup5r2AuthorAnswersSolutionsPrivatePackageExposed": false,
+        "priorOriginalSourceExposure": "원래노변q15의소득/지출그림과q16/17공통20명국어점수그림을소유범위r2/r3에서실제로보았고20쌍을전사했다. 원문페이지에손글씨선택표시/계산도보였다는점을이미선언했다. 그표시를새문항풀이근거로사용하지않는다. 관련대표값/산포도/산점도및노변다른문항의저자검토이력도있다.",
+        "currentBlindBoundary": "이번currentgroup5-r2의학생JSON/manifest/brief/학생SVG해시와q15/q16/q17학생PNG만확인했다. group5-r1초안·현재저자답/해설·parentworktree·private/source질문·이전저자해설을열지않았다. 전체코퍼스미노출주장없음.",
+        "numericalReadingMethod": "새PNG의인쇄축눈금과10점격자/점라벨로수치쌍을직접읽음. 픽셀길이/SVG좌표비율을점수오라클로쓰지않음."
+      },
+      "currentAuthorExposureAfterSeal": true,
+      "rawRewritten": false
+    },
+    "rawReliabilityLimitation": null,
+    "renderBinding": {
+      "studentPNG": "d589370beccfbc9a1dabb4a080b40c279f5a6399707a2828162775dbc6d622a3",
+      "solutionPNG": "bf2dd6d53fdd0d6601c9e7d1246d054e01a09a88007fc42ad8acb4d04488ac0b",
+      "specSha256": "3212bd7dd8f8c1a64642111bc8085f3c68219a1164d32b17fa92f0234a53b96d",
+      "svgSha256": "4a58f12be9d34b0e8301321d6d626ec582fd0429861ca0878700553c7903e26d",
+      "sameAsBlind": true,
+      "nativeReaderParityApproved": false
+    },
+    "naturalKorean": "현재r2는전체인원/점위치/누락H와질문조건을명확히한다. 두조건을모두라는지시가분명하다.",
+    "scoreDifficulty": {
+      "score": 4,
+      "basis": "원문과동일4점이고두축조건동시판단을요구해배점제안은내용상수용가능. 측정난도나새부분점규칙은발명하지않음.",
+      "proposal": "하",
+      "sourceLabelAsProvided": "하",
+      "difficultyApproval": "pending",
+      "reason": "같은하/중라벨이라도새역추론단계의실제난도동등성은확인되지않았다. source-label-unknown일반문구와라벨관측값병존은편집정리대상."
+    },
+    "unitFamily": {
+      "capturedUnitId": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "section": "산점도와 상관관계",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "제공캡처단원과핵심개념은대응하나미도시점/조건교집합/선정집단역추론전체목적을충족하는정확한livefamily정의를확인하지않았다. UUID/이름만으로승인하지않음."
+    },
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "familyApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolSpecificPacing": "pending",
+      "difficultyEquivalence": "pending"
+    },
+    "newBlindOrQuestionCount": 0
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "두산점도축의점수에대한엄격비교두조건을동시에판단하는발문이다. 중학교쌍자료/좌표비교범위이다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "A/B/C/D/E의가로·세로조건을전부검사하여④D만참이다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "현재학생PNG와전체solutionPNG를실제view하고모든점/라벨을축눈금으로확인했다. 현재spec점/라벨을별도대조하고student/privateSVG바이트와제공해시가일치했다. 5학생모두실제점으로그려져있다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "보다높다/낮다는엄격조건이며x/y의점수역할과점단위가일관된다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "현재저자답과봉인선택기호가일치하고재검산으로 D④를확인했다. 모든5보기의조건을검토했다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재저자해설은가로축첫조건으로B/C/D/E를고르고세로축둘째조건으로D만남긴다. B자신의동일점수를엄격낮다에서제외한다. 5점전체검산과일치한다. 이방법은2015중3의쌍자료해석/평균과이전비율·일차관계에속하고고등상관계수/회귀/공분산을쓰지않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "9수05-08산점도의한점·두축/점수쌍,이전엄격부등비교를학습한후배정한다. 실제중3산점도/대표값배치는공식계획printed72/73에서확인했다. 개별학생이수·노변시험진도·2022는미확인이다."
+    }
+  }
+}
