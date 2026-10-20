@@ -1,0 +1,1618 @@
+{
+  "currentRootAbsoluteImports": true,
+  "ownRootAliasTsconfig": true,
+  "actualGenerateCustomFamilies": true,
+  "heavyRegistryCatalogNotCalled": true,
+  "checks": [
+    {
+      "name": "current-version",
+      "pass": true
+    },
+    {
+      "name": "1/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "1/current-positive",
+      "pass": true
+    },
+    {
+      "name": "1/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "1/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "1/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "1/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "1/reject/target",
+      "pass": true
+    },
+    {
+      "name": "1/reject/params",
+      "pass": true
+    },
+    {
+      "name": "1/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "1/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "1/reject/type",
+      "pass": true
+    },
+    {
+      "name": "1/reject/text",
+      "pass": true
+    },
+    {
+      "name": "1/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "2/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "2/current-positive",
+      "pass": true
+    },
+    {
+      "name": "2/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "2/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "2/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "2/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "2/reject/target",
+      "pass": true
+    },
+    {
+      "name": "2/reject/params",
+      "pass": true
+    },
+    {
+      "name": "2/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "2/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "2/reject/type",
+      "pass": true
+    },
+    {
+      "name": "2/reject/text",
+      "pass": true
+    },
+    {
+      "name": "2/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "3/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "3/current-positive",
+      "pass": true
+    },
+    {
+      "name": "3/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "3/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "3/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "3/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "3/reject/target",
+      "pass": true
+    },
+    {
+      "name": "3/reject/params",
+      "pass": true
+    },
+    {
+      "name": "3/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "3/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "3/reject/type",
+      "pass": true
+    },
+    {
+      "name": "3/reject/text",
+      "pass": true
+    },
+    {
+      "name": "3/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "4/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "4/current-positive",
+      "pass": true
+    },
+    {
+      "name": "4/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "4/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "4/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "4/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "4/reject/target",
+      "pass": true
+    },
+    {
+      "name": "4/reject/params",
+      "pass": true
+    },
+    {
+      "name": "4/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "4/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "4/reject/type",
+      "pass": true
+    },
+    {
+      "name": "4/reject/text",
+      "pass": true
+    },
+    {
+      "name": "4/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "5/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "5/current-positive",
+      "pass": true
+    },
+    {
+      "name": "5/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "5/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "5/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "5/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "5/reject/target",
+      "pass": true
+    },
+    {
+      "name": "5/reject/params",
+      "pass": true
+    },
+    {
+      "name": "5/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "5/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "5/reject/type",
+      "pass": true
+    },
+    {
+      "name": "5/reject/text",
+      "pass": true
+    },
+    {
+      "name": "5/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "6/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "6/current-positive",
+      "pass": true
+    },
+    {
+      "name": "6/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "6/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "6/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "6/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "6/reject/target",
+      "pass": true
+    },
+    {
+      "name": "6/reject/params",
+      "pass": true
+    },
+    {
+      "name": "6/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "6/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "6/reject/type",
+      "pass": true
+    },
+    {
+      "name": "6/reject/text",
+      "pass": true
+    },
+    {
+      "name": "6/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "7/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "7/current-positive",
+      "pass": true
+    },
+    {
+      "name": "7/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "7/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "7/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "7/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "7/reject/target",
+      "pass": true
+    },
+    {
+      "name": "7/reject/params",
+      "pass": true
+    },
+    {
+      "name": "7/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "7/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "7/reject/type",
+      "pass": true
+    },
+    {
+      "name": "7/reject/text",
+      "pass": true
+    },
+    {
+      "name": "7/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "8/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "8/current-positive",
+      "pass": true
+    },
+    {
+      "name": "8/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "8/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "8/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "8/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "8/reject/target",
+      "pass": true
+    },
+    {
+      "name": "8/reject/params",
+      "pass": true
+    },
+    {
+      "name": "8/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "8/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "8/reject/type",
+      "pass": true
+    },
+    {
+      "name": "8/reject/text",
+      "pass": true
+    },
+    {
+      "name": "8/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "9/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "9/current-positive",
+      "pass": true
+    },
+    {
+      "name": "9/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "9/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "9/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "9/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "9/reject/target",
+      "pass": true
+    },
+    {
+      "name": "9/reject/params",
+      "pass": true
+    },
+    {
+      "name": "9/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "9/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "9/reject/type",
+      "pass": true
+    },
+    {
+      "name": "9/reject/text",
+      "pass": true
+    },
+    {
+      "name": "9/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "10/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "10/current-positive",
+      "pass": true
+    },
+    {
+      "name": "10/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "10/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "10/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "10/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "10/reject/target",
+      "pass": true
+    },
+    {
+      "name": "10/reject/params",
+      "pass": true
+    },
+    {
+      "name": "10/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "10/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "10/reject/type",
+      "pass": true
+    },
+    {
+      "name": "10/reject/text",
+      "pass": true
+    },
+    {
+      "name": "10/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "11/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "11/current-positive",
+      "pass": true
+    },
+    {
+      "name": "11/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "11/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "11/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "11/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "11/reject/target",
+      "pass": true
+    },
+    {
+      "name": "11/reject/params",
+      "pass": true
+    },
+    {
+      "name": "11/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "11/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "11/reject/type",
+      "pass": true
+    },
+    {
+      "name": "11/reject/text",
+      "pass": true
+    },
+    {
+      "name": "11/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "12/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "12/current-positive",
+      "pass": true
+    },
+    {
+      "name": "12/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "12/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "12/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "12/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "12/reject/target",
+      "pass": true
+    },
+    {
+      "name": "12/reject/params",
+      "pass": true
+    },
+    {
+      "name": "12/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "12/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "12/reject/type",
+      "pass": true
+    },
+    {
+      "name": "12/reject/text",
+      "pass": true
+    },
+    {
+      "name": "12/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "13/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "13/current-positive",
+      "pass": true
+    },
+    {
+      "name": "13/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "13/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "13/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "13/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "13/reject/target",
+      "pass": true
+    },
+    {
+      "name": "13/reject/params",
+      "pass": true
+    },
+    {
+      "name": "13/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "13/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "13/reject/type",
+      "pass": true
+    },
+    {
+      "name": "13/reject/text",
+      "pass": true
+    },
+    {
+      "name": "13/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "14/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "14/current-positive",
+      "pass": true
+    },
+    {
+      "name": "14/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "14/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "14/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "14/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "14/reject/target",
+      "pass": true
+    },
+    {
+      "name": "14/reject/params",
+      "pass": true
+    },
+    {
+      "name": "14/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "14/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "14/reject/type",
+      "pass": true
+    },
+    {
+      "name": "14/reject/text",
+      "pass": true
+    },
+    {
+      "name": "14/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "15/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "15/current-positive",
+      "pass": true
+    },
+    {
+      "name": "15/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "15/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "15/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "15/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "15/reject/target",
+      "pass": true
+    },
+    {
+      "name": "15/reject/params",
+      "pass": true
+    },
+    {
+      "name": "15/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "15/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "15/reject/type",
+      "pass": true
+    },
+    {
+      "name": "15/reject/text",
+      "pass": true
+    },
+    {
+      "name": "15/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "16/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "16/current-positive",
+      "pass": true
+    },
+    {
+      "name": "16/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "16/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "16/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "16/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "16/reject/target",
+      "pass": true
+    },
+    {
+      "name": "16/reject/params",
+      "pass": true
+    },
+    {
+      "name": "16/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "16/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "16/reject/type",
+      "pass": true
+    },
+    {
+      "name": "16/reject/text",
+      "pass": true
+    },
+    {
+      "name": "16/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "17/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "17/current-positive",
+      "pass": true
+    },
+    {
+      "name": "17/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "17/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "17/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "17/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "17/reject/target",
+      "pass": true
+    },
+    {
+      "name": "17/reject/params",
+      "pass": true
+    },
+    {
+      "name": "17/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "17/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "17/reject/type",
+      "pass": true
+    },
+    {
+      "name": "17/reject/text",
+      "pass": true
+    },
+    {
+      "name": "17/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "18/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "18/current-positive",
+      "pass": true
+    },
+    {
+      "name": "18/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "18/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "18/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "18/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "18/reject/target",
+      "pass": true
+    },
+    {
+      "name": "18/reject/params",
+      "pass": true
+    },
+    {
+      "name": "18/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "18/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "18/reject/type",
+      "pass": true
+    },
+    {
+      "name": "18/reject/text",
+      "pass": true
+    },
+    {
+      "name": "18/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "19/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "19/current-positive",
+      "pass": true
+    },
+    {
+      "name": "19/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "19/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "19/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "19/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "19/reject/target",
+      "pass": true
+    },
+    {
+      "name": "19/reject/params",
+      "pass": true
+    },
+    {
+      "name": "19/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "19/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "19/reject/type",
+      "pass": true
+    },
+    {
+      "name": "19/reject/text",
+      "pass": true
+    },
+    {
+      "name": "19/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "20/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "20/current-positive",
+      "pass": true
+    },
+    {
+      "name": "20/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "20/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "20/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "20/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "20/reject/target",
+      "pass": true
+    },
+    {
+      "name": "20/reject/params",
+      "pass": true
+    },
+    {
+      "name": "20/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "20/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "20/reject/type",
+      "pass": true
+    },
+    {
+      "name": "20/reject/text",
+      "pass": true
+    },
+    {
+      "name": "20/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "21/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "21/current-positive",
+      "pass": true
+    },
+    {
+      "name": "21/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "21/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "21/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "21/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "21/reject/target",
+      "pass": true
+    },
+    {
+      "name": "21/reject/params",
+      "pass": true
+    },
+    {
+      "name": "21/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "21/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "21/reject/type",
+      "pass": true
+    },
+    {
+      "name": "21/reject/text",
+      "pass": true
+    },
+    {
+      "name": "21/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "22/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "22/current-positive",
+      "pass": true
+    },
+    {
+      "name": "22/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "22/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "22/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "22/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "22/reject/target",
+      "pass": true
+    },
+    {
+      "name": "22/reject/params",
+      "pass": true
+    },
+    {
+      "name": "22/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "22/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "22/reject/type",
+      "pass": true
+    },
+    {
+      "name": "22/reject/text",
+      "pass": true
+    },
+    {
+      "name": "22/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "23/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "23/current-positive",
+      "pass": true
+    },
+    {
+      "name": "23/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "23/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "23/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "23/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "23/reject/target",
+      "pass": true
+    },
+    {
+      "name": "23/reject/params",
+      "pass": true
+    },
+    {
+      "name": "23/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "23/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "23/reject/type",
+      "pass": true
+    },
+    {
+      "name": "23/reject/text",
+      "pass": true
+    },
+    {
+      "name": "23/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "24/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "24/current-positive",
+      "pass": true
+    },
+    {
+      "name": "24/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "24/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "24/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "24/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "24/reject/target",
+      "pass": true
+    },
+    {
+      "name": "24/reject/params",
+      "pass": true
+    },
+    {
+      "name": "24/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "24/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "24/reject/type",
+      "pass": true
+    },
+    {
+      "name": "24/reject/text",
+      "pass": true
+    },
+    {
+      "name": "24/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "25/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "25/current-positive",
+      "pass": true
+    },
+    {
+      "name": "25/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "25/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "25/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "25/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "25/reject/target",
+      "pass": true
+    },
+    {
+      "name": "25/reject/params",
+      "pass": true
+    },
+    {
+      "name": "25/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "25/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "25/reject/type",
+      "pass": true
+    },
+    {
+      "name": "25/reject/text",
+      "pass": true
+    },
+    {
+      "name": "25/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "26/actual-module-equals-current-private",
+      "pass": true
+    },
+    {
+      "name": "26/current-positive",
+      "pass": true
+    },
+    {
+      "name": "26/stale-R1-solution-rejected",
+      "pass": true
+    },
+    {
+      "name": "26/reject/answer",
+      "pass": true
+    },
+    {
+      "name": "26/reject/lhs",
+      "pass": true
+    },
+    {
+      "name": "26/reject/rhs",
+      "pass": true
+    },
+    {
+      "name": "26/reject/target",
+      "pass": true
+    },
+    {
+      "name": "26/reject/params",
+      "pass": true
+    },
+    {
+      "name": "26/reject/extra-param",
+      "pass": true
+    },
+    {
+      "name": "26/reject/zero-linear",
+      "pass": true
+    },
+    {
+      "name": "26/reject/type",
+      "pass": true
+    },
+    {
+      "name": "26/reject/text",
+      "pass": true
+    },
+    {
+      "name": "26/reject/solution",
+      "pass": true
+    },
+    {
+      "name": "hold/혼합/중3/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/혼합/중3/full",
+      "pass": true
+    },
+    {
+      "name": "hold/혼합/중3/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/혼합/중3/component",
+      "pass": true
+    },
+    {
+      "name": "hold/혼합/중1/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/혼합/중1/full",
+      "pass": true
+    },
+    {
+      "name": "hold/혼합/중1/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/혼합/중1/component",
+      "pass": true
+    },
+    {
+      "name": "hold/혼합/중2/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/혼합/중2/full",
+      "pass": true
+    },
+    {
+      "name": "hold/혼합/중2/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/혼합/중2/component",
+      "pass": true
+    },
+    {
+      "name": "hold/객관식/중3/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/객관식/중3/full",
+      "pass": true
+    },
+    {
+      "name": "hold/객관식/중3/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/객관식/중3/component",
+      "pass": true
+    },
+    {
+      "name": "hold/객관식/중1/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/객관식/중1/full",
+      "pass": true
+    },
+    {
+      "name": "hold/객관식/중1/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/객관식/중1/component",
+      "pass": true
+    },
+    {
+      "name": "hold/객관식/중2/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/객관식/중2/full",
+      "pass": true
+    },
+    {
+      "name": "hold/객관식/중2/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/객관식/중2/component",
+      "pass": true
+    },
+    {
+      "name": "hold/단답형/중3/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/단답형/중3/full",
+      "pass": true
+    },
+    {
+      "name": "hold/단답형/중3/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/단답형/중3/component",
+      "pass": true
+    },
+    {
+      "name": "hold/단답형/중1/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/단답형/중1/full",
+      "pass": true
+    },
+    {
+      "name": "hold/단답형/중1/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/단답형/중1/component",
+      "pass": true
+    },
+    {
+      "name": "hold/단답형/중2/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/단답형/중2/full",
+      "pass": true
+    },
+    {
+      "name": "hold/단답형/중2/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/단답형/중2/component",
+      "pass": true
+    },
+    {
+      "name": "hold/서술형/중3/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/서술형/중3/full",
+      "pass": true
+    },
+    {
+      "name": "hold/서술형/중3/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/서술형/중3/component",
+      "pass": true
+    },
+    {
+      "name": "hold/서술형/중1/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/서술형/중1/full",
+      "pass": true
+    },
+    {
+      "name": "hold/서술형/중1/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/서술형/중1/component",
+      "pass": true
+    },
+    {
+      "name": "hold/서술형/중2/full",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/서술형/중2/full",
+      "pass": true
+    },
+    {
+      "name": "hold/서술형/중2/component",
+      "pass": true
+    },
+    {
+      "name": "actual-generate/서술형/중2/component",
+      "pass": true
+    },
+    {
+      "name": "hard-grade/초1",
+      "pass": true
+    },
+    {
+      "name": "hard-grade/초2",
+      "pass": true
+    },
+    {
+      "name": "hard-grade/초3",
+      "pass": true
+    },
+    {
+      "name": "hard-grade/초4",
+      "pass": true
+    },
+    {
+      "name": "hard-grade/초5",
+      "pass": true
+    },
+    {
+      "name": "hard-grade/초6",
+      "pass": true
+    },
+    {
+      "name": "hard-grade/중1",
+      "pass": true
+    },
+    {
+      "name": "hard-grade/중2",
+      "pass": true
+    },
+    {
+      "name": "version-invalidates-manifest",
+      "pass": true
+    },
+    {
+      "name": "metadata-still-proposal",
+      "pass": true
+    },
+    {
+      "name": "factory0",
+      "pass": true
+    },
+    {
+      "name": "DBimports0",
+      "pass": true
+    },
+    {
+      "name": "network0",
+      "pass": true
+    }
+  ],
+  "counts": {
+    "assertions": 400,
+    "passed": 400,
+    "failed": 0
+  },
+  "factoryCalls": 0,
+  "DBImports": 0,
+  "networkCalls": 0,
+  "currentCustomManifest": "exam-study-manifest-f13b2106e015d0f82f0634b1",
+  "staleVersionManifest": "exam-study-manifest-10739193b2c909d332e1fe1e"
+}
