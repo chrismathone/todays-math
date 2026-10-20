@@ -233,8 +233,40 @@ export function useMeasuredAnswerPages(
 
   const ready = !problems.length || measured?.key === key;
   const result = useMemo(() => {
-    if (!problems.length || measured?.contentKey !== contentKey)
+    if (!problems.length)
       return { pages: [] as AnswerPageLayout[], message: "" };
+    if (measured?.contentKey !== contentKey) {
+      // Preserve printable content for SSR and layout-less clients such as jsdom.
+      // These are provisional rows, not measured geometry: ready stays false,
+      // so export preflight still waits for the actual browser measurement.
+      return {
+        pages: groups.map(({ start, end }): AnswerPageLayout => {
+          const indices = Array.from(
+            { length: end - start },
+            (_, i) => start + i,
+          );
+          const keyRows = Array.from(
+            { length: Math.ceil(indices.length / 5) },
+            (_, row) => ({
+              height: 0,
+              cells: indices
+                .slice(row * 5, row * 5 + 5)
+                .map((index) => ({ index, span: 1 as const })),
+            }),
+          );
+          const solutionIndices = options.quickAnswerOnly ? [] : indices;
+          return {
+            keyRows,
+            solutionIndices,
+            indices,
+            groupStart: start,
+            scales: solutionIndices.map(() => 1),
+            splitIndex: Math.ceil(solutionIndices.length / options.columns),
+          };
+        }),
+        message: "",
+      };
+    }
     try {
       return {
         pages: groups.flatMap((group, groupIndex) => {
