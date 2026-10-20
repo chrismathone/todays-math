@@ -1,0 +1,316 @@
+{
+  "numPassedTests": 68,
+  "numFailedTests": 0,
+  "numTotalTests": 68,
+  "success": true,
+  "startTime": 1792476917249,
+  "files": [
+    {
+      "file": "C:/Users/user/orca/workspaces/todays-math/print-templates/src/__tests__/components/AnswerPage.quickKey.test.tsx",
+      "tests": [
+        {
+          "name": "H2 answer paper prints only the grid in quick-answer mode",
+          "status": "passed"
+        },
+        {
+          "name": "H2 answer paper prints the same answer view in the grid and the following solution",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "C:/Users/user/orca/workspaces/todays-math/print-templates/src/__tests__/components/ArithmeticRoundForm.test.tsx",
+      "tests": [
+        {
+          "name": "pyeongga arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "pyeongga arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "pyeongga arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+          "status": "passed"
+        },
+        {
+          "name": "pyeongga arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+          "status": "passed"
+        },
+        {
+          "name": "jeongtong arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "jeongtong arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "jeongtong arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+          "status": "passed"
+        },
+        {
+          "name": "jeongtong arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+          "status": "passed"
+        },
+        {
+          "name": "modern arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "modern arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "modern arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+          "status": "passed"
+        },
+        {
+          "name": "modern arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+          "status": "passed"
+        },
+        {
+          "name": "workbook arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "workbook arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "workbook arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+          "status": "passed"
+        },
+        {
+          "name": "workbook arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+          "status": "passed"
+        },
+        {
+          "name": "jaseup arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "jaseup arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "jaseup arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+          "status": "passed"
+        },
+        {
+          "name": "jaseup arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+          "status": "passed"
+        },
+        {
+          "name": "yuhyung arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "yuhyung arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+          "status": "passed"
+        },
+        {
+          "name": "yuhyung arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+          "status": "passed"
+        },
+        {
+          "name": "yuhyung arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+          "status": "passed"
+        },
+        {
+          "name": "puts the answer round inside its title header (quick=true)",
+          "status": "passed"
+        },
+        {
+          "name": "puts the answer round inside its title header (quick=false)",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "C:/Users/user/orca/workspaces/todays-math/print-templates/src/__tests__/components/EnglishWorksheetAdapter.test.tsx",
+      "tests": [
+        {
+          "name": "lossless English shared worksheet output retains original content/source indices and separates passage reading from gapped variants across sets",
+          "status": "passed"
+        },
+        {
+          "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through pyeongga",
+          "status": "passed"
+        },
+        {
+          "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through jeongtong",
+          "status": "passed"
+        },
+        {
+          "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through modern",
+          "status": "passed"
+        },
+        {
+          "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through workbook",
+          "status": "passed"
+        },
+        {
+          "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through jaseup",
+          "status": "passed"
+        },
+        {
+          "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through yuhyung",
+          "status": "passed"
+        },
+        {
+          "name": "lossless English shared worksheet output preserves answer, explanation and evidence verbatim on answer pages",
+          "status": "passed"
+        },
+        {
+          "name": "lossless English shared worksheet output blocks unacknowledged unreviewed and malformed underline output",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "C:/Users/user/orca/workspaces/todays-math/print-templates/src/__tests__/components/perProblemFractionView.test.tsx",
+      "tests": [
+        {
+          "name": "같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '초6 «(가분수)÷(분수)» — 해설이 «가분수»를 부른다'",
+          "status": "passed"
+        },
+        {
+          "name": "같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '초4 받아내림 — 이름을 안 부른다(«고칩니다»)'",
+          "status": "passed"
+        },
+        {
+          "name": "같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '초4 받아내림 — 본문이 «대분수»를 부른다'",
+          "status": "passed"
+        },
+        {
+          "name": "같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '평범한 초5'",
+          "status": "passed"
+        },
+        {
+          "name": "같은 문항을 모든 화면에 넣으면 분수 모양이 모두 같다 '중1'",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "C:/Users/user/orca/workspaces/todays-math/print-templates/src/__tests__/components/solutionExits.test.tsx",
+      "tests": [
+        {
+          "name": "SolutionText 는 `solutionForDisplay → MathText(div)` 한 조합이다 밑변은 $5$이다. 높이는 $4$이다.",
+          "status": "passed"
+        },
+        {
+          "name": "SolutionText 는 `solutionForDisplay → MathText(div)` 한 조합이다 이동 거리는 $8$ 이고 $$s=8$$ 이다",
+          "status": "passed"
+        },
+        {
+          "name": "SolutionText 는 `solutionForDisplay → MathText(div)` 한 조합이다 풀이 순서는 다음과 같다.\n1. 양변에 $2",
+          "status": "passed"
+        },
+        {
+          "name": "SolutionText 는 `solutionForDisplay → MathText(div)` 한 조합이다 경우를 나누자. ① $x>0$ 일 때 $f(",
+          "status": "passed"
+        },
+        {
+          "name": "SolutionText 는 `solutionForDisplay → MathText(div)` 한 조합이다 비었으면 대신 보일 글을 쓴다",
+          "status": "passed"
+        },
+        {
+          "name": "[D] 시험지 해설지(AnswerPage)도 같은 조합으로 해설을 그린다 밑변은 $5$이다. 높이는 $4$이다.",
+          "status": "passed"
+        },
+        {
+          "name": "[D] 시험지 해설지(AnswerPage)도 같은 조합으로 해설을 그린다 이동 거리는 $8$ 이고 $$s=8$$ 이다",
+          "status": "passed"
+        },
+        {
+          "name": "[D] 시험지 해설지(AnswerPage)도 같은 조합으로 해설을 그린다 풀이 순서는 다음과 같다.\n1. 양변에 $2",
+          "status": "passed"
+        },
+        {
+          "name": "[D] 시험지 해설지(AnswerPage)도 같은 조합으로 해설을 그린다 경우를 나누자. ① $x>0$ 일 때 $f(",
+          "status": "passed"
+        },
+        {
+          "name": "[D] 시험지 해설지(AnswerPage)도 같은 조합으로 해설을 그린다 🔴 줄 나눔이 실제로 들어간다 — 두 문장이 한 줄로 붙지 않는다",
+          "status": "passed"
+        },
+        {
+          "name": "[L] 해설 속 `1.`·`①` 줄은 보기 격자가 아니다 본문 렌더러는 보기 격자로 자른다 — 그래서 해설에 쓰면 안 된다(대조)",
+          "status": "passed"
+        },
+        {
+          "name": "[L] 해설 속 `1.`·`①` 줄은 보기 격자가 아니다 SolutionText — 번호 줄 은 문장 그대로다",
+          "status": "passed"
+        },
+        {
+          "name": "[L] 해설 속 `1.`·`①` 줄은 보기 격자가 아니다 SolutionText — 원문자 줄 은 문장 그대로다",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "C:/Users/user/orca/workspaces/todays-math/print-templates/src/__tests__/components/WorksheetPrint.preview.test.tsx",
+      "tests": [
+        {
+          "name": "shared worksheet preview shows whole-page thumbnails while keeping one unscaled export document, including when enlarged",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "C:/Users/user/orca/workspaces/todays-math/print-templates/src/__tests__/unit/answerKeyLayout.test.ts",
+      "tests": [
+        {
+          "name": "H2 measured answers uses one cell for a short answer, including a naturally tall fraction",
+          "status": "passed"
+        },
+        {
+          "name": "H2 measured answers gives long answers at least two cells, then tries three and five",
+          "status": "passed"
+        },
+        {
+          "name": "H2 measured answers does not silently print an unbreakable formula wider than the whole grid",
+          "status": "passed"
+        },
+        {
+          "name": "H2 measured answers preserves order and moves a merged answer to the next row when needed",
+          "status": "passed"
+        },
+        {
+          "name": "H2 measured answers uses the tallest selected cell as the row height",
+          "status": "passed"
+        },
+        {
+          "name": "answer row and solution pagination never splits a grid row and repeats the key on continuation pages",
+          "status": "passed"
+        },
+        {
+          "name": "answer row and solution pagination puts all answers first, then uses the last key page's remaining space for solutions",
+          "status": "passed"
+        },
+        {
+          "name": "answer row and solution pagination moves a whole solution rather than shrinking it into a key page's remainder",
+          "status": "passed"
+        },
+        {
+          "name": "answer row and solution pagination packs solutions down the left column before the right",
+          "status": "passed"
+        },
+        {
+          "name": "answer row and solution pagination also moves a tall solution encountered at the second column off the key remainder",
+          "status": "passed"
+        },
+        {
+          "name": "answer row and solution pagination bounds a single oversized solution exactly as the existing answer flow does",
+          "status": "passed"
+        },
+        {
+          "name": "answer row and solution pagination returns no phantom page for empty answers and refuses a row taller than paper",
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}

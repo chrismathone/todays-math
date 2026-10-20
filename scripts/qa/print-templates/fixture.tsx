@@ -70,11 +70,7 @@ const options = { ...DEFAULT_PRINT_OPTIONS, template };
 const onReady = (ready: boolean) => {
   document.documentElement.dataset.ready = String(ready);
 };
-(window as Window & { measurementFixture: unknown }).measurementFixture = {
-  fixture,
-  meta,
-  options,
-};
+Object.assign(window, { measurementFixture: { fixture, meta, options } });
 createRoot(document.getElementById("root")!).render(
   <WorksheetPrint
     selected={fixture}
