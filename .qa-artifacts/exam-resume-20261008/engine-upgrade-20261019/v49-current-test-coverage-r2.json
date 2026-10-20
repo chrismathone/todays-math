@@ -1,0 +1,355 @@
+{
+  "kind": "current-related-test-coverage/v1",
+  "utc": "2026-10-20T10:30:13.430253+00:00",
+  "currentFileCount": 41,
+  "currentPassed": 646,
+  "currentFailed": 0,
+  "files": [
+    {
+      "path": "src/components/exam-builder/ExamBuilder.h2.test.tsx",
+      "sha256": "d4653a4e432c27dcf32daabd4976dee092ca427e1ac3090b0a3af64e41d7f801",
+      "cases": 16,
+      "passed": 16,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/components/exam-builder/ExamBuilder.test.tsx",
+      "sha256": "046a2d94158b2c6eee2fdb941507db2d473b301cf0074f3c50f7db0b6cf36c2c",
+      "cases": 40,
+      "passed": 40,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/api/unifiedBankAvailability.test.ts",
+      "sha256": "ce84f04f877a96e4acd8d211da27cf1ef1d2a50e5f2bcc97f6d1d525e2808170",
+      "cases": 16,
+      "passed": 16,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/api/unifiedBankCurriculum.test.ts",
+      "sha256": "9ac62d8b50187ece46f13fd1792c614aaf75b21473b54c520ec1f107ce59195c",
+      "cases": 32,
+      "passed": 32,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/api/unifiedBankFilters.test.ts",
+      "sha256": "816258cd178b8e231a84964d5c1d088d6ccfb27a09349b037abe3fd22b0aff01",
+      "cases": 41,
+      "passed": 41,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/api/unifiedBankPickerDemand.test.ts",
+      "sha256": "586e32db7a6dd10d8b1aa06630a19e9dee7dddc90c5353466e5eb626f0678fda",
+      "cases": 12,
+      "passed": 12,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/AnswerPage.quickKey.test.tsx",
+      "sha256": "13a3be8ba962d949ee20aea7049dde14a8251ea30c3815831a922f230c8cceaa",
+      "cases": 4,
+      "passed": 4,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/descriptivePaper.test.tsx",
+      "sha256": "c614af0c8fccc5c743a0c0fd22377dc3fbc8f11a7317ba8cd48a902512a794df",
+      "cases": 9,
+      "passed": 9,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/descriptiveUnifiedPrint.test.tsx",
+      "sha256": "6e4ce7103f551476fa07c17bd1256c7ab12e8722dfa0510011a00898fe7cc37a",
+      "cases": 21,
+      "passed": 21,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/mathgenTemplates.test.tsx",
+      "sha256": "9ff575de6f2e22db532d7a9cfd625ce41b34f6a7623cb05f6cbb60cfd1d5cdd8",
+      "cases": 12,
+      "passed": 12,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/nativeDescriptiveAuthorPrint.test.tsx",
+      "sha256": "9c6a79fdac3ba26f8768e5ea554c0393eb21f82128c249e04cc390826a55b9a7",
+      "cases": 2,
+      "passed": 2,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/PrintCheck.test.tsx",
+      "sha256": "00810715c719645277f7f2037ab7d69a71de32aeac36fab02a915ce32268378e",
+      "cases": 10,
+      "passed": 10,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/PrintColorImplementation.test.tsx",
+      "sha256": "d6a21a175e82dfcf2928e410ee9316a349a9eea36cb0ff37999ec7f2a0abb47c",
+      "cases": 4,
+      "passed": 4,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/printReadableColors.test.tsx",
+      "sha256": "9118c07b3341065119c97559b63f89a38c3f9d6ce01470c0e26d0c32aa2d6712",
+      "cases": 20,
+      "passed": 20,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/TemplateT2.test.tsx",
+      "sha256": "b41ae4611bfd00bc87f799b94db3d7e6c6cd74eca18fa838d555efd53a6b07d9",
+      "cases": 15,
+      "passed": 15,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/useMeasuredAnswerPages.test.tsx",
+      "sha256": "1aa86c775172c99321476efcaaf93a6d9cf97bcf1f9dc9098c24d7add7c14200",
+      "cases": 2,
+      "passed": 2,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/components/WorksheetPrint.preview.test.tsx",
+      "sha256": "cac4ed186836021b16b1ba98a69ec04a2381e17f535c2ddc245455f2ddfdf73e",
+      "cases": 1,
+      "passed": 1,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/answerKeyLayout.test.ts",
+      "sha256": "2bc7e5dd4b51cffbc7f4bea0f67e93f8b446309a216b5b532e11314f84d0527e",
+      "cases": 15,
+      "passed": 15,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/courseSessionVariety.test.ts",
+      "sha256": "1d11dbe52a0cfc91a4660baa8b306453cf6e31d3ece437a70bb6a59d7579b3dd",
+      "cases": 4,
+      "passed": 4,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyContract.test.ts",
+      "sha256": "53fbb892e08519c7260f5419c1e85c3e55c4a8c2407bdb4c16ee551974a71624",
+      "cases": 17,
+      "passed": 17,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyCore.test.ts",
+      "sha256": "4865e55efc8140044dd60c1b958270ea6d6bae93a74fcfec16af6dfcc7491ea3",
+      "cases": 58,
+      "passed": 58,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyCurriculumEligibility.test.ts",
+      "sha256": "2bbf5aa5837842e6d87108703774c2a1cc0cc970e0370229c7bd0094da60593a",
+      "cases": 10,
+      "passed": 10,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseCoefficient.test.ts",
+      "sha256": "c1800bcd3497f7df2a3d90d186b369e546d56eaf1cbce880397fc596c95656a5",
+      "cases": 10,
+      "passed": 10,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseEquationDegree.test.ts",
+      "sha256": "2d9b15fee1650f3e34b7ffd18df41b4eaef68e957063dfd2f3ce68a151f62076",
+      "cases": 11,
+      "passed": 11,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseMinimum.test.ts",
+      "sha256": "cd29cdf53f20acec2d1544822027cc547877db2d53acd19a00cefab07e3b8222",
+      "cases": 9,
+      "passed": 9,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyInverseTangentRectangle.test.ts",
+      "sha256": "5c6063c7d484a09964706c29be90b097133e04013d503b6a39ad4a19354bf57d",
+      "cases": 9,
+      "passed": 9,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyMiddle.test.ts",
+      "sha256": "0ae33b2dd3b9e5450f1edc6d35d80c04ae3d8536b6c53d0e7895554c9fcbe5d9",
+      "cases": 49,
+      "passed": 49,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/lockProblemRows.test.ts",
+      "sha256": "7feca30cda9d8b686bc073c64dc561f56ae623e314c1efa297a621fc4891e29a",
+      "cases": 1,
+      "passed": 1,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/mathExamBuilderSource.test.ts",
+      "sha256": "219e3eea490f5648132dffad62bf481f3dfa1e356967810b95a02ebc31be1e70",
+      "cases": 33,
+      "passed": 33,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/mathSrsAverageFrames.test.ts",
+      "sha256": "3fc66d6df4ad3f88c799d95b4b967f8d56951167f3545d1de91dc07162bc656b",
+      "cases": 1,
+      "passed": 1,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/mathSrsBoxFrames.test.ts",
+      "sha256": "ee705827cb0ca7f869c8d575b5f92c2570869a536bf515f121dc612e49fc567e",
+      "cases": 1,
+      "passed": 1,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/mathSrsEngineFrames.test.ts",
+      "sha256": "274e2610eb2112bacc793b3af076583efdca398c490822af22d628e89b7887bf",
+      "cases": 58,
+      "passed": 58,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/mathSrsFirstSemesterFrames.test.ts",
+      "sha256": "8973b28a5ff3bbb3567771c1daf62e00c595bbf288192425b261fa3fad44b3cf",
+      "cases": 1,
+      "passed": 1,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/mathSrsFrameCompatibility.test.ts",
+      "sha256": "f88212a3452f00ff7bb38c0249e85596198d7dde428f11caa724fc9af19bf826",
+      "cases": 1,
+      "passed": 1,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/mathSrsFrameFamilies.test.ts",
+      "sha256": "7357198ac0829428f6ad9421b14e21398aded0da71cc2584a57154b0e02cb659",
+      "cases": 2,
+      "passed": 2,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/nativeDescriptive20261018.test.ts",
+      "sha256": "05df8c502614ba84df3becc37a09404f10dc654ba8bb69a9ab36e48cad70b5f0",
+      "cases": 30,
+      "passed": 30,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/nativeDescriptiveAuthor.test.ts",
+      "sha256": "9bf69a7fcce13210c1012732a4dc8b213be43255b15bd23ad65f966bf4a4ff45",
+      "cases": 9,
+      "passed": 9,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/nativeDescriptiveCore.test.ts",
+      "sha256": "b392ae1ef8acc4862236fc32c9089a5f37fa6b0d9ee051dd7f09a092195a0c98",
+      "cases": 24,
+      "passed": 24,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/nativeDescriptiveGateReview.test.ts",
+      "sha256": "785566536edcad4e212416fb3886b99dfc79d2be6c58f49abeb43f0953518bf2",
+      "cases": 17,
+      "passed": 17,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/__tests__/unit/nativeDescriptiveLegacyAudit.test.ts",
+      "sha256": "0fb0d5805a3075ed927d986414044c0494c2c0eafbc2d44ee792a3019dc12edb",
+      "cases": 3,
+      "passed": 3,
+      "failed": 0,
+      "run": "full-r1"
+    },
+    {
+      "path": "src/components/exam-builder/ExamBuilder.demand.test.tsx",
+      "sha256": "38376a9671de8026ab4fc33828d7577e8c36afa752cd860c8b62ee9cfca701a8",
+      "cases": 16,
+      "passed": 16,
+      "failed": 0,
+      "run": "bounded-isolated-r2"
+    }
+  ],
+  "originalFullResult": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v49-post-main-vitest-r1.json",
+    "sha256": "50e036e16d87c013ccfe8ed56073dac38437be09f9f9929703891506f5bbafca"
+  },
+  "repairedFileResult": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v49-demand-isolated-r2.json",
+    "sha256": "c2d611eab9d32fc0011708d9ca2695f826f6195ff746f886ca1e2830538b4dde"
+  },
+  "originalFailurePreserved": true,
+  "overlappingRunsNotSummed": true,
+  "notOneCleanFullBatchRun": true,
+  "unchangedOther40TestFilesGitBoundTo199b": true,
+  "productRuntimeUnchangedByRepair": true,
+  "actualRepairedFileCases16CorrectsEarlierPlanningEstimate17": true,
+  "heapLimitMiB256": true,
+  "currentMain": "431eb7d5fd5bfb4ee0d2eeeb23f1241c9d2c1770",
+  "sourceHeadsPreserved": true,
+  "dbWrites": 0
+}

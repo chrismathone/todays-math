@@ -1,0 +1,55 @@
+{
+  "coefficientForB4": -17,
+  "constantForB4": 6,
+  "choices": [
+    {
+      "b": 2,
+      "linearCoefficient": -3,
+      "constant": 0,
+      "valid": false
+    },
+    {
+      "b": 3,
+      "linearCoefficient": -10,
+      "constant": 2,
+      "valid": false
+    },
+    {
+      "b": 4,
+      "linearCoefficient": -17,
+      "constant": 6,
+      "valid": true
+    },
+    {
+      "b": 5,
+      "linearCoefficient": -24,
+      "constant": 12,
+      "valid": false
+    },
+    {
+      "b": 6,
+      "linearCoefficient": -31,
+      "constant": 20,
+      "valid": false
+    }
+  ],
+  "coordinateWitnessOnly": {
+    "a": 3,
+    "b": 4,
+    "outer": [
+      13,
+      11
+    ],
+    "remaining": [
+      9,
+      7
+    ]
+  },
+  "candidateDigest": "e96c0c05ef3f34aa6ef6ed40ee29f6e7678f3d58aa60b8af290883dafe9bdd37",
+  "studentDigest": "60a3481d5e9114939c62081093dc8ee7d13cd696633b5e8f8c175aa1b3c42a5d",
+  "assetDigest": "f355821d2c6c83524b19444a0befc41e88b7b71251b426a3c5dc7a253a91b5d2",
+  "authorOnly": true,
+  "independentReview": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

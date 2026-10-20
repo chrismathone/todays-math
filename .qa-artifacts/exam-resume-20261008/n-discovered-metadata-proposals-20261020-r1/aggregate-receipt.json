@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-20T09:14:59.203848+00:00",
+  "input": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/n-filename-discovery-20261020-r2/filenames-only.local.json",
+    "sha256": "5bea895cf548e4aab3c038855f1a96a8702dcf02221786402920ac457a91415a"
+  },
+  "inventory": {
+    "path": "C:/Users/user/orca/artifacts/outputs/exam-inventory-20261003/extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+  },
+  "proposed": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/n-discovered-metadata-proposals-20261020-r1/metadata-proposals.json",
+    "sha256": "ec396e76cc195c9d1e1b2c50f55d2bfd3c20d5797b0f55c83edc305c577aebfd"
+  },
+  "referenceCount": 289,
+  "referenceStatuses": {
+    "metadata-proposed-content-and-subject-unverified": 262,
+    "level-or-grade-hold": 6,
+    "protected-school-excluded": 10,
+    "explicit-answer-labelled-reference-held": 3,
+    "filename-structure-hold": 3,
+    "hwpx-reader-not-approved-hold": 5
+  },
+  "metadataGroups": 168,
+  "groupStatuses": {
+    "new-exam-metadata-only": 81,
+    "additional-reference-metadata-match-not-content-alias": 87
+  },
+  "sourceBodiesRead": 0,
+  "pairCertifications": 0,
+  "sourceQuestionCredit": 0,
+  "oldInventoryBytesPreserved": true,
+  "dbWrites": 0,
+  "loadable": 0
+}

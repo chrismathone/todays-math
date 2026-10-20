@@ -1,0 +1,117 @@
+{
+  "status": "pending",
+  "studentDigest": "aa9e5b58a8f301e3e062b296c25db6c01e0006191eae53bdd87587e39af1fa30",
+  "candidateDigest": "3c11c8305f66f12da5678bf63f7fa955df2255de2ff6417766b9b20e572009b4",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gachang-q04q05-full-review-20261020-r1",
+  "solveDigest": "c577801af780c881d97969ce34b096f4656e7b0987e033de55c775a414fa7f78",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "rawBinding": {
+      "helperCommit": "85a11fa80b44b324ea3850140db9f1aaffd5665a",
+      "parentCommit": "6a3b70fcb1676d8fe1d03e1f81d4c99a73dde525",
+      "rawUnchanged": true,
+      "rawTextOnlyVisualDeclarationPreserved": true,
+      "newSolveCreditForPNGs": 0
+    },
+    "exposure": "원문9·이전Gachang/Gangbuk원문첫페이지와그안의다른문항/손글씨, 공개코드/current166metadata 이력이이미있다. 이번현재저자답/해설/private 및해당로컬원문맥락은raw봉인후읽었다. pristine corpusblind나원문정답일치승인을주장하지않는다.",
+    "visualReviewNow": "현재학생PNG2개·solutionPNG2개와원문첫페이지를실제view_image로확인. raw시점에는PNG없어시각검토하지않았다는원래선언을수정하지않는다. 이번확인은추가노출후별도review일뿐새blind수학풀이아님.",
+    "calculationEvidence": {
+      "path": "../../own-review-evidence-r1/own-calculations.json",
+      "sha256": "178b661051730b7fa6ff6f62153b4af9984e31bf4e627b935b956a3c696f81b3",
+      "passed": 46,
+      "failed": 0,
+      "method": "Own Fraction bivariate polynomial convolution and identity comparisons. AuthorBigInt/harness/test assertions not used or counted; pixel/measurement oracle absent."
+    },
+    "primaryAndUnit": {
+      "receipt": "../../own-review-evidence-r1/own-primary-receipt.json",
+      "sha256": "ce5987823cb1a8743ffbe6b5858038d87908f294d7fa15272c85517cabaf5a8b",
+      "primary": "2015 9수02-12 actual official HWP Section0record3956/offset201534,PDFphysical34/printed30;documentSHA1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "actualUnit": "068bcc39-0927-4f43-a919-24b61ca425f9,중3semester1다항식의곱셈과인수분해/인수분해",
+      "basisLimits": "기존실제공식텍스트/locator검증과현재허용curriculum-evidence/Unit캡처및실제전체방법을결합. code/학교/학년군만으로자동승인아님.",
+      "yearScope": "source2025/practice2026=2015M3afterprerequisites;2027M3/2022pending"
+    },
+    "separateHolds": {
+      "unitFamilyFit": false,
+      "exactLiveFamily": null,
+      "wholeSourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2027M3And2022": "pending"
+    },
+    "sourceObservationLimits": "실제첫페이지2025/3학년/1학기기말표제와q04/q05의3/4점·구성요소를로컬question-only와대조. 전체19HWP/PDF대응·sourceidentity·원문답이나손글씨의정확성·권리를인증하지않고원문본문/이미지를Git에복사하지않음.",
+    "authorHistoricalHarness": "R1/R2float/signedzero실패와R3BigInt검사는사용자외부보존정보일뿐독립검사로실행/집계하지않았다.",
+    "questionNumber": 5,
+    "checkBasis": {
+      "answerCorrect": "현재④가봉인raw와일치. A=(2x+3y)²,B=(x/3-5y/2)²이고C는(3x-2y)²의마지막계수4여야하므로잘못된C/4짝이정답.",
+      "solutionCorrect": "저자전문의두완전제곱공식,A전개,B분수전개,C가운데항-2·3x·2y와마지막4y²,재전개/유일성설명을Fraction계수곱으로각각검산. 판별식/근합곱/고등방법없음.",
+      "existenceUniqueness": "다항식전체항등식기준. A/B는가능k±12/±5/3중각기록이유효,모든행의k가유일하다는주장없음. C는앞항±3x와중간-12xy로상대항∓2y가정해져마지막k4유일. 고정분모비영,특정x/y=0의수치만으로제곱성판정하지않음.",
+      "choicesCorrect": "①A6/②A-6은필요한±12가아니며A도틀린행아님.③B-5/6은±5/3과다르고B기록옳음.④C4만요청역할충족.⑤C16이면가운데항±24xy로-12xy가불가능. 다섯보기모두검사.",
+      "figureConsistent": "도형자산없고실제학생/solutionPNG에서A/B/C행다항식과기록12,-5/3,2,특히1/9·25/4·-5/3분수/부호가JSON과일치함을확인. 원문표crop이나좌표오라클없음.",
+      "sameCoreConceptAndProcedure": "실제원문q05는여러다항식의완전제곱공식여부를판별한다. 현재도양끝제곱과가운데두배곱의관계가필수이며원문정답/개수를계산해승인하지않음.",
+      "distinctPresentation": "원문여러식의제곱가능성개수에서현재세계수기록검토+오류행진단+고칠계수역복원으로표조직/답역할/목표변화. 단순숫자교체가아님.",
+      "naturalKorean": "각다항식과그행의기록k를검사하고잘못된행하나/올바른k짝을묻는문맥명확. A/B에서다른k도가능함과기록옳음은양립하며C교정은유일. 단위없는문자식이고k를세행공통수로동시요구하지않음.",
+      "curriculumAppropriate": "2015 9수02-12의두항합차제곱/인수분해와실제M3semester1인수분해Unit범위. 저자전체학생방법은기학습분수사칙/부호·완전제곱공식·항대응만요구하고고등계수독립정리나판별식은필수아님.",
+      "allStudentSurfacesInScope": "7면각basis에완전제곱공식/표/분수/답역할/선수요구를기록. own코드의계수배열은추가검산일뿐학생필수도구아님.",
+      "unitFamilyFit": "캡처Unit인수분해는주제와맞지만세기록오류수정목표의정확한livefamily정의호환성은미확정. familyKeynull/false유지.",
+      "scoreAppropriate": "실제원문4점/현재4점확인. 두식공식확인(분수포함)과마지막항역추론으로표준4점편집제안타당. 원문중label은preparation관찰일뿐실측/동난도보장아님."
+    },
+    "currentUnit": {
+      "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "인수분해",
+      "semester": 1,
+      "orderIndex": 473,
+      "problemCodePrefix": "J30202"
+    },
+    "rawFileSHA256": "9de9fedc0088ba2cb30ee58287fb41eb06447ca971b5492e4604b47f7d5a7dac"
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "완전제곱식이되게한계수기록의오류를찾는조건은2015 9수02-12(record3956,PDF34/30),실제M3semester1인수분해Unit및두항제곱공식학습후범위."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "각행과유리수교정값을짝지어공식의2ab/제곱항을확인. 음수분수사칙과해당곱셈공식만으로충분하며판별식·근합곱불필요."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "native3행표는각식과기록k를정리한다. 실제네PNG중q05학생/해설에서분수/부호와대응을확인,고급통계/좌표/픽셀추론없음."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "x²,xy,y²,상수k와고정분모9/4/3/2는다항식·유리수기초표기. 완전제곱식은전체항등식이지특정수치의제곱가능성이아님을구분."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "유일오류C행과정수4를선택하는단일④. A/B의가능계수전체를단일화하지않고주어진기록검증과C교정만요구하므로추가고등방법없음."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "현재전문은(합/차)²공식,A/B전개확인,C의3x·2y결정및4y²복원/재전개.9수02-12와기학습분수/부호/간단한일차항계수확인으로완결,판별식이나고등계수관계없음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "두항합차제곱공식/완전제곱식뜻/인수분해,분수·음수사칙,같은항의계수읽기를학습한뒤배정. 실제M3semester1Unit검증은선수완료가정/학교진도/2027M3·2022승인이아님."
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-20T10:28:02.021813+00:00",
+  "heavyBatchBrowserTypecheckFloorGiB": 3,
+  "isolatedDiagnosticFloorGiB": 1.5,
+  "scope": "One existing17-test file after a preserved failure; no catalog/browser server or whole41-file run.",
+  "nodeV8MaxOldSpaceMiB": 256,
+  "maxWorkers": 1,
+  "heapLimitNotWholeOSProcessLimit": true,
+  "workerLightOnly": true,
+  "noOtherProcessesKilled": true,
+  "reason": "Use a bounded one-file diagnostic while broader heavy checks remain queued; no global configuration or test assertions relaxed."
+}

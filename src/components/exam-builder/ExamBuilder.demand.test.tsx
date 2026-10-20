@@ -428,7 +428,7 @@ describe("S2 demand-loaded scope inventory", () => {
       screen.getByRole("region", { name: "차시 목록" }),
     ).toBeInTheDocument();
     expect(screen.queryByRole("status", { name: /출제 범위를/ })).toBeNull();
-    expect(countQueries()).toHaveLength(1);
+    await waitFor(() => expect(countQueries()).toHaveLength(1));
     await act(async () => releaseCounts());
     const first = await screen.findByRole("checkbox", {
       name: "차시 1 출제 가능 6갈래",

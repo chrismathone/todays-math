@@ -1,0 +1,287 @@
+{
+  "utc": "2026-10-20T10:18:49.190499+00:00",
+  "input": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/n-discovered-hwp-first2-quarantine-20261020-r1/aggregate-receipt.json",
+    "sha256": "994af33e5a3d699c898556bb0279ad2ea3fcbc1bb9477c850f8aa96d34caeb66",
+    "bytes": 14587
+  },
+  "script": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inspect-discovered-first2-header-labels-r2.py",
+    "sha256": "4fbb2029b3d1e80c49ac9fb87459b0d7c79cffd8d2046cc4abcbf45a420081cf",
+    "bytes": 4891
+  },
+  "entries": [
+    {
+      "proposalId": "discovered-exam-a8c06e129904834d9cee2b24",
+      "hwpSource": {
+        "path": "N:/\uac1c\uc778/\uae30\ucd9c/2025 \uae30\ucd9c\ubaa8\uc74c/2025\ub144 2\ud559\uae30 \uae30\ub9d0\uace0\uc0ac \ubaa8\uc74c/\uc6cc\ub4dc/\uc9113/[\uacbd\uc0b0\uc911][3][25-2-\uae30\ub9d0][\ub3d9\uc544\uac15] (\uc644\ub8cc).hwp",
+        "sha256": "69a79a4d041dcff0c2d15ee061136adc2f8e51a69703a7fc04f6b8d305b2180d",
+        "bytes": 1072128
+      },
+      "localManifest": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/n-discovered-hwp-first2-quarantine-20261020-r1/discovered-exam-a8c06e129904834d9cee2b24/hwp-question-only-manifest.local.json",
+        "sha256": "79051472971195e61fe8cefc7858c2d9eefd5489818a7b95dc575bb59269efe8",
+        "bytes": 764323
+      },
+      "metadataStillUnapproved": true,
+      "hwpHeaderLabels": [
+        {
+          "kind": "head",
+          "labels": {
+            "fourDigitYears": [],
+            "twoDigitYearLabels": [],
+            "semesters": [],
+            "middleGrades": [],
+            "mentionsMath": false,
+            "mentionsFinal": false,
+            "mentionsPractice": false,
+            "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recordSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 253,
+            "inflatedByteOffset": 6969,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "e70cf8bd4507447f5cb44e2fd8ca08b1be26517d5de36c03f2eeeb23bfe2aa7d"
+          }
+        },
+        {
+          "kind": "foot",
+          "labels": {
+            "fourDigitYears": [],
+            "twoDigitYearLabels": [
+              26
+            ],
+            "semesters": [
+              2
+            ],
+            "middleGrades": [],
+            "mentionsMath": true,
+            "mentionsFinal": true,
+            "mentionsPractice": true,
+            "rawTextSha256": "c74201fc5af4d70df6240f7ada2195f11c8c1b4a38e196d5b504374d55b435aa"
+          },
+          "recordSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 257,
+            "inflatedByteOffset": 7063,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "dcce886fffbaf39c8be6ac1be67c4dbefe9a738c33e185d4e23e625bff861714"
+          }
+        },
+        {
+          "kind": "head",
+          "labels": {
+            "fourDigitYears": [
+              2025
+            ],
+            "twoDigitYearLabels": [],
+            "semesters": [
+              2
+            ],
+            "middleGrades": [
+              3
+            ],
+            "mentionsMath": true,
+            "mentionsFinal": true,
+            "mentionsPractice": false,
+            "rawTextSha256": "5bcbcc6231437d45f0a06ad00869caa632243c2c9ce0f0ed2262c6dcd08295d4"
+          },
+          "recordSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 271,
+            "inflatedByteOffset": 7496,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "a6b0f971881b8312d4e2703a1c9e0cd1f6da4ad05e8ae7f8ab11bc56a74836e8"
+          }
+        }
+      ],
+      "pdfReferences": [
+        {
+          "referenceId": "discovered-ref-c63a841d7d5e639590a69de6",
+          "contentPairApproved": false,
+          "sourceYearOrSemesterApproved": false,
+          "status": "individual-reference-hold",
+          "errorType": "FileNotFoundError",
+          "error": "[WinError 3] \uc9c0\uc815\ub41c \uacbd\ub85c\ub97c \ucc3e\uc744 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4: 'N:\\\\\uac1c\uc778\\\\\uae30\ucd9c\\\\2025 \uae30\ucd9c\ubaa8\uc74c\\\\2025\ub144 2\ud559\uae30 \uae30\ub9d0\uace0\uc0ac \ubaa8\uc74c\\\\pdf\\\\\uc9113\\\\[\uacbd\uc0b0\uc911][3][25-2-\uae30\ub9d0][\ub3d9\uc544\uac15] (\uc644\ub8cc).pdf'"
+        }
+      ],
+      "sourceIdentityApproved": false,
+      "actualYearSemesterApproved": false,
+      "authorDistributionAllowed": false,
+      "curriculumApproved": false,
+      "rightsApproved": false,
+      "originalQuestionsOrAnswersExported": false,
+      "interpretation": "Head and practice-footer labels describe potentially different roles. No automatic year/semester correction or content-pair assertion."
+    },
+    {
+      "proposalId": "discovered-exam-6d226bc692321e05b1cf3a84",
+      "hwpSource": {
+        "path": "N:/\uac1c\uc778/\uae30\ucd9c/2025 \uae30\ucd9c\ubaa8\uc74c/2025\ub144 2\ud559\uae30 \uae30\ub9d0\uace0\uc0ac \ubaa8\uc74c/\uc6cc\ub4dc/\uc9113/[\uacbd\uc2e0\uc911][3][25-2-\uae30\ub9d0][\ubbf8\ub798\uc5d4] (\uc644\ub8cc).hwp",
+        "sha256": "e8bf5697aed9a5dde3e59bea1249049b47bfd90beb98bfbcbac0397925dea4c9",
+        "bytes": 873472
+      },
+      "localManifest": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/n-discovered-hwp-first2-quarantine-20261020-r1/discovered-exam-6d226bc692321e05b1cf3a84/hwp-question-only-manifest.local.json",
+        "sha256": "097731abf087e6afa91470e892dd8ae5ffcb3d59db8ff19a829bb0ee55866c04",
+        "bytes": 970658
+      },
+      "metadataStillUnapproved": true,
+      "hwpHeaderLabels": [
+        {
+          "kind": "head",
+          "labels": {
+            "fourDigitYears": [],
+            "twoDigitYearLabels": [],
+            "semesters": [],
+            "middleGrades": [],
+            "mentionsMath": false,
+            "mentionsFinal": false,
+            "mentionsPractice": false,
+            "rawTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recordSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 253,
+            "inflatedByteOffset": 6957,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "e70cf8bd4507447f5cb44e2fd8ca08b1be26517d5de36c03f2eeeb23bfe2aa7d"
+          }
+        },
+        {
+          "kind": "foot",
+          "labels": {
+            "fourDigitYears": [],
+            "twoDigitYearLabels": [
+              26
+            ],
+            "semesters": [
+              1
+            ],
+            "middleGrades": [],
+            "mentionsMath": true,
+            "mentionsFinal": true,
+            "mentionsPractice": true,
+            "rawTextSha256": "6d98092acaecd64c468b0cd9f7ff5daa2e4cc36f112cde45fefe0cc9c1e4f197"
+          },
+          "recordSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 257,
+            "inflatedByteOffset": 7051,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "dcce886fffbaf39c8be6ac1be67c4dbefe9a738c33e185d4e23e625bff861714"
+          }
+        },
+        {
+          "kind": "head",
+          "labels": {
+            "fourDigitYears": [
+              2025
+            ],
+            "twoDigitYearLabels": [],
+            "semesters": [
+              2
+            ],
+            "middleGrades": [
+              3
+            ],
+            "mentionsMath": true,
+            "mentionsFinal": true,
+            "mentionsPractice": false,
+            "rawTextSha256": "71fa3094b59f380fa9613324ab6bcf5d83c8c2bfabc3b46f8a9cd2c8bae1cf31"
+          },
+          "recordSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 271,
+            "inflatedByteOffset": 7486,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "a6b0f971881b8312d4e2703a1c9e0cd1f6da4ad05e8ae7f8ab11bc56a74836e8"
+          }
+        },
+        {
+          "kind": "head",
+          "labels": {
+            "fourDigitYears": [
+              2025
+            ],
+            "twoDigitYearLabels": [],
+            "semesters": [
+              2
+            ],
+            "middleGrades": [
+              3
+            ],
+            "mentionsMath": true,
+            "mentionsFinal": true,
+            "mentionsPractice": false,
+            "rawTextSha256": "71fa3094b59f380fa9613324ab6bcf5d83c8c2bfabc3b46f8a9cd2c8bae1cf31"
+          },
+          "recordSource": {
+            "stream": "BodyText/Section1",
+            "recordIndex": 2136,
+            "inflatedByteOffset": 112725,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "1ca039e1bcdf2f159a017806d49d8aa933a69c9d65458ea84cb58524ecae69f1"
+          }
+        },
+        {
+          "kind": "foot",
+          "labels": {
+            "fourDigitYears": [],
+            "twoDigitYearLabels": [
+              26
+            ],
+            "semesters": [
+              1
+            ],
+            "middleGrades": [],
+            "mentionsMath": true,
+            "mentionsFinal": true,
+            "mentionsPractice": true,
+            "rawTextSha256": "6d98092acaecd64c468b0cd9f7ff5daa2e4cc36f112cde45fefe0cc9c1e4f197"
+          },
+          "recordSource": {
+            "stream": "BodyText/Section1",
+            "recordIndex": 2159,
+            "inflatedByteOffset": 113430,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "c63663b329a01c2297135407da43bdad466779bc7ed6a0c0d41f52e3479ec089"
+          }
+        }
+      ],
+      "pdfReferences": [
+        {
+          "referenceId": "discovered-ref-d14694f0710586fca29cb4a7",
+          "contentPairApproved": false,
+          "sourceYearOrSemesterApproved": false,
+          "status": "individual-reference-hold",
+          "errorType": "FileNotFoundError",
+          "error": "[WinError 3] \uc9c0\uc815\ub41c \uacbd\ub85c\ub97c \ucc3e\uc744 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4: 'N:\\\\\uac1c\uc778\\\\\uae30\ucd9c\\\\2025 \uae30\ucd9c\ubaa8\uc74c\\\\2025\ub144 2\ud559\uae30 \uae30\ub9d0\uace0\uc0ac \ubaa8\uc74c\\\\pdf\\\\\uc9113\\\\[\uacbd\uc2e0\uc911][3][25-2-\uae30\ub9d0][\ubbf8\ub798\uc5d4] (\uc644\ub8cc).pdf'"
+        }
+      ],
+      "sourceIdentityApproved": false,
+      "actualYearSemesterApproved": false,
+      "authorDistributionAllowed": false,
+      "curriculumApproved": false,
+      "rightsApproved": false,
+      "originalQuestionsOrAnswersExported": false,
+      "interpretation": "Head and practice-footer labels describe potentially different roles. No automatic year/semester correction or content-pair assertion."
+    }
+  ],
+  "twoDigitYearExpansionIsNotSourceYearEvidence": true,
+  "sourcePairApprovals": 0,
+  "sourceYearApprovals": 0,
+  "newSourceQuestionCredit": 0,
+  "canonicalSourceCounterUnchanged": 12080,
+  "originalWrites": 0,
+  "dbWrites": 0,
+  "loadable": 0
+}

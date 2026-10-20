@@ -1,0 +1,62 @@
+{
+  "utc": "2026-10-20T10:30:13.605Z",
+  "counts": {
+    "authoredCurrentCandidates": 172,
+    "currentFigureInstances": 116,
+    "recreatedStatTables": 27,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 172,
+    "independentMathReviewed": 171,
+    "independentFullGradeReviewed": 171,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 156,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 171,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 5,
+    "failedStudentRenderDraftVersions": 1,
+    "currentRawPointTranscriptionLimitations": 1
+  },
+  "current172And285ReviewRefsBound": true,
+  "currentCodeFiles": 105,
+  "previous170BindingsUnchanged": true,
+  "U62R2Independent934Passed": true,
+  "actualAuthored174TwoDraftsNotIndependentlyApproved": true,
+  "currentMainRelatedTestFiles": 41,
+  "currentMainRelatedTestsPassed": 646,
+  "sourceReceipts": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-filename-discovery-20261020-r2/aggregate-receipt.json",
+      "sha256": "1e65e3bf3bc82116c0bbbde9a75da5889a6b32e76f6f2850cf77685d8d3d1c36"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-discovered-metadata-proposals-20261020-r1/aggregate-receipt.json",
+      "sha256": "2c78abdc56274018d48fc70b8d79cb7db416ad5e7675b137cad43c6f63a231c9"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-discovered-reference-byte-audit-20261020-r1/aggregate-receipt.json",
+      "sha256": "669516f3bd3ac510ba6444c01fb70c0fca62cc412fc43f807c522a26eee9f458"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-observation-audit-20261020-r1/aggregate-receipt.json",
+      "sha256": "41d16485c8643a9931d22291eb3a5b545dc3f564440c0fabf8ed76b907cb7d81"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-discovered-hwp-first2-quarantine-20261020-r1/aggregate-receipt.json",
+      "sha256": "994af33e5a3d699c898556bb0279ad2ea3fcbc1bb9477c850f8aa96d34caeb66"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-discovered-first2-header-labels-20261020-r2/aggregate-receipt.json",
+      "sha256": "b586fce4271bec55e0fd1b3d536ea25d21fb7470a898c9601995d48014d3f93c"
+    }
+  ],
+  "dbWrites": 0,
+  "loadable": 0,
+  "wholeGoalComplete": false
+}

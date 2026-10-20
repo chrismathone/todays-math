@@ -1,0 +1,80 @@
+{
+  "utc": "2026-10-20T10:30:13.605Z",
+  "canonicalSelected": 172,
+  "canonicalMathGrade": 171,
+  "actualAuthored": 174,
+  "additionalUnselectedAuthored": 2,
+  "canonicalFigures": 116,
+  "actualFigures": 117,
+  "canonicalTables": 27,
+  "actualTables": 28,
+  "builtinImagegenRasters": 2,
+  "drafts": [
+    {
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-group3-authoring-20261020-r2/gachang/q03.json",
+        "sha256": "e94f8564646c86b9317a872d98819a63aafa71976c2e94ae48cc1aaa67b1fe28"
+      },
+      "id": "exam-twin-gachang-2025-1-final-author-group3-r2-q03",
+      "candidateDigest": "e96c0c05ef3f34aa6ef6ed40ee29f6e7678f3d58aa60b8af290883dafe9bdd37",
+      "studentDigest": "60a3481d5e9114939c62081093dc8ee7d13cd696633b5e8f8c175aa1b3c42a5d",
+      "assetDigest": "f355821d2c6c83524b19444a0befc41e88b7b71251b426a3c5dc7a253a91b5d2",
+      "independentFullReviewPending": true
+    },
+    {
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-group3-authoring-20261020-r2/gachang/q06.json",
+        "sha256": "2b1732586c08411c9d8a4050642da1e1bbb9e037f3a880232f8974165516e12d"
+      },
+      "id": "exam-twin-gachang-2025-1-final-author-group3-r2-q06",
+      "candidateDigest": "1f868268d2b1676c2d1d4a7d65a2550474c09f81b9b9e8cb627b0d2f8a0fa0c8",
+      "studentDigest": "d8565d720773d4cad0a2a93b7c8ba5ab720dbbbe0ce44c8edb0e362a1bb75f3f",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "independentFullReviewPending": true
+    }
+  ],
+  "studentOnlyTransport": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/gachang-group3-student-only-transport-r2.json",
+    "sha256": "74e95a98f4733b32db054fa67273e4626ea9cde4af85522b683a98d5d3a2d903"
+  },
+  "newTwoIndependentFullReviewPending": true,
+  "renderPendingMemoryFloorOrHeavyQueue": true,
+  "U62R2Independent": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r2/own-audit-report-r2.json",
+    "sha256": "325f987004243558a34d1482bd6fb6cd92b1f87794ef4cb53be9c8fdd7a8d4f3"
+  },
+  "U62Finite26NotManualTwins": true,
+  "canonicalSourceObservationsUnchanged": 12080,
+  "sourceReceipts": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-filename-discovery-20261020-r2/aggregate-receipt.json",
+      "sha256": "1e65e3bf3bc82116c0bbbde9a75da5889a6b32e76f6f2850cf77685d8d3d1c36"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-discovered-metadata-proposals-20261020-r1/aggregate-receipt.json",
+      "sha256": "2c78abdc56274018d48fc70b8d79cb7db416ad5e7675b137cad43c6f63a231c9"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-discovered-reference-byte-audit-20261020-r1/aggregate-receipt.json",
+      "sha256": "669516f3bd3ac510ba6444c01fb70c0fca62cc412fc43f807c522a26eee9f458"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-observation-audit-20261020-r1/aggregate-receipt.json",
+      "sha256": "41d16485c8643a9931d22291eb3a5b545dc3f564440c0fabf8ed76b907cb7d81"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-discovered-hwp-first2-quarantine-20261020-r1/aggregate-receipt.json",
+      "sha256": "994af33e5a3d699c898556bb0279ad2ea3fcbc1bb9477c850f8aa96d34caeb66"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/n-discovered-first2-header-labels-20261020-r2/aggregate-receipt.json",
+      "sha256": "b586fce4271bec55e0fd1b3d536ea25d21fb7470a898c9601995d48014d3f93c"
+    }
+  ],
+  "quarantinedHwpParentsUnverified": 2099,
+  "new48NotAddedTo12080": true,
+  "sourceIdentityAndMixedHeaderFooterDateLabelsHeld": true,
+  "loadable": 0,
+  "dbWrites": 0,
+  "wholeGoalComplete": false
+}

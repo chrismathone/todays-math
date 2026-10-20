@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-20T10:24:14.985807+00:00",
+  "originalResult": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v49-post-main-vitest-r1.json",
+    "sha256": "50e036e16d87c013ccfe8ed56073dac38437be09f9f9929703891506f5bbafca"
+  },
+  "originalTest": {
+    "path": "src/components/exam-builder/ExamBuilder.demand.test.tsx",
+    "sha256": "229aa062821aee578f88327f6139d5b365219c6cd9161da124fc5c8102081200"
+  },
+  "observed": "40 files645tests passed; one test asserted countQueries length1 while still0 immediately after finding a loading checkbox. Loading DOM can exist before parent demand-effect starts request.",
+  "repair": "Wait for the same exact one-request assertion before releasing its deferred response. Keep loading assertions, one-request invariant, and check/uncheck behavior. No product/UI/runtime change.",
+  "initialFailurePreserved": true,
+  "noProductFaultConclusion": true,
+  "dbWrites": 0
+}

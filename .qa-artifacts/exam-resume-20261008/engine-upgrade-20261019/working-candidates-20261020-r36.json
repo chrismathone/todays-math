@@ -1,0 +1,79 @@
+{
+  "utc": "2026-10-20T09:48:36.756432+00:00",
+  "canonicalSelected": 170,
+  "canonicalMathGrade": 169,
+  "actualAuthored": 174,
+  "additionalCurrentMathGradeReviewedNotYetCanonical": 2,
+  "additionalCurrentFullReview": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/gachang-next2-current-r3-collected-r1.json",
+    "sha256": "46c948d3a28f0b4251cc61bcf7476c452712a5a3dd68536933d1957cc795aa01"
+  },
+  "actualMathGradeIncludingTwoUnselectedReviewed": 171,
+  "oldGyeongsang18Pending": 1,
+  "sourceCounterUnchanged": 12080,
+  "filenameDiscovery": {
+    "path": ".qa-artifacts/exam-resume-20261008/n-filename-discovery-20261020-r2/aggregate-receipt.json",
+    "sha256": "1e65e3bf3bc82116c0bbbde9a75da5889a6b32e76f6f2850cf77685d8d3d1c36"
+  },
+  "new289ReferenceProposals": {
+    "path": ".qa-artifacts/exam-resume-20261008/n-discovered-metadata-proposals-20261020-r1/aggregate-receipt.json",
+    "sha256": "2c78abdc56274018d48fc70b8d79cb7db416ad5e7675b137cad43c6f63a231c9"
+  },
+  "newU62PrototypeSource": "src/lib/examStudy/families/middle/inverseEquationDegree.ts",
+  "U62TestsNotStartedMemoryFloor": true,
+  "U62StudentOnly26": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-proposal-20261020-r1/student-only26.json",
+    "sha256": "accea8faf5de0f21cee0210fba4c16c1325e6ce22c40aabafd64538fc61ba298"
+  },
+  "U62Not26NewManualTwins": true,
+  "U62PublicReleaseClosed": true,
+  "availableGiBObserved": [
+    2.58736038208008,
+    0.326892852783203
+  ],
+  "heavyVitestOrBrowserNotStartedBelow3GiB": true,
+  "latestVerifiedPush": "b1882fe58dd03eb3d1190130390c3bf930987f0d",
+  "loadable": 0,
+  "dbWrites": 0,
+  "wholeGoalComplete": false,
+  "previous": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-candidates-20261020-r35.json",
+    "sha256": "ec14ea9a1e0b62869dcdc95e8ef6630daf81c451a3ae1f19fe088edaded2ba5b"
+  },
+  "newUnreviewedGroup3Candidates": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-group3-authoring-20261020-r2/gachang/q03.json",
+      "sha256": "e94f8564646c86b9317a872d98819a63aafa71976c2e94ae48cc1aaa67b1fe28"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-group3-authoring-20261020-r2/gachang/q06.json",
+      "sha256": "2b1732586c08411c9d8a4050642da1e1bbb9e037f3a880232f8974165516e12d"
+    }
+  ],
+  "newFigureInstances": 1,
+  "newTables": 1,
+  "actualFigures": 117,
+  "actualTables": 28,
+  "U62Parent173AndIsolated11Passed": true,
+  "U62ParentValidation": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-equation-degree-parent-validation-r1.json",
+    "sha256": "c7f8728afa54e239ec23c4870615712903de62836a77b4ce2f10ce44e2c5e2a4"
+  },
+  "U62IndependentRaw26Sealed": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-code-audit-20261020-r1/git-raw-before-private.json",
+    "sha256": "367559b3b8dc0f04f09bf485f887bca0c619f5513f11cb5400cc56c3e1ae2670"
+  },
+  "U62IndependentCodeAuditPending": true,
+  "latestLocalSourceCheckpoint": "998f07848cf4a9b0f4d737c308818086ada18a7c",
+  "remoteMain23CommitsFetchedNotYetIntegratedWhileAuditSourceFrozen": true,
+  "newReferenceByteComparison": {
+    "path": ".qa-artifacts/exam-resume-20261008/n-discovered-reference-byte-audit-20261020-r1/aggregate-receipt.json",
+    "sha256": "669516f3bd3ac510ba6444c01fb70c0fca62cc412fc43f807c522a26eee9f458"
+  },
+  "localHwpStructuralFlags": {
+    "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-observation-audit-20261020-r1/aggregate-receipt.json",
+    "sha256": "41d16485c8643a9931d22291eb3a5b545dc3f564440c0fabf8ed76b907cb7d81"
+  },
+  "localHwpFlags125NotContentFindings": true,
+  "allSourceQuestionCreditFromNewRoutes": 0
+}

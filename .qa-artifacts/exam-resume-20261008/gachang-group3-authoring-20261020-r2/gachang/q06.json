@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 6,
+  "twinExternalId": "exam-twin-gachang-2025-1-final-author-group3-r2-q06",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "두 정사각형 A, B의 넓이를 다음 표와 같이 나타냈다. A의 한 변이 B의 한 변보다 $3\\,\\mathrm{cm}$ 길 때, 실수 $t$의 값은? (단, $-2<t<3$이다.)\n\n| 정사각형 | 넓이 |\n| --- | --- |\n| A | $(t^2-6t+9)\\,\\mathrm{cm}^2$ |\n| B | $(t^2+4t+4)\\,\\mathrm{cm}^2$ |",
+  "choices": [
+    "$-2$",
+    "$-1$",
+    "$0$",
+    "$1$",
+    "$2$"
+  ],
+  "answer": "②",
+  "solution": "A의 넓이는 $(t-3)^2\\,\\mathrm{cm}^2$, B의 넓이는 $(t+2)^2\\,\\mathrm{cm}^2$이다. 한 변의 길이는 넓이의 양의 제곱근이다.\n\n$-2<t<3$에서 $3-t>0$, $t+2>0$이므로 A, B의 한 변의 길이는 각각 $(3-t)\\,\\mathrm{cm}$, $(t+2)\\,\\mathrm{cm}$이다.\n\nA의 한 변이 $3\\,\\mathrm{cm}$ 더 길다는 조건에서 $(3-t)-(t+2)=3$이다. 정리하면 $1-2t=3$이므로 $t=-1$이다.\n\n이 값은 주어진 범위에 있고, 두 넓이는 각각 $16\\,\\mathrm{cm}^2$, $1\\,\\mathrm{cm}^2$이다. 한 변의 길이는 $4\\,\\mathrm{cm}$, $1\\,\\mathrm{cm}$로 차가 $3\\,\\mathrm{cm}$이다. 일차 관계에서 얻은 값이 하나뿐이므로 정답은 ②이다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "externalId": "2025-gachang-3-1-final-6",
+    "inventoryExamId": "personal-273b85b46b6ea294fef26b4de34becfc",
+    "sourceQuestionNumber": 6,
+    "newSourceReferenceId": "source-ref-gachang-2025-1-final-group3-r2-q06",
+    "sourceContentSha256": "67897d406b456cea688dbc5db1da47573a59048e808da1c73a4b678ce759fcaa",
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/component-only-input/q06.local.json",
+      "sha256": "4cd06cd0a28f30905d41f6ddbd311af8585feab4806062f8c915d286efa82ed0"
+    },
+    "sourceSchoolInternal": "가창중",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "기말",
+    "extractionManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/hwp-question-only-manifest.local.json",
+      "sha256": "c0eb3644b8a251f067811a600da62c342f7de20e1ac2ec27002983fc312cd870"
+    },
+    "hwpOnlyExtractionAggregate": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+      "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[가창중][3][25-1-기말][천재이] (완료).hwp",
+        "sha256": "8c78d3758f25a078316daed76e722286ec79d0506f09faef23b347aa6ce06ce9",
+        "bytes": 1428480
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+        "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+        "bytes": 1778571
+      }
+    ],
+    "originalIdentityReference": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+      "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+      "bytes": 1778571
+    },
+    "parentOriginalFirstPageObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+      "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+    },
+    "sourceComponentReview": {
+      "status": "parent-original-first-page-q03-q06-observed-independent-source-core-review-pending",
+      "whole19ParentHwpPdfPairApproved": false
+    },
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "originalAnswerKeyUsed": false,
+    "parentIncidentalHandwrittenMarksExposure": true,
+    "marksUsedForAnswerApproval": false,
+    "sourceTextCopiedToCandidate": false,
+    "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+  },
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target",
+      "algebra-to-geometry",
+      "new-table"
+    ],
+    "before": "보조문자를 대입한 두 근호식을 완전제곱식으로 정리하고 범위에 따른 제곱근 부호를 판단해 차를 단순화한다.",
+    "after": "두 완전제곱 넓이를 표로 조직하고 양수인 변의 길이로 표현한 뒤 길이 차 조건에서 입력을 복원한다.",
+    "sharedConcept": "완전제곱식의 양의 제곱근을 주어진 문자 범위에 맞게 선택한다.",
+    "sharedProcedure": "넓이완전제곱식정리 → 범위−2<t<3에서양수인길이3−t,t+2 선택 → 길이차3으로일차관계 → t−1대입으로범위/넓이/양수길이확인",
+    "actualStructuralChange": "두 완전제곱 넓이를 표로 조직하고 양수인 변의 길이로 표현한 뒤 길이 차 조건에서 입력을 복원한다.",
+    "domainProof": "−2<t<3이므로두넓이의양수제곱근은3−t와t+2이다.형식적인절댓값함수기호/고등도구를학생해설에요구하지않는다.해t−1에서넓이16/1,변길이4/1로실제존재하며차3과범위조건을모두만족한다.",
+    "difficultyBasis": "원문4점과핵심곱셈/제곱근부호절차를기준으로한저자제안;질문역전과새자료조직의목표난도·exact family는독립검토전보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수01-07"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수01-07"
+      ]
+    },
+    "legitimateMethodDraft": "넓이완전제곱식정리 → 범위−2<t<3에서양수인길이3−t,t+2 선택 → 길이차3으로일차관계 → t−1대입으로범위/넓이/양수길이확인",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+    "sourceExamYear": 2025,
+    "targetAcademicYear": 2026,
+    "curriculum": "2015",
+    "officialPrimary": {
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+      "standard": "9수01-07",
+      "providedMOEEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      "actualScope": "2015중3다항식곱셈/제곱근성질과이미배운길이·넓이·일차관계;실제Unit/각학생면검토필수;2027중3/2022별도보류"
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "기말",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 4,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본~응용 저자 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "두 완전제곱 넓이를 표로 조직하고 양수인 변의 길이로 표현한 뒤 길이 차 조건에서 입력을 복원한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제캡처Unit과2015성취기준을연결;새표현/질문역전의정확한live family는보류"
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "new-native-Markdown-table",
+      "newFigures": 0,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "−2<t<3이므로두넓이의양수제곱근은3−t와t+2이다.형식적인절댓값함수기호/고등도구를학생해설에요구하지않는다.해t−1에서넓이16/1,변길이4/1로실제존재하며차3과범위조건을모두만족한다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gachang-group3-20261020-r2.ts",
+      "reproductionScriptSha256": "0ac357efba6777b894a7d057fab0574be6e829d1fd156842b6a08dfd3ebaa5ce",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "중",
+    "prerequisiteUnits": [
+      {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "완전제곱식의 곱셈공식",
+        "제곱근의 뜻과 성질",
+        "문자 범위와 부호",
+        "정사각형 넓이와 양수 길이",
+        "일차방정식"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+  }
+}

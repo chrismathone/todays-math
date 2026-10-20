@@ -1,0 +1,19 @@
+import {defineConfig} from 'vitest/config';
+import react from '@vitejs/plugin-react';
+import path from 'node:path';
+export default defineConfig({envDir:false,resolve:{tsconfigPaths:true},plugins:[react()],test:{
+ include:[
+  ...['examStudyInverseEquationDegree','examStudyInverseCoefficient','examStudyCore','examStudyMiddle','examStudyCurriculumEligibility','mathSrsEngineFrames','mathSrsFrameCompatibility','mathSrsFrameFamilies','mathSrsFirstSemesterFrames','mathSrsBoxFrames','mathSrsAverageFrames'].map(n=>`src/__tests__/unit/${n}.test.ts`),
+  ...['descriptivePaper','descriptiveUnifiedPrint'].map(n=>`src/__tests__/components/${n}.test.tsx`),
+  ...['AnswerPage.quickKey','TemplateT2','useMeasuredAnswerPages','PrintColorImplementation','WorksheetPrint.preview','PrintCheck','printReadableColors','mathgenTemplates'].map(n=>`src/__tests__/components/${n}.test.tsx`),
+  'src/__tests__/unit/answerKeyLayout.test.ts',
+  'src/components/exam-builder/ExamBuilder.test.tsx',
+  'src/components/exam-builder/ExamBuilder.demand.test.tsx',
+  'src/components/exam-builder/ExamBuilder.h2.test.tsx',
+  ...['courseSessionVariety','nativeDescriptiveAuthor','nativeDescriptiveCore','nativeDescriptiveGateReview','nativeDescriptiveLegacyAudit','nativeDescriptive20261018','examStudyContract','examStudyInverseMinimum','examStudyInverseTangentRectangle','lockProblemRows','mathExamBuilderSource'].map(n=>`src/__tests__/unit/${n}.test.ts`),
+  'src/__tests__/components/nativeDescriptiveAuthorPrint.test.tsx',
+  ...['unifiedBankCurriculum','unifiedBankPickerDemand','unifiedBankFilters','unifiedBankAvailability'].map(n=>`src/__tests__/api/${n}.test.ts`)
+ ],environment:'jsdom',globals:false,testTimeout:40000,css:false,
+ setupFiles:[path.resolve('vitest.setup.ts')],server:{deps:{inline:['next-auth']}},
+ env:{DATABASE_URL:'postgresql://test:test@127.0.0.1:1/test',DIRECT_URL:'postgresql://test:test@127.0.0.1:1/test',AUTH_URL:'http://localhost',NEXTAUTH_URL:''}
+}});
