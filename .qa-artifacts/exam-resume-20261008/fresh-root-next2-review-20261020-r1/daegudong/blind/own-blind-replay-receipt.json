@@ -1,0 +1,209 @@
+{
+  "kind": "independent-next2-student-only-raw-replay/v1",
+  "solverId": "codex-helper-independent-next2-student-20261020",
+  "exposureDeclaration": {
+    "priorOriginalSourceComponentsReviewed": true,
+    "priorRelatedExposure": "Completed source9 first-question components and their full original first-page images with incidental handwritten marks; earlier root variants, source-method proposals and U54/U55/U56 code audits. This is not an unseen-source-corpus claim.",
+    "currentTransformedAuthorAnswerSeenBeforeRawSeal": false,
+    "currentTransformedAuthorSolutionSeenBeforeRawSeal": false,
+    "currentAuthorMetadataOrPrivatePackageRead": false,
+    "parentWorktreeOrAuthorHistoryRead": false,
+    "answerSearchUsed": false,
+    "method": "Solve current printed student conditions afresh; original answers, handwritten markings, prior variant outputs and image pixels are not answer oracles."
+  },
+  "studentInputsBefore": {
+    "studentDigest": "5687e3f56b37fd0cd57aca1b86bc8935fa8def0f93bdea5a267b47164617453a",
+    "packageDigestAsProvided": "475928d1ae2d14c0b509264448492add8ff5913d2a56d0eb595716a4ebfbbcbd",
+    "filesBefore": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/SOLVE-BRIEF.md",
+        "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/student-problems.json",
+        "sha256": "a8778d8752892d91bc11b1e8d36d6108d45fb8ae6d352854efb33af7a354c6d7"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/blind-manifest.json",
+        "sha256": "ea7231b13eebeabdc4406aae66eaccd325ce42aafa6011c1a2ef10532d6079a0"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/student-preview/q03.png",
+        "sha256": "925fcf7308b533c3d2c7f9ed638c7f040045c9dc62ba1cfeaa2ae4fee789a782"
+      }
+    ],
+    "utf8ProbeSha256": "645816a59566f4f4fe052cf13704ecf80d5c82df413399ca095c6c5405a5909b",
+    "actualStudentPngViewed": true,
+    "noExternalFiguresOrModel": true
+  },
+  "studentInputsAfter": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/SOLVE-BRIEF.md",
+      "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/student-problems.json",
+      "sha256": "a8778d8752892d91bc11b1e8d36d6108d45fb8ae6d352854efb33af7a354c6d7"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/blind-manifest.json",
+      "sha256": "ea7231b13eebeabdc4406aae66eaccd325ce42aafa6011c1a2ef10532d6079a0"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/student-preview/q03.png",
+      "sha256": "925fcf7308b533c3d2c7f9ed638c7f040045c9dc62ba1cfeaa2ae4fee789a782"
+    }
+  ],
+  "inputBytesUnchanged": true,
+  "studentDigestIndependentlyRecomputed": true,
+  "raw": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/solve/q03.json",
+    "sha256": "e19bc037022cb45b61205f0d8a8ec84ec5105ec2ec0b10a599d391b502dc9c3f",
+    "studentDigest": "5687e3f56b37fd0cd57aca1b86bc8935fa8def0f93bdea5a267b47164617453a",
+    "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group2-r1-q03"
+  },
+  "calculation": {
+    "derivedB": {
+      "numerator": "10",
+      "denominator": "1"
+    },
+    "derivedA": {
+      "numerator": "4",
+      "denominator": "5"
+    },
+    "derivedK": {
+      "numerator": "16",
+      "denominator": "25"
+    },
+    "decimalK": "0.64",
+    "allFiveChoices": [
+      {
+        "index": 1,
+        "mark": "①",
+        "k": {
+          "numerator": "2",
+          "denominator": "25"
+        },
+        "positiveK": true,
+        "firstLeftSquared": {
+          "numerator": "6",
+          "denominator": "25"
+        },
+        "firstRightSquared": {
+          "numerator": "48",
+          "denominator": "25"
+        },
+        "firstConditionHoldsGivenUniqueAandB": false
+      },
+      {
+        "index": 2,
+        "mark": "②",
+        "k": {
+          "numerator": "4",
+          "denominator": "25"
+        },
+        "positiveK": true,
+        "firstLeftSquared": {
+          "numerator": "12",
+          "denominator": "25"
+        },
+        "firstRightSquared": {
+          "numerator": "48",
+          "denominator": "25"
+        },
+        "firstConditionHoldsGivenUniqueAandB": false
+      },
+      {
+        "index": 3,
+        "mark": "③",
+        "k": {
+          "numerator": "16",
+          "denominator": "25"
+        },
+        "positiveK": true,
+        "firstLeftSquared": {
+          "numerator": "48",
+          "denominator": "25"
+        },
+        "firstRightSquared": {
+          "numerator": "48",
+          "denominator": "25"
+        },
+        "firstConditionHoldsGivenUniqueAandB": true
+      },
+      {
+        "index": 4,
+        "mark": "④",
+        "k": {
+          "numerator": "4",
+          "denominator": "5"
+        },
+        "positiveK": true,
+        "firstLeftSquared": {
+          "numerator": "12",
+          "denominator": "5"
+        },
+        "firstRightSquared": {
+          "numerator": "48",
+          "denominator": "25"
+        },
+        "firstConditionHoldsGivenUniqueAandB": false
+      },
+      {
+        "index": 5,
+        "mark": "⑤",
+        "k": {
+          "numerator": "32",
+          "denominator": "5"
+        },
+        "positiveK": true,
+        "firstLeftSquared": {
+          "numerator": "96",
+          "denominator": "5"
+        },
+        "firstRightSquared": {
+          "numerator": "48",
+          "denominator": "25"
+        },
+        "firstConditionHoldsGivenUniqueAandB": false
+      }
+    ],
+    "threeOriginalConditionChecks": {
+      "firstBothSidesPositive": true,
+      "firstLeftSquared": {
+        "numerator": "48",
+        "denominator": "25"
+      },
+      "firstRightSquared": {
+        "numerator": "48",
+        "denominator": "25"
+      },
+      "secondEquivalentAfterMultiplyingPositive2Sqrt5": {
+        "b": {
+          "numerator": "10",
+          "denominator": "1"
+        },
+        "twoTimes5": {
+          "numerator": "10",
+          "denominator": "1"
+        }
+      },
+      "thirdAB": {
+        "numerator": "8",
+        "denominator": "1"
+      }
+    },
+    "domainAndNonzero": "a,b,k are positive. 3k>0,3>0,5>0, so all roots exist and are positive. Denominator2sqrt5 and cancellation factor sqrt3 are positive, and b10 used as a divisor is nonzero. All finite decimals are exact rationals, not floating approximations.",
+    "existence": "The explicitly obtained positive triple a4/5,b10,k16/25 satisfies every printed condition. Equal positive squares in first equation certify the original principal-root equality, not an extra negative branch.",
+    "uniqueness": "Second equation fixes b via nonzero denominator; ab8 with b10 fixes a; sqrt3k=sqrt3*sqrtk and sqrt3>0 then fixes sqrtk=a>0 and hence k=a^2. No other positive triple.",
+    "studentMethod": "Multiply by a positive constant radical, use sqrt5*sqrt5=5, divide by the nonzero rational10, use sqrt(3k)=sqrt3*sqrtk for k>0 and the definition of a square root. This is2015 M3 radical arithmetic/definitions plus previous signed/rational arithmetic and simple equation relations, not a general high-school radical-equation algorithm.",
+    "units": "All variables and choices are dimensionless; no length/unit is supplied or inferred."
+  },
+  "all5OptionsChecked": true,
+  "currentAuthorAnswerUnexposed": true,
+  "sourceAnswerOracleUsed": false,
+  "dbApiWrites": 0,
+  "newWorkersOrWorktrees": 0,
+  "modelUnchanged": true,
+  "noApprovalCountIncrease": true
+}
