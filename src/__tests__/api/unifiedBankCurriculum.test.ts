@@ -189,6 +189,53 @@ const query = (extra: Record<string, string> = {}) =>
   });
 
 describe("S2 curriculum demand reads", () => {
+  it("returns zero for elementary grade 1 and eligible textbooks for grade 3 through the authorized route", async () => {
+    await seedBuilderSpeedFixture(8);
+    const first = await db.unit.update({
+      where: { id: MOCK_UNITS[0].id },
+      data: {
+        grade: "초1",
+        orderIndex: 1,
+      },
+    });
+    const third = await db.unit.update({
+      where: { id: MOCK_UNITS[2].id },
+      data: {
+        grade: "초3",
+        orderIndex: 3,
+      },
+    });
+    // Fixture row 7 is an approved, directly usable short-answer textbook question.
+    await db.problem.update({
+      where: { id: builderId(7) },
+      data: { unitId: third.id },
+    });
+    await db.problem.update({
+      where: { id: builderId(2) },
+      data: { unitId: first.id, source: "manual" },
+    });
+    const params = query({
+      ...Object.fromEntries(builderParams({ sourceGroup: "school_textbook" })),
+      availability: "1",
+    });
+    access.mockResolvedValue({
+      user: { id: "10000000-0000-4000-8000-000000000001" },
+    });
+    const response = await studioGet(
+      new Request(`http://localhost/api/studio/problems?${params}`),
+    );
+    expect(response.status).toBe(200);
+    const result = unifiedBankCurriculumSchema.parse(await response.json());
+    expect(result.gradeCounts).toMatchObject({ 초1: 0, 초3: 1 });
+    const scopeParams = new URLSearchParams(params);
+    scopeParams.delete("availability");
+    scopeParams.set("view", "scope-counts");
+    scopeParams.set("unitIds", `${first.id},${third.id}`);
+    const counts = await loadQuestionScopeCounts(scopeParams);
+    expect(counts.unitCounts[first.id] ?? 0).toBe(0);
+    expect(counts.unitCounts[third.id]).toBe(1);
+  });
+
   it("keeps legacy strict response shape and treats absent availability as unknown", async () => {
     const legacy = await loadUnifiedBankCurriculum(query());
     expect(Object.keys(legacy)).toEqual([
