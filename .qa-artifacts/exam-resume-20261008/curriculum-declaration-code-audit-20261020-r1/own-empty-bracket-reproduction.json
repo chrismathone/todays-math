@@ -1,0 +1,467 @@
+{
+  "total": 81,
+  "passed": 68,
+  "failed": [
+    {
+      "id": "empty-bracket/0/0",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-bracket/0/1",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-bracket/0/2",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-bracket/1/0",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-bracket/1/1",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-bracket/1/2",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-bracket/2/0",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-bracket/2/1",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-bracket/2/2",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "actual-bind-empty-declaration-conflict",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "synthetic-only-malformed-declaration-grade-held",
+      "passed": false,
+      "expected": false,
+      "actual": true
+    },
+    {
+      "id": "actualCLI-malformed-freeze-reject",
+      "passed": false,
+      "expected": true,
+      "actual": false
+    },
+    {
+      "id": "actualCLI-malformed-freeze-no-output",
+      "passed": false,
+      "expected": false,
+      "actual": true
+    }
+  ],
+  "rows": [
+    {
+      "id": "empty-bracket/0/0",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-nonapproval/0/0",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/0/1",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-nonapproval/0/1",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/0/2",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-nonapproval/0/2",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/0/3",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/0/3",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/0/4",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/0/4",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/0/5",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/0/5",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/1/0",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-nonapproval/1/0",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/1/1",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-nonapproval/1/1",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/1/2",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-nonapproval/1/2",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/1/3",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/1/3",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/1/4",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/1/4",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/1/5",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/1/5",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/2/0",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-nonapproval/2/0",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/2/1",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-nonapproval/2/1",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/2/2",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "empty-nonapproval/2/2",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/2/3",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/2/3",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/2/4",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/2/4",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/2/5",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/2/5",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/3/0",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/3/0",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/3/1",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/3/1",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/3/2",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/3/2",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/3/3",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/3/3",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/3/4",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/3/4",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/3/5",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/3/5",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/4/0",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/4/0",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/4/1",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/4/1",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/4/2",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/4/2",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/4/3",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/4/3",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/4/4",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/4/4",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/4/5",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/4/5",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/5/0",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/5/0",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/5/1",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/5/1",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/5/2",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/5/2",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/5/3",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/5/3",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/5/4",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/5/4",
+      "passed": true
+    },
+    {
+      "id": "empty-bracket/5/5",
+      "passed": true
+    },
+    {
+      "id": "empty-nonapproval/5/5",
+      "passed": true
+    },
+    {
+      "id": "actual-bind-empty-declaration-conflict",
+      "passed": false,
+      "expected": "conflict",
+      "actual": "consistent-as-declared"
+    },
+    {
+      "id": "actual-bind-no-semantic-approval",
+      "passed": true
+    },
+    {
+      "id": "actual-bind-no-load-permission",
+      "passed": true
+    },
+    {
+      "id": "synthetic-only-malformed-declaration-grade-held",
+      "passed": false,
+      "expected": false,
+      "actual": true
+    },
+    {
+      "id": "synthetic-still-no-load",
+      "passed": true
+    },
+    {
+      "id": "synthetic-still-no-final",
+      "passed": true
+    },
+    {
+      "id": "actualCLI-malformed-freeze-reject",
+      "passed": false,
+      "expected": true,
+      "actual": false
+    },
+    {
+      "id": "actualCLI-malformed-freeze-no-output",
+      "passed": false,
+      "expected": false,
+      "actual": true
+    },
+    {
+      "id": "original-candidate-preserved",
+      "passed": true
+    }
+  ],
+  "fixture": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-declaration-code-audit-20261020-r1\\own-empty-bracket-candidate.local.json",
+    "sha256": "834a0ac9ad9dce42c85442c7467927addf95d68f94004525c81e832d59292384",
+    "originalCandidateSHA256": "2ea2029518ae1e57a75578106f1bca058f74a2a6c4411ae863cb43b0914d1f53"
+  },
+  "actualComparison": {
+    "comparisonPerformed": true,
+    "conflicts": [],
+    "curriculumApproved": false,
+    "permitsLoad": false,
+    "status": "consistent-as-declared"
+  },
+  "syntheticGradeWiring": {
+    "mathematicalVerified": true,
+    "gradeReviewed": true,
+    "overallVerified": false,
+    "loadable": false,
+    "reasons": [
+      "native-exam-twin-provenance-not-implemented"
+    ],
+    "productionWrites": false
+  },
+  "actualCLI": {
+    "exit": 0,
+    "stdout": "{\"authoredFrozen\":1,\"packageDigest\":\"a917d85d469f59f82548296d32b75552f659573ec1273cb6ddf5e3b5ca344275\",\"loadable\":0}\n",
+    "stderr": "",
+    "outputExists": true,
+    "manifestSHA256": "785bfa835b83243d36e784cd16d7b4bb15e346d7487a444870b195960b9cc145"
+  },
+  "classification": "One empty bracket normalization gap. Empty [] remains a literal nonempty token because wrapper regex requires+; [ ] normalizes to empty and conflicts. Matching empty wrappers falsely consistent, binder/freeze do not hold it; synthetic external all-green report can retain gradeReviewed. Nonapproval flags, native/global release holds stay false. Not evidence of semantic grade permission, actual released content or a DB route.",
+  "limits": "Only OWN copied authored q02 fixture mutated; no actual source, candidate/raw/report edits. Synthetic rebound all-green is a labelled wiring test, not authentic review or source-code modification. Generated own local candidate/package not Git staged."
+}

@@ -1,0 +1,111 @@
+{
+  "audit": "Curriculum explicit declaration comparator and actual bind/freeze/collector wiring independent R1 code audit",
+  "status": "technical-hold",
+  "scopeSHA256": "7d075b93df77eff24ea5530a0d7b5afd89a9be77f1f805dfbdf44c4353cc1728",
+  "ownControls": {
+    "recordedAssertions": 2642,
+    "recordedPassed": 2602,
+    "recordedFailed": 40,
+    "duplicateAssertionsExcluded": 4,
+    "duplicatePassedExcluded": 3,
+    "duplicateFailedExcluded": 1,
+    "uniqueAssertions": 2638,
+    "uniquePassed": 2599,
+    "uniqueFailed": 39,
+    "duplicateDefinition": "Four empty-wrapper status pairs duplicate matrix rows: primary/declaration each {space-trimmed-empty-brackets,inner-space-empty-brackets}. All executions retained.",
+    "directMatrixAndOtherControls": 2557,
+    "additionalEmptyBracketControls": 81,
+    "actualCurrentAndStaleCollectorControls": 4,
+    "uniqueUnderlyingFindings": 1,
+    "failureInterpretation": "Initial27oracle mismatches:1false-consistent empty-bracket result +26malformed-vs-absent conflict-reason distinctions. Additional13failures include9related direct cases, binder, synthetic-grade, actualCLI exit/output;1direct failure duplicated above. Not39or40distinct bugs.",
+    "parentTestsRunOrCredited": 0
+  },
+  "finding": {
+    "id": "CURRICULUM-R1-empty-bracket-normalization",
+    "status": "technical-hold",
+    "observed": "Both explicit lists [\" [] \"] (or [] without inner whitespace) return consistent-as-declared. [\"[ ]\"] strips wrapper and becomes empty, thus conflict. Wrapper regex requires at least one character inside brackets, leaving bare[] as a nonempty literal.",
+    "oracleBoundary": "Independent oracle treats an empty bracket wrapper as an empty/malformed explicit code, consistent with existing test grouping of [\" [] \"] among malformed declarations. This is a bounded empty-wrapper normalization issue, not general code-registry/grade-law validation; unknown nonempty matching strings are deliberately only consistent-as-declared.",
+    "actualBind": "Actual root bindCandidate on OWN q02copy reports structurally valid with consistent-as-declared for both empty-placeholder lists. Original input unchanged.",
+    "actualFreeze": "Actual root CLI on OWN copied q02fixture exits0 and writes only OWN local frozen package. Expected malformed metadata hold before output did not occur. Normal actualR1conflicts still exit1 before output.",
+    "syntheticGradeWiring": "Labelled synthetic all-green external report with correct new binding leaves gradeReviewedtrue on malformed fixture. This is wiring evidence only, not an authentic student review/actual grade release.",
+    "nonApprovalAndRelease": "curriculumApprovedfalse/permitsLoadfalse; overallVerifiedfalse/loadablefalse/native-not-implemented hold remains even with forged externalgates. No DB/public/source/rights approval.",
+    "evidenceSHA256": "dbe4f96a031de39d908bd5c41564a8f057d3f52f387cec6f6ac21b3c94ecaeb9",
+    "sourceNotEdited": true,
+    "suggestionOnly": "In a future separately scoped revision, normalize empty bracket wrappers consistently and reject normalized-empty entries before comparison/freeze. Preserve current frozen evidence."
+  },
+  "verifiedBoundaries": {
+    "comparison": "Explicit primary subset of declared with trim/single wrapper normalization, ordering/duplicates/subsets/absent fields/malformed list types/sparse and empty fields, unknown matching tokens and no mutation independently checked. Missing fields are not-comparable, not semantic approval.",
+    "wiring": "Actual candidatePack imports comparator and stores comparison in binding validation. evaluateReview conflict enters curriculum reason, retains math but holds grade. freeze checks all bindings before newDirectory. CurrentPackage verifies immutable file/candidate/student/assets; collector uses actual raw/report solve digest.",
+    "actualR1Collector": {
+      "math": 2,
+      "grade": 0,
+      "final": 0,
+      "loadable": 0
+    },
+    "actualR2OldReportCollector": {
+      "math": 0,
+      "grade": 0,
+      "staleDigestReasonObserved": true
+    },
+    "actualR2FreshReportCollector": {
+      "math": 2,
+      "grade": 2,
+      "final": 0,
+      "loadable": 0
+    },
+    "syntheticControls": "Synthetic rebinding/allGreen/forged gate tests are explicitly separate from actual current2review. No semantic grade decision inferred from helper statuses."
+  },
+  "existing166MetadataOnly": {
+    "candidateCount": 166,
+    "comparable": 25,
+    "notComparable": 141,
+    "explicitConflicts": 0,
+    "allCandidateHashesMatchIndex": true,
+    "allBeforeAfterPreserved": true,
+    "limits": "Only declared curriculum metadata and byte hashes inspected; no other candidate answers/math/figures evaluated or permission inferred.166selected rows unchanged;2Gachang R2metadata revisions not2newvariants."
+  },
+  "newMetadataReview": {
+    "receiptSHA256": "3a447e22e2e25b7f426c79fe77dba4a0bf54625b2bfdcd793894b9f69a6276fc",
+    "reports": {
+      "q01": "8b1c983fde98fab6f683bf6d971ef15ca1cf62e0feb86b72255830e89840bc36",
+      "q02": "b910d323bb5fb9a5a23b4e30d4be8c94d40bb3d508ef243145f0cc8404657fe1"
+    },
+    "metadataChecksPassed": 46,
+    "all7SurfacesCurrentBasisEach": true,
+    "mathGradeContentFinal": [
+      2,
+      2,
+      0,
+      0
+    ]
+  },
+  "preservation": {
+    "hashBindings": 239,
+    "rootCode": 4,
+    "rootDependencies": 17,
+    "rulesData": 1,
+    "suppliedMetadata": 3,
+    "current166HashFiles": 166,
+    "beforeAfterEqual": true,
+    "sourceOrProductionEdits": 0,
+    "R1RawReportsPreserved": true,
+    "onlyOWNFixtureMutation": true,
+    "localMalformedCandidateAndFrozenFixtureNotGitStaged": true,
+    "NOriginalsRawParserImagesOrPrivateOtherScopeReads": 0,
+    "APIModelDBCalls": 0
+  },
+  "limits": [
+    "Comparison consistency never proves actual grade/law/source/rights. Missing declarations do not become measured matches.",
+    "Plain JSON artifact contract; no hostile getter/proxy/executable-object sandbox proof.",
+    "166checks are metadata/hash only, not166curriculum approvals or generic normalization certification.",
+    "Actual malformed freeze writes only OWN helper fixture package; not parent production extraction/write or release.",
+    "Current code remains frozen; no self-fix. Original local source context remains untracked/outside audit."
+  ],
+  "artifacts": {
+    "controlsSHA256": "1dd9575fd1a1aac5733e37f59e55911ea6466ecb654cca02db43dd5707db8c3d",
+    "reproSHA256": "dbe4f96a031de39d908bd5c41564a8f057d3f52f387cec6f6ac21b3c94ecaeb9",
+    "currentStaleCollectorSHA256": "7eae292459b54f905a93e2c6c5427c8acaee49c08515912e18388c3e644dd92a",
+    "beforeSHA256": "4d1eae93a4c234bc7fb61ac6e3f22e2f49ad6d9d46c242465a6486ca975a1863",
+    "afterSHA256": "4d1eae93a4c234bc7fb61ac6e3f22e2f49ad6d9d46c242465a6486ca975a1863"
+  }
+}
