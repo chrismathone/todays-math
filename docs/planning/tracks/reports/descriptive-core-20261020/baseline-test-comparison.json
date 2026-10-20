@@ -1,0 +1,667 @@
+[
+  {
+    "file": "src/__tests__/unit/examWiringAudit.test.ts",
+    "parent": {
+      "total": 13,
+      "failed": 1,
+      "titles": [
+        "⭐ 기출을 넣는 경로 중 배선 없는 곳이 하나도 없다"
+      ]
+    },
+    "baseline": {
+      "total": 13,
+      "failed": 1,
+      "titles": [
+        "⭐ 기출을 넣는 경로 중 배선 없는 곳이 하나도 없다"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/noRmSync.test.ts",
+    "parent": {
+      "total": 1,
+      "failed": 1,
+      "titles": [
+        "저장소 어디에도 `rmSync` 호출이 없다"
+      ]
+    },
+    "baseline": {
+      "total": 1,
+      "failed": 1,
+      "titles": [
+        "저장소 어디에도 `rmSync` 호출이 없다"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/exportPerMenu.test.ts",
+    "parent": {
+      "total": 59,
+      "failed": 3,
+      "titles": [
+        "POST /api/exam/practice/resolve는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다",
+        "GET /api/exam/practice는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다",
+        "POST /api/exam/practice는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다"
+      ]
+    },
+    "baseline": {
+      "total": 59,
+      "failed": 3,
+      "titles": [
+        "POST /api/exam/practice/resolve는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다",
+        "GET /api/exam/practice는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다",
+        "POST /api/exam/practice는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/examStudyIntegration.test.ts",
+    "parent": {
+      "total": 7,
+      "failed": 1,
+      "titles": [
+        "runs authenticated API → actual math → strict Python SVG → reproducible output confirmation"
+      ]
+    },
+    "baseline": {
+      "total": 7,
+      "failed": 1,
+      "titles": [
+        "runs authenticated API → actual math → strict Python SVG → reproducible output confirmation"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/proxyStudentGate.test.ts",
+    "parent": {
+      "total": 14,
+      "failed": 2,
+      "titles": [
+        "학생 학습 화면 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐",
+        "지나가는 것은 바꾸기 화면·바꾸기 API · 나가기 · 세션 · 브랜드 · 랩실 읽기뿐"
+      ]
+    },
+    "baseline": {
+      "total": 14,
+      "failed": 2,
+      "titles": [
+        "학생 학습 화면 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐",
+        "지나가는 것은 바꾸기 화면·바꾸기 API · 나가기 · 세션 · 브랜드 · 랩실 읽기뿐"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/examStudyCompletion.test.ts",
+    "parent": {
+      "total": 29,
+      "failed": 26,
+      "titles": [
+        "fulfills every selected demand for 'daeryun-m1'",
+        "fulfills every selected demand for 'daeryun-m2'",
+        "fulfills every selected demand for 'kyungmyung-m1'",
+        "fulfills every selected demand for 'kyungmyung-m3'",
+        "fulfills every selected demand for 'kyungshin-common2'",
+        "delivers the formerly missing daeryun-m1 / model.doubling-time-offset without component substitution",
+        "delivers the formerly missing daeryun-m1 / model.circle-revolution-percentage without component substitution",
+        "delivers the formerly missing daeryun-m1 / number.coprime-symbolic-sum without component substitution",
+        "delivers the formerly missing daeryun-m2 / coord.intercept-integer-area without component substitution",
+        "delivers the formerly missing daeryun-m2 / graph.translated-coefficient-reuse without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.candidate-verification without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.equality-truth without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.equation-classification without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.linear-model without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.linear-simplify without component substitution",
+        "delivers the formerly missing kyungmyung-m3 / graph.translated-coefficient-reuse without component substitution",
+        "delivers the formerly missing kyungmyung-m3 / written.rectangle-domain without component substitution",
+        "delivers the formerly missing kyungshin-common2 / function.radical-inverse-circle without component substitution",
+        "keeps the approved per-menu output rule for bank",
+        "keeps the approved per-menu output rule for arithmetic",
+        "keeps the approved per-menu output rule for studio",
+        "keeps the approved per-menu output rule for library",
+        "keeps the approved per-menu output rule for conceptBlank",
+        "bounds actual count-question choices for reproduced seed 71",
+        "bounds actual count-question choices for reproduced seed 20261019",
+        "keeps native writing unavailable as short answer without silently changing the requested format"
+      ]
+    },
+    "baseline": {
+      "total": 29,
+      "failed": 26,
+      "titles": [
+        "fulfills every selected demand for 'daeryun-m1'",
+        "fulfills every selected demand for 'daeryun-m2'",
+        "fulfills every selected demand for 'kyungmyung-m1'",
+        "fulfills every selected demand for 'kyungmyung-m3'",
+        "fulfills every selected demand for 'kyungshin-common2'",
+        "delivers the formerly missing daeryun-m1 / model.doubling-time-offset without component substitution",
+        "delivers the formerly missing daeryun-m1 / model.circle-revolution-percentage without component substitution",
+        "delivers the formerly missing daeryun-m1 / number.coprime-symbolic-sum without component substitution",
+        "delivers the formerly missing daeryun-m2 / coord.intercept-integer-area without component substitution",
+        "delivers the formerly missing daeryun-m2 / graph.translated-coefficient-reuse without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.candidate-verification without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.equality-truth without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.equation-classification without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.linear-model without component substitution",
+        "delivers the formerly missing kyungmyung-m1 / algebra.linear-simplify without component substitution",
+        "delivers the formerly missing kyungmyung-m3 / graph.translated-coefficient-reuse without component substitution",
+        "delivers the formerly missing kyungmyung-m3 / written.rectangle-domain without component substitution",
+        "delivers the formerly missing kyungshin-common2 / function.radical-inverse-circle without component substitution",
+        "keeps the approved per-menu output rule for bank",
+        "keeps the approved per-menu output rule for arithmetic",
+        "keeps the approved per-menu output rule for studio",
+        "keeps the approved per-menu output rule for library",
+        "keeps the approved per-menu output rule for conceptBlank",
+        "bounds actual count-question choices for reproduced seed 71",
+        "bounds actual count-question choices for reproduced seed 20261019",
+        "keeps native writing unavailable as short answer without silently changing the requested format"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/api/basket.test.ts",
+    "parent": {
+      "total": 33,
+      "failed": 26,
+      "titles": [
+        "담으면 «담은 뒤의 바구니»가 통째로 온다 — 화면이 다시 안 물어도 된다",
+        "🔴 적힌 수의 **합이 곧 `total`** 이다",
+        "🔴 **멱등** — 같은 문항을 두 번 담아도 한 칸이고 차례가 안 바뀐다",
+        "🔴 차례는 **최댓값+1** 이다 — 구멍이 있어도 부딪히지 않는다",
+        "공유 풀이면 **남의 문항도** 담을 수 있다 (D-31)",
+        "🔴 볼 수 없는 남의 private 문항은 담을 수 없다 (404)",
+        "없는 문항은 404",
+        "🔴 한 문항을 빼도 **남은 차례를 다시 안 매긴다**",
+        "🔴 응답이 이미 «지운 뒤»의 분포다 — 바가 옛 수를 말하지 않게",
+        "problemId 없이 부르면 통째로 비운다",
+        "problemId 가 uuid 가 아니면 400 — 조용히 통째로 비우지 않는다",
+        "🔴 남이 담은 것은 내 바구니에 안 보인다",
+        "🔴 내가 비워도 남의 바구니는 그대로다",
+        "🔴 구멍이 있어도 시험지 문항 번호는 **담은 차례대로 1..N**",
+        "🔴 범위는 **담긴 문항이** 정한다 — 담은 차례가 아니다",
+        "🔴 시험지를 만들면 바구니가 비워진다",
+        "🔴 마지막 걸음이 실패하면 **시험지도 안 남는다** (원자성)",
+        "남의 반으로는 만들 수 없다 (403)",
+        "없는 반이면 404",
+        "날짜 형식이 틀리면 400",
+        "출제가 잠긴 문항은 담기지 않는다 — 오늘 1,751건이 이 갈래다",
+        "검수를 통과하지 않은 문항은 담기지 않는다 (D-22)",
+        "정답이 없는 문항은 담기지 않는다 — 정답지가 빈다",
+        "자격이 있으면 담긴다 — **반증 쪽**(가드가 멀쩡한 것을 막지 않는가)",
+        "🔴 담은 **뒤에** 잠긴 문항은 시험지가 되지 않는다 — 가드가 생기기 전에 담긴 행도 이 길로 막힌다",
+        "담긴 것이 전부 자격을 갖추면 시험지가 만들어진다 — **반증 쪽**"
+      ]
+    },
+    "baseline": {
+      "total": 33,
+      "failed": 26,
+      "titles": [
+        "담으면 «담은 뒤의 바구니»가 통째로 온다 — 화면이 다시 안 물어도 된다",
+        "🔴 적힌 수의 **합이 곧 `total`** 이다",
+        "🔴 **멱등** — 같은 문항을 두 번 담아도 한 칸이고 차례가 안 바뀐다",
+        "🔴 차례는 **최댓값+1** 이다 — 구멍이 있어도 부딪히지 않는다",
+        "공유 풀이면 **남의 문항도** 담을 수 있다 (D-31)",
+        "🔴 볼 수 없는 남의 private 문항은 담을 수 없다 (404)",
+        "없는 문항은 404",
+        "🔴 한 문항을 빼도 **남은 차례를 다시 안 매긴다**",
+        "🔴 응답이 이미 «지운 뒤»의 분포다 — 바가 옛 수를 말하지 않게",
+        "problemId 없이 부르면 통째로 비운다",
+        "problemId 가 uuid 가 아니면 400 — 조용히 통째로 비우지 않는다",
+        "🔴 남이 담은 것은 내 바구니에 안 보인다",
+        "🔴 내가 비워도 남의 바구니는 그대로다",
+        "🔴 구멍이 있어도 시험지 문항 번호는 **담은 차례대로 1..N**",
+        "🔴 범위는 **담긴 문항이** 정한다 — 담은 차례가 아니다",
+        "🔴 시험지를 만들면 바구니가 비워진다",
+        "🔴 마지막 걸음이 실패하면 **시험지도 안 남는다** (원자성)",
+        "남의 반으로는 만들 수 없다 (403)",
+        "없는 반이면 404",
+        "날짜 형식이 틀리면 400",
+        "출제가 잠긴 문항은 담기지 않는다 — 오늘 1,751건이 이 갈래다",
+        "검수를 통과하지 않은 문항은 담기지 않는다 (D-22)",
+        "정답이 없는 문항은 담기지 않는다 — 정답지가 빈다",
+        "자격이 있으면 담긴다 — **반증 쪽**(가드가 멀쩡한 것을 막지 않는가)",
+        "🔴 담은 **뒤에** 잠긴 문항은 시험지가 되지 않는다 — 가드가 생기기 전에 담긴 행도 이 길로 막힌다",
+        "담긴 것이 전부 자격을 갖추면 시험지가 만들어진다 — **반증 쪽**"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/api/adminSeesAll.test.ts",
+    "parent": {
+      "total": 46,
+      "failed": 5,
+      "titles": [
+        "남의 반에 출제한다 — 🔴 시험지 소유자는 **반의 소유자**다(역할 계정 화면에서도 보인다)",
+        "남의 시험지 문항을 바꾸고 확정하고 인쇄한다",
+        "전 반을 돈다 — 시험지는 그 반 소유자 것",
+        "장바구니 — 남의 바구니는 안 보이고, 내 바구니로 남의 반 시험지를 못 만든다",
+        "장바구니 — 남의 바구니는 안 보이고, 내 바구니로 남의 반 시험지를 못 만든다"
+      ]
+    },
+    "baseline": {
+      "total": 46,
+      "failed": 5,
+      "titles": [
+        "남의 반에 출제한다 — 🔴 시험지 소유자는 **반의 소유자**다(역할 계정 화면에서도 보인다)",
+        "남의 시험지 문항을 바꾸고 확정하고 인쇄한다",
+        "전 반을 돈다 — 시험지는 그 반 소유자 것",
+        "장바구니 — 남의 바구니는 안 보이고, 내 바구니로 남의 반 시험지를 못 만든다",
+        "장바구니 — 남의 바구니는 안 보이고, 내 바구니로 남의 반 시험지를 못 만든다"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/api/autoDraftCron.test.ts",
+    "parent": {
+      "total": 21,
+      "failed": 10,
+      "titles": [
+        "계획이 있는 학생에게 초안을 세운다 — 진도 기록을 기다리지 않는다",
+        "초안까지만 — 확정·인쇄를 부르지 않는다",
+        "같은 날 두 번 돌려도 하나다 — 이미 있으면 «already» 로 건너뛴다",
+        "회차 기록에 만든 수·건너뛴 까닭이 남는다",
+        "🔴 합계는 끝에서 고쳐 쓴다 — 회차 행이 응답과 같다(합계 0 으로 남지 않는다)",
+        "🔴 건너뛴 학생엔 이 회차의 시험지가 없다 — 문항 부족 학생 · 이미 있던 시험지는 그대로",
+        "같은 날 두 번 돌면 두 번째 회차엔 이어진 시험지가 없다 — 첫 회차 id 는 그대로",
+        "🔴 초안을 세운 뒤 던지면 회차 행을 남기고 거기까지의 합계를 적는다 — 끊긴 회차는 created + skipped < targets",
+        "같은 회차에서 앞 학생이 쓴 문항은 뒤 학생의 상한에서 빠진다(D-20)",
+        "문항 0건 차시로 걸어 들어가지 않고 마지막 차시로 초안을 세운다"
+      ]
+    },
+    "baseline": {
+      "total": 21,
+      "failed": 10,
+      "titles": [
+        "계획이 있는 학생에게 초안을 세운다 — 진도 기록을 기다리지 않는다",
+        "초안까지만 — 확정·인쇄를 부르지 않는다",
+        "같은 날 두 번 돌려도 하나다 — 이미 있으면 «already» 로 건너뛴다",
+        "회차 기록에 만든 수·건너뛴 까닭이 남는다",
+        "🔴 합계는 끝에서 고쳐 쓴다 — 회차 행이 응답과 같다(합계 0 으로 남지 않는다)",
+        "🔴 건너뛴 학생엔 이 회차의 시험지가 없다 — 문항 부족 학생 · 이미 있던 시험지는 그대로",
+        "같은 날 두 번 돌면 두 번째 회차엔 이어진 시험지가 없다 — 첫 회차 id 는 그대로",
+        "🔴 초안을 세운 뒤 던지면 회차 행을 남기고 거기까지의 합계를 적는다 — 끊긴 회차는 created + skipped < targets",
+        "같은 회차에서 앞 학생이 쓴 문항은 뒤 학생의 상한에서 빠진다(D-20)",
+        "문항 0건 차시로 걸어 들어가지 않고 마지막 차시로 초안을 세운다"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/api/autoDraftRunLink.test.ts",
+    "parent": {
+      "total": 7,
+      "failed": 6,
+      "titles": [
+        "🔴 단추 길(POST /api/tests/generate)로 선 시험지는 칸이 비어 있다 — 같은 날 아침 회차가 있어도",
+        "응답 계약에는 칸이 없다 — 화면은 daily-review 의 autoDraft 만 본다",
+        "서버 안 인자로 넘긴 회차 id 만 시험지에 적힌다",
+        "인자를 안 넘기면 칸이 비어 있다",
+        "없는 회차 id 는 FK 가 막는다(P2003) — 시험지도 문항도 남지 않는다",
+        "회차 행을 지우면 시험지는 남고 칸만 빈다 — ON DELETE SET NULL"
+      ]
+    },
+    "baseline": {
+      "total": 7,
+      "failed": 6,
+      "titles": [
+        "🔴 단추 길(POST /api/tests/generate)로 선 시험지는 칸이 비어 있다 — 같은 날 아침 회차가 있어도",
+        "응답 계약에는 칸이 없다 — 화면은 daily-review 의 autoDraft 만 본다",
+        "서버 안 인자로 넘긴 회차 id 만 시험지에 적힌다",
+        "인자를 안 넘기면 칸이 비어 있다",
+        "없는 회차 id 는 FK 가 막는다(P2003) — 시험지도 문항도 남지 않는다",
+        "회차 행을 지우면 시험지는 남고 칸만 빈다 — ON DELETE SET NULL"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/api/test.test.ts",
+    "parent": {
+      "total": 22,
+      "failed": 6,
+      "titles": [
+        "정상 요청이면 draft 테스트와 문항을 생성한다(201, shortfall=[])",
+        "🔴 확인테스트에 범위를 직접 주면 만들어진다 — 화면이 「고치기로 직접 고르세요」라고 안내하는 그 길",
+        "🔴 진도가 있는 반이어도 **요청한 범위**가 시험지에 적힌다",
+        "교체하면 modified=true, 해당 문항 replaced=true가 된다",
+        "교체는 같은 단원 안에서만 한다 — 범위 밖 문항이 들어오지 않는다",
+        "최근 14일 내 이미 출제된 문제는 교체 후보에서 제외된다(D-20)"
+      ]
+    },
+    "baseline": {
+      "total": 22,
+      "failed": 6,
+      "titles": [
+        "정상 요청이면 draft 테스트와 문항을 생성한다(201, shortfall=[])",
+        "🔴 확인테스트에 범위를 직접 주면 만들어진다 — 화면이 「고치기로 직접 고르세요」라고 안내하는 그 길",
+        "🔴 진도가 있는 반이어도 **요청한 범위**가 시험지에 적힌다",
+        "교체하면 modified=true, 해당 문항 replaced=true가 된다",
+        "교체는 같은 단원 안에서만 한다 — 범위 밖 문항이 들어오지 않는다",
+        "최근 14일 내 이미 출제된 문제는 교체 후보에서 제외된다(D-20)"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/api/defaultReviewRange.test.ts",
+    "parent": {
+      "total": 6,
+      "failed": 1,
+      "titles": [
+        "확정하지 않은 초안 확인테스트는 기본 범위를 밀어내지 않는다"
+      ]
+    },
+    "baseline": {
+      "total": 6,
+      "failed": 1,
+      "titles": [
+        "확정하지 않은 초안 확인테스트는 기본 범위를 밀어내지 않는다"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/api/questionBasket.test.ts",
+    "parent": {
+      "total": 5,
+      "failed": 4,
+      "titles": [
+        "shows an old double-format basket as one unresolved question and does not clean it on GET",
+        "rejects an alternate format as an extra item; an explicit switch preserves its seat",
+        "keeps the basket and creates no test when the actual selection became stale",
+        "blocks duplicate-format issuance even for a legacy request without new metadata"
+      ]
+    },
+    "baseline": {
+      "total": 5,
+      "failed": 4,
+      "titles": [
+        "shows an old double-format basket as one unresolved question and does not clean it on GET",
+        "rejects an alternate format as an extra item; an explicit switch preserves its seat",
+        "keeps the basket and creates no test when the actual selection became stale",
+        "blocks duplicate-format issuance even for a legacy request without new metadata"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/examStudyRoutes.test.ts",
+    "parent": {
+      "total": 22,
+      "failed": 9,
+      "titles": [
+        "authorizes an approved teacher and keeps generated questions private",
+        "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+        "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+        "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+        "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+        "pins output to the same recipe and refuses a changed digest or empty generation",
+        "does not accept a figure when rendering dropped required dimensions",
+        "limits simultaneous Python calls to two",
+        "refuses oversized SVG instead of delivering a figureless replacement"
+      ]
+    },
+    "baseline": {
+      "total": 22,
+      "failed": 9,
+      "titles": [
+        "authorizes an approved teacher and keeps generated questions private",
+        "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+        "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+        "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+        "rejects original fields, unbounded bodies and duplicate JSON keys before generation",
+        "pins output to the same recipe and refuses a changed digest or empty generation",
+        "does not accept a figure when rendering dropped required dimensions",
+        "limits simultaneous Python calls to two",
+        "refuses oversized SVG instead of delivering a figureless replacement"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/api/questionDaily.test.ts",
+    "parent": {
+      "total": 3,
+      "failed": 1,
+      "titles": [
+        "issues actual choice rows and keeps that format on replacement"
+      ]
+    },
+    "baseline": {
+      "total": 3,
+      "failed": 1,
+      "titles": [
+        "issues actual choice rows and keeps that format on replacement"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/components/JeongtongHeader.test.tsx",
+    "parent": {
+      "total": 1,
+      "failed": 1,
+      "titles": [
+        "prints each exam field once in the table, including the semester"
+      ]
+    },
+    "baseline": {
+      "total": 1,
+      "failed": 1,
+      "titles": [
+        "prints each exam field once in the table, including the semester"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/components/ProblemSourceReference.test.tsx",
+    "parent": {
+      "total": 6,
+      "failed": 3,
+      "titles": [
+        "shows the same supplied reference in a bank card and its selected detail without a request",
+        "keeps a missing exam readable through its source code in the selected detail",
+        "omits the reference row in the selected detail when the response has none"
+      ]
+    },
+    "baseline": {
+      "total": 6,
+      "failed": 3,
+      "titles": [
+        "shows the same supplied reference in a bank card and its selected detail without a request",
+        "keeps a missing exam readable through its source code in the selected detail",
+        "omits the reference row in the selected detail when the response has none"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/components/mathgenTemplates.test.tsx",
+    "parent": {
+      "total": 12,
+      "failed": 3,
+      "titles": [
+        "renders workbook with real metadata and the unchanged crop",
+        "renders jaseup with real metadata and the unchanged crop",
+        "renders yuhyung with real metadata and the unchanged crop"
+      ]
+    },
+    "baseline": {
+      "total": 12,
+      "failed": 3,
+      "titles": [
+        "renders workbook with real metadata and the unchanged crop",
+        "renders jaseup with real metadata and the unchanged crop",
+        "renders yuhyung with real metadata and the unchanged crop"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/components/perProblemFractionView.test.tsx",
+    "parent": {
+      "total": 5,
+      "failed": 5,
+      "titles": [
+        "'초6 «(가분수)÷(분수)» — 해설이 «가분수»를 부른다'",
+        "'초4 받아내림 — 이름을 안 부른다(«고칩니다»)'",
+        "'초4 받아내림 — 본문이 «대분수»를 부른다'",
+        "'평범한 초5'",
+        "'중1'"
+      ]
+    },
+    "baseline": {
+      "total": 5,
+      "failed": 5,
+      "titles": [
+        "'초6 «(가분수)÷(분수)» — 해설이 «가분수»를 부른다'",
+        "'초4 받아내림 — 이름을 안 부른다(«고칩니다»)'",
+        "'초4 받아내림 — 본문이 «대분수»를 부른다'",
+        "'평범한 초5'",
+        "'중1'"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/components/mixedFractionScreens.test.tsx",
+    "parent": {
+      "total": 9,
+      "failed": 1,
+      "titles": [
+        "문제은행(/problems)"
+      ]
+    },
+    "baseline": {
+      "total": 9,
+      "failed": 1,
+      "titles": [
+        "문제은행(/problems)"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/arithmeticV2Geometry.test.ts",
+    "parent": {
+      "total": 12,
+      "failed": 1,
+      "titles": [
+        "projects saved SVG and degree answers without calling a geometry generator"
+      ]
+    },
+    "baseline": {
+      "total": 12,
+      "failed": 1,
+      "titles": [
+        "projects saved SVG and degree answers without calling a geometry generator"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/bankDecideMiddleLoader.test.ts",
+    "parent": {
+      "total": 2,
+      "failed": 1,
+      "titles": [
+        "등록 유형 전부 × 씨앗 세 개: 삼각비 18 객관식 외의 산출은 한 글자도 바뀌지 않는다"
+      ]
+    },
+    "baseline": {
+      "total": 2,
+      "failed": 1,
+      "titles": [
+        "등록 유형 전부 × 씨앗 세 개: 삼각비 18 객관식 외의 산출은 한 글자도 바뀌지 않는다"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/mathSrsQuickFence.test.ts",
+    "parent": {
+      "total": 8,
+      "failed": 1,
+      "titles": [
+        "문제은행·시험지·엔진·스크립트 쪽에서는 몇 단계를 돌아가도 quick 에 닿지 않는다"
+      ]
+    },
+    "baseline": {
+      "total": 8,
+      "failed": 1,
+      "titles": [
+        "문제은행·시험지·엔진·스크립트 쪽에서는 몇 단계를 돌아가도 quick 에 닿지 않는다"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/planDailyReview.test.ts",
+    "parent": {
+      "total": 22,
+      "failed": 1,
+      "titles": [
+        "오늘 진도 행이 없으면 examOrUnread — 원문 줄 그대로, 중복 제거"
+      ]
+    },
+    "baseline": {
+      "total": 22,
+      "failed": 1,
+      "titles": [
+        "오늘 진도 행이 없으면 examOrUnread — 원문 줄 그대로, 중복 제거"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  },
+  {
+    "file": "src/__tests__/unit/problemOrder.test.ts",
+    "parent": {
+      "total": 11,
+      "failed": 1,
+      "titles": [
+        "ProblemBank 의 모든 .sort( 는 compareProblemsForBank 를 지난다"
+      ]
+    },
+    "baseline": {
+      "total": 11,
+      "failed": 1,
+      "titles": [
+        "ProblemBank 의 모든 .sort( 는 compareProblemsForBank 를 지난다"
+      ]
+    },
+    "countsMatch": true,
+    "failedTitlesMatch": true
+  }
+]

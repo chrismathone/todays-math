@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-20",
+  "baseHead": "b553ad38f84e0b5fdec98359b2309ee855d2a657",
+  "focused": {
+    "files": 7,
+    "passed": 91,
+    "exitCode": 0
+  },
+  "decisionLogAfterFix": {
+    "files": 1,
+    "passed": 5,
+    "exitCode": 0
+  },
+  "typeCheckExitCode": 0,
+  "changedEslintExitCode": 0,
+  "affordanceExitCode": 0,
+  "diffCheckExitCode": 0,
+  "fullVitestBeforeDecisionHeaderFix": {
+    "files": 1643,
+    "failedFiles": 26,
+    "passedFiles": 1585,
+    "skippedFiles": 32,
+    "tests": 42557,
+    "failed": 121,
+    "passed": 42064,
+    "skipped": 371,
+    "exitCode": 1
+  },
+  "cleanHeadReproduction": {
+    "files": 25,
+    "failed": 120,
+    "passed": 256,
+    "failureNamesAndCountsMatch": true,
+    "timeoutFailures": 1,
+    "timeoutMilliseconds": 20000
+  },
+  "fullEslint": {
+    "errors": 275,
+    "warnings": 84,
+    "reportingFiles": 67,
+    "allReportingFilesUnchangedFromHead": true,
+    "exitCode": 1
+  },
+  "fullTestAdditionalProbeSweep": {
+    "total": 37,
+    "passed": 34,
+    "incomplete": [
+      {
+        "name": "probe-figure-dependent.ts",
+        "exitCode": 143,
+        "cause": "not established"
+      },
+      {
+        "name": "probe-middle-algebra-combo.ts",
+        "cause": "external corpus missing"
+      },
+      {
+        "name": "probe-middle-combo.ts",
+        "cause": "external corpus and vocabulary missing"
+      }
+    ],
+    "exitCode": 1,
+    "databaseRead": "Existing probe-figure-dependent.ts reads current problem records; no write API called."
+  },
+  "newDemo": {
+    "samples": 766,
+    "numericContextCombinations": 408,
+    "passedGates": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6"
+    ],
+    "detectedMutations": 4
+  },
+  "legacy": {
+    "definitions": 6,
+    "samples": 6060,
+    "mutationsDetected": 18,
+    "preservedCapturedPayloads": 30,
+    "note": "r1 is not promoted to r2; legacy failure gates remain reported"
+  },
+  "fullGreen": false,
+  "databaseWrites": false,
+  "schemaChanges": false,
+  "registered": false,
+  "staged": false,
+  "committed": false,
+  "pushed": false,
+  "nodeModulesSymlink": "/Users/pss/Desktop/creative/today_/node_modules",
+  "logs": {
+    "baseline-tests.md": "89cfdc83d95e2fa3bcdc6697e4d43006f82dfcaee2210d7644efb9ea119554b2",
+    "baseline-test-comparison.json": "9906c4388e2856585fadfc8a5401a040ae083593437d464764415e950bc48235",
+    "baseline-test-runs.json": "9b961336d60525a05d5411e83ec4185c6227f4ed790a4c50ad3b5359e9b3c694",
+    "focused-tests.log": "bad5ee16f4d7744b2f5cce74fe561e356c3a02fc2ecc606fd9bfbcc4f3822aec",
+    "decision-log-tests.log": "d3c1d7cfc79dc841df0a6c2baa16da42a8b1f4beb5f9c0f99b85ef403aeee7db",
+    "type-check.log": "2881382b1f820f44425e856eb724b0003c57f53af60c006e50e80ba0c28cd04f",
+    "eslint-full.log": "2d4d3ca300caabaf2f1e238f8087b245f76a8248b5cb1563e581274021cdf7d8",
+    "affordance.log": "61e076b712e40529657dcdaa0739098f96b23924dbfb598db8fa611f6df51be4",
+    "full-test-summary.log": "8d5ccc262f752aaa43818cf4103964f442377da52a527d07bbb6f2a399d45c4d"
+  }
+}
