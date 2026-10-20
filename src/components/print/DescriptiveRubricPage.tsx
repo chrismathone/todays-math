@@ -33,7 +33,13 @@ export function DescriptiveRubricPage({
       </header>
       <div className={styles.rubrics} data-descriptive-rubrics>
         {items.map(({ number, data }) => (
-          <section className={styles.rubric} key={number}>
+          <section
+            className={styles.rubric}
+            key={number}
+            data-dense-rubric={
+              data.rubric.criteria.length > 3 ? "true" : undefined
+            }
+          >
             <h3>
               문 {number} · 서술형{" "}
               <DescriptiveScore points={data.rubric.totalPoints} />

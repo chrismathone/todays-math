@@ -35,6 +35,10 @@ export default async function DescriptivePaperPage({
         templates.find((template) => template === params.template) ?? "jaseup"
       }
       columns={params.columns === "2" ? 2 : 1}
+      candidate={
+        typeof params.candidate === "string" ? params.candidate : undefined
+      }
+      sample={typeof params.sample === "string" ? params.sample : undefined}
     />
   );
 }

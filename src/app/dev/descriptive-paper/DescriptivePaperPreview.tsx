@@ -4,9 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { TestPrint } from "@/components/print/TestPrint";
 import { PastPaperPrint } from "@/components/print/PastPaperPrint";
 import type { TestPrintProblem } from "@/components/print/types";
-import { parseNativeDescriptiveProblem } from "@/contracts/nativeDescriptive.contract";
 import { toNativeDescriptivePrint } from "@/lib/print/descriptive";
-import fixture from "./rectangleFixture.json";
+import { batch1Specimens, pickBatch1Specimen } from "./batch1Specimens";
 import { WorksheetPrint } from "@/components/unified/print/WorksheetPrint";
 import {
   DEFAULT_PRINT_META,
@@ -15,22 +14,7 @@ import {
 } from "@/components/unified/print/types";
 import styles from "./DescriptivePaperPreview.module.css";
 
-// Keep the local fixture in the client module instead of repeatedly streaming
-// its large SVG and teacher payload through the dev route's Flight response.
-const authored = parseNativeDescriptiveProblem(fixture.problem);
-if (authored.revision !== 2) throw new Error("서술형 r2 견본이 필요합니다.");
-const problem: TestPrintProblem = {
-  id: authored.externalId,
-  orderIndex: 0,
-  content: authored.content,
-  answer: authored.answer,
-  solution: authored.solution,
-  questionType: "서술형",
-  figureSvg: fixture.figureSvg,
-  nativeDescriptive: toNativeDescriptivePrint(authored),
-};
-
-/** Only the unregistered fixture differs; the paper itself is the product renderer. */
+/** Only offline, unregistered specimens differ; all pages use product renderers. */
 export function DescriptivePaperPreview({
   paper,
   audience,
@@ -39,6 +23,8 @@ export function DescriptivePaperPreview({
   unified = false,
   template = "jaseup",
   columns = 1,
+  candidate,
+  sample,
 }: {
   paper: "daily" | "review" | "past";
   audience: "student" | "teacher";
@@ -47,7 +33,27 @@ export function DescriptivePaperPreview({
   unified?: boolean;
   template?: PrintTemplate;
   columns?: 1 | 2;
+  candidate?: string;
+  sample?: string;
 }) {
+  const { entry, sampleIndex, specimen } = useMemo(
+    () => pickBatch1Specimen(candidate, sample),
+    [candidate, sample],
+  );
+  const definition = entry.definition;
+  const problem = useMemo<TestPrintProblem>(
+    () => ({
+      id: specimen.problem.externalId,
+      orderIndex: 0,
+      content: specimen.problem.content,
+      answer: specimen.problem.answer,
+      solution: specimen.problem.solution,
+      questionType: "서술형",
+      figureSvg: specimen.figureSvg,
+      nativeDescriptive: toNativeDescriptivePrint(specimen.problem),
+    }),
+    [specimen],
+  );
   const root = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const [unifiedReady, setUnifiedReady] = useState(false);
@@ -66,7 +72,7 @@ export function DescriptivePaperPreview({
             problem,
           ]
         : [problem],
-    [mixed],
+    [mixed, problem],
   );
   const selected = useMemo(
     () =>
@@ -79,17 +85,17 @@ export function DescriptivePaperPreview({
         questionType: p.nativeDescriptive
           ? ("descriptive" as const)
           : ("short-answer" as const),
-        grade: "중2",
-        chapter: "방정식",
-        section: "연립방정식",
-        difficulty: "응용",
+        grade: definition.grade,
+        chapter: definition.chapter,
+        section: definition.unitSection,
+        difficulty: definition.difficulty,
         problemCode: "",
         figureUrls: [],
         figureDims: [],
         figureSourceMm: [],
         figureSvg: p.figureSvg ?? null,
       })),
-    [problems],
+    [problems, definition],
   );
   const options = useMemo(
     () => ({
@@ -166,14 +172,41 @@ export function DescriptivePaperPreview({
       data-print-monochrome={monochrome}
       data-descriptive-ready={ready && (!unified || unifiedReady)}
       data-unified-ready={unified ? unifiedReady : undefined}
+      data-descriptive-candidate={entry.candidateId}
+      data-descriptive-sample={sampleIndex}
     >
       <header className={styles.tools}>
-        <h1>서술형 답란 B 출력 검수</h1>
+        <h1>서술형 첫 묶음 · 출력 검수</h1>
         <p>
-          미등록 직사각형 시연 · 기준 3개 · 8점 · 답란 72mm(16·24·32mm). 실물
-          검수 대기.
+          {entry.candidateId} · {definition.grade} · {definition.title} · 기준{" "}
+          {specimen.problem.rubric.criteria.length}개 ·{" "}
+          {specimen.problem.rubric.totalPoints}점. 미등록 견본 · 실물 검수 대기.
         </p>
         <form method="get">
+          <label>
+            정의{" "}
+            <select
+              aria-label="정의"
+              name="candidate"
+              defaultValue={entry.candidateId}
+            >
+              {batch1Specimens.map((item) => (
+                <option key={item.candidateId} value={item.candidateId}>
+                  {item.candidateId} · {item.definition.title}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            견본{" "}
+            <select aria-label="견본" name="sample" defaultValue={sampleIndex}>
+              {entry.specimens.map((item, index) => (
+                <option key={item.problem.externalId} value={index}>
+                  {index + 1} · 씨앗 {item.problem.seed}
+                </option>
+              ))}
+            </select>
+          </label>
           <label>
             출력 경로{" "}
             <select
@@ -272,7 +305,7 @@ export function DescriptivePaperPreview({
         {unified ? (
           <WorksheetPrint
             selected={selected}
-            title="직사각형 조건과 넓이"
+            title={definition.title}
             options={options}
             printMeta={DEFAULT_PRINT_META}
             onReady={setUnifiedReady}
@@ -283,23 +316,22 @@ export function DescriptivePaperPreview({
             audience={audience}
             meta={{
               academyName: "오늘 수학",
-              title: "직사각형 조건과 넓이",
-              subtitle: "연립방정식 · 서술형",
+              title: definition.title,
+              subtitle: `${definition.grade} · 서술형`,
             }}
           />
         ) : (
           <TestPrint
-            key={`${paper}-${audience}`}
+            key={`${paper}-${audience}-${problem.id}`}
             initialMode={audience === "teacher" ? "answers" : "questions"}
             data={{
               testId: null,
               testType: paper,
               testDate: "2026-10-20",
               className: "검수 견본",
-              section: "직사각형 조건과 넓이",
-              todayGoal: "두 조건을 식으로 나타내고 과정을 설명한다.",
-              conceptNote:
-                "연립방정식의 해를 구한 뒤 두 조건에 맞는지 확인한다.",
+              section: definition.title,
+              todayGoal: definition.assessmentObjective,
+              conceptNote: "",
               problems,
             }}
           />
