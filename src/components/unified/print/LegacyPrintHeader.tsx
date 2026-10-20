@@ -71,7 +71,6 @@ export function LegacyPrintHeader({
   const count = <span>{String(totalProblems ?? 0).padStart(2, "0")} 문항</span>;
   const period = (
     <div className={s.examPeriod}>
-      <span>제 1 교시</span>
       {roundLabel}
       {tag}
     </div>

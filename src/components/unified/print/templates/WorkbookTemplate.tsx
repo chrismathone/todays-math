@@ -170,7 +170,6 @@ export function WorkbookTemplate({
       >
         <span>
           {meta.academyName ?? "워크북"} · {meta.title}
-          {columns === 2 ? " · 컴팩트" : ""}
         </span>
         <span style={{ fontWeight: 700 }}>page {page}</span>
       </div>

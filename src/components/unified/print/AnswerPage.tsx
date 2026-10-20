@@ -37,6 +37,7 @@ export function QuickAnswerCell({
   style,
   measureKey,
   natural,
+  scale,
 }: {
   problem: ProblemReview["variant"];
   number: number;
@@ -44,6 +45,8 @@ export function QuickAnswerCell({
   style?: CSSProperties;
   measureKey?: string;
   natural?: boolean;
+  /** Below 1 only for a five-cell answer measured wider than the grid. */
+  scale?: number;
 }) {
   return (
     <div
@@ -58,7 +61,14 @@ export function QuickAnswerCell({
     >
       <strong className={s.keyNumber}>{number}</strong>
       <div className={s.keyAnswer} data-answer-value>
-        <AnswerValue problem={problem} />
+        {scale !== undefined && scale < 1 ? (
+          // em sizing shrinks KaTeX with the text, so the drawn width follows.
+          <span data-answer-scale={scale} style={{ fontSize: `${scale}em` }}>
+            <AnswerValue problem={problem} />
+          </span>
+        ) : (
+          <AnswerValue problem={problem} />
+        )}
       </div>
     </div>
   );
@@ -129,6 +139,7 @@ function QuickAnswerTable({
                   startingNumber + cell.index
                 }
                 span={cell.span}
+                scale={cell.scale}
               />
             ))}
             {used < 5 ? (
