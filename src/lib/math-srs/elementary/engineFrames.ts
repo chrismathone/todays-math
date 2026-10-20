@@ -21,10 +21,12 @@ const CHAPTERS = new Set([
   "1-3",
   "1-4",
   "1-5",
+  "1-6",
 ]);
 
 // Incomplete conditions or questions that only count objects without using the concept.
 const EXCLUDED: Record<string, readonly string[]> = {
+  "1-6-2:응용": ["08"], // A sum of side lengths does not ask about area.
   "1-3-2:응용": ["10"],
   "2-1-3:기본": ["06"], // The compared roster is missing from the printed question.
   "2-1-3:응용": ["08", "09", "10"],
