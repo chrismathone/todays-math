@@ -506,7 +506,7 @@ function rightTriPick(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     ask,
     answer,
-    `한 각이 직각인 삼각형을 직각삼각형이라고 합니다. 삼각자의 직각 부분을 대어 보면 ${answer} 의 한 각이 꼭 맞습니다.`,
+    `한 각이 직각인 삼각형을 직각삼각형이라고 합니다. 삼각자의 직각 부분을 대어 보면 ${answer}의 한 각이 꼭 맞습니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -572,7 +572,7 @@ function squarePick(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     ask,
     answer,
-    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${answer} 는 가로와 세로가 모두 ${n(side)}칸으로 같습니다.`,
+    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${answer}는 가로와 세로가 모두 ${n(side)}칸으로 같습니다.`,
     pointGridSpec(cols, rows, shapes),
   );
 }
@@ -700,7 +700,7 @@ function rectPick(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     ask,
     row.answer,
-    `네 각이 모두 직각인 사각형을 직사각형이라고 합니다. ${row.answer} 는 네 각이 모두 직각입니다.`,
+    `네 각이 모두 직각인 사각형을 직사각형이라고 합니다. ${row.answer}는 네 각이 모두 직각입니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -2523,7 +2523,7 @@ function tri123Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}`,
     row.rightLabels[0]!,
-    `한 각이 직각인 삼각형이 직각삼각형입니다. ${row.rightLabels[0]!} 의 한 각이 삼각자의 직각 부분과 꼭 맞습니다.`,
+    `한 각이 직각인 삼각형이 직각삼각형입니다. ${row.rightLabels[0]!}의 한 각이 삼각자의 직각 부분과 꼭 맞습니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -2629,7 +2629,7 @@ function rect124Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}`,
     row.answer,
-    `네 각이 모두 직각인 사각형이 직사각형입니다. ${row.answer} 가 그렇습니다.`,
+    `네 각이 모두 직각인 사각형이 직사각형입니다. ${row.answer}가 그렇습니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -2649,7 +2649,7 @@ function rect124Word(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}의 기호를 쓰시오.`,
     row.answer,
-    `문장이 가리키는 것은 직사각형입니다. ${row.answer} 는 네 각이 모두 직각입니다.`,
+    `문장이 가리키는 것은 직사각형입니다. ${row.answer}는 네 각이 모두 직각입니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -2730,7 +2730,7 @@ function sq125Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}`,
     row.answer,
-    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${row.answer} 는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
+    `네 각이 모두 직각이고 네 변의 길이가 같은 사각형이 정사각형입니다. ${row.answer}는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -2793,7 +2793,7 @@ function sq125Word(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 ${ask}의 기호를 쓰시오.`,
     row.answer,
-    `문장이 가리키는 것은 정사각형입니다. ${row.answer} 는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
+    `문장이 가리키는 것은 정사각형입니다. ${row.answer}는 가로와 세로가 모두 ${n(row.side)}칸으로 같습니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -9873,7 +9873,7 @@ function ang122NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 직각이 아닌 각의 기호를 쓰시오.`,
     ans,
-    `직각이 아닌 각은 ${other.join(", ")} 입니다. 그중 ${ans} 를 고릅니다.`,
+    `직각이 아닌 각은 ${other.join(", ")} 입니다. 그중 ${ans}를 고릅니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -9955,7 +9955,7 @@ function tri123NotRight(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 직각삼각형이 아닌 삼각형의 기호를 쓰시오.`,
     ans,
-    `직각삼각형이 아닌 것은 ${other.join(", ")} 입니다. 그중 ${ans} 를 고릅니다.`,
+    `직각삼각형이 아닌 것은 ${other.join(", ")} 입니다. 그중 ${ans}를 고릅니다.`,
     pointGridSpec(row.cols, 2, row.shapes),
   );
 }
@@ -10053,7 +10053,7 @@ function rect124NotRect(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 직사각형이 아닌 도형의 기호를 쓰시오.`,
     ans,
-    `직사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans} 를 고릅니다.`,
+    `직사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans}를 고릅니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }
@@ -10137,7 +10137,7 @@ function sq125NotSq(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${row.labels.join(", ")} 중에서 정사각형이 아닌 도형의 기호를 쓰시오.`,
     ans,
-    `정사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans} 를 고릅니다.`,
+    `정사각형은 ${row.answer} 입니다. 아닌 것 가운데 ${ans}를 고릅니다.`,
     pointGridSpec(row.cols, row.rows, row.shapes),
   );
 }

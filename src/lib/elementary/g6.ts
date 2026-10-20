@@ -12585,7 +12585,7 @@ function stripDrawFormLenRest(unit: UnitSeed, rng: Rng): ElemProblem {
     `${theme.subject} 조사에서 ${item}의 비율이 ${expr(`${p}\\%`)} 입니다. ` +
       `전체 길이가 ${unitNum(w, "cm")} 인 띠그래프에서 ${item}${josa(item, "이", "가")} 아닌 부분이 차지하는 길이는 몇 cm입니까?`,
     num(w - len),
-    `${item}은 ${expr(`${w}\\times\\frac{${p}}{100}=${len}`)} cm이므로 나머지는 ${expr(`${w}-${len}=${w - len}`)} cm입니다.`,
+    `${item}${josa(item, "은", "는")} ${expr(`${w}\\times\\frac{${p}}{100}=${len}`)} cm이므로 나머지는 ${expr(`${w}-${len}=${w - len}`)} cm입니다.`,
   );
 }
 

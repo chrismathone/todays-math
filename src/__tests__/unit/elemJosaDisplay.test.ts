@@ -26,7 +26,7 @@ const final = (ch: string) => {
 };
 
 /** 낱말이 그 글자로 끝나 조사처럼 보이는 것(가을 · 사과 · 그은 …). */
-const WORDS = new Set(["등산로", "초과", "가을", "마을", "사과", "결과", "효과", "성과", "교과", "나은", "지은", "이은", "그은", "모은", "부은", "짝지은", "그을", "지을", "다은", "만큼은", "조금은"]);
+const WORDS = new Set(["등산로", "부을", "초과", "가을", "마을", "사과", "결과", "효과", "성과", "교과", "나은", "지은", "이은", "그은", "모은", "부은", "짝지은", "그을", "지을", "다은", "만큼은", "조금은"]);
 const PARTICLE = /([가-힣]+?)(을|를|과|와|은|으로|로)(?=[\s.,?!)」』]|$)/g;
 
 export function josaMismatches(content: string): string[] {
@@ -76,19 +76,19 @@ describe("초등 전 문형 · 난이도 — 발문 조사", () => {
     expect(josa("꿀", "을", "를")).toBe("을");
   });
 
-  it("문형 전부 × 씨앗 10 — 어긋남 0", () => {
+  it("문형 전부 × 씨앗 10 — 발문 · 해설 어긋남 0", () => {
     const bad: string[] = [];
     for (const unit of elementaryUnits())
       for (const form of listedForms(unit))
         for (const seed of SEEDS) {
           const p = generateElementaryForm(unit, seed, form.id);
-          const hits = josaMismatches(p.content);
+          const hits = [...josaMismatches(p.content), ...josaMismatches(p.solution ?? "").map((h) => `해설 ${h}`)];
           if (hits.length) bad.push(`${unit.grade} ${unit.section} 문형${form.id} s${seed}: ${hits.join(" · ")}`);
         }
     expect(bad.slice(0, 20), `${bad.length}건`).toEqual([]);
   });
 
-  it("난이도 경로 전부 × 씨앗 10 — 어긋남 0", () => {
+  it("난이도 경로 전부 × 씨앗 10 — 발문 · 해설 어긋남 0", () => {
     const bad: string[] = [];
     for (const unit of elementaryUnits()) {
       const tiers = supportedTiers(unit);
@@ -96,7 +96,7 @@ describe("초등 전 문형 · 난이도 — 발문 조사", () => {
       for (const t of [undefined, ...tiers])
         for (const seed of SEEDS) {
           const p = generateElementaryProblem(unit, seed, t as never);
-          const hits = josaMismatches(p.content);
+          const hits = [...josaMismatches(p.content), ...josaMismatches(p.solution ?? "").map((h) => `해설 ${h}`)];
           if (hits.length) bad.push(`${unit.grade} ${unit.section} ${t ?? "-"} s${seed}: ${hits.join(" · ")}`);
         }
     }

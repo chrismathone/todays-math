@@ -16546,7 +16546,7 @@ function line251LeastWhen(unit: UnitSeed, rng: Rng): ElemProblem {
     unit,
     `${d.intro} ${d.theme.topic}의 값이 가장 작은 때는 언제인가?`,
     d.theme.labels[at]!.math,
-    `${d.theme.labels[at]!.math}일 때 ${n(d.min)}${d.theme.unit}로 가장 작습니다.`,
+    `${d.theme.labels[at]!.math}일 때 ${n(d.min)}${unitJosa(d.theme.unit, "으로", "로")} 가장 작습니다.`,
     d.figure,
   );
 }
