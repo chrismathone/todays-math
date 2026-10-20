@@ -1,0 +1,29 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/components/fadingOverviewStudentLayout.test.tsx (1 test) 3896ms
+   ✓ student overview layouts fit PC 1366 and phone 390; capture authored fixture only  3886ms
+ ✓ src/__tests__/unit/examStudyInverseMinimum.test.ts (9 tests) 15120ms
+     ✓ independently solves all24 printed data sets, including positive and negative fourth values  512ms
+     ✓ retains a captured Unit proposal while the internal factory stays hidden in public catalogs  14499ms
+ ✓ src/__tests__/unit/examStudyInverseTangentRectangle.test.ts (9 tests) 14548ms
+     ✓ registers the internal requirement while hiding it from public catalogs and retaining grade/rights holds  13952ms
+ ✓ src/__tests__/components/fadingRelearnCheck.test.tsx (20 tests) 2054ms
+     ✓ hides a student status when starting is disallowed, preserving legacy counts by default  450ms
+     ✓ uses child wording at the daily cap and keeps retrying the identical student attempt  316ms
+ ✓ src/__tests__/components/fadingSessionWords.test.tsx (15 tests) 1374ms
+   ✓ cards: student location contains names only; default keeps old labels  415ms
+ ✓ src/__tests__/components/fadingOverviewStudentCopy.test.tsx (11 tests) 1184ms
+   ✓ catalog student=false preserves actions and selectively hides metadata  323ms
+ ✓ src/__tests__/components/fadingStudentSurface.test.tsx (4 tests) 717ms
+     ✓ opts the real explorer book into student copy and removes its old heading  411ms
+ ✓ src/__tests__/components/fadingStudentLabels.test.ts (8 tests) 115ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 129ms
+ ✓ src/__tests__/unit/lockProblemRows.test.ts (1 test) 72ms
+
+ Test Files  10 passed (10)
+      Tests  95 passed (95)
+   Start at  13:41:09
+   Duration  106.49s (transform 13.39s, setup 17.65s, import 23.82s, tests 39.21s, environment 23.03s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v38-post-main-vitest-r1.json
