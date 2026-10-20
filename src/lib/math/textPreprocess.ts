@@ -547,7 +547,9 @@ export const applyMathInnerNormalization = (inner: string): string => {
   // 6) `\frac` → `\dfrac` 강제 업그레이드.
   //    - `(?![a-zA-Z])` lookahead 로 `\fraction` 같은 가상 명령에 안 걸리게.
   //    - `\tfrac` / `\cfrac` 는 매치 안 함 (모델 명시 의도 보존).
-  s = s.replace(/\\frac(?![a-zA-Z])/g, "\\dfrac");
+  //    - 🔴 **지수 · 첨자 안(`^{…}` · `_{…}`)은 그대로** — `8^{\frac14}` 가 `8^{\dfrac14}` 로 커져 분수가 밑 위에
+  //      크게 떴다(2026-10-20 교차 검수 3회차 — 교과서 지수 문항).
+  s = upgradeFracOutsideScripts(s);
   s = injectDisplayStyle(s);
   // 7) **최종 안전망 — 이 함수의 출력은 *항상* KaTeX-safe** (사용자 보고
   //    "후보정 한번씩 덜됨" 2026-06-03). autoSizeBrackets 가 모델이 이미 emit
@@ -1430,3 +1432,36 @@ export const preprocessMathText = (content: string): string => {
   out = canonicalizeMathSpans(out);
   return out.replace(PROSE_DOLLAR_G, () => "\\$");
 };
+
+
+/** `\frac` → `\dfrac` — 지수 · 첨자(`^{…}` · `_{…}`) 안은 건너뛴다. */
+function upgradeFracOutsideScripts(s: string): string {
+  if (!s.includes("\\frac")) return s;
+  let out = "";
+  // 첨자 묶음의 깊이: «^{» · «_{» 로 연 묶음이 닫힐 때까지는 안쪽이다
+  const stack: boolean[] = [];
+  let scripted = 0;
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i]!;
+    if (ch === "\\" && s.startsWith("\\frac", i) && !/[a-zA-Z]/.test(s[i + 5] ?? "")) {
+      out += scripted > 0 ? "\\frac" : "\\dfrac";
+      i += 4;
+      continue;
+    }
+    if (ch === "\\") {
+      // 이스케이프된 괄호(\{ · \}) 는 묶음이 아니다
+      out += ch + (s[i + 1] ?? "");
+      i += 1;
+      continue;
+    }
+    if (ch === "{") {
+      const isScript = s[i - 1] === "^" || s[i - 1] === "_";
+      stack.push(isScript);
+      if (isScript) scripted++;
+    } else if (ch === "}") {
+      if (stack.pop()) scripted--;
+    }
+    out += ch;
+  }
+  return out;
+}

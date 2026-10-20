@@ -8,7 +8,8 @@ import { describe, expect, it } from "vitest";
 
 import { MathText } from "@/components/math/MathText";
 import { ProblemContent } from "@/components/math/ProblemContent";
-import { MATH_NOWRAP_MAX_TEX } from "@/components/math/rehypeMathNowrap";
+import { MATH_NOWRAP_MAX_UNITS } from "@/components/math/rehypeMathNowrap";
+import { displayWidth } from "@/lib/math/displayWidth";
 
 const html = (content: string) => renderToStaticMarkup(<ProblemContent content={content} deferFigures={false} />);
 const NOWRAP = '<span class="katex" style="white-space:nowrap">';
@@ -23,9 +24,10 @@ describe("짧은 인라인 식", () => {
     expect(out).toMatch(/<\/span><\/span>개월 때 무게가 <span class="katex"/);
     expect(out).toMatch(/<\/span><\/span>를 넘는다\./);
   });
-  it(`긴 식(TeX ${MATH_NOWRAP_MAX_TEX}자 넘음)은 그대로 — 칸을 넘지 않게 KaTeX 의 줄바꿈 자리를 둔다`, () => {
-    const long = "1\\cdot 2+3\\cdot 2^{2}+5\\cdot 2^{3}+\\cdots+(2n-1)\\cdot 2^{n}=(2n-3)\\cdot 2^{n+1}+6";
-    expect(long.length).toBeGreaterThan(MATH_NOWRAP_MAX_TEX);
+  it(`넓은 식(표시폭 ${MATH_NOWRAP_MAX_UNITS}단위 넘음)은 그대로 — 칸을 넘지 않게 KaTeX 의 줄바꿈 자리를 둔다`, () => {
+    // 교차 검수 3회차: TeX 39자인 고등 식이 안 끊겨 칸을 넘었다
+    const long = "y=-2(x^{2}+2x+2)^{2}+8(x^{2}+2x+2)+k";
+    expect(displayWidth(`$${long}$`)).toBeGreaterThan(MATH_NOWRAP_MAX_UNITS);
     expect(html(`다음 등식이 성립함을 증명하시오. 모든 자연수 $n$ 에 대하여 $${long}$ 이다.`).match(/white-space:nowrap/g)?.length).toBe(1);
   });
   it("여러 줄 블록 식(katex-display)은 건드리지 않는다", () => {
@@ -64,5 +66,15 @@ describe("한 줄의 보기 항목 여럿 «ㄱ. … ㄴ. …» (교과서 44 ·
     expect(out).toContain("$  ㄴ. ");
     expect(out).toContain("$  ㄷ. ");
     expect(preprocessMarkdown("그림의 ㄱ. 과 ㄴ. 을 비교")).not.toContain(" ");
+  });
+});
+
+describe("지수 · 첨자 안의 분수는 키우지 않는다 (교과서 지수 문항)", () => {
+  it("`8^{\\frac14}` 는 `\\dfrac` 이 되지 않는다 — 밖의 분수는 그대로 `\\dfrac`", async () => {
+    const { preprocessMarkdown } = await import("@/lib/math/markdownPreprocess");
+    const out = preprocessMarkdown("$\\frac{1}{2}\\times8^{\\frac{1}{4}}+a_{\\frac{n}{2}}$");
+    expect(out).toContain("\\dfrac{1}{2}");
+    expect(out).toContain("8^{\\frac{1}{4}}");
+    expect(out).toContain("a_{\\frac{n}{2}}");
   });
 });

@@ -1,5 +1,7 @@
 import type { Element, Root } from "hast";
 
+import { displayWidth } from "@/lib/math/displayWidth";
+
 /**
  * 짧은 인라인 식은 **안에서 줄을 바꾸지 않게** 한다.
  *
@@ -10,9 +12,11 @@ import type { Element, Root } from "hast";
  * ⚠️ 식 **바깥** 글자는 건드리지 않는다 — 식 뒤 조사를 감싸개로 옮겼더니 글자 마디가 갈려 «…$x$를 유한소수로»를
  *    한 마디로 찾던 화면이 못 찾았다(`ProblemBankFormatFilter`). 그래서 감싸개를 새로 만들지 않고 `.katex` 에 속성만 단다.
  *
- * 렌더러(rehype-katex) **뒤**에 돈다 — 식의 길이는 KaTeX 가 남긴 MathML 의 TeX 원문(`annotation`)으로 잰다.
+ * 렌더러(rehype-katex) **뒤**에 돈다 — 식의 너비는 KaTeX 가 남긴 MathML 의 TeX 원문(`annotation`)을 높이 자와 같은
+ * 표시폭(`displayWidth`)으로 잰다. 문턱은 시험지 한 단(약 58단위)의 40% 남짓 — TeX 글자 수(40자)로 잡았더니
+ * 고등 «$y=-2(x^{2}+2x+2)^{2}+8(x^{2}+2x+2)+k$»(48단위)가 안 끊겨 칸을 넘었다(교차 검수 3회차).
  */
-export const MATH_NOWRAP_MAX_TEX = 40;
+export const MATH_NOWRAP_MAX_UNITS = 24;
 const NOWRAP = "white-space:nowrap";
 
 function classes(node: Element): unknown[] {
@@ -40,7 +44,7 @@ function walk(node: Root | Element): void {
     if (list.includes("katex-display")) continue;
     if (child.tagName === "span" && list.includes("katex")) {
       const tex = (texOf(child) ?? "").replace(/\\displaystyle\s*/g, "");
-      if (tex.length <= MATH_NOWRAP_MAX_TEX) {
+      if (displayWidth(`$${tex}$`) <= MATH_NOWRAP_MAX_UNITS) {
         const style = typeof child.properties.style === "string" ? child.properties.style : "";
         child.properties.style = style ? `${style};${NOWRAP}` : NOWRAP;
       }
