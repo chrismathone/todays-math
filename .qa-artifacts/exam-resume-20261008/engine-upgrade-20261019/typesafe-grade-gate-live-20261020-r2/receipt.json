@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-20T10:41:50.974563+00:00",
+  "documents": [
+    {
+      "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
+      "status": 200,
+      "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
+      "bytes": 41034,
+      "fullDocumentLocalOnly": true
+    },
+    {
+      "url": "https://docs.typesafe.ai/confidence.md",
+      "status": 200,
+      "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+      "bytes": 24090,
+      "fullDocumentLocalOnly": true
+    },
+    {
+      "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails.md",
+      "status": 200,
+      "sha256": "798d204918d9a1aa0ec98b47ebb6147f86f9558fb8d12e1548fde3641c20dd25",
+      "bytes": 22845,
+      "fullDocumentLocalOnly": true
+    }
+  ],
+  "workflow": "Keep known grade/method restrictions in deterministic code before semantic/release judgments; no model or API call",
+  "paidModelCalls": 0
+}

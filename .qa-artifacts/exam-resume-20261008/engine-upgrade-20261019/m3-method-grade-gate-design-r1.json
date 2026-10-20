@@ -1,0 +1,49 @@
+{
+  "utc": "2026-10-20T10:43:49.314056+00:00",
+  "status": "design-only-no-source-change-yet",
+  "purpose": "Extend existing U62 below-M3 hard-method gate to four other source-informed M3 templates. Existing public release closure remains independent.",
+  "rules": [
+    {
+      "requirement": "algebra.inverse-coefficient-sum",
+      "existingWholeStudentMethodEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-coefficient-engine-audit-20261019-r2/report.json",
+        "sha256": "3fe6f7e52c257bb29faa7d15047f4661791de639277523e85c42d1072a50d861"
+      }
+    },
+    {
+      "requirement": "number.inverse-root-table",
+      "existingWholeStudentMethodEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-root-table-engine-audit-20261019-r1/own-engine-audit-report.json",
+        "sha256": "2d99647a2761cfb19ecbd80e1b5a8d17be292f19c366c8bf2b15cd832b768bc2"
+      }
+    },
+    {
+      "requirement": "number.inverse-extreme-range",
+      "existingWholeStudentMethodEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-minimum-engine-audit-20261020-r2/own-audit-report.json",
+        "sha256": "29c514b7040b9b4b3aafbfd8eeb0c657c751ac2f7bb883ec32b3ba6557b00c7d"
+      }
+    },
+    {
+      "requirement": "geometry.inverse-tangent-rectangle",
+      "existingWholeStudentMethodEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-engine-audit-report-r4.json",
+        "sha256": "e60aac49dcb5db7343d6eecf9e7fd0f131cd5eb960d08a75f30ba9910e8956e3"
+      }
+    }
+  ],
+  "existingU62GradeReasonPreserved": true,
+  "matchByRequirementNotFamilyIdVersionOrApprovedFlags": true,
+  "fullAndComponentCoverageGuarded": true,
+  "gradeRestrictionBeforeFactoryAndRelease": true,
+  "notBlanketSquaredGlyphOrAllM3FamilyBan": true,
+  "reviewedM1GeometryRulesPreserved": true,
+  "notActual2027M3Or2022Approval": true,
+  "noModelConfidenceOrSourceSchoolPermission": true,
+  "deterministicCalculationsAndPoliciesInCode": true,
+  "sourceSkill": ".agents/skills/typesafe-ai/SKILL.md",
+  "liveDocsReceipt": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/typesafe-grade-gate-live-20261020-r2/receipt.json",
+  "noAPIIntegrationChange": true,
+  "paidModelCalls": 0,
+  "dbWrites": 0
+}

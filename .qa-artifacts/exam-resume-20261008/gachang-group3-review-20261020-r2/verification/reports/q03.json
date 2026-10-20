@@ -1,0 +1,154 @@
+{
+  "status": "pending",
+  "studentDigest": "60a3481d5e9114939c62081093dc8ee7d13cd696633b5e8f8c175aa1b3c42a5d",
+  "candidateDigest": "7f9d7c6b7b7e3fe603ad4b21d0efad471047b60eb9658375dc2c3fbcc232917b",
+  "assetDigest": "f355821d2c6c83524b19444a0befc41e88b7b71251b426a3c5dc7a253a91b5d2",
+  "solveDigest": "03fe92e34bf9e7b87baa7fa23354d8ddcec341281227ec9d51faada9889e3e9c",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gachang-group3-full-review-20261020-r1",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "reviewType": "post-Git-seal current full review, not fresh blind solve",
+    "rawHelperCommit": "c621b7d17cef1e4e6db495d52bdb298dabb71a73",
+    "parentRawSeal": "c89b1a152f63981ed643df85d62759ed270e7da6",
+    "exposure": "이전원문9/Gachang/Gangbuk/공개코드검토이력이있고Gachang이전원문첫페이지의다른문항/손글씨를이전raw봉인후부수적으로보았다. 현재q03/q06저자답/해설/원문context는현행raw봉인후처음검토. 원문답/손글씨일치를오라클이나승인근거로사용하지않음. 전체코퍼스최초blind주장없음.",
+    "primaryReceipt": {
+      "path": "../../own-review-evidence-r1/own-primary-unit-receipt.json",
+      "sha256": "372aac5235afba5509f83040543cfe762574621f036e8eafff17b1b4433b10bf",
+      "placement": "2015M3source2025/practice2026afteralllistedprerequisites;2027M3/2022pending"
+    },
+    "ownMathReceipt": {
+      "path": "../../own-review-evidence-r1/own-calculations.json",
+      "sha256": "9fc8ede3e17d8ced4aa35606cdf50ebb3f43257e5d12a3571f4614c359824720",
+      "assertions": 52,
+      "passed": 52,
+      "failed": 0,
+      "raw40NotSummed": true
+    },
+    "imageObservations": {
+      "actuallyViewed": [
+        "gachang-group3-source-context-local-20261020-r2/original-first-page.local.png",
+        "engine-upgrade-20261019/gachang-group3-figure-white-preview-r2.png"
+      ],
+      "originalPage": "Observed actual2025firstsemesterfinal M3math header and q03/q06 printed4points; current component formulas/roles correspond to supplied staged question-only records. Handwritten marks incidental; not used as answers.",
+      "newFigure": "White remaining top-left rectangle, gray right/bottom removed strips; full width/height and two b labels readable, consistent with text. No pixel/coordinate arithmetic oracle.",
+      "notProvided": "Full new student/solution PNGs; no full native/print/layout/overflow/parity certification. Grade decisions refer to actual complete text/vector/table mathematical surfaces, not unviewed rendered flow."
+    },
+    "sourceAndReleaseHolds": {
+      "wholeHwpPdfSourceIdentity": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "exactLiveFamily": null,
+      "unitFamilyFit": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2027M3/2022Approved": false
+    },
+    "rawPresealNotationDiagnostic": "Initial displayedJSONescaping concern corrected BEFORErawseal; olddraft/diagnostics preserved. Actual student command slash runs are1. Current raw/declarations not rewritten.",
+    "questionNumber": 3,
+    "checkBasis": {
+      "answerCorrect": "독립raw③/b4와현재저자답일치. 5개b의실제넓이식중12a²-17a+6과동일한것은b4뿐.",
+      "solutionCorrect": "저자전체:남은두변4a+1-b,3a+2-b→곱전개12a²+(11-7b)a+(1-b)(2-b)→11-7b=-17→b4→상수6/길이양수확인. 모든전개식과수치는독립Fraction계산과일치.",
+      "existenceUniqueness": "b4에서a>2이면남는가로4a-3>5/세로3a-2>4이고0<4<3a+2. a의계수11-7b=-17은계수-7비영인단순일차관계로b4유일. 특정한a에서만맞는수치식이아닌a에대한전체넓이식의동일성.",
+      "choicesCorrect": "b2/3/4/5/6의오름차순계수는각각(0,-3,12),(2,-10,12),(6,-17,12),(12,-24,12),(20,-31,12). 모두폭범위/양수변을만족하지만전체넓이식이일치하는③만정답.",
+      "figureConsistent": "새whitePNG직접관찰에서남은부분은좌상단흰직사각형,제거띠는우측/하단회색. 4a+1/3a+2와두b라벨은본문과같다. exactspec/SVG/blindSVGhash일치. spec a3/b4는존재작도증인만확인했고좌표/픽셀로답을얻지않음. 전체문항렌더승인은보류.",
+      "sameCoreConceptAndProcedure": "원문q03은내부일정폭길을제외한직사각형넓이를곱셈식으로정리하는문제. 새문항도남은두길이를구성하고두일차식의곱을전개하는핵심을유지. 원문답값은계산/승인오라클로사용하지않음.",
+      "distinctPresentation": "잔디밭내부길/직접넓이표현선택을종이우측·하단외부띠절단/주어진다항식에서공통폭역산으로변경. 목표·연산방향과도형위상이실질적으로변했고숫자만교체한것이아님.",
+      "naturalKorean": "a에대한식,상수b,띠폭과남은넓이의역할이명확. 오른쪽/아래쪽의같은폭을새도형과맞춰읽을수있고양수조건/단위명확. Fullstudent/solutionPNG줄흐름은미검토.",
+      "curriculumAppropriate": "2015 9수02-12의두일차식곱전개와앞학년넓이/일차방정식. 실제M3semester1 다항식곱셈Unite63d61c6...학습후. 현재해설은명시된단순전개식의a항을대응시켜입력을구하며고등일반항등식계수정리/판별식을필수화하지않는다. 독립풀이의보기직접전개로도완결.",
+      "allStudentSurfacesInScope": "현재발문/5보기/새벡터의수학라벨/단위/답/전체해설/선수범위를각각7면으로검토. 이미지미제공은전체레이아웃검증한계이나숨은수학조건을만들지않으며필요표현의학년판정을막지않음.",
+      "unitFamilyFit": "실제캡처Unit e63d61c6-2b41-4c83-a74b-a605fd343c42는M3sem1다항식곱셈으로개념상맞지만exactlivefamily/목표·파라미터의동일한실제정의는미확인. familyKey=null과분리하여false유지.",
+      "scoreAppropriate": "원문실제인쇄4점과현재4점확인. 도형두변구성/전개/폭역산/양수재확인으로4점목표는타당한편집제안. staged중은준비자료라벨관찰이며실제학교측정난도/동일난도승인아님. 기본~응용은광범위하여별도보정필요."
+    },
+    "actualUnit": {
+      "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "다항식의 곱셈",
+      "semester": 1,
+      "orderIndex": 472,
+      "problemCodePrefix": "J30201"
+    },
+    "rawSHA256": "091f47d50766dfeebf27128537a169d5bd95470561f957a6f94ea4d94b0df011",
+    "renderingSeparateHold": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "띠폭b를역산하는직사각형넓이문장. 초등넓이와2015M3 9수02-12두일차식곱학습후,단순일차관계9수02-05로해결. 원문학교/코드만으로허용하지않음.",
+      "evidence": {
+        "primaryReceipt": "../../own-review-evidence-r1/own-primary-unit-receipt.json",
+        "calculations": "../../own-review-evidence-r1/own-calculations.json",
+        "placementCondition": "afterallnamedprerequisites2015M3only"
+      }
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "5개의양의정수폭에대해남은두변곱을전개하여식비교. 부호/동류항/M3곱셈범위,5보기모두자체전개했고③만일치. 고등다항식일반정리불필요.",
+      "evidence": {
+        "primaryReceipt": "../../own-review-evidence-r1/own-primary-unit-receipt.json",
+        "calculations": "../../own-review-evidence-r1/own-calculations.json",
+        "placementCondition": "afterallnamedprerequisites2015M3only"
+      }
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "직접본새white벡터PNG의사각형·오른쪽/아래쪽띠·두b와길이라벨은초등넓이수준. spec/SVGhash와본문을검산. FullnewPNG/readerlayout미검토를명시하되수학표현의학년판정은가능.",
+      "evidence": {
+        "primaryReceipt": "../../own-review-evidence-r1/own-primary-unit-receipt.json",
+        "calculations": "../../own-review-evidence-r1/own-calculations.json",
+        "placementCondition": "afterallnamedprerequisites2015M3only"
+      }
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "a상수b/일차식/이차넓이식은M3다항식. 길이cm와넓이cm²를구별하고실제JSON명령역슬래시1확인. a>2와0<b<3a+2는앞학년부등식읽기,고급함수영역분석없음.",
+      "evidence": {
+        "primaryReceipt": "../../own-review-evidence-r1/own-primary-unit-receipt.json",
+        "calculations": "../../own-review-evidence-r1/own-calculations.json",
+        "placementCondition": "afterallnamedprerequisites2015M3only"
+      }
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "답은③에대응하는폭수b4. 전개결과와단순11-7b=-17에서정해지며양수길이/넓이/상수항검산. 원래a를답으로오해하지않음.",
+      "evidence": {
+        "primaryReceipt": "../../own-review-evidence-r1/own-primary-unit-receipt.json",
+        "calculations": "../../own-review-evidence-r1/own-calculations.json",
+        "placementCondition": "afterallnamedprerequisites2015M3only"
+      }
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자전체단계직접재계산:두변구성→곱전개→a항대응단순일차식→상수항6/양수변/유일확인. 9수02-12/앞학년9수02-05범위,일반고차항등식계수법으로확장허가하지않음.",
+      "evidence": {
+        "primaryReceipt": "../../own-review-evidence-r1/own-primary-unit-receipt.json",
+        "calculations": "../../own-review-evidence-r1/own-calculations.json",
+        "placementCondition": "afterallnamedprerequisites2015M3only"
+      }
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "직사각형넓이/길이양수/단위,분배법칙·동류항·계수·다항식곱셈과일차방정식을학습해야함. 실제M3sem1Unit e63d61c6...이후조건. source2025/practice2026=2015한정,2027/2022학교진도별도보류.",
+      "evidence": {
+        "primaryReceipt": "../../own-review-evidence-r1/own-primary-unit-receipt.json",
+        "calculations": "../../own-review-evidence-r1/own-calculations.json",
+        "placementCondition": "afterallnamedprerequisites2015M3only"
+      }
+    }
+  }
+}

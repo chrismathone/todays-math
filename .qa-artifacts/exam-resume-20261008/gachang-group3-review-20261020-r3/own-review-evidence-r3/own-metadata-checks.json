@@ -1,0 +1,231 @@
+{
+  "checks": [
+    {
+      "name": "3/receipt-author-bytes",
+      "pass": true
+    },
+    {
+      "name": "3/id-student-asset-solve-digests",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-content",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-choices",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-answer",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-solution",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-score",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-questionType",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-figureArtifacts",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-sourceReference",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-variantDelta",
+      "pass": true
+    },
+    {
+      "name": "3/unchanged-curriculumReview",
+      "pass": true
+    },
+    {
+      "name": "3/raw-original-Git-seal",
+      "pass": true
+    },
+    {
+      "name": "q03-byteidentical",
+      "pass": true
+    },
+    {
+      "name": "6/receipt-author-bytes",
+      "pass": true
+    },
+    {
+      "name": "6/id-student-asset-solve-digests",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-content",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-choices",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-answer",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-solution",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-score",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-questionType",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-figureArtifacts",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-sourceReference",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-variantDelta",
+      "pass": true
+    },
+    {
+      "name": "6/unchanged-curriculumReview",
+      "pass": true
+    },
+    {
+      "name": "6/raw-original-Git-seal",
+      "pass": true
+    },
+    {
+      "name": "q06-only-metadata-changed",
+      "pass": true
+    },
+    {
+      "name": "q06-limited-delta-roots",
+      "pass": true
+    },
+    {
+      "name": "actual-multiplication-order472",
+      "pass": true
+    },
+    {
+      "name": "structured-both-units",
+      "pass": true
+    },
+    {
+      "name": "required-learning-unitIds",
+      "pass": true
+    },
+    {
+      "name": "requires-actual-learning-evidence",
+      "pass": true
+    },
+    {
+      "name": "order-not-mastery",
+      "pass": true
+    },
+    {
+      "name": "placement-explicit-held",
+      "pass": true
+    },
+    {
+      "name": "prerequisite-standard-not-primary-rewrite",
+      "pass": true
+    },
+    {
+      "name": "reference-primary-unit-receipt",
+      "pass": true
+    },
+    {
+      "name": "reference-snapshot",
+      "pass": true
+    },
+    {
+      "name": "old-finding-pointer",
+      "pass": true
+    },
+    {
+      "name": "revision-no-new-solve",
+      "pass": true
+    },
+    {
+      "name": "3/rights-native-release-stillfalse",
+      "pass": true
+    },
+    {
+      "name": "3/2022-held",
+      "pass": true
+    },
+    {
+      "name": "3/bounded-actual-method-unchanged",
+      "pass": true
+    },
+    {
+      "name": "6/rights-native-release-stillfalse",
+      "pass": true
+    },
+    {
+      "name": "6/2022-held",
+      "pass": true
+    },
+    {
+      "name": "6/bounded-actual-method-unchanged",
+      "pass": true
+    },
+    {
+      "name": "q03-full-current-solution-steps",
+      "pass": true
+    },
+    {
+      "name": "q06-full-current-solution-steps",
+      "pass": true
+    },
+    {
+      "name": "R2-sealed-preserved/q03.json",
+      "pass": true
+    },
+    {
+      "name": "R2-sealed-preserved/q06.json",
+      "pass": true
+    },
+    {
+      "name": "R2-sealed-preserved/own-review-report-r1.json",
+      "pass": true
+    }
+  ],
+  "counts": {
+    "assertions": 51,
+    "passed": 51,
+    "failed": 0
+  },
+  "exactAuthorDeltaPaths": {
+    "3": [],
+    "6": [
+      "/metadata/placementConditions/sourceSchoolPacingIsNotPermission",
+      "/metadata/placementConditions/capturedOrderIndexIsNotStudentMastery",
+      "/metadata/placementConditions/placementReviewStatus",
+      "/metadata/placementConditions/requiresPrerequisiteLearningEvidence",
+      "/metadata/placementConditions/requiresLearnedUnitIds",
+      "/metadata/placementConditions/laterPrerequisiteUnitId",
+      "/metadata/metadataRevision",
+      "/metadata/prerequisiteUnits",
+      "/metadata/prerequisiteAchievementStandardRefs"
+    ]
+  },
+  "newMathOrBlindSolves": 0,
+  "repairWriterExecuted": false,
+  "previousR2Math52NotRerunOrSummed": true,
+  "placementEnforcementVerified": false
+}

@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-gachang-2025-1-final-author-group3-r2-q03",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "가로의 길이가 $(4a+1)\\,\\mathrm{cm}$, 세로의 길이가 $(3a+2)\\,\\mathrm{cm}$인 직사각형 종이에서 오른쪽과 아래쪽의 폭이 각각 $b\\,\\mathrm{cm}$인 띠 모양 부분을 그림과 같이 잘라 냈다. 남은 직사각형의 넓이를 $a$에 대한 식으로 나타내면 $(12a^2-17a+6)\\,\\mathrm{cm}^2$이다. 상수 $b$의 값은? (단, $a>2$이고 $0<b<3a+2$이다.)",
+  "choices": [
+    "$2$",
+    "$3$",
+    "$4$",
+    "$5$",
+    "$6$"
+  ],
+  "answer": "③",
+  "solution": "오른쪽에서 $b\\,\\mathrm{cm}$, 아래쪽에서 $b\\,\\mathrm{cm}$를 잘라 냈으므로 남은 직사각형의 가로와 세로의 길이는 각각 $(4a+1-b)\\,\\mathrm{cm}$, $(3a+2-b)\\,\\mathrm{cm}$이다.\n\n두 길이를 곱해 넓이를 전개하면\n\n$$(4a+1-b)(3a+2-b)=12a^2+(11-7b)a+(1-b)(2-b)$$\n\n이다. 이것을 $12a^2-17a+6$과 비교하면 $a$의 계수에서 $11-7b=-17$이므로 $b=4$이다.\n\n이때 상수항도 $(1-4)(2-4)=6$으로 일치한다. 또 $a>2$이므로 남은 두 길이 $4a-3$, $3a-2$는 모두 양수이고 $0<4<3a+2$이다. 따라서 실제로 만들 수 있으며 조건을 만족하는 상수는 $4$로 유일하다. 정답은 ③이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 78
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gachang-3-1-final-3",
+    "inventoryExamId": "personal-273b85b46b6ea294fef26b4de34becfc",
+    "sourceQuestionNumber": 3,
+    "newSourceReferenceId": "source-ref-gachang-2025-1-final-group3-r2-q03",
+    "sourceContentSha256": "473d983d9b4d38b3f996197ba3c22af0d9eb53e57c9f367214aa80be62fd8926",
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/component-only-input/q03.local.json",
+      "sha256": "1590b203574dde1941f5830d4a46d3b76869ca437a9ee9898fbb34a9341c9500"
+    },
+    "sourceSchoolInternal": "가창중",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "기말",
+    "extractionManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/hwp-question-only-manifest.local.json",
+      "sha256": "c0eb3644b8a251f067811a600da62c342f7de20e1ac2ec27002983fc312cd870"
+    },
+    "hwpOnlyExtractionAggregate": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+      "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[가창중][3][25-1-기말][천재이] (완료).hwp",
+        "sha256": "8c78d3758f25a078316daed76e722286ec79d0506f09faef23b347aa6ce06ce9",
+        "bytes": 1428480
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+        "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+        "bytes": 1778571
+      }
+    ],
+    "originalIdentityReference": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+      "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+      "bytes": 1778571
+    },
+    "parentOriginalFirstPageObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+      "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+    },
+    "sourceComponentReview": {
+      "status": "parent-original-first-page-q03-q06-observed-independent-source-core-review-pending",
+      "whole19ParentHwpPdfPairApproved": false
+    },
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "originalAnswerKeyUsed": false,
+    "parentIncidentalHandwrittenMarksExposure": true,
+    "marksUsedForAnswerApproval": false,
+    "sourceTextCopiedToCandidate": false,
+    "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+  },
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target",
+      "new-vector",
+      "data-reorganization"
+    ],
+    "before": "직사각형 잔디밭의 길을 제외한 넓이를 곱셈식으로 정리하여 직접 고른다.",
+    "after": "잘라낸 띠가 남기는 직사각형을 새로 조직하고 넓이의 다항식 계수에서 빠진 띠 폭을 역추론한다.",
+    "sharedConcept": "직사각형의 넓이와 두 일차식의 곱 전개",
+    "sharedProcedure": "남은두길이4a+1−b,3a+2−b 구성 → 곱셈 전개 → a의계수11−7b와−17연결 → b4 → 상수항6/길이양수/폭범위재확인",
+    "actualStructuralChange": "잘라낸 띠가 남기는 직사각형을 새로 조직하고 넓이의 다항식 계수에서 빠진 띠 폭을 역추론한다.",
+    "domainProof": "a>2,0<b<3a+2와가로−세로=a−1>0이므로남은두변이양수이다.b4가계수조건의유일값이고상수항도6으로맞는다.그림좌표a3/b4는작도증인일뿐학생에게a3이나정답b4를수치조건으로제공하지않는다.",
+    "difficultyBasis": "원문4점과핵심곱셈/제곱근부호절차를기준으로한저자제안;질문역전과새자료조직의목표난도·exact family는독립검토전보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수02-12"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수02-12"
+      ]
+    },
+    "legitimateMethodDraft": "남은두길이4a+1−b,3a+2−b 구성 → 곱셈 전개 → a의계수11−7b와−17연결 → b4 → 상수항6/길이양수/폭범위재확인",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+    "sourceExamYear": 2025,
+    "targetAcademicYear": 2026,
+    "curriculum": "2015",
+    "officialPrimary": {
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+      "standard": "9수02-12",
+      "providedMOEEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      "actualScope": "2015중3다항식곱셈/제곱근성질과이미배운길이·넓이·일차관계;실제Unit/각학생면검토필수;2027중3/2022별도보류"
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "기말",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 4,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본~응용 저자 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "잘라낸 띠가 남기는 직사각형을 새로 조직하고 넓이의 다항식 계수에서 빠진 띠 폭을 역추론한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제캡처Unit과2015성취기준을연결;새표현/질문역전의정확한live family는보류"
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-graph-1-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "a>2,0<b<3a+2와가로−세로=a−1>0이므로남은두변이양수이다.b4가계수조건의유일값이고상수항도6으로맞는다.그림좌표a3/b4는작도증인일뿐학생에게a3이나정답b4를수치조건으로제공하지않는다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gachang-group3-20261020-r2.ts",
+      "reproductionScriptSha256": "0ac357efba6777b894a7d057fab0574be6e829d1fd156842b6a08dfd3ebaa5ce",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "중",
+    "prerequisiteUnits": [
+      {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "직사각형의 넓이",
+        "다항식의 곱셈",
+        "동류항과 계수 비교",
+        "일차방정식",
+        "양수 길이와 cm/cm²"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+  }
+}

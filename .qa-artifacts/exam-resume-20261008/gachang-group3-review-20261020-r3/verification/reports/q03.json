@@ -1,0 +1,183 @@
+{
+  "status": "pending",
+  "studentDigest": "60a3481d5e9114939c62081093dc8ee7d13cd696633b5e8f8c175aa1b3c42a5d",
+  "candidateDigest": "7f9d7c6b7b7e3fe603ad4b21d0efad471047b60eb9658375dc2c3fbcc232917b",
+  "assetDigest": "f355821d2c6c83524b19444a0befc41e88b7b71251b426a3c5dc7a253a91b5d2",
+  "solveDigest": "03fe92e34bf9e7b87baa7fa23354d8ddcec341281227ec9d51faada9889e3e9c",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gachang-group3-metadata-r3-20261020",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "reviewKind": "Fresh R3 metadata/whole student-method review on exact unchanged prior-solved payload; no new blind/math credit",
+    "rawHelperCommit": "c621b7d17cef1e4e6db495d52bdb298dabb71a73",
+    "parentRawSeal": "c89b1a152f63981ed643df85d62759ed270e7da6",
+    "priorFullReviewCommit": "8cb792dd6e4638a7d6a09c9c79fc15eff487faa1",
+    "priorAggregateSHA256": "73589a16f94f2f01c1f11263df0a0db5761598cae3fc2dc642a7c8cb87dd5de7",
+    "exposure": "Same retained helper with original9/Gachang/Gangbuk/public-code history and prior incidental Gachangfirstpage/handwriting exposure. Currentauthor/sourcecontext first exposed only after originalrawGitseal; R3 is metadata repair, not pristine/newblind solve. Existingraw andpresealnotation diagnostic preserved.",
+    "currentMetadataChecks": {
+      "file": "../../own-review-evidence-r3/own-metadata-checks.json",
+      "SHA256": "a6e05d8cb127dae4bd537100323acb21b7cb0c474e845987973ab36ebe05f745",
+      "assertions": 51,
+      "passed": 51,
+      "failed": 0
+    },
+    "boundedMathEvidence": {
+      "file": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-calculations.json",
+      "SHA256": "9fc8ede3e17d8ced4aa35606cdf50ebb3f43257e5d12a3571f4614c359824720",
+      "historicalR2Assertions": 52,
+      "newR3MathSolves": 0,
+      "use": "Only reused after exact currentstudent/choices/answer/solution/assets binding; not copied approval or sum of repeated checks."
+    },
+    "primaryReceipt": {
+      "file": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+      "SHA256": "372aac5235afba5509f83040543cfe762574621f036e8eafff17b1b4433b10bf",
+      "scope": "Actually previously inspected officialtext/records/pages plus exactcapturedUnit, combined with current complete method; band/Unit/source-school alone insufficient."
+    },
+    "imageScope": {
+      "R2ActualViewed": "originalfirstpage andwhitevectorPNG were actually viewed in priorsealedreview; R3mathSVG/spec/blindSVGbyteequal now independentlychecked. No new imageinspectionclaim.",
+      "fullStudentSolutionPNG": "pending; no fullbrowser/native/print/layoutapproval",
+      "noPixelCoordinateAnswerOracle": true
+    },
+    "separateHolds": {
+      "exactLiveFamily": null,
+      "wholeSourceIdentity": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "actualStudentPlacementApproved": false,
+      "2027M3/2022Approved": false,
+      "loadable": false
+    },
+    "studentPlacementScope": "R3 flags require actual evidence of bothunits learned; no such student evidence or operational/native enforcement examined. Grade judgments below are whole-method afterprerequisites scope, not actual assignment authorization.",
+    "questionNumber": 3,
+    "checkBasis": {
+      "answerCorrect": "CurrentR3③/b4 matches originalsealedindependentraw; body/choices/answer/solution exactR2 binding checked anew, no newsolve.",
+      "solutionCorrect": "Current complete author text still constructs4a+1-b,3a+2-b; expands12a²+(11-7b)a+(1-b)(2-b); solves11-7b=-17; checksconstant6 andpositive lengths. Independently re-read allsteps and bindR2exactcalculation.",
+      "existenceUniqueness": "a>2 gives4a-3>5 and3a-2>4 atb4;0<4<3a+2. Nonzero-7 in11-7b=-17 fixesuniqueconstantb; allpolynomial terms match, not just onea.",
+      "choicesCorrect": "Current fiveoptions2/3/4/5/6 unchanged; R2exact expansions (0,-3,12),(2,-10,12),(6,-17,12),(12,-24,12),(20,-31,12) rebound tocurrentdata. Only③equals target.",
+      "figureConsistent": "CurrentSVG/spec/blindSVGsha equalR2. Previously viewedwhitevector hadremainingwhiteupper-left andgrayright/bottom withfullside/twoblabels. Sourcefigure not reused asnewasset. No freshfullPNG/layoutclaim.",
+      "sameCoreConceptAndProcedure": "Unchanged source pair andcurrentmethod: original rectangle remainingarea/polynomialproduct core is preserved. Prior actualoriginalfirstpage component observation isrebound, neveroriginalansweragreement.",
+      "distinctPresentation": "Same current substantive inverse structure: originalinternalfixedwidthpaths/directareachoice → newexternalstripcutting/givenpolynomial-to-width. MetadataR3 didnotcreateanother variant.",
+      "naturalKorean": "Currenttext unchanged and clear aboutbconstant,remainingarea, a-domain andcm/cm². Natural text andknownvectorlabels independently re-read; fullnewrender stillpending.",
+      "curriculumAppropriate": "2015M3 9수02-12 explicitbinomialmultiplication plus priorrectanglearea/linearrelation9수02-05. CurrentactualM3semester1multiplicationUnit e63d61c6...afterlearnedprereqs; not unrestrictedhighschoolidentitycoefficientmethod permission.",
+      "allStudentSurfacesInScope": "Seven currentactualtext/vector mathematicalfaces have individualbasis below afterprereqs. MissingfullPNG preventsnative/layoutapproval, not a hiddenmathematicalscope certification.",
+      "unitFamilyFit": "CurrentmultiplicationUnit matches topic/semester, but exactlivefamily actualdefinition/target/domain compatibility remainsunproved/familyKeynull. Keepfalse.",
+      "scoreAppropriate": "Current/sourceprinted4points unchanged. Constructtwofactors/expand/linearinput/positivity burden supports4pointeditorialproposal; preparation중 and broad기본~응용 notmeasured/equaldifficulty approval."
+    },
+    "currentUnit": {
+      "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "다항식의 곱셈",
+      "semester": 1,
+      "orderIndex": 472,
+      "problemCodePrefix": "J30201"
+    },
+    "rawSHA256": "091f47d50766dfeebf27128537a169d5bd95470561f957a6f94ea4d94b0df011",
+    "currentPrerequisiteUnits": [
+      {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      }
+    ],
+    "currentPlacementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "직사각형의 넓이",
+        "다항식의 곱셈",
+        "동류항과 계수 비교",
+        "일차방정식",
+        "양수 길이와 cm/cm²"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "R2SpecificGapStatus": "q03 byteidentical; no repair/newmath claim."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "Currentinversewidthrectangle statement requiresarea andtwofirst-degreefactorproduct, 2015M3 9수02-12 aftermultiplicationUnit472 learned; coefficientcondition onlysimplelinearrelation.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Allfiveintegerwidths unchanged andindependentexpansions rebound toR3; onlyb4matchesfullarea. BasicM3product/sign arithmetic, noadvancedchoiceoperation.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "No newtable; exactsamecurrentSVG/spec andpreviouslyviewedstripdiagram. Elementaryrectangle/width/area semantics complete. Fullstudent/solutionrender remainsunseen andheldseparately.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "a,b roles, x-freepolynomialpowers,cm/cm² andstrictbounds areunchanged andschool-level. Correctpreseal slashdiagnosis retained; no newnotationrepair or inputedit.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "③isconstantwidthb4, distinctfroma orcm²area. Simplelinearcoefficient-7nonzero andlengthdomain supplyuniquevalue/existence atcurrentpayload.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Wholecurrentproductexpansion/like-termcomparison/11-7b=-17/constant6/positivity proof re-read. 9수02-12 plus9수02-05 only, noformalhighschoolgenerality ornewmethodbyR3.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "Rectanglearea/positiveunits,distributivepolynomialmultiplication/like-terms/coefficients andpriorlinearequations mustbelearned. ActualM3sem1multiplicationUnit and2015source2025/practice2026 only;2027/2022pending.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    }
+  }
+}
