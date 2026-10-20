@@ -1,0 +1,79 @@
+{
+  "studentDigest": "1457138e33c8d74f2d5cd8ecef5020c69631d4e5d498a5a23ada1d43fbf8fa0f",
+  "solverId": "independent-helper-current-next4-20261020-r1",
+  "answer": "③",
+  "solution": "양수 k의 두 제곱근은 부호가 반대이고 절댓값이 같다. 작은 근 a는 음수, 큰 근 b는 양수이므로 a=-b이다. A에서 B까지의 거리는 b-a=2b=8이므로 b=4, a=-4이고 k=4²=16이다. 실제로 두 수의 제곱은 모두16이고 두 점 사이의 거리는8이므로 조건을 만족한다. 보기의 k=4,8,16,32,64에서 거리의 제곱4k는 각각16,32,64,128,256이므로 요구된8²=64에 맞는 것은16뿐이다. 따라서 ③이다.",
+  "evidence": {
+    "status": "independently-solved-current-student-only",
+    "exposureDeclaration": {
+      "solverId": "independent-helper-current-next4-20261020-r1",
+      "priorExposure": "Previously viewed original nine source components/first-page references, prior related root variants, and public engine code. No pristine-corpus-blindness claim.",
+      "currentAuthorAnswerExposureBeforeSeal": false,
+      "currentPrivateSolutionsSpecsMetadataRead": false,
+      "currentStudentInputsReadOnly": [
+        "two SOLVE-BRIEFs",
+        "two student-problems.json",
+        "two blind manifests",
+        "two student SVGs",
+        "four student PNGs"
+      ],
+      "studentPNGsActuallyViewed": 4,
+      "svgDirectView": "view_image does not support SVG; Cairo rasterization unavailable. Original SVG labels/hashes inspected, and each figure actually viewed within its provided student PNG. No pixel/coordinate math oracle.",
+      "scope": "Raw independent student solving, not formal current author/source comparison or grade/rights/family/native/loadability approval."
+    },
+    "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q01",
+    "ownExactCalculation": {
+      "a": "-4",
+      "b": "4",
+      "k": "16",
+      "choices": [
+        {
+          "choice": "①",
+          "k": "4",
+          "squaredDistance": "16",
+          "requiredSquaredDistance": "64",
+          "satisfies": false
+        },
+        {
+          "choice": "②",
+          "k": "8",
+          "squaredDistance": "32",
+          "requiredSquaredDistance": "64",
+          "satisfies": false
+        },
+        {
+          "choice": "③",
+          "k": "16",
+          "squaredDistance": "64",
+          "requiredSquaredDistance": "64",
+          "satisfies": true
+        },
+        {
+          "choice": "④",
+          "k": "32",
+          "squaredDistance": "128",
+          "requiredSquaredDistance": "64",
+          "satisfies": false
+        },
+        {
+          "choice": "⑤",
+          "k": "64",
+          "squaredDistance": "256",
+          "requiredSquaredDistance": "64",
+          "satisfies": false
+        }
+      ],
+      "existence": "Both roots square to16, opposite signs, a<b, distance8; k>0.",
+      "uniqueness": "a=-b and b>0, so8=b-a=2b fixes b=4 then k=16."
+    },
+    "ownCalculationReceiptSHA256": "a2f042faa975919fdb960ec2718da75588bd87579ed281b1ced2c069396334fc",
+    "studentProblemsSHA256": "2a38f1ace325e3d098c645a566e079ec590fa1f4b9e63948c7f788d23685c71a",
+    "figureSHA256s": [
+      "a3b20d65e6998a41457934dc9117b71abff7011f647111cb7807426f2e4535f4"
+    ],
+    "methodGrade": "Proposed2015M3 after root definitions/comparison/irrationality, <=M2 prerequisites; no automatic formal grade/release approval.",
+    "everyChoiceChecked": true,
+    "pixelsOrCoordinatesUsedAsNumericOracle": false
+  },
+  "status": "solved"
+}

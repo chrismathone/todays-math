@@ -1,0 +1,129 @@
+{
+  "studentDigest": "353675a5a861e6dd7100f27338744c817afb22cc8a1ba88f939cec009727b65b",
+  "solverId": "independent-helper-current-next4-20261020-r1",
+  "answer": "④",
+  "solution": "A는9<11<16에서3<√11<4이므로0<√11-3<1이다. B는1<3<4에서1<√3<2이므로 -1<√3-2<0이다. C는9<10<16에서3<√10<4이므로1<√10-2<2이다. D는1<2<4에서1<√2<2이므로0<2-√2<1이다. E는9<15<16에서3<√15<4이므로0<4-√15<1이다. 따라서 해당하는 수는 A,D,E의3개이다. 모두 엄격한 부등식이어서0이나1인 경우는 없고 각 근호는 양수에서 정의된다. 보기의0,1,2,3,4개 중3개에 해당하는 ④가 유일하다.",
+  "evidence": {
+    "status": "independently-solved-current-student-only",
+    "exposureDeclaration": {
+      "solverId": "independent-helper-current-next4-20261020-r1",
+      "priorExposure": "Previously viewed original nine source components/first-page references, prior related root variants, and public engine code. No pristine-corpus-blindness claim.",
+      "currentAuthorAnswerExposureBeforeSeal": false,
+      "currentPrivateSolutionsSpecsMetadataRead": false,
+      "currentStudentInputsReadOnly": [
+        "two SOLVE-BRIEFs",
+        "two student-problems.json",
+        "two blind manifests",
+        "two student SVGs",
+        "four student PNGs"
+      ],
+      "studentPNGsActuallyViewed": 4,
+      "svgDirectView": "view_image does not support SVG; Cairo rasterization unavailable. Original SVG labels/hashes inspected, and each figure actually viewed within its provided student PNG. No pixel/coordinate math oracle.",
+      "scope": "Raw independent student solving, not formal current author/source comparison or grade/rights/family/native/loadability approval."
+    },
+    "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group3-r1-q03",
+    "ownExactCalculation": {
+      "records": [
+        {
+          "record": "A",
+          "radicand": 11,
+          "squareBounds": [
+            9,
+            11,
+            16
+          ],
+          "rootStrictInterval": [
+            3,
+            4
+          ],
+          "expressionStrictInterval": [
+            0,
+            1
+          ],
+          "strictlyBetween0And1": true
+        },
+        {
+          "record": "B",
+          "radicand": 3,
+          "squareBounds": [
+            1,
+            3,
+            4
+          ],
+          "rootStrictInterval": [
+            1,
+            2
+          ],
+          "expressionStrictInterval": [
+            -1,
+            0
+          ],
+          "strictlyBetween0And1": false
+        },
+        {
+          "record": "C",
+          "radicand": 10,
+          "squareBounds": [
+            9,
+            10,
+            16
+          ],
+          "rootStrictInterval": [
+            3,
+            4
+          ],
+          "expressionStrictInterval": [
+            1,
+            2
+          ],
+          "strictlyBetween0And1": false
+        },
+        {
+          "record": "D",
+          "radicand": 2,
+          "squareBounds": [
+            1,
+            2,
+            4
+          ],
+          "rootStrictInterval": [
+            1,
+            2
+          ],
+          "expressionStrictInterval": [
+            0,
+            1
+          ],
+          "strictlyBetween0And1": true
+        },
+        {
+          "record": "E",
+          "radicand": 15,
+          "squareBounds": [
+            9,
+            15,
+            16
+          ],
+          "rootStrictInterval": [
+            3,
+            4
+          ],
+          "expressionStrictInterval": [
+            0,
+            1
+          ],
+          "strictlyBetween0And1": true
+        }
+      ],
+      "count": 3,
+      "endpoints": "All radicands strictly between adjacent integer squares. Neither endpoint0 nor1 is attained; C strictly>1, B strictly<0."
+    },
+    "ownCalculationReceiptSHA256": "a2f042faa975919fdb960ec2718da75588bd87579ed281b1ced2c069396334fc",
+    "studentProblemsSHA256": "19219ba42354f0a29087bf960c4bf0290584f745bd5f6dacebe9e754dfaad70d",
+    "figureSHA256s": [],
+    "methodGrade": "Proposed2015M3 after root definitions/comparison/irrationality, <=M2 prerequisites; no automatic formal grade/release approval.",
+    "everyChoiceChecked": true,
+    "pixelsOrCoordinatesUsedAsNumericOracle": false
+  },
+  "status": "solved"
+}
