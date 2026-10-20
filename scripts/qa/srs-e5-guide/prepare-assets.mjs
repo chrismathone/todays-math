@@ -86,7 +86,8 @@ for (let n = 0; n < ids.length; n++)
         );
       data[k + 3] = Math.round(alpha * 255);
     }
-    const out = path.join("public/lab/guides", ids[n], `${poses[j]}.webp`);
+    // Same place as `guideAssetPath` (src/lib/math-srs/guideAssets.ts) — the student gate opens it.
+    const out = path.join("public/images/guides", ids[n], `${poses[j]}.webp`);
     await mkdir(path.dirname(out), { recursive: true });
     await sharp(data, { raw: { width: w, height: h, channels: 4 } })
       .resize(

@@ -16,6 +16,8 @@
 
 `public/lab/guides/<id>/{guide,correct,again,done,reward}.webp`에 25개를 두었다.
 
+> **리드 병합 때 옮김(2026-10-20 밤):** `public/images/guides/` 로 옮겼다. 학생 관문이 `/lab/guides/` 를 열지 않아, 운영에서는 학생의 그림 요청이 `/learn` 으로 307 넘김되어 깨진 그림이 됐을 것이다(하네스는 관문을 거치지 않아 못 본다). 경로는 `guideAssetPath`(`src/lib/math-srs/guideAssets.ts`) 한 곳에서 만들고, 관문은 활성 학생에게 `GET|HEAD /images/guides/**` 를 연다 — 시험 `guideAssetsGate.test.ts` 가 25개 경로를 관문에 직접 묻는다.
+
 | 항목               | 결과                                                 |
 | ------------------ | ---------------------------------------------------- |
 | 원본               | 지정된 `D:/tmp/guide/candidates/`의 512×512 PNG 25개 |

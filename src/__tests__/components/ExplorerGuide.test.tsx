@@ -75,7 +75,7 @@ describe("student chooses a guide", () => {
     );
     expect(screen.getByAltText("종이 제비의 축하")).toHaveAttribute(
       "src",
-      "/lab/guides/paper-swallow/done.webp",
+      "/images/guides/paper-swallow/done.webp",
     );
     expect(screen.getByAltText("종이 제비의 보상")).toBeInTheDocument();
     rerender(

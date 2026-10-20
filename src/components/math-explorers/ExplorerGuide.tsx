@@ -10,6 +10,7 @@ import {
 } from "react";
 import { GUIDE_IDS, type GuideId } from "@/contracts/mathSrsGuide.contract";
 import { getGuide, saveGuide } from "@/components/math-srs/guideApi";
+import { guideAssetPath } from "@/lib/math-srs/guideAssets";
 import b from "./explorer-study-book.module.css";
 
 const names: Record<GuideId, string> = {
@@ -97,7 +98,7 @@ export function GuidePicker() {
             onClick={() => setSelected(id)}
           >
             <img
-              src={`/lab/guides/${id}/guide.webp`}
+              src={guideAssetPath(id, "guide")}
               width={200}
               height={152}
               alt=""
@@ -134,7 +135,7 @@ export function GuideArt() {
     >
       {guide.id ? (
         <img
-          src={`/lab/guides/${guide.id}/guide.webp`}
+          src={guideAssetPath(guide.id, "guide")}
           alt={names[guide.id]}
           width={100}
           height={76}
@@ -153,14 +154,14 @@ export function GuideReward() {
   return (
     <div className={b.guideEnding}>
       <img
-        src={`/lab/guides/${guide.id}/done.webp`}
+        src={guideAssetPath(guide.id, "done")}
         alt={`${names[guide.id]}의 축하`}
         width={100}
         height={76}
       />
       <div className={b.reward}>
         <img
-          src={`/lab/guides/${guide.id}/reward.webp`}
+          src={guideAssetPath(guide.id, "reward")}
           alt={`${names[guide.id]}의 보상`}
           width={126}
           height={126}
