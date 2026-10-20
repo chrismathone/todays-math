@@ -67,6 +67,7 @@ beforeEach(async () => {
         sequence: index,
       },
     });
+    // exam-wiring: 테스트 — 전역 Prisma 인메모리 대역에 교재 선택기 픽스처만 넣는다.
     await db.problem.create({
       data: {
         ...template,

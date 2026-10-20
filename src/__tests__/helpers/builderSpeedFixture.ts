@@ -23,6 +23,7 @@ export async function seedBuilderSpeedFixture(size = 240) {
       " mid:fixture|1 ",
       "solo:fixture",
     ];
+    // exam-wiring: 테스트 — 전역 Prisma 인메모리 대역에 성능·동등성 픽스처만 넣는다.
     await db.problem.create({
       data: {
         id,

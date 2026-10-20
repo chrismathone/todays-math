@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type {
   ExamStudyGenerateRequest,
   ExamStudyGeneration,
@@ -43,8 +43,12 @@ const approved = (menus = ["bank"]) => ({
   },
 });
 beforeEach(() => {
+  // Keep the real same-origin guard independent of the runner's deployment URL.
+  vi.stubEnv("AUTH_URL", "http://localhost");
+  vi.stubEnv("NEXTAUTH_URL", "");
   fixture.session = approved();
 });
+afterEach(() => vi.unstubAllEnvs());
 
 function request(body: unknown, resolve = false) {
   return new Request(

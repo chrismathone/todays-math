@@ -297,7 +297,7 @@ const SCREENS: Screen[] = [
           initialData={{
             countUnit: "question",
             version: 2,
-            queryKey: "fraction-fixture",
+            queryKey: "fraction-view-fixture",
             problems: [row],
             total: 1,
             page: 1,

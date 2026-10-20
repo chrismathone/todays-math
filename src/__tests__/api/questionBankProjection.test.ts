@@ -36,6 +36,7 @@ const q = (more: Record<string, string> = {}) =>
 const Q1 = `q:v1:${"1".repeat(64)}`,
   Q2 = `q:v1:${"2".repeat(64)}`;
 async function plant(patch: Record<string, unknown> = {}) {
+  // exam-wiring: 테스트 — 전역 Prisma 인메모리 대역에 문항 묶음 픽스처만 넣는다.
   return db.problem.create({
     data: {
       userId: USER_TEACHER_ID,

@@ -1,7 +1,8 @@
 /** Memory/contract verification only. No .env, DB connections or paid APIs, and no real-DB claim. */
 import { afterAll, describe, expect, it, vi } from "vitest";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
@@ -59,9 +60,9 @@ const plan = {
 };
 const candidates = await buildVerifiedCandidates(plan, units);
 const dirs: string[] = [];
-afterAll(() =>
-  dirs.forEach((d) => rmSync(d, { recursive: true, force: true })),
-);
+afterAll(async () => {
+  for (const dir of dirs) await rm(dir, { recursive: true, force: true });
+});
 
 function memoryStore(initial: StoredCandidate[] = []) {
   let rows = structuredClone(initial);

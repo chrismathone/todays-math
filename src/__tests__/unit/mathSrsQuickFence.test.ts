@@ -16,6 +16,7 @@
  *
  * 허용 목록을 넓히려면 **이유를 여기 적고** 원장님 격리 지시에 비춰 본다.
  */
+import { createHash } from "node:crypto";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
@@ -117,6 +118,21 @@ const FORBIDDEN_ROOTS = [
  * 폴더째 빼지 않는다. 이름 하나만.
  */
 const TEST_HARNESSES = new Set(["scripts/qa/math-prerequisite/server.test.ts"]);
+
+/**
+ * 6bc01b85b: 원장 승인 읽기 측정 브리프가 이 파일을 명시한다
+ * (docs/planning/tracks/brief-browser-sweep-perf-codex.md 규칙 2).
+ * READ ONLY 거래 안의 교사 dashboard reader를 비교하고 집계만 출력하는 QA 진입점이다.
+ * mathSrsRecordIsolation도 같은 예외를 갖는다. 승인된 원문 SHA에만 적용하므로
+ * 스크립트가 한 글자라도 달라지면 재검토 없이 통과할 수 없다.
+ * 이 진입점을 import하는 다른 금지 뿌리나 quick 직접 import는 계속 금지한다.
+ */
+const READ_ONLY_QA_ENTRYPOINTS = new Map([
+  [
+    "scripts/qa/measure-sweep-20261020.ts",
+    "7b61f93ae5ba0712f43ce68d2099cb2a9f8da68648ec2ea5c89ec08f204abeb8",
+  ],
+]);
 
 /**
  * 🔴 원장님 연구실(`/lab/math-srs/algebra`, 브라우저 기록 · 글자 입력칸뿐)은 숫자형 그대로다(2026-09-27).
@@ -342,7 +358,7 @@ describe("한 걸음 문항 격리 울타리", () => {
       const r = rel(file);
       if (!FORBIDDEN_ROOTS.some((root) => r === root || r.startsWith(root)))
         continue;
-      if (TEST_HARNESSES.has(r)) continue;
+      if (TEST_HARNESSES.has(r) || READ_ONLY_QA_ENTRYPOINTS.has(r)) continue;
       const chain = pathToQuick(file);
       if (chain) leaks.push(chain.join(" → "));
     }
@@ -354,6 +370,23 @@ describe("한 걸음 문항 격리 울타리", () => {
     for (const harness of TEST_HARNESSES) {
       expect(scanned.has(harness), harness).toBe(true);
       expect(harness).toMatch(/\.test\.tsx?$/);
+    }
+  });
+
+  it("읽기 측정 예외는 승인된 원문 그대로인 QA 진입점 하나뿐이다", () => {
+    expect(READ_ONLY_QA_ENTRYPOINTS.size).toBe(1);
+    for (const [entrypoint, approvedHash] of READ_ONLY_QA_ENTRYPOINTS) {
+      const abs = path.join(ROOT, entrypoint);
+      expect(SCAN.graph.has(abs), entrypoint).toBe(true);
+      // Git's LF blob and a Windows autocrlf checkout have the same approved content.
+      const source = readFileSync(abs, "utf8").replace(/\r\n/g, "\n");
+      expect(createHash("sha256").update(source).digest("hex"), entrypoint).toBe(approvedHash);
+      expect(source).toContain("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ, READ ONLY");
+      expect(source).toContain('assert.equal(flags[0]?.readOnly, "on")');
+      expect(source).toContain("next.loadCourseDashboard(viewer, now)");
+      // It is not a general-purpose quick consumer or a reusable production module.
+      expect(allowed(entrypoint)).toBe(false);
+      expect([...SCAN.graph.values()].flat().filter((edge) => edge.target === abs)).toEqual([]);
     }
   });
 

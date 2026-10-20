@@ -211,6 +211,9 @@ describe("배선 — 단원 목록으로 학년을 찾아 카드에 넘긴다", 
     server.use(
       http.get("/api/problems", () =>
         HttpResponse.json({
+          countUnit: "question",
+          version: 2,
+          queryKey: "mixed-fraction-fixture",
           data: [PROBLEM],
           meta: { page: 1, pageSize: 20, total: 1 },
         }),

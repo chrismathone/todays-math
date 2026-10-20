@@ -8,6 +8,29 @@ import {
   type PrintTemplate,
 } from "@/components/unified/print/types";
 
+// 2026-10-19 C2 승인 구성표: 제품의 PRINTED_META_FIELDS에서 기대값을 가져오지 않는다.
+const META_VALUES = {
+  title: "검증 시험지",
+  schoolName: "검증 학교",
+  examDate: "2026-09-14",
+  todayGoal: "분수 목표",
+  conceptNote: "개념 정리 본문",
+  patternName: "유형 검증",
+  academyName: "검증 학원",
+};
+const PRINTED_FIXTURE_FIELDS: Record<
+  PrintTemplate,
+  (keyof typeof META_VALUES)[]
+> = {
+  pyeongga: ["title", "schoolName", "examDate"],
+  jeongtong: ["title", "schoolName", "examDate"],
+  // A/T2 (2026-10-20): the modern guidance head also prints the one-line goal.
+  modern: ["title", "schoolName", "examDate", "todayGoal"],
+  workbook: ["title", "academyName", "examDate", "patternName"],
+  jaseup: ["title", "examDate", "todayGoal", "conceptNote"],
+  yuhyung: ["title", "patternName"],
+};
+
 describe("original Mathgen template adapters", () => {
   it.each(Object.keys(TEMPLATE_COMPONENTS) as PrintTemplate[])(
     "%s keeps number and optional metadata together above the body in both render modes",
@@ -78,7 +101,7 @@ describe("original Mathgen template adapters", () => {
     },
   );
   it.each(Object.keys(TEMPLATE_COMPONENTS) as PrintTemplate[])(
-    "renders %s with real metadata and the unchanged crop",
+    "renders %s with its approved metadata and the unchanged crop",
     (template) => {
       const Template = TEMPLATE_COMPONENTS[template];
       const crop = "data:image/png;base64,aGVsbG8=";
@@ -91,13 +114,7 @@ describe("original Mathgen template adapters", () => {
           startingNumber={7}
           meta={{
             ...DEFAULT_PRINT_META,
-            title: "검증 시험지",
-            schoolName: "검증 학교",
-            examDate: "2026-09-14",
-            todayGoal: "분수",
-            conceptNote: "개념 정리",
-            patternName: "유형 검증",
-            academyName: "검증 학원",
+            ...META_VALUES,
           }}
           options={{ ...DEFAULT_PRINT_OPTIONS, template }}
           problems={[
@@ -124,16 +141,25 @@ describe("original Mathgen template adapters", () => {
           ]}
         />,
       );
-      expect(html).toContain("검증 시험지");
-      if (PRINTED_META_FIELDS[template].includes("schoolName"))
-        expect(html).toContain("검증 학교");
-      else expect(html).not.toContain("검증 학교");
-      if (PRINTED_META_FIELDS[template].includes("examDate"))
-        expect(html).toContain("2026-09-14");
-      else expect(html).not.toContain("2026-09-14");
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      for (const key of Object.keys(
+        META_VALUES,
+      ) as (keyof typeof META_VALUES)[]) {
+        const fields = doc.querySelectorAll(`[data-meta-field="${key}"]`);
+        if (PRINTED_FIXTURE_FIELDS[template].includes(key)) {
+          expect(fields, `${template}: ${key}`).toHaveLength(1);
+          expect(fields[0].textContent).toContain(META_VALUES[key]);
+        } else {
+          expect(fields, `${template}: ${key}`).toHaveLength(0);
+          expect(doc.body.textContent).not.toContain(META_VALUES[key]);
+        }
+      }
       expect(html).not.toContain("2025 · 1ST SEMESTER · MIDTERM");
       expect(html).toContain(crop);
       expect(html).toContain('data-measure-idx="0"');
+      expect(
+        doc.querySelector('[data-measure-idx="0"] img')?.getAttribute("src"),
+      ).toBe(crop);
     },
   );
 });

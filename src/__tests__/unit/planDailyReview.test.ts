@@ -91,13 +91,14 @@ describe("[planDailyReview] 오늘의 학생별 확인테스트 계획", () => {
   });
 
   /** 🔴 D-64 — 시험기간(내신대비)만 적힌 날: 표시만, 원문 줄이 사유로 실린다. */
-  it("오늘 진도 행이 없으면 examOrUnread — 원문 줄 그대로, 중복 제거", () => {
+  it.each([8, 12])("오늘 진도 행이 없으면 examOrUnread — 원문 줄 그대로, 중복 제거, 학생별 %i문항", (problemCount) => {
     const plan = planDailyReview({
       day: "2026-08-21",
       students: [
         student({
           id: "s1",
           lastReportText: "수학 내신대비\n수학 내신대비\n수학 모의고사",
+          defaultProblemCount: problemCount,
         }),
       ],
       progressRows: [row("s1", "u3", "2026-08-20")], // 어제 것만 있다
@@ -113,6 +114,7 @@ describe("[planDailyReview] 오늘의 학생별 확인테스트 계획", () => {
         grade: "중2",
         className: "중등M 중2",
         lines: ["수학 내신대비", "수학 모의고사"],
+        problemCount, // 39f14382a: this student's request count, not a group maximum.
       },
     ]);
   });

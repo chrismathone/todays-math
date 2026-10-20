@@ -43,10 +43,13 @@ type Evidence = {
     format: string;
     hash: string;
     beforeBoundaryHash?: string;
+    beforeDigitsHash?: string;
   }[];
 };
 // Earlier 2026-10-18 audited fixes added ONLY a command boundary space in these
 // two solutions (bankTexCommandBoundary.test.tsx independently locks the change).
+// cfbb07daf corrected the noun for cards containing 0; no numeric field changed.
+const ZERO_DIGITS_FAMILY = "mid:2-2|경우의 수|11";
 const TEX_BOUNDARY_FAMILIES = new Set([
   "mid:2-1|연립일차방정식|90",
   "mid:3-1|다항식의 곱셈|02",
@@ -95,6 +98,16 @@ function capture(templates?: readonly string[]): Evidence {
         family: row.familyKey,
         format: row.questionType,
         hash: digest(stable(row)),
+        ...(row.familyKey === ZERO_DIGITS_FAMILY
+          ? {
+              beforeDigitsHash: digest(
+                stable({
+                  ...row,
+                  content: row.content.replace("까지의 숫자가", "까지의 자연수가"),
+                }),
+              ),
+            }
+          : {}),
         ...(TEX_BOUNDARY_FAMILIES.has(row.familyKey)
           ? {
               beforeBoundaryHash: digest(
@@ -114,7 +127,7 @@ function capture(templates?: readonly string[]): Evidence {
 }
 
 describe("B5: 중등 적재 행의 실제 오답 배선", () => {
-  it("등록 유형 전부 × 씨앗 세 개: 삼각비 18 객관식 외의 산출은 한 글자도 바뀌지 않는다", () => {
+  it("등록 유형 전부 × 씨앗 세 개: 승인된 보기·명령 경계·숫자 표현 외의 산출은 바뀌지 않는다", () => {
     const before = readEvidence<Evidence>(BASELINE);
     const after = capture(before.templates);
     if (process.env.BANK_DECIDE_CAPTURE_LOADER === "1") {
@@ -166,10 +179,19 @@ describe("B5: 중등 적재 행의 실제 오답 배선", () => {
         row.beforeBoundaryHash === beforeById.get(row.id),
     );
     expect(boundaryChanges).toHaveLength(6); // exactly two families x the frozen three seeds.
+    // Allow exactly the reviewed noun correction, with the entire original row hash intact.
+    // A reverted noun would no longer be a changed row; any other changed field fails its hash.
+    const digitsChanges = changed.filter(
+      (row) =>
+        row.format === "단답형" &&
+        row.family === ZERO_DIGITS_FAMILY &&
+        row.beforeDigitsHash === beforeById.get(row.id),
+    );
+    expect(digitsChanges).toHaveLength(SEEDS.length);
     expect(
       changed
         .filter((row) => row.format !== "객관식")
-        .filter((row) => !boundaryChanges.includes(row))
+        .filter((row) => !boundaryChanges.includes(row) && !digitsChanges.includes(row))
         .map(({ id, family, format }) => ({ id, family, format })),
     ).toEqual([]);
   }, 60000);
