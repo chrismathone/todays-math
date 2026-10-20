@@ -1,4 +1,4 @@
-import type { Element, Root } from "hast";
+import type { Element, ElementContent, Root } from "hast";
 
 import { displayWidth } from "@/lib/math/displayWidth";
 
@@ -37,7 +37,36 @@ function texOf(node: Element): string | null {
   return null;
 }
 
+/**
+ * 한 줄에 늘어놓은 기호 보기 «㉠ $식$  ㉡ $식$» — 기호 뒤 빈칸(NBSP 라도)에서 줄이 바뀌어 «㉠» 만 줄 끝에 남았다
+ * (교차 검수 4 · 5회차). KaTeX 상자는 원자 인라인이라 NBSP 로는 붙지 않는다 — 기호와 그 식을 한 감싸개로 묶는다.
+ * 기호 바로 뒤가 식일 때만이다(«㉠과 ㉡에» 같은 문장 속 기호는 그대로).
+ */
+const ITEM_MARK = /([㉠-㉭])[ \u00a0]$/;
+const glued = new WeakSet<Element>();
+
+function glueItemMarks(node: Root | Element): void {
+  if (node.type === "element" && glued.has(node)) return;
+  const kids = node.children as ElementContent[];
+  for (let i = 0; i + 1 < kids.length; i++) {
+    const text = kids[i]!, next = kids[i + 1]!;
+    if (text.type !== "text" || next.type !== "element" || next.tagName !== "span" || !classes(next).includes("katex")) continue;
+    const m = ITEM_MARK.exec(text.value);
+    if (!m) continue;
+    const head = text.value.slice(0, m.index);
+    const wrap: Element = {
+      type: "element", tagName: "span", properties: { style: NOWRAP },
+      children: [{ type: "text", value: `${m[1]}\u00a0` }, next],
+    };
+    glued.add(wrap);
+    const replaced: ElementContent[] = head ? [{ type: "text", value: head }, wrap] : [wrap];
+    kids.splice(i, 2, ...replaced);
+    i += replaced.length - 1;
+  }
+}
+
 function walk(node: Root | Element): void {
+  glueItemMarks(node);
   for (const child of node.children) {
     if (child.type !== "element") continue;
     const list = classes(child);

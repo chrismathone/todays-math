@@ -38,6 +38,20 @@ describe("짧은 인라인 식", () => {
   });
 });
 
+describe("한 줄 기호 보기 «㉠ $식$ ㉡ $식$» (4 · 5차 교차 검수)", () => {
+  it("기호와 그 식을 한 덩어리로 묶는다 — «㉠» 만 줄 끝에 남지 않는다(빈칸 · 붙은 빈칸 둘 다)", () => {
+    for (const gap of ["\u00a0", " "]) {
+      const out = html(`값이 더 큰 식을 찾아 기호를 쓰시오.  ㉠${gap}$72\\div(2\\times6)$\u3000\u3000㉡${gap}$72\\div2\\times6$`);
+      expect(out.match(/<span style="white-space:nowrap">㉠\u00a0<span class="katex"/g)?.length, gap).toBe(1);
+      expect(out.match(/<span style="white-space:nowrap">㉡\u00a0<span class="katex"/g)?.length, gap).toBe(1);
+    }
+  });
+  it("문장 속 기호(«㉠과 ㉡에»)와 기호 없는 식은 그대로", () => {
+    const out = html("㉠과 ㉡에 알맞은 수의 합을 구하시오. 답은 $3$ 이다.");
+    expect(out).not.toContain('<span style="white-space:nowrap">');
+  });
+});
+
 describe("앞 첨자 «$_{n}\\mathrm{C}_{r}$» (교과서 13행)", () => {
   it("연산 기호 · 식 머리 뒤의 «_{» 앞에 빈 묶음을 둔다 — 첨자가 «+» 에 붙지 않는다", async () => {
     const { preprocessMarkdown } = await import("@/lib/math/markdownPreprocess");
