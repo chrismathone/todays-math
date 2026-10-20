@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-20T04:00:56.544Z",
+  "head": "1b45f74c9617a4be1c38300aeee60a8f6c9093d4",
+  "main": "4547bfc0036ae3aacd7a842b6ccbcd321fffe342",
+  "currentCandidates": 151,
+  "figures": 107,
+  "boundReviewFilesChecked": 180,
+  "allCurrentCandidateAndEngineHashesMatch": true,
+  "exactStudentDuplicates": 0,
+  "nodeTestFiles": 13,
+  "nodeSummary": "ed provenance\nok 158 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 27.9122\n  type: 'test'\n  ...\n1..158\n# tests 158\n# suites 0\n# pass 158\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 18479.9689\n",
+  "vitestFiles": 4,
+  "vitestPassed": 36,
+  "results": [
+    {
+      "log": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v37-post-main-node-r1.tap",
+      "status": 0
+    },
+    {
+      "log": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v37-post-main-vitest-r1.log",
+      "status": 0
+    }
+  ],
+  "dbWrites": 0,
+  "loadable": 0,
+  "wholeGoalComplete": false
+}
