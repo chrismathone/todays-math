@@ -28,7 +28,7 @@ export function YuhyungTemplate({
   itemWhitespace,
   measure,
 }: PrintTemplateProps) {
-  const accent = options.color || PAPER_COLORS.accentSlate;
+  const accent = options.color || PAPER_COLORS.accentNavy;
   const fs = bodyFontSize("yuhyung", columns);
   const gap = Math.max(0, options.spacing);
 
@@ -77,6 +77,7 @@ export function YuhyungTemplate({
 
   return (
     <div
+      data-template-t2={options.template}
       style={{
         width: A4_DIM.width,
         height: A4_DIM.height,

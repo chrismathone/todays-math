@@ -1,0 +1,860 @@
+{
+  "browser": "151.0.7922.34",
+  "stage": "after",
+  "capturedAt": "2026-10-20T07:40:07.086Z",
+  "commit": "a77cdf20f34a26d5f195455822f70b9c1935140a",
+  "sourceSha256": {
+    "src/components/unified/print/WorksheetPrint.tsx": "5c712922d7272d0b424e5053630c1b9489d6cd83d93f41c43cda40f2a2fd4abf",
+    "src/components/unified/print/WorksheetPrint.module.css": "07f3de65e5912c0f91df6cfceb515bc357078792f36b512037e7d22ae4e98c42",
+    "src/components/unified/print/useMeasuredPages.tsx": "10361b878bf888d981a313c6e8ccae6cc5c82deb714f93aba5ce2e2842233871",
+    "src/components/unified/print/useMeasuredAnswerPages.tsx": "099b5465b6cc1c93b185cb59904903e7a00c653fe23de93755dc46463ae69a10",
+    "src/components/unified/print/types.ts": "b1708b3ccc613dec8a2541650bc9d6884ece33b6003868dc2c67c10537a6c474",
+    "src/components/unified/print/tokens.ts": "220b50989bd3e09e09095316b6b9bb07238117a2e4f72908847ba0b6c7a4ef53",
+    "src/components/unified/print/TitleSuggestions.tsx": "f502d0ae2277547d4f5156cc9a7025e36c275f5bfa1f8f069d5f279c350149c5",
+    "src/components/unified/print/templates/YuhyungTemplate.tsx": "110d9288cf6ba232eab3af905f13a3753af0a40089b77609b6043c7723190776",
+    "src/components/unified/print/templates/WorkbookTemplate.tsx": "fde1261db4b9716356032ad8ddbd6ceaa442849d2f3ab2d602f12f88e5ab16db",
+    "src/components/unified/print/templates/SolvingArea.tsx": "b40aa0cf8a8d1fb910ae47ebd954c3e6909b6ea2ca42f873cecc456fc8183ff0",
+    "src/components/unified/print/templates/PyeonggaTemplate.tsx": "66e1119399183a8d24d27b9767804f9251c3743466b95a59f91774eecc831018",
+    "src/components/unified/print/templates/ProblemMeta.tsx": "c592798d61c85705ab5d10179f914f5e62aa98c3577b4aa1b2cbb522bbb4817f",
+    "src/components/unified/print/templates/ProblemBody.tsx": "7cabba5e1e0dc5fe76722c94382399b77791df84175456e9e3526acb482f49df",
+    "src/components/unified/print/templates/ModernTemplate.tsx": "435514d8dd0a5307399954597b8868e57bd6b7821c4cd777bd5ce3ef202652ee",
+    "src/components/unified/print/templates/JeongtongTemplate.tsx": "7e2252ced2d084a89d2390a5aaebee90d499d207f7d170f4188e3c7aa9b1b5c9",
+    "src/components/unified/print/templates/JaseupTemplate.tsx": "9809a06ba21178e745518abbaa81464fff10aff5449495e624f43c15aa8faec4",
+    "src/components/unified/print/templates/BodyContainer.tsx": "f749d9ca98871a322fc34aeb73afb4b4ecef47597ed802b6a183f9da3e7df935",
+    "src/components/unified/print/templateFields.ts": "361dc42687df7488f0a93e301641d1286bbfddb9e19380d034238f0cb166d34f",
+    "src/components/unified/print/templateComponents.ts": "a648df1a08c97e54eb102ab5d5feb397d75ff1e8e064865368d6031b7a9c7491",
+    "src/components/unified/print/T2PrintHeader.tsx": "ea56efb0444fb008452162d0b7cbab7bd3ae3246e7042d3b045a1df9332056f2",
+    "src/components/unified/print/T2PrintHeader.module.css": "1e24aac55a52495ff0eca9bf901f8f83fd00c8e4bddb68298e9404e3fad6122c",
+    "src/components/unified/print/suggestTitles.ts": "20b4f38cac33ea186b6c41390505f24a75cbf812e067a952894a4f2b509033e8",
+    "src/components/unified/print/SheetTagPicker.tsx": "d55b71262cb918a9915c8ffc12c41501e57ca43f7d0eb42607e7d8f50810d214",
+    "src/components/unified/print/settings.ts": "2be2d9b27863ab12cc137f61f172f86bacd94664ba76fc4ac0beca2334053f16",
+    "src/components/unified/print/SavedLayouts.tsx": "986e69dee55d7657180f90db514d18be95d32ac5ef9a265d8de3f9b27c98ec79",
+    "src/components/unified/print/readableColor.ts": "00e68a1fdff427b88e87211d9d37210b638040f3b510611f24a49bf819d331ed",
+    "src/components/unified/print/printPresetText.ts": "235630516c9b483c347a5051fc5ea8fc3c848ddc577b3ad3ff1d65fd11de11b8",
+    "src/components/unified/print/printPresetsClient.ts": "eb633ccb3103917869e52cac10dbc53a35dd7f783bfbb71929b21f93282373b6",
+    "src/components/unified/print/PrintOptionsPanel.tsx": "3ec9c608b8778cba38c57ea582df8a85569738d37b581074a8091b3e81524479",
+    "src/components/unified/print/PrintOptionsPanel.module.css": "3dc47d7c2813c9df1ad93c7934cac9d8ca078f2565482591476ea4ae4966aa40",
+    "src/components/unified/print/PrintHeader.tsx": "dd21ae61414f9c9e728150152872f174ded1561e648049d1752a66673b8df75d",
+    "src/components/unified/print/PrintHeader.module.css": "73f6da9a9ce3b32698d07abbef60109d26c2964059d38e55c1bfa6f49fba4442",
+    "src/components/unified/print/pack.ts": "f37052a99161fa8c2231db69f96e7a9fa1196ae097c63dc5f7f9f7bd84fe6e87",
+    "src/components/unified/print/OutputExtras.module.css": "624bd5da63f3538c90a9450b5b523f9a025b57091ad4b96354d8794e531291b7",
+    "src/components/unified/print/loadFonts.ts": "8d31526dec2675e84137e2332d08cfc3a709393323da8f44032cd026cf2bd463",
+    "src/components/unified/print/LegacyPrintHeader.tsx": "e478da144af3424b6496af08b34b748daaeb26e54a1c068a87325e0bac881c58",
+    "src/components/unified/print/geometry.ts": "74751760eb4eef8208a1fc4e37fd8dd8792d950b111e0513ecfa65490362c597",
+    "src/components/unified/print/fontPacks.ts": "cd461356552f12d47e1fcfb6d595b0f89cd1883f5db397d6694224c28d7fda17",
+    "src/components/unified/print/ExamDetails.tsx": "34ccd819aa3d4853f429c22545d1d8111ef1a6c22f7512e69001e597e8c93c16",
+    "src/components/unified/print/EnglishPrintRenderer.tsx": "8d86d0f753379548b5d497cf6075c5cde539bb7cd48758607a4735fb912ee2bb",
+    "src/components/unified/print/EnglishAnswerPage.tsx": "6f346c0210911008dde9d1742250a5350e27757e93db8c97269eeb415bc2b9a0",
+    "src/components/unified/print/AnswerPage.tsx": "53418256c177048d24ade92c9940c1cc2768cac489a1a91157fc022eda3fc543",
+    "src/components/unified/print/AnswerPage.module.css": "4c9f6633cc3ae75e4a9f88bf76c30ca4ea41ffe5b8161969061070a507c00cf0",
+    "src/components/unified/print/answerKeyLayout.ts": "7e2b14bc04605c8df93882020e265f143ee03b3d4a3bb05ea6b87a08d90ce903"
+  },
+  "results": [
+    {
+      "template": "pyeongga",
+      "columns": 1,
+      "pages": 5,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 5,
+          "headerHeight": 174,
+          "bodyHeight": 815.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1007.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1007.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1007.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1007.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "pyeongga",
+      "columns": 2,
+      "pages": 3,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 7,
+          "headerHeight": 174,
+          "bodyHeight": 815.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 8,
+          "headerHeight": 0,
+          "bodyHeight": 1007.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 10,
+          "headerHeight": 0,
+          "bodyHeight": 1007.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "jeongtong",
+      "columns": 1,
+      "pages": 5,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 4,
+          "headerHeight": 281.375,
+          "bodyHeight": 688.859375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1006.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1006.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1006.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 6,
+          "headerHeight": 0,
+          "bodyHeight": 1006.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "jeongtong",
+      "columns": 2,
+      "pages": 3,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 6,
+          "headerHeight": 281.375,
+          "bodyHeight": 688.859375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 9,
+          "headerHeight": 0,
+          "bodyHeight": 1006.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 10,
+          "headerHeight": 0,
+          "bodyHeight": 1006.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "modern",
+      "columns": 1,
+      "pages": 6,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 4,
+          "headerHeight": 227.59375,
+          "bodyHeight": 758.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 4,
+          "headerHeight": 0,
+          "bodyHeight": 1003.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 4,
+          "headerHeight": 0,
+          "bodyHeight": 1003.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 4,
+          "headerHeight": 0,
+          "bodyHeight": 1003.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 4,
+          "headerHeight": 0,
+          "bodyHeight": 1003.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1003.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "modern",
+      "columns": 2,
+      "pages": 3,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 7,
+          "headerHeight": 227.59375,
+          "bodyHeight": 758.234375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 8,
+          "headerHeight": 0,
+          "bodyHeight": 1003.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 10,
+          "headerHeight": 0,
+          "bodyHeight": 1003.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "workbook",
+      "columns": 1,
+      "pages": 7,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 3,
+          "headerHeight": 227.1875,
+          "bodyHeight": 745.453125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 4,
+          "headerHeight": 0,
+          "bodyHeight": 990.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 3,
+          "headerHeight": 0,
+          "bodyHeight": 990.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 4,
+          "headerHeight": 0,
+          "bodyHeight": 990.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 4,
+          "headerHeight": 0,
+          "bodyHeight": 990.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 4,
+          "headerHeight": 0,
+          "bodyHeight": 990.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 3,
+          "headerHeight": 0,
+          "bodyHeight": 990.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "workbook",
+      "columns": 2,
+      "pages": 3,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 7,
+          "headerHeight": 227.1875,
+          "bodyHeight": 745.453125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 8,
+          "headerHeight": 0,
+          "bodyHeight": 990.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 10,
+          "headerHeight": 0,
+          "bodyHeight": 990.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "jaseup",
+      "columns": 1,
+      "pages": 8,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 3,
+          "headerHeight": 223.09375,
+          "bodyHeight": 764.734375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 3,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 3,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 3,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 3,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 3,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 4,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 3,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "jaseup",
+      "columns": 2,
+      "pages": 4,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 6,
+          "headerHeight": 223.09375,
+          "bodyHeight": 764.734375,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 6,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 6,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 7,
+          "headerHeight": 0,
+          "bodyHeight": 1005.828125,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "yuhyung",
+      "columns": 1,
+      "pages": 5,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 4,
+          "headerHeight": 231.1875,
+          "bodyHeight": 759.453125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 6,
+          "headerHeight": 0,
+          "bodyHeight": 1008.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1008.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1008.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 5,
+          "headerHeight": 0,
+          "bodyHeight": 1008.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    },
+    {
+      "template": "yuhyung",
+      "columns": 2,
+      "pages": 3,
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "failures": [],
+      "geometry": [
+        {
+          "items": 7,
+          "headerHeight": 231.1875,
+          "bodyHeight": 759.453125,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 8,
+          "headerHeight": 0,
+          "bodyHeight": 1008.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        },
+        {
+          "items": 10,
+          "headerHeight": 0,
+          "bodyHeight": 1008.640625,
+          "width": 793.6875,
+          "height": 1122.515625
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

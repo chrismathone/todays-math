@@ -1,0 +1,117 @@
+.header {
+  flex-shrink: 0;
+  border-top: 4px solid var(--head-accent);
+  border-bottom: 1px solid #b9b9be;
+  padding: 14px 0;
+  margin-bottom: 18px;
+  color: #0e0e10;
+  font: 12px/1.5 var(--paper-font-sans);
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.header .heading {
+  font: 800 26px/1.5 var(--paper-font-sans);
+  letter-spacing: -0.6px;
+  color: var(--head-info);
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.exam .heading {
+  font-size: 30px;
+  text-align: center;
+  flex: 1;
+}
+.school .heading {
+  text-align: center;
+  flex: 1;
+}
+.subTitle {
+  margin: 6px 0 10px;
+}
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+  margin: 8px 0;
+}
+.field {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+.label {
+  color: #4b5565;
+  font-size: 10px;
+  font-weight: 600;
+}
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.student {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid #a7b0bf;
+  margin-top: 10px;
+  font: 12px/32px var(--paper-font-sans);
+}
+.student span {
+  padding: 0 8px;
+  border-right: 1px solid #c2c9d3;
+}
+.student span:last-child {
+  border-right: 0;
+}
+.schoolTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #a7b0bf;
+  margin-top: 10px;
+  font: 12px/1.8 var(--paper-font-sans);
+  table-layout: fixed;
+}
+.schoolTable td {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #c2c9d3;
+  overflow-wrap: anywhere;
+}
+.schoolTable tr:first-child td:last-child {
+  background: #f1f4f8;
+}
+.note {
+  border-left: 4px solid var(--head-accent);
+  background: #f3f5f8;
+  padding: 12px 14px;
+  margin: 14px 0 0;
+  line-height: 1.8;
+}
+.note > strong {
+  display: block;
+  margin-bottom: 4px;
+}
+.concept {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.concept .note {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.header .note p {
+  margin: 0;
+}
+.strategy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

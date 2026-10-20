@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   INITIAL_META,
   PROBLEMS,
-  PROPOSED_FIELDS,
+  PROPOSED_FIELDS as C2_FIELDS,
   FIELDS,
 } from "@/app/dev/print-color-hifi/fixtures";
 import { TEMPLATE_COMPONENTS } from "@/components/unified/print/templateComponents";
@@ -17,6 +17,12 @@ import {
   type PrintMeta,
 } from "@/components/unified/print/types";
 import { inkOnColor } from "@/components/unified/print/readableColor";
+
+// T2 adds the existing goal field to the modern guide; the C2 fixture stays historical.
+const PROPOSED_FIELDS = {
+  ...C2_FIELDS,
+  modern: [...C2_FIELDS.modern, "todayGoal"] as typeof C2_FIELDS.modern,
+};
 
 function paper(
   template: PrintTemplate,
@@ -42,7 +48,7 @@ function paper(
   );
 }
 
-describe("approved C2 real paper composition", () => {
+describe("approved A T2 real paper composition", () => {
   it("matches the approved mockup's fields in all six templates and nine colors without mutating saved values", () => {
     const savedMeta = { ...INITIAL_META, patternName: "유형명 전용 검증값" };
     const before = JSON.stringify(savedMeta);

@@ -83,6 +83,40 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "template-a-t2-20261020",
+    title: "시험지 여섯 양식 A · T2 머리·번호·풀이 공간",
+    changed:
+      "평가원 영역 머리, 정통 학교 정보표, 모던 안내 머리, 워크북 오른쪽 풀이, 자습 개념·모눈, 유형 전략 상자에 남색 윗선과 테두리 번호를 적용한다.",
+    look: "여섯 양식 각각 1단·2단의 짧고 긴 문항이 섞인 25문항을 출력한다. 첫 쪽·마지막 쪽의 번호 누락과 순서, 정보표·수식·분수·보기·도형·풀이 공간의 잘림, 옅은 선과 남색 번호의 가독성, 스마트 여백의 균등 몫을 확인한다. 둘째 쪽 머리와 빈 정보·개념의 기존 동작도 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-template-a-t2-codex.md",
+      "docs/design/mockups/print-templates-hifi-20261020.html",
+    ],
+    needs:
+      "각 양식의 첫 쪽·마지막 쪽을 미리보기·PDF와 실물로 대조한다. 1단 워크북의 오른쪽 풀이와 1단 자습의 문항 아래 모눈을 포함한다.",
+    scale: "공통 WorksheetPrint 여섯 문제지 양식",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
+  {
+    id: "answer-quick-key-h2",
+    title: "빠른 채점표 H2 · 정답·해설 / 정답만",
+    changed:
+      "정답지 앞에 번호를 분리한 5열 가변 격자를 두고, 정답만 출력도 같은 표를 사용한다. 긴 답은 실측한 폭·높이에 따라 2·3·5칸을 합치며 행 단위로 쪽을 넘긴다.",
+    look: "25·50·100문항에서 번호가 빠지거나 뒤섞이지 않는지, 분수와 긴 답이 칸·종이 밖으로 잘리지 않는지, 이어지는 쪽에도 표 머리가 나오는지 확인한다. 정답만 판에는 해설이 없어야 하고 정답·해설 판은 표 뒤에 전체 해설이 이어져야 한다. 수식 글자는 기존 정답지의 먹색을 유지해야 한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-quick-key-h2-and-template-a-hifi-codex.md",
+      "docs/design/mockups/answer-quick-key-hifi-20261020.html",
+    ],
+    scale: "통합 수학 출력의 정답·해설지와 정답만 출력",
+    status: "대기",
+    needs:
+      "분수·식·긴 답이 섞인 시험지에서 정답·해설 포함과 정답만을 각각 인쇄한다. 영어 구조화 정답·근거 지면은 기존 경로를 유지한다.",
+    changedOn: "2026-10-20",
+  },
+  {
     id: "question-smart-spacing-20261020",
     title: "문항별 풀이 여백 균등 배분 · 스마트 세로 배치",
     changed:

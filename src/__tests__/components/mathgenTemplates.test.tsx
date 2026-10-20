@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { TEMPLATE_COMPONENTS } from "@/components/unified/print/templateComponents";
+import { PRINTED_META_FIELDS } from "@/components/unified/print/templateFields";
 import {
   DEFAULT_PRINT_META,
   DEFAULT_PRINT_OPTIONS,
@@ -124,8 +125,12 @@ describe("original Mathgen template adapters", () => {
         />,
       );
       expect(html).toContain("검증 시험지");
-      expect(html).toContain("검증 학교");
-      expect(html).toContain("2026-09-14");
+      if (PRINTED_META_FIELDS[template].includes("schoolName"))
+        expect(html).toContain("검증 학교");
+      else expect(html).not.toContain("검증 학교");
+      if (PRINTED_META_FIELDS[template].includes("examDate"))
+        expect(html).toContain("2026-09-14");
+      else expect(html).not.toContain("2026-09-14");
       expect(html).not.toContain("2025 · 1ST SEMESTER · MIDTERM");
       expect(html).toContain(crop);
       expect(html).toContain('data-measure-idx="0"');

@@ -74,13 +74,14 @@ describe("arithmetic grouped shared output", () => {
           showChapter: true, // Existing saved settings must not restore repeated per-item labels.
           showAnswers: true,
         };
+        const onReady = vi.fn();
         const { container, unmount } = render(
           <WorksheetPrint
             selected={selected}
             title="연산 모음"
             options={options}
             printMeta={presentation.printMeta}
-            onReady={vi.fn()}
+            onReady={onReady}
           />,
         );
         const document = container.querySelector("[data-mathgen-document]")!;
@@ -95,6 +96,8 @@ describe("arithmetic grouped shared output", () => {
         ];
         expect(questions).toHaveLength(2);
         expect(answers).toHaveLength(2);
+        // jsdom has no measured layout: content remains visible, export waits.
+        expect(onReady).toHaveBeenLastCalledWith(false);
         for (const pages of [questions, answers]) {
           expect(
             pages.map(
@@ -107,7 +110,8 @@ describe("arithmetic grouped shared output", () => {
               page.querySelectorAll("[data-arithmetic-round]"),
             ).toHaveLength(1);
             expect(
-              page.querySelector(".measure-body")?.textContent,
+              page.querySelector("[data-answer-body], .measure-body")
+                ?.textContent,
             ).not.toContain("회차");
           }
         }
@@ -123,10 +127,16 @@ describe("arithmetic grouped shared output", () => {
         expect(
           answers
             .flatMap((page) => [
-              ...page.querySelectorAll(".measure-body strong"),
+              ...page.querySelectorAll("[data-answer-number] > strong"),
             ])
             .map((number) => number.textContent),
-        ).toEqual(["1.", "2.", "3.", "4.", "5.", "6."]);
+        ).toEqual(["1", "2", "3", "4", "5", "6"]);
+        expect(
+          answers.every((page) => page.querySelector("[data-answer-key]")),
+        ).toBe(true);
+        expect(
+          answers.some((page) => page.querySelector("[data-answer-solution]")),
+        ).toBe(false);
         expect(
           questions
             .flatMap((page) => [

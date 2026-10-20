@@ -1,0 +1,113 @@
+import { readFile, writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import { templates, labels, directions } from "./directions.mjs";
+
+const root = process.cwd();
+const evidence = JSON.parse(
+  await readFile(
+    resolve(
+      root,
+      process.argv[2] ??
+        "scripts/qa/print-templates/evidence/rendered-pages.json",
+    ),
+    "utf8",
+  ),
+);
+const escape = (s) =>
+  s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll('"', "&quot;");
+const css = `
+*{box-sizing:border-box}.wire-page{filter:grayscale(1);width:793.7008px;height:1122.5197px;padding:45.3543px 56.6929px;background:white;color:#0e0e10;font-family:Batang,'Noto Serif KR',serif;font-size:13.5px;line-height:1.5;position:relative;display:flex;flex-direction:column}
+.wire-head{flex-shrink:0;margin-bottom:18px;font-family:'Malgun Gothic',sans-serif}.wire-head h1{font-size:22px;font-weight:800;margin:0 0 12px}.wire-head p{font-size:12px;margin:6px 0}.info{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #444;font:12px/32px 'Malgun Gothic',sans-serif}.exam-info{display:grid;grid-template-columns:1fr 1fr;border:1px solid #555;margin-bottom:8px;font:12px/1.8 var(--paper-font-sans)}.exam-info span{padding:8px;border:1px solid #999}.info span{padding:0 8px;border-right:1px solid #888}.paper-body{display:grid;gap:18px;align-content:start;flex:1;min-height:0}.question-column{display:flex;flex-direction:column;gap:18px;min-width:0}.q{min-width:0;position:relative}.q>[data-measure-idx]{margin:0!important;width:auto!important;zoom:1!important;break-inside:avoid}.q .work{height:140px;margin-top:12px}.wire-foot{flex-shrink:0;border-top:1px solid #444;padding-top:6px;font:11px/1.5 'Malgun Gothic',sans-serif;display:flex;justify-content:space-between}.note-box{border:1px solid #777;padding:12px;font:12px/1.8 'Malgun Gothic',sans-serif;margin-bottom:16px}.note-box b{display:block;margin-bottom:4px}.two-col .paper-body{grid-template-columns:1fr 1fr;column-gap:26px}.exam [data-question-number]{background:transparent!important;color:black!important;min-width:0!important;padding:0!important}.school [data-question-number]{background:white!important;color:black!important;border:1px solid black}.compact [data-question-number]{background:transparent!important;color:black!important;font-size:12px!important}.exam .wire-head{text-align:center;border-top:3px solid black;border-bottom:2px solid black;padding:16px 0}.exam .wire-head h1{font-size:30px}.exam .question-column:first-child{border-right:1px solid #aaa;padding-right:13px}.school .wire-head h1{text-align:center}.brand .wire-head{border-left:8px solid #444;padding-left:18px}.brand .wire-head h1{font-size:27px}.brand .paper-body{gap:42px}.split .q,.wideSplit .q{display:grid;grid-template-columns:40% 1fr;gap:20px}.split .q .work,.wideSplit .q .work{border-left:1px solid #aaa;margin:0;min-height:180px}.grid .work,.conceptQuarter .work{background-image:linear-gradient(#bbb 1px,transparent 1px),linear-gradient(90deg,#bbb 1px,transparent 1px);background-size:16px 16px;height:85px}.grid .paper-body{gap:24px}.compact .paper-body{grid-template-columns:1fr 1fr;gap:16px 22px}.compact [data-problem-body]{font-size:12.5px!important}.compact .wire-head{border-bottom:3px double #444}.answerRail .paper-body{grid-template-columns:1fr 94px;gap:24px}.answerRail .paper-body>div,.steps .paper-body>div{display:flex;flex-direction:column;gap:18px}.answer-rail{border:1px solid #888;font:12px/34px 'Malgun Gothic',sans-serif;padding:8px}.answer-rail span{display:block;border-bottom:1px solid #aaa}.essay .work,.ruled .work{background:repeating-linear-gradient(transparent 0 25px,#bbb 25px 26px);height:100px}.delivery .wire-head{padding:18px;border:2px solid #555}.delivery .paper-body{gap:32px}.checked .q{border-bottom:1px solid #aaa;padding-bottom:14px}.checked .work{height:95px;border-bottom:1px solid #bbb}.checked .work:after{content:'확인 □';float:right;font:12px 'Malgun Gothic',sans-serif}.steps .paper-body{grid-template-columns:110px 1fr;gap:20px}.step-rail{border-right:2px solid #aaa;font:14px/2 'Malgun Gothic',sans-serif}.step-rail p{margin:0 0 160px}.retry .q .work{display:grid;grid-template-columns:1fr 1fr;border:1px solid #aaa;height:85px;font:11px 'Malgun Gothic',sans-serif}.retry .work span{padding:8px;border-right:1px solid #aaa}.plainExam .paper-body{grid-template-columns:1fr 1fr;gap:16px 26px}.spaced .paper-body{gap:55px}.wideSplit .q .work{min-height:210px}.conceptQuarter .note-box{height:235px}.bottomRetry .paper-body{grid-template-columns:1fr 1fr;gap:16px 26px}.bottomRetry .retry-bottom{height:190px;border-top:1px solid #777;margin-top:20px;padding-top:8px;font:12px 'Malgun Gothic',sans-serif}
+`;
+const records = [];
+function preview(title, html) {
+  const index = records.push({ html }) - 1;
+  return `<figure><figcaption>${escape(title)}</figcaption><div class="viewport"><div class="mount" data-index="${index}"></div></div></figure>`;
+}
+function wire(d, t) {
+  const mode = d.modes[t];
+  const source = evidence.templates.jeongtong.items;
+  const two =
+    ["exam", "compact", "plainExam", "bottomRetry"].includes(mode) ||
+    (d.id === "C" && mode === "school");
+  const count =
+    mode === "conceptQuarter"
+      ? 2
+      : [
+            "split",
+            "wideSplit",
+            "grid",
+            "essay",
+            "ruled",
+            "checked",
+            "retry",
+          ].includes(mode)
+        ? 3
+        : two
+          ? 6
+          : 4;
+  const questionItems = source
+    .slice(0, count)
+    .map(
+      (html) =>
+        `<div class="q">${html}${["split", "wideSplit", "grid", "conceptQuarter", "essay", "ruled", "checked"].includes(mode) ? '<div class="work"></div>' : mode === "retry" ? '<div class="work"><span>첫 시도</span><span>다시 풀기</span></div>' : ""}</div>`,
+    );
+  const qs = questionItems.join("");
+  let info =
+    '<div class="info"><span>학년·반 ______</span><span>번호 ______</span><span>이름 __________</span><span>날짜 __________</span></div>';
+  if (mode === "school")
+    info =
+      '<div class="exam-info"><span>학교 __________</span><span>과목 수학</span><span>시행일 __________</span><span>점수 __________</span></div>' +
+      info;
+  let note = ["grid", "steps", "conceptQuarter"].includes(mode)
+    ? '<aside class="note-box"><b>개념 정리</b>분수는 분모를 같게 하여 더합니다.<br>방정식은 양변에 같은 연산을 하여 풉니다.</aside>'
+    : ["compact", "retry"].includes(mode)
+      ? '<aside class="note-box"><b>수와 식 종합</b>조건 확인 → 식 세우기 → 계산 확인</aside>'
+      : ["delivery", "spaced", "brand"].includes(mode)
+        ? '<aside class="note-box">오늘의 목표: 조건을 읽고 식으로 나타내기</aside>'
+        : "";
+  if (mode === "delivery")
+    note = note.replace(
+      "</aside>",
+      "<br>제출일 __________　확인 __________</aside>",
+    );
+  let body = two
+    ? `<div class="question-column">${questionItems.slice(0, Math.ceil(count / 2)).join("")}</div><div class="question-column">${questionItems.slice(Math.ceil(count / 2)).join("")}</div>`
+    : qs;
+  if (mode === "answerRail")
+    body = `<div>${qs}</div><aside class="answer-rail">답 기록${[1, 2, 3, 4].map((n) => `<span>${n}. ______</span>`).join("")}<p>시간 ____분<br>점수 ____점</p></aside>`;
+  if (mode === "steps")
+    body = `<aside class="step-rail"><p>읽기</p><p>풀기</p><p>다시 보기 □</p></aside><div>${qs}</div>`;
+  const inherited = evidence.templates.jeongtong;
+  return `<div class="${inherited.documentClass}" style="${escape(inherited.documentStyle ?? "")}"><div class="wire-page ${mode} ${two ? "two-col" : ""}"><header class="wire-head"><h1>${d.headers[t]}</h1><p>수학 종합 확인 · 25문항</p>${info}</header>${note}<div class="paper-body">${body}</div>${mode === "bottomRetry" ? '<aside class="retry-bottom">다시 풀 문제 번호 ______<br>풀이</aside>' : ""}<footer class="wire-foot"><span>${labels[t]} · 구조 ${d.id} · 제안 첫 쪽</span><span>1</span></footer></div></div>`;
+}
+const current =
+  '<section id="current"><h2>지금 여섯 · 같은 25문항</h2><p>실제 WorksheetPrint 첫 쪽과 마지막 쪽. 실측표의 고정 옵션과 동일합니다. 제안과 구별해 원래 지면을 그대로 싣습니다.</p><div class="gallery">' +
+  templates
+    .map(
+      (t, i) =>
+        preview(`${labels[i]} · 첫 쪽`, evidence.templates[t].first) +
+        preview(`${labels[i]} · 마지막 쪽`, evidence.templates[t].last),
+    )
+    .join("") +
+  "</div></section>";
+const proposed = directions
+  .map(
+    (d) =>
+      `<section id="${d.id}"><h2>${d.id} · ${d.title}</h2><p>${d.lead}</p><p>${d.focus}</p><table><thead><tr><th>현재 이름</th><th>제안 정체성</th></tr></thead><tbody>${templates.map((t, i) => `<tr><td>${labels[i]}</td><td>${d.identities[i]}</td></tr>`).join("")}</tbody></table><p>${d.cost}</p><div class="gallery">${(d.show ?? [0, 1, 2, 3, 4, 5]).map((i) => preview(`${d.id} · ${labels[i]}${d.id === "C" ? " → " + d.headers[i] : ""}`, wire(d, i))).join("")}</div></section>`,
+  )
+  .join("");
+const productStyles = Array.isArray(evidence.styles)
+  ? evidence.styles.join("\n")
+  : evidence.styles;
+const payload = JSON.stringify({
+  records,
+  styles: productStyles,
+  wireCss: css,
+}).replaceAll("<", "\\u003c");
+const html = `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>시험지 템플릿 Wire 4안</title><style>body{margin:0;background:#e5e5e5;color:#111;font:15px/1.7 'Malgun Gothic',sans-serif}main{max-width:1800px;margin:auto;padding:32px}h1{font-size:28px}h2{font-size:23px}p{max-width:1000px}nav{display:flex;flex-wrap:wrap;gap:20px}a{color:inherit}section{border-top:2px solid #777;margin-top:40px;padding-top:18px}table{border-collapse:collapse;background:#fff;max-width:1000px}td,th{padding:8px 12px;border:1px solid #999;text-align:left}.gallery{display:flex;flex-wrap:wrap;gap:24px}figure{margin:0}figcaption{margin:14px 0 8px;font-weight:bold}.viewport{width:357.17px;height:505.14px;overflow:hidden;outline:1px solid #aaa;background:white}.mount{width:793.7008px;height:1122.5197px;transform:scale(.45);transform-origin:top left}body.full .viewport{width:793.7008px;height:1122.5197px}body.full .mount{transform:none}button{font:inherit;padding:6px 16px;margin:16px 0;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #111}@media(max-width:850px){main{padding:16px}.gallery{overflow-x:auto;flex-wrap:nowrap}}@media print{@page{size:A4;margin:0}main{padding:0}main>h1,main>p,nav,button,section>h2,section>p,table,figcaption{display:none}section{border:0;margin:0;padding:0}.gallery{display:block}.viewport{width:793.7008px!important;height:1122.5197px!important;outline:0;break-after:page}.mount{transform:none!important}figure{break-after:page}}</style><main><h1>시험지 템플릿 · 지금 여섯과 구조 4안</h1><p>선택 전 Wire. 종이 210 × 297 mm, 현재 보통 여백 좌우 15mm / 상하 12mm. 제안 본문은 실측한 WorksheetPrint의 실제 문제 DOM에서 가져왔습니다. 지면 구조만 바꿨으며 서버·제품 코드는 변경하지 않았습니다.</p><p>추천 A: 여섯 이름을 유지하면서 시험·학교 정보·안내·풀이·개념·반복의 차이가 본문까지 이어집니다. 색은 모두 흑백으로 두어 구조만 비교합니다. B는 쓰임을 먼저 고르는 메뉴, C는 네 가지로 줄이는 메뉴 변경, D는 공통 머리를 유지하는 선택입니다.</p><p>제안은 첫 2~6문항의 A4 첫 쪽입니다. 나머지 문항의 새 쪽수는 확정·측정하지 않았습니다. 현재 페이지의 실측 쪽수는 별도 측정 보고를 참조하세요.</p><nav><a href="#current">지금 여섯</a>${directions.map((d) => `<a href="#${d.id}">${d.id} · ${d.title}</a>`).join("")}</nav><button id="size" aria-pressed="false">실제 A4 크기로 보기</button>${current}${proposed}</main><script id="payload" type="application/json">${payload}</script><script>const data=JSON.parse(document.getElementById('payload').textContent);document.querySelectorAll('.mount').forEach(node=>{const shadow=node.attachShadow({mode:'open'});const style=document.createElement('style');style.textContent=data.styles.replaceAll(':root',':host')+String.fromCharCode(10)+data.wireCss;shadow.append(style);const box=document.createElement('div');box.innerHTML=data.records[Number(node.dataset.index)].html;shadow.append(box);});document.getElementById('size').onclick=e=>{const full=document.body.classList.toggle('full');e.target.setAttribute('aria-pressed',String(full));e.target.textContent=full?'한눈에 비교하기 (45%)':'실제 A4 크기로 보기';};</script></html>`;
+await writeFile(
+  resolve(root, "docs/design/mockups/print-templates-wire-20261020.html"),
+  html,
+);
+console.log(`Wrote ${records.length} A4 previews (12 current + 22 proposed).`);

@@ -1,6 +1,6 @@
 import type { PrintMeta, PrintTemplate } from "./types";
 
-/** Approved C2/P1 composition. Rendering never clears fields omitted by a form. */
+/** Active form fields; A/T2 reuses todayGoal for modern guidance. Never clears stored metadata. */
 export const PRINT_META_FIELDS = [
   ["title", "제목"],
   ["schoolName", "학교/기관명"],
@@ -43,6 +43,7 @@ export const PRINTED_META_FIELDS: Record<
     "semester",
     "examDate",
     "totalScore",
+    "todayGoal",
   ],
   workbook: [
     "title",
@@ -61,7 +62,7 @@ export const PRINTED_META_FIELDS: Record<
 export const PRINT_OMIT_REASON: Record<PrintTemplate, string> = {
   pyeongga: "과목·시험 정보 중심 양식입니다.",
   jeongtong: "학교 시험 정보만 싣습니다.",
-  modern: "학교·평가 정보만 싣습니다.",
+  modern: "학교·안내 정보 중심 양식입니다.",
   workbook: "학원·유형 연습용 양식입니다.",
   jaseup: "목표·개념 정리 중심 양식입니다.",
   yuhyung: "유형·전략 중심 양식입니다.",

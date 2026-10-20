@@ -295,6 +295,9 @@ const SCREENS: Screen[] = [
       const view = render(
         <BankView
           initialData={{
+            countUnit: "question",
+            version: 2,
+            queryKey: "fraction-fixture",
             problems: [row],
             total: 1,
             page: 1,
