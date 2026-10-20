@@ -4,6 +4,8 @@ import { describe, expect, it } from "vitest";
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
   generateElementaryProblem,
+  generateElementaryForm,
+  coreForms,
   supportedTiers,
 } from "@/lib/elementary/generate";
 import {
@@ -19,6 +21,7 @@ import {
 } from "@/lib/math-srs/elementary/answers";
 import { generateCourseSession } from "@/lib/math-srs/elementary/generator";
 import type { CourseProblem } from "@/lib/math-srs/elementary/types";
+import { extraCourseFrames } from "@/lib/math-srs/elementary/extraFrames";
 
 const NOW = new Date("2026-09-23T00:00:00.000Z");
 function question(answer: string, content = "답을 구하시오."): CourseProblem {
@@ -83,11 +86,31 @@ describe("elementary course curriculum and generation", () => {
         for (const problem of session.problems) {
           expect(supportedTiers(section.unit)).toContain(problem.tier);
           expect(["연산", "기본", "응용"]).toContain(problem.tier);
-          const original = generateElementaryProblem(
+          const defaultProblem = generateElementaryProblem(
             section.unit,
             problem.seed,
             problem.tier,
           );
+          const original =
+            defaultProblem.content === problem.content
+              ? defaultProblem
+              : [
+                  ...coreForms(section.unit)
+                    .filter((form) => form.tier === problem.tier)
+                    .map((form) =>
+                      generateElementaryForm(
+                        section.unit,
+                        problem.seed,
+                        form.id,
+                      ),
+                    ),
+                  ...extraCourseFrames(
+                    section.unit,
+                    problem.seed,
+                    problem.tier,
+                  ),
+                ].find((candidate) => candidate.content === problem.content)!;
+          expect(original).toBeDefined();
           expect(problem.content).toBe(original.content);
           expect(problem.answer).toBe(original.answer);
           expect(problem.solution).toBe(original.solution);
