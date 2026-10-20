@@ -1,0 +1,1096 @@
+TAP version 13
+# Subtest: complete standalone measures cannot bypass the parser through legacy string normalization
+ok 1 - complete standalone measures cannot bypass the parser through legacy string normalization
+  ---
+  duration_ms: 47.1905
+  type: 'test'
+  ...
+# Subtest: current standalone radical lengths match their sealed-style raw presentation with units intact
+ok 2 - current standalone radical lengths match their sealed-style raw presentation with units intact
+  ---
+  duration_ms: 44.6049
+  type: 'test'
+  ...
+# Subtest: single degree answers compare explicit Unicode/TeX presentation without editing sealed answers
+ok 3 - single degree answers compare explicit Unicode/TeX presentation without editing sealed answers
+  ---
+  duration_ms: 2.2804
+  type: 'test'
+  ...
+# Subtest: single degree comparison preserves units, names, bounds and complete syntax
+ok 4 - single degree comparison preserves units, names, bounds and complete syntax
+  ---
+  duration_ms: 148.3888
+  type: 'test'
+  ...
+# Subtest: numbered length roles preserve x coefficients and every written subpart
+ok 5 - numbered length roles preserve x coefficients and every written subpart
+  ---
+  duration_ms: 32.498
+  type: 'test'
+  ...
+# Subtest: perpendicular notation and named angle/ratio outputs compare without deriving identities
+ok 6 - perpendicular notation and named angle/ratio outputs compare without deriving identities
+  ---
+  duration_ms: 10.2569
+  type: 'test'
+  ...
+# Subtest: explicit unit conversion is exact but dimensions and roles cannot disappear
+ok 7 - explicit unit conversion is exact but dimensions and roles cannot disappear
+  ---
+  duration_ms: 5.4336
+  type: 'test'
+  ...
+# Subtest: unsupported prose, mixed syntax, extra/missing parts and contradictory duplicate roles stay unapproved
+ok 8 - unsupported prose, mixed syntax, extra/missing parts and contradictory duplicate roles stay unapproved
+  ---
+  duration_ms: 11.8672
+  type: 'test'
+  ...
+# Subtest: q04 numbered scalar lengths compare presentation only without mutating sealed-style records
+ok 9 - q04 numbered scalar lengths compare presentation only without mutating sealed-style records
+  ---
+  duration_ms: 8.2891
+  type: 'test'
+  ...
+# Subtest: unnamed decimal lengths use exact unit scaling and preserve each numbered value
+ok 10 - unnamed decimal lengths use exact unit scaling and preserve each numbered value
+  ---
+  duration_ms: 5.5941
+  type: 'test'
+  ...
+# Subtest: numbered scalar lengths reject changed first value
+ok 11 - numbered scalar lengths reject changed first value
+  ---
+  duration_ms: 4.0634
+  type: 'test'
+  ...
+# Subtest: numbered scalar lengths reject changed second value
+ok 12 - numbered scalar lengths reject changed second value
+  ---
+  duration_ms: 4.5043
+  type: 'test'
+  ...
+# Subtest: numbered scalar lengths reject swapped values
+ok 13 - numbered scalar lengths reject swapped values
+  ---
+  duration_ms: 1.5217
+  type: 'test'
+  ...
+# Subtest: numbered scalar lengths reject wrong scale
+ok 14 - numbered scalar lengths reject wrong scale
+  ---
+  duration_ms: 2.0744
+  type: 'test'
+  ...
+# Subtest: numbered scalar lengths reject changed low decimal digit
+ok 15 - numbered scalar lengths reject changed low decimal digit
+  ---
+  duration_ms: 3.4322
+  type: 'test'
+  ...
+# Subtest: numbered scalar lengths reject missing final part
+ok 16 - numbered scalar lengths reject missing final part
+  ---
+  duration_ms: 2.0268
+  type: 'test'
+  ...
+# Subtest: numbered scalar lengths reject extra part
+ok 17 - numbered scalar lengths reject extra part
+  ---
+  duration_ms: 2.4052
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves reordered labels unsupported
+ok 18 - numbered scalar grammar leaves reordered labels unsupported
+  ---
+  duration_ms: 3.0088
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves duplicate index unsupported
+ok 19 - numbered scalar grammar leaves duplicate index unsupported
+  ---
+  duration_ms: 3.2868
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves missing first index unsupported
+ok 20 - numbered scalar grammar leaves missing first index unsupported
+  ---
+  duration_ms: 1.8577
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves skipped index unsupported
+ok 21 - numbered scalar grammar leaves skipped index unsupported
+  ---
+  duration_ms: 1.6843
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves zero index unsupported
+ok 22 - numbered scalar grammar leaves zero index unsupported
+  ---
+  duration_ms: 1.5572
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves noncanonical index unsupported
+ok 23 - numbered scalar grammar leaves noncanonical index unsupported
+  ---
+  duration_ms: 1.7016
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves missing unit unsupported
+ok 24 - numbered scalar grammar leaves missing unit unsupported
+  ---
+  duration_ms: 1.6283
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves wrong dimension unsupported
+ok 25 - numbered scalar grammar leaves wrong dimension unsupported
+  ---
+  duration_ms: 1.5713
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves wrong volume dimension unsupported
+ok 26 - numbered scalar grammar leaves wrong volume dimension unsupported
+  ---
+  duration_ms: 1.7164
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves unsupported unit unsupported
+ok 27 - numbered scalar grammar leaves unsupported unit unsupported
+  ---
+  duration_ms: 1.3842
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves extra unit unsupported
+ok 28 - numbered scalar grammar leaves extra unit unsupported
+  ---
+  duration_ms: 1.3166
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves trailing prose unsupported
+ok 29 - numbered scalar grammar leaves trailing prose unsupported
+  ---
+  duration_ms: 1.4096
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves leading prose unsupported
+ok 30 - numbered scalar grammar leaves leading prose unsupported
+  ---
+  duration_ms: 1.8403
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves interpart prose unsupported
+ok 31 - numbered scalar grammar leaves interpart prose unsupported
+  ---
+  duration_ms: 1.2529
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves extra scalar unsupported
+ok 32 - numbered scalar grammar leaves extra scalar unsupported
+  ---
+  duration_ms: 1.1592
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves multiple separators unsupported
+ok 33 - numbered scalar grammar leaves multiple separators unsupported
+  ---
+  duration_ms: 1.5547
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves unbalanced math delimiter unsupported
+ok 34 - numbered scalar grammar leaves unbalanced math delimiter unsupported
+  ---
+  duration_ms: 1.5248
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves split digits unsupported
+ok 35 - numbered scalar grammar leaves split digits unsupported
+  ---
+  duration_ms: 1.5928
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves TeX spacing between digits unsupported
+ok 36 - numbered scalar grammar leaves TeX spacing between digits unsupported
+  ---
+  duration_ms: 1.6144
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves math fragments between digits unsupported
+ok 37 - numbered scalar grammar leaves math fragments between digits unsupported
+  ---
+  duration_ms: 1.3922
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves split unit wrapper unsupported
+ok 38 - numbered scalar grammar leaves split unit wrapper unsupported
+  ---
+  duration_ms: 1.1882
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves superscript digits unsupported
+ok 39 - numbered scalar grammar leaves superscript digits unsupported
+  ---
+  duration_ms: 1.2414
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves negative length unsupported
+ok 40 - numbered scalar grammar leaves negative length unsupported
+  ---
+  duration_ms: 2.2705
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves explicit positive sign unsupported
+ok 41 - numbered scalar grammar leaves explicit positive sign unsupported
+  ---
+  duration_ms: 1.5244
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves decimal without whole part unsupported
+ok 42 - numbered scalar grammar leaves decimal without whole part unsupported
+  ---
+  duration_ms: 1.4146
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves fraction unsupported
+ok 43 - numbered scalar grammar leaves fraction unsupported
+  ---
+  duration_ms: 1.4982
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves TeX fraction unsupported
+ok 44 - numbered scalar grammar leaves TeX fraction unsupported
+  ---
+  duration_ms: 1.2207
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves radical unsupported
+ok 45 - numbered scalar grammar leaves radical unsupported
+  ---
+  duration_ms: 1.3658
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves arithmetic expression unsupported
+ok 46 - numbered scalar grammar leaves arithmetic expression unsupported
+  ---
+  duration_ms: 1.4635
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves variable expression unsupported
+ok 47 - numbered scalar grammar leaves variable expression unsupported
+  ---
+  duration_ms: 1.6624
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves exponent unsupported
+ok 48 - numbered scalar grammar leaves exponent unsupported
+  ---
+  duration_ms: 1.4075
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves scientific notation unsupported
+ok 49 - numbered scalar grammar leaves scientific notation unsupported
+  ---
+  duration_ms: 1.2012
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves oversized integer unsupported
+ok 50 - numbered scalar grammar leaves oversized integer unsupported
+  ---
+  duration_ms: 1.167
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves oversized decimal unsupported
+ok 51 - numbered scalar grammar leaves oversized decimal unsupported
+  ---
+  duration_ms: 1.9964
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar leaves mixed named and unnamed unsupported
+ok 52 - numbered scalar grammar leaves mixed named and unnamed unsupported
+  ---
+  duration_ms: 3.6292
+  type: 'test'
+  ...
+# Subtest: unnamed lengths never discard named answer roles
+ok 53 - unnamed lengths never discard named answer roles
+  ---
+  duration_ms: 2.1164
+  type: 'test'
+  ...
+# Subtest: numbered scalar grammar retains input and subpart bounds
+ok 54 - numbered scalar grammar retains input and subpart bounds
+  ---
+  duration_ms: 5.8944
+  type: 'test'
+  ...
+# Subtest: one interpart comma separates complete scalar lengths without becoming a decimal or erasing content
+ok 55 - one interpart comma separates complete scalar lengths without becoming a decimal or erasing content
+  ---
+  duration_ms: 10.4274
+  type: 'test'
+  ...
+# Subtest: catches the actual lost radical and ellipsis escapes accepted as TeX letter products
+ok 56 - catches the actual lost radical and ellipsis escapes accepted as TeX letter products
+  ---
+  duration_ms: 5.7761
+  type: 'test'
+  ...
+# Subtest: finds inline, display and multiline fraction and radical losses with exact offsets
+ok 57 - finds inline, display and multiline fraction and radical losses with exact offsets
+  ---
+  duration_ms: 1.0001
+  type: 'test'
+  ...
+# Subtest: leaves ordinary prose, named variables and correctly escaped commands alone
+ok 58 - leaves ordinary prose, named variables and correctly escaped commands alone
+  ---
+  duration_ms: 0.8165
+  type: 'test'
+  ...
+# Subtest: literal text groups, nested braces and escaped braces are preserved without warnings
+ok 59 - literal text groups, nested braces and escaped braces are preserved without warnings
+  ---
+  duration_ms: 0.7973
+  type: 'test'
+  ...
+# Subtest: escaped dollar signs do not turn prose into math or hide later genuine math
+ok 60 - escaped dollar signs do not turn prose into math or hide later genuine math
+  ---
+  duration_ms: 1.1075
+  type: 'test'
+  ...
+# Subtest: non-BMP characters do not shift literal masks or diagnostic offsets
+ok 61 - non-BMP characters do not shift literal masks or diagnostic offsets
+  ---
+  duration_ms: 1.5366
+  type: 'test'
+  ...
+# Subtest: the actual renderable lost unit marker is diagnosed, including an adjacent variable
+ok 62 - the actual renderable lost unit marker is diagnosed, including an adjacent variable
+  ---
+  duration_ms: 1.5147
+  type: 'test'
+  ...
+# Subtest: proper cm/m commands, ordinary prose and deliberately quoted marker text are untouched
+ok 63 - proper cm/m commands, ordinary prose and deliberately quoted marker text are untouched
+  ---
+  duration_ms: 1.2923
+  type: 'test'
+  ...
+# Subtest: unit losses retain UTF16 offsets and source order with existing radical/fraction warnings
+ok 64 - unit losses retain UTF16 offsets and source order with existing radical/fraction warnings
+  ---
+  duration_ms: 3.4996
+  type: 'test'
+  ...
+# Subtest: sealed marked answers validate their annotated value and dimension against the actual option
+ok 65 - sealed marked answers validate their annotated value and dimension against the actual option
+  ---
+  duration_ms: 39.1344
+  type: 'test'
+  ...
+# Subtest: UTF-8 BOM parsing keeps raw-byte evidence distinct and rejects UTF-16 or corrupt UTF-8
+ok 66 - UTF-8 BOM parsing keeps raw-byte evidence distinct and rejects UTF-16 or corrupt UTF-8
+  ---
+  duration_ms: 108.2569
+  type: 'test'
+  ...
+# Subtest: a corrupt or nonobject figure spec cannot bind behind an otherwise valid SVG
+ok 67 - a corrupt or nonobject figure spec cannot bind behind an otherwise valid SVG
+  ---
+  duration_ms: 165.5872
+  type: 'test'
+  ...
+# Subtest: invalid UTF-8 and unreadable XML diagram characters reject without byte repair
+ok 68 - invalid UTF-8 and unreadable XML diagram characters reject without byte repair
+  ---
+  duration_ms: 49.1922
+  type: 'test'
+  ...
+# Subtest: valid Korean/BOM/CRLF figure transports keep exact raw hashes and no semantic approval
+ok 69 - valid Korean/BOM/CRLF figure transports keep exact raw hashes and no semantic approval
+  ---
+  duration_ms: 21.0637
+  type: 'test'
+  ...
+# Subtest: middle3 rollout cannot reuse 2015 source mapping for 2027
+ok 70 - middle3 rollout cannot reuse 2015 source mapping for 2027
+  ---
+  duration_ms: 2.1538
+  type: 'test'
+  ...
+# Subtest: candidate identity hashes the parsed bytes rather than a later replacement
+ok 71 - candidate identity hashes the parsed bytes rather than a later replacement
+  ---
+  duration_ms: 24.7232
+  type: 'test'
+  ...
+# Subtest: ordinary program wording is not a logarithm, while explicit logarithms remain forbidden
+ok 72 - ordinary program wording is not a logarithm, while explicit logarithms remain forbidden
+  ---
+  duration_ms: 19.6068
+  type: 'test'
+  ...
+# Subtest: student payload exposes no answer, solution, private calibration or origin key
+ok 73 - student payload exposes no answer, solution, private calibration or origin key
+  ---
+  duration_ms: 1.2982
+  type: 'test'
+  ...
+# Subtest: answer presentation permits TeX braces but preserves value and unit differences
+ok 74 - answer presentation permits TeX braces but preserves value and unit differences
+  ---
+  duration_ms: 1.4533
+  type: 'test'
+  ...
+# Subtest: different key order preserves semantic digest and content changes invalidate it
+ok 75 - different key order preserves semantic digest and content changes invalidate it
+  ---
+  duration_ms: 0.86
+  type: 'test'
+  ...
+# Subtest: stale content/figure/solution evidence fails closed
+ok 76 - stale content/figure/solution evidence fails closed
+  ---
+  duration_ms: 20.2388
+  type: 'test'
+  ...
+# Subtest: author's self-review cannot pass independent verification
+ok 77 - author's self-review cannot pass independent verification
+  ---
+  duration_ms: 2.7841
+  type: 'test'
+  ...
+# Subtest: uncertain or rejected surface/curriculum evidence blocks
+ok 78 - uncertain or rejected surface/curriculum evidence blocks
+  ---
+  duration_ms: 7.7238
+  type: 'test'
+  ...
+# Subtest: detailed curriculum audit preserves each surface basis and fails closed without it
+ok 79 - detailed curriculum audit preserves each surface basis and fails closed without it
+  ---
+  duration_ms: 4.4509
+  type: 'test'
+  ...
+# Subtest: new math evidence never clears provenance, rights or production gates
+ok 80 - new math evidence never clears provenance, rights or production gates
+  ---
+  duration_ms: 4.0505
+  type: 'test'
+  ...
+# Subtest: mathematics, grade and unresolved taxonomy are separate review dimensions
+ok 81 - mathematics, grade and unresolved taxonomy are separate review dimensions
+  ---
+  duration_ms: 3.377
+  type: 'test'
+  ...
+# Subtest: known forbidden method in any student surface rejects
+ok 82 - known forbidden method in any student surface rejects
+  ---
+  duration_ms: 9.0693
+  type: 'test'
+  ...
+# Subtest: numeric-only variants, duplicate choices and original ID reuse reject
+ok 83 - numeric-only variants, duplicate choices and original ID reuse reject
+  ---
+  duration_ms: 1.3414
+  type: 'test'
+  ...
+# Subtest: metadata cannot silently change source year, curriculum, score or Unit UUID
+ok 84 - metadata cannot silently change source year, curriculum, score or Unit UUID
+  ---
+  duration_ms: 27.686
+  type: 'test'
+  ...
+# Subtest: copied choice descriptors are held on written responses without erasing independent math or grade evidence
+ok 85 - copied choice descriptors are held on written responses without erasing independent math or grade evidence
+  ---
+  duration_ms: 27.09
+  type: 'test'
+  ...
+# Subtest: lost math command escapes remain readable evidence but cannot inherit passing math or grade reports
+ok 86 - lost math command escapes remain readable evidence but cannot inherit passing math or grade reports
+  ---
+  duration_ms: 12.965
+  type: 'test'
+  ...
+# Subtest: record correction answer comparison requires an explicit typed schema and preserves all roles
+ok 87 - record correction answer comparison requires an explicit typed schema and preserves all roles
+  ---
+  duration_ms: 9.5475
+  type: 'test'
+  ...
+# Subtest: Gyeongsan22 has one correct answer but two globally equivalent distractors also coincide exactly at a legal witness
+ok 88 - Gyeongsan22 has one correct answer but two globally equivalent distractors also coincide exactly at a legal witness
+  ---
+  duration_ms: 14.1302
+  type: 'test'
+  ...
+# Subtest: unit aliases and multipart answer roles cannot hide duplicate computed values
+ok 89 - unit aliases and multipart answer roles cannot hide duplicate computed values
+  ---
+  duration_ms: 5.8551
+  type: 'test'
+  ...
+# Subtest: unknown units, functions and missing option calculations remain unsupported
+ok 90 - unknown units, functions and missing option calculations remain unsupported
+  ---
+  duration_ms: 3.9412
+  type: 'test'
+  ...
+# Subtest: Gyeonggu exact written area uses algebraic constants, never literal string equality
+ok 91 - Gyeonggu exact written area uses algebraic constants, never literal string equality
+  ---
+  duration_ms: 7.5224
+  type: 'test'
+  ...
+# Subtest: role, order, angle/length/area dimension and unit scale remain part of an answer
+ok 92 - role, order, angle/length/area dimension and unit scale remain part of an answer
+  ---
+  duration_ms: 6.2158
+  type: 'test'
+  ...
+# Subtest: unknown expressions, zero denominators and ambiguous role data hold instead of matching
+ok 93 - unknown expressions, zero denominators and ambiguous role data hold instead of matching
+  ---
+  duration_ms: 12.4931
+  type: 'test'
+  ...
+# Subtest: a single selected mark can carry annotations without treating them as checked math
+ok 94 - a single selected mark can carry annotations without treating them as checked math
+  ---
+  duration_ms: 1.3013
+  type: 'test'
+  ...
+# Subtest: a hundred distributed and rationalized constants retain exact equivalence
+ok 95 - a hundred distributed and rationalized constants retain exact equivalence
+  ---
+  duration_ms: 21.3392
+  type: 'test'
+  ...
+# Subtest: new inverse deviation table has one exact ordered completion and no approval
+ok 96 - new inverse deviation table has one exact ordered completion and no approval
+  ---
+  duration_ms: 8.6356
+  type: 'test'
+  ...
+# Subtest: labeled ambiguity, reversed order and repeated unknowns remain distinct
+ok 97 - labeled ambiguity, reversed order and repeated unknowns remain distinct
+  ---
+  duration_ms: 1.9405
+  type: 'test'
+  ...
+# Subtest: inconsistent moments and irrational real completions never acquire a rational answer
+ok 98 - inconsistent moments and irrational real completions never acquire a rational answer
+  ---
+  duration_ms: 1.3172
+  type: 'test'
+  ...
+# Subtest: decimal input is exact without numeric rounding or silently zero-filled holes
+ok 99 - decimal input is exact without numeric rounding or silently zero-filled holes
+  ---
+  duration_ms: 16.9048
+  type: 'test'
+  ...
+# Subtest: malformed conditions, hidden defaults, extra approval fields and unbounded numbers fail closed
+ok 100 - malformed conditions, hidden defaults, extra approval fields and unbounded numbers fail closed
+  ---
+  duration_ms: 5.0891
+  type: 'test'
+  ...
+# Subtest: integer completions match independent exhaustive labeled assignments across small populations
+ok 101 - integer completions match independent exhaustive labeled assignments across small populations
+  ---
+  duration_ms: 36.4305
+  type: 'test'
+  ...
+# Subtest: recovers the actual new printed inverse-target conditions without a root approximation
+ok 102 - recovers the actual new printed inverse-target conditions without a root approximation
+  ---
+  duration_ms: 4.5782
+  type: 'test'
+  ...
+# Subtest: independent rational witnesses across 1296 constructed positive condition sets
+ok 103 - independent rational witnesses across 1296 constructed positive condition sets
+  ---
+  duration_ms: 63.4074
+  type: 'test'
+  ...
+# Subtest: zero and negative products contradict the explicit positive domain
+ok 104 - zero and negative products contradict the explicit positive domain
+  ---
+  duration_ms: 2.1845
+  type: 'test'
+  ...
+# Subtest: rejects missing domains, degenerate radicals/denominators and unsupported metadata
+ok 105 - rejects missing domains, degenerate radicals/denominators and unsupported metadata
+  ---
+  duration_ms: 9.3918
+  type: 'test'
+  ...
+# Subtest: retains exact bounded extremes, deterministic output and caller bytes
+ok 106 - retains exact bounded extremes, deterministic output and caller bytes
+  ---
+  duration_ms: 3.4488
+  type: 'test'
+  ...
+# Subtest: rejects the three independently observed changing-coefficient accessors without reading them
+ok 107 - rejects the three independently observed changing-coefficient accessors without reading them
+  ---
+  duration_ms: 2.46
+  type: 'test'
+  ...
+# Subtest: accepts frozen/null-prototype data and rejects proxies, hidden fields and symbols
+ok 108 - accepts frozen/null-prototype data and rejects proxies, hidden fields and symbols
+  ---
+  duration_ms: 3.8299
+  type: 'test'
+  ...
+# Subtest: actual immutable current q20 presentation retains subparts and lowercase roles
+ok 109 - actual immutable current q20 presentation retains subparts and lowercase roles
+  ---
+  duration_ms: 10.0242
+  type: 'test'
+  ...
+# Subtest: case, assignment order, subpart roles and exact values cannot disappear
+ok 110 - case, assignment order, subpart roles and exact values cannot disappear
+  ---
+  duration_ms: 4.427
+  type: 'test'
+  ...
+# Subtest: partial syntax, roles, unsupported units and legacy normalization bypasses fail closed in collector
+ok 111 - partial syntax, roles, unsupported units and legacy normalization bypasses fail closed in collector
+  ---
+  duration_ms: 27.2645
+  type: 'test'
+  ...
+# Subtest: exact constant arithmetic supports fractions, negatives and radicals without symbolic identities
+ok 112 - exact constant arithmetic supports fractions, negatives and radicals without symbolic identities
+  ---
+  duration_ms: 5.3576
+  type: 'test'
+  ...
+# Subtest: noncanonical Unicode labels/digits, prose and malformed delimiters stay unsupported
+ok 113 - noncanonical Unicode labels/digits, prose and malformed delimiters stay unsupported
+  ---
+  duration_ms: 6.6192
+  type: 'test'
+  ...
+# Subtest: explicit typed format always uses strict grammar before lossy fallback
+ok 114 - explicit typed format always uses strict grammar before lossy fallback
+  ---
+  duration_ms: 1.8679
+  type: 'test'
+  ...
+# Subtest: actual Git blob, working proof and blind proof bind before answer exposure
+ok 115 - actual Git blob, working proof and blind proof bind before answer exposure
+  ---
+  duration_ms: 1233.3778
+  type: 'test'
+  ...
+# Subtest: post-seal raw edits fail before creating answer-exposing outputs
+ok 116 - post-seal raw edits fail before creating answer-exposing outputs
+  ---
+  duration_ms: 964.7495
+  type: 'test'
+  ...
+# Subtest: a mismatching blind copy cannot expose authored answers
+ok 117 - a mismatching blind copy cannot expose authored answers
+  ---
+  duration_ms: 769.6321
+  type: 'test'
+  ...
+# Subtest: an author-labelled raw proof cannot act as independent evidence
+ok 118 - an author-labelled raw proof cannot act as independent evidence
+  ---
+  duration_ms: 839.2232
+  type: 'test'
+  ...
+# Subtest: encoding-damaged answers or proofs cannot expose authored answers
+ok 119 - encoding-damaged answers or proofs cannot expose authored answers
+  ---
+  duration_ms: 3139.6019
+  type: 'test'
+  ...
+# Subtest: nested freeze rebinds original author by ID, preserves raw/report bytes and all holds
+ok 120 - nested freeze rebinds original author by ID, preserves raw/report bytes and all holds
+  ---
+  duration_ms: 2466.0927
+  type: 'test'
+  ...
+# Subtest: rejected report remains rejected without new math approval
+ok 121 - rejected report remains rejected without new math approval
+  ---
+  duration_ms: 2219.9602
+  type: 'test'
+  ...
+# Subtest: reordered multi-question selection binds by exact ID, never array position
+ok 122 - reordered multi-question selection binds by exact ID, never array position
+  ---
+  duration_ms: 2529.063
+  type: 'test'
+  ...
+# Subtest: changed source metadata with same student payload requires NEW review even with current SHA
+ok 123 - changed source metadata with same student payload requires NEW review even with current SHA
+  ---
+  duration_ms: 1497.2548
+  type: 'test'
+  ...
+# Subtest: changed answer requires NEW review even with current SHA
+ok 124 - changed answer requires NEW review even with current SHA
+  ---
+  duration_ms: 1346.4464
+  type: 'test'
+  ...
+# Subtest: changed solution requires NEW review even with current SHA
+ok 125 - changed solution requires NEW review even with current SHA
+  ---
+  duration_ms: 1290.1824
+  type: 'test'
+  ...
+# Subtest: changed classification metadata requires NEW review even with current SHA
+ok 126 - changed classification metadata requires NEW review even with current SHA
+  ---
+  duration_ms: 1878.8731
+  type: 'test'
+  ...
+# Subtest: changed grade standard metadata requires NEW review even with current SHA
+ok 127 - changed grade standard metadata requires NEW review even with current SHA
+  ---
+  duration_ms: 1473.8704
+  type: 'test'
+  ...
+# Subtest: changed asset bytes require NEW review
+ok 128 - changed asset bytes require NEW review
+  ---
+  duration_ms: 1324.6479
+  type: 'test'
+  ...
+# Subtest: wrong exact ID cannot match by question number
+ok 129 - wrong exact ID cannot match by question number
+  ---
+  duration_ms: 1078.2886
+  type: 'test'
+  ...
+# Subtest: wrong raw author SHA fails before output
+ok 130 - wrong raw author SHA fails before output
+  ---
+  duration_ms: 1263.0684
+  type: 'test'
+  ...
+# Subtest: actual working raw must equal sealed Git blob
+ok 131 - actual working raw must equal sealed Git blob
+  ---
+  duration_ms: 1347.5811
+  type: 'test'
+  ...
+# Subtest: old blind raw must equal sealed Git blob
+ok 132 - old blind raw must equal sealed Git blob
+  ---
+  duration_ms: 1150.9999
+  type: 'test'
+  ...
+# Subtest: stale report candidate binding cannot be reused
+ok 133 - stale report candidate binding cannot be reused
+  ---
+  duration_ms: 1347.1312
+  type: 'test'
+  ...
+# Subtest: output refuses input-tree, outside-workspace and dependency writes
+ok 134 - output refuses input-tree, outside-workspace and dependency writes
+  ---
+  duration_ms: 990.7935
+  type: 'test'
+  ...
+# Subtest: strict CLI rejects extra flags and exposes no writer mode
+ok 135 - strict CLI rejects extra flags and exposes no writer mode
+  ---
+  duration_ms: 87.5445
+  type: 'test'
+  ...
+# Subtest: internal junction aliases cannot write into dependencies or old evidence
+ok 136 - internal junction aliases cannot write into dependencies or old evidence
+  ---
+  duration_ms: 948.3488
+  type: 'test'
+  ...
+# Subtest: matches the actual distinct sealed presentation without rewriting either answer
+ok 137 - matches the actual distinct sealed presentation without rewriting either answer
+  ---
+  duration_ms: 13.0819
+  type: 'test'
+  ...
+# Subtest: retains label, corrected value, total and expression roles under adverse inputs
+ok 138 - retains label, corrected value, total and expression roles under adverse inputs
+  ---
+  duration_ms: 47.023
+  type: 'test'
+  ...
+# Subtest: does not discard extra parts, swap values, accept bad schema or infer symbolic identities
+ok 139 - does not discard extra parts, swap values, accept bad schema or infer symbolic identities
+  ---
+  duration_ms: 12.54
+  type: 'test'
+  ...
+# Subtest: compares other explicitly typed constant corrections without making their equations true
+ok 140 - compares other explicitly typed constant corrections without making their equations true
+  ---
+  duration_ms: 2.6517
+  type: 'test'
+  ...
+# Subtest: freeze and blind input bind actual assets; stale spec blocks dry-run
+ok 141 - freeze and blind input bind actual assets; stale spec blocks dry-run
+  ---
+  duration_ms: 650.0508
+  type: 'test'
+  ...
+# Subtest: a renderable lost radical command is held before freeze without changing its source
+ok 142 - a renderable lost radical command is held before freeze without changing its source
+  ---
+  duration_ms: 136.9554
+  type: 'test'
+  ...
+# Subtest: a renderable lost unit marker in a choice is held before any blind package exists
+ok 143 - a renderable lost unit marker in a choice is held before any blind package exists
+  ---
+  duration_ms: 136.1925
+  type: 'test'
+  ...
+# Subtest: independent solve is frozen before new answer exposure; later alteration rejects
+ok 144 - independent solve is frozen before new answer exposure; later alteration rejects
+  ---
+  duration_ms: 621.1897
+  type: 'test'
+  ...
+# Subtest: collection rechecks blind student bytes after answer exposure
+ok 145 - collection rechecks blind student bytes after answer exposure
+  ---
+  duration_ms: 634.2139
+  type: 'test'
+  ...
+# Subtest: batch counts select the exact current ID and never reuse an old question-number review
+ok 146 - batch counts select the exact current ID and never reuse an old question-number review
+  ---
+  duration_ms: 1138.155
+  type: 'test'
+  ...
+# Subtest: a verified report cannot inflate content/classification passes while a required dimension is held
+ok 147 - a verified report cannot inflate content/classification passes while a required dimension is held
+  ---
+  duration_ms: 860.6408
+  type: 'test'
+  ...
+# Subtest: reason-only surface objects cannot inflate grade counts; explicit per-surface evidence retains independent math and holds
+ok 148 - reason-only surface objects cannot inflate grade counts; explicit per-surface evidence retains independent math and holds
+  ---
+  duration_ms: 584.4917
+  type: 'test'
+  ...
+# Subtest: a verified written report cannot inflate classification counts with copied single-choice metadata
+ok 149 - a verified written report cannot inflate classification counts with copied single-choice metadata
+  ---
+  duration_ms: 1043.2794
+  type: 'test'
+  ...
+# Subtest: image composition binds both generated pixels and generation record
+ok 150 - image composition binds both generated pixels and generation record
+  ---
+  duration_ms: 397.4585
+  type: 'test'
+  ...
+# Subtest: outputs cannot escape through a worktree dependency junction
+ok 151 - outputs cannot escape through a worktree dependency junction
+  ---
+  duration_ms: 2.5871
+  type: 'test'
+  ...
+# Subtest: local dependency and git directories cannot become artifact outputs either
+ok 152 - local dependency and git directories cannot become artifact outputs either
+  ---
+  duration_ms: 8.6848
+  type: 'test'
+  ...
+# Subtest: fresh raw radical length presentations retain the entire exact value and explicit unit
+ok 153 - fresh raw radical length presentations retain the entire exact value and explicit unit
+  ---
+  duration_ms: 18.4678
+  type: 'test'
+  ...
+# Subtest: single lengths fully consume units and scalar syntax without losing named roles or subparts
+ok 154 - single lengths fully consume units and scalar syntax without losing named roles or subparts
+  ---
+  duration_ms: 11.2355
+  type: 'test'
+  ...
+# Subtest: equality of a nonpositive scalar does not certify positive lengths or approve problems
+ok 155 - equality of a nonpositive scalar does not certify positive lengths or approve problems
+  ---
+  duration_ms: 4.6146
+  type: 'test'
+  ...
+# Subtest: matches exact bytes reproducibly and never certifies a same-name pair
+ok 156 - matches exact bytes reproducibly and never certifies a same-name pair
+  ---
+  duration_ms: 78.3421
+  type: 'test'
+  ...
+# Subtest: stale hashes, missing sources, size mismatch and invalid expectations fail independently
+ok 157 - stale hashes, missing sources, size mismatch and invalid expectations fail independently
+  ---
+  duration_ms: 25.8123
+  type: 'test'
+  ...
+# Subtest: duplicate manifest entries are retained rather than silently certified away
+ok 158 - duplicate manifest entries are retained rather than silently certified away
+  ---
+  duration_ms: 24.7987
+  type: 'test'
+  ...
+# Subtest: bounded reads and entry limits fail closed
+ok 159 - bounded reads and entry limits fail closed
+  ---
+  duration_ms: 19.3957
+  type: 'test'
+  ...
+# Subtest: only explicit source arrays are projected; current relocation is explicit
+ok 160 - only explicit source arrays are projected; current relocation is explicit
+  ---
+  duration_ms: 1.0112
+  type: 'test'
+  ...
+# Subtest: source directories are rejected
+ok 161 - source directories are rejected
+  ---
+  duration_ms: 14.761
+  type: 'test'
+  ...
+# Subtest: CLI exits nonzero on a stale source and emits structured evidence
+ok 162 - CLI exits nonzero on a stale source and emits structured evidence
+  ---
+  duration_ms: 178.241
+  type: 'test'
+  ...
+# Subtest: weighted table preserves count, even median and exact population variance
+ok 163 - weighted table preserves count, even median and exact population variance
+  ---
+  duration_ms: 5.7766
+  type: 'test'
+  ...
+# Subtest: missing observations and deviations are explicit, exact and not grade approvals
+ok 164 - missing observations and deviations are explicit, exact and not grade approvals
+  ---
+  duration_ms: 4.9373
+  type: 'test'
+  ...
+# Subtest: ties, equal-value option aliases and nonexistent observations cannot become unique answers
+ok 165 - ties, equal-value option aliases and nonexistent observations cannot become unique answers
+  ---
+  duration_ms: 3.2377
+  type: 'test'
+  ...
+# Subtest: one hundred deterministic distributions match an independent expanded-data calculation
+ok 166 - one hundred deterministic distributions match an independent expanded-data calculation
+  ---
+  duration_ms: 11.2926
+  type: 'test'
+  ...
+# Subtest: exact replay is strictly requested and never grants approval
+ok 167 - exact replay is strictly requested and never grants approval
+  ---
+  duration_ms: 45.0123
+  type: 'test'
+  ...
+# Subtest: changed saved SVG remains a mismatch even if its candidate binds
+ok 168 - changed saved SVG remains a mismatch even if its candidate binds
+  ---
+  duration_ms: 33.1353
+  type: 'test'
+  ...
+# Subtest: renderer errors, missing SVG and dropped dimensions fail closed
+ok 169 - renderer errors, missing SVG and dropped dimensions fail closed
+  ---
+  duration_ms: 97.9672
+  type: 'test'
+  ...
+# Subtest: unsupported spec is held before invoking a renderer
+ok 170 - unsupported spec is held before invoking a renderer
+  ---
+  duration_ms: 30.528
+  type: 'test'
+  ...
+# Subtest: no figures cannot pass by an empty all operation
+ok 171 - no figures cannot pass by an empty all operation
+  ---
+  duration_ms: 16.7604
+  type: 'test'
+  ...
+# Subtest: a bound raster inside a version2 spec cannot claim vector replay
+ok 172 - a bound raster inside a version2 spec cannot claim vector replay
+  ---
+  duration_ms: 50.3327
+  type: 'test'
+  ...
+# Subtest: a renderer modifying an input cannot issue a valid replay receipt
+ok 173 - a renderer modifying an input cannot issue a valid replay receipt
+  ---
+  duration_ms: 27.8455
+  type: 'test'
+  ...
+# Subtest: unsafe source SVG is rejected before renderer use
+ok 174 - unsafe source SVG is rejected before renderer use
+  ---
+  duration_ms: 15.4759
+  type: 'test'
+  ...
+# Subtest: offline CLI environment cannot silently select a service or external engine
+ok 175 - offline CLI environment cannot silently select a service or external engine
+  ---
+  duration_ms: 1.4462
+  type: 'test'
+  ...
+# Subtest: a saved SVG replaced between binding and snapshot cannot reproduce stale bytes
+ok 176 - a saved SVG replaced between binding and snapshot cannot reproduce stale bytes
+  ---
+  duration_ms: 20.5071
+  type: 'test'
+  ...
+# Subtest: spec bytes replaced after snapshot are rejected even if restored before final hash check
+ok 177 - spec bytes replaced after snapshot are rejected even if restored before final hash check
+  ---
+  duration_ms: 26.817
+  type: 'test'
+  ...
+# Subtest: verified UTF-8 BOM spec bytes retain their identity during parsing
+ok 178 - verified UTF-8 BOM spec bytes retain their identity during parsing
+  ---
+  duration_ms: 21.1739
+  type: 'test'
+  ...
+# Subtest: CLI code and renderer fingerprints must belong to the same worktree
+ok 179 - CLI code and renderer fingerprints must belong to the same worktree
+  ---
+  duration_ms: 1.1234
+  type: 'test'
+  ...
+# Subtest: candidate content replaced after first read is rejected before renderer use
+ok 180 - candidate content replaced after first read is rejected before renderer use
+  ---
+  duration_ms: 19.0542
+  type: 'test'
+  ...
+# Subtest: generation record hash comes from the same bytes as its validated provenance
+ok 181 - generation record hash comes from the same bytes as its validated provenance
+  ---
+  duration_ms: 42.1655
+  type: 'test'
+  ...
+1..181
+# tests 181
+# suites 0
+# pass 181
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 24701.5574
