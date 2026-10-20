@@ -1,0 +1,289 @@
+{
+  "passed": 46,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "verification-input-bytehash",
+      "passed": true
+    },
+    {
+      "id": "q4/private-current",
+      "passed": true
+    },
+    {
+      "id": "q4/candidate-filehash",
+      "passed": true
+    },
+    {
+      "id": "q4/all-student-fields",
+      "passed": true
+    },
+    {
+      "id": "q4/raw-byte-seal",
+      "passed": true
+    },
+    {
+      "id": "q4/pre-exposure-Git-bytes",
+      "passed": true
+    },
+    {
+      "id": "q4/raw-object-current",
+      "passed": true
+    },
+    {
+      "id": "q4/answer-independent",
+      "passed": true
+    },
+    {
+      "id": "q4/raw-no-visual-claim-preserved",
+      "passed": true
+    },
+    {
+      "id": "q4/unit-match",
+      "passed": true
+    },
+    {
+      "id": "q4/family-remains-null",
+      "passed": true
+    },
+    {
+      "id": "q4/source-local-hash",
+      "passed": true
+    },
+    {
+      "id": "q4/printed-score",
+      "passed": true
+    },
+    {
+      "id": "q5/private-current",
+      "passed": true
+    },
+    {
+      "id": "q5/candidate-filehash",
+      "passed": true
+    },
+    {
+      "id": "q5/all-student-fields",
+      "passed": true
+    },
+    {
+      "id": "q5/raw-byte-seal",
+      "passed": true
+    },
+    {
+      "id": "q5/pre-exposure-Git-bytes",
+      "passed": true
+    },
+    {
+      "id": "q5/raw-object-current",
+      "passed": true
+    },
+    {
+      "id": "q5/answer-independent",
+      "passed": true
+    },
+    {
+      "id": "q5/raw-no-visual-claim-preserved",
+      "passed": true
+    },
+    {
+      "id": "q5/unit-match",
+      "passed": true
+    },
+    {
+      "id": "q5/family-remains-null",
+      "passed": true
+    },
+    {
+      "id": "q5/source-local-hash",
+      "passed": true
+    },
+    {
+      "id": "q5/printed-score",
+      "passed": true
+    },
+    {
+      "id": "q04 authors entire factor identity",
+      "passed": true
+    },
+    {
+      "id": "q04 all roles unique",
+      "passed": true
+    },
+    {
+      "id": "q04 plus sign fails",
+      "passed": true
+    },
+    {
+      "id": "q04 missingv fails",
+      "passed": true
+    },
+    {
+      "id": "q04 zero/sign witness 0,0",
+      "passed": true
+    },
+    {
+      "id": "q04 zero/sign witness 0,-3",
+      "passed": true
+    },
+    {
+      "id": "q04 zero/sign witness -2,0",
+      "passed": true
+    },
+    {
+      "id": "q04 zero/sign witness 3,2",
+      "passed": true
+    },
+    {
+      "id": "q04 zero/sign witness -1,2",
+      "passed": true
+    },
+    {
+      "id": "q04 zero/sign witness 1/2,-3/2",
+      "passed": true
+    },
+    {
+      "id": "q05 entire author A identity",
+      "passed": true
+    },
+    {
+      "id": "q05 entire author B identity",
+      "passed": true
+    },
+    {
+      "id": "q05 entire author C corrected identity",
+      "passed": true
+    },
+    {
+      "id": "q05 C force middle-term factor",
+      "passed": true
+    },
+    {
+      "id": "q05 C original2 wrong",
+      "passed": true
+    },
+    {
+      "id": "q05 A other allowed sign",
+      "passed": true
+    },
+    {
+      "id": "q05 B other allowed sign",
+      "passed": true
+    },
+    {
+      "id": "q05 C other first sign same correction",
+      "passed": true
+    },
+    {
+      "id": "q05 every choice unique",
+      "passed": true
+    },
+    {
+      "id": "q05 C16 cannot keep -12xy",
+      "passed": true
+    },
+    {
+      "id": "q05 fixed nonzero denominators",
+      "passed": true
+    }
+  ],
+  "q04AllOptions": [
+    {
+      "choice": "①",
+      "identityCorrect": true,
+      "bothNamesCorrect": false,
+      "correct": false
+    },
+    {
+      "choice": "②",
+      "identityCorrect": true,
+      "bothNamesCorrect": true,
+      "correct": true
+    },
+    {
+      "choice": "③",
+      "identityCorrect": false,
+      "bothNamesCorrect": true,
+      "correct": false
+    },
+    {
+      "choice": "④",
+      "identityCorrect": true,
+      "bothNamesCorrect": false,
+      "correct": false
+    },
+    {
+      "choice": "⑤",
+      "identityCorrect": false,
+      "bothNamesCorrect": true,
+      "correct": false
+    }
+  ],
+  "q05AllOptions": [
+    {
+      "choice": "①",
+      "row": "A",
+      "value": "6",
+      "squareCondition": false,
+      "wrongRow": false,
+      "correct": false
+    },
+    {
+      "choice": "②",
+      "row": "A",
+      "value": "-6",
+      "squareCondition": false,
+      "wrongRow": false,
+      "correct": false
+    },
+    {
+      "choice": "③",
+      "row": "B",
+      "value": "-5/6",
+      "squareCondition": false,
+      "wrongRow": false,
+      "correct": false
+    },
+    {
+      "choice": "④",
+      "row": "C",
+      "value": "4",
+      "squareCondition": true,
+      "wrongRow": true,
+      "correct": true
+    },
+    {
+      "choice": "⑤",
+      "row": "C",
+      "value": "16",
+      "squareCondition": false,
+      "wrongRow": true,
+      "correct": false
+    }
+  ],
+  "sourceObservationsNoOriginalWording": [
+    {
+      "n": 4,
+      "componentSHA256": "23229b4dd377ed292aa2490a22e6a97a299b0bc71b776b198d3cf2b4cea2906b",
+      "printedScore": 3,
+      "preparedDifficultyLabel": "중",
+      "observedCore": "common-factor plus direction terms",
+      "wholePaperIdentityApproved": false,
+      "originalAnswerUsed": false
+    },
+    {
+      "n": 5,
+      "componentSHA256": "97f6d8e3cbc8d16ebb7a4889448f10b08b4dcd54e22027ceb5192b55cf56bc5c",
+      "printedScore": 4,
+      "preparedDifficultyLabel": "중",
+      "observedCore": "complete-square recognition using binomial formulas",
+      "wholePaperIdentityApproved": false,
+      "originalAnswerUsed": false
+    }
+  ],
+  "allFourPNGsActuallyViewedAfterRawSeal": true,
+  "sourceFirstPageActuallyViewed": true,
+  "rawTextOnlyClaimUnchanged": true,
+  "newIndependentSolveCount": 0,
+  "method": "Own Fraction bivariate coefficient convolution and direct identities; no authorBigInt/harness/test or pixel oracle."
+}

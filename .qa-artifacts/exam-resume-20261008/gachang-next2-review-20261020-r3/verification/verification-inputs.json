@@ -1,0 +1,658 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 4,
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group2-r3-q04",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "다항식을 변형하는 두 과정을 다음과 같이 정리했다. 빈칸 ㉠에 들어갈 식과 과정 (가), (나)의 이름을 바르게 짝지은 것은?\n\n| 과정 | 변형 전 | 변형 후 |\n| --- | --- | --- |\n| (가) | $12u^2v-18uv^2$ | $6uv\\times$ ㉠ |\n| (나) | $6uv\\times$ ㉠ | $12u^2v-18uv^2$ |",
+      "choices": [
+        "$2u-3v$, 전개, 인수분해",
+        "$2u-3v$, 인수분해, 전개",
+        "$2u+3v$, 인수분해, 전개",
+        "$2u-3v$, 인수분해, 인수분해",
+        "$2u-3$, 인수분해, 전개"
+      ],
+      "answer": "②",
+      "solution": "두 항 $12u^2v$, $-18uv^2$에 공통으로 들어 있는 인수 $6uv$를 묶어내면\n\n$$12u^2v-18uv^2=6uv(2u-3v)$$\n\n이다. 따라서 ㉠은 $2u-3v$이다. 다항식을 두 인수의 곱으로 나타내는 (가)는 인수분해이다.\n\n반대로 $6uv(2u-3v)$에 분배법칙을 적용하면 $12u^2v-18uv^2$이 된다. 곱의 꼴을 풀어 나타내는 (나)는 전개이다. 그러므로 정답은 ②이다. 문자에 수를 대입해 나누는 풀이가 아니므로 $u$, $v$가 $0$일 때를 따로 제외할 필요도 없다.",
+      "figureArtifacts": [],
+      "sourceReference": {
+        "externalId": "2025-gachang-3-1-final-4",
+        "inventoryExamId": "personal-273b85b46b6ea294fef26b4de34becfc",
+        "sourceQuestionNumber": 4,
+        "newSourceReferenceId": "source-ref-gachang-2025-1-final-group2-r3-q04",
+        "sourceContentSha256": "f397776ea9814de81820862a08af0b38f5eccaea21d849524c1a9097d7122ee7",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/component-only-input/q04.local.json",
+          "sha256": "23229b4dd377ed292aa2490a22e6a97a299b0bc71b776b198d3cf2b4cea2906b"
+        },
+        "sourceSchoolInternal": "가창중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "extractionManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/hwp-question-only-manifest.local.json",
+          "sha256": "c0eb3644b8a251f067811a600da62c342f7de20e1ac2ec27002983fc312cd870"
+        },
+        "hwpOnlyExtractionAggregate": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+          "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[가창중][3][25-1-기말][천재이] (완료).hwp",
+            "sha256": "8c78d3758f25a078316daed76e722286ec79d0506f09faef23b347aa6ce06ce9",
+            "bytes": 1428480
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+            "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+            "bytes": 1778571
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+          "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+          "bytes": 1778571
+        },
+        "parentOriginalFirstPageObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+          "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+        },
+        "sourceComponentReview": {
+          "status": "HWP-only-component-observed-parent-PDF-and-independent-source-core-review-pending",
+          "whole19ParentHwpPdfPairApproved": false
+        },
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "parentIncidentalHandwrittenMarksExposure": true,
+        "marksUsedForAnswerApproval": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "data-reorganization",
+          "inverse-target",
+          "new-table"
+        ],
+        "before": "전개식과 곱의 꼴을 모두 제시하고 인수·공통인수·전개·인수분해 설명 중 틀린 것을 고른다.",
+        "after": "두 방향의 변형을 표로 조직하고 빠진 실제 인수와 각 방향의 연산 이름을 함께 완성한다.",
+        "sharedConcept": "공통인수를 이용한 인수분해와 분배법칙에 따른 전개의 역관계",
+        "sharedProcedure": "6uv를 공통인수로 묶어2u−3v 구성 → 분배법칙으로 원식 확인 → 합에서곱/곱에서합 방향을 인수분해/전개와 연결",
+        "actualStructuralChange": "두 방향의 변형을 표로 조직하고 빠진 실제 인수와 각 방향의 연산 이름을 함께 완성한다.",
+        "domainProof": "문자u,v의 값으로 나누지 않고 다항식 전개를 확인한다.0을 포함한 실수값에서 등식이 성립한다. 새 선수 개념을 요구하지 않는다.",
+        "difficultyBasis": "원문 배점3/4와 인수분해 정의/공식 판단 목적을 유지한 저자 제안.표 조직과 질문 대상 변화의 실제 난도 및 exact family는 독립검수 전 보류."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수02-12"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수02-12"
+          ]
+        },
+        "legitimateMethodDraft": "6uv를 공통인수로 묶어2u−3v 구성 → 분배법칙으로 원식 확인 → 합에서곱/곱에서합 방향을 인수분해/전개와 연결",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+        "sourceExamYear": 2025,
+        "targetAcademicYear": 2026,
+        "curriculum": "2015",
+        "officialPrimary": {
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "standard": "9수02-12",
+          "providedMOEEvidence": {
+            "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+            "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+          },
+          "actualScope": "2015중3 인수분해와곱셈공식;중3실제Unit과학년내선수개념으로검토;2027/2022별도보류"
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "두 방향의 변형을 표로 조직하고 빠진 실제 인수와 각 방향의 연산 이름을 함께 완성한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해",
+            "semester": 1,
+            "orderIndex": 473,
+            "problemCodePrefix": "J30202"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제캡처UnitUUID와2015성취기준연결;새표/오류수정/인수완성목적의exact live family는보류"
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gachang-next2-20261020-r3.mjs",
+          "reproductionScriptSha256": "9446d314004416b4646d4b8a2af65f5a57a33b7c876e50a89ba8d65971336bc6",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "중",
+        "prerequisiteUnits": [
+          {
+            "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해",
+            "semester": 1,
+            "orderIndex": 473,
+            "problemCodePrefix": "J30202"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "다항식의 항과 인수",
+            "분배법칙",
+            "공통인수를 이용한 인수분해",
+            "다항식의 전개"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      }
+    },
+    "assets": [],
+    "studentDigest": "a2c3f3460a1ab54eb4c521c45d0a2bc1cd526dcad64586761ca72c3f19dad519",
+    "candidateDigest": "b3342a947160674669667ba9608970e5e7ee41fcc413657d836430bec8f306c1",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "a2c3f3460a1ab54eb4c521c45d0a2bc1cd526dcad64586761ca72c3f19dad519",
+      "solverId": "independent-helper-gachang-next2-student-only-20261020-r1",
+      "answer": "②",
+      "solution": "12u²v=6uv·2u이고 -18uv²=6uv·(-3v)이므로 12u²v-18uv²=6uv(2u-3v)이다. 따라서 ㉠에는 2u-3v가 들어간다. 여러 항으로 된 다항식을 인수의 곱으로 나타낸 (가)는 인수분해이고, 그 곱을 분배법칙으로 원래 다항식으로 나타낸 (나)는 전개이다. u나 v로 나누어 푼 것이 아니므로 u=0 또는 v=0인 경우에도 이 식은 성립한다. 보기 ①은 두 과정의 이름을 반대로 썼고, ③은 전개했을 때 둘째 항이 +18uv²가 되어 부호가 틀리다. ④는 (나)의 이름이 전개여야 하는데 인수분해라고 했다. ⑤는 전개하면 12u²v-18uv가 되어 v의 차수가 다르다. 식과 두 이름이 모두 맞는 것은 ②이다.",
+      "evidence": {
+        "exposure": {
+          "solverId": "independent-helper-gachang-next2-student-only-20261020-r1",
+          "history": "원문9개 구성요소, 이전 Gachang/Gangbuk 학생·저자검토와 원문 첫페이지를 보았으며 그 안의 다른 문항/손글씨가 부수적으로 노출되었다. 공개 엔진·관련 코드 감사와 current166 metadata/hash 이력도 있다. 이번 q04/q05와 유사한 기존 원문을 포함한 전체 corpus를 미노출이라고 주장하지 않는다.",
+          "currentNewAuthorAnswerSolutionPrivateExposed": false,
+          "currentScopeRead": "현재 r3 학생 JSON/manifest/brief3파일만 읽음. 현재 author/private/script/new source/root candidate/N/원문 body는 읽지 않음.",
+          "visualReviewPerformed": false,
+          "whyNoVisual": "PNG rendering deferred by supplied memory constraint; no figure files or PNGs supplied/used. Native Markdown table text inspected, not visual layout.",
+          "pixelOrImageMeasurementOracle": false,
+          "newApprovalCounts": 0
+        },
+        "allChoiceChecks": [
+          {
+            "choice": "①",
+            "expandedProduct": {
+              "1,2": "-18",
+              "2,1": "12"
+            },
+            "polynomialIdentity": true,
+            "processGaName": "전개",
+            "processNaName": "인수분해",
+            "bothNamesCorrect": false,
+            "fulfillsAllRoles": false
+          },
+          {
+            "choice": "②",
+            "expandedProduct": {
+              "1,2": "-18",
+              "2,1": "12"
+            },
+            "polynomialIdentity": true,
+            "processGaName": "인수분해",
+            "processNaName": "전개",
+            "bothNamesCorrect": true,
+            "fulfillsAllRoles": true
+          },
+          {
+            "choice": "③",
+            "expandedProduct": {
+              "1,2": "18",
+              "2,1": "12"
+            },
+            "polynomialIdentity": false,
+            "processGaName": "인수분해",
+            "processNaName": "전개",
+            "bothNamesCorrect": true,
+            "fulfillsAllRoles": false
+          },
+          {
+            "choice": "④",
+            "expandedProduct": {
+              "1,2": "-18",
+              "2,1": "12"
+            },
+            "polynomialIdentity": true,
+            "processGaName": "인수분해",
+            "processNaName": "인수분해",
+            "bothNamesCorrect": false,
+            "fulfillsAllRoles": false
+          },
+          {
+            "choice": "⑤",
+            "expandedProduct": {
+              "1,1": "-18",
+              "2,1": "12"
+            },
+            "polynomialIdentity": false,
+            "processGaName": "인수분해",
+            "processNaName": "전개",
+            "bothNamesCorrect": true,
+            "fulfillsAllRoles": false
+          }
+        ],
+        "recordChecks": null,
+        "domainAndUniqueness": "u,v는 다항식의 문자이며 모든 실수 대입에서 인수분해 항등식이 성립. uv=0이나2u-3v=0에서도 성립하며 변수로 나누지 않는다. 특수한 값에서 잘못된 보기의 수치도 같을 수 있으나 다항식 변형 전체의 항등식과 두 과정 이름을 모두 묻는다. 단위/양수길이조건 없음.",
+        "studentMethod": "2015M3 공통인수 인수분해/분배법칙 전개와 두 과정 이름의 뜻.",
+        "visualLimitation": "허용된 native table 텍스트만 읽음; PNG 미제공 및 메모리제약으로 시각/레이아웃 검토를 하지 않았다. 수학적 풀이 solved는 visual/grade/family/권리/native/release 승인 아님.",
+        "calculationScript": "../../own-raw-evidence-r1/own-calculate.py"
+      },
+      "status": "solved"
+    },
+    "solveDigest": "e3706e7b15b0f8b945aaa58c96d4e7dfb81bd7cc72a709f72e5eb492b37042e8"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 5,
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group2-r3-q05",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "다음 표는 각 다항식이 완전제곱식이 되도록 상수 $k$의 값을 기록한 것이다. 잘못 기록한 행 하나를 찾아 그 행의 $k$를 올바르게 고친 것은?\n\n| 행 | 다항식 | 기록한 $k$ |\n| --- | --- | --- |\n| A | $4x^2+kxy+9y^2$ | $12$ |\n| B | $\\dfrac19x^2+kxy+\\dfrac{25}{4}y^2$ | $-\\dfrac53$ |\n| C | $9x^2-12xy+ky^2$ | $2$ |",
+      "choices": [
+        "A, $6$",
+        "A, $-6$",
+        "B, $-\\dfrac56$",
+        "C, $4$",
+        "C, $16$"
+      ],
+      "answer": "④",
+      "solution": "완전제곱식의 곱셈공식 $(a+b)^2=a^2+2ab+b^2$, $(a-b)^2=a^2-2ab+b^2$를 이용한다.\n\nA에서는 $(2x+3y)^2=4x^2+12xy+9y^2$이므로 기록한 $k=12$가 옳다.\n\nB에서는 $\\left(\\dfrac13x-\\dfrac52y\\right)^2=\\dfrac19x^2-\\dfrac53xy+\\dfrac{25}{4}y^2$이므로 기록한 $k=-\\dfrac53$이 옳다.\n\nC에서는 $9x^2=(3x)^2$이고 가운데 항이 $-12xy=-2\\times3x\\times2y$이므로 마지막 항은 $(2y)^2=4y^2$이어야 한다. 따라서 $k=4$이고, 실제로 $9x^2-12xy+4y^2=(3x-2y)^2$이다.\n\nC만 잘못 기록했으며 $k$를 $4$로 고쳐야 하므로 정답은 ④이다. C에서 가운데 항의 계수가 고정되어 있어 마지막 항의 계수도 $4$로 정해진다.",
+      "figureArtifacts": [],
+      "sourceReference": {
+        "externalId": "2025-gachang-3-1-final-5",
+        "inventoryExamId": "personal-273b85b46b6ea294fef26b4de34becfc",
+        "sourceQuestionNumber": 5,
+        "newSourceReferenceId": "source-ref-gachang-2025-1-final-group2-r3-q05",
+        "sourceContentSha256": "e477d2aeede693007fa6039060cf691e10f2582cc39f4770fce4be4fb397089a",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/component-only-input/q05.local.json",
+          "sha256": "97f6d8e3cbc8d16ebb7a4889448f10b08b4dcd54e22027ceb5192b55cf56bc5c"
+        },
+        "sourceSchoolInternal": "가창중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "extractionManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/hwp-question-only-manifest.local.json",
+          "sha256": "c0eb3644b8a251f067811a600da62c342f7de20e1ac2ec27002983fc312cd870"
+        },
+        "hwpOnlyExtractionAggregate": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+          "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[가창중][3][25-1-기말][천재이] (완료).hwp",
+            "sha256": "8c78d3758f25a078316daed76e722286ec79d0506f09faef23b347aa6ce06ce9",
+            "bytes": 1428480
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+            "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+            "bytes": 1778571
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+          "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+          "bytes": 1778571
+        },
+        "parentOriginalFirstPageObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+          "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+        },
+        "sourceComponentReview": {
+          "status": "HWP-only-component-observed-parent-PDF-and-independent-source-core-review-pending",
+          "whole19ParentHwpPdfPairApproved": false
+        },
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "parentIncidentalHandwrittenMarksExposure": true,
+        "marksUsedForAnswerApproval": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "data-reorganization",
+          "inverse-target",
+          "new-table"
+        ],
+        "before": "여러 다항식 중 완전제곱식으로 인수분해할 수 있는 것을 판별해 개수를 센다.",
+        "after": "완전제곱식 조건을 만족한다는 계수 기록 세 행을 검토하고 오류 행의 입력 계수를 역으로 복원한다.",
+        "sharedConcept": "완전제곱식의 양 끝 제곱항과 가운데 두 배 곱 항의 관계",
+        "sharedProcedure": "A,B를 두 항의 합/차의 제곱 공식으로 검토 → C의3x와가운데−12xy에서2y결정 → 마지막제곱항4y²로수정 후재전개",
+        "actualStructuralChange": "완전제곱식 조건을 만족한다는 계수 기록 세 행을 검토하고 오류 행의 입력 계수를 역으로 복원한다.",
+        "domainProof": "다항식 전체의 완전제곱식 여부를 묻는다.특정x,y를대입한수치의제곱가능성을묻지않는다.학생은판별식/근과계수/미분을사용하지않고두항의곱셈공식으로푼다.",
+        "difficultyBasis": "원문 배점3/4와 인수분해 정의/공식 판단 목적을 유지한 저자 제안.표 조직과 질문 대상 변화의 실제 난도 및 exact family는 독립검수 전 보류."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수02-12"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수02-12"
+          ]
+        },
+        "legitimateMethodDraft": "A,B를 두 항의 합/차의 제곱 공식으로 검토 → C의3x와가운데−12xy에서2y결정 → 마지막제곱항4y²로수정 후재전개",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+        "sourceExamYear": 2025,
+        "targetAcademicYear": 2026,
+        "curriculum": "2015",
+        "officialPrimary": {
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "standard": "9수02-12",
+          "providedMOEEvidence": {
+            "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+            "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+          },
+          "actualScope": "2015중3 인수분해와곱셈공식;중3실제Unit과학년내선수개념으로검토;2027/2022별도보류"
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "완전제곱식 조건을 만족한다는 계수 기록 세 행을 검토하고 오류 행의 입력 계수를 역으로 복원한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "068bcc39-0927-4f43-a919-24b61ca425f9",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해",
+            "semester": 1,
+            "orderIndex": 473,
+            "problemCodePrefix": "J30202"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제캡처UnitUUID와2015성취기준연결;새표/오류수정/인수완성목적의exact live family는보류"
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gachang-next2-20261020-r3.mjs",
+          "reproductionScriptSha256": "9446d314004416b4646d4b8a2af65f5a57a33b7c876e50a89ba8d65971336bc6",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "중",
+        "prerequisiteUnits": [
+          {
+            "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+            "grade": "중3",
+            "chapter": "2. 다항식의 곱셈과 인수분해",
+            "section": "인수분해",
+            "semester": 1,
+            "orderIndex": 473,
+            "problemCodePrefix": "J30202"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "두 항의 합과 차의 제곱 공식",
+            "완전제곱식의 인수분해",
+            "분수와 부호 계산",
+            "다항식의 계수 비교"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      }
+    },
+    "assets": [],
+    "studentDigest": "aa9e5b58a8f301e3e062b296c25db6c01e0006191eae53bdd87587e39af1fa30",
+    "candidateDigest": "3c11c8305f66f12da5678bf63f7fa955df2255de2ff6417766b9b20e572009b4",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "aa9e5b58a8f301e3e062b296c25db6c01e0006191eae53bdd87587e39af1fa30",
+      "solverId": "independent-helper-gachang-next2-student-only-20261020-r1",
+      "answer": "④",
+      "solution": "완전제곱식의 곱셈공식 (px+qy)²=p²x²+2pqxy+q²y²를 이용한다. A는 4x²+12xy+9y²=(2x+3y)²이므로 기록한 k=12가 맞다. B는 (x/3-5y/2)²=x²/9-(5/3)xy+(25/4)y²이므로 k=-5/3의 기록이 맞다. C에서 9x²의 제곱 항을 3x로 놓으면 xy항 -12xy를 만들기 위해 다른 항은 -2y여야 한다. (3x-2y)²=9x²-12xy+4y²이므로 k=4이다. 첫 항을 -3x로 잡아도 다른 항은 2y가 되어 같은 제곱식이므로 k는 여전히 4로 유일하다. 기록한 C의 k=2만 틀렸다. A에서 가능한 k는 ±12이므로 보기 ①과 ②의 ±6은 맞지 않으며, A는 원래도 잘못된 행이 아니다. B에서는 가능한 k가 ±5/3이므로 ③의 -5/6은 틀리고 B의 원래 기록도 맞다. ④는 틀린 C행을 4로 고친 옳은 짝이다. ⑤의 k=16은 (3x±4y)²의 xy항이 ±24xy가 되어 주어진 -12xy와 맞지 않는다. 따라서 정답은 ④이다. 이 판단은 다항식 전체의 항등식에 대한 것으로, x나 y가 특정 값일 때만 제곱이 되는지를 묻는 것이 아니다.",
+      "evidence": {
+        "exposure": {
+          "solverId": "independent-helper-gachang-next2-student-only-20261020-r1",
+          "history": "원문9개 구성요소, 이전 Gachang/Gangbuk 학생·저자검토와 원문 첫페이지를 보았으며 그 안의 다른 문항/손글씨가 부수적으로 노출되었다. 공개 엔진·관련 코드 감사와 current166 metadata/hash 이력도 있다. 이번 q04/q05와 유사한 기존 원문을 포함한 전체 corpus를 미노출이라고 주장하지 않는다.",
+          "currentNewAuthorAnswerSolutionPrivateExposed": false,
+          "currentScopeRead": "현재 r3 학생 JSON/manifest/brief3파일만 읽음. 현재 author/private/script/new source/root candidate/N/원문 body는 읽지 않음.",
+          "visualReviewPerformed": false,
+          "whyNoVisual": "PNG rendering deferred by supplied memory constraint; no figure files or PNGs supplied/used. Native Markdown table text inspected, not visual layout.",
+          "pixelOrImageMeasurementOracle": false,
+          "newApprovalCounts": 0
+        },
+        "allChoiceChecks": [
+          {
+            "choice": "①",
+            "row": "A",
+            "proposedK": "6",
+            "rowActuallyWrong": false,
+            "wouldMakePolynomialSquare": false,
+            "fulfillsWrongRowAndCorrection": false
+          },
+          {
+            "choice": "②",
+            "row": "A",
+            "proposedK": "-6",
+            "rowActuallyWrong": false,
+            "wouldMakePolynomialSquare": false,
+            "fulfillsWrongRowAndCorrection": false
+          },
+          {
+            "choice": "③",
+            "row": "B",
+            "proposedK": "-5/6",
+            "rowActuallyWrong": false,
+            "wouldMakePolynomialSquare": false,
+            "fulfillsWrongRowAndCorrection": false
+          },
+          {
+            "choice": "④",
+            "row": "C",
+            "proposedK": "4",
+            "rowActuallyWrong": true,
+            "wouldMakePolynomialSquare": true,
+            "fulfillsWrongRowAndCorrection": true
+          },
+          {
+            "choice": "⑤",
+            "row": "C",
+            "proposedK": "16",
+            "rowActuallyWrong": true,
+            "wouldMakePolynomialSquare": false,
+            "fulfillsWrongRowAndCorrection": false
+          }
+        ],
+        "recordChecks": [
+          {
+            "row": "A",
+            "recordedK": "12",
+            "coefficientsConstantOrder": "x²,xy,y²",
+            "recordedCoefficients": [
+              "4",
+              "12",
+              "9"
+            ],
+            "squareWitness": "(2x+3y)^2",
+            "validRecord": true,
+            "allPossibleK": [
+              "12",
+              "-12"
+            ]
+          },
+          {
+            "row": "B",
+            "recordedK": "-5/3",
+            "coefficientsConstantOrder": "x²,xy,y²",
+            "recordedCoefficients": [
+              "1/9",
+              "-5/3",
+              "25/4"
+            ],
+            "squareWitness": "(x/3-5y/2)^2",
+            "validRecord": true,
+            "allPossibleK": [
+              "5/3",
+              "-5/3"
+            ]
+          },
+          {
+            "row": "C",
+            "recordedK": "2",
+            "coefficientsConstantOrder": "x²,xy,y²",
+            "recordedCoefficients": [
+              "9",
+              "-12",
+              "2"
+            ],
+            "squareWitnessAfterCorrection": "(3x-2y)^2",
+            "validRecord": false,
+            "allPossibleK": [
+              "4"
+            ]
+          }
+        ],
+        "domainAndUniqueness": "x,y는 다항식의 문자, k는 상수. 분모9,4,3,2,6은 고정 비영수. A/B의 가능한k는각각±12/±5/3이라 기록값이맞고, C는xy항으로제곱안의y계수가±2로정해져k4만가능. 유일한 잘못된행C와 수정4의 짝④만답. x=0/y=0의 특수대입을 다항식 항등식 판단으로 오인하지 않는다.",
+        "studentMethod": "2015M3 완전제곱식 곱셈공식의 전개·분수/부호연산·간단한 일차계수 확인. 판별식/근의합곱/고등학교 공식 불필요.",
+        "visualLimitation": "허용된 native table 텍스트만 읽음; PNG 미제공 및 메모리제약으로 시각/레이아웃 검토를 하지 않았다. 수학적 풀이 solved는 visual/grade/family/권리/native/release 승인 아님.",
+        "calculationScript": "../../own-raw-evidence-r1/own-calculate.py"
+      },
+      "status": "solved"
+    },
+    "solveDigest": "c577801af780c881d97969ce34b096f4656e7b0987e033de55c775a414fa7f78"
+  }
+]

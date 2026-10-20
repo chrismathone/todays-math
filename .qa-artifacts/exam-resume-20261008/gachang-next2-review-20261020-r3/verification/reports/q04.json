@@ -1,0 +1,117 @@
+{
+  "status": "pending",
+  "studentDigest": "a2c3f3460a1ab54eb4c521c45d0a2bc1cd526dcad64586761ca72c3f19dad519",
+  "candidateDigest": "b3342a947160674669667ba9608970e5e7ee41fcc413657d836430bec8f306c1",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gachang-q04q05-full-review-20261020-r1",
+  "solveDigest": "e3706e7b15b0f8b945aaa58c96d4e7dfb81bd7cc72a709f72e5eb492b37042e8",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "rawBinding": {
+      "helperCommit": "85a11fa80b44b324ea3850140db9f1aaffd5665a",
+      "parentCommit": "6a3b70fcb1676d8fe1d03e1f81d4c99a73dde525",
+      "rawUnchanged": true,
+      "rawTextOnlyVisualDeclarationPreserved": true,
+      "newSolveCreditForPNGs": 0
+    },
+    "exposure": "원문9·이전Gachang/Gangbuk원문첫페이지와그안의다른문항/손글씨, 공개코드/current166metadata 이력이이미있다. 이번현재저자답/해설/private 및해당로컬원문맥락은raw봉인후읽었다. pristine corpusblind나원문정답일치승인을주장하지않는다.",
+    "visualReviewNow": "현재학생PNG2개·solutionPNG2개와원문첫페이지를실제view_image로확인. raw시점에는PNG없어시각검토하지않았다는원래선언을수정하지않는다. 이번확인은추가노출후별도review일뿐새blind수학풀이아님.",
+    "calculationEvidence": {
+      "path": "../../own-review-evidence-r1/own-calculations.json",
+      "sha256": "178b661051730b7fa6ff6f62153b4af9984e31bf4e627b935b956a3c696f81b3",
+      "passed": 46,
+      "failed": 0,
+      "method": "Own Fraction bivariate polynomial convolution and identity comparisons. AuthorBigInt/harness/test assertions not used or counted; pixel/measurement oracle absent."
+    },
+    "primaryAndUnit": {
+      "receipt": "../../own-review-evidence-r1/own-primary-receipt.json",
+      "sha256": "ce5987823cb1a8743ffbe6b5858038d87908f294d7fa15272c85517cabaf5a8b",
+      "primary": "2015 9수02-12 actual official HWP Section0record3956/offset201534,PDFphysical34/printed30;documentSHA1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "actualUnit": "068bcc39-0927-4f43-a919-24b61ca425f9,중3semester1다항식의곱셈과인수분해/인수분해",
+      "basisLimits": "기존실제공식텍스트/locator검증과현재허용curriculum-evidence/Unit캡처및실제전체방법을결합. code/학교/학년군만으로자동승인아님.",
+      "yearScope": "source2025/practice2026=2015M3afterprerequisites;2027M3/2022pending"
+    },
+    "separateHolds": {
+      "unitFamilyFit": false,
+      "exactLiveFamily": null,
+      "wholeSourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2027M3And2022": "pending"
+    },
+    "sourceObservationLimits": "실제첫페이지2025/3학년/1학기기말표제와q04/q05의3/4점·구성요소를로컬question-only와대조. 전체19HWP/PDF대응·sourceidentity·원문답이나손글씨의정확성·권리를인증하지않고원문본문/이미지를Git에복사하지않음.",
+    "authorHistoricalHarness": "R1/R2float/signedzero실패와R3BigInt검사는사용자외부보존정보일뿐독립검사로실행/집계하지않았다.",
+    "questionNumber": 4,
+    "checkBasis": {
+      "answerCorrect": "현재②가봉인raw②와같고6uv(2u-3v)=12u²v-18uv²와두과정이름을함께검사해유일정답확인. 원문답미사용.",
+      "solutionCorrect": "현재저자전체풀이의공통인수6uv,빈칸2u-3v,합에서곱인수분해/곱에서합전개,분배법칙역확인과0제외불필요설명을모두검산했다.",
+      "existenceUniqueness": "선택문항의다항식항등식으로6uv(2u-3v)가존재. u/v를나누지않아u=0,v=0,2u-3v=0과음수값에서도유효. 특수수치일치가아니라전체다항식의계수/방향을묻고그식+두이름을모두맞춘②만유일.",
+      "choicesCorrect": "①식은맞지만방향이름반대,②모두맞음,③둘째항+18uv²로부호오류,④(나)는전개여야함,⑤전개둘째항-18uv로v차수누락. 모든역할을구분했다.",
+      "figureConsistent": "외부도형없고현재native표(가)/(나)의전/후열과㉠,u²v/uv²/6uv곱표기를실제학생·해설PNG에서확인. 잘림이나수치측정을승인근거로삼지않고표정보가JSON과일치함을확인.",
+      "sameCoreConceptAndProcedure": "실제원문q04는공통인수와인수/전개/인수분해/분배법칙설명을구별한다. 현재도공통인수와두방향의뜻이필수이며인수정의핵심을보존한다. 원문정답을계산하지않음.",
+      "distinctPresentation": "원문의주어진전개식/곱꼴에대한틀린설명선택에서현재빠진인수구성과두방향이름을표로완성하는목표로변경. 실제구성·역관계·답역할변화이며숫자교체만아님.",
+      "naturalKorean": "빈칸㉠과(가)/(나)순서를명시하고선택지의식·두이름순서가일치. 전개/인수분해는표현형식의변환이므로0특수값에따라과정명이바뀌지않는다. 단위/양수길이조건없는다항식문항.",
+      "curriculumAppropriate": "2015 9수02-12와실제M3semester1인수분해Unit학습후공통단항인수6uv를묶고분배법칙으로확인하는방법. 항의총차수가3이어도일반삼차인수분해정리/나머지정리/고등도구가필요하지않는실제전체방법을확인.",
+      "allStudentSurfacesInScope": "7면각basis는공통인수·분배법칙·과정정의와표읽기에한정됨을별도로설명. 코드계산/원문학교로포괄승인하지않음.",
+      "unitFamilyFit": "실제캡처UnitUUID/주제는맞지만빠진인수+두과정명목표가정확한livefamily정의와맞는지확인하지않았다. familyKeynull/false유지.",
+      "scoreAppropriate": "원문실제3점과현재3점을확인. 짧은공통인수구성·방향정의라기본~표준3점편집제안수용. preparation중라벨은실측원문난도나새동난도인증아님."
+    },
+    "currentUnit": {
+      "id": "068bcc39-0927-4f43-a919-24b61ca425f9",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "인수분해",
+      "semester": 1,
+      "orderIndex": 473,
+      "problemCodePrefix": "J30202"
+    },
+    "rawFileSHA256": "9bcd6e58c17672d2b7e35e04f935dc04532f389376f8445b250227d199e3edbc"
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "공통인수/누락인수구성과두변형방향은2015 9수02-12(record3956,PDF34/30)과실제중3semester1인수분해Unit학습후기본범위. 일반고차인수분해이론아님."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "식의부호/문자차수와인수분해·전개이름의순서를모두검사. 음수와분배/공통인수개념은해당공식학습범위,고등정리없음."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "외부도형없고두행전후표는식과방향을정리한다. 실제학생/해설PNG의표열/지수/㉠일치를확인했으며고급그래프/픽셀측정절차없음."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "u²v와uv²,곱표시×/괄호,㉠,과정(가)/(나)는다항식표기와문자식의곱학습수준. 수치0으로나눠상쇄하는표기나암묵비영가정없음."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "빈칸식과두과정이름을한꺼번에맞춘단일②. 인수분해정의와기학습표읽기외추가방법/응답부담없음."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "공통6uv묶기→곱전개재확인→각방향정의→0제외불필요로끝나는전체풀이가9수02-12안에서완결. 특수0값에서나누거나고등다항식정리를쓰지않음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "문자식/항·인수,분배법칙,음수곱,공통인수묶기/전개방향뜻을먼저학습해야함. 현재M3semester1Unit학습후배정이며학교진도/2027M3·2022는별도보류."
+    }
+  }
+}
