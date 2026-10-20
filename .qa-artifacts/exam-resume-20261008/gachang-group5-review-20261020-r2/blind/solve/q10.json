@@ -1,0 +1,64 @@
+{
+  "studentDigest": "386b871b81f2be6d6fa3ca1363176e531317a1cfe1fb6defc4776885b3a66875",
+  "solverId": "independent-retained-helper-gachang-group5-r2",
+  "answer": "③",
+  "solution": "A를 인수분해하면 (3x-2)(x-4)=0이므로 x=2/3 또는 x=4이다. 같은 x가 정수이므로 x=4만 가능하다. 이를 B에 대입하면 16+4k-(k²+4)=0, 즉 k²-4k-12=(k-6)(k+2)=0이다. 따라서 k=6 또는 k=-2이고, 음수 조건에 의해 k=-2만 가능하므로 ③이다. x=4,k=-2를 원래 두 식에 넣으면 각각 48-56+8=0, 16-8-8=0으로 실제 해가 존재한다. 보기 k=-6,-4,-2,2,6에 대한 B의 좌변은 각각 -48,-20,0,16,0이다. ⑤의 6도 식은 만족하지만 음수가 아니므로 제외되며 ③만 남는다.",
+  "evidence": {
+    "ownCalculationReceipt": "../../own-raw-evidence-r1/own-calculation-receipt.json",
+    "ownCalculationSHA256": "e50ae20147dff3fe4581f6e33a9b692f2c8486b5526eefc10b4a06cf8f076853",
+    "exposure": {
+      "currentAuthorAnswersOrSolutionsExposed": false,
+      "declarationBeforeStudentRead": true,
+      "priorExposure": "以前に原本9コンポーネント、Gachang原本最初のページ1〜6（以前のraw封印後）、関連手動問題・公開/内部エンジン・メタデータ/code監査を閲覧。今回q09/q10の現行author答/解説・source/package/privateは未閲覧。全コーパス未見とは主張しない。",
+      "group4PrivateStillUnexposed": true,
+      "noOriginalAnswerOracle": true
+    },
+    "exactChecks": {
+      "Aroots": [
+        "2/3",
+        "4"
+      ],
+      "uniqueIntegerX": 4,
+      "kRoots": [
+        6,
+        -2
+      ],
+      "uniqueNegativeK": -2,
+      "choices": [
+        {
+          "k": -6,
+          "negative": true,
+          "B_at_unique_integer_x4": -48,
+          "valid": false
+        },
+        {
+          "k": -4,
+          "negative": true,
+          "B_at_unique_integer_x4": -20,
+          "valid": false
+        },
+        {
+          "k": -2,
+          "negative": true,
+          "B_at_unique_integer_x4": 0,
+          "valid": true
+        },
+        {
+          "k": 2,
+          "negative": false,
+          "B_at_unique_integer_x4": 16,
+          "valid": false
+        },
+        {
+          "k": 6,
+          "negative": false,
+          "B_at_unique_integer_x4": 0,
+          "valid": false
+        }
+      ]
+    },
+    "methodGrade": "인수분해와 곱이 0인 경우, 정수·음수 조건을 차례로 사용. 일반 이차연립방정식 풀이·판별식·근과 계수의 관계는 사용하지 않음.",
+    "visualLimitation": "학생 PNG만 실제 확인. 그림 좌표·픽셀은 수치 근거로 사용하지 않음. 네이티브/인쇄 승인 아님."
+  },
+  "status": "solved"
+}
