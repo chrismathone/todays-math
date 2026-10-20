@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-20T08:17:40.306Z",
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "19428686098030c08fb29e50fd462c68ae420539859729ce946e595d4834572f"
+    },
+    {
+      "path": "scripts/import/exam-twin/review-exam-twins.mjs",
+      "sha256": "99f2405eaf9dc676b0a2fdf19af8fb47eaa53e51174f00ff758631f5c81ff5e7"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.mjs",
+      "sha256": "434cd32443d3d2bad70640bca4bc74b9d4fb456cfabcd509c13aeb7372a66e4b"
+    },
+    {
+      "path": "scripts/import/exam-twin/curriculumDeclarations.test.mjs",
+      "sha256": "b690b1fa97cae2ee3b03d6c89cbfd4c06ce295359b6c0e481c1a0da36889a0f4"
+    }
+  ],
+  "nodeFiles": 17,
+  "nodeSummary": "nce\nok 186 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 40.6353\n  type: 'test'\n  ...\n1..186\n# tests 186\n# suites 0\n# pass 186\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 42971.4889\n",
+  "selected166Unchanged": true,
+  "comparableExisting": 25,
+  "existingExplicitConflicts": 0,
+  "gachangOriginalR1TwoConflictsHeld": true,
+  "newR2StudentRawAssetsUnchanged": true,
+  "newBlindSolveCount": 0,
+  "independentCodeAndMetadataReviewPending": true,
+  "dbWrites": 0,
+  "loadable": 0
+}

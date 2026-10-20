@@ -14,6 +14,10 @@
 
 검사: `node --test scripts/import/exam-twin/candidatePack.test.mjs scripts/import/exam-twin/reviewWorkflow.test.mjs`. 합성 제어 시험은 실제 문항 독립 검산과 별도다.
 
+`curriculumDeclarations.mjs`는 후보가 명시한 `standardCodes`와 같은 후보의 `officialBasis.primaryStandardCodes`를 대조한다. 두 선언이 있는데 주 성취기준 코드가 후보 목록에 없거나 형식이 손상됐으면 새 동결을 막고 학년 검수를 보류한다. 수학적으로 이미 확인한 답 자체는 별도로 유지한다. 선언 하나가 없으면 `not-comparable`이며 통과/학년 승인으로 읽지 않는다. 코드 목록이 일치해도 실제 학년·진도·공식 문서·일곱 학생용 면 검수와 source/rights/native 관문을 대신하지 않는다. `curriculumDeclarations.test.mjs`에는 실제 가창2개 복제 틀의 잔존 코드 오류와 새 패키지 생성 전 거부를 포함한다.
+
+본문·보기·답·해설·그림·실제 변형ID가 같은 메타데이터 보정은 원본 후보를 덮어쓰지 않고 별도 revision으로 남긴다. 학생 JSON/그림/기존 Git raw가 정확히 같음을 확인해 원래 풀이와 연결하되 새 문항·새 blind 풀이로 중복 집계하지 않는다. 후보 전체가 달라졌으므로 `rebind-identical-review`로 옛 보고서를 복사하지 않고 현재 candidateDigest에 대한 새 메타데이터/학년 검토를 받는다.
+
 봉인 후 원시 풀이의 문자 손상이 발견돼도 저자 답을 본 뒤 원본을 고치지 않는다. 해당 기록과 실패를 보존하고 새 미노출 검수자를 사용한다. `answerPresentation.mjs`는 제한된 소문항/이름/정확 상수/단위/단일 x 계수의 표기만 비교하며 수학·도형·학년 승인을 대신하지 않는다. `prepare-sealed-review.test.mjs`, `answerPresentation.test.mjs`, `constantAnswers.test.mjs`를 검사에 함께 넣는다.
 
 그림을 묶기 전에 스펙을 실제 바이트에서 JSON 객체로 읽고, SVG는 손실 없는 UTF-8 해독과 제어문자/대체문자 검사를 거친다. 읽을 수 있는 SVG 뒤에 손상된 스펙이 있어도 통과하지 않는다. NUL로 채워진 파일이나 손상된 그림은 자동 복구하지 않고 기존 바이트와 실패 기록을 보존한 새 버전으로 처리한다. 정상 한글·BOM·CRLF는 허용하면서 각 파일의 원시 해시를 유지한다. 이 검사는 전송/파일 가독성에 한정되며 전체 XML 안전성, 스펙과 그림의 수학적 동치, 학년 적합성이나 승인까지 증명하지 않는다.

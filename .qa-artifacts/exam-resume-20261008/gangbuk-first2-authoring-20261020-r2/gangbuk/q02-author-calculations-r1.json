@@ -1,0 +1,64 @@
+{
+  "rows": [
+    {
+      "row": "A",
+      "root": {
+        "n": 2,
+        "d": 1
+      },
+      "recorded": {
+        "n": 1,
+        "d": 3
+      },
+      "leftNumerator": "0",
+      "denominator": "3",
+      "correct": true
+    },
+    {
+      "row": "B",
+      "root": {
+        "n": -2,
+        "d": 1
+      },
+      "recorded": {
+        "n": -1,
+        "d": 1
+      },
+      "leftNumerator": "0",
+      "denominator": "1",
+      "correct": true
+    },
+    {
+      "row": "C",
+      "root": {
+        "n": 1,
+        "d": 1
+      },
+      "recorded": {
+        "n": 3,
+        "d": 1
+      },
+      "leftNumerator": "2",
+      "denominator": "1",
+      "correct": false
+    }
+  ],
+  "correctedRow": "C",
+  "correctedA": 2,
+  "substitutionAfterRepair": 0,
+  "correctChoices": [
+    false,
+    false,
+    false,
+    true,
+    false
+  ],
+  "candidateFileSha256": "79c8c3e0747bd53f9d63c341698dd6dc2773e5e4b31d962f02e4ec555f96f803",
+  "candidateDigest": "e61d881618201c391bd75affc4323807e0088e68562be19c59d91483ac8a09ff",
+  "studentDigest": "e1507b45c216a653535b98850aabb5982e6221d4882aaf510c643fe299cc625e",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "authorOnly": true,
+  "independentReview": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

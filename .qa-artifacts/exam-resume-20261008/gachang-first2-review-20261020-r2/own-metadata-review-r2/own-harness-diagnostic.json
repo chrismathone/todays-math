@@ -1,0 +1,5 @@
+{
+  "productionFault": false,
+  "ownHarness": "Replacing small integer /2 check with explicit Fraction left andF with no separating space, causing a SyntaxError before replay; previous46receipt preserved during failure.",
+  "correction": "Added whitespace and reran exact Fraction replay and fresh current report generation before collector/seal. No R1/raw/student/candidate edits."
+}

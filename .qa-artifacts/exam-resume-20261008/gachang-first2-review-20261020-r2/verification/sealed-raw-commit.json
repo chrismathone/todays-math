@@ -1,0 +1,24 @@
+{
+  "kind": "git-bound-pre-exposure-review/v1",
+  "createdAt": "2026-10-20T08:16:55.635Z",
+  "rawCommit": "3193b0a43828b8d32b11cc1c87e974f35640b002",
+  "proofs": [
+    {
+      "n": 1,
+      "gitPath": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/blind/solve/q01.json",
+      "sha256": "ac33489baf9bb8f06e8ad670ab5c5ba20d130d2ffd2442ce80eedaa1ace9e975",
+      "studentDigest": "7339433c7a843c18986f1b4544cba554d74caa34c92696558666a5f3fbd3cd40"
+    },
+    {
+      "n": 2,
+      "gitPath": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/blind/solve/q02.json",
+      "sha256": "b00ba993a859d49134dcdd9a7655995084ec85407842394ed121b7a766ea639a",
+      "studentDigest": "28a8648ddba4665e305efd40df057c26e9c164051f776b85fcc263f5280ab257"
+    }
+  ],
+  "personPriorExposureVerified": false,
+  "exposureDeclarationRequired": true,
+  "rawFilesModified": false,
+  "loadable": false,
+  "dbWrites": 0
+}

@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-gachang-2025-1-final-author-group1-r1-q01",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 3,
+  "content": "한 변의 길이가 $a\\,\\mathrm{cm}$인 정사각형에서 그림과 같이 위쪽과 오른쪽의 폭이 각각 $3\\,\\mathrm{cm}$인 띠 모양 부분을 잘라 냈다. 남은 정사각형의 넓이를 $(3-a)^2\\,\\mathrm{cm}^{2}=(a^2+ka+9)\\,\\mathrm{cm}^{2}$로 나타낼 때, 상수 $k$의 값은? (단, $a>3$이다.)",
+  "choices": [
+    "$-9$",
+    "$-6$",
+    "$-3$",
+    "$3$",
+    "$6$"
+  ],
+  "answer": "②",
+  "solution": "남은 정사각형의 한 변의 길이는 $(a-3)\\,\\mathrm{cm}$이고 $a>3$이므로 양수이다. 넓이는 $(a-3)^2\\,\\mathrm{cm}^{2}$이다.\n\n$3-a=-(a-3)$이므로 $(3-a)^2=(a-3)^2$이다. 괄호 안 전체의 부호가 반대여도 제곱한 값은 같다.\n\n전개하면 $(3-a)^2=9-6a+a^2=a^2-6a+9$이다. 이것을 $a^2+ka+9$와 비교하면 $k=-6$이다. 정답은 ②이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "q01.figure.spec.json",
+      "svgPath": "q01.figure.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gachang-3-1-final-1",
+    "inventoryExamId": "personal-273b85b46b6ea294fef26b4de34becfc",
+    "sourceQuestionNumber": 1,
+    "newSourceReferenceId": "source-ref-gachang-2025-1-final-group1-r1-q01",
+    "sourceContentSha256": "ef31b135453919e319c89bed5a1d043e9ce57523319117a1c1857eb4bb031022",
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/component-only-input/q01.local.json",
+      "sha256": "50170f767a0916773290a4461a92fb89460fae6d1210c9d444d624d285660043"
+    },
+    "sourceSchoolInternal": "가창중",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "기말",
+    "extractionManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-273b85b46b6ea294fef26b4de34becfc/hwp-question-only-manifest.local.json",
+      "sha256": "c0eb3644b8a251f067811a600da62c342f7de20e1ac2ec27002983fc312cd870"
+    },
+    "hwpOnlyExtractionAggregate": {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+      "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[가창중][3][25-1-기말][천재이] (완료).hwp",
+        "sha256": "8c78d3758f25a078316daed76e722286ec79d0506f09faef23b347aa6ce06ce9",
+        "bytes": 1428480
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+        "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+        "bytes": 1778571
+      }
+    ],
+    "originalIdentityReference": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[가창중][3][25-1-기말](원본)(아잉아잉).pdf",
+      "sha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+      "bytes": 1778571
+    },
+    "parentOriginalFirstPageObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-first2-parent-page-observations-r1.json",
+      "sha256": "a8ce4dcfcfb00f49d3d7a2be6efa292fe081f8aa0407f4df44149d259acece5f"
+    },
+    "sourceComponentReview": {
+      "status": "parent-first-page-q01-q02-observed-against-HWP-only-normalization-independent-source-review-pending",
+      "whole19ParentHwpPdfPairApproved": false,
+      "partialPdfParserHeld": true
+    },
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "originalAnswerKeyUsed": false,
+    "parentIncidentalHandwrittenMarksExposure": true,
+    "marksUsedForAnswerApproval": false,
+    "sourceTextCopiedToCandidate": false,
+    "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+  },
+  "variantDelta": {
+    "modes": [
+      "algebra-to-geometry",
+      "inverse-target",
+      "structure",
+      "new-vector"
+    ],
+    "before": "차의 제곱과 부호/순서를 바꾼 여섯 표현의 전개식이 같은지 구별하여 개수를 센다.",
+    "after": "차의 제곱을 잘라 낸 뒤 남는 정사각형 넓이로 표현하고, 순서가 반대인 차의 제곱을 전개해 미지 계수를 역으로 결정한다.",
+    "sharedConcept": "차의 제곱 전개와 괄호 안 전체 부호 반전의 제곱값 불변",
+    "sharedProcedure": "a>3인 남은 길이a−3 → 반대 부호 차3−a의 제곱도 같은 넓이 → 곱셈공식 전개 → a의 계수−6 결정",
+    "actualStructuralChange": "차의 제곱을 잘라 낸 뒤 남는 정사각형 넓이로 표현하고, 순서가 반대인 차의 제곱을 전개해 미지 계수를 역으로 결정한다.",
+    "domainProof": "a>3으로 실제 길이와 넓이가 양수이다. (3−a)²=(a−3)²=a²−6a+9이며 a≠0이므로 주어진 넓이 식의 k는−6으로 유일하다. 바깥에 음수를 붙인 넓이와 혼동하지 않는다. 도형 좌표10/7은 양수인 한 예를 그리기 위한 내부 작도값이고 a를10으로 정하는 문제 조건이 아니다. 학생은 픽셀·좌표가 아닌 발문 조건과 항등적 전개를 사용한다.",
+    "difficultyBasis": "인쇄 배점3/4를 근거로 목표 난도를 제안하되 원문의 부수 절차 전부를 복제하지 않는다. 새 표현·역추론의 실제 난도와 정확한 family는 독립 검수 전 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수02-12"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수02-12"
+      ]
+    },
+    "legitimateMethodDraft": "a>3인 남은 길이a−3 → 반대 부호 차3−a의 제곱도 같은 넓이 → 곱셈공식 전개 → a의 계수−6 결정",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+    "sourceExamYear": 2025,
+    "targetAcademicYear": 2026,
+    "curriculum": "2015",
+    "officialPrimary": {
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+      "standard": "9수02-12",
+      "providedMOEEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      "actualScope": "2015중3 1학기 근호 계산/다항식 곱셈 및 이미 배운 평균·일차 관계·정사각형 넓이. 학년군 성취기준은 중3 실제 Unit/선수 조건과 함께 검토한다. 2027중3/2022 자동 전용 금지."
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "기말",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 3,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본~응용 저자 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "차의 제곱을 잘라 낸 뒤 남는 정사각형 넓이로 표현하고, 순서가 반대인 차의 제곱을 전개해 미지 계수를 역으로 결정한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "캡처된 실제 중3 Unit UUID와2015 성취기준을 연결한다. 새 도형/역추론의 정확한live family는 미확정."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-graph-1-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "a>3으로 실제 길이와 넓이가 양수이다. (3−a)²=(a−3)²=a²−6a+9이며 a≠0이므로 주어진 넓이 식의 k는−6으로 유일하다. 바깥에 음수를 붙인 넓이와 혼동하지 않는다. 도형 좌표10/7은 양수인 한 예를 그리기 위한 내부 작도값이고 a를10으로 정하는 문제 조건이 아니다. 학생은 픽셀·좌표가 아닌 발문 조건과 항등적 전개를 사용한다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gachang-first2-20261020-r1.ts",
+      "reproductionScriptSha256": "5451a469fb9772ee1be16962a190c4dba813ccbc96589c4808393f294c9b5410",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "다항식의 곱셈과 차의 제곱 공식",
+        "반대 부호인 두 수의 제곱",
+        "상수항과 계수",
+        "정사각형 넓이",
+        "양수 길이와 cm/cm²"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty",
+    "metadataRevision": {
+      "id": "gachang-2025-sem1-final-q01-curriculum-metadata-r2",
+      "kind": "correct-contradictory-primary-standard-declaration-only",
+      "previousCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r1/gachang/q01.json",
+        "sha256": "bacd9d7e120144f8da3bd58cbcc7b09cbc173ba82dcfab32082debe23ba37184"
+      },
+      "repairScript": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/repair-gachang-curriculum-metadata-r2.mjs",
+        "sha256": "b409ee40697c259d3406610a1c72b5a80463fcd6bdd831e85e118be07a3f0882"
+      },
+      "changedPath": "curriculumReview.officialBasis.primaryStandardCodes",
+      "previousPrimaryCodes": [
+        "9수01-07"
+      ],
+      "correctedPrimaryCodes": [
+        "9수02-12"
+      ],
+      "actualMathVariantIdPreserved": true,
+      "studentAnswersSolutionsAndFiguresUnchanged": true,
+      "newBlindMathSolveClaim": false,
+      "requiresFreshMetadataReview": true,
+      "sourceRightsAndFamilyStillHeld": true
+    }
+  }
+}

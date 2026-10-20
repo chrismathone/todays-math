@@ -94,6 +94,10 @@ function freeze(directory, files) {
     sourceBindings.every((b) => !b.validation.studentMathNotationWarnings.length),
     "Suspected lost math command escapes require a corrected student version before a solve pack",
   );
+  assert(
+    sourceBindings.every((b) => !b.validation.curriculumMetadataComparison?.conflicts.length),
+    "Conflicting curriculum metadata requires a corrected metadata version before a new solve pack",
+  );
   const output = newDirectory(directory);
   fs.mkdirSync(path.join(output, "private"));
   const bindings = sourceBindings.map((b) => {

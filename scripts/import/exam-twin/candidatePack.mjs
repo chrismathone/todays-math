@@ -9,6 +9,7 @@ import {
   isStandaloneMeasuredAnswer,
 } from "./answerPresentation.mjs";
 import { unescapedMathCommandWarnings } from "./authoredMathNotation.mjs";
+import { compareCurriculumDeclarations } from "./curriculumDeclarations.mjs";
 import { compareRecordCorrectionAnswer } from "./recordCorrectionAnswer.mjs";
 import { compareNumberedConstantAssignments } from "./numberedConstantAssignments.mjs";
 
@@ -304,6 +305,7 @@ export function validateCandidate(candidate) {
     .map((r) => r.name);
   return {
     structurallyValid: true,
+    curriculumMetadataComparison: compareCurriculumDeclarations(candidate),
     surfaceKeywordViolations: violations,
     studentMathNotationWarnings: [
       ["stem", candidate.content],
@@ -527,6 +529,8 @@ export function evaluateReview(binding, solve, review, gates = {}) {
     fail("student-surface-out-of-grade-keyword");
   if (binding.validation.metadataAnswerFormatMismatch)
     fail("metadata-answer-format-mismatch");
+  if (binding.validation.curriculumMetadataComparison?.conflicts.length)
+    fail("curriculum-metadata-declarations-conflict");
   if (binding.validation.studentMathNotationWarnings?.length)
     fail("student-math-notation-command-escape-held");
   if (!solve || !review) fail("independent-evidence-missing");

@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-20T08:30:16.951866+00:00",
+  "kind": "authoring-required-delta-mode-tag-omission",
+  "oldPartialFiles": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-authoring-20261020-r1/gangbuk/q01-author-calculations-r1.json",
+      "sha256": "664dd14316c332f2a725c3b3d7bd62cf04ac0f40c3f3ed6bda897803e7617295"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-authoring-20261020-r1/gangbuk/q01.json",
+      "sha256": "07642200814a4c05f6a64288719458e0c3f361b04fdca131ece4b5f6720826ca"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-authoring-20261020-r1/gangbuk/q02.json",
+      "sha256": "9ad39d1055bd9f41d7b714cc6786d3495d859c9d9474fc0e2f9bd80bc31d937a"
+    }
+  ],
+  "q01AuthoredAndCalculated": true,
+  "q02WrittenButMissingRecognizedStructureModeTag": true,
+  "actualSubstantiveDelta": "three root/coefficient records and error repair replace one direct coefficient question",
+  "productionGuardRelaxed": false,
+  "newAuthorVersion": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gangbuk-first2-20261020-r2.mjs",
+  "oldCandidatesAndOriginalComponentFilesPreserved": true,
+  "newIndependentReviewsOrApprovals": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}
