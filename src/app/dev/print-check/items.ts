@@ -3742,6 +3742,27 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "2026-10-20",
   },
+  {
+    id: "sheet-second-pass-josa-legend-subq",
+    title: "지면 2차 — 초등 조사 · 그림그래프 범례 «□ = ?» · 문장 속 «⑴, ⑵»",
+    changed:
+      "초등 발문 · 해설의 조사를 받침에 맞췄다(«학생들이 좋아하는 계절» · «배구를» · «역사가 아닌» · «꿀로» · «직선 라가» · «가, 나, 다에서» · «$36$분과»). " +
+      "초3 2-6-1 «□ 한 칸은 몇 …을 나타냅니까?» 의 그림그래프는 범례가 답이라 «□ = ?» 로 그린다. " +
+      "문장 속에서 가리키는 «⑴, ⑵에 이용한»(교과서 J10203-D15-001)을 소문항 머리로 읽어 세 줄로 가르던 것을 한 줄로 되돌렸다.",
+    look:
+      "(제안) ① 초6 띠그래프 · 원그래프 문항 첫 문장이 «학생들이 좋아하는 …» 인가. ② 초3 그림그래프 «□ 한 칸은 몇 권을 나타냅니까?» 그림의 범례가 «□ = ?» 인가. " +
+      "③ J10203-D15-001 의 발문 «다음 계산 과정 중 ⑴, ⑵에 이용한 …» 이 한 줄로 이어지는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/elementary/format.ts · g3.ts · g4.ts · g6.ts · scripts/figure/elem_advanced.py(pictograph hideUnit) · src/lib/math/subQuestion.ts",
+      "src/__tests__/unit/elemJosaDisplay.test.ts · src/__tests__/unit/subQuestion.test.ts",
+    ],
+    scale: "초등 엔진 문형 · 난이도 전부(조사 — 고치기 전 10씨앗에서 642건) · 그림그래프 1문형 · 은행 파싱이 바뀐 행 1(`parse-census`)",
+    needs: "엔진으로 새로 뽑은 초6 1-5-1 · 초3 2-6-1 문항, 교과서 J10203-D15-001",
+    blockedBy: "초등 문항은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 글이다",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */
