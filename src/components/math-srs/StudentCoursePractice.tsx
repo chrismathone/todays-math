@@ -423,10 +423,26 @@ function CourseQuestion({
   }, [busy, hasFeedback]);
 
   useEffect(() => {
-    if (!hasFeedback || busy || !instantAnswer || followUp) return;
-    const timer = window.setTimeout(onNext, 1200);
-    return () => window.clearTimeout(timer);
-  }, [hasFeedback, busy, instantAnswer, onNext, followUp]);
+    if (
+      !hasFeedback ||
+      !feedback?.correct ||
+      busy ||
+      !instantAnswer ||
+      followUp
+    )
+      return;
+    const motion = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    if (motion?.matches) return;
+    const timer = window.setTimeout(onNext, 2000);
+    const cancel = () => {
+      if (motion?.matches) window.clearTimeout(timer);
+    };
+    motion?.addEventListener("change", cancel);
+    return () => {
+      window.clearTimeout(timer);
+      motion?.removeEventListener("change", cancel);
+    };
+  }, [hasFeedback, feedback?.correct, busy, instantAnswer, onNext, followUp]);
 
   useEffect(() => {
     if (hasFeedback || (followUp && !awaiting))
@@ -660,6 +676,7 @@ function CourseQuestion({
                 ref={nextButton}
                 type="button"
                 className={s.primary}
+                aria-keyshortcuts="Enter"
                 onClick={onNext}
                 disabled={busy}
               >
@@ -916,13 +933,14 @@ function CourseQuestion({
                 </div>
               </form>
             </div>
-            {!useChoices ? (
+            {!useChoices || hasFeedback ? (
               <div className={s.paneAction}>
-                {hasFeedback && !instantAnswer ? (
+                {hasFeedback ? (
                   <button
                     ref={nextButton}
                     type="button"
                     className={s.primary}
+                    aria-keyshortcuts="Enter"
                     onClick={onNext}
                     disabled={busy}
                   >

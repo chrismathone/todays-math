@@ -547,7 +547,7 @@ describe("one-screen student answers", () => {
           .closest('[class*="answerDockHeader"]'),
       ).toBeInTheDocument();
       expect(screen.queryByText("서버가 알려 준 풀이")).not.toBeInTheDocument();
-      act(() => vi.advanceTimersByTime(1199));
+      act(() => vi.advanceTimersByTime(1999));
       expect(props.onNext).not.toHaveBeenCalled();
       act(() => vi.advanceTimersByTime(1));
       expect(props.onNext).toHaveBeenCalledTimes(1);
@@ -559,7 +559,7 @@ describe("one-screen student answers", () => {
     }
   });
 
-  it("advances into retry when the final first-round answer is the only wrong answer", async () => {
+  it("waits for Enter before retry when the final first-round answer is wrong", async () => {
     const run = session(5);
     run.attempts[4].correct = false;
     const stored: CourseSession = {
@@ -594,7 +594,9 @@ describe("one-screen student answers", () => {
       );
       expect(screen.getByText("다시 생각해 볼 문제예요")).toBeInTheDocument();
       expect(screen.queryByText("비공개 풀이")).not.toBeInTheDocument();
-      act(() => vi.advanceTimersByTime(1200));
+      act(() => vi.advanceTimersByTime(10000));
+      expect(props.onNext).not.toHaveBeenCalled();
+      fireEvent.keyDown(document, { key: "Enter" });
       expect(props.onNext).toHaveBeenCalledTimes(1);
       rerender(<StudentCoursePractice {...props} feedbackId={null} />);
       expect(screen.getByText("틀린 문제 다시 풀기")).toBeInTheDocument();
@@ -730,6 +732,61 @@ describe("one-screen student answers", () => {
     expect(
       screen.queryByRole("dialog", { name: "풀이" }),
     ).not.toBeInTheDocument();
+  });
+  describe("correct answer timing preferences", () => {
+    it("does not advance automatically with reduced motion", async () => {
+      const run = session(1);
+      Object.assign(run.problems[0], { answerChoices: ["1", "2", "3", "4"] });
+      const { rerender, props } = view(run);
+      await screen.findByText("문제 2: 1 + 1");
+      const media = window.matchMedia;
+      window.matchMedia = vi
+        .fn()
+        .mockReturnValue({
+          matches: true,
+          addEventListener: vi.fn(),
+          removeEventListener: vi.fn(),
+        });
+      vi.useFakeTimers();
+      try {
+        rerender(
+          <StudentCoursePractice {...props} feedbackId={run.problems[0].id} />,
+        );
+        act(() => vi.advanceTimersByTime(10000));
+        expect(props.onNext).not.toHaveBeenCalled();
+        fireEvent.keyDown(document, { key: "Enter" });
+        expect(props.onNext).toHaveBeenCalledTimes(1);
+      } finally {
+        vi.useRealTimers();
+        window.matchMedia = media;
+      }
+    });
+    it("keeps a wrong retry answer on screen", async () => {
+      const run = session(5);
+      const attempt = { ...run.attempts[0], correct: false };
+      run.attempts[0] = attempt;
+      Object.assign(run.problems[0], {
+        answerChoices: ["1", "2", "3", "4"],
+        feedback: { correct: false },
+      });
+      run.retry = {
+        pendingProblemIds: [run.problems[0].id],
+        attempts: [attempt],
+        completedAt: null,
+      };
+      const { rerender, props } = view(run);
+      await screen.findByText("문제 1: 1 + 1");
+      vi.useFakeTimers();
+      try {
+        rerender(
+          <StudentCoursePractice {...props} feedbackId={run.problems[0].id} />,
+        );
+        act(() => vi.advanceTimersByTime(10000));
+        expect(props.onNext).not.toHaveBeenCalled();
+      } finally {
+        vi.useRealTimers();
+      }
+    });
   });
 });
 afterEach(() => vi.unstubAllGlobals());
