@@ -1,0 +1,21 @@
+{
+  "q01": {
+    "method": "완전제곱식 전개, 정사각형 넓이, 앞 학년 일차방정식",
+    "domain": "a>3, 남은 변 a-3>0. (3-a)는 음수지만 제곱은 양수이며 이를 길이로 쓰지 않음. a 자체는 유일하지 않지만 요청한 k는 유일.",
+    "units": "a와3으로 나타낸 길이 cm, 넓이 cm²; k는 계수.",
+    "figure": "허용 PNG 실제 확인. 본문 폭3을 사용하며 그림 안에 위치한3cm 라벨이나 비율을 측정하여 값을 얻지 않음.",
+    "uncertainty": "독립 풀이에 필요한 수학 조건은 충분. 별도 실제 curriculum/metadata/figure provenance 승인 전."
+  },
+  "q02": {
+    "method": "제곱근 대소비교, 분모 유리화와 다항식 전개, 평균, 일차방정식",
+    "domain": "k∈Q. 1<sqrt3<2로 양의 두 분모, 공통분모1. 평균2k-3=7의 해5는 유일하며 유리수. P,Q에는 별도의 양수 조건 없음.",
+    "units": "무단위 두 수의 산술평균; 길이·넓이 단위를 임의로 넣지 않음.",
+    "uncertainty": "요구되는 방법에 고등학교 도구가 필요하지 않음. 현재 raw 풀이를 정식 grade 승인이나 family/rights/native/release 승인으로 세지 않음."
+  },
+  "studentPNGsActuallyViewed": [
+    "student-preview/q01.png",
+    "student-preview/q02.png"
+  ],
+  "currentAuthorAnswerExposure": false,
+  "automaticApprovals": 0
+}
