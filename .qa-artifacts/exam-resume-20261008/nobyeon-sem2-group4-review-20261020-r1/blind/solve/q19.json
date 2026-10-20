@@ -1,0 +1,87 @@
+{
+  "studentDigest": "023dd4d8f9ad6ff29b14db539de9106310d12b64aaa7c82be00daf1ba758ce4c",
+  "solverId": "independent-helper-nobyeon-sem2-group4-blind-20261020",
+  "answer": "ㄴ, B=(√2+1)/2, E=√2−1",
+  "solution": "sin30°=1/2, cos60°=1/2이므로 A=2×(1/2)×(1/2)=1/2이다. 또 cos45°=√2/2, tan30°=√3/3, cos30°=√3/2를 각각 대입하면 B=√2/2+(√3/3)×(√3/2)=√2/2+1/2=(√2+1)/2이다. tan45°=1이므로 ㄱ과ㄷ은옳고 ㄴ만잘못되었다. 따라서 ㄴ의바른값은 B=(√2+1)/2이다. B>0이므로 나눗셈이가능하고 E=A/B=(1/2)/((√2+1)/2)=1/(√2+1)이다. 분모와분자에√2−1을곱하면 E=(√2−1)/((√2+1)(√2−1))=√2−1이다. 답은 ㄴ, B=(√2+1)/2, E=√2−1 순서이다. 특수각의값을각각대입했으며삼각비사이의일반항등식을쓰지않았다.",
+  "evidence": {
+    "exposure": {
+      "currentAuthorAnswerSolutionPrivatePackageExposed": false,
+      "priorSourceAndRelatedExposure": "이전노변1학기문항,노변2학기q09~14학생/저자/질문전용원문및q15~17소유범위검토에서원본페이지와관련삼각비·대표값·편차·분산에노출되었다. 이번currentq18~20저자답/해설/비공개패키지나원문질문은열지않았다. 원본전체코퍼스의완전미노출을주장하지않는다.",
+      "studentOnlyInputs": "허용된학생JSON/brief/blindmanifest/SVG및student-preview q18/q19/q20 PNG만읽었다. 세PNG를실제view했다.",
+      "pixelsOrCoordinatesAsNumericalOracle": false
+    },
+    "ownExactCalculations": {
+      "exactSpecialAngles": {
+        "sin30": "1/2",
+        "cos60": "1/2",
+        "cos45": "√2/2",
+        "tan30": "√3/3",
+        "cos30": "√3/2",
+        "tan45": "1"
+      },
+      "A": "1/2",
+      "tan30TimesCos30": "1/2",
+      "BcoefficientsQsqrt2": [
+        "1/2",
+        "1/2"
+      ],
+      "EcoefficientsQsqrt2": [
+        "-1",
+        "1"
+      ],
+      "recordsTruth": {
+        "ㄱ": true,
+        "ㄴ": false,
+        "ㄷ": true
+      },
+      "wrongRecord": "ㄴ",
+      "orderedAnswerRoles": [
+        "wrong record symbol ㄴ",
+        "corrected B=(√2+1)/2",
+        "E=√2−1 with rational denominator"
+      ],
+      "nonzeroDenominator": "B=(√2+1)/2>0; √2+1>0; rationalization denominator2−1=1≠0",
+      "existenceUniqueness": "모든특수각값이정의되고주어진산술식으로A,B,E가각각유일. 잘못된기록은3개중ㄴ하나. 무차원수라길이단위나%를붙이지않음.",
+      "ringCheck": "B*E=A exact in Q(√2); (√2+1)(√2−1)=1. No decimal radical approximation."
+    },
+    "studentDigestVerified": true,
+    "studentPreviewPngSha256": "5f66f05191c70541454edc3ab3d7345db9e6cdeb3991525f8a5d19d9cdf7b6af",
+    "studentSvgSha256s": [],
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "student-method-proposed-in-scope",
+        "basis": "세특수각의삼각비값을각각대입해산술오류기록을교정하고근호분모를유리화한다. 일반삼각비항등식은사용하지않는다."
+      },
+      "choices": {
+        "status": "not-applicable-written",
+        "basis": "실제choices=[]인서술형이다. 기록ㄱ/ㄴ/ㄷ의세주장은각각검산했다."
+      },
+      "figuresAndTables": {
+        "status": "student-png-actually-viewed",
+        "basis": "학생PNG의A/B/E식·세기록과요청순서를실제확인하고표의세값을모두검산했다. 픽셀/SVG좌표로답을얻지않았다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "특수각삼각비·분수·근호및A/B/E,기록ㄱㄴㄷ는제시된역할을유지한다. B의바른값과E를혼동하지않는다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "문자열답 ㄴ, B=(√2+1)/2, E=√2−1에요청순서와단위를그대로기록했다. 정확분수/근호계산으로도출했고존재·유일성및분모조건을확인했다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "특수각30/45/60의정확값대입·근호사칙계산·분모유리화만필요하다. 삼각비사이일반관계/고등삼각함수도구는없다. 저자전체해설은미노출이므로후속정식검토가필요하다."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "2015중3삼각비정의/활용·특수각값및이전실수/근호계산·근삿값반올림을학습한뒤배정한다. 이번학생전용단계의방법제안이며정식7면/특정학교진도/2022배치승인은아니다."
+      }
+    },
+    "limits": [
+      "정식학년/내용/출처/권리/family/native/release승인아님",
+      "현재저자답·해설미노출;수학solved와후속전체해설학년검토구분",
+      "기존원문소유범위r2/r3작업과raw는변경하지않음"
+    ]
+  },
+  "status": "solved"
+}

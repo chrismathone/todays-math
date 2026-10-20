@@ -1,0 +1,100 @@
+{
+  "studentDigest": "38f19f40446fbb15ebfd75f6d6b6c750835a542b1e6691de3829a7e6702d7ae3",
+  "solverId": "independent-helper-nobyeon-sem2-group4-blind-20261020",
+  "answer": "(1) M=40; (2) a=40, b=43",
+  "solution": "편차는 자료에서 평균을 뺀 값이므로42−M=2에서 M=40이다. 36−40=−4,39−40=−1도표와일치한다. u=a−40,v=b−40이라하자. 편차의합은0이므로2−4−1+u+v=0에서u+v=3이다. 표준편차가√6이므로분산은6이고, (2²+(−4)²+(−1)²+u²+v²)/5=6이다. 따라서u²+v²=9이다. (u+v)²=u²+2uv+v²에대입하면9=9+2uv이므로uv=0이다. u+v=3을함께만족하는두경우는(u,v)=(0,3),(3,0)이다. a<b이므로u<v여야하여(u,v)=(0,3)만가능하다. 따라서(1)M=40,(2)a=40,b=43이다. 실제다섯자료의합은200이어서평균40, 편차제곱합은30이어서분산6·표준편차√6이므로모든조건을만족한다.",
+  "evidence": {
+    "exposure": {
+      "currentAuthorAnswerSolutionPrivatePackageExposed": false,
+      "priorSourceAndRelatedExposure": "이전노변1학기문항,노변2학기q09~14학생/저자/질문전용원문및q15~17소유범위검토에서원본페이지와관련삼각비·대표값·편차·분산에노출되었다. 이번currentq18~20저자답/해설/비공개패키지나원문질문은열지않았다. 원본전체코퍼스의완전미노출을주장하지않는다.",
+      "studentOnlyInputs": "허용된학생JSON/brief/blindmanifest/SVG및student-preview q18/q19/q20 PNG만읽었다. 세PNG를실제view했다.",
+      "pixelsOrCoordinatesAsNumericalOracle": false
+    },
+    "ownExactCalculations": {
+      "meansFromThreeKnownDeviations": [
+        40,
+        40,
+        40
+      ],
+      "unknownDeviationSum": "3",
+      "unknownDeviationSquareSum": "9",
+      "unknownDeviationProduct": "0",
+      "allRealBranchesOfProductZero": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "orderedAdmissiblePairs": [
+        [
+          40,
+          43
+        ]
+      ],
+      "data": [
+        42,
+        36,
+        39,
+        40,
+        43
+      ],
+      "deviations": [
+        2,
+        -4,
+        -1,
+        0,
+        3
+      ],
+      "sum": 200,
+      "mean": "40",
+      "deviationSum": 0,
+      "deviationSquareSum": 30,
+      "variance": "6",
+      "standardDeviation": "√6",
+      "domainExistenceUniqueness": "a,b의자연수조건은없으므로실수범위에서uv=0의모든두분기를검토했다. a<b로순서를유일하게선택하고값40,43은양수이지만양수조건을가정해해를누락하지않았다. 분모5>0, 표준편차는양의제곱근. 물리단위는미제공."
+    },
+    "studentDigestVerified": true,
+    "studentPreviewPngSha256": "354ce3652690849c061422655f14e1485624d49ecc21bc468f6eb5dcef031bf2",
+    "studentSvgSha256s": [],
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "student-method-proposed-in-scope",
+        "basis": "평균·편차·분산/표준편차정의와이전곱셈공식/인수분해를써두실수자료를찾는다."
+      },
+      "choices": {
+        "status": "not-applicable-written",
+        "basis": "실제choices=[]인서술형이다. 객관식5보기를가정하지않고요청된서술답역할을유지했다."
+      },
+      "figuresAndTables": {
+        "status": "student-png-actually-viewed",
+        "basis": "학생PNG의다섯자료/편차쌍과두문항(1)(2)을실제확인했다. 알려진3개편차에서동일M을검산했다. 픽셀/SVG좌표로답을얻지않았다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "편차a−M/b−M,표준편차√6,자료순서a<b와(1)(2)역할을구별한다. 자료의실제단위는미제공이다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "문자열답 (1) M=40; (2) a=40, b=43에요청순서와단위를그대로기록했다. 정확분수/근호계산으로도출했고존재·유일성및분모조건을확인했다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "9수05-06/07의평균/편차/산포와이전중3다항식전개·인수분해의곱0분기만필요하다. 저자전체해설은미노출이므로후속정식검토가필요하다."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "2015중3대표값/분산/표준편차와이전일차식·다항식곱셈공식/인수분해·실수범위곱0성질을학습한뒤배정한다. 이번학생전용단계의방법제안이며정식7면/특정학교진도/2022배치승인은아니다."
+      }
+    },
+    "limits": [
+      "정식학년/내용/출처/권리/family/native/release승인아님",
+      "현재저자답·해설미노출;수학solved와후속전체해설학년검토구분",
+      "기존원문소유범위r2/r3작업과raw는변경하지않음"
+    ]
+  },
+  "status": "solved"
+}
