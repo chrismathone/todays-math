@@ -224,6 +224,11 @@ import {
 import { studentGateFor } from "@/lib/studentRouteAccess";
 import { parseSrsState } from "@/lib/math-srs/serverState";
 import { correctSrsChoice } from "@/lib/math-srs/sharedAnswers";
+import {
+  GET as readGuide,
+  POST as chooseGuideRoute,
+} from "@/app/api/learn/math-srs/guide/route";
+import { guideResponseSchema } from "@/contracts/mathSrsGuide.contract";
 
 const origin = "http://localhost:3000";
 const req = (
@@ -473,5 +478,77 @@ describe("teacher SRS dashboard authorization and real roster", () => {
     expect(data.students[1].currentProgress?.source).toBe("individual");
     expect(data.students[0].currentProgress?.source).toBe("class");
     expect(response.headers.get("cache-control")).toContain("no-store");
+  });
+});
+
+describe("student guide choice (plan §2 decision 10)", () => {
+  const guidePath = "/api/learn/math-srs/guide";
+  const choose = (body: unknown, requestOrigin = origin) =>
+    chooseGuideRoute(req(guidePath, "POST", body, requestOrigin));
+  const guideOf = async (response: Response) => {
+    expect(response.status).toBe(200);
+    return guideResponseSchema.parse(await response.json()).data.guide;
+  };
+
+  it("lets active students read and choose, and nobody else", async () => {
+    for (const method of ["GET", "POST"]) {
+      expect(studentGateFor(false, method, guidePath).kind).toBe("allow");
+      expect(studentGateFor(true, method, guidePath).kind).not.toBe("allow");
+    }
+    for (const session of [null, teacherSession()]) {
+      fixture.session = session;
+      expect((await readGuide(req(guidePath))).status).toBe(401);
+      expect((await choose({ guideId: "marten" })).status).toBe(401);
+    }
+    expect(fixture.writes).toBe(0);
+  });
+
+  it("reads null before the first choice without writing a record", async () => {
+    expect(await guideOf(await readGuide(req(guidePath)))).toBeNull();
+    expect(fixture.writes).toBe(0);
+  });
+
+  it("saves the choice, keeps its first time on the same guide and replaces it on another", async () => {
+    const first = await guideOf(await choose({ guideId: "marten" }));
+    expect(first).toEqual({
+      id: "marten",
+      chosenAt: "2026-09-23T01:00:00.000Z",
+    });
+    expect(await guideOf(await readGuide(req(guidePath)))).toEqual(first);
+    expect(
+      parseSrsState(fixture.rows.get(fixture.studentId)!.payload).guide,
+    ).toEqual(first);
+
+    vi.setSystemTime(new Date("2026-09-24T01:00:00.000Z"));
+    const writes = fixture.writes;
+    expect(await guideOf(await choose({ guideId: "marten" }))).toEqual(first);
+    expect(fixture.writes).toBe(writes);
+    expect(await guideOf(await choose({ guideId: "wood-friend" }))).toEqual({
+      id: "wood-friend",
+      chosenAt: "2026-09-24T01:00:00.000Z",
+    });
+  });
+
+  it("keeps the rest of the record when the guide changes", async () => {
+    const mission = (
+      await readState(await POST(req("/api/learn/math-srs", "POST", {})))
+    ).mission;
+    await choose({ guideId: "paper-swallow" });
+    expect(
+      (await readState(await GET(req("/api/learn/math-srs")))).mission,
+    ).toEqual(mission);
+  });
+
+  it("rejects unknown guides, extra fields and cross-site choices without writing", async () => {
+    for (const body of [
+      { guideId: "dragon" },
+      { guideId: "marten", studentId: fixture.otherStudentId },
+      {},
+    ])
+      expect((await choose(body)).status).toBe(400);
+    expect(
+      (await choose({ guideId: "marten" }, "https://outside.test")).status,
+    ).toBe(403);
+    expect(fixture.writes).toBe(0);
   });
 });

@@ -63,6 +63,8 @@ async function request<T>(
     clearTimeout(timeout);
   }
 }
+/** The same timeout and messages for the other student records (guide). */
+export { request as learnJsonRequest };
 const state = async (value: unknown) =>
   (await contract()).courseStudentResponseSchema.parse(value).data;
 const base = "/api/learn/math-srs/course";

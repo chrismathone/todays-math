@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { dataResponseSchema } from "./common.contract";
 
 /**
  * Owner 2026-10-20 (plan §2 decision 10): each student picks a guide first, from
@@ -22,3 +23,15 @@ export const storedGuideSchema = z.strictObject({
   chosenAt: z.iso.datetime(),
 });
 export type StoredGuide = z.infer<typeof storedGuideSchema>;
+
+/** `POST /api/learn/math-srs/guide` — the student, never the screen, is the owner. */
+export const guideChoiceInputSchema = z.strictObject({
+  guideId: guideIdSchema,
+});
+export type GuideChoiceInput = z.infer<typeof guideChoiceInputSchema>;
+
+/** `guide: null` — not chosen yet, so the screen opens the picker page. */
+export const guideStateSchema = z.strictObject({
+  guide: storedGuideSchema.nullable(),
+});
+export const guideResponseSchema = dataResponseSchema(guideStateSchema);

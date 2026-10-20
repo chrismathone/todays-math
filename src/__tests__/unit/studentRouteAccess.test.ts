@@ -90,6 +90,7 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "POST /api/learn/math-srs/course/hint",
       "POST /api/learn/math-srs/course/follow-up",
       "GET /api/learn/math-srs/course/figure",
+      "GET|POST /api/learn/math-srs/guide",
       "GET|POST /api/learn/math-srs",
       "POST /api/learn/math-srs/attempts",
       "POST /api/learn/math-srs/hint",

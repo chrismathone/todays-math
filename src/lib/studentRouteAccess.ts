@@ -224,6 +224,11 @@ const ACTIVE_RULES: readonly Rule[] = [
   },
   {
     methods: ["GET", "POST"],
+    path: "/api/learn/math-srs/guide",
+    why: "본인 길잡이 조회 · 고르기(계획서 §2 결정 10)",
+  },
+  {
+    methods: ["GET", "POST"],
     path: "/api/learn/math-srs",
     why: "기억 학습 조회 · 오늘 미션 시작",
   },

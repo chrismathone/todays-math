@@ -129,8 +129,9 @@ of five ids in `src/contracts/mathSrsGuide.contract.ts`; no `guide` means the
 student has not chosen yet. The reader commit "feat(srs): read a student's guide
 choice before anything writes it" is the floor: once a student has chosen, never
 run older code against the shared database or roll production back below it.
-The writer (`GET` · `PUT /api/learn/math-srs/guide`) ships only after the reader
-is Ready in production. Choosing never blocks study: a failed save keeps the
+The writer (`GET` · `POST /api/learn/math-srs/guide`, body `{ guideId }` —
+choosing the same guide keeps its `chosenAt`) ships only after the reader is
+Ready in production. Choosing never blocks study: a failed save keeps the
 choice on screen for that visit (consensus
 `docs/planning/tracks/reports/srs-e5-decisions-consensus-20261020/`).
 
