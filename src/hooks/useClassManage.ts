@@ -1,6 +1,7 @@
 ﻿import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { ClassEntity, StudentEntity } from "@/contracts/class.contract";
+import type { TeachingClasses } from "@/contracts/teaching.contract";
 import { replaceScreenQuery } from "@/hooks/useScreenQuery";
 import {
   advanceProgress,
@@ -23,7 +24,11 @@ type Mutation = {
 };
 const idleMutation: Mutation = { pending: false, error: null, success: null };
 
-export function useClassManage(requestedClassId = "") {
+export function useClassManage(
+  requestedClassId = "",
+  initialClasses?: TeachingClasses,
+) {
+  const initial = useRef(initialClasses);
   const [classes, setClasses] = useState<ClassEntity[]>([]);
   const [students, setStudents] = useState<StudentEntity[]>([]);
   const [selectedClassId, setSelectedClassId] = useState("");
@@ -74,7 +79,18 @@ export function useClassManage(requestedClassId = "") {
 
   useEffect(() => {
     let cancelled = false;
-    fetchClasses()
+    const controller = new AbortController();
+    const bootstrap = classReload === 0 ? initial.current : undefined;
+    const pending =
+      bootstrap?.status === "error"
+        ? Promise.reject(new Error("Class list unavailable"))
+        : fetchClasses({
+            signal: controller.signal,
+            ...(bootstrap?.status === "ready"
+              ? { firstPage: bootstrap.page }
+              : {}),
+          });
+    pending
       .then((rows) => {
         if (cancelled) return;
         setClasses(rows);
@@ -99,6 +115,7 @@ export function useClassManage(requestedClassId = "") {
       });
     return () => {
       cancelled = true;
+      controller.abort();
     };
   }, [classReload]);
 

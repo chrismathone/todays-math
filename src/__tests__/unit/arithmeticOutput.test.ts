@@ -1,4 +1,5 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import { getArithmeticV2Definition } from "@/lib/arithmetic-v2/registry";
 import {
   figureFirstGroupInstruction,
   isFigureFirstType,
@@ -35,6 +36,28 @@ import {
 } from "@/lib/arithmetic-v2/presentation/notation";
 
 describe("arithmetic shared output adapter", () => {
+  it("projects saved items without generating fresh catalog examples", () => {
+    const type = listArithmeticV2Types()[0];
+    const sheet = buildArithmeticV2Sheet({
+      engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
+      catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
+      seed: "render-without-regeneration",
+      rounds: [{ allocations: [{ typeId: type.id, count: 1 }] }],
+    });
+    const expected = arithmeticToStudioProblems(sheet);
+    const generation = vi
+      .spyOn(getArithmeticV2Definition(type.id), "problemAt")
+      .mockImplementation(() => {
+        throw new Error("Rendering must not generate examples");
+      });
+    try {
+      expect(arithmeticToStudioProblems(sheet)).toEqual(expected);
+      expect(generation).not.toHaveBeenCalled();
+    } finally {
+      generation.mockRestore();
+    }
+  });
+
   it("preserves every supported grade prompt, exact answer and snapshot with valid math markup", () => {
     const kinds = new Set<string>();
     for (const type of listArithmeticV2Types()) {

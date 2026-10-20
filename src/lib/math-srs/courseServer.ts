@@ -1,6 +1,6 @@
 import {
   accessibleClassesWhere,
-  loadOperationalRoster,
+  loadOperationalRosterSummary,
 } from "@/lib/classAccess";
 import "server-only";
 import type {
@@ -183,13 +183,10 @@ export async function loadSrsRoster(
   const accessible = await accessibleClassesWhere(viewer);
   const classes = await db.class.findMany({
     where: branchId ? { AND: [accessible, { branchId }] } : accessible,
-    select: { id: true, name: true },
+    select: { id: true, name: true, grade: true },
     orderBy: { name: "asc" },
   });
-  const roster = await loadOperationalRoster(
-    classes.map((c) => c.id),
-    true,
-  );
+  const roster = await loadOperationalRosterSummary(classes, true);
   const students = branchId
     ? roster.filter((student) => student.branchId === branchId)
     : roster;
@@ -215,7 +212,7 @@ export async function loadSrsRoster(
         branchId: viewer.branchId ?? null,
         branchRole: viewer.branchRole ?? null,
       },
-      classes,
+      classes: classes.map(({ id, name }) => ({ id, name })),
       students: students.map((student) => ({
         student,
         saved: states.get(student.id) ?? {
