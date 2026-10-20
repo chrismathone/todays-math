@@ -4,6 +4,8 @@
  * 규칙: src/lib/studentRouteAccess.ts (허용 목록 — `routeAccess.ts` 와 같은 원칙: 잊으면 **닫힌다**)
  * 배선: src/proxy.ts — 그쪽은 `proxyStudentGate.test.ts` 가 파일 목록 전수로 본다.
  */
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -12,6 +14,47 @@ import {
   STUDENT_MUST_CHANGE_CAPABILITIES,
   studentGateFor,
 } from "@/lib/studentRouteAccess";
+
+describe("🔴 학생 API 라우트는 전부 학생 관문을 지난다 (2026-10-20)", () => {
+  // «한 번 더 → 풀이»의 POST /api/learn/math-srs/course/follow-up 이 허용 목록에 없어 운영에서
+  // 학생에게 403 이었다. 라우트 시험은 처리기를 바로 불러 관문을 못 보고, 지나가는 집합을 잠근
+  // 시험은 빠진 줄까지 그대로 잠갔다 — 그래서 반대 방향(라우트 파일 → 관문)을 전수로 본다.
+  const CLOSED_ON_PURPOSE = new Set([
+    "POST /api/learn/login", // 로그인한 학생에게는 닫는다 — 로그인 안 한 사람의 갈래가 연다
+  ]);
+  const root = path.join(process.cwd(), "src/app/api/learn");
+  const walk = (dir: string): string[] =>
+    readdirSync(dir).flatMap((name) => {
+      const full = path.join(dir, name);
+      if (statSync(full).isDirectory()) return walk(full);
+      return name === "route.ts" ? [full] : [];
+    });
+
+  it("내보낸 메서드마다 학생이 지나간다(일부러 닫은 것만 빼고)", () => {
+    const files = walk(root);
+    expect(files.length).toBeGreaterThan(20);
+    const blocked: string[] = [];
+    for (const file of files) {
+      const source = readFileSync(file, "utf8");
+      const url = `/api/learn/${path
+        .relative(root, path.dirname(file))
+        .split(path.sep)
+        .map((part) => (part.startsWith("[") ? "x1" : part))
+        .join("/")}`;
+      for (const [, method] of source.matchAll(
+        /export (?:const|async function) (GET|POST|PUT|PATCH|DELETE)\b/g,
+      )) {
+        const key = `${method} ${url}`;
+        if (
+          !CLOSED_ON_PURPOSE.has(key) &&
+          studentGateFor(false, method, url).kind !== "allow"
+        )
+          blocked.push(key);
+      }
+    }
+    expect(blocked).toEqual([]);
+  });
+});
 
 describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 빨개져 리뷰에 보인다", () => {
   it("첫 비밀번호를 바꾼 학생", () => {
@@ -45,6 +88,7 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "POST /api/learn/math-srs/course/plan",
       "POST /api/learn/math-srs/course/attempts",
       "POST /api/learn/math-srs/course/hint",
+      "POST /api/learn/math-srs/course/follow-up",
       "GET /api/learn/math-srs/course/figure",
       "GET|POST /api/learn/math-srs",
       "POST /api/learn/math-srs/attempts",
