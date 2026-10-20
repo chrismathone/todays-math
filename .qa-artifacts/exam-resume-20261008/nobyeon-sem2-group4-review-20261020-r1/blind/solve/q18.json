@@ -1,0 +1,76 @@
+{
+  "studentDigest": "a79b13a29a0d2303e78d63c352465fe2e3bb852d13cb601dcaa23cf0df6db1f5",
+  "solverId": "independent-helper-nobyeon-sem2-group4-blind-20261020",
+  "answer": "200.0 m",
+  "solution": "직각삼각형 PQR에서 ∠QPR=20°이고 PQ는 빗변, QR는 그 각의 맞은편 변이다. 사인의 정의에 따라 sin20°=QR/PQ이다. 표의 근삿값0.3420을 사용하면 PQ≈68.4÷0.3420=200이다. 따라서 소수 첫째 자리까지 나타낸 경사로의 길이는200.0 m이다. 표의 값을 사용한 근삿값이지 실제 삼각비를 정확히0.3420이라고 둔 등식은 아니다. 주어진 높이가 양수이고0<sin20°<1이므로 빗변은 높이보다 크며 양의 길이가 하나로 정해진다.",
+  "evidence": {
+    "exposure": {
+      "currentAuthorAnswerSolutionPrivatePackageExposed": false,
+      "priorSourceAndRelatedExposure": "이전노변1학기문항,노변2학기q09~14학생/저자/질문전용원문및q15~17소유범위검토에서원본페이지와관련삼각비·대표값·편차·분산에노출되었다. 이번currentq18~20저자답/해설/비공개패키지나원문질문은열지않았다. 원본전체코퍼스의완전미노출을주장하지않는다.",
+      "studentOnlyInputs": "허용된학생JSON/brief/blindmanifest/SVG및student-preview q18/q19/q20 PNG만읽었다. 세PNG를실제view했다.",
+      "pixelsOrCoordinatesAsNumericalOracle": false
+    },
+    "ownExactCalculations": {
+      "table": {
+        "sin20": "0.3420",
+        "cos20": "0.9397",
+        "tan20": "0.3640"
+      },
+      "requestedRole": "ramp hypotenuse PQ, not horizontal PR or height QR",
+      "height": "342/5 m",
+      "usedRatio": "171/500",
+      "exactDivisionOfPrintedApproximation": "200",
+      "answerToOneDecimal": "200.0 m",
+      "roundingIntervalFor200point0": [
+        "3999/20",
+        "4001/20"
+      ],
+      "optionalFourDecimalInputRoundingLengthBounds": [
+        "1368000/6841",
+        "1368000/6839"
+      ],
+      "domainExistenceUniqueness": "20°는예각,주어진높이68.4>0, 실제직각삼각형에서맞은편/빗변비는양수이고1미만. 주어진양의높이와각으로빗변유일. 표근삿값으로나누는수0.3420≠0, 출력은표사용근사/반올림값. 그림좌표를재어길이계산하지않음."
+    },
+    "studentDigestVerified": true,
+    "studentPreviewPngSha256": "5b462473b27eff82933be4339fb2acf28e09a1258d904f07f342d03d6b84e975",
+    "studentSvgSha256s": [
+      "a87b10b590a453ac036cc55b8014f21ad29d83d0450ce0fbaf92d79c77629552"
+    ],
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "student-method-proposed-in-scope",
+        "basis": "실제직각삼각형의사인정의와제공근삿값·나눗셈·반올림으로완결한다."
+      },
+      "choices": {
+        "status": "not-applicable-written",
+        "basis": "실제choices=[]인서술형이다. 객관식5보기를가정하지않고요청된서술답역할을유지했다."
+      },
+      "figuresAndTables": {
+        "status": "student-png-actually-viewed",
+        "basis": "학생PNG의경사로·20°·수선/직각표시와삼각비세근삿값표를실제확인했다. 픽셀/SVG좌표로답을얻지않았다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "sin/cos/tan20°표와m·소수첫째자리의구별은중학교삼각비/근사표현범위이다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "문자열답 200.0 m에요청순서와단위를그대로기록했다. 정확분수/근호계산으로도출했고존재·유일성및분모조건을확인했다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "9수04-17/18의실제직각삼각비정의와제공표사용만필요하다. 저자전체해설은미노출이므로후속정식검토가필요하다."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "2015중3삼각비정의/활용·특수각값및이전실수/근호계산·근삿값반올림을학습한뒤배정한다. 이번학생전용단계의방법제안이며정식7면/특정학교진도/2022배치승인은아니다."
+      }
+    },
+    "limits": [
+      "정식학년/내용/출처/권리/family/native/release승인아님",
+      "현재저자답·해설미노출;수학solved와후속전체해설학년검토구분",
+      "기존원문소유범위r2/r3작업과raw는변경하지않음"
+    ]
+  },
+  "status": "solved"
+}

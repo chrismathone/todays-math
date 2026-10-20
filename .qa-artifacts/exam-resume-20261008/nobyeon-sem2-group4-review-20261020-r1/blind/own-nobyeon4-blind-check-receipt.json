@@ -1,0 +1,146 @@
+{
+  "studentFileSha256": "209f8748c37966e2c6617e44c69471b125ec31de1c2d4235d90dd037bc30cf18",
+  "blindManifestSha256": "d92dc3790be400a20ff338521dfe73e9c9d071b66136f6ea13f76458f2404ed5",
+  "ownScriptSha256": "118b5c621c09bef3b8a0149e7364c260bd7d6866331b7ceb1650eefd264aa422",
+  "UTF8WriteReadProbe": "passed",
+  "viewedStudentPngs": [
+    18,
+    19,
+    20
+  ],
+  "results": [
+    {
+      "q": 18,
+      "rawSha256": "48b8ded317d5e4357738beae4b5175a297c4188afe5792d1e92e97c89ae73d6d",
+      "answer": "200.0 m",
+      "status": "solved",
+      "studentDigest": "a79b13a29a0d2303e78d63c352465fe2e3bb852d13cb601dcaa23cf0df6db1f5"
+    },
+    {
+      "q": 19,
+      "rawSha256": "1144496e589040216cfb6e2795a68f94d1734332091824e91b9009b106f990df",
+      "answer": "ㄴ, B=(√2+1)/2, E=√2−1",
+      "status": "solved",
+      "studentDigest": "023dd4d8f9ad6ff29b14db539de9106310d12b64aaa7c82be00daf1ba758ce4c"
+    },
+    {
+      "q": 20,
+      "rawSha256": "a308e3ba67c8c8fab8a6836781a218feaeb7647a02b535810601859d2a455f4f",
+      "answer": "(1) M=40; (2) a=40, b=43",
+      "status": "solved",
+      "studentDigest": "38f19f40446fbb15ebfd75f6d6b6c750835a542b1e6691de3829a7e6702d7ae3"
+    }
+  ],
+  "calculations": {
+    "18": {
+      "table": {
+        "sin20": "0.3420",
+        "cos20": "0.9397",
+        "tan20": "0.3640"
+      },
+      "requestedRole": "ramp hypotenuse PQ, not horizontal PR or height QR",
+      "height": "342/5 m",
+      "usedRatio": "171/500",
+      "exactDivisionOfPrintedApproximation": "200",
+      "answerToOneDecimal": "200.0 m",
+      "roundingIntervalFor200point0": [
+        "3999/20",
+        "4001/20"
+      ],
+      "optionalFourDecimalInputRoundingLengthBounds": [
+        "1368000/6841",
+        "1368000/6839"
+      ],
+      "domainExistenceUniqueness": "20°는예각,주어진높이68.4>0, 실제직각삼각형에서맞은편/빗변비는양수이고1미만. 주어진양의높이와각으로빗변유일. 표근삿값으로나누는수0.3420≠0, 출력은표사용근사/반올림값. 그림좌표를재어길이계산하지않음."
+    },
+    "19": {
+      "exactSpecialAngles": {
+        "sin30": "1/2",
+        "cos60": "1/2",
+        "cos45": "√2/2",
+        "tan30": "√3/3",
+        "cos30": "√3/2",
+        "tan45": "1"
+      },
+      "A": "1/2",
+      "tan30TimesCos30": "1/2",
+      "BcoefficientsQsqrt2": [
+        "1/2",
+        "1/2"
+      ],
+      "EcoefficientsQsqrt2": [
+        "-1",
+        "1"
+      ],
+      "recordsTruth": {
+        "ㄱ": true,
+        "ㄴ": false,
+        "ㄷ": true
+      },
+      "wrongRecord": "ㄴ",
+      "orderedAnswerRoles": [
+        "wrong record symbol ㄴ",
+        "corrected B=(√2+1)/2",
+        "E=√2−1 with rational denominator"
+      ],
+      "nonzeroDenominator": "B=(√2+1)/2>0; √2+1>0; rationalization denominator2−1=1≠0",
+      "existenceUniqueness": "모든특수각값이정의되고주어진산술식으로A,B,E가각각유일. 잘못된기록은3개중ㄴ하나. 무차원수라길이단위나%를붙이지않음.",
+      "ringCheck": "B*E=A exact in Q(√2); (√2+1)(√2−1)=1. No decimal radical approximation."
+    },
+    "20": {
+      "meansFromThreeKnownDeviations": [
+        40,
+        40,
+        40
+      ],
+      "unknownDeviationSum": "3",
+      "unknownDeviationSquareSum": "9",
+      "unknownDeviationProduct": "0",
+      "allRealBranchesOfProductZero": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "orderedAdmissiblePairs": [
+        [
+          40,
+          43
+        ]
+      ],
+      "data": [
+        42,
+        36,
+        39,
+        40,
+        43
+      ],
+      "deviations": [
+        2,
+        -4,
+        -1,
+        0,
+        3
+      ],
+      "sum": 200,
+      "mean": "40",
+      "deviationSum": 0,
+      "deviationSquareSum": 30,
+      "variance": "6",
+      "standardDeviation": "√6",
+      "domainExistenceUniqueness": "a,b의자연수조건은없으므로실수범위에서uv=0의모든두분기를검토했다. a<b로순서를유일하게선택하고값40,43은양수이지만양수조건을가정해해를누락하지않았다. 분모5>0, 표준편차는양의제곱근. 물리단위는미제공."
+    }
+  },
+  "exposure": {
+    "currentAuthorAnswerSolutionPrivatePackageExposed": false,
+    "priorSourceAndRelatedExposure": "이전노변1학기문항,노변2학기q09~14학생/저자/질문전용원문및q15~17소유범위검토에서원본페이지와관련삼각비·대표값·편차·분산에노출되었다. 이번currentq18~20저자답/해설/비공개패키지나원문질문은열지않았다. 원본전체코퍼스의완전미노출을주장하지않는다.",
+    "studentOnlyInputs": "허용된학생JSON/brief/blindmanifest/SVG및student-preview q18/q19/q20 PNG만읽었다. 세PNG를실제view했다.",
+    "pixelsOrCoordinatesAsNumericalOracle": false
+  },
+  "noCurrentAuthorExposure": true,
+  "noPixelOrHigherGradeAnswerOracle": true
+}
