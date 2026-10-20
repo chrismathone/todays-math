@@ -1,0 +1,171 @@
+{
+  "studentDigest": "8c0ac827a159851a5e09f60665bdc36f120f57ec5463574a25a70458dd9966cc",
+  "solverId": "independent-helper-gachang-group4-q07-q08-studentonly-20261020-r1",
+  "answer": "③",
+  "solution": "x²-6x-b=0을 정리하면 (x-3)²=b+9이다. 두 근이 정수가 되려면 b+9가 정수의 제곱이어야 한다. 반대로 b+9=m²인 양의 정수 m이 있으면 두 근은 3-m, 3+m으로 모두 정수이다. b는 두 자리 자연수이므로 10≤b≤99, 따라서 19≤m²≤108이다. 4²=16<19이고 10²=100≤108<11²=121이므로 가능한 양의 정수 m은 5, 6, 7, 8, 9, 10이다. 이 순서대로 b=m²-9를 구하면 16, 27, 40, 55, 72, 91이고 네 번째는 55이므로 ③이다. 이때 근은 -5와 11이며 원래 방정식에 각각 대입하면 0이 된다. m이 커질수록 제곱이 커져 b의 순서도 엄격히 증가하므로 네 번째 값은 유일하다. 보기 40은 세 번째, 72는 다섯 번째이고, 48과 64는 각각 b+9=57, 73이 완전제곱수가 아니므로 조건에 맞지 않는다. m의 음수값은 같은 b와 같은 두 근을 주므로 중복하여 세지 않으며, 근이 자연수여야 한다는 조건은 없으므로 음의 정수 근도 허용한다.",
+  "evidence": {
+    "fullAllowedOrderedBValues": [
+      {
+        "m": 5,
+        "b": 16,
+        "rank": 1,
+        "integerRoots": [
+          -2,
+          8
+        ],
+        "rootSigns": [
+          "negative",
+          "positive"
+        ]
+      },
+      {
+        "m": 6,
+        "b": 27,
+        "rank": 2,
+        "integerRoots": [
+          -3,
+          9
+        ],
+        "rootSigns": [
+          "negative",
+          "positive"
+        ]
+      },
+      {
+        "m": 7,
+        "b": 40,
+        "rank": 3,
+        "integerRoots": [
+          -4,
+          10
+        ],
+        "rootSigns": [
+          "negative",
+          "positive"
+        ]
+      },
+      {
+        "m": 8,
+        "b": 55,
+        "rank": 4,
+        "integerRoots": [
+          -5,
+          11
+        ],
+        "rootSigns": [
+          "negative",
+          "positive"
+        ]
+      },
+      {
+        "m": 9,
+        "b": 72,
+        "rank": 5,
+        "integerRoots": [
+          -6,
+          12
+        ],
+        "rootSigns": [
+          "negative",
+          "positive"
+        ]
+      },
+      {
+        "m": 10,
+        "b": 91,
+        "rank": 6,
+        "integerRoots": [
+          -7,
+          13
+        ],
+        "rootSigns": [
+          "negative",
+          "positive"
+        ]
+      }
+    ],
+    "allFiveOptions": [
+      {
+        "choice": 1,
+        "b": 40,
+        "bPlus9": 49,
+        "perfectSquare": true,
+        "integerSquareBounds": [
+          49,
+          64
+        ],
+        "rankAmongAllowed": 3,
+        "isFourth": false
+      },
+      {
+        "choice": 2,
+        "b": 48,
+        "bPlus9": 57,
+        "perfectSquare": false,
+        "integerSquareBounds": [
+          49,
+          64
+        ],
+        "rankAmongAllowed": null,
+        "isFourth": false
+      },
+      {
+        "choice": 3,
+        "b": 55,
+        "bPlus9": 64,
+        "perfectSquare": true,
+        "integerSquareBounds": [
+          64,
+          81
+        ],
+        "rankAmongAllowed": 4,
+        "isFourth": true
+      },
+      {
+        "choice": 4,
+        "b": 64,
+        "bPlus9": 73,
+        "perfectSquare": false,
+        "integerSquareBounds": [
+          64,
+          81
+        ],
+        "rankAmongAllowed": null,
+        "isFourth": false
+      },
+      {
+        "choice": 5,
+        "b": 72,
+        "bPlus9": 81,
+        "perfectSquare": true,
+        "integerSquareBounds": [
+          81,
+          100
+        ],
+        "rankAmongAllowed": 5,
+        "isFourth": false
+      }
+    ],
+    "everyTwoDigitBChecked": 90,
+    "completenessProof": "19<=m²<=108, mnonnegativeinteger;5<=m<=10. Bothintegerroots3±m, allm>=5distinct, nofloating/discriminant/Vieta/factor-theorem.",
+    "exposure": {
+      "sameRetainedSession": true,
+      "currentAuthorAnswersSolutionsExposed": false,
+      "currentAuthoringCodeMetadataPrivateSourceContextRead": false,
+      "history": "이전다른학교원문9성분/변형문항들과Gachang·Gangbuk·공개엔진/정책코드검토이력이있다. Gachang원문첫페이지1~6은이전raw봉인후보았고다른문항·손글씨의부수노출을명시했다. 이번Gachang원문q07/q08이나현재새q07/q08저자답·해설·writer·private는열지않았다. 전체코퍼스/개념을처음보는pristineblind주장없음.",
+      "inputsRead": [
+        "blind\\SOLVE-BRIEF.md",
+        "blind\\student-problems.json",
+        "blind\\blind-manifest.json"
+      ],
+      "visual": "NoPNG/figure supplied. Actualstudenttext andnativeMarkdownrecordtable only; noimageinspection/fullnative/print/layoutclaim.",
+      "operations": "OnlyownPython exactinteger/Fraction arithmetic, no Node/browser/catalog/heavytests/CIM/N/API/model/DB/install/newsession/worktree/workers, no rootproductioncode read/edit."
+    },
+    "calculationReceipt": "../../own-raw-evidence-r1/own-calculation-receipt.json",
+    "studentMethod": "2015M3 다항식전개·동류항소거·방정식차수정의/완전제곱식으로이차방정식풀이·정수제곱경계와앞학년정수순서. 판별식/근과계수관계/고등인수정리/함수미분/연속성정리불필요. 코드다항식배열/isqrt열거는검산도구이지학생필수방법아님.",
+    "domainUnits": "x와b는길이/면적이아닌무단위수. q07등호없는D를방정식으로간주하지않음. q08 b는10..99자연수이며두근은모든정수(음수포함),두근서로다름. 변수분모/0나눗셈없음.",
+    "gradeApproval": false,
+    "nativeVisualApproval": false
+  },
+  "status": "solved"
+}
