@@ -344,16 +344,7 @@
   min-width: 0;
 }
 
-/* 쓰기 줄 — 위에서부터 `--cb-rule` 간격으로 긋는다(남는 자투리는 맨 아래 줄 밑에 남는다) */
-.ruled {
-  background-image: linear-gradient(
-    to bottom,
-    transparent calc(var(--cb-rule) - 1px),
-    var(--ink15) calc(var(--cb-rule) - 1px)
-  );
-  background-repeat: repeat-y;
-  background-size: 100% var(--cb-rule);
-}
+/* 줄 무늬는 WritingArea가 그린다. .ruled는 아래 형식별 배치의 선택자로 남긴다. */
 
 .r1 {
   min-height: var(--cb-rule);
@@ -473,10 +464,6 @@
 .gridBox {
   border: 1px solid var(--ink15);
   background-color: #fff;
-  background-image:
-    linear-gradient(var(--ink08) 1px, transparent 1px),
-    linear-gradient(90deg, var(--ink08) 1px, transparent 1px);
-  background-size: 16px 16px;
 }
 
 .exBox {

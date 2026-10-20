@@ -1,9 +1,12 @@
-.root {
+.root,
+.surface {
   --writing-grid: #e8e8eb;
   --writing-rule: #a0a0a8;
   --writing-light: #d4d4d8;
   --writing-paper: #fff;
   --writing-ink: #424247;
+}
+.root {
   break-inside: avoid;
   min-width: 0;
   -webkit-print-color-adjust: exact;
@@ -41,6 +44,14 @@
 .lines {
   background-image: linear-gradient(var(--writing-light) 1px, transparent 1px);
   background-size: 100% var(--writing-line-height);
+}
+.linesBottom {
+  background-image: linear-gradient(
+    to bottom,
+    transparent calc(var(--writing-line-height) - 1px),
+    var(--writing-light) calc(var(--writing-line-height) - 1px)
+  );
+  background-repeat: repeat-y;
 }
 .blank {
   background-image: none;

@@ -1,5 +1,6 @@
 import { Fragment, type CSSProperties } from "react";
 
+import { WritingArea } from "@/components/print/WritingArea";
 import type { ConceptEntry } from "@/contracts/conceptBlank.contract";
 import { clozeSentence, termPrompt } from "@/lib/concept-blank/questions";
 
@@ -9,6 +10,15 @@ import { termRuledLines } from "./paginate";
 import { Blank, BlankSentence, HowTo, PaperText } from "./PaperParts";
 import styles from "./paper.module.css";
 import { circled, inkEm } from "./text";
+
+/** 기존 지면의 아래쪽 30px 줄. 높이·배치는 각 형식의 CSS가 계속 소유한다. */
+const RULED_SURFACE = {
+  surface: true,
+  pattern: "lines",
+  lineHeight: "var(--cb-rule)",
+  lineColor: "var(--ink15)",
+  linePosition: "bottom",
+} as const;
 
 /**
  * 학생지 한 장의 몸(머리 · 발 사이) — 형식 다섯(시안 `concept-blank-5-two-units.html` 의 틀을 옮겼다).
@@ -66,13 +76,21 @@ function RecallBody({
               <span className={styles.zoneHint}>{zone.hint}</span>
             </div>
             <div className={styles.zoneBody}>
-              <div className={styles.ruled} data-cb-ruled="" />
-              <div
+              <WritingArea
+                {...RULED_SURFACE}
+                className={styles.ruled}
+                data-cb-ruled=""
+              />
+              <WritingArea
+                surface
+                pattern={zone.side === "그림" ? "grid" : "blank"}
+                gridSize="16px"
+                gridColor="var(--ink08)"
                 className={zone.side === "그림" ? styles.gridBox : styles.exBox}
                 data-cb-box=""
               >
                 <span className={styles.boxLabel}>{zone.side}</span>
-              </div>
+              </WritingArea>
             </div>
           </section>
         ))}
@@ -99,7 +117,8 @@ function TermBody({ page }: { page: Extract<StudentPage, { form: "term" }> }) {
                   <PaperText text={termPrompt(block.entry)} />
                 </span>
               </div>
-              <div
+              <WritingArea
+                {...RULED_SURFACE}
                 className={`${styles.ruled} ${styles.termRuled}`}
                 style={
                   {
@@ -130,12 +149,13 @@ function TermBody({ page }: { page: Extract<StudentPage, { form: "term" }> }) {
               <div className={styles.oxRow}>
                 <span className={styles.oxMark}>○</span>
                 <span className={styles.oxMark}>×</span>
-                <div
+                <WritingArea
+                  {...RULED_SURFACE}
                   className={`${styles.ruled} ${styles.oxWhy}`}
                   data-cb-ruled=""
                 >
                   <span className={styles.oxWhyLabel}>까닭</span>
-                </div>
+                </WritingArea>
               </div>
             </div>
           </Fragment>
@@ -187,7 +207,13 @@ function ClozeBody({
           </div>
           <div className={styles.apply}>
             {apply.map((b) => (
-              <div className={styles.ap} data-cb-item="apply" key={b.n}>
+              <WritingArea
+                surface
+                pattern="blank"
+                className={styles.ap}
+                data-cb-item="apply"
+                key={b.n}
+              >
                 <div className={styles.apPrompt}>
                   <span className={styles.qn} data-cb-qn="">
                     문 {b.n}
@@ -200,7 +226,7 @@ function ClozeBody({
                   <span>답</span>
                   <span className={styles.field} />
                 </div>
-              </div>
+              </WritingArea>
             ))}
           </div>
         </>
@@ -282,7 +308,8 @@ function MapNode({
             <PaperText text={termPrompt(entry)} />
           </div>
           <div className={styles.nodeLabel}>답</div>
-          <div
+          <WritingArea
+            {...RULED_SURFACE}
             className={`${styles.ruled} ${styles.nodeRuled} ${styles.termRuled}`}
             data-cb-ruled=""
             style={
@@ -293,7 +320,8 @@ function MapNode({
       ) : (
         <>
           <div className={styles.nodeLabel}>뜻</div>
-          <div
+          <WritingArea
+            {...RULED_SURFACE}
             className={`${styles.ruled} ${styles.nodeRuled}`}
             data-cb-ruled=""
           />
@@ -456,7 +484,8 @@ function FigureBody({
                     <span className={styles.field} />
                   </div>
                 ))}
-                <div
+                <WritingArea
+                  {...RULED_SURFACE}
                   className={`${styles.ruled} ${styles.cardFill}`}
                   data-cb-ruled=""
                 />

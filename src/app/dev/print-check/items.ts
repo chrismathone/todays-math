@@ -83,6 +83,26 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "concept-blank-writing-area-20261020",
+    title: "개념 백지 공용 답란 — 다섯 형식 · 서술형 B 회귀",
+    changed:
+      "개념 백지의 줄·모눈·빈 내부를 WritingArea로 공유한다. 기존 30px 줄, 16px 그림 모눈, 점선 예 상자, 최소 높이와 쪽 나눔은 유지한다.",
+    look: "새 질문·옛 자료의 A~E 학생지와 채점표를 A4 100%·배경 그래픽 켬으로 출력한다. A 좌우 아랫변과 점선 예 상자, B의 ○× 아래와 까닭 첫 줄, C의 빈 풀 자리·답 밑줄, D 가지 줄, E 그림 아래 줄, 머리말·지면 코드·쪽 번호 잘림을 확인한다. 서술형 B의 4mm 모눈과 16·24·32mm 분할도 이전과 대조한다. 흑백·복사 후 옅은 줄과 모눈이 사라지면 불합격이다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-concept-blank-writing-area-codex.md",
+      "docs/planning/tracks/reports/concept-blank-writing-area-20261020.md",
+      "src/components/print/WritingArea.tsx",
+      "src/components/concept-blank/paper/StudentBody.tsx",
+    ],
+    needs:
+      "그림·예 칸이 모두 있는 A, ○×가 있는 B, 적용이 있는 C, 새·옛 지도 D, 그림 E와 서술형 B.",
+    scale:
+      "개념 백지 A~E의 학생 답란. 채점표·머리말·지면 코드·서술형 B는 회귀 대조 대상.",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
+  {
     id: "descriptive-paper-b-20261020",
     title: "서술형 답란 B — 일일 · 확인 · 기출 답안지 · 교사용",
     changed:
