@@ -6,7 +6,6 @@ import { printPagePadding, scaledItemStyle } from "../geometry";
 import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
-import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
 import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
@@ -27,7 +26,7 @@ export function WorkbookTemplate({
   itemWhitespace,
   measure,
 }: PrintTemplateProps) {
-  const accent = options.color || PAPER_COLORS.accentRed;
+  const accent = options.color || PAPER_COLORS.accentNavy;
   const fs = bodyFontSize("workbook", columns);
   const gap = Math.max(0, options.spacing);
   const embeddedSolvingArea =
@@ -44,10 +43,9 @@ export function WorkbookTemplate({
           // 1단: 카드가 flex: 1 로 균등 stretch → 풀이공간 자동 확장
           flex: columns === 1 ? 1 : undefined,
           display: embeddedSolvingArea ? "grid" : "block",
-          gridTemplateColumns: "1.3fr 1fr",
-          gap: 16,
-          border: `1px solid ${PAPER_COLORS.ink15}`,
-          padding: "12px 14px",
+          gridTemplateColumns: "minmax(0, 40%) minmax(0, 1fr)",
+          gap: 20,
+          padding: 0,
           background: PAPER_COLORS.paper,
           breakInside: "avoid",
           minHeight: 0,
@@ -68,30 +66,28 @@ export function WorkbookTemplate({
         {/* 풀이공간 — 1단에서만 (카드 flex:1 → grid stretch → 자연 확장) */}
         {embeddedSolvingArea && (
           <div
+            data-writing-space="right"
             style={{
-              borderLeft: `1px dashed ${PAPER_COLORS.ink30}`,
-              padding: "0 6px 0 12px",
-              backgroundImage: `linear-gradient(transparent 0px, transparent 23px, ${PAPER_COLORS.ink08} 24px)`,
-              backgroundSize: "100% 24px",
-              minHeight: 100,
+              borderLeft: "1px dashed #a7b0bf",
+              padding: 0,
+              minHeight: 180,
               position: "relative",
             }}
           >
             <div
               style={{
                 position: "absolute",
-                top: -2,
-                left: 12,
+                top: 2,
+                left: 8,
                 background: PAPER_COLORS.paper,
-                padding: "0 6px",
+                padding: 0,
                 fontFamily: "var(--paper-font-sans)",
-                fontSize: 9.5,
-                fontWeight: 700,
-                color: readablePaperColor(accent),
-                letterSpacing: "0.1em",
+                fontSize: 10,
+                fontWeight: 400,
+                color: "#808997",
               }}
             >
-              풀이 SCRATCH
+              풀이
             </div>
           </div>
         )}
@@ -120,6 +116,7 @@ export function WorkbookTemplate({
 
   return (
     <div
+      data-template-t2={options.template}
       style={{
         width: A4_DIM.width,
         height: A4_DIM.height,

@@ -28,7 +28,7 @@ export function JaseupTemplate({
   itemWhitespace,
   measure,
 }: PrintTemplateProps) {
-  const accent = options.color || PAPER_COLORS.accentGold;
+  const accent = options.color || PAPER_COLORS.accentNavy;
   const fs = bodyFontSize("jaseup", columns);
   const gap = Math.max(0, options.spacing);
   const embeddedSolvingArea =
@@ -43,11 +43,11 @@ export function JaseupTemplate({
         style={{
           ...scaledItemStyle(options, itemScales?.[i]),
           flex: columns === 1 ? 1 : undefined,
-          display: embeddedSolvingArea ? "grid" : "block",
-          gridTemplateColumns: "1.15fr 1fr",
-          gap: 14,
-          paddingBottom: 14,
-          borderBottom: `1px dashed ${PAPER_COLORS.ink15}`,
+          display: "block",
+          paddingBottom: embeddedSolvingArea ? 0 : 14,
+          borderBottom: embeddedSolvingArea
+            ? undefined
+            : `1px dashed ${PAPER_COLORS.ink15}`,
           breakInside: "avoid",
           minHeight: 0,
         }}
@@ -63,70 +63,60 @@ export function JaseupTemplate({
           />
           <ProblemBody problem={p.variant} fontSize={fs} options={options} />
           {/* 정답 기록 칸 */}
-          <div
-            style={{
-              marginTop: 8,
-              padding: "6px 10px",
-              background: PAPER_COLORS.paperWarm,
-              border: `1px solid ${PAPER_COLORS.ink15}`,
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              fontFamily: "var(--paper-font-sans)",
-              fontSize: 11,
-            }}
-          >
-            <span
-              style={{ fontWeight: 700, color: readablePaperColor(accent) }}
+          {!embeddedSolvingArea && (
+            <div
+              style={{
+                marginTop: 8,
+                padding: "6px 10px",
+                background: PAPER_COLORS.paperWarm,
+                border: `1px solid ${PAPER_COLORS.ink15}`,
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                fontFamily: "var(--paper-font-sans)",
+                fontSize: 11,
+              }}
             >
-              내 정답
-            </span>
-            <span
-              style={{
-                flex: 1,
-                borderBottom: `1px solid ${PAPER_COLORS.ink30}`,
-                height: 16,
-              }}
-            />
-            <span style={{ fontSize: 10, color: PAPER_COLORS.ink50 }}>
-              ✓ 채점
-            </span>
-            <span
-              style={{
-                width: 16,
-                height: 16,
-                border: `1.5px solid ${PAPER_COLORS.ink30}`,
-                display: "inline-block",
-              }}
-            />
-          </div>
+              <span
+                style={{ fontWeight: 700, color: readablePaperColor(accent) }}
+              >
+                내 정답
+              </span>
+              <span
+                style={{
+                  flex: 1,
+                  borderBottom: `1px solid ${PAPER_COLORS.ink30}`,
+                  height: 16,
+                }}
+              />
+              <span style={{ fontSize: 10, color: PAPER_COLORS.ink50 }}>
+                ✓ 채점
+              </span>
+              <span
+                style={{
+                  width: 16,
+                  height: 16,
+                  border: `1.5px solid ${PAPER_COLORS.ink30}`,
+                  display: "inline-block",
+                }}
+              />
+            </div>
+          )}
         </div>
         {/* 모눈 풀이공간 — 1단만 */}
         {embeddedSolvingArea && (
           <div
+            data-writing-space="grid"
             style={{
-              backgroundImage: `linear-gradient(${PAPER_COLORS.ink08} 1px, transparent 1px), linear-gradient(90deg, ${PAPER_COLORS.ink08} 1px, transparent 1px)`,
+              backgroundImage:
+                "linear-gradient(#d3dbe6 1px, transparent 1px), linear-gradient(90deg, #d3dbe6 1px, transparent 1px)",
               backgroundSize: "16px 16px",
               backgroundColor: PAPER_COLORS.paper,
-              border: `1px solid ${PAPER_COLORS.ink15}`,
-              minHeight: 100,
+              height: 85,
+              marginTop: 12,
               position: "relative",
             }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: 6,
-                right: 8,
-                fontFamily: "var(--paper-font-sans)",
-                fontSize: 9,
-                color: PAPER_COLORS.mutedText,
-                letterSpacing: "0.12em",
-              }}
-            >
-              SCRATCH PAD
-            </div>
-          </div>
+          ></div>
         )}
       </div>
     );
@@ -152,10 +142,11 @@ export function JaseupTemplate({
 
   return (
     <div
+      data-template-t2={options.template}
       style={{
         width: A4_DIM.width,
         height: A4_DIM.height,
-        background: PAPER_COLORS.paperWarm,
+        background: PAPER_COLORS.paper,
         padding: printPagePadding(options.marginPreset),
         boxSizing: "border-box",
         position: "relative",

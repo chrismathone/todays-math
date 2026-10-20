@@ -8,7 +8,7 @@ import { MathText } from "@/components/math/MathText";
 import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 import { arithmeticGroupInstructionMarkup } from "@/lib/arithmeticOutputLayout";
 import { PAPER_COLORS } from "../tokens";
-import { inkOnColor, readablePaperColor } from "../readableColor";
+import { readablePaperColor } from "../readableColor";
 import type { PrintOptions, PrintTemplate, ProblemReview } from "../types";
 
 /** One shared first row, also rendered unchanged by the measurement pass. */
@@ -172,14 +172,15 @@ export function QuestionNumber({ num, accent }: QuestionNumberProps) {
       style={{
         display: "inline-grid",
         placeItems: "center",
-        minWidth: 26,
-        minHeight: 26,
+        minWidth: 25,
+        minHeight: 25,
         padding: "0 4px",
-        background: accent,
-        color: inkOnColor(accent),
-        border: `1px solid ${PAPER_COLORS.ink15}`,
+        background: "white",
+        color: readablePaperColor(accent),
+        border: `1.5px solid ${readablePaperColor(accent)}`,
+        borderRadius: 4,
         fontFamily: "var(--paper-font-sans)",
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 800,
         fontVariantNumeric: "tabular-nums",
         WebkitPrintColorAdjust: "exact",

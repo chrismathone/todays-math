@@ -53,7 +53,7 @@ export function ModernTemplate({
           options={options}
           accent={accent}
         />
-        <div style={{ paddingLeft: 28 }}>
+        <div>
           <ProblemBody problem={p.variant} fontSize={fs} options={options} />
         </div>
       </div>
@@ -80,6 +80,7 @@ export function ModernTemplate({
 
   return (
     <div
+      data-template-t2={options.template}
       style={{
         width: A4_DIM.width,
         height: A4_DIM.height,

@@ -83,6 +83,7 @@ export function JeongtongTemplate({
 
   return (
     <div
+      data-template-t2={options.template}
       style={{
         width: A4_DIM.width,
         height: A4_DIM.height,
