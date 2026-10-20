@@ -195,7 +195,14 @@ export function createMathExamBuilderSource(
     if (withAvailability) params.set("availability", "1");
     let response: unknown;
     try {
-      response = await request<unknown>(`${endpoint()}?${params}`, signal);
+      response =
+        params.toString().length > 3000
+          ? await request<unknown>(endpoint(), signal, {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(Object.fromEntries(params)),
+            })
+          : await request<unknown>(`${endpoint()}?${params}`, signal);
     } catch (cause) {
       // Old servers reject the opt-in query. Read labels only; missing counts
       // stay unknown rather than authorizing an empty branch or inventing zero.

@@ -206,6 +206,26 @@ async function openLessons() {
 }
 
 describe("S2 demand-loaded scope inventory", () => {
+  it("sends a large material selection by read-only POST for curriculum availability", async () => {
+    const materials = Array.from({ length: 100 }, (_, index) =>
+      unitId(index + 500),
+    ).join(",");
+    const { Harness, requests } = fixture({
+      filters: new URLSearchParams({
+        sourceGroup: "school_textbook",
+        materials,
+      }).toString(),
+    });
+    render(<Harness />);
+    expect(await screen.findByRole("button", { name: "초3" })).toBeEnabled();
+    expect(requests.mock.calls[0][1]?.method).toBe("POST");
+    expect(JSON.parse(String(requests.mock.calls[0][1]?.body))).toMatchObject({
+      view: "curriculum",
+      availability: "1",
+      materials,
+    });
+  });
+
   it("disables empty grades for textbooks and reloads them when returning to all sources", async () => {
     const textbook = fixture({ filters: "sourceGroup=school_textbook" });
     const all = fixture();
