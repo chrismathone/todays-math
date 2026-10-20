@@ -9,6 +9,8 @@ import {
   gradeCourseAnswer,
 } from "@/lib/math-srs/elementary/answers";
 import { extraAverageFrames } from "@/lib/math-srs/elementary/averageFrames";
+import baseline from "../fixtures/grade5EngineBeforeFrames.json";
+import evidence from "../../../docs/planning/tracks/reports/g5-blind-fixes-20261020-evidence.json";
 
 const unit = (code: string) =>
   elementaryUnits().find(
@@ -16,6 +18,16 @@ const unit = (code: string) =>
   )!;
 const form = (code: string, id: string, seed = 1578854) =>
   generateElementaryForm(unit(code), seed, id);
+
+it("기본 출력 SHA 변경은 승인한 두 소단원으로 제한한다", () => {
+  const changed = Object.keys(baseline).filter(
+    (key) =>
+      baseline[key as keyof typeof baseline] !==
+      evidence.beforeBaseline[key as keyof typeof evidence.beforeBaseline],
+  );
+  expect(changed).toEqual(["5-1-2-2", "5-2-3-3"]);
+  expect(baseline).toEqual(evidence.afterBaseline);
+});
 
 describe("초5 블라인드 풀이: 답의 해석을 하나로 정한다", () => {
   it("1: 두 곱셈식에 나타난 약수만 묻는다", () => {
@@ -62,6 +74,9 @@ describe("초5 블라인드 풀이: 개념과 학년 범위", () => {
 });
 
 describe("초5 블라인드 풀이: 표현과 소단원", () => {
+  it("10: 분수로 끝나는 곱셈식도 분자의 끝소리로 조사를 붙인다", () => {
+    expect(form("2-2-2", "06").content).toContain("$2\\times\\frac{1}{8}$을");
+  });
   it("9: 분수부 합은 가분수와 대분수 모두 값으로 채점한다", () => {
     const p = form("1-5-2", "06");
     const problem = {

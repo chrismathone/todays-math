@@ -64,17 +64,19 @@ export function mathFinal(latex: string): number | null {
     ending = "영일이삼사오육칠팔구"[Number(value.at(-1))];
   else {
     let integer = BigInt(value.replace(/^-/, ""));
-    if (integer === 0n) ending = "영";
+    if (integer === BigInt(0)) ending = "영";
     else {
       let group = 0;
-      while (integer % 10000n === 0n) {
-        integer /= 10000n;
+      while (integer % BigInt(10000) === BigInt(0)) {
+        integer /= BigInt(10000);
         group++;
       }
       if (group) ending = ["", "만", "억", "조", "경"][group];
-      else if (integer % 10n)
-        ending = "영일이삼사오육칠팔구"[Number(integer % 10n)];
-      else ending = integer % 100n ? "십" : integer % 1000n ? "백" : "천";
+      else if (integer % BigInt(10))
+        ending = "영일이삼사오육칠팔구"[Number(integer % BigInt(10))];
+      else
+        ending =
+          integer % BigInt(100) ? "십" : integer % BigInt(1000) ? "백" : "천";
     }
   }
   return ending ? (ending.charCodeAt(0) - 0xac00) % 28 : null;

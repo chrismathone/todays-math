@@ -18,17 +18,17 @@ function finalSound(latex: string): string | null {
   if (number.includes("."))
     return "영일이삼사오육칠팔구"[Number(number.at(-1))];
   const v = BigInt(number);
-  if (v === 0n) return "영";
+  if (v === BigInt(0)) return "영";
   const suffixes = ["", "만", "억", "조", "경"];
   let reduced = v;
   let group = 0;
-  while (reduced % 10000n === 0n) {
-    reduced /= 10000n;
+  while (reduced % BigInt(10000) === BigInt(0)) {
+    reduced /= BigInt(10000);
     group++;
   }
   if (group) return suffixes[group] ?? null;
-  if (v % 10n) return "영일이삼사오육칠팔구"[Number(v % 10n)];
-  return v % 100n ? "십" : v % 1000n ? "백" : "천";
+  if (v % BigInt(10)) return "영일이삼사오육칠팔구"[Number(v % BigInt(10))];
+  return v % BigInt(100) ? "십" : v % BigInt(1000) ? "백" : "천";
 }
 
 it("정수·소수·분수·대분수의 조사와 ㄹ 받침을 구별하고 모르는 식은 보존한다", () => {
@@ -91,14 +91,14 @@ it("초3~초6 전 단원·난이도·등록 문형: 수식 뒤 조사를 읽는 
           scan(text, `${u.grade}:${u.section.split(" ")[0]}:${kind}:${seed}`);
       }
     }
-  console.log(
+  process.stdout.write(
     JSON.stringify({
       problems,
       checked,
       skipped,
       errors: errors.length,
       examples: errors.slice(0, 30),
-    }),
+    }) + "\n",
   );
   expect(errors.slice(0, 30)).toEqual([]);
 }, 120000);
