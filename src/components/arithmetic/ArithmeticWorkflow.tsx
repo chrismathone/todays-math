@@ -13,10 +13,8 @@ import type { PrintMeta, PrintOptions } from "@/components/unified/print/types";
 import ArithmeticReview, {
   type ArithmeticRegenerationFeedback,
 } from "./ArithmeticReview";
-import {
-  arithmeticToStudioProblems,
-  type ArithmeticOutputSheet,
-} from "@/lib/arithmeticOutput";
+import type { ArithmeticOutputSheet } from "@/lib/arithmeticOutput";
+import type { StudioProblem } from "@/components/unified/types";
 import s from "./ArithmeticWorkbench.module.css";
 import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
 import SheetTagPicker from "@/components/unified/print/SheetTagPicker";
@@ -31,27 +29,11 @@ const steps = [
   { id: "output", label: "3 양식 구성·출력" },
 ] as const;
 const noop = () => {};
+const GeneratedWorkflow = dynamic(
+  () => import("./ArithmeticGeneratedWorkflow"),
+);
 
-export function ArithmeticWorkflow({
-  step,
-  setStep,
-  sheet,
-  title,
-  setTitle,
-  academyName,
-  busy,
-  canOutput,
-  canSave,
-  canRegenerate,
-  dirty,
-  onSave,
-  onRegenerate,
-  children,
-  actions,
-  presentation,
-  onPresentationChange,
-  regeneration,
-}: {
+export type ArithmeticWorkflowProps = {
   step: ArithmeticStep;
   setStep: (step: ArithmeticStep) => void;
   sheet?: ArithmeticOutputSheet;
@@ -70,9 +52,52 @@ export function ArithmeticWorkflow({
   presentation?: ArithmeticPresentation;
   onPresentationChange: (presentation: ArithmeticPresentation) => void;
   regeneration?: ArithmeticRegenerationFeedback;
-}) {
-  const root = useRef<HTMLDivElement>(null);
+};
+
+export type ArithmeticWorkflowViewProps = ArithmeticWorkflowProps & {
+  showAnswers: boolean;
+  onToggleAnswers: () => void;
+};
+
+export function ArithmeticWorkflow(props: ArithmeticWorkflowProps) {
   const [showAnswers, setShowAnswers] = useState(false);
+  const view = {
+    ...props,
+    showAnswers,
+    onToggleAnswers: () => setShowAnswers((value) => !value),
+  };
+  // Scope selection does not need the saved-item renderer or engine registry.
+  return props.sheet ? (
+    <GeneratedWorkflow {...view} sheet={props.sheet} />
+  ) : (
+    <ArithmeticWorkflowView {...view} problems={[]} />
+  );
+}
+
+export function ArithmeticWorkflowView({
+  step,
+  setStep,
+  sheet,
+  title,
+  setTitle,
+  academyName,
+  busy,
+  canOutput,
+  canSave,
+  canRegenerate,
+  dirty,
+  onSave,
+  onRegenerate,
+  children,
+  actions,
+  presentation,
+  onPresentationChange,
+  regeneration,
+  problems,
+  showAnswers,
+  onToggleAnswers,
+}: ArithmeticWorkflowViewProps & { problems: StudioProblem[] }) {
+  const root = useRef<HTMLDivElement>(null);
   const defaults = useMemo(
     () => defaultArithmeticPresentation(academyName),
     [academyName],
@@ -93,10 +118,6 @@ export function ArithmeticWorkflow({
       printMeta: { ...printMeta, ...patch },
     });
   }
-  const problems = useMemo(
-    () => (sheet ? arithmeticToStudioProblems(sheet) : []),
-    [sheet],
-  );
   const rounds = useMemo(() => arithmeticOutputGroups(problems), [problems]);
   useEffect(() => {
     root.current?.scrollIntoView?.({ block: "start" });
@@ -160,7 +181,7 @@ export function ArithmeticWorkflow({
             <button
               type="button"
               aria-pressed={showAnswers}
-              onClick={() => setShowAnswers((value) => !value)}
+              onClick={onToggleAnswers}
             >
               {showAnswers ? "정답 숨기기" : "정답 보기"}
             </button>

@@ -192,7 +192,7 @@ describe("arithmetic grouped shared output", () => {
     },
   );
 
-  it("reviews by round and type while leaving saved expressions and answers unchanged", () => {
+  it("reviews by round and type while leaving saved expressions and answers unchanged", async () => {
     const before = structuredClone(sheet);
     const { container } = render(
       <ArithmeticWorkflow
@@ -213,10 +213,9 @@ describe("arithmetic grouped shared output", () => {
         <div>범위</div>
       </ArithmeticWorkflow>,
     );
-    expect(screen.getByRole("tab", { name: "1회차 4문항" })).toHaveAttribute(
-      "aria-selected",
-      "true",
-    );
+    expect(
+      await screen.findByRole("tab", { name: "1회차 4문항" }),
+    ).toHaveAttribute("aria-selected", "true");
     expect(screen.getByRole("tab", { name: "2회차 2문항" })).toBeVisible();
     expect(
       screen.getAllByRole("heading", { name: types[1].title }),

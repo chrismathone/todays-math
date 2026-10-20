@@ -267,6 +267,29 @@ export async function activeStudentClassIds(
   return [...new Set(rows.map((e) => e.classId))];
 }
 
+function operationalRosterWhere(
+  classIds: string[],
+  includeOnHold: boolean,
+): Prisma.StudentWhereInput {
+  return {
+    eywaWithdrawnAt: null,
+    OR: [
+      { eywaBindingId: null, classId: { in: classIds } },
+      {
+        eywaBindingId: { not: null },
+        isTest: false,
+        eywaWithdrawnAt: null,
+        enrollments: {
+          some: {
+            classId: { in: classIds },
+            ...currentEnrollmentWhere(undefined, includeOnHold),
+          },
+        },
+      },
+    ],
+  };
+}
+
 /** One row per actual (class, student) enrollment, retaining the single Student identity. */
 export async function loadOperationalRoster(
   classIds: string[],
@@ -274,23 +297,7 @@ export async function loadOperationalRoster(
 ) {
   if (!classIds.length) return [];
   const students = await db.student.findMany({
-    where: {
-      eywaWithdrawnAt: null,
-      OR: [
-        { eywaBindingId: null, classId: { in: classIds } },
-        {
-          eywaBindingId: { not: null },
-          isTest: false,
-          eywaWithdrawnAt: null,
-          enrollments: {
-            some: {
-              classId: { in: classIds },
-              ...currentEnrollmentWhere(undefined, includeOnHold),
-            },
-          },
-        },
-      ],
-    },
+    where: operationalRosterWhere(classIds, includeOnHold),
     include: {
       class: true,
       studentAccount: {
@@ -323,6 +330,49 @@ export async function loadOperationalRoster(
         ]
       : [student],
   );
+}
+
+/** Teacher status boards need identities, not every student's report text and class settings.
+ * Enrollment/withdrawal/on-hold rules are shared with the full operational roster above. */
+export async function loadOperationalRosterSummary(
+  classes: readonly { id: string; name: string; grade?: string | null }[],
+  includeOnHold = false,
+) {
+  const classIds = classes.map((cls) => cls.id);
+  if (!classIds.length) return [];
+  const classById = new Map(classes.map((cls) => [cls.id, cls]));
+  const students = await db.student.findMany({
+    where: operationalRosterWhere(classIds, includeOnHold),
+    select: {
+      id: true,
+      name: true,
+      classId: true,
+      branchId: true,
+      createdAt: true,
+      eywaBindingId: true,
+      eywaWithdrawnAt: true,
+      studentAccount: {
+        select: { id: true, disabledAt: true, createdAt: true },
+      },
+      enrollments: {
+        where: {
+          classId: { in: classIds },
+          ...currentEnrollmentWhere(undefined, includeOnHold),
+        },
+        select: { classId: true },
+      },
+    },
+  });
+  return students.flatMap((student) => {
+    const enrolledClassIds = student.eywaBindingId
+      ? [...new Set(student.enrollments.map((e) => e.classId))]
+      : [student.classId];
+    return enrolledClassIds.map((classId) => ({
+      ...student,
+      classId,
+      class: classById.get(classId)!,
+    }));
+  });
 }
 
 export async function accessibleTestsWhere(

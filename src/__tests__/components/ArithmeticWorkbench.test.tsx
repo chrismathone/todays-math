@@ -125,7 +125,7 @@ describe("arithmetic workbench", () => {
     await screen.findByText(/400문항을 생성하고/);
     expect(
       within(
-        screen.getByRole("region", { name: "생성한 문항 검토" }),
+        await screen.findByRole("region", { name: "생성한 문항 검토" }),
       ).getAllByRole("listitem"),
     ).toHaveLength(200);
     expect(

@@ -1,8 +1,4 @@
-import { listArithmeticV2Types } from "@/lib/arithmetic-v2";
-
-const availableGrades = new Set(
-  listArithmeticV2Types().map((type) => type.grade),
-);
+import type { ArithmeticGrade } from "@/lib/arithmetic-v2/types";
 const grades = [
   "초1",
   "초2",
@@ -13,11 +9,7 @@ const grades = [
   "중1",
   "중2",
   "중3",
-].filter((grade) =>
-  availableGrades.has(
-    grade as import("@/lib/arithmetic-v2/types").ArithmeticGrade,
-  ),
-);
+] satisfies ArithmeticGrade[];
 export type ArithmeticGradeControl = {
   value: string;
   disabled?: boolean;
@@ -29,7 +21,11 @@ export function ArithmeticGradeSelect({
   disabled,
   onChange,
   includeBasic = true,
-}: ArithmeticGradeControl & { includeBasic?: boolean }) {
+  availableGrades,
+}: ArithmeticGradeControl & {
+  includeBasic?: boolean;
+  availableGrades?: ReadonlySet<ArithmeticGrade>;
+}) {
   return (
     <label>
       학년
@@ -40,9 +36,11 @@ export function ArithmeticGradeSelect({
       >
         <option>전체</option>
         {includeBasic && <option>기초 연산</option>}
-        {grades.map((grade) => (
-          <option key={grade}>{grade}</option>
-        ))}
+        {grades
+          .filter((grade) => !availableGrades || availableGrades.has(grade))
+          .map((grade) => (
+            <option key={grade}>{grade}</option>
+          ))}
       </select>
     </label>
   );

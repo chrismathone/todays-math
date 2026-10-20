@@ -1,12 +1,11 @@
-import { unitListResponseSchema } from "@/contracts/unit.contract";
-import { db } from "@/lib/db";
 import { getSessionUser } from "@/lib/session";
+import { loadTeachingData } from "@/lib/studio-ai/teaching";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 const headers = { "Cache-Control": "private, no-store" };
 
 /** Bootstrap the embedded teaching area; never expose teaching data anonymously. */
-async function handleGet() {
+async function handleGet(request?: Request) {
   if (process.env.NODE_ENV !== "development") {
     return new Response(null, { status: 404, headers });
   }
@@ -20,19 +19,13 @@ async function handleGet() {
       );
     }
 
-    // Curriculum is shared; ClassManage/MainScreen use the existing owner-scoped APIs.
-    const units = await db.unit.findMany({
-      select: {
-        id: true,
-        grade: true,
-        chapter: true,
-        section: true,
-        orderIndex: true,
-      },
-      orderBy: { orderIndex: "asc" },
-    });
-    const parsed = unitListResponseSchema.parse({ data: units });
-    return Response.json({ data: { user, units: parsed.data } }, { headers });
+    const data = await loadTeachingData(
+      user,
+      Boolean(
+        request && new URL(request.url).searchParams.get("classes") === "1",
+      ),
+    );
+    return Response.json({ data }, { headers });
   } catch {
     return Response.json(
       { error: "수업 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요." },

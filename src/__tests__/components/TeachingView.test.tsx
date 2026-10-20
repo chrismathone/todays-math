@@ -104,6 +104,162 @@ async function enterCredentials(user: ReturnType<typeof userEvent.setup>) {
 }
 
 describe("embedded teaching authentication", () => {
+  it("keeps a direct lessons entry on the lightweight teaching response", async () => {
+    authenticated = true;
+    window.history.replaceState(null, "", "/dev/unified?teachingTab=lessons");
+    server.use(
+      http.get("/api/dev/unified/teaching", ({ request }) => {
+        expect(new URL(request.url).searchParams.has("classes")).toBe(false);
+        return HttpResponse.json({ data: { user: account, units } });
+      }),
+    );
+    render(<TeachingView />);
+    await screen.findByRole("heading", { name: "오늘의 수업" });
+    expect(screen.getByRole("tab", { name: "수업 진행" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+    await waitFor(() => expect(classReads).toBeGreaterThan(0));
+  });
+
+  it("uses the authorized teaching first page without a serial class-list request", async () => {
+    authenticated = true;
+    server.use(
+      http.get("/api/dev/unified/teaching", ({ request }) => {
+        expect(new URL(request.url).searchParams.get("classes")).toBe("1");
+        return HttpResponse.json({
+          data: {
+            user: account,
+            units,
+            classes: {
+              status: "ready",
+              page: {
+                data: [MOCK_CLASS_A],
+                meta: { page: 1, pageSize: 100, total: 1 },
+              },
+            },
+          },
+        });
+      }),
+    );
+    render(<TeachingView />);
+    await screen.findByRole("button", { name: MOCK_CLASS_A.name });
+    await screen.findByText("이서준");
+    expect(classReads).toBe(0);
+    expect(screen.getByRole("heading", { name: "진도" })).toBeInTheDocument();
+  });
+
+  it.each([
+    { status: "error" },
+    { status: "ready", page: { data: "malformed" } },
+  ])(
+    "keeps an initial class-list problem local and retries through the existing class API: %j",
+    async (classes) => {
+      authenticated = true;
+      server.use(
+        http.get("/api/dev/unified/teaching", () =>
+          HttpResponse.json({ data: { user: account, units, classes } }),
+        ),
+      );
+      const user = userEvent.setup();
+      render(<TeachingView />);
+      expect(await screen.findByRole("alert")).toHaveTextContent(
+        "반 목록을 불러오지 못했습니다.",
+      );
+      expect(screen.getByText(account.name)).toBeInTheDocument();
+      expect(classReads).toBe(0);
+      await user.click(
+        screen.getByRole("button", { name: "반 목록 다시 불러오기" }),
+      );
+      await screen.findByText("이서준");
+      expect(classReads).toBe(1);
+    },
+  );
+
+  it("keeps the existing class view on same-account focus and reads fresh classes after a different account replaces it", async () => {
+    authenticated = true;
+    const secondAccount = {
+      ...account,
+      id: "10000000-0000-4000-8000-000000000002",
+      name: "다른 선생님",
+    };
+    let identity = account;
+    server.use(
+      http.get("/api/dev/unified/teaching", ({ request }) => {
+        const initial =
+          new URL(request.url).searchParams.get("classes") === "1";
+        return HttpResponse.json({
+          data: {
+            user: identity,
+            units,
+            ...(initial
+              ? {
+                  classes: {
+                    status: "ready",
+                    page: {
+                      data: [MOCK_CLASS_A],
+                      meta: { page: 1, pageSize: 100, total: 1 },
+                    },
+                  },
+                }
+              : {}),
+          },
+        });
+      }),
+    );
+    render(<TeachingView />);
+    await screen.findByText("이서준");
+    await act(async () => {
+      window.dispatchEvent(new Event("focus"));
+    });
+    expect(classReads).toBe(0);
+    expect(screen.getByText("이서준")).toBeInTheDocument();
+    identity = secondAccount;
+    await act(async () => {
+      window.dispatchEvent(new Event("focus"));
+    });
+    await screen.findByText(secondAccount.name);
+    await waitFor(() => expect(classReads).toBe(1));
+    expect(screen.queryByText(account.name)).not.toBeInTheDocument();
+  });
+
+  it("aborts a superseded teaching request and ignores an old response even if its transport ignores abort", async () => {
+    authenticated = true;
+    const originalFetch = globalThis.fetch;
+    let resolve!: (response: Response) => void;
+    let signal: AbortSignal | null | undefined;
+    const old = new Promise<Response>((done) => {
+      resolve = done;
+    });
+    const spy = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementationOnce((_url, init) => {
+        signal = init?.signal;
+        return old;
+      })
+      .mockImplementation(originalFetch);
+    try {
+      render(<TeachingView />);
+      await waitFor(() => expect(signal).toBeDefined());
+      await act(async () => {
+        window.dispatchEvent(new Event("focus"));
+      });
+      await screen.findByText(account.name);
+      expect(signal?.aborted).toBe(true);
+      await act(async () => {
+        resolve(
+          Response.json({
+            data: { user: { ...account, name: "오래된 계정" }, units },
+          }),
+        );
+      });
+      expect(screen.queryByText("오래된 계정")).not.toBeInTheDocument();
+      expect(screen.getByText(account.name)).toBeInTheDocument();
+    } finally {
+      spy.mockRestore();
+    }
+  });
+
   it.each(["/classes/manage", "/branch"])(
     "uses the authorized studio teaching API on %s in development",
     async (path) => {

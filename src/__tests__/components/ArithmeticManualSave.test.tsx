@@ -31,82 +31,81 @@ import {
 import { defaultArithmeticPresentation } from "@/contracts/arithmeticPresentation.contract";
 import type { ArithmeticOutputSheet } from "@/lib/arithmeticOutput";
 
-vi.mock("next/dynamic", () => ({
-  default: () =>
-    function Editor(
-      props: ComponentProps<
-        typeof import("@/components/unified/WorksheetEditor").default
-      >,
-    ) {
-      return (
-        <section aria-label="공통 출력 편집기">
-          {props.stepNavigation?.items.map((item) => (
-            <button
-              key={item.id}
-              disabled={item.disabled}
-              onClick={item.onSelect}
-            >
-              {item.label}
-            </button>
-          ))}
-          <input
-            aria-label="출력 학습지 제목"
-            value={props.title}
-            onChange={(event) => props.setTitle(event.target.value)}
-          />
-          <select
-            aria-label="공통 양식"
-            value={props.printOptions?.template}
-            onChange={(event) =>
-              props.setPrintOptions?.({
-                template: event.target.value as "modern",
-              })
-            }
+vi.mock("@/components/unified/WorksheetEditor", () => ({
+  default: function Editor(
+    props: ComponentProps<
+      typeof import("@/components/unified/WorksheetEditor").default
+    >,
+  ) {
+    return (
+      <section aria-label="공통 출력 편집기">
+        {props.stepNavigation?.items.map((item) => (
+          <button
+            key={item.id}
+            disabled={item.disabled}
+            onClick={item.onSelect}
           >
-            <option value="yuhyung">유형</option>
-            <option value="modern">모던</option>
-            <option value="workbook">워크북</option>
-          </select>
-          <select
-            aria-label="공통 단 수"
-            value={props.printOptions?.columns}
-            onChange={(event) =>
-              props.setPrintOptions?.({
-                columns: Number(event.target.value) as 1 | 2,
-              })
-            }
-          >
-            <option value="1">1단</option>
-            <option value="2">2단</option>
-          </select>
-          <input
-            aria-label="공통 정답지 포함"
-            type="checkbox"
-            checked={props.printOptions?.showAnswers ?? false}
-            onChange={(event) =>
-              props.setPrintOptions?.({ showAnswers: event.target.checked })
-            }
-          />
-          <input
-            aria-label="공통 강사명"
-            value={props.printMeta?.instructorName ?? ""}
-            onChange={(event) =>
-              props.setPrintMeta?.({ instructorName: event.target.value })
-            }
-          />
-          <output aria-label="출력 문항과 정답">
-            {JSON.stringify(props.selected)}
-          </output>
-          <output aria-label="출력 설정">
-            {JSON.stringify({
-              printOptions: props.printOptions,
-              printMeta: props.printMeta,
-            })}
-          </output>
-          {props.outputNotice}
-        </section>
-      );
-    },
+            {item.label}
+          </button>
+        ))}
+        <input
+          aria-label="출력 학습지 제목"
+          value={props.title}
+          onChange={(event) => props.setTitle(event.target.value)}
+        />
+        <select
+          aria-label="공통 양식"
+          value={props.printOptions?.template}
+          onChange={(event) =>
+            props.setPrintOptions?.({
+              template: event.target.value as "modern",
+            })
+          }
+        >
+          <option value="yuhyung">유형</option>
+          <option value="modern">모던</option>
+          <option value="workbook">워크북</option>
+        </select>
+        <select
+          aria-label="공통 단 수"
+          value={props.printOptions?.columns}
+          onChange={(event) =>
+            props.setPrintOptions?.({
+              columns: Number(event.target.value) as 1 | 2,
+            })
+          }
+        >
+          <option value="1">1단</option>
+          <option value="2">2단</option>
+        </select>
+        <input
+          aria-label="공통 정답지 포함"
+          type="checkbox"
+          checked={props.printOptions?.showAnswers ?? false}
+          onChange={(event) =>
+            props.setPrintOptions?.({ showAnswers: event.target.checked })
+          }
+        />
+        <input
+          aria-label="공통 강사명"
+          value={props.printMeta?.instructorName ?? ""}
+          onChange={(event) =>
+            props.setPrintMeta?.({ instructorName: event.target.value })
+          }
+        />
+        <output aria-label="출력 문항과 정답">
+          {JSON.stringify(props.selected)}
+        </output>
+        <output aria-label="출력 설정">
+          {JSON.stringify({
+            printOptions: props.printOptions,
+            printMeta: props.printMeta,
+          })}
+        </output>
+        {props.outputNotice}
+      </section>
+    );
+  },
 }));
 
 let writer = true;
@@ -119,6 +118,9 @@ const advance = async (time = 10000) => {
 const click = async (name: string) => {
   await act(async () => {
     fireEvent.click(screen.getByRole("button", { name }));
+  });
+  await act(async () => {
+    await vi.dynamicImportSettled();
   });
 };
 const reviewItems = () =>
@@ -143,6 +145,7 @@ beforeEach(() => {
               ? ARITHMETIC_V2_CATALOG_VERSION
               : ARITHMETIC_CATALOG_VERSION,
             writerEnabled: writer,
+            ...(grade ? { types: listArithmeticV2Types() } : {}),
           },
         });
       if (String(url).endsWith("/generate")) {
