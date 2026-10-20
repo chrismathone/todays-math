@@ -1,6 +1,7 @@
 import "server-only";
 import {
   withBankReadFingerprint,
+  withBankReadClient,
   currentBankReadClient,
 } from "./bankReadFingerprint";
 import type { Prisma } from "@prisma/client";
@@ -474,9 +475,28 @@ export type UnifiedBankBootstrap = Pick<
   | "queryKey"
 >;
 
-/** S2 navigation: fetch just the visible level, without touching problems. */
+/** Shared scope-counts predicate, format and grouped counter. */
+export async function loadFilteredQuestionScopeCounts(
+  params: URLSearchParams,
+  context: BankQueryContext | undefined,
+  tx: Prisma.TransactionClient,
+  dimensions: import("./problem/questionCountSql").CountDimension[],
+) {
+  const resolved = await resolveUnifiedBankQuery(params, context);
+  return loadQuestionCounts(
+    { AND: [problemVisibleWhere(), ...resolved.selection] },
+    tx,
+    dimensions,
+    resolved.format,
+    undefined,
+    false,
+  );
+}
+
+/** S2 navigation: metadata remains available even when filtered counts are zero. */
 export async function loadUnifiedBankCurriculum(
   params: URLSearchParams,
+  context?: BankQueryContext,
 ): Promise<UnifiedBankCurriculum> {
   const parsed = unifiedBankCurriculumQuerySchema.safeParse(
     Object.fromEntries(params),
@@ -485,9 +505,56 @@ export async function loadUnifiedBankCurriculum(
     throw new UnifiedBankQueryError(
       "검색 조건이 올바르지 않습니다. 필터를 확인해 주세요.",
     );
+  if (parsed.data.availability === "1") {
+    const filters = new URLSearchParams(params);
+    filters.delete("view");
+    filters.delete("availability");
+    filters.delete("version");
+    filters.delete("families");
+    // Resolve and count inside the same scoped snapshot as the labels.
+    return db.$transaction(
+      (tx) =>
+        withBankReadClient(tx, async () => {
+          const buckets = await loadFilteredQuestionScopeCounts(
+            filters,
+            context,
+            tx,
+            ["unit"],
+          );
+          const metadataParams = new URLSearchParams();
+          for (const key of ["identity", "view", "grade", "chapter", "unitIds"])
+            if (params.has(key)) metadataParams.set(key, params.get(key)!);
+          const metadata = await loadUnifiedBankCurriculum(metadataParams);
+          if (parsed.data.unitIds || parsed.data.chapter) return metadata;
+          const field = parsed.data.grade ? "chapter" : "grade";
+          const labels =
+            field === "grade" ? metadata.grades : metadata.chapters;
+          const units = await tx.unit.findMany({
+            where: parsed.data.grade ? { grade: parsed.data.grade } : undefined,
+            select: { id: true, grade: true, chapter: true },
+          });
+          const byUnit = new Map(
+            buckets
+              .filter((b) => b.axis === "unit")
+              .map((b) => [b.key, b.available]),
+          );
+          const counts = Object.fromEntries(labels.map((label) => [label, 0]));
+          for (const unit of units) {
+            const label = unit[field];
+            if (Object.hasOwn(counts, label))
+              counts[label] += byUnit.get(unit.id) ?? 0;
+          }
+          return {
+            ...metadata,
+            [field === "grade" ? "gradeCounts" : "chapterCounts"]: counts,
+          };
+        }),
+      { isolationLevel: "RepeatableRead", timeout: 30000 },
+    );
+  }
   const { grade, chapter, unitIds } = parsed.data;
   if (unitIds || chapter) {
-    const units = await db.unit.findMany({
+    const units = await (currentBankReadClient()?.unit ?? db.unit).findMany({
       where: unitIds ? { id: { in: unitIds } } : { grade, chapter },
       select: {
         id: true,
@@ -501,7 +568,7 @@ export async function loadUnifiedBankCurriculum(
     return { view: "curriculum", grades: [], chapters: [], units };
   }
   if (grade) {
-    const rows = await db.unit.groupBy({
+    const rows = await (currentBankReadClient()?.unit ?? db.unit).groupBy({
       where: { grade },
       by: ["chapter"],
       _min: { orderIndex: true },
@@ -514,7 +581,7 @@ export async function loadUnifiedBankCurriculum(
       units: [],
     };
   }
-  const rows = await db.unit.groupBy({
+  const rows = await (currentBankReadClient()?.unit ?? db.unit).groupBy({
     by: ["grade"],
     _min: { orderIndex: true },
     orderBy: { _min: { orderIndex: "asc" } },

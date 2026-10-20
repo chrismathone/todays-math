@@ -82,11 +82,13 @@ export interface ExamQuestionInfo {
   /** 출처 이름(자작 · 교과서 · 기출 …) — 교체 창의 메타 줄(W3). */
   origin?: string;
 }
+/** String branches remain valid for existing non-inventory sources. */
+export type ExamScopeBranch = string | { label: string; count?: number };
 export interface ExamBuilderSource<T> {
   /** Optional S2 data navigation; legacy/local sources can keep full scope lists. */
   scopeNavigation?: {
-    groups: (signal: AbortSignal) => Promise<string[]>;
-    details: (group: string, signal: AbortSignal) => Promise<string[]>;
+    groups: (signal: AbortSignal) => Promise<ExamScopeBranch[]>;
+    details: (group: string, signal: AbortSignal) => Promise<ExamScopeBranch[]>;
     lessons: (
       group: string,
       detail: string,

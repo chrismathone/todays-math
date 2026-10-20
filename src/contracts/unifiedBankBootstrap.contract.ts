@@ -3,6 +3,7 @@ import { uuidSchema } from "./common.contract";
 import { unitSchema } from "./unit.contract";
 import { questionReadMetadataSchema } from "./questionFormats.contract";
 import {
+  unifiedBankQuerySchema,
   bankSourceBookSchema,
   bankSourceCountsSchema,
   bankSourceMaterialSchema,
@@ -25,19 +26,30 @@ export const unifiedBankBootstrapSchema = questionReadMetadataSchema.extend({
   unitCounts: z.record(uuidSchema, z.number().int().nonnegative()),
 });
 
-/** Curriculum navigation reads no problem inventory or account data. */
+/** Legacy metadata stays strict; filtered availability is explicitly requested. */
+const curriculumNavigationShape = {
+  identity: z.literal("question"),
+  view: z.literal("curriculum"),
+  availability: z.literal("1").optional(),
+  grade: z.string().trim().min(1).max(100).optional(),
+  chapter: z.string().trim().min(1).max(200).optional(),
+  unitIds: z
+    .string()
+    .transform((value) => [...new Set(value.split(","))])
+    .pipe(z.array(uuidSchema).min(1).max(1000))
+    .optional(),
+} as const;
 export const unifiedBankCurriculumQuerySchema = z
-  .strictObject({
-    identity: z.literal("question"),
-    view: z.literal("curriculum"),
-    grade: z.string().trim().min(1).max(100).optional(),
-    chapter: z.string().trim().min(1).max(200).optional(),
-    unitIds: z
-      .string()
-      .transform((value) => [...new Set(value.split(","))])
-      .pipe(z.array(uuidSchema).min(1).max(1000))
-      .optional(),
-  })
+  .union([
+    z.strictObject(curriculumNavigationShape),
+    z.strictObject({
+      ...unifiedBankQuerySchema.shape,
+      ...curriculumNavigationShape,
+      availability: z.literal("1"),
+      version: z.literal("2").optional(),
+      families: z.literal("1").optional(),
+    }),
+  ])
   .refine((value) => !value.chapter || !!value.grade)
   .refine((value) => !value.unitIds || (!value.grade && !value.chapter));
 
@@ -46,6 +58,11 @@ export const unifiedBankCurriculumSchema = z.strictObject({
   grades: z.array(z.string().min(1)),
   chapters: z.array(z.string().min(1)),
   units: z.array(unitSchema),
+  /** Missing means unknown, never zero. Sent only for availability=1. */
+  gradeCounts: z.record(z.string(), z.number().int().nonnegative()).optional(),
+  chapterCounts: z
+    .record(z.string(), z.number().int().nonnegative())
+    .optional(),
 });
 export type UnifiedBankCurriculum = z.infer<typeof unifiedBankCurriculumSchema>;
 
