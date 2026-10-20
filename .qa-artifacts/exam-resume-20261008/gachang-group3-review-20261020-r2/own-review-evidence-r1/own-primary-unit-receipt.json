@@ -1,0 +1,111 @@
+{
+  "curriculumEvidenceSHA256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+  "snapshotSHA256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+  "officialDocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+  "2015PDFSHA256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+  "standards": [
+    {
+      "code": "9수01-07",
+      "verified_text": "제곱근의 뜻을 알고, 그 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3776,
+        "record_offset_in_uncompressed_stream": 192865,
+        "extracted_paragraph_1based": 768
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          33
+        ],
+        "printed_pages": [
+          29
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-05",
+      "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3916,
+        "record_offset_in_uncompressed_stream": 199888,
+        "extracted_paragraph_1based": 797
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-12",
+      "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3956,
+        "record_offset_in_uncompressed_stream": 201534,
+        "extracted_paragraph_1based": 807
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    }
+  ],
+  "currentUnits": [
+    {
+      "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "grade": "중3",
+      "chapter": "2. 다항식의 곱셈과 인수분해",
+      "section": "다항식의 곱셈",
+      "semester": 1,
+      "orderIndex": 472,
+      "problemCodePrefix": "J30201"
+    },
+    {
+      "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "제곱근의 뜻과 성질",
+      "semester": 1,
+      "orderIndex": 469,
+      "problemCodePrefix": "J30101"
+    }
+  ],
+  "q06NecessaryPriorMultiplicationUnit": {
+    "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+    "grade": "중3",
+    "chapter": "2. 다항식의 곱셈과 인수분해",
+    "section": "다항식의 곱셈",
+    "semester": 1,
+    "orderIndex": 472,
+    "problemCodePrefix": "J30201"
+  },
+  "placement": "2015M3source2025/practice2026afterlearnedprerequisites;2027M3/2022separatepending",
+  "limits": "Existing actually inspected primary text/record/page and exactcapturedUnit combined with actual current whole student methods. Not school/grade-band/author declaration alone; no currentDBregistration promise."
+}
