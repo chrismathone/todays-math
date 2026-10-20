@@ -1,0 +1,119 @@
+{
+  "studentDigest": "1059f6c697898bd87e1c079c99bf2b2f251f4d2056dfdecf80c20061752c7aae",
+  "solverId": "independent-helper-nobyeon-sem2-group5-r2-blind-20261020",
+  "answer": "④",
+  "solution": "가로축의1차점수는A가30점이고세로축의2차점수는B가50점이다. 따라서두조건은1차점수가30점보다크고2차점수가50점보다작다는것이다. A는자기자신의1차점수보다높지않다. B는2차점수가B와같으므로낮다는조건을만족하지않는다. C는2차80점,E는2차70점이라조건을만족하지않는다. D는1차60점>30점,2차30점<50점으로두조건을모두만족한다. 따라서정답은④이다.",
+  "evidence": {
+    "exposure": {
+      "currentGroup5r2AuthorAnswersSolutionsPrivatePackageExposed": false,
+      "priorOriginalSourceExposure": "원래노변q15의소득/지출그림과q16/17공통20명국어점수그림을소유범위r2/r3에서실제로보았고20쌍을전사했다. 원문페이지에손글씨선택표시/계산도보였다는점을이미선언했다. 그표시를새문항풀이근거로사용하지않는다. 관련대표값/산포도/산점도및노변다른문항의저자검토이력도있다.",
+      "currentBlindBoundary": "이번currentgroup5-r2의학생JSON/manifest/brief/학생SVG해시와q15/q16/q17학생PNG만확인했다. group5-r1초안·현재저자답/해설·parentworktree·private/source질문·이전저자해설을열지않았다. 전체코퍼스미노출주장없음.",
+      "numericalReadingMethod": "새PNG의인쇄축눈금과10점격자/점라벨로수치쌍을직접읽음. 픽셀길이/SVG좌표비율을점수오라클로쓰지않음."
+    },
+    "ownExactCalculations": {
+      "ownCurrentGridTranscription": {
+        "A": [
+          30,
+          60
+        ],
+        "B": [
+          70,
+          50
+        ],
+        "C": [
+          50,
+          80
+        ],
+        "D": [
+          60,
+          30
+        ],
+        "E": [
+          80,
+          70
+        ]
+      },
+      "thresholds": {
+        "xStrictlyAbove": 30,
+        "yStrictlyBelow": 50
+      },
+      "allStudentsTwoConditions": {
+        "A": {
+          "xGreaterThanA": false,
+          "yLessThanB": false,
+          "both": false
+        },
+        "B": {
+          "xGreaterThanA": true,
+          "yLessThanB": false,
+          "both": false
+        },
+        "C": {
+          "xGreaterThanA": true,
+          "yLessThanB": false,
+          "both": false
+        },
+        "D": {
+          "xGreaterThanA": true,
+          "yLessThanB": true,
+          "both": true
+        },
+        "E": {
+          "xGreaterThanA": true,
+          "yLessThanB": false,
+          "both": false
+        }
+      },
+      "allChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": false,
+        "④": true,
+        "⑤": false
+      },
+      "existenceUniqueness": "실제D가두엄격부등식을충족하고A/B/C/E는각각적어도하나를충족하지않는다. 경계동일은포함하지않으며따라서학생및선택기호가유일하다. 단위는연습점수점이다."
+    },
+    "studentDigestVerified": true,
+    "studentPreviewPngSha256": "d589370beccfbc9a1dabb4a080b40c279f5a6399707a2828162775dbc6d622a3",
+    "studentSvgSha256s": [
+      "4a58f12be9d34b0e8301321d6d626ec582fd0429861ca0878700553c7903e26d"
+    ],
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "student-method-proposed-in-scope",
+        "basis": "실제산점도의가로/세로점수를두엄격부등조건으로비교한다. 중학교산점도/자료정리·비율/평균과이전일차관계의방법만필요하다."
+      },
+      "choices": {
+        "status": "all-five-independently-checked",
+        "basis": "A/B/C/D/E각두조건을모두확인하여④D만참."
+      },
+      "figuresAndTables": {
+        "status": "student-png-actually-viewed",
+        "basis": "현재학생PNG를실제view하고인쇄눈금/격자와모든라벨의점수쌍을직접전사했다. A~E다섯점모두검토. SVG해시를제공manifest와대조했고픽셀/SVG좌표길이로점수를얻지않았다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "보다높다/낮다는엄격비교로동일을제외하며가로x/세로y를바꾸지않는다. 점수단위는점이며길이나좌표픽셀단위가아니다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "선택기호 ④만저장하며실제학생/수치와모든보기판정은solution/evidence에기록했다. 존재및선택유일성을정확히확인했다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "현재점의명시적비교·개수/분수비율·순위범위·평균의일차식만쓴다. 공분산/회귀/고등상관계수나원문답은사용하지않는다. 저자전체해설은아직미노출로후속검토대상."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "2015중3산점도9수05-08의쌍자료/축읽기와대표값9수05-06의평균및이전부등비교·백분율·자료개수/일차식학습후배정. 이번새학생문항의정식7면/특정학교진도/2022승인은후속해설검토와구분한다."
+      }
+    },
+    "limits": [
+      "현재author/private/원문정답을열지않음",
+      "새blindraw는수학solved이나정식학년/family/권리/native/loadable승인아님",
+      "q16은가능한a조건과보기의유일선택을구분; q17은전체범위와경계동점모두검토",
+      "2022별도보류"
+    ]
+  },
+  "status": "solved"
+}

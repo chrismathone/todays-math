@@ -1,0 +1,570 @@
+{
+  "studentFileSha256": "2444f4492c1dd778b9286a827a2f0ade62d558a2b2cdca15226ad974588f7e29",
+  "blindManifestSha256": "4e8e53c3d8ea861de4352135712dfd7877f86c797f51c3f78d5275f848da13ad",
+  "ownScriptSha256": "eb0556f36336ab03b0552053906368173de8c1de5ad63b8a1ea43bcd29224e49",
+  "UTF8Probe": "passed",
+  "studentPngsViewed": [
+    15,
+    16,
+    17
+  ],
+  "results": [
+    {
+      "q": 15,
+      "rawSha256": "c259a542dfba429a56219533baae9ff06d1a52720e6310bc11977ea07acb7a00",
+      "answer": "④",
+      "studentDigest": "1059f6c697898bd87e1c079c99bf2b2f251f4d2056dfdecf80c20061752c7aae"
+    },
+    {
+      "q": 16,
+      "rawSha256": "98af8b63a21c7d263b939cab252aed9c4b1eb1dbc8153275522ae2e1bab23d62",
+      "answer": "⑤",
+      "studentDigest": "bd78abd00caa32b6d87c5496e00cc44e280badd866a62871df23be5024cc1145"
+    },
+    {
+      "q": 17,
+      "rawSha256": "9e0c79b6cc6b2ade311c2d46f5063e4d11c646da6bf4c3e60afc101762071002",
+      "answer": "⑤",
+      "studentDigest": "720d1b047a2d5afaba208517f5273c669f3c1ddd706d66e6ded91bb6641f094f"
+    }
+  ],
+  "exposure": {
+    "currentGroup5r2AuthorAnswersSolutionsPrivatePackageExposed": false,
+    "priorOriginalSourceExposure": "원래노변q15의소득/지출그림과q16/17공통20명국어점수그림을소유범위r2/r3에서실제로보았고20쌍을전사했다. 원문페이지에손글씨선택표시/계산도보였다는점을이미선언했다. 그표시를새문항풀이근거로사용하지않는다. 관련대표값/산포도/산점도및노변다른문항의저자검토이력도있다.",
+    "currentBlindBoundary": "이번currentgroup5-r2의학생JSON/manifest/brief/학생SVG해시와q15/q16/q17학생PNG만확인했다. group5-r1초안·현재저자답/해설·parentworktree·private/source질문·이전저자해설을열지않았다. 전체코퍼스미노출주장없음.",
+    "numericalReadingMethod": "새PNG의인쇄축눈금과10점격자/점라벨로수치쌍을직접읽음. 픽셀길이/SVG좌표비율을점수오라클로쓰지않음."
+  },
+  "calculations": {
+    "15": {
+      "ownCurrentGridTranscription": {
+        "A": [
+          30,
+          60
+        ],
+        "B": [
+          70,
+          50
+        ],
+        "C": [
+          50,
+          80
+        ],
+        "D": [
+          60,
+          30
+        ],
+        "E": [
+          80,
+          70
+        ]
+      },
+      "thresholds": {
+        "xStrictlyAbove": 30,
+        "yStrictlyBelow": 50
+      },
+      "allStudentsTwoConditions": {
+        "A": {
+          "xGreaterThanA": false,
+          "yLessThanB": false,
+          "both": false
+        },
+        "B": {
+          "xGreaterThanA": true,
+          "yLessThanB": false,
+          "both": false
+        },
+        "C": {
+          "xGreaterThanA": true,
+          "yLessThanB": false,
+          "both": false
+        },
+        "D": {
+          "xGreaterThanA": true,
+          "yLessThanB": true,
+          "both": true
+        },
+        "E": {
+          "xGreaterThanA": true,
+          "yLessThanB": false,
+          "both": false
+        }
+      },
+      "allChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": false,
+        "④": true,
+        "⑤": false
+      },
+      "existenceUniqueness": "실제D가두엄격부등식을충족하고A/B/C/E는각각적어도하나를충족하지않는다. 경계동일은포함하지않으며따라서학생및선택기호가유일하다. 단위는연습점수점이다."
+    },
+    "16": {
+      "ownCurrentGridTranscription": {
+        "A": [
+          20,
+          30
+        ],
+        "B": [
+          30,
+          50
+        ],
+        "C": [
+          40,
+          60
+        ],
+        "D": [
+          50,
+          40
+        ],
+        "E": [
+          60,
+          30
+        ],
+        "F": [
+          70,
+          60
+        ],
+        "G": [
+          80,
+          80
+        ]
+      },
+      "separatelyGivenHfirstScore": 60,
+      "classifiedSeven": {
+        "higher": [
+          "A",
+          "B",
+          "C"
+        ],
+        "equal": [
+          "G"
+        ],
+        "lower": [
+          "D",
+          "E",
+          "F"
+        ]
+      },
+      "plottedStudents": 7,
+      "allStudentsIncludingH": 8,
+      "requiredHigherCount": "4",
+      "allChoices": [
+        {
+          "a": 30,
+          "HstrictlyImproves": false,
+          "higherCount": 3,
+          "denominatorAllStudents": 8,
+          "fraction": "3/8",
+          "percent": "75/2",
+          "satisfies": false
+        },
+        {
+          "a": 40,
+          "HstrictlyImproves": false,
+          "higherCount": 3,
+          "denominatorAllStudents": 8,
+          "fraction": "3/8",
+          "percent": "75/2",
+          "satisfies": false
+        },
+        {
+          "a": 50,
+          "HstrictlyImproves": false,
+          "higherCount": 3,
+          "denominatorAllStudents": 8,
+          "fraction": "3/8",
+          "percent": "75/2",
+          "satisfies": false
+        },
+        {
+          "a": 60,
+          "HstrictlyImproves": false,
+          "higherCount": 3,
+          "denominatorAllStudents": 8,
+          "fraction": "3/8",
+          "percent": "75/2",
+          "satisfies": false
+        },
+        {
+          "a": 70,
+          "HstrictlyImproves": true,
+          "higherCount": 4,
+          "denominatorAllStudents": 8,
+          "fraction": "1/2",
+          "percent": "50",
+          "satisfies": true
+        }
+      ],
+      "admissibleConditionOverUnrestrictedScores": "a>60; 문제에별도정수/상한을추가하지않음. 보기중가능값은70한개이나모든가능a가유일한것은아니다.",
+      "witness": "a70이면높은학생A/B/C/H의4명/전체8명=50%. G는동점이라제외. a60이면3/8이라실패."
+    },
+    "17": {
+      "ownCurrentGridTranscription": {
+        "A": [
+          90,
+          80
+        ],
+        "B": [
+          60,
+          90
+        ],
+        "C": [
+          70,
+          70
+        ],
+        "D": [
+          50,
+          60
+        ],
+        "E": [
+          80,
+          40
+        ],
+        "F": [
+          40,
+          30
+        ],
+        "G": [
+          20,
+          30
+        ]
+      },
+      "baseTotals": {
+        "A": 170,
+        "B": 150,
+        "C": 140,
+        "D": 110,
+        "E": 120,
+        "F": 70,
+        "G": 50
+      },
+      "HfirstScore": 80,
+      "HsecondScoreDomain": "integer80..100 inclusive",
+      "HtotalRange": [
+        160,
+        180
+      ],
+      "all21DomainCases": [
+        {
+          "a": 80,
+          "Htotal": 160,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 160,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "80",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 81,
+          "Htotal": 161,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 161,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "161/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 82,
+          "Htotal": 162,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 162,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "81",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 83,
+          "Htotal": 163,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 163,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "163/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 84,
+          "Htotal": 164,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 164,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "82",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 85,
+          "Htotal": 165,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 165,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "165/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 86,
+          "Htotal": 166,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 166,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "83",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 87,
+          "Htotal": 167,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 167,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "167/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 88,
+          "Htotal": 168,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 168,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "84",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 89,
+          "Htotal": 169,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 169,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "169/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 90,
+          "Htotal": 170,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": true,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "85",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 91,
+          "Htotal": 171,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "171/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 92,
+          "Htotal": 172,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "86",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 93,
+          "Htotal": 173,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "173/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 94,
+          "Htotal": 174,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "87",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 95,
+          "Htotal": 175,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "175/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 96,
+          "Htotal": 176,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "88",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 97,
+          "Htotal": 177,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "177/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 98,
+          "Htotal": 178,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "89",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 99,
+          "Htotal": 179,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "179/2",
+          "satisfiesMean90": false
+        },
+        {
+          "a": 100,
+          "Htotal": 180,
+          "selected": [
+            "A",
+            "H"
+          ],
+          "topTwoTie": false,
+          "cutoffTotal": 170,
+          "thirdTotal": 150,
+          "tieAcrossCutoff": false,
+          "secondScoreMean": "90",
+          "satisfiesMean90": true
+        }
+      ],
+      "allFiveChoiceMeans": {
+        "80": "80",
+        "85": "165/2",
+        "90": "85",
+        "95": "175/2",
+        "100": "90"
+      },
+      "allChoiceChecks": {
+        "①": false,
+        "②": false,
+        "③": false,
+        "④": false,
+        "⑤": true
+      },
+      "validA": [
+        100
+      ],
+      "rangeOfPossibleSelectedSecondScoreMean": [
+        "80",
+        "90"
+      ],
+      "tieReasoning": "a=90에서는선택된A/H끼리동점이지만경계밖3위와의동점없음. 모든21경우선택집합은{A,H}로유일.",
+      "existenceUniqueness": "현재허용정수21개를모두검사했고평균조건은a100하나에서만성립. 학생해설은전수코드가아닌합범위와일차식으로증명한다."
+    }
+  },
+  "noCurrentAuthorExposure": true,
+  "newFormalApprovals": 0
+}
