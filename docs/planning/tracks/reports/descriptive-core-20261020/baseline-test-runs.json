@@ -1,0 +1,219 @@
+{
+  "head": "b553ad38f84e0b5fdec98359b2309ee855d2a657",
+  "branch": "",
+  "node": "v24.22.0",
+  "npm": "11.19.1",
+  "nodeModulesResolved": "/Users/pss/Desktop/creative/today_/node_modules",
+  "observedParentFailures": [
+    "src/__tests__/unit/examWiringAudit.test.ts",
+    "src/__tests__/unit/noRmSync.test.ts",
+    "src/__tests__/unit/exportPerMenu.test.ts",
+    "src/__tests__/unit/examStudyIntegration.test.ts",
+    "src/__tests__/unit/proxyStudentGate.test.ts",
+    "src/__tests__/unit/examStudyCompletion.test.ts",
+    "src/__tests__/api/basket.test.ts",
+    "src/__tests__/api/adminSeesAll.test.ts",
+    "src/__tests__/api/autoDraftCron.test.ts",
+    "src/__tests__/api/autoDraftRunLink.test.ts",
+    "src/__tests__/api/test.test.ts",
+    "src/__tests__/api/defaultReviewRange.test.ts",
+    "src/__tests__/api/questionBasket.test.ts",
+    "src/__tests__/unit/examStudyRoutes.test.ts",
+    "src/__tests__/api/questionDaily.test.ts",
+    "src/__tests__/components/JeongtongHeader.test.tsx",
+    "src/__tests__/components/ProblemSourceReference.test.tsx"
+  ],
+  "notSelected": [
+    "src/__tests__/components/JeongtongHeader.test.tsx",
+    "src/__tests__/components/ProblemSourceReference.test.tsx"
+  ],
+  "runs": [
+    {
+      "label": "required-four",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=4",
+        "src/__tests__/unit/examWiringAudit.test.ts",
+        "src/__tests__/unit/noRmSync.test.ts",
+        "src/__tests__/unit/exportPerMenu.test.ts",
+        "src/__tests__/unit/examStudyIntegration.test.ts"
+      ],
+      "files": [
+        "src/__tests__/unit/examWiringAudit.test.ts",
+        "src/__tests__/unit/noRmSync.test.ts",
+        "src/__tests__/unit/exportPerMenu.test.ts",
+        "src/__tests__/unit/examStudyIntegration.test.ts"
+      ],
+      "startedAt": "2026-10-20T15:56:53.321883+09:00",
+      "log": "/tmp/desc-baseline-test-review/required-four.log",
+      "exitCode": 1,
+      "endedAt": "2026-10-20T15:57:02.505006+09:00"
+    },
+    {
+      "label": "additional-failures",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=4",
+        "src/__tests__/unit/proxyStudentGate.test.ts",
+        "src/__tests__/unit/examStudyCompletion.test.ts",
+        "src/__tests__/api/basket.test.ts",
+        "src/__tests__/api/adminSeesAll.test.ts",
+        "src/__tests__/api/autoDraftCron.test.ts",
+        "src/__tests__/api/autoDraftRunLink.test.ts",
+        "src/__tests__/api/test.test.ts",
+        "src/__tests__/api/defaultReviewRange.test.ts",
+        "src/__tests__/api/questionBasket.test.ts",
+        "src/__tests__/unit/examStudyRoutes.test.ts",
+        "src/__tests__/api/questionDaily.test.ts"
+      ],
+      "files": [
+        "src/__tests__/unit/proxyStudentGate.test.ts",
+        "src/__tests__/unit/examStudyCompletion.test.ts",
+        "src/__tests__/api/basket.test.ts",
+        "src/__tests__/api/adminSeesAll.test.ts",
+        "src/__tests__/api/autoDraftCron.test.ts",
+        "src/__tests__/api/autoDraftRunLink.test.ts",
+        "src/__tests__/api/test.test.ts",
+        "src/__tests__/api/defaultReviewRange.test.ts",
+        "src/__tests__/api/questionBasket.test.ts",
+        "src/__tests__/unit/examStudyRoutes.test.ts",
+        "src/__tests__/api/questionDaily.test.ts"
+      ],
+      "startedAt": "2026-10-20T15:57:02.505299+09:00",
+      "log": "/tmp/desc-baseline-test-review/additional-failures.log",
+      "exitCode": 1,
+      "endedAt": "2026-10-20T15:57:11.766461+09:00"
+    },
+    {
+      "label": "additional-render",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=4",
+        "src/__tests__/components/JeongtongHeader.test.tsx",
+        "src/__tests__/components/ProblemSourceReference.test.tsx",
+        "src/__tests__/components/mathgenTemplates.test.tsx",
+        "src/__tests__/components/perProblemFractionView.test.tsx"
+      ],
+      "files": [
+        "src/__tests__/components/JeongtongHeader.test.tsx",
+        "src/__tests__/components/ProblemSourceReference.test.tsx",
+        "src/__tests__/components/mathgenTemplates.test.tsx",
+        "src/__tests__/components/perProblemFractionView.test.tsx"
+      ],
+      "startedAt": "2026-10-20T15:58:10.331769+09:00",
+      "log": "/tmp/desc-baseline-test-review/additional-render.log",
+      "exitCode": 1,
+      "endedAt": "2026-10-20T15:58:14.323612+09:00"
+    },
+    {
+      "label": "final-six",
+      "head": "b553ad38f84e0b5fdec98359b2309ee855d2a657",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=4",
+        "src/__tests__/components/mixedFractionScreens.test.tsx",
+        "src/__tests__/unit/arithmeticV2Geometry.test.ts",
+        "src/__tests__/unit/bankDecideMiddleLoader.test.ts",
+        "src/__tests__/unit/mathSrsQuickFence.test.ts",
+        "src/__tests__/unit/planDailyReview.test.ts",
+        "src/__tests__/unit/problemOrder.test.ts"
+      ],
+      "files": [
+        "src/__tests__/components/mixedFractionScreens.test.tsx",
+        "src/__tests__/unit/arithmeticV2Geometry.test.ts",
+        "src/__tests__/unit/bankDecideMiddleLoader.test.ts",
+        "src/__tests__/unit/mathSrsQuickFence.test.ts",
+        "src/__tests__/unit/planDailyReview.test.ts",
+        "src/__tests__/unit/problemOrder.test.ts"
+      ],
+      "startedAt": "2026-10-20T16:03:03.278873+09:00",
+      "log": "/tmp/desc-baseline-test-review/final-six.log",
+      "environmentOverrides": {
+        "BANK_DECIDE_CAPTURE_LOADER": "0"
+      },
+      "statusBefore": "",
+      "exitCode": 1,
+      "endedAt": "2026-10-20T16:03:27.437100+09:00",
+      "statusAfter": ""
+    }
+  ],
+  "statusAfterTests": "",
+  "finalHead": "ed17a8acbfa15712888e681f5cb561ab5560bfe5",
+  "finalBranch": "BIGSHOL/desc-gates-review",
+  "finalStatus": "",
+  "finalNodeModulesExists": false,
+  "statusAfterRenderTests": "",
+  "comparisonSnapshot": "/tmp/desc-baseline-test-review/parent-log-final-six.txt",
+  "observedParentFailuresAtCutoff": [
+    "src/__tests__/unit/examWiringAudit.test.ts",
+    "src/__tests__/unit/noRmSync.test.ts",
+    "src/__tests__/unit/exportPerMenu.test.ts",
+    "src/__tests__/unit/examStudyIntegration.test.ts",
+    "src/__tests__/unit/proxyStudentGate.test.ts",
+    "src/__tests__/unit/examStudyCompletion.test.ts",
+    "src/__tests__/api/basket.test.ts",
+    "src/__tests__/api/adminSeesAll.test.ts",
+    "src/__tests__/api/autoDraftCron.test.ts",
+    "src/__tests__/api/autoDraftRunLink.test.ts",
+    "src/__tests__/api/test.test.ts",
+    "src/__tests__/api/defaultReviewRange.test.ts",
+    "src/__tests__/api/questionBasket.test.ts",
+    "src/__tests__/unit/examStudyRoutes.test.ts",
+    "src/__tests__/api/questionDaily.test.ts",
+    "src/__tests__/components/JeongtongHeader.test.tsx",
+    "src/__tests__/components/ProblemSourceReference.test.tsx",
+    "src/__tests__/components/mathgenTemplates.test.tsx",
+    "src/__tests__/components/perProblemFractionView.test.tsx",
+    "src/__tests__/components/mixedFractionScreens.test.tsx",
+    "src/__tests__/unit/arithmeticV2Geometry.test.ts",
+    "src/__tests__/unit/bankDecideMiddleLoader.test.ts"
+  ],
+  "notSelectedAtCutoff": [
+    "src/__tests__/components/mixedFractionScreens.test.tsx",
+    "src/__tests__/unit/arithmeticV2Geometry.test.ts",
+    "src/__tests__/unit/bankDecideMiddleLoader.test.ts"
+  ],
+  "finalVerifiedAt": "2026-10-20T16:04:46.839854+09:00",
+  "explicitlyExcluded": [
+    "src/__tests__/unit/decisionLogNumbers.test.ts"
+  ],
+  "observedParentFailuresFinal": [
+    "src/__tests__/unit/examWiringAudit.test.ts",
+    "src/__tests__/unit/noRmSync.test.ts",
+    "src/__tests__/unit/exportPerMenu.test.ts",
+    "src/__tests__/unit/examStudyIntegration.test.ts",
+    "src/__tests__/unit/proxyStudentGate.test.ts",
+    "src/__tests__/unit/examStudyCompletion.test.ts",
+    "src/__tests__/api/basket.test.ts",
+    "src/__tests__/api/adminSeesAll.test.ts",
+    "src/__tests__/api/autoDraftCron.test.ts",
+    "src/__tests__/api/autoDraftRunLink.test.ts",
+    "src/__tests__/api/test.test.ts",
+    "src/__tests__/api/defaultReviewRange.test.ts",
+    "src/__tests__/api/questionBasket.test.ts",
+    "src/__tests__/unit/examStudyRoutes.test.ts",
+    "src/__tests__/api/questionDaily.test.ts",
+    "src/__tests__/components/JeongtongHeader.test.tsx",
+    "src/__tests__/components/ProblemSourceReference.test.tsx",
+    "src/__tests__/components/mathgenTemplates.test.tsx",
+    "src/__tests__/components/perProblemFractionView.test.tsx",
+    "src/__tests__/components/mixedFractionScreens.test.tsx",
+    "src/__tests__/unit/arithmeticV2Geometry.test.ts",
+    "src/__tests__/unit/bankDecideMiddleLoader.test.ts",
+    "src/__tests__/unit/decisionLogNumbers.test.ts",
+    "src/__tests__/unit/mathSrsQuickFence.test.ts",
+    "src/__tests__/unit/planDailyReview.test.ts",
+    "src/__tests__/unit/problemOrder.test.ts"
+  ],
+  "notSelectedFinal": [
+    "src/__tests__/unit/decisionLogNumbers.test.ts"
+  ]
+}

@@ -1,0 +1,27 @@
+
+> todays-math@0.1.0 test
+> node scripts/qa/run-tests.mjs src/__tests__/unit/nativeDescriptiveCore.test.ts src/__tests__/unit/nativeDescriptiveGateReview.test.ts src/__tests__/unit/nativeDescriptiveLegacyAudit.test.ts src/__tests__/unit/nativeDescriptiveAuthor.test.ts src/__tests__/unit/nativeDescriptive20261018.test.ts src/__tests__/unit/nativeDescriptive20261018Render.test.tsx src/__tests__/components/nativeDescriptiveAuthorPrint.test.tsx --maxWorkers=2
+
+
+ RUN  v4.1.11 /Users/pss/Desktop/creative/today-desc-core
+
+ ✓ src/__tests__/unit/nativeDescriptiveCore.test.ts (24 tests) 201ms
+stdout | src/__tests__/unit/nativeDescriptive20261018.test.ts > native exact contract and three source consumers > refresh rebuild uses precisely the same rows including rubric serialization
+   계획 plan.json — 12행
+
+ ✓ src/__tests__/unit/nativeDescriptive20261018.test.ts (30 tests) 1633ms
+     ✓ blocks actual protected rows from 2026-09-02-대량확대-초4.json before any DB lookup  655ms
+     ✓ blocks actual protected rows from 2026-09-02-대량확대-중3.json before any DB lookup  778ms
+ ✓ src/__tests__/unit/nativeDescriptiveGateReview.test.ts (17 tests) 52ms
+ ✓ src/__tests__/unit/nativeDescriptiveLegacyAudit.test.ts (3 tests) 295ms
+ ✓ src/__tests__/unit/nativeDescriptive20261018Render.test.tsx (6 tests) 879ms
+ ✓ src/__tests__/unit/nativeDescriptiveAuthor.test.ts (9 tests) 5251ms
+     ✓ 주 저자가 목표·상황·소문항·채점표를 소유하고 계산·그림은 보조한다  5101ms
+ ✓ src/__tests__/components/nativeDescriptiveAuthorPrint.test.tsx (2 tests) 230ms
+
+ Test Files  7 passed (7)
+      Tests  91 passed (91)
+   Start at  15:59:43
+   Duration  8.93s (transform 3.78s, setup 1.99s, import 4.57s, tests 8.54s, environment 1.96s)
+
+JSON report written to /var/folders/yx/bh5nhdtj7xz72rx_1rzymc4m0000gn/T/vitest-gate-cG48t4/result.json

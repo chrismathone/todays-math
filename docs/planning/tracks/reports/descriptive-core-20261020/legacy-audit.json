@@ -1,0 +1,835 @@
+[
+  {
+    "definitionId": "e4-equilateral-audit-r1",
+    "title": "정삼각형 설계안의 길이·각 주장 검토",
+    "passed": false,
+    "samplesChecked": 1010,
+    "gates": [
+      {
+        "id": "G1",
+        "passed": false,
+        "issues": [
+          "같은 씨앗의 단답 쌍둥이/요구 증거 대조 자료 없음"
+        ]
+      },
+      {
+        "id": "G2",
+        "passed": false,
+        "issues": [
+          "r2 중간값·기준-factKey·단계 연결 없음"
+        ]
+      },
+      {
+        "id": "G3",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G4",
+        "passed": false,
+        "issues": [
+          "요구 ID ↔ 증거 ↔ 기준 ID 및 채점 예시 없음"
+        ]
+      },
+      {
+        "id": "G5",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G6",
+        "passed": false,
+        "issues": [
+          "답 기준 분류가 없어 1/3 상한을 입증할 수 없음"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "dimension": "given",
+        "values": [
+          "둘레가",
+          "한 변이"
+        ],
+        "observed": [
+          "둘레가",
+          "한 변이"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "side",
+        "values": [
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18"
+        ],
+        "observed": [
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "sideError",
+        "values": [
+          "1",
+          "2",
+          "3"
+        ],
+        "observed": [
+          "1",
+          "2",
+          "3"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "proposedAngle",
+        "values": [
+          "70",
+          "80",
+          "90"
+        ],
+        "observed": [
+          "70",
+          "80",
+          "90"
+        ],
+        "missing": []
+      }
+    ],
+    "mutations": [
+      {
+        "kind": "sign",
+        "label": "인쇄 조건의 부호 반전",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: ^(둘레가|한 변이) (\\d+)cm"
+        ]
+      },
+      {
+        "kind": "unit",
+        "label": "인쇄 단위 변경 또는 무단 삽입",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: ^(둘레가|한 변이) (\\d+)cm"
+        ]
+      },
+      {
+        "kind": "intermediate",
+        "label": "배점 대상 중간 판단/수치 변경",
+        "detected": true,
+        "issues": [
+          "채점 중간값 불일치: length"
+        ]
+      }
+    ],
+    "figureMutationApplicable": false
+  },
+  {
+    "definitionId": "e4-triangle-dual-proof-r1",
+    "title": "두 기준 분류와 불가능한 교집합 설명",
+    "passed": false,
+    "samplesChecked": 1010,
+    "gates": [
+      {
+        "id": "G1",
+        "passed": false,
+        "issues": [
+          "같은 씨앗의 단답 쌍둥이/요구 증거 대조 자료 없음"
+        ]
+      },
+      {
+        "id": "G2",
+        "passed": false,
+        "issues": [
+          "r2 중간값·기준-factKey·단계 연결 없음"
+        ]
+      },
+      {
+        "id": "G3",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G4",
+        "passed": false,
+        "issues": [
+          "요구 ID ↔ 증거 ↔ 기준 ID 및 채점 예시 없음"
+        ]
+      },
+      {
+        "id": "G5",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G6",
+        "passed": false,
+        "issues": [
+          "답 기준 분류가 없어 1/3 상한을 입증할 수 없음"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "dimension": "beta",
+        "values": [
+          "30",
+          "35",
+          "40",
+          "45",
+          "50",
+          "70",
+          "80"
+        ],
+        "observed": [
+          "30",
+          "35",
+          "40",
+          "45",
+          "50",
+          "70",
+          "80"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "largest",
+        "values": [
+          "70",
+          "80",
+          "90",
+          "100",
+          "110",
+          "120"
+        ],
+        "observed": [
+          "100",
+          "110",
+          "120",
+          "70",
+          "80",
+          "90"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "angleClass",
+        "values": [
+          "예각삼각형",
+          "직각삼각형",
+          "둔각삼각형"
+        ],
+        "observed": [
+          "둔각삼각형",
+          "예각삼각형",
+          "직각삼각형"
+        ],
+        "missing": []
+      }
+    ],
+    "mutations": [
+      {
+        "kind": "sign",
+        "label": "인쇄 조건의 부호 반전",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: 각 A는 (\\d+)°"
+        ]
+      },
+      {
+        "kind": "unit",
+        "label": "인쇄 단위 변경 또는 무단 삽입",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: 각 A는 (\\d+)°"
+        ]
+      },
+      {
+        "kind": "intermediate",
+        "label": "배점 대상 중간 판단/수치 변경",
+        "detected": true,
+        "issues": [
+          "채점 중간값 불일치: sides",
+          "채점 중간값 불일치: sides"
+        ]
+      }
+    ],
+    "figureMutationApplicable": false
+  },
+  {
+    "definitionId": "e4-trapezoid-sufficiency-r1",
+    "title": "평행 조건의 충분성과 길이 조건의 반례",
+    "passed": false,
+    "samplesChecked": 1010,
+    "gates": [
+      {
+        "id": "G1",
+        "passed": false,
+        "issues": [
+          "같은 씨앗의 단답 쌍둥이/요구 증거 대조 자료 없음"
+        ]
+      },
+      {
+        "id": "G2",
+        "passed": false,
+        "issues": [
+          "r2 중간값·기준-factKey·단계 연결 없음"
+        ]
+      },
+      {
+        "id": "G3",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G4",
+        "passed": false,
+        "issues": [
+          "요구 ID ↔ 증거 ↔ 기준 ID 및 채점 예시 없음"
+        ]
+      },
+      {
+        "id": "G5",
+        "passed": false,
+        "issues": [
+          "같은 변형에서 씨앗 변화에 따른 배점 대상 수치 변화를 입증하지 못함"
+        ]
+      },
+      {
+        "id": "G6",
+        "passed": false,
+        "issues": [
+          "답 기준 분류가 없어 1/3 상한을 입증할 수 없음"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "dimension": "side",
+        "values": [
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12"
+        ],
+        "observed": [
+          "10",
+          "11",
+          "12",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "parallel",
+        "values": [
+          "변 AB와 CD",
+          "변 AD와 BC"
+        ],
+        "observed": [
+          "변 AB와 CD",
+          "변 AD와 BC"
+        ],
+        "missing": []
+      }
+    ],
+    "mutations": [
+      {
+        "kind": "sign",
+        "label": "인쇄 조건의 부호 반전",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: 각각 (\\d+)cm"
+        ]
+      },
+      {
+        "kind": "unit",
+        "label": "인쇄 단위 변경 또는 무단 삽입",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: 각각 (\\d+)cm"
+        ]
+      },
+      {
+        "kind": "intermediate",
+        "label": "배점 대상 중간 판단/수치 변경",
+        "detected": true,
+        "issues": [
+          "채점 중간값 불일치: classify"
+        ]
+      }
+    ],
+    "figureMutationApplicable": false
+  },
+  {
+    "definitionId": "m3-factor-error-proof-r1",
+    "title": "인수분해 오류 진단과 항등식 검산",
+    "passed": false,
+    "samplesChecked": 1010,
+    "gates": [
+      {
+        "id": "G1",
+        "passed": false,
+        "issues": [
+          "같은 씨앗의 단답 쌍둥이/요구 증거 대조 자료 없음"
+        ]
+      },
+      {
+        "id": "G2",
+        "passed": false,
+        "issues": [
+          "r2 중간값·기준-factKey·단계 연결 없음"
+        ]
+      },
+      {
+        "id": "G3",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G4",
+        "passed": false,
+        "issues": [
+          "요구 ID ↔ 증거 ↔ 기준 ID 및 채점 예시 없음"
+        ]
+      },
+      {
+        "id": "G5",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G6",
+        "passed": false,
+        "issues": [
+          "답 기준 분류가 없어 1/3 상한을 입증할 수 없음"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "dimension": "a",
+        "values": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "observed": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "gap",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "observed": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "sign",
+        "values": [
+          "+",
+          "-"
+        ],
+        "observed": [
+          "+",
+          "-"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "check",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "observed": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "missing": []
+      }
+    ],
+    "mutations": [
+      {
+        "kind": "sign",
+        "label": "인쇄 조건의 부호 반전",
+        "detected": true,
+        "issues": [
+          "채점 중간값 불일치: repair",
+          "모범답 증거 불일치: repair",
+          "모범답 증거 불일치: repair",
+          "최종답 불일치: repair",
+          "채점 중간값 불일치: verify",
+          "모범답 증거 불일치: verify",
+          "최종답 불일치: verify"
+        ]
+      },
+      {
+        "kind": "unit",
+        "label": "인쇄 단위 변경 또는 무단 삽입",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: 다항식 (x\\^2([+-])(\\d+)x\\+(\\d+))의"
+        ]
+      },
+      {
+        "kind": "intermediate",
+        "label": "배점 대상 중간 판단/수치 변경",
+        "detected": true,
+        "issues": [
+          "채점 중간값 불일치: repair"
+        ]
+      }
+    ],
+    "figureMutationApplicable": false
+  },
+  {
+    "definitionId": "m3-quadratic-domain-r1",
+    "title": "넓이 모델링과 해의 적합성 검토",
+    "passed": false,
+    "samplesChecked": 1010,
+    "gates": [
+      {
+        "id": "G1",
+        "passed": false,
+        "issues": [
+          "같은 씨앗의 단답 쌍둥이/요구 증거 대조 자료 없음"
+        ]
+      },
+      {
+        "id": "G2",
+        "passed": false,
+        "issues": [
+          "r2 중간값·기준-factKey·단계 연결 없음"
+        ]
+      },
+      {
+        "id": "G3",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G4",
+        "passed": false,
+        "issues": [
+          "요구 ID ↔ 증거 ↔ 기준 ID 및 채점 예시 없음"
+        ]
+      },
+      {
+        "id": "G5",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G6",
+        "passed": false,
+        "issues": [
+          "답 기준 분류가 없어 1/3 상한을 입증할 수 없음"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "dimension": "width",
+        "values": [
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15"
+        ],
+        "observed": [
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "delta",
+        "values": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "observed": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "object",
+        "values": [
+          "종이",
+          "사진 판"
+        ],
+        "observed": [
+          "사진 판",
+          "종이"
+        ],
+        "missing": []
+      }
+    ],
+    "mutations": [
+      {
+        "kind": "sign",
+        "label": "인쇄 조건의 부호 반전",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: 세로보다 (\\d+)cm"
+        ]
+      },
+      {
+        "kind": "unit",
+        "label": "인쇄 단위 변경 또는 무단 삽입",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: 세로보다 (\\d+)cm"
+        ]
+      },
+      {
+        "kind": "intermediate",
+        "label": "배점 대상 중간 판단/수치 변경",
+        "detected": true,
+        "issues": [
+          "채점 중간값 불일치: model"
+        ]
+      }
+    ],
+    "figureMutationApplicable": false
+  },
+  {
+    "definitionId": "m3-statistics-shift-spread-r1",
+    "title": "자료 이동과 퍼짐을 구분하여 선택",
+    "passed": false,
+    "samplesChecked": 1010,
+    "gates": [
+      {
+        "id": "G1",
+        "passed": false,
+        "issues": [
+          "같은 씨앗의 단답 쌍둥이/요구 증거 대조 자료 없음"
+        ]
+      },
+      {
+        "id": "G2",
+        "passed": false,
+        "issues": [
+          "r2 중간값·기준-factKey·단계 연결 없음"
+        ]
+      },
+      {
+        "id": "G3",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G4",
+        "passed": false,
+        "issues": [
+          "요구 ID ↔ 증거 ↔ 기준 ID 및 채점 예시 없음"
+        ]
+      },
+      {
+        "id": "G5",
+        "passed": true,
+        "issues": []
+      },
+      {
+        "id": "G6",
+        "passed": false,
+        "issues": [
+          "답 기준 분류가 없어 1/3 상한을 입증할 수 없음"
+        ]
+      }
+    ],
+    "coverage": [
+      {
+        "dimension": "center",
+        "values": [
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20"
+        ],
+        "observed": [
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "step",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "6"
+        ],
+        "observed": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "6"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "shift",
+        "values": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "observed": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "missing": []
+      },
+      {
+        "dimension": "count",
+        "values": [
+          "4",
+          "5"
+        ],
+        "observed": [
+          "4",
+          "5"
+        ],
+        "missing": []
+      }
+    ],
+    "mutations": [
+      {
+        "kind": "sign",
+        "label": "인쇄 조건의 부호 반전",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 이동/산포 조건 오류"
+        ]
+      },
+      {
+        "kind": "unit",
+        "label": "인쇄 단위 변경 또는 무단 삽입",
+        "detected": true,
+        "issues": [
+          "발문·그림 검산 거부: 인쇄 조건 누락: 각 값에 (-?\\d+)(?:을|를) 더한"
+        ]
+      },
+      {
+        "kind": "intermediate",
+        "label": "배점 대상 중간 판단/수치 변경",
+        "detected": true,
+        "issues": [
+          "채점 중간값 불일치: means"
+        ]
+      }
+    ],
+    "figureMutationApplicable": false
+  }
+]
