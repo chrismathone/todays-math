@@ -195,8 +195,9 @@ describe("workspace action wiring", () => {
       await screen.findByRole("button", { name: "잠긴 문제 담기 검증" }),
     );
     expect(screen.getByLabelText("시험지 구성 문항")).toBeEmptyDOMElement();
-    // 옆 메뉴에 «시험지 · 내보내기» 줄이 없다(원장님 2026-10-01) — 옆 «현재 시험지 · 편집 이어가기»로
-    fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
+    // 잠긴 문항은 담기지 않아 카드도 없다. 직접 편집 화면을 열어 빈 시험지인지 확인한다.
+    window.history.pushState(null, "", "/#export");
+    fireEvent(window, new Event("hashchange"));
     expect(
       await screen.findByRole("button", { name: /문제은행에서 담기/ }),
     ).toBeVisible();
