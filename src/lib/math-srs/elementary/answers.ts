@@ -171,6 +171,79 @@ export function needsComparison(problem: AnswerSource): boolean {
   );
 }
 
+/** Values separated by commas; a grouped number such as 1,000 stays one value. */
+function quantityList(raw: string): Quantity[] | null {
+  if (typeof raw !== "string" || raw.length > 200) return null;
+  const single = parseCourseAnswerQuantity(raw);
+  if (single) return [single];
+  // TeX spacing first: `\,` holds a comma that separates nothing.
+  const parts = raw
+    .replace(/\\[,!; ]/g, " ")
+    .replaceAll("$", "")
+    .split(/[,，、]/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const list = parts.map(parseCourseAnswerQuantity);
+  return list.length && list.every((item) => item !== null)
+    ? (list as Quantity[])
+    : null;
+}
+
+/**
+ * «모두 쓰시오»: several numbers in any order. A question that pairs values with
+ * places (차례로 · ㉠과 ㉡) or names no set stays self-checked.
+ */
+export function courseAnswerIsList(problem: AnswerSource): boolean {
+  if (needsComparison(problem) || parseCourseAnswerQuantity(problem.answer))
+    return false;
+  if ((quantityList(problem.answer)?.length ?? 0) < 2) return false;
+  return (
+    !/차례로|순서대로/.test(problem.content) &&
+    /모두|전부|가장\s*(?:작은|큰)\s*수부터/.test(problem.content)
+  );
+}
+
+/** Modes a stored problem may carry: a list answer was self-checked before it was graded. */
+export function courseInputModes(
+  problem: AnswerSource,
+): CourseProblem["input"]["mode"][] {
+  return courseAnswerIsList(problem)
+    ? ["self-check", "text"]
+    : [getCourseProblemInput(problem).mode];
+}
+
+/** The stored mode decides, so a session keeps the grading it started with. */
+function storedMode(problem: CourseProblem): CourseProblem["input"]["mode"] {
+  return courseInputModes(problem).includes(problem.input.mode)
+    ? problem.input.mode
+    : getCourseProblemInput(problem).mode;
+}
+
+const LIST_FORMAT = "답을 모두 쓰고 쉼표(,)로 나눠 주세요. 예: 1, 2, 3";
+
+function validateListAnswer(problem: CourseProblem, input: string) {
+  const actual = quantityList(input);
+  if (!actual) return LIST_FORMAT;
+  const unit = quantityList(problem.answer)?.[0]?.unit;
+  if (
+    actual.some((item) => item.unit && item.unit.dimension !== unit?.dimension)
+  )
+    return unit
+      ? `${unit.name}에 맞는 단위로 입력해 주세요.`
+      : "단위를 빼고 수만 입력해 주세요.";
+  return null;
+}
+
+/** Same values, each used once, in any order. */
+function sameList(expected: Quantity[] | null, actual: Quantity[] | null) {
+  if (!expected || !actual || expected.length !== actual.length) return false;
+  const left = [...expected];
+  return actual.every((value) => {
+    const index = left.findIndex((item) => sameCourseAnswerValue(item, value));
+    return index >= 0 && left.splice(index, 1).length === 1;
+  });
+}
+
 export function getCourseProblemInput(
   problem: AnswerSource,
 ): CourseProblem["input"] {
@@ -207,8 +280,10 @@ export function validateCourseAnswer(
   problem: CourseProblem,
   input: string,
 ): string | null {
-  if (getCourseProblemInput(problem).mode === "self-check") return null;
+  const mode = storedMode(problem);
+  if (mode === "self-check") return null;
   if (!input.trim()) return "연습장에 푼 답을 입력해 주세요.";
+  if (mode === "text") return validateListAnswer(problem, input);
   const expected = parseCourseAnswerQuantity(problem.answer);
   const actual = parseCourseAnswerQuantity(input);
   if (!actual)
@@ -226,8 +301,11 @@ export function gradeCourseAnswer(
   problem: CourseProblem,
   input: string,
 ): boolean | null {
-  if (getCourseProblemInput(problem).mode === "self-check") return null;
+  const mode = storedMode(problem);
+  if (mode === "self-check") return null;
   if (validateCourseAnswer(problem, input)) return false;
+  if (mode === "text")
+    return sameList(quantityList(problem.answer), quantityList(input));
   return sameCourseAnswerValue(
     parseCourseAnswerQuantity(problem.answer),
     parseCourseAnswerQuantity(input),

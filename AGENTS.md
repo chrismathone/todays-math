@@ -108,6 +108,21 @@ reopens an unfinished solution from `followUp.done === false`. Explorer card
 activities keep their own retry state in the explorer record (plan §3.2), not
 this field.
 
+**Course list answers — reader first (2026-10-20, plan §3.3 «모두 쓰시오»):** a
+course problem whose answer is several numbers and whose question asks for all
+of them (`courseAnswerIsList` — 모두 · 전부 · 가장 작은/큰 수부터, never 차례로 ·
+순서대로 or a choice of symbols) may be stored with input mode `self-check`
+(before) or `text` (the writer). A problem is graded by its stored mode
+(`validateCourseAnswer` · `gradeCourseAnswer`), so a session keeps the grading it
+started with: `text` takes the same values, each once, in any order, separated by
+commas (a bare number reads in the answer's unit, as for one answer). The reader
+commit "feat(srs): read list-answer course problems before anything writes them"
+is the floor: once a session stores a `text` problem, never run older code
+against the shared database or roll production back below it. The writer
+(commit "feat(srs): grade «모두 쓰시오» list answers") makes
+`getCourseProblemInput` return `text` for these problems. `text` problems get no
+answer choices and never enter the bank or prerequisite supply (`number` only).
+
 **Explorer card follow-ups — reader first (2026-10-20):** a definitions session
 may carry `followUp` (`questionId`, `state` again | solution, `firstChoiceIds`)
 and `shown` (activity keys `cardId:kind` whose solution was shown), and the

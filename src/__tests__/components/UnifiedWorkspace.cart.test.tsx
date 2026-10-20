@@ -34,6 +34,8 @@ const router = vi.hoisted(() => ({ replace: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("next/dynamic", () => ({
   default: (loader: () => Promise<{ default: ComponentType }>) => {
+    // 직접 #bank 진입의 선적재와 지연 렌더 모두 같은 배선 대역을 사용한다.
+    if (loader.toString().includes("MathExamBuilder")) return BankDouble;
     const Component = lazy(loader);
     return function Dynamic(props: object) {
       return (
@@ -68,14 +70,14 @@ const bankProblem = vi.hoisted(() => ({
   figureDims: [],
   figureSourceMm: [],
 }));
-vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
-  default: ({
-    editor: { selected },
-    onQuestionsChange,
-  }: {
-    editor: { selected: StudioProblem[] };
-    onQuestionsChange: (problems: StudioProblem[]) => void;
-  }) => (
+function BankDouble({
+  editor: { selected },
+  onQuestionsChange,
+}: {
+  editor: { selected: StudioProblem[] };
+  onQuestionsChange: (problems: StudioProblem[]) => void;
+}) {
+  return (
     <section aria-label="문제은행 대역">
       <p>문제은행 담은 문제 {selected.length}</p>
       <button
@@ -92,7 +94,10 @@ vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
           : "문제 담기"}
       </button>
     </section>
-  ),
+  );
+}
+vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
+  default: BankDouble,
 }));
 vi.mock("@/components/unified/StudioView", () => ({
   default: function StudioDouble({
@@ -241,7 +246,13 @@ async function toStudio() {
  * (ec2d38fdb · 4842701cd, 2026-10-15). 불러온 수학 시험지는 시험지 만들기(문제은행)의 출력 단계로 간다.
  */
 async function resume() {
-  fireEvent.click(await screen.findByRole("button", { name: /편집 이어가기/ }));
+  // 빈 시험지에는 카드가 없다. 빠른 실행으로 편집 화면을 연 뒤 저장본을 명시적으로 불러온다.
+  fireEvent.keyDown(window, { key: "k", ctrlKey: true });
+  fireEvent.click(
+    within(
+      await screen.findByRole("dialog", { name: "무엇을 찾으시나요?" }),
+    ).getByRole("button", { name: "시험지 · 내보내기" }),
+  );
   fireEvent.click(
     await screen.findByRole("button", { name: "저장한 작업 불러오기" }),
   );
@@ -260,6 +271,82 @@ const studioPicked = () =>
   screen.getByLabelText("작업실이 받은 담은 목록").textContent;
 const studioRemoved = () =>
   screen.getByLabelText("작업실이 받은 뺀 기억").textContent;
+
+describe("현재 시험지 카드 노출", () => {
+  it.each(["home", "bank", "export", "library"] as const)(
+    "담은 문항이 없는 %s 화면에서는 카드와 편집 이어가기가 없다",
+    async (view) => {
+      window.history.replaceState(null, "", `/#${view}`);
+      render(<UnifiedWorkspace initialData={initialData} />);
+      if (view === "bank")
+        await screen.findByRole("region", { name: "문제은행 대역" });
+      else if (view === "export")
+        await screen.findByRole("button", { name: "저장한 작업 불러오기" });
+      else if (view === "library")
+        await screen.findByRole("heading", { name: "아직 저장한 시험지가 없어요" });
+      else await screen.findByRole("heading", { name: "오늘의 작업" });
+      expect(screen.queryByText("현재 시험지")).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: /편집 이어가기/ }),
+      ).not.toBeInTheDocument();
+    },
+  );
+
+  it("한 문항을 담으면 카드가 생기고 마지막 문항을 빼면 다시 숨긴다", async () => {
+    window.history.replaceState(null, "", "/#bank");
+    render(<UnifiedWorkspace initialData={initialData} />);
+    fireEvent.click(await screen.findByRole("button", { name: "문제 담기" }));
+    expect(screen.getByText("현재 시험지")).toBeVisible();
+    expect(screen.getByText("1문항", { exact: true })).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
+    expect(await screen.findByRole("textbox", { name: "제목" })).toBeVisible();
+    expect(location.hash).toBe("#export");
+    fireEvent.click(menu("시험지 만들기"));
+    fireEvent.click(await screen.findByRole("button", { name: "담기 완료" }));
+    expect(screen.getByText("문제은행 담은 문제 0")).toBeVisible();
+    expect(screen.queryByText("현재 시험지")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /편집 이어가기/ }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("문제 추출에서는 시험지에 담기 전에도 카드를 보이고 출력 요청을 보낸다", async () => {
+    render(<UnifiedWorkspace initialData={initialData} />);
+    await toStudio();
+    expect(studioPicked()).toBe("");
+    expect(screen.getByText("현재 시험지")).toBeVisible();
+    expect(screen.getByText("0문항", { exact: true })).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
+    expect(
+      await screen.findByRole("button", { name: /문제은행에서 담기/ }),
+    ).toBeVisible();
+    expect(location.hash).toBe("#export");
+    expect(screen.queryByText("현재 시험지")).not.toBeInTheDocument();
+  });
+
+  it("저장본이 있어도 빈 시험지로 시작하고 내 시험지에서 열면 카드가 생긴다", async () => {
+    seed();
+    window.history.replaceState(null, "", "/#bank");
+    render(<UnifiedWorkspace initialData={initialData} />);
+    expect(await screen.findByText("문제은행 담은 문제 0")).toBeVisible();
+    expect(screen.queryByText("현재 시험지")).not.toBeInTheDocument();
+    fireEvent.click(menu("내 시험지"));
+    fireEvent.click(
+      await screen.findByRole("button", { name: "담은 시험지 편집" }),
+    );
+    await waitFor(() =>
+      expect(screen.getByRole("region", { name: "문제은행 대역" })).toHaveTextContent(
+        "문제은행 담은 문제 3",
+      ),
+    );
+    expect(screen.getByText("현재 시험지")).toBeVisible();
+    expect(screen.getByText("3문항", { exact: true })).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
+    expect(await screen.findByRole("textbox", { name: "제목" })).toHaveValue(
+      "담은 시험지",
+    );
+  });
+});
 
 describe("담은 문항 장부 배선", () => {
   it("작업실은 시험지 목록을 그대로 받고, ④ 에서 뺀 것을 뺀 자리와 함께 안다 (어긋남 1)", async () => {

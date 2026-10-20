@@ -3,7 +3,50 @@
 import { useRef, useState, type ReactNode } from "react";
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import { PaperText } from "./paper/PaperParts";
+import { BLANK_TREE, sectionTitleTex } from "@/lib/concept-blank/sections";
 import s from "./unit-picker.module.css";
+
+/** 머리도 한 줄로 센다. 새 묶음은 소단원 한 줄까지 들어갈 때만 연다. */
+const SUMMARY_LINES = 6;
+function summaryGroups(selected: string[]) {
+  const keys = new Set(selected);
+  const groups: {
+    key: string;
+    heading: string;
+    sections: { key: string; title: string }[];
+  }[] = [];
+  let lines = 0;
+  let shown = 0;
+  for (const grade of BLANK_TREE) {
+    for (const chapter of grade.chapters) {
+      const sections = chapter.sections.filter((section) =>
+        keys.has(section.key),
+      );
+      if (!sections.length) continue;
+      if (SUMMARY_LINES - lines < 2) return { groups, shown };
+      const semester = grade.grade.startsWith("초")
+        ? chapter.title.match(/^([12])-/)?.[1]
+        : undefined;
+      const visible = sections.slice(0, SUMMARY_LINES - lines - 1);
+      groups.push({
+        key: chapter.key,
+        heading: [
+          grade.grade,
+          ...(semester ? [`${semester}학기`] : []),
+          sectionTitleTex(chapter.title),
+        ].join(" · "),
+        sections: visible.map((section) => ({
+          key: section.key,
+          title: sectionTitleTex(section.title),
+        })),
+      });
+      lines += visible.length + 1;
+      shown += visible.length;
+      if (visible.length < sections.length) return { groups, shown };
+    }
+  }
+  return { groups, shown };
+}
 
 export default function ConceptBlankUnitPicker({
   selected,
@@ -14,6 +57,7 @@ export default function ConceptBlankUnitPicker({
 }) {
   const [open, setOpen] = useState(false);
   const opener = useRef<HTMLButtonElement>(null);
+  const { groups, shown } = summaryGroups(selected);
   return (
     <>
       <button
@@ -29,13 +73,24 @@ export default function ConceptBlankUnitPicker({
         </span>
         {selected.length ? (
           <span className={s.selected}>
-            {selected.slice(0, 4).map((name, i) => (
-              <span key={i}>
-                <PaperText text={name} />
+            {groups.map((group) => (
+              <span key={group.key} className={s.group} data-summary-group>
+                <span className={s.groupHeading}>
+                  <PaperText text={group.heading} />
+                </span>
+                {group.sections.map((section) => (
+                  <span
+                    key={section.key}
+                    className={s.section}
+                    data-summary-section
+                  >
+                    <PaperText text={section.title} />
+                  </span>
+                ))}
               </span>
             ))}
-            {selected.length > 4 && (
-              <span>외 {selected.length - 4}개 소단원</span>
+            {selected.length > shown && (
+              <span>외 {selected.length - shown}개 소단원</span>
             )}
           </span>
         ) : (

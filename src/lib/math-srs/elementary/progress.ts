@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import {
+  courseInputModes,
   gradeCourseAnswer,
-  getCourseProblemInput,
   validateCourseAnswer,
 } from "./answers";
 import {
@@ -176,7 +176,7 @@ const sessionSchema = z
     for (const problem of session.problems) {
       if (
         problem.sectionId !== session.sectionId ||
-        problem.input.mode !== getCourseProblemInput(problem).mode
+        !courseInputModes(problem).includes(problem.input.mode)
       )
         fail("문제와 소단원 또는 답안 형식이 일치하지 않습니다.");
       if (

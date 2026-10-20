@@ -425,6 +425,7 @@ export default function MathExamBuilder({
       }) => (
         <WorksheetEditor
           {...editor}
+          builderScrollFrame
           fixedComposition={preserveStoredOutput || editor.fixedComposition}
           outputNotice={
             preserveStoredOutput ? (

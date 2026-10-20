@@ -23,7 +23,6 @@ import {
 } from "@/contracts/textbookPrimitives.contract";
 import { CURRICULUM_UNITS } from "../../../../prisma/seed-data/units";
 import { sectionTitleTex } from "@/lib/concept-blank/sections";
-import { classifyFormat } from "@/lib/problem/provenance";
 import { problemIneligibleReason } from "@/lib/problemEligibility";
 import { DEFAULT_PROBLEM_POOL } from "@/lib/problemPool";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
@@ -56,7 +55,6 @@ import {
   DEFAULT_QUICK_CREATE_CAST,
   gradeLabel,
   keyOf,
-  QUICK_CREATE_DIFFICULTIES,
   type ItemPlan,
   type QuickCreateAssembly,
   type QuickCreateDependencies,
@@ -78,6 +76,7 @@ import { appendUnitIntro } from "./quickCreate/unitIntro";
 import { coreConceptsForSection } from "../coreConceptBank";
 import { appendIndexes } from "./quickCreate/indexes";
 import { splitLargeAutomaticLesson } from "./quickCreate/lessonSections";
+import { loadQuickCreateAvailability } from "./quickCreate/availability";
 
 export {
   DEFAULT_QUICK_CREATE_CAST,
@@ -122,61 +121,10 @@ export async function listQuickCreateUnits(
 ): Promise<QuickCreateCatalog> {
   const scope = quickCreateScopeSchema.parse(input);
   const units = await scopedUnits(sql, scope);
-  type Availability = NonNullable<
-    QuickCreateCatalog["units"][number]["availability"]
-  >;
-  const availability = new Map<string, Availability>(
-    units.map((unit) => [
-      unit.id,
-      {
-        basic: { total: 0, written: 0 },
-        standard: { total: 0, written: 0 },
-        challenge: { total: 0, written: 0 },
-      },
-    ]),
+  const availability = await loadQuickCreateAvailability(
+    sql,
+    units.map((unit) => unit.id),
   );
-  if (units.length) {
-    const rows = await sql.query<{
-      unitId: string;
-      difficulty: string;
-      content: string;
-      answer: string;
-      questionType: string | null;
-      problemType: string | null;
-      familyKey: string | null;
-    }>(
-      `SELECT "unit_id" AS "unitId", "difficulty"::text AS "difficulty", "content", "answer",
-      "question_type" AS "questionType", "problem_type"::text AS "problemType", "family_key" AS "familyKey"
-      FROM "problem" WHERE "unit_id" IN ${uuidList("$1")} AND "pool"::text = $2::text
-      AND "review_status"::text = 'approved' AND "direct_use_allowed" = true AND "answer" <> $3::text`,
-      [
-        JSON.stringify(units.map((unit) => unit.id)),
-        DEFAULT_PROBLEM_POOL,
-        MISSING_ANSWER,
-      ],
-    );
-    const seenContent = new Set<string>();
-    for (const row of rows) {
-      const counts = availability.get(row.unitId)!;
-      const written = classifyFormat(row) === "descriptive";
-      for (const [difficulty, tiers] of Object.entries(
-        QUICK_CREATE_DIFFICULTIES,
-      )) {
-        if ((tiers as readonly string[]).includes(row.difficulty)) {
-          const key = JSON.stringify([
-            row.unitId,
-            difficulty,
-            row.content.trim(),
-          ]);
-          if (seenContent.has(key)) continue;
-          seenContent.add(key);
-          const count = counts[difficulty as keyof Availability];
-          count.total += 1;
-          if (written) count.written += 1;
-        }
-      }
-    }
-  }
   return {
     units: units.map((unit) => ({
       id: unit.id,

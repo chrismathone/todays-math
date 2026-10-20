@@ -1653,7 +1653,9 @@ function UnifiedWorkspaceContent({
             </div>
           ))}
         </nav>
-        {worksheetView && hydrated && canUseWorksheetDrafts && (
+        {/* 담은 문항이 없으면 숨긴다 — 새로고침은 빈 시험지로 시작하는데 «0문항» 카드가 방금 만든 시험지가
+            사라진 것처럼 보였다(원장님 2026-10-20). 지난 시험지는 «내 시험지»에서 연다 */}
+        {worksheetView && hydrated && canUseWorksheetDrafts && (selected.length > 0 || view === "studio") && (
           <div className={s.sideDraft}>
             <div>
               <span className={s.sideDraftIcon}>

@@ -339,11 +339,15 @@ export default function ExamBuilder<T>({
     if (!focusRequest || step === "output") return;
     const element = step === "scope" ? scopeRef.current : headingRef.current;
     element?.focus({ preventScroll: true });
+    // 단계를 바꾸면 따로 스크롤되는 두 열을 맨 위에서 연다. scrollIntoView 는 열 안의 목록까지
+    // 끌어내려 2단계 오른쪽 열이 머리(담은 문항 · 단추 줄)를 지나친 채 열렸다(운영 2026-10-20 실측 653px).
     rootRef.current
-      ?.querySelector(
-        step === "scope" ? "[data-builder-settings]" : "[data-builder-review]",
+      ?.querySelectorAll<HTMLElement>(
+        "[data-scope-layout] > *, [data-review-layout] > *",
       )
-      ?.scrollIntoView({ block: "start", behavior: "smooth" });
+      .forEach((column) => column.scrollTo?.({ top: 0 }));
+    const top = rootRef.current?.getBoundingClientRect().top ?? 0;
+    if (top < 0) window.scrollBy?.({ top, behavior: "smooth" });
   }, [focusRequest, step, rootRef]);
   useEffect(() => () => operation.current?.abort(), [source]);
   // Demand changes keep both confirmed counts and in-flight reads. Only a
@@ -2462,27 +2466,6 @@ export default function ExamBuilder<T>({
                 ))
               )}
               {pagination("문항 목록 쪽 이동")}
-              {/* 원장님 2026-10-20 — 목록 끝에서도 3단계로(위 단계 띠까지 올라가지 않게). 왼쪽 열 단추와 같은 동작 · 같은 막힘 판정 */}
-              <div className={s.reviewFooterNav}>
-                <button
-                  type="button"
-                  disabled={actionsDisabled}
-                  onClick={() => go("scope")}
-                >
-                  이전: 범위 설정
-                </button>
-                <button
-                  type="button"
-                  className={s.primary}
-                  disabled={
-                    actionsDisabled || !questions.length || !outputAllowed
-                  }
-                  aria-describedby={`${uid}-output-reason`}
-                  onClick={() => void run("output")}
-                >
-                  다음: 양식 구성·출력
-                </button>
-              </div>
             </section>
           </div>
         </div>

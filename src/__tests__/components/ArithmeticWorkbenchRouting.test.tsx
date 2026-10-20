@@ -20,9 +20,11 @@ it("keeps generated drafts when switching between grade and basic arithmetic", a
   });
   fireEvent.click(make);
   await screen.findByText(/문항을 생성하고 정답을 확인했습니다/);
-  const gradeQuestion = screen.getByRole("region", {
-    name: "생성한 문항 검토",
-  })?.textContent;
+  const gradeQuestion = (
+    await screen.findByRole("region", {
+      name: "생성한 문항 검토",
+    })
+  )?.textContent;
   fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
   fireEvent.change(screen.getByRole("combobox", { name: "학년" }), {
     target: { value: "기초 연산" },

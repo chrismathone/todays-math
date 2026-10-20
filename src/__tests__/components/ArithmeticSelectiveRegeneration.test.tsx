@@ -143,6 +143,7 @@ beforeEach(() => {
               ? "arithmetic-catalog-v2"
               : "arithmetic-catalog-v1",
             writerEnabled: true,
+            ...(grade ? { types: listArithmeticV2Types() } : {}),
           },
         });
       if (String(url).endsWith("/regenerate")) {

@@ -25,23 +25,32 @@ async function parseOk<T>(
 }
 
 type ReadOptions = { signal?: AbortSignal };
+type PageResult<T> = {
+  data: T[];
+  meta: { page: number; pageSize: number; total: number };
+};
 
 async function readAllPages<T extends { id: string }>(
   path: string,
-  parse: (json: unknown) => {
-    data: T[];
-    meta: { page: number; pageSize: number; total: number };
-  },
+  parse: (json: unknown) => PageResult<T>,
   options: ReadOptions,
+  firstPage?: PageResult<T>,
 ): Promise<T[]> {
   const rows = new Map<string, T>();
   let received = 0;
   for (let page = 1; ; page += 1) {
     const separator = path.includes("?") ? "&" : "?";
-    const res = await fetch(`${path}${separator}page=${page}&pageSize=100`, {
-      signal: options.signal,
-    });
-    const body = await parseOk(res, parse);
+    if (options.signal?.aborted)
+      throw new DOMException("Aborted", "AbortError");
+    const body =
+      page === 1 && firstPage
+        ? parse(firstPage)
+        : await parseOk(
+            await fetch(`${path}${separator}page=${page}&pageSize=100`, {
+              signal: options.signal,
+            }),
+            parse,
+          );
     if (body.meta.page !== page) {
       throw new Error("목록 페이지가 변경되었습니다. 다시 불러와 주세요.");
     }
@@ -55,13 +64,14 @@ async function readAllPages<T extends { id: string }>(
 }
 
 export async function fetchClasses(
-  options: ReadOptions = {},
+  options: ReadOptions & { firstPage?: PageResult<ClassEntity> } = {},
 ): Promise<ClassEntity[]> {
   const { classListResponseSchema } = await classContract();
   return readAllPages(
     "/api/classes",
     (json) => classListResponseSchema.parse(json),
     options,
+    options.firstPage,
   );
 }
 

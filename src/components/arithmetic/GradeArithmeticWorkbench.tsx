@@ -11,11 +11,6 @@ import {
   type ArithmeticV2GenerateRequest,
   type ArithmeticV2SheetPayload,
 } from "@/contracts/arithmeticV2.contract";
-import {
-  listArithmeticV2Types,
-  buildArithmeticV2Sheet,
-  reopenArithmeticV2Sheet,
-} from "@/lib/arithmetic-v2";
 import { useUsageLabels } from "@/components/usage-labels/useUsageLabels";
 import UsageLabel from "@/components/usage-labels/UsageLabel";
 import { MathText } from "@/components/math/MathText";
@@ -44,7 +39,7 @@ import {
   ArithmeticBasketSelection,
   useArithmeticBasketSelection,
 } from "./ArithmeticBasketSelection";
-import { arithmeticV2ReviewRounds } from "@/lib/arithmeticOutput";
+import { arithmeticV2ReviewRounds } from "@/lib/arithmeticReviewRounds";
 import type {
   ArithmeticRegenerationResult,
   ArithmeticRegenerationTarget,
@@ -61,14 +56,10 @@ import {
 } from "@/contracts/arithmeticPresentation.contract";
 import s from "./ArithmeticWorkbench.module.css";
 
-const catalog = listArithmeticV2Types();
-const byId = new Map(catalog.map((type) => [type.id, type]));
 const PAGE_SIZE = 24;
 type Allocation = { typeId: string; count: number };
 const message = (error: unknown) =>
   error instanceof Error ? error.message : "작업을 완료하지 못했습니다.";
-const initial = () =>
-  catalog[0] ? [{ typeId: catalog[0].id, count: catalog[0].defaultCount }] : [];
 function restore(sheet: ArithmeticV2SheetPayload): Allocation[] {
   const counts = new Map<string, number>();
   for (const item of sheet.rounds[0].items)
@@ -76,7 +67,87 @@ function restore(sheet: ArithmeticV2SheetPayload): Allocation[] {
   return [...counts].map(([typeId, count]) => ({ typeId, count }));
 }
 
-export default function GradeArithmeticWorkbench({
+type GradeWorkbenchProps = ArithmeticWorkbenchProps & {
+  gradeControl?: ArithmeticGradeControl;
+};
+
+/** The authenticated catalog already contains examples and all UI metadata.
+ * Do not initialize the generation engine just to show its type picker.
+ */
+export default function GradeArithmeticWorkbench(props: GradeWorkbenchProps) {
+  const [catalog, setCatalog] = useState<{
+    types: ArithmeticV2CatalogEntry[];
+    writer: boolean;
+  }>();
+  const [error, setError] = useState("");
+  const [retry, setRetry] = useState(0);
+  useEffect(() => {
+    const controller = new AbortController();
+    async function load() {
+      if (props.preview) {
+        const { listArithmeticV2Types } =
+          await import("@/lib/arithmetic-v2/catalog");
+        return { types: listArithmeticV2Types(), writer: false };
+      }
+      const response = await fetch("/api/arithmetic/v2/catalog", {
+        signal: controller.signal,
+        cache: "no-store",
+        credentials: "same-origin",
+      });
+      const body = await response.json();
+      if (!response.ok)
+        throw new Error(
+          body.error?.message ?? "연산 목록을 불러오지 못했습니다.",
+        );
+      if (
+        body.data?.engineVersion !== ARITHMETIC_V2_ENGINE_VERSION ||
+        body.data?.catalogVersion !== ARITHMETIC_V2_CATALOG_VERSION
+      )
+        throw new Error("연산 기능이 갱신되었습니다. 화면을 새로 열어 주세요.");
+      if (!Array.isArray(body.data.types) || !body.data.types.length)
+        throw new Error("연산 목록을 불러오지 못했습니다.");
+      return {
+        types: body.data.types as ArithmeticV2CatalogEntry[],
+        writer: body.data.writerEnabled === true,
+      };
+    }
+    void load()
+      .then((data) => {
+        if (!controller.signal.aborted) setCatalog(data);
+      })
+      .catch((cause) => {
+        if (!controller.signal.aborted) setError(message(cause));
+      });
+    return () => controller.abort();
+  }, [props.preview, retry]);
+  if (!catalog)
+    return (
+      <section className={s.root} aria-label="학년별 연산 만들기">
+        {error && (
+          <p className={s.error} role="alert">
+            {error}{" "}
+            <button
+              onClick={() => {
+                setError("");
+                setRetry((value) => value + 1);
+              }}
+            >
+              다시 확인
+            </button>
+          </p>
+        )}
+      </section>
+    );
+  return (
+    <GradeArithmeticEditor
+      {...props}
+      catalog={catalog.types}
+      writer={catalog.writer}
+    />
+  );
+}
+
+function GradeArithmeticEditor({
   storageScope,
   initialDocumentId,
   initialStep,
@@ -87,9 +158,26 @@ export default function GradeArithmeticWorkbench({
   onDocumentChange,
   onBusyChange,
   gradeControl,
-}: ArithmeticWorkbenchProps & { gradeControl?: ArithmeticGradeControl }) {
+  catalog,
+  writer,
+}: GradeWorkbenchProps & {
+  catalog: ArithmeticV2CatalogEntry[];
+  writer: boolean;
+}) {
+  const byId = useMemo(
+    () => new Map(catalog.map((type) => [type.id, type])),
+    [catalog],
+  );
+  const availableGrades = useMemo(
+    () => new Set(catalog.map((type) => type.grade)),
+    [catalog],
+  );
   const [title, setTitle] = useState("연산 실력 다지기");
-  const [allocations, setAllocations] = useState<Allocation[]>(initial);
+  const [allocations, setAllocations] = useState<Allocation[]>(() =>
+    catalog[0]
+      ? [{ typeId: catalog[0].id, count: catalog[0].defaultCount }]
+      : [],
+  );
   const basketSelection = useArithmeticBasketSelection(
     allocations.map((item) => item.typeId),
   );
@@ -112,11 +200,7 @@ export default function GradeArithmeticWorkbench({
   const loadedId = useRef<string | undefined>(undefined);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
-  const [catalogState, setCatalogState] = useState({
-    ready: preview,
-    writer: false,
-  });
-  const [retry, setRetry] = useState(0);
+  const catalogState = { ready: true, writer };
   const [step, setStep] = useState<ArithmeticStep>("scope");
   const [presentation, setPresentation] = useState<ArithmeticPresentation>();
   const [regeneration, setRegeneration] =
@@ -262,38 +346,6 @@ export default function GradeArithmeticWorkbench({
     return () => window.removeEventListener("beforeunload", prevent);
   }, [dirty]);
   useEffect(() => {
-    if (preview) return;
-    const controller = new AbortController();
-    void fetch("/api/arithmetic/v2/catalog", {
-      signal: controller.signal,
-      cache: "no-store",
-      credentials: "same-origin",
-    })
-      .then(async (response) => {
-        const body = await response.json();
-        if (!response.ok)
-          throw new Error(
-            body.error?.message ?? "연산 목록을 불러오지 못했습니다.",
-          );
-        if (
-          body.data?.engineVersion !== ARITHMETIC_V2_ENGINE_VERSION ||
-          body.data?.catalogVersion !== ARITHMETIC_V2_CATALOG_VERSION
-        )
-          throw new Error(
-            "연산 기능이 갱신되었습니다. 화면을 새로 열어 주세요.",
-          );
-        if (!controller.signal.aborted)
-          setCatalogState({
-            ready: true,
-            writer: body.data.writerEnabled === true,
-          });
-      })
-      .catch((cause) => {
-        if (!controller.signal.aborted) setError(message(cause));
-      });
-    return () => controller.abort();
-  }, [preview, retry]);
-  useEffect(() => {
     if (!initialDocumentId || !client || loadedId.current === initialDocumentId)
       return;
     let cancelled = false;
@@ -302,10 +354,13 @@ export default function GradeArithmeticWorkbench({
     setError("");
     void client
       .get(initialDocumentId)
-      .then((document) => {
+      .then(async (document) => {
         if (cancelled) return;
         if (document.kind !== "arithmeticSheet")
           throw new Error("연산 연습지 자료가 아닙니다.");
+        const { reopenArithmeticV2Sheet } =
+          await import("@/lib/arithmetic-v2/reopen");
+        if (cancelled) return;
         const payload = reopenArithmeticV2Sheet(document.payload);
         loadedId.current = document.id;
         setAllocations(restore(payload));
@@ -365,8 +420,11 @@ export default function GradeArithmeticWorkbench({
             : Array.from({ length: rounds }, () => ({ allocations })),
       };
       let payload: ArithmeticV2SheetPayload;
-      if (preview) payload = buildArithmeticV2Sheet(request);
-      else {
+      if (preview) {
+        const { buildArithmeticV2Sheet } =
+          await import("@/lib/arithmetic-v2/sheet");
+        payload = buildArithmeticV2Sheet(request);
+      } else {
         const response = await fetch("/api/arithmetic/v2/generate", {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -376,6 +434,8 @@ export default function GradeArithmeticWorkbench({
         const body = await response.json();
         if (!response.ok)
           throw new Error(body.error?.message ?? "연습지를 만들지 못했습니다.");
+        const { reopenArithmeticV2Sheet } =
+          await import("@/lib/arithmetic-v2/reopen");
         payload = reopenArithmeticV2Sheet(body.data);
       }
       setSheet(payload);
@@ -425,6 +485,8 @@ export default function GradeArithmeticWorkbench({
             body.error?.message ?? "선택한 문항의 숫자를 바꾸지 못했습니다.",
           );
         result = body.data;
+        const { reopenArithmeticV2Sheet } =
+          await import("@/lib/arithmetic-v2/reopen");
         reopenArithmeticV2Sheet(result.sheet);
       }
       if (!mounted.current) return;
@@ -504,17 +566,7 @@ export default function GradeArithmeticWorkbench({
       )}
       {error && (
         <p className={s.error} role="alert">
-          {error}{" "}
-          {!catalogState.ready && (
-            <button
-              onClick={() => {
-                setError("");
-                setRetry((value) => value + 1);
-              }}
-            >
-              다시 확인
-            </button>
-          )}
+          {error}
         </p>
       )}
       {notice && (
@@ -577,6 +629,7 @@ export default function GradeArithmeticWorkbench({
             >
               <div className={s.catalogFilters + " " + s.gradeFilters}>
                 <ArithmeticGradeSelect
+                  availableGrades={availableGrades}
                   value={grade}
                   disabled={gradeControl?.disabled ?? busy}
                   includeBasic={Boolean(gradeControl)}

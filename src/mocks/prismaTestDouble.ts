@@ -1771,6 +1771,8 @@ const prismaModels = {
               (spec as { select?: Record<string, unknown> }).select,
             )[0];
           },
+          studentAccount: () => null,
+          enrollments: () => [],
         },
       );
     },
@@ -3214,7 +3216,7 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
 /** In-memory tests cannot prove PostgreSQL contention. Only the explicit lock statements are
  * accepted here; unknown SQL fails. Runtime code always executes real database locks.
  */
-async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
+async function testLockQuery(query: { sql: string; values?: readonly unknown[] }): Promise<unknown[]> {
   if ((query as { bankHeldSourceGroups?: boolean }).bankHeldSourceGroups) {
     const shared = problemRows.filter((row) => row.pool === "shared");
     const identity = (row: (typeof shared)[number]) => row.questionGroupKey ?? `row:${row.id}`;
@@ -3332,6 +3334,29 @@ async function testLockQuery(query: { sql: string }): Promise<unknown[]> {
   }
 
   const sql = query.sql.replace(/\s+/g, " ").trim();
+  if (sql.startsWith("/* concept-board-latest-progress */")) {
+    const classIds = JSON.parse(String(query.values?.[0])) as string[];
+    return classIds.flatMap((classId) => {
+      const [row] = applyOrder(
+        progressRows.filter(
+          (p) =>
+            p.classId === classId &&
+            p.studentId === null &&
+            p.retiredAt === null,
+        ),
+        [{ recordedAt: "desc" }, { createdAt: "desc" }],
+      );
+      return row
+        ? [
+            {
+              classId,
+              unitId: row.unitId,
+              recordedAt: row.recordedAt.toISOString().slice(0, 10),
+            },
+          ]
+        : [];
+    });
+  }
   if (
     /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)::text AS locked$/.test(
       sql,

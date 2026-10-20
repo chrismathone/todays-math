@@ -7,6 +7,7 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import GradeArithmeticWorkbench from "@/components/arithmetic/GradeArithmeticWorkbench";
+import { ArithmeticGradeSelect } from "@/components/arithmetic/ArithmeticGradeSelect";
 import { PrivateCloudClient } from "@/components/unified/privateCloudClient";
 import {
   ARITHMETIC_V2_ENGINE_VERSION,
@@ -77,6 +78,7 @@ beforeEach(() => {
             engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
             catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
             writerEnabled: true,
+            types,
           },
         });
       if (String(url) === "/api/arithmetic/v2/generate") {
@@ -100,6 +102,87 @@ const ready = () =>
   );
 
 describe("grade arithmetic user flow", () => {
+  it("keeps the legacy grade options identical to the existing catalog", () => {
+    render(<ArithmeticGradeSelect value="기초 연산" onChange={vi.fn()} />);
+    expect(
+      within(screen.getByRole("combobox", { name: "학년" }))
+        .getAllByRole("option")
+        .map((option) => option.textContent),
+    ).toEqual([
+      "전체",
+      "기초 연산",
+      ...["초1", "초2", "초3", "초4", "초5", "초6", "중1", "중2", "중3"].filter(
+        (grade) => types.some((type) => type.grade === grade),
+      ),
+    ]);
+  });
+
+  it("uses the returned catalog instead of rebuilding the browser's full catalog", async () => {
+    const type = {
+      ...types[0],
+      title: "서버 응답의 연산 유형",
+      defaultCount: 3,
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn<typeof fetch>(async (url) =>
+        String(url) === "/api/arithmetic/v2/catalog"
+          ? Response.json({
+              data: {
+                engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
+                catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
+                types: [type],
+                writerEnabled: false,
+              },
+            })
+          : Response.json({}, { status: 503 }),
+      ),
+    );
+    render(<GradeArithmeticWorkbench canOutput />);
+    await ready();
+    const cards = within(
+      screen.getByLabelText("학년별 연산 유형"),
+    ).getAllByRole("button");
+    expect(cards).toHaveLength(1);
+    expect(cards[0]).toHaveTextContent(type.title);
+    expect(screen.getByLabelText(type.title + " 문항 수")).toHaveValue(3);
+    expect(
+      within(screen.getByLabelText("학년"))
+        .getAllByRole("option")
+        .map((node) => node.textContent),
+    ).toEqual(["전체", type.grade]);
+  });
+
+  it("keeps the catalog error and explicit retry when types are unavailable", async () => {
+    let attempts = 0;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn<typeof fetch>(async (url) => {
+        if (String(url) !== "/api/arithmetic/v2/catalog")
+          return Response.json({}, { status: 503 });
+        attempts++;
+        return Response.json({
+          data: {
+            engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
+            catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
+            ...(attempts > 1 ? { types } : {}),
+            writerEnabled: false,
+          },
+        });
+      }),
+    );
+    render(<GradeArithmeticWorkbench canOutput />);
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "연산 목록을 불러오지 못했습니다.",
+    );
+    expect(screen.queryByRole("button", { name: "연습지 만들기" })).toBeNull();
+    expect(attempts).toBe(1);
+    fireEvent.click(screen.getByRole("button", { name: "다시 확인" }));
+    await ready();
+    expect(attempts).toBe(2);
+    expect(screen.queryByRole("alert")).toBeNull();
+  });
+
   it("generates the reported ten origin-reflection questions through the actual workspace preview adapter", async () => {
     vi.stubGlobal(
       "fetch",
@@ -133,15 +216,16 @@ describe("grade arithmetic user flow", () => {
     await screen.findByText(/10문항을 생성하고/);
     expect(
       within(
-        screen.getByRole("region", { name: "생성한 문항 검토" }),
+        await screen.findByRole("region", { name: "생성한 문항 검토" }),
       ).getAllByRole("listitem"),
     ).toHaveLength(10);
     expect(
       screen.queryByRole("button", { name: "내 시험지에 저장" }),
     ).toBeNull();
   });
-  it("shows type cards with school placement and filters the trigonometry unit without problem previews", () => {
+  it("shows type cards with school placement and filters the trigonometry unit without problem previews", async () => {
     render(<GradeArithmeticWorkbench canOutput preview />);
+    await ready();
     fireEvent.change(screen.getByRole("combobox", { name: "학년" }), {
       target: { value: "중3" },
     });
@@ -155,8 +239,9 @@ describe("grade arithmetic user flow", () => {
     expect(within(cards).getAllByText("2학기").length).toBeGreaterThan(0);
     expect(within(cards).queryByText("원의 성질")).not.toBeInTheDocument();
   });
-  it("filters by 학년 / 학기 / 영역 separately and lists units in textbook order", () => {
+  it("filters by 학년 / 학기 / 영역 separately and lists units in textbook order", async () => {
     render(<GradeArithmeticWorkbench canOutput preview />);
+    await ready();
     fireEvent.change(screen.getByLabelText("학년"), {
       target: { value: "중3" },
     });
@@ -201,6 +286,7 @@ describe("grade arithmetic user flow", () => {
   });
   it("generates two full rounds and explains the per-round limit before generating", async () => {
     render(<GradeArithmeticWorkbench canOutput preview />);
+    await ready();
     const quantity = screen.getByLabelText(types[0].title + " 문항 수");
     expect(quantity).toHaveAttribute("max", "200");
     expect(screen.getByLabelText("회차")).toHaveAttribute("max", "10");
@@ -224,8 +310,9 @@ describe("grade arithmetic user flow", () => {
     ).toBeInTheDocument();
     expect(fetch).not.toHaveBeenCalled();
   });
-  it("randomly adds the requested number only from current grade/strand/search, preserving existing quantities", () => {
+  it("randomly adds the requested number only from current grade/strand/search, preserving existing quantities", async () => {
     render(<GradeArithmeticWorkbench canOutput preview />);
+    await ready();
     fireEvent.change(screen.getByLabelText(types[0].title + " 문항 수"), {
       target: { value: "7" },
     });

@@ -15,6 +15,7 @@ import {
   type KeyboardEvent,
 } from "react";
 import type { UnitNode } from "@/lib/units/groupUnits";
+import type { TeachingClasses } from "@/contracts/teaching.contract";
 import { canManageClassStudents, canManageRoster } from "@/lib/ownerScope";
 import { canManageStudentAccounts } from "@/lib/learn/studentAccountPolicy";
 import { TeachingAuthPanel } from "./teachingAuthPanel";
@@ -50,6 +51,7 @@ type TeachingData = {
     branchRole?: "owner" | "manager" | "teacher" | null;
   };
   units: UnitNode[];
+  classes?: TeachingClasses;
 };
 type AccessState =
   | { status: "loading" }
@@ -75,15 +77,29 @@ export default function TeachingView({
   const [signingOut, setSigningOut] = useState(false);
   const [accountError, setAccountError] = useState("");
   const requestVersion = useRef(0);
+  const requestController = useRef<AbortController | null>(null);
 
   const load = useCallback(async (quiet = false) => {
     const version = ++requestVersion.current;
+    requestController.current?.abort();
+    const controller = new AbortController();
+    requestController.current = controller;
     try {
       // This endpoint checks the server session before reading any curriculum data.
       // Child components cannot request classes/students until this succeeds.
-      const response = await fetch(getStudioEndpoints().teaching, {
-        cache: "no-store",
-      });
+      const endpoint = getStudioEndpoints().teaching;
+      // Read the current tab at request time: login/retry can happen after tab navigation.
+      const includeClasses =
+        !quiet &&
+        new URLSearchParams(window.location.search).get("teachingTab") !==
+          "lessons";
+      const response = await fetch(
+        includeClasses ? `${endpoint}?classes=1` : endpoint,
+        {
+          cache: "no-store",
+          signal: controller.signal,
+        },
+      );
       if (version !== requestVersion.current) return;
       if (response.status === 401) {
         setAccess({ status: "anonymous" });
@@ -99,13 +115,20 @@ export default function TeachingView({
       }).data;
       if (!body.data.user?.id || typeof body.data.user.id !== "string")
         throw new Error("로그인 정보를 확인하지 못했습니다.");
+      let classes: TeachingClasses | undefined;
+      if (body.data.classes !== undefined) {
+        const { teachingClassesSchema } =
+          await import("@/contracts/teaching.contract");
+        const parsed = teachingClassesSchema.safeParse(body.data.classes);
+        classes = parsed.success ? parsed.data : { status: "error" };
+      }
       if (version !== requestVersion.current) return;
       setAccess((previous) =>
         quiet &&
         previous.status === "ready" &&
         previous.data.user.id === body.data.user.id
           ? previous
-          : { status: "ready", data: { user: body.data.user, units } },
+          : { status: "ready", data: { user: body.data.user, units, classes } },
       );
     } catch {
       if (version === requestVersion.current)
@@ -127,6 +150,7 @@ export default function TeachingView({
     window.addEventListener("focus", recheck);
     return () => {
       requestVersion.current += 1;
+      requestController.current?.abort();
       window.removeEventListener("focus", recheck);
     };
   }, [load]);
@@ -242,6 +266,7 @@ export default function TeachingView({
             <div className={s.classContent}>
               <ClassManage
                 units={access.data.units}
+                initialClasses={access.data.classes}
                 canManageRoster={canManageRoster(access.data.user)}
                 canManageStudents={canManageClassStudents(access.data.user)}
                 canManageAccounts={canManageStudentAccounts(access.data.user)}
