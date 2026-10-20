@@ -81,6 +81,24 @@ describe("지면 — ProblemContent 발문", () => {
     expect(out).toContain(FLAG);
     expect(out).not.toContain("<br");
   });
+  it("물음 바로 뒤 **같은 줄**의 식(«…쓰시오. $9000$, $10000$, $2000$» — 엔진 5,700건)도 식 줄로 세운다", () => {
+    const out = html("다음 수 중 만이라고 읽는 수를 쓰시오. $9000$, $10000$, $2000$");
+    expect(out).toContain(FLAG);
+    expect(out.match(/<p/g)).toHaveLength(2);
+    expect(html("$\\square$ 안에 알맞은 수를 쓰시오. $725\\times\\square=58000$\n① $8$\n② $80$\n③ $800$\n④ $9$\n⑤ $90$")).toContain(FLAG);
+  });
+  it("문장 속 식 · 식 뒤에 글이 남는 줄은 그대로", () => {
+    expect(html("가로가 $5$ cm입니다. 세로는 $3$ cm입니다.")).not.toContain("data-formula-line");
+    expect(html("두 수 $3$, $4$의 합을 구하시오.")).not.toContain("data-formula-line");
+    expect(html("$x=2$일 때 $2x+1$의 값을 구하시오.")).not.toContain("data-formula-line");
+  });
+  it("🔴 <보기> 항목 이름 «ㄹ.» · «가.» 뒤의 식, 답 칸 괄호 «$(~~~~)$», 나열 속 «$23$.» 은 떼지 않는다(교과서 실측)", () => {
+    const tb = "다음 보기 중 부등식을 모두 고르시오.\nㄱ. $3x-2$ ㄴ. $x+9\\geq 5$\nㄷ. $2x-1=7$ ㄹ. $x-3<x+1$";
+    expect(html(tb)).not.toContain("data-formula-line");
+    expect(html("다음 중 옳은 것은?\n가. $x$ 나. $y$")).not.toContain("data-formula-line");
+    expect(html("⑷ 점 $\\mathrm{R}(5,\\,0)$은 어느 사분면에도 속하지 않는다. $(~~~~~~)$")).not.toContain("data-formula-line");
+    expect(html("다음 중 소수의 개수는?\n$1$, $2$, $23$. $27$, $51$")).not.toContain("data-formula-line");
+  });
   it("홑 줄바꿈 뒤 식 줄이 여럿이면(번호 없는 보기) 그대로 — 가르지 않는다", () => {
     expect(html("다음 중 옳은 것은?\n$2$, $3$\n$5$, $7$")).not.toContain("data-formula-line");
   });
@@ -110,6 +128,7 @@ describe("높이 자 — 지면이 더한 여백을 같이 센다", () => {
       "다음 식을 보시오.\n\n$2x+3=7$\n\n이때 $x$의 값을 구하시오.",
       "다음 수 중 가장 큰 수를 구하시오.\n$2$, $3$, $5$",
       "다음 조건을 만족시키는 자연수\n\n$m,n$\n\n의 개수는?",
+      "다음 수 중 만이라고 읽는 수를 쓰시오. $9000$, $10000$, $2000$",
       "다음 두 분수 중 더 큰 분수를 쓰시오.\n\n$\\frac{5}{7}$,  $\\frac{6}{7}$",
       "다음 등식이 성립할 때, 식을 구하시오.\n$3x\\times\\square=6x^{2}$",
       "다음을 구하시오.\n\n$$x+1=2$$",

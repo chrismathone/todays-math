@@ -706,13 +706,31 @@ const TRAILING_FORMULA =
 const MIDDLE_FORMULA_LINE =
   /\n[ \t]*\$[^$\n]+\$(?:[ \t]*[,，][ \t]*\$[^$\n]+\$)*[ \t]*(?=\n)/;
 
+/**
+ * 물음 바로 뒤 **같은 줄**에 식만 이어지는 꼴 — «…쓰시오. $9000$, $10000$, $2000$» (2026-10-20 교차 검수).
+ * 엔진이 줄바꿈 대신 공백으로 이어 쓴 문항이 초등 · 중등 출력에 약 5,700건이었다. ㉠ ㉡ 을 그대로 요구하고
+ * (문장 끝 뒤 · 글의 마지막), 문장 끝의 부호가 **수식 밖**인지 센다(`$0.5.$` 같은 수식 속 마침표가 아님).
+ */
+// 문장 끝은 «한글 음절 둘 이상 + 부호» — <보기> 항목 이름(«ㄹ.» 는 자모 · «가.» 는 홀로 선 한 음절)과 «$23$.» 은 문장 끝이 아니다.
+const SAME_LINE_TRAILING_FORMULA =
+  /^([\s\S]*[가-힣]{2}[.?!])[ \t]+(\$[^$\n]+\$(?:[ \t]*[,，][ \t]*\$[^$\n]+\$)*)$/;
+/** 글자 없는 답 칸 괄호 «$(~~~~~~)$» · «$(\,)$» — 식이 아니다. */
+const BLANK_PAREN_FORMULA = /^\$\s*\((?:~|\\[,;:!]|\\q?quad|\s)*\)\s*\$$/;
+
 function markStandaloneFormula(text: string): string {
-  if (!text.includes("\n")) return text;
   const trimmed = text.replace(/\s+$/, "");
-  const m = TRAILING_FORMULA.exec(trimmed);
-  if (!m) return text;
+  const m = text.includes("\n") ? TRAILING_FORMULA.exec(trimmed) : null;
+  if (m) {
+    if (MIDDLE_FORMULA_LINE.test(trimmed)) return text;
+    return `${m[1]}${SUBQ_SENTINEL}${m[2]}${text.slice(trimmed.length)}`;
+  }
+  const same = SAME_LINE_TRAILING_FORMULA.exec(trimmed);
+  if (!same) return text;
+  const head = same[1]!;
+  if ((head.match(/\$/g) ?? []).length % 2 === 1) return text;
   if (MIDDLE_FORMULA_LINE.test(trimmed)) return text;
-  return `${m[1]}${SUBQ_SENTINEL}${m[2]}${text.slice(trimmed.length)}`;
+  if (BLANK_PAREN_FORMULA.test(same[2]!)) return text;
+  return `${head}${SUBQ_SENTINEL}${same[2]}${text.slice(trimmed.length)}`;
 }
 
 function markSubQuestions(text: string): string {
