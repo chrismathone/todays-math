@@ -646,6 +646,45 @@ label.checkField {
     margin-bottom: 12px;
   }
 }
+/* Same measured viewport boundary as the builder's scope/review columns. */
+@media screen {
+  @container worksheet-editor (min-width: 901px) {
+    .builderFrame .exportGrid {
+      height: calc(
+        100dvh -
+          max(
+            var(--workspace-sticky-inset, 0px),
+            var(--builder-viewport-top, 0px)
+          ) -
+          max(12px, var(--builder-viewport-bottom, 0px))
+      );
+      min-height: 0;
+      align-items: stretch;
+    }
+    .builderFrame .exportGrid > * {
+      min-height: 0;
+      height: 100%;
+      max-height: 100%;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+      scroll-padding-block: 12px;
+    }
+    .builderFrame .exportInspector {
+      position: static;
+    }
+    .builderFrame .inspectorTabs,
+    .builderFrame .bottomActions {
+      flex-shrink: 0;
+    }
+    .builderFrame .settingsPanel,
+    .builderFrame .orderPanel,
+    .builderFrame .orderList {
+      flex: none;
+      overflow: visible;
+    }
+  }
+}
 @media print {
   .exportContent,
   .exportGrid,

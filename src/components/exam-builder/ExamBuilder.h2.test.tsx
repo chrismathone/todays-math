@@ -245,8 +245,12 @@ function outputAdvice(reason?: RegExp) {
   const next = within(advice).getByRole("button", {
     name: "다음: 양식 구성·출력",
   });
-  expect(screen.getAllByRole("button", { name: "다음: 양식 구성·출력" })).toHaveLength(1);
-  expect(screen.getAllByRole("button", { name: "이전: 범위 설정" })).toHaveLength(1);
+  expect(
+    screen.getAllByRole("button", { name: "다음: 양식 구성·출력" }),
+  ).toHaveLength(1);
+  expect(
+    screen.getAllByRole("button", { name: "이전: 범위 설정" }),
+  ).toHaveLength(1);
   const describedBy = next.getAttribute("aria-describedby")?.split(/\s+/) ?? [];
   expect(explanation.id).not.toBe("");
   expect(describedBy).toContain(explanation.id);

@@ -32,11 +32,14 @@ import {
   worksheetRowLabel,
 } from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
+import { useBuilderScrollFrame } from "../exam-builder/useBuilderScrollFrame";
 import { arithmeticOutputGroups } from "@/lib/arithmeticOutputLayout";
 import { MathText } from "@/components/math/MathText";
 import { arithmeticTypeTitle } from "@/lib/arithmetic-v2/presentation/text";
 import type { SheetTag } from "@/contracts/sheetTag.contract";
 interface Props {
+  /** Opt in only from the exam builder; other editors keep their layout. */
+  builderScrollFrame?: boolean;
   /** Existing draft/presentation tag, rendered without adding it to printMeta storage. */
   sheetTag?: SheetTag | null;
   /** 서식 설정 탭의 덧붙임(W6 내 양식 · W7 제목 추천 · W8 태그) — 그 화면이 꽂는다. */
@@ -87,6 +90,7 @@ interface Props {
   onEditSource?: (problem: StudioProblem) => void;
 }
 export default function WorksheetEditor({
+  builderScrollFrame = false,
   sheetTag,
   settingsSlots,
   answersOnly = false,
@@ -125,6 +129,10 @@ export default function WorksheetEditor({
 }: Props) {
   const can = (menu: WorkspaceMenu) => allowedMenus.includes(menu);
   const editorRef = useRef<HTMLElement>(null);
+  const { rootRef, bandRef } = useBuilderScrollFrame(
+    "output",
+    builderScrollFrame,
+  );
   const [exportProgress, setExportProgress] = useState("");
   const [exportError, setExportError] = useState("");
   const [exporting, setExporting] = useState(false);
@@ -290,7 +298,13 @@ export default function WorksheetEditor({
   }
 
   return (
-    <main className={s.exportContent} ref={editorRef}>
+    <main
+      className={`${s.exportContent} ${builderScrollFrame ? s.builderFrame : ""}`}
+      ref={(node) => {
+        editorRef.current = node;
+        rootRef.current = node;
+      }}
+    >
       {/*
         자료 제작 네 단계의 제목 줄 — 작업실과 **같은 띠**다(원장님 2026-09-21 안 A 확정).
         전에 있던 큰 제목 「시험지 구성하기」·설명 줄과 「이전 검토 단계」 단추는 없앴다 —
@@ -299,6 +313,7 @@ export default function WorksheetEditor({
         셈을 모를 수 있고(작업실이 아직 안 떴다), 셈으로 막으면 돌아가는 길이 막힌다.
       */}
       <StudioStepBar
+        barRef={bandRef}
         headerTitle={headerTitle}
         stepNavigation={stepNavigation}
         step="export"
@@ -409,7 +424,10 @@ export default function WorksheetEditor({
           )}
         </div>
       ) : (
-        <div className={s.exportGrid}>
+        <div
+          className={s.exportGrid}
+          data-output-layout={builderScrollFrame ? "" : undefined}
+        >
           <aside className={s.exportInspector} aria-label="시험지 설정">
             <div
               className={s.inspectorTabs}
