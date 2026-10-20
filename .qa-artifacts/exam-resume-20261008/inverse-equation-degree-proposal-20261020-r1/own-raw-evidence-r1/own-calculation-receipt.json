@@ -1,0 +1,1950 @@
+{
+  "inputPath": "student-only26.json",
+  "inputSHA256Before": "accea8faf5de0f21cee0210fba4c16c1325e6ce22c40aabafd64538fc61ba298",
+  "inputSHA256After": "accea8faf5de0f21cee0210fba4c16c1325e6ce22c40aabafd64538fc61ba298",
+  "providedExpectedSHA256": "accea8faf5de0f21cee0210fba4c16c1325e6ce22c40aabafd64538fc61ba298",
+  "rawSHA256": "15fe947d743c048b8ee07786cb78aa954a0f64ea676b49c312e9a775bd8d55a8",
+  "scriptSHA256": "d80189e6c8eab8287f187b0423730a73cfd77c60c2ca6232d934a1ab599381db",
+  "utf8ProbeSHA256": "bf30a55bebbb1f40faad720615f21243085795a98c6467a05449a0dda25f0afe",
+  "passedAssertions": 421,
+  "failedAssertions": 0,
+  "checks": [
+    {
+      "id": "26 task count",
+      "passed": true
+    },
+    {
+      "id": "26 distinct n",
+      "passed": true
+    },
+    {
+      "id": "26 distinct statements",
+      "passed": true
+    },
+    {
+      "id": "26 distinct supplied digests",
+      "passed": true
+    },
+    {
+      "id": "packet no author answers supplied",
+      "passed": true
+    },
+    {
+      "id": "n1/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n1/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n1/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n1/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n1/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n1/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n1/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n1/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n1/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n1/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n1/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n1/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n1/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n1/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n1/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n1/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n2/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n2/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n2/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n2/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n2/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n2/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n2/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n2/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n2/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n2/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n2/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n2/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n2/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n2/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n2/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n2/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n3/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n3/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n3/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n3/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n3/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n3/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n3/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n3/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n3/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n3/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n3/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n3/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n3/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n3/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n3/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n3/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n4/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n4/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n4/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n4/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n4/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n4/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n4/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n4/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n4/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n4/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n4/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n4/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n4/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n4/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n4/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n4/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n5/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n5/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n5/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n5/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n5/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n5/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n5/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n5/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n5/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n5/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n5/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n5/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n5/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n5/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n5/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n5/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n6/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n6/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n6/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n6/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n6/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n6/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n6/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n6/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n6/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n6/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n6/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n6/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n6/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n6/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n6/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n6/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n7/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n7/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n7/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n7/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n7/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n7/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n7/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n7/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n7/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n7/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n7/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n7/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n7/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n7/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n7/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n7/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n8/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n8/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n8/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n8/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n8/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n8/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n8/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n8/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n8/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n8/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n8/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n8/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n8/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n8/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n8/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n8/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n9/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n9/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n9/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n9/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n9/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n9/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n9/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n9/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n9/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n9/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n9/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n9/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n9/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n9/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n9/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n9/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n10/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n10/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n10/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n10/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n10/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n10/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n10/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n10/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n10/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n10/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n10/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n10/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n10/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n10/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n10/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n10/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n11/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n11/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n11/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n11/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n11/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n11/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n11/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n11/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n11/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n11/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n11/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n11/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n11/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n11/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n11/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n11/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n12/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n12/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n12/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n12/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n12/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n12/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n12/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n12/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n12/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n12/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n12/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n12/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n12/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n12/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n12/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n12/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n13/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n13/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n13/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n13/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n13/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n13/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n13/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n13/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n13/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n13/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n13/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n13/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n13/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n13/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n13/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n13/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n14/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n14/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n14/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n14/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n14/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n14/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n14/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n14/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n14/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n14/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n14/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n14/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n14/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n14/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n14/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n14/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n15/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n15/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n15/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n15/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n15/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n15/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n15/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n15/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n15/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n15/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n15/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n15/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n15/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n15/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n15/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n15/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n16/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n16/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n16/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n16/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n16/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n16/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n16/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n16/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n16/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n16/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n16/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n16/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n16/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n16/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n16/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n16/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n17/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n17/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n17/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n17/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n17/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n17/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n17/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n17/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n17/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n17/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n17/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n17/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n17/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n17/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n17/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n17/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n18/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n18/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n18/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n18/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n18/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n18/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n18/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n18/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n18/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n18/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n18/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n18/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n18/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n18/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n18/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n18/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n19/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n19/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n19/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n19/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n19/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n19/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n19/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n19/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n19/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n19/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n19/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n19/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n19/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n19/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n19/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n19/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n20/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n20/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n20/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n20/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n20/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n20/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n20/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n20/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n20/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n20/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n20/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n20/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n20/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n20/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n20/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n20/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n21/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n21/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n21/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n21/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n21/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n21/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n21/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n21/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n21/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n21/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n21/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n21/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n21/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n21/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n21/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n21/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n22/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n22/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n22/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n22/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n22/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n22/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n22/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n22/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n22/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n22/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n22/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n22/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n22/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n22/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n22/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n22/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n23/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n23/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n23/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n23/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n23/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n23/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n23/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n23/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n23/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n23/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n23/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n23/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n23/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n23/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n23/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n23/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n24/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n24/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n24/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n24/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n24/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n24/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n24/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n24/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n24/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n24/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n24/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n24/alternative a 1 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n24/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n24/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n24/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n24/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n25/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n25/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n25/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n25/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n25/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n25/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n25/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n25/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n25/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n25/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n25/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n25/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n25/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n25/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n25/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n25/answer integer",
+      "passed": true
+    },
+    {
+      "id": "n26/digest shape",
+      "passed": true
+    },
+    {
+      "id": "n26/target parameter",
+      "passed": true
+    },
+    {
+      "id": "n26/at most quadratic",
+      "passed": true
+    },
+    {
+      "id": "n26/quadratic coefficient affine",
+      "passed": true
+    },
+    {
+      "id": "n26/quadratic cancellation",
+      "passed": true
+    },
+    {
+      "id": "n26/remaining linear coefficient nonzero",
+      "passed": true
+    },
+    {
+      "id": "n26/own parsed original root substitution",
+      "passed": true
+    },
+    {
+      "id": "n26/linear equation exact root",
+      "passed": true
+    },
+    {
+      "id": "n26/independent printed coefficient subtraction",
+      "passed": true
+    },
+    {
+      "id": "n26/direct factor root witness",
+      "passed": true
+    },
+    {
+      "id": "n26/second reading agrees target and nonzero coefficient",
+      "passed": true
+    },
+    {
+      "id": "n26/alternative a 3 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n26/alternative a 5 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n26/alternative a 0 keeps quadratic",
+      "passed": true
+    },
+    {
+      "id": "n26/constant nonzero",
+      "passed": true
+    },
+    {
+      "id": "n26/answer integer",
+      "passed": true
+    }
+  ],
+  "answerCounts": {
+    "2": 14,
+    "4": 12
+  },
+  "remainingLinearCoefficientCounts": {
+    "-3": 4,
+    "2": 2,
+    "-1": 6,
+    "4": 2,
+    "1": 4,
+    "-4": 4,
+    "-2": 2,
+    "3": 2
+  },
+  "all26RootWitnesses": [
+    {
+      "n": 1,
+      "studentDigest": "d476ebbb6279fce561f5bca97e4da1be797b72ae829c1820d8eafa2d1579f40e",
+      "answer": "2",
+      "linearCoefficient": "-3",
+      "constant": "-3",
+      "rootX": "-1",
+      "originalEqualValue": "0"
+    },
+    {
+      "n": 2,
+      "studentDigest": "2cdfe19d0a0fdf18bedf146aacb7ac85d671a63aa91bed93aca1575735ac8238",
+      "answer": "2",
+      "linearCoefficient": "-3",
+      "constant": "-7",
+      "rootX": "-7/3",
+      "originalEqualValue": "80/9"
+    },
+    {
+      "n": 3,
+      "studentDigest": "153cc34c62259a859445b7cce919713012784863aaf46f4fdbe972851efcb668",
+      "answer": "4",
+      "linearCoefficient": "-3",
+      "constant": "-3",
+      "rootX": "-1",
+      "originalEqualValue": "0"
+    },
+    {
+      "n": 4,
+      "studentDigest": "00fd0f690cfa269eaa0c5370284c9ef5d768af5e356d14ba12775700ac42a920",
+      "answer": "4",
+      "linearCoefficient": "-3",
+      "constant": "-7",
+      "rootX": "-7/3",
+      "originalEqualValue": "136/9"
+    },
+    {
+      "n": 5,
+      "studentDigest": "635eec2f5287f6c9b35b9e895ac8e9661ff51ed1d2a0dc2ecaff50646c7eda07",
+      "answer": "2",
+      "linearCoefficient": "2",
+      "constant": "-5",
+      "rootX": "5/2",
+      "originalEqualValue": "27/2"
+    },
+    {
+      "n": 6,
+      "studentDigest": "e447a6adb3a4ee98adb3148a5a6149f9e9d45b267bf87a29101f4c8e6482c4bd",
+      "answer": "2",
+      "linearCoefficient": "2",
+      "constant": "-9",
+      "rootX": "9/2",
+      "originalEqualValue": "91/2"
+    },
+    {
+      "n": 7,
+      "studentDigest": "d706d54c5ff79e1e164890d773905e449febd894c61b9e0d1e7cdf7362f47915",
+      "answer": "2",
+      "linearCoefficient": "-1",
+      "constant": "-5",
+      "rootX": "-5",
+      "originalEqualValue": "36"
+    },
+    {
+      "n": 8,
+      "studentDigest": "ba2f2898b93c10c3b741aff997ccdc138b8b0685c417a28cf183d2eabe991653",
+      "answer": "2",
+      "linearCoefficient": "-1",
+      "constant": "-9",
+      "rootX": "-9",
+      "originalEqualValue": "140"
+    },
+    {
+      "n": 9,
+      "studentDigest": "fd2024c34ca20cfd44ee6f654d2e3936507f533f38c14b2d898604dda833b753",
+      "answer": "4",
+      "linearCoefficient": "4",
+      "constant": "-5",
+      "rootX": "5/4",
+      "originalEqualValue": "39/4"
+    },
+    {
+      "n": 10,
+      "studentDigest": "00eaa580a73110224ad8b31bb3544ace4206f71e44d8773447e768563c41e32f",
+      "answer": "4",
+      "linearCoefficient": "4",
+      "constant": "-9",
+      "rootX": "9/4",
+      "originalEqualValue": "119/4"
+    },
+    {
+      "n": 11,
+      "studentDigest": "05db7db8636f9ea0852cbd5f52ef853d32fc5358182e19d25a1d48b06c3e6a02",
+      "answer": "4",
+      "linearCoefficient": "1",
+      "constant": "-5",
+      "rootX": "5",
+      "originalEqualValue": "126"
+    },
+    {
+      "n": 12,
+      "studentDigest": "679a5905bb5cc12136c62dc200c7726d125e30b1137621fd4578daa279b8bee6",
+      "answer": "4",
+      "linearCoefficient": "1",
+      "constant": "-9",
+      "rootX": "9",
+      "originalEqualValue": "374"
+    },
+    {
+      "n": 13,
+      "studentDigest": "59f190a3f14e64ec7fa521711676f4a5936aa6687f40353a36e12613f3feab08",
+      "answer": "2",
+      "linearCoefficient": "-1",
+      "constant": "-4",
+      "rootX": "-4",
+      "originalEqualValue": "33"
+    },
+    {
+      "n": 14,
+      "studentDigest": "7251840c159a70831ca9cb48cea6ad1ff60eb6fc0bb2e75810306284b9da3412",
+      "answer": "2",
+      "linearCoefficient": "-1",
+      "constant": "-8",
+      "rootX": "-8",
+      "originalEqualValue": "133"
+    },
+    {
+      "n": 15,
+      "studentDigest": "9963e8d00835107f09d0da8570582ca4059727cc87cb54f885eef6d21202e699",
+      "answer": "2",
+      "linearCoefficient": "-4",
+      "constant": "-4",
+      "rootX": "-1",
+      "originalEqualValue": "0"
+    },
+    {
+      "n": 16,
+      "studentDigest": "430ac4e0fca6b975900909431e69be763233cd0783eaf130d83cdb41e565118b",
+      "answer": "2",
+      "linearCoefficient": "-4",
+      "constant": "-8",
+      "rootX": "-2",
+      "originalEqualValue": "7"
+    },
+    {
+      "n": 17,
+      "studentDigest": "0888cfbdc109f4281b1a174ca5bf5353c1c9ff6dbafbe84d44537e4218af0bd3",
+      "answer": "4",
+      "linearCoefficient": "-1",
+      "constant": "-4",
+      "rootX": "-4",
+      "originalEqualValue": "57"
+    },
+    {
+      "n": 18,
+      "studentDigest": "40cff312e0b48b37854204c93ce7106e12ce0ef6ddb6d5e2874fe4c58d3b59a8",
+      "answer": "4",
+      "linearCoefficient": "-1",
+      "constant": "-8",
+      "rootX": "-8",
+      "originalEqualValue": "245"
+    },
+    {
+      "n": 19,
+      "studentDigest": "a874ed6bdfb5a040688a77c1b28546eafe339a73023232bf24f5d32f28f9699e",
+      "answer": "4",
+      "linearCoefficient": "-4",
+      "constant": "-4",
+      "rootX": "-1",
+      "originalEqualValue": "0"
+    },
+    {
+      "n": 20,
+      "studentDigest": "d51e77c66240b769a2ba5afd7848def891b4da5a3a6356dcc9682fd1d3bda019",
+      "answer": "4",
+      "linearCoefficient": "-4",
+      "constant": "-8",
+      "rootX": "-2",
+      "originalEqualValue": "11"
+    },
+    {
+      "n": 21,
+      "studentDigest": "d1de4a34cc9f4269a1fe96301a6fed5d47cfae247ff67ec6046c31bd705de258",
+      "answer": "2",
+      "linearCoefficient": "1",
+      "constant": "-7",
+      "rootX": "7",
+      "originalEqualValue": "99"
+    },
+    {
+      "n": 22,
+      "studentDigest": "3ee08d97a06a0322e7c2c9f7f99bbec4a85cb8275abce29137f8b575da951aae",
+      "answer": "2",
+      "linearCoefficient": "1",
+      "constant": "-11",
+      "rootX": "11",
+      "originalEqualValue": "247"
+    },
+    {
+      "n": 23,
+      "studentDigest": "71c2c3c52738bf0c6ccde04d4240263a71cf446072e2ff1044a690f505578957",
+      "answer": "2",
+      "linearCoefficient": "-2",
+      "constant": "-7",
+      "rootX": "-7/2",
+      "originalEqualValue": "15"
+    },
+    {
+      "n": 24,
+      "studentDigest": "d30a9b41970766ed46731ebeaa3e49c107c86a95c675b39b96797f71fba64cbd",
+      "answer": "2",
+      "linearCoefficient": "-2",
+      "constant": "-11",
+      "rootX": "-11/2",
+      "originalEqualValue": "49"
+    },
+    {
+      "n": 25,
+      "studentDigest": "5f6cc53303947924316672fac535fa10b2bed296eaac0b14170db76aaa0114e8",
+      "answer": "4",
+      "linearCoefficient": "3",
+      "constant": "-7",
+      "rootX": "7/3",
+      "originalEqualValue": "247/9"
+    },
+    {
+      "n": 26,
+      "studentDigest": "189d0ba5b94a8ded225e0c39d07dfb14edb79d97136ff8d15777d20c069a134f",
+      "answer": "4",
+      "linearCoefficient": "3",
+      "constant": "-11",
+      "rootX": "11/3",
+      "originalEqualValue": "595/9"
+    }
+  ],
+  "algorithm": "Own bounded printed-expression lexer/parser with exact bivariate integer/Fraction convolution; separate direct printed factor/coefficient extraction and numerical rational witness. No producer algorithm oracle or float/pixel measurement.",
+  "producerPrivateExposure": false,
+  "visualReview": false
+}

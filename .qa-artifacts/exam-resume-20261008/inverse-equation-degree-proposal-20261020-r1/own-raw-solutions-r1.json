@@ -1,0 +1,1356 @@
+{
+  "kind": "independent-pre-producer-exposure-raw-solutions",
+  "inputSHA256": "accea8faf5de0f21cee0210fba4c16c1325e6ce22c40aabafd64538fc61ba298",
+  "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+  "exposureDeclaration": "own-raw-evidence-r1/own-exposure.json",
+  "solutions": [
+    {
+      "n": 1,
+      "studentDigest": "d476ebbb6279fce561f5bca97e4da1be797b72ae829c1820d8eafa2d1579f40e",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²-3x-3=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -3x-3=0이고 남은 x의 계수는 -3로 0이 아니므로 실제 일차방정식이다. 해는 x=-1이며 이 값을 원래 등식에 대입하면 양변이 모두 0로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "97447f79b875dda81b1d6cbc5790391830df47da17a4b1257a8b51d1468c9574",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-2",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "1",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^0 x^2": "-2",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-3",
+        "remainingConstant": "-3",
+        "rootX": "-1",
+        "originalLHSAtWitness": "0",
+        "originalRHSAtWitness": "0",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 2,
+      "studentDigest": "2cdfe19d0a0fdf18bedf146aacb7ac85d671a63aa91bed93aca1575735ac8238",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²-3x-7=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -3x-7=0이고 남은 x의 계수는 -3로 0이 아니므로 실제 일차방정식이다. 해는 x=-7/3이며 이 값을 원래 등식에 대입하면 양변이 모두 80/9로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "7f07d5efff94a5e93fea54ca49fbba2cbb0bad564efe64b245829944b0d47577",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-2",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "1",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-7",
+          "a^0 x^1": "-3",
+          "a^0 x^2": "-2",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-3",
+        "remainingConstant": "-7",
+        "rootX": "-7/3",
+        "originalLHSAtWitness": "80/9",
+        "originalRHSAtWitness": "80/9",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 3,
+      "studentDigest": "153cc34c62259a859445b7cce919713012784863aaf46f4fdbe972851efcb668",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²-3x-3=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 -3x-3=0이고 남은 x의 계수는 -3로 0이 아니므로 실제 일차방정식이다. 해는 x=-1이며 이 값을 원래 등식에 대입하면 양변이 모두 0로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "04717b718f480d08801dfef72ea0062799f956ac1d3e303f89e9eaf11ddc67e3",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-2",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "1",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^0 x^2": "-4",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "-3",
+        "remainingConstant": "-3",
+        "rootX": "-1",
+        "originalLHSAtWitness": "0",
+        "originalRHSAtWitness": "0",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 4,
+      "studentDigest": "00fd0f690cfa269eaa0c5370284c9ef5d768af5e356d14ba12775700ac42a920",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²-3x-7=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 -3x-7=0이고 남은 x의 계수는 -3로 0이 아니므로 실제 일차방정식이다. 해는 x=-7/3이며 이 값을 원래 등식에 대입하면 양변이 모두 136/9로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "ea829f93e4bbb98e7a28661e5298b20e970b927d6fdb738a0a05d10aae52ae98",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-2",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "1",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-7",
+          "a^0 x^1": "-3",
+          "a^0 x^2": "-4",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "-3",
+        "remainingConstant": "-7",
+        "rootX": "-7/3",
+        "originalLHSAtWitness": "136/9",
+        "originalRHSAtWitness": "136/9",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 5,
+      "studentDigest": "635eec2f5287f6c9b35b9e895ac8e9661ff51ed1d2a0dc2ecaff50646c7eda07",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²+(a)x-5=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 2x-5=0이고 남은 x의 계수는 2로 0이 아니므로 실제 일차방정식이다. 해는 x=5/2이며 이 값을 원래 등식에 대입하면 양변이 모두 27/2로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "c60ff3e84e8001f5460f54d1c97b466166d4956bc8959c49e8c96ab85d1ef768",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-5",
+          "a^0 x^2": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "2",
+        "remainingConstant": "-5",
+        "rootX": "5/2",
+        "originalLHSAtWitness": "27/2",
+        "originalRHSAtWitness": "27/2",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 6,
+      "studentDigest": "e447a6adb3a4ee98adb3148a5a6149f9e9d45b267bf87a29101f4c8e6482c4bd",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²+(a)x-9=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 2x-9=0이고 남은 x의 계수는 2로 0이 아니므로 실제 일차방정식이다. 해는 x=9/2이며 이 값을 원래 등식에 대입하면 양변이 모두 91/2로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "74f92860c4b650fc1cfc04a215cb4aead4ed9f79b2c4d4ae3c4e07fefd5509e2",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-9",
+          "a^0 x^2": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "2",
+        "remainingConstant": "-9",
+        "rootX": "9/2",
+        "originalLHSAtWitness": "91/2",
+        "originalRHSAtWitness": "91/2",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 7,
+      "studentDigest": "d706d54c5ff79e1e164890d773905e449febd894c61b9e0d1e7cdf7362f47915",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²+(a-3)x-5=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -x-5=0이고 남은 x의 계수는 -1로 0이 아니므로 실제 일차방정식이다. 해는 x=-5이며 이 값을 원래 등식에 대입하면 양변이 모두 36로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "721a8025aedfb5930f0ac3a88802de6e8ec346e317461d55a8eddb897be9634d",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "1",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-5",
+          "a^0 x^1": "-3",
+          "a^0 x^2": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-1",
+        "remainingConstant": "-5",
+        "rootX": "-5",
+        "originalLHSAtWitness": "36",
+        "originalRHSAtWitness": "36",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 8,
+      "studentDigest": "ba2f2898b93c10c3b741aff997ccdc138b8b0685c417a28cf183d2eabe991653",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²+(a-3)x-9=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -x-9=0이고 남은 x의 계수는 -1로 0이 아니므로 실제 일차방정식이다. 해는 x=-9이며 이 값을 원래 등식에 대입하면 양변이 모두 140로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "77cbaeaf0d006a2d6d35979c94ea931f795765ab2be766dcf35965d871d60465",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "1",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-9",
+          "a^0 x^1": "-3",
+          "a^0 x^2": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-1",
+        "remainingConstant": "-9",
+        "rootX": "-9",
+        "originalLHSAtWitness": "140",
+        "originalRHSAtWitness": "140",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 9,
+      "studentDigest": "fd2024c34ca20cfd44ee6f654d2e3936507f533f38c14b2d898604dda833b753",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²+(a)x-5=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 4x-5=0이고 남은 x의 계수는 4로 0이 아니므로 실제 일차방정식이다. 해는 x=5/4이며 이 값을 원래 등식에 대입하면 양변이 모두 39/4로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "86291c44c926a689a75de79aaa92d6d539e7400fed9509788927786989f3f31e",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-5",
+          "a^0 x^2": "-4",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "4",
+        "remainingConstant": "-5",
+        "rootX": "5/4",
+        "originalLHSAtWitness": "39/4",
+        "originalRHSAtWitness": "39/4",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 10,
+      "studentDigest": "00eaa580a73110224ad8b31bb3544ace4206f71e44d8773447e768563c41e32f",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²+(a)x-9=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 4x-9=0이고 남은 x의 계수는 4로 0이 아니므로 실제 일차방정식이다. 해는 x=9/4이며 이 값을 원래 등식에 대입하면 양변이 모두 119/4로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "c0b01b061c1c3f74f0195105dccaaa61e1dd85d7d5ef2d70d5364967856b43b0",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-9",
+          "a^0 x^2": "-4",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "4",
+        "remainingConstant": "-9",
+        "rootX": "9/4",
+        "originalLHSAtWitness": "119/4",
+        "originalRHSAtWitness": "119/4",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 11,
+      "studentDigest": "05db7db8636f9ea0852cbd5f52ef853d32fc5358182e19d25a1d48b06c3e6a02",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²+(a-3)x-5=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 x-5=0이고 남은 x의 계수는 1로 0이 아니므로 실제 일차방정식이다. 해는 x=5이며 이 값을 원래 등식에 대입하면 양변이 모두 126로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "d89816c1604fead5736d5f4331e0bc4ac6b1aa0e11634805d6e028a1eed919fd",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "1",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-5",
+          "a^0 x^1": "-3",
+          "a^0 x^2": "-4",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "1",
+        "remainingConstant": "-5",
+        "rootX": "5",
+        "originalLHSAtWitness": "126",
+        "originalRHSAtWitness": "126",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 12,
+      "studentDigest": "679a5905bb5cc12136c62dc200c7726d125e30b1137621fd4578daa279b8bee6",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²+(a-3)x-9=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 x-9=0이고 남은 x의 계수는 1로 0이 아니므로 실제 일차방정식이다. 해는 x=9이며 이 값을 원래 등식에 대입하면 양변이 모두 374로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "77d6e32b62158f0e0842099b1144e34d77ad8087132d8e21ba7f7916bcd6c864",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-2",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "1",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-9",
+          "a^0 x^1": "-3",
+          "a^0 x^2": "-4",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "1",
+        "remainingConstant": "-9",
+        "rootX": "9",
+        "originalLHSAtWitness": "374",
+        "originalRHSAtWitness": "374",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "2",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 13,
+      "studentDigest": "59f190a3f14e64ec7fa521711676f4a5936aa6687f40353a36e12613f3feab08",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²-x-4=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -x-4=0이고 남은 x의 계수는 -1로 0이 아니므로 실제 일차방정식이다. 해는 x=-4이며 이 값을 원래 등식에 대입하면 양변이 모두 33로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "2ce93def4d77e1f835df8d4d22619da089cbcefa145c2671e50fb5c13871bd79",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-1",
+          "a^0 x^2": "-2",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-1",
+        "remainingConstant": "-4",
+        "rootX": "-4",
+        "originalLHSAtWitness": "33",
+        "originalRHSAtWitness": "33",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 14,
+      "studentDigest": "7251840c159a70831ca9cb48cea6ad1ff60eb6fc0bb2e75810306284b9da3412",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²-x-8=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -x-8=0이고 남은 x의 계수는 -1로 0이 아니므로 실제 일차방정식이다. 해는 x=-8이며 이 값을 원래 등식에 대입하면 양변이 모두 133로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "e634c10bfbbd775455552ccc57206248344a8ba45b1c30bb677d6c3f8223ab3a",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-8",
+          "a^0 x^1": "-1",
+          "a^0 x^2": "-2",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-1",
+        "remainingConstant": "-8",
+        "rootX": "-8",
+        "originalLHSAtWitness": "133",
+        "originalRHSAtWitness": "133",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 15,
+      "studentDigest": "9963e8d00835107f09d0da8570582ca4059727cc87cb54f885eef6d21202e699",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²-4x-4=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -4x-4=0이고 남은 x의 계수는 -4로 0이 아니므로 실제 일차방정식이다. 해는 x=-1이며 이 값을 원래 등식에 대입하면 양변이 모두 0로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "bf758fadf786f313ede5e2c3a142c9ee94fc5db91d018dc28c80c34b128553e5",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "1",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-4",
+          "a^0 x^2": "-2",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-4",
+        "remainingConstant": "-4",
+        "rootX": "-1",
+        "originalLHSAtWitness": "0",
+        "originalRHSAtWitness": "0",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 16,
+      "studentDigest": "430ac4e0fca6b975900909431e69be763233cd0783eaf130d83cdb41e565118b",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²-4x-8=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -4x-8=0이고 남은 x의 계수는 -4로 0이 아니므로 실제 일차방정식이다. 해는 x=-2이며 이 값을 원래 등식에 대입하면 양변이 모두 7로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "aa3744ea966e4e51e0d5f768b9449e3d8952e98d6a5a33ab812b214aa9ae6f20",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "1",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-8",
+          "a^0 x^1": "-4",
+          "a^0 x^2": "-2",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-4",
+        "remainingConstant": "-8",
+        "rootX": "-2",
+        "originalLHSAtWitness": "7",
+        "originalRHSAtWitness": "7",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 17,
+      "studentDigest": "0888cfbdc109f4281b1a174ca5bf5353c1c9ff6dbafbe84d44537e4218af0bd3",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²-x-4=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 -x-4=0이고 남은 x의 계수는 -1로 0이 아니므로 실제 일차방정식이다. 해는 x=-4이며 이 값을 원래 등식에 대입하면 양변이 모두 57로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "9735b001f19547d347849a11ac3911760c2191f674566d4bb82e90990c52ec47",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-1",
+          "a^0 x^2": "-4",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "-1",
+        "remainingConstant": "-4",
+        "rootX": "-4",
+        "originalLHSAtWitness": "57",
+        "originalRHSAtWitness": "57",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 18,
+      "studentDigest": "40cff312e0b48b37854204c93ce7106e12ce0ef6ddb6d5e2874fe4c58d3b59a8",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²-x-8=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 -x-8=0이고 남은 x의 계수는 -1로 0이 아니므로 실제 일차방정식이다. 해는 x=-8이며 이 값을 원래 등식에 대입하면 양변이 모두 245로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "5cf7f9172bc408f039224555ae8cb131852ae517e12c4cb77055c1d343aa9ead",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-8",
+          "a^0 x^1": "-1",
+          "a^0 x^2": "-4",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "-1",
+        "remainingConstant": "-8",
+        "rootX": "-8",
+        "originalLHSAtWitness": "245",
+        "originalRHSAtWitness": "245",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 19,
+      "studentDigest": "a874ed6bdfb5a040688a77c1b28546eafe339a73023232bf24f5d32f28f9699e",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²-4x-4=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 -4x-4=0이고 남은 x의 계수는 -4로 0이 아니므로 실제 일차방정식이다. 해는 x=-1이며 이 값을 원래 등식에 대입하면 양변이 모두 0로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "1304b92fb8d52c9a1c4c5578af67f5df8dc73c74268f8fc89551133896687d77",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "1",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-4",
+          "a^0 x^1": "-4",
+          "a^0 x^2": "-4",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "-4",
+        "remainingConstant": "-4",
+        "rootX": "-1",
+        "originalLHSAtWitness": "0",
+        "originalRHSAtWitness": "0",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 20,
+      "studentDigest": "d51e77c66240b769a2ba5afd7848def891b4da5a3a6356dcc9682fd1d3bda019",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²-4x-8=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 -4x-8=0이고 남은 x의 계수는 -4로 0이 아니므로 실제 일차방정식이다. 해는 x=-2이며 이 값을 원래 등식에 대입하면 양변이 모두 11로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "b43a8b89c78e3b455a48f0adc6fdf3ab88c56cb4020b6b7cb60a06dec0ae82cb",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-3",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "1",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-8",
+          "a^0 x^1": "-4",
+          "a^0 x^2": "-4",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "-4",
+        "remainingConstant": "-8",
+        "rootX": "-2",
+        "originalLHSAtWitness": "11",
+        "originalRHSAtWitness": "11",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "1",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 21,
+      "studentDigest": "d1de4a34cc9f4269a1fe96301a6fed5d47cfae247ff67ec6046c31bd705de258",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²+(a-1)x-7=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 x-7=0이고 남은 x의 계수는 1로 0이 아니므로 실제 일차방정식이다. 해는 x=7이며 이 값을 원래 등식에 대입하면 양변이 모두 99로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "dcdecad327b3c8087fe42854284a3bc79767560420326f4cef6cbf9462fc1676",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-6",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-7",
+          "a^0 x^1": "-1",
+          "a^0 x^2": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "1",
+        "remainingConstant": "-7",
+        "rootX": "7",
+        "originalLHSAtWitness": "99",
+        "originalRHSAtWitness": "99",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 22,
+      "studentDigest": "3ee08d97a06a0322e7c2c9f7f99bbec4a85cb8275abce29137f8b575da951aae",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²+(a-1)x-11=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 x-11=0이고 남은 x의 계수는 1로 0이 아니므로 실제 일차방정식이다. 해는 x=11이며 이 값을 원래 등식에 대입하면 양변이 모두 247로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "74ed6a4539a4603fe8e33715dcae354e438fc5f6649f5b51521129ff43cb91d5",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-6",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-11",
+          "a^0 x^1": "-1",
+          "a^0 x^2": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "1",
+        "remainingConstant": "-11",
+        "rootX": "11",
+        "originalLHSAtWitness": "247",
+        "originalRHSAtWitness": "247",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 23,
+      "studentDigest": "71c2c3c52738bf0c6ccde04d4240263a71cf446072e2ff1044a690f505578957",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²+(a-4)x-7=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -2x-7=0이고 남은 x의 계수는 -2로 0이 아니므로 실제 일차방정식이다. 해는 x=-7/2이며 이 값을 원래 등식에 대입하면 양변이 모두 15로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "6c1cb83bd6d85d65cb1a422cc9d3582c5806302512ce735a31435ee4b1225b54",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-6",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "1",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-7",
+          "a^0 x^1": "-4",
+          "a^0 x^2": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-2",
+        "remainingConstant": "-7",
+        "rootX": "-7/2",
+        "originalLHSAtWitness": "15",
+        "originalRHSAtWitness": "15",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 24,
+      "studentDigest": "d30a9b41970766ed46731ebeaa3e49c107c86a95c675b39b96797f71fba64cbd",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "2",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-2)x²+(a-4)x-11=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-2=0에서 a=2이다. 이 값을 대입하면 -2x-11=0이고 남은 x의 계수는 -2로 0이 아니므로 실제 일차방정식이다. 해는 x=-11/2이며 이 값을 원래 등식에 대입하면 양변이 모두 49로 같아 해의 존재도 확인된다. a가 2와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 2로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "a1996cd0d80be86bb9f2308743e8496438aab7cc7a32a28a23239236a6923c76",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-6",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "1",
+          "a^0 x^2": "2",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-11",
+          "a^0 x^1": "-4",
+          "a^0 x^2": "-2",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-2"
+        },
+        "uniqueTargetA": "2",
+        "remainingLinearCoefficient": "-2",
+        "remainingConstant": "-11",
+        "rootX": "-11/2",
+        "originalLHSAtWitness": "49",
+        "originalRHSAtWitness": "49",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "2",
+          "rightExtraXCoefficient": "1",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 25,
+      "studentDigest": "5f6cc53303947924316672fac535fa10b2bed296eaac0b14170db76aaa0114e8",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²+(a-1)x-7=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 3x-7=0이고 남은 x의 계수는 3로 0이 아니므로 실제 일차방정식이다. 해는 x=7/3이며 이 값을 원래 등식에 대입하면 양변이 모두 247/9로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "da3ae1998e2f464f276787cf848798d46003e26d1e8a98ae2bba762b1af79f3e",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-6",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "1",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-7",
+          "a^0 x^1": "-1",
+          "a^0 x^2": "-4",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "3",
+        "remainingConstant": "-7",
+        "rootX": "7/3",
+        "originalLHSAtWitness": "247/9",
+        "originalRHSAtWitness": "247/9",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "1"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    },
+    {
+      "n": 26,
+      "studentDigest": "189d0ba5b94a8ded225e0c39d07dfb14edb79d97136ff8d15777d20c069a134f",
+      "solverId": "independent-helper-U62-printed26-raw-20261020-r1",
+      "answer": "4",
+      "solution": "왼쪽을 분배법칙으로 전개한 뒤 오른쪽의 항을 이항하여 동류항을 정리하면 (a-4)x²+(a-1)x-11=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-4=0에서 a=4이다. 이 값을 대입하면 3x-11=0이고 남은 x의 계수는 3로 0이 아니므로 실제 일차방정식이다. 해는 x=11/3이며 이 값을 원래 등식에 대입하면 양변이 모두 595/9로 같아 해의 존재도 확인된다. a가 4와 다르면 x²의 계수가 0이 아니어서 일차방정식이 될 수 없으므로 요청한 상수 a의 값은 4로 유일하다. 이때 x의 해도 일차항 계수가 0이 아니므로 유일하다.",
+      "evidence": {
+        "printedEquationSHA256": "a923e05e9fcd7f22e3e4ae0b1e9764732b00b1ecfb3858dd4a28676018e24e5a",
+        "exactLeftPolynomial": {
+          "a^0 x^0": "-6",
+          "a^0 x^1": "-3",
+          "a^1 x^1": "2",
+          "a^1 x^2": "1"
+        },
+        "exactRightPolynomial": {
+          "a^0 x^0": "5",
+          "a^0 x^1": "-2",
+          "a^0 x^2": "4",
+          "a^1 x^1": "1"
+        },
+        "exactLeftMinusRightPolynomial": {
+          "a^0 x^0": "-11",
+          "a^0 x^1": "-1",
+          "a^0 x^2": "-4",
+          "a^1 x^1": "1",
+          "a^1 x^2": "1"
+        },
+        "quadraticCoefficientInA": {
+          "1": "1",
+          "0": "-4"
+        },
+        "uniqueTargetA": "4",
+        "remainingLinearCoefficient": "3",
+        "remainingConstant": "-11",
+        "rootX": "11/3",
+        "originalLHSAtWitness": "595/9",
+        "originalRHSAtWitness": "595/9",
+        "independentPrintedFactorReading": {
+          "leftSubtractConstant": "3",
+          "leftXAddend": "2",
+          "rightX2Coefficient": "4",
+          "rightExtraXCoefficient": "-2",
+          "rightConstant": "5"
+        },
+        "domain": "a는x에대한실수상수. 특정x에서수치가같다는조건이아니라 전개·이항 후식의차수조건이다. x²계수를0으로만드는a가유일하고 남은일차항이비영인지별도확인. x/a양수조건을추가하지않으며변수로임의나누지않음.",
+        "studentMethod": "2015M3까지의 다항식곱셈/분배법칙·동류항정리·차수정의와 앞학년일차방정식. 근의공식/판별식/근합곱/고등매개변수공식불필요. 코드다항식배열은자체검산도구이지학생필수방법아님.",
+        "metadataHold": "courseAsProposed와questionType의?표시를수정/인증하지않음. 현행26수학풀이가template/grade/family/rights/native/release승인을뜻하지않음.",
+        "visualReviewPerformed": false,
+        "currentProducerAnswerExposure": false
+      },
+      "status": "solved"
+    }
+  ],
+  "counts": {
+    "printedTasks": 26,
+    "solved": 26,
+    "pending": 0,
+    "newManualTwins": 0,
+    "wholeTemplateGradeApprovals": 0
+  },
+  "curriculumApproved": false,
+  "studentMethodTemplateApproved": false,
+  "rightsApproved": false,
+  "nativeApproved": false,
+  "loadable": false
+}
