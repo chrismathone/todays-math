@@ -3,11 +3,12 @@
  * 문제 지면 남은 결정 11건의 합의(D-164 · `docs/planning/tracks/reports/problem-display-decisions-consensus-20261021.md`)
  * 가운데 초등 엔진 몫 — ① 식 뒤 조사 붙임 · ⑤ 세기 자료 그림 · ⑥ 세로셈 틀 · ⑦ 어림 세로셈 · ⑨ 합쇼체.
  *
- * 참은 생성기 출력에서 다시 센다. 붙이는 낱말 목록도 제품 상수를 되부르지 않고 여기 따로 적는다.
+ * 참은 생성기 출력에서 다시 센다. 생성기의 붙임 목록(`format.ts`)은 되부르지 않고, 조사 판정은 렌더러와 같은 `mathParticles.ts` 로 센다.
  */
 import { describe, expect, it } from "vitest";
 
 import { COUNTING_FIGURE_FORMS } from "@/lib/elementary/countingFigureForms";
+import { startsWithMathParticle } from "@/lib/math/mathParticles";
 import { attachMathWords, mathJosa } from "@/lib/elementary/format";
 import {
   elementaryUnits,
@@ -51,21 +52,15 @@ function* spacedAfterMath(text: string): Generator<string> {
   }
 }
 
-// 붙여 쓰는 낱말 — 조사 · 서술격 조사 «이다»의 활용(합의 ① 목록). 단위 · 의존 명사 · 독립 낱말은 넣지 않는다.
-const ATTACHED = new Set([
-  "은", "는", "이", "가", "을", "를", "의", "에", "와", "과", "로", "으로", "만", "에서", "에는", "까지", "보다",
-  "부터", "만큼", "처럼", "만큼은", "만큼을", "만큼이", "만큼의", "만큼과", "만큼씩", "까지가", "까지의", "부터는",
-  "입니다", "입니까", "이므로", "이고", "이며", "인", "인데", "인지", "일", "이면", "이라", "라", "이라면", "라면",
-  "이라고", "이어야", "여야", "였습니다", "이었습니다", "만큼입니다", "만큼이고", "만큼이므로", "까지입니다",
-  "까지이므로", "까지인", "부터이고", "뿐입니다", "뿐이므로", "뿐인",
-]);
+// 조사 · 서술격 판정은 렌더러와 한 곳(`mathParticles.ts`)이다 — 가드도 그것으로 센다(D-164 ①).
+// ⚠️ 생성기의 빈칸 지우기는 이 판정을 근거로 하지 않는다(«일 · 인 · 만» 동형어) — 생성기는 자리를 확인한 목록(`format.ts`)을 쓴다.
 
 describe("① 식 뒤 조사 · «이다» 활용은 붙인다", () => {
   it("초등 출력(문형 · 난이도 · SRS)의 발문 · 해설에 «$식$ + 공백 + 조사»가 없다", () => {
     const left: string[] = [];
     for (const o of ALL)
       for (const text of [o.content, o.solution])
-        for (const w of spacedAfterMath(text)) if (ATTACHED.has(w)) left.push(`${o.where}: …${w}`);
+        for (const w of spacedAfterMath(text)) if (startsWithMathParticle(w)) left.push(`${o.where}: …${w}`);
     expect(left.slice(0, 20)).toEqual([]);
   });
 
