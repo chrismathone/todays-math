@@ -2,7 +2,64 @@ import type { ExamStudyFamily } from "@/contracts/examStudy.contract";
 
 /** Grade restrictions precede mathematical coverage, format and profile quotas. */
 export const STUDY_CURRICULUM_POLICY_VERSION =
-  "20261020-reviewed-student-methods-r3";
+  "20261020-reviewed-student-methods-r4";
+
+function m3MethodHold(
+  method: string,
+  evidence: string,
+  evidenceSha256: string,
+  basis: string,
+) {
+  return Object.freeze({
+    status: "excluded-required-out-of-grade-method" as const,
+    targetCurriculum: "2015-M3;2022-placement-review-pending",
+    message: `초등·중1·중2에서는 중3 범위의 ${method} 유형을 제공하지 않습니다.`,
+    evidence,
+    evidenceSha256,
+    basis,
+  });
+}
+
+// Restrictions follow complete required methods, including component coverage.
+// A null result for another course is never a curriculum or release approval.
+const M3_ONLY_STUDENT_METHODS = [
+  {
+    requirement: "algebra.inverse-coefficient-sum",
+    hold: m3MethodHold(
+      "다항식 곱셈의 계수 전개",
+      ".qa-artifacts/exam-resume-20261008/inverse-coefficient-engine-audit-20261019-r2/report.json",
+      "3fe6f7e52c257bb29faa7d15047f4661791de639277523e85c42d1072a50d861",
+      "검토된 학생 방법은 두 일차식의 곱을 전개하여 두 계수의 합에서 입력을 역산한다. 중3 실제 방법 검토를 이전 학년 배치 허가로 바꾸지 않는다.",
+    ),
+  },
+  {
+    requirement: "number.inverse-root-table",
+    hold: m3MethodHold(
+      "제곱근과 제곱근표의 관계 계산",
+      ".qa-artifacts/exam-resume-20261008/inverse-root-table-engine-audit-20261019-r1/own-engine-audit-report.json",
+      "2d99647a2761cfb19ecbd80e1b5a8d17be292f19c366c8bf2b15cd832b768bc2",
+      "검토된 학생 방법은 양의 제곱근과 피제곱수 변화의 관계를 해석해 입력을 복원한다. 소수표를 읽는 기능만으로 이전 학년의 제곱근 방법을 허용하지 않는다.",
+    ),
+  },
+  {
+    requirement: "number.inverse-extreme-range",
+    hold: m3MethodHold(
+      "근호의 대소 비교와 사칙계산",
+      ".qa-artifacts/exam-resume-20261008/inverse-minimum-engine-audit-20261020-r2/own-audit-report.json",
+      "29c514b7040b9b4b3aafbfd8eeb0c657c751ac2f7bb883ec32b3ba6557b00c7d",
+      "검토된 학생 방법은 실제 최대·최소와 복원값의 위치를 근호의 성질로 증명한다. 최대와 차이를 주는 질문 전환이 필수 근호 방법을 없애지 않는다.",
+    ),
+  },
+  {
+    requirement: "geometry.inverse-tangent-rectangle",
+    hold: m3MethodHold(
+      "원의 접선 길이와 피타고라스 관계 계산",
+      ".qa-artifacts/exam-resume-20261008/inverse-tangent-rectangle-prototype-20261020-r1/own-engine-audit-report-r4.json",
+      "e60aac49dcb5db7343d6eecf9e7fd0f131cd5eb960d08a75f30ba9910e8956e3",
+      "검토된 학생 방법은 원의 접선 길이 관계를 직각삼각형과 연결한다. 직사각형 소재나 일부 길이의 역산으로 이전 학년의 접선 방법을 허용하지 않는다.",
+    ),
+  },
+] as const;
 
 const INVERSE_DEGREE_GRADE_HOLD = Object.freeze({
   status: "excluded-required-out-of-grade-method" as const,
@@ -68,6 +125,7 @@ export function studyCurriculumHold(
   | typeof M1_SYMBOLIC_SUM_HOLD
   | typeof M1_STUDENT_METHOD_HOLD
   | typeof INVERSE_DEGREE_GRADE_HOLD
+  | (typeof M3_ONLY_STUDENT_METHODS)[number]["hold"]
   | null {
   if (
     (family.course.startsWith("초") ||
@@ -78,11 +136,23 @@ export function studyCurriculumHold(
     )
   )
     return INVERSE_DEGREE_GRADE_HOLD;
-  if (family.course !== "중1") return null;
+  // Preserve the existing explicit M1 reason when several hard holds apply.
   if (
+    family.course === "중1" &&
     family.fulfills.some((f) => f.requirement === "number.coprime-symbolic-sum")
   )
     return M1_SYMBOLIC_SUM_HOLD;
+  if (
+    family.course.startsWith("초") ||
+    family.course === "중1" ||
+    family.course === "중2"
+  ) {
+    const method = M3_ONLY_STUDENT_METHODS.find((m) =>
+      family.fulfills.some((f) => f.requirement === m.requirement),
+    );
+    if (method) return method.hold;
+  }
+  if (family.course !== "중1") return null;
   // The reviewed scope is the complete authored method, not loosely related
   // legacy components. A component/null result remains no curriculum certificate.
   for (const intent of family.fulfills) {

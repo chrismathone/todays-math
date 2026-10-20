@@ -57,7 +57,7 @@ function make({ a, c, d, k }: Parameters): ExamStudyDraft {
   return {
     content: `다항식 $(${a}x+ky)(${c}x-${-d}y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $${sum}$일 때, 상수 $k$의 값을 구하시오.`,
     answer: String(k),
-    solution: `$xy$항의 계수는 $${c}k-${-constant}$이고, $y^{2}$항의 계수는 $${d}k$이다. 두 계수의 합에서 $(${c}k-${-constant})+(${d}k)=${sum}$이다. 이를 정리하면 $${term(slope)}-${-constant}=${sum}$, $${term(slope)}=${sum - constant}$이므로 $k=${k}$이다. 역산할 때 나누는 수 $${slope}$은 $0$이 아니므로 해는 하나뿐이다. 실제로 $k=${k}$을 대입하면 두 계수는 각각 $${constant + c * k}$, $${d * k}$이고 합은 $${constant + c * k}+(${d * k})=${sum}$으로 조건을 만족한다.`,
+    solution: `$xy$항의 계수는 $${c}k-${-constant}$이고, $y^{2}$항의 계수는 $${d}k$이다. 두 계수의 합에서 $(${c}k-${-constant})+(${d}k)=${sum}$이다. 이를 정리하면 $${term(slope)}-${-constant}=${sum}$, $${term(slope)}=${sum - constant}$이므로 $k=${k}$이다. 역산할 때 나누는 수 $${slope}$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $${constant + c * k}$, $${d * k}$이다. 합을 계산하면 $${constant + c * k}+(${d * k})=${sum}$이다. 따라서 조건을 만족한다.`,
     parameters: { a, c, d, k },
     questionType: "단답형",
     difficulty: "응용",
@@ -80,7 +80,7 @@ function sameParameters(a: CanonicalParams, b: Parameters) {
 /** Internal finite factory. Public selection stays closed in studyReleaseHold. */
 export const inverseCoefficientSum: ExamStudyFamily = {
   id: "study-middle-inverse-coefficient-sum",
-  version: "1",
+  version: "2-neutral-student-wording",
   title: "두 계수의 합에서 인수 안 상수 역산",
   course: "중3",
   unitIds: ["중3|다항식의 곱셈"],

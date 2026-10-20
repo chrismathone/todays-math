@@ -1,0 +1,72 @@
+{
+  "status": "bounded-postchange-pass-public-release-remains-held",
+  "scope": "U63 current7source R2; no group4 author/private/source read; no new blind/manual count",
+  "sourcePolicy": "20261020-reviewed-student-methods-r4",
+  "releasePolicy": "20261020-source-informed-template-review-r5",
+  "familyVersion": "2-neutral-student-wording",
+  "counts": {
+    "exactPrechangeRouteReplay": 860,
+    "former624SpecificGradeGapsNowGradeBeforeRelease": 624,
+    "U62Preserved": 156,
+    "M3ReleaseHeld": 80,
+    "factoryCalls": 0,
+    "DBCalls": 0,
+    "networkCalls": 0,
+    "adaptedOriginalControls": {
+      "assertions": 21,
+      "passed": 21,
+      "failed": 0
+    },
+    "additionalControls": {
+      "total": 114,
+      "passed": 114,
+      "failed": 0
+    },
+    "wholeCurrentSolutions": 32,
+    "gradeSurfaces2015AfterPrerequisites": 224,
+    "currentCandidateHashes": 174,
+    "standardReferenceOccurrences": 295,
+    "hashBindingAssertions": {
+      "assertions": 366,
+      "passed": 366,
+      "failed": 0
+    },
+    "uniqueBeforeAfterFiles": 448,
+    "sourceOrInputChanges": 0
+  },
+  "controlInterpretation": "Original21 predicates replayed;20 remaintrue. Old four-current-rely-on-release predicate nowfalse as expected; adapted21 assertion explicitly records this flip. Additional114 controls separate, not added to prior audit totals.16mixed-coprime priority cases,2routebinding checks,96current/stale/wronganswer verifier checks.",
+  "gradeEvidence": "All224 current surfaces individually based in own-current32-grade224.json;2015 actualM3 placement after polynomial multiplication and prior numeric linear equations. No highschool coefficient theorem, Vieta, discriminant.2027M3/2022 pending.",
+  "Korean": "32 whole explanations checked. Prior8 k=-2을 and23 result으로 mismatches eliminated by neutral sentences; actual slope은 was correct,0 fake slope findings.",
+  "preserved": "448unique before/after bytehashes including7ROOT+7forensic files, all ownprechange artifacts, group4sealed raw,174candidate and295standard reference occurrences. Index/candidate/reference audit hash-only; no body rereview.",
+  "deltaEvidence": "Current version/neutral template and all32 archived printed contents/answers/params independently bound. No assertion that unavailable full previous TS source bytes were independently diffed line-for-line; parent two-line-only statement is parent evidence. Existing6 other scope files checked current expected hashes.",
+  "harnessLimitations": [
+    {
+      "own": "Initial extra verifier harness treated return object as boolean,64 negative assertions failed; preserved initial script/results. Corrected to .valid,114pass. Source fault not inferred."
+    },
+    {
+      "parent": "Earlier privateR1 filename assumption was external harness limitation; current exact scope private/generated32.json used without fallback; not an own observed production failure."
+    }
+  ],
+  "executionBoundary": "ActualROOT unmocked custom-family generate with throwing factory tripwires; no fullcatalog/defaultregistry, no math production factory. Additional current internal verifier executes canonical make; independent Python printed Fraction oracle supplies separate math check. U62 synthetic requirement-control clone retained for exact prior replay, not actualU62factory test.",
+  "held": {
+    "liveFamily": true,
+    "rights": true,
+    "wholeSourceIdentity": true,
+    "native": true,
+    "loadable": true,
+    "publicRelease": true,
+    "2022Placement": true
+  },
+  "parentEvidence": "193tests/lint/scopedtypes are external evidence only, not own executions.",
+  "exposure": "Prior related manual/source/engine audits known; current is postchange code/solution review, not pristine studentblind. Gachanggroup4private remains unexposed.",
+  "recommendation": "Retain requirement-level hard holds before release and M1coprime/U62 priority; neutral wording verified for finite32. No production edits made.",
+  "artifacts": {
+    "own-policy-counterexamples.json": "ef4f8917af4074a9bc7eff010deddadffeb0b5b5b8c0ef9f4422f7dc4de88532",
+    "own-extra-controls.json": "2acb61981fd1119a89b4764e8715022f17377bb6569f049bc0f93536c1cbf06c",
+    "own-extra-controls-initial-results.json": "5b051207f0247ec181f2e37369aee339837f73cdd2bd15da06c90804d404fe79",
+    "own-current32-grade224.json": "144695ab5d1da02c57b3594c31136132750187d9dee56f8141669fd1a5098c5b",
+    "own-hash-bindings.json": "64dd98f678a5bdf32dab2955dfffb11e751287d258d910b222e5cbbd1bc983b6",
+    "own-before.json": "b7beb3280120e5e592e83ca5af4dfa36e0e1a2794b1da0723983ffd28c28a0cc",
+    "own-after.json": "5ef0db688b195decc8edcaa706f0db2c5a8e3bac30eafc3a0146893b1a8203c6"
+  }
+}

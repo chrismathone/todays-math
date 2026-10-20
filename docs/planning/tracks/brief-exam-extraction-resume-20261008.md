@@ -1,5 +1,7 @@
 # 기출 쌍둥이 문제은행 제작 재개 준비 — 2026-10-08
 
+**2026-10-20 최신 작업 분담:** [엔진 담당 범위](brief-exam-engine-ownership-20261020.md)를 우선한다. 이 세션은 엔진 개선에 집중하고 이미 출제된 문항·기존 은행 재구축은 수정하지 않는다. 다른 컴퓨터의 118,166문항 검수·재구축은 `examStudy`와 명시된 엔진/렌더 파일을 수정하지 않고 결함 목록으로 전달하며, 공유 DB 수정에서도 이 세션의 기출 쌍둥이를 제외한다. 아래의 추출·집필 계획과 완료 집계는 기존 증거로 보존한다.
+
 **실제 실행은 [추가 지시 2](brief-exam-extraction-resume-20261008-addendum-2.md)로 승인됐고 [추가 지시 3](brief-exam-extraction-resume-20261008-addendum-3.md)은 전체 목표까지 지속 실행을 명시한다. 중간 커밋/푸시는 [추가 지시 6](brief-exam-extraction-resume-20261008-addendum-6.md), 원본 기출 직접 사용 차단과 완료 워크트리 정리는 [추가 지시 7](brief-exam-extraction-resume-20261012-addendum-7.md)을 따른다.** 이 문서의 준비 시점 0건과 계획은 당시 증거로 보존한다. 실제 집필·새 그림·독립 검산 및 미해결 검토 상태는 [최신 v50 현황](reports/exam-twin-engine-checkpoint-v50-20261020.md)과 `.qa-artifacts/exam-resume-20261008/continuation-index-v50.json`을 읽는다. [이전 v11](reports/exam-twin-checkpoint-v11-20261012.md)과 [제작 이력](reports/exam-twin-authoring-progress-20261008.md)을 보존한다. 실행 현황을 전체 추출·쌍둥이 검증·생성 엔진 개선 완료와 혼동하지 않는다.
 
 사용자 요청: 기존 기출 추출의 진행현황을 확인하고 재개 환경을 준비한다. 이어서 **쌍둥이 문제 제작**으로 방향을 확정했다. 아래 최종 요구가 옛 세션의 원문 이관 계획보다 우선한다.

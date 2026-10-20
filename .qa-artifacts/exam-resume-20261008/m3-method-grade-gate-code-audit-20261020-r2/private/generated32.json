@@ -1,0 +1,738 @@
+[
+  {
+    "case": 1,
+    "studentDigest": "909667106e0f61c3a3b60895fad8b7a59524e4f5b2ffcf675ebf082e7cb4668f",
+    "content": "다항식 $(2x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-4$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "-2",
+    "solution": "$xy$항의 계수는 $2k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-10)+(-5k)=-4$이다. 이를 정리하면 $-3k-10=-4$, $-3k=6$이므로 $k=-2$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-14$, $10$이다. 합을 계산하면 $-14+(10)=-4$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 2,
+      "d": -5,
+      "k": -2
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "6a1722cc6b7449880fa38b96c708f40492e291bedd98bed86006b7ef787b7bb3"
+  },
+  {
+    "case": 2,
+    "studentDigest": "932ec0be064baf56a9eb98d15819907b0b44db1cb844c98d06b44b03cb67c3dd",
+    "content": "다항식 $(2x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-10$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "0",
+    "solution": "$xy$항의 계수는 $2k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-10)+(-5k)=-10$이다. 이를 정리하면 $-3k-10=-10$, $-3k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-10$, $0$이다. 합을 계산하면 $-10+(0)=-10$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 2,
+      "d": -5,
+      "k": 0
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "5f06e0d8d8465e213f9aa7194ffa4920f156d406cf01b43593523cf87967cf5e"
+  },
+  {
+    "case": 3,
+    "studentDigest": "9cfdc82145cd7ef76315600f6f1c1156c16e5928af50cd3d76a0273966cb4b4e",
+    "content": "다항식 $(2x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-19$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "3",
+    "solution": "$xy$항의 계수는 $2k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-10)+(-5k)=-19$이다. 이를 정리하면 $-3k-10=-19$, $-3k=-9$이므로 $k=3$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-4$, $-15$이다. 합을 계산하면 $-4+(-15)=-19$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 2,
+      "d": -5,
+      "k": 3
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "e85dc46298b2e534b6f174ceb2adb7f0047331c03604107fc1b3c7272ea0f572"
+  },
+  {
+    "case": 4,
+    "studentDigest": "57bb0798882b0eec5e4e393353dd105d27e0406ba35ed2dd7f895f903df2974a",
+    "content": "다항식 $(2x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-34$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "8",
+    "solution": "$xy$항의 계수는 $2k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-10)+(-5k)=-34$이다. 이를 정리하면 $-3k-10=-34$, $-3k=-24$이므로 $k=8$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $6$, $-40$이다. 합을 계산하면 $6+(-40)=-34$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 2,
+      "d": -5,
+      "k": 8
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "44ccb79842573455dd0c4864cfc4d8a1dcfd227849fbfa21a28f5a58e988329f"
+  },
+  {
+    "case": 5,
+    "studentDigest": "9f9fb924027e3bf85a04e4a95b150b6d6fad23eed964e3f50292869b3019144c",
+    "content": "다항식 $(2x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-4$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "-2",
+    "solution": "$xy$항의 계수는 $2k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-6)+(-3k)=-4$이다. 이를 정리하면 $-k-6=-4$, $-k=2$이므로 $k=-2$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-10$, $6$이다. 합을 계산하면 $-10+(6)=-4$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 2,
+      "d": -3,
+      "k": -2
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "c7ad9ca49ec42e43aed10d3d97de05da31407d351ed456ad3cc028855071aab3"
+  },
+  {
+    "case": 6,
+    "studentDigest": "88914c4fa756ec1a23f3ac0257fbecf32e6adf56d4b24ced0e742530040eebda",
+    "content": "다항식 $(2x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-6$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "0",
+    "solution": "$xy$항의 계수는 $2k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-6)+(-3k)=-6$이다. 이를 정리하면 $-k-6=-6$, $-k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-6$, $0$이다. 합을 계산하면 $-6+(0)=-6$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 2,
+      "d": -3,
+      "k": 0
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "5f0f2f12cf19f6b2c1542b7546909f95b0eb6743101c9a9cbffcd58615ca6e58"
+  },
+  {
+    "case": 7,
+    "studentDigest": "b516a986ef86a497a16b5b322c3bf323a378e28fdf177b541eb02f89be240012",
+    "content": "다항식 $(2x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-9$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "3",
+    "solution": "$xy$항의 계수는 $2k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-6)+(-3k)=-9$이다. 이를 정리하면 $-k-6=-9$, $-k=-3$이므로 $k=3$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $0$, $-9$이다. 합을 계산하면 $0+(-9)=-9$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 2,
+      "d": -3,
+      "k": 3
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "f70f1786135a17020db09bde18b4c7931a3eb917c1642ef142034524247c15a7"
+  },
+  {
+    "case": 8,
+    "studentDigest": "97e4ad9d011ddb76bf20d6f1f74f34772bdd53dbcd93ccfb2cd71d58b5c77ff6",
+    "content": "다항식 $(2x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-14$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "8",
+    "solution": "$xy$항의 계수는 $2k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-6)+(-3k)=-14$이다. 이를 정리하면 $-k-6=-14$, $-k=-8$이므로 $k=8$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $10$, $-24$이다. 합을 계산하면 $10+(-24)=-14$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 2,
+      "d": -3,
+      "k": 8
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "4885a3958b31e9f9ef5ffdc003ed479bc6677102f6537cbd8c6b8b9eccedc3d5"
+  },
+  {
+    "case": 9,
+    "studentDigest": "2c1d661102c82cdadac3e6a8889899b62183d6c764a5d73eba194c0d2981a348",
+    "content": "다항식 $(2x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-8$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "-2",
+    "solution": "$xy$항의 계수는 $4k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-10)+(-5k)=-8$이다. 이를 정리하면 $-k-10=-8$, $-k=2$이므로 $k=-2$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-18$, $10$이다. 합을 계산하면 $-18+(10)=-8$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 4,
+      "d": -5,
+      "k": -2
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "17e9d6d65079ca1a1652e5054d4c5293d9ba49f00238302e5f77146b4634a637"
+  },
+  {
+    "case": 10,
+    "studentDigest": "a77c3ab14337e5cdf3b8cfdc8acee4223696d4b1b39cedf716ddc5397e7f2fd8",
+    "content": "다항식 $(2x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-10$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "0",
+    "solution": "$xy$항의 계수는 $4k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-10)+(-5k)=-10$이다. 이를 정리하면 $-k-10=-10$, $-k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-10$, $0$이다. 합을 계산하면 $-10+(0)=-10$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 4,
+      "d": -5,
+      "k": 0
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "755643ff363df8ab2e7cd7ccb13e3f3be44cfad0c0e24b4dbafc47071fb3605b"
+  },
+  {
+    "case": 11,
+    "studentDigest": "22527c6d58af2b42c259810adea21d26cb0a3a037c98f3440c5ca721db0845b4",
+    "content": "다항식 $(2x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-13$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "3",
+    "solution": "$xy$항의 계수는 $4k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-10)+(-5k)=-13$이다. 이를 정리하면 $-k-10=-13$, $-k=-3$이므로 $k=3$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $2$, $-15$이다. 합을 계산하면 $2+(-15)=-13$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 4,
+      "d": -5,
+      "k": 3
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "d95d947573bb1234eea79d4e18ec8ca25362423925fe39e2385c2ab25551c7b7"
+  },
+  {
+    "case": 12,
+    "studentDigest": "7ff81188ae9e0395cb42e21f0576dfb79cb5fd033aed600377bd552d2d351268",
+    "content": "다항식 $(2x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-18$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "8",
+    "solution": "$xy$항의 계수는 $4k-10$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-10)+(-5k)=-18$이다. 이를 정리하면 $-k-10=-18$, $-k=-8$이므로 $k=8$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $22$, $-40$이다. 합을 계산하면 $22+(-40)=-18$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 4,
+      "d": -5,
+      "k": 8
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "26974230734a2a923404b1391394f4c27e534749ec148136751f0df0a95e13be"
+  },
+  {
+    "case": 13,
+    "studentDigest": "0a432e90d63711eafa665138b29b755133f590eef37f2730d23636e384f3a2e7",
+    "content": "다항식 $(2x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-8$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "-2",
+    "solution": "$xy$항의 계수는 $4k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-6)+(-3k)=-8$이다. 이를 정리하면 $k-6=-8$, $k=-2$이므로 $k=-2$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-14$, $6$이다. 합을 계산하면 $-14+(6)=-8$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 4,
+      "d": -3,
+      "k": -2
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "dbec4e2fe108634fd2fd9d3c19495f9f125ab02ec350a92acaad51886c4ef9f1"
+  },
+  {
+    "case": 14,
+    "studentDigest": "33838d32a924a0cb6b77b6b3fb2880e1722464661289864697529e1c260e53fd",
+    "content": "다항식 $(2x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-6$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "0",
+    "solution": "$xy$항의 계수는 $4k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-6)+(-3k)=-6$이다. 이를 정리하면 $k-6=-6$, $k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-6$, $0$이다. 합을 계산하면 $-6+(0)=-6$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 4,
+      "d": -3,
+      "k": 0
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "af825cf44421a6378df4b2458c68519a0ef8bbc89211a883e88f21e4f1d56128"
+  },
+  {
+    "case": 15,
+    "studentDigest": "4002b58bb7831370d69ea036b46f96478ab3a7f88be971d372618ed354e8e889",
+    "content": "다항식 $(2x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-3$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "3",
+    "solution": "$xy$항의 계수는 $4k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-6)+(-3k)=-3$이다. 이를 정리하면 $k-6=-3$, $k=3$이므로 $k=3$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $6$, $-9$이다. 합을 계산하면 $6+(-9)=-3$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 4,
+      "d": -3,
+      "k": 3
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "5ba04577359cd85f9cd8d6556b47717b6743127f2a9816c166dac342df505f75"
+  },
+  {
+    "case": 16,
+    "studentDigest": "168b2606666be40011c4df1ac6bcdde6cd63ce3d5ef8f68a42a74b339c4efcec",
+    "content": "다항식 $(2x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $2$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "8",
+    "solution": "$xy$항의 계수는 $4k-6$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-6)+(-3k)=2$이다. 이를 정리하면 $k-6=2$, $k=8$이므로 $k=8$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $26$, $-24$이다. 합을 계산하면 $26+(-24)=2$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 2,
+      "c": 4,
+      "d": -3,
+      "k": 8
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "06ff72c361b9cf08d525a43e0539ab68d1eb7d6a21dae19a3dac9bca9396b916"
+  },
+  {
+    "case": 17,
+    "studentDigest": "8a9a6b1e33b5cfaf5e774539855f7428ac77eaf1e46c4d20179bda646f71d199",
+    "content": "다항식 $(3x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-9$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "-2",
+    "solution": "$xy$항의 계수는 $2k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-15)+(-5k)=-9$이다. 이를 정리하면 $-3k-15=-9$, $-3k=6$이므로 $k=-2$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-19$, $10$이다. 합을 계산하면 $-19+(10)=-9$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 2,
+      "d": -5,
+      "k": -2
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "59d2e9a6b4bbd3594cb2aa01d742daa146723a5050de8b6ed28e755c758bb826"
+  },
+  {
+    "case": 18,
+    "studentDigest": "f98119719cb797092d6fd2319b7d7fdeec72cd80dc922b6178781ad6650dd472",
+    "content": "다항식 $(3x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-15$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "0",
+    "solution": "$xy$항의 계수는 $2k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-15)+(-5k)=-15$이다. 이를 정리하면 $-3k-15=-15$, $-3k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-15$, $0$이다. 합을 계산하면 $-15+(0)=-15$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 2,
+      "d": -5,
+      "k": 0
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "82ab821c4d18c04d61af670f02627a47a56e9f08598cbe1878f96d673c27e6de"
+  },
+  {
+    "case": 19,
+    "studentDigest": "52b73f1b26ffc40d722718100b26d1f8ae05b92d65be8ead8e8595932458afa7",
+    "content": "다항식 $(3x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-24$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "3",
+    "solution": "$xy$항의 계수는 $2k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-15)+(-5k)=-24$이다. 이를 정리하면 $-3k-15=-24$, $-3k=-9$이므로 $k=3$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-9$, $-15$이다. 합을 계산하면 $-9+(-15)=-24$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 2,
+      "d": -5,
+      "k": 3
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "5b5ba90ec6b7c7dee7d0e39557d20a5aaf22e3e2c391b5c6caeeaa6f410a7b4a"
+  },
+  {
+    "case": 20,
+    "studentDigest": "1e14b85147225f63c9f602f27cfbfe7fffac23c75c00387732551067f36abb13",
+    "content": "다항식 $(3x+ky)(2x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-39$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "8",
+    "solution": "$xy$항의 계수는 $2k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(2k-15)+(-5k)=-39$이다. 이를 정리하면 $-3k-15=-39$, $-3k=-24$이므로 $k=8$이다. 역산할 때 나누는 수 $-3$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $1$, $-40$이다. 합을 계산하면 $1+(-40)=-39$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 2,
+      "d": -5,
+      "k": 8
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "942a1bfd8097ab1963c496f17332bcdd0dcd4d7e924ac6607160bd042ffb95d7"
+  },
+  {
+    "case": 21,
+    "studentDigest": "60d6a5fe73e162209b35871412f6081c49747af3082a77412d437b2ebe690e05",
+    "content": "다항식 $(3x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-7$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "-2",
+    "solution": "$xy$항의 계수는 $2k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-9)+(-3k)=-7$이다. 이를 정리하면 $-k-9=-7$, $-k=2$이므로 $k=-2$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-13$, $6$이다. 합을 계산하면 $-13+(6)=-7$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 2,
+      "d": -3,
+      "k": -2
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "aec7157b12021ec5cad1eccda2ac6f3ac50f79a28852f47d4c565201961e5fa5"
+  },
+  {
+    "case": 22,
+    "studentDigest": "df4f5b72b4df796bbcb7ed51e2fcea7261bb87d303e42d34dd50aedff4ce81f8",
+    "content": "다항식 $(3x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-9$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "0",
+    "solution": "$xy$항의 계수는 $2k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-9)+(-3k)=-9$이다. 이를 정리하면 $-k-9=-9$, $-k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-9$, $0$이다. 합을 계산하면 $-9+(0)=-9$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 2,
+      "d": -3,
+      "k": 0
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "d0d425f4df4bf22080684d80c28ec80dac12420920da77fdd0027289794477df"
+  },
+  {
+    "case": 23,
+    "studentDigest": "0acff85bdb8c52d133ff549caf964f34bf2e42bd26c1037fde5fa65c42f45082",
+    "content": "다항식 $(3x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-12$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "3",
+    "solution": "$xy$항의 계수는 $2k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-9)+(-3k)=-12$이다. 이를 정리하면 $-k-9=-12$, $-k=-3$이므로 $k=3$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-3$, $-9$이다. 합을 계산하면 $-3+(-9)=-12$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 2,
+      "d": -3,
+      "k": 3
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "704bb4a859330aa47268a0ab5be1d949e76c80b1703edfd09865d25d3f8f077d"
+  },
+  {
+    "case": 24,
+    "studentDigest": "8512d0d26aa92e830e5cf0040d2d4daf486f3613541e9714e0ad3c2403e024a0",
+    "content": "다항식 $(3x+ky)(2x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-17$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "8",
+    "solution": "$xy$항의 계수는 $2k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(2k-9)+(-3k)=-17$이다. 이를 정리하면 $-k-9=-17$, $-k=-8$이므로 $k=8$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $7$, $-24$이다. 합을 계산하면 $7+(-24)=-17$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 2,
+      "d": -3,
+      "k": 8
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "df0b774d9fd597cf8a31eddbae7545ab7cd4937d539aec69947c0718ae3532f0"
+  },
+  {
+    "case": 25,
+    "studentDigest": "d7069429545b197b302924a020a67e1952156bbe3aa4f93df4cc2657f515269b",
+    "content": "다항식 $(3x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-13$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "-2",
+    "solution": "$xy$항의 계수는 $4k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-15)+(-5k)=-13$이다. 이를 정리하면 $-k-15=-13$, $-k=2$이므로 $k=-2$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-23$, $10$이다. 합을 계산하면 $-23+(10)=-13$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 4,
+      "d": -5,
+      "k": -2
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "6d4489d9bea1cd8671d62ffc86b02f69f08f9fcb0cbe5a887d4ea8daffb6269f"
+  },
+  {
+    "case": 26,
+    "studentDigest": "346ed98dee075fee57e04815659e3e0f15741cc67ae244cdbcc19b0d53487179",
+    "content": "다항식 $(3x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-15$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "0",
+    "solution": "$xy$항의 계수는 $4k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-15)+(-5k)=-15$이다. 이를 정리하면 $-k-15=-15$, $-k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-15$, $0$이다. 합을 계산하면 $-15+(0)=-15$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 4,
+      "d": -5,
+      "k": 0
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "e63e4faad5f402f86824f199f6c224b066affbb04a3f63fd84c73439b0e2b8c2"
+  },
+  {
+    "case": 27,
+    "studentDigest": "32b8db5c27ad3a5d09e249ffbe16c9d8c1c832e581b36176d637370b8e5dd154",
+    "content": "다항식 $(3x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-18$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "3",
+    "solution": "$xy$항의 계수는 $4k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-15)+(-5k)=-18$이다. 이를 정리하면 $-k-15=-18$, $-k=-3$이므로 $k=3$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-3$, $-15$이다. 합을 계산하면 $-3+(-15)=-18$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 4,
+      "d": -5,
+      "k": 3
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "0e110e725d93cda2fc7842590d520c12b29ef9b6b910c3bccabccd958f3b2fa3"
+  },
+  {
+    "case": 28,
+    "studentDigest": "f7b7963c47ae8fab1fa64446d577b437ea59ef26a1f501772027882cb8d52d7a",
+    "content": "다항식 $(3x+ky)(4x-5y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-23$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "8",
+    "solution": "$xy$항의 계수는 $4k-15$이고, $y^{2}$항의 계수는 $-5k$이다. 두 계수의 합에서 $(4k-15)+(-5k)=-23$이다. 이를 정리하면 $-k-15=-23$, $-k=-8$이므로 $k=8$이다. 역산할 때 나누는 수 $-1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $17$, $-40$이다. 합을 계산하면 $17+(-40)=-23$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 4,
+      "d": -5,
+      "k": 8
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "e0a46f56133f3622fc6dcf7eb35ec5db01f95d411a0dc7dbf443a1ce33ab02e2"
+  },
+  {
+    "case": 29,
+    "studentDigest": "372698bd46d343255ef6e01f837863cd40fcbb69c694b80936ed20a113f26da3",
+    "content": "다항식 $(3x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-11$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "-2",
+    "solution": "$xy$항의 계수는 $4k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-9)+(-3k)=-11$이다. 이를 정리하면 $k-9=-11$, $k=-2$이므로 $k=-2$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-17$, $6$이다. 합을 계산하면 $-17+(6)=-11$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 4,
+      "d": -3,
+      "k": -2
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "30087c775369409ca56e732c639cdb030b6249fdeaec2ee09fea9d8e203a0b33"
+  },
+  {
+    "case": 30,
+    "studentDigest": "067d131cdc6995e3d096b4df0d3ce49bc5a0b496954c281acbc8443e027b4019",
+    "content": "다항식 $(3x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-9$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "0",
+    "solution": "$xy$항의 계수는 $4k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-9)+(-3k)=-9$이다. 이를 정리하면 $k-9=-9$, $k=0$이므로 $k=0$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $-9$, $0$이다. 합을 계산하면 $-9+(0)=-9$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 4,
+      "d": -3,
+      "k": 0
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "08579b0789423c89c608f0e33a7fc55d686ace79e50fcf1c658b41f2984d354f"
+  },
+  {
+    "case": 31,
+    "studentDigest": "17015975aea4a3c778780ed2aa9b5765a1e42fa86f90d4f7386922f6275e280d",
+    "content": "다항식 $(3x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-6$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "3",
+    "solution": "$xy$항의 계수는 $4k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-9)+(-3k)=-6$이다. 이를 정리하면 $k-9=-6$, $k=3$이므로 $k=3$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $3$, $-9$이다. 합을 계산하면 $3+(-9)=-6$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 4,
+      "d": -3,
+      "k": 3
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "b9ce654e8bada98e7b6ca5f727370ecd7de716490046b00065e9efbaa67919de"
+  },
+  {
+    "case": 32,
+    "studentDigest": "3e21068ffae033a2721af5c488ba4aefd41c82478b21341f3345d167608a4775",
+    "content": "다항식 $(3x+ky)(4x-3y)$를 전개하여 동류항끼리 정리한다. $xy$의 계수와 $y^{2}$의 계수의 합이 $-1$일 때, 상수 $k$의 값을 구하시오.",
+    "answer": "8",
+    "solution": "$xy$항의 계수는 $4k-9$이고, $y^{2}$항의 계수는 $-3k$이다. 두 계수의 합에서 $(4k-9)+(-3k)=-1$이다. 이를 정리하면 $k-9=-1$, $k=8$이므로 $k=8$이다. 역산할 때 나누는 수 $1$은 $0$이 아니므로 해는 하나뿐이다. 실제로 이 값을 대입하면 두 계수는 각각 $23$, $-24$이다. 합을 계산하면 $23+(-24)=-1$이다. 따라서 조건을 만족한다.",
+    "parameters": {
+      "a": 3,
+      "c": 4,
+      "d": -3,
+      "k": 8
+    },
+    "questionType": "단답형",
+    "difficulty": "응용",
+    "difficultyBasis": [
+      "두 계수의 합으로 입력 상수 역산",
+      "0이 아닌 일차방정식 계수",
+      "원래 계수 대입 검산"
+    ],
+    "figureSpec": null,
+    "priorCapturedStudentBodyIdentical": true,
+    "oldSolutionSha256": "ed1ff15dfa25148a91f86cbbde8fbbd38cd1f7d8486770591a7ff6e671266e46"
+  }
+]

@@ -1,0 +1,466 @@
+{
+  "checks": [
+    {
+      "name": "exact860contextorder",
+      "pass": true
+    },
+    {
+      "name": "624formerGapsNowGradeBeforeRelease",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/algebra.inverse-coefficient-sum/full/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/algebra.inverse-coefficient-sum/full/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/algebra.inverse-coefficient-sum/component/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/algebra.inverse-coefficient-sum/component/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-root-table/full/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-root-table/full/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-root-table/component/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-root-table/component/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-extreme-range/full/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-extreme-range/full/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-extreme-range/component/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-extreme-range/component/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/geometry.inverse-tangent-rectangle/full/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/geometry.inverse-tangent-rectangle/full/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/geometry.inverse-tangent-rectangle/component/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/geometry.inverse-tangent-rectangle/component/true",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/0",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/0",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/0",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/1",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/1",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/1",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/2",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/2",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/2",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/3",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/3",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/3",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/4",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/4",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/4",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/5",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/5",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/5",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/6",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/6",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/6",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/7",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/7",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/7",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/8",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/8",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/8",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/9",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/9",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/9",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/10",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/10",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/10",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/11",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/11",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/11",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/12",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/12",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/12",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/13",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/13",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/13",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/14",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/14",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/14",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/15",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/15",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/15",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/16",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/16",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/16",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/17",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/17",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/17",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/18",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/18",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/18",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/19",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/19",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/19",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/20",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/20",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/20",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/21",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/21",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/21",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/22",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/22",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/22",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/23",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/23",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/23",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/24",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/24",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/24",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/25",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/25",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/25",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/26",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/26",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/26",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/27",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/27",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/27",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/28",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/28",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/28",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/29",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/29",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/29",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/30",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/30",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/30",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/31",
+      "pass": true
+    },
+    {
+      "name": "oldSolutionStale/31",
+      "pass": true
+    },
+    {
+      "name": "wrongAnswer/31",
+      "pass": true
+    }
+  ],
+  "counts": {
+    "total": 114,
+    "passed": 114,
+    "failed": 0
+  },
+  "limits": "Internal verifier calls canonical make; public route tripwires separately remain0; not factory-independent proof (Python oracle supplies it)."
+}

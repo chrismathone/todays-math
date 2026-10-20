@@ -1,0 +1,79 @@
+{
+  "utc": "2026-10-20T11:10:22.286Z",
+  "root": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+  "kind": "current-code-and-prose-repair-review-not-new-blind",
+  "head": "00eee9bcb9b53ec8f95ebf28aa5708dd8cbac8e1",
+  "gradePolicyVersion": "20261020-reviewed-student-methods-r4",
+  "familyVersion": "2-neutral-student-wording",
+  "sourceFiles": [
+    {
+      "path": "src/lib/examStudy/curriculumEligibility.ts",
+      "sha256": "d962ba000211422cb9073632ee134c631dfa8803b036af9b744a223f00f99a9a"
+    },
+    {
+      "path": "src/lib/examStudy/families/middle/inverseCoefficient.ts",
+      "sha256": "d55bc535c275c3c16e94b9a7afc781dd1f6c84845061e850aa7ace099edc4f4b"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyM3MethodGradeGates.test.ts",
+      "sha256": "d038168218adf236b4745b31e8e4b7078f4d2f72d09613ee90f2c856d0404957"
+    },
+    {
+      "path": "src/lib/examStudy/generate.ts",
+      "sha256": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc"
+    },
+    {
+      "path": "src/lib/examStudy/registry.ts",
+      "sha256": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378"
+    },
+    {
+      "path": "src/lib/examStudy/evidence.ts",
+      "sha256": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8"
+    },
+    {
+      "path": "src/lib/examStudy/releaseEligibility.ts",
+      "sha256": "7e83611c376eafa7f1fb9c23dd846adc05cac850d61b156b8b04c716b597bdd4"
+    }
+  ],
+  "privateGenerated32": {
+    "path": ".qa-artifacts/exam-resume-20261008/m3-method-grade-gate-code-audit-20261020-r2/private/generated32.json",
+    "sha256": "cc2ea472fad8a72af06648a3344a9834089d2f5c4b7ba640d6a68fe6102e88b2"
+  },
+  "oldCaptured32": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-coefficient-engine-audit-20261019-r1/calculations.json",
+    "sha256": "536e5d4c16f83b5991069845823c0773443a1d86d95314dbeeab1f1ff8f8dc3f"
+  },
+  "prechangeReport": {
+    "path": ".qa-artifacts/exam-resume-20261008/m3-method-grade-gate-prechange-audit-20261020-r1/own-prechange-report-r1.json",
+    "sha256": "39dbb1dc84a6b3a97f3b7b39fd0f41fd6c9004b16f56414602205643698a3410"
+  },
+  "parentTests": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u63-post-hardening-r1.json",
+    "sha256": "213fe9255d5098d77e95cb4db82d801564eb54ef95a6ead99e47176585781ef7"
+  },
+  "parentLint": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u63-eslint-r1.json",
+    "sha256": "848bbab015afd2873acb18d168c74cb7489ace801994bc5175d55439abdd5f76"
+  },
+  "scopedTypes": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u63-types-r1.json",
+    "sha256": "eefbd1503ad6c6df1b7db3189587f9f53b81fbfa2969f6c27ddd6d79d390f352"
+  },
+  "actualCurrent174Index": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v50.json",
+    "sha256": "857ec44b0fe7b22232d32ee7138987d57e14fdd71a81c4f84caec3ea32cb2481"
+  },
+  "binding174And295": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/current174-binding-audit-r1.json",
+    "sha256": "16a9dabc55829c8a9b1c95e3cb9a1ce8cb3545129cbc7d378446edd170d52038"
+  },
+  "limits": [
+    "Parent193 tests are separate from independent controls; no addition of old860 requests or old math assertions.",
+    "Current32 student bodies/answers/parameters unchanged; new prose/version only. Not32new manual twins or new blind solves.",
+    "Four new below-M3 holds supplement oldU62 and preserve oldM1coprime warning priority/geometry. M3 null is no release or curriculum approval.",
+    "Current2027M3/2022, exact family/source/rights/native/actual student prerequisite placement remain held.",
+    "Keep original prechange diagnostics and same retained worker exposure history. No full-registry/catalog/browser run below memory floor."
+  ],
+  "loadable": 0,
+  "dbWrites": 0
+}

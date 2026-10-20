@@ -1,0 +1,1447 @@
+{
+  "kind": "exam-engine-owned-twins-excluded-from-bank-rebuild/v1",
+  "createdAt": "2026-10-20T11:42:57.519Z",
+  "ownerBranch": "chrismathone/exam-extraction-resume-20261008",
+  "direction": "Exclude this session's twin question lineage from the other computer's shared-DB rebuild; engine code only here.",
+  "canonicalIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v50.json",
+    "sha256": "857ec44b0fe7b22232d32ee7138987d57e14fdd71a81c4f84caec3ea32cb2481"
+  },
+  "canonicalSelected": 174,
+  "unselectedDrafts": 4,
+  "totalIdentifiers": 178,
+  "approvedForLoad": 0,
+  "dbWrites": 0,
+  "freshDbRead": false,
+  "completeDbIdentityMapping": false,
+  "prefixHint": "exam-twin-",
+  "prefixHintIsNotACompleteDbPredicate": true,
+  "historicalVersionsAndStoredLineageRequireSeparateExclusion": true,
+  "missingFromThisListDoesNotAuthorizeAnyDbMutation": true,
+  "excluded": [
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q01.json",
+        "sha256": "d8e2aaa7022f4e240ab571f397da0e13c8675d68765c6e85b20a21ce3953d025"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q02.json",
+        "sha256": "284ac58025af5c19583519be412f9f66e6e57dcf17e6b2b80c175b3f92f496ea"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q03.json",
+        "sha256": "2dce4f52a2b3c57d71710a7d797ff00d6132344a1c843d037cb1d96ebef1e1cc"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q04",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.json",
+        "sha256": "018ce9d854cd4c399f2f9535704fdc21894f322f223d6f336da2876d681062de"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q05",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q05.json",
+        "sha256": "2221faec82674818c0a13fbcc7d6254ad88dca5d22298ec18ab45b357295b1d8"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q06",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q06.json",
+        "sha256": "86810cd98db029a500ad514a71510dcbc895f6ed8a88d074910ad531514c5a79"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q08",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q08.json",
+        "sha256": "41c8315b0fcc45971ad3f2c943d20528d92e2c45f90529baaa17c462a8108dfc"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q09",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q09.json",
+        "sha256": "6c3d3785bfa60c763656bb0601721f7387ddcacdaa14db6a7447d04476c8cf38"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q11",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q11.json",
+        "sha256": "814ba14f64d2fe3dfb5ad83b36fbf20f0d38fb33f5ac2757e4e3dfb2d15969ba"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q12",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q12.json",
+        "sha256": "da7200b72e0cd8153d25a620e7024292a1d3383d9e696b7d6bb0a63b645e19c9"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q13",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q13.json",
+        "sha256": "0ea9cb1bcf7776540523ab56207ec282be1ad22c7e9344278ed7a18ecb35eaf2"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q14",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.json",
+        "sha256": "8c4ad928e6910539d29a3bbecede5dd701132dc35243daee57409761ee3f19b5"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q15",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.json",
+        "sha256": "6e948da15efef5177bf65592bbd9099e1a78b404a63a637b342aacfe09908aeb"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q16",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q16.json",
+        "sha256": "fe028ae29ccaa7e3f749ba4b4c498f16122576e7eb27e50ab4076b5e153391f0"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q17",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q17.json",
+        "sha256": "052fa81ae4898d93046815527aa9341bd0b3e65e0f58dfb4dc65c0323f1819f3"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q18",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q18.json",
+        "sha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q20",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q20.json",
+        "sha256": "c6afd84bd14c5b2b9ff48b23524b13e6fc8f4718af3e3a1ea45e08d729a368c6"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q21",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q21.json",
+        "sha256": "8f3489c6e162d8df86c0978a8942b26ced1c53ee28d67c542c1d628513bcecea"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/image-context/q10.json",
+        "sha256": "75e82d33f3d27ad9084a084f8168fcaa0930c21857cd4fd59740a4c4067003dc"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/image-context/q19.json",
+        "sha256": "4189ede185564ff2de94bac1c8ef7d6ca96f9f1b13d8073e4818d86d91d5ce62"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group1-r2-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegubuk/q02.json",
+        "sha256": "9d17f0727361a996ab314dbdcede7575129c150fa637885626196283724f06d0"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-authoring-20261020-r1/daegubuk/q01.json",
+        "sha256": "525c9d6a3ac7daa2ecdc9a2044bd7533d51c600af4cd96d5f3f45602f81e5b5b"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-authoring-20261020-r1/daegubuk/q03.json",
+        "sha256": "9b83a60b4791a24881f1fd4046808defc54860e41788af53eda84522caadb56c"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegudong/q01.json",
+        "sha256": "048b94d9d68684a6412bb11c201af3bf9dc924fc1fb072b3dcedc25e57dd25af"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r3-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r3/daegudong/q02.json",
+        "sha256": "2faa1909d4f1353ced47dbbc52067c866bab9d2748d1531fce818cabf4215353"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group2-r1-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-authoring-20261020-r1/daegudong/q03.json",
+        "sha256": "5dc280d921e735bde950948e1d8c242b1c1ced2be8e50df21f3de31ab85d18f8"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group2-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-authoring-20261020-r1/daeguil/q02.json",
+        "sha256": "3422f04778f6ae24740d7673bd7a27b4b1c66cd736a1368823fa50e58548a122"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group3-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-authoring-20261020-r1/daeguil/q01.json",
+        "sha256": "528bff32510c7d7540e9d64d298327d1275a6fa842382a27e2431f227cc5c24b"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group3-r1-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-authoring-20261020-r1/daeguil/q03.json",
+        "sha256": "95885bfc8e9ef761849a6aa37c1b20eccdebfb1e91f713c7b888c5a2ffb79de6"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group1-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r2/gachang/q01.json",
+        "sha256": "b1290a4eb22e6a57701726f312b22668c38a432b185c5cfc873e01ce6f18231b"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group1-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r2/gachang/q02.json",
+        "sha256": "2ea2029518ae1e57a75578106f1bca058f74a2a6c4411ae863cb43b0914d1f53"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group2-r3-q04",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-next2-authoring-20261020-r3/gachang/q04.json",
+        "sha256": "b74fa87d082ee95a1661fb642238402e1b95943c14b241cfcecf653b00e3d994"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group2-r3-q05",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-next2-authoring-20261020-r3/gachang/q05.json",
+        "sha256": "43068d8d3374e34f0a303a6824a012bf8182b964b2734c19acaf108881fe87e1"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group3-r2-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-group3-authoring-20261020-r3/gachang/q03.json",
+        "sha256": "e94f8564646c86b9317a872d98819a63aafa71976c2e94ae48cc1aaa67b1fe28"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group3-r2-q06",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-group3-authoring-20261020-r3/gachang/q06.json",
+        "sha256": "580789806da025add8be74ab5cfd01e34b912c7331679c687cdc1aa5a7b8a322"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group4-r1-q07",
+      "selection": "unselected-draft-not-approved",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-group4-authoring-20261020-r2/gachang/q07.json",
+        "sha256": "cf150fde53c1b9fa2208c011e7904b9fc07fdc89d3c894a2f5dfddaead8a48a4"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group4-r1-q08",
+      "selection": "unselected-draft-not-approved",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-group4-authoring-20261020-r2/gachang/q08.json",
+        "sha256": "092ac26ba47aa7c726af386ffddc87a7022996643bbdba3f089f935a89eea2cd"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group5-r1-q09",
+      "selection": "unselected-draft-not-approved",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-group5-authoring-20261020-r2/gachang/q09.json",
+        "sha256": "2a07dc5124d3b66425edd87a91ee926a8c06fa671774549e19e79445b786b25c"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gachang-2025-1-final-author-group5-r1-q10",
+      "selection": "unselected-draft-not-approved",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-group5-authoring-20261020-r2/gachang/q10.json",
+        "sha256": "bf427344c4b566448d8013749e075e0c2b25da986f34e2f3a87d0f84f8218091"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gangbuk-2025-1-final-author-group1-r2-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-authoring-20261020-r2/gangbuk/q01.json",
+        "sha256": "066d2077813ad0f4778798e51514dea80de81fd3e78e27239ea5d26ba9d50314"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gangbuk-2025-1-final-author-group1-r2-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-authoring-20261020-r2/gangbuk/q02.json",
+        "sha256": "79c8c3e0747bd53f9d63c341698dd6dc2773e5e4b31d962f02e4ec555f96f803"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gangbuk-2025-1-mid-author-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-authoring-r1/q01.json",
+        "sha256": "333b7c700f0154fe84d8feeec01c277ac6bc85a21ddca72c7708b538159c787d"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q01\\q01.json",
+        "sha256": "c8adab6c830e14222efe1c3a32d99b16145e36a5b83112bca4d0d14cb58ba7a9"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q02\\q02.json",
+        "sha256": "fb876bc7a2222639d805e2da2f907be132aa6c7f1b9b40c2fcace933c6d6cdf2"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q03\\q03.json",
+        "sha256": "e335a8b32f4e7b2da0959336db2b263751312160ed621b35c0c5cfe13fa10a15"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q04",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q04\\q04.json",
+        "sha256": "4521fd0da384cd3893038f8ec6fa072d03359fba482a255eb575c9845d2eafd5"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q05",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q05\\q05.json",
+        "sha256": "edecfbd70649fb8a6221e74051d88581619a4abade98ea4374e8ef115ef4a883"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q06",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q06\\q06.json",
+        "sha256": "2b41ba553b809cfacf630fa8a5d2cb48eda391854da576f233d3eb5eab033cac"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q07",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q07\\q07.json",
+        "sha256": "b455dad2c682ad3e04afaa12bc5e16b7fd9a27e49558fd19f9707d1aa7d00822"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q08",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q08\\q08.json",
+        "sha256": "a46b7f7ae2192daab52e9b40eb9a0dfe169bdc0eef398b6250868bae66418c2b"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q09",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q09\\q09.json",
+        "sha256": "a3e5edea69316507c20cb95755c89d498ec829840db318f62187a91bd7a739f9"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q10",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q10\\q10.json",
+        "sha256": "d137f2befe75a99eec02eb09023ccbc3b7f62913de4dca15791c3413905d8a26"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q11",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q11\\q11.json",
+        "sha256": "f58872a061f2f7caa04e50def805e3e9a941f8dec6689a78b3e44a2fab9d53b4"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q12",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q12\\q12.json",
+        "sha256": "13ea2d0c32bfbe08e674be04805346419d9a161079e6ab84a9dffd7ad94d1a3c"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q13",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q13\\q13.json",
+        "sha256": "3c1aa8d2edc84d3343bd8e834356433ab2daf9a85ea4164c7a29aee6d2b7a2a1"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q14",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q14\\q14.json",
+        "sha256": "657e67db6c1a76d48821141c22579062f937c652d8cb06512d1d7d46c1f4f204"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q16",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q16\\q16.json",
+        "sha256": "5edf90592c4c2dd0f937745f81e60f89ca7abfe291aacdf8e79dcc5dcffc6dd3"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q17",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q17\\q17.json",
+        "sha256": "e4b7923fcd0d97ff52d4641aa50e470703f6fea922462513f83e622c8faa23bd"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q18",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q18\\q18.json",
+        "sha256": "416001fe8317af6f3ba171b01724d2c73c82013d91d81fe54eda6c700e07bc62"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q19",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q19\\q19.json",
+        "sha256": "8b26fe5116fa820f07cd8e636a26715f2b32532a1078673f6a3737f2c2dba644"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q01\\q01.json",
+        "sha256": "8ac489d037ebe4271f346e8048d7a3c8293246f869c2192a0f6b2660e8f9a288"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q02\\q02.json",
+        "sha256": "fc62c4423ac051fb3b1d1a0aac506aded25d91e5e95134796949a7a239679157"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q03\\q03.json",
+        "sha256": "20ac358951caa221e805e20d156538f479788542a160accfbe3da13b8b015e45"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q04",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q04\\q04.json",
+        "sha256": "01005d538ebceacc7f09d23a5ecfe5b7b22a7804f691146aa2be68ca7f152ca5"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q05",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q05\\q05.json",
+        "sha256": "810b5be2da7bce70b69648ad60c8a46ad0ed8cd148d37c1722a23a362d694a10"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q06",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q06\\q06.json",
+        "sha256": "e8dd72f59abaa134c45ab1390d7a261e966e4f54f162533e5d27572c08a607e1"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q07",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q07\\q07.json",
+        "sha256": "c2083ea8c80bdfb55a9296909378e4ef805da7177fe1b93e710fba90a72caa7c"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q08",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q08\\q08.json",
+        "sha256": "5e1558b0c7051824c397f723f309d8c23352d742a2fe420a898f0e2ae58b9c2f"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q09",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q09\\q09.json",
+        "sha256": "964b671bbf557d10737fc98d3491332ebd8d8c9c26ffee0ef963617e0b42fa80"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q10",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q10\\q10.json",
+        "sha256": "c940ac48a457db8968e9cd932dcb2f9654a53e3f35ad98f49d062f1f466f1758"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q11",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q11\\q11.json",
+        "sha256": "5f9db1e534e8a6a3a6eaff90484a04bf3c5ac8c0adecc685cd7c0cafbe4486a6"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q12",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q12\\q12.json",
+        "sha256": "7252904b13203394eb0a2ca42f0abe8a0c70ca930f04859d1ef4a6a0d7d18d09"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q13",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q13\\q13.json",
+        "sha256": "5972c220ab7e2be1dd6cc8612051e5240cdd49be7fff6cbc4efffe00a79355fa"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q14",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q14\\q14.json",
+        "sha256": "f70582756c9e551fb39b7b04512ee4abdcd357e7629b523342f6f860f6f369b1"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q15",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q15\\q15.json",
+        "sha256": "fe43a0a024d83529079ebe05979f1f7f022571e6aa45467af83fd637d7efda73"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q16",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q16\\q16.json",
+        "sha256": "c864051b55dff67a2a8d476908505779acaece3c0274e34855f562f18a5cdc1d"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q17",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q17\\q17.json",
+        "sha256": "38304b1310ecb86a6978888e2061ba2bc050995a8e29c55d4dbd262bd9af7bbc"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q18",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q18\\q18.json",
+        "sha256": "49d7ef70c49f431817a930f68b772fdd44fd60b99bea95c8d7950049db452bdd"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q19",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q19\\q19.json",
+        "sha256": "a7ce4ed5ca1d48a2a62637707c8ea2b88d0416e3f78f226cfdc0691ede4b089c"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q21",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q21\\q21.json",
+        "sha256": "f6786d6d000909be51b28ea879859c0963819ba2cde6da92ff60adf946af66bf"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q22",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q22\\q22.json",
+        "sha256": "00369f519960428bfcb55f709f2d96abe2be9221b80bad549e542b170cdcced9"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q23",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q23\\q23.json",
+        "sha256": "acc89aa2c0a75427945778b1a28681a749142c6b018db936674d354c6df0dd38"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q01\\candidate.json",
+        "sha256": "32626db4dc32fa4a82cd9908b9d220af7c20506dce0b810fb20f0e85da5106d1"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q02\\candidate.json",
+        "sha256": "a48d55175a299687755542a939da443da1df67c71f07fb56ae6ee27ca7e379c5"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q03\\candidate.json",
+        "sha256": "0cd3cce1125e978520f7e9d53e4110ac164ec34af79c901cc135750b22ff5003"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q04",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q04\\candidate.json",
+        "sha256": "4ab24190d1a38b2280dbd5adf35528891236d189e497890bcf029fb36fb36c89"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q05",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q05\\candidate.json",
+        "sha256": "937e966e7f00a7bb853e632aac46f5376123d21571d255c8ee3a4306f234c4ee"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q06",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q06\\candidate.json",
+        "sha256": "df1935a9a9132cc04fed9be127ba42687f9322a286a6d3d02d546b38b0c02e0a"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q07",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q07\\candidate.json",
+        "sha256": "562eae64bacd0793dcd74879199ed3c17fa042ae0be524b09382dfdc3dddf230"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q08",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q08\\candidate.json",
+        "sha256": "9ee3e57c3d410e1cac2c1edec40841ed8554d94e7d9270312532c795f5d0193e"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q09",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q09\\candidate.json",
+        "sha256": "60f8b35a54ed47edec2b365afc16fc6e47075710c89d118bb7cba6ad57f33764"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q10",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q10\\candidate.json",
+        "sha256": "96406896b36596bfff742fee4c5227483a8bcbb0cba72fcd5b54bcb384d9e9ae"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q11",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q11\\candidate.json",
+        "sha256": "7e3dde94158986d2c939c3300ae271bd7f53c61d79cc020a1fcd9166902237bf"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q12",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q12\\candidate.json",
+        "sha256": "6a5c6374638484d2906d98bfd884e743cb84bfce352c56228893ea62ba30af07"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q13",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q13\\candidate.json",
+        "sha256": "374e82ecb02bd7f3e0fd062194ef662b70eb5b32511e4361f9e7ccc4fc8449e7"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q14",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q14\\candidate.json",
+        "sha256": "9e1d2746d7ef3b1d362aae4a1af08074f6488c2195b8d2f96c2f5e85b305f7c1"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q16",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q16\\candidate.json",
+        "sha256": "e224133377e2dc7522ac8834b2355de4265d9c1bc41314b00cb8a9a237aa417d"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q17",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q17\\candidate.json",
+        "sha256": "a3e09aecd13fac2e60c526d22682645b867f87d17b6b103a32dfb1011065ef8e"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q18",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q18\\candidate.json",
+        "sha256": "e34e8484ac395e7dc6656ee14a9506b21e8f035304769eba81e19efec43c96b8"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q19",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q19\\candidate.json",
+        "sha256": "ee1c8811ed124f915ea167a54779b18f4e5c0920dc5f6d45e36329b75fd75017"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q20",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q20\\candidate.json",
+        "sha256": "bd25ae10af7fc856d5a4b9247ed1355541dafb313471a6f949861d1f93bbebae"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q21",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q21\\candidate.json",
+        "sha256": "1884ba376cc01f44eed8146a24d59c8863d117cc10ee81e64a65a85e6ac31c4d"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q23",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q23\\candidate.json",
+        "sha256": "1a0e015f051dd561b7bc2693a2e73aac0afae07f92f5bc5ecc18c883e1037b36"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q24",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q24\\candidate.json",
+        "sha256": "e44c5094aaf6476112ad71043711b2b33634472ab0d6ae980cc4fecac923bd54"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q25",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsan-authoring-r1\\candidates\\q25\\candidate.json",
+        "sha256": "3022db6c34a32ac24da41f113ee7120cb912cdf4013eca529b52687620229917"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r2-q22",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-repair-r2/candidate.json",
+        "sha256": "740279ebac2db406f98c789a4567c2ee6ef96b4e360736b7551eb8efee81a97a"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q10",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-authoring-r1\\candidates-r4\\q10\\candidate.json",
+        "sha256": "87df5b07b0d0b0387da18873076fba11a38219921d1c988a63b48a44c9f93fb0"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q11",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-authoring-r1\\candidates-r4\\q11\\candidate.json",
+        "sha256": "f36cfd23c68c0aec40faf131d95c3ada2f2313f348381f1b9f9eeb68213b6e4d"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q12",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-authoring-r1\\candidates-r4\\q12\\candidate.json",
+        "sha256": "adf4c838de0fb5abd69fb9c381991b7f9586352ba715bcd2308f257a4db7e6c8"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q13",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-authoring-r1\\candidates-r4\\q13\\candidate.json",
+        "sha256": "ebf337193dd2ba93a6e7a984cd25022be7ad57c99c2ffd8105fa8a7ca1df1aa0"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q14",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-authoring-r1\\candidates-r4\\q14\\candidate.json",
+        "sha256": "113b4512fe9fb93c802a208ce60163144f0d324ea75eedf0e1e7cee38d332330"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q15",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-authoring-r1\\candidates-r4\\q15\\candidate.json",
+        "sha256": "179ae63d5e8448909b63e78d27b6ca3309efe4a13c9eb1acb502fe3838b3b0ed"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q22",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-authoring-r1\\candidates-r4\\q22\\candidate.json",
+        "sha256": "5a443d98fd9e78452d53ca906a19fa526cf3ef920e432fc4bac2ddb4a93d8a4c"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q01\\q01.json",
+        "sha256": "deac4937c529b13152428c2ae49a265232a696f8153516ffd690e6c292351d54"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q02\\q02.json",
+        "sha256": "8b1da1b11a15d876a5b8b3111ec85bf3030ba6f4b47bc2d420e17df173d54b69"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q03\\q03.json",
+        "sha256": "2bb926878937da31e1f3b000fb0fe4625bf6b664e1b23b82038d2c3398722d61"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q04",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q04\\q04.json",
+        "sha256": "01f6867ac13e983c2d97614dc5a3b48282844d4278e0d4c0aa7a5df36ce9afc7"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q05",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q05\\q05.json",
+        "sha256": "87c7d44ab970c7d9100609484911326e7a9f69cf3088061dd6ad7e5de9056c7a"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q06\\q06.json",
+        "sha256": "7a7695ead84369b43532d093a9eb7eea317b164fdebb78cac79d63b86e1311db"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q07",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q07\\q07.json",
+        "sha256": "53380d131a689001aaaf0599986609e3da80b0f9a998815d39529e6321c9220a"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q08",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q08\\q08.json",
+        "sha256": "475f8252eae3cb82c910ffc621dd2a680db5e7e22beb9f389ac417c3643ca2be"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q09\\q09.json",
+        "sha256": "91027639f616e2fbe6c532622650aa0411aaf6c5f32c2747d85b41ecd4d90b14"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q16",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q16\\q16.json",
+        "sha256": "f38c0da233a3887f453b3226dcd8991a8182cbef06a62acac93aa61e6f393905"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q17",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q17\\q17.json",
+        "sha256": "3f3f2be7983a9fd7e0c7112aaaf8fcb743a672624e53d1c272b6ecf339fd45da"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q18",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q18\\q18.json",
+        "sha256": "70dcb42397ed9c1cae023e2fae309c460c783956ccb7c2f8eb421318f5fc02b1"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q19",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q19\\q19.json",
+        "sha256": "f436be0b4e7157ca2ee5db9043e350b353f121f8eb48c3531416d91405a1fd16"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q20\\q20.json",
+        "sha256": "d7eb1afb51684cd0cba6665dcf502d610911d0a562b29e8bde13706a915d5d6c"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-remaining-authoring-r1\\candidates\\q21\\q21.json",
+        "sha256": "cd2ccfa83e50bef390c7397a864ee1b087944c1f06187ef048ed0bf675d69a1a"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group10-r1-q11",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group10-r1/q11.json",
+        "sha256": "ee45f90ae420ca1df1c59c884f90ca3c7947b5b77335128248e34fbe3179d1b3"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group10-r1-q12",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group10-r1/q12.json",
+        "sha256": "68e8bce4ff4bf0d7c133a03d3c49fe857992ebb65823e66826c59891b59ae02a"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group11-r1-q13",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group11-r1/q13.json",
+        "sha256": "417e5a4e351bf11c7f422974d5555ddd35694d1d1ce1fb165e1ccc558dc82791"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group11-r1-q14",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group11-r1/q14.json",
+        "sha256": "0dd3a5756006a3a90064b2e43d2a71f645e3403233d14a205fb61ccc063400a3"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group11-r1-q15",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group11-r1/q15.json",
+        "sha256": "95ede12c4f3175d668c398d4631bf1e99141981977a2f9eacb003451dfaeeaf1"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group11-r1-q16",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group11-r1/q16.json",
+        "sha256": "ee8d9db8baf221f211735da4cfa10d0f8b8174df9a94f55dc18537ab184b6614"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group11-r1-q17",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group11-r1/q17.json",
+        "sha256": "a5cbea1ad8383f299bef5894e38676e2f049674469f9bc9bb018e49d7afbd837"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group2-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group2-r1/q02.json",
+        "sha256": "acf96c3329dfa977723b432c53c9f702d6dd7935e04784ed68e3ce4c943fbcf4"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group3-r4-q04",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group3-r4/q04.json",
+        "sha256": "174815bb578f82ac6f729e28c66b614d3836ff68f5e34c93b37a5ecca5fd11e9"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group4-r1-q06",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group4-r1/q06.json",
+        "sha256": "caad335419023dda1bf7413efee0732eb8e417a20c2f342ecd8d817c6f4ecc24"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group5-r2-q05",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group5-r2/q05.json",
+        "sha256": "17600cf751e15a5e30027dbf7161207cde29dcde2fb24bdb8321d29f76fcdcb8"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group6-r2-q07",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group6-r2/q07.json",
+        "sha256": "b0a5aca06dfd00e45e9e7925cac803af0bec983ab5d42a28293c7c34c29277d3"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group7-r1-q08",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group7-r2/q08.json",
+        "sha256": "b4870175687badf1b86a3dd7f5d6661b14f6a8a064f0bf648f425ce734301877"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group8-r2-q09",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group8-r2/q09.json",
+        "sha256": "3f4ab0737b465f85a36cec840ffc166cb3c24cda8017de47cda40c77b334bfcb"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-group9-r1-q10",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-group9-r1/q10.json",
+        "sha256": "0bcf978c867203b6519b535e5b20c2d78a2a478161d83c5aeb5610d470642d3d"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-gyeongsin-2025-2-mid-author-r2-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gyeongsin-authoring-r2/q01.json",
+        "sha256": "a55a100e29c46ea07b91bebe2fae5cc7e956000e5637dc319a8d3e9377c42f64"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group10-r1-q18",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group10-r2/candidates/q18.json",
+        "sha256": "5a4a6499c75cf6e35f8dc35422075b60d031be7736223d19ab11ddd219e0d578"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group11-r1-q19",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group11-r3/candidates/q19.json",
+        "sha256": "59aedac017c06a809ebd514a86ef277b73ddaa4fd2d35efa826993e869d7ff62"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group12-r2-q21",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group12-r2/candidates/q21.json",
+        "sha256": "e3fead0a1dbad0db2a880a1c732d1bce094e792f904386914ea5237c39c927f1"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group13-r1-q03",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group13-r1/candidates/q03.json",
+        "sha256": "75b83effaa42f0bad29feb7b9f5dab8419775c39a998f5be94481843df1c0af6"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group14-r1-q04",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group14-r1/candidates/q04.json",
+        "sha256": "0d926d5bcc197b549a890cb17cd2785f9f1768c13e70f034ec819b88b53342a8"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group15-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group15-r1/candidates/q01.json",
+        "sha256": "91122db6245e418ac93d4797c9c3363487be67f0ba6e0ff4c2c8870aaa0cc5d6"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group16-r1-q07",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group16-r1/candidates/q07.json",
+        "sha256": "43519d897483b9c37dcccae6ff30f2f2b2fa56397253e9b1331459bcfcdbb1e0"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group17-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group17-r1/candidates/q02.json",
+        "sha256": "60b845cf571bef0f8237539732859362fae63c0f7ffa2c68bacb86729108a37a"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group2-r3-q08",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group2-r3/candidates/q08.json",
+        "sha256": "43298d2898ac0b1be2bddad6a37c4f764a157086718d758d6ded5f109d12e7a0"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group3-r1-q09",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group3-r1/candidates/q09.json",
+        "sha256": "2888b07139a0b65d53925c0762aab4510cd3e80b40e2cfc390ba7d89d2fe296c"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group4-r2-q10",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group4-r2/candidates/q10.json",
+        "sha256": "262bd6d918b92316747bb6ceafe6a5653cef272d3299bb455579bdbff52faec7"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group5-r1-q11",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group5-r1/candidates/q11.json",
+        "sha256": "fcb3b51b377b43c6a6a67773aa23507b666aee22ee15a486813e36a4d9f9f1bc"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group6-r1-q12",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group6-r2/candidates/q12.json",
+        "sha256": "2a33e1413117e023d13fa0e32c37ab93e44516fb09c103afa30b2dff9f510704"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group7-r1-q13",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group7-r1/candidates/q13.json",
+        "sha256": "31e13cbed95c51cfd699d8239a88194ce8b6d4002b90d5ec39a685f9d4150bee"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group8-r1-q14",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group8-r1/candidates/q14.json",
+        "sha256": "67d23068adbfdb03e223dd0a722f9e79a0734c6f6da64697f368c3c6f158200d"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-group9-r2-q16",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-group9-r2/q16.json",
+        "sha256": "dee1e34701a2a74e536eebf5151a282d98add678fb8fe0c131fce2ad12a2eb2b"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-1-mid-author-r1-q06",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem1-authoring-r1/candidates/q06.json",
+        "sha256": "43eb782c181b71b0ae64c3f172c01660de5bea4262cacc9522149a026b017be5"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q01",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q01/q01.json",
+        "sha256": "45a250cf84e53a3afaed1e030b6244dc9a513006ffb5584baccad22ce8a18791"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q02",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q02/q02.json",
+        "sha256": "dd925f035e3548bb7a08bc57a1ce3d69930a3b6ce3685066e1b71410c07fed9c"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q04",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q04/q04.json",
+        "sha256": "cc4ef6106aa1dc39fec05ce8f22ad12f1dd383ebf456d2c6903cc42748edd15e"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q06",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q06/q06.json",
+        "sha256": "8b66bcc066b2222687be1fee2d3ba512cd305857b71119235a4c770582291307"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q08",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q08/q08.json",
+        "sha256": "9e28c5c513110150cca9bcb79e46141a223ed4da66eb4c801b3251f6fe9b0c28"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group2-r2-q09",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group2-r2/q09.json",
+        "sha256": "5a861a9c1818ac97eeb0d6a87f5aa5e4104f360747336cda4be0c65ebb2ba557"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group2-r2-q10",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group2-r2/q10.json",
+        "sha256": "d3a9d10393f49e40ae2bdc1fa692171279588cd8715f8649091bbf7e5ff187d0"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group2-r2-q11",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group2-r2/q11.json",
+        "sha256": "7cc5e43b77115211d446e11883d923b3a3475d55d9e7e0167e818f0ea8d43406"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group3-r1-q12",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-r1/q12.json",
+        "sha256": "329b704fa242ea09e66639b7265dfbd93b8f68545c63e97c52c51de37f0be2cd"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group3-r1-q13",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-r1/q13.json",
+        "sha256": "b774211ab588b612b68130c835fcecd001d9cc96f9ecc5c89558a236a0c03909"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group3-r2-q14",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group3-q14-r2/q14.json",
+        "sha256": "766c2a224c4b9dc4a0d768f92d9548047219769c4688a277cb6f907088c3f5a2"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q18",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group4-r1/q18.json",
+        "sha256": "5beaa18619ae1703c6ae73eba726007fa30465eadf89922a9b73dbebc9e131df"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q19",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group4-r1/q19.json",
+        "sha256": "c66bca011c5eba551f14c1acf5771a56ff8ae693d6e19813e76390a1bd06b730"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q20",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group4-r1/q20.json",
+        "sha256": "e19378d5b2dcc34b9df5142ae0f2640945f5f8878c0db9756b193e3f3c9d4590"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group5-r2-q15",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group5-r2/q15.json",
+        "sha256": "f32b205f164bcf0e1121211d3b7b6cd29c08ca7e62a03cbd5949c29030125329"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group5-r2-q16",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group5-r2/q16.json",
+        "sha256": "27bc8d2a59b0d64f0b62a5548440a23530a382e9dc6376c1b91cb431298606fa"
+      }
+    },
+    {
+      "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group5-r2-q17",
+      "selection": "canonical-v50",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group5-r2/q17.json",
+        "sha256": "bd1473268c8a41e186f0b99bf29eaf3caac3c4b88573ee4afe0949039d7aa9c5"
+      }
+    }
+  ]
+}

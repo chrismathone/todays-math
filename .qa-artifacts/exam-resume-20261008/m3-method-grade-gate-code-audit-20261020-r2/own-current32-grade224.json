@@ -1,0 +1,3219 @@
+{
+  "cases": [
+    {
+      "case": 1,
+      "studentDigest": "909667106e0f61c3a3b60895fad8b7a59524e4f5b2ffcf675ebf082e7cb4668f",
+      "printedDerived": {
+        "a": 2,
+        "c": 2,
+        "d": -5,
+        "sum": -4
+      },
+      "ownExact": {
+        "slope": -3,
+        "k": -2,
+        "xy": -14,
+        "y2": 10,
+        "x2": 4
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -4로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 1,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "095858d777c90e196d8bc86c428d7ace26c902e9f56495798b0dcc37023d6cb3"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 1,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "095858d777c90e196d8bc86c428d7ace26c902e9f56495798b0dcc37023d6cb3"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 1,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "095858d777c90e196d8bc86c428d7ace26c902e9f56495798b0dcc37023d6cb3"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-10+2k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 1,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "095858d777c90e196d8bc86c428d7ace26c902e9f56495798b0dcc37023d6cb3"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -3k=6; 0이 아닌 -3로 나누어 k=-2. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 1,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "095858d777c90e196d8bc86c428d7ace26c902e9f56495798b0dcc37023d6cb3"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-14, y²=10, 합=-4. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 1,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "095858d777c90e196d8bc86c428d7ace26c902e9f56495798b0dcc37023d6cb3"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 1,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "095858d777c90e196d8bc86c428d7ace26c902e9f56495798b0dcc37023d6cb3"
+          }
+        }
+      }
+    },
+    {
+      "case": 2,
+      "studentDigest": "932ec0be064baf56a9eb98d15819907b0b44db1cb844c98d06b44b03cb67c3dd",
+      "printedDerived": {
+        "a": 2,
+        "c": 2,
+        "d": -5,
+        "sum": -10
+      },
+      "ownExact": {
+        "slope": -3,
+        "k": 0,
+        "xy": -10,
+        "y2": 0,
+        "x2": 4
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -10로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 2,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2eaa237e7389d395d59e67dda0580f0a26afa523831cfe69b71e3daa76ac5f7a"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 2,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2eaa237e7389d395d59e67dda0580f0a26afa523831cfe69b71e3daa76ac5f7a"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 2,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2eaa237e7389d395d59e67dda0580f0a26afa523831cfe69b71e3daa76ac5f7a"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-10+2k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 2,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2eaa237e7389d395d59e67dda0580f0a26afa523831cfe69b71e3daa76ac5f7a"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -3k=0; 0이 아닌 -3로 나누어 k=0. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 2,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2eaa237e7389d395d59e67dda0580f0a26afa523831cfe69b71e3daa76ac5f7a"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-10, y²=0, 합=-10. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 2,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2eaa237e7389d395d59e67dda0580f0a26afa523831cfe69b71e3daa76ac5f7a"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 2,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2eaa237e7389d395d59e67dda0580f0a26afa523831cfe69b71e3daa76ac5f7a"
+          }
+        }
+      }
+    },
+    {
+      "case": 3,
+      "studentDigest": "9cfdc82145cd7ef76315600f6f1c1156c16e5928af50cd3d76a0273966cb4b4e",
+      "printedDerived": {
+        "a": 2,
+        "c": 2,
+        "d": -5,
+        "sum": -19
+      },
+      "ownExact": {
+        "slope": -3,
+        "k": 3,
+        "xy": -4,
+        "y2": -15,
+        "x2": 4
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -19로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 3,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0e9d7ed6323adbe9a32022b78747ea8d49025c25fa401a22e5c732142803b53a"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 3,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0e9d7ed6323adbe9a32022b78747ea8d49025c25fa401a22e5c732142803b53a"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 3,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0e9d7ed6323adbe9a32022b78747ea8d49025c25fa401a22e5c732142803b53a"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-10+2k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 3,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0e9d7ed6323adbe9a32022b78747ea8d49025c25fa401a22e5c732142803b53a"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -3k=-9; 0이 아닌 -3로 나누어 k=3. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 3,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0e9d7ed6323adbe9a32022b78747ea8d49025c25fa401a22e5c732142803b53a"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-4, y²=-15, 합=-19. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 3,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0e9d7ed6323adbe9a32022b78747ea8d49025c25fa401a22e5c732142803b53a"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 3,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0e9d7ed6323adbe9a32022b78747ea8d49025c25fa401a22e5c732142803b53a"
+          }
+        }
+      }
+    },
+    {
+      "case": 4,
+      "studentDigest": "57bb0798882b0eec5e4e393353dd105d27e0406ba35ed2dd7f895f903df2974a",
+      "printedDerived": {
+        "a": 2,
+        "c": 2,
+        "d": -5,
+        "sum": -34
+      },
+      "ownExact": {
+        "slope": -3,
+        "k": 8,
+        "xy": 6,
+        "y2": -40,
+        "x2": 4
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -34로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 4,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d83bb0f540e153ba171443683b339d1a11ceddbd810e670daf4f03431fa90f44"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 4,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d83bb0f540e153ba171443683b339d1a11ceddbd810e670daf4f03431fa90f44"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 4,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d83bb0f540e153ba171443683b339d1a11ceddbd810e670daf4f03431fa90f44"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-10+2k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 4,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d83bb0f540e153ba171443683b339d1a11ceddbd810e670daf4f03431fa90f44"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -3k=-24; 0이 아닌 -3로 나누어 k=8. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 4,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d83bb0f540e153ba171443683b339d1a11ceddbd810e670daf4f03431fa90f44"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=6, y²=-40, 합=-34. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 4,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d83bb0f540e153ba171443683b339d1a11ceddbd810e670daf4f03431fa90f44"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 4,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d83bb0f540e153ba171443683b339d1a11ceddbd810e670daf4f03431fa90f44"
+          }
+        }
+      }
+    },
+    {
+      "case": 5,
+      "studentDigest": "9f9fb924027e3bf85a04e4a95b150b6d6fad23eed964e3f50292869b3019144c",
+      "printedDerived": {
+        "a": 2,
+        "c": 2,
+        "d": -3,
+        "sum": -4
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": -2,
+        "xy": -10,
+        "y2": 6,
+        "x2": 4
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -4로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 5,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5759dc55009605d9c19e1ee9091ed362c413f98ca793af589952374a4f08ac27"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 5,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5759dc55009605d9c19e1ee9091ed362c413f98ca793af589952374a4f08ac27"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 5,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5759dc55009605d9c19e1ee9091ed362c413f98ca793af589952374a4f08ac27"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-6+2k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 5,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5759dc55009605d9c19e1ee9091ed362c413f98ca793af589952374a4f08ac27"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=2; 0이 아닌 -1로 나누어 k=-2. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 5,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5759dc55009605d9c19e1ee9091ed362c413f98ca793af589952374a4f08ac27"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-10, y²=6, 합=-4. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 5,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5759dc55009605d9c19e1ee9091ed362c413f98ca793af589952374a4f08ac27"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 5,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5759dc55009605d9c19e1ee9091ed362c413f98ca793af589952374a4f08ac27"
+          }
+        }
+      }
+    },
+    {
+      "case": 6,
+      "studentDigest": "88914c4fa756ec1a23f3ac0257fbecf32e6adf56d4b24ced0e742530040eebda",
+      "printedDerived": {
+        "a": 2,
+        "c": 2,
+        "d": -3,
+        "sum": -6
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 0,
+        "xy": -6,
+        "y2": 0,
+        "x2": 4
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -6로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 6,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "63a928a9c7bb0ccfc29bc13ad34be0bdd0245b3474ecb18be8018853ed0d557b"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 6,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "63a928a9c7bb0ccfc29bc13ad34be0bdd0245b3474ecb18be8018853ed0d557b"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 6,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "63a928a9c7bb0ccfc29bc13ad34be0bdd0245b3474ecb18be8018853ed0d557b"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-6+2k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 6,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "63a928a9c7bb0ccfc29bc13ad34be0bdd0245b3474ecb18be8018853ed0d557b"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=0; 0이 아닌 -1로 나누어 k=0. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 6,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "63a928a9c7bb0ccfc29bc13ad34be0bdd0245b3474ecb18be8018853ed0d557b"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-6, y²=0, 합=-6. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 6,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "63a928a9c7bb0ccfc29bc13ad34be0bdd0245b3474ecb18be8018853ed0d557b"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 6,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "63a928a9c7bb0ccfc29bc13ad34be0bdd0245b3474ecb18be8018853ed0d557b"
+          }
+        }
+      }
+    },
+    {
+      "case": 7,
+      "studentDigest": "b516a986ef86a497a16b5b322c3bf323a378e28fdf177b541eb02f89be240012",
+      "printedDerived": {
+        "a": 2,
+        "c": 2,
+        "d": -3,
+        "sum": -9
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 3,
+        "xy": 0,
+        "y2": -9,
+        "x2": 4
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -9로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 7,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ca8b12f048ccfdbeecd31b1c937f5bf40f0290ced7a1c4e94915a1e23167e19a"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 7,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ca8b12f048ccfdbeecd31b1c937f5bf40f0290ced7a1c4e94915a1e23167e19a"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 7,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ca8b12f048ccfdbeecd31b1c937f5bf40f0290ced7a1c4e94915a1e23167e19a"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-6+2k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 7,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ca8b12f048ccfdbeecd31b1c937f5bf40f0290ced7a1c4e94915a1e23167e19a"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=-3; 0이 아닌 -1로 나누어 k=3. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 7,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ca8b12f048ccfdbeecd31b1c937f5bf40f0290ced7a1c4e94915a1e23167e19a"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=0, y²=-9, 합=-9. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 7,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ca8b12f048ccfdbeecd31b1c937f5bf40f0290ced7a1c4e94915a1e23167e19a"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 7,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ca8b12f048ccfdbeecd31b1c937f5bf40f0290ced7a1c4e94915a1e23167e19a"
+          }
+        }
+      }
+    },
+    {
+      "case": 8,
+      "studentDigest": "97e4ad9d011ddb76bf20d6f1f74f34772bdd53dbcd93ccfb2cd71d58b5c77ff6",
+      "printedDerived": {
+        "a": 2,
+        "c": 2,
+        "d": -3,
+        "sum": -14
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 8,
+        "xy": 10,
+        "y2": -24,
+        "x2": 4
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -14로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 8,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0df0be45458d544e13721151e230ca4c640b6769f6f5a0468f1d7eb2eb02dbda"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 8,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0df0be45458d544e13721151e230ca4c640b6769f6f5a0468f1d7eb2eb02dbda"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 8,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0df0be45458d544e13721151e230ca4c640b6769f6f5a0468f1d7eb2eb02dbda"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-6+2k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 8,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0df0be45458d544e13721151e230ca4c640b6769f6f5a0468f1d7eb2eb02dbda"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=-8; 0이 아닌 -1로 나누어 k=8. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 8,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0df0be45458d544e13721151e230ca4c640b6769f6f5a0468f1d7eb2eb02dbda"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=10, y²=-24, 합=-14. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 8,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0df0be45458d544e13721151e230ca4c640b6769f6f5a0468f1d7eb2eb02dbda"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 8,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "0df0be45458d544e13721151e230ca4c640b6769f6f5a0468f1d7eb2eb02dbda"
+          }
+        }
+      }
+    },
+    {
+      "case": 9,
+      "studentDigest": "2c1d661102c82cdadac3e6a8889899b62183d6c764a5d73eba194c0d2981a348",
+      "printedDerived": {
+        "a": 2,
+        "c": 4,
+        "d": -5,
+        "sum": -8
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": -2,
+        "xy": -18,
+        "y2": 10,
+        "x2": 8
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -8로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 9,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "59fa5a9f69496b84813c77a93306dbb9fe18500376f4935a7e7b4c4184f0b4d1"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 9,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "59fa5a9f69496b84813c77a93306dbb9fe18500376f4935a7e7b4c4184f0b4d1"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 9,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "59fa5a9f69496b84813c77a93306dbb9fe18500376f4935a7e7b4c4184f0b4d1"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-10+4k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 9,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "59fa5a9f69496b84813c77a93306dbb9fe18500376f4935a7e7b4c4184f0b4d1"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=2; 0이 아닌 -1로 나누어 k=-2. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 9,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "59fa5a9f69496b84813c77a93306dbb9fe18500376f4935a7e7b4c4184f0b4d1"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-18, y²=10, 합=-8. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 9,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "59fa5a9f69496b84813c77a93306dbb9fe18500376f4935a7e7b4c4184f0b4d1"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 9,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "59fa5a9f69496b84813c77a93306dbb9fe18500376f4935a7e7b4c4184f0b4d1"
+          }
+        }
+      }
+    },
+    {
+      "case": 10,
+      "studentDigest": "a77c3ab14337e5cdf3b8cfdc8acee4223696d4b1b39cedf716ddc5397e7f2fd8",
+      "printedDerived": {
+        "a": 2,
+        "c": 4,
+        "d": -5,
+        "sum": -10
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 0,
+        "xy": -10,
+        "y2": 0,
+        "x2": 8
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -10로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 10,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "48037ba0a1781248a898964ee43d7a1d68ccfdc31175571100ddbaa0e367f325"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 10,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "48037ba0a1781248a898964ee43d7a1d68ccfdc31175571100ddbaa0e367f325"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 10,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "48037ba0a1781248a898964ee43d7a1d68ccfdc31175571100ddbaa0e367f325"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-10+4k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 10,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "48037ba0a1781248a898964ee43d7a1d68ccfdc31175571100ddbaa0e367f325"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=0; 0이 아닌 -1로 나누어 k=0. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 10,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "48037ba0a1781248a898964ee43d7a1d68ccfdc31175571100ddbaa0e367f325"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-10, y²=0, 합=-10. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 10,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "48037ba0a1781248a898964ee43d7a1d68ccfdc31175571100ddbaa0e367f325"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 10,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "48037ba0a1781248a898964ee43d7a1d68ccfdc31175571100ddbaa0e367f325"
+          }
+        }
+      }
+    },
+    {
+      "case": 11,
+      "studentDigest": "22527c6d58af2b42c259810adea21d26cb0a3a037c98f3440c5ca721db0845b4",
+      "printedDerived": {
+        "a": 2,
+        "c": 4,
+        "d": -5,
+        "sum": -13
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 3,
+        "xy": 2,
+        "y2": -15,
+        "x2": 8
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -13로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 11,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2ef7336e0552a194c8980e86e4c377668ed5f4a9a72325891f5f759d370bf23e"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 11,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2ef7336e0552a194c8980e86e4c377668ed5f4a9a72325891f5f759d370bf23e"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 11,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2ef7336e0552a194c8980e86e4c377668ed5f4a9a72325891f5f759d370bf23e"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-10+4k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 11,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2ef7336e0552a194c8980e86e4c377668ed5f4a9a72325891f5f759d370bf23e"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=-3; 0이 아닌 -1로 나누어 k=3. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 11,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2ef7336e0552a194c8980e86e4c377668ed5f4a9a72325891f5f759d370bf23e"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=2, y²=-15, 합=-13. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 11,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2ef7336e0552a194c8980e86e4c377668ed5f4a9a72325891f5f759d370bf23e"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 11,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "2ef7336e0552a194c8980e86e4c377668ed5f4a9a72325891f5f759d370bf23e"
+          }
+        }
+      }
+    },
+    {
+      "case": 12,
+      "studentDigest": "7ff81188ae9e0395cb42e21f0576dfb79cb5fd033aed600377bd552d2d351268",
+      "printedDerived": {
+        "a": 2,
+        "c": 4,
+        "d": -5,
+        "sum": -18
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 8,
+        "xy": 22,
+        "y2": -40,
+        "x2": 8
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -18로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 12,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "8c478fdc3fad59428eddb196c16b07079f2d54139487cf301c99ce26012db9e7"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 12,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "8c478fdc3fad59428eddb196c16b07079f2d54139487cf301c99ce26012db9e7"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 12,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "8c478fdc3fad59428eddb196c16b07079f2d54139487cf301c99ce26012db9e7"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-10+4k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 12,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "8c478fdc3fad59428eddb196c16b07079f2d54139487cf301c99ce26012db9e7"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=-8; 0이 아닌 -1로 나누어 k=8. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 12,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "8c478fdc3fad59428eddb196c16b07079f2d54139487cf301c99ce26012db9e7"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=22, y²=-40, 합=-18. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 12,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "8c478fdc3fad59428eddb196c16b07079f2d54139487cf301c99ce26012db9e7"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 12,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "8c478fdc3fad59428eddb196c16b07079f2d54139487cf301c99ce26012db9e7"
+          }
+        }
+      }
+    },
+    {
+      "case": 13,
+      "studentDigest": "0a432e90d63711eafa665138b29b755133f590eef37f2730d23636e384f3a2e7",
+      "printedDerived": {
+        "a": 2,
+        "c": 4,
+        "d": -3,
+        "sum": -8
+      },
+      "ownExact": {
+        "slope": 1,
+        "k": -2,
+        "xy": -14,
+        "y2": 6,
+        "x2": 8
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -8로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 13,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "18131657078a95e74f349198c7c601ffbe3eb1e28e4c3f9f275177f202c8bca7"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 13,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "18131657078a95e74f349198c7c601ffbe3eb1e28e4c3f9f275177f202c8bca7"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 13,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "18131657078a95e74f349198c7c601ffbe3eb1e28e4c3f9f275177f202c8bca7"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-6+4k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 13,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "18131657078a95e74f349198c7c601ffbe3eb1e28e4c3f9f275177f202c8bca7"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 1k=-2; 0이 아닌 1로 나누어 k=-2. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 13,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "18131657078a95e74f349198c7c601ffbe3eb1e28e4c3f9f275177f202c8bca7"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-14, y²=6, 합=-8. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 13,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "18131657078a95e74f349198c7c601ffbe3eb1e28e4c3f9f275177f202c8bca7"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 13,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "18131657078a95e74f349198c7c601ffbe3eb1e28e4c3f9f275177f202c8bca7"
+          }
+        }
+      }
+    },
+    {
+      "case": 14,
+      "studentDigest": "33838d32a924a0cb6b77b6b3fb2880e1722464661289864697529e1c260e53fd",
+      "printedDerived": {
+        "a": 2,
+        "c": 4,
+        "d": -3,
+        "sum": -6
+      },
+      "ownExact": {
+        "slope": 1,
+        "k": 0,
+        "xy": -6,
+        "y2": 0,
+        "x2": 8
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -6로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 14,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "b61238ee017bdf6a4bc6f720fa4509153c3678644e15c2e9cb5f42ab51022412"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 14,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "b61238ee017bdf6a4bc6f720fa4509153c3678644e15c2e9cb5f42ab51022412"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 14,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "b61238ee017bdf6a4bc6f720fa4509153c3678644e15c2e9cb5f42ab51022412"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-6+4k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 14,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "b61238ee017bdf6a4bc6f720fa4509153c3678644e15c2e9cb5f42ab51022412"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 1k=0; 0이 아닌 1로 나누어 k=0. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 14,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "b61238ee017bdf6a4bc6f720fa4509153c3678644e15c2e9cb5f42ab51022412"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-6, y²=0, 합=-6. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 14,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "b61238ee017bdf6a4bc6f720fa4509153c3678644e15c2e9cb5f42ab51022412"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 14,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "b61238ee017bdf6a4bc6f720fa4509153c3678644e15c2e9cb5f42ab51022412"
+          }
+        }
+      }
+    },
+    {
+      "case": 15,
+      "studentDigest": "4002b58bb7831370d69ea036b46f96478ab3a7f88be971d372618ed354e8e889",
+      "printedDerived": {
+        "a": 2,
+        "c": 4,
+        "d": -3,
+        "sum": -3
+      },
+      "ownExact": {
+        "slope": 1,
+        "k": 3,
+        "xy": 6,
+        "y2": -9,
+        "x2": 8
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -3로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 15,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d3e05ab5811ba6e96af58a91e248b5fe383394444a40fb5fb3ba0e7c061181fa"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 15,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d3e05ab5811ba6e96af58a91e248b5fe383394444a40fb5fb3ba0e7c061181fa"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 15,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d3e05ab5811ba6e96af58a91e248b5fe383394444a40fb5fb3ba0e7c061181fa"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-6+4k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 15,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d3e05ab5811ba6e96af58a91e248b5fe383394444a40fb5fb3ba0e7c061181fa"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 1k=3; 0이 아닌 1로 나누어 k=3. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 15,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d3e05ab5811ba6e96af58a91e248b5fe383394444a40fb5fb3ba0e7c061181fa"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=6, y²=-9, 합=-3. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 15,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d3e05ab5811ba6e96af58a91e248b5fe383394444a40fb5fb3ba0e7c061181fa"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 15,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "d3e05ab5811ba6e96af58a91e248b5fe383394444a40fb5fb3ba0e7c061181fa"
+          }
+        }
+      }
+    },
+    {
+      "case": 16,
+      "studentDigest": "168b2606666be40011c4df1ac6bcdde6cd63ce3d5ef8f68a42a74b339c4efcec",
+      "printedDerived": {
+        "a": 2,
+        "c": 4,
+        "d": -3,
+        "sum": 2
+      },
+      "ownExact": {
+        "slope": 1,
+        "k": 8,
+        "xy": 26,
+        "y2": -24,
+        "x2": 8
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 2로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 16,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "875122510ffe908e8316b758502a853406f1a3ed58275388e8d48819a43c3a45"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 16,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "875122510ffe908e8316b758502a853406f1a3ed58275388e8d48819a43c3a45"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 16,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "875122510ffe908e8316b758502a853406f1a3ed58275388e8d48819a43c3a45"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-6+4k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 16,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "875122510ffe908e8316b758502a853406f1a3ed58275388e8d48819a43c3a45"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 1k=8; 0이 아닌 1로 나누어 k=8. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 16,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "875122510ffe908e8316b758502a853406f1a3ed58275388e8d48819a43c3a45"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=26, y²=-24, 합=2. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 16,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "875122510ffe908e8316b758502a853406f1a3ed58275388e8d48819a43c3a45"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 16,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "875122510ffe908e8316b758502a853406f1a3ed58275388e8d48819a43c3a45"
+          }
+        }
+      }
+    },
+    {
+      "case": 17,
+      "studentDigest": "8a9a6b1e33b5cfaf5e774539855f7428ac77eaf1e46c4d20179bda646f71d199",
+      "printedDerived": {
+        "a": 3,
+        "c": 2,
+        "d": -5,
+        "sum": -9
+      },
+      "ownExact": {
+        "slope": -3,
+        "k": -2,
+        "xy": -19,
+        "y2": 10,
+        "x2": 6
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -9로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 17,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "f1a764ec6d6bed5fd6400d7640c8018d889b0382efc1ad4143c2113fed44139a"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 17,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "f1a764ec6d6bed5fd6400d7640c8018d889b0382efc1ad4143c2113fed44139a"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 17,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "f1a764ec6d6bed5fd6400d7640c8018d889b0382efc1ad4143c2113fed44139a"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-15+2k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 17,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "f1a764ec6d6bed5fd6400d7640c8018d889b0382efc1ad4143c2113fed44139a"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -3k=6; 0이 아닌 -3로 나누어 k=-2. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 17,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "f1a764ec6d6bed5fd6400d7640c8018d889b0382efc1ad4143c2113fed44139a"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-19, y²=10, 합=-9. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 17,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "f1a764ec6d6bed5fd6400d7640c8018d889b0382efc1ad4143c2113fed44139a"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 17,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "f1a764ec6d6bed5fd6400d7640c8018d889b0382efc1ad4143c2113fed44139a"
+          }
+        }
+      }
+    },
+    {
+      "case": 18,
+      "studentDigest": "f98119719cb797092d6fd2319b7d7fdeec72cd80dc922b6178781ad6650dd472",
+      "printedDerived": {
+        "a": 3,
+        "c": 2,
+        "d": -5,
+        "sum": -15
+      },
+      "ownExact": {
+        "slope": -3,
+        "k": 0,
+        "xy": -15,
+        "y2": 0,
+        "x2": 6
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -15로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 18,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "103e2762d60648ed0cb308f9b2880f71f602336249e34b9811ffaaeddfae8e2a"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 18,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "103e2762d60648ed0cb308f9b2880f71f602336249e34b9811ffaaeddfae8e2a"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 18,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "103e2762d60648ed0cb308f9b2880f71f602336249e34b9811ffaaeddfae8e2a"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-15+2k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 18,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "103e2762d60648ed0cb308f9b2880f71f602336249e34b9811ffaaeddfae8e2a"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -3k=0; 0이 아닌 -3로 나누어 k=0. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 18,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "103e2762d60648ed0cb308f9b2880f71f602336249e34b9811ffaaeddfae8e2a"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-15, y²=0, 합=-15. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 18,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "103e2762d60648ed0cb308f9b2880f71f602336249e34b9811ffaaeddfae8e2a"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 18,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "103e2762d60648ed0cb308f9b2880f71f602336249e34b9811ffaaeddfae8e2a"
+          }
+        }
+      }
+    },
+    {
+      "case": 19,
+      "studentDigest": "52b73f1b26ffc40d722718100b26d1f8ae05b92d65be8ead8e8595932458afa7",
+      "printedDerived": {
+        "a": 3,
+        "c": 2,
+        "d": -5,
+        "sum": -24
+      },
+      "ownExact": {
+        "slope": -3,
+        "k": 3,
+        "xy": -9,
+        "y2": -15,
+        "x2": 6
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -24로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 19,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c87445a4fd0d2b6ac2a8d85e3cfd6dbf7049e4f36bbc6475d6b9260f39c21fca"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 19,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c87445a4fd0d2b6ac2a8d85e3cfd6dbf7049e4f36bbc6475d6b9260f39c21fca"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 19,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c87445a4fd0d2b6ac2a8d85e3cfd6dbf7049e4f36bbc6475d6b9260f39c21fca"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-15+2k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 19,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c87445a4fd0d2b6ac2a8d85e3cfd6dbf7049e4f36bbc6475d6b9260f39c21fca"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -3k=-9; 0이 아닌 -3로 나누어 k=3. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 19,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c87445a4fd0d2b6ac2a8d85e3cfd6dbf7049e4f36bbc6475d6b9260f39c21fca"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-9, y²=-15, 합=-24. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 19,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c87445a4fd0d2b6ac2a8d85e3cfd6dbf7049e4f36bbc6475d6b9260f39c21fca"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 19,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c87445a4fd0d2b6ac2a8d85e3cfd6dbf7049e4f36bbc6475d6b9260f39c21fca"
+          }
+        }
+      }
+    },
+    {
+      "case": 20,
+      "studentDigest": "1e14b85147225f63c9f602f27cfbfe7fffac23c75c00387732551067f36abb13",
+      "printedDerived": {
+        "a": 3,
+        "c": 2,
+        "d": -5,
+        "sum": -39
+      },
+      "ownExact": {
+        "slope": -3,
+        "k": 8,
+        "xy": 1,
+        "y2": -40,
+        "x2": 6
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -39로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 20,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "97e3852b82432e64bbe714422d8ce18b26f893eddcdd7ade3b574ccb1a689a28"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 20,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "97e3852b82432e64bbe714422d8ce18b26f893eddcdd7ade3b574ccb1a689a28"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 20,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "97e3852b82432e64bbe714422d8ce18b26f893eddcdd7ade3b574ccb1a689a28"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-15+2k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 20,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "97e3852b82432e64bbe714422d8ce18b26f893eddcdd7ade3b574ccb1a689a28"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -3k=-24; 0이 아닌 -3로 나누어 k=8. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 20,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "97e3852b82432e64bbe714422d8ce18b26f893eddcdd7ade3b574ccb1a689a28"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=1, y²=-40, 합=-39. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 20,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "97e3852b82432e64bbe714422d8ce18b26f893eddcdd7ade3b574ccb1a689a28"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 20,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "97e3852b82432e64bbe714422d8ce18b26f893eddcdd7ade3b574ccb1a689a28"
+          }
+        }
+      }
+    },
+    {
+      "case": 21,
+      "studentDigest": "60d6a5fe73e162209b35871412f6081c49747af3082a77412d437b2ebe690e05",
+      "printedDerived": {
+        "a": 3,
+        "c": 2,
+        "d": -3,
+        "sum": -7
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": -2,
+        "xy": -13,
+        "y2": 6,
+        "x2": 6
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -7로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 21,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "def0b02c4ef7a8d5eae839f0d1027113a31c8904fdec712d694113de8755b286"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 21,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "def0b02c4ef7a8d5eae839f0d1027113a31c8904fdec712d694113de8755b286"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 21,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "def0b02c4ef7a8d5eae839f0d1027113a31c8904fdec712d694113de8755b286"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-9+2k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 21,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "def0b02c4ef7a8d5eae839f0d1027113a31c8904fdec712d694113de8755b286"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=2; 0이 아닌 -1로 나누어 k=-2. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 21,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "def0b02c4ef7a8d5eae839f0d1027113a31c8904fdec712d694113de8755b286"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-13, y²=6, 합=-7. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 21,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "def0b02c4ef7a8d5eae839f0d1027113a31c8904fdec712d694113de8755b286"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 21,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "def0b02c4ef7a8d5eae839f0d1027113a31c8904fdec712d694113de8755b286"
+          }
+        }
+      }
+    },
+    {
+      "case": 22,
+      "studentDigest": "df4f5b72b4df796bbcb7ed51e2fcea7261bb87d303e42d34dd50aedff4ce81f8",
+      "printedDerived": {
+        "a": 3,
+        "c": 2,
+        "d": -3,
+        "sum": -9
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 0,
+        "xy": -9,
+        "y2": 0,
+        "x2": 6
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -9로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 22,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5bb4fb20e5896904f20b699e38ec10872a15f5161d97837a933cc84ad7f2beaf"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 22,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5bb4fb20e5896904f20b699e38ec10872a15f5161d97837a933cc84ad7f2beaf"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 22,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5bb4fb20e5896904f20b699e38ec10872a15f5161d97837a933cc84ad7f2beaf"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-9+2k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 22,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5bb4fb20e5896904f20b699e38ec10872a15f5161d97837a933cc84ad7f2beaf"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=0; 0이 아닌 -1로 나누어 k=0. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 22,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5bb4fb20e5896904f20b699e38ec10872a15f5161d97837a933cc84ad7f2beaf"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-9, y²=0, 합=-9. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 22,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5bb4fb20e5896904f20b699e38ec10872a15f5161d97837a933cc84ad7f2beaf"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 22,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "5bb4fb20e5896904f20b699e38ec10872a15f5161d97837a933cc84ad7f2beaf"
+          }
+        }
+      }
+    },
+    {
+      "case": 23,
+      "studentDigest": "0acff85bdb8c52d133ff549caf964f34bf2e42bd26c1037fde5fa65c42f45082",
+      "printedDerived": {
+        "a": 3,
+        "c": 2,
+        "d": -3,
+        "sum": -12
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 3,
+        "xy": -3,
+        "y2": -9,
+        "x2": 6
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -12로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 23,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "014827d8b2510838c0a150323c59c8d35d4c709b35bafad1acb382fbf471be6b"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 23,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "014827d8b2510838c0a150323c59c8d35d4c709b35bafad1acb382fbf471be6b"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 23,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "014827d8b2510838c0a150323c59c8d35d4c709b35bafad1acb382fbf471be6b"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-9+2k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 23,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "014827d8b2510838c0a150323c59c8d35d4c709b35bafad1acb382fbf471be6b"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=-3; 0이 아닌 -1로 나누어 k=3. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 23,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "014827d8b2510838c0a150323c59c8d35d4c709b35bafad1acb382fbf471be6b"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-3, y²=-9, 합=-12. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 23,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "014827d8b2510838c0a150323c59c8d35d4c709b35bafad1acb382fbf471be6b"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 23,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "014827d8b2510838c0a150323c59c8d35d4c709b35bafad1acb382fbf471be6b"
+          }
+        }
+      }
+    },
+    {
+      "case": 24,
+      "studentDigest": "8512d0d26aa92e830e5cf0040d2d4daf486f3613541e9714e0ad3c2403e024a0",
+      "printedDerived": {
+        "a": 3,
+        "c": 2,
+        "d": -3,
+        "sum": -17
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 8,
+        "xy": 7,
+        "y2": -24,
+        "x2": 6
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -17로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 24,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9634ba29cc3362b97ef7763561b103b2ae213e87fc7419f2a4360acb6ecfcda0"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 24,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9634ba29cc3362b97ef7763561b103b2ae213e87fc7419f2a4360acb6ecfcda0"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 24,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9634ba29cc3362b97ef7763561b103b2ae213e87fc7419f2a4360acb6ecfcda0"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-9+2k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 24,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9634ba29cc3362b97ef7763561b103b2ae213e87fc7419f2a4360acb6ecfcda0"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=-8; 0이 아닌 -1로 나누어 k=8. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 24,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9634ba29cc3362b97ef7763561b103b2ae213e87fc7419f2a4360acb6ecfcda0"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=7, y²=-24, 합=-17. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 24,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9634ba29cc3362b97ef7763561b103b2ae213e87fc7419f2a4360acb6ecfcda0"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 24,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9634ba29cc3362b97ef7763561b103b2ae213e87fc7419f2a4360acb6ecfcda0"
+          }
+        }
+      }
+    },
+    {
+      "case": 25,
+      "studentDigest": "d7069429545b197b302924a020a67e1952156bbe3aa4f93df4cc2657f515269b",
+      "printedDerived": {
+        "a": 3,
+        "c": 4,
+        "d": -5,
+        "sum": -13
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": -2,
+        "xy": -23,
+        "y2": 10,
+        "x2": 12
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -13로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 25,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "4a92f351f4e714b563553064a8b79fa6757c7d15c2f22dd282f8925e4092745f"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 25,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "4a92f351f4e714b563553064a8b79fa6757c7d15c2f22dd282f8925e4092745f"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 25,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "4a92f351f4e714b563553064a8b79fa6757c7d15c2f22dd282f8925e4092745f"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-15+4k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 25,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "4a92f351f4e714b563553064a8b79fa6757c7d15c2f22dd282f8925e4092745f"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=2; 0이 아닌 -1로 나누어 k=-2. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 25,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "4a92f351f4e714b563553064a8b79fa6757c7d15c2f22dd282f8925e4092745f"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-23, y²=10, 합=-13. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 25,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "4a92f351f4e714b563553064a8b79fa6757c7d15c2f22dd282f8925e4092745f"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 25,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "4a92f351f4e714b563553064a8b79fa6757c7d15c2f22dd282f8925e4092745f"
+          }
+        }
+      }
+    },
+    {
+      "case": 26,
+      "studentDigest": "346ed98dee075fee57e04815659e3e0f15741cc67ae244cdbcc19b0d53487179",
+      "printedDerived": {
+        "a": 3,
+        "c": 4,
+        "d": -5,
+        "sum": -15
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 0,
+        "xy": -15,
+        "y2": 0,
+        "x2": 12
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -15로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 26,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "73f65b67c2ba356a60978951708abd0d1e762339baa9014762df9cbb661158c4"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 26,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "73f65b67c2ba356a60978951708abd0d1e762339baa9014762df9cbb661158c4"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 26,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "73f65b67c2ba356a60978951708abd0d1e762339baa9014762df9cbb661158c4"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-15+4k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 26,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "73f65b67c2ba356a60978951708abd0d1e762339baa9014762df9cbb661158c4"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=0; 0이 아닌 -1로 나누어 k=0. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 26,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "73f65b67c2ba356a60978951708abd0d1e762339baa9014762df9cbb661158c4"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-15, y²=0, 합=-15. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 26,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "73f65b67c2ba356a60978951708abd0d1e762339baa9014762df9cbb661158c4"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 26,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "73f65b67c2ba356a60978951708abd0d1e762339baa9014762df9cbb661158c4"
+          }
+        }
+      }
+    },
+    {
+      "case": 27,
+      "studentDigest": "32b8db5c27ad3a5d09e249ffbe16c9d8c1c832e581b36176d637370b8e5dd154",
+      "printedDerived": {
+        "a": 3,
+        "c": 4,
+        "d": -5,
+        "sum": -18
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 3,
+        "xy": -3,
+        "y2": -15,
+        "x2": 12
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -18로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 27,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9912089bc00a96e0c1ddf5f6f5fabfa1b9246f2f3486fa0d8fbaec4317725ec9"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 27,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9912089bc00a96e0c1ddf5f6f5fabfa1b9246f2f3486fa0d8fbaec4317725ec9"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 27,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9912089bc00a96e0c1ddf5f6f5fabfa1b9246f2f3486fa0d8fbaec4317725ec9"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-15+4k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 27,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9912089bc00a96e0c1ddf5f6f5fabfa1b9246f2f3486fa0d8fbaec4317725ec9"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=-3; 0이 아닌 -1로 나누어 k=3. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 27,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9912089bc00a96e0c1ddf5f6f5fabfa1b9246f2f3486fa0d8fbaec4317725ec9"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-3, y²=-15, 합=-18. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 27,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9912089bc00a96e0c1ddf5f6f5fabfa1b9246f2f3486fa0d8fbaec4317725ec9"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 27,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "9912089bc00a96e0c1ddf5f6f5fabfa1b9246f2f3486fa0d8fbaec4317725ec9"
+          }
+        }
+      }
+    },
+    {
+      "case": 28,
+      "studentDigest": "f7b7963c47ae8fab1fa64446d577b437ea59ef26a1f501772027882cb8d52d7a",
+      "printedDerived": {
+        "a": 3,
+        "c": 4,
+        "d": -5,
+        "sum": -23
+      },
+      "ownExact": {
+        "slope": -1,
+        "k": 8,
+        "xy": 17,
+        "y2": -40,
+        "x2": 12
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -23로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 28,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6df7fe27cdf97b698a20d2e08b718d857c46225687c58442b993880cd523a6ba"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 28,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6df7fe27cdf97b698a20d2e08b718d857c46225687c58442b993880cd523a6ba"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 28,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6df7fe27cdf97b698a20d2e08b718d857c46225687c58442b993880cd523a6ba"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-15+4k, y² 계수 -5k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 28,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6df7fe27cdf97b698a20d2e08b718d857c46225687c58442b993880cd523a6ba"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 -1k=-8; 0이 아닌 -1로 나누어 k=8. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 28,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6df7fe27cdf97b698a20d2e08b718d857c46225687c58442b993880cd523a6ba"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=17, y²=-40, 합=-23. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 28,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6df7fe27cdf97b698a20d2e08b718d857c46225687c58442b993880cd523a6ba"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 28,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6df7fe27cdf97b698a20d2e08b718d857c46225687c58442b993880cd523a6ba"
+          }
+        }
+      }
+    },
+    {
+      "case": 29,
+      "studentDigest": "372698bd46d343255ef6e01f837863cd40fcbb69c694b80936ed20a113f26da3",
+      "printedDerived": {
+        "a": 3,
+        "c": 4,
+        "d": -3,
+        "sum": -11
+      },
+      "ownExact": {
+        "slope": 1,
+        "k": -2,
+        "xy": -17,
+        "y2": 6,
+        "x2": 12
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -11로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 29,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ec495fb63b5200600abbcde463462510d9ea7cbf8d88bca1ee16d11b87b0d1f1"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 29,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ec495fb63b5200600abbcde463462510d9ea7cbf8d88bca1ee16d11b87b0d1f1"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 29,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ec495fb63b5200600abbcde463462510d9ea7cbf8d88bca1ee16d11b87b0d1f1"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-9+4k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 29,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ec495fb63b5200600abbcde463462510d9ea7cbf8d88bca1ee16d11b87b0d1f1"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 1k=-2; 0이 아닌 1로 나누어 k=-2. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 29,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ec495fb63b5200600abbcde463462510d9ea7cbf8d88bca1ee16d11b87b0d1f1"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-17, y²=6, 합=-11. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 29,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ec495fb63b5200600abbcde463462510d9ea7cbf8d88bca1ee16d11b87b0d1f1"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 29,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "ec495fb63b5200600abbcde463462510d9ea7cbf8d88bca1ee16d11b87b0d1f1"
+          }
+        }
+      }
+    },
+    {
+      "case": 30,
+      "studentDigest": "067d131cdc6995e3d096b4df0d3ce49bc5a0b496954c281acbc8443e027b4019",
+      "printedDerived": {
+        "a": 3,
+        "c": 4,
+        "d": -3,
+        "sum": -9
+      },
+      "ownExact": {
+        "slope": 1,
+        "k": 0,
+        "xy": -9,
+        "y2": 0,
+        "x2": 12
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -9로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 30,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c0063e9380a5e5cc91d3c7d613d14fbac4b817482334eb60c8ea050e40831add"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 30,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c0063e9380a5e5cc91d3c7d613d14fbac4b817482334eb60c8ea050e40831add"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 30,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c0063e9380a5e5cc91d3c7d613d14fbac4b817482334eb60c8ea050e40831add"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-9+4k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 30,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c0063e9380a5e5cc91d3c7d613d14fbac4b817482334eb60c8ea050e40831add"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 1k=0; 0이 아닌 1로 나누어 k=0. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 30,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c0063e9380a5e5cc91d3c7d613d14fbac4b817482334eb60c8ea050e40831add"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=-9, y²=0, 합=-9. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 30,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c0063e9380a5e5cc91d3c7d613d14fbac4b817482334eb60c8ea050e40831add"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 30,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "c0063e9380a5e5cc91d3c7d613d14fbac4b817482334eb60c8ea050e40831add"
+          }
+        }
+      }
+    },
+    {
+      "case": 31,
+      "studentDigest": "17015975aea4a3c778780ed2aa9b5765a1e42fa86f90d4f7386922f6275e280d",
+      "printedDerived": {
+        "a": 3,
+        "c": 4,
+        "d": -3,
+        "sum": -6
+      },
+      "ownExact": {
+        "slope": 1,
+        "k": 3,
+        "xy": 3,
+        "y2": -9,
+        "x2": 12
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -6로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 31,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6bc8a48d3cb880390b3f298fd11ff090e057921b9b6386122231450adc66cd48"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 31,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6bc8a48d3cb880390b3f298fd11ff090e057921b9b6386122231450adc66cd48"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 31,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6bc8a48d3cb880390b3f298fd11ff090e057921b9b6386122231450adc66cd48"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-9+4k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 31,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6bc8a48d3cb880390b3f298fd11ff090e057921b9b6386122231450adc66cd48"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 1k=3; 0이 아닌 1로 나누어 k=3. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 31,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6bc8a48d3cb880390b3f298fd11ff090e057921b9b6386122231450adc66cd48"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=3, y²=-9, 합=-6. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 31,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6bc8a48d3cb880390b3f298fd11ff090e057921b9b6386122231450adc66cd48"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 31,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "6bc8a48d3cb880390b3f298fd11ff090e057921b9b6386122231450adc66cd48"
+          }
+        }
+      }
+    },
+    {
+      "case": 32,
+      "studentDigest": "3e21068ffae033a2721af5c488ba4aefd41c82478b21341f3345d167608a4775",
+      "printedDerived": {
+        "a": 3,
+        "c": 4,
+        "d": -3,
+        "sum": -1
+      },
+      "ownExact": {
+        "slope": 1,
+        "k": 8,
+        "xy": 23,
+        "y2": -24,
+        "x2": 12
+      },
+      "contentAnswerParametersPreserved": true,
+      "currentWholeSolutionMatchesIndependentNumerics": true,
+      "oldSolutionChanged": true,
+      "neutralProseConfirmed": true,
+      "gradeSurfaces": {
+        "stem": {
+          "status": "passed-after-prerequisites",
+          "basis": "두 일차식의 곱에서 xy,y² 계수의 합 -1로 상수 k를 역산. 다항식 곱셈 학습 후 2015 M3 9수02-12 범위.",
+          "evidence": {
+            "case": 32,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "de2ddefd183746c8c4b209c4a52c36c57b5da9f912e9dbfb22f069c066282433"
+          }
+        },
+        "choices": {
+          "status": "passed-after-prerequisites",
+          "basis": "단답형이며 선택지 없음. 출력은 상수 하나로 유일하다.",
+          "evidence": {
+            "case": 32,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "de2ddefd183746c8c4b209c4a52c36c57b5da9f912e9dbfb22f069c066282433"
+          }
+        },
+        "figuresAndTables": {
+          "status": "passed-after-prerequisites",
+          "basis": "그림·표 없음. 문자식만으로 모든 조건이 주어짐. 시각·인쇄 승인 아님.",
+          "evidence": {
+            "case": 32,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "de2ddefd183746c8c4b209c4a52c36c57b5da9f912e9dbfb22f069c066282433"
+          }
+        },
+        "notation": {
+          "status": "passed-after-prerequisites",
+          "basis": "x,y는 다항식 문자, k는 상수. 음수·0 허용. xy 계수 ad+ck=-9+4k, y² 계수 -3k. 고교 계수비교 정리 불필요.",
+          "evidence": {
+            "case": 32,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "de2ddefd183746c8c4b209c4a52c36c57b5da9f912e9dbfb22f069c066282433"
+          }
+        },
+        "answer": {
+          "status": "passed-after-prerequisites",
+          "basis": "일차식 1k=8; 0이 아닌 1로 나누어 k=8. 부호별 별도 양수 조건 없음.",
+          "evidence": {
+            "case": 32,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "de2ddefd183746c8c4b209c4a52c36c57b5da9f912e9dbfb22f069c066282433"
+          }
+        },
+        "studentSolution": {
+          "status": "passed-after-prerequisites",
+          "basis": "현재 해설의 모든 전개·이항·나눗셈·대입 수치 확인: xy=23, y²=-24, 합=-1. 중등 분배법칙과 수치 일차방정식만 필요. 중립 조사 문장 자연스러움.",
+          "evidence": {
+            "case": 32,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "de2ddefd183746c8c4b209c4a52c36c57b5da9f912e9dbfb22f069c066282433"
+          }
+        },
+        "prerequisites": {
+          "status": "passed-after-prerequisites",
+          "basis": "정수 부호 계산·분배법칙·동류항/계수·일차방정식을 먼저 학습해야 함. 9수02-01/04/05 및 실제 M3 다항식 곱셈 9수02-12. 단원 배치 자동 집행/개별 학생 학습 증명 아님.",
+          "evidence": {
+            "case": 32,
+            "primaryReceiptSHA256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d",
+            "MOE": "2015 mathematics HWP Section0 records3896,3912,3916,3956;9수02-12",
+            "actualM3Placement": "ICE2021-0141 PDF index89/printed90; SHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0",
+            "currentSolutionSHA256": "de2ddefd183746c8c4b209c4a52c36c57b5da9f912e9dbfb22f069c066282433"
+          }
+        }
+      }
+    }
+  ],
+  "counts": {
+    "printedCases": 32,
+    "wholeCurrentSolutions": 32,
+    "gradeSurfaces": 224,
+    "old8ObjectAnd23ResultParticleProblemsRemoved": true,
+    "wrongSlopeParticleProblems": 0
+  },
+  "primaryBinding": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\inverse-coefficient-engine-audit-20261019-r1\\official-grade-evidence.json",
+    "sha256": "2b8ebf5566e51543351974f2563eeef4db31039d2bef827fbc1c6e3e56144a9d"
+  },
+  "scope": "Fresh current32 printed derivation and whole solutions, not new blind/manual credit. Prior archive/source exposure declared. 2015M3 2025/26 only after prerequisites;2027M3/2022 pending. No factory answer oracle.",
+  "unit": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+  "liveFamilyKey": null,
+  "releaseApproved": false
+}

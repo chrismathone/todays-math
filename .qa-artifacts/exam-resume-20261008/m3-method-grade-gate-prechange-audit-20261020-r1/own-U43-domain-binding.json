@@ -1,0 +1,138 @@
+{
+  "actualPrintedTuples": 32,
+  "distinctTuples": 32,
+  "exactCurrentSourceFiniteCartesianDomain": true,
+  "variantsZeroBased": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "kMinus2Cases": [
+    {
+      "case1Based": 1,
+      "variantZeroBased": 0,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -4,
+      "ownDerivedK": -2,
+      "solutionSHA256": "6a1722cc6b7449880fa38b96c708f40492e291bedd98bed86006b7ef787b7bb3"
+    },
+    {
+      "case1Based": 5,
+      "variantZeroBased": 4,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -4,
+      "ownDerivedK": -2,
+      "solutionSHA256": "c7ad9ca49ec42e43aed10d3d97de05da31407d351ed456ad3cc028855071aab3"
+    },
+    {
+      "case1Based": 9,
+      "variantZeroBased": 8,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -8,
+      "ownDerivedK": -2,
+      "solutionSHA256": "17e9d6d65079ca1a1652e5054d4c5293d9ba49f00238302e5f77146b4634a637"
+    },
+    {
+      "case1Based": 13,
+      "variantZeroBased": 12,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -8,
+      "ownDerivedK": -2,
+      "solutionSHA256": "dbec4e2fe108634fd2fd9d3c19495f9f125ab02ec350a92acaad51886c4ef9f1"
+    },
+    {
+      "case1Based": 17,
+      "variantZeroBased": 16,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -9,
+      "ownDerivedK": -2,
+      "solutionSHA256": "59d2e9a6b4bbd3594cb2aa01d742daa146723a5050de8b6ed28e755c758bb826"
+    },
+    {
+      "case1Based": 21,
+      "variantZeroBased": 20,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -7,
+      "ownDerivedK": -2,
+      "solutionSHA256": "aec7157b12021ec5cad1eccda2ac6f3ac50f79a28852f47d4c565201961e5fa5"
+    },
+    {
+      "case1Based": 25,
+      "variantZeroBased": 24,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -13,
+      "ownDerivedK": -2,
+      "solutionSHA256": "6d4489d9bea1cd8671d62ffc86b02f69f08f9fcb0cbe5a887d4ea8daffb6269f"
+    },
+    {
+      "case1Based": 29,
+      "variantZeroBased": 28,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -11,
+      "ownDerivedK": -2,
+      "solutionSHA256": "30087c775369409ca56e732c639cdb030b6249fdeaec2ee09fea9d8e203a0b33"
+    }
+  ],
+  "noFactoryOrProducerMathExecuted": true
+}
