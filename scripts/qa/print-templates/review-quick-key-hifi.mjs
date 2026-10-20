@@ -1,4 +1,4 @@
-// Do not run until the lead explicitly releases the heavy-work hold.
+﻿// Do not run until the lead explicitly releases the heavy-work hold.
 // One browser, one context at a time. Never starts Vite, Next, typecheck, or DB.
 import { chromium } from "@playwright/test";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -10,17 +10,17 @@ if (!process.argv.includes("--resume-after-lead-release")) {
   throw new Error("리드의 실행 재개 연락 뒤에만 --resume-after-lead-release로 실행하세요.");
 }
 const root = process.cwd();
-const output = resolve(root, ".qa-artifacts/quick-key-hifi");
+const output = resolve(root, "docs/design/mockups/answer-quick-key-hifi-20261020");
 await mkdir(output, { recursive: true });
-if (freemem() < 1.5 * 1024 ** 3) throw new Error("Not enough free memory to launch the browser.");
+if (freemem() < 3 * 1024 ** 3) throw new Error("Not enough free memory to launch the browser.");
 const browser = await chromium.launch();
 const cases = [];
 try {
   for (const variant of ["h1", "h2", "h3", "h4", "h5"]) {
     for (const count of [25, 50, 100]) {
       // Additional protection; this is not a substitute for the lead's release.
-      if (freemem() < 1.5 * 1024 ** 3) {
-        throw new Error("사용 가능 메모리가 1.5GiB 미만입니다. 다음 캡처를 시작하지 않습니다.");
+      if (freemem() < 3 * 1024 ** 3) {
+        throw new Error("사용 가능 메모리가 3GiB 미만입니다. 다음 캡처를 시작하지 않습니다.");
       }
       const context = await browser.newContext({ viewport: { width: 1200, height: 1000 } });
       try {
@@ -67,6 +67,8 @@ try {
         )) throw new Error(JSON.stringify({ variant, count, result, errors, remote }));
         cases.push({ variant, count, ...result, errors, remote });
         if (count === 25 || count === 100) {
+          await page.setViewportSize({ width: 1800, height: 1400 });
+          await page.addStyleTag({ content: ".paper-window,.pair{overflow:visible!important}" });
           for (const mode of ["solutions", "key"]) {
             const sheets = page.locator(`.edition[data-mode="${mode}"] .sheet`);
             await sheets.evaluateAll(nodes => nodes.forEach((node, index) => { node.hidden = index !== 0; }));
@@ -87,3 +89,4 @@ try {
 } finally {
   await browser.close();
 }
+
