@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ElementaryPractice from "@/components/math-srs/ElementaryPractice";
+import { courseFigureFingerprint } from "@/lib/math-srs/elementary/figureFingerprint";
 import type {
   CourseAttempt,
   CourseProblem,
@@ -274,6 +275,10 @@ describe("elementary practice", () => {
         "/lab/math-srs/figure?sectionId=course-fractions&seed=42&tier=",
       ),
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    );
+    const figureUrl = new URL(fetchFigure.mock.calls[0][0], "http://localhost");
+    expect(figureUrl.searchParams.get("spec")).toBe(
+      courseFigureFingerprint({ type: "triangle" }),
     );
     await user.type(screen.getByLabelText("나의 답"), "1/2{Enter}");
     expect(record).toHaveBeenCalledOnce();
