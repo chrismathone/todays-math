@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-20T09:28:06.820379+00:00",
+  "finding": "Independent raw solver found corrupted grade/questionType labels in parent QA writer. Production factory text/types are intact.",
+  "oldPackSha256": "accea8faf5de0f21cee0210fba4c16c1325e6ce22c40aabafd64538fc61ba298",
+  "actualOldGradeLabel": "?3",
+  "actualOldQuestionTypeLabel": "???",
+  "newMetadataOnlyPack": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-equation-degree-proposal-20261020-r2/student-only26.json",
+    "sha256": "ef683803a4948418a30573601957f7613bab54528033f260b6daf52793f2a37e"
+  },
+  "all26BodiesAndStudentDigestsUnchanged": true,
+  "rawR1StillPendingDoNotExposePrivateYet": true,
+  "firstWriterAndPacketPreserved": true,
+  "loadable": 0,
+  "dbWrites": 0
+}
