@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import { readFileSync, mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { readFileSync, mkdtempSync, writeFileSync } from "node:fs";
+import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
@@ -361,7 +362,7 @@ describe("native exact contract and three source consumers", () => {
     expect(() => nativeFamilyKey("한글-r1")).toThrow();
     expect(() => nativeFamilyKey("a".repeat(65) + "-r1")).toThrow();
   });
-  it("refresh rebuild uses precisely the same rows including rubric serialization", () => {
+  it("refresh rebuild uses precisely the same rows including rubric serialization", async () => {
     const dir = mkdtempSync(path.join(tmpdir(), "native-refresh-"));
     try {
       const file = path.join(dir, "plan.json");
@@ -378,7 +379,7 @@ describe("native exact contract and three source consumers", () => {
       expect(result.conflicts).toEqual([]);
       expect([...result.made.values()]).toEqual(rows);
     } finally {
-      rmSync(dir, { recursive: true, force: true });
+      await rm(dir, { recursive: true, force: true });
     }
   });
   it("the shared planning selector and all exported 12 items/rubrics match the actual source", () => {

@@ -184,29 +184,30 @@ describe("문제은행 정렬 — 규칙이 «한 곳»이다", () => {
 
 describe("문제은행 정렬 — 화면이 두 번째 규칙을 만들지 않는다", () => {
   /**
-   * 서버가 페이지를 나누므로 **서버 순서가 참이다.** 화면이 따로 정렬하면 페이지
-   * 경계에서 순서가 깨진다(1페이지 끝과 2페이지 처음이 어긋난다).
-   *
-   * 그래서 `ProblemBank` 안의 정렬은 **공유 비교기를 지나야만** 한다. 맨손
-   * `.sort((a, b) => …)` 가 하나라도 들어오면 여기서 빨개진다.
-   *
-   * ⚠️ 낱말을 파일 전체에서 세지 않는다 — `.sort(` **호출마다** 그 인자가 공유
-   *    비교기를 부르는지 본다(2026-08-18 「LOOP 가 있나」로 지킨 가드의 반대편).
+   * 98b2a2f23: 문항 형식들을 묶은 서버 페이지는 새 표현을 끼워 넣어 재구성할 수 없다.
+   * 등록·생성 뒤에는 목록을 다시 읽으며, 화면은 받은 순서를 그대로 보인다.
+   * 정렬 호출이 없어도 통과시키는 빈 루프 대신, 재정렬 금지와 재조회 배선을 함께 잠근다.
+   * 실제 등록·생성 뒤 목록/수량은 components/ProblemBank.test.tsx에서도 검증한다.
    */
-  it("ProblemBank 의 모든 .sort( 는 compareProblemsForBank 를 지난다", async () => {
+  it("ProblemBank는 서버 순서를 그대로 받고 등록·생성 뒤 목록을 재조회한다", async () => {
     const { readFileSync } = await import("node:fs");
     const source = readFileSync(
       "src/components/problem/ProblemBank.tsx",
       "utf8",
     );
+    expect(source).not.toMatch(/\.(?:sort|toSorted|reverse|toReversed)\s*\(/);
+    expect(source).toContain("setProblems(body.data)");
 
-    const calls = [...source.matchAll(/\.sort\(/g)];
-    expect(calls.length).toBeGreaterThan(0); // 없으면 이 가드가 아무것도 안 지킨다
-    for (const call of calls) {
-      // 호출 뒤 400자 안에 공유 비교기가 나와야 한다.
-      const window = source.slice(call.index!, call.index! + 400);
-      expect(window).toContain("compareProblemsForBank");
-    }
-    expect(source).toContain('from "@/lib/problem/problemOrder"');
+    const start = source.indexOf("const prepend = useCallback(");
+    const end = source.indexOf("const handleTransformAdopted = useCallback(", start);
+    expect(start).toBeGreaterThanOrEqual(0);
+    expect(end).toBeGreaterThan(start);
+    const onCreated = source.slice(start, end);
+    expect(onCreated).not.toMatch(/set(?:Problems|Total)\s*\(/);
+    expect(onCreated).toContain("setLoading(true)");
+    expect(onCreated).toContain("setListAttempt((value) => value + 1)");
+    expect(source).toContain("[filters, page, listAttempt]");
+    expect(source).toContain('onCreated={(_count, created) => prepend(created, "등록")}');
+    expect(source).toContain('onCreated={(_count, created) => prepend(created, "생성")}');
   });
 });

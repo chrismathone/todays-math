@@ -205,6 +205,8 @@ const SSO = [
 // Proxy forwarding grants no student or teacher authority. Keep exact paths here;
 // unsupported methods reach Next's 405 handling, never an operational mutation.
 const SIGNED_RECEIVER = [
+  // a42d51752: 지점 메뉴 연동도 처리기에서 서명·활성 연결·지점·쓰기 nonce를 검사한다.
+  "/api/integrations/eywa/v2/branch-menus",
   "/api/integrations/eywa/v2/events",
   `/api/integrations/eywa/v2/events/${UUID}`,
   "/api/integrations/eywa/v2/process",

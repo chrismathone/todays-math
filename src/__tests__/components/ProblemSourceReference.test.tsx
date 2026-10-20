@@ -39,6 +39,9 @@ const bankProblem: BankProblem = {
 
 function mountBank(problem = bankProblem) {
   const data: BankData = {
+    countUnit: "question",
+    version: 2,
+    queryKey: "source-reference-fixture",
     problems: [problem],
     total: 1,
     page: 1,

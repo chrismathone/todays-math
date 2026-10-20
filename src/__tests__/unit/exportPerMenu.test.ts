@@ -130,6 +130,12 @@ function routeFiles(dir: string): string[] {
 }
 
 describe("공용 출력 API 전수 관문", () => {
+  // 2fac1748c: 기출 연습은 다섯 제작 메뉴만 연다. 교재의 공용 출력 권한은 그대로다.
+  // 제품의 권한 함수를 기대값으로 재사용하지 않고 승인된 두 경로만 명시한다.
+  const practiceRoutes = new Set([
+    "/api/exam/practice",
+    "/api/exam/practice/resolve",
+  ]);
   const apiRoot = path.join(process.cwd(), "src/app/api");
   const routes = [
     "exports",
@@ -160,16 +166,19 @@ describe("공용 출력 API 전수 관문", () => {
     expect(routes.length).toBeGreaterThan(40);
     expect(routes).toContainEqual(["POST", "/api/exports/pdf"]);
     expect(routes).toContainEqual(["GET", "/api/studio/print-presets"]);
+    expect(routes).toContainEqual(["GET", "/api/exam/practice"]);
+    expect(routes).toContainEqual(["POST", "/api/exam/practice"]);
+    expect(routes).toContainEqual(["POST", "/api/exam/practice/resolve"]);
   });
 
   it.each(routes)(
-    "%s %s는 각 출력 메뉴에서 열리고 메뉴 없는 계정·export 단독은 거절한다",
+    "%s %s는 승인된 출력 메뉴에서만 열리고 메뉴 없는 계정·export 단독은 거절한다",
     (method, route) => {
       for (const source of sources)
         expect(
           accountRouteAllowed(account([source]), method, route),
           source,
-        ).toBe(true);
+        ).toBe(!practiceRoutes.has(route) || source !== "textbook");
       for (const menus of [
         [],
         ["export"],

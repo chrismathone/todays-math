@@ -251,7 +251,15 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 126: 기존 시험지 정보줄 대비·지면 색상 비교 시안 추가(2026-10-19).
     // 132: 확정 C2의 실제 여섯 양식별 실물 검수 대기(2026-10-19).
     // 139: 합의한 성적표 H1·편지형·정오 격자형·장부형의 실물 검수 대기 넷 추가(2026-10-19).
-    expect(ITEMS.length).toBe(139);
+    // 140: question-smart-spacing-20261020 — 문항별 균등 여백·스마트 배치 실물 검수 대기.
+    expect(ITEMS.length).toBe(140);
+    expect(ITEMS).toContainEqual(
+      expect.objectContaining({
+        id: "question-smart-spacing-20261020",
+        status: "대기",
+        changedOn: "2026-10-20",
+      }),
+    );
   });
 
   /**

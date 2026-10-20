@@ -37,10 +37,11 @@ import {
 } from "@/lib/examStudy";
 import { createExamStudy, resolveExamStudy } from "@/lib/examStudyRoutes";
 
-// Preserve the actual origin guard while keeping local environment files out of fixture behavior.
+// Preserve the actual origin guard; deployment settings cannot change this fixture.
 beforeEach(() => {
+  // Keep the real same-origin guard independent of the runner's deployment URL.
   vi.stubEnv("AUTH_URL", "http://localhost");
-  vi.stubEnv("NEXTAUTH_URL", "http://localhost");
+  vi.stubEnv("NEXTAUTH_URL", "");
 });
 afterEach(() => vi.unstubAllEnvs());
 

@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { PGlite } from "@electric-sql/pglite";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, writeFileSync } from "node:fs";
+import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import type { PrismaClient } from "@prisma/client";
@@ -74,9 +75,9 @@ const plan = {
   targets: [target.target],
 };
 const temps: string[] = [];
-afterEach(() => {
+afterEach(async () => {
   for (const dir of temps.splice(0))
-    rmSync(dir, { recursive: true, force: true });
+    await rm(dir, { recursive: true, force: true });
 });
 
 describe("bounded preparation contracts", () => {
