@@ -1,0 +1,2239 @@
+{
+  "actualProductionMain": true,
+  "validationMocks": 0,
+  "filesystemFence": "Audit hook denies all writes and non-inventory/non-standard-library reads; no successful extraction invoked. Twenty negative cases configure only INVENTORY to own minimal metadata fixtures; real parser/helper unchanged. Other negative cases use authorized historical inventory. Inputs hashed before/after.",
+  "cases": [
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "mixed-grade",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--level",
+        "middle",
+        "--grade",
+        "1"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: personal-11c64124bf2ff6eef6749d12cb777e8f\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "mixed-level",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-8eec901cfcf0f5f6e58dec34775bc19f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--level",
+        "middle",
+        "--grade",
+        "1"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: personal-8eec901cfcf0f5f6e58dec34775bc19f\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "default-m3-reject-m1",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-57992c45fa81adc2866b0dd6fc4972b1",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: personal-324e5308ec33be22e950f921204b6a5a\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "grade-zero",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--grade",
+        "0"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: argument --grade: invalid choice: 0 (choose from 1, 2, 3)\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "level-invalid",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--level",
+        "elementary"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: argument --level: invalid choice: 'elementary' (choose from 'middle', 'high')\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "duplicates",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Supply 2–6 unique explicit IDs, including optional fallbacks\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "one-id",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Supply 2–6 unique explicit IDs, including optional fallbacks\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "seven-ids",
+      "args": [
+        "--job-ids",
+        "own-0",
+        "own-1",
+        "own-2",
+        "own-3",
+        "own-4",
+        "own-5",
+        "own-6",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Supply 2–6 unique explicit IDs, including optional fallbacks\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "traversal",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "../own-u58-outside"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: A new immediate evidence directory is required\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "absolute-output",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-never-created-output"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: A new immediate evidence directory is required\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "inputSHA256After": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "mode": "help",
+      "args": [
+        "--help"
+      ],
+      "exit": 0,
+      "stdout": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\n\nExplicit-job, offline question extraction. Raw outputs stay local/quarantined.\nOnly aggregate-receipt.json is intended for Git. No source text/images are\nreleased. Run with python -B; original reader/converter/textlayer are imported\nunchanged.\n\noptions:\n  -h, --help            show this help message and exit\n  --job-ids JOB_IDS [JOB_IDS ...]\n  --out OUT\n  --max-success {2,3}\n  --level {middle,high}\n  --grade {1,2,3}\n",
+      "stderr": "",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\textwrap.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": null,
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "aeeca1fbfb7336302d44f7a884d628abc514cf29c1b8a7785b1e68cc037948b5",
+      "inputSHA256After": "aeeca1fbfb7336302d44f7a884d628abc514cf29c1b8a7785b1e68cc037948b5",
+      "mode": "fault-0",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-00.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-00.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-00.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-00.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "1d52eb213ab8a0a7abc1959a3fe6092b9709daf2389a11342b8dd621bdfa621a",
+      "inputSHA256After": "1d52eb213ab8a0a7abc1959a3fe6092b9709daf2389a11342b8dd621bdfa621a",
+      "mode": "fault-1",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-01.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-01.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-01.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-01.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "e5b75f63130a13066ed844db0d83886cf496085135347b1ebf4e678b447a500b",
+      "inputSHA256After": "e5b75f63130a13066ed844db0d83886cf496085135347b1ebf4e678b447a500b",
+      "mode": "fault-2",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-02.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-02.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-02.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-02.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "c4caaf09685269c37d57f70b3d371b2d634c88919324e9deaa1e0230114f0728",
+      "inputSHA256After": "c4caaf09685269c37d57f70b3d371b2d634c88919324e9deaa1e0230114f0728",
+      "mode": "fault-3",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-03.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-03.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-03.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-03.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "8652a6846929b249283f28b56ae66df4cba9d562a2a79fb364522af46a55c5d4",
+      "inputSHA256After": "8652a6846929b249283f28b56ae66df4cba9d562a2a79fb364522af46a55c5d4",
+      "mode": "fault-4",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-04.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-04.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-04.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-04.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "b2df8a0b45af733e9ab17a68eaaae0a829afca88bcbb4e1d3fcd4282792ada5f",
+      "inputSHA256After": "b2df8a0b45af733e9ab17a68eaaae0a829afca88bcbb4e1d3fcd4282792ada5f",
+      "mode": "fault-5",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-05.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-05.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-05.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-05.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "85df35a5fe1367523c1a6297c6152733068d2e086dc451f565d521df859b999c",
+      "inputSHA256After": "85df35a5fe1367523c1a6297c6152733068d2e086dc451f565d521df859b999c",
+      "mode": "fault-6",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-06.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-06.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-06.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-06.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "ec146847dc941c2d66bdd2defe7f52fcbb1ca25e347bb62a63122ed520950f81",
+      "inputSHA256After": "ec146847dc941c2d66bdd2defe7f52fcbb1ca25e347bb62a63122ed520950f81",
+      "mode": "fault-7",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-07.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-07.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-07.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-07.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "d43ff68fd94661de46da3ca5c5daee48f560c92234c43df0358a1ba4660908b4",
+      "inputSHA256After": "d43ff68fd94661de46da3ca5c5daee48f560c92234c43df0358a1ba4660908b4",
+      "mode": "fault-8",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-08.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-08.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-08.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-08.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "f19a1d37b3ad685ce7b003c054cff4ddaead447aaeebc2c55937dc54221ac731",
+      "inputSHA256After": "f19a1d37b3ad685ce7b003c054cff4ddaead447aaeebc2c55937dc54221ac731",
+      "mode": "fault-9",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-09.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-09.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-09.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-09.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "19bed4dfa6398319264cb1a55b356a8391fd84400df5ac9a51f0b2d02a6b02d3",
+      "inputSHA256After": "19bed4dfa6398319264cb1a55b356a8391fd84400df5ac9a51f0b2d02a6b02d3",
+      "mode": "fault-10",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-10.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-10.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-10.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-10.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "7196cb8a3a0731458e711641142531d77ad84531b0a1264ad139bce952ef8814",
+      "inputSHA256After": "7196cb8a3a0731458e711641142531d77ad84531b0a1264ad139bce952ef8814",
+      "mode": "fault-11",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-11.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-11.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-11.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-11.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "d984c68d584299e804c2acff231d9f25f4af2278f9977caa06f2997edd662f6b",
+      "inputSHA256After": "d984c68d584299e804c2acff231d9f25f4af2278f9977caa06f2997edd662f6b",
+      "mode": "fault-12",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-12.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-12.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-12.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-12.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "2d58111ac7504b9649944eb3a246b626b359dd0ac40e8945d3e8f7ae5b0f24b5",
+      "inputSHA256After": "2d58111ac7504b9649944eb3a246b626b359dd0ac40e8945d3e8f7ae5b0f24b5",
+      "mode": "fault-13",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-13.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-13.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-13.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-13.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "1d7ab0ab2fb805191d1333564ac74bb3b633a2f238b483b9ad727312e4af575a",
+      "inputSHA256After": "1d7ab0ab2fb805191d1333564ac74bb3b633a2f238b483b9ad727312e4af575a",
+      "mode": "fault-14",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-14.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-14.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-14.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-14.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "f9ee353f5827dc59ea9a28d32a4cf2f8e57ee317374b5edc55616f0ab6f937a9",
+      "inputSHA256After": "f9ee353f5827dc59ea9a28d32a4cf2f8e57ee317374b5edc55616f0ab6f937a9",
+      "mode": "fault-15",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-15.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-15.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-15.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-15.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "b885c7f08a57d090a1e26b87896a489223b61ae5b2bac41f8cbacfa9cf0660cd",
+      "inputSHA256After": "b885c7f08a57d090a1e26b87896a489223b61ae5b2bac41f8cbacfa9cf0660cd",
+      "mode": "fault-16",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-16.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-16.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-16.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-16.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "9e49787fe5fbe79d3bd4c1c5f3664f3e7d056a92582f2582b84111e0368c1e62",
+      "inputSHA256After": "9e49787fe5fbe79d3bd4c1c5f3664f3e7d056a92582f2582b84111e0368c1e62",
+      "mode": "fault-17",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-17.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-17.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-17.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-17.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "201addd6fd47b45119ad4948fe0fd6beb58b9c0b3114007f55b940cd1e28dcc7",
+      "inputSHA256After": "201addd6fd47b45119ad4948fe0fd6beb58b9c0b3114007f55b940cd1e28dcc7",
+      "mode": "fault-18",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-18.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-18.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-18.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-18.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "inputSHA256Before": "55b2dc1155d94f6c0b209cbdc115779e520f0d440269d40318d439bb82af867e",
+      "inputSHA256After": "55b2dc1155d94f6c0b209cbdc115779e520f0d440269d40318d439bb82af867e",
+      "mode": "fault-19",
+      "args": [
+        "--job-ids",
+        "own-unseen-id",
+        "own-second-id",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: own-unseen-id\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-19.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-19.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-19.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inventoryFixtureOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r3\\own-negative-inventory-19.json",
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    }
+  ],
+  "total": 31,
+  "passed": 31
+}

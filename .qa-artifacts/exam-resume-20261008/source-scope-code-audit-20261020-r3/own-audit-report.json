@@ -1,0 +1,134 @@
+{
+  "audit": "U58 R3 actual wired strict reader, metadata overlays and negative CLI",
+  "status": "bounded-wiring-and-metadata-audit-passed",
+  "scopeSHA256": "6da2a6dcff49e56dd8618176b49f9891b363c2ede9f310ec537c789eac15c63f",
+  "ownRuns": {
+    "total": 21052,
+    "passed": 21052,
+    "failed": 0,
+    "actualWiredEligibilityAndOverlayChecks": 19258,
+    "actualNegativeMainAndHelp": 31,
+    "independentWiringQueueReplayPolicyChecks": 1763,
+    "parentTestsRun": 0,
+    "validSourceExtractions": 0,
+    "parentReplayOrOverlayWritersExecuted": false,
+    "modelsApiDbCalls": 0,
+    "repeatedDeterministicRuns": "Only final distinct controls counted; repeated CLI rerun to add input hash receipts not double-counted."
+  },
+  "wiring": {
+    "actualImport": "Actual copied extract-fresh-sources-20261019.py imports exact sibling source_inventory_scope_v2.py; tests invoke reader.eligible rather than bypassing dispatch to helper. Hash-bound root/snapshot/runtime all match.",
+    "dynamicPolicy": "Actual AST receipt.selectionPolicy is SOURCE_SCOPE.selection_policy(args.level,args.grade); eligibility wrapper delegates with level and grade. Tool provenance references sibling V2. Actual reader delta from supplied R1 runtime consists only of helper import/name, tool ref and dynamic policy call.",
+    "runtimeRoots": "Copied runtime ROOT differs; no positive extraction or parent queue execution. Imported actual reader does not execute main automatically.",
+    "scopeParity": {
+      "historicalJobs": 1715,
+      "defaultM3Mismatches": 0,
+      "sixScopeChecks": 10290,
+      "sixScopeMismatches": 0,
+      "independentOracle": "Own sealed R1 rational metadata predicate with strict plain-record/nonblank refinements, no parent test oracle.",
+      "prior20MalformationsRejected": true
+    },
+    "futureGradeScope": "Six supported school scopes and explicit year>=2025 metadata are routing conditions only; not achievement standard or student-method certification."
+  },
+  "cli": {
+    "cases": 31,
+    "passed": 31,
+    "ordinaryNegativesAndHelp": 11,
+    "corruptMetadataCases": 20,
+    "original20": "Own sealed R1 malformed/missing fixture objects, configured as actual main INVENTORY in own minimal files with a second valid dummy job. Real parser, eligible wrapper and helper unchanged; no validation or source-parser mock.",
+    "dependencyInjectionLabel": "Twenty cases configure INVENTORY path to generated OWN negative metadata, not the real current historical inventory. Other11 cases use authorized historical inventory. This is a bounded integration control, not original source extraction or authentic replay.",
+    "fence": "Python audit hook denies ALL filesystem mutation and all reads except exact selected inventory plus Python standard library. Every negative exits2 via actual parser.error; help exits0; no source read/mkdir attempted, no output exists. Before/after input SHA equal in all31.",
+    "limit": "Production main can read prior next-*/source-manifest.json before job validation for seen IDs. Copied ROOT has no such history. Newly selected original source reads/parser imports occur after eligibility; no claim that every production prior question-bearing file is read only after validation."
+  },
+  "overlays": {
+    "overlays": 174,
+    "receiptEntries": 513,
+    "statuses": {
+      "individual-source-hold": 47,
+      "parsed-quarantined": 466
+    },
+    "shaAndScope": "Every supplied overlay hash matches validation and originalReceipt SHA matches corresponding supplied aggregate bytes. Per-receipt unique level/grade agrees with every entry, inventory and extractionScopeAsProvided; per-receipt IDs unique. All corrected policies match independent full level/grade grammar.",
+    "oldReceiptLabels": "Original incorrect middle3 policy labels remain immutable; overlays add corrections without overwriting receipts.113 R2 overlays and R1/R2 reports remain historical evidence.",
+    "closure": "Every overlay source/studentGrade/rights approvalfalse, activeReaderCodeChangedfalse for that OVERLAY operation, dbWrites/loadable0; all original entries/aggregate grade/rights/identity/wholePair/components/twins remainfalse or0. Overlay operation activeReaderCodeChangedfalse does not deny separate later reader-wiring change.",
+    "parentValidationAsOf": "Older overlay-validation notYetWiredIntoActiveParser describes its own pre-wiring capture; current actual reader source and later replay metadata establish separate later wiring, not a silent rewrite."
+  },
+  "completionAndReplay": {
+    "queueRecount": {
+      "parsed": 458,
+      "held": 47,
+      "newParentObservations": 9641
+    },
+    "completedBatches": 170,
+    "plannedBatches": 170,
+    "plannedUniqueIDs": 505,
+    "queueReceiptBinding": "Wire receipt SHA binds completed queue receipt. Recorded timestamps order queue completion < wiring < replay validation. Every170 result SHA/count/scope matches supplied aggregate; total parsed458 held47 observations9641. This is metadata chronology, not independent process monitoring.",
+    "replayedPapers": [
+      {
+        "examId": "personal-324e5308ec33be22e950f921204b6a5a",
+        "questionDigestsMatched": 21,
+        "inputHashMetadataMatched": true,
+        "originalFilesRehashed": false
+      },
+      {
+        "examId": "personal-57992c45fa81adc2866b0dd6fc4972b1",
+        "questionDigestsMatched": 20,
+        "inputHashMetadataMatched": true,
+        "originalFilesRehashed": false
+      },
+      {
+        "examId": "personal-8eec901cfcf0f5f6e58dec34775bc19f",
+        "questionDigestsMatched": 23,
+        "inputHashMetadataMatched": true,
+        "originalFilesRehashed": false
+      },
+      {
+        "examId": "personal-827a7963c912f3d9171b762651b56918",
+        "questionDigestsMatched": 22,
+        "inputHashMetadataMatched": true,
+        "originalFilesRehashed": false
+      }
+    ],
+    "matchedQuestionDigestMetadata": 86,
+    "newObservationCredit": 0,
+    "verified": "Compare actual supplied old and replay aggregate metadata: all4 original selected-input SHA records and originalIdentitySource records equal;86 ordered(number,contentDigest) tuples equal. Replay tool SHA references current reader and V2, localManifest SHA metadata binds supplied validation. Dynamic M1/H1 policy correct and closure flags remainfalse.",
+    "notVerified": "No original N/HWP/PDF/image/question-body/manifest opened or rehashed. Manifest/source pointer equality and question digest equality are metadata checks; parent executed the four real replays. They are not own full source-fidelity or original answer approval. Replay counters do not add corpus observations."
+  },
+  "preservation": {
+    "hashBindings": 369,
+    "beforeAfterEqual": true,
+    "threeCurrentRootSnapshotRuntimeSources": 3,
+    "rootWrites": 0,
+    "originalOrOldReportWrites": 0,
+    "priorReports": [
+      {
+        "commit": "c4896c7b39a3c842106b64f6b744f4af524af9df",
+        "path": ".qa-artifacts/exam-resume-20261008/source-scope-code-audit-20261020-r1/own-audit-report.json",
+        "sha256": "1f5d04a1355bf9f288bce28f368078e1d26988a7db219f22c94fe30145dffbf9"
+      },
+      {
+        "commit": "a4e7094958e2b473959334eccd9af6843c6913b8",
+        "path": ".qa-artifacts/exam-resume-20261008/source-scope-code-audit-20261020-r2/own-audit-report.json",
+        "sha256": "8bf588207adbecf6a4697ee54bf85b55f5269a170a3edc1b705db58fe4888452"
+      }
+    ],
+    "utf8ProbeSHA256": "82c0d3e6050b17295c91ab98fcd569526fdbf8103ec2dd3a6ea19e3aea8136e1",
+    "ownNegativeFixtureSHAReceipts": "own-cli-results.json binds20 generated minimal fixture files; scripts reproduce them. No whole inventory copied/staged."
+  },
+  "remainingHolds": {
+    "identityNormalization": "Protection/seen IDs match exact canonical strings; whitespace-padded school/ID acceptance is recorded in own controls. No alias/trim identity guarantee, consistent with R2 residual limit.",
+    "sourceFidelity": "Question text/formula/figure ownership/printed metadata/source identity still require actual bounded review. Metadata parsing and successful replays do not certify source rights or full-paper identity.",
+    "studentGradeRightsFamilyNativeLoad": "No student2015/2022 method,rights,family,native/loadability/public/DB release approval. All remain unapproved. Reader wiring repairs only the bounded R1 metadata gate and policy description.",
+    "unknowns": "No broad source extraction completion/dedup proof, no public route or source-parser regression suite run outside exact scope."
+  },
+  "artifacts": {
+    "own-controls.py": "45286e36bc9a2bef6091abb77a4a1b899519a7b46258d0149ff80c62c3d33dbc",
+    "own-controls-results.json": "518b9ea40520e98f9cee5f8c40c1745ac018202c7a1dc2adb4b700bd0e80185d",
+    "own-cli-probe.py": "1cfab755435b5d6ae5bb460d227559d993a800b2bf8c9cd1c7660f5232d78e2f",
+    "own-run-cli.py": "594e3ad4b9c7d0918c2dadd82059397669e8373a1301e18405c9c8d31d371f89",
+    "own-cli-results.json": "66c38c79e473266cffe8898b874ebe519941ead23be4c450350ea4079376a9f0",
+    "own-metadata-controls.py": "1570445069eccbfdabbd0bf90ff8d444dc984a0827b4b2b29d91b6155c0564ed",
+    "own-metadata-results.json": "ebe6deafcc8eeaaa08d0a600b73a0296a5965aa1d72084d8a945ce7f9db0157f",
+    "own-before.json": "2d533e6cf798bf76a52d05e8f02345daded151e54d1664034a946e4f5bb4cbfc",
+    "own-after.json": "4caf410a814697b6644b0b4106c13327d5352c9f5feae1af38b810668514da29",
+    "own-utf8-probe.txt": "82c0d3e6050b17295c91ab98fcd569526fdbf8103ec2dd3a6ea19e3aea8136e1"
+  }
+}
