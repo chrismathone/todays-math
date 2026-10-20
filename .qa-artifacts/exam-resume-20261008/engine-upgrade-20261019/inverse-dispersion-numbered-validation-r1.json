@@ -1,0 +1,49 @@
+{
+  "utc": "2026-10-20T04:22:21.166Z",
+  "files": [
+    "scripts/import/exam-twin/statisticsConditions.mjs",
+    "scripts/import/exam-twin/inverseDispersionConditions.mjs",
+    "scripts/import/exam-twin/inverseDispersionConditions.test.mjs",
+    "scripts/import/exam-twin/candidatePack.mjs",
+    "scripts/import/exam-twin/numberedConstantAssignments.mjs",
+    "scripts/import/exam-twin/numberedConstantAssignments.test.mjs"
+  ],
+  "before": {
+    "scripts/import/exam-twin/statisticsConditions.mjs": "e14bbc414bf959203ca70a7d1ef4478a8f27512068603d9e412aa37e45d27754",
+    "scripts/import/exam-twin/inverseDispersionConditions.mjs": "b068d7340d56443c61cf06eab128299a4d7b9f31d213c1d4f960890ef8d79706",
+    "scripts/import/exam-twin/inverseDispersionConditions.test.mjs": "7dad66929ef2a61cf99efa703eb03e4ca425f39ff5b5017dc319e7cb627b1031",
+    "scripts/import/exam-twin/candidatePack.mjs": "13da6274441c78cb7c5eb9df1c83cc55dd6a9489aec0ac4205a5764aa3ddafb4",
+    "scripts/import/exam-twin/numberedConstantAssignments.mjs": "0f964790e34bb92481c51ce035f2a6b28024d663e39813678fc93d20cfce4949",
+    "scripts/import/exam-twin/numberedConstantAssignments.test.mjs": "9e6c5fb257e9fea9c96595f751ace8cdc25b91e27550313f6bf33bb49a0e2937"
+  },
+  "after": {
+    "scripts/import/exam-twin/statisticsConditions.mjs": "e14bbc414bf959203ca70a7d1ef4478a8f27512068603d9e412aa37e45d27754",
+    "scripts/import/exam-twin/inverseDispersionConditions.mjs": "b068d7340d56443c61cf06eab128299a4d7b9f31d213c1d4f960890ef8d79706",
+    "scripts/import/exam-twin/inverseDispersionConditions.test.mjs": "7dad66929ef2a61cf99efa703eb03e4ca425f39ff5b5017dc319e7cb627b1031",
+    "scripts/import/exam-twin/candidatePack.mjs": "13da6274441c78cb7c5eb9df1c83cc55dd6a9489aec0ac4205a5764aa3ddafb4",
+    "scripts/import/exam-twin/numberedConstantAssignments.mjs": "0f964790e34bb92481c51ce035f2a6b28024d663e39813678fc93d20cfce4949",
+    "scripts/import/exam-twin/numberedConstantAssignments.test.mjs": "9e6c5fb257e9fea9c96595f751ace8cdc25b91e27550313f6bf33bb49a0e2937"
+  },
+  "sourceHashesUnchangedDuringValidation": true,
+  "nodeTestFiles": 15,
+  "nodeSummary": "nce\nok 170 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 31.0344\n  type: 'test'\n  ...\n1..170\n# tests 170\n# suites 0\n# pass 170\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 23028.0209\n",
+  "lintPassed": true,
+  "results": [
+    {
+      "log": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-dispersion-numbered-tests-r1.tap",
+      "status": 0
+    },
+    {
+      "log": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-dispersion-numbered-lint-r1.log",
+      "status": 0
+    }
+  ],
+  "old151CandidateBindingsUnchanged": true,
+  "currentQ20OriginalRawReportAndCandidateUnchanged": true,
+  "newReviewCollection": 3,
+  "previousReviewCollection": 2,
+  "independentCodeAuditPending": true,
+  "newPublicGeneratorFamily": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

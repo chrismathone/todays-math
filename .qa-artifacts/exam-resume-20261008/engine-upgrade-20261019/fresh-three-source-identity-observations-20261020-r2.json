@@ -1,0 +1,95 @@
+{
+  "utc": "2026-10-20T04:35:23.511311+00:00",
+  "aggregate": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\aggregate-receipt.json",
+    "sha256": "cbecc6cde07a4aef3ccaa546e61e794a41e61c3e64e689d0ba86df8f41664105"
+  },
+  "rows": [
+    {
+      "inventoryExamId": "personal-87311a760e702909b5a0fe1cd63004ca",
+      "observedPrintedFirstPageIdentity": {
+        "school": "대구동중",
+        "year": 2025,
+        "grade": 3,
+        "semester": 1,
+        "round": "midterm",
+        "date": "2025-04-30",
+        "parentQuestionCount": 20
+      },
+      "firstPageActuallyViewed": true,
+      "rotationForReading": 270,
+      "originalQuestionMarkingsIncidentallyVisible": true,
+      "markingsUsedForMathOrApproval": false,
+      "sourceAnswerSheetOpened": false,
+      "wholeHwpPdfCorrespondenceCertified": false,
+      "rightsApproved": false,
+      "gradeApproved": false,
+      "nativeOrDistributionApproved": false,
+      "actuallyViewedOrientedRender": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\orientation-review-local-r1\\personal-87311a760e702909b5a0fe1cd63004ca-first-page-rotated-270.png",
+        "sha256": "b2dfb86fb461f75f3dda1c90f093d0065fb82d0ebb3880564d72145001db2c33"
+      }
+    },
+    {
+      "inventoryExamId": "personal-dc9efb798219b732ebd608105298f220",
+      "observedPrintedFirstPageIdentity": {
+        "school": "대구북중",
+        "year": 2025,
+        "grade": 3,
+        "semester": 1,
+        "round": "midterm",
+        "date": "2025-05-01",
+        "parentQuestionCount": 21
+      },
+      "firstPageActuallyViewed": true,
+      "rotationForReading": 270,
+      "originalQuestionMarkingsIncidentallyVisible": true,
+      "markingsUsedForMathOrApproval": false,
+      "sourceAnswerSheetOpened": false,
+      "wholeHwpPdfCorrespondenceCertified": false,
+      "rightsApproved": false,
+      "gradeApproved": false,
+      "nativeOrDistributionApproved": false,
+      "actuallyViewedOrientedRender": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\orientation-review-local-r1\\personal-dc9efb798219b732ebd608105298f220-first-page-rotated-270.png",
+        "sha256": "3f2077c2a7325f2c07b5a46c87d06498939b0bda1bce2f04f1d9fd9b61321445"
+      }
+    },
+    {
+      "inventoryExamId": "personal-1c6091af710ddaaa7e6671a2ef018a1c",
+      "observedPrintedFirstPageIdentity": {
+        "school": "대구일중",
+        "year": 2025,
+        "grade": 3,
+        "semester": 1,
+        "round": "midterm",
+        "date": "2025-04-30",
+        "parentQuestionCount": 21
+      },
+      "firstPageActuallyViewed": true,
+      "rotationForReading": 0,
+      "originalQuestionMarkingsIncidentallyVisible": true,
+      "markingsUsedForMathOrApproval": false,
+      "sourceAnswerSheetOpened": false,
+      "wholeHwpPdfCorrespondenceCertified": false,
+      "rightsApproved": false,
+      "gradeApproved": false,
+      "nativeOrDistributionApproved": false
+    }
+  ],
+  "referenceRasterBytesLocalOnly": true,
+  "wholePairApproved": 0,
+  "dbWrites": 0,
+  "allSourcesExtracted": false,
+  "previousParentObservationsAsRecorded": 634,
+  "newParentObservations": 62,
+  "totalObservedParentsNotContentDedupCertified": 696,
+  "previousObservation": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\fresh-three-source-identity-observations-20261020-r1.json",
+    "sha256": "dcef95a5a3fe5a6d81bc65d611f059ee31b01b7143b3eb85a38775e05ff06dd6"
+  },
+  "orientationRenderManifest": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\fresh-three-orientation-render-bindings-r1.json",
+    "sha256": "8170f1f043ca46e9ab808ba9e2b7ed0c4fbd8db01c7978b103f079b98b11ce1e"
+  }
+}

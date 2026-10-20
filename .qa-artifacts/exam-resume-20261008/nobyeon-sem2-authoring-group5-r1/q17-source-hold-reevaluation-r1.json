@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-20T04:12:34.748Z",
+  "priorSourceReview": {
+    "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q17.json",
+    "sha256": "80daba47dd3a3dd549ff6d5fc9c32f02204ba705b7e135c6822708d20a902b3e"
+  },
+  "currentStaged": {
+    "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q17.json",
+    "sha256": "71dfa1fd221bedbe3b4b298661e50b8647f958ebfb4c5364507176c7fac962eb"
+  },
+  "independentOwnership": {
+    "commit": "0b9f171429369fbae4f6a3b17540266b6cfad833",
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-shared-source-ownership-20261020-r2/own-source-ownership-review-r2.json",
+    "sha256": "cae09e49c01def9fafb574d56964a92bf57f697682b3563336b1ef35fda49061"
+  },
+  "independentActualCrop": {
+    "commit": "8211adb6aa1cf28cd7a1f0e09f05e541bdeb658b",
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-shared-source-ownership-20261020-r2/own-crop-ownership-addendum-r3.json",
+    "sha256": "5f7bec0026b9e13fab043ffcb813ccac02d64dc310fd096d41ab80d63a859271"
+  },
+  "resolvedSpecificHistoricalHold": "Current explicit20pair/shared16-17header ownership and actual crops independently confirmed; old null-context reason obsolete only for these exact current stage hashes.",
+  "oldSourceReviewRewritten": false,
+  "wholeHwpPdfIdentityApproved": false,
+  "rightsApproved": false,
+  "gradeApproved": false,
+  "exactFamilyApproved": false,
+  "nativeOrReleaseApproved": false,
+  "loadable": 0
+}

@@ -1,0 +1,60 @@
+{
+  "version": 2,
+  "style": {
+    "show_points": true
+  },
+  "points": {
+    "P": [
+      30,
+      130
+    ],
+    "Q": [
+      246.1165738143006,
+      51.34
+    ],
+    "R": [
+      246.1165738143006,
+      130
+    ]
+  },
+  "segments": {
+    "PQ": [
+      "P",
+      "Q"
+    ],
+    "PR": [
+      "P",
+      "R"
+    ],
+    "RQ": [
+      "R",
+      "Q"
+    ]
+  },
+  "angles": {
+    "slope": {
+      "vertex": "P",
+      "points": [
+        "R",
+        "Q"
+      ],
+      "label": "20°",
+      "radius": 24,
+      "label_distance": 38
+    },
+    "right": {
+      "vertex": "R",
+      "points": [
+        "P",
+        "Q"
+      ],
+      "right": true,
+      "label": ""
+    }
+  },
+  "labels": {
+    "P": "P",
+    "Q": "Q",
+    "R": "R"
+  }
+}

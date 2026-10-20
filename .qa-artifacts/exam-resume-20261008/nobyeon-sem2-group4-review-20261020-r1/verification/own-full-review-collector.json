@@ -1,0 +1,128 @@
+{
+  "status": "actual-pinned-collector-run",
+  "sourceHashes": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.mjs",
+      "expected": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1",
+      "actual": "3c26b2ae39536f5156f6814051b5c216c2a118515cf981e8a39346893fcc2be1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\answerPresentation.test.mjs",
+      "expected": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86",
+      "actual": "3869fa1adcd05991d3cb272e851eafd7f5c08359d485e26c2530221d47415f86"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\candidatePack.mjs",
+      "expected": "5a7be5f678487de764840c7e7e3d3a61fe4eee0a9b549201ddf2aac08c2a1d8d",
+      "actual": "5a7be5f678487de764840c7e7e3d3a61fe4eee0a9b549201ddf2aac08c2a1d8d"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\constantAnswers.mjs",
+      "expected": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674",
+      "actual": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\review-exam-twins.mjs",
+      "expected": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1",
+      "actual": "e7cf6d8ed7d9bbef3934ff39552bf88f416f29469bb37206b7438277605ba7a1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\prepare-sealed-review.mjs",
+      "expected": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe",
+      "actual": "4b47e4e74fc8f51c281b3c201130e999cc14874bdd3c86fe4c6e7ed987cf15fe"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.mjs",
+      "expected": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1",
+      "actual": "e008265a157ce98f0109e6bcbeadac8999d57470942641acce7bcd9a2e7398b1"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\singleLengthPresentation.test.mjs",
+      "expected": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7",
+      "actual": "fe862a698bdff39f67cfb17ec00a5fec4b83aaa0536ddb2c6bcee7c0b8b28bd7"
+    }
+  ],
+  "result": {
+    "kind": "authored-exam-twin-review-result/v1",
+    "packageDigest": "d2ebb43fb5fd386f1954a0ecb59b2c729b7da8007adec918c11ff4f30bd7c301",
+    "createdAt": "2026-10-20T04:16:53.004Z",
+    "authored": 3,
+    "mathematicalVerified": 2,
+    "gradeReviewed": 2,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": false,
+    "results": [
+      {
+        "n": 18,
+        "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q18",
+        "studentDigest": "a79b13a29a0d2303e78d63c352465fe2e3bb852d13cb601dcaa23cf0df6db1f5",
+        "candidateDigest": "71e47598db6f8e99f5958162ed9ba64988f180761100ecf50282f0542b990532",
+        "assetDigest": "e724a88f94a0bb9c7d03919bf49f101d25e6a917e9ac726cf3cf07bb7704bb12",
+        "solveDigest": "3816b31cd58a91cabd55d0842f1ac6735b20844407752fc47bc9292d5aa16d3c",
+        "reportSha256": "057a1a85b704c37aad81be9bf9e5c75b227975ecbfe1590fdd126475f5bf54e2",
+        "mathematicalVerified": true,
+        "gradeReviewed": true,
+        "overallVerified": false,
+        "loadable": false,
+        "reasons": [
+          "review-status-pending",
+          "review-unitFamilyFit-not-passed",
+          "source-identity-held",
+          "taxonomy-held",
+          "rights-review-pending",
+          "similarity-review-pending",
+          "native-exam-twin-provenance-not-implemented"
+        ],
+        "productionWrites": false
+      },
+      {
+        "n": 19,
+        "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q19",
+        "studentDigest": "023dd4d8f9ad6ff29b14db539de9106310d12b64aaa7c82be00daf1ba758ce4c",
+        "candidateDigest": "13054e4b7f12cf80292f8ea1de20d07a1dadb3600ec0b1a13b50a5900ee2114a",
+        "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "solveDigest": "545bdd88a8a5c4a385b2f5191e47a8090c9cf431c50bc92e683ba6062de54b1d",
+        "reportSha256": "56c568f472e4164447b30a37f75a52e7abbb317433e8757ba9449c05710e1a8e",
+        "mathematicalVerified": true,
+        "gradeReviewed": true,
+        "overallVerified": false,
+        "loadable": false,
+        "reasons": [
+          "review-status-pending",
+          "review-unitFamilyFit-not-passed",
+          "source-identity-held",
+          "taxonomy-held",
+          "rights-review-pending",
+          "similarity-review-pending",
+          "native-exam-twin-provenance-not-implemented"
+        ],
+        "productionWrites": false
+      },
+      {
+        "n": 20,
+        "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q20",
+        "studentDigest": "38f19f40446fbb15ebfd75f6d6b6c750835a542b1e6691de3829a7e6702d7ae3",
+        "candidateDigest": "206fdee981c47d0bac8ac5eecc52f240d41f7e0c3e92acb3318dbd71497bf1aa",
+        "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "solveDigest": "5fef98bc3c9397218f6d2b9b5287affc13ade751a2c25048940529ca8c12f20a",
+        "reportSha256": "7bc77c3734523e42831db225584afe7b5e5a81c736aa808381df3839dee642c1",
+        "mathematicalVerified": false,
+        "gradeReviewed": false,
+        "overallVerified": false,
+        "loadable": false,
+        "reasons": [
+          "review-status-pending",
+          "independent-answer-mismatch",
+          "review-unitFamilyFit-not-passed",
+          "source-identity-held",
+          "taxonomy-held",
+          "rights-review-pending",
+          "similarity-review-pending",
+          "native-exam-twin-provenance-not-implemented"
+        ],
+        "productionWrites": false
+      }
+    ]
+  }
+}

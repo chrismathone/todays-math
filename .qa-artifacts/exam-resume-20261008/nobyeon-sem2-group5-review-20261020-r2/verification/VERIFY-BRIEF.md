@@ -1,0 +1,5 @@
+# 독립 풀이 후 새 해설/학년 검토
+
+독립 solve를 먼저 작성한 별도 검수자가 후보의 답/해설/스펙을 검토한다. 원문 답 일치를 승인 기준으로 쓰지 않는다. 원문과 같은 개념/핵심 방법, 새 구조/소재/표현/역추론, 자연스러움과 목표 난이도를 검토한다. 각 reports/qNN.json에 {status:'verified'|'pending'|'rejected',studentDigest,candidateDigest,assetDigest,method:'independent-solve-then-review',verifierId,solveDigest,checks,evidence,curriculumSurfaces}를 기록한다.
+
+checks: answerCorrect, solutionCorrect, existenceUniqueness, choicesCorrect, figureConsistent, sameCoreConceptAndProcedure, distinctPresentation, naturalKorean, curriculumAppropriate, allStudentSurfacesInScope, unitFamilyFit, scoreAppropriate. 각 true는 구체적인 풀이·보기·그림·성취기준/학년/선수 근거를 필요로 한다. curriculumSurfaces 각 stem, choices, figuresAndTables, notation, answer, studentSolution, prerequisites는 passed/pending/rejected로 판정한다. 객체 형식은 {status:'passed'|'pending'|'rejected',basis:'해당 면의 실제 개념·풀이와 학년·교육과정 근거'}처럼 basis 또는 evidence를 반드시 포함한다. reason만 있는 객체는 근거 필드 누락으로 학년 집계에서 보류된다. 기존 문자열 상태 형식도 읽지만, 그 경우에도 각 면의 실제 판단 근거를 evidence에 별도로 기록한다. 하나의 포괄적 근거를 일곱 면의 개별 검토처럼 복사하지 않는다. 학년 밖 필수 방법은 rejected, 불명은 pending. 코드/확률/원본 학교가 승인 근거가 아니다. 권리와 출처 승인은 이 검수의 수학 통과와 분리한다.

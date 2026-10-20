@@ -1,0 +1,67 @@
+{
+  "points": [
+    [
+      20,
+      30
+    ],
+    [
+      30,
+      50
+    ],
+    [
+      40,
+      60
+    ],
+    [
+      50,
+      40
+    ],
+    [
+      60,
+      30
+    ],
+    [
+      70,
+      60
+    ],
+    [
+      80,
+      80
+    ]
+  ],
+  "total": 8,
+  "knownHigher": 3,
+  "possibilities": [
+    {
+      "a": 30,
+      "percentage": 37.5
+    },
+    {
+      "a": 40,
+      "percentage": 37.5
+    },
+    {
+      "a": 50,
+      "percentage": 37.5
+    },
+    {
+      "a": 60,
+      "percentage": 37.5
+    },
+    {
+      "a": 70,
+      "percentage": 50
+    }
+  ],
+  "possibleChoiceOnly": 70,
+  "unknownPointDeliberatelyNotDrawn": true,
+  "utc": "2026-10-20T04:12:34.733Z",
+  "candidateFileSha256": "41001357c8a8b2b70a66b0b2771a2af3de81c343f30e2d5475461ff97c155466",
+  "studentDigest": "1f5943e8fa099ddf40fe5962f1a82b17bae250b766c36e03422cc0eb67231188",
+  "candidateDigest": "d94094c0bdea79d3f41c65e0f089800bb7caeb3d094bacb889428441e49b4ca6",
+  "assetDigest": "f3c01787cf504bcbc5a97f57f61a0fcd7314c4a2a3dcdaf75b98e382ae2d7fc9",
+  "authorOnly": true,
+  "independentReview": false,
+  "loadable": 0,
+  "dbWrites": 0
+}

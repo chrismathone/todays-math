@@ -1,0 +1,128 @@
+/** Bounded single-angle/numbered-answer comparison, not a solver or geometry/grade proof.
+ * Roles, explicit units, subpart order and a single x factor are preserved.
+ * Unnamed lengths have a separate, decimal-only grammar and cannot erase roles.
+ * No prose, general symbolic identities, substitutions or sampled equivalence.
+ */
+import assert from 'node:assert/strict';
+import { compareConstantParts } from './constantAnswers.mjs';
+import { singleLengthPart } from './singleLengthPresentation.mjs';
+
+/** One explicit decimal degree value. Fully consume the input; do not erase
+ * angle units, names, prose, signs, arithmetic or arbitrary Unicode numerals.
+ * This grammar is deliberately separate from named and numbered answers.
+ */
+export function singleAnglePart(source) {
+  assert(typeof source === 'string' && source.length <= 64, 'Bounded single angle required');
+  let text = source.trim();
+  if (text.startsWith('$') && text.endsWith('$')) text = text.slice(1, -1).trim();
+  else if (text.startsWith('\\(') && text.endsWith('\\)')) text = text.slice(2, -2).trim();
+  const match = /^((?:0|[1-9]\d{0,2})(?:\.\d{1,6})?)\s*(?:°|\^\s*(?:\\circ|\{\\circ\}))$/u.exec(text);
+  assert(match && Number(match[1]) <= 360, 'One explicit decimal degree in [0,360] required');
+  return { role: 'scalar-angle', value: match[1], unit: 'deg' };
+}
+
+/** Recognize only an author's complete standalone measure. Callers must not
+ * fall back to lossy string normalization for the corresponding raw answer.
+ */
+export function isStandaloneMeasuredAnswer(source) {
+  try { singleAnglePart(source); return true; } catch { /* Try explicit length. */ }
+  try { singleLengthPart(source); return true; } catch { return false; }
+}
+
+function parseNumberedLengths(source) {
+  assert(typeof source === 'string' && source.length <= 4096);
+  assert(!/\d\s+\d/u.test(source), 'Separated numerals');
+  // Normalize only explicit presentation tokens, not arbitrary Unicode numerals
+  // or expressions. Each part must be consumed in full, including its unit.
+  const text = source.replace(/[⑴-⑿]/gu, (s) => `(${s.codePointAt(0) - 0x2474 + 1})`)
+    .replace(/\$([^$]*)\$/g, ' $1 ')
+    .replace(/\\(?:mathrm|text)\{(cm|m)\}/g, ' $1 ')
+    .replace(/\\[,!; ]/g, ' ').trim();
+  const labels = [...text.matchAll(/\((\d{1,2})\)/g)];
+  assert(labels.length > 0 && labels.length <= 12 && labels[0].index === 0, 'Numbered parts required');
+  return labels.map((mark, index) => {
+    assert.equal(mark[1], String(index + 1), 'Ordered canonical unique subparts required');
+    const body = text.slice(mark.index + mark[0].length, labels[index + 1]?.index ?? text.length)
+      .trim().replace(index + 1 < labels.length ? /[;,]$/ : /;$/, '').trim();
+    const scalar = /^(\d{1,12}(?:\.\d{1,6})?)\s*(cm|m)$/u.exec(body);
+    assert(scalar, 'One explicit decimal length per subpart required');
+    return { label: index + 1, terms: [{
+      part: { role: 'numbered-scalar-length', value: scalar[1], unit: scalar[2] }, variable: null,
+    }] };
+  });
+}
+
+function parseNamed(source) {
+  assert(typeof source === 'string' && source.length <= 4096);
+  assert(!/\d\s+\d/u.test(source), 'Separated numerals');
+  let text = source.replace(/²/g, '^{2}').replace(/³/g, '^{3}').normalize('NFKC')
+    .replace(/\$([^$]*)\$/g, '$1')
+    .replace(/\\(?:left|right)/g, '')
+    .replace(/\\(?:alpha|beta|gamma)/g, (s) => ({'\\alpha':'α','\\beta':'β','\\gamma':'γ'})[s])
+    .replace(/\\perp/g, '⊥').replace(/\\(sin|cos|tan)/g, '$1')
+    .replace(/\\(?:dfrac|tfrac)/g, '\\frac')
+    .replace(/\\frac(\d)(\d)/g, '\\frac{$1}{$2}')
+    .replace(/\\(?:mathrm|text)\{(cm|m)\}/g, '$1')
+    .replace(/\^\{?\\circ\}?/g, '°')
+    .replace(/\\[,!; ]|[~\s]/g, '');
+  const labels = [...text.matchAll(/\((\d{1,2})\)/g)];
+  assert(labels.length > 0 && labels.length <= 12 && labels[0].index === 0, 'Numbered parts required');
+  const lhs = /^(?:[A-Z]{1,3}|[αβγ]|(?:sin|cos|tan)[αβγ])$/u;
+  return labels.map((mark, index) => {
+    assert.equal(Number(mark[1]), index + 1, 'Ordered unique subparts required');
+    let body = text.slice(mark.index + mark[0].length, labels[index + 1]?.index ?? text.length).replace(/;$/, '');
+    const seen = new Set();
+    const terms = body.split(',').map((term) => {
+      assert(term.length > 0, 'Empty assignment');
+      if (/^[A-Z]{1,3}⊥[A-Z]{1,3}$/u.test(term)) {
+        assert(!seen.has(term)); seen.add(term);
+        return { relation: term };
+      }
+      const eq = term.split('=');
+      assert(eq.length === 2 && lhs.test(eq[0]) && !seen.has(eq[0]), 'Unique named assignment required');
+      seen.add(eq[0]);
+      const units = /^(.*?)(cm|m)(?:\^\{?([23])\}?)?$/u.exec(eq[1]);
+      let value = units ? units[1] : eq[1];
+      let unit = units ? units[2] + (units[3] ? `^${units[3]}` : '') : 'none';
+      if (value.endsWith('°')) { assert.equal(unit, 'none'); unit = 'deg'; value = value.slice(0, -1); }
+      let variable = null;
+      if (value.includes('x')) {
+        const monomial = /^(?:([+-]?\d+(?:\.\d+)?)?x(?:\/(\d+))?|\\frac\{([+-]?\d+)x\}\{(\d+)\})$/u.exec(value);
+        assert(monomial, 'Only an explicit single x factor is supported');
+        variable = 'x';
+        value = monomial[3] !== undefined ? `${monomial[3]}/${monomial[4]}` : `${monomial[1] ?? '1'}/${monomial[2] ?? '1'}`;
+      }
+      const part = { role: eq[0], value, unit };
+      assert.equal(compareConstantParts([part], [part]).status, 'equivalent', 'Unsupported scalar');
+      return { part, variable };
+    });
+    return { label: index + 1, terms };
+  });
+}
+
+function parse(source) {
+  try { return [{ label: 1, terms: [{ part: singleAnglePart(source), variable: null }] }]; }
+  catch { /* Numbered/named grammars retain their own roles and bounds. */ }
+  try { return [{ label: 1, terms: [{ part: singleLengthPart(source), variable: null }] }]; }
+  catch { /* Do not erase named roles or numbered parts to create a scalar. */ }
+  try { return parseNumberedLengths(source); }
+  catch { return parseNamed(source); }
+}
+
+export function compareWrittenAnswerPresentation(author, independent) {
+  const limits = { presentationComparisonOnly: true, relationTruthProved: false,
+    permitsGradeOrQuestionApproval: false, generalSymbolicEquivalence: false };
+  try {
+    const a = parse(author), b = parse(independent);
+    const equal = a.length === b.length && a.every((p, i) =>
+      p.terms.length === b[i].terms.length && p.terms.every((term, j) => {
+        const other = b[i].terms[j];
+        if ('relation' in term || 'relation' in other) return term.relation === other.relation;
+        return term.variable === other.variable &&
+          compareConstantParts([term.part], [other.part]).status === 'equivalent';
+      }));
+    return { status: equal ? 'equivalent' : 'different', ...limits };
+  } catch (error) {
+    return { status: 'unsupported', reason: error.message, ...limits };
+  }
+}

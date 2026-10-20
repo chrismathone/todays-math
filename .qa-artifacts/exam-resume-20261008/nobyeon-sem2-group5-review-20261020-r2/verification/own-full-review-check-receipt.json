@@ -1,0 +1,113 @@
+{
+  "results": [
+    {
+      "q": 15,
+      "reportSha256": "db336e94ccda8807cfb30d92a1c9466a60605b7fe289a1cbefe4417ecd17e2e8",
+      "passedChecks": 11,
+      "passedGradeSurfaces": 7,
+      "candidateMath": "passed",
+      "grade": "passed",
+      "rawPointErrorPreserved": false,
+      "content": "held"
+    },
+    {
+      "q": 16,
+      "reportSha256": "02ac100d29e0a4b38ccace476cd94c021799d54d9aa14c5de2b9b881aababd1e",
+      "passedChecks": 11,
+      "passedGradeSurfaces": 7,
+      "candidateMath": "passed",
+      "grade": "passed",
+      "rawPointErrorPreserved": false,
+      "content": "held"
+    },
+    {
+      "q": 17,
+      "reportSha256": "b13849e53162921435cf73f56f187e36ec383e6b9f58600671be9cff0cd7dcb2",
+      "passedChecks": 11,
+      "passedGradeSurfaces": 7,
+      "candidateMath": "passed",
+      "grade": "passed",
+      "rawPointErrorPreserved": true,
+      "content": "held"
+    }
+  ],
+  "inputBeforeAfterHashes": {
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\q15-staged.json": "1d64f4bfd366f7b944bc6034390ee502b6b622c1e3253faa8699118a9093b5e9",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\q15-prior-review.json": "66428b5e8693783a3a14fa78e544e296a76db1488d72097b0216e569e2f16875",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\q15-hold-reevaluation.json": "b890d645b12258fe8c674146c50c08561c6de8f1b1fdb32ca02289e80b9cdafd",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\q16-staged.json": "5f917af01f0e4e2963bd15e69e8ad9a7ff7dca272994ae456cfbf07997d42aaf",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\q16-prior-review.json": "1f7028b4c1a49fa0c5df6be179bb376105ebc4d20ccd2fc64ca681372b089355",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\q16-hold-reevaluation.json": "aba36404268bd6b2d38e6181da62367687fc6a6a4eb12d92e4b5b843cc4177ee",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\q17-staged.json": "71dfa1fd221bedbe3b4b298661e50b8647f958ebfb4c5364507176c7fac962eb",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\q17-prior-review.json": "80daba47dd3a3dd549ff6d5fc9c32f02204ba705b7e135c6822708d20a902b3e",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\q17-hold-reevaluation.json": "36fbc8e978cecd8946cb87806751b463d85e5fd72599b549c55dbc63544aa372",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\own-source-ownership-review-r2.json": "cae09e49c01def9fafb574d56964a92bf57f697682b3563336b1ef35fda49061",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\source-only-context\\own-crop-ownership-addendum-r3.json": "5f7bec0026b9e13fab043ffcb813ccac02d64dc310fd096d41ab80d63a859271",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\blind\\solve\\q15.json": "c259a542dfba429a56219533baae9ff06d1a52720e6310bc11977ea07acb7a00",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\package\\private\\q15\\candidate.json": "6b6be9998ea498253e8e1ab5b04d687029a85b3974cfa1bc9406eb7e82acda84",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\package\\private\\q15\\figure-1.spec.json": "3212bd7dd8f8c1a64642111bc8085f3c68219a1164d32b17fa92f0234a53b96d",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\package\\private\\q15\\figure-1.svg": "4a58f12be9d34b0e8301321d6d626ec582fd0429861ca0878700553c7903e26d",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\student-preview\\q15.png": "d589370beccfbc9a1dabb4a080b40c279f5a6399707a2828162775dbc6d622a3",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\solution-preview\\q15.solution.png": "bf2dd6d53fdd0d6601c9e7d1246d054e01a09a88007fc42ad8acb4d04488ac0b",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\blind\\own-nobyeon5-blind-check.py": "eb0556f36336ab03b0552053906368173de8c1de5ad63b8a1ea43bcd29224e49",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\blind\\own-nobyeon5-blind-check-receipt.json": "6d1d517a6613a3780043b4d245b67dcedd53fab4aa9f08d099bd12472d206771",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\blind\\solve\\q16.json": "98af8b63a21c7d263b939cab252aed9c4b1eb1dbc8153275522ae2e1bab23d62",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\package\\private\\q16\\candidate.json": "418d5992dd949345de581953eaf0f5e4ca1da6daae8a1fa344d2ef091611f60d",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\package\\private\\q16\\figure-1.spec.json": "b7a6883e8a84b4ea0814886f4c0a1dc8582b8a5bb7c521a461fe0565ae900eb7",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\package\\private\\q16\\figure-1.svg": "195d273205b0447955c217f8471beee8c24d89ec3ed2d67688ba8b5aa6bcb3c1",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\student-preview\\q16.png": "3672611362b2b27175c7f70e8ef2e054eae9adeb808835de346558cfead64f9c",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\solution-preview\\q16.solution.png": "b0d91ec8d863162c38370e048f60af65c04906a9f77d8d85de552c0d1bdad8f7",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\blind\\solve\\q17.json": "9e0c79b6cc6b2ade311c2d46f5063e4d11c646da6bf4c3e60afc101762071002",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\package\\private\\q17\\candidate.json": "48d7c1a3f9d5acb4274f8a7cd7998eda45a47f330075920a7d06cc6f04b98c94",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\package\\private\\q17\\figure-1.spec.json": "1b3d96e67d4031046618c44f54b067dcb1cada7ea769d9b5ed504a3f1f945220",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\package\\private\\q17\\figure-1.svg": "0113aac3fe3e5bdeb31e27b30a176fb05dbe2cd11c81eaf5579a37a156ee502a",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\student-preview\\q17.png": "7ff223a01552988dde6cf7efe941bc0ec0ee95b59ff7445c4bbfe9c6c96363ca",
+    ".qa-artifacts\\exam-resume-20261008\\nobyeon-sem2-group5-review-20261020-r2\\solution-preview\\q17.solution.png": "bb95252f6ae5aae6c9c28e5b6926cb6e9706b9c52306fe006bde9d4a321afca5"
+  },
+  "rawAndReceiptUnchanged": true,
+  "ownRawFinding": {
+    "kind": "own-sealed-raw-transcription-error",
+    "question": 17,
+    "rawE": [
+      80,
+      40
+    ],
+    "actualCurrentPrintedE": [
+      30,
+      40
+    ],
+    "rawTotalE": 120,
+    "actualTotalE": 70,
+    "attribution": "자체blind전사오류이며저자해설오류나입력교체가아니다. 학생PNG/SVG가봉인당시해시와같음을확인했다.",
+    "timing": "저자노출후review단계에서재확인한교정증거이며새blind풀이로주장하지않음.",
+    "rawUnmodified": true,
+    "all21CasesSameTopTwoAndAnswer": true,
+    "reason": "잘못전사한E합120도현재E합70도B150보다낮아상위A/H확정과평균방정식은모두불변. 필수목표답과순위증명은유지되나raw전체점전사가정확했다는주장은하지않음.",
+    "unqualifiedRawAllPointCorrectness": false
+  },
+  "allCurrentAuthorSolutionsValidated": true,
+  "noOriginalSourceAnswersComputed": true,
+  "primaryEvidence": {
+    "normative": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "edition": "2015",
+      "previouslyActuallyViewed": true,
+      "locators": [
+        "line570 9수05-08:쌍자료를산점도로나타내고상관관계설명",
+        "line570 9수05-06:평균등대표값",
+        "line573 통계자료학습요소"
+      ],
+      "wholeMethod": "현재필수풀이가축읽기·두점수비교·인원수/백분율·합순위·평균/일차식에한정됨을확인. 고등상관계수/회귀/공분산방법은없음."
+    },
+    "actualM3Placement": {
+      "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+      "sha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+      "previouslyActuallyViewed": true,
+      "locators": [
+        "PDFindex73/printed72:중3수학2학기대표값9수05-06",
+        "PDFindex74/printed73:중3산점도9수05-08"
+      ],
+      "limits": "개별학생선수이수·노변중특정시험진도·2022·원본권리인증아님"
+    }
+  }
+}

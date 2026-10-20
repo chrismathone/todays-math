@@ -10,6 +10,7 @@ import {
 } from "./answerPresentation.mjs";
 import { unescapedMathCommandWarnings } from "./authoredMathNotation.mjs";
 import { compareRecordCorrectionAnswer } from "./recordCorrectionAnswer.mjs";
+import { compareNumberedConstantAssignments } from "./numberedConstantAssignments.mjs";
 
 export const REVIEW_CHECKS = [
   "answerCorrect",
@@ -468,6 +469,9 @@ export function normalizeAnswer(text) {
  */
 export function independentAnswerMatches(candidate, answer) {
   if (!answer) return false;
+  if (candidate.questionType === "서술형" &&
+      candidate.metadata?.answerFormat === "numbered-named-scalars-with-working")
+    return compareNumberedConstantAssignments(candidate.answer, answer).status === "equivalent";
   if (candidate.questionType === "서술형" &&
       candidate.metadata?.answerFormat === "record-label-and-scalar-with-working")
     return compareRecordCorrectionAnswer(candidate.answer, answer,

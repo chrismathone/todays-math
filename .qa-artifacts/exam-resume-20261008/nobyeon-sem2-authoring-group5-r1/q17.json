@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 17,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group5-r1-q17",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 5,
+  "content": "여덟 학생 A~H의 두 차례 평가 점수를 조사하였다. 산점도에는 A~G의 점수를 나타내었고, H의 점수는 표와 같다. 가로축 $x$는 1차 점수, 세로축 $y$는 2차 점수이다.\n\n| 학생 | 1차 점수 | 2차 점수 |\n| --- | --- | --- |\n| H | $80$ | $a$ |\n\n$a$는 $80$ 이상 $100$ 이하의 정수이다. 두 차례 점수의 합이 큰 두 학생을 골랐더니, 이 두 학생의 2차 점수의 평균은 $90$점이었다. H의 2차 점수 $a$는?",
+  "choices": [
+    "$80$점",
+    "$85$점",
+    "$90$점",
+    "$95$점",
+    "$100$점"
+  ],
+  "answer": "⑤",
+  "solution": "산점도의 A~G에서 두 점수의 합은 차례로 $170$, $150$, $140$, $110$, $70$, $70$, $50$이다. H의 합은 $80+a$이고 $80\\leq a\\leq100$이므로 $160$ 이상 $180$ 이하이다.\n\n따라서 합이 큰 두 학생은 반드시 A와 H이다. 두 학생이 동점이 되는 경우에도 세 번째인 B의 합 $150$보다 크므로 고르는 두 사람은 바뀌지 않는다.\n\nA의 2차 점수는 $80$이므로 $\\frac{80+a}{2}=90$에서 $a=100$이다. 실제로 H의 합은 $180$, A의 합은 $170$이고 두 2차 점수의 평균은 $90$이므로 조건을 만족한다. 정답은 ⑤이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "q17.figure.spec.json",
+      "svgPath": "q17.figure.svg",
+      "intendedWidthMm": 80
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-nobyeon-3-2-mid-17",
+    "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group5-r1-q17",
+    "sourceContentSha256": "71dfa1fd221bedbe3b4b298661e50b8647f958ebfb4c5364507176c7fac962eb",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q17.json",
+      "sha256": "71dfa1fd221bedbe3b4b298661e50b8647f958ebfb4c5364507176c7fac962eb"
+    },
+    "sourceReviewReport": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q17.json",
+      "sha256": "80daba47dd3a3dd549ff6d5fc9c32f02204ba705b7e135c6822708d20a902b3e"
+    },
+    "sourceManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+        "bytes": 1736704
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+        "bytes": 14857959
+      }
+    ],
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group5-r1/q17-source-hold-reevaluation-r1.json",
+      "sha256": "36fbc8e978cecd8946cb87806751b463d85e5fd72599b549c55dbc63544aa372"
+    },
+    "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+    "currentNFilesReRead": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-data",
+      "new-vector",
+      "new-table"
+    ],
+    "before": "20개의 두 점수 합으로 상위5명을 고르고 그들의 한 점수 평균을 구한다.",
+    "after": "새7점과 범위가 주어진 누락 기록에서 상위 두 명의 평균을 조건으로 주고 누락 점수를 복원한다.",
+    "sharedConcept": "산점도의 순서쌍 합의 순위와 선택된 집단의 평균",
+    "sharedProcedure": "실제 두 좌표의 합 비교→미지 점수의 범위로 선정 집단 확정→주어진 집단 평균에서 한 점수 역추론→경계 동점/전체 범위 재검산",
+    "actualStructuralChange": "새7점과 범위가 주어진 누락 기록에서 상위 두 명의 평균을 조건으로 주고 누락 점수를 복원한다. 새 조건·자료 조직·질문 대상·해설·그림을 제작했다. 단순 숫자/이름 치환으로 완료하지 않는다.",
+    "domainProof": "a정수80..100의21경우 모두 상위2명은 A와H이고 두 번째와세 번째의 합 차이는양수다. 평균90이되는 것은a100하나다. 두 점수를 더하는 순위 정의를 그대로 쓰며 회귀/상관계수/벡터/상위 통계 개념을 쓰지 않는다.",
+    "difficultyBasis": "원문 배점·핵심 관계에 근거한 저자 제안, 실제 난도 동등성·학교 진도·정확한family는 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수05-06",
+      "9수05-08"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수05-06, 9수05-08",
+      "actualScope": "2015 M3 actual scatter-point coordinate comparisons, percentages and selected-group mean only. Whole method and all seven surfaces independently pending."
+    },
+    "legitimateMethodDraft": "실제 두 좌표의 합 비교→미지 점수의 범위로 선정 집단 확정→주어진 집단 평균에서 한 점수 역추론→경계 동점/전체 범위 재검산",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 5,
+    "difficultyProposal": "중",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "새7점과 범위가 주어진 누락 기록에서 상위 두 명의 평균을 조건으로 주고 누락 점수를 복원한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "산점도와 상관관계",
+        "semester": 2,
+        "orderIndex": 489,
+        "problemCodePrefix": "J30702"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 Unit UUID와 새 풀이 목적/선수단원 연결. 정확한 live family와 원문 전체 동일성은 별도 보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-graph-1-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "a정수80..100의21경우 모두 상위2명은 A와H이고 두 번째와세 번째의 합 차이는양수다. 평균90이되는 것은a100하나다. 두 점수를 더하는 순위 정의를 그대로 쓰며 회귀/상관계수/벡터/상위 통계 개념을 쓰지 않는다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem2-q15-17-r1.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": "중",
+    "prerequisiteUnits": [
+      {
+        "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "산점도와 상관관계",
+        "semester": 2,
+        "orderIndex": 489,
+        "problemCodePrefix": "J30702"
+      },
+      {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "산점도의 순서쌍",
+        "두 수의 합 비교",
+        "범위와 정수",
+        "평균에서 합 복원",
+        "순위 경계의 동점 확인"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "prior-preparation-label-not-measured-target-calibration"
+  }
+}

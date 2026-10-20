@@ -1,5 +1,6 @@
 /** Exact authoring calculations. No curriculum, taxonomy, rights or review approval. */
 import assert from "node:assert/strict";
+export { twoUnknownObservations } from "./inverseDispersionConditions.mjs";
 
 const gcd = (a, b) => {
   a = a < 0n ? -a : a;

@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-20T04:12:34.006Z",
+  "priorSourceReview": {
+    "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q15.json",
+    "sha256": "66428b5e8693783a3a14fa78e544e296a76db1488d72097b0216e569e2f16875"
+  },
+  "currentStaged": {
+    "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q15.json",
+    "sha256": "1d64f4bfd366f7b944bc6034390ee502b6b622c1e3253faa8699118a9093b5e9"
+  },
+  "independentOwnership": {
+    "commit": "0b9f171429369fbae4f6a3b17540266b6cfad833",
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-shared-source-ownership-20261020-r2/own-source-ownership-review-r2.json",
+    "sha256": "cae09e49c01def9fafb574d56964a92bf57f697682b3563336b1ef35fda49061"
+  },
+  "independentActualCrop": {
+    "commit": "8211adb6aa1cf28cd7a1f0e09f05e541bdeb658b",
+    "path": ".qa-artifacts/exam-resume-20261008/nobyeon-shared-source-ownership-20261020-r2/own-crop-ownership-addendum-r3.json",
+    "sha256": "5f7bec0026b9e13fab043ffcb813ccac02d64dc310fd096d41ab80d63a859271"
+  },
+  "resolvedSpecificHistoricalHold": "Canonical q15 excludes shared16/17header/plot; actual own crop independently confirmed. Historical raw tail retained.",
+  "oldSourceReviewRewritten": false,
+  "wholeHwpPdfIdentityApproved": false,
+  "rightsApproved": false,
+  "gradeApproved": false,
+  "exactFamilyApproved": false,
+  "nativeOrReleaseApproved": false,
+  "loadable": 0
+}

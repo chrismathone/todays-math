@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group5-r2-q16",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "여덟 학생 A부터 H까지가 두 차례 연습을 했다. 산점도에는 A부터 G까지의 점수만 나타내었고, H의 점수는 표에 따로 적었다. 가로축 $x$는 1차 점수, 세로축 $y$는 2차 점수이다.\n\n| 학생 | 1차 점수 | 2차 점수 |\n| --- | --- | --- |\n| H | $60$ | $a$ |\n\n여덟 학생 중 2차 점수가 1차 점수보다 높은 학생은 전체의 $50\\%$이다. H의 2차 점수 $a$로 가능한 것은?",
+  "choices": [
+    "$30$점",
+    "$40$점",
+    "$50$점",
+    "$60$점",
+    "$70$점"
+  ],
+  "answer": "⑤",
+  "solution": "전체 $8$명의 $50\\%$는 $4$명이다. 산점도의 A부터 G까지에서 2차 점수가 더 높은 학생은 A$(20,30)$, B$(30,50)$, C$(40,60)$의 $3$명이다. D, E, F는 2차 점수가 더 낮고 G는 두 점수가 같으므로 세지 않는다.\n\n따라서 H도 2차 점수가 더 높아야 한다. H의 1차 점수는 $60$이므로 $a>60$이다. 보기 중 이 조건을 만족하는 값은 $70$뿐이며, 이때 조건을 만족하는 학생은 실제로 $4$명이다. 정답은 ⑤이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 80
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-nobyeon-3-2-mid-16",
+    "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group5-r2-q16",
+    "sourceContentSha256": "5f917af01f0e4e2963bd15e69e8ad9a7ff7dca272994ae456cfbf07997d42aaf",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q16.json",
+      "sha256": "5f917af01f0e4e2963bd15e69e8ad9a7ff7dca272994ae456cfbf07997d42aaf"
+    },
+    "sourceReviewReport": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q16.json",
+      "sha256": "1f7028b4c1a49fa0c5df6be179bb376105ebc4d20ccd2fc64ca681372b089355"
+    },
+    "sourceManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454"
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+        "bytes": 1736704
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+        "bytes": 14857959
+      }
+    ],
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group5-r1/q16-source-hold-reevaluation-r1.json",
+      "sha256": "aba36404268bd6b2d38e6181da62367687fc6a6a4eb12d92e4b5b843cc4177ee"
+    },
+    "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+    "currentNFilesReRead": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-data",
+      "new-vector",
+      "new-table"
+    ],
+    "before": "공통20점에서 한 점수가 다른 점수보다 높은 학생의 백분율을 구한다.",
+    "after": "새7점과 빠진 한 기록을 주고 전체 백분율 조건을 만족하는 누락 점수의 가능한 값을 역추론한다.",
+    "sharedConcept": "산점도의 두 변량 크기 비교와 전체에 대한 백분율",
+    "sharedProcedure": "전체 백분율로 필요한 인원수 복원→알려진 각 점의 두 점수 비교→남은 기록의 대소 조건→선택지 존재 검산",
+    "actualStructuralChange": "새7점과 빠진 한 기록을 주고 전체 백분율 조건을 만족하는 누락 점수의 가능한 값을 역추론한다. 새 조건·자료 조직·질문 대상·해설·그림을 제작했다. 단순 숫자/이름 치환으로 완료하지 않는다.",
+    "domainProof": "알려진7쌍에서 y>x는3명, y<x는3명, y=x는1명이다. 전체8명 중50%를 만족하려면 빠진 H의 y>60이어야 한다. 실수 전체의 a가 하나라고 주장하지 않고 주어진5보기 중70만 가능함을 검산했다. 빠진 점은 실제 산점도에 그리지 않는다.",
+    "difficultyBasis": "원문 배점·핵심 관계에 근거한 저자 제안, 실제 난도 동등성·학교 진도·정확한family는 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수05-08"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수05-08",
+      "actualScope": "2015 M3 actual scatter-point coordinate comparisons, percentages and selected-group mean only. Whole method and all seven surfaces independently pending."
+    },
+    "legitimateMethodDraft": "전체 백분율로 필요한 인원수 복원→알려진 각 점의 두 점수 비교→남은 기록의 대소 조건→선택지 존재 검산",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 4,
+    "difficultyProposal": "중",
+    "difficultyStatus": "author-proposed-source-label-unknown-independent-calibration-pending",
+    "problemTypeProposal": "새7점과 빠진 한 기록을 주고 전체 백분율 조건을 만족하는 누락 점수의 가능한 값을 역추론한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "산점도와 상관관계",
+        "semester": 2,
+        "orderIndex": 489,
+        "problemCodePrefix": "J30702"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 Unit UUID와 새 풀이 목적/선수단원 연결. 정확한 live family와 원문 전체 동일성은 별도 보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-graph-1-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "알려진7쌍에서 y>x는3명, y<x는3명, y=x는1명이다. 전체8명 중50%를 만족하려면 빠진 H의 y>60이어야 한다. 실수 전체의 a가 하나라고 주장하지 않고 주어진5보기 중70만 가능함을 검산했다. 빠진 점은 실제 산점도에 그리지 않는다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/revise-nobyeon-sem2-q15-17-r2.mjs",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": "중",
+    "prerequisiteUnits": [
+      {
+        "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "산점도와 상관관계",
+        "semester": 2,
+        "orderIndex": 489,
+        "problemCodePrefix": "J30702"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "산점도에서 두 변량 비교",
+        "백분율과 인원수",
+        "같음과 더 큼의 구별"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "prior-preparation-label-not-measured-target-calibration"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "utc": "2026-10-20T04:16:40.603Z",
+  "candidateFileSha256": "e19378d5b2dcc34b9df5142ae0f2640945f5f8878c0db9756b193e3f3c9d4590",
+  "studentDigest": "38f19f40446fbb15ebfd75f6d6b6c750835a542b1e6691de3829a7e6702d7ae3",
+  "inputsFromPrintedConditions": {
+    "knownValues": [
+      42,
+      36,
+      39
+    ],
+    "mean": 40,
+    "variance": 6,
+    "order": "strictly-increasing"
+  },
+  "inputDerivation": "M=42-2; variance=(sqrt6)^2; raw known 42,36,39; a<b",
+  "result": {
+    "count": 5,
+    "order": "strictly-increasing",
+    "unknownSum": {
+      "numerator": "83",
+      "denominator": "1"
+    },
+    "unknownSquareSum": {
+      "numerator": "3449",
+      "denominator": "1"
+    },
+    "discriminant": {
+      "numerator": "9",
+      "denominator": "1"
+    },
+    "calculationOnly": true,
+    "curriculumApproved": false,
+    "studentMethodProved": false,
+    "rightsApproved": false,
+    "permitsLoad": false,
+    "status": "unique",
+    "solutions": [
+      {
+        "first": {
+          "numerator": "40",
+          "denominator": "1"
+        },
+        "second": {
+          "numerator": "43",
+          "denominator": "1"
+        }
+      }
+    ]
+  },
+  "sourceHashes": {
+    "scripts/import/exam-twin/statisticsConditions.mjs": "e14bbc414bf959203ca70a7d1ef4478a8f27512068603d9e412aa37e45d27754",
+    "scripts/import/exam-twin/inverseDispersionConditions.mjs": "b068d7340d56443c61cf06eab128299a4d7b9f31d213c1d4f960890ef8d79706",
+    "scripts/import/exam-twin/inverseDispersionConditions.test.mjs": "7dad66929ef2a61cf99efa703eb03e4ca425f39ff5b5017dc319e7cb627b1031"
+  },
+  "independentReview": false,
+  "currentCandidateChanged": false,
+  "loadable": 0,
+  "dbWrites": 0
+}

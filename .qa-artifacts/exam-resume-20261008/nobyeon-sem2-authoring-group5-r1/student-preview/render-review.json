@@ -1,0 +1,51 @@
+{
+  "mode": "student",
+  "bankImageWidthCapMm": 70,
+  "nativeReaderParity": false,
+  "effectiveFigureWidths": [
+    {
+      "n": 15,
+      "role": "stem",
+      "requestedWidthMm": 80,
+      "displayedWidthMm": 70
+    },
+    {
+      "n": 16,
+      "role": "stem",
+      "requestedWidthMm": 80,
+      "displayedWidthMm": 70
+    },
+    {
+      "n": 17,
+      "role": "stem",
+      "requestedWidthMm": 80,
+      "displayedWidthMm": 70
+    }
+  ],
+  "questionCount": 3,
+  "productMathRendererSafe": true,
+  "redOrRawMathCount": 0,
+  "overflowingCards": [],
+  "htmlSha256": "42ebea1678367fa56ff3f47d771db9cadb7bd7f507615d68bdfc925789b69981",
+  "candidates": [
+    {
+      "n": 15,
+      "studentDigest": "9110d6284f86c01772cd53493c3847812c792bd148447fed93915881d206664e",
+      "candidateDigest": "b660e3b11f3e48143689e902484551855ca9e2411e27525a2b05709c6aa70bb8",
+      "assetDigest": "6f1f62637a495ad50ee0a1410467dae2e8d29185838a40d060a7d1f702bf2978"
+    },
+    {
+      "n": 16,
+      "studentDigest": "1f5943e8fa099ddf40fe5962f1a82b17bae250b766c36e03422cc0eb67231188",
+      "candidateDigest": "d94094c0bdea79d3f41c65e0f089800bb7caeb3d094bacb889428441e49b4ca6",
+      "assetDigest": "f3c01787cf504bcbc5a97f57f61a0fcd7314c4a2a3dcdaf75b98e382ae2d7fc9"
+    },
+    {
+      "n": 17,
+      "studentDigest": "1e9f381e28dd3460c80b74808bdf24435f6ca48f6d1c00119e19591d0c611dfb",
+      "candidateDigest": "876187e1fc480fa371b2a4adf3f6a8d56ab984f1d3f3f1dc368ebee97a77d2d8",
+      "assetDigest": "4605b000a66504653274d4a48d8474bf5bda502ec067de04f6b7553f04526a6c"
+    }
+  ],
+  "visualReviewStatus": "pending-human-agent-image-inspection"
+}

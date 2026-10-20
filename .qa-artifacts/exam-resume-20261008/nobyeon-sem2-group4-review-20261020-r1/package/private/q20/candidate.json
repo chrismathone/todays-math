@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 20,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-group4-r1-q20",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "서술형",
+  "score": 5,
+  "content": "다음은 다섯 자료와 각각의 편차를 나타낸 표이다. 이 자료의 평균을 $M$이라 하고 $a<b$이다. 표준편차가 $\\sqrt6$일 때, 다음을 구하고 그 과정을 서술하시오.\n\n| 자료 | $42$ | $36$ | $39$ | $a$ | $b$ |\n| --- | --- | --- | --- | --- | --- |\n| 편차 | $2$ | $-4$ | $-1$ | $a-M$ | $b-M$ |\n\n(1) 평균 $M$\n\n(2) 두 자료 $a$, $b$",
+  "choices": [],
+  "answer": "(1) $M=40$ (2) $a=40$, $b=43$",
+  "solution": "(1) 편차는 자료에서 평균을 뺀 값이므로 $42-M=2$에서 $M=40$이다. $36-40=-4$, $39-40=-1$도 표와 맞는다.\n\n(2) $a-40=x$, $b-40=y$라 하면 $a<b$이므로 $x<y$이다. 편차의 합은 $0$이므로 $2-4-1+x+y=0$, 즉 $x+y=3$이다.\n\n표준편차가 $\\sqrt6$이므로 분산은 $6$이다. 따라서 $\\frac{2^2+(-4)^2+(-1)^2+x^2+y^2}{5}=6$에서 $x^2+y^2=9$이다. 한편 $(x+y)^2=x^2+2xy+y^2$이므로 $9=9+2xy$, 즉 $xy=0$이다.\n\n곱이 $0$이므로 $x$, $y$ 중 하나는 $0$이고, 합이 $3$이며 $x<y$이므로 $x=0$, $y=3$이다. 따라서 $a=40$, $b=43$이다. 실제 자료의 합은 $200$, 편차 제곱의 합은 $30$이므로 평균 $40$과 표준편차 $\\sqrt6$을 모두 만족한다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "externalId": "2025-nobyeon-3-2-mid-20",
+    "newSourceReferenceId": "source-ref-nobyeon-2025-2-mid-group4-r1-q20",
+    "sourceContentSha256": "608b4780494c9e200095735f300da93c4cf62fa2570678a62a7f7e08bb842d0a",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q20.json",
+      "sha256": "608b4780494c9e200095735f300da93c4cf62fa2570678a62a7f7e08bb842d0a"
+    },
+    "sourceReviewReport": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q20.json",
+      "sha256": "b141c774c4322751a1a37fe1b1ec502c906eacb8bfcf5f82ad009d8830db460f"
+    },
+    "sourceManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454",
+      "bytes": 1999785
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+        "bytes": 1736704
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+        "bytes": 14857959
+      }
+    ],
+    "componentObservation": {
+      "path": ".qa-artifacts/exam-resume-20261008/nobyeon-sem2-authoring-group4-r1/q20-source-component-observation-r1.json",
+      "sha256": "ef7679f26c372c4ff0e9c28ad76f13d1504cf1f01da852c6700a63559986e9c4"
+    },
+    "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+    "currentNFilesReRead": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-table",
+      "new-data"
+    ],
+    "before": "맥박수·편차 표의 빈칸을 채운 다음 표준편차를 구한다.",
+    "after": "새 자료·편차 표에 표준편차를 조건으로 주고 순서 조건과 함께 두 미지 자료를 역추론한다.",
+    "sharedConcept": "평균·편차의 합·편차 제곱의 평균과 표준편차",
+    "sharedProcedure": "편차 정의로 평균 복원→편차합으로 두 편차의 합→표준편차로 제곱합→곱셈공식과 곱이0인 조건→순서에 맞는 두 자료 결정",
+    "actualStructuralChange": "새 자료·편차 표에 표준편차를 조건으로 주고 순서 조건과 함께 두 미지 자료를 역추론한다. 발문·조건·자료를 실제로 재구성했다. 단순 숫자·이름 치환만으로 완료하지 않는다.",
+    "domainProof": "M40에서 미지 편차 x+y3,제곱합9이므로 xy0, x<y에 의해(0,3)유일하다. 표준편차 조건을 제거하면 두 미지 자료는 유일하지 않으므로 실제 필수 입력이다. 방정식의 고차 해법/상위 통계 도구는 필요하지 않다. 전개·인수와 곱이0인 성질은 학년내 선수학습 후 조건이며 전체 난도 동등성은 별도 검수한다.",
+    "difficultyBasis": "같은 개념/핵심 관계와 원문 배점의 저자 제안이다. 실제 난도 동등성/학교 진도/2022 적용/정확한 family는 별도 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수05-06",
+      "9수05-07"
+    ],
+    "officialProvisions": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "editionObserved": "2015",
+      "readCurrentPage": true,
+      "standard": "9수05-06, 9수05-07",
+      "actualScope": "2015 M3 supplied right-triangle ratios/special angle values, or mean/deviation/standard-deviation definitions with previously learned elementary polynomial multiplication. No arbitrary-angle identities/higher statistics. All seven surfaces independently pending."
+    },
+    "legitimateMethodDraft": "편차 정의로 평균 복원→편차합으로 두 편차의 합→표준편차로 제곱합→곱셈공식과 곱이0인 조건→순서에 맞는 두 자료 결정",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "서술형",
+    "answerFormat": "numbered-named-scalars-with-working",
+    "score": 5,
+    "difficultyProposal": "기본~응용 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "새 자료·편차 표에 표준편차를 조건으로 주고 순서 조건과 함께 두 미지 자료를 역추론한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 Unit UUID 연결, 새 필수 풀이 목적의 정확한 live family는 null/보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 문제/보기/그림/해설에 학교명이 없다. 실제 출처는 내부 메타데이터에만 기록한다."
+    },
+    "figureAuthoring": {
+      "method": "new-native-Markdown-table",
+      "newFigures": 0,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "M40에서 미지 편차 x+y3,제곱합9이므로 xy0, x<y에 의해(0,3)유일하다. 표준편차 조건을 제거하면 두 미지 자료는 유일하지 않으므로 실제 필수 입력이다. 방정식의 고차 해법/상위 통계 도구는 필요하지 않다. 전개·인수와 곱이0인 성질은 학년내 선수학습 후 조건이며 전체 난도 동등성은 별도 검수한다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-nobyeon-sem2-q18-20-r1.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "source": "transformed",
+    "originProblemId": null,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "평균과 편차의 정의",
+        "편차의 합은0",
+        "분산과 표준편차",
+        "곱셈 공식과 곱이0인 성질"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    }
+  }
+}

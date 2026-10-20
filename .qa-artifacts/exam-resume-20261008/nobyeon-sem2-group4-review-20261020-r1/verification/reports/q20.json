@@ -1,0 +1,208 @@
+{
+  "status": "pending",
+  "studentDigest": "38f19f40446fbb15ebfd75f6d6b6c750835a542b1e6691de3829a7e6702d7ae3",
+  "candidateDigest": "206fdee981c47d0bac8ac5eecc52f240d41f7e0c3e92acb3318dbd71497bf1aa",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-nobyeon-sem2-group4-full-review-20261020",
+  "solveDigest": "5fef98bc3c9397218f6d2b9b5287affc13ade751a2c25048940529ca8c12f20a",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "classification": {
+      "math": "passed",
+      "grade": "2015-M3-after-required-prerequisites-passed",
+      "content": "held"
+    },
+    "ownExactReproduction": {
+      "M": 40,
+      "xPlusY": 3,
+      "xSquaredPlusYSquared": 9,
+      "xy": "0",
+      "allRealProductZeroBranches": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "orderedAdmissibleDataPairs": [
+        [
+          40,
+          43
+        ]
+      ],
+      "data": [
+        42,
+        36,
+        39,
+        40,
+        43
+      ],
+      "deviations": [
+        2,
+        -4,
+        -1,
+        0,
+        3
+      ],
+      "mean": "40",
+      "variance": "6",
+      "standardDeviation": "√6",
+      "withoutDispersionConditionCounterexamples": [
+        {
+          "a": 39,
+          "b": 44,
+          "mean": "40",
+          "variance": "38/5"
+        },
+        {
+          "a": 41,
+          "b": 42,
+          "mean": "40",
+          "variance": "26/5"
+        }
+      ],
+      "domain": "자연수/양수조건을발명하지않고a,b를실수범위에서처리. 두실수분기의순서조건으로해가유일. 자료개수분모5>0.",
+      "wholeStudentRoute": "허용곱셈공식직접전개와곱0성질. 한변수대안도 y=3−x 대입 후2x(x−3)=0뿐이다. 근과계수관계사용없음."
+    },
+    "wholeAuthorStudentMethod": "저자전체해설의42−M2 및나머지알려진편차로M40. x=a−40,y=b−40에서편차합으로x+y3,실제표준편차√6→분산6으로x²+y²9. 허용곱셈공식(x+y)²=x²+2xy+y²에직접대입하여xy0. 곱0의두실수분기와x<y로(0,3)만선택한다. 근과계수관계/고등대칭식정리/컴퓨터대수는필요하지않고사용하지않았다.",
+    "sourceConceptProcedureAndChange": {
+      "sourceObserved": "원문은5명맥박자료/편차표의빈칸과표준편차를순방향으로구하는문제이다. 원문수치답/답안키는계산하지않았다.",
+      "sameCore": "평균과편차정의,편차합0,편차제곱평균/표준편차가핵심이다. 현재도이셋모두가실제로필요하다.",
+      "substantiveChange": "현재는표준편차를필수입력으로주고두실수자료를순서조건과함께역추론한다. 추가대수단계는실제존재하므로숨기지않으며,이를기존중3곱셈공식과곱0의직접성질로완결되는지별도검토했다. 표준편차를제거하면여러자료쌍이가능함을코드로보여입력의필수성을입증했다."
+    },
+    "originalKeyUsed": false,
+    "primaryEvidence": {
+      "normative": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "edition": "2015 tab",
+        "actualRead": "earlier 2015 geometry/statistics viewed, algebra whole-method provisions reread for this review",
+        "locators": [
+          "line469 실수/분모유리화 학습요소",
+          "line491 9수02-12 다항식곱셈/인수분해",
+          "lines505–506 허용곱셈공식 (x+y)^2 포함",
+          "line513 근과계수관계 제외: 사용하지않음",
+          "line540 9수04-17/18 삼각비의정의/값/활용",
+          "lines555–557 삼각비사이관계 제외 및0~90도값/거리높이활용",
+          "line570 9수05-06/07 대표값·분산/표준편차"
+        ],
+        "limit": "같은중학밴드코드만으로새문항통과를추정하지않고아래실제전체해설의필수수학을일일이대조했다."
+      },
+      "actualM3Placement": {
+        "url": "https://sunggok-m.goebc.kr/upload/sunggok-m/na/bbs_6150/2024/09/CCFFC34D-CA2A-756F-4010-7169B6A631FA.pdf",
+        "pdfSha256": "57ae912bc9a352dba6181f80015631f2badded7680077d22582874f609ffadd7",
+        "previouslyActuallyViewed": true,
+        "locators": [
+          "PDFindex73/physical74/printed72:중3수학2학기8~9월삼각비9수04-17/18",
+          "PDFindex73~74/printed72~73:중3대표값9수05-06/분산표준편차9수05-07"
+        ],
+        "conditions": "q20은이전다항식곱셈공식/곱0성질학습후배정.그선수개념의개별학생이수나특정노변시험진도는확인하지않음. 2022별도보류."
+      }
+    },
+    "sourceContextBinding": {
+      "aggregateManifestSha256": "0b5ddc139829c861eff46012d6887ac7b156103feee92e9bd7b94d3c971d51a3",
+      "stagedQuestionSha256": "608b4780494c9e200095735f300da93c4cf62fa2570678a62a7f7e08bb842d0a",
+      "priorPrintedReviewSha256": "b141c774c4322751a1a37fe1b1ec502c906eacb8bfcf5f82ad009d8830db460f",
+      "afterParentRawSeal": "9452e3637e06f03cdd2c8c575063fdfa91a3e721",
+      "priorReportsArePointersNotApproval": true,
+      "fullTextAndCropsLocalOnly": true
+    },
+    "renderReview": {
+      "studentPreviewPngSha256": "354ce3652690849c061422655f14e1485624d49ecc21bc468f6eb5dcef031bf2",
+      "solutionPreviewPngSha256": "ec53317c81583647e2bcad3c8fb0027f067cbba364a13809d60dd306632a9821",
+      "actualViewBoth": true,
+      "assetBindings": [],
+      "nativeReaderPrintParityApproved": false
+    },
+    "naturalWording": "요청역할과과정서술을명확히구분한다. 표준편차조건과순서a<b로필수해결조건이주어지고자료의자연수조건을잘못추가하지않는다.",
+    "scoreDifficulty": {
+      "score": 5,
+      "basis": "원문과같은5점서술형으로관계식/계산/근거서술을평가할수있어배점제안은수용가능. 인쇄부분점존재를참고하되구체적새rubric배분을발명하지않는다.",
+      "proposal": "기본~응용 제안",
+      "observedSourceLabelAsProvided": "하",
+      "difficultyApproval": "pending",
+      "reason": "역추론·오류분석또는추가대수단계로원문과체감난도가같다는증거는없다. 원문하라벨을새기본~응용측정값으로전환하지않는다."
+    },
+    "unitFamily": {
+      "capturedUnitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "capturedSection": "대푯값과 산포도",
+      "familyKey": null,
+      "unitFamilyFit": false,
+      "basis": "제공캡처단원과개념대응은확인하나새입출력/기록교정/통계역추론전체목적을충족하는정확한livefamily정의/현재상태는미검증. q20의대수선수까지포함해단원명만으로family적합을주장하지않는다."
+    },
+    "rawProofBinding": {
+      "helperCommit": "9855ca6da6848acce4f39120962ae55fd0e74c7c",
+      "parentCommit": "9452e3637e06f03cdd2c8c575063fdfa91a3e721",
+      "rawSha256": "a308e3ba67c8c8fab8a6836781a218feaeb7647a02b535810601859d2a455f4f",
+      "gitBlobByteIdentical": true,
+      "priorDeclarationUnchanged": {
+        "currentAuthorAnswerSolutionPrivatePackageExposed": false,
+        "priorSourceAndRelatedExposure": "이전노변1학기문항,노변2학기q09~14학생/저자/질문전용원문및q15~17소유범위검토에서원본페이지와관련삼각비·대표값·편차·분산에노출되었다. 이번currentq18~20저자답/해설/비공개패키지나원문질문은열지않았다. 원본전체코퍼스의완전미노출을주장하지않는다.",
+        "studentOnlyInputs": "허용된학생JSON/brief/blindmanifest/SVG및student-preview q18/q19/q20 PNG만읽었다. 세PNG를실제view했다.",
+        "pixelsOrCoordinatesAsNumericalOracle": false
+      },
+      "newExposure": "현재저자답·해설·원문질문은rawGit봉인이후이번검토에서읽었다. 이전원문페이지소유/관련문항노출은raw선언에남아있으며완전미노출주장없음."
+    },
+    "answerGrammar": "수학적동일성과실제collector표현지원은다르다. raw답/receipt는후속형식통과를위해고치지않았다.",
+    "holds": {
+      "sourceIdentityApproved": false,
+      "wholeSourcePairApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "familyApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolSpecificPacing": "pending",
+      "difficultyEquivalence": "pending"
+    },
+    "newTwinOrBlindCount": 0
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "다섯자료/편차와표준편차를주고두실수자료를구한다. 통계정의9수05-06/07과이전곱셈공식의실제연결로완결된다. 역추론이므로추가대수단계를필수로검토했다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제choices=[]인서술형이다. 존재하지않는5보기를가정하지않고요구결과와서술과정을검토했다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "학생및현재solutionPNG를실제view했고5자료/편차열과(1)(2)역할이명확하다. 알고있는3자료/편차가같은평균40을주어조건일관성이확인된다. 픽셀길이를답의수치오라클로쓰지않았다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "평균M과실수자료a/b,차인편차x/y,표준편차√6및a<b를구별한다. 원문맥박단위회는새자료에붙이지않는다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "저자와독립raw의수학적내용/역할은 (1)M40,(2)a40,b43으로일치한다. 순서a<b가반대분기를배제한다. 이름/번호를버리지않고raw를보존한다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자전체해설의42−M2 및나머지알려진편차로M40. x=a−40,y=b−40에서편차합으로x+y3,실제표준편차√6→분산6으로x²+y²9. 허용곱셈공식(x+y)²=x²+2xy+y²에직접대입하여xy0. 곱0의두실수분기와x<y로(0,3)만선택한다. 근과계수관계/고등대칭식정리/컴퓨터대수는필요하지않고사용하지않았다. 그림과수식이현재solutionPNG에서정상표시됨을확인했다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "중3대표값·분산/표준편차9수05-06/07 학습후이면서이전9수02-12의정확한허용공식(x+y)²와곱0성질을학습한뒤배정. 실제통계M3배치는printed72/73로확인했다. 복잡한방정식활용이나근과계수관계는쓰지않는다. 개별학생이수·노변중시험진도·2022배치는미확인이다."
+    }
+  }
+}
