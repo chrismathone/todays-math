@@ -1,0 +1,92 @@
+{
+  "studentDigest": "60a3481d5e9114939c62081093dc8ee7d13cd696633b5e8f8c175aa1b3c42a5d",
+  "solverId": "independent-helper-gachang-group3-q03-q06-20261020-r1",
+  "answer": "③",
+  "solution": "남은 직사각형의 가로와 세로는 각각 (4a+1-b) cm, (3a+2-b) cm이므로 넓이는 (4a+1-b)(3a+2-b) cm²이다. 다섯 보기를 차례로 넣어 전개하면 b=2일 때 12a²-3a, b=3일 때 12a²-10a+2, b=4일 때 12a²-17a+6, b=5일 때 12a²-24a+12, b=6일 때 12a²-31a+20이다. 따라서 주어진 넓이의 식과 같은 것은 b=4인 ③뿐이다. 일반적으로 전개한 식은 12a²+(11-7b)a+(b²-3b+2)이므로 a의 일차항이 같으려면 11-7b=-17, 즉 b=4여야 하고 상수항도 6으로 일치한다. a>2에서 남는 두 변 4a-3과 3a-2는 각각 5와 4보다 크며, 0<4<3a+2도 성립하므로 실제 직사각형이 존재한다. b는 폭을 cm로 나타낸 수이고 넓이의 단위는 cm²이다.",
+  "evidence": {
+    "questionId": "exam-twin-gachang-2025-1-final-author-group3-r2-q03",
+    "ownCalculation": "../../own-raw-evidence-r1/own-calculation-receipt.json",
+    "allFiveOptions": [
+      {
+        "choice": 1,
+        "b": "2",
+        "ascendingAreaCoefficients": [
+          "0",
+          "-3",
+          "12"
+        ],
+        "areaAtA3": "99",
+        "targetAtA3": "63",
+        "matchesWholePolynomial": false
+      },
+      {
+        "choice": 2,
+        "b": "3",
+        "ascendingAreaCoefficients": [
+          "2",
+          "-10",
+          "12"
+        ],
+        "areaAtA3": "80",
+        "targetAtA3": "63",
+        "matchesWholePolynomial": false
+      },
+      {
+        "choice": 3,
+        "b": "4",
+        "ascendingAreaCoefficients": [
+          "6",
+          "-17",
+          "12"
+        ],
+        "areaAtA3": "63",
+        "targetAtA3": "63",
+        "matchesWholePolynomial": true
+      },
+      {
+        "choice": 4,
+        "b": "5",
+        "ascendingAreaCoefficients": [
+          "12",
+          "-24",
+          "12"
+        ],
+        "areaAtA3": "48",
+        "targetAtA3": "63",
+        "matchesWholePolynomial": false
+      },
+      {
+        "choice": 5,
+        "b": "6",
+        "ascendingAreaCoefficients": [
+          "20",
+          "-31",
+          "12"
+        ],
+        "areaAtA3": "35",
+        "targetAtA3": "63",
+        "matchesWholePolynomial": false
+      }
+    ],
+    "exposure": {
+      "sameRetainedHelper": true,
+      "currentAuthorAnswerSolutionExposure": false,
+      "currentAuthorCodePrivateMetadataSourceContextRead": false,
+      "priorHistory": "원문9개성분검토, 이전Gachang/Gangbuk학생풀이·봉인후저자검토·공개코드/메타데이터감사이력이있다. Gachang이전원문첫페이지는앞선q04/q05 raw봉인후검토중보았으며그페이지다른문항(q03/q06포함가능)과손글씨의부수적노출이있었다. 현재새q03/q06변형저자답·해설은보지않았다. 원문/손글씨일치가답오라클이아니며전체코퍼스최초블라인드라고주장하지않는다.",
+      "inputsRead": [
+        "blind\\SOLVE-BRIEF.md",
+        "blind\\student-problems.json",
+        "blind\\blind-manifest.json",
+        "blind\\figures\\q03-1.svg"
+      ],
+      "visualLimitation": "학생PNG미제공. SVGXML/학생텍스트의조건·라벨만읽었고래스터화/실제이미지view_image/브라우저검토없음. 픽셀이나SVG좌표·비율을숫자길이/답계산에사용하지않음.",
+      "operations": "Light Python Fraction/integer only; no root/author/private/source reads, no heavy tests/catalog/browser/CIM/N/DB/API/model/install/new worker/worktree/session."
+    },
+    "studentMethod": "2015M3 다항식곱셈/인수분해·제곱근성질과 앞학년일차방정식/직사각형넓이. q03은각보기직접전개만으로선택가능하므로고등일반항등식계수정리를필수방법으로쓰지않음. q06은주어진t범위에서제곱의제곱근부호를정한후일차식만해결. 근의공식/판별식/근합곱/고급부등식불필요.",
+    "visualReviewPerformed": false,
+    "formalGradeApproval": false,
+    "literalNotationConcern": "실제학생JSON값에서단위명령의연속역슬래시길이는모두1임을확인했다. 표시상의JSON이스케이프를중복명령오류로간주하지않는다. 학생입력은변경하지않음. PNG미제공이므로실제렌더/시각검토는미수행이며cm/cm²의수학적역할은확인했다.",
+    "existenceUniqueness": "q03 b=4에서모든a>2에두변양수·폭범위·전체넓이식일치,보기유일및일차항7b=28으로상수유일. q06 t=-1의양변길이4/1과면적16/1을확인,부호분기는열린범위로고정되고-2t=2의계수비영."
+  },
+  "status": "solved"
+}

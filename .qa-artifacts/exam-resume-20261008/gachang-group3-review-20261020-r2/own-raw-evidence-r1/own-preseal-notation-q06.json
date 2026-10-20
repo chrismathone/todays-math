@@ -1,0 +1,87 @@
+{
+  "studentDigest": "d8565d720773d4cad0a2a93b7c8ba5ab720dbbbe0ce44c8edb0e362a1bb75f3f",
+  "solverId": "independent-helper-gachang-group3-q03-q06-20261020-r1",
+  "answer": "②",
+  "solution": "A와 B의 넓이는 각각 (t-3)² cm², (t+2)² cm²이다. 정사각형의 한 변은 양수이고 -2<t<3이므로 A의 한 변은 3-t cm, B의 한 변은 t+2 cm이다. A가 3 cm 더 길다는 조건에서 3-t=(t+2)+3, 따라서 -2t=2이므로 t=-1이다. 이때 A와 B의 한 변은 각각 4 cm, 1 cm이고 넓이는 16 cm², 1 cm²이므로 모든 조건을 만족한다. 일차항의 계수가 -2로 0이 아니어서 해는 유일하다. 보기 -2는 주어진 열린 범위 밖이고 B의 변도 0이다. 나머지 -1, 0, 1, 2에서 A의 변에서 B의 변을 뺀 값은 각각 3, 1, -1, -3 cm이므로 조건에 맞는 보기는 ②뿐이다.",
+  "evidence": {
+    "questionId": "exam-twin-gachang-2025-1-final-author-group3-r2-q06",
+    "ownCalculation": "../../own-raw-evidence-r1/own-calculation-receipt.json",
+    "allFiveOptions": [
+      {
+        "choice": 1,
+        "t": "-2",
+        "strictDomain": false,
+        "areaA_cm2": "25",
+        "areaB_cm2": "0",
+        "sideA_cm": "5",
+        "sideB_cm": "0",
+        "difference_cm": "5",
+        "matches": false
+      },
+      {
+        "choice": 2,
+        "t": "-1",
+        "strictDomain": true,
+        "areaA_cm2": "16",
+        "areaB_cm2": "1",
+        "sideA_cm": "4",
+        "sideB_cm": "1",
+        "difference_cm": "3",
+        "matches": true
+      },
+      {
+        "choice": 3,
+        "t": "0",
+        "strictDomain": true,
+        "areaA_cm2": "9",
+        "areaB_cm2": "4",
+        "sideA_cm": "3",
+        "sideB_cm": "2",
+        "difference_cm": "1",
+        "matches": false
+      },
+      {
+        "choice": 4,
+        "t": "1",
+        "strictDomain": true,
+        "areaA_cm2": "4",
+        "areaB_cm2": "9",
+        "sideA_cm": "2",
+        "sideB_cm": "3",
+        "difference_cm": "-1",
+        "matches": false
+      },
+      {
+        "choice": 5,
+        "t": "2",
+        "strictDomain": true,
+        "areaA_cm2": "1",
+        "areaB_cm2": "16",
+        "sideA_cm": "1",
+        "sideB_cm": "4",
+        "difference_cm": "-3",
+        "matches": false
+      }
+    ],
+    "exposure": {
+      "sameRetainedHelper": true,
+      "currentAuthorAnswerSolutionExposure": false,
+      "currentAuthorCodePrivateMetadataSourceContextRead": false,
+      "priorHistory": "원문9개성분검토, 이전Gachang/Gangbuk학생풀이·봉인후저자검토·공개코드/메타데이터감사이력이있다. Gachang이전원문첫페이지는앞선q04/q05 raw봉인후검토중보았으며그페이지다른문항(q03/q06포함가능)과손글씨의부수적노출이있었다. 현재새q03/q06변형저자답·해설은보지않았다. 원문/손글씨일치가답오라클이아니며전체코퍼스최초블라인드라고주장하지않는다.",
+      "inputsRead": [
+        "blind\\SOLVE-BRIEF.md",
+        "blind\\student-problems.json",
+        "blind\\blind-manifest.json",
+        "blind\\figures\\q03-1.svg"
+      ],
+      "visualLimitation": "학생PNG미제공. SVGXML/학생텍스트의조건·라벨만읽었고래스터화/실제이미지view_image/브라우저검토없음. 픽셀이나SVG좌표·비율을숫자길이/답계산에사용하지않음.",
+      "operations": "Light Python Fraction/integer only; no root/author/private/source reads, no heavy tests/catalog/browser/CIM/N/DB/API/model/install/new worker/worktree/session."
+    },
+    "studentMethod": "2015M3 다항식곱셈/인수분해·제곱근성질과 앞학년일차방정식/직사각형넓이. q03은각보기직접전개만으로선택가능하므로고등일반항등식계수정리를필수방법으로쓰지않음. q06은주어진t범위에서제곱의제곱근부호를정한후일차식만해결. 근의공식/판별식/근합곱/고급부등식불필요.",
+    "visualReviewPerformed": false,
+    "formalGradeApproval": false,
+    "literalNotationConcern": "제공학생JSON의단위명령앞에중복역슬래시가읽힌다. 입력을고치지않으며실제TeX렌더정상여부는PNG미제공으로보류. 수학의cm/cm²역할은분명하여계산은가능.",
+    "existenceUniqueness": "q03 b=4에서모든a>2에두변양수·폭범위·전체넓이식일치,보기유일및일차항7b=28으로상수유일. q06 t=-1의양변길이4/1과면적16/1을확인,부호분기는열린범위로고정되고-2t=2의계수비영."
+  },
+  "status": "solved"
+}
