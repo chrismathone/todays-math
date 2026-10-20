@@ -63,13 +63,18 @@ async function request<T>(
     clearTimeout(timeout);
   }
 }
+/** The same timeout and messages for the other student records (guide). */
+export { request as learnJsonRequest };
 const state = async (value: unknown) =>
   (await contract()).courseStudentResponseSchema.parse(value).data;
 const base = "/api/learn/math-srs/course";
-const studentRequest = async (url: string, body?: unknown) =>
-  request(url, state, body, {
-    [(await contract()).COURSE_FOLLOW_UP_HEADER]: "1",
+const studentRequest = async (url: string, body?: unknown) => {
+  const { COURSE_FOLLOW_UP_HEADER, COURSE_RELEARN_HEADER } = await contract();
+  return request(url, state, body, {
+    [COURSE_FOLLOW_UP_HEADER]: "1",
+    [COURSE_RELEARN_HEADER]: "1",
   });
+};
 export const getCourseState = () => studentRequest(base);
 export const startCourse = () => studentRequest(base, {});
 export const saveOwnCoursePlan = (input: CoursePlanInput) =>

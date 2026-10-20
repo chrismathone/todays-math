@@ -56,7 +56,11 @@ it("reconstructs averages and enumerates possible outcomes instead of reusing ge
                     : NaN;
           }
         } else if (p.content.includes("각 자료에")) expected = b + c;
-        else if (p.formId === "02" && s.id.endsWith("-2"))
+        else if (p.content.includes("나머지 한 경기")) {
+          expected = Array.from({ length: a * b + 1 }, (_, i) => i).find(
+            (v) => v + d === sum(copies(b, a)),
+          )!;
+        } else if (p.formId === "02" && s.id.endsWith("-2"))
           expected = Array.from({ length: a }, (_, i) => i + 1).find(
             (n) => sum(copies(b, n)) === a,
           )!;

@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import * as api from "@/components/math-srs/courseApi";
 import {
   COURSE_FOLLOW_UP_HEADER,
+  COURSE_RELEARN_HEADER,
   type CourseFollowUpInput,
 } from "@/contracts/mathSrsCourse.contract";
 
@@ -65,6 +66,8 @@ describe("course follow-up client requests", () => {
     ]);
     for (const [, options] of fetcher.mock.calls) {
       expect(options.headers[COURSE_FOLLOW_UP_HEADER]).toBe("1");
+      // Consensus 2026-10-20: these screens also understand the relearn flag.
+      expect(options.headers[COURSE_RELEARN_HEADER]).toBe("1");
       expect(options.cache).toBe("no-store");
       expect(options.signal).toBeInstanceOf(AbortSignal);
     }
@@ -89,6 +92,7 @@ describe("course follow-up client requests", () => {
         headers: {
           "content-type": "application/json",
           [COURSE_FOLLOW_UP_HEADER]: "1",
+          [COURSE_RELEARN_HEADER]: "1",
         },
         body: JSON.stringify(input),
       }),

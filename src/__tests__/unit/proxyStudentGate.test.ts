@@ -116,6 +116,7 @@ const LEARN_APIS = [
   "/api/learn/math-srs/course/attempts",
   "/api/learn/math-srs/course/hint",
   "/api/learn/math-srs/course/figure",
+  "/api/learn/math-srs/guide",
   "/api/learn/math-srs/replay",
   "/api/learn/math-explorers",
 ];
@@ -384,7 +385,10 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "POST /api/learn/math-srs/course/plan",
         "POST /api/learn/math-srs/course/attempts",
         "POST /api/learn/math-srs/course/hint",
+        "POST /api/learn/math-srs/course/follow-up",
         "GET /api/learn/math-srs/course/figure",
+        "GET /api/learn/math-srs/guide",
+        "POST /api/learn/math-srs/guide",
         "GET /api/learn/math-srs/replay",
         "POST /api/learn/math-srs/replay",
         "GET /api/learn/math-explorers",

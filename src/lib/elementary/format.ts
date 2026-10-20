@@ -54,6 +54,54 @@ export function unitNum(value: number | string, unit: string): string {
   return `$${value}\\,\\mathrm{${unit}}$`;
 }
 
+/** 수 하나를 읽은 끝소리의 받침. 연산식·문자·단위는 읽는 법을 추측하지 않는다. */
+export function mathFinal(latex: string): number | null {
+  const fraction = /^-?(?:\d+)?\\frac\{(\d+)\}\{\d+\}$/.exec(latex);
+  const value = fraction?.[1] ?? latex;
+  if (!/^-?\d+(?:\.\d+)?$/.test(value)) return null;
+  let ending: string;
+  if (value.includes("."))
+    ending = "영일이삼사오육칠팔구"[Number(value.at(-1))];
+  else {
+    let integer = BigInt(value.replace(/^-/, ""));
+    if (integer === BigInt(0)) ending = "영";
+    else {
+      let group = 0;
+      while (integer % BigInt(10000) === BigInt(0)) {
+        integer /= BigInt(10000);
+        group++;
+      }
+      if (group) ending = ["", "만", "억", "조", "경"][group];
+      else if (integer % BigInt(10))
+        ending = "영일이삼사오육칠팔구"[Number(integer % BigInt(10))];
+      else
+        ending =
+          integer % BigInt(100) ? "십" : integer % BigInt(1000) ? "백" : "천";
+    }
+  }
+  return ending ? (ending.charCodeAt(0) - 0xac00) % 28 : null;
+}
+
+/** 손으로 붙인 조사까지 공통 출구에서 교정한다. 답과 그림은 건드리지 않는다. */
+export function mathJosa(text: string): string {
+  return text.replace(
+    /\$([^$]+)\$(으로|로|을|를|이|가|은|는|과|와)(?![가-힣])/g,
+    (match, latex: string, particle: string) => {
+      const final = mathFinal(latex);
+      if (final === null) return match;
+      const pair = ["을를", "이가", "은는", "과와"].find((p) =>
+        p.includes(particle),
+      );
+      const suffix = pair
+        ? pair[final ? 0 : 1]
+        : final && final !== 8
+          ? "으로"
+          : "로";
+      return `$${latex}$${suffix}`;
+    },
+  );
+}
+
 /** 한글 낱말의 마지막 음절에 받침이 있으면 앞 조사, 없으면 뒤 조사를 고른다. */
 export function josa(
   word: string,

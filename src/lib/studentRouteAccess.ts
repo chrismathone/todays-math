@@ -213,9 +213,19 @@ const ACTIVE_RULES: readonly Rule[] = [
     why: "초등 현재 문제 힌트 확인",
   },
   {
+    methods: ["POST"],
+    path: "/api/learn/math-srs/course/follow-up",
+    why: "초등 첫 오답 뒤 두 번째 답 · «알겠어요»(계획서 §3.2)",
+  },
+  {
     methods: ["GET"],
     path: "/api/learn/math-srs/course/figure",
     why: "본인 학습 문제의 도형",
+  },
+  {
+    methods: ["GET", "POST"],
+    path: "/api/learn/math-srs/guide",
+    why: "본인 길잡이 조회 · 고르기(계획서 §2 결정 10)",
   },
   {
     methods: ["GET", "POST"],

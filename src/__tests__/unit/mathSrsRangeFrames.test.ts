@@ -69,7 +69,7 @@ function solve(content: string): string {
       return String(Number(String(rounded(a, place)).padStart(4, "0").at(-4)));
     if (content.includes("십의 자리까지 나타낸 수와 백의"))
       return String(Math.abs(rounded(a, 10) - rounded(a, 100)));
-    if (/차를|더해지는|버려지는/.test(content))
+    if (/차를|차는|더해지는|버려지는/.test(content))
       return String(Math.abs(rounded(a, place) - a));
     if (content.includes("소수 첫째"))
       return String(rounded(Math.round(a * 100), 10) / 100);

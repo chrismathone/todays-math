@@ -3,6 +3,7 @@ import { randomInt, randomUUID } from "node:crypto";
 import { z } from "zod";
 import {
   COURSE_FOLLOW_UP_HEADER,
+  COURSE_RELEARN_HEADER,
   courseAttemptInputSchema,
   courseFollowUpInputSchema,
   courseHintInputSchema,
@@ -65,6 +66,8 @@ export async function handleCourseStudentRequest(
   const now = await learnNow(gate.student.studentId, request);
   // Screens that show «한 번 더 → 풀이» say so; older tabs keep the old records and response.
   const followUps = request.headers.get(COURSE_FOLLOW_UP_HEADER) === "1";
+  // Screens that open the preview card only on a first lesson say so.
+  const relearn = request.headers.get(COURSE_RELEARN_HEADER) === "1";
   try {
     const student = await loadCourseStudent(gate.student.studentId);
     if (
@@ -161,6 +164,7 @@ export async function handleCourseStudentRequest(
       jsonOk(courseStudentResponseSchema, {
         data: courseStudentDto(student, view, now, requestedSessionId, {
           followUp: followUps,
+          relearn,
         }),
       }),
     );

@@ -3743,7 +3743,7 @@ function fac121InnerCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const inner = divisors(num).filter((v) => v !== 1 && v !== num);
   return make(
     unit,
-    `${n(num)}의 약수 중에서 ${n(1)}과 자기 자신을 뺀 수는 모두 몇 개입니까?`,
+    `${n(num)}의 약수 중에서 ${n(1)}과 자기 자신을 제외한 수는 모두 몇 개입니까?`,
     n(inner.length),
     `${n(num)}의 약수는 ${nums(divisors(num))}입니다. ${n(1)}과 ${nj(num, "을", "를")} 빼면 ${nums(inner)}이므로 ${n(inner.length)}개입니다.`,
   );
@@ -3847,7 +3847,7 @@ function rel122Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const hi = Math.max(p, q);
   return make(
     unit,
-    `다음 곱셈식에서 알 수 있는 ${n(c)}의 약수를 모두 쓰시오.  ${expr(`${p}\\times${q}=${c}`)}`,
+    `다음 두 곱셈식에 나타난 수 중에서 ${n(c)}의 약수를 모두 쓰시오.  ${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}`,
     nums([1, lo, hi, c]),
     `${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}이므로 이 식에서 알 수 있는 약수는 ${nums([1, lo, hi, c])}입니다.`,
   );
@@ -3957,7 +3957,7 @@ function rel122FactorCount(unit: UnitSeed, rng: Rng): ElemProblem {
   const uniq = [...new Set([1, Math.min(p, q), Math.max(p, q), c])];
   return make(
     unit,
-    `${expr(`${p}\\times${q}=${c}`)}에서 알 수 있는 ${n(c)}의 약수는 모두 몇 개입니까?`,
+    `다음 두 곱셈식에 나타난 수 중에서 ${n(c)}의 약수는 모두 몇 개입니까?  ${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}`,
     n(uniq.length),
     `${expr(`1\\times${c}=${c}`)}, ${expr(`${p}\\times${q}=${c}`)}이므로 약수는 ${nums(uniq)}의 ${n(uniq.length)}개입니다.`,
   );
@@ -4275,16 +4275,16 @@ function gcd124BiggerQuot(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 06 — 최대공약수로 나누면 나머지는 0. */
+/** 문형 06 — 최대공약수를 구한 뒤 한 수의 몫을 구한다. */
 function gcd124Remainder(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = pick(rng, GCD_PAIRS);
   const g = gcd(a, b);
   const x = intBetween(rng, 0, 1) === 0 ? a : b;
   return make(
     unit,
-    `두 수 ${n(a)}, ${n(b)}의 최대공약수로 ${nj(x, "을", "를")} 나누면 나머지는 얼마입니까?`,
-    n(0),
-    `최대공약수는 ${n(g)}이고 ${expr(`${x}\\div${g}=${x / g}`)}이므로 나머지는 ${n(0)}입니다.`,
+    `두 수 ${n(a)}, ${n(b)}의 최대공약수로 ${nj(x, "을", "를")} 나눈 몫은 얼마입니까?`,
+    n(x / g),
+    `최대공약수는 ${n(g)}이고 ${expr(`${x}\\div${g}=${x / g}`)}이므로 몫은 ${n(x / g)}입니다.`,
   );
 }
 
@@ -4344,15 +4344,15 @@ function gcd124QuotDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 10 — 최대공약수와 한 몫의 곱은 원래 수. */
+/** 문형 10 — 최대공약수로 나눈 두 몫의 곱. */
 function gcd124Recover(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = pick(rng, GCD_PAIRS);
   const g = gcd(a, b);
   return make(
     unit,
-    `두 수 ${n(a)}, ${n(b)}의 최대공약수와, ${n(a)}을 최대공약수로 나눈 몫을 곱하면 얼마입니까?`,
-    n(a),
-    `최대공약수는 ${n(g)}, 몫은 ${n(a / g)}이므로 ${expr(`${g}\\times${a / g}=${a}`)}입니다.`,
+    `두 수 ${n(a)}, ${n(b)}를 각각 최대공약수로 나눈 두 몫을 곱하면 얼마입니까?`,
+    n((a / g) * (b / g)),
+    `최대공약수는 ${n(g)}, 두 몫은 ${n(a / g)}, ${n(b / g)}이므로 곱은 ${n((a / g) * (b / g))}입니다.`,
   );
 }
 
@@ -4513,7 +4513,9 @@ function commul125SmallestEven(unit: UnitSeed, rng: Rng): ElemProblem {
   const ans = m % 2 === 0 ? m : 2 * m;
   return make(
     unit,
-    `${nj(a, "과", "와")} ${n(b)}의 공배수 중에서 짝수인 수 중 가장 작은 수를 구하시오.`,
+    m % 2 === 0
+      ? `${nj(a, "과", "와")} ${n(b)}의 공배수 중 가장 작은 수를 구하시오.`
+      : `${nj(a, "과", "와")} ${n(b)}의 짝수인 공배수 중 가장 작은 수를 구하시오.`,
     n(ans),
     `최소공배수는 ${n(m)}입니다. 짝수인 공배수 중 가장 작은 수는 ${n(ans)}입니다.`,
   );
@@ -6260,7 +6262,7 @@ function cmp144UnitBig(unit: UnitSeed, rng: Rng): ElemProblem {
   const smallDen = Math.min(dens[0]!, dens[1]!);
   return make(
     unit,
-    `분자가 ${n(1)}인 ${frj(1, dens[0]!, "과", "와")} ${fr(1, dens[1]!)} 중에서 분모가 더 작은 분수의 분모를 구하시오.`,
+    `분자가 ${n(1)}인 ${frj(1, dens[0]!, "과", "와")} ${fr(1, dens[1]!)} 중에서 더 큰 분수의 분모를 구하시오.`,
     n(smallDen),
     `분자가 같으면 분모가 작은 쪽이 더 큽니다. 더 작은 분모는 ${n(smallDen)}입니다.`,
   );
@@ -7201,7 +7203,7 @@ function sub154WholeDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   const w2 = intBetween(rng, 1, w1 - 2);
   return make(
     unit,
-    `${mxj(w1, a, d1, "에서", "에서")} ${mx(w2, b, d2)}를 뺄 때, 자연수부끼리 뺀 값은 얼마입니까?`,
+    `${mxj(w1, a, d1, "에서", "에서")} ${mxj(w2, b, d2, "을", "를")} 뺄 때, 받아내림을 하기 전 두 대분수의 자연수부끼리 뺀 값은 얼마입니까?`,
     n(w1 - w2),
     `${expr(`${w1}-${w2}=${w1 - w2}`)}입니다.`,
   );
@@ -7803,7 +7805,7 @@ function rng213MinPass(unit: UnitSeed, rng: Rng): ElemProblem {
   const mn = Math.min(...ok);
   return make(
     unit,
-    `${s.head} ${n(s.limit)} ${s.unitName} 이상이어야 합니다. ${s.who}의 ${wj(s.what, "이", "가")} ${nums(s.values)} ${s.unitName}일 때, 조건에 맞는 ${wj(s.what, "중", "중")} 가장 작은 값은 얼마입니까?`,
+    `${s.head} ${n(s.limit)} ${s.unitName} 이상이어야 합니다. ${s.who}의 ${wj(s.what, "이", "가")} ${nums(s.values)} ${s.unitName}일 때, 조건에 맞는 ${s.what} 중 가장 작은 값은 얼마입니까?`,
     n(mn),
     `${n(s.limit)} 이상인 값 중 가장 작은 것은 ${n(mn)}입니다.`,
   );
@@ -7935,7 +7937,7 @@ function up214HundredDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   const up = ceilTo(x, 100);
   return make(
     unit,
-    `${nj(x, "을", "를")} 올림하여 백의 자리까지 나타낼 때 더해지는 수는 얼마입니까?`,
+    `${nj(x, "을", "를")} 올림하여 백의 자리까지 나타낸 수와 처음 수의 차는 얼마입니까?`,
     n(up - x),
     `올림하면 ${n(up)}이므로 ${expr(`${up}-${x}=${up - x}`)}만큼 더해집니다.`,
   );
@@ -8736,7 +8738,7 @@ function fm222AfterDen(unit: UnitSeed, rng: Rng): ElemProblem {
   const [, den] = simplify(k * a, d);
   return make(
     unit,
-    `${expr(`${k}\\times\\frac{${a}}{${d}}`)}를 계산하여 기약분수로 나타낼 때 분모는 얼마입니까?`,
+    `${lj(`${k}\\times\\frac{${a}}{${d}}`, "을", "를")} 계산하여 기약분수로 나타낼 때 분모는 얼마입니까?`,
     n(den),
     `${expr(`\\frac{${k}\\times${a}}{${d}}=${fracLatex(...simplify(k * a, d))}`)}이므로 분모는 ${n(den)}입니다.`,
   );
@@ -8827,15 +8829,15 @@ function fm223AfterDen(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 08 — 앞쪽 분수를 거슬러 구한다. 심화는 뒤쪽이다. */
+/** 문형 08 — 곱을 기약분수로 나타낸 뒤 분자와 분모의 합. */
 function fm223FindFirst(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, d, b, e } = twoReducible(rng);
   const [num, den] = simplify(a * b, d * e);
   return make(
     unit,
-    `□ 안에 알맞은 진분수를 구하시오.  ${expr(`\\square\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}`,
-    fr(a, d),
-    `□는 결과를 ${fro(b, e)} 나눈 수입니다. ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}이므로 □는 ${fr(a, d)}입니다.`,
+    `${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}`)}의 값을 기약분수로 나타낼 때, 분자와 분모의 합은 얼마입니까?`,
+    n(num + den),
+    `분자끼리, 분모끼리 곱한 뒤 약분하면 ${expr(fracLatex(num, den))}입니다. 분자와 분모의 합은 ${expr(`${num}+${den}=${num + den}`)}입니다.`,
   );
 }
 
@@ -8884,7 +8886,7 @@ function fm224WrongOnly(unit: UnitSeed, rng: Rng): ElemProblem {
   const w = intBetween(rng, 1, 4);
   return make(
     unit,
-    `${lj(`${mixedLatex(w, a, d)}\\times${k}`, "을", "를")} 계산할 때, 잘못하여 자연수 부분만 곱하면 얼마가 됩니까?`,
+    `${mx(w, a, d)}에서 분수 부분을 빼고 자연수 부분에만 ${nj(k, "을", "를")} 곱한 값은 얼마입니까?`,
     n(w * k),
     `자연수 부분만 곱하면 ${expr(`${w}\\times${k}=${w * k}`)}입니다.`,
   );
@@ -11872,7 +11874,7 @@ function sym233Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   ]);
   return make(
     unit,
-    `${name}의 ${ask}`,
+    `${name}${shape === "isoTri" ? "(정삼각형이 아닌)" : shape === "rect" ? "(정사각형이 아닌)" : ""}의 ${ask}`,
     n(count),
     `${name}은 접었을 때 완전히 겹치는 직선이 ${n(count)}개 있으므로 대칭축은 ${n(count)}개입니다.`,
     fig("markedShape", { shape }),
@@ -11912,7 +11914,7 @@ function sym233Read(unit: UnitSeed, rng: Rng): ElemProblem {
   const { cells, off } = halfCells(rng, size);
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. ${pick(rng, [
+    `점선을 대칭축으로 하는 선대칭인 무늬를 만들려고 합니다. ${pick(rng, [
       "몇 칸을 더 색칠해야 합니까?",
       "색칠해야 할 칸은 몇 칸입니까?",
       "더 칠할 칸의 수를 구하시오.",
@@ -11931,9 +11933,9 @@ function sym233Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   const done = off * 2 + on;
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 완성하려고 합니다. ${pick(rng, [
+    `점선을 대칭축으로 하는 선대칭인 무늬를 완성하려고 합니다. ${pick(rng, [
       "완성했을 때 색칠된 칸은 모두 몇 칸입니까?",
-      "완성한 도형의 색칠된 칸 수를 구하시오.",
+      "완성한 무늬의 색칠된 칸 수를 구하시오.",
       "다 칠하고 나면 색칠된 칸은 모두 몇 칸입니까?",
     ])}`,
     n(done),
@@ -11953,7 +11955,7 @@ function sym233Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const done = off * 2 + on;
   return make(
     unit,
-    `선대칭도형을 완성했더니 색칠된 칸이 모두 ${n(done)}칸이었고, 그중 대칭축 위에 있는 칸이 ${n(on)}칸이었습니다. 완성하기 전에 색칠되어 있던 칸은 몇 칸입니까?`,
+    `선대칭인 무늬를 완성했더니 색칠된 칸이 모두 ${n(done)}칸이었고, 그중 대칭축 위에 있는 칸이 ${n(on)}칸이었습니다. 완성하기 전에 색칠되어 있던 칸은 몇 칸입니까?`,
     n(off + on),
     `대칭축 위의 ${n(on)}칸을 빼면 ${expr(`${done}-${on}=${off * 2}`)}칸이 남고, 이 칸들은 대칭축 양쪽에 똑같이 나뉘므로 한쪽에 ${expr(`${off * 2}\\div2=${off}`)}칸입니다. 완성 전에는 한쪽 ${n(off)}칸과 대칭축 위 ${n(on)}칸이 색칠되어 있었으므로 ${expr(`${off}+${on}=${off + on}`)}칸입니다.`,
   );
@@ -11990,7 +11992,7 @@ function sym233OnAxis(unit: UnitSeed, rng: Rng): ElemProblem {
   const { cells, on } = halfCells(rng, size);
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸 중 대칭축 위에 있는 칸은 몇 칸입니까?`,
+    `점선을 대칭축으로 하는 선대칭인 무늬를 만들려고 합니다. 지금 색칠된 칸 중 대칭축 위에 있는 칸은 몇 칸입니까?`,
     n(on),
     `대칭축 위에 있는 칸은 ${n(on)}칸입니다.`,
     fig("symmetry", { axis: "v", n: size, cells }),
@@ -12003,7 +12005,7 @@ function sym233OffAfter(unit: UnitSeed, rng: Rng): ElemProblem {
   const { cells, off } = halfCells(rng, size);
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 완성했을 때, 대칭축에서 떨어진 색칠된 칸은 모두 몇 칸입니까?`,
+    `점선을 대칭축으로 하는 선대칭인 무늬를 완성했을 때, 대칭축에서 떨어진 색칠된 칸은 모두 몇 칸입니까?`,
     n(off * 2),
     `떨어진 칸은 양쪽에 ${n(off)}칸씩이므로 ${expr(`${off}\\times2=${off * 2}`)}칸입니다.`,
     fig("symmetry", { axis: "v", n: size, cells }),
@@ -12028,7 +12030,7 @@ function sym233NowCells(unit: UnitSeed, rng: Rng): ElemProblem {
   const { cells, off, on } = halfCells(rng, size);
   return make(
     unit,
-    `점선을 대칭축으로 하는 선대칭도형을 만들려고 합니다. 지금 색칠된 칸은 몇 칸입니까?`,
+    `점선을 대칭축으로 하는 선대칭인 무늬를 만들려고 합니다. 지금 색칠된 칸은 몇 칸입니까?`,
     n(off + on),
     `지금 색칠된 칸은 ${n(off + on)}칸입니다.`,
     fig("symmetry", { axis: "v", n: size, cells }),
@@ -12187,15 +12189,15 @@ function sym234Longest(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 10 — 이웃한 세 변 중 가장 짧은 변. */
+/** 문형 10 — 점대칭인 육각형의 둘레. */
 function sym234Shortest(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b, c] = triSides(rng);
-  const short = Math.min(a, b, c);
+  const perimeter = 2 * (a + b + c);
   return make(
     unit,
-    `점대칭인 육각형의 이웃한 세 변이 ${n(a)} cm, ${n(b)} cm, ${n(c)} cm일 때, 가장 짧은 변은 몇 cm입니까?`,
-    n(short),
-    `이웃한 세 변 중 가장 짧은 변은 ${n(short)} cm입니다.`,
+    `점대칭인 육각형의 이웃한 세 변이 ${n(a)} cm, ${n(b)} cm, ${n(c)} cm일 때, 둘레는 몇 cm입니까?`,
+    n(perimeter),
+    `점대칭인 육각형은 마주 보는 변의 길이가 같으므로 둘레는 ${expr(`(${a}+${b}+${c})\\times2=${perimeter}`)} cm입니다.`,
   );
 }
 

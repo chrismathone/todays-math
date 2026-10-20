@@ -148,7 +148,16 @@ import {
   courseRosterStudentResponseSchema,
   courseStudentDetailResponseSchema,
   courseStudentResponseSchema,
+  type CourseAttemptInput,
 } from "@/contracts/mathSrsCourse.contract";
+import {
+  emptyCourseState,
+  revealCourseHint,
+  setCoursePlan,
+  startAutomaticCourse,
+  submitCourseAttempt,
+  type StoredCourse,
+} from "@/lib/math-srs/courseAutomation";
 import { parseSrsState } from "@/lib/math-srs/serverState";
 import { gradeCourseAnswer } from "@/lib/math-srs/elementary/answers";
 import { db } from "@/lib/db";
@@ -805,5 +814,88 @@ describe("teacher course roster, plans and detail", () => {
       (await TEACHER_PLAN(request(teacherPath(), "POST", plan), context()))
         .status,
     ).toBe(503);
+  });
+});
+
+describe("relearn flag for the preview card (consensus 2026-10-20)", () => {
+  const reading = (relearn: boolean) =>
+    new Request(`${base}${coursePath}`, {
+      headers: relearn ? { "x-course-relearn": "1" } : {},
+    });
+  const read = async (response: Response) => {
+    expect(response.status).toBe(200);
+    return courseStudentResponseSchema.parse(await response.json()).data;
+  };
+
+  it("tells only a screen that asks that this lesson's section was finished before", async () => {
+    const { session } = await started();
+    expect(session!.mode).toBe("learn");
+    expect((await read(await GET(reading(true)))).session).not.toHaveProperty(
+      "relearn",
+    );
+    // A poor first lesson, the next day's review, then the same section again.
+    const day = Date.parse("2026-09-22T16:00:00.000Z");
+    const at = (n: number) => new Date(day + n * 86_400_000);
+    const finish = (state: StoredCourse, when: Date, wrong: boolean) => {
+      while (!state.learner.session!.completedAt) {
+        const s = state.learner.session!;
+        const p = s.problems[s.attempts.length];
+        let input: CourseAttemptInput = {
+          sessionId: s.id,
+          problemId: p.id,
+          submittedAnswer: p.answer,
+        };
+        if (wrong) input = { ...input, submittedAnswer: "", giveUp: true };
+        else if (p.input.mode === "self-check") {
+          state = revealCourseHint(state, input);
+          input = { ...input, selfCorrect: true };
+        }
+        state = submitCourseAttempt(state, input, when);
+      }
+      while (
+        state.learner.session!.retry &&
+        !state.learner.session!.retry.completedAt
+      ) {
+        const s = state.learner.session!;
+        const p = s.problems.find(
+          (x) => x.id === s.retry!.pendingProblemIds[0],
+        )!;
+        const input: CourseAttemptInput = {
+          sessionId: s.id,
+          problemId: p.id,
+          submittedAnswer: wrong ? "" : p.answer,
+          retryIndex: s.retry!.attempts.length,
+          ...(wrong
+            ? { giveUp: true }
+            : p.input.mode === "self-check"
+              ? { selfCorrect: true }
+              : {}),
+        };
+        if (!wrong && p.input.mode === "self-check")
+          state = revealCourseHint(state, input);
+        state = submitCourseAttempt(state, input, when);
+      }
+      return state;
+    };
+    const start = (state: StoredCourse, when: Date, seed: number) =>
+      startAutomaticCourse(state, when, seed, randomUUID);
+    const planned = setCoursePlan(
+      emptyCourseState(),
+      { ...plan, dailyQuestionCount: 10 },
+      at(0),
+    );
+    const poor = finish(start(planned, at(0), 71), at(0), true);
+    const reviewed = finish(start(poor, at(1), 99), at(1), false);
+    const again = start(reviewed, at(1), 123);
+    expect(again.learner.session!.mode).toBe("learn");
+    const row = f.rows.get(f.studentId)!;
+    f.rows.set(f.studentId, {
+      ...row,
+      payload: { ...(row.payload as object), course: again },
+    });
+    expect((await read(await GET(reading(true)))).session!.relearn).toBe(true);
+    expect((await read(await GET(reading(false)))).session).not.toHaveProperty(
+      "relearn",
+    );
   });
 });

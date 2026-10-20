@@ -3,6 +3,7 @@ import { z } from "zod";
 import { storedExplorerSchema } from "@/contracts/mathExplorers.contract";
 import { storedExpeditionSchema } from "@/contracts/mathExpedition.contract";
 import { storedFadingSchema } from "@/contracts/fading.contract";
+import { storedGuideSchema } from "@/contracts/mathSrsGuide.contract";
 import {
   mathSrsAttemptInputSchema,
   mathSrsAttemptSchema,
@@ -67,6 +68,9 @@ const payloadSchema = z
     // «오늘의 기억» 새 앱의 칸(2026-10-06). 🔴 이 칸을 읽을 줄 아는 코드가 쓰는 코드보다 먼저 배포돼야 한다 —
     // 이 꼴은 모르는 키를 거절하므로, 순서가 거꾸로면 새 칸이 생긴 학생의 기록 전체가 옛 코드에서 안 읽힌다.
     fading: storedFadingSchema.optional(),
+    // 학생이 고른 길잡이(2026-10-20 계획서 §2 결정 10). 없으면 «아직 안 고름». 🔴 읽는 쪽 먼저 —
+    // 이 칸을 읽는 배포가 운영 Ready 된 뒤에야 쓰는 코드를 낸다(위 fading 과 같은 까닭).
+    guide: storedGuideSchema.optional(),
   })
   .superRefine((value, ctx) => {
     const invalid = (message: string) =>

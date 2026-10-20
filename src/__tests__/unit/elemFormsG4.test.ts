@@ -486,7 +486,7 @@ describe("초4 1-1-7 수의 크기 비교", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
       const m = p.content.match(
-        /\$(\d+)\$(?:과|와) \$(\d+)\$는 모두 다섯 자리 수입니다\. 더 (큰|작은) 수/,
+        /\$(\d+)\$(?:과|와) \$(\d+)\$(?:은|는) 모두 다섯 자리 수입니다\. 더 (큰|작은) 수/,
       );
       expect(m, p.content).toBeTruthy();
       const a = Number(m![1]);

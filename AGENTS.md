@@ -123,6 +123,18 @@ against the shared database or roll production back below it. The writer
 `getCourseProblemInput` return `text` for these problems. `text` problems get no
 answer choices and never enter the bank or prerequisite supply (`number` only).
 
+**Student guide — reader first (2026-10-20, owner «길잡이 캐릭터는 스스로 처음에
+선택하도록»):** the student record may carry `guide` — `{ id, chosenAt }`, one
+of five ids in `src/contracts/mathSrsGuide.contract.ts`; no `guide` means the
+student has not chosen yet. The reader commit "feat(srs): read a student's guide
+choice before anything writes it" is the floor: once a student has chosen, never
+run older code against the shared database or roll production back below it.
+The writer (`GET` · `POST /api/learn/math-srs/guide`, body `{ guideId }` —
+choosing the same guide keeps its `chosenAt`) ships only after the reader is
+Ready in production. Choosing never blocks study: a failed save keeps the
+choice on screen for that visit (consensus
+`docs/planning/tracks/reports/srs-e5-decisions-consensus-20261020/`).
+
 **Print smart spacing — reader first (2026-10-20, owner «스마트 여백 · 새 시험지만
 기본»):** `PrintOptions.smartSpacing` is an optional boolean, never a new value of
 `layoutMode` or `spacing`. `parsePrintOptions` reads a missing field as `false`
