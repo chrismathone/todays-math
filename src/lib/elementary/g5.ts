@@ -4275,16 +4275,16 @@ function gcd124BiggerQuot(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 06 — 최대공약수로 나누면 나머지는 0. */
+/** 문형 06 — 최대공약수를 구한 뒤 한 수의 몫을 구한다. */
 function gcd124Remainder(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = pick(rng, GCD_PAIRS);
   const g = gcd(a, b);
   const x = intBetween(rng, 0, 1) === 0 ? a : b;
   return make(
     unit,
-    `두 수 ${n(a)}, ${n(b)}의 최대공약수로 ${nj(x, "을", "를")} 나누면 나머지는 얼마입니까?`,
-    n(0),
-    `최대공약수는 ${n(g)}이고 ${expr(`${x}\\div${g}=${x / g}`)}이므로 나머지는 ${n(0)}입니다.`,
+    `두 수 ${n(a)}, ${n(b)}의 최대공약수로 ${nj(x, "을", "를")} 나눈 몫은 얼마입니까?`,
+    n(x / g),
+    `최대공약수는 ${n(g)}이고 ${expr(`${x}\\div${g}=${x / g}`)}이므로 몫은 ${n(x / g)}입니다.`,
   );
 }
 
@@ -4344,15 +4344,15 @@ function gcd124QuotDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 10 — 최대공약수와 한 몫의 곱은 원래 수. */
+/** 문형 10 — 최대공약수로 나눈 두 몫의 곱. */
 function gcd124Recover(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = pick(rng, GCD_PAIRS);
   const g = gcd(a, b);
   return make(
     unit,
-    `두 수 ${n(a)}, ${n(b)}의 최대공약수와, ${n(a)}을 최대공약수로 나눈 몫을 곱하면 얼마입니까?`,
-    n(a),
-    `최대공약수는 ${n(g)}, 몫은 ${n(a / g)}이므로 ${expr(`${g}\\times${a / g}=${a}`)}입니다.`,
+    `두 수 ${n(a)}, ${n(b)}를 각각 최대공약수로 나눈 두 몫을 곱하면 얼마입니까?`,
+    n((a / g) * (b / g)),
+    `최대공약수는 ${n(g)}, 두 몫은 ${n(a / g)}, ${n(b / g)}이므로 곱은 ${n((a / g) * (b / g))}입니다.`,
   );
 }
 
@@ -6260,7 +6260,7 @@ function cmp144UnitBig(unit: UnitSeed, rng: Rng): ElemProblem {
   const smallDen = Math.min(dens[0]!, dens[1]!);
   return make(
     unit,
-    `분자가 ${n(1)}인 ${frj(1, dens[0]!, "과", "와")} ${fr(1, dens[1]!)} 중에서 분모가 더 작은 분수의 분모를 구하시오.`,
+    `분자가 ${n(1)}인 ${frj(1, dens[0]!, "과", "와")} ${fr(1, dens[1]!)} 중에서 더 큰 분수의 분모를 구하시오.`,
     n(smallDen),
     `분자가 같으면 분모가 작은 쪽이 더 큽니다. 더 작은 분모는 ${n(smallDen)}입니다.`,
   );
@@ -8827,15 +8827,15 @@ function fm223AfterDen(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 08 — 앞쪽 분수를 거슬러 구한다. 심화는 뒤쪽이다. */
+/** 문형 08 — 두 진분수의 곱. 분수의 나눗셈을 요구하지 않는다. */
 function fm223FindFirst(unit: UnitSeed, rng: Rng): ElemProblem {
   const { a, d, b, e } = twoReducible(rng);
   const [num, den] = simplify(a * b, d * e);
   return make(
     unit,
-    `□ 안에 알맞은 진분수를 구하시오.  ${expr(`\\square\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}`,
-    fr(a, d),
-    `□는 결과를 ${fro(b, e)} 나눈 수입니다. ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}이므로 □는 ${fr(a, d)}입니다.`,
+    `계산하시오.  ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}`)}`,
+    expr(fracLatex(num, den)),
+    `분자끼리, 분모끼리 곱한 뒤 약분합니다. ${expr(`\\frac{${a}}{${d}}\\times\\frac{${b}}{${e}}=${fracLatex(num, den)}`)}입니다.`,
   );
 }
 
@@ -12187,15 +12187,15 @@ function sym234Longest(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-/** 문형 10 — 이웃한 세 변 중 가장 짧은 변. */
+/** 문형 10 — 점대칭인 육각형의 둘레. */
 function sym234Shortest(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b, c] = triSides(rng);
-  const short = Math.min(a, b, c);
+  const perimeter = 2 * (a + b + c);
   return make(
     unit,
-    `점대칭인 육각형의 이웃한 세 변이 ${n(a)} cm, ${n(b)} cm, ${n(c)} cm일 때, 가장 짧은 변은 몇 cm입니까?`,
-    n(short),
-    `이웃한 세 변 중 가장 짧은 변은 ${n(short)} cm입니다.`,
+    `점대칭인 육각형의 이웃한 세 변이 ${n(a)} cm, ${n(b)} cm, ${n(c)} cm일 때, 둘레는 몇 cm입니까?`,
+    n(perimeter),
+    `점대칭인 육각형은 마주 보는 변의 길이가 같으므로 둘레는 ${expr(`(${a}+${b}+${c})\\times2=${perimeter}`)} cm입니다.`,
   );
 }
 
