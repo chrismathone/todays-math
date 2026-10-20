@@ -1,0 +1,268 @@
+{
+  "status": "pending",
+  "studentDigest": "cd419ce5848d1631a758075f0913081bce78acc3bbd5d56ee958ef05a3f1d094",
+  "candidateDigest": "cf659f73443cbf156f4ae73f714a2af040c084c3e2a67be0368a66ce6bd8d338",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-helper-independent-next2-full-review-20261020",
+  "solveDigest": "9e57ffea836a9445ff00d11c75cbf389a73c6be62efbe4badf9dad37d9798e5b",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "checks": {
+      "answerCorrect": {
+        "basis": "봉인 raw에서 실제 분류를 유리수/유리수/무리수로 정하여 잘못 분류한 집합ㄱ,ㄴ과③을 얻었다.현재 저자 답③ 및 보기의 대상과 일치한다.",
+        "verdict": "passed"
+      },
+      "solutionCorrect": {
+        "basis": "실제 해설의 세 행을 모두 확인했다. √0.16=0.4=2/5,0.272727…=27/99=3/11은 정확하다. 제곱수가 아닌 자연수5의 근호는 중3에서 배우는 무리수 성질로 분류한다. 마지막에 잘못된 항목만 ㄱ,ㄴ으로 모았으며 올바른 ㄷ을 포함하지 않았다. 일반 무한급수나 무리성의 고급 모순 증명은 사용하지 않는다.",
+        "verdict": "passed"
+      },
+      "existenceUniqueness": {
+        "basis": "세 수는 모두 잘 정의된 양의 실수다. 근호의 피제곱수0.16,5는 양수이고 분수의 분모5,99,11은0이 아니다. 본문의 첫/끝 점 설명이 순환마디27을 유일하게 지정한다. 각 분류의 참/거짓이 정해져 잘못된 항목집합은ㄱ,ㄴ 하나이며 보기에도 한 번만 나타난다.",
+        "verdict": "passed"
+      },
+      "choicesCorrect": {
+        "basis": "5개 보기의 항목집합을 정확 비교했다.①ㄱ은ㄴ 누락,②ㄴ은ㄱ 누락,③ㄱ,ㄴ만 모두 포함한다.④ㄱ,ㄷ과⑤ㄴ,ㄷ은 올바르게 분류된ㄷ을 잘못 포함하고 각각 다른 오분류를 빠뜨린다. 단순히 무리수인 항목을 고르는 문제로 읽지 않았다.",
+        "verdict": "passed"
+      },
+      "figureConsistent": {
+        "basis": "외부 그림 없이 실제3행 분류표를 두 PNG에서 확인했다. ㄱ의 소수 근호,ㄴ의2/7 위 두 점,ㄷ의√5와 세 무리수 라벨이 모두 텍스트와 대응한다. 본문에서 순환마디 양끝 점을 명시해 반복이7 하나인지27인지 생길 수 있는 모호성을 해소한다.",
+        "verdict": "passed"
+      },
+      "sameCoreConceptAndProcedure": {
+        "basis": "원문 q02의 핵심은 유리수/무리수의 정의,무한소수/순환소수 구별,근호 표기가 무조건 무리수를 뜻하지 않는다는 판단이다. 현재도 같은 정의와 구체적인 근호/순환소수 분류 절차를 적용한다. 원문의 수직선 등 모든 부수 진술을 재현했다고 주장하지 않으며 원문 정답은 사용하지 않았다.",
+        "verdict": "passed"
+      },
+      "distinctPresentation": {
+        "basis": "일반 진술5개 중 하나의 옳은 설명을 고르는 구조가 구체적인3개 수의 분류 기록에서 두 오류를 모두 찾는 구조로 바뀌었다. 실제 수를 평가하고 표의 라벨과 대조한 후 조합 보기를 고르는 단계가 생겨 단순 수치 교체가 아니다. 새 데이터/오류 판별 구조는 확인했지만 유사도 승인과 개념은행 운영 변경은 별개다.",
+        "verdict": "passed"
+      },
+      "naturalKorean": {
+        "basis": "잘못 분류한 항목을 모두라는 지시와 점 표기의 설명이 자연스럽고 분류표의 항목/수/분류 역할이 명확하다. 실제 PNG의 반복 점과 ㄱ/ㄴ/ㄷ이 읽힌다. 해설은 수의 참분류와 표 라벨이 틀린 이유를 구별해 설명한다.",
+        "verdict": "passed"
+      },
+      "curriculumAppropriate": {
+        "basis": "현재 전체 경로는2015 [9수01-07] 제곱근,[9수01-08] 무리수와 이전 [9수01-03,05,06] 유리수·사칙계산·순환소수 관계로 완결된다. 특히 M2 반복 표기와 분수표현 선행을 명시해야 한다. 무리성의 상위 정리나 일반 무한급수 공식을 요구하지 않는다.2025출처/2026중3연습의2015에 한정한다.",
+        "verdict": "passed"
+      },
+      "allStudentSurfacesInScope": {
+        "basis": "실제 지문·다섯 조합 보기·3행 표·소수의 점/근호 표기·답·완전한 저자 학생 해설·선수학습을 서로 다른 아래 근거로 검토했다. 이전 source9의 제안 상태를 그대로 승인으로 복사하지 않고 현재 세 수와 해설을 새로 확인했다.",
+        "verdict": "passed"
+      },
+      "unitFamilyFit": {
+        "basis": "실제 captured 무리수와 실수 Unit28032bdd-3db3-4788-9e7a-2f1909233fdb row와 assignment가 일치한다. 이 구체적 분류 오류/다중 항목 선택 목표 전체와 정확히 호환되는 live family 정의는 입증되지 않았다. familyKey=null과 unitFamilyFit=false를 유지한다.",
+        "verdict": "pending"
+      },
+      "scoreAppropriate": {
+        "basis": "원본 인쇄3점과 현재3점은 일치한다. 단순 근호 하나,이미 배운2자리 순환소수 하나,기본 무리수 하나의 분류와 두 오류 집합 선택이므로3점은 편집상 수용 가능한 제안이다. 완료본의 하는 원래 학교의 실측 난도가 아니며 동일난도/학습 효과나 난도 보정은 미승인이다.",
+        "verdict": "passed"
+      }
+    },
+    "ownCalculation": {
+      "sqrt016": {
+        "numerator": "2",
+        "denominator": "5"
+      },
+      "rootSquared": {
+        "numerator": "4",
+        "denominator": "25"
+      },
+      "repeatingBlock": "27",
+      "repeatingFraction": {
+        "numerator": "3",
+        "denominator": "11"
+      },
+      "99r": {
+        "numerator": "27",
+        "denominator": "1"
+      },
+      "actualClassifications": {
+        "ㄱ": "rational",
+        "ㄴ": "rational",
+        "ㄷ": "irrational"
+      },
+      "wronglyClassified": [
+        "ㄱ",
+        "ㄴ"
+      ],
+      "allOptions": [
+        {
+          "items": [
+            "ㄱ"
+          ],
+          "exactAllWrongItems": false
+        },
+        {
+          "items": [
+            "ㄴ"
+          ],
+          "exactAllWrongItems": false
+        },
+        {
+          "items": [
+            "ㄱ",
+            "ㄴ"
+          ],
+          "exactAllWrongItems": true
+        },
+        {
+          "items": [
+            "ㄱ",
+            "ㄷ"
+          ],
+          "exactAllWrongItems": false
+        },
+        {
+          "items": [
+            "ㄴ",
+            "ㄷ"
+          ],
+          "exactAllWrongItems": false
+        }
+      ],
+      "sqrt5Basis": "Nonsquare natural-number square-root irrationality is the2015 M3 property; the4<5<9 check identifies nonsquareness, not a numerical or finite-search proof of irrationality.",
+      "nonzeroDenominators": [
+        5,
+        25,
+        99,
+        11
+      ],
+      "M2Prerequisites": "Repeating decimals and rationality, first/last-dot notation, simple repeating-to-fraction relation. No infinite-series formula is required."
+    },
+    "binding": {
+      "rawSha256": "9d6d04296bb729a815ebf3992fa481028114cc5ebd1763528703754f96069c0c",
+      "candidateFileSha256": "3422f04778f6ae24740d7673bd7a27b4b1c66cd736a1368823fa50e58548a122",
+      "solutionPngSha256": "b41b8c9ff9b5b6c114011bd7b84b18caeb98cc1081bbda71c15c294bb0314cf8",
+      "sourceRecordSha256": "ed4f493a4ae4d58ec079763b82e8290591632e5f890391f79e7b9b6951898c67",
+      "replayReceiptSha256": "926ede2f563d659a493e8994b669b3cb84210e508d579f2f17a1991968e19ab5"
+    },
+    "exposure": {
+      "helperPreExposureRawCommit": "efc733df1885bcede47fe2f018eec500fe858831",
+      "parentPreExposureRawCommit": "f64005819e89b942024e5276429978cad6ee68a5",
+      "currentAuthorSolutionReadAfterSeal": true,
+      "originalSourceExposureStillDeclared": {
+        "priorOriginalSourceComponentsReviewed": true,
+        "priorRelatedExposure": "Completed source9 first-question components and their full original first-page images with incidental handwritten marks; earlier root variants, source-method proposals and U54/U55/U56 code audits. This is not an unseen-source-corpus claim.",
+        "currentTransformedAuthorAnswerSeenBeforeRawSeal": false,
+        "currentTransformedAuthorSolutionSeenBeforeRawSeal": false,
+        "currentAuthorMetadataOrPrivatePackageRead": false,
+        "parentWorktreeOrAuthorHistoryRead": false,
+        "answerSearchUsed": false,
+        "method": "Solve current printed student conditions afresh; original answers, handwritten markings, prior variant outputs and image pixels are not answer oracles."
+      },
+      "newBlindClaim": false,
+      "rawModified": false,
+      "originalKeyOrHandwritingUsedAsOracle": false
+    },
+    "sourceComparison": {
+      "sourceComponentReportSha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "sourceGradeMethodProposalSha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+      "priorProposalsAreNotThisApproval": true,
+      "actualOriginalFirstPageViewedPreviously": true,
+      "sourceComponentCorrespondenceOnly": true,
+      "wholeHwpPdfSourceIdentityApproved": false
+    },
+    "curriculumPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "2015HeadingLines": "84-85",
+      "middle13BandLine": "461",
+      "standardsLine": "466",
+      "repeatingFractionTeachingLimitLine": "477",
+      "actualRequiredPrimaryCodes": [
+        "9수01-07",
+        "9수01-08"
+      ],
+      "priorRequiredCodes": [
+        "9수01-03",
+        "9수01-05",
+        "9수01-06"
+      ],
+      "providedMOE2015OriginalLocator": "physical33/printed29 for9수01-07..10;physical32/printed28 for9수01-03..06;amended2020-236 Section0 records3768,3776,3780,3788 as applicable",
+      "primaryReceiptSha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7",
+      "actualCapturedPrimaryHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7",
+      "providedMOEEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "capturedLiveSnapshotSha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+      "capturedUnit": {
+        "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "무리수와 실수",
+        "semester": 1,
+        "orderIndex": 470,
+        "problemCodePrefix": "J30102"
+      },
+      "limit": "Codes are middle1-3 band, combined here with actual current student method and captured M3 semester1 Unit after required learning. Not school pacing/current DB promise or2022 mapping."
+    },
+    "metadata": {
+      "sourceYear": 2025,
+      "sourceSemester": 1,
+      "practiceYear": 2026,
+      "curriculum": "2015",
+      "score": 3,
+      "currentCapturedUnitMatches": true,
+      "exactLiveFamily": null,
+      "sourceDifficulty": "Correctly held as completed-preparation label, not observed original-school measured difficulty",
+      "difficultyReview": "Bounded editorial score/기본~응용 plausibility only; measured calibration/same difficulty pending",
+      "authorOnlyFlagsAndInputFieldsPreserved": true
+    },
+    "separateHolds": {
+      "exactLiveFamily": true,
+      "rights": true,
+      "sourceIdentity": true,
+      "similarity": true,
+      "nativeProvenance": true,
+      "loadability": true,
+      "2022M3from2027": true,
+      "difficultyCalibration": true
+    },
+    "collector": {
+      "executed": false,
+      "mocked": false,
+      "reason": "Only current student/author review is in scope; no production closure or inverseRadicalRatio engine code read/import/run. Parent performs collector."
+    },
+    "dbApiWrites": 0
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "현재 지문은 주어진 세 수가 표의 무리수 라벨과 맞는지 판단하는 문제다.2015 [9수01-07,08]과 이전 유리수/순환소수 개념 [9수01-03,06]으로 읽는다. 무한소수 일반에 대한 상위 수준의 증명을 요구하지 않는다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5개 보기는 ㄱ/ㄴ/ㄷ의 단순 항목 조합이다. 현재 세 수의 정의로 정해진 오분류 집합ㄱ,ㄴ과 대조하면 유일하게③이다. 고교 집합/논리 용어나 별도 경우의 수 공식은 필요하지 않다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "실제 표의 수와 라벨을 각 행에서 대응시킨다. ㄴ의2와7 위 점은 본문에서 정의한 반복 구간27을 표시한다. 임의의 표본 통계나 실험/상관관계 개념이 아니라 수의 분류 표현만 쓴다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "0.점2점7은0.272727…이며 유한소수0.27이나0.2777…로 바꾸지 않는다. √0.16의 양의 값0.4와√5의 무리성을 구분한다. M2 점 표기와 M3 근호 표기이며 분수의 분모도 명확하다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "정답③은 잘못된 분류 두 항목ㄱ,ㄴ을 모두 가리킨다. 무리수 자체인ㄷ을 고르는 것과 다르다. 보기가 원래 숫자나 정정 문장 대신 항목집합을 요구하는 현재 답 역할에 맞는다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 해설은0.16의 정확한 제곱근,순환소수의 유리성 및27/99=3/11,제곱수가 아닌 자연수의 근호라는 기본 성질을 차례로 적용한다. [9수01-06,07,08] 경로이며 반복소수 분수표현은 유리성 이해 정도의 짧은 예다. 무한급수 수렴/고교 무리성 증명을 요구하지 않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "M2 유리수와 유한/순환소수,순환마디 첫/끝 점 표기와 간단한 분수표현 [9수01-06]을 반드시 먼저 배워야 한다. 그 뒤 M3 제곱근 [9수01-07],무리수 [9수01-08]를 학습한 학생에 한정한다. 실제 metadata가 유리수·순환소수·분수표현·무리수·제곱근을 선행 조건으로 명시한다. primary standardCodes 배열에06이 없어도 이 독립 보고서에서는 필수 M2 선행 코드로 명시하고,그 exact prerequisite Unit UUID/배정은 확인하지 않았다."
+    }
+  }
+}
