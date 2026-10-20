@@ -1,0 +1,23 @@
+{
+  "utc": "2026-10-20T08:00:24.966833+00:00",
+  "snapshot": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-623-progress-prefix-20261020-r1.ndjson.snapshot",
+    "sha256": "efd2abe66479f3f726f78d07414526d1bce7bc6cf03a39749c7f6f4e04331ca2"
+  },
+  "plan": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-unpaired-pdf-preflight-20261020-r1/explicit-plan.json",
+    "sha256": "5791048266c82918455c0d50c8c459abd3b60aabd68657a406a883a52bda21ce"
+  },
+  "plannedJobs": 623,
+  "closedBatchesInPrefix": 19,
+  "jobsRecorded": 57,
+  "pdfReferencesRecorded": 134,
+  "parserReferencesUnverified": 1,
+  "scanOrParserUnavailableReferences": 131,
+  "unreadableReferences": 2,
+  "activeQueueNotCompleted": true,
+  "trailingIncompleteBytesExcluded": 0,
+  "actualQuestionObservationCredit": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}

@@ -1,0 +1,3 @@
+﻿from pathlib import Path
+import json
+P=Path('.qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r2');p=P/'own-more-fence-controls.py';t=p.read_text(encoding='utf-8-sig');(P/'own-harness-diagnostic.json').write_text(json.dumps({'fault':'Own added fence harness omitted encoding on two JSON read_text calls; Windows cp949 failed reading UTF8 Korean after controls ran but before results serialization.','productionFault':False,'correction':'Explicit utf-8-sig read; retained diagnostic; no source or original input edits.'},indent=2)+'\n',encoding='utf-8');p.write_text(t.replace('.read_text()',".read_text(encoding='utf-8-sig')"),encoding='utf-8')

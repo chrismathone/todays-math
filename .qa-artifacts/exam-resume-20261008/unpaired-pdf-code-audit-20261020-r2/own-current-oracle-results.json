@@ -1,0 +1,89 @@
+{
+  "total": 12164,
+  "passed": 12164,
+  "counts": {
+    "historical-six-scope": 10290,
+    "historical-file-metadata": 1715,
+    "malformed-job": 64,
+    "missing-job": 12,
+    "synthetic-six-scopes": 30,
+    "invalid-scope": 5,
+    "seen": 1,
+    "file-negative": 36,
+    "dedup": 2,
+    "no-mutation": 1,
+    "unsafe-output-id": 4,
+    "explicit-answer-marker": 4
+  },
+  "failed": [],
+  "routing": [
+    {
+      "level": "middle",
+      "grade": 1,
+      "eligible": 98,
+      "withPdfRefs": 87
+    },
+    {
+      "level": "middle",
+      "grade": 2,
+      "eligible": 136,
+      "withPdfRefs": 129
+    },
+    {
+      "level": "middle",
+      "grade": 3,
+      "eligible": 110,
+      "withPdfRefs": 96
+    },
+    {
+      "level": "high",
+      "grade": 1,
+      "eligible": 117,
+      "withPdfRefs": 107
+    },
+    {
+      "level": "high",
+      "grade": 2,
+      "eligible": 235,
+      "withPdfRefs": 171
+    },
+    {
+      "level": "high",
+      "grade": 3,
+      "eligible": 37,
+      "withPdfRefs": 35
+    }
+  ],
+  "unsafeOutputPathCalculations": [
+    {
+      "jobId": "../own-output-escape",
+      "acceptedByActualEligibility": false,
+      "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-output-escape\\1\\original-first-page.local.png",
+      "insideQuarantine": false,
+      "actualFilesystemWrite": false
+    },
+    {
+      "jobId": "..\\own-output-escape",
+      "acceptedByActualEligibility": false,
+      "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-output-escape\\1\\original-first-page.local.png",
+      "insideQuarantine": false,
+      "actualFilesystemWrite": false
+    },
+    {
+      "jobId": "C:/own-output-escape",
+      "acceptedByActualEligibility": false,
+      "computedPngPath": "C:\\own-output-escape\\1\\original-first-page.local.png",
+      "insideQuarantine": false,
+      "actualFilesystemWrite": false
+    },
+    {
+      "jobId": "own:stream",
+      "acceptedByActualEligibility": false,
+      "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-quarantine\\own:stream\\1\\original-first-page.local.png",
+      "insideQuarantine": true,
+      "actualFilesystemWrite": false
+    }
+  ],
+  "parentTestsRun": 0,
+  "originalSourceReads": 0
+}

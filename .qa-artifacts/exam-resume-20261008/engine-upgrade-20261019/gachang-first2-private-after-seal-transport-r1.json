@@ -1,0 +1,72 @@
+{
+  "utc": "2026-10-20T07:59:22.255956+00:00",
+  "workerRawSeal": "e06f9e1bd6be8625655ac72b2103137ebd77ea5d",
+  "parentRawSeal": "3193b0a43828b8d32b11cc1c87e974f35640b002",
+  "gitProofWrapperCompletedBeforeExposure": true,
+  "files": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/package/manifest.json",
+      "sha256": "e9ad84e799680973efd65bf634ca416cfcb803f9cf4f4b090a841412c7e08b3a"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/package/private/q01/candidate.json",
+      "sha256": "5e4b0759a2e7885917b4660571e6e54da941aa038a989ebe44e9adaae8b43ec0"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/package/private/q01/figure-1.spec.json",
+      "sha256": "c4979e5e30f9db300a02a4512173a83cad28b0ece7372f79a77b2df48836876a"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/package/private/q01/figure-1.svg",
+      "sha256": "b6880b41da0f6e6015b904acd58748e3347f3d56cb1ae66f316c08bbb3f9cbf4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/package/private/q02/candidate.json",
+      "sha256": "0fbf8750ab46ab2287ddd0d78820d25bae19f85fb590f8485314f17584b6a3a3"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/verification/sealed-raw-commit.json",
+      "sha256": "adf9abd83339277d462666e7b3cd65be6bccf10a47cb1ce8cb03b87409aa6650"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/verification/verification-inputs.json",
+      "sha256": "cdc7c252094783ed572b2a151bfa220420353b0214cbc2d417c240768392eca4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/verification/verification-manifest.json",
+      "sha256": "fce60cc4d6969d6869b12234802b00b7dcd454c35311ffae72d1ec210cd608cd"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/verification/VERIFY-BRIEF.md",
+      "sha256": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/solution-preview/q01.solution.png",
+      "sha256": "acd122d889f66f9bbd6fb17daa173c147dfab8f884f097a19030983703a72db9"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/solution-preview/q02.solution.png",
+      "sha256": "abfa7f82d759c8e707fd9c90ed9b3d1fdf9ea394ec9c39dc0ab0be2893fc1be0"
+    }
+  ],
+  "originalContextOnlyAfterRawSeal": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-source-context-local-20261020-r1/q01.local.json",
+      "sha256": "50170f767a0916773290a4461a92fb89460fae6d1210c9d444d624d285660043",
+      "localOriginalOnlyNeverGitAdd": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-source-context-local-20261020-r1/q02.local.json",
+      "sha256": "626157f68b0a62edafe15d8c3b003d825152c1febb346f6b8e4b0b0ecd5689fe",
+      "localOriginalOnlyNeverGitAdd": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-source-context-local-20261020-r1/original-first-page.local.png",
+      "sha256": "36d0cb6677efe844ee4840678cb3f741a0d37144dbcd856d271041f77d925555",
+      "localOriginalOnlyNeverGitAdd": true
+    }
+  ],
+  "noSourceAnswerOrMarksUsedForNewApproval": true,
+  "loadable": 0,
+  "dbWrites": 0
+}

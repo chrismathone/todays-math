@@ -1,0 +1,79 @@
+{
+  "utc": "2026-10-20T08:01:34.711Z",
+  "canonicalSelected": 166,
+  "canonicalMathGrade": 165,
+  "actualAuthoredIncludingUnselectedDrafts": 168,
+  "additionalUnselectedAuthored": 2,
+  "canonicalFigures": 115,
+  "actualFiguresIncludingDrafts": 116,
+  "canonicalTables": 23,
+  "actualTablesIncludingDrafts": 24,
+  "builtinImagegenRasters": 2,
+  "drafts": [
+    {
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r1/gachang/q01.json",
+        "sha256": "bacd9d7e120144f8da3bd58cbcc7b09cbc173ba82dcfab32082debe23ba37184"
+      },
+      "candidateDigest": "ca60467c60c8faa250d1c7579516d938df28760a44aae6e7118c2dc35dbbaaaf",
+      "studentDigest": "7339433c7a843c18986f1b4544cba554d74caa34c92696558666a5f3fbd3cd40",
+      "assetDigest": "515c6361b828ba6998912ea97d0733387197390ba8ee06ce7f352de1243dee6d",
+      "unitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "fullIndependentReviewPending": true
+    },
+    {
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r1/gachang/q02.json",
+        "sha256": "0fbf8750ab46ab2287ddd0d78820d25bae19f85fb590f8485314f17584b6a3a3"
+      },
+      "candidateDigest": "35a4f4a584fbd9f2474f82a1d9d7c6361917731748432a40c81551a8e6b4af56",
+      "studentDigest": "28a8648ddba4665e305efd40df057c26e9c164051f776b85fcc263f5280ab257",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "fullIndependentReviewPending": true
+    }
+  ],
+  "newRawPreExposureSeals": {
+    "worker": "e06f9e1bd6be8625655ac72b2103137ebd77ea5d",
+    "parent": "3193b0a43828b8d32b11cc1c87e974f35640b002",
+    "actualGitProofWrapper": {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/verification/sealed-raw-commit.json",
+      "sha256": "adf9abd83339277d462666e7b3cd65be6bccf10a47cb1ce8cb03b87409aa6650"
+    },
+    "privateExposureOnlyAfterWrapper": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/gachang-first2-private-after-seal-transport-r1.json",
+      "sha256": "1f3f1fbe966af9ec46557bd9ccd1cac1aa214748d27438866ddf41bf7bb73ceb"
+    }
+  },
+  "newTwoFullMathGradeNotCountedYet": true,
+  "unpaired623Plan": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-unpaired-pdf-preflight-20261020-r1/explicit-plan.json",
+    "sha256": "5791048266c82918455c0d50c8c459abd3b60aabd68657a406a883a52bda21ce"
+  },
+  "closedPrefix57Jobs": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-623-progress-prefix-20261020-r1.json",
+    "sha256": "b70624eb4905843e82add5b73234097d55bb8cc1de964207e8d9bb24d5af8839"
+  },
+  "activeQueueCountsAreNotComplete": true,
+  "U60IndependentR2": {
+    "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r2/own-audit-report.json",
+    "sha256": "9d25b0a3caf2417a7a96fb65444e8352cc55de5be0152e1440b676a6eafc1d5d"
+  },
+  "U60ActualParentReplay": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-pdf-parent-validation-r2.json",
+    "sha256": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+  },
+  "unpairedHwp40Unverified": {
+    "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+    "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+  },
+  "sourceObservationCreditFromNewRoutes": 0,
+  "canonicalSourceObservationsUnchanged": 12080,
+  "latestOriginalUseClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-20261020-r5.json",
+    "sha256": "d059bb5dc181f10ff2cc8984092d2d8228dd813e84e0dcff4c88985317b15562"
+  },
+  "loadable": 0,
+  "dbWrites": 0,
+  "wholeGoalComplete": false
+}
