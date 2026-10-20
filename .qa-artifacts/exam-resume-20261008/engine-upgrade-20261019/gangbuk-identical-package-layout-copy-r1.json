@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-20T09:02:34.750481+00:00",
+  "purpose": "Exact-byte layout copy for strict summary package subdirectory; root package and raw/report unchanged",
+  "files": [
+    {
+      "fromPath": ".qa-artifacts\\exam-resume-20261008\\gangbuk-first2-review-20261020-r2\\manifest.json",
+      "toPath": ".qa-artifacts\\exam-resume-20261008\\gangbuk-first2-review-20261020-r2\\package\\manifest.json",
+      "sha256": "3d1d848e90690138e20866206059c4a68a2894d51c32c98fb51d3169a2da44ce"
+    },
+    {
+      "fromPath": ".qa-artifacts\\exam-resume-20261008\\gangbuk-first2-review-20261020-r2\\private\\q01\\candidate.json",
+      "toPath": ".qa-artifacts\\exam-resume-20261008\\gangbuk-first2-review-20261020-r2\\package\\private\\q01\\candidate.json",
+      "sha256": "066d2077813ad0f4778798e51514dea80de81fd3e78e27239ea5d26ba9d50314"
+    },
+    {
+      "fromPath": ".qa-artifacts\\exam-resume-20261008\\gangbuk-first2-review-20261020-r2\\private\\q02\\candidate.json",
+      "toPath": ".qa-artifacts\\exam-resume-20261008\\gangbuk-first2-review-20261020-r2\\package\\private\\q02\\candidate.json",
+      "sha256": "79c8c3e0747bd53f9d63c341698dd6dc2773e5e4b31d962f02e4ec555f96f803"
+    }
+  ],
+  "newVariant": false,
+  "newBlindSolve": false,
+  "dbWrites": 0
+}

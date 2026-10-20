@@ -1,0 +1,115 @@
+{
+  "status": "pending",
+  "studentDigest": "e1507b45c216a653535b98850aabb5982e6221d4882aaf510c643fe299cc625e",
+  "candidateDigest": "e61d881618201c391bd75affc4323807e0088e68562be19c59d91483ac8a09ff",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gangbuk-first2-full-review-20261020-r1",
+  "solveDigest": "59f80f0a2f97c98e09d939c37ae46e058a8a98589fa9d9f439269a806b01a579",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "reviewKind": "post-Git-seal actual whole-method review, not new blind solve",
+    "rawCommit": "04b4705df8de2b6003300866e4b722d8f7ae657c",
+    "helperRawCommit": "aa46a2fd80ed27026b404ec46021a94aa116e01d",
+    "exposure": "원문9/Gachang2/공개코드/current166metadata/Gangbukmetadata 이력이 있고 pristine corpus blind가 아니다. 현재 Gangbuk저자/원문/해설은 raw봉인 뒤 처음 노출. 실제 원문첫페이지의 손글씨와 다른 문항은 부수적으로 보였지만 답/키 일치를 승인근거로 사용하지 않음.",
+    "actualImagesViewed": [
+      "solution-preview/q01.solution.png",
+      "solution-preview/q02.solution.png",
+      "local-only original-first-page.local.png"
+    ],
+    "calculationReceipt": {
+      "path": "../../own-review-evidence-r1/own-calculations.json",
+      "sha256": "59e24e960f8372819d724b99008719c89e4c23fa03551c91d6a274cb7a9522a2",
+      "passed": 39,
+      "failed": 0,
+      "method": "Own Fraction polynomial convolution and substitution, allchoices/3records; no author-answer or pixel oracle."
+    },
+    "primaryReceipt": {
+      "path": "../../own-review-evidence-r1/own-primary-receipt.json",
+      "sha256": "b35a2bd0b7e084f1bf9979cf0fd472f22a9b799e6c50e513ca5b6454ab49abeb",
+      "documentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "basis": "기존 실제공식텍스트/record/page 검증과 현재허용curriculum-evidence/Unit캡처를 재대조. 학년군코드/원문학교/목록일치만으로 승인하지 않는다.",
+      "placement": "source2025/practice2026 M3=2015 after learned prerequisites;2027M3/2022pending"
+    },
+    "separateHolds": {
+      "exactLiveFamily": null,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "wholePaperHwpPdfIdentity": false,
+      "2027M3And2022": "pending"
+    },
+    "sourceComponentLimits": "실제원문첫페이지의2025/3학년/1학기기말 표제와 두 구성요소·3/4점·대수식을 현재로컬question-only와 대조한 관찰이다. 전체HWP/PDF대응/학교출처/권리/답키/내용유사성 기준 통과를 뜻하지 않으며 원문본문/이미지를 Git에 복사하지 않는다.",
+    "questionNumber": 2,
+    "checkBasis": {
+      "answerCorrect": "C만잘못된기록이고고친a=2로④. 독립raw와저자답이같으며A/B/C대입잔차0,0,2를Fraction으로확인.",
+      "solutionCorrect": "저자전체해설의A:4+2/3+1/3-5=0,B:4+2-1-5=0,C:1+3+3-5=2와수정2a=4→a2→대입0을각각검산. 두근을구하거나근·계수관계공식을사용하지않음.",
+      "existenceUniqueness": "원식x²계수1은모든a에서비영. 각행은그때의별도a로해석되며r+1=3,-1,2는모두비영이라a=1/3,-1,2각각유일. 틀린행은C하나이고수정값2도유일,수정후실제근대입0.",
+      "choicesCorrect": "①A1/3은옳은기록이지만틀린행아님,②A3은대입잔차8,③B-1은옳은행,④C2는틀린행과올바른수정값,⑤C3은잔차2그대로. 요청한역할까지충족하는선택은④뿐.",
+      "figureConsistent": "별도도형없고실제PNG표A/B/C의근2,-2,1및a1/3,-1,3이JSON과일치. 현재해설에서표와각행의대입을정확히대응,원문crop/픽셀계산없음.",
+      "sameCoreConceptAndProcedure": "실제원문은주어진한근을대입해상수를구한다. 현재도근의정의에따른대입과a의일차방정식이필수이며원문답을계산하거나비교하지않았다.",
+      "distinctPresentation": "단일근/입력의직접계산에서세기록진단과오류행+수정값선택으로데이터조직/답역할을변경. 잘못된행을구분해야하므로정답숫자교체에그치지않음.",
+      "naturalKorean": "한근과그때의a라는말및표행은각별도상수경우로읽힌다. 하나의공통a를세근에동시에요구하지않고잘못기록한행/고칠값의역할이선택지와맞는다. 명료화를원하면각행은별도의경우라고덧붙일수있으나현재그때문맥은해석가능.",
+      "curriculumAppropriate": "2015 9수02-13(HWPrecord3964/offset201786,PDF34/30)의이차방정식과근의기초,기학습9수02-04/05의대입/일차풀이로전체방법완결. 실제캡처Unit82399e51-340d-4165-b016-3e941e65f810=중3semester1. 근계수관계배제규정과충돌하는학생단계없음.",
+      "allStudentSurfacesInScope": "일곱면각basis에표/분수음수/답역할/해설전문/선수요구를기록. 성취기준명이나계산코드만으로grade자동승인하지않음.",
+      "unitFamilyFit": "기초이차방정식Unit과주제는맞지만3기록진단+수정목표를담는정확한livefamily정의를이범위에서검증하지않았으므로null/false유지.",
+      "scoreAppropriate": "원문인쇄4점과현재4점. 세행대입과하나의일차수정으로기본~표준4점편집제안은타당하지만원문보다검사량이늘어동난도/실측난도는미인증."
+    },
+    "currentUnit": {
+      "id": "82399e51-340d-4165-b016-3e941e65f810",
+      "grade": "중3",
+      "chapter": "3. 이차방정식",
+      "section": "이차방정식의 풀이",
+      "semester": 1,
+      "orderIndex": 475,
+      "problemCodePrefix": "J30301"
+    },
+    "rawFileSHA256": "a6d16b9a660beced3307240c081f95bea33f6a0bca1ac2db69e792bd29d70d05"
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "이차방정식의근을대입한조건으로세기록을진단한다.2015 9수02-13(record3964,PDF34/30)과실제M3semester1기초Unit/선수학습후범위. 고급근이론없음."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "행이름과유리수수정값의쌍을판정. 근대입/음수와분수사칙·앞학년일차방정식수준이며옳은값이더라도틀린행아니면배제하는단순답역할읽기."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "세행표는근과기록a를정리한단순자료. 실제PNG의분수1/3과음수-2,-1의대응을확인했다. 고급통계/상관/좌표/측정필요없음."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "x²+ax+a-5=0,근x=값,분수1/3과음수는기학습식과2015이차방정식기호. a는행별상수이며명명근·상수역할을구분한다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "틀린C행과정수2를묶은단일④를답한다. 추가근목록이나상위학년표현을요구하지않으며수정대입확인으로충분."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자전문은A/B대입0확인,C대입2확인,근1고정하여2a=4,재대입0.9수02-13+9수02-04/05와유리수연산으로완결;고등Vieta/판별식/근의공식없음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "방정식의근/해의뜻과대입,분수·음수의계산,상수와미지수역할,일차방정식을학습해야한다.이차방정식기초M3semester1이후배정이며2027M3/2022·학교진도는인증하지않음."
+    }
+  }
+}

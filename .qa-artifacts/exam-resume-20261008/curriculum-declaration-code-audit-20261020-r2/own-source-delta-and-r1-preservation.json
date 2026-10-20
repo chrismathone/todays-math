@@ -1,0 +1,86 @@
+{
+  "onlyProductionComparatorChange": "One literal + to * in outer-bracket unwrap regex. Reconstructing current * as + yields exact original source SHA, not a guessed visual diff.",
+  "currentSHA256": "18c9c50a6c43b0db33e625706ae3ee8d7c008d4818e76b9ba07f754d2ad9b6b6",
+  "reconstructedR1SHA256": "434cd32443d3d2bad70640bca4bc74b9d4fb456cfabcd509c13aeb7372a66e4b",
+  "expectedR1SHA256": "434cd32443d3d2bad70640bca4bc74b9d4fb456cfabcd509c13aeb7372a66e4b",
+  "candidatePackAndCollectorHashesUnchanged": true,
+  "R1AuditCommit": "22a2933b9bc6fa609872f3b062359387589c401f",
+  "sealedR1Files": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-after.json",
+      "sha256": "4d1eae93a4c234bc7fb61ac6e3f22e2f49ad6d9d46c242465a6486ca975a1863",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-audit-report.json",
+      "sha256": "59970a15cd2bd02b5a860613c1e24b8286d61a762485de8ab1e1272b05b32b48",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-before-complete.json",
+      "sha256": "4d1eae93a4c234bc7fb61ac6e3f22e2f49ad6d9d46c242465a6486ca975a1863",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-before.json",
+      "sha256": "53f2652000769cf18a14efce5bd3a462bc9e605e4bfda5a30bcb5eda6f0ca3c7",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-bind-additional-inputs.py",
+      "sha256": "b7ae074b0ba8154371dc9498a7b470c6d549d2906aad0dbbca02f7aa25ed34fe",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-controls-results.json",
+      "sha256": "1dd9575fd1a1aac5733e37f59e55911ea6466ecb654cca02db43dd5707db8c3d",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-controls.mjs",
+      "sha256": "94491f223d43dd65b8c9264664ec93f2b04a72f8e872352ad6f4b0d313690524",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-current-and-stale-collector-results.json",
+      "sha256": "7eae292459b54f905a93e2c6c5427c8acaee49c08515912e18388c3e644dd92a",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-empty-bracket-repro.mjs",
+      "sha256": "cca49f1a03e35370a800454750331f8b2fcd592e801f3f13a4f0d09cfca539ac",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-empty-bracket-reproduction.json",
+      "sha256": "dbe4f96a031de39d908bd5c41564a8f057d3f52f387cec6f6ac21b3c94ecaeb9",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-inspect-delta.py",
+      "sha256": "3dbaf848336a6bf9c2cea4ad533efbb7f6fff41dc687b3c37ee48b66c9e7ace4",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-prepare.py",
+      "sha256": "31e01981f9ec69e9cc44bf24d68bce282b921e8d919b2aa1150d1b37f121a712",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-seal.py",
+      "sha256": "82660ed4b12dd4b30c17db5de2aa466959db635670d17a4615fafa25a89dca9f",
+      "matchesSealedGit": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-declaration-code-audit-20261020-r1/own-utf8-probe.txt",
+      "sha256": "21a238409a5c2e0f9737d27aac923c424ae998aff29953f9d2546c9b5dba3225",
+      "matchesSealedGit": true
+    }
+  ],
+  "priorControlCount": 2638,
+  "priorFailed": 39,
+  "priorFindingCount": 1,
+  "R1ReportSHA256": "59970a15cd2bd02b5a860613c1e24b8286d61a762485de8ab1e1272b05b32b48",
+  "parentCodeCheckpointAsPointer": "72a69274a; source-file SHA, not mutable HEAD equality, is binding",
+  "sourceEditsByWorker": 0
+}

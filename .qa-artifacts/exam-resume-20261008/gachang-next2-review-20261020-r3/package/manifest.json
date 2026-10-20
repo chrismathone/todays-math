@@ -1,0 +1,44 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-20T09:04:29.568Z",
+  "questionNumbers": [
+    4,
+    5
+  ],
+  "packageDigest": "9a374c6e1deace087b09ad6866907b8d5945d0ef994fc2f3d6f18e9cda852d45",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "privateCandidatePath": "private/q04/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gachang-next2-authoring-20261020-r3\\gachang\\q04.json",
+        "sha256": "b74fa87d082ee95a1661fb642238402e1b95943c14b241cfcecf653b00e3d994"
+      },
+      "candidateFileSha256": "b74fa87d082ee95a1661fb642238402e1b95943c14b241cfcecf653b00e3d994",
+      "candidateDigest": "b3342a947160674669667ba9608970e5e7ee41fcc413657d836430bec8f306c1",
+      "studentDigest": "a2c3f3460a1ab54eb4c521c45d0a2bc1cd526dcad64586761ca72c3f19dad519",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    },
+    {
+      "privateCandidatePath": "private/q05/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gachang-next2-authoring-20261020-r3\\gachang\\q05.json",
+        "sha256": "43068d8d3374e34f0a303a6824a012bf8182b964b2734c19acaf108881fe87e1"
+      },
+      "candidateFileSha256": "43068d8d3374e34f0a303a6824a012bf8182b964b2734c19acaf108881fe87e1",
+      "candidateDigest": "3c11c8305f66f12da5678bf63f7fa955df2255de2ff6417766b9b20e572009b4",
+      "studentDigest": "aa9e5b58a8f301e3e062b296c25db6c01e0006191eae53bdd87587e39af1fa30",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

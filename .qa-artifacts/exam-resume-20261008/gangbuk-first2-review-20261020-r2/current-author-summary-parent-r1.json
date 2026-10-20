@@ -1,0 +1,507 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-20T09:07:34.858Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/current-author-index-parent-r1.json",
+    "sha256": "75898cdec3f1e8c4da2a8310371e0c19fd4fa7afef4eba357fb0807769b853ad"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 2,
+    "historicalCandidateVersions": 2,
+    "independentSolvesBound": 2,
+    "mathematicalVerified": 2,
+    "gradeReviewed": 2,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 2,
+    "figureInstances": 0,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    1,
+    2
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-gangbuk-2025-1-final-author-group1-r2-q01",
+      "studentDigest": "c78985e01a697b82be5d9495651ba30a36b0c7d33890f425db2d5711cdb8ae8f",
+      "candidateDigest": "c8465ab688dc3f54fe1ea21557e2afb4add0a1d62205171caccf430c0ef31fc9",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "d73298a24f6f3483de5f604453fed75eac7404c6cf57c8e3b1617e2005f93b61",
+      "reportSha256": "b825b510249abd840848b6f8055e2b0e1f817d92790ddc7f481a8770f3ddbe45",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-gangbuk-3-1-final-1",
+        "inventoryExamId": "personal-59bbe8ebff319ec20b823103fa6c5e8d",
+        "sourceQuestionNumber": 1,
+        "newSourceReferenceId": "source-ref-gangbuk-2025-1-final-group1-r2-q01",
+        "sourceContentSha256": "ab1bc6ca38690a4b4b3f27e0dd685644114bff290b449a468439d220f94dab37",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-59bbe8ebff319ec20b823103fa6c5e8d/component-only-input/q01.local.json",
+          "sha256": "74ad13c1010020eecb09721c255ffc8f22d69bb0ab0d455b0801ed212631ac7f"
+        },
+        "sourceSchoolInternal": "강북중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "extractionManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-59bbe8ebff319ec20b823103fa6c5e8d/hwp-question-only-manifest.local.json",
+          "sha256": "dbfb86ea4bafb7d6a0c2a91d3e25cf5649b93707e6f58bc87206ba5e4a129eaa"
+        },
+        "hwpOnlyExtractionAggregate": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+          "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[강북중][3][25-1-기말][동아강] (완료).hwp",
+            "sha256": "5707c9beff94a14b1404448ad4030b0171b0efe48e06fb3a4d747da737aab880",
+            "bytes": 441856
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[강북중][3][25-1-기말] (원본)(궁시렁).pdf",
+            "sha256": "745db2a94fe5d3f459c8892fb9b0bbd8b178f8602b3713dd5140e4ad4dc443c4",
+            "bytes": 1577361
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[강북중][3][25-1-기말](원본)(ace).pdf",
+            "sha256": "08bad7dbf73b359c099361e9de522eacf5a7a710a37348df37243f295a36acda",
+            "bytes": 599481
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[강북중][3][25-1-기말](원본)(ace).pdf",
+          "sha256": "08bad7dbf73b359c099361e9de522eacf5a7a710a37348df37243f295a36acda",
+          "bytes": 599481
+        },
+        "parentSourcePageComparison": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-gangbuk-pdf-alias-content-observations-r1.json",
+          "sha256": "927f6c6bb321fd3be7320a06e19b4c8322a62c4d6a3b88f2d5a2b4359c36a1f5"
+        },
+        "sourceComponentReview": {
+          "status": "parent-first2-HWP-vs-viewed-original-component-correspondence-observed-independent-review-pending",
+          "hwpWholePairApproved": false
+        },
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "parentIncidentalHandwrittenMarkExposure": true,
+        "marksUsedForAnswerApproval": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "양변 전개 후 차수를 결정하는 미지 계수를 두고 실제로 일차방정식이 되게 하는 입력을 역추론한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "82399e51-340d-4165-b016-3e941e65f810",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "82399e51-340d-4165-b016-3e941e65f810",
+            "grade": "중3",
+            "chapter": "3. 이차방정식",
+            "section": "이차방정식의 풀이",
+            "semester": 1,
+            "orderIndex": 475,
+            "problemCodePrefix": "J30301"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 캡처된 중3 기본 이차방정식 Unit UUID. 새 차수/기록 오류 수정의 정확한live family는 미확정."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "no-figure-required",
+          "newFigures": 0,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gangbuk-first2-20261020-r2.mjs",
+          "reproductionScriptSha256": "782ef54aa2d102726338335d84f012e36ef004fe75bc8222ab36bd7611d17f65",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "82399e51-340d-4165-b016-3e941e65f810",
+            "grade": "중3",
+            "chapter": "3. 이차방정식",
+            "section": "이차방정식의 풀이",
+            "semester": 1,
+            "orderIndex": 475,
+            "problemCodePrefix": "J30301"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "다항식의 전개",
+            "이항과 동류항 정리",
+            "계수와 차수",
+            "일차방정식과 이차방정식의 뜻"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure"
+        ],
+        "before": "다섯 등식을 정리해 이차방정식이 아닌 것을 고른다.",
+        "after": "양변 전개 후 차수를 결정하는 미지 계수를 두고 실제로 일차방정식이 되게 하는 입력을 역추론한다.",
+        "sharedConcept": "방정식을 정리한 뒤 최고차항 계수가0인지 확인하여 차수를 구별한다.",
+        "sharedProcedure": "양변 다항식 전개 → 이항하여(a−3)x²−x−6=0 → 이차항 계수0에서a3 → 남은 일차항 계수−1이0이 아님을 확인",
+        "actualStructuralChange": "양변 전개 후 차수를 결정하는 미지 계수를 두고 실제로 일차방정식이 되게 하는 입력을 역추론한다.",
+        "domainProof": "a는 x에 대한 상수다. a3에서 이차항이 없어지지만 일차항−x는 남으므로 항등식이나 모순식이 아닌 일차방정식이 된다. 다른a는 이차항 계수가0이 아니어서 조건을 만족하지 않는다. 해의 공식을 사용하는 문제가 아니라 이미 배운 전개·항정리·차수 정의를 사용한다.",
+        "difficultyBasis": "원문의 인쇄 배점3/4를 보존한 저자 제안이며 새 입력 역추론/다중 기록의 목표 난도는 독립 검수 전 보류."
+      },
+      "packageDigest": "0cb7ca210798239e04618b6745929fa8f37869067b688fc11fb1b139bcccbdfa",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-first2-authoring-20261020-r2\\gangbuk\\q01.json",
+        "sha256": "066d2077813ad0f4778798e51514dea80de81fd3e78e27239ea5d26ba9d50314"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-first2-review-20261020-r2\\blind\\solve\\q01.json",
+        "sha256": "7dc42bb33b2347c3d3b680b6f45ce50b440c0ade4478749d9ea5a1dcf9ee1411"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/verification/reports/q01.json",
+        "sha256": "b825b510249abd840848b6f8055e2b0e1f817d92790ddc7f481a8770f3ddbe45"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/verification/verification-manifest.json",
+        "sha256": "3c2c4725a296e19cb191c4dc8791dd7929e885cd5e0a6203215f6767948039d2"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/blind/blind-manifest.json",
+        "sha256": "b54ee8e898f2ecc49da781c35f5cb4622fd086f7336ef86219fdd1f978eec5b0"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/package/private/q01/candidate.json",
+        "sha256": "066d2077813ad0f4778798e51514dea80de81fd3e78e27239ea5d26ba9d50314"
+      },
+      "candidateContentWithoutRelocatedPaths": "be4bf5285e14cac2a956e54f336a9d2524285ef808bfa559d52f4c90939a326e",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-authoring-20261020-r2/gangbuk/q01.json",
+        "sha256": "066d2077813ad0f4778798e51514dea80de81fd3e78e27239ea5d26ba9d50314"
+      },
+      "authorCandidateDigest": "c8465ab688dc3f54fe1ea21557e2afb4add0a1d62205171caccf430c0ef31fc9"
+    },
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-gangbuk-2025-1-final-author-group1-r2-q02",
+      "studentDigest": "e1507b45c216a653535b98850aabb5982e6221d4882aaf510c643fe299cc625e",
+      "candidateDigest": "e61d881618201c391bd75affc4323807e0088e68562be19c59d91483ac8a09ff",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "59f80f0a2f97c98e09d939c37ae46e058a8a98589fa9d9f439269a806b01a579",
+      "reportSha256": "fe8c5fe6e40f1a065dab4eb4c7a1a7e84a3422ae7e2398cc29713c2577b38088",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-gangbuk-3-1-final-2",
+        "inventoryExamId": "personal-59bbe8ebff319ec20b823103fa6c5e8d",
+        "sourceQuestionNumber": 2,
+        "newSourceReferenceId": "source-ref-gangbuk-2025-1-final-group1-r2-q02",
+        "sourceContentSha256": "626056ade6f401613640835963d0e27ff064d40d2cfb5776f65d3529c0d0dca0",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-59bbe8ebff319ec20b823103fa6c5e8d/component-only-input/q02.local.json",
+          "sha256": "8506aced43320d9488de9ed2c0577d56e1c87a94a5c60979a18c0026a53123ca"
+        },
+        "sourceSchoolInternal": "강북중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "extractionManifest": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/personal-59bbe8ebff319ec20b823103fa6c5e8d/hwp-question-only-manifest.local.json",
+          "sha256": "dbfb86ea4bafb7d6a0c2a91d3e25cf5649b93707e6f58bc87206ba5e4a129eaa"
+        },
+        "hwpOnlyExtractionAggregate": {
+          "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+          "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+        },
+        "sourceFiles": [
+          {
+            "path": "N:/개인/기출/2025 기출모음/2025년 1학기 기말고사 모음/워드/중3/[강북중][3][25-1-기말][동아강] (완료).hwp",
+            "sha256": "5707c9beff94a14b1404448ad4030b0171b0efe48e06fb3a4d747da737aab880",
+            "bytes": 441856
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[강북중][3][25-1-기말] (원본)(궁시렁).pdf",
+            "sha256": "745db2a94fe5d3f459c8892fb9b0bbd8b178f8602b3713dd5140e4ad4dc443c4",
+            "bytes": 1577361
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[강북중][3][25-1-기말](원본)(ace).pdf",
+            "sha256": "08bad7dbf73b359c099361e9de522eacf5a7a710a37348df37243f295a36acda",
+            "bytes": 599481
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 기말고사 모음\\원본\\중3\\[강북중][3][25-1-기말](원본)(ace).pdf",
+          "sha256": "08bad7dbf73b359c099361e9de522eacf5a7a710a37348df37243f295a36acda",
+          "bytes": 599481
+        },
+        "parentSourcePageComparison": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-gangbuk-pdf-alias-content-observations-r1.json",
+          "sha256": "927f6c6bb321fd3be7320a06e19b4c8322a62c4d6a3b88f2d5a2b4359c36a1f5"
+        },
+        "sourceComponentReview": {
+          "status": "parent-first2-HWP-vs-viewed-original-component-correspondence-observed-independent-review-pending",
+          "hwpWholePairApproved": false
+        },
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "parentIncidentalHandwrittenMarkExposure": true,
+        "marksUsedForAnswerApproval": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "pending-no-operational-write"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "기말",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "서로 다른 세 근과 계수 기록을 표로 조직하고 잘못된 기록을 찾아 올바른 입력으로 고친다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "82399e51-340d-4165-b016-3e941e65f810",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "82399e51-340d-4165-b016-3e941e65f810",
+            "grade": "중3",
+            "chapter": "3. 이차방정식",
+            "section": "이차방정식의 풀이",
+            "semester": 1,
+            "orderIndex": 475,
+            "problemCodePrefix": "J30301"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 캡처된 중3 기본 이차방정식 Unit UUID. 새 차수/기록 오류 수정의 정확한live family는 미확정."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-gangbuk-first2-20261020-r2.mjs",
+          "reproductionScriptSha256": "782ef54aa2d102726338335d84f012e36ef004fe75bc8222ab36bd7611d17f65",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "82399e51-340d-4165-b016-3e941e65f810",
+            "grade": "중3",
+            "chapter": "3. 이차방정식",
+            "section": "이차방정식의 풀이",
+            "semester": 1,
+            "orderIndex": 475,
+            "problemCodePrefix": "J30301"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "방정식의 근과 대입",
+            "분수와 음수의 계산",
+            "일차방정식"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      },
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "classification-repair",
+          "data-reorganization",
+          "question-target-change",
+          "new-table"
+        ],
+        "before": "주어진 한 근을 방정식에 대입해 상수 하나를 직접 구한다.",
+        "after": "서로 다른 세 근과 계수 기록을 표로 조직하고 잘못된 기록을 찾아 올바른 입력으로 고친다.",
+        "sharedConcept": "이차방정식의 근은 대입했을 때 등식이 성립하는 수라는 정의",
+        "sharedProcedure": "각 행의 근·기록 계수를 대입하여0여부 확인 → C만불일치 → 해당 근1을 고정한 일차 관계2a4에서a2 → 원식 대입 확인",
+        "actualStructuralChange": "서로 다른 세 근과 계수 기록을 표로 조직하고 잘못된 기록을 찾아 올바른 입력으로 고친다.",
+        "domainProof": "x²의 계수는 항상1이므로 모든 기록의 방정식은 이차방정식이다. A,B는 각각 정확한 대입값0이고 C만2로 다르다. C의 수정 조건은2a4여서a2가 유일하다. 근의 정의·대입과 일차방정식만 필요하며 이차방정식의 두 근을 모두 구할 필요가 없다.",
+        "difficultyBasis": "원문의 인쇄 배점3/4를 보존한 저자 제안이며 새 입력 역추론/다중 기록의 목표 난도는 독립 검수 전 보류."
+      },
+      "packageDigest": "0cb7ca210798239e04618b6745929fa8f37869067b688fc11fb1b139bcccbdfa",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-first2-authoring-20261020-r2\\gangbuk\\q02.json",
+        "sha256": "79c8c3e0747bd53f9d63c341698dd6dc2773e5e4b31d962f02e4ec555f96f803"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-first2-review-20261020-r2\\blind\\solve\\q02.json",
+        "sha256": "a6d16b9a660beced3307240c081f95bea33f6a0bca1ac2db69e792bd29d70d05"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/verification/reports/q02.json",
+        "sha256": "fe8c5fe6e40f1a065dab4eb4c7a1a7e84a3422ae7e2398cc29713c2577b38088"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/verification/verification-manifest.json",
+        "sha256": "3c2c4725a296e19cb191c4dc8791dd7929e885cd5e0a6203215f6767948039d2"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/blind/blind-manifest.json",
+        "sha256": "b54ee8e898f2ecc49da781c35f5cb4622fd086f7336ef86219fdd1f978eec5b0"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/package/private/q02/candidate.json",
+        "sha256": "79c8c3e0747bd53f9d63c341698dd6dc2773e5e4b31d962f02e4ec555f96f803"
+      },
+      "candidateContentWithoutRelocatedPaths": "99b4ab24a7c3e576af147ba5fbfafae542969479b23060f258a822e5e7e84895",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/gangbuk-first2-authoring-20261020-r2/gangbuk/q02.json",
+        "sha256": "79c8c3e0747bd53f9d63c341698dd6dc2773e5e4b31d962f02e4ec555f96f803"
+      },
+      "authorCandidateDigest": "e61d881618201c391bd75affc4323807e0088e68562be19c59d91483ac8a09ff"
+    }
+  ],
+  "reviewBindingDigest": "5947b5a7bd3b6f1d5c872686f196b2bbf719a7f321cfa6fcd1708ce7b6d79276",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}
