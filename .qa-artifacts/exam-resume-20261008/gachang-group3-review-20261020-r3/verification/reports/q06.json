@@ -1,0 +1,201 @@
+{
+  "status": "pending",
+  "studentDigest": "d8565d720773d4cad0a2a93b7c8ba5ab720dbbbe0ce44c8edb0e362a1bb75f3f",
+  "candidateDigest": "458b167f413587dceef85e9b2a08b091c4119b08ed6276295bcfe235244ab367",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "6f593ffa1ce470437ed87fface21d97bce571387cf41d9b6cdc01cae4b7f841d",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gachang-group3-metadata-r3-20261020",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "reviewKind": "Fresh R3 metadata/whole student-method review on exact unchanged prior-solved payload; no new blind/math credit",
+    "rawHelperCommit": "c621b7d17cef1e4e6db495d52bdb298dabb71a73",
+    "parentRawSeal": "c89b1a152f63981ed643df85d62759ed270e7da6",
+    "priorFullReviewCommit": "8cb792dd6e4638a7d6a09c9c79fc15eff487faa1",
+    "priorAggregateSHA256": "73589a16f94f2f01c1f11263df0a0db5761598cae3fc2dc642a7c8cb87dd5de7",
+    "exposure": "Same retained helper with original9/Gachang/Gangbuk/public-code history and prior incidental Gachangfirstpage/handwriting exposure. Currentauthor/sourcecontext first exposed only after originalrawGitseal; R3 is metadata repair, not pristine/newblind solve. Existingraw andpresealnotation diagnostic preserved.",
+    "currentMetadataChecks": {
+      "file": "../../own-review-evidence-r3/own-metadata-checks.json",
+      "SHA256": "a6e05d8cb127dae4bd537100323acb21b7cb0c474e845987973ab36ebe05f745",
+      "assertions": 51,
+      "passed": 51,
+      "failed": 0
+    },
+    "boundedMathEvidence": {
+      "file": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-calculations.json",
+      "SHA256": "9fc8ede3e17d8ced4aa35606cdf50ebb3f43257e5d12a3571f4614c359824720",
+      "historicalR2Assertions": 52,
+      "newR3MathSolves": 0,
+      "use": "Only reused after exact currentstudent/choices/answer/solution/assets binding; not copied approval or sum of repeated checks."
+    },
+    "primaryReceipt": {
+      "file": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+      "SHA256": "372aac5235afba5509f83040543cfe762574621f036e8eafff17b1b4433b10bf",
+      "scope": "Actually previously inspected officialtext/records/pages plus exactcapturedUnit, combined with current complete method; band/Unit/source-school alone insufficient."
+    },
+    "imageScope": {
+      "R2ActualViewed": "originalfirstpage andwhitevectorPNG were actually viewed in priorsealedreview; R3mathSVG/spec/blindSVGbyteequal now independentlychecked. No new imageinspectionclaim.",
+      "fullStudentSolutionPNG": "pending; no fullbrowser/native/print/layoutapproval",
+      "noPixelCoordinateAnswerOracle": true
+    },
+    "separateHolds": {
+      "exactLiveFamily": null,
+      "wholeSourceIdentity": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "actualStudentPlacementApproved": false,
+      "2027M3/2022Approved": false,
+      "loadable": false
+    },
+    "studentPlacementScope": "R3 flags require actual evidence of bothunits learned; no such student evidence or operational/native enforcement examined. Grade judgments below are whole-method afterprerequisites scope, not actual assignment authorization.",
+    "questionNumber": 6,
+    "checkBasis": {
+      "answerCorrect": "CurrentR3②/t-1 equals sealedraw; identicalfullstudentmathematics confirmed. Witnesslengths4/1cm andareas16/1cm² satisfy3cmdifference.",
+      "solutionCorrect": "Re-readcurrentunchangedcomplete solution: (t-3)²,(t+2)² → positivebranches3-t,t+2 from-2<t<3 →1-2t=3→t-1→domain/area/lengthcheck. ExactR2arithmetic rebound, nohighschoolradical-equationalgorithm.",
+      "existenceUniqueness": "Strictinterval fixesbothpositivebranches; linearcoefficient-2nonzero impliesuniquet-1. Witness4/1positive; endpoints-2/3givezero-side degeneracy andremainexcluded.",
+      "choicesCorrect": "Current-2/-1/0/1/2 unchanged: exactside-differences5/3/1/-1/-3; -2isoutsideinterval andB0. Only②satisfiesdomainand3cm.",
+      "figureConsistent": "No vectorasset. Same nativeMarkdownA/Barea table androwroles exactR2binding. Mathematicaltablecontent complete; fullrenderedtable width/layout/browser/nativeparity stillpending.",
+      "sameCoreConceptAndProcedure": "Actualsourcecomponent/core unchanged: completesquare expressions andpositive-root sign selected byparameterrange. Reusepriorpostsealoriginalpage observation, not keyagreement.",
+      "distinctPresentation": "Still substantial geometry/table+inverseinput shift from originalsubstitution/radical-difference simplification. MetadataonlyR3 createsnonewquestion ornewsourcecomparison claim.",
+      "naturalKorean": "UnchangedcurrentA/Bareas andA3cmlonger side direction remainclear; tinput vsarea/length distinguished. Explicitnewmetadata doesnotchange studentwording.",
+      "curriculumAppropriate": "Primary2015 9수01-07roots; necessaryearlierlearned9수02-12perfectsquare multiplication and9수02-05linearequation. R3nowstructurallylistsactualM3sem1Units469+472/standardreceipt butrequiresactuallearningevidence; notautomaticatrootUnit469.",
+      "allStudentSurfacesInScope": "Seven actualstudentfaces evaluatedbelow, conditionalonbothlearnedUnits andnamedprereqs. Newmetadata constraints supportthatcondition, not proof ofaparticularlearner/readerenforcement.",
+      "unitFamilyFit": "R3repairsstructuredprerequisite omission withactualmultiplicationUnit e63d61c6...order472, butexactlivefamily target/domain/definition unproved andactualplacement evidence/enforcement pending. familyKeynull/false remains.",
+      "scoreAppropriate": "Sourceprinted4/current4 unchanged; squarecompletion/signbranch/linearinput/witness support4pointeditorialburden. Fullcalibrateddifficulty/equivalence notestablished; broadproposal remainspending."
+    },
+    "currentUnit": {
+      "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "grade": "중3",
+      "chapter": "1. 실수와 그 계산",
+      "section": "제곱근의 뜻과 성질",
+      "semester": 1,
+      "orderIndex": 469,
+      "problemCodePrefix": "J30101"
+    },
+    "rawSHA256": "c8baff3233b50ae49382ffbde3d562580008008a1217369e71272f399958532a",
+    "currentPrerequisiteUnits": [
+      {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      },
+      {
+        "id": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+        "grade": "중3",
+        "chapter": "2. 다항식의 곱셈과 인수분해",
+        "section": "다항식의 곱셈",
+        "semester": 1,
+        "orderIndex": 472,
+        "problemCodePrefix": "J30201"
+      }
+    ],
+    "currentPlacementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "완전제곱식의 곱셈공식",
+        "제곱근의 뜻과 성질",
+        "문자 범위와 부호",
+        "정사각형 넓이와 양수 길이",
+        "일차방정식"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review",
+      "requiresLearnedUnitIds": [
+        "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "e63d61c6-2b41-4c83-a74b-a605fd343c42"
+      ],
+      "laterPrerequisiteUnitId": "e63d61c6-2b41-4c83-a74b-a605fd343c42",
+      "requiresPrerequisiteLearningEvidence": true,
+      "capturedOrderIndexIsNotStudentMastery": true,
+      "placementReviewStatus": "pending-actual-student-prerequisite-evidence-no-automatic-placement",
+      "sourceSchoolPacingIsNotPermission": true
+    },
+    "R2SpecificGapStatus": "q06 structuredrequiredlater-unit omission repaired inR3; R2report/finding preserved. Actualplacement evidence/enforcement stillheld."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "Currenttwo-square-area-to-side-difference inverseinput task usesrootproperties9수01-07 pluspreviouslylearnedcompletesquare9수02-12 andlinearequation9수02-05. R3explicitlyrequireslearningevidence, notunitorderpermission.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "Currentfiveintegerinputs exactboundtoR2owncalculation; strictdomain removes-2 andpositivebranchdifferencesleaveonly-1. Middle-levelsign/rationalarithmetic.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "NativeA/Bareatable unchanged, nofigureandnovisualnewcontent. Twoareapolynomials andtheirroles fullyavailableforgradejudgment; unseenfullPNG/layout/nativeparity stillheld.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "t real/open-2<t<3,unitlessinput vs cm/cm²,positiveprincipalroots arecurrentreadableM3notation. Noabsolutevaluefunctionformalism oradvancedradical-equationmethods required.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "②meanst-1; lengths4/1andareas16/1areverification,notanswerrole. Nonzerolinearcoefficient suppliesuniqueness andstrictdomainensurespositiveexistence.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Re-readcurrentwholemethodfactor-square→positivebranch→difference→singlelinearequation→substitution. Required9수02-12knowledgeisnowexplicitstructuredprerequisite; nochanged/newstudentmethod.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "ActualrootsUnit1682f01b...order469 AND multiplicationUnit e63d61c6...order472 musthavepriorlearningevidence; bothIDs/2015standard9수02-12receipt nowlisted. Capturedorderisnotmastery andplacementReviewStatusheld; noactuallearner/nativeenforcementcertification. 2015M3only,2027/2022pending.",
+      "evidence": {
+        "currentMetadataReceipt": "../../own-review-evidence-r3/own-metadata-checks.json",
+        "primaryUnitReceipt": "../../../gachang-group3-review-20261020-r2/own-review-evidence-r1/own-primary-unit-receipt.json",
+        "condition": "2015M3 after allrequiredlearnedprerequisites only; actuallearnerplacement pending"
+      }
+    }
+  }
+}
