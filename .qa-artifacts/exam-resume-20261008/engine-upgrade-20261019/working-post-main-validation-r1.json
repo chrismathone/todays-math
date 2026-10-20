@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-20T05:36:52.342Z",
+  "head": "289e91afba429210846c98cc40c707dc61be0047",
+  "main": "daa2630edf8338707adaa5c4e55d35a88627e342",
+  "canonicalSelected": 157,
+  "additionalDrafts": 3,
+  "current160CandidateBindingsRetained": true,
+  "independentRawSealed": 3,
+  "fullNewReviewsPending": true,
+  "nodeFiles": 15,
+  "nodeSummary": "nce\nok 174 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 24.5065\n  type: 'test'\n  ...\n1..174\n# tests 174\n# suites 0\n# pass 174\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 21330.8581\n",
+  "vitestActualFiles": 13,
+  "vitestActualPassed": 247,
+  "vitestFailed": 0,
+  "results": [
+    {
+      "log": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-node-r1.tap",
+        "sha256": "d623ec9fe01bc9c8a9a1dd6e75ef2bf7e1796653cc8efecf3b32347ed213f8ab"
+      },
+      "status": 0
+    },
+    {
+      "log": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-vitest-r1.log",
+        "sha256": "4c0fe17547600a5c5773c6d41c76d9fe3ad1706c19549eb1d7c639049ade2e7b"
+      },
+      "status": 0
+    },
+    {
+      "log": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-lint-r1.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "status": 0
+    }
+  ],
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.mjs",
+      "sha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.test.mjs",
+      "sha256": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de"
+    },
+    {
+      "path": "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+      "sha256": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2"
+    }
+  ],
+  "dbWrites": 0,
+  "loadable": 0,
+  "wholeGoalComplete": false
+}

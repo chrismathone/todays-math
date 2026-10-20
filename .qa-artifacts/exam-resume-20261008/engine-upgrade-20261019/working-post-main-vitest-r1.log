@@ -1,0 +1,93 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/components/ConceptBlankView.test.tsx (38 tests) 20232ms
+     ✓ 나무의 «이차함수 y=ax^2+bx+c의 그래프»는 수식으로 그린다 — 캐럿이 글자로 안 보인다  918ms
+     ✓ 학년은 접혀 있다가 누른 학년만 펼치고, 초1 · 초2 · 고등은 «준비 중»이다  844ms
+     ✓ 대단원을 체크하면 그 아래 소단원이 전부 켜진다 — 재고 0 인 소단원은 빼고, 일부만이면 반쯤  2100ms
+     ✓ 소단원 옆에 재고(개념 · ○× · 적용 · 그림)가 서고, 재고 0 인 소단원은 흐리고 고를 수 없다  641ms
+   ✓ 새 고르기는 소단원을 골라도 형식이 모두 꺼지고 저장 · 인쇄 · 미리보기를 막는다  468ms
+     ✓ 숫자 칸의 처음 값은 10 — 재고가 더 많아도 10, 칸마다 따로(원장님 2026-10-01 «하/중/상 10문제씩»)  679ms
+     ✓ 재고가 10 보다 적으면 처음 값은 재고 전부이고, 재고를 넘지 못한다  1274ms
+     ✓ 그림 문항이 없는 소단원만 고르면 E 는 꺼지고 까닭 한 줄 — 그림 소단원을 더하면 켜진다  824ms
+     ✓ 카드를 끄면 숫자 칸이 잠기고 인쇄 고르기에서 빠진다  674ms
+     ✓ 날짜는 기본이 오늘(한국 시간)이고 인쇄 주소에 실린다 — 비우면 날짜 없이(손으로 쓰는 줄)  788ms
+     ✓ 인쇄할 지면을 고른다 — 학생지 · 채점표 · 전체(기본)  701ms
+     ✓ 인쇄하기는 인쇄 창을 바로 띄우는 주소로 연다(Ctrl+P 없이)  601ms
+     ✓ 인쇄 주소(새 창)가 decodeSelection 으로 고른 그대로 되돌아온다 — 제목 · 날짜 포함  729ms
+     ✓ 고른 차례와 상관없이 교육과정 순서로 싣는다  733ms
+     ✓ 미리보기는 고른 지면을 그리고 학생지 · 채점표를 바꾼다  617ms
+     ✓ 미리보기 지면에도 인쇄와 같은 지면 코드를 넘긴다(cb-code) — 제목을 바꿔도 코드는 그대로  602ms
+     ✓ ?blank= 로 들어오면 고른 소단원 · 형식 · 수 · 제목을 되살린다  384ms
+     ✓ 고르기를 바꾸면 주소가 따라오고, 화면을 떠나면 주소에서 지운다  606ms
+     ✓ 지점 계정은 공개 확인 전에는 저장하지 않고 기본 비공개를 유지하며 공개 철회도 저장한다  1155ms
+     ✓ 고르기를 날짜 없이 저장하고, 고치면 같은 자료에 다음 판으로 저장한다  1095ms
+     ✓ 저장이 실패하면 까닭을 알리고 다시 누를 수 있다  696ms
+     ✓ 내 시험지에서 열면 그 고르기를 되살리고, 저장은 같은 자료에 한다  495ms
+       ✓ 이름을 바꿨으면 새 이름 · 새 판을 받고 «저장됨» 그대로  375ms
+     ✓ 처음에는 아무 학년도 안 부르고, 펼친 학년만 부른다 — 오는 동안 소단원은 «불러오는 중»  691ms
+     ✓ 한 학년을 못 불러오면 알리고, 다시 부르다 오면 알림을 걷는다  508ms
+ ✓ src/__tests__/components/UnifiedWorkspace.access.test.tsx (72 tests) 13047ms
+     ✓ defers sidebar until the editor approves and keeps selection while canceled  565ms
+     ✓ defers sidebar until the editor approves and keeps selection while canceled  402ms
+     ✓ bank may restore its worksheet without library or export  553ms
+     ✓ opens arithmetic as a separate sidebar view and preserves its draft across bank navigation  380ms
+     ✓ opens the standalone English bank without mounting exam-dependent screens  344ms
+     ✓ hands bank selections to the correct existing English panes  710ms
+     ✓ uses the branch library name without a sidebar count and confirms worksheet scope before publishing  1201ms
+     ✓ only warms worksheets from home and never saves on direct home entry  591ms
+     ✓ only warms worksheets from home and never saves on direct teaching entry  537ms
+     ✓ only warms worksheets from home and never saves on direct concept entry  560ms
+     ✓ only warms worksheets from home and never saves on direct srs entry  596ms
+     ✓ starts a new worksheet explicitly from SRS without requiring a prior worksheet visit  722ms
+     ✓ updates access on focus, unmounts revoked panels and retains the current scoped draft  322ms
+     ✓ 영어에서는 «현재 시험지» 카드 · 담기 바가 안 뜨고, 영어 뷰의 알림은 셸 알림 줄로 나온다  698ms
+ ✓ src/__tests__/unit/examStudyInverseMinimum.test.ts (9 tests) 12690ms
+     ✓ independently solves all24 printed data sets, including positive and negative fourth values  430ms
+     ✓ retains a captured Unit proposal while the internal factory stays hidden in public catalogs  12175ms
+ ✓ src/__tests__/unit/examStudyInverseTangentRectangle.test.ts (9 tests) 11763ms
+     ✓ registers the internal requirement while hiding it from public catalogs and retaining grade/rights holds  11339ms
+ ✓ src/components/exam-builder/ExamBuilder.test.tsx (40 tests) 7470ms
+     ✓ composes from the table footer and removes a scope immediately without discarding questions or undo history  493ms
+     ✓ keeps a long scope catalog paged, unchecking takes a scope back out, and composes only selected scopes  300ms
+     ✓ moves, deletes, undoes and keeps edits across output and scope navigation  309ms
+     ✓ adds matching difficulty candidates once and replaces in the original position  861ms
+     ✓ M3 — a step fills the difficulty cells for the rows' total, counts by format go to the server, and multiple choice comes first  472ms
+ ✓ src/components/exam-builder/ExamBuilder.demand.test.tsx (10 tests) 3676ms
+     ✓ restores legacy saved allocations from their selected curriculum path without global counts or changing saved questions  354ms
+     ✓ counts only uncached visible lessons and preserves manual allocations through search, pages and grade changes  782ms
+     ✓ shows lesson names before counts resolve, then checks and unchecks without hiding the list or requesting counts again  347ms
+     ✓ retains confirmed counts during a new page request and does not restart it when a cached selection is removed  571ms
+     ✓ keeps recent and all counts separate and reuses each after toggling back  593ms
+     ✓ isolates counts by source and reuses a previously confirmed source without sharing pending counts  560ms
+ ✓ src/__tests__/components/UnifiedWorkspace.cart.test.tsx (12 tests) 4847ms
+     ✓ 담은 문항이 없는 home 화면에서는 카드와 편집 이어가기가 없다  404ms
+     ✓ 담은 문항이 없는 export 화면에서는 카드와 편집 이어가기가 없다  606ms
+     ✓ 한 문항을 담으면 카드가 생기고 마지막 문항을 빼면 다시 숨긴다  320ms
+     ✓ 문제 추출에서는 시험지에 담기 전에도 카드를 보이고 출력 요청을 보낸다  488ms
+     ✓ 작업실은 시험지 목록을 그대로 받고, ④ 에서 뺀 것을 뺀 자리와 함께 안다 (어긋남 1)  606ms
+     ✓ 작업실에서 빼면 ④·문제은행과 같은 길 — 알림 줄 «되돌리기»도 기억을 푼다  338ms
+     ✓ 반영은 같은 자리에서 갈고, 문제은행에서 다시 담으면 뺀 기억이 풀린다  564ms
+     ✓ 뺀 기억은 시험지와 같이 저장된다 — 새로 고친 뒤에도 뺀 자리와 함께 남는다 (트랙 47)  681ms
+     ✓ 새 시험지를 열면 담은 목록도 뺀 기억도 빈다 (어긋남 2)  369ms
+ ✓ src/components/exam-builder/ExamBuilder.h2.test.tsx (16 tests) 3579ms
+     ✓ 상위 선택은 하위 검색·쪽만 초기화하고 다른 학년까지 담은 수·고정·순서를 유지한다  610ms
+     ✓ 여섯 난이도 단계와 직접 입력을 제공하고 지정 없음과 0을 구별한다  426ms
+     ✓ 실제 표현을 가진 문항의 총수가 지정과 다르면 막고 조건을 고치면 원문 그대로 출력한다  417ms
+     ✓ 총수가 같아도 형식별 지정 0을 포함한 불일치를 막고 null로 비우면 풀린다  359ms
+ ✓ src/__tests__/components/UnifiedWorkspace.actions.test.tsx (7 tests) 2999ms
+     ✓ blocks the workspace save shortcut when the builder reports an explicit format shortage  1203ms
+     ✓ opens the source picker and delivers the chosen files to Studio  384ms
+     ✓ restores a saved worksheet and requests the review step on each tab press  393ms
+     ✓ renames, opens and confirms deletion from the library board  523ms
+ ✓ src/__tests__/components/WorksheetEditor.orderPanel.test.tsx (12 tests) 691ms
+ ✓ src/__tests__/components/ConceptBlankUnitPicker.test.tsx (4 tests) 304ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 105ms
+ ✓ src/__tests__/unit/lockProblemRows.test.ts (1 test) 52ms
+
+ Test Files  13 passed (13)
+      Tests  247 passed (247)
+   Start at  14:34:34
+   Duration  129.79s (transform 11.38s, setup 11.98s, import 16.88s, tests 81.45s, environment 16.86s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-vitest-r1.json
