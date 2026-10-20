@@ -17,7 +17,7 @@ async function handleGet(request: Request) {
         : new URL(request.url).searchParams;
     return Response.json(
       params.get("view") === "curriculum"
-        ? await loadUnifiedBankCurriculum(params)
+        ? await loadUnifiedBankCurriculum(params, devBankQueryContext())
         : await loadUnifiedBank(params, devBankQueryContext()),
       { headers: { "Cache-Control": "no-store" } },
     );

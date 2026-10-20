@@ -20,7 +20,10 @@ async function handleGet(request: Request) {
         : new URL(request.url).searchParams;
     return Response.json(
       params.get("view") === "curriculum"
-        ? await loadUnifiedBankCurriculum(params)
+        ? await loadUnifiedBankCurriculum(
+            params,
+            bankQueryContext(access.user.id),
+          )
         : await loadUnifiedBank(
             params,
             // 최근 출제 빼기(`recent=1`)는 로그인한 이 계정의 시험지로 센다(D-20).

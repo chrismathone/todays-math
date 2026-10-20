@@ -25,6 +25,7 @@ import type { BankQueryContext } from "@/lib/bankQueryContext";
 import { questionReadMetadata } from "@/lib/problem/questionProjection";
 import {
   resolveUnifiedBankQuery,
+  loadFilteredQuestionScopeCounts,
   UnifiedBankQueryError,
 } from "./unifiedPreview";
 
@@ -104,14 +105,9 @@ export async function loadQuestionScopeCounts(
   return db.$transaction(
     (tx) => withBankReadFingerprint(tx, async () => {
       const read = async () => {
-        const resolved = await resolveUnifiedBankQuery(clean(params), context);
-        const buckets = await loadQuestionCounts(
-          { AND: [problemVisibleWhere(), ...resolved.selection] },
-          tx,
+        const buckets = await loadFilteredQuestionScopeCounts(
+          clean(params), context, tx,
           ["unit", ...(params.get("families") === "1" ? ["family" as const] : [])],
-          resolved.format,
-          undefined,
-          false,
         );
         return {
           view: "scope-counts" as const,
