@@ -3049,11 +3049,15 @@ describe("[초3 4단] 2-2 나눗셈 — 네 소단원 (표준 포함)", () => {
         "심화하",
       );
       const dn = nums(deep.content);
-      const pairs = divPairs(deep.content);
+      // 문장 틀 «$a$ 에 … 나누는 수가 $b$ 인 나눗셈» 은 두 수를 글로 세운다 — 같은 나눗셈 줄을 또 찍지 않는다(2026-10-20).
+      const said = /^\$(\d+)\$ 에 적어도 얼마를 더해야 나누는 수가 \$(\d+)\$ 인 나눗셈/.exec(deep.content);
+      const pairs: [number, number][] = said
+        ? [[Number(said[1]), Number(said[2])]]
+        : divPairs(deep.content);
       expect(
-        deep.content,
-        `2-2-3 심화 seed ${seed}: 나눗셈 꼴이 지면에 안 선다`,
-      ).toMatch(/\\div/);
+        said !== null || /\\div/.test(deep.content),
+        `2-2-3 심화 seed ${seed}: 나눗셈 꼴이 지면에 안 선다 — ${deep.content}`,
+      ).toBe(true);
       if (pairs.length > 0) {
         // ㉡ 나누어떨어지게 하려면 — 발문에 나눗셈식이 있다.
         bump("심화하:나누어떨어지게");

@@ -897,12 +897,12 @@ describe("초4 1-3-1 (세 자리)×(몇십)", () => {
     }
   });
 
-  it("06 일의 자리 + 세로셈 그림", () => {
+  it("06 일의 자리 — 발문의 곱셈식을 세로셈으로 또 그리지 않는다", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
       const [a, b] = katexInts(p.content);
       expect(answerInt(p.answer)).toBe((a! * b!) % 10);
-      expect(p.figureSpec).toMatchObject({ kind: "columnOp" });
+      expect(p.figureSpec).toBeNull();
     }
   });
 
@@ -950,12 +950,12 @@ describe("초4 1-3-2 (세 자리)×(두 자리)", () => {
     }
   });
 
-  it("06 일의 자리 + 세로셈", () => {
+  it("06 일의 자리 — 발문의 곱셈식을 세로셈으로 또 그리지 않는다", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "06");
       const [a, b] = katexInts(p.content);
       expect(answerInt(p.answer)).toBe((a! * b!) % 10);
-      expect(p.figureSpec).toBeTruthy();
+      expect(p.figureSpec).toBeNull();
     }
   });
 
@@ -981,13 +981,13 @@ describe("초4 1-3-4 몇십으로 나누기", () => {
     }
   });
 
-  it("07 검산 곱 + 세로셈", () => {
+  it("07 검산 곱 — 물은 곱셈을 세로셈으로 대신 세워 주지 않는다", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "07");
       const [a, b, q] = katexInts(p.content);
       expect(a).toBe(b! * q!);
       expect(answerInt(p.answer)).toBe(a);
-      expect(p.figureSpec).toMatchObject({ kind: "columnOp" });
+      expect(p.figureSpec).toBeNull();
     }
   });
 });
@@ -1142,11 +1142,13 @@ describe("초4 2-2-3 정삼각형", () => {
 describe("초4 2-3-4 소수 덧셈", () => {
   const unit = unitOf("2-3-4");
 
-  it("05 합 + 세로셈", () => {
+  it("05 합 — 발문의 덧셈식을 세로셈으로 또 그리지 않는다", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
-      expect(p.figureSpec).toMatchObject({ kind: "columnOp" });
-      expect(p.answer).toMatch(/^\$/);
+      expect(p.figureSpec).toBeNull();
+      const m = /^\$(\d+\.\d)\+(\d+\.\d)\$/.exec(p.content);
+      expect(m, p.content).toBeTruthy();
+      expect(p.answer).toBe(`$${(Math.round((Number(m![1]) + Number(m![2])) * 10) / 10)}$`);
     }
   });
 });

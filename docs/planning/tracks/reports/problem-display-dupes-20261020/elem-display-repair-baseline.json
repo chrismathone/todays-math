@@ -1,0 +1,4361 @@
+{
+ "purpose": "원장님 2026-10-20 지면 전수 검사 — 발문의 식을 다시 그린 세로셈 · 정답을 보여 준 그림 · 중복 식 줄 · 깨진 TeX 를 고친 초등 문형의 승인 목록. elementaryReinforcement20261018 문지기가 r3 승인 위에 이 층을 얹는다.",
+ "baseCommit": "740ff82b0",
+ "agreedWith": "Codex gpt-6-astra xhigh 검토(2026-10-20) — 문형별 결론은 display-survey/codex/reply-engine.md(저장소 밖)",
+ "sourceSha256": {
+  "src/lib/elementary/g3.ts": "e7d4946e32dd2c48dc3de870d5e4321fed63ec307bd26784112f1aaa3b143e08",
+  "src/lib/elementary/g4.ts": "37a2deed7efb70d9aadeb77baadc1f2ee467e99236afd69393ef7d9684d8df05",
+  "src/lib/elementary/g5.ts": "f39f55002a744e67064a107d258c56024b456ef2d65cb20031b597bbbcddf1cc"
+ },
+ "changes": [
+  {
+   "familyKey": "elem:초3|1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 131,
+     "content": "$520+315$ 의 합에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$8$",
+     "solution": "$520+315=835$ 이므로 백의 자리 숫자는 $8$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "520",
+      "op": "+",
+      "bottom": "315"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "ffe963140475db4dd4ef10d4c251fe7b654de3bda556127ff7694a162b5ebbc0"
+  },
+  {
+   "familyKey": "elem:초3|1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 131,
+     "content": "$376+322$ 의 합에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$6$",
+     "solution": "$376+322=698$ 이므로 백의 자리 숫자는 $6$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "376",
+      "op": "+",
+      "bottom": "322"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "c574682564d1755c9de057410d964e7b8c1b389049f4ef6a6eed5306d1994fb9"
+  },
+  {
+   "familyKey": "elem:초3|1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 131,
+     "content": "$106+274$ 의 합에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$3$",
+     "solution": "$106+274=380$ 이므로 백의 자리 숫자는 $3$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "106",
+      "op": "+",
+      "bottom": "274"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "f6a26806da6996e9bd249172648e1eb7a20841108f8d4db7996fbe80016cd18f"
+  },
+  {
+   "familyKey": "elem:초3|1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 131,
+     "content": "$731$ 의 일의 자리 숫자와 $153$ 의 일의 자리 숫자를 더한 값을 쓰시오.",
+     "answer": "$4$",
+     "solution": "일의 자리 숫자는 $1$ 과 $3$ 이므로 $1+3=4$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "731",
+      "op": "+",
+      "bottom": "153"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "16270ef3136a1408c24d6a7f8b115e3564cc40da82ec1607fe46d7b938568484"
+  },
+  {
+   "familyKey": "elem:초3|1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 131,
+     "content": "$425$ 의 일의 자리 숫자와 $128$ 의 일의 자리 숫자를 더한 값을 쓰시오.",
+     "answer": "$13$",
+     "solution": "일의 자리 숫자는 $5$ 과 $8$ 이므로 $5+8=13$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "425",
+      "op": "+",
+      "bottom": "128"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "31188e18e0c72beac3ffb0f86079e01ff108a9e84ce4acbc6bca5ebe7e681fdc"
+  },
+  {
+   "familyKey": "elem:초3|1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 131,
+     "content": "$305$ 의 일의 자리 숫자와 $466$ 의 일의 자리 숫자를 더한 값을 쓰시오.",
+     "answer": "$11$",
+     "solution": "일의 자리 숫자는 $5$ 과 $6$ 이므로 $5+6=11$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "305",
+      "op": "+",
+      "bottom": "466"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "78708c35e661c69649c6eaa86c7ebe601a21e6aabd09a8db5d9cec08c76b9c21"
+  },
+  {
+   "familyKey": "elem:초3|1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)|08",
+   "beforeRow": [
+    "초3",
+    "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 131,
+     "content": "$601+108$ 의 합은 $322$ 보다 얼마 더 큽니까?",
+     "answer": "$387$",
+     "solution": "먼저 합을 구합니다. $601+108=709$ 입니다. 차는 $709-322=387$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "601",
+      "op": "+",
+      "bottom": "108"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "1d731eb26c19e1a552c0b9aa3b827bbde4aba0a11ab5b85c673390afbab6bb55"
+  },
+  {
+   "familyKey": "elem:초3|1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)|08",
+   "beforeRow": [
+    "초3",
+    "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 131,
+     "content": "$214+600$ 의 합은 $337$ 보다 얼마 더 큽니까?",
+     "answer": "$477$",
+     "solution": "먼저 합을 구합니다. $214+600=814$ 입니다. 차는 $814-337=477$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "214",
+      "op": "+",
+      "bottom": "600"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "314eeed7999c125017fb1402eb73967d118ca38633f39e54b3cdfe3e6af02ea6"
+  },
+  {
+   "familyKey": "elem:초3|1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)|08",
+   "beforeRow": [
+    "초3",
+    "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 131,
+     "content": "$477+131$ 의 합은 $354$ 보다 얼마 더 큽니까?",
+     "answer": "$254$",
+     "solution": "먼저 합을 구합니다. $477+131=608$ 입니다. 차는 $608-354=254$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "477",
+      "op": "+",
+      "bottom": "131"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "8e89278bc042249e4eeb8b413e489306554131b6bf2f8a6ebd2fd6c3dbb4ebfe"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|01",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "01",
+    "연산",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "다음을 계산하시오.\n\n$636+887=\\square$",
+     "answer": "$1523$",
+     "solution": "$636+887=1523$",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "636",
+      "op": "+",
+      "bottom": "887"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "5a000c0032e5a179d481e69c6155f31bb0f184c86769b671c6be0897608e790e"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|01",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "01",
+    "연산",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "다음을 계산하시오.\n\n$470+579=\\square$",
+     "answer": "$1049$",
+     "solution": "$470+579=1049$",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "470",
+      "op": "+",
+      "bottom": "579"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "39f5e049e2951d908d1c762371081af3a4e352989e16c348c53818df9704d48f"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|01",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "01",
+    "연산",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "다음을 계산하시오.\n\n$308+782=\\square$",
+     "answer": "$1090$",
+     "solution": "$308+782=1090$",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "308",
+      "op": "+",
+      "bottom": "782"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "382a3b51fd52f612d5068dc0f58ea682eaf0b349ce28774acd03f89e15b6bcda"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "$574+435$ 의 합은 몇 자리 수입니까?",
+     "answer": "$4$",
+     "solution": "$574+435=1009$ 이므로 $4$ 자리 수입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "574",
+      "op": "+",
+      "bottom": "435"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "5d0847c53e663c159f545cda0bc892de2783e544a45b1c369c501625f690b255"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "$175+277$ 의 합은 몇 자리 수입니까?",
+     "answer": "$3$",
+     "solution": "$175+277=452$ 이므로 $3$ 자리 수입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "175",
+      "op": "+",
+      "bottom": "277"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "207ef199add9957ff0608f7b97889619b41bbbd4821c67f277c48984196f7502"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "$789+684$ 의 합은 몇 자리 수입니까?",
+     "answer": "$4$",
+     "solution": "$789+684=1473$ 이므로 $4$ 자리 수입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "789",
+      "op": "+",
+      "bottom": "684"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "40aee073f4815ba4e239758d23ec02006d8ec3fb81e6b24da4a592f707d9c2bb"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "$719+488$ 를 계산할 때 받아올림은 몇 번 있습니까?",
+     "answer": "$3$",
+     "solution": "일의 자리, 십의 자리, 백의 자리에서 받아올림을 세면 $3$ 번입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "719",
+      "op": "+",
+      "bottom": "488"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "7b9ae7004df95385d3261775b798e841af3c4e4c7685c071c113b5ad1a52a349"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "$895+190$ 를 계산할 때 받아올림은 몇 번 있습니까?",
+     "answer": "$2$",
+     "solution": "일의 자리, 십의 자리, 백의 자리에서 받아올림을 세면 $2$ 번입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "895",
+      "op": "+",
+      "bottom": "190"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "7b28e20ab19e51ec26c1d6dc3a5c1271e398408e9872c5131ebdfc0f4bc35ccd"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "$412+792$ 를 계산할 때 받아올림은 몇 번 있습니까?",
+     "answer": "$2$",
+     "solution": "일의 자리, 십의 자리, 백의 자리에서 받아올림을 세면 $2$ 번입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "412",
+      "op": "+",
+      "bottom": "792"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "84479cbca17bf4ceace34e3c25cef0d6d19ea05f22f2536b88e7fb6f1c0cf104"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|08",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "$470+579$ 의 합과 $1000$ 의 차는 얼마입니까?",
+     "answer": "$49$",
+     "solution": "$470+579=1049$ 이고, $1049-1000=49$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "470",
+      "op": "+",
+      "bottom": "579"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "26b5be750e02f5c8df50d734cf47db58a1bc7c6e779f5550a7d0f2799d084ad8"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|08",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "$652+675$ 의 합과 $1000$ 의 차는 얼마입니까?",
+     "answer": "$327$",
+     "solution": "$652+675=1327$ 이고, $1327-1000=327$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "652",
+      "op": "+",
+      "bottom": "675"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "3ca90faf31aa150d2a1f3fe5bd926a1af721b3f7ee3daa660d3ad1db53c1e55a"
+  },
+  {
+   "familyKey": "elem:초3|1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)|08",
+   "beforeRow": [
+    "초3",
+    "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+     "orderIndex": 132,
+     "content": "$180+871$ 의 합과 $1000$ 의 차는 얼마입니까?",
+     "answer": "$51$",
+     "solution": "$180+871=1051$ 이고, $1051-1000=51$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "180",
+      "op": "+",
+      "bottom": "871"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "4cef105aa7a15f5518d3504427382438d4d6c3b3211d0e91a38e33daa7407768"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|01",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "01",
+    "연산",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "세로셈으로 계산하시오.\n\n$357-292=\\square$",
+     "answer": "$65$",
+     "solution": "$357-292=65$",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "357",
+      "op": "−",
+      "bottom": "292"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "e11b30ddd40481bd775a404ae1bcf8761e79790d8be2d1282ed606509b5c6712"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|01",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "01",
+    "연산",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "세로셈으로 계산하시오.\n\n$227-187=\\square$",
+     "answer": "$40$",
+     "solution": "$227-187=40$",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "227",
+      "op": "−",
+      "bottom": "187"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "5810ad8473051512f2e85898d2c9b69871af7c7a0e8925892f15c016f1357291"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "$453-205$ 의 차에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$2$",
+     "solution": "$453-205=248$ 이므로 백의 자리 숫자는 $2$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "453",
+      "op": "−",
+      "bottom": "205"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "951a22291ac4084344657a5220666cb2094315ec7e647256345ada5dc2013308"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "$827-121$ 의 차에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$7$",
+     "solution": "$827-121=706$ 이므로 백의 자리 숫자는 $7$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "827",
+      "op": "−",
+      "bottom": "121"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "adfcca5cebab5e9f3bb37469cd359ef242bd0e07c446a62417ef2fb88f6d336f"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "$360-131$ 의 차에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$2$",
+     "solution": "$360-131=229$ 이므로 백의 자리 숫자는 $2$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "360",
+      "op": "−",
+      "bottom": "131"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "7b47d101c9a84e604bfac94c582d685b9d05cd0bb1383d05c4be7e235c4b34c5"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "$905$ 의 일의 자리 숫자에서 $210$ 의 일의 자리 숫자를 받아내림하여 뺀 값을 쓰시오.",
+     "answer": "$5$",
+     "solution": "차 $905-210=695$ 의 일의 자리와 같습니다. 값은 $5$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "905",
+      "op": "−",
+      "bottom": "210"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "6d3acca58ac124a6c5e098bbd495d480f246c881298bbc11ec8d0c26bfcacdbc"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "$554$ 의 일의 자리 숫자에서 $164$ 의 일의 자리 숫자를 받아내림하여 뺀 값을 쓰시오.",
+     "answer": "$0$",
+     "solution": "차 $554-164=390$ 의 일의 자리와 같습니다. 값은 $0$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "554",
+      "op": "−",
+      "bottom": "164"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "7d5013ae707eb5d35334d0b0d8e2afcbf02a44c4f24798648388fbd47b3166ec"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "$342$ 의 일의 자리 숫자에서 $109$ 의 일의 자리 숫자를 받아내림하여 뺀 값을 쓰시오.",
+     "answer": "$3$",
+     "solution": "차 $342-109=233$ 의 일의 자리와 같습니다. 값은 $3$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "342",
+      "op": "−",
+      "bottom": "109"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "569c0e6d1abead362fb8c74126c769f2d6b5ed9a6b814a7e8e001c6846699ffa"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|09",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "$749-440$ 의 차는 $55$ 보다 얼마 더 큽니까?",
+     "answer": "$254$",
+     "solution": "먼저 차를 구합니다. $749-440=309$ 입니다. 차는 $309-55=254$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "749",
+      "op": "−",
+      "bottom": "440"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "28a1cecf339f0baf7727eee879f84a0bce2852b4eaed1ad7169bcd2ec40ab889"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|09",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "$951-660$ 의 차는 $74$ 보다 얼마 더 큽니까?",
+     "answer": "$217$",
+     "solution": "먼저 차를 구합니다. $951-660=291$ 입니다. 차는 $291-74=217$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "951",
+      "op": "−",
+      "bottom": "660"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "93fcfced604db7eb21a907fd5e76756baeddf63ee53baca09138b04c248bfc07"
+  },
+  {
+   "familyKey": "elem:초3|1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)|09",
+   "beforeRow": [
+    "초3",
+    "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 133,
+     "content": "$828-709$ 의 차는 $60$ 보다 얼마 더 큽니까?",
+     "answer": "$59$",
+     "solution": "먼저 차를 구합니다. $828-709=119$ 입니다. 차는 $119-60=59$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "828",
+      "op": "−",
+      "bottom": "709"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "030e4a7de4fe97dafc5972a8c0bb469cf3af7e3154adcaab8ea59b74928d50f9"
+  },
+  {
+   "familyKey": "elem:초3|1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 134,
+     "content": "$283-186$ 의 차에서 십의 자리 숫자를 쓰시오.",
+     "answer": "$9$",
+     "solution": "$283-186=97$ 이므로 십의 자리 숫자는 $9$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "283",
+      "op": "−",
+      "bottom": "186"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "fe3c668d6920d779e8ab649c06a69ab239e4ebfcd3cbdbaf6a9cca2bd9c658d2"
+  },
+  {
+   "familyKey": "elem:초3|1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 134,
+     "content": "$331-133$ 의 차에서 십의 자리 숫자를 쓰시오.",
+     "answer": "$9$",
+     "solution": "$331-133=198$ 이므로 십의 자리 숫자는 $9$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "331",
+      "op": "−",
+      "bottom": "133"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "63abf7cf53caa2bb71935924e66b325a944f0b1053ee275f2275492716b52c7a"
+  },
+  {
+   "familyKey": "elem:초3|1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)|05",
+   "beforeRow": [
+    "초3",
+    "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 134,
+     "content": "$600-267$ 의 차에서 십의 자리 숫자를 쓰시오.",
+     "answer": "$3$",
+     "solution": "$600-267=333$ 이므로 십의 자리 숫자는 $3$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "600",
+      "op": "−",
+      "bottom": "267"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "c6a655dbc207500cc2aea6ccb164fe083324c4f38854f35e7f6b400a95cf7a3b"
+  },
+  {
+   "familyKey": "elem:초3|1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 134,
+     "content": "$604$ 의 백의 자리 숫자에서 $536$ 의 백의 자리 숫자를 뺀 값을 쓰시오.",
+     "answer": "$1$",
+     "solution": "백의 자리 숫자는 $6$ 과 $5$ 이므로 $6-5=1$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "604",
+      "op": "−",
+      "bottom": "536"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "82263a41a0744add89b443a79791f971a0538f79d1e82642f1d6186e66051f8e"
+  },
+  {
+   "familyKey": "elem:초3|1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 134,
+     "content": "$641$ 의 백의 자리 숫자에서 $552$ 의 백의 자리 숫자를 뺀 값을 쓰시오.",
+     "answer": "$1$",
+     "solution": "백의 자리 숫자는 $6$ 과 $5$ 이므로 $6-5=1$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "641",
+      "op": "−",
+      "bottom": "552"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "4647771b478299e1a4746dd22894414136afef42a699dd5f4dde5a5687aad3c3"
+  },
+  {
+   "familyKey": "elem:초3|1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)|07",
+   "beforeRow": [
+    "초3",
+    "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-1 덧셈과 뺄셈",
+     "section": "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+     "orderIndex": 134,
+     "content": "$911$ 의 백의 자리 숫자에서 $296$ 의 백의 자리 숫자를 뺀 값을 쓰시오.",
+     "answer": "$7$",
+     "solution": "백의 자리 숫자는 $9$ 과 $2$ 이므로 $9-2=7$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "911",
+      "op": "−",
+      "bottom": "296"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "b77ec27f8b67108de88e3fa8d2c04e5ccdb3bc423c819dfbecd3e17f628395d6"
+  },
+  {
+   "familyKey": "elem:초3|1-4-1 (몇십)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-1 (몇십)×(몇)",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-1 (몇십)×(몇)",
+     "orderIndex": 144,
+     "content": "$80\\times4$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "$80\\times4=320$ 이므로 일의 자리 숫자는 $0$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "80",
+      "op": "×",
+      "bottom": "4"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "29fc136ff728ad5ac71a0e3e7d8aed3273cc11845673f4592fb35ef447ed6f9f"
+  },
+  {
+   "familyKey": "elem:초3|1-4-1 (몇십)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-1 (몇십)×(몇)",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-1 (몇십)×(몇)",
+     "orderIndex": 144,
+     "content": "$60\\times9$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "$60\\times9=540$ 이므로 일의 자리 숫자는 $0$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "60",
+      "op": "×",
+      "bottom": "9"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "0cf4f2a63e7dc6027d2055fd5f00c771925e7657b1d56ad967dfe15f01a6a582"
+  },
+  {
+   "familyKey": "elem:초3|1-4-1 (몇십)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-1 (몇십)×(몇)",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-1 (몇십)×(몇)",
+     "orderIndex": 144,
+     "content": "$60\\times9$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "$60\\times9=540$ 이므로 일의 자리 숫자는 $0$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "60",
+      "op": "×",
+      "bottom": "9"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "a6281fa9b5c4c54564f95e67111abddbed65435ae76a7812edd3a10897549499"
+  },
+  {
+   "familyKey": "elem:초3|1-4-1 (몇십)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-1 (몇십)×(몇)",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-1 (몇십)×(몇)",
+     "orderIndex": 144,
+     "content": "$30\\times5$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$50$",
+     "solution": "$30\\times5=150$ 이고, 차는 $50$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "30",
+      "op": "×",
+      "bottom": "5"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "9fb97d1f3524794af64da89f82617510d839acdbc1ec4ebfda606fac92ea1bd5"
+  },
+  {
+   "familyKey": "elem:초3|1-4-1 (몇십)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-1 (몇십)×(몇)",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-1 (몇십)×(몇)",
+     "orderIndex": 144,
+     "content": "$50\\times5$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$150$",
+     "solution": "$50\\times5=250$ 이고, 차는 $150$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "50",
+      "op": "×",
+      "bottom": "5"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "dfd5af7858150f06a91c899ca321b7d223cedff03e03c4b1d4faa2a67544dfca"
+  },
+  {
+   "familyKey": "elem:초3|1-4-1 (몇십)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-1 (몇십)×(몇)",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-1 (몇십)×(몇)",
+     "orderIndex": 144,
+     "content": "$20\\times4$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$20$",
+     "solution": "$20\\times4=80$ 이고, 차는 $20$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "20",
+      "op": "×",
+      "bottom": "4"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "0625f062e4a5a9a41a3a3f6c07ef9dc864fe914c9620540ec94b31c1e180ead8"
+  },
+  {
+   "familyKey": "elem:초3|1-4-2 올림이 없는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-2 올림이 없는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-2 올림이 없는 (몇십몇)×(몇)",
+     "orderIndex": 145,
+     "content": "$32\\times3$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$6$",
+     "solution": "$32\\times3=96$ 이므로 일의 자리 숫자는 $6$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "32",
+      "op": "×",
+      "bottom": "3"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "665dd2df5cb1f9ca91096c0029e300ebb07616910899a96d6e165dd6484a6ace"
+  },
+  {
+   "familyKey": "elem:초3|1-4-2 올림이 없는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-2 올림이 없는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-2 올림이 없는 (몇십몇)×(몇)",
+     "orderIndex": 145,
+     "content": "$34\\times2$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$8$",
+     "solution": "$34\\times2=68$ 이므로 일의 자리 숫자는 $8$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "34",
+      "op": "×",
+      "bottom": "2"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "a2f25e2e88bcb0beaa63a08df1f67ca315a21041bcf0fb65f653958769e10302"
+  },
+  {
+   "familyKey": "elem:초3|1-4-2 올림이 없는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-2 올림이 없는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-2 올림이 없는 (몇십몇)×(몇)",
+     "orderIndex": 145,
+     "content": "$41\\times2$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$2$",
+     "solution": "$41\\times2=82$ 이므로 일의 자리 숫자는 $2$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "41",
+      "op": "×",
+      "bottom": "2"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "726ea0deca427b73cbb681638d7609dadb7e01b7706659dcd92d4d76d9f2acfa"
+  },
+  {
+   "familyKey": "elem:초3|1-4-2 올림이 없는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-2 올림이 없는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-2 올림이 없는 (몇십몇)×(몇)",
+     "orderIndex": 145,
+     "content": "$32\\times3$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$4$",
+     "solution": "$32\\times3=96$ 이고, 차는 $4$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "32",
+      "op": "×",
+      "bottom": "3"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "1483f576fb1c247de9267d8c6638dfa2cec82d4ca967a2b850746671f7637f6a"
+  },
+  {
+   "familyKey": "elem:초3|1-4-2 올림이 없는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-2 올림이 없는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-2 올림이 없는 (몇십몇)×(몇)",
+     "orderIndex": 145,
+     "content": "$12\\times3$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$64$",
+     "solution": "$12\\times3=36$ 이고, 차는 $64$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "12",
+      "op": "×",
+      "bottom": "3"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "1ea18315ff0939a7da646962b39d12fa503fb4ab35a199effeea0654903e87d8"
+  },
+  {
+   "familyKey": "elem:초3|1-4-2 올림이 없는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-2 올림이 없는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-2 올림이 없는 (몇십몇)×(몇)",
+     "orderIndex": 145,
+     "content": "$13\\times3$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$61$",
+     "solution": "$13\\times3=39$ 이고, 차는 $61$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "13",
+      "op": "×",
+      "bottom": "3"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "ad975b8ff6c24bab20c8708a5831d246a8509edfe653f8acfafd0e5753ae624e"
+  },
+  {
+   "familyKey": "elem:초3|1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 146,
+     "content": "$41\\times4$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$4$",
+     "solution": "$41\\times4=164$ 이므로 일의 자리 숫자는 $4$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "41",
+      "op": "×",
+      "bottom": "4"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "b46c983f36a85828b4cebaef2cf2ca859cea2e13b9d94f321f5ab4b57454bfcf"
+  },
+  {
+   "familyKey": "elem:초3|1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 146,
+     "content": "$42\\times4$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$8$",
+     "solution": "$42\\times4=168$ 이므로 일의 자리 숫자는 $8$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "42",
+      "op": "×",
+      "bottom": "4"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "b70967bbceae926ab5be1a423871bcc34c0dc841a17fb13ad6619da6b373e473"
+  },
+  {
+   "familyKey": "elem:초3|1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 146,
+     "content": "$92\\times3$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$6$",
+     "solution": "$92\\times3=276$ 이므로 일의 자리 숫자는 $6$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "92",
+      "op": "×",
+      "bottom": "3"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "2baffc3e7548356ea30595c32e97ddcb2a0b45371dab7222d413c5cfd5ed3370"
+  },
+  {
+   "familyKey": "elem:초3|1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 146,
+     "content": "$51\\times2$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$2$",
+     "solution": "$51\\times2=102$ 이고, 차는 $2$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "51",
+      "op": "×",
+      "bottom": "2"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "25a06cf67d7b51044fd01691676770245cf4c582af639a5b82a69137c86ef01d"
+  },
+  {
+   "familyKey": "elem:초3|1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 146,
+     "content": "$61\\times4$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$144$",
+     "solution": "$61\\times4=244$ 이고, 차는 $144$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "61",
+      "op": "×",
+      "bottom": "4"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "ef435d0a6c88bc0875e54fc345fd4391ddedccf6e9001cdb3a76b9913c0f544d"
+  },
+  {
+   "familyKey": "elem:초3|1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 146,
+     "content": "$51\\times4$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$104$",
+     "solution": "$51\\times4=204$ 이고, 차는 $104$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "51",
+      "op": "×",
+      "bottom": "4"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "6266f5c582ed2a4a5117e6232308f8324847c242c436a7014800e28dd2863a7e"
+  },
+  {
+   "familyKey": "elem:초3|1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 147,
+     "content": "$17\\times2$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$4$",
+     "solution": "$17\\times2=34$ 이므로 일의 자리 숫자는 $4$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "17",
+      "op": "×",
+      "bottom": "2"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "024fa95529a93ee595834205947796e7e244c7d006b2bdff87db1317aea12a20"
+  },
+  {
+   "familyKey": "elem:초3|1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 147,
+     "content": "$18\\times4$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$2$",
+     "solution": "$18\\times4=72$ 이므로 일의 자리 숫자는 $2$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "18",
+      "op": "×",
+      "bottom": "4"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "8310cdddf7ccc1f5b9c79ba6708e171320baea1f369be76fc48c407d69dd0cce"
+  },
+  {
+   "familyKey": "elem:초3|1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 147,
+     "content": "$29\\times3$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$7$",
+     "solution": "$29\\times3=87$ 이므로 일의 자리 숫자는 $7$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "29",
+      "op": "×",
+      "bottom": "3"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "e4b5c1cd4c98d7d0d234ef0997610cac93acfd9190350516b379191e5961fdc2"
+  },
+  {
+   "familyKey": "elem:초3|1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 147,
+     "content": "$38\\times2$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$24$",
+     "solution": "$38\\times2=76$ 이고, 차는 $24$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "38",
+      "op": "×",
+      "bottom": "2"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "3fa87d59d2f1eda75ed238837619d1f9110f21495e87316bf962a10c690a52fc"
+  },
+  {
+   "familyKey": "elem:초3|1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 147,
+     "content": "$16\\times5$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$20$",
+     "solution": "$16\\times5=80$ 이고, 차는 $20$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "16",
+      "op": "×",
+      "bottom": "5"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "8611a13d8d598beda09ae1c1adb1a60924cf6f091830cd365ad2d04b953c6800"
+  },
+  {
+   "familyKey": "elem:초3|1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 147,
+     "content": "$19\\times5$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$5$",
+     "solution": "$19\\times5=95$ 이고, 차는 $5$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "19",
+      "op": "×",
+      "bottom": "5"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "6723ccd5bcb09894d96386825d4e3defe0a84d3b788bf9de2a507c097b0f4c85"
+  },
+  {
+   "familyKey": "elem:초3|1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 148,
+     "content": "$26\\times5$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "$26\\times5=130$ 이므로 일의 자리 숫자는 $0$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "26",
+      "op": "×",
+      "bottom": "5"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "2cc9cd38dda04da063e93252061ff55d5e9c675e4c6febb3c6674810fa64b279"
+  },
+  {
+   "familyKey": "elem:초3|1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 148,
+     "content": "$58\\times4$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$2$",
+     "solution": "$58\\times4=232$ 이므로 일의 자리 숫자는 $2$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "58",
+      "op": "×",
+      "bottom": "4"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "ecd8852b9723ba2c0db13b02218447e199423a2db7cb829bdefa9f86663d28bf"
+  },
+  {
+   "familyKey": "elem:초3|1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)|06",
+   "beforeRow": [
+    "초3",
+    "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 148,
+     "content": "$84\\times5$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "$84\\times5=420$ 이므로 일의 자리 숫자는 $0$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "84",
+      "op": "×",
+      "bottom": "5"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "86a44ff72cec79cc8e2fc5d53c1a9bd7b171c835d770f5202b5b6cae0b748746"
+  },
+  {
+   "familyKey": "elem:초3|1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 148,
+     "content": "$45\\times5$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$125$",
+     "solution": "$45\\times5=225$ 이고, 차는 $125$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "45",
+      "op": "×",
+      "bottom": "5"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "c38117f11878f7422810d4419320c3d8e892513da03729afd9a6934e65f47045"
+  },
+  {
+   "familyKey": "elem:초3|1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 148,
+     "content": "$59\\times5$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$195$",
+     "solution": "$59\\times5=295$ 이고, 차는 $195$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "59",
+      "op": "×",
+      "bottom": "5"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "5f2990a4efc330e9d8a1cbe90b847d6d7078d8146834b9d37be161e3653f144c"
+  },
+  {
+   "familyKey": "elem:초3|1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)|08",
+   "beforeRow": [
+    "초3",
+    "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-4 곱셈",
+     "section": "1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+     "orderIndex": 148,
+     "content": "$76\\times5$ 의 곱과 $100$ 의 차는 얼마입니까?",
+     "answer": "$280$",
+     "solution": "$76\\times5=380$ 이고, 차는 $280$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "76",
+      "op": "×",
+      "bottom": "5"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "9f17e680f889bcd4a6fae4295a44730a6b25d9a0461ee39d5bd296c68600c11d"
+  },
+  {
+   "familyKey": "elem:초3|1-5-4 1분보다 작은 단위|05",
+   "beforeRow": [
+    "초3",
+    "1-5-4 1분보다 작은 단위",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-5 길이와 시간",
+     "section": "1-5-4 1분보다 작은 단위",
+     "orderIndex": 152,
+     "content": "$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square$분 $47$초 $=$347$$초",
+     "answer": "$5$",
+     "solution": "$60$ 초는 $1$ 분이므로 $5$분입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "9ef58cad9b1dc28487efbb9326c63995a1a323b6dae38221273de7f66dbed7a2"
+  },
+  {
+   "familyKey": "elem:초3|1-5-4 1분보다 작은 단위|05",
+   "beforeRow": [
+    "초3",
+    "1-5-4 1분보다 작은 단위",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-5 길이와 시간",
+     "section": "1-5-4 1분보다 작은 단위",
+     "orderIndex": 152,
+     "content": "$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square$분 $49$초 $=$289$$초",
+     "answer": "$4$",
+     "solution": "$60$ 초는 $1$ 분이므로 $4$분입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "2bcbf37b32c892258b54df0549df9544b9708fb75519c872cfd8aca9f34e423f"
+  },
+  {
+   "familyKey": "elem:초3|1-5-4 1분보다 작은 단위|05",
+   "beforeRow": [
+    "초3",
+    "1-5-4 1분보다 작은 단위",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-5 길이와 시간",
+     "section": "1-5-4 1분보다 작은 단위",
+     "orderIndex": 152,
+     "content": "$\\square$ 안에 알맞은 수를 쓰시오.\n\n$\\square$분 $52$초 $=$232$$초",
+     "answer": "$3$",
+     "solution": "$60$ 초는 $1$ 분이므로 $3$분입니다.",
+     "figureSpec": null,
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "b4c6341e05e69cc590461804a62ebeffa673f5611dab50ff243ca976a8792940"
+  },
+  {
+   "familyKey": "elem:초3|2-1-1 (세 자리 수)×(한 자리 수) (1)|06",
+   "beforeRow": [
+    "초3",
+    "2-1-1 (세 자리 수)×(한 자리 수) (1)",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-1 곱셈",
+     "section": "2-1-1 (세 자리 수)×(한 자리 수) (1)",
+     "orderIndex": 162,
+     "content": "$241\\times2$ 의 곱에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$4$",
+     "solution": "$241\\times2=482$ 이므로 백의 자리 숫자는 $4$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "241",
+      "op": "×",
+      "bottom": "2"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "4c605de89bd380f07bab910295ba28192d646c551d0cbc4fe596cf701b8d1430"
+  },
+  {
+   "familyKey": "elem:초3|2-1-1 (세 자리 수)×(한 자리 수) (1)|06",
+   "beforeRow": [
+    "초3",
+    "2-1-1 (세 자리 수)×(한 자리 수) (1)",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-1 곱셈",
+     "section": "2-1-1 (세 자리 수)×(한 자리 수) (1)",
+     "orderIndex": 162,
+     "content": "$223\\times4$ 의 곱에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$8$",
+     "solution": "$223\\times4=892$ 이므로 백의 자리 숫자는 $8$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "223",
+      "op": "×",
+      "bottom": "4"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "18534715a1995f30e906971b30daf452be28d9362e6174854a16446771663e19"
+  },
+  {
+   "familyKey": "elem:초3|2-1-1 (세 자리 수)×(한 자리 수) (1)|06",
+   "beforeRow": [
+    "초3",
+    "2-1-1 (세 자리 수)×(한 자리 수) (1)",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-1 곱셈",
+     "section": "2-1-1 (세 자리 수)×(한 자리 수) (1)",
+     "orderIndex": 162,
+     "content": "$192\\times3$ 의 곱에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$5$",
+     "solution": "$192\\times3=576$ 이므로 백의 자리 숫자는 $5$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "192",
+      "op": "×",
+      "bottom": "3"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "87ae08c651491cef0d28af211f7812416197aa74544ef1efe9e93610fd7257fa"
+  },
+  {
+   "familyKey": "elem:초3|2-1-2 (세 자리 수)×(한 자리 수) (2)|06",
+   "beforeRow": [
+    "초3",
+    "2-1-2 (세 자리 수)×(한 자리 수) (2)",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-1 곱셈",
+     "section": "2-1-2 (세 자리 수)×(한 자리 수) (2)",
+     "orderIndex": 163,
+     "content": "$345\\times8$ 의 곱에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$7$",
+     "solution": "$345\\times8=2760$ 이므로 백의 자리 숫자는 $7$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "345",
+      "op": "×",
+      "bottom": "8"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "8cb7077d47b1af6cb752460ee5f83958f7bcfad1bdaae6d4cb90791a9484df9e"
+  },
+  {
+   "familyKey": "elem:초3|2-1-2 (세 자리 수)×(한 자리 수) (2)|06",
+   "beforeRow": [
+    "초3",
+    "2-1-2 (세 자리 수)×(한 자리 수) (2)",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-1 곱셈",
+     "section": "2-1-2 (세 자리 수)×(한 자리 수) (2)",
+     "orderIndex": 163,
+     "content": "$332\\times7$ 의 곱에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$3$",
+     "solution": "$332\\times7=2324$ 이므로 백의 자리 숫자는 $3$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "332",
+      "op": "×",
+      "bottom": "7"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "a8eb11d117a49014af1a5e70a22663cb97d537523ef62f5e2b9587bf93d2a866"
+  },
+  {
+   "familyKey": "elem:초3|2-1-2 (세 자리 수)×(한 자리 수) (2)|06",
+   "beforeRow": [
+    "초3",
+    "2-1-2 (세 자리 수)×(한 자리 수) (2)",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-1 곱셈",
+     "section": "2-1-2 (세 자리 수)×(한 자리 수) (2)",
+     "orderIndex": 163,
+     "content": "$474\\times8$ 의 곱에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$7$",
+     "solution": "$474\\times8=3792$ 이므로 백의 자리 숫자는 $7$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "474",
+      "op": "×",
+      "bottom": "8"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "89e340efbcd16de4c2d98de1cd253e3287f58807b97ba9bc74b20432400771b6"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|06",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$236\\times30$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "$236\\times30=7080$ 이므로 일의 자리 숫자는 $0$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "236",
+      "op": "×",
+      "bottom": "30"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "49981e9b1c15831f1be8f5783d5eb00ee3ea7333cfb829472d3888123a0915be"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|06",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$651\\times70$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "$651\\times70=45570$ 이므로 일의 자리 숫자는 $0$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "651",
+      "op": "×",
+      "bottom": "70"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "233bd622779f276e85e423380bdc4ae264844f796f23c9b5893ff6ad4bc7c850"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|06",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$871\\times80$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "$871\\times80=69680$ 이므로 일의 자리 숫자는 $0$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "871",
+      "op": "×",
+      "bottom": "80"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "3863869a63932bb1e229f3c788e416c148ba7e13d90b741a0122969a9a1d0635"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|07",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$675\\times60$ 의 곱보다 $100$ 큰 수를 쓰시오.",
+     "answer": "$40600$",
+     "solution": "$675\\times60=40500$ 이고 $40500+100=40600$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "675",
+      "op": "×",
+      "bottom": "60"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "eebe66ca0427c30fb15d8f200ace8130bd45c1bb8c2752427ffea4d2347b4a2c"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|07",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$497\\times70$ 의 곱보다 $100$ 큰 수를 쓰시오.",
+     "answer": "$34890$",
+     "solution": "$497\\times70=34790$ 이고 $34790+100=34890$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "497",
+      "op": "×",
+      "bottom": "70"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "955099f26dbc073cb0ad95981cdf2c6a09f5cf4563843a4e68dd00f8525cb144"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|07",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$674\\times30$ 의 곱보다 $100$ 큰 수를 쓰시오.",
+     "answer": "$20320$",
+     "solution": "$674\\times30=20220$ 이고 $20220+100=20320$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "674",
+      "op": "×",
+      "bottom": "30"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "95e71be8f969aeb66ef2c524385dbf98781b9682334427d60027e1f2bee4fc49"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|08",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$591\\times50$ 의 곱과 $10000$의 차는 얼마인가?",
+     "answer": "$19550$",
+     "solution": "$591\\times50=29550$ 이고 $29550-10000=19550$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "591",
+      "op": "×",
+      "bottom": "50"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "b7b2f39e050aec5fcb980163d01ebc99ed2e5586267b20a38fc9a4b3b91d5fe0"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|08",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$707\\times70$ 의 곱과 $10000$의 차는 얼마인가?",
+     "answer": "$39490$",
+     "solution": "$707\\times70=49490$ 이고 $49490-10000=39490$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "707",
+      "op": "×",
+      "bottom": "70"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "5b874a267fb54699ace0c182ae4d60f6842223ecb34b17236f97b2179d5411cb"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|08",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$770\\times40$ 의 곱과 $10000$의 차는 얼마인가?",
+     "answer": "$20800$",
+     "solution": "$770\\times40=30800$ 이고 $30800-10000=20800$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "770",
+      "op": "×",
+      "bottom": "40"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "1e66933620beeaaea1feb84de4d40210663c74c3274327b0f70591ddd3b41e70"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|09",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$444\\times20$ 의 곱에서 십의 자리 숫자를 쓰시오.",
+     "answer": "$8$",
+     "solution": "$444\\times20=8880$ 이므로 십의 자리 숫자는 $8$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "444",
+      "op": "×",
+      "bottom": "20"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "be387c3f1a0dba0a55f0794297d94daa90e7b33abd74b75f1f265afc5e07585c"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|09",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$530\\times60$ 의 곱에서 십의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "$530\\times60=31800$ 이므로 십의 자리 숫자는 $0$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "530",
+      "op": "×",
+      "bottom": "60"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "531799b8230103244d8ea1c7301c94cbb545c7aaa4821f09022533d1f628fb3e"
+  },
+  {
+   "familyKey": "elem:초4|1-3-1 (세 자리 수)×(몇십)의 계산|09",
+   "beforeRow": [
+    "초4",
+    "1-3-1 (세 자리 수)×(몇십)의 계산",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-1 (세 자리 수)×(몇십)의 계산",
+     "orderIndex": 200,
+     "content": "$207\\times50$ 의 곱에서 십의 자리 숫자를 쓰시오.",
+     "answer": "$5$",
+     "solution": "$207\\times50=10350$ 이므로 십의 자리 숫자는 $5$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "207",
+      "op": "×",
+      "bottom": "50"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "98dfb6e83f1c30c97ddc02e3c052f74f43f85b559fd59f3845c72b93c7ed508b"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|06",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$365\\times65$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$5$",
+     "solution": "$365\\times65=23725$ 이므로 일의 자리 숫자는 $5$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "365",
+      "op": "×",
+      "bottom": "65"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "05074df7e75a4538ad266816a87f099bf20fbcf5d95bc8e065f1023c1749369f"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|06",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$598\\times46$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$8$",
+     "solution": "$598\\times46=27508$ 이므로 일의 자리 숫자는 $8$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "598",
+      "op": "×",
+      "bottom": "46"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "3bc3c0f2c2e90c2efc8eb5127a333c835716e58f6842792ac7a8dab474d85cce"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|06",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$791\\times65$ 의 곱에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$5$",
+     "solution": "$791\\times65=51415$ 이므로 일의 자리 숫자는 $5$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "791",
+      "op": "×",
+      "bottom": "65"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "da4280934275f7a38f56e5c021a446c5d32bd44d682c6cd501cdcf2bc5969308"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|07",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$697\\times72$ 의 곱보다 $10$ 작은 수를 쓰시오.",
+     "answer": "$50174$",
+     "solution": "$697\\times72=50184$ 이고 $50184-10=50174$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "697",
+      "op": "×",
+      "bottom": "72"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "3b5a2317c1c350af9240882ba7dc9823d4d269f04b094089b54bb631106a1d5c"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|07",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$586\\times59$ 의 곱보다 $10$ 작은 수를 쓰시오.",
+     "answer": "$34564$",
+     "solution": "$586\\times59=34574$ 이고 $34574-10=34564$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "586",
+      "op": "×",
+      "bottom": "59"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "fccd40168de7ffaab647e4970c49c1795143076b6eba596d31494d912bf822f2"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|07",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$256\\times29$ 의 곱보다 $10$ 작은 수를 쓰시오.",
+     "answer": "$7414$",
+     "solution": "$256\\times29=7424$ 이고 $7424-10=7414$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "256",
+      "op": "×",
+      "bottom": "29"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "39b5f01105cbd7515e25fd83ea112c248a72386a3b917a5a7581da9dd36481a6"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|08",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$638\\times28$ 의 곱에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$8$",
+     "solution": "$638\\times28=17864$ 이므로 백의 자리 숫자는 $8$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "638",
+      "op": "×",
+      "bottom": "28"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "71b1a59818c504e6f5679d5152417f45d7bfdeafe632f353298f12c687470722"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|08",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$332\\times28$ 의 곱에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$2$",
+     "solution": "$332\\times28=9296$ 이므로 백의 자리 숫자는 $2$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "332",
+      "op": "×",
+      "bottom": "28"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "9aaa05d59e352ac6e066023189348e9bc6edeefbb979b0f01ed6b3e5aff2d296"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|08",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$561\\times86$ 의 곱에서 백의 자리 숫자를 쓰시오.",
+     "answer": "$2$",
+     "solution": "$561\\times86=48246$ 이므로 백의 자리 숫자는 $2$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "561",
+      "op": "×",
+      "bottom": "86"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "855ab46854d5a457148d8fb60c4d8da9dc51bf01b17e76554c10774dc35b45ff"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|09",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$665\\times67$ 를 계산할 때 $665\\times7$ 의 값은 얼마인가?",
+     "answer": "$4655$",
+     "solution": "일의 자리 $7$와의 곱은 $665\\times7=4655$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "665",
+      "op": "×",
+      "bottom": "67"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "b1aef7ad60d0993c4d8aec1c093771542675d548f72894d7db9b4280571909af"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|09",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$458\\times43$ 를 계산할 때 $458\\times3$ 의 값은 얼마인가?",
+     "answer": "$1374$",
+     "solution": "일의 자리 $3$와의 곱은 $458\\times3=1374$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "458",
+      "op": "×",
+      "bottom": "43"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "70520e61eb502aef64f4fa84223330c71d644d3a29993e859d0928fc548192b3"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|09",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$343\\times38$ 를 계산할 때 $343\\times8$ 의 값은 얼마인가?",
+     "answer": "$2744$",
+     "solution": "일의 자리 $8$와의 곱은 $343\\times8=2744$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "343",
+      "op": "×",
+      "bottom": "38"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "269cde59c446bcdfa545000e179d6af522eb604a543d10ce86a2b00cefce86b0"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|10",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$215\\times66$ 의 곱은 짝수인가? '예' 또는 '아니요'로 답하시오.",
+     "answer": "예",
+     "solution": "$215\\times66=14190$ 이고 $14190$는 짝수입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "215",
+      "op": "×",
+      "bottom": "66"
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "4e9c4249686ecfdefd1c0da8674179acc4d4dbc0b23910a34bf86c6183bb8bee"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|10",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$834\\times21$ 의 곱은 짝수인가? '예' 또는 '아니요'로 답하시오.",
+     "answer": "예",
+     "solution": "$834\\times21=17514$ 이고 $17514$는 짝수입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "834",
+      "op": "×",
+      "bottom": "21"
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "464433a7cac9cbebdf0a8d9c5fb56fe8774269ca64279dfa9d46deb126ff00b8"
+  },
+  {
+   "familyKey": "elem:초4|1-3-2 (세 자리 수)×(두 자리 수)의 계산|10",
+   "beforeRow": [
+    "초4",
+    "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+     "orderIndex": 201,
+     "content": "$895\\times31$ 의 곱은 짝수인가? '예' 또는 '아니요'로 답하시오.",
+     "answer": "아니요",
+     "solution": "$895\\times31=27745$ 이고 $27745$는 홀수입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "895",
+      "op": "×",
+      "bottom": "31"
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "d4b8942cea1bac870bc5b0f6fb036a706ad2ff676306ee03a83a0a8911f11df7"
+  },
+  {
+   "familyKey": "elem:초4|1-3-3 곱셈의 어림셈|06",
+   "beforeRow": [
+    "초4",
+    "1-3-3 곱셈의 어림셈",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-3 곱셈의 어림셈",
+     "orderIndex": 202,
+     "content": "$557$은 몇백으로, $65$는 몇십으로 어림하여 곱하면 얼마인가?\n\n$557\\times65$",
+     "answer": "$42000$",
+     "solution": "$600\\times70=42000$ 이므로 약 $42000$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "600",
+      "op": "×",
+      "bottom": "70"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "9b8330468439a532335052f5dbdcd4160c21d13ab1a059583069e4cf9787b985"
+  },
+  {
+   "familyKey": "elem:초4|1-3-3 곱셈의 어림셈|06",
+   "beforeRow": [
+    "초4",
+    "1-3-3 곱셈의 어림셈",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-3 곱셈의 어림셈",
+     "orderIndex": 202,
+     "content": "$835$는 몇백으로, $22$는 몇십으로 어림하여 곱하면 얼마인가?\n\n$835\\times22$",
+     "answer": "$16000$",
+     "solution": "$800\\times20=16000$ 이므로 약 $16000$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "800",
+      "op": "×",
+      "bottom": "20"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "1a5e6e9f6724c6f8f860d1947985e756d34fa5b4509ef8d74eb3f17e41c0fbda"
+  },
+  {
+   "familyKey": "elem:초4|1-3-3 곱셈의 어림셈|06",
+   "beforeRow": [
+    "초4",
+    "1-3-3 곱셈의 어림셈",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-3 곱셈의 어림셈",
+     "orderIndex": 202,
+     "content": "$328$은 몇백으로, $68$은 몇십으로 어림하여 곱하면 얼마인가?\n\n$328\\times68$",
+     "answer": "$21000$",
+     "solution": "$300\\times70=21000$ 이므로 약 $21000$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "300",
+      "op": "×",
+      "bottom": "70"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "f55e9cca82f7ad5d8f715eb6b97f5ebbffd31aad285e7f5ae75f5a98d01529a6"
+  },
+  {
+   "familyKey": "elem:초4|1-3-4 몇십으로 나누기|07",
+   "beforeRow": [
+    "초4",
+    "1-3-4 몇십으로 나누기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-4 몇십으로 나누기",
+     "orderIndex": 203,
+     "content": "$250\\div50=5$ 입니다. 검산하기 위해 몫과 나누는 수를 곱한 값을 쓰시오.",
+     "answer": "$250$",
+     "solution": "$5\\times50=250$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "5",
+      "op": "×",
+      "bottom": "50"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "f1f079ba727f106020d0c4eaa61496b9d23a077fc5824d20e88551f0a942305f"
+  },
+  {
+   "familyKey": "elem:초4|1-3-4 몇십으로 나누기|07",
+   "beforeRow": [
+    "초4",
+    "1-3-4 몇십으로 나누기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-4 몇십으로 나누기",
+     "orderIndex": 203,
+     "content": "$360\\div60=6$ 입니다. 검산하기 위해 몫과 나누는 수를 곱한 값을 쓰시오.",
+     "answer": "$360$",
+     "solution": "$6\\times60=360$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "6",
+      "op": "×",
+      "bottom": "60"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "3f55596bdd507a8f7bf3455fa9825efd0c29071b129765b8028468363d09a6d5"
+  },
+  {
+   "familyKey": "elem:초4|1-3-4 몇십으로 나누기|07",
+   "beforeRow": [
+    "초4",
+    "1-3-4 몇십으로 나누기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-4 몇십으로 나누기",
+     "orderIndex": 203,
+     "content": "$120\\div30=4$ 입니다. 검산하기 위해 몫과 나누는 수를 곱한 값을 쓰시오.",
+     "answer": "$120$",
+     "solution": "$4\\times30=120$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "4",
+      "op": "×",
+      "bottom": "30"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "3eca41e6fc8306f7bb1e42e4462f0a0e25cd074a1ff7ede8c58729385bc182c1"
+  },
+  {
+   "familyKey": "elem:초4|1-3-5 몇십몇으로 나누기 (1)|05",
+   "beforeRow": [
+    "초4",
+    "1-3-5 몇십몇으로 나누기 (1)",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-5 몇십몇으로 나누기 (1)",
+     "orderIndex": 204,
+     "content": "$\\square$ 안에 알맞은 수를 쓰시오. $\\square\\div14=8$",
+     "answer": "$112$",
+     "solution": "$14\\times8=112$ 이므로 $112$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "14",
+      "op": "×",
+      "bottom": "8"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "f01d6d0c2b11d8cae18b69775450a56cdac4ab34c17d16548d2b21a0946f79dc"
+  },
+  {
+   "familyKey": "elem:초4|1-3-5 몇십몇으로 나누기 (1)|05",
+   "beforeRow": [
+    "초4",
+    "1-3-5 몇십몇으로 나누기 (1)",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-5 몇십몇으로 나누기 (1)",
+     "orderIndex": 204,
+     "content": "$\\square$ 안에 알맞은 수를 쓰시오. $\\square\\div34=8$",
+     "answer": "$272$",
+     "solution": "$34\\times8=272$ 이므로 $272$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "34",
+      "op": "×",
+      "bottom": "8"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "d8ed2fd2920df9c4611f453584e6023eefacbe959b8a23b028599cffdbc37b28"
+  },
+  {
+   "familyKey": "elem:초4|1-3-5 몇십몇으로 나누기 (1)|05",
+   "beforeRow": [
+    "초4",
+    "1-3-5 몇십몇으로 나누기 (1)",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-5 몇십몇으로 나누기 (1)",
+     "orderIndex": 204,
+     "content": "$\\square$ 안에 알맞은 수를 쓰시오. $\\square\\div35=3$",
+     "answer": "$105$",
+     "solution": "$35\\times3=105$ 이므로 $105$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "35",
+      "op": "×",
+      "bottom": "3"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "f46fbd088b24dc60aef12f45a3648c0071f414a3be143e88affbdde279738ca8"
+  },
+  {
+   "familyKey": "elem:초4|1-3-5 몇십몇으로 나누기 (1)|07",
+   "beforeRow": [
+    "초4",
+    "1-3-5 몇십몇으로 나누기 (1)",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-5 몇십몇으로 나누기 (1)",
+     "orderIndex": 204,
+     "content": "$66\\div11=6$ 의 검산에서 몫과 나누는 수의 곱을 쓰시오.",
+     "answer": "$66$",
+     "solution": "$6\\times11=66$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "6",
+      "op": "×",
+      "bottom": "11"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "fa8eb3b706f226b667285e482f248ba2553f44f20e9919193e0f525a7525da41"
+  },
+  {
+   "familyKey": "elem:초4|1-3-5 몇십몇으로 나누기 (1)|07",
+   "beforeRow": [
+    "초4",
+    "1-3-5 몇십몇으로 나누기 (1)",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-5 몇십몇으로 나누기 (1)",
+     "orderIndex": 204,
+     "content": "$90\\div18=5$ 의 검산에서 몫과 나누는 수의 곱을 쓰시오.",
+     "answer": "$90$",
+     "solution": "$5\\times18=90$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "5",
+      "op": "×",
+      "bottom": "18"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "2a004540b59cb0c5d06fbe9685dc9d25ef4239aeafa404e77a897b275b7cf28c"
+  },
+  {
+   "familyKey": "elem:초4|1-3-5 몇십몇으로 나누기 (1)|07",
+   "beforeRow": [
+    "초4",
+    "1-3-5 몇십몇으로 나누기 (1)",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-5 몇십몇으로 나누기 (1)",
+     "orderIndex": 204,
+     "content": "$84\\div28=3$ 의 검산에서 몫과 나누는 수의 곱을 쓰시오.",
+     "answer": "$84$",
+     "solution": "$3\\times28=84$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "3",
+      "op": "×",
+      "bottom": "28"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "c7a11aa95c401800a6efff0c48747a2267d4b9d955fce77239b104bc09f79977"
+  },
+  {
+   "familyKey": "elem:초4|1-3-6 몇십몇으로 나누기 (2)|05",
+   "beforeRow": [
+    "초4",
+    "1-3-6 몇십몇으로 나누기 (2)",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-6 몇십몇으로 나누기 (2)",
+     "orderIndex": 205,
+     "content": "$300\\div25$ 의 몫에서 십의 자리 숫자를 쓰시오.",
+     "answer": "$1$",
+     "solution": "몫은 $12$이므로 십의 자리 숫자는 $1$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "12",
+      "op": "×",
+      "bottom": "25"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "1225b2d1ae851c8b0806451df4a1cf5ae7fe5cc3c3fe1a5ac8bc44f0ec279a5c"
+  },
+  {
+   "familyKey": "elem:초4|1-3-6 몇십몇으로 나누기 (2)|05",
+   "beforeRow": [
+    "초4",
+    "1-3-6 몇십몇으로 나누기 (2)",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-6 몇십몇으로 나누기 (2)",
+     "orderIndex": 205,
+     "content": "$841\\div29$ 의 몫에서 십의 자리 숫자를 쓰시오.",
+     "answer": "$2$",
+     "solution": "몫은 $29$이므로 십의 자리 숫자는 $2$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "29",
+      "op": "×",
+      "bottom": "29"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "a5db0739a3a70164cb542fc2ee77e79aaecffd1a55d690e0acf7be822ef44cf3"
+  },
+  {
+   "familyKey": "elem:초4|1-3-6 몇십몇으로 나누기 (2)|05",
+   "beforeRow": [
+    "초4",
+    "1-3-6 몇십몇으로 나누기 (2)",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-6 몇십몇으로 나누기 (2)",
+     "orderIndex": 205,
+     "content": "$638\\div22$ 의 몫에서 십의 자리 숫자를 쓰시오.",
+     "answer": "$2$",
+     "solution": "몫은 $29$이므로 십의 자리 숫자는 $2$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "29",
+      "op": "×",
+      "bottom": "22"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "85324c3bd87ca77e4feffe678045ada971608eb0322480bdf022c9edb7514b93"
+  },
+  {
+   "familyKey": "elem:초4|1-3-6 몇십몇으로 나누기 (2)|06",
+   "beforeRow": [
+    "초4",
+    "1-3-6 몇십몇으로 나누기 (2)",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-6 몇십몇으로 나누기 (2)",
+     "orderIndex": 205,
+     "content": "$192\\div12$ 의 몫에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$6$",
+     "solution": "몫은 $16$이므로 일의 자리 숫자는 $6$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "16",
+      "op": "×",
+      "bottom": "12"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "723ef976fc8afb0c8fc9aa5d6a4c541c46b3c888a86e6a85a0bece7cbd1d1f29"
+  },
+  {
+   "familyKey": "elem:초4|1-3-6 몇십몇으로 나누기 (2)|06",
+   "beforeRow": [
+    "초4",
+    "1-3-6 몇십몇으로 나누기 (2)",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-6 몇십몇으로 나누기 (2)",
+     "orderIndex": 205,
+     "content": "$357\\div17$ 의 몫에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$1$",
+     "solution": "몫은 $21$이므로 일의 자리 숫자는 $1$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "21",
+      "op": "×",
+      "bottom": "17"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "dcaa1760d593bb9444d4de82a040531dd0c0311ce3f3b4bc7cdf6fcd92b1699b"
+  },
+  {
+   "familyKey": "elem:초4|1-3-6 몇십몇으로 나누기 (2)|06",
+   "beforeRow": [
+    "초4",
+    "1-3-6 몇십몇으로 나누기 (2)",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-6 몇십몇으로 나누기 (2)",
+     "orderIndex": 205,
+     "content": "$810\\div27$ 의 몫에서 일의 자리 숫자를 쓰시오.",
+     "answer": "$0$",
+     "solution": "몫은 $30$이므로 일의 자리 숫자는 $0$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "30",
+      "op": "×",
+      "bottom": "27"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "b558e409c58c5c498380317c8cef2bf5b28636d4588d8851bbc06acdd344e451"
+  },
+  {
+   "familyKey": "elem:초4|1-3-6 몇십몇으로 나누기 (2)|07",
+   "beforeRow": [
+    "초4",
+    "1-3-6 몇십몇으로 나누기 (2)",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-6 몇십몇으로 나누기 (2)",
+     "orderIndex": 205,
+     "content": "$551\\div29=19$ 입니다. 검산의 곱을 쓰시오.",
+     "answer": "$551$",
+     "solution": "$19\\times29=551$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "19",
+      "op": "×",
+      "bottom": "29"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "4a140ef4bbb56ccf8f2a7996bb450551c801eab81402a0c96a95bee0dcd451e8"
+  },
+  {
+   "familyKey": "elem:초4|1-3-6 몇십몇으로 나누기 (2)|07",
+   "beforeRow": [
+    "초4",
+    "1-3-6 몇십몇으로 나누기 (2)",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-6 몇십몇으로 나누기 (2)",
+     "orderIndex": 205,
+     "content": "$360\\div12=30$ 입니다. 검산의 곱을 쓰시오.",
+     "answer": "$360$",
+     "solution": "$30\\times12=360$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "30",
+      "op": "×",
+      "bottom": "12"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "803fec8205c1bbbdfcda7fb2889e4746248997f750e98fe40f1e7373f3f10afe"
+  },
+  {
+   "familyKey": "elem:초4|1-3-6 몇십몇으로 나누기 (2)|07",
+   "beforeRow": [
+    "초4",
+    "1-3-6 몇십몇으로 나누기 (2)",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-3 곱셈과 나눗셈",
+     "section": "1-3-6 몇십몇으로 나누기 (2)",
+     "orderIndex": 205,
+     "content": "$336\\div14=24$ 입니다. 검산의 곱을 쓰시오.",
+     "answer": "$336$",
+     "solution": "$24\\times14=336$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "24",
+      "op": "×",
+      "bottom": "14"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "3ad7e43ef70bfb3fc683b2354f943a11c6e98b5f5f90e14d4d87d5148bbc704b"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|05",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$2.2+4.3$ 의 합을 구하시오.",
+     "answer": "$6.5$",
+     "solution": "$2.2+4.3=6.5$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "2.2",
+      "op": "+",
+      "bottom": "4.3"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "0836c661bdd930e0ccf1fbe2a1d0f34a8bdb087dce1158e8e4c108dc01f36183"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|05",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$7.3+6.6$ 의 합을 구하시오.",
+     "answer": "$13.9$",
+     "solution": "$7.3+6.6=13.9$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "7.3",
+      "op": "+",
+      "bottom": "6.6"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "4eb34210050d30391242497f7695dd7dcd3e1a0f131ecb1b1bf524245090d05e"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|05",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$1.3+1.6$ 의 합을 구하시오.",
+     "answer": "$2.9$",
+     "solution": "$1.3+1.6=2.9$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "1.3",
+      "op": "+",
+      "bottom": "1.6"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "592bb253158b7a1286b68801126d003bf67f1d6f4d1f95830a7cfe718ed37035"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|07",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$1.2+6.7$ 의 합에서 소수 첫째 자리 숫자를 쓰시오.",
+     "answer": "$9$",
+     "solution": "$1.2+6.7=7.9$ 이므로 소수 첫째 자리 숫자는 $9$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "1.2",
+      "op": "+",
+      "bottom": "6.7"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "0fef90bd9e34da6df67d5d3f56215b7e2f1427136914b71f050bcd283ccaada0"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|07",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$3.6+1.9$ 의 합에서 소수 첫째 자리 숫자를 쓰시오.",
+     "answer": "$5$",
+     "solution": "$3.6+1.9=5.5$ 이므로 소수 첫째 자리 숫자는 $5$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "3.6",
+      "op": "+",
+      "bottom": "1.9"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "453399ef1d8dc454aa696d87087beb3fa70c1ea078f51e216d393decf1364dd3"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|07",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$7.1+5.4$ 의 합에서 소수 첫째 자리 숫자를 쓰시오.",
+     "answer": "$5$",
+     "solution": "$7.1+5.4=12.5$ 이므로 소수 첫째 자리 숫자는 $5$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "7.1",
+      "op": "+",
+      "bottom": "5.4"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "cc3afb4ad948d67d6fd605625546d60c8723f868836283ccb9f8f7848245d3d1"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|08",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$7.6+3.5$ 의 합은 $10$보다 큰가? '예' 또는 '아니요'로 답하시오.",
+     "answer": "예",
+     "solution": "합은 $11.1$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "7.6",
+      "op": "+",
+      "bottom": "3.5"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "fa9a5ad503d154258488cd5e39a5a7694e969e82294771e29a62b8b4df35a397"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|08",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$1.2+8.3$ 의 합은 $10$보다 큰가? '예' 또는 '아니요'로 답하시오.",
+     "answer": "아니요",
+     "solution": "합은 $9.5$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "1.2",
+      "op": "+",
+      "bottom": "8.3"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "91476e5951dd5747033b7de5b7d0453e685df5c8b5feacfff00034a5dd029a62"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|08",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "08",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$6.2+5.3$ 의 합은 $10$보다 큰가? '예' 또는 '아니요'로 답하시오.",
+     "answer": "예",
+     "solution": "합은 $11.5$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "6.2",
+      "op": "+",
+      "bottom": "5.3"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "d2e1a916011ea3bdb9bce6aae049503f4ec86686056285f43762a0f3192a58b3"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$5.7+4.7$ 의 합에서 자연수 부분을 쓰시오.",
+     "answer": "$10$",
+     "solution": "합은 $10.4$이므로 자연수 부분은 $10$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "5.7",
+      "op": "+",
+      "bottom": "4.7"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "9cb3f4f3d54aeef2dcef41f6fbb43233c15778938a7ebd0a36e866017aaa6baa"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$6.7+5.2$ 의 합에서 자연수 부분을 쓰시오.",
+     "answer": "$11$",
+     "solution": "합은 $11.9$이므로 자연수 부분은 $11$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "6.7",
+      "op": "+",
+      "bottom": "5.2"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "07706eb337a47507894c027aac3a1f3dad391df570ff9dbb8a4308479c50180c"
+  },
+  {
+   "familyKey": "elem:초4|2-3-4 소수 한 자리 수의 덧셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-4 소수 한 자리 수의 덧셈",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-4 소수 한 자리 수의 덧셈",
+     "orderIndex": 231,
+     "content": "$4.7+3.6$ 의 합에서 자연수 부분을 쓰시오.",
+     "answer": "$8$",
+     "solution": "합은 $8.3$이므로 자연수 부분은 $8$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "4.7",
+      "op": "+",
+      "bottom": "3.6"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "5f809deadefef76672c3dcea8f9f3ef92dda1658f53b8163c09b6857d4a8fe59"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|05",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$8.1-3.6$ 의 차를 구하시오.",
+     "answer": "$4.5$",
+     "solution": "$8.1-3.6=4.5$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "8.1",
+      "op": "−",
+      "bottom": "3.6"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "110bd9c8caa97d2a95d25b61c4c6d84b32c6a148704be0dedd2cdda852cf49ea"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|05",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$5.6-3.9$ 의 차를 구하시오.",
+     "answer": "$1.7$",
+     "solution": "$5.6-3.9=1.7$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "5.6",
+      "op": "−",
+      "bottom": "3.9"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "f035df9a5168daf8051d1ef62a828287759d36ab9eda2b5ee06e03aece46da17"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|05",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$6.9-6.2$ 의 차를 구하시오.",
+     "answer": "$0.7$",
+     "solution": "$6.9-6.2=0.7$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "6.9",
+      "op": "−",
+      "bottom": "6.2"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "22677e70495f49932119d245d110fca3f7c59c85a999f47444033c70823916dc"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|07",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$4.9-1.3$ 의 차에서 소수 첫째 자리 숫자를 쓰시오.",
+     "answer": "$6$",
+     "solution": "차는 $3.6$이므로 소수 첫째 자리 숫자는 $6$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "4.9",
+      "op": "−",
+      "bottom": "1.3"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "82459cb64a0823a169aa3956af347fddd975918530a031ab3a3076558f01d2e0"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|07",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$4.8-2.2$ 의 차에서 소수 첫째 자리 숫자를 쓰시오.",
+     "answer": "$6$",
+     "solution": "차는 $2.6$이므로 소수 첫째 자리 숫자는 $6$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "4.8",
+      "op": "−",
+      "bottom": "2.2"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "6ac15d0d9e679ddf64301ebe8ec945a2c9922af8e0eb28e790b24bc71a44983f"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|07",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$2.1-1.8$ 의 차에서 소수 첫째 자리 숫자를 쓰시오.",
+     "answer": "$3$",
+     "solution": "차는 $0.3$이므로 소수 첫째 자리 숫자는 $3$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "2.1",
+      "op": "−",
+      "bottom": "1.8"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "6008a76bd2126ab0fc788dc975ca81693f713d7fb4561feeea80acb880139b14"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$6.9-2.4$ 의 차에서 자연수 부분을 쓰시오.",
+     "answer": "$4$",
+     "solution": "차는 $4.5$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "6.9",
+      "op": "−",
+      "bottom": "2.4"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "1c70793b48daec9fbad3f0111817bb43d3ce642271ab7a7f891421d713e0e6df"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$7.6-1.2$ 의 차에서 자연수 부분을 쓰시오.",
+     "answer": "$6$",
+     "solution": "차는 $6.4$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "7.6",
+      "op": "−",
+      "bottom": "1.2"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "ff2cd5e685a4274b461a726324d187125e6e29265ac9be05dd47c726662813de"
+  },
+  {
+   "familyKey": "elem:초4|2-3-5 소수 한 자리 수의 뺄셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-5 소수 한 자리 수의 뺄셈",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-5 소수 한 자리 수의 뺄셈",
+     "orderIndex": 232,
+     "content": "$7.9-4.7$ 의 차에서 자연수 부분을 쓰시오.",
+     "answer": "$3$",
+     "solution": "차는 $3.2$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "7.9",
+      "op": "−",
+      "bottom": "4.7"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "ea835a6b3f00746b0c47cb20f043608bfb59403f7a23a791d80de1dc7b6666ee"
+  },
+  {
+   "familyKey": "elem:초4|2-3-6 소수 두 자리 수의 덧셈|05",
+   "beforeRow": [
+    "초4",
+    "2-3-6 소수 두 자리 수의 덧셈",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-6 소수 두 자리 수의 덧셈",
+     "orderIndex": 233,
+     "content": "리본 $7.7$ m와 $6.1$ m를 이어 붙였습니다. 모두 몇 m인가?",
+     "answer": "$13.8$",
+     "solution": "$7.7+6.1=13.8$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "tape",
+      "length": 138,
+      "label": "13.8 m",
+      "segments": 2
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "b2d48b8d8e517154d1f94336b4688503967db3484bf67db7fedebb9cf3fbf0a2"
+  },
+  {
+   "familyKey": "elem:초4|2-3-6 소수 두 자리 수의 덧셈|05",
+   "beforeRow": [
+    "초4",
+    "2-3-6 소수 두 자리 수의 덧셈",
+    "05",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-6 소수 두 자리 수의 덧셈",
+     "orderIndex": 233,
+     "content": "리본 $3.7$ m와 $2.2$ m를 이어 붙였습니다. 모두 몇 m인가?",
+     "answer": "$5.9$",
+     "solution": "$3.7+2.2=5.9$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "tape",
+      "length": 59,
+      "label": "5.9 m",
+      "segments": 2
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "c3646ea467bba8ff6697e029046ad638440573e4701a0d52f7bb090a818be24d"
+  },
+  {
+   "familyKey": "elem:초4|2-3-6 소수 두 자리 수의 덧셈|05",
+   "beforeRow": [
+    "초4",
+    "2-3-6 소수 두 자리 수의 덧셈",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-6 소수 두 자리 수의 덧셈",
+     "orderIndex": 233,
+     "content": "리본 $7.5$ m와 $5.8$ m를 이어 붙였습니다. 모두 몇 m인가?",
+     "answer": "$13.3$",
+     "solution": "$7.5+5.8=13.3$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "tape",
+      "length": 133,
+      "label": "13.3 m",
+      "segments": 2
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "f33c04e61ba122f2157167d4eca1a51eec4b764faa55bda33523239fd5b8c26c"
+  },
+  {
+   "familyKey": "elem:초4|2-3-7 소수 두 자리 수의 뺄셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-7 소수 두 자리 수의 뺄셈",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-7 소수 두 자리 수의 뺄셈",
+     "orderIndex": 234,
+     "content": "$5.3$과 $1.2$의 차는 얼마인가?",
+     "answer": "$4.1$",
+     "solution": "$5.3-1.2=4.1$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "5.3",
+      "op": "−",
+      "bottom": "1.2"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "83d280744612eb27ca0238e05c1b753d1aa61c6850382dc3704f11ed1f5a030f"
+  },
+  {
+   "familyKey": "elem:초4|2-3-7 소수 두 자리 수의 뺄셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-7 소수 두 자리 수의 뺄셈",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-7 소수 두 자리 수의 뺄셈",
+     "orderIndex": 234,
+     "content": "$7.2$과 $4.9$의 차는 얼마인가?",
+     "answer": "$2.3$",
+     "solution": "$7.2-4.9=2.3$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "7.2",
+      "op": "−",
+      "bottom": "4.9"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "8f1a76dee0498fd674d572bb416a881e0877dcb0c00b6928b47b04ca00b30d3e"
+  },
+  {
+   "familyKey": "elem:초4|2-3-7 소수 두 자리 수의 뺄셈|09",
+   "beforeRow": [
+    "초4",
+    "2-3-7 소수 두 자리 수의 뺄셈",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-3 소수의 덧셈과 뺄셈",
+     "section": "2-3-7 소수 두 자리 수의 뺄셈",
+     "orderIndex": 234,
+     "content": "$5.3$과 $2.9$의 차는 얼마인가?",
+     "answer": "$2.4$",
+     "solution": "$5.3-2.9=2.4$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "columnOp",
+      "top": "5.3",
+      "op": "−",
+      "bottom": "2.9"
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "f872e2f86ae7489f74b965bbbb3623a2ff647dafe47d0834f0bddf965aa04c1a"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|04",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "04",
+    "심화하",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "어떤 이등변삼각형과 합동인 삼각형의 둘레가 $17$ cm입니다. 이 이등변삼각형의 밑변이 $3$ cm일 때, 길이가 같은 두 변은 각각 몇 cm입니까?",
+     "answer": "$7$",
+     "solution": "합동인 두 도형은 둘레가 같으므로 이 이등변삼각형의 둘레도 $17$ cm입니다. 밑변을 빼면 $17-3=14$ cm이고, 이것이 길이가 같은 두 변의 합이므로 $14\\div2=7$, 곧 $7$ cm입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "markedShape",
+      "shape": "isoTri",
+      "sides": [
+       "3 cm",
+       "7 cm",
+       "7 cm"
+      ],
+      "equal": [
+       [
+        1,
+        2
+       ]
+      ]
+     },
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "27e77c17aa943a37404901189ef0414de259b245b35b60cbc2c4be3386bb4c99"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|04",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "04",
+    "심화하",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "어떤 이등변삼각형과 합동인 삼각형의 둘레가 $18$ cm입니다. 이 이등변삼각형의 밑변이 $4$ cm일 때, 길이가 같은 두 변은 각각 몇 cm입니까?",
+     "answer": "$7$",
+     "solution": "합동인 두 도형은 둘레가 같으므로 이 이등변삼각형의 둘레도 $18$ cm입니다. 밑변을 빼면 $18-4=14$ cm이고, 이것이 길이가 같은 두 변의 합이므로 $14\\div2=7$, 곧 $7$ cm입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "markedShape",
+      "shape": "isoTri",
+      "sides": [
+       "4 cm",
+       "7 cm",
+       "7 cm"
+      ],
+      "equal": [
+       [
+        1,
+        2
+       ]
+      ]
+     },
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "67c93b80b1da2a1d451909f8ead8df1c38ff0339c6a6fe730c36a4540c9cabb8"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|04",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "04",
+    "심화하",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "어떤 이등변삼각형과 합동인 삼각형의 둘레가 $32$ cm입니다. 이 이등변삼각형의 밑변이 $8$ cm일 때, 길이가 같은 두 변은 각각 몇 cm입니까?",
+     "answer": "$12$",
+     "solution": "합동인 두 도형은 둘레가 같으므로 이 이등변삼각형의 둘레도 $32$ cm입니다. 밑변을 빼면 $32-8=24$ cm이고, 이것이 길이가 같은 두 변의 합이므로 $24\\div2=12$, 곧 $12$ cm입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "markedShape",
+      "shape": "isoTri",
+      "sides": [
+       "8 cm",
+       "12 cm",
+       "12 cm"
+      ],
+      "equal": [
+       [
+        1,
+        2
+       ]
+      ]
+     },
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "5383b671227735142edc875e3143cb6678435843c3b7932cf0a4875f484bffba"
+  }
+ ]
+}

@@ -60,6 +60,19 @@ const approvedRepairs = JSON.parse(
     afterRowSha256: string;
   }[];
 };
+/**
+ * 둘째 승인 층 — 원장님 2026-10-20 지면 전수 검사(세로셈 중복 · 정답 노출 그림 · 중복 식 줄 · 깨진 TeX).
+ * 이 층이 바꾼 행은 «그 전 출력»으로 되돌린 뒤 원래 기준과 견준다. 목록은 기계로 뽑았다(기준 740ff82b0 ↔ 고친 엔진).
+ */
+const displayRepairs = JSON.parse(
+  readFileSync(
+    "docs/planning/tracks/reports/problem-display-dupes-20261020/elem-display-repair-baseline.json",
+    "utf8",
+  ),
+) as {
+  sourceSha256: Record<string, string>;
+  changes: { familyKey: string; beforeRow: LegacyOutputRow; afterRowSha256: string }[];
+};
 const sha = (text: string) => createHash("sha256").update(text).digest("hex");
 const UNITS = elementaryUnits();
 const FORMS = UNITS.flatMap((unit) =>
@@ -387,9 +400,16 @@ describe("초4 2026-10-18 R2 보강 — 정체성 및 기존 출력", () => {
     );
     expect(changes.size).toBe(15);
     let repaired = 0;
+    const display = new Map(
+      displayRepairs.changes.map((change) => [key(change.beforeRow), change]),
+    );
+    expect(display.size).toBe(displayRepairs.changes.length);
     // Restore exactly the approved historical outputs for the original digest;
     // the current corrected outputs must match independently pinned digests.
-    const originalRows = rows.map((row) => {
+    const originalRows = rows.map((current) => {
+      const shown = display.get(key(current));
+      if (shown) expect(sha(JSON.stringify(current)), key(current)).toBe(shown.afterRowSha256);
+      const row = shown ? shown.beforeRow : current;
       const change = changes.get(key(row));
       if (!change) return row;
       repaired += 1;
@@ -401,9 +421,10 @@ describe("초4 2026-10-18 R2 보강 — 정체성 및 기존 출력", () => {
     expect(sha(JSON.stringify(originalRows))).toBe(legacy.outputSha256);
     for (const [file, hash] of Object.entries(legacy.sourceSha256)) {
       const expected =
-        file === "src/lib/elementary/g4.ts"
+        displayRepairs.sourceSha256[file] ??
+        (file === "src/lib/elementary/g4.ts"
           ? approvedRepairs.approvedG4SourceSha256
-          : hash;
+          : hash);
       expect(sha(readFileSync(file, "utf8")), file).toBe(expected);
     }
   });

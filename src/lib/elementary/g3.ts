@@ -109,7 +109,6 @@ function addSub(unit: UnitSeed, rng: Rng): ElemProblem {
       `다음을 계산하시오.\n\n$${a}+${b}=\\square$`,
       n(a + b),
       expr(`${a}+${b}=${a + b}`),
-      fig("columnOp", { top: String(a), op: "+", bottom: String(b) }),
     );
   }
   const [a, b] = subWithBorrows(rng, heavy ? 2 : 0, heavy ? 3 : 1);
@@ -118,7 +117,6 @@ function addSub(unit: UnitSeed, rng: Rng): ElemProblem {
     `다음을 계산하시오.\n\n$${a}-${b}=\\square$`,
     n(a - b),
     expr(`${a}-${b}=${a - b}`),
-    fig("columnOp", { top: String(a), op: "−", bottom: String(b) }),
   );
 }
 
@@ -855,7 +853,6 @@ function mul31(unit: UnitSeed, rng: Rng): ElemProblem {
     `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
     n(a * b),
     expr(`${a}\\times${b}=${a * b}`),
-    fig("columnOp", { top: String(a), op: "×", bottom: String(b) }),
   );
 }
 
@@ -947,10 +944,6 @@ function lengthTime(unit: UnitSeed, rng: Rng): ElemProblem {
       `${n(h1)}시간 ${n(m1)}분과 ${n(h2)}시간 ${n(m2)}분을 더하면 몇 시간 몇 분인지 쓰시오.`,
       `${n(hh)}시간 ${n(mm)}분`,
       `분끼리 더하면 ${expr(`${m1}+${m2}=${m1 + m2}`)} 분이고, $60$ 분은 $1$ 시간이므로 ${n(m1 + m2)}분은 ${n(1)}시간 ${n(mm)}분입니다. 시간끼리 더하면 ${expr(`${h1}+${h2}=${h1 + h2}`)} 시간이므로 모두 ${n(hh)}시간 ${n(mm)}분입니다.`,
-      fig("timeAdd", {
-        start: { h: h1, m: m1, s: 0 },
-        add: { h: h2, m: m2, s: 0 },
-      }),
     );
   }
   const h = intBetween(rng, 4, 8);
@@ -1101,7 +1094,6 @@ function mul32(unit: UnitSeed, rng: Rng): ElemProblem {
       `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
       n(a * b),
       expr(`${a}\\times${b}=${a * b}`),
-      fig("columnOp", { top: String(a), op: "×", bottom: String(b) }),
     );
   }
   if (s.includes("(몇십)×(몇십)")) {
@@ -1149,7 +1141,6 @@ function mul32(unit: UnitSeed, rng: Rng): ElemProblem {
     `다음을 계산하시오.\n\n$${a}\\times${b}=\\square$`,
     n(a * b),
     expr(`${a}\\times${b}=${a * b}`),
-    fig("columnOp", { top: String(a), op: "×", bottom: String(b) }),
   );
 }
 
@@ -1716,7 +1707,6 @@ function add3Calc(unit: UnitSeed, rng: Rng): ElemProblem {
     `다음을 계산하시오.\n\n$${a}+${b}=\\square$`,
     n(a + b),
     expr(`${a}+${b}=${a + b}`),
-    fig("columnOp", { top: String(a), op: "+", bottom: String(b) }),
   );
 }
 
@@ -1809,32 +1799,17 @@ function calcForm(
   result: number,
 ): ElemProblem {
   const sign = op === "+" ? "+" : "-";
-  const figSpec = fig("columnOp", {
-    top: String(a),
-    op: op === "+" ? "+" : "−",
-    bottom: String(b),
-  });
   const eq = `$${a}${sign}${b}=\\square$`;
   const solution = expr(`${a}${sign}${b}=${result}`);
   const word = op === "+" ? "합" : "차";
   const wordJosa = josa(word, "을", "를");
   switch (form % CALC_FORM_COUNT) {
+    // 식과 세로셈을 같이 내지 않는다 — 같은 계산이 두 번, 답 칸도 둘이 된다(원장님 2026-10-20 지면 전수 검사).
+    // «세로셈으로 계산하시오»도 식 하나로 낸다 — 세로셈 그림만 남기면 발문 글자가 씨앗마다 같아진다.
     case 0:
-      return make(
-        unit,
-        `다음을 계산하시오.\n\n${eq}`,
-        n(result),
-        solution,
-        figSpec,
-      );
+      return make(unit, `다음을 계산하시오.\n\n${eq}`, n(result), solution);
     case 1:
-      return make(
-        unit,
-        `세로셈으로 계산하시오.\n\n${eq}`,
-        n(result),
-        solution,
-        figSpec,
-      );
+      return make(unit, `세로셈으로 계산하시오.\n\n${eq}`, n(result), solution);
     case 2:
       return make(unit, eq, n(result), solution);
     case 3:
@@ -1859,13 +1834,7 @@ function calcForm(
         solution,
       );
     case 6:
-      return make(
-        unit,
-        `계산 결과를 구하시오.\n\n${eq}`,
-        n(result),
-        solution,
-        figSpec,
-      );
+      return make(unit, `계산 결과를 구하시오.\n\n${eq}`, n(result), solution);
     default:
       return make(unit, `다음 식을 계산하시오.\n\n${eq}`, n(result), solution);
   }
@@ -6707,7 +6676,7 @@ function rem223Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   const stem = pick(rng, [
     `${eq} 에서 나누어떨어지게 하려면 나뉘는 수에 적어도 얼마를 더해야 하는지 구하시오.`,
     `나눗셈 ${eq} 에서 나누어떨어지도록 나뉘는 수를 늘리려고 합니다. 적어도 얼마를 더해야 하는지 쓰시오.`,
-    `${n(a)} 에 적어도 얼마를 더해야 나누는 수가 ${n(b)} 인 나눗셈에서 나누어떨어지는지 구하시오.\n\n${eq}`,
+    `${n(a)} 에 적어도 얼마를 더해야 나누는 수가 ${n(b)} 인 나눗셈에서 나누어떨어지는지 구하시오.`,
     `${eq} 에서 나머지가 없게 하려면 나뉘는 수에 적어도 얼마를 더해야 하는지 쓰시오.`,
   ]);
   return make(
@@ -9436,13 +9405,7 @@ function circ231FoldHalf(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /* ── 문형 10 (기존 4단은 01–04 로만 감싼다. 핸들러 본체는 안 고친다.) ── */
 
-function addCol(a: number, b: number): Record<string, unknown> {
-  return fig("columnOp", { top: String(a), op: "+", bottom: String(b) });
-}
-
-function subCol(a: number, b: number): Record<string, unknown> {
-  return fig("columnOp", { top: String(a), op: "−", bottom: String(b) });
-}
+// 문형 05~09 에 붙던 세로셈(`addCol`·`subCol`)은 걷었다 — 발문의 식을 그대로 한 번 더 그렸다(원장님 2026-10-20 지면 전수 검사).
 
 /** 문형 05 — 합의 백의 자리. 합 전체가 아니라 자리 하나를 묻는다. */
 function add111Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -9454,7 +9417,6 @@ function add111Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 의 합에서 백의 자리 숫자를 쓰시오.`,
     n(h),
     `${expr(`${a}+${b}=${s}`)} 이므로 백의 자리 숫자는 ${n(h)} 입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9487,7 +9449,6 @@ function add111OnesSum(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}$ 의 일의 자리 숫자와 $${b}$ 의 일의 자리 숫자를 더한 값을 쓰시오.`,
     n(ones),
     `일의 자리 숫자는 ${n(a % 10)} 과 ${n(b % 10)} 이므로 ${expr(`${a % 10}+${b % 10}=${ones}`)} 입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9501,7 +9462,6 @@ function add111HowMuchMore(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 의 합은 $${c}$ 보다 얼마 더 큽니까?`,
     n(s - c),
     `먼저 합을 구합니다. ${expr(`${a}+${b}=${s}`)} 입니다. 차는 ${expr(`${s}-${c}=${s - c}`)} 입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9549,7 +9509,6 @@ function add112Digits(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 의 합은 몇 자리 수입니까?`,
     n(digitsN),
     `${expr(`${a}+${b}=${s}`)} 이므로 ${n(digitsN)} 자리 수입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9574,7 +9533,6 @@ function add112CarryCount(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 를 계산할 때 받아올림은 몇 번 있습니까?`,
     n(c),
     `일의 자리, 십의 자리, 백의 자리에서 받아올림을 세면 ${n(c)} 번입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9588,7 +9546,6 @@ function add112From1000(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}+${b}$ 의 합과 $${1000}$ 의 차는 얼마입니까?`,
     n(gap),
     `${expr(`${a}+${b}=${s}`)} 이고, ${s >= 1000 ? expr(`${s}-1000=${gap}`) : expr(`1000-${s}=${gap}`)} 입니다.`,
-    addCol(a, b),
   );
 }
 
@@ -9638,7 +9595,6 @@ function sub113Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}-${b}$ 의 차에서 백의 자리 숫자를 쓰시오.`,
     n(h),
     `${expr(`${a}-${b}=${d}`)} 이므로 백의 자리 숫자는 ${n(h)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -9658,12 +9614,13 @@ function sub113MissingMinuend(unit: UnitSeed, rng: Rng): ElemProblem {
 function sub113OnesDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   const [a, b] = subWithBorrows(rng, 0, 1);
   const ones = (a - b) % 10;
+  // 받아내림이 없는 씨앗에는 «받아내림하여»를 쓰지 않는다 — `7-7` 인데 받아내림을 시켰다(Codex 검토 2026-10-20).
+  const borrow = a % 10 < b % 10 ? "받아내림하여 " : "";
   return make(
     unit,
-    `$${a}$ 의 일의 자리 숫자에서 $${b}$ 의 일의 자리 숫자를 받아내림하여 뺀 값을 쓰시오.`,
+    `$${a}$ 의 일의 자리 숫자에서 $${b}$ 의 일의 자리 숫자를 ${borrow}뺀 값을 쓰시오.`,
     n(ones),
     `차 ${expr(`${a}-${b}=${a - b}`)} 의 일의 자리와 같습니다. 값은 ${n(ones)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -9691,7 +9648,6 @@ function sub113HowMuchMore(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}-${b}$ 의 차는 $${c}$ 보다 얼마 더 큽니까?`,
     n(d - c),
     `먼저 차를 구합니다. ${expr(`${a}-${b}=${d}`)} 입니다. 차는 ${expr(`${d}-${c}=${d - c}`)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -9718,7 +9674,6 @@ function sub114Tens(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}-${b}$ 의 차에서 십의 자리 숫자를 쓰시오.`,
     n(t),
     `${expr(`${a}-${b}=${d}`)} 이므로 십의 자리 숫자는 ${n(t)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -9749,7 +9704,6 @@ function sub114HundredsBare(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}$ 의 백의 자리 숫자에서 $${b}$ 의 백의 자리 숫자를 뺀 값을 쓰시오.`,
     n(ha - hb),
     `백의 자리 숫자는 ${n(ha)} 과 ${n(hb)} 이므로 ${expr(`${ha}-${hb}=${ha - hb}`)} 입니다.`,
-    subCol(a, b),
   );
 }
 
@@ -10530,9 +10484,7 @@ function ten(
   ];
 }
 
-function mulCol(a: number, b: number): Record<string, unknown> {
-  return fig("columnOp", { top: String(a), op: "×", bottom: String(b) });
-}
+// 1-4 · 2-1 문형에 붙던 세로셈(`mulCol`)은 걷었다 — 발문의 곱셈식을 그대로 한 번 더 그렸다(2026-10-20).
 
 /** 1-4 공유 — 빈칸 곱하는 수. */
 function mul14Missing(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -10554,7 +10506,6 @@ function mul14Ones(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}\\times${b}$ 의 곱에서 일의 자리 숫자를 쓰시오.`,
     n(p % 10),
     `${expr(`${a}\\times${b}=${p}`)} 이므로 일의 자리 숫자는 ${n(p % 10)} 입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -10583,7 +10534,6 @@ function mul14From100(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}\\times${b}$ 의 곱과 $${100}$ 의 차는 얼마입니까?`,
     n(Math.abs(p - 100)),
     `${expr(`${a}\\times${b}=${p}`)} 이고, 차는 ${n(Math.abs(p - 100))} 입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -11519,7 +11469,6 @@ function mul21Hundreds(unit: UnitSeed, rng: Rng): ElemProblem {
     `$${a}\\times${b}$ 의 곱에서 백의 자리 숫자를 쓰시오.`,
     n(Math.floor(p / 100) % 10),
     `${expr(`${a}\\times${b}=${p}`)} 이므로 백의 자리 숫자는 ${n(Math.floor(p / 100) % 10)} 입니다.`,
-    mulCol(a, b),
   );
 }
 

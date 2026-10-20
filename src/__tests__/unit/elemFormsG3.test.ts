@@ -82,7 +82,8 @@ describe("초3 1-1-1 세 자리 덧셈 — 묻는 대상이 답이다", () => {
       const p = generateElementaryForm(unit, seed, "05");
       const [a, b] = katexInts(p.content);
       expect(answerInt(p.answer)).toBe(Math.floor((a! + b!) / 100));
-      expect(p.figureSpec).toBeTruthy();
+      // 발문의 덧셈식을 세로셈으로 한 번 더 그리지 않는다(2026-10-20)
+      expect(p.figureSpec).toBeNull();
     }
   });
 

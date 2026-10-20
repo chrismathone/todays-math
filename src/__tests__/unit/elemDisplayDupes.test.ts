@@ -10,7 +10,9 @@ import { describe, expect, it } from "vitest";
 import {
   elementaryUnits,
   generateElementaryForm,
+  generateElementaryProblem,
   listedForms,
+  supportedTiers,
 } from "@/lib/elementary/generate";
 
 const SEEDS = Array.from({ length: 30 }, (_, s) => 20260825 + s * 1009);
@@ -50,18 +52,21 @@ describe("그림이 정답을 라벨로 달지 않는다", () => {
       const ans = answerNumber(p.answer);
       for (const label of labelsOf(p.figureSpec))
         expect(label, p.content).not.toContain(ans);
+      // 두 길이는 늘 달라 가운데 금이 거짓이 된다
+      expect(p.figureSpec?.segments ?? 1).toBe(1);
     }
   });
 
-  it("초5 2-3-2 문형04 이등변삼각형 — 같은 두 변의 길이를 그림에 적지 않는다", () => {
+  it("초5 2-3-2 문형04 이등변삼각형 — 밑변만 적고(2번 변), 같은 두 변은 표지만", () => {
     const unit = unitOf("초5", "2-3-2");
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "04");
       if (p.figureSpec?.kind !== "markedShape") continue;
-      const ans = answerNumber(p.answer);
-      // 첫 변은 발문에 적힌 밑변이다 — 같은 두 변(둘째 · 셋째)만 본다.
-      const legs = ((p.figureSpec.sides as (string | null)[]) ?? []).slice(1);
-      expect(legs.filter((s) => s?.startsWith(`${ans} `)), p.content).toEqual([]);
+      const base = /밑변이 \$(\d+)\$ cm/.exec(p.content)?.[1];
+      expect(base, p.content).toBeTruthy();
+      // 라벨 하나면 기본 isoTri 좌표(0 왼쪽 · 1 오른쪽 · 2 밑변)를 탄다 — scripts/figure/elementary.py `_shape_points`
+      expect(p.figureSpec.sides, p.content).toEqual([null, null, `${base} cm`]);
+      expect(p.figureSpec.equal).toEqual([[0, 1]]);
     }
   });
 
@@ -79,6 +84,14 @@ describe("그림이 정답을 라벨로 달지 않는다", () => {
 });
 
 describe("발문에 이미 있는 식을 식 줄로 또 찍지 않는다", () => {
+  it("초3 2-2-3 문형04 «$a$ 에 적어도 … 나누는 수가 $b$ 인 나눗셈» 뒤에 같은 나눗셈 줄이 없다", () => {
+    const unit = unitOf("초3", "2-2-3");
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "04");
+      expect(p.content, p.content).not.toMatch(/나누어떨어지는지 구하시오\.\n\n/);
+    }
+  });
+
   it("초4 1-3-3 문형06 «…어림하여 곱하면 얼마인가?» 뒤에 같은 곱셈 줄이 없다", () => {
     const unit = unitOf("초4", "1-3-3");
     for (const seed of SEEDS) {
@@ -86,6 +99,49 @@ describe("발문에 이미 있는 식을 식 줄로 또 찍지 않는다", () =>
       expect(p.content, p.content).not.toMatch(/\n\n\$\d+\\times\d+\$\s*$/);
       expect(p.content).toMatch(/어림하여 곱하면 얼마인가\?$/);
     }
+  });
+});
+
+/** 발문(보기 줄 뺀)의 수 — 쉼표 · `{,}` 를 걷고, `\\frac` 같은 명령은 지운다. */
+function stemNumbers(content: string): Set<string> {
+  const stem = content
+    .split("\n")
+    .filter((line) => !/^\s*[①-⑩]/.test(line))
+    .join("\n")
+    .replace(/\{,\}/g, "")
+    .replace(/(\d),(?=\d{3}(?!\d))/g, "$1")
+    .replace(/\\[a-zA-Z]+/g, " ");
+  return new Set(stem.match(/\d+(?:\.\d+)?/g) ?? []);
+}
+
+describe("세로셈 그림이 발문의 식을 한 번 더 그리지 않는다", () => {
+  // 두 수가 다 발문에 있는 세로셈 = 글에 이미 있는 식(원장님 «230 × 57 의 곱에서 …» + 230/×57 그림).
+  // 어림한 수(초4 1-3-3 문형06 300 × 20)처럼 발문에 없는 식은 원장님이 «판단하지 말고 표시만» — 여기서 막지 않는다.
+  const check = (where: string, p: { content: string; figureSpec: Record<string, unknown> | null }) => {
+    if (p.figureSpec?.kind !== "columnOp") return;
+    const nums = stemNumbers(p.content);
+    const both = nums.has(String(p.figureSpec.top)) && nums.has(String(p.figureSpec.bottom));
+    expect(both, `${where}: ${p.content} · 그림 ${p.figureSpec.top} ${p.figureSpec.op} ${p.figureSpec.bottom}`).toBe(false);
+  };
+  it("문형 전부(적재기 경로)", () => {
+    for (const unit of elementaryUnits())
+      for (const form of listedForms(unit))
+        for (const seed of SEEDS.slice(0, 10))
+          check(`${unit.grade} ${unit.section} ${form.id}`, generateElementaryForm(unit, seed, form.id));
+  });
+  it("난이도 경로 — 지정 안 함 · 지원하는 난이도 전부(학생 SRS 가 부르는 길)", () => {
+    for (const unit of elementaryUnits())
+      for (const tier of [undefined, ...supportedTiers(unit)])
+        for (const seed of SEEDS.slice(0, 10))
+          check(`${unit.grade} ${unit.section} ${tier ?? "-"}`, generateElementaryProblem(unit, seed, tier));
+  });
+  it("시간의 덧셈 세로셈(timeAdd)도 발문의 두 시간을 다시 그리지 않는다", () => {
+    for (const unit of elementaryUnits())
+      for (const tier of [undefined, ...supportedTiers(unit)])
+        for (const seed of SEEDS.slice(0, 10)) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          expect(p.figureSpec?.kind, `${unit.section}: ${p.content}`).not.toBe("timeAdd");
+        }
   });
 });
 
@@ -104,6 +160,17 @@ describe("TeX · 낱말이 지면에서 어긋나지 않는다", () => {
     for (const seed of SEEDS) {
       const p = generateElementaryForm(unit, seed, "05");
       expect(p.content).toMatch(/\$=\$ \$\d+\$초$/);
+    }
+  });
+
+  it("초3 1-1-3 문형07 — 받아내림이 없는 씨앗에는 «받아내림하여»를 쓰지 않는다", () => {
+    const unit = unitOf("초3", "1-1-3");
+    for (const seed of SEEDS) {
+      const p = generateElementaryForm(unit, seed, "07");
+      const m = /^\$(\d+)\$ 의 일의 자리 숫자에서 \$(\d+)\$ 의/.exec(p.content);
+      expect(m, p.content).toBeTruthy();
+      const borrow = Number(m![1]) % 10 < Number(m![2]) % 10;
+      expect(p.content.includes("받아내림하여"), p.content).toBe(borrow);
     }
   });
 

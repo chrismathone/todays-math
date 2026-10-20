@@ -11778,8 +11778,9 @@ function cong232Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     fig("markedShape", {
       shape: "isoTri",
       // 같은 두 변은 표지(equal)만 — 길이를 적으면 그림이 정답을 보여 준다(2026-10-20 지면 전수 검사).
-      sides: [`${base} cm`, null, null],
-      equal: [[1, 2]],
+      // 라벨이 하나면 기본 좌표의 변 차례(0 왼쪽 · 1 오른쪽 · 2 밑변)를 탄다 — 밑변은 2번(Codex 검토, 렌더로 확인).
+      sides: [null, null, `${base} cm`],
+      equal: [[0, 1]],
     }),
   );
 }

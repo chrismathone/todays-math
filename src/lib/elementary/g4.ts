@@ -1929,7 +1929,6 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
       expr(`${a}\\times${b}=\\square`),
       n(a * b),
       `${expr(`${a}\\times${tens}=${a * tens}`)} 이므로 ${expr(`${a}\\times${b}=${a * b}`)} 입니다.`,
-      fig("columnOp", { top: String(a), op: "×", bottom: String(b) }),
     );
   }
 
@@ -1944,7 +1943,6 @@ function mulDiv(unit: UnitSeed, rng: Rng): ElemProblem {
       n(a * b),
       `${expr(`${a}\\times${tens}=${a * tens}`)}, ${expr(`${a}\\times${ones}=${a * ones}`)} 이므로 ` +
         `${expr(`${a * tens}+${a * ones}=${a * b}`)} 입니다.`,
-      fig("columnOp", { top: String(a), op: "×", bottom: String(b) }),
     );
   }
 
@@ -7630,7 +7628,6 @@ function mul131Ones(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\times${b}`)} 의 곱에서 일의 자리 숫자를 쓰시오.`,
     n(p % 10),
     `${expr(`${a}\\times${b}=${p}`)} 이므로 일의 자리 숫자는 ${n(p % 10)}입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -7641,7 +7638,6 @@ function mul131Plus100(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\times${b}`)} 의 곱보다 ${n(100)} 큰 수를 쓰시오.`,
     n(p + 100),
     `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${p}+100=${p + 100}`)} 입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -7653,7 +7649,6 @@ function mul131ToMan(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\times${b}`)} 의 곱과 ${n(10000)}의 차는 얼마인가?`,
     n(d),
     `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${Math.max(p, 10000)}-${Math.min(p, 10000)}=${d}`)} 입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -7665,7 +7660,6 @@ function mul131TensDigit(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\times${b}`)} 의 곱에서 십의 자리 숫자를 쓰시오.`,
     n(tens),
     `${expr(`${a}\\times${b}=${p}`)} 이므로 십의 자리 숫자는 ${n(tens)}입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -7704,7 +7698,6 @@ function mul132Ones(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\times${b}`)} 의 곱에서 일의 자리 숫자를 쓰시오.`,
     n(p % 10),
     `${expr(`${a}\\times${b}=${p}`)} 이므로 일의 자리 숫자는 ${n(p % 10)}입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -7715,7 +7708,6 @@ function mul132Minus10(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\times${b}`)} 의 곱보다 ${n(10)} 작은 수를 쓰시오.`,
     n(p - 10),
     `${expr(`${a}\\times${b}=${p}`)} 이고 ${expr(`${p}-10=${p - 10}`)} 입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -7727,7 +7719,6 @@ function mul132HundredsDigit(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\times${b}`)} 의 곱에서 백의 자리 숫자를 쓰시오.`,
     n(h),
     `${expr(`${a}\\times${b}=${p}`)} 이므로 백의 자리 숫자는 ${n(h)}입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -7739,7 +7730,6 @@ function mul132Partial(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\times${b}`)} 를 계산할 때 ${expr(`${a}\\times${ones}`)} 의 값은 얼마인가?`,
     n(a * ones),
     `일의 자리 ${n(ones)}와의 곱은 ${expr(`${a}\\times${ones}=${a * ones}`)} 입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -7751,7 +7741,6 @@ function mul132Even(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\times${b}`)} 의 곱은 짝수인가? '예' 또는 '아니요'로 답하시오.`,
     even ? "예" : "아니요",
     `${expr(`${a}\\times${b}=${p}`)} 이고 ${n(p)}${even ? "는 짝수" : "는 홀수"}입니다.`,
-    mulCol(a, b),
   );
 }
 
@@ -7879,7 +7868,6 @@ function div134Check(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\div${b}=${q}`)} 입니다. 검산하기 위해 몫과 나누는 수를 곱한 값을 쓰시오.`,
     n(a),
     `${expr(`${q}\\times${b}=${a}`)} 입니다.`,
-    mulCol(q, b),
   );
 }
 
@@ -7929,7 +7917,6 @@ function div135Missing(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr("\\square")} 안에 알맞은 수를 쓰시오. ${expr(`\\square\\div${b}=${q}`)}`,
     n(a),
     `${expr(`${b}\\times${q}=${a}`)} 이므로 ${n(a)}입니다.`,
-    mulCol(b, q),
   );
 }
 
@@ -7951,7 +7938,6 @@ function div135Check(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\div${b}=${q}`)} 의 검산에서 몫과 나누는 수의 곱을 쓰시오.`,
     n(a),
     `${expr(`${q}\\times${b}=${a}`)} 입니다.`,
-    mulCol(q, b),
   );
 }
 
@@ -8025,7 +8011,6 @@ function div136Check(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${a}\\div${b}=${q}`)} 입니다. 검산의 곱을 쓰시오.`,
     n(a),
     `${expr(`${q}\\times${b}=${a}`)} 입니다.`,
-    mulCol(q, b),
   );
 }
 
@@ -13426,9 +13411,7 @@ function tier237Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function decCol(a: string, b: string, op: "+" | "−"): Record<string, unknown> {
-  return fig("columnOp", { top: a, op, bottom: b });
-}
+// 2-3 소수 덧셈 · 뺄셈 문형에 붙던 세로셈(`decCol`)은 걷었다 — 발문의 식을 그대로 한 번 더 그렸다(2026-10-20).
 
 function dec231TenthDigit(unit: UnitSeed, rng: Rng): ElemProblem {
   const whole = intBetween(rng, 1, 9);
@@ -13653,7 +13636,6 @@ function dec234Sum(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합을 구하시오.`,
     n(dec1(a + b)),
     `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)} 입니다.`,
-    decCol(dec1(a), dec1(b), "+"),
   );
 }
 
@@ -13683,7 +13665,6 @@ function dec234TenthsDigit(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합에서 소수 첫째 자리 숫자를 쓰시오.`,
     n(s % 10),
     `${expr(`${dec1(a)}+${dec1(b)}=${dec1(s)}`)} 이므로 소수 첫째 자리 숫자는 ${n(s % 10)}입니다.`,
-    decCol(dec1(a), dec1(b), "+"),
   );
 }
 
@@ -13699,7 +13680,6 @@ function dec234VsTen(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합은 ${n(10)}보다 큰가? '예' 또는 '아니요'로 답하시오.`,
     s > 100 ? "예" : "아니요",
     `합은 ${n(dec1(s))}입니다.`,
-    decCol(dec1(a), dec1(b), "+"),
   );
 }
 
@@ -13715,7 +13695,6 @@ function dec234Ones(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${dec1(a)}+${dec1(b)}`)} 의 합에서 자연수 부분을 쓰시오.`,
     n(Math.floor(s / 10)),
     `합은 ${n(dec1(s))}이므로 자연수 부분은 ${n(Math.floor(s / 10))}입니다.`,
-    decCol(dec1(a), dec1(b), "+"),
   );
 }
 
@@ -13747,7 +13726,6 @@ function dec235Diff(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${dec1(a)}-${dec1(b)}`)} 의 차를 구하시오.`,
     n(dec1(a - b)),
     `${expr(`${dec1(a)}-${dec1(b)}=${dec1(a - b)}`)} 입니다.`,
-    decCol(dec1(a), dec1(b), "−"),
   );
 }
 
@@ -13783,7 +13761,6 @@ function dec235Tenths(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${dec1(a)}-${dec1(b)}`)} 의 차에서 소수 첫째 자리 숫자를 쓰시오.`,
     n(d % 10),
     `차는 ${n(dec1(d))}이므로 소수 첫째 자리 숫자는 ${n(d % 10)}입니다.`,
-    decCol(dec1(a), dec1(b), "−"),
   );
 }
 
@@ -13820,7 +13797,6 @@ function dec235Ones(unit: UnitSeed, rng: Rng): ElemProblem {
     `${expr(`${dec1(a)}-${dec1(b)}`)} 의 차에서 자연수 부분을 쓰시오.`,
     n(Math.floor(d / 10)),
     `차는 ${n(dec1(d))}입니다.`,
-    decCol(dec1(a), dec1(b), "−"),
   );
 }
 
@@ -13856,7 +13832,8 @@ function dec236Tape(unit: UnitSeed, rng: Rng): ElemProblem {
     n(dec1(a + b)),
     `${expr(`${dec1(a)}+${dec1(b)}=${dec1(a + b)}`)} 입니다.`,
     // 라벨은 «? m» — 합을 적으면 그림이 정답을 보여 준다(원장님 2026-10-20 지면 전수 검사).
-    fig("tape", { length: a + b, label: "? m", segments: 2 }),
+    // 등분선도 뺀다 — 두 길이는 늘 다른데 `segments: 2` 는 가운데에 금을 긋는다(Codex 검토).
+    fig("tape", { length: a + b, label: "? m", segments: 1 }),
   );
 }
 
@@ -14030,7 +14007,6 @@ function dec237Gap(unit: UnitSeed, rng: Rng): ElemProblem {
     `${n(dec1(a))}과 ${n(dec1(b))}의 차는 얼마인가?`,
     n(dec1(Math.abs(a - b))),
     `${expr(`${dec1(Math.max(a, b))}-${dec1(Math.min(a, b))}=${dec1(Math.abs(a - b))}`)} 입니다.`,
-    decCol(dec1(Math.max(a, b)), dec1(Math.min(a, b)), "−"),
   );
 }
 
