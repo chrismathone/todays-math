@@ -1,0 +1,190 @@
+{
+  "audit": "Unpaired PDF independent repair R2 bounded code and metadata audit",
+  "status": "bounded-code-repair-pass-with-explicit-limits",
+  "scopeSHA256": "be654068144fc982854ee7c9698b8b823416d99f655e38ec58aec70dd465b766",
+  "priorR1": {
+    "commit": "369fb8d176bbb815924ab81c7ca1ee4847e99437",
+    "reportSHA256": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+    "unchanged": true,
+    "holdEvidencePreserved": true
+  },
+  "ownRuns": {
+    "uniqueCurrentControls": 12740,
+    "passed": 12740,
+    "failed": 0,
+    "currentIndependentOracleAndOriginalDirectControls": 12164,
+    "originalCLIControls": 33,
+    "newDirectMetadataFenceControls": 497,
+    "newCLIControls": 20,
+    "additionalFenceStaticClosureControls": 26,
+    "originalSixDirectFailuresNowPass": 6,
+    "originalFiveCLIFailuresNowPass": 5,
+    "actualMainTotal": 53,
+    "counting": "Exact R1 legacy-oracle replay was also run (12164 cases); not added again to unique-current total. Its34 differences are solely intended newly rejected answer-labelled references, not hidden failures. Current independent token oracle validates all1715 references; do not double count repeat runs. Parent15tests not run or counted.",
+    "legacy64": {
+      "freshlyReexecuted": 33,
+      "supersededPNGCheck": 1,
+      "priorObservationOnlyNotFreshlyRerun": 30,
+      "basis": "R2 permits3metadata receipts, not the old parent page-observation and alias receipts. Exact sealed prior64 results/report hashes preserved. Rebinding those observations is not a fresh source/page inspection."
+    },
+    "realPositiveParserRuns": 0,
+    "NOrOriginalOrRawParserOrImageReads": 0,
+    "APIModelDBCalls": 0
+  },
+  "repairs": [
+    {
+      "id": "UPDF-R1-unfenced-output-examId",
+      "verdict": "resolved in bounded direct, actual-main negative and static wiring checks",
+      "basis": "Actual safe_output_id rejects traversal/absolute/drive-relative/ADS/separators/reserved Windows names/trailing dot/space/control/overlength and invalid types; accepted canonical128-char ASCII components tested. Actual directory, PNG and nested JSON targets call same actual quarantine_target. Actual helper rejects root/equal/traversal/outside/other-drive for3artifact kinds; actual nested writer refuses escape and overwrite of OWN existing bytes. Actual main negatives reject before TEXTLAYER/output/N reads, audit hook denies unsupplied reads and writes. Not a full positive parser exploitation run."
+    },
+    {
+      "id": "UPDF-R1-standalone-answer-markers-admitted",
+      "verdict": "resolved within explicit bounded token policy",
+      "basis": "Own Korean/English labelled and benign school/title cases; actual helper and actual negative CLI. Independent name scanner, not production regex, matches all1715 file-reference metadata results. Exact34removed names inspected and recorded; no added refs. No filename policy proves absence of answer material in actual PDF."
+    }
+  ],
+  "historicalRouting": {
+    "inventoryJobs": 1715,
+    "sixScopeChecks": 10290,
+    "eligibleJobs": 733,
+    "eligibleJobCountsUnchanged": true,
+    "current": [
+      {
+        "level": "middle",
+        "grade": 1,
+        "eligible": 98,
+        "withPdfRefs": 87
+      },
+      {
+        "level": "middle",
+        "grade": 2,
+        "eligible": 136,
+        "withPdfRefs": 129
+      },
+      {
+        "level": "middle",
+        "grade": 3,
+        "eligible": 110,
+        "withPdfRefs": 96
+      },
+      {
+        "level": "high",
+        "grade": 1,
+        "eligible": 117,
+        "withPdfRefs": 107
+      },
+      {
+        "level": "high",
+        "grade": 2,
+        "eligible": 235,
+        "withPdfRefs": 171
+      },
+      {
+        "level": "high",
+        "grade": 3,
+        "eligible": 37,
+        "withPdfRefs": 35
+      }
+    ],
+    "oldCandidateJobs": 626,
+    "currentCandidateJobs": 625,
+    "allChangedReferenceJobs": 34,
+    "allRemovedReferences": 34,
+    "eligibleChangedJobs": 14,
+    "addedReferences": 0,
+    "justification": "Every removed filename contains standalone explicit Korean answer or answer-sheet token (including original+answer). Full name, metadata job/grade, old/new counts and path hash appear in own-extra-results.json.34differences in old oracle replay retained as digested local-diagnostic summary. No unexpected metadata eligibility changes.",
+    "onlyLostCandidateJob": {
+      "examId": "personal-75223493ea23f7a8e752506f290f2ac8",
+      "eligible": true,
+      "level": "중",
+      "grade": 2,
+      "oldReferences": 1,
+      "newReferences": 0,
+      "removed": [
+        {
+          "name": "[경구중][2][25-2-중간](원본+답)(어수마러)",
+          "pathSHA256": "5d3741d216e92f52e45a60867ca7812c303cf3296fd3b628242960367cf23efa",
+          "metadataConsistent": true,
+          "explicitAnswerLabel": true
+        }
+      ]
+    },
+    "protectedExistingPriorScope": "Original strict typed malformed/missing fields,4protectedschools,pairs/registered counts andIDs,seen,6grade scopes and2025+ year boundaries rerun."
+  },
+  "actualCLI": {
+    "total": 53,
+    "passed": 53,
+    "method": "Actual authorized root main and pure helpers unchanged.8original parser/help cases,3actual historical paired/protected/prior negatives,22original synthetic metadata cases plus20new synthetic metadata negatives. BASE/inventory configured ONLY for OWN fixtures; no validation replacements. OS audit hook installed after fixture creation, denies all filesystem writes and reads outside exact allowed metadata/OWN inputs/stdlib. No source renderer/parser mocked as actual parsing.",
+    "beforeTextlayerOutputAndN": true,
+    "existingEvidenceAndInputsUnchanged": true
+  },
+  "parentReplayMetadataOnly": {
+    "jobs": 2,
+    "pdfs": 3,
+    "replayCredit": 0,
+    "metadataChecks": "Supplied comparison rows bind original aggregate inputSHA/status for each reference; recorded page/PNG/parser equal flags alltrue. Original pilot aggregate SHA and prior report SHA matched scope. Replay aggregate digest is only a parent-attested pointer: replay spool/raw artifacts were NOT authorized/opened or independently rehashed.",
+    "partial": "Original one parser output remains unverified5 vs prior observed printed19;2scans held. No new source/question-count credit.",
+    "notOwnParentTestCounts": true
+  },
+  "closure": {
+    "selectedPairRemainsNone": true,
+    "gradeApproved": false,
+    "rightsApproved": false,
+    "sourceIdentityApproved": false,
+    "contentPairApproved": false,
+    "nativeApproved": false,
+    "loadable": 0,
+    "dbWrites": 0,
+    "newQuestions": 0,
+    "basis": "Observed aggregate flags/entry fields and static code entry closure checked; filename routing/code repair does not certify semantics, grade, rights, source fidelity or native rendering."
+  },
+  "preservation": {
+    "rootCodeFiles": 4,
+    "rootMetadataReceipts": 3,
+    "inventory": 1,
+    "additionalOwnR1Files": 15,
+    "allBeforeAfterEqual": true,
+    "sourceEdits": 0,
+    "utf8ProbeSHA256": "b09436d300965706ec73411d8d73a18e4faf1b6b8287cd75dbe074a669e11f0e",
+    "onlyNewR2OwnWrites": true
+  },
+  "limits": [
+    "No positive actual N extraction, original PDF/image/textlayer read, full-parser exploit, source fidelity or absence-of-answers certification.",
+    "quarantine_target is a resolved containment helper, not a general child-component sanitizer; actual caller uses separately validated examId, decimal index and fixed artifact names. No filesystem junction/symlink/TOCTOU race proof.",
+    "Parent replay byte equality is supplied metadata evidence, not an independently repeated extraction.",
+    "30old observation/alias controls remain sealed-only because their underlying parent receipts are outside current R2 read scope;1old PNG check superseded by stronger current unified-fence check.",
+    "No whole-source pairing, curriculum, rights, family, content, native, release or database approval."
+  ],
+  "harnessDiagnostics": {
+    "encoding": "One new OWN fence script initially read UTF8 JSON with Windows cp949 and failed before serializing results; explicit UTF8 read fixed. Diagnostic preserved, not production fault.",
+    "legacyOracle": "Old answer-word predicate has34expected-policy differences. Exact diagnostic with original metadata bodies remains LOCAL untracked; committed summary has IDs and expected/actual hashes only. Corrected-policy oracle is separate file, no erasure of old expectations."
+  },
+  "artifacts": {
+    "own-prepare.py": "731eb61a8580d9974b9d982f8f8fc4ae0a4f5473bc4e24653e1657c9bb4f59ea",
+    "own-before.json": "bfb98efbdf1fef65c3f472110fdd7aece40e1dbdf8e78f61c2e990ff1a60b50d",
+    "own-after.json": "bfb98efbdf1fef65c3f472110fdd7aece40e1dbdf8e78f61c2e990ff1a60b50d",
+    "own-utf8-probe.txt": "b09436d300965706ec73411d8d73a18e4faf1b6b8287cd75dbe074a669e11f0e",
+    "own-controls.py": "16ac8ffadd6e254ea36ca24dd58c2c53848b538360c60dbcc53187f2146e17cb",
+    "own-r1-replay-summary.json": "9ec8a76e065d7ffc9ba18b4780d645cd0dc23d69c34efe89d99a712621f4cccf",
+    "own-current-oracle.py": "fb890a79ecb78b7b2c0a478adb5214e44fae76b399714d6d0258fb7987701e41",
+    "own-current-oracle-results.json": "3402d8157d502f557a45781890ad9e8ac7feb06f0fa3a50e1ea7c9a22e546c05",
+    "own-build-current-oracle.py": "cc65434c7a403fc06175fcbfeda58c0c331b4c40cfaedf564589c115b6c7dee5",
+    "own-cli-probe.py": "b0945111618690d77d952469c909d5271693c22b2026ab72957d83b775de5e93",
+    "own-run-cli.py": "7507cc3cfbebd2a8364fd5d52a379a2c5894a3370397eff60e274c049940c03c",
+    "own-cli-results-r2.json": "f4a1f9070e71f702b5ed7b2a9f8a2776cd10e0d7d357f0ceb6da760cdc9b1a1d",
+    "own-extra-controls.py": "2829155e0e2de27abb01edf655ad90fcd3903078e47e1aeea57070ae234de302",
+    "own-extra-results.json": "c6e0b61de67927f54367dffc5f84343f66cce14dc14bc87db0e00df5cfd8125c",
+    "own-legacy64-rebind.json": "cf596116cef359ff045f3da8dd47652135afadbb118da5576f37bd195a942900",
+    "own-legacy64-rebind-current.json": "b458d70f19bcd8fb22dee73d3229bca9bad7ae43fa47e1a8e22f5ac147f88e30",
+    "own-build-extra-cli.py": "194a072a0ea18af9d2e708ba209aed57667ebfa174b8fc503bc98c32f27b3eaf",
+    "own-extra-cli-cases.json": "8544844cefb3dc458666b845c25ced32f54d0859b2f300d7d378ec75c36e95a7",
+    "own-extra-cli-probe.py": "cbfdbd64a9cc7a4e6e5e7657bb3575e2fa13d8508e7438df34aa724770f27953",
+    "own-run-extra-cli.py": "65f954f79552690a0863d67c31dbe94c124506637a994f439465163d92b55ef8",
+    "own-extra-cli-results.json": "e6df330386d176a547bd999daf8e1659222c7b6bffd52efddd45b65c906b8764",
+    "own-more-fence-controls.py": "baada5030e7da7ebbb3a8fa462d357873120a66c602f3c43acb8eed0a563d290",
+    "own-more-fence-results.json": "d46b53e5163cc7fa1df8321990b60865a8488abf0c42d882dc5f37481eb7291c",
+    "own-correct-harness.py": "7db07636907047994a70a7e671ac0f2191f8cbca4a1ae9bc42670021a352b948",
+    "own-harness-diagnostic.json": "df45749bf24543d7bf53645325289dd68d388e8b7d8512a9eec3a7ea7c632eb0",
+    "own-seal.py": "136fb0d8907479d1ca5e3c9a58321b017d5d023df4622bd778e7ea82d27ceebf"
+  }
+}

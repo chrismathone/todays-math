@@ -1,0 +1,295 @@
+{
+  "total": 12164,
+  "passed": 12130,
+  "counts": {
+    "historical-six-scope": 10290,
+    "historical-file-metadata": 1715,
+    "malformed-job": 64,
+    "missing-job": 12,
+    "synthetic-six-scopes": 30,
+    "invalid-scope": 5,
+    "seen": 1,
+    "file-negative": 36,
+    "dedup": 2,
+    "no-mutation": 1,
+    "unsafe-output-id": 4,
+    "explicit-answer-marker": 4
+  },
+  "routing": [
+    {
+      "level": "middle",
+      "grade": 1,
+      "eligible": 98,
+      "withPdfRefs": 87
+    },
+    {
+      "level": "middle",
+      "grade": 2,
+      "eligible": 136,
+      "withPdfRefs": 129
+    },
+    {
+      "level": "middle",
+      "grade": 3,
+      "eligible": 110,
+      "withPdfRefs": 96
+    },
+    {
+      "level": "high",
+      "grade": 1,
+      "eligible": 117,
+      "withPdfRefs": 107
+    },
+    {
+      "level": "high",
+      "grade": 2,
+      "eligible": 235,
+      "withPdfRefs": 171
+    },
+    {
+      "level": "high",
+      "grade": 3,
+      "eligible": 37,
+      "withPdfRefs": 35
+    }
+  ],
+  "unsafeOutputPathCalculations": [
+    {
+      "jobId": "../own-output-escape",
+      "acceptedByActualEligibility": false,
+      "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-output-escape\\1\\original-first-page.local.png",
+      "insideQuarantine": false,
+      "actualFilesystemWrite": false
+    },
+    {
+      "jobId": "..\\own-output-escape",
+      "acceptedByActualEligibility": false,
+      "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-output-escape\\1\\original-first-page.local.png",
+      "insideQuarantine": false,
+      "actualFilesystemWrite": false
+    },
+    {
+      "jobId": "C:/own-output-escape",
+      "acceptedByActualEligibility": false,
+      "computedPngPath": "C:\\own-output-escape\\1\\original-first-page.local.png",
+      "insideQuarantine": false,
+      "actualFilesystemWrite": false
+    },
+    {
+      "jobId": "own:stream",
+      "acceptedByActualEligibility": false,
+      "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-quarantine\\own:stream\\1\\original-first-page.local.png",
+      "insideQuarantine": true,
+      "actualFilesystemWrite": false
+    }
+  ],
+  "parentTestsRun": 0,
+  "originalSourceReads": 0,
+  "failed": [
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-8eec901cfcf0f5f6e58dec34775bc19f",
+      "expectedSHA256": "fc72bc7813b326a4a4ee4e7a76d644ca9652c4f58767cc664ee1319cf947a804",
+      "actualSHA256": "eff0469e702af84d9f6be6bb3c6d5cfcd193c4553b69e42e48056fb9c932dde9"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-75223493ea23f7a8e752506f290f2ac8",
+      "expectedSHA256": "e0630edd9948465fcc8e6591b125441b310b7b1a2ebcc909fff522991f9a1dd6",
+      "actualSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-a8a023ad6060fb2937b8b09781b68857",
+      "expectedSHA256": "fc38b65c927c9f13c17032d373c91d835e3793dbd5e14c0b4baf7cac998b7530",
+      "actualSHA256": "1886cd24c35f154c9a61df11525df01a79983cd49275a779cb289f2011f905df"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-b61b1b089417ce49377fc5b8fc646779",
+      "expectedSHA256": "d1e3a5939be273c4dafa37ae08224a5f9ca980550deda91fd8354c7f48322055",
+      "actualSHA256": "3de563b18a3cf44acf59f8552e96debff3216c44ac6614d383a47250ed96b1e7"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-98a4a91262b293911d6b6c037360c0ef",
+      "expectedSHA256": "f393ff8f9ec6073513468593d467b5bae4456b5499e580dea47803d26e680be5",
+      "actualSHA256": "61f67b4cd34639655a6230aba7ffa8bb02590867bc88e3bc4c91784bc909f832"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-b37b5f2a943efe63b8eed253a7747a1d",
+      "expectedSHA256": "d387ac021ce1f661a4f885e282ca67f516ff5cfac58d6d20bf7614ce3bae3e5c",
+      "actualSHA256": "e638002e366f4e5f139faa1b8eaf8d69fac3f54de42d1324467b0799ef88d1d2"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-669189c8ea6594edb5c463bb95902fd8",
+      "expectedSHA256": "15fc8e630ceb98ab3a99f306a03431167eca5d1051c4ae43359c35f876d49256",
+      "actualSHA256": "25552a5962cab8887833ae4a37e3a1f34ade6f78d909cd8644b0fa03ef9e419f"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-651da9aa806ce1c9d1c3ae5539e6038f",
+      "expectedSHA256": "99b0e9348d5e819d0e9922bebe0f8f2251b1d22db33fa91d0cd6aff03aa1042b",
+      "actualSHA256": "fea4c04dafdc00e9e4f19f89c3b38d6c9e5e168d9b2f10f2d14076ffe5142341"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-4b4dcff6cb196185d0665066b559c281",
+      "expectedSHA256": "1c434b50e458c0bce19425525050fac8d718ad78b720bbac87588c89773e6a88",
+      "actualSHA256": "74131be6d6da5392399f8eee1ac2cbb268aa1ba4b840925727fc7d046124c3f1"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-b1678e5d4a16fc4e359d9655dcf27c3c",
+      "expectedSHA256": "ccad831681a77838f3bb9c0e5d5f0fa3401e04af73ebfe611cf2bdd2cd13697b",
+      "actualSHA256": "d2e5de50b8ccc225370dff924665c3311043f3d5a3e46f8e555d4ec6854442e0"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-32ab05457d84e0f109eaccd554406dd6",
+      "expectedSHA256": "85b0d6f81fa785fe993fa6704a539ec48f5543351fab004cb126e8a2cc300ee8",
+      "actualSHA256": "a8c3971a40ac5f4e67003ba035ed659af7eaa8fbbc5779b025ea36417c3a43c9"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-f12f6e45f5170f826b67c5cbbcfea8b6",
+      "expectedSHA256": "265a5898dc2847124bae7d07649af91aa2caf7c84509c3016cc31a6dc8bb4e51",
+      "actualSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-678201271c65ed20ea60ef000c8b6ae2",
+      "expectedSHA256": "f64af774283ecbc276d26e976fad5156d88e174ec1f46b978a8f1f67e988dcb8",
+      "actualSHA256": "dcd4a8adfab2cffe1534dbcf8f0897f4f3e0d25df3f7b492302c13676931f6a9"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-aa6ebc7b24336184b26f81a7bb71ff29",
+      "expectedSHA256": "6a3c41d523b2fdb61f3f256357ae92bff426081cb6b4c39c215c091ae80f0933",
+      "actualSHA256": "1757a383e87de5a6e993c726a7dd37529541c5a2269905348350dddbfbb01030"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-06c5606a459377e3329705540251566e",
+      "expectedSHA256": "13423c500eb4e490b0cf517b7623a1d6743f58def0017e0b57bfdbfaceca6663",
+      "actualSHA256": "37b670ca7f57fb9cf854e2fb0a8d00b43318a921925235a2fe9ee0c1d57b8b5b"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-8371929e66bec0b504544f9bc4f800b2",
+      "expectedSHA256": "73ebeea7b0f8b86e82fca8a9f7f0973087254fed8063658ecf708fcb7b60eb54",
+      "actualSHA256": "42bcca3454f45b78574c18056faa009a33d5b2fcddebb7b2bdd3e89f7412c39b"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-45d4ce327734ad6dac1a2210994eb648",
+      "expectedSHA256": "aaf1345af67eaacefc006d6654054070921f9bf6a01c01fd9f557a68a057ca4e",
+      "actualSHA256": "d56bd165e0c0ddac146095a0410b40247b7257ba0e43bc6a7b7b7ce82d130c80"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-8566605e8fb3efd9532c1eda534dcb5a",
+      "expectedSHA256": "cf6f0fd59d9ff7dc459fd3982a5d559b23e057342c9ce280693688cbfeb7bb45",
+      "actualSHA256": "f4cfc07e85003734bd697aca4ff1abc339147c36c8ab5faaa8648fd7f5b5adf8"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-f40802e854fddc9a219c9ab84e4e35ff",
+      "expectedSHA256": "8b70c21e0cb737b0eea0343a4e98db1ed9a4b711a7066cd4fabe62e08247c8ee",
+      "actualSHA256": "a6ddf1587c91df42f66bf3c4e42f0b0a1eb4be2c1d4789cd8c5a7c6c5dca33b3"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-bdafafc08582e711565224ff626ab6c8",
+      "expectedSHA256": "a10bf8cc3f8931aeb73a2c9967ec65b8888ff2566782f24aa0e7d65847cc50b0",
+      "actualSHA256": "32915ccdb2a873db5ef466b161b85998495ff4ebc12cdc5a853cdf50def876c6"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-868102b9ef64fbc2ced308c30e771538",
+      "expectedSHA256": "1504667e4f231dba060e09fa7c001b39ea3a9dbed00a258090a904ddfd6f1492",
+      "actualSHA256": "a22d6043bbed30835c21309d5d08ab5808d871dd0bae9857fc5c4b1a8662a682"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-f2b0479a7f526e52e86295b83787c7d9",
+      "expectedSHA256": "9ba490172f942fa40f9db03d8fcc9dad02a869109db7172086552d81555956fd",
+      "actualSHA256": "3cdae24434aeb111122b1c9b498d283ed7bc450d95322e9e7a92bdf5b7863614"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-2078fea0a32d6133f18774515bdecc2d",
+      "expectedSHA256": "1faa5ad98e8840998c667ad3fb21262b56a1ecac6e2c1629431362ae566de8d5",
+      "actualSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-5dd84112439fb3617d0399097b0742e0",
+      "expectedSHA256": "31e25c1d1974c915aa06b9a89b169f15f69e00e82c238d1273c7d022cc7f6a21",
+      "actualSHA256": "b5cc70aa35cced3c73c83d95353ac5e028059a6a4299453d1d55964c494dd81e"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-79cca27a3cb12dda9adab4d1fac4aed1",
+      "expectedSHA256": "5de1a1f4a1198bde74994eb4e98c6a4e55eb8dbc99bff3e0c3f0667d6c6f3590",
+      "actualSHA256": "9dba3f7ed831a14bc72484b60f2c00b1b8ce3f403856ddda444cb091f7bf1764"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-e572cb8d6e8d9d5b0e97d83fc981c04f",
+      "expectedSHA256": "77ae7c0f7ce8e97fb60d6cbf8f003ef5c11dbfdfd7a8a3ddde64f5077e6c8022",
+      "actualSHA256": "aa57553bd7036abe30022a0ce1cf68257b0b9c8506b6c24259ae6f23ba1d9814"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-79eb82dddbaaf29699e5840cddd4f52d",
+      "expectedSHA256": "36b848811784864aaf1ec1f02d7ca8cb1b40ef5b5b157e495eb7159609b9dc55",
+      "actualSHA256": "21d1fcf6ff6907300a94616cbde7154e512d08c4a0020e25cb7adb8a1e6f9a72"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-513451c7400863469d89b51a8016acec",
+      "expectedSHA256": "b0f2ec7cf6d1cb0262440d378d4de6868b37966f9e8dbe9f399672a199a90b5a",
+      "actualSHA256": "2c62c33d8dc7ccb37d094d37099c54bacc832a5914bc9995dd752b70dd45620f"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-88328d58863c3acaad390ddb60890226",
+      "expectedSHA256": "512f5f4a75eb88ef30d4c492358bdcf459c40a868493c656bcd7051bf47a7a9e",
+      "actualSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-2e887999db63cffbe3c8f48be796c93e",
+      "expectedSHA256": "181264c213e54d2dbab05a0272c7bd8dd06d548621691d1fa7873953737c2b53",
+      "actualSHA256": "4b00e8cf61108175dea8aaedae69494936e2e2d80aa366ad92adfcb50017ec9f"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-2b0e0df2a95386e59068480a2eb7eeaa",
+      "expectedSHA256": "7fae82f4af16675f47f9fe90d9bf769892e77e8fc367ca44bd3a8ea4963d0c67",
+      "actualSHA256": "5bd4137b385a9e972c25360e63b6803821d1fa0c06515d4421fee3fbb4bb2f45"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-1fad097565dc7b89535624030dc12629",
+      "expectedSHA256": "89539aa2d0373d260d20809a6f9899dc84d77e96454c770f1347f26ea6c35b34",
+      "actualSHA256": "68b1a6ac4ac6a775d28199338dfe260ea6955107915a3a6c2f9065e1e8041448"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-e3fd1a37b1a32dee430b2ce46d74300e",
+      "expectedSHA256": "95e017c948191b4f3993017be2052ea7725c2cd9293ef5f309e75c6d86ef0b20",
+      "actualSHA256": "e8c24b69ae4b2a58e6788f2f1ab063ed5a6aa8700056cce565f1e4edb21668ad"
+    },
+    {
+      "category": "historical-file-metadata",
+      "id": "personal-3f0b56a42979957bb60da3d4942a6768",
+      "expectedSHA256": "51a1a57edfe2f904f727e8edbfddbc14f21fb9416d6b9fa80e42ff8f16713cc5",
+      "actualSHA256": "45c0cbc84b9d08380604ce40c3f9ca39559291e463e9e6dbb1bffdfa3beac510"
+    }
+  ],
+  "rawDiagnosticLocalSHA256": "a5f9a8594adc93b971dcc556c32780e32c14d99a55225aeba39ba2534d4f3080"
+}

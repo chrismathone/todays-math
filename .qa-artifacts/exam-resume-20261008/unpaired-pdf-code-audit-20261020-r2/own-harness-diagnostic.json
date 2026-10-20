@@ -1,0 +1,5 @@
+{
+  "fault": "Own added fence harness omitted encoding on two JSON read_text calls; Windows cp949 failed reading UTF8 Korean after controls ran but before results serialization.",
+  "productionFault": false,
+  "correction": "Explicit utf-8-sig read; retained diagnostic; no source or original input edits."
+}

@@ -1,0 +1,1808 @@
+{
+  "total": 20,
+  "passed": 20,
+  "failed": [],
+  "rows": [
+    {
+      "case": "extra-id-0",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: own:stream\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-0.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-0.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-0.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-0.json": "782355ea3cd1199badd7e6007c8bd9ac73ed41ab2c5e41e17364ea48896e3e66",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-0.json": "782355ea3cd1199badd7e6007c8bd9ac73ed41ab2c5e41e17364ea48896e3e66",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-1",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: CON\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-1.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-1.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-1.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-1.json": "ad5bd4932eaad1dc6808aed3193bbd00186926d400d7e512a8300c58b7a102d6"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-1.json": "ad5bd4932eaad1dc6808aed3193bbd00186926d400d7e512a8300c58b7a102d6"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-2",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: nul\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-2.json": "c7962094d6643cac54721cba719ef49cfa6a2c41401aa494be9d98c52c2d7257",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-2.json": "c7962094d6643cac54721cba719ef49cfa6a2c41401aa494be9d98c52c2d7257",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-3",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: COM1\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-3.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-3.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-3.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-3.json": "0042613b7b25364d2b94e49b758ab083318e0cb2211aba18f3a7641e74b6c5d5"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-3.json": "0042613b7b25364d2b94e49b758ab083318e0cb2211aba18f3a7641e74b6c5d5"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-4",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: LPT9\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-4.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-4.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-4.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-4.json": "cf714a13ed63bb64251663c429b88e1275e1b5ac7d224e22da2c29ca744779a8"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-4.json": "cf714a13ed63bb64251663c429b88e1275e1b5ac7d224e22da2c29ca744779a8"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-5",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: a/b\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-5.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-5.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-5.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-5.json": "3fbd9eb0a7ef76b54e944db2cc0ce39df2ef19ed71a176d8ad706b1ff220625c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-5.json": "3fbd9eb0a7ef76b54e944db2cc0ce39df2ef19ed71a176d8ad706b1ff220625c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-6",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: a\\b\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-6.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-6.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-6.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-6.json": "8a2af5b716c210c7adef0da5ec8975249e81b093614ad968f4e9ee3bfe9761e2"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-6.json": "8a2af5b716c210c7adef0da5ec8975249e81b093614ad968f4e9ee3bfe9761e2"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-7",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: C:relative\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-7.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-7.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-7.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-7.json": "caa76d2d0279e3e8756007441e89ac0a02f963288a049bb5321eb7e383981849",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-7.json": "caa76d2d0279e3e8756007441e89ac0a02f963288a049bb5321eb7e383981849",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-8",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: \\rooted\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-8.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-8.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-8.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-8.json": "4a585f8e0e31b3a4155fb615ef4a9b7220b64ab7f38cbb7662dc497c3d9d1e9e",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-8.json": "4a585f8e0e31b3a4155fb615ef4a9b7220b64ab7f38cbb7662dc497c3d9d1e9e",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-9",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: \\\\server\\share\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-9.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-9.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-9.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-9.json": "ac9f01befd0a7ab2e8e6084e211b5a8ac5e2a4c6b26a7c32aed9004c4b5a838a",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-9.json": "ac9f01befd0a7ab2e8e6084e211b5a8ac5e2a4c6b26a7c32aed9004c4b5a838a",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-10",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: x.\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-10.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-10.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-10.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-10.json": "6222b6a4c71d131aa745e2d8c1b8976d243d6d4880b28fbea68f8dee32449e2f",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-10.json": "6222b6a4c71d131aa745e2d8c1b8976d243d6d4880b28fbea68f8dee32449e2f",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-11",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: x \n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-11.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-11.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-11.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-11.json": "d6d4af51862ea5869c84507bb459111e4980c4966db8e54b3c4b27f513f9f60c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-11.json": "d6d4af51862ea5869c84507bb459111e4980c4966db8e54b3c4b27f513f9f60c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-id-12",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: Protected, registered, prior, paired, unknown or out-of-scope ID: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-12.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-12.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-12.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-12.json": "ac15743f06a357973518e3affe37adf783eafce58c8c4050a4db88e3bcdcd106",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-id-12.json": "ac15743f06a357973518e3affe37adf783eafce58c8c4050a4db88e3bcdcd106",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-label-0",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: No metadata-consistent answer-unlabelled original PDF reference: own-new-id\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-0.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-0.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-0.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-0.json": "5b9a55fcf367f5aba62cd1031573847ae9f8f2d0828a19b970562205d0a923f4",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-0.json": "5b9a55fcf367f5aba62cd1031573847ae9f8f2d0828a19b970562205d0a923f4",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-label-1",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: No metadata-consistent answer-unlabelled original PDF reference: own-new-id\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-1.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-1.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-1.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-1.json": "bbac1076e24ec96f1ade80298887852c8a60ee9e3b1cac9c6c3f64f5bb228613",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-1.json": "bbac1076e24ec96f1ade80298887852c8a60ee9e3b1cac9c6c3f64f5bb228613",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-label-2",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: No metadata-consistent answer-unlabelled original PDF reference: own-new-id\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-2.json": "e6472adff7b200716b1e85729f19e47d4bb0ded4a7aa838b34bebd8321544021",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-2.json": "e6472adff7b200716b1e85729f19e47d4bb0ded4a7aa838b34bebd8321544021",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-label-3",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: No metadata-consistent answer-unlabelled original PDF reference: own-new-id\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-3.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-3.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-3.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-3.json": "6eaa440e0abe37ab81847d0c4f244f547966fa5c3c449b8d0604297028585196",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-3.json": "6eaa440e0abe37ab81847d0c4f244f547966fa5c3c449b8d0604297028585196",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-label-4",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: No metadata-consistent answer-unlabelled original PDF reference: own-new-id\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-4.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-4.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-4.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-4.json": "be887342dbc00d90609cb5186c35a77a37def41b906464c82ad7d03ec44f79b1"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-4.json": "be887342dbc00d90609cb5186c35a77a37def41b906464c82ad7d03ec44f79b1"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-label-5",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: No metadata-consistent answer-unlabelled original PDF reference: own-new-id\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-5.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-5.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-5.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-5.json": "de9549a181b4fd13b0fb08d1e06dfc0dbefd9ad6fa9d016367702f5c2f537c7e"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-5.json": "de9549a181b4fd13b0fb08d1e06dfc0dbefd9ad6fa9d016367702f5c2f537c7e"
+      },
+      "outputExists": false,
+      "passed": true
+    },
+    {
+      "case": "extra-label-6",
+      "fixtureInventoryAndBase": true,
+      "exit": 2,
+      "error": null,
+      "stdout": "",
+      "stderr": "usage: actual-preflight [-h] --job-ids JOB_IDS [JOB_IDS ...] --level\n                        {middle,high} --grade {1,2,3} --out OUT\nactual-preflight: error: No metadata-consistent answer-unlabelled original PDF reference: own-new-id\n",
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-6.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-6.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-6.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-6.json": "703149ad44bbf6692ea5c5ccf2bf2a3df3c25a192b7b9b148fcd5ce6d5cf2d70",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-preflight-20261020-r1\\aggregate-receipt.json": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-audit-report.json": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r2\\own-cli-fixtures\\own-inventory-extra-label-6.json": "703149ad44bbf6692ea5c5ccf2bf2a3df3c25a192b7b9b148fcd5ce6d5cf2d70",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\unpaired-pdf-parent-validation-r2.json": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+      },
+      "outputExists": false,
+      "passed": true
+    }
+  ],
+  "method": "Actual main with OWN BASE/inventory fixtures; no validator replacement. Audit hook prohibits unsupplied reads and every filesystem mutation after fixture preparation. No positive parser execution."
+}
