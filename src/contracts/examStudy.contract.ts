@@ -58,6 +58,7 @@ export const STUDY_REQUIREMENT_IDS = [
   "number.inverse-root-table",
   "number.inverse-extreme-range",
   "geometry.inverse-tangent-rectangle",
+  "algebra.inverse-equation-degree",
 ] as const;
 
 export const studyRequirementIdSchema = z.enum(STUDY_REQUIREMENT_IDS);

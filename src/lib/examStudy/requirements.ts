@@ -16,6 +16,14 @@ type Dimensions = readonly [
 
 /** Mathematical demands only. Source wording, coefficients and source figures are absent. */
 const DIMENSIONS: Record<StudyRequirementId, Dimensions> = {
+  "algebra.inverse-equation-degree": [
+    "일차방정식이 되도록 입력 계수 역산",
+    ["다항식 전개", "방정식의 차수", "계수"],
+    ["양변 전개와 이항", "이차항 소거", "남은 일차항 확인", "입력의 유일성"],
+    "text",
+    "none",
+    ["단답형"],
+  ],
   "geometry.inverse-tangent-rectangle": [
     "직사각형의 부분 길이에서 전체 접선 복원",
     ["원의 접선", "직사각형", "피타고라스", "일차방정식"],

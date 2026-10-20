@@ -1,7 +1,19 @@
 import type { ExamStudyFamily } from "@/contracts/examStudy.contract";
 
 export const STUDY_RELEASE_POLICY_VERSION =
-  "20261020-source-informed-template-review-r4";
+  "20261020-source-informed-template-review-r5";
+
+const INVERSE_EQUATION_DEGREE_REVIEW = Object.freeze({
+  status: "review-only-template" as const,
+  message:
+    "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+  evidence:
+    ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/own-review-evidence-r1/own-review-report-r1.json",
+  evidenceSha256:
+    "6857d36a7463a82cf70c2692304f37ea2a5cdf04a008aa4d31a0a7168f5b6e2f",
+  basis:
+    "한 문항의 검토는 새 생성 규칙 전체의 학년·2015/2022 배치·live family·권리·native 승인과 다르다.",
+});
 
 const INVERSE_COEFFICIENT_REVIEW = Object.freeze({
   status: "review-only-template" as const,
@@ -59,7 +71,14 @@ export function studyReleaseHold(
   | typeof INVERSE_ROOT_TABLE_REVIEW
   | typeof INVERSE_MINIMUM_REVIEW
   | typeof INVERSE_TANGENT_RECTANGLE_REVIEW
+  | typeof INVERSE_EQUATION_DEGREE_REVIEW
   | null {
+  if (
+    family.fulfills.some(
+      (f) => f.requirement === "algebra.inverse-equation-degree",
+    )
+  )
+    return INVERSE_EQUATION_DEGREE_REVIEW;
   if (
     family.fulfills.some(
       (f) => f.requirement === "geometry.inverse-tangent-rectangle",

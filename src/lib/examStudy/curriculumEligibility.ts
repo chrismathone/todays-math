@@ -2,7 +2,20 @@ import type { ExamStudyFamily } from "@/contracts/examStudy.contract";
 
 /** Grade restrictions precede mathematical coverage, format and profile quotas. */
 export const STUDY_CURRICULUM_POLICY_VERSION =
-  "20261019-m1-reviewed-student-methods-r2";
+  "20261020-reviewed-student-methods-r3";
+
+const INVERSE_DEGREE_GRADE_HOLD = Object.freeze({
+  status: "excluded-required-out-of-grade-method" as const,
+  targetCurriculum: "2015/2022-placement-review",
+  message:
+    "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+  evidence:
+    ".qa-artifacts/exam-resume-20261008/gangbuk-first2-review-20261020-r2/own-review-evidence-r1/own-review-report-r1.json",
+  evidenceSha256:
+    "6857d36a7463a82cf70c2692304f37ea2a5cdf04a008aa4d31a0a7168f5b6e2f",
+  basis:
+    "2015중3 원문 개념과 새 일차방정식 조건의 검토는 다른 학년·2022 배치 승인이 아니다. 새 템플릿은 학년별 전체 풀이 검토 전 제공하지 않는다.",
+});
 
 const M1_SYMBOLIC_SUM_HOLD = Object.freeze({
   status: "excluded-required-out-of-grade-method" as const,
@@ -51,7 +64,20 @@ const REVIEWED_M1_METHODS = [
 export function studyCurriculumHold(
   family: Pick<ExamStudyFamily, "course" | "fulfills"> &
     Partial<Pick<ExamStudyFamily, "id" | "version">>,
-): typeof M1_SYMBOLIC_SUM_HOLD | typeof M1_STUDENT_METHOD_HOLD | null {
+):
+  | typeof M1_SYMBOLIC_SUM_HOLD
+  | typeof M1_STUDENT_METHOD_HOLD
+  | typeof INVERSE_DEGREE_GRADE_HOLD
+  | null {
+  if (
+    (family.course.startsWith("초") ||
+      family.course === "중1" ||
+      family.course === "중2") &&
+    family.fulfills.some(
+      (f) => f.requirement === "algebra.inverse-equation-degree",
+    )
+  )
+    return INVERSE_DEGREE_GRADE_HOLD;
   if (family.course !== "중1") return null;
   if (
     family.fulfills.some((f) => f.requirement === "number.coprime-symbolic-sum")
