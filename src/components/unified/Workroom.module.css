@@ -525,6 +525,11 @@
 .workspace[data-maximized="true"] {
   --workspace-sticky-inset: 44px;
 }
+/* 위 띠(.topbar)는 옛 작업실에만 있다. 띠가 없는데 68px 를 비워 두면 시험지 만들기의 단계 띠가
+   sticky top 68px 로 밀려 내려와 제목 칸 · «저장한 조건»을 덮었다(원장님 2026-10-20 «아직 잘린다»). */
+.workspace:not(:has(.topbar)) {
+  --workspace-sticky-inset: 0px;
+}
 .workspace[data-maximized="true"] .topbar .searchTrigger,
 .workspace[data-maximized="true"] .topbar .accountSlot {
   display: none;
