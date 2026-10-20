@@ -1,0 +1,36 @@
+{
+  "kind": "authored-exam-twin-review-result/v1",
+  "packageDigest": "69565bdecc59d73a169b34b8b21171ab64d66616f95c81630869e536baabd0ef",
+  "createdAt": "2026-10-20T06:04:05.180Z",
+  "authored": 1,
+  "mathematicalVerified": 1,
+  "gradeReviewed": 1,
+  "overallVerified": 0,
+  "loadable": 0,
+  "productionWrites": false,
+  "results": [
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group2-r1-q02",
+      "studentDigest": "cd419ce5848d1631a758075f0913081bce78acc3bbd5d56ee958ef05a3f1d094",
+      "candidateDigest": "cf659f73443cbf156f4ae73f714a2af040c084c3e2a67be0368a66ce6bd8d338",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "9e57ffea836a9445ff00d11c75cbf389a73c6be62efbe4badf9dad37d9798e5b",
+      "reportSha256": "06691079a754d0b346c0c96d994efaf6b8656fe30693dac0bd327ca175949b83",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "status": "pending",
+  "studentDigest": "5687e3f56b37fd0cd57aca1b86bc8935fa8def0f93bdea5a267b47164617453a",
+  "candidateDigest": "94b69f1744ed39667ef22d82cce7ab9332d8cf8cefb5c23de33c532ea4bbce98",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-helper-independent-next2-full-review-20261020",
+  "solveDigest": "1fd4e69763ecf0e3c89207c738623db91814d71358ba461725b87ce599e71224",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "checks": {
+      "answerCorrect": {
+        "basis": "봉인된 자체 raw에서 b10,a4/5,k16/25를 도출하여③을 얻었으며 현재 저자 답③과 일치한다. k의 정확한 소수값은0.64이다.",
+        "verdict": "passed"
+      },
+      "solutionCorrect": {
+        "basis": "실제 저자 해설의 모든 단계를 대조했다. 양수인2√5를 곱해 b10,10a8에서 a4/5를 얻는다. 그 다음 √(3k)=(4/5)√3의 오른쪽은 이미 정해진 양수이므로 제곱근의 정의로3k=48/25를 얻고 k16/25를 정한다. 해설 마지막에 오른쪽이 양수이며 그 제곱이3k임을 확인하여 원식을 검산한다. 단순한 양의 제곱근 정의를 이용한 이 단계는 임의의 무리방정식 풀이를 허용하는 근거가 아니다.",
+        "verdict": "passed"
+      },
+      "existenceUniqueness": {
+        "basis": "분모2√5>0이고 나누는 b10,정수3도0이 아니다. 둘째 조건이 b,셋째 조건이 a,첫째 조건이 양수 k를 차례로 유일하게 정한다. (a,b,k)=(4/5,10,16/25)는 모두 양수이며 ab8 및 두 근호 조건을 실제로 만족한다. 첫째 식의 양변이 양수라 제곱값의 일치에서 부호가 다른 추가 가지가 생기지 않는다.",
+        "verdict": "passed"
+      },
+      "choicesCorrect": {
+        "basis": "보기0.08,0.16,0.64,0.8,6.4를 정확한 Fraction으로 각각 검사했다. 유일하게 정해진 a,b에 대해 첫째 식 양변은 양수이며 제곱값3k와48/25가 같은 경우는0.64뿐이다. 각 보기의 제곱값 비교와 유일 선택 위치를 자체 receipt에 기록했다.",
+        "verdict": "passed"
+      },
+      "figureConsistent": {
+        "basis": "외부 그림은 없고 실제 학생/해설 PNG에3행의 조건표가 있다. 첫째의 근호는3k 전체를 덮고,둘째 분모는2√5 전체이며,셋째ab8도 보인다. 본문의 a,b,k 양수 조건과 세 행을 함께 읽어야 한다. 해설 PNG와 private 후보 텍스트의 식/보기/답이 대응한다.",
+        "verdict": "passed"
+      },
+      "sameCoreConceptAndProcedure": {
+        "basis": "원문 q03은 두 근호 표현 사이의 배율을 각각 정하고 그 곱을 계산한다. 현재 문항도 양의 근호값과 배율 관계,근호의 곱셈/나눗셈을 핵심으로 보존한다. 원문 정답이나 필기 표시는 사용하지 않았으며 원문의 질문 관계와 현재 전체 절차를 비교했다.",
+        "verdict": "passed"
+      },
+      "distinctPresentation": {
+        "basis": "원문의 배율의 곱이라는 출력이 현재는 조건ab8로 주어지고,배율을 역으로 정하여 처음 근호 안의 k를 구한다.3행 표의 조건을 둘째→셋째→첫째 순으로 연결해야 하므로 숫자 치환이나 동일 출력 계산이 아니다. 실제 inverse target 변화가 있지만 모든 임의의 근호 역문제로 일반화하지 않는다.",
+        "verdict": "passed"
+      },
+      "naturalKorean": {
+        "basis": "양수인 세 문자를 먼저 선언하고 표의 첫째/둘째/셋째 조건과 구할 k를 분명히 했다. 실제 PNG에서 분모와 근호 범위가 읽히고,배율의 방향이나 요청 변수가 모호하지 않다. 해설은 정해진 양수를 대입한 다음 정의를 확인하는 자연스러운 순서다.",
+        "verdict": "passed"
+      },
+      "curriculumAppropriate": {
+        "basis": "현재 전체 학생 경로는 2015 [9수01-07] 제곱근 뜻/성질,[9수01-10] 근호 사칙계산과 이전 유리수 계산/간단한 등식 관계에서 닫힌다. 실제 positive branch와 원식 확인을 보아 고교의 일반 무리방정식,복잡한 방정식 체계,함수 역함수나 형식적 계수법을 필수로 요구하지 않는다.2025출처/2026중3연습의2015 범위에 한정한다.",
+        "verdict": "passed"
+      },
+      "allStudentSurfacesInScope": {
+        "basis": "현재 지문·보기·표·표기·답·완전한 저자 학생 해설·선수학습 일곱 면을 아래 별도 basis로 실제 검토했다. 전체 절차의 양수/분모/근호 정의를 함께 확인했으며 단순히 마지막 답 일치로 판정하지 않았다.",
+        "verdict": "passed"
+      },
+      "unitFamilyFit": {
+        "basis": "제공 snapshot의 근호를 포함한 식의 계산 Unit99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1 row와 현재 assignment가 일치한다. 이 새 역방향 입력 목표와 조건/답형식까지 정확히 맞는 live family 정의는 제공·검증되지 않아 familyKey=null과 unitFamilyFit=false를 유지한다. 이름/개수로 의미를 추론하지 않는다.",
+        "verdict": "pending"
+      },
+      "scoreAppropriate": {
+        "basis": "원본 인쇄4점과 현재4점이 일치한다. 세 간단한 관계를 순서 바꾸어 연결하고 마지막 양의 근호 입력을 구하는 과정을 요구하므로4점은 편집상 수용 가능한 제안이다. 원문보다 역순 계획이 추가되므로 동일난도는 인증하지 않는다. 기본~응용 라벨은 저자 제안이며 실측 난도/보정은 보류다.",
+        "verdict": "passed"
+      }
+    },
+    "ownCalculation": {
+      "b": {
+        "numerator": "10",
+        "denominator": "1"
+      },
+      "a": {
+        "numerator": "4",
+        "denominator": "5"
+      },
+      "k": {
+        "numerator": "16",
+        "denominator": "25"
+      },
+      "ab": {
+        "numerator": "8",
+        "denominator": "1"
+      },
+      "firstEquationBothSidesPositive": true,
+      "firstBothSidesSquared": {
+        "numerator": "48",
+        "denominator": "25"
+      },
+      "allChoices": [
+        {
+          "k": {
+            "numerator": "2",
+            "denominator": "25"
+          },
+          "leftSquared": {
+            "numerator": "6",
+            "denominator": "25"
+          },
+          "rightSquared": {
+            "numerator": "48",
+            "denominator": "25"
+          },
+          "firstEquationWithFixedPositiveA": false
+        },
+        {
+          "k": {
+            "numerator": "4",
+            "denominator": "25"
+          },
+          "leftSquared": {
+            "numerator": "12",
+            "denominator": "25"
+          },
+          "rightSquared": {
+            "numerator": "48",
+            "denominator": "25"
+          },
+          "firstEquationWithFixedPositiveA": false
+        },
+        {
+          "k": {
+            "numerator": "16",
+            "denominator": "25"
+          },
+          "leftSquared": {
+            "numerator": "48",
+            "denominator": "25"
+          },
+          "rightSquared": {
+            "numerator": "48",
+            "denominator": "25"
+          },
+          "firstEquationWithFixedPositiveA": true
+        },
+        {
+          "k": {
+            "numerator": "4",
+            "denominator": "5"
+          },
+          "leftSquared": {
+            "numerator": "12",
+            "denominator": "5"
+          },
+          "rightSquared": {
+            "numerator": "48",
+            "denominator": "25"
+          },
+          "firstEquationWithFixedPositiveA": false
+        },
+        {
+          "k": {
+            "numerator": "32",
+            "denominator": "5"
+          },
+          "leftSquared": {
+            "numerator": "96",
+            "denominator": "5"
+          },
+          "rightSquared": {
+            "numerator": "48",
+            "denominator": "25"
+          },
+          "firstEquationWithFixedPositiveA": false
+        }
+      ],
+      "nonzeroDenominators": [
+        "2sqrt5>0",
+        "sqrt3>0",
+        "b10>0",
+        "rational denominators5,25>0"
+      ],
+      "authorStudentMethod": "Actual student solution squares a root equality only after the right side is the known positive value(4/5)sqrt3. The computed positive value has square3k and is then checked in the original root definition. This specific one-step identity is not permission for arbitrary radical equations/advanced methods."
+    },
+    "binding": {
+      "rawSha256": "e19bc037022cb45b61205f0d8a8ec84ec5105ec2ec0b10a599d391b502dc9c3f",
+      "candidateFileSha256": "5dc280d921e735bde950948e1d8c242b1c1ced2be8e50df21f3de31ab85d18f8",
+      "solutionPngSha256": "414aa99d326c8e220250b632af24cc1b91394d41d1e5ba30d51e35f772769052",
+      "sourceRecordSha256": "f254e76831759eac4967aae40ab535b91b0903a9ea09beb843c22c2f77291fa7",
+      "replayReceiptSha256": "10cd6282230df16c35325ef5522baaca1d46a24be6f7a56ca4cb433af263722e"
+    },
+    "exposure": {
+      "helperPreExposureRawCommit": "efc733df1885bcede47fe2f018eec500fe858831",
+      "parentPreExposureRawCommit": "f64005819e89b942024e5276429978cad6ee68a5",
+      "currentAuthorSolutionReadAfterSeal": true,
+      "originalSourceExposureStillDeclared": {
+        "priorOriginalSourceComponentsReviewed": true,
+        "priorRelatedExposure": "Completed source9 first-question components and their full original first-page images with incidental handwritten marks; earlier root variants, source-method proposals and U54/U55/U56 code audits. This is not an unseen-source-corpus claim.",
+        "currentTransformedAuthorAnswerSeenBeforeRawSeal": false,
+        "currentTransformedAuthorSolutionSeenBeforeRawSeal": false,
+        "currentAuthorMetadataOrPrivatePackageRead": false,
+        "parentWorktreeOrAuthorHistoryRead": false,
+        "answerSearchUsed": false,
+        "method": "Solve current printed student conditions afresh; original answers, handwritten markings, prior variant outputs and image pixels are not answer oracles."
+      },
+      "newBlindClaim": false,
+      "rawModified": false,
+      "originalKeyOrHandwritingUsedAsOracle": false
+    },
+    "sourceComparison": {
+      "sourceComponentReportSha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "sourceGradeMethodProposalSha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+      "priorProposalsAreNotThisApproval": true,
+      "actualOriginalFirstPageViewedPreviously": true,
+      "sourceComponentCorrespondenceOnly": true,
+      "wholeHwpPdfSourceIdentityApproved": false
+    },
+    "curriculumPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "2015HeadingLines": "84-85",
+      "middle13BandLine": "461",
+      "standardsLine": "466",
+      "repeatingFractionTeachingLimitLine": "477",
+      "actualRequiredPrimaryCodes": [
+        "9수01-07",
+        "9수01-10"
+      ],
+      "priorRequiredCodes": [
+        "9수01-05",
+        "9수02-04",
+        "9수02-05"
+      ],
+      "providedMOE2015OriginalLocator": "physical33/printed29 for9수01-07..10;physical32/printed28 for9수01-03..06;amended2020-236 Section0 records3768,3776,3780,3788 as applicable",
+      "primaryReceiptSha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7",
+      "actualCapturedPrimaryHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7",
+      "providedMOEEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "capturedLiveSnapshotSha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+      "capturedUnit": {
+        "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "근호를 포함한 식의 계산",
+        "semester": 1,
+        "orderIndex": 471,
+        "problemCodePrefix": "J30103"
+      },
+      "limit": "Codes are middle1-3 band, combined here with actual current student method and captured M3 semester1 Unit after required learning. Not school pacing/current DB promise or2022 mapping."
+    },
+    "metadata": {
+      "sourceYear": 2025,
+      "sourceSemester": 1,
+      "practiceYear": 2026,
+      "curriculum": "2015",
+      "score": 4,
+      "currentCapturedUnitMatches": true,
+      "exactLiveFamily": null,
+      "sourceDifficulty": "Correctly held as completed-preparation label, not observed original-school measured difficulty",
+      "difficultyReview": "Bounded editorial score/기본~응용 plausibility only; measured calibration/same difficulty pending",
+      "authorOnlyFlagsAndInputFieldsPreserved": true
+    },
+    "separateHolds": {
+      "exactLiveFamily": true,
+      "rights": true,
+      "sourceIdentity": true,
+      "similarity": true,
+      "nativeProvenance": true,
+      "loadability": true,
+      "2022M3from2027": true,
+      "difficultyCalibration": true
+    },
+    "collector": {
+      "executed": false,
+      "mocked": false,
+      "reason": "Only current student/author review is in scope; no production closure or inverseRadicalRatio engine code read/import/run. Parent performs collector."
+    },
+    "dbApiWrites": 0
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "실제 지문은 a,b,k의 양수 조건과 세 개의 구체적인 근호/곱 관계다.2015 [9수01-07,10]과 이전 등식/유리수 계산으로 읽고 풀 수 있다. 일반 무리방정식을 자유롭게 허용한다는 해석은 하지 않는다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "현재5개 보기는 모두 양의 유한소수이며 정확한 유리수다. b10,a4/5를 고정한 뒤3k와48/25를 비교하여 전부 판별할 수 있다. 어림값이나 고교 판별식/수치해법이 필요하지 않다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "실제3행 표는 본문의 양수 조건을 보완하는 세 관계만 표시한다. 근호3k,분모2√5,곱ab가 모두 실제 PNG와 텍스트에 대응한다. 표를 읽는 기본 표현 외의 함수/프로그래밍 선행은 필요하지 않다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "a√3의 곱,√(3k)의 근호 범위,b/(2√5)의 전체 분모를 유지한다. k>0과2√5>0을 확인해 사용하며 최종0.64는 정확한 값이다. 분수지수나 고교용 근호 해소 기호는 없다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "정답③은 현재 세 번째 보기0.64=k16/25다. 중간 배율 a4/5 또는 b10을 답으로 혼동하지 않는다. 순수 수 관계이므로 주어지지 않은 길이/단위를 붙이지 않는다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 해설은 b10→a4/5 다음 이미 정해진 양수 T=(4/5)√3에 대해 √(3k)=T의 정의를 써3k=T²로 계산하고 원래 양의 근호 식을 확인한다. [9수01-07,10]에 필요한 구체적인 단순 항등 성질이다. 양변 제곱이라는 문구만으로 모든 무리방정식 방법을 승인하지 않는다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "배정 전 제곱근 정의/음이 아닌 값,근호 곱셈·나눗셈 [9수01-07,10],유리수 사칙계산 [9수01-05],0이 아닌 수를 곱하고 나누는 등식 성질을 배워야 한다. 현재 metadata.requiresLearnedBeforeAssignment가 근호 계산과 등식/곱셈 나눗셈 등 필요한 조건을 기록한다. Unit99ca...는 실제 captured 중3·1학기 row이며 학교 진도나 live DB의 현황을 인증하지 않는다."
+    }
+  }
+}

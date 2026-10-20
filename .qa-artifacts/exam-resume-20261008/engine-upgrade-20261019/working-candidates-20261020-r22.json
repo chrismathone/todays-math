@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-20T06:11:52.253Z",
+  "canonicalSelected": 162,
+  "canonicalMathGrade": 161,
+  "additionalUnselectedAuthored": 0,
+  "boundedU57AuditPending": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-radical-ratio-code-audit-20261020-r1/provided-scope.json",
+    "sha256": "9ca3bc6a4d419a81e570b68d4a195a817f373def90fe1c4dd4af38f3ddd00975"
+  },
+  "boundedU58ParentValidation": {
+    "path": ".qa-artifacts/exam-resume-20261008/source-scope-generalization-20261020-r1/parent-validation-r1.json",
+    "sha256": "c6c45bab0604a017e8d0434cd071fce52b70695675980af1a0549c0bf6cd0a06"
+  },
+  "U58IndependentAuditPending": true,
+  "completedM3Queue": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-m3-extraction-20261020-r1/aggregate-queue-receipt.json",
+    "sha256": "7cd5ee9f2d833346109e041d76c9cebf06e560627f427ba1b77f502c5863cfde"
+  },
+  "closedSourceObservationsThroughR34": 2439,
+  "openOtherScopesQueue": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/explicit-plan.json",
+    "sha256": "6d376976a9b5ea72c35896f1891ef03cebe949d0c93b7f6bd543ddc197b635d7"
+  },
+  "openOtherScopesProgressPath": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/progress.ndjson",
+  "openQueueCountsNotAddedToClosedCheckpoint": true,
+  "dbWrites": 0,
+  "loadable": 0
+}

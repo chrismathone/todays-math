@@ -1,0 +1,265 @@
+{
+  "kind": "current-authored-twin-review-summary/v1",
+  "createdAt": "2026-10-20T06:11:53.559Z",
+  "index": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/current-author-index-parent-r1.json",
+    "sha256": "378f03d653fd1ac31e25c34c9dedaa9d51ff9d774052a3f50da641df19367621"
+  },
+  "selectionPolicy": "exact current author ID and raw author hash; prior versions retained, never reused",
+  "counts": {
+    "authored": 1,
+    "historicalCandidateVersions": 1,
+    "independentSolvesBound": 1,
+    "mathematicalVerified": 1,
+    "gradeReviewed": 1,
+    "contentReportVerified": 0,
+    "contentReviewPassed": 0,
+    "contentReviewHeld": 1,
+    "figureInstances": 0,
+    "overallVerified": 0,
+    "loadable": 0,
+    "productionWrites": 0
+  },
+  "contentReviewPassedNumbers": [],
+  "contentReviewHeldNumbers": [
+    3
+  ],
+  "supersededReviews": [],
+  "questions": [
+    {
+      "n": 3,
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group2-r1-q03",
+      "studentDigest": "5687e3f56b37fd0cd57aca1b86bc8935fa8def0f93bdea5a267b47164617453a",
+      "candidateDigest": "94b69f1744ed39667ef22d82cce7ab9332d8cf8cefb5c23de33c532ea4bbce98",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "1fd4e69763ecf0e3c89207c738623db91814d71358ba461725b87ce599e71224",
+      "reportSha256": "648e63c8451e949542939767e436ad61af456586122cc021a0002229fced9ae4",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false,
+      "reportStatus": "pending",
+      "reviewChecks": {
+        "answerCorrect": true,
+        "solutionCorrect": true,
+        "existenceUniqueness": true,
+        "choicesCorrect": true,
+        "figureConsistent": true,
+        "sameCoreConceptAndProcedure": true,
+        "distinctPresentation": true,
+        "naturalKorean": true,
+        "curriculumAppropriate": true,
+        "allStudentSurfacesInScope": true,
+        "unitFamilyFit": false,
+        "scoreAppropriate": true
+      },
+      "sourceReference": {
+        "externalId": "2025-daegudong-3-1-mid-3",
+        "inventoryExamId": "personal-87311a760e702909b5a0fe1cd63004ca",
+        "sourceQuestionNumber": 3,
+        "newSourceReferenceId": "source-ref-daegudong-2025-1-mid-group2-r1-q03",
+        "sourceContentSha256": "030b100ba3fc6a8bdd35f311886b9c3a3de34dbb434742dff46c94ec2839343a",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-87311a760e702909b5a0fe1cd63004ca/q03.json",
+          "sha256": "f254e76831759eac4967aae40ab535b91b0903a9ea09beb843c22c2f77291fa7"
+        },
+        "sourceSchoolInternal": "대구동중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-87311a760e702909b5a0fe1cd63004ca\\source-manifest.local.json",
+          "sha256": "d5f98a5ac5822b8427898328c668e53578b5c5812ed2728d58ea0b758bc6d687",
+          "bytes": 1619047
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구동중][3][25-1-중간][지학사] (완료).hwp",
+            "sha256": "46d7a7c0b4db876847dcdeabc6713a5026b86356c8da0aec7b98a2cdf2314ac9",
+            "bytes": 321024
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구동중][3][25-1-중간][지학사] (완료).PDF",
+            "sha256": "c2f3e8c529262aab18eb8744242f32b28ad0c72be401b2518d88f42986024a8e",
+            "bytes": 150948
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구동중][3][25-1-중간] (원본) (오티스).pdf",
+          "sha256": "71a09fcb63c36f4987c8b0d69d8a825e722dc63182802883f96b762fbfec6efe",
+          "bytes": 476087
+        },
+        "sourceComponentEvidence": null,
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구동중-q03"
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구동중-q03"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "두 배율의 곱을 조건으로 주고, 먼저 배율을 역으로 결정한 뒤 처음 근호 안의 양수 매개변수를 찾는다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "근호를 포함한 식의 계산",
+            "semester": 1,
+            "orderIndex": 471,
+            "problemCodePrefix": "J30103"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "현재 캡처된 실제 Unit UUID와 성취기준을 연결한다. 새 역추론/분류 기록의 정확한 live family는 보류."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next2-20261020-r1.mjs",
+          "reproductionScriptSha256": "726512cd7648bd5acacdd019d323baa78a99643d44a522cdfdb8b9e64f7b5884",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "근호를 포함한 식의 계산",
+            "semester": 1,
+            "orderIndex": 471,
+            "problemCodePrefix": "J30103"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "양의 제곱근의 정의",
+            "근호를 포함한 식의 곱셈과 나눗셈",
+            "일차 관계에서 미지수 구하기",
+            "분수의 제곱"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-table"
+        ],
+        "before": "근호 표현 두 쌍의 배율을 각각 구한 뒤 두 배율의 곱을 직접 계산한다.",
+        "after": "두 배율의 곱을 조건으로 주고, 먼저 배율을 역으로 결정한 뒤 처음 근호 안의 양수 매개변수를 찾는다.",
+        "sharedConcept": "근호를 포함한 두 배율 관계에서 근호의 곱셈·나눗셈과 양의 제곱근을 해석한다.",
+        "sharedProcedure": "두 번째 배율 b=10 → 주어진 곱8에서 a=4/5 → 양의 제곱근 정의를 이용하여 k=16/25 → 세 조건에 다시 대입",
+        "actualStructuralChange": "두 배율의 곱을 조건으로 주고, 먼저 배율을 역으로 결정한 뒤 처음 근호 안의 양수 매개변수를 찾는다.",
+        "domainProof": "분모2√5는 양수여서 0이 아니며 b10과 a4/5가 유일하다. 첫째 식의 양변은 양수여서 제곱 후 k16/25를 얻고 원식에 다시 대입하여 존재를 확인한다. 임의의 무리방정식 해법이나 상위 함수·역함수를 요구하지 않는다. 원문의 두 배율 관계는 유지하며 결과값을 묻는 대신 근호 안 입력을 역추론한다. 새 역추론의 실제 목표 난도는 별도 검수 전 보류다.",
+        "difficultyBasis": "새 조건과 목표 난도 동등성은 독립 검수 전 저자 제안이며 자동 승인하지 않는다."
+      },
+      "packageDigest": "475928d1ae2d14c0b509264448492add8ff5913d2a56d0eb595716a4ebfbbcbd",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next2-authoring-20261020-r1\\daegudong\\q03.json",
+        "sha256": "5dc280d921e735bde950948e1d8c242b1c1ced2be8e50df21f3de31ab85d18f8"
+      },
+      "figureBindings": [],
+      "independentSolveFile": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next2-review-20261020-r1\\daegudong\\blind\\solve\\q03.json",
+        "sha256": "e19bc037022cb45b61205f0d8a8ec84ec5105ec2ec0b10a599d391b502dc9c3f"
+      },
+      "reportFile": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/verification/reports/q03.json",
+        "sha256": "648e63c8451e949542939767e436ad61af456586122cc021a0002229fced9ae4"
+      },
+      "verificationManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/verification/verification-manifest.json",
+        "sha256": "c9dee23589002e95ec63ed9a52e8c503a7a5240cbbdbaedd9d8ee12ba682d681"
+      },
+      "blindManifest": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/blind-manifest.json",
+        "sha256": "ea7231b13eebeabdc4406aae66eaccd325ce42aafa6011c1a2ef10532d6079a0"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/package/private/q03/candidate.json",
+        "sha256": "5dc280d921e735bde950948e1d8c242b1c1ced2be8e50df21f3de31ab85d18f8"
+      },
+      "candidateContentWithoutRelocatedPaths": "a1a16b844a95689103cf5fdb22d9cc5b31248e1ce64905b7537f83bf79e621ec",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-authoring-20261020-r1/daegudong/q03.json",
+        "sha256": "5dc280d921e735bde950948e1d8c242b1c1ced2be8e50df21f3de31ab85d18f8"
+      },
+      "authorCandidateDigest": "94b69f1744ed39667ef22d82cce7ab9332d8cf8cefb5c23de33c532ea4bbce98"
+    }
+  ],
+  "reviewBindingDigest": "dc90bb1961cf78cbcfcc0ec3cc27fd4cb4db0d9fc4c1864fc63ed1ebde2b2957",
+  "limits": [
+    "External review reports supply mathematical/curriculum evidence; hashes never calculate correctness",
+    "Source identity/custody, taxonomy, rights/similarity and native reader/provenance remain separate unresolved gates",
+    "No database, writer, operational approval or original-answer oracle"
+  ]
+}

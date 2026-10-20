@@ -1,0 +1,36 @@
+{
+  "kind": "authored-exam-twin-review-result/v1",
+  "packageDigest": "475928d1ae2d14c0b509264448492add8ff5913d2a56d0eb595716a4ebfbbcbd",
+  "createdAt": "2026-10-20T06:04:05.079Z",
+  "authored": 1,
+  "mathematicalVerified": 1,
+  "gradeReviewed": 1,
+  "overallVerified": 0,
+  "loadable": 0,
+  "productionWrites": false,
+  "results": [
+    {
+      "n": 3,
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group2-r1-q03",
+      "studentDigest": "5687e3f56b37fd0cd57aca1b86bc8935fa8def0f93bdea5a267b47164617453a",
+      "candidateDigest": "94b69f1744ed39667ef22d82cce7ab9332d8cf8cefb5c23de33c532ea4bbce98",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "1fd4e69763ecf0e3c89207c738623db91814d71358ba461725b87ce599e71224",
+      "reportSha256": "648e63c8451e949542939767e436ad61af456586122cc021a0002229fced9ae4",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  ]
+}

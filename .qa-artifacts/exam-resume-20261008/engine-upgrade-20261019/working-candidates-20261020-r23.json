@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-20T06:15:09.056Z",
+  "canonicalSelected": 162,
+  "canonicalMathGrade": 161,
+  "additionalUnselectedAuthored": 0,
+  "boundedU57AuditPending": null,
+  "boundedU58ParentValidation": {
+    "path": ".qa-artifacts/exam-resume-20261008/source-scope-generalization-20261020-r1/parent-validation-r1.json",
+    "sha256": "c6c45bab0604a017e8d0434cd071fce52b70695675980af1a0549c0bf6cd0a06"
+  },
+  "U58IndependentAuditPending": true,
+  "completedM3Queue": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-m3-extraction-20261020-r1/aggregate-queue-receipt.json",
+    "sha256": "7cd5ee9f2d833346109e041d76c9cebf06e560627f427ba1b77f502c5863cfde"
+  },
+  "closedSourceObservationsThroughR34": 2439,
+  "openOtherScopesQueue": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/explicit-plan.json",
+    "sha256": "6d376976a9b5ea72c35896f1891ef03cebe949d0c93b7f6bd543ddc197b635d7"
+  },
+  "openOtherScopesProgressPath": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/progress.ndjson",
+  "openQueueCountsNotAddedToClosedCheckpoint": true,
+  "dbWrites": 0,
+  "loadable": 0,
+  "boundedU57TechnicalHold": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-radical-ratio-code-audit-20261020-r1/own-audit-report.json",
+    "sha256": "a057659e73ce38e2ed1ee830bf3f2a947c6ca225f1987cc0743e638ade3cdac3"
+  },
+  "failedU57Controls": 3,
+  "normalFixedJson530CasesNotInvalidated": true,
+  "requiredNextStep": "Reject non-data/accessor inputs or snapshot scalars once; preserve r1 and independently re-audit new source version",
+  "activeReaderMustNotBeModifiedDuring505Queue": true
+}

@@ -36,12 +36,12 @@ def module(p, name):
     return obj
 
 
-def eligible(job, seen):
-    return (job['examId'] not in seen and job['school'] not in PROTECTED
-            and job.get('level') == '중' and job.get('grade') == 3
-            and isinstance(job.get('year'), int) and job['year'] >= 2025
-            and job.get('status') == 'readyForExtraction' and bool(job.get('selectedPair'))
-            and not job.get('existingExamIds') and not job.get('existingQuestionCount'))
+SOURCE_SCOPE = module(pathlib.Path(__file__).with_name('source_inventory_scope.py'),
+                      'fresh_extraction_inventory_scope')
+
+
+def eligible(job, seen, *, level='middle', grade=3):
+    return SOURCE_SCOPE.eligible_source_job(job, seen, level=level, grade=grade)
 
 
 def main():
@@ -49,6 +49,8 @@ def main():
     parser.add_argument('--job-ids', nargs='+', required=True)
     parser.add_argument('--out', required=True)
     parser.add_argument('--max-success', type=int, choices=[2, 3], default=3)
+    parser.add_argument('--level', choices=['middle', 'high'], default='middle')
+    parser.add_argument('--grade', type=int, choices=[1, 2, 3], default=3)
     args = parser.parse_args()
     if not 2 <= len(args.job_ids) <= 6 or len(set(args.job_ids)) != len(args.job_ids):
         parser.error('Supply 2–6 unique explicit IDs, including optional fallbacks')
@@ -73,7 +75,7 @@ def main():
                 previous_parents += entry['hwpParents']
     jobs = {j['examId']: j for j in load(INVENTORY)['jobs']}
     for job_id in args.job_ids:
-        if job_id not in jobs or not eligible(jobs[job_id], seen):
+        if job_id not in jobs or not eligible(jobs[job_id], seen, level=args.level, grade=args.grade):
             parser.error('Ineligible, protected, duplicate or previously parsed job: ' + job_id)
     output.mkdir()
 
@@ -90,7 +92,7 @@ def main():
     converter_path = ROOT / 'scripts/qa/convert-hwp-spans.py'
     pdf_path = pathlib.Path('D:/시험지 한글화/db/textlayer.py')
     region_path = ROOT / 'scripts/import/exam-twin/source_region_ownership.py'
-    tool_refs = [ref(p) for p in [pathlib.Path(__file__), reader_path, converter_path, pdf_path, region_path]]
+    tool_refs = [ref(p) for p in [pathlib.Path(__file__), pathlib.Path(__file__).with_name('source_inventory_scope.py'), reader_path, converter_path, pdf_path, region_path]]
     reader = module(reader_path, 'fresh_positional_reader')
     converter = module(converter_path, 'fresh_formula_converter')
     pdf = module(pdf_path, 'fresh_pdf_textlayer')
@@ -112,6 +114,11 @@ def main():
         entry = {k: job[k] for k in ['examId', 'school', 'level', 'year', 'grade', 'semester', 'round']}
         entry.update(componentsApproved=0, twins=0, identityApproved=False,
                      wholePairCertified=False, gradeApprovals=0, rightsApprovals=0)
+        entry['extractionScopeAsProvided'] = {
+            'level': args.level, 'grade': args.grade, 'examYear': job['year'],
+            'curriculumEdition': 'pending-original-year-grade-evidence',
+            'studentCurriculumApproval': False,
+        }
         try:
             selected = [ref(job[k]) for k in ['selectedHwp', 'selectedPdf']]
             sources.extend(selected)

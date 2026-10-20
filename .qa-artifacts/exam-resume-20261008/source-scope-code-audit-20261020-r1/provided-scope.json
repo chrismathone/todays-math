@@ -1,0 +1,155 @@
+{
+  "utc": "2026-10-20T06:12:56.443152+00:00",
+  "kind": "independent-deterministic-source-scope-audit/v1",
+  "files": [
+    {
+      "path": "scripts/import/exam-twin/extract-fresh-sources-20261019.py",
+      "snapshot": "provided-code-snapshots/extract-fresh-sources-20261019.py.snapshot",
+      "runtime": "provided-code-runtime-local/extract-fresh-sources-20261019.py",
+      "sha256": "fc2754cd702dcefc91a85e254259055342cf5c6350b3c6296fc128274ac68d89"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_inventory_scope.py",
+      "snapshot": "provided-code-snapshots/source_inventory_scope.py.snapshot",
+      "runtime": "provided-code-runtime-local/source_inventory_scope.py",
+      "sha256": "c4c035bc1341726051cc1816b5f3b679b7e7a08532252d9ddfcb1e7c1c263535"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_source_inventory_scope.py",
+      "snapshot": "provided-code-snapshots/test_source_inventory_scope.py.snapshot",
+      "runtime": "provided-code-runtime-local/test_source_inventory_scope.py",
+      "sha256": "b75433eafd7ea7e50005fd490ce1c0cc8f17d56d6ec73b36d69c0159a2d58569"
+    }
+  ],
+  "additionalMetadataOnlyAuthorizedRead": {
+    "path": "C:/Users/user/orca/artifacts/outputs/exam-inventory-20261003/extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+    "notSourceQuestionBodies": true
+  },
+  "parentValidation": ".qa-artifacts/exam-resume-20261008/source-scope-generalization-20261020-r1/parent-validation-r1.json",
+  "priorNarrowReaderSnapshot": ".qa-artifacts/exam-resume-20261008/source-scope-generalization-20261020-r1/extract-fresh-sources-before.py.snapshot",
+  "priorDefaultM3LogicIntendedUnchanged": true,
+  "pilotAggregateReceiptBindings": [
+    {
+      "level": "middle",
+      "grade": 1,
+      "output": "fresh-source-extraction-20261020-r31",
+      "jobs": [
+        {
+          "examId": "personal-324e5308ec33be22e950f921204b6a5a",
+          "school": "\uac15\ubd81\uc911",
+          "year": 2025,
+          "grade": 1,
+          "level": "\uc911"
+        },
+        {
+          "examId": "personal-57992c45fa81adc2866b0dd6fc4972b1",
+          "school": "\uacbd\uad6c\uc911",
+          "year": 2025,
+          "grade": 1,
+          "level": "\uc911"
+        }
+      ],
+      "receipt": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r31\\aggregate-receipt.json",
+        "sha256": "d7be08427a2c5c6c4375ebbc27a2c980b6e6ac019ba84f6ef82d21cccb38a14d"
+      },
+      "newParentObservations": 41,
+      "parsed": 2,
+      "held": 0
+    },
+    {
+      "level": "middle",
+      "grade": 2,
+      "output": "fresh-source-extraction-20261020-r32",
+      "jobs": [
+        {
+          "examId": "personal-11c64124bf2ff6eef6749d12cb777e8f",
+          "school": "\uac15\ubd81\uc911",
+          "year": 2025,
+          "grade": 2,
+          "level": "\uc911"
+        },
+        {
+          "examId": "personal-89822de604794c56d4fe79fe5fdc4462",
+          "school": "\uacbd\uad6c\uc911",
+          "year": 2025,
+          "grade": 2,
+          "level": "\uc911"
+        }
+      ],
+      "receipt": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r32\\aggregate-receipt.json",
+        "sha256": "9c05adf4698e6f15ce64ab746bd90c471b6e4cb14b0ecb2ed5f8ff4abef1b670"
+      },
+      "newParentObservations": 40,
+      "parsed": 2,
+      "held": 0
+    },
+    {
+      "level": "high",
+      "grade": 1,
+      "output": "fresh-source-extraction-20261020-r33",
+      "jobs": [
+        {
+          "examId": "personal-8eec901cfcf0f5f6e58dec34775bc19f",
+          "school": "\uac15\ub3d9\uace0",
+          "year": 2025,
+          "grade": 1,
+          "level": "\uace0"
+        },
+        {
+          "examId": "personal-827a7963c912f3d9171b762651b56918",
+          "school": "\uac15\ub3d9\uace0",
+          "year": 2025,
+          "grade": 1,
+          "level": "\uace0"
+        }
+      ],
+      "receipt": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r33\\aggregate-receipt.json",
+        "sha256": "52354937b7d3512dca9518e0a551455fa0ffb8869ae6c1d5e596a1a161046419"
+      },
+      "newParentObservations": 45,
+      "parsed": 2,
+      "held": 0
+    },
+    {
+      "level": "high",
+      "grade": 2,
+      "output": "fresh-source-extraction-20261020-r34",
+      "jobs": [
+        {
+          "examId": "personal-d8145ec108996d484227606a751d70c2",
+          "school": "\uac15\ub3d9\uace0",
+          "year": 2025,
+          "grade": 2,
+          "level": "\uace0"
+        },
+        {
+          "examId": "personal-1c94d2993a36c32616cb5a9d226ca2a5",
+          "school": "\uac15\ub3d9\uace0",
+          "year": 2025,
+          "grade": 2,
+          "level": "\uace0"
+        }
+      ],
+      "receipt": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r34\\aggregate-receipt.json",
+        "sha256": "c25e43b313a68e4ad3a54e919d34bc5bf77c25227d1da3310fd0a80f65f6c916"
+      },
+      "newParentObservations": 45,
+      "parsed": 2,
+      "held": 0
+    }
+  ],
+  "noNSourceOrOriginalQuestionReadAuthorizedForThisCodeAudit": true,
+  "runtimeRootDiffersFromProductionRoot": true,
+  "negativeCliOnlyBeforeSourceReadsAndOutput": true,
+  "activeParent505QueueDoNotModifyProductionReader": true,
+  "sourceGradeMetadataNotStudentCurriculumOrRightsApproval": true,
+  "independentFullSourceFidelityNotClaimed": true,
+  "noModelOrDbCalls": true,
+  "dbWrites": 0,
+  "loadable": 0
+}
