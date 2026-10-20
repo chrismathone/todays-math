@@ -1,0 +1,156 @@
+{
+  "studentDigest": "bd78abd00caa32b6d87c5496e00cc44e280badd866a62871df23be5024cc1145",
+  "solverId": "independent-helper-nobyeon-sem2-group5-r2-blind-20261020",
+  "answer": "⑤",
+  "solution": "산점도의A(20,30),B(30,50),C(40,60)는2차점수가1차보다높다. D(50,40),E(60,30),F(70,60)는낮고G(80,80)는같으므로높은학생에포함하지않는다. 그림에나타난7명중높은학생은3명이다. 전체는H를포함한8명이고그50%는4명이므로H도2차가1차보다높아야한다. 따라서a>60이다. 보기30,40,50은60보다작고60은같으므로안되며70만가능하다. 정답은⑤이다. 이는보기중가능한값이70하나라는뜻이며문제조건만으로모든가능한a가70하나라고주장하지않는다.",
+  "evidence": {
+    "exposure": {
+      "currentGroup5r2AuthorAnswersSolutionsPrivatePackageExposed": false,
+      "priorOriginalSourceExposure": "원래노변q15의소득/지출그림과q16/17공통20명국어점수그림을소유범위r2/r3에서실제로보았고20쌍을전사했다. 원문페이지에손글씨선택표시/계산도보였다는점을이미선언했다. 그표시를새문항풀이근거로사용하지않는다. 관련대표값/산포도/산점도및노변다른문항의저자검토이력도있다.",
+      "currentBlindBoundary": "이번currentgroup5-r2의학생JSON/manifest/brief/학생SVG해시와q15/q16/q17학생PNG만확인했다. group5-r1초안·현재저자답/해설·parentworktree·private/source질문·이전저자해설을열지않았다. 전체코퍼스미노출주장없음.",
+      "numericalReadingMethod": "새PNG의인쇄축눈금과10점격자/점라벨로수치쌍을직접읽음. 픽셀길이/SVG좌표비율을점수오라클로쓰지않음."
+    },
+    "ownExactCalculations": {
+      "ownCurrentGridTranscription": {
+        "A": [
+          20,
+          30
+        ],
+        "B": [
+          30,
+          50
+        ],
+        "C": [
+          40,
+          60
+        ],
+        "D": [
+          50,
+          40
+        ],
+        "E": [
+          60,
+          30
+        ],
+        "F": [
+          70,
+          60
+        ],
+        "G": [
+          80,
+          80
+        ]
+      },
+      "separatelyGivenHfirstScore": 60,
+      "classifiedSeven": {
+        "higher": [
+          "A",
+          "B",
+          "C"
+        ],
+        "equal": [
+          "G"
+        ],
+        "lower": [
+          "D",
+          "E",
+          "F"
+        ]
+      },
+      "plottedStudents": 7,
+      "allStudentsIncludingH": 8,
+      "requiredHigherCount": "4",
+      "allChoices": [
+        {
+          "a": 30,
+          "HstrictlyImproves": false,
+          "higherCount": 3,
+          "denominatorAllStudents": 8,
+          "fraction": "3/8",
+          "percent": "75/2",
+          "satisfies": false
+        },
+        {
+          "a": 40,
+          "HstrictlyImproves": false,
+          "higherCount": 3,
+          "denominatorAllStudents": 8,
+          "fraction": "3/8",
+          "percent": "75/2",
+          "satisfies": false
+        },
+        {
+          "a": 50,
+          "HstrictlyImproves": false,
+          "higherCount": 3,
+          "denominatorAllStudents": 8,
+          "fraction": "3/8",
+          "percent": "75/2",
+          "satisfies": false
+        },
+        {
+          "a": 60,
+          "HstrictlyImproves": false,
+          "higherCount": 3,
+          "denominatorAllStudents": 8,
+          "fraction": "3/8",
+          "percent": "75/2",
+          "satisfies": false
+        },
+        {
+          "a": 70,
+          "HstrictlyImproves": true,
+          "higherCount": 4,
+          "denominatorAllStudents": 8,
+          "fraction": "1/2",
+          "percent": "50",
+          "satisfies": true
+        }
+      ],
+      "admissibleConditionOverUnrestrictedScores": "a>60; 문제에별도정수/상한을추가하지않음. 보기중가능값은70한개이나모든가능a가유일한것은아니다.",
+      "witness": "a70이면높은학생A/B/C/H의4명/전체8명=50%. G는동점이라제외. a60이면3/8이라실패."
+    },
+    "studentDigestVerified": true,
+    "studentPreviewPngSha256": "3672611362b2b27175c7f70e8ef2e054eae9adeb808835de346558cfead64f9c",
+    "studentSvgSha256s": [
+      "195d273205b0447955c217f8471beee8c24d89ec3ed2d67688ba8b5aa6bcb3c1"
+    ],
+    "gradeSurfaceProposals": {
+      "stem": {
+        "status": "student-method-proposed-in-scope",
+        "basis": "7명의점과별도H를합친8명전체에서엄격증가비율조건을이용해가능a를판단한다. 중학교산점도/자료정리·비율/평균과이전일차관계의방법만필요하다."
+      },
+      "choices": {
+        "status": "all-five-independently-checked",
+        "basis": "30/40/50/60/70각각전체8명비율을정확계산하여⑤70만가능. a60동일은높다가아님."
+      },
+      "figuresAndTables": {
+        "status": "student-png-actually-viewed",
+        "basis": "현재학생PNG를실제view하고인쇄눈금/격자와모든라벨의점수쌍을직접전사했다. 산점도A~G7점과표의H1명을구분한다. H를그림에없다고분모에서빼거나다른점으로추정하지않는다. SVG해시를제공manifest와대조했고픽셀/SVG좌표길이로점수를얻지않았다."
+      },
+      "notation": {
+        "status": "proposed-in-scope",
+        "basis": "50%는전체8명의절반이며높다와같다를구별한다. 가능한것이라는표현을유일값추정으로바꾸지않는다. 점수단위는점이며길이나좌표픽셀단위가아니다."
+      },
+      "answer": {
+        "status": "independently-solved",
+        "basis": "선택기호 ⑤만저장하며실제학생/수치와모든보기판정은solution/evidence에기록했다. 존재및선택유일성을정확히확인했다."
+      },
+      "studentSolution": {
+        "status": "own-method-proposed-author-unseen",
+        "basis": "현재점의명시적비교·개수/분수비율·순위범위·평균의일차식만쓴다. 공분산/회귀/고등상관계수나원문답은사용하지않는다. 저자전체해설은아직미노출로후속검토대상."
+      },
+      "prerequisites": {
+        "status": "2015-M3-after-prerequisites-proposal",
+        "basis": "2015중3산점도9수05-08의쌍자료/축읽기와대표값9수05-06의평균및이전부등비교·백분율·자료개수/일차식학습후배정. 이번새학생문항의정식7면/특정학교진도/2022승인은후속해설검토와구분한다."
+      }
+    },
+    "limits": [
+      "현재author/private/원문정답을열지않음",
+      "새blindraw는수학solved이나정식학년/family/권리/native/loadable승인아님",
+      "q16은가능한a조건과보기의유일선택을구분; q17은전체범위와경계동점모두검토",
+      "2022별도보류"
+    ]
+  },
+  "status": "solved"
+}
