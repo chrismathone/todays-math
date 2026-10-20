@@ -122,9 +122,11 @@ describe("B1 — 그림과 보기 번호의 대응", () => {
         expect(html.split(notice)).toHaveLength(2);
         // 지문은 KaTeX 0.16 으로 떴다. 0.18(380fb3b7d)은 base · strut · sizing 클래스에 `katex-` 를
         // 붙일 뿐이라, 그 이름만 되돌려 같은 지문과 견준다.
+        // 2026-10-20 짧은 인라인 식의 `style="white-space:nowrap"`(rehypeMathNowrap)도 되돌린다 — 그 속성뿐이다.
         const katex016 = html
           .replace(notice, "")
-          .replace(/\bkatex-(base|strut|sizing)\b/g, "$1");
+          .replace(/\bkatex-(base|strut|sizing)\b/g, "$1")
+          .replace(/ style="white-space:nowrap"/g, "");
         return createHash("sha256")
           .update(JSON.stringify(katex016))
           .digest("hex");

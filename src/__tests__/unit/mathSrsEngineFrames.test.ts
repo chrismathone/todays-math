@@ -2,6 +2,8 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import baseline from "../fixtures/grade5EngineBeforeFrames.json";
+// 지면 전수 검사(2026-10-20)가 바꾼 소단원은 그 승인 층의 해시로 본다 — 초5 블라인드 승인 기록은 그대로 둔다.
+import displayFrames from "../../../docs/planning/tracks/reports/problem-display-dupes-20261020/grade5-display-frames.json";
 import {
   generateElementaryProblem,
   supportedTiers,
@@ -33,7 +35,8 @@ describe("SRS-only grade-five engine frames", () => {
             ),
           );
       expect(h.digest("hex"), s.id).toBe(
-        baseline[s.id as keyof typeof baseline],
+        (displayFrames.sections as Record<string, string>)[s.id] ??
+          baseline[s.id as keyof typeof baseline],
       );
     }
   });

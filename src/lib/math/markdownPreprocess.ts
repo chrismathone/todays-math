@@ -44,6 +44,23 @@ const BARE_LIM = /\\lim(?!(?:[a-zA-Z]|\s*\\limits))/g;
  * 앞 첨자 «$_{n}\mathrm{C}_{r}$» — 앞에 아무것도 없거나 연산 기호 뒤면 KaTeX 가 첨자를 **앞 기호에** 붙인다
  * («$+_{n}C$» 가 «+ₙ C» 로). TeX 관례대로 빈 묶음 `{}` 을 앞에 둔다(2026-10-20 교차 검수 · 교과서 13행).
  */
+/**
+ * KaTeX 글꼴에 글리프가 없는 기호 — 교과서 이관본이 그대로 싣고 있다(2026-10-20 교차 검수 2회차).
+ *   «⫽»(U+2AFD, 89행) 는 수식 안에서 빗금처럼 찍혔다 → `\parallel` · 수식 밖은 «∥».
+ *   «ﾟ»(반각 반탁점 U+FF9F, 22행) 는 도 기호 자리에 쓰였다 → 수식 안 `^{\circ}` · 밖 «°».
+ */
+function mapGlyphlessSymbols(text: string): string {
+  if (!/[⫽ﾟ]/.test(text)) return text;
+  return text
+    .split(/(\$\$[\s\S]*?\$\$|\$[^$\n]*\$)/)
+    .map((part, i) =>
+      i % 2 === 1
+        ? part.replace(/⫽/g, "\\parallel ").replace(/\s*ﾟ/g, "^{\\circ}")
+        : part.replace(/⫽/g, "∥").replace(/ﾟ/g, "°"),
+    )
+    .join("");
+}
+
 const LEFT_SUBSCRIPT = /(^|\$|\\displaystyle|[+\-=(,]|\\times|\\cdot)(\s*)_\{/g;
 
 /**
@@ -73,7 +90,8 @@ export function preprocessMarkdown(content: string): string {
       protectBoxHeaders(layoutQuotedBoxes(decodeHtmlEntities(content))),
     )
       .replace(BARE_LIM, "\\lim\\limits")
-      .replace(LEFT_SUBSCRIPT, "$1$2{}_{"),
+      .replace(LEFT_SUBSCRIPT, "$1$2{}_{")
+      .replace(/[^]*/, mapGlyphlessSymbols),
   );
 
   if (preprocessCache.size >= PREPROCESS_CACHE_LIMIT) {

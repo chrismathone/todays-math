@@ -44,3 +44,15 @@ describe("앞 첨자 «$_{n}\\mathrm{C}_{r}$» (교과서 13행)", () => {
     expect(preprocessMarkdown("$x_{1}+y_{2}$")).not.toContain("{}_");
   });
 });
+
+describe("KaTeX 글리프 없는 기호 «⫽» · «ﾟ» (교과서 89 · 22행)", () => {
+  it("수식 안은 \\parallel · ^{\\circ}, 밖은 ∥ · °", async () => {
+    const { preprocessMarkdown } = await import("@/lib/math/markdownPreprocess");
+    const out = preprocessMarkdown("$l⫽m$일 때, $\\angle x=50ﾟ$ 이고 직선 l⫽m, 각 50ﾟ");
+    expect(out).toContain("\\parallel");
+    expect(out).toContain("^{\\circ}");
+    expect(out).not.toMatch(/[⫽ﾟ]/);
+    expect(out).toContain("l∥m");
+    expect(out).toContain("50°");
+  });
+});

@@ -7380,8 +7380,9 @@ const roundTo = (x: number, place: number): number => {
  *    `[장면, 조건 문구, 재는 것, 단위, 주체, 세는 말, 기준 하한, 기준 상한]`
  */
 const RANGE_SCENES = [
-  ["박물관", "관람료를 할인받으려면", "나이", "살", "어린이", "명", 8, 13],
-  ["수영장", "어린이 요금을 내려면", "나이", "살", "어린이", "명", 8, 13],
+  // 나이 장면의 주체는 «사람» — 위쪽 값이 기준 + 20 까지 열려 «어린이 $31$ 살» 이 나왔다(2026-10-20 교차 검수 2회차).
+  ["박물관", "관람료를 할인받으려면", "나이", "살", "사람", "명", 8, 13],
+  ["수영장", "어린이 요금을 내려면", "나이", "살", "사람", "명", 8, 13],
   ["택배 회사", "보통 요금으로 부치려면", "무게", "kg", "상자", "개", 5, 25],
   ["승강기", "한 번에 실으려면", "무게", "kg", "짐", "개", 5, 25],
 ] as const;
@@ -11082,7 +11083,10 @@ function avg261Min(unit: UnitSeed, rng: Rng): ElemProblem {
 /** 문형 10 — 평균과 같은 날 수. */
 function avg261EqualDays(unit: UnitSeed, rng: Rng): ElemProblem {
   const avg = intBetween(rng, 20, 35);
-  const values = aroundMean(rng, avg, 5, 3);
+  // 평균과 같은 날이 하루는 있게 박는다 — 없으면 «며칠입니까?» 의 답이 $0$ 이 된다(2026-10-20 교차 검수 2회차).
+  const four = aroundMean(rng, avg, 4, 3);
+  const at = intBetween(rng, 0, 4);
+  const values = [...four.slice(0, at), avg, ...four.slice(at)];
   const eqs = values.filter((v) => v === avg).length;
   return make(
     unit,
@@ -11369,7 +11373,8 @@ function pos263Total(unit: UnitSeed, rng: Rng): ElemProblem {
   const blue = intBetween(rng, 2, 9);
   return make(
     unit,
-    `빨간 구슬 ${n(red)}개와 파란 구슬 ${n(blue)}개가 든 주머니에서 구슬 한 개를 꺼냅니다. 주머니에 든 구슬은 모두 몇 개입니까?`,
+    // «구슬 한 개를 꺼냅니다» 는 묻는 것(모두 몇 개)과 상관없이 «남은 구슬» 로 읽혔다(2026-10-20 교차 검수 2회차).
+    `빨간 구슬 ${n(red)}개와 파란 구슬 ${n(blue)}개가 든 주머니가 있습니다. 주머니에 든 구슬은 모두 몇 개입니까?`,
     n(red + blue),
     `${expr(`${red}+${blue}=${red + blue}`)}이므로 ${n(red + blue)}개입니다.`,
   );

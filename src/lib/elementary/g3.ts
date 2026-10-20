@@ -12837,7 +12837,8 @@ function graph262Diff(unit: UnitSeed, rng: Rng): ElemProblem {
   const b = intBetween(rng, 11, a - 5);
   return make(
     unit,
-    `가 ${place} ${n(a)}${stuff.unit}, 나 ${place} ${n(b)}${stuff.unit}입니다. 두 ${place}의 ${stuff.name} 수의 차는 몇 ${stuff.unit}입니까?`,
+    // 무엇의 개수인지가 뒤 문장에야 나왔다(2026-10-20 교차 검수 2회차) — 첫 문장에 «사과 수» 를 적는다.
+    `${stuff.name} 수가 가 ${place} ${n(a)}${stuff.unit}, 나 ${place} ${n(b)}${stuff.unit}입니다. 두 ${place}의 ${stuff.name} 수의 차는 몇 ${stuff.unit}입니까?`,
     n(a - b),
     `${expr(`${a}-${b}=${a - b}`)} 입니다.`,
   );

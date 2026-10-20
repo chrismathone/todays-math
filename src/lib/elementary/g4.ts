@@ -12148,9 +12148,7 @@ function tri221NameEq(unit: UnitSeed, rng: Rng): ElemProblem {
     `세 변의 길이가 ${cm(s)}, ${cm(s)}, ${cm(s)}인 삼각형의 이름을 쓰시오.`,
     "정삼각형",
     `세 변의 길이가 모두 같으므로 정삼각형입니다.`,
-    fig("namedShapes", {
-      items: labelledPick(rng, "eqTri", ["isoTri", "wideTri"]).items,
-    }),
+    // 그림(가 · 나 · 다 세 삼각형)은 걷었다 — 발문이 가리키지 않고, 정답 도형이 그 속에 있었다(2026-10-20 교차 검수 2회차).
   );
 }
 
@@ -12183,9 +12181,7 @@ function tri221NameIso(unit: UnitSeed, rng: Rng): ElemProblem {
     `길이가 같은 변이 ${n(2)}개이고 세 변의 길이가 ${cm(small)}, ${cm(small)}, ${cm(big)}인 삼각형의 이름을 쓰시오.`,
     "이등변삼각형",
     `길이가 같은 변이 ${n(2)}개이므로 이등변삼각형입니다.`,
-    fig("namedShapes", {
-      items: labelledPick(rng, "isoTri", ["rightTri", "wideTri"]).items,
-    }),
+    // 문형 정삼각형 이름과 같은 까닭으로 그림을 걷었다.
   );
 }
 
