@@ -228,6 +228,11 @@ const ACTIVE_RULES: readonly Rule[] = [
     why: "본인 길잡이 조회 · 고르기(계획서 §2 결정 10)",
   },
   {
+    methods: PAGE,
+    path: "/images/guides/**",
+    why: "길잡이 그림(첫 화면 · 하루 마침) — 고른 학생이 보는 공개 그림",
+  },
+  {
     methods: ["GET", "POST"],
     path: "/api/learn/math-srs",
     why: "기억 학습 조회 · 오늘 미션 시작",
