@@ -1,0 +1,28 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {compareNumberedConstantAssignments as compare} from './numberedConstantAssignments.mjs';
+import {independentAnswerMatches} from './candidatePack.mjs';
+const author=String.raw`(1) $M=40$ (2) $a=40$, $b=43$`,raw='(1) M=40; (2) a=40, b=43';
+const candidate={questionType:'서술형',metadata:{answerFormat:'numbered-named-scalars-with-working'},answer:author};
+test('actual immutable current q20 presentation retains subparts and lowercase roles',()=>{
+ const before=[author,raw,JSON.stringify(candidate)],r=compare(author,raw);assert.equal(r.status,'equivalent');assert.equal(r.relationTruthProved,false);assert.equal(r.permitsGradeOrQuestionApproval,false);assert.equal(independentAnswerMatches(candidate,raw),true);assert.deepEqual([author,raw,JSON.stringify(candidate)],before);
+});
+test('case, assignment order, subpart roles and exact values cannot disappear',()=>{
+ for(const bad of [raw.replace('M=','m='),raw.replace('a=','A='),raw.replace('a=40, b=43','b=43, a=40'),raw.replace('a=40','a=41'),raw.replace('b=43','b=42'),'(1) a=40; (2) M=40, b=43',raw+'; (3) c=0'])assert.notEqual(compare(author,bad).status,'equivalent',bad);
+});
+test('partial syntax, roles, unsupported units and legacy normalization bypasses fail closed in collector',()=>{
+ for(const bad of ['(1) 40; (2) a=40,b=43','(01) M=40; (2) a=40,b=43','(2) M=40; (1) a=40,b=43',raw+' extra',raw.replace('a=40','a=40cm'),raw.replace('40','4 0'),raw.replace('40','4\\,0'),raw.replace('40','40\\left'),raw.replace('40','40\\right'),raw.replace('a=40','a=$40$'),raw.replace('M=40',()=> '$$M=40$$'),raw.replace('M=40','M=4$0$'),raw.replace('a=40','a=40,a=40'),raw.replace('a=40','a==40')]){
+  assert.notEqual(compare(author,bad).status,'equivalent',bad);assert.equal(independentAnswerMatches(candidate,bad),false,bad);
+ }
+});
+test('exact constant arithmetic supports fractions, negatives and radicals without symbolic identities',()=>{
+ assert.equal(compare(String.raw`(1) x=\frac{1}{2} (2) y=\sqrt{8}, z=-3`,String.raw`(1) x=0.5; (2) y=2√2, z=−3`).status,'equivalent');
+ assert.notEqual(compare('(1) x=2 (2) y=3','(1) x=y-1 (2) y=3').status,'equivalent');
+});
+test('noncanonical Unicode labels/digits, prose and malformed delimiters stay unsupported',()=>{
+ for(const bad of [raw.replace('M','Ｍ'),raw.replace('40','４０'),raw.replace('(1)','⑴'),raw.replace('(1)','(0)'),raw.replace('(2)','(3)'),raw.replace('M=40','$M=40'),raw.replace('M=40','M={40'),raw.replace('M=40','M=(40'), '정답 '+raw,raw.replace('M=40','M=40이다'),raw.replace('a=40, b=43','a=40,,b=43'),null,undefined,{},[],40])assert.notEqual(compare(author,bad).status,'equivalent');
+});
+test('explicit typed format always uses strict grammar before lossy fallback',()=>{
+ const malformed={...candidate,answer:'(1) M=40\\left (2) a=40,b=43'};assert.equal(independentAnswerMatches(malformed,malformed.answer),false);
+ assert.equal(independentAnswerMatches({questionType:'객관식',choices:['1','2','3','4','5'],answer:'③'},'③'),true);
+});

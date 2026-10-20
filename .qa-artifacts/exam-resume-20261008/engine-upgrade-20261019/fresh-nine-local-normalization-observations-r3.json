@@ -1,0 +1,194 @@
+{
+  "utc": "2026-10-20T05:50:19.369787+00:00",
+  "kind": "local-original-component-observation-overlay/v1",
+  "priorSourceReport": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+    "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5"
+  },
+  "originalImageBindings": [
+    {
+      "path": "source-only-input\\original-first-pages\\personal-87311a760e702909b5a0fe1cd63004ca.png",
+      "sha256": "b2dfb86fb461f75f3dda1c90f093d0065fb82d0ebb3880564d72145001db2c33",
+      "bytes": 543003
+    },
+    {
+      "path": "source-only-input\\original-first-pages\\personal-dc9efb798219b732ebd608105298f220.png",
+      "sha256": "3f2077c2a7325f2c07b5a46c87d06498939b0bda1bce2f04f1d9fd9b61321445",
+      "bytes": 382637
+    },
+    {
+      "path": "source-only-input\\original-first-pages\\personal-1c6091af710ddaaa7e6671a2ef018a1c.png",
+      "sha256": "c501445ba25573c5c007b160d55864f5d13cc74034fe858557893fcc8b17056b",
+      "bytes": 447415
+    }
+  ],
+  "rows": [
+    {
+      "component": "대구북중-q01",
+      "oldStaged": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q01.json",
+        "sha256": "c85d07a8d2b8688468d74cc51d1bb7d57a6e5a2afeafe8ba9b1aebd0f8da7e3a"
+      },
+      "newLocalOnly": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-dc9efb798219b732ebd608105298f220/q01.local.json",
+        "sha256": "3181a8ee614607c9193974e1afc5971ac0d03d789282acdf000a306d1ba16350"
+      },
+      "workerProposal": {
+        "commit": "9b18fce93ab57eb8e38752655f9830baefb39a40",
+        "sha256": "3181a8ee614607c9193974e1afc5971ac0d03d789282acdf000a306d1ba16350"
+      },
+      "changedPaths": [
+        [
+          "choices",
+          1
+        ],
+        [
+          "choices",
+          2
+        ]
+      ],
+      "additionalProvenanceKeyVerified": "independentLocalProposal",
+      "parentActuallyViewedOriginalFirstpage": true,
+      "agreement": "Printed plus/minus symbols and source-specific wording preserved; source q03 fraction/repeating-dot layout and printed3point marker matched where changed",
+      "onlyListedQuestionChangesAndBoundProvenance": true,
+      "futureAuthoringMayUseBoundedComponentAfterGradeMethodCheck": true,
+      "originalQuestionWasNotAuthoredTwin": true,
+      "wholePairIdentityApproved": false,
+      "gradeApprovedForFutureVariant": false,
+      "rightsApproved": false,
+      "loadable": 0
+    },
+    {
+      "component": "대구북중-q03",
+      "oldStaged": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q03.json",
+        "sha256": "02baec10eaf137c4982ad99ba10366d0102826de7a3ad7fe130616f6d21cb66a"
+      },
+      "newLocalOnly": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-dc9efb798219b732ebd608105298f220/q03.local.json",
+        "sha256": "6bb12f39fb24f277f274df09ee2de60db997221d190ef0b2eb66b8c36ae3a533"
+      },
+      "workerProposal": {
+        "commit": "9b18fce93ab57eb8e38752655f9830baefb39a40",
+        "sha256": "6bb12f39fb24f277f274df09ee2de60db997221d190ef0b2eb66b8c36ae3a533"
+      },
+      "changedPaths": [
+        [
+          "completedPdfQuestionReference",
+          "freshParserQuestion",
+          "choices",
+          0,
+          "contents",
+          0,
+          "value"
+        ],
+        [
+          "completedPdfQuestionReference",
+          "freshParserQuestion",
+          "choices",
+          2,
+          "contents",
+          0,
+          "value"
+        ],
+        [
+          "completedPdfQuestionReference",
+          "freshParserQuestion",
+          "choices",
+          3,
+          "contents",
+          0,
+          "value"
+        ]
+      ],
+      "additionalProvenanceKeyVerified": "independentLocalProposal",
+      "parentActuallyViewedOriginalFirstpage": true,
+      "agreement": "Printed plus/minus symbols and source-specific wording preserved; source q03 fraction/repeating-dot layout and printed3point marker matched where changed",
+      "onlyListedQuestionChangesAndBoundProvenance": true,
+      "futureAuthoringMayUseBoundedComponentAfterGradeMethodCheck": true,
+      "originalQuestionWasNotAuthoredTwin": true,
+      "wholePairIdentityApproved": false,
+      "gradeApprovedForFutureVariant": false,
+      "rightsApproved": false,
+      "loadable": 0
+    },
+    {
+      "component": "대구일중-q01",
+      "oldStaged": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-1c6091af710ddaaa7e6671a2ef018a1c/q01.json",
+        "sha256": "5e136450651e4444def25294eebce750a591bdbc0e1fb24ef0e3a9680aa7a5b0"
+      },
+      "newLocalOnly": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-1c6091af710ddaaa7e6671a2ef018a1c/q01.local.json",
+        "sha256": "be8409ac984f95c129088c7a1dea4d0d22fc4227ca24c67bdef823d1a6b0202f"
+      },
+      "workerProposal": {
+        "commit": "9b18fce93ab57eb8e38752655f9830baefb39a40",
+        "sha256": "be8409ac984f95c129088c7a1dea4d0d22fc4227ca24c67bdef823d1a6b0202f"
+      },
+      "changedPaths": [
+        [
+          "choices",
+          0
+        ],
+        [
+          "choices",
+          4
+        ]
+      ],
+      "additionalProvenanceKeyVerified": "independentLocalProposal",
+      "parentActuallyViewedOriginalFirstpage": true,
+      "agreement": "Printed plus/minus symbols and source-specific wording preserved; source q03 fraction/repeating-dot layout and printed3point marker matched where changed",
+      "onlyListedQuestionChangesAndBoundProvenance": true,
+      "futureAuthoringMayUseBoundedComponentAfterGradeMethodCheck": true,
+      "originalQuestionWasNotAuthoredTwin": true,
+      "wholePairIdentityApproved": false,
+      "gradeApprovedForFutureVariant": false,
+      "rightsApproved": false,
+      "loadable": 0
+    },
+    {
+      "component": "대구일중-q03",
+      "oldStaged": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-1c6091af710ddaaa7e6671a2ef018a1c/q03.json",
+        "sha256": "1a1ff755e46ce650a10f4ccced705e8f33eb9f4e05f2e52b31924884f25a81e0"
+      },
+      "newLocalOnly": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-1c6091af710ddaaa7e6671a2ef018a1c/q03.local.json",
+        "sha256": "5096f62b9f7831c5c53231804606279a195a3645f05b410ff792055d9f381951"
+      },
+      "workerProposal": {
+        "commit": "9b18fce93ab57eb8e38752655f9830baefb39a40",
+        "sha256": "5096f62b9f7831c5c53231804606279a195a3645f05b410ff792055d9f381951"
+      },
+      "changedPaths": [
+        [
+          "printedScoreOccurrences"
+        ]
+      ],
+      "additionalProvenanceKeyVerified": "independentLocalProposal",
+      "parentActuallyViewedOriginalFirstpage": true,
+      "agreement": "Printed plus/minus symbols and source-specific wording preserved; source q03 fraction/repeating-dot layout and printed3point marker matched where changed",
+      "onlyListedQuestionChangesAndBoundProvenance": true,
+      "futureAuthoringMayUseBoundedComponentAfterGradeMethodCheck": true,
+      "originalQuestionWasNotAuthoredTwin": true,
+      "wholePairIdentityApproved": false,
+      "gradeApprovedForFutureVariant": false,
+      "rightsApproved": false,
+      "loadable": 0
+    }
+  ],
+  "parentObservedAllFourProposalsAgainstTwoOriginalFirstpageRasters": true,
+  "historicalSource9ReportUnchanged": true,
+  "initialReplayLimitation": {
+    "r2AttemptStoppedBeforeWritingCopies": true,
+    "reason": "Own replay omitted proposal provenance key; original question delta list is unchanged; r3 explicitly verifies input hash/edits/local-only flags of provenance too",
+    "productionSourceFaultClaim": false
+  },
+  "originalAnswerKeyOrHandwritingOracle": false,
+  "newOriginalTextImagesOrProposedCopiesStagedForGit": false,
+  "allNineBoundedComponentsAfterTheseFourLocalOverlaysConsistentAsProvided": true,
+  "wholePaperIdentityOrRightsApproval": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

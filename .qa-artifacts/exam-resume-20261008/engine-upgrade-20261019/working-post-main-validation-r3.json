@@ -1,0 +1,41 @@
+{
+  "utc": "2026-10-20T05:50:00.752Z",
+  "head": "80caa4d9b24b351aebc754e838f34548584686ae",
+  "main": "6bc01b85b6c777ecf076dbefefa5b90020dea223",
+  "mainIsAncestorOfTestedHead": true,
+  "priorBuilderIntegrationValidation": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-validation-r1.json",
+  "priorReaderFloorValidation": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-validation-r2.json",
+  "canonicalCurrent160Bindings": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v40-binding-validation-r1.json",
+  "newMainDelta": "main6bc01 performance merge; preserve arithmetic, roster, teaching bootstrap and quick-create behavior, record isolation and reader floor",
+  "nodeFiles": 15,
+  "nodeSummary": "nce\nok 174 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 23.0475\n  type: 'test'\n  ...\n1..174\n# tests 174\n# suites 0\n# pass 174\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 19465.0347\n",
+  "vitestFiles": 20,
+  "vitestPassed": 200,
+  "vitestFailed": 0,
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.mjs",
+      "sha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.test.mjs",
+      "sha256": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de"
+    },
+    {
+      "path": "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+      "sha256": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2"
+    }
+  ],
+  "logs": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-node-r3.tap",
+      "sha256": "268c9c875b29bc35e1735c86f7e5d328665c3483adc964205f975d61b8323e61"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-vitest-r3.log",
+      "sha256": "828da2e5e2f42e21052df3b9fcc30d2301affad274aaddde7af33d709e0c0e4e"
+    }
+  ],
+  "dbWrites": 0,
+  "loadable": 0
+}

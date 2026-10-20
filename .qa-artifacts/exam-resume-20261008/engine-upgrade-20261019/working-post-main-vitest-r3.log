@@ -1,0 +1,89 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/components/ArithmeticManualSave.test.tsx (16 tests) 8839ms
+     ✓ writes only on output save, reopens identical questions, answers and format, and explicitly updates with the saved revision  2487ms
+     ✓ does not queue in-flight format edits and retries a conflict only on another explicit save with the last revision  416ms
+     ✓ retries a failed first save only on demand, keeping the new document id and null revision  501ms
+     ✓ denies even an explicit output save in 'writer disabled'  415ms
+     ✓ denies even an explicit output save in 'preview'  385ms
+     ✓ keeps review available without output permission and never saves in the background  365ms
+     ✓ writes only on output save, reopens identical questions, answers and format, and explicitly updates with the saved revision  1744ms
+     ✓ retries a failed first save only on demand, keeping the new document id and null revision  449ms
+     ✓ denies even an explicit output save in 'writer disabled'  390ms
+     ✓ denies even an explicit output save in 'preview'  353ms
+     ✓ keeps review available without output permission and never saves in the background  356ms
+ ✓ src/__tests__/components/GradeArithmeticWorkbench.test.tsx (11 tests) 6915ms
+     ✓ generates the reported ten origin-reflection questions through the actual workspace preview adapter  756ms
+     ✓ shows type cards with school placement and filters the trigonometry unit without problem previews  343ms
+     ✓ filters by 학년 / 학기 / 영역 separately and lists units in textbook order  812ms
+     ✓ generates two full rounds and explains the per-round limit before generating  2620ms
+     ✓ randomly adds the requested number only from current grade/strand/search, preserving existing quantities  399ms
+     ✓ uses only implemented grade filters and generates with fresh seeds through the web endpoint  702ms
+     ✓ reopens different round snapshots intact, saves the same payload and preserves each round allocation for regeneration  484ms
+ ✓ src/__tests__/components/ArithmeticWorkbench.test.tsx (10 tests) 8852ms
+     ✓ allows 200 questions per round and rejects more than ten rounds  3572ms
+     ✓ keeps save and output gates while allowing local review  339ms
+     ✓ generates over the web, changes operands on regeneration and keeps answers off question pages  1242ms
+     ✓ enforces a fixed table capacity and permits different presets of one operation  494ms
+     ✓ saves snapshots with revisions and reopens without regenerating or racing the load  1331ms
+     ✓ opens shared output and preserves controlled format and sheet across steps  673ms
+     ✓ names a review group after the picked preset and reports a tiny preset's regeneration next to it  698ms
+ ✓ src/__tests__/components/TeachingView.test.tsx (17 tests) 5763ms
+     ✓ keeps a direct lessons entry on the lightweight teaching response  897ms
+     ✓ retains the selected teaching tab and workspace URL after login  713ms
+     ✓ shows credential errors even when Auth.js returns ok:true  576ms
+     ✓ signs up inline and opens class management without roster creation rights  791ms
+     ✓ maps signup conflicts inline without signing in  790ms
+     ✓ retries login after successful signup instead of submitting signup twice  796ms
+ ✓ src/__tests__/unit/textbookQuickCreateAvailability.test.ts (19 tests) 4220ms
+ ✓ src/__tests__/unit/examStudyInverseTangentRectangle.test.ts (9 tests) 11386ms
+     ✓ registers the internal requirement while hiding it from public catalogs and retaining grade/rights holds  10905ms
+ ✓ src/__tests__/unit/arithmeticOutput.test.ts (6 tests) 7175ms
+     ✓ preserves every supported grade prompt, exact answer and snapshot with valid math markup  6842ms
+ ✓ src/__tests__/unit/examStudyInverseMinimum.test.ts (9 tests) 11675ms
+     ✓ independently solves all24 printed data sets, including positive and negative fourth values  424ms
+     ✓ retains a captured Unit proposal while the internal factory stays hidden in public catalogs  11159ms
+ ✓ src/__tests__/unit/courseListAnswers.test.ts (28 tests) 203ms
+ ✓ src/__tests__/components/ArithmeticSelectiveRegeneration.test.tsx (15 tests) 3022ms
+     ✓ routes target orders to the authorized API and preserves all other state without autosave  765ms
+ ✓ src/__tests__/components/ArithmeticGroupedOutput.test.tsx (7 tests) 4386ms
+     ✓ pyeongga keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key  1036ms
+     ✓ jeongtong keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key  547ms
+     ✓ modern keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key  527ms
+     ✓ workbook keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key  663ms
+     ✓ jaseup keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key  808ms
+     ✓ yuhyung keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key  562ms
+ ✓ src/__tests__/api/teachingBootstrap.test.ts (11 tests) 227ms
+ ✓ src/__tests__/components/ArithmeticBasketSelection.test.tsx (6 tests) 5553ms
+     ✓ removes only checked rows across catalog filters, preserving counts, rounds and the generated draft  2647ms
+     ✓ supports select-all, partial selection, deselect-all and removing all without selecting newly added rows  790ms
+     ✓ forgets checked rows removed individually or through a catalog card before re-adding them  488ms
+     ✓ removes only checked rows across catalog filters, preserving counts, rounds and the generated draft  792ms
+     ✓ supports select-all, partial selection, deselect-all and removing all without selecting newly added rows  512ms
+     ✓ forgets checked rows removed individually or through a catalog card before re-adding them  316ms
+ ✓ src/__tests__/components/ArithmeticWorkbenchRouting.test.tsx (2 tests) 4250ms
+   ✓ keeps generated drafts when switching between grade and basic arithmetic  3743ms
+   ✓ automatically opens a v1 saved document in the basic editor and allows switching without a parent callback  502ms
+ ✓ src/__tests__/unit/mathSrsRecordIsolation.test.ts (6 tests) 539ms
+ ✓ src/__tests__/unit/classListPagination.test.ts (5 tests) 141ms
+ ✓ src/__tests__/unit/operationalRosterSummary.test.ts (3 tests) 15ms
+ ✓ src/__tests__/unit/conceptLatestClassProgress.test.ts (2 tests) 2324ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 103ms
+ ✓ src/__tests__/unit/lockProblemRows.test.ts (1 test) 44ms
+
+ Test Files  20 passed (20)
+      Tests  200 passed (200)
+   Start at  14:47:15
+   Duration  165.30s (transform 22.33s, setup 17.95s, import 40.86s, tests 85.63s, environment 16.94s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-vitest-r3.json
+stderr | src/__tests__/api/teachingBootstrap.test.ts > authorized teaching initial class page > does no curriculum or class read when anonymous
+[오류 기록] 남기지 못했습니다:  Cannot read properties of undefined (reading 'create')
+
+stderr | src/__tests__/api/teachingBootstrap.test.ts > authorized teaching initial class page > does no curriculum or class read when reviewer
+[오류 기록] 남기지 못했습니다:  Cannot read properties of undefined (reading 'create')
+
+stderr | src/__tests__/api/teachingBootstrap.test.ts > authorized teaching initial class page > does no curriculum or class read when development closed
+[오류 기록] 남기지 못했습니다:  Cannot read properties of undefined (reading 'create')
+

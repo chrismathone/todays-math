@@ -1,0 +1,3974 @@
+{
+  "oracle": "Annotated independently constructed source fragments. Expected offsets calculated in Python UTF-16LE code units, not production regex or Node match locations. Proper literal groups and prose explicitly annotated as zero-warning content.",
+  "fixtures": [
+    {
+      "id": "bare-0",
+      "text": "prose $11,mathrm{cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-0",
+      "text": "prose $11,\\mathrm{cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-2",
+      "text": "prose $zmathrm{cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-2",
+      "text": "prose $z\\mathrm{cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-4",
+      "text": "prose $7xmathrm{cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-4",
+      "text": "prose $7x\\mathrm{cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-6",
+      "text": "prose $한글😀𐐷+mathrm{cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-6",
+      "text": "prose $한글😀𐐷+\\mathrm{cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-8",
+      "text": "prose $11,mathrm{ cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-8",
+      "text": "prose $11,\\mathrm{ cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-10",
+      "text": "prose $zmathrm{ cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-10",
+      "text": "prose $z\\mathrm{ cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-12",
+      "text": "prose $7xmathrm{ cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-12",
+      "text": "prose $7x\\mathrm{ cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-14",
+      "text": "prose $한글😀𐐷+mathrm{ cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-14",
+      "text": "prose $한글😀𐐷+\\mathrm{ cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-16",
+      "text": "prose $11,mathrm{\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-16",
+      "text": "prose $11,\\mathrm{\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-18",
+      "text": "prose $zmathrm{\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-18",
+      "text": "prose $z\\mathrm{\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-20",
+      "text": "prose $7xmathrm{\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-20",
+      "text": "prose $7x\\mathrm{\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-22",
+      "text": "prose $한글😀𐐷+mathrm{\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-22",
+      "text": "prose $한글😀𐐷+\\mathrm{\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-24",
+      "text": "prose $11,mathrm {cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-24",
+      "text": "prose $11,\\mathrm {cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-26",
+      "text": "prose $zmathrm {cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-26",
+      "text": "prose $z\\mathrm {cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-28",
+      "text": "prose $7xmathrm {cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-28",
+      "text": "prose $7x\\mathrm {cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-30",
+      "text": "prose $한글😀𐐷+mathrm {cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-30",
+      "text": "prose $한글😀𐐷+\\mathrm {cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-32",
+      "text": "prose $11,mathrm { cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-32",
+      "text": "prose $11,\\mathrm { cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-34",
+      "text": "prose $zmathrm { cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-34",
+      "text": "prose $z\\mathrm { cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-36",
+      "text": "prose $7xmathrm { cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-36",
+      "text": "prose $7x\\mathrm { cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-38",
+      "text": "prose $한글😀𐐷+mathrm { cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-38",
+      "text": "prose $한글😀𐐷+\\mathrm { cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-40",
+      "text": "prose $11,mathrm {\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-40",
+      "text": "prose $11,\\mathrm {\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-42",
+      "text": "prose $zmathrm {\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-42",
+      "text": "prose $z\\mathrm {\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-44",
+      "text": "prose $7xmathrm {\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-44",
+      "text": "prose $7x\\mathrm {\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-46",
+      "text": "prose $한글😀𐐷+mathrm {\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-46",
+      "text": "prose $한글😀𐐷+\\mathrm {\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-48",
+      "text": "prose $11,mathrm\n{cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-48",
+      "text": "prose $11,\\mathrm\n{cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-50",
+      "text": "prose $zmathrm\n{cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-50",
+      "text": "prose $z\\mathrm\n{cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-52",
+      "text": "prose $7xmathrm\n{cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-52",
+      "text": "prose $7x\\mathrm\n{cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-54",
+      "text": "prose $한글😀𐐷+mathrm\n{cm}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-54",
+      "text": "prose $한글😀𐐷+\\mathrm\n{cm}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-56",
+      "text": "prose $11,mathrm\n{ cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-56",
+      "text": "prose $11,\\mathrm\n{ cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-58",
+      "text": "prose $zmathrm\n{ cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-58",
+      "text": "prose $z\\mathrm\n{ cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-60",
+      "text": "prose $7xmathrm\n{ cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-60",
+      "text": "prose $7x\\mathrm\n{ cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-62",
+      "text": "prose $한글😀𐐷+mathrm\n{ cm }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-62",
+      "text": "prose $한글😀𐐷+\\mathrm\n{ cm }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-64",
+      "text": "prose $11,mathrm\n{\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-64",
+      "text": "prose $11,\\mathrm\n{\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-66",
+      "text": "prose $zmathrm\n{\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-66",
+      "text": "prose $z\\mathrm\n{\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-68",
+      "text": "prose $7xmathrm\n{\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-68",
+      "text": "prose $7x\\mathrm\n{\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-70",
+      "text": "prose $한글😀𐐷+mathrm\n{\tcm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-70",
+      "text": "prose $한글😀𐐷+\\mathrm\n{\tcm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-72",
+      "text": "prose $11,mathrm{m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-72",
+      "text": "prose $11,\\mathrm{m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-74",
+      "text": "prose $zmathrm{m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-74",
+      "text": "prose $z\\mathrm{m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-76",
+      "text": "prose $7xmathrm{m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-76",
+      "text": "prose $7x\\mathrm{m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-78",
+      "text": "prose $한글😀𐐷+mathrm{m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-78",
+      "text": "prose $한글😀𐐷+\\mathrm{m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-80",
+      "text": "prose $11,mathrm{ m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-80",
+      "text": "prose $11,\\mathrm{ m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-82",
+      "text": "prose $zmathrm{ m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-82",
+      "text": "prose $z\\mathrm{ m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-84",
+      "text": "prose $7xmathrm{ m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-84",
+      "text": "prose $7x\\mathrm{ m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-86",
+      "text": "prose $한글😀𐐷+mathrm{ m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-86",
+      "text": "prose $한글😀𐐷+\\mathrm{ m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-88",
+      "text": "prose $11,mathrm{\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-88",
+      "text": "prose $11,\\mathrm{\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-90",
+      "text": "prose $zmathrm{\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-90",
+      "text": "prose $z\\mathrm{\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-92",
+      "text": "prose $7xmathrm{\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-92",
+      "text": "prose $7x\\mathrm{\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-94",
+      "text": "prose $한글😀𐐷+mathrm{\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-94",
+      "text": "prose $한글😀𐐷+\\mathrm{\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-96",
+      "text": "prose $11,mathrm {m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-96",
+      "text": "prose $11,\\mathrm {m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-98",
+      "text": "prose $zmathrm {m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-98",
+      "text": "prose $z\\mathrm {m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-100",
+      "text": "prose $7xmathrm {m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-100",
+      "text": "prose $7x\\mathrm {m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-102",
+      "text": "prose $한글😀𐐷+mathrm {m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-102",
+      "text": "prose $한글😀𐐷+\\mathrm {m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-104",
+      "text": "prose $11,mathrm { m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-104",
+      "text": "prose $11,\\mathrm { m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-106",
+      "text": "prose $zmathrm { m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-106",
+      "text": "prose $z\\mathrm { m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-108",
+      "text": "prose $7xmathrm { m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-108",
+      "text": "prose $7x\\mathrm { m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-110",
+      "text": "prose $한글😀𐐷+mathrm { m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-110",
+      "text": "prose $한글😀𐐷+\\mathrm { m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-112",
+      "text": "prose $11,mathrm {\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-112",
+      "text": "prose $11,\\mathrm {\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-114",
+      "text": "prose $zmathrm {\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-114",
+      "text": "prose $z\\mathrm {\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-116",
+      "text": "prose $7xmathrm {\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-116",
+      "text": "prose $7x\\mathrm {\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-118",
+      "text": "prose $한글😀𐐷+mathrm {\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-118",
+      "text": "prose $한글😀𐐷+\\mathrm {\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-120",
+      "text": "prose $11,mathrm\n{m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-120",
+      "text": "prose $11,\\mathrm\n{m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-122",
+      "text": "prose $zmathrm\n{m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-122",
+      "text": "prose $z\\mathrm\n{m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-124",
+      "text": "prose $7xmathrm\n{m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-124",
+      "text": "prose $7x\\mathrm\n{m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-126",
+      "text": "prose $한글😀𐐷+mathrm\n{m}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-126",
+      "text": "prose $한글😀𐐷+\\mathrm\n{m}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-128",
+      "text": "prose $11,mathrm\n{ m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-128",
+      "text": "prose $11,\\mathrm\n{ m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-130",
+      "text": "prose $zmathrm\n{ m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-130",
+      "text": "prose $z\\mathrm\n{ m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-132",
+      "text": "prose $7xmathrm\n{ m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-132",
+      "text": "prose $7x\\mathrm\n{ m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-134",
+      "text": "prose $한글😀𐐷+mathrm\n{ m }$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-134",
+      "text": "prose $한글😀𐐷+\\mathrm\n{ m }$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-136",
+      "text": "prose $11,mathrm\n{\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-136",
+      "text": "prose $11,\\mathrm\n{\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-138",
+      "text": "prose $zmathrm\n{\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 8,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-138",
+      "text": "prose $z\\mathrm\n{\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-140",
+      "text": "prose $7xmathrm\n{\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-140",
+      "text": "prose $7x\\mathrm\n{\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-142",
+      "text": "prose $한글😀𐐷+mathrm\n{\tm\t}$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 14,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-142",
+      "text": "prose $한글😀𐐷+\\mathrm\n{\tm\t}$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "literal-144",
+      "text": "$𐐷+\\text{literal mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 30,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-145",
+      "text": "$𐐷+\\text{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 43,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-146",
+      "text": "$𐐷+\\text{cost \\$11 mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-147",
+      "text": "$𐐷+\\text{literal mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 29,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-148",
+      "text": "$𐐷+\\text{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 42,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-149",
+      "text": "$𐐷+\\text{cost \\$11 mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 31,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-150",
+      "text": "$𐐷+\\texttt{literal mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-151",
+      "text": "$𐐷+\\texttt{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 45,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-152",
+      "text": "$𐐷+\\texttt{cost \\$11 mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 34,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-153",
+      "text": "$𐐷+\\texttt{literal mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 31,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-154",
+      "text": "$𐐷+\\texttt{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 44,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-155",
+      "text": "$𐐷+\\texttt{cost \\$11 mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 33,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-156",
+      "text": "$𐐷+\\textrm{literal mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-157",
+      "text": "$𐐷+\\textrm{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 45,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-158",
+      "text": "$𐐷+\\textrm{cost \\$11 mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 34,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-159",
+      "text": "$𐐷+\\textrm{literal mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 31,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-160",
+      "text": "$𐐷+\\textrm{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 44,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-161",
+      "text": "$𐐷+\\textrm{cost \\$11 mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 33,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-162",
+      "text": "$𐐷+\\textsf{literal mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-163",
+      "text": "$𐐷+\\textsf{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 45,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-164",
+      "text": "$𐐷+\\textsf{cost \\$11 mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 34,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-165",
+      "text": "$𐐷+\\textsf{literal mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 31,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-166",
+      "text": "$𐐷+\\textsf{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 44,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-167",
+      "text": "$𐐷+\\textsf{cost \\$11 mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 33,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-168",
+      "text": "$𐐷+\\mathrm{literal mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-169",
+      "text": "$𐐷+\\mathrm{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 45,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-170",
+      "text": "$𐐷+\\mathrm{cost \\$11 mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 34,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-171",
+      "text": "$𐐷+\\mathrm{literal mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 31,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-172",
+      "text": "$𐐷+\\mathrm{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 44,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-173",
+      "text": "$𐐷+\\mathrm{cost \\$11 mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 33,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-174",
+      "text": "$𐐷+\\operatorname{literal mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 38,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-175",
+      "text": "$𐐷+\\operatorname{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 51,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-176",
+      "text": "$𐐷+\\operatorname{cost \\$11 mathrm{cm}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 40,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-177",
+      "text": "$𐐷+\\operatorname{literal mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 37,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-178",
+      "text": "$𐐷+\\operatorname{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 50,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-179",
+      "text": "$𐐷+\\operatorname{cost \\$11 mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 39,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-180",
+      "text": "😀$mathrm{cm}+sqrt{11}+\\text{mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 3,
+          "delimiter": "$"
+        },
+        {
+          "token": "sqrt",
+          "offset": 14,
+          "delimiter": "$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 40,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-181",
+      "text": "😀$mathrm{cm}+frac{3}{8}+\\text{mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 3,
+          "delimiter": "$"
+        },
+        {
+          "token": "frac",
+          "offset": 14,
+          "delimiter": "$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 42,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-182",
+      "text": "😀$mathrm{cm}+dfrac {5}{9}+\\text{mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 3,
+          "delimiter": "$"
+        },
+        {
+          "token": "dfrac",
+          "offset": 14,
+          "delimiter": "$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 44,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-183",
+      "text": "😀$mathrm{cm}+tfrac{7}{8}+\\text{mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 3,
+          "delimiter": "$"
+        },
+        {
+          "token": "tfrac",
+          "offset": 14,
+          "delimiter": "$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 43,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-184",
+      "text": "😀$mathrm{cm}+ldots+1+\\text{mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 3,
+          "delimiter": "$"
+        },
+        {
+          "token": "ldots",
+          "offset": 14,
+          "delimiter": "$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 39,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-185",
+      "text": "😀$mathrm{cm}+cdots+2+\\text{mathrm{m}}+mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 3,
+          "delimiter": "$"
+        },
+        {
+          "token": "cdots",
+          "offset": 14,
+          "delimiter": "$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 39,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "outside-unit-scope-186",
+      "text": "$5mathrm{mm}$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-187",
+      "text": "$5mathrm{CM}$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-188",
+      "text": "$5mathrm{M}$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-189",
+      "text": "$5mathrm{cm^2}$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-190",
+      "text": "$5mathrm{m^{2}}$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-191",
+      "text": "$5mathrm{kg}$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-192",
+      "text": "$5mathrm{sec}$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-193",
+      "text": "$5mathrm{cmx}$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-194",
+      "text": "$5mathrm{m m}$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "proper-195",
+      "text": "$11\\,\\mathrm{cm}$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-196",
+      "text": "$a\\mathrm{m}^{2}$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-197",
+      "text": "$\\text{mathrm{cm}}$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-198",
+      "text": "$\\mathrm {cm}$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-199",
+      "text": "$\\sqrt{11}+\\frac{3}{8}+\\ldots$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-200",
+      "text": "$\\operatorname{mathrm{m}}$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-201",
+      "text": "prose $$11,mathrm{cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-201",
+      "text": "prose $$11,\\mathrm{cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-203",
+      "text": "prose $$zmathrm{cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-203",
+      "text": "prose $$z\\mathrm{cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-205",
+      "text": "prose $$7xmathrm{cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-205",
+      "text": "prose $$7x\\mathrm{cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-207",
+      "text": "prose $$한글😀𐐷+mathrm{cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-207",
+      "text": "prose $$한글😀𐐷+\\mathrm{cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-209",
+      "text": "prose $$11,mathrm{ cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-209",
+      "text": "prose $$11,\\mathrm{ cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-211",
+      "text": "prose $$zmathrm{ cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-211",
+      "text": "prose $$z\\mathrm{ cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-213",
+      "text": "prose $$7xmathrm{ cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-213",
+      "text": "prose $$7x\\mathrm{ cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-215",
+      "text": "prose $$한글😀𐐷+mathrm{ cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-215",
+      "text": "prose $$한글😀𐐷+\\mathrm{ cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-217",
+      "text": "prose $$11,mathrm{\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-217",
+      "text": "prose $$11,\\mathrm{\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-219",
+      "text": "prose $$zmathrm{\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-219",
+      "text": "prose $$z\\mathrm{\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-221",
+      "text": "prose $$7xmathrm{\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-221",
+      "text": "prose $$7x\\mathrm{\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-223",
+      "text": "prose $$한글😀𐐷+mathrm{\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-223",
+      "text": "prose $$한글😀𐐷+\\mathrm{\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-225",
+      "text": "prose $$11,mathrm {cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-225",
+      "text": "prose $$11,\\mathrm {cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-227",
+      "text": "prose $$zmathrm {cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-227",
+      "text": "prose $$z\\mathrm {cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-229",
+      "text": "prose $$7xmathrm {cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-229",
+      "text": "prose $$7x\\mathrm {cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-231",
+      "text": "prose $$한글😀𐐷+mathrm {cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-231",
+      "text": "prose $$한글😀𐐷+\\mathrm {cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-233",
+      "text": "prose $$11,mathrm { cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-233",
+      "text": "prose $$11,\\mathrm { cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-235",
+      "text": "prose $$zmathrm { cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-235",
+      "text": "prose $$z\\mathrm { cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-237",
+      "text": "prose $$7xmathrm { cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-237",
+      "text": "prose $$7x\\mathrm { cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-239",
+      "text": "prose $$한글😀𐐷+mathrm { cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-239",
+      "text": "prose $$한글😀𐐷+\\mathrm { cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-241",
+      "text": "prose $$11,mathrm {\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-241",
+      "text": "prose $$11,\\mathrm {\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-243",
+      "text": "prose $$zmathrm {\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-243",
+      "text": "prose $$z\\mathrm {\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-245",
+      "text": "prose $$7xmathrm {\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-245",
+      "text": "prose $$7x\\mathrm {\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-247",
+      "text": "prose $$한글😀𐐷+mathrm {\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-247",
+      "text": "prose $$한글😀𐐷+\\mathrm {\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-249",
+      "text": "prose $$11,mathrm\n{cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-249",
+      "text": "prose $$11,\\mathrm\n{cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-251",
+      "text": "prose $$zmathrm\n{cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-251",
+      "text": "prose $$z\\mathrm\n{cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-253",
+      "text": "prose $$7xmathrm\n{cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-253",
+      "text": "prose $$7x\\mathrm\n{cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-255",
+      "text": "prose $$한글😀𐐷+mathrm\n{cm}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-255",
+      "text": "prose $$한글😀𐐷+\\mathrm\n{cm}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-257",
+      "text": "prose $$11,mathrm\n{ cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-257",
+      "text": "prose $$11,\\mathrm\n{ cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-259",
+      "text": "prose $$zmathrm\n{ cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-259",
+      "text": "prose $$z\\mathrm\n{ cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-261",
+      "text": "prose $$7xmathrm\n{ cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-261",
+      "text": "prose $$7x\\mathrm\n{ cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-263",
+      "text": "prose $$한글😀𐐷+mathrm\n{ cm }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-263",
+      "text": "prose $$한글😀𐐷+\\mathrm\n{ cm }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-265",
+      "text": "prose $$11,mathrm\n{\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-265",
+      "text": "prose $$11,\\mathrm\n{\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-267",
+      "text": "prose $$zmathrm\n{\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-267",
+      "text": "prose $$z\\mathrm\n{\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-269",
+      "text": "prose $$7xmathrm\n{\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-269",
+      "text": "prose $$7x\\mathrm\n{\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-271",
+      "text": "prose $$한글😀𐐷+mathrm\n{\tcm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-271",
+      "text": "prose $$한글😀𐐷+\\mathrm\n{\tcm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-273",
+      "text": "prose $$11,mathrm{m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-273",
+      "text": "prose $$11,\\mathrm{m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-275",
+      "text": "prose $$zmathrm{m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-275",
+      "text": "prose $$z\\mathrm{m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-277",
+      "text": "prose $$7xmathrm{m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-277",
+      "text": "prose $$7x\\mathrm{m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-279",
+      "text": "prose $$한글😀𐐷+mathrm{m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-279",
+      "text": "prose $$한글😀𐐷+\\mathrm{m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-281",
+      "text": "prose $$11,mathrm{ m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-281",
+      "text": "prose $$11,\\mathrm{ m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-283",
+      "text": "prose $$zmathrm{ m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-283",
+      "text": "prose $$z\\mathrm{ m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-285",
+      "text": "prose $$7xmathrm{ m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-285",
+      "text": "prose $$7x\\mathrm{ m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-287",
+      "text": "prose $$한글😀𐐷+mathrm{ m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-287",
+      "text": "prose $$한글😀𐐷+\\mathrm{ m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-289",
+      "text": "prose $$11,mathrm{\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-289",
+      "text": "prose $$11,\\mathrm{\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-291",
+      "text": "prose $$zmathrm{\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-291",
+      "text": "prose $$z\\mathrm{\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-293",
+      "text": "prose $$7xmathrm{\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-293",
+      "text": "prose $$7x\\mathrm{\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-295",
+      "text": "prose $$한글😀𐐷+mathrm{\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-295",
+      "text": "prose $$한글😀𐐷+\\mathrm{\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-297",
+      "text": "prose $$11,mathrm {m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-297",
+      "text": "prose $$11,\\mathrm {m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-299",
+      "text": "prose $$zmathrm {m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-299",
+      "text": "prose $$z\\mathrm {m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-301",
+      "text": "prose $$7xmathrm {m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-301",
+      "text": "prose $$7x\\mathrm {m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-303",
+      "text": "prose $$한글😀𐐷+mathrm {m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-303",
+      "text": "prose $$한글😀𐐷+\\mathrm {m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-305",
+      "text": "prose $$11,mathrm { m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-305",
+      "text": "prose $$11,\\mathrm { m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-307",
+      "text": "prose $$zmathrm { m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-307",
+      "text": "prose $$z\\mathrm { m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-309",
+      "text": "prose $$7xmathrm { m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-309",
+      "text": "prose $$7x\\mathrm { m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-311",
+      "text": "prose $$한글😀𐐷+mathrm { m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-311",
+      "text": "prose $$한글😀𐐷+\\mathrm { m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-313",
+      "text": "prose $$11,mathrm {\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-313",
+      "text": "prose $$11,\\mathrm {\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-315",
+      "text": "prose $$zmathrm {\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-315",
+      "text": "prose $$z\\mathrm {\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-317",
+      "text": "prose $$7xmathrm {\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-317",
+      "text": "prose $$7x\\mathrm {\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-319",
+      "text": "prose $$한글😀𐐷+mathrm {\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-319",
+      "text": "prose $$한글😀𐐷+\\mathrm {\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-321",
+      "text": "prose $$11,mathrm\n{m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-321",
+      "text": "prose $$11,\\mathrm\n{m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-323",
+      "text": "prose $$zmathrm\n{m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-323",
+      "text": "prose $$z\\mathrm\n{m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-325",
+      "text": "prose $$7xmathrm\n{m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-325",
+      "text": "prose $$7x\\mathrm\n{m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-327",
+      "text": "prose $$한글😀𐐷+mathrm\n{m}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-327",
+      "text": "prose $$한글😀𐐷+\\mathrm\n{m}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-329",
+      "text": "prose $$11,mathrm\n{ m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-329",
+      "text": "prose $$11,\\mathrm\n{ m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-331",
+      "text": "prose $$zmathrm\n{ m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-331",
+      "text": "prose $$z\\mathrm\n{ m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-333",
+      "text": "prose $$7xmathrm\n{ m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-333",
+      "text": "prose $$7x\\mathrm\n{ m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-335",
+      "text": "prose $$한글😀𐐷+mathrm\n{ m }$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-335",
+      "text": "prose $$한글😀𐐷+\\mathrm\n{ m }$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-337",
+      "text": "prose $$11,mathrm\n{\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 11,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-337",
+      "text": "prose $$11,\\mathrm\n{\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-339",
+      "text": "prose $$zmathrm\n{\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 9,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-339",
+      "text": "prose $$z\\mathrm\n{\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-341",
+      "text": "prose $$7xmathrm\n{\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 10,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-341",
+      "text": "prose $$7x\\mathrm\n{\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "bare-343",
+      "text": "prose $$한글😀𐐷+mathrm\n{\tm\t}$$ outside",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 15,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "escaped-343",
+      "text": "prose $$한글😀𐐷+\\mathrm\n{\tm\t}$$ outside",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "literal-345",
+      "text": "$$𐐷+\\text{literal mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 31,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-346",
+      "text": "$$𐐷+\\text{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 44,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-347",
+      "text": "$$𐐷+\\text{cost \\$11 mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 33,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-348",
+      "text": "$$𐐷+\\text{literal mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 30,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-349",
+      "text": "$$𐐷+\\text{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 43,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-350",
+      "text": "$$𐐷+\\text{cost \\$11 mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-351",
+      "text": "$$𐐷+\\texttt{literal mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 33,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-352",
+      "text": "$$𐐷+\\texttt{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 46,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-353",
+      "text": "$$𐐷+\\texttt{cost \\$11 mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 35,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-354",
+      "text": "$$𐐷+\\texttt{literal mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-355",
+      "text": "$$𐐷+\\texttt{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 45,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-356",
+      "text": "$$𐐷+\\texttt{cost \\$11 mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 34,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-357",
+      "text": "$$𐐷+\\textrm{literal mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 33,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-358",
+      "text": "$$𐐷+\\textrm{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 46,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-359",
+      "text": "$$𐐷+\\textrm{cost \\$11 mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 35,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-360",
+      "text": "$$𐐷+\\textrm{literal mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-361",
+      "text": "$$𐐷+\\textrm{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 45,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-362",
+      "text": "$$𐐷+\\textrm{cost \\$11 mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 34,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-363",
+      "text": "$$𐐷+\\textsf{literal mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 33,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-364",
+      "text": "$$𐐷+\\textsf{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 46,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-365",
+      "text": "$$𐐷+\\textsf{cost \\$11 mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 35,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-366",
+      "text": "$$𐐷+\\textsf{literal mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-367",
+      "text": "$$𐐷+\\textsf{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 45,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-368",
+      "text": "$$𐐷+\\textsf{cost \\$11 mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 34,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-369",
+      "text": "$$𐐷+\\mathrm{literal mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 33,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-370",
+      "text": "$$𐐷+\\mathrm{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 46,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-371",
+      "text": "$$𐐷+\\mathrm{cost \\$11 mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 35,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-372",
+      "text": "$$𐐷+\\mathrm{literal mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 32,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-373",
+      "text": "$$𐐷+\\mathrm{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 45,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-374",
+      "text": "$$𐐷+\\mathrm{cost \\$11 mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 34,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-375",
+      "text": "$$𐐷+\\operatorname{literal mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 39,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-376",
+      "text": "$$𐐷+\\operatorname{😀{nested} mathrm{cm} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 52,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-377",
+      "text": "$$𐐷+\\operatorname{cost \\$11 mathrm{cm}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 41,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-378",
+      "text": "$$𐐷+\\operatorname{literal mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 38,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-379",
+      "text": "$$𐐷+\\operatorname{😀{nested} mathrm{m} \\{sqrt2\\}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 51,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "literal-380",
+      "text": "$$𐐷+\\operatorname{cost \\$11 mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 40,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-381",
+      "text": "😀$$mathrm{cm}+sqrt{11}+\\text{mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$$"
+        },
+        {
+          "token": "sqrt",
+          "offset": 15,
+          "delimiter": "$$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 41,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-382",
+      "text": "😀$$mathrm{cm}+frac{3}{8}+\\text{mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$$"
+        },
+        {
+          "token": "frac",
+          "offset": 15,
+          "delimiter": "$$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 43,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-383",
+      "text": "😀$$mathrm{cm}+dfrac {5}{9}+\\text{mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$$"
+        },
+        {
+          "token": "dfrac",
+          "offset": 15,
+          "delimiter": "$$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 45,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-384",
+      "text": "😀$$mathrm{cm}+tfrac{7}{8}+\\text{mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$$"
+        },
+        {
+          "token": "tfrac",
+          "offset": 15,
+          "delimiter": "$$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 44,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-385",
+      "text": "😀$$mathrm{cm}+ldots+1+\\text{mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$$"
+        },
+        {
+          "token": "ldots",
+          "offset": 15,
+          "delimiter": "$$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 40,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "mixed-386",
+      "text": "😀$$mathrm{cm}+cdots+2+\\text{mathrm{m}}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$$"
+        },
+        {
+          "token": "cdots",
+          "offset": 15,
+          "delimiter": "$$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 40,
+          "delimiter": "$$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "outside-unit-scope-387",
+      "text": "$$5mathrm{mm}$$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-388",
+      "text": "$$5mathrm{CM}$$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-389",
+      "text": "$$5mathrm{M}$$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-390",
+      "text": "$$5mathrm{cm^2}$$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-391",
+      "text": "$$5mathrm{m^{2}}$$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-392",
+      "text": "$$5mathrm{kg}$$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-393",
+      "text": "$$5mathrm{sec}$$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-394",
+      "text": "$$5mathrm{cmx}$$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "outside-unit-scope-395",
+      "text": "$$5mathrm{m m}$$",
+      "expected": [],
+      "note": "Explicit marker scope only;0 warnings does not certify this text."
+    },
+    {
+      "id": "proper-396",
+      "text": "$$11\\,\\mathrm{cm}$$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-397",
+      "text": "$$a\\mathrm{m}^{2}$$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-398",
+      "text": "$$\\text{mathrm{cm}}$$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-399",
+      "text": "$$\\mathrm {cm}$$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-400",
+      "text": "$$\\sqrt{11}+\\frac{3}{8}+\\ldots$$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "proper-401",
+      "text": "$$\\operatorname{mathrm{m}}$$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "prose-402",
+      "text": "mathrm{cm} without math",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "prose-403",
+      "text": "😀mathrm{m} prose",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "prose-404",
+      "text": "\\$mathrm{cm} escaped dollar",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "prose-405",
+      "text": "No units: $x+y$ thenmathrm{m}",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "prose-406",
+      "text": "$\\text{a{b}c}+1$",
+      "expected": [],
+      "note": ""
+    },
+    {
+      "id": "escaped-dollar-and-real-math",
+      "text": "prose \\$mathrm{cm} then $mathrm{m}$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 25,
+          "delimiter": "$"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "multiple-math-source-order",
+      "text": "😀 $mathrm{cm}+sqrt9$ then $$frac{7}{8}+mathrm{m}$$",
+      "expected": [
+        {
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$"
+        },
+        {
+          "token": "sqrt",
+          "offset": 15,
+          "delimiter": "$"
+        },
+        {
+          "token": "frac",
+          "offset": 29,
+          "delimiter": "$$"
+        },
+        {
+          "token": "mathrm",
+          "offset": 40,
+          "delimiter": "$$"
+        }
+      ],
+      "note": "Each hit delimiter tracked independently below."
+    }
+  ]
+}

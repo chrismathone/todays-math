@@ -1,0 +1,289 @@
+{
+  "kind": "independent-bounded-U56-bare-unit-notation-code-audit/v1",
+  "status": "bounded-controls-passed-operational-holds-retained",
+  "scopeSha256": "9fe8cf767847b615adfd17c753d77f4f4f82f9d6a7dc19824dae24689290b3c2",
+  "sourceBinding": {
+    "sourceAndTests": 16,
+    "runtimeData": 1,
+    "rootSnapshotRuntimeAllExactScopeSha256": true,
+    "beforeAfter17Unchanged": true,
+    "candidatePackHostSha256": "13da6274441c78cb7c5eb9df1c83cc55dd6a9489aec0ac4205a5764aa3ddafb4",
+    "authoredMathNotationSha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f",
+    "actualArtifacts38Unchanged": true,
+    "priorRawAndReports6GitBlobEqual": true
+  },
+  "actualOwnRuns": {
+    "total": 438,
+    "passed": 438,
+    "failed": 0,
+    "byCategory": {
+      "independent-notation-oracle": {
+        "total": 409,
+        "failed": 0
+      },
+      "actual-bindings": {
+        "total": 3,
+        "failed": 0
+      },
+      "freeze": {
+        "total": 2,
+        "failed": 0
+      },
+      "surface-routing": {
+        "total": 16,
+        "failed": 0
+      },
+      "synthetic-evaluate": {
+        "total": 3,
+        "failed": 0
+      },
+      "synthetic-collector": {
+        "total": 2,
+        "failed": 0
+      },
+      "authentic-current-collector": {
+        "total": 1,
+        "failed": 0
+      },
+      "scope-limit": {
+        "total": 2,
+        "failed": 0
+      }
+    }
+  },
+  "oracle": {
+    "cases": 409,
+    "method": "Python constructs marked text fragments and computes expected UTF16 offsets using UTF16LE byte length/2. It does not call/imitate production matching regex to generate expected locations. Node compares actual diagnostics deeply including token,offset,delimiter and repeats calls to check determinism/no input mutation.",
+    "coverage": "Inline and display math; cm/m with brace whitespace; adjacent digits/variables; Korean and two nonBMP characters; proper escaped macros; all6 masked literal group commands with nested/escaped braces and escaped dollars; prose; mixed sqrt/frac/dfrac/tfrac/ldots/cdots; cross-segment source order.",
+    "falsePositiveControls": "Proper commands and literal-group contents/prose remain unflagged. Bare markers adjacent to variables are deliberately flagged per scope.",
+    "falseNegativeControls": "Every annotated explicit bare cm/m marker is found at the independent UTF16 offset, including next to variables and after literal masks.",
+    "notSemanticProof": "Intentional unquoted letter products that happen to spell the bare marker can be diagnosed too. This is a narrow authoring hold, not proof of an author intent or invalid mathematics."
+  },
+  "actualArtifacts": {
+    "oldAuthorR2": {
+      "warningCount": 5,
+      "warningSurfaces": "choice-1..choice-5",
+      "evidence": [
+        {
+          "surface": "choice-1",
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$"
+        },
+        {
+          "surface": "choice-2",
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$"
+        },
+        {
+          "surface": "choice-3",
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$"
+        },
+        {
+          "surface": "choice-4",
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$"
+        },
+        {
+          "surface": "choice-5",
+          "token": "mathrm",
+          "offset": 5,
+          "delimiter": "$"
+        }
+      ]
+    },
+    "newAuthorAndCurrentFrozenR3": {
+      "notationWarnings": 0,
+      "beforeAfterInputHashesUnchanged": true
+    },
+    "freezeBad": {
+      "exit": 1,
+      "outputExists": false,
+      "inputUnchanged": true,
+      "stderr": "node:internal/modules/run_main:123\r\n    triggerUncaughtException(\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: Suspected lost math command escapes require a corrected student version before a solve pack\r\n    at freeze (file:///C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bare-unit-notation-code-audit-20261020-r1/provided-code-runtime-local/review-exam-twins.mjs:93:3)\r\n    at main (file:///C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bare-unit-notation-code-audit-20261020-r1/provided-code-runtime-local/review-exam-twins.mjs:401:12)\r\n    at file:///C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bare-unit-notation-code-audit-20261020-r1/provided-code-runtime-local/review-exam-twins.mjs:429:3\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\r\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: false,\r\n  expected: true,\r\n  operator: '=='\r\n}\r\n\r\nNode.js v22.17.1\r\n"
+    },
+    "freezeCorrectedOwnedLocalOutput": {
+      "exit": 0,
+      "authoredFrozen": 1,
+      "notationWarnings": 0,
+      "inputUnchanged": true,
+      "outputLocalOnlyNotForGit": true
+    },
+    "realOldFrozenCollectorWithSyntheticAssertions": {
+      "syntheticProofsAndReports": true,
+      "notAuthenticGradeApproval": true,
+      "actualModuleUnmocked": true,
+      "result": {
+        "kind": "authored-exam-twin-review-result/v1",
+        "packageDigest": "28cc69d4f79109f8720119a8c83fc2a60fbb4d10793ba21c06472d1d8ba96b40",
+        "createdAt": "2026-10-20T05:47:47.510Z",
+        "authored": 2,
+        "mathematicalVerified": 1,
+        "gradeReviewed": 1,
+        "overallVerified": 0,
+        "loadable": 0,
+        "productionWrites": false,
+        "results": [
+          {
+            "n": 1,
+            "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q01",
+            "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+            "candidateDigest": "77bfcbcaecb9880fd81946dae755ca343c95b9458f26fd451caa212efcb90221",
+            "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da",
+            "solveDigest": "c0b11c1127683ed17f4a95e373077642bc60af4d11a231cf470d45de3c2616cf",
+            "reportSha256": "6001e1ef528fe1068d94a50daa8a1a333076781e58690d7770c28016bdfb6a61",
+            "mathematicalVerified": true,
+            "gradeReviewed": true,
+            "overallVerified": false,
+            "loadable": false,
+            "reasons": [
+              "source-identity-held",
+              "taxonomy-held",
+              "rights-review-pending",
+              "similarity-review-pending",
+              "native-exam-twin-provenance-not-implemented"
+            ],
+            "productionWrites": false
+          },
+          {
+            "n": 2,
+            "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q02",
+            "studentDigest": "2817f3234dac2e1b07dcd504b94f5b026bac73201c22d3b4e187186ff26417af",
+            "candidateDigest": "3f661a64b2e900cbc9e326a1c413b2e887a9d71f799780e785b0d4116c46a7a8",
+            "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac",
+            "solveDigest": "d52e72d6111ceef56f836d1d5fb882a017d99a1dbdcf4e80cb462e737f32311d",
+            "reportSha256": "a8bb43529c5738031465731d06c8edeeb87a5e107aee4fd5856906b9ba281cce",
+            "mathematicalVerified": false,
+            "gradeReviewed": false,
+            "overallVerified": false,
+            "loadable": false,
+            "reasons": [
+              "student-math-notation-command-escape-held",
+              "source-identity-held",
+              "taxonomy-held",
+              "rights-review-pending",
+              "similarity-review-pending",
+              "native-exam-twin-provenance-not-implemented"
+            ],
+            "productionWrites": false
+          }
+        ]
+      }
+    },
+    "realCurrentDongCollectorWithExistingAuthenticSealedReports": {
+      "unmockedActualCurrentPackAndReports": true,
+      "priorHumanReportsCommit": "eb4053d06d160dba787b8ac0d42840158598be02",
+      "newSemanticOrGradeApproval": false,
+      "result": {
+        "kind": "authored-exam-twin-review-result/v1",
+        "packageDigest": "68ab261cc45f8609e8daae94860dbf3e31f7f300de1d6a7c62ace86fcbd1412e",
+        "createdAt": "2026-10-20T05:47:47.526Z",
+        "authored": 2,
+        "mathematicalVerified": 2,
+        "gradeReviewed": 2,
+        "overallVerified": 0,
+        "loadable": 0,
+        "productionWrites": false,
+        "results": [
+          {
+            "n": 1,
+            "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q01",
+            "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+            "candidateDigest": "77bfcbcaecb9880fd81946dae755ca343c95b9458f26fd451caa212efcb90221",
+            "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da",
+            "solveDigest": "608a0f32501a6749e811e7f3c2ed1bbcc4205115eeae879cf27335c1c72610f8",
+            "reportSha256": "954713222d76514684a605185ef0749891d3ddace08198e4f5117e47645e71f4",
+            "mathematicalVerified": true,
+            "gradeReviewed": true,
+            "overallVerified": false,
+            "loadable": false,
+            "reasons": [
+              "review-status-pending",
+              "review-unitFamilyFit-not-passed",
+              "source-identity-held",
+              "taxonomy-held",
+              "rights-review-pending",
+              "similarity-review-pending",
+              "native-exam-twin-provenance-not-implemented"
+            ],
+            "productionWrites": false
+          },
+          {
+            "n": 2,
+            "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r3-q02",
+            "studentDigest": "5c5ee5e427138b176f6f88c4dfc70ae70fbf02edb059d5188037d96b6ef039ab",
+            "candidateDigest": "27b3eaef28e19ade0e618d5b147cb0af3c760e2a6e5565881255c9ef76cc5425",
+            "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac",
+            "solveDigest": "91118315acc53fd0063207174425b5cd2868e7d1318186b3f57445775548e44b",
+            "reportSha256": "41ad0bf527f09a8185a00aab85bba119f5dccdd86a35cd25c0aef3034da794f9",
+            "mathematicalVerified": true,
+            "gradeReviewed": true,
+            "overallVerified": false,
+            "loadable": false,
+            "reasons": [
+              "review-status-pending",
+              "review-unitFamilyFit-not-passed",
+              "source-identity-held",
+              "taxonomy-held",
+              "rights-review-pending",
+              "similarity-review-pending",
+              "native-exam-twin-provenance-not-implemented"
+            ],
+            "productionWrites": false
+          }
+        ]
+      }
+    }
+  },
+  "wiring": {
+    "observed": "candidatePack imports the current authoredMathNotation function. Real validateCandidate produces surface warnings; freeze checks those before newDirectory; evaluateReview uses notation warnings to force both mathematicalVerified and gradeReviewed false. Real currentPackage preserves warnings in a previously frozen bad pack; actual collector revalidates it and retains the hold.",
+    "surfaceRoutingCases": 16,
+    "routingLimit": "Existing host scans stem, choices, answer and studentSolution. This audit does not claim automatic coverage of arbitrary TeX/SVG/figure-label/hint fields or all7 semantic student surfaces.",
+    "syntheticLabels": "All-green solves/reviews for old package are synthetic fixtures only. They intentionally borrow author answer values to test guard wiring and are not independent student solves, grade approvals, Git-sealed pre-exposure proofs or new manual counts. The unchanged q1 synthetic control can return math/grade true because attestations are trusted; old bad q2 returns false/false.",
+    "noValidationMocks": true,
+    "actualCurrentSubset": "Actual current DaeguDong q01/q02 collection only:2math/2grade from previously sealed human reports. DaeguBuk current raw/report are protected by hash/Git checks but not recollected in this narrower U56 artifact scope."
+  },
+  "findings": {
+    "concreteProductionFaultsObserved": 0,
+    "ownControlFailures": 0,
+    "oldBadDraftIsInputDefect": "The old five legal-TeX-looking bare unit markers are held as an old input defect; no current source rewrite or automatic repair was performed.",
+    "fixtureVsSource": "Positive surface controls explicitly construct proper escaped commands in synthetic in-memory inputs. This is fixture creation, not a production text repair. No dollar-replacement expectation mistake occurred in this run; earlier U54 fixture correction remains preserved in prior committed evidence."
+  },
+  "limits": [
+    "No general TeX validation: an unmatched dollar segment is not diagnosed by this bounded matcher. No automatic correction is performed.",
+    "Only baremathrm{cm}/mathrm{m} with optional whitespace is added. Units such as kg/mm,uppercase units or compound unit contents are outside this new rule and zero warnings certify nothing about them.",
+    "Literal masking is limited to proper text/texttt/textrm/textsf/mathrm/operatorname groups. It is not a complete macro expansion, quoted-string or TeX grammar parser.",
+    "No mathematical relation truth, physical positivity/unit semantics, student grade placement, rights, exact live family, whole-source identity, native parity/loadability or public release approval follows from diagnostics.",
+    "Full copied reviewWorkflow test was intentionally not run: its compose-image-figure import was not supplied. No fallback import or repository enumeration occurred. Parent regression counts are not this own run count.",
+    "Current actual collector2/2 preserves existing prior review findings; no new student problem, blind solve or grade approval count. Overall/loadable remain0 and productionWrites false.",
+    "Synthetic local candidate/pack/proof/report copies contain question material and remain local only. They are excluded from Git together with all runtime copies and original inputs."
+  ],
+  "preservation": {
+    "completedRawCommit": "3a496d7669cda8c18859b351e7ca851d609c9c81",
+    "completedReviewCommit": "eb4053d06d160dba787b8ac0d42840158598be02",
+    "sourceRuntimeDataActualArtifactRawReportEdits": 0,
+    "noDbApiOrModelCalls": true,
+    "noNewWorktreesOrWorkers": true,
+    "modelUnchanged": true
+  },
+  "reproduction": [
+    "python <prefix>/own-prepare.py",
+    "node <prefix>/own-controls.mjs",
+    "python <prefix>/own-finalize.py"
+  ],
+  "reproductionNote": "Controls require fresh own-local-fixtures output path and write only owned local fixture outputs; never reuse supplied original paths for outputs.",
+  "evidenceHashes": {
+    "own-after.json": "d45510ea217282bf48bc5f15d7509e61b5e0fb19adae56bc7b867202ebef6f78",
+    "own-before.json": "62d545dd277a0ca3ae867471927edbcaac6ed98187043376cc76d44f7abfd41b",
+    "own-control-results.json": "fc42c5d6ae9ceb6bedab457a4ff7ce569c241bfbe2592aa516017395ab46c4bd",
+    "own-controls.mjs": "138910267f1089c6dc583f3251fcf8890d57bf7099bc12ed4e58bb752a091893",
+    "own-finalize.py": "10707a83f0bae2145dbc5c10a702072a87ed5b6feb842b0c0a4aa1ff5efd1fad",
+    "own-notation-oracle.json": "69494b92d888793d7f6e4a9cf7ae9ed626febe2da557b0907626014ec9f4062c",
+    "own-prepare.py": "efe2d76ac616bc347d09883459ac41cbf25a3f18dafb20968489fd118a401ace",
+    "own-utf8-probe.txt": "258367f2389246d751ac03e0ea409648d51d66aeb95ad1f285e19113ebd41098"
+  }
+}
