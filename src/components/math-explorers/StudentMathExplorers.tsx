@@ -43,6 +43,7 @@ import type { MathExpeditionReview } from "@/contracts/mathExpedition.contract";
 import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import ExplorerBankActivity from "./ExplorerBankActivity";
 import { JourneyArtProvider } from "./JourneyArt";
+import { ExplorerGuideProvider } from "./ExplorerGuide";
 import { LearningMotionScope } from "@/components/math-srs/LearningMotion";
 import {
   LearningSoundsProvider,
@@ -152,17 +153,19 @@ export default function StudentMathExplorers({
     <LearningMotionScope>
       <LearningSoundsProvider>
         <JourneyArtProvider theme={journeyTheme}>
-          <ExplorerGame
-            key={initialView ?? "expedition"}
-            initialView={initialView}
-            journeyTheme={journeyTheme}
-            conceptMemoryEnabled={conceptMemoryEnabled}
-            fadingSource={fadingSource}
-            fadingRelearnSource={fadingRelearnSource}
-            initialState={initialState}
-            preview={preview}
-            student={student}
-          />
+          <ExplorerGuideProvider enabled={student && !preview}>
+            <ExplorerGame
+              key={initialView ?? "expedition"}
+              initialView={initialView}
+              journeyTheme={journeyTheme}
+              conceptMemoryEnabled={conceptMemoryEnabled}
+              fadingSource={fadingSource}
+              fadingRelearnSource={fadingRelearnSource}
+              initialState={initialState}
+              preview={preview}
+              student={student}
+            />
+          </ExplorerGuideProvider>
         </JourneyArtProvider>
       </LearningSoundsProvider>
     </LearningMotionScope>
