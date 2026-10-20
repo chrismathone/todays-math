@@ -107,6 +107,17 @@
   gap: 2mm;
   font-size: 10px;
 }
+.rubric[data-dense-rubric="true"] .notes {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 4mm;
+  row-gap: 1.5mm;
+  line-height: 1.4;
+}
+.rubric[data-dense-rubric="true"] th,
+.rubric[data-dense-rubric="true"] td {
+  padding-top: 1.5mm;
+  padding-bottom: 1.5mm;
+}
 .subtotal {
   text-align: right;
   padding-top: 2mm;
