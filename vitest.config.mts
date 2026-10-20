@@ -1,4 +1,4 @@
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
 import { loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 
@@ -29,6 +29,8 @@ export default defineConfig(({ mode }) => ({
     // (`src/__tests__/helpers/authRequestContext.ts` 머리말, 2026-09-15 student-auth).
     server: { deps: { inline: ["next-auth"] } },
     include: ["src/__tests__/**/*.{test,spec}.{ts,tsx}"],
+    // 외장 SSD(ExFAT) 워크트리는 쓰는 파일마다 `._이름` AppleDouble 파일을 만든다 — 시험으로 집지 않는다.
+    exclude: [...configDefaults.exclude, "**/._*"],
     css: false,
     coverage: {
       provider: "v8",
