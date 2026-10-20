@@ -165,9 +165,7 @@ export default function ScopeSequencePicker({
         : [],
     );
   }, [navigation, onBrowse, stage, visibleIds, lessonMetadata]);
-  const pending = navigation
-    ? !path || (stage === "lesson" && loading)
-    : loading;
+  const pending = navigation ? !path : loading;
   const failure = path?.error || error;
   function move(next: Stage) {
     setTouched(true);
@@ -318,7 +316,9 @@ export default function ScopeSequencePicker({
                           {scope.label}{" "}
                           <small>
                             {scope.count === undefined
-                              ? "출제 가능 수 확인 필요"
+                              ? loading
+                                ? "출제 범위를 불러오는 중입니다…"
+                                : "출제 가능 수 확인 필요"
                               : scope.count === 0
                                 ? "출제 가능 문항 없음"
                                 : `출제 가능 ${scope.count}${scope.countUnit ?? "문항"}`}

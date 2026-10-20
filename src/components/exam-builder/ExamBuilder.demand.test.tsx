@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  act,
   cleanup,
   fireEvent,
   render,
@@ -19,6 +20,7 @@ import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import type { StudioProblem } from "@/components/unified/types";
 import ExamBuilder from "./ExamBuilder";
 import { createMathExamBuilderSource } from "./mathSource";
+import type { ExamBuilderSource } from "./types";
 
 const unitId = (index: number) =>
   `10000000-0000-4000-8000-${String(index).padStart(12, "0")}`;
@@ -67,15 +69,22 @@ function fixture(
     distinctFamilies?: boolean;
     filters?: string;
     initialQuestions?: StudioProblem[];
+    holdCounts?: boolean;
+    families?: number;
+    allFamilies?: number;
   } = {},
 ) {
   let failCounts = options.failCounts ?? false;
+  let holdCounts = options.holdCounts ?? false;
+  const pendingCounts: (() => void)[] = [];
   const requests = vi.fn<typeof fetch>(async (url, init) => {
     const params =
       init?.method === "POST"
         ? new URLSearchParams(JSON.parse(String(init.body)))
         : new URL(String(url), "http://localhost").searchParams;
     if (params.get("view") === "scope-counts") {
+      if (holdCounts)
+        await new Promise<void>((resolve) => pendingCounts.push(resolve));
       if (failCounts)
         return Response.json({ error: "수량 확인 실패" }, { status: 503 });
       const ids = params.get("unitIds")!.split(",");
@@ -85,7 +94,14 @@ function fixture(
         countUnit: "question",
         queryKey: "fixture",
         unitCounts: Object.fromEntries(ids.map((id) => [id, 20])),
-        unitFamilies: Object.fromEntries(ids.map((id) => [id, 6])),
+        unitFamilies: Object.fromEntries(
+          ids.map((id) => [
+            id,
+            params.get("recent") === "1"
+              ? (options.families ?? 6)
+              : (options.allFamilies ?? 9),
+          ]),
+        ),
       });
     }
     if (params.get("view") !== "curriculum")
@@ -122,13 +138,15 @@ function fixture(
     distinctFamilies: options.distinctFamilies,
     filters: options.filters,
   });
-  function Harness() {
+  function Harness({
+    activeSource = source,
+  }: { activeSource?: ExamBuilderSource<StudioProblem> } = {}) {
     const [questions, setQuestions] = useState(
       options.initialQuestions ?? emptyQuestions,
     );
     return (
       <ExamBuilder
-        source={source}
+        source={activeSource}
         questions={questions}
         onQuestionsChange={setQuestions}
         title="시험지"
@@ -151,6 +169,13 @@ function fixture(
     requests,
     Harness,
     countQueries,
+    pauseCounts: () => {
+      holdCounts = true;
+    },
+    releaseCounts: () => {
+      holdCounts = false;
+      pendingCounts.splice(0).forEach((resolve) => resolve());
+    },
     recover: () => {
       failCounts = false;
     },
@@ -222,7 +247,7 @@ describe("S2 demand-loaded scope inventory", () => {
     expect(screen.queryByRole("checkbox", { name: /차시 1/ })).toBeNull();
   });
 
-  it("counts only the visible 20 lessons plus selected rows and preserves manual allocations through search, pages and grade changes", async () => {
+  it("counts only uncached visible lessons and preserves manual allocations through search, pages and grade changes", async () => {
     const { Harness, countQueries } = fixture();
     render(<Harness />);
     const first = await openLessons();
@@ -230,6 +255,7 @@ describe("S2 demand-loaded scope inventory", () => {
       units.slice(0, 20).map((unit) => unit.id),
     );
     fireEvent.click(first);
+    expect(countQueries()).toHaveLength(1);
     const count = await screen.findByRole("spinbutton", {
       name: "차시 1 구성 수",
     });
@@ -238,7 +264,7 @@ describe("S2 demand-loaded scope inventory", () => {
     fireEvent.click(screen.getByRole("button", { name: "다음 차시" }));
     await screen.findByRole("checkbox", { name: "차시 23 출제 가능 6갈래" });
     expect(countQueries().at(-1)?.unitIds.split(",")).toEqual(
-      [units[0], ...units.slice(20)].map((unit) => unit.id),
+      units.slice(20).map((unit) => unit.id),
     );
     expect(
       screen.getByRole("spinbutton", { name: "차시 1 구성 수" }),
@@ -246,12 +272,7 @@ describe("S2 demand-loaded scope inventory", () => {
     fireEvent.change(screen.getByRole("searchbox", { name: "차시 검색" }), {
       target: { value: "차시 23" },
     });
-    await waitFor(() =>
-      expect(countQueries().at(-1)?.unitIds.split(",")).toEqual([
-        units[0].id,
-        units[22].id,
-      ]),
-    );
+    expect(countQueries()).toHaveLength(2);
     await screen.findByRole("checkbox", { name: "차시 23 출제 가능 6갈래" });
     fireEvent.click(screen.getByRole("button", { name: "학년·과정 변경" }));
     fireEvent.click(await screen.findByRole("button", { name: "초3" }));
@@ -261,10 +282,7 @@ describe("S2 demand-loaded scope inventory", () => {
         name: "다른 차시 출제 가능 6갈래",
       }),
     ).toBeEnabled();
-    expect(countQueries().at(-1)?.unitIds.split(",")).toEqual([
-      units[0].id,
-      other.id,
-    ]);
+    expect(countQueries().at(-1)?.unitIds.split(",")).toEqual([other.id]);
     expect(
       screen.getByRole("spinbutton", { name: "차시 1 구성 수" }),
     ).toHaveValue(2);
@@ -273,6 +291,137 @@ describe("S2 demand-loaded scope inventory", () => {
         (query) => query.view === "scope-counts" && !!query.unitIds,
       ),
     ).toBe(true);
+  });
+
+  it("shows lesson names before counts resolve, then checks and unchecks without hiding the list or requesting counts again", async () => {
+    const { Harness, countQueries, releaseCounts } = fixture({
+      holdCounts: true,
+    });
+    render(<Harness />);
+    fireEvent.click(await screen.findByRole("button", { name: "중1" }));
+    fireEvent.click(await screen.findByRole("button", { name: "수와 연산" }));
+    expect(
+      await screen.findByRole("checkbox", {
+        name: /차시 1 출제 범위를 불러오는 중/,
+      }),
+    ).toBeDisabled();
+    expect(
+      screen.getByRole("region", { name: "차시 목록" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("status", { name: /출제 범위를/ })).toBeNull();
+    expect(countQueries()).toHaveLength(1);
+    await act(async () => releaseCounts());
+    const first = await screen.findByRole("checkbox", {
+      name: "차시 1 출제 가능 6갈래",
+    });
+    fireEvent.click(first);
+    expect(first).toBeChecked();
+    fireEvent.click(first);
+    expect(first).not.toBeChecked();
+    expect(
+      screen.getByRole("region", { name: "차시 목록" }),
+    ).toBeInTheDocument();
+    expect(countQueries()).toHaveLength(1);
+  });
+
+  it("retains confirmed counts during a new page request and does not restart it when a cached selection is removed", async () => {
+    const { Harness, countQueries, requests, pauseCounts, releaseCounts } =
+      fixture();
+    render(<Harness />);
+    fireEvent.click(await openLessons());
+    const count = screen.getByRole("spinbutton", { name: "차시 1 구성 수" });
+    pauseCounts();
+    fireEvent.click(screen.getByRole("button", { name: "다음 차시" }));
+    expect(
+      await screen.findByRole("checkbox", {
+        name: /차시 23 출제 범위를 불러오는 중/,
+      }),
+    ).toBeDisabled();
+    expect(count).toHaveAttribute("max", "6");
+    expect(countQueries()).toHaveLength(2);
+    expect(countQueries()[1].unitIds.split(",")).toEqual(
+      units.slice(20).map((unit) => unit.id),
+    );
+    const signal = requests.mock.calls.find(
+      ([, init]) =>
+        init?.method === "POST" &&
+        JSON.parse(String(init.body)).unitIds === countQueries()[1].unitIds,
+    )![1]!.signal;
+    fireEvent.click(screen.getByRole("button", { name: "이전 차시" }));
+    const first = screen.getByRole("checkbox", {
+      name: "차시 1 출제 가능 6갈래",
+    });
+    expect(first).toBeChecked();
+    fireEvent.click(first);
+    expect(countQueries()).toHaveLength(2);
+    expect(signal?.aborted).toBe(false);
+    await act(async () => releaseCounts());
+    fireEvent.click(screen.getByRole("button", { name: "다음 차시" }));
+    expect(
+      await screen.findByRole("checkbox", { name: "차시 23 출제 가능 6갈래" }),
+    ).toBeEnabled();
+    expect(countQueries()).toHaveLength(2);
+  });
+
+  it("keeps recent and all counts separate and reuses each after toggling back", async () => {
+    const { Harness, countQueries } = fixture();
+    render(<Harness />);
+    fireEvent.click(await openLessons());
+    const recent = screen.getByRole("checkbox", {
+      name: "최근 14일 출제 빼기",
+    });
+    fireEvent.click(recent);
+    expect(
+      await screen.findByRole("checkbox", { name: "차시 1 출제 가능 9갈래" }),
+    ).toBeEnabled();
+    expect(countQueries()).toHaveLength(2);
+    expect(countQueries().map((query) => query.recent)).toEqual([
+      "1",
+      undefined,
+    ]);
+    fireEvent.click(recent);
+    expect(
+      screen.getByRole("checkbox", { name: "차시 1 출제 가능 6갈래" }),
+    ).toBeChecked();
+    fireEvent.click(recent);
+    expect(
+      screen.getByRole("checkbox", { name: "차시 1 출제 가능 9갈래" }),
+    ).toBeChecked();
+    expect(countQueries()).toHaveLength(2);
+  });
+
+  it("isolates counts by source and reuses a previously confirmed source without sharing pending counts", async () => {
+    const original = fixture();
+    const changed = fixture({
+      holdCounts: true,
+      families: 3,
+      filters: "sourceGroup=engine",
+    });
+    const mounted = render(<original.Harness />);
+    await openLessons();
+    mounted.rerender(<original.Harness activeSource={changed.source} />);
+    expect(
+      await screen.findByRole("checkbox", {
+        name: /차시 1 출제 범위를 불러오는 중/,
+      }),
+    ).toBeDisabled();
+    expect(
+      screen.queryByRole("checkbox", { name: "차시 1 출제 가능 6갈래" }),
+    ).toBeNull();
+    await act(async () => changed.releaseCounts());
+    expect(
+      await screen.findByRole("checkbox", { name: "차시 1 출제 가능 3갈래" }),
+    ).toBeEnabled();
+    expect(changed.countQueries()[0]).toMatchObject({
+      sourceGroup: "engine",
+      recent: "1",
+    });
+    mounted.rerender(<original.Harness />);
+    expect(
+      await screen.findByRole("checkbox", { name: "차시 1 출제 가능 6갈래" }),
+    ).toBeEnabled();
+    expect(original.countQueries()).toHaveLength(1);
+    expect(changed.countQueries()).toHaveLength(1);
   });
 
   it("retains a failed selection and retries only the requested scope with unchanged source and recent conditions", async () => {
@@ -299,6 +448,7 @@ describe("S2 demand-loaded scope inventory", () => {
       await screen.findByRole("checkbox", { name: "차시 1 출제 가능 6갈래" }),
     ).toBeEnabled();
     expect(countQueries().at(-1)).toEqual(before);
+    expect(countQueries()).toHaveLength(2);
   });
 
   it("uses confirmed question counts when the family rule is off and never reads unselected inventory", async () => {

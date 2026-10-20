@@ -223,7 +223,7 @@ function SettingsNow() {
         <div className={s.foot}>
           <strong>합계 20문항</strong>
           <span className={s.grow} />
-          <Primary>문항 구성 →</Primary>
+          <Primary>문항 검토 →</Primary>
         </div>
       </div>
     </div>
@@ -719,7 +719,7 @@ function W4A() {
               <span>문항</span>
               <Btn>다시 나누기</Btn>
               <span className={s.grow} />
-              <Primary>문항 구성 →</Primary>
+              <Primary>문항 검토 →</Primary>
             </div>
             <span className={s.small}>{REDISTRIBUTE}</span>
             <span className={s.small}>
@@ -770,7 +770,7 @@ function W4B() {
             <div className={s.foot}>
               <strong>합계 20문항 = 총 문항</strong>
               <span className={s.grow} />
-              <Primary>문항 구성 →</Primary>
+              <Primary>문항 검토 →</Primary>
             </div>
             <span className={s.small}>{REDISTRIBUTE}</span>
             <div className={s.warn}>
@@ -884,7 +884,7 @@ function W4C() {
           <div className={s.foot}>
             <span className={s.small}>{OVER_FIXED}</span>
             <span className={s.grow} />
-            <Primary>문항 구성 →</Primary>
+            <Primary>문항 검토 →</Primary>
           </div>
         </div>
       </div>
@@ -920,7 +920,7 @@ function W4D() {
             <div className={s.foot}>
               <strong>합계 20문항</strong>
               <span className={s.grow} />
-              <Primary>문항 구성 →</Primary>
+              <Primary>문항 검토 →</Primary>
             </div>
           </div>
         </div>
@@ -1010,7 +1010,7 @@ function W4Phone() {
           <div className={s.foot}>
             <strong>합계 20 = 총 문항</strong>
             <span className={s.grow} />
-            <Primary>문항 구성 →</Primary>
+            <Primary>문항 검토 →</Primary>
           </div>
         </div>
       </div>
@@ -1129,7 +1129,7 @@ function W5B() {
               <strong>합계 20문항</strong>
               <span className={s.grow} />
               <Btn>조건 저장</Btn>
-              <Primary>문항 구성 →</Primary>
+              <Primary>문항 검토 →</Primary>
             </div>
             <div className={s.pinned}>
               <strong>조건 저장</strong>
@@ -1479,7 +1479,7 @@ export function BuilderWire() {
           title="A · 시험지가 조건을 같이 저장 + [지난 조건으로 시작]"
           idea="이름을 붙이지 않는다. 시험지를 저장하면 조건이 따라 저장되고, 새 시험지 1단계의 [지난 조건으로 시작]이 최근 10개를 고르기 창(PickerDialog)으로 보여 준다. 새 물건(목록 · 이름 · 삭제)이 없다."
           cost="«늘 쓰는 그 조건»을 날짜 · 제목으로 찾아야 한다. 10개가 지나면 안 보인다. 이 기능 전 시험지는 못 쓴다."
-          clicks="[지난 조건으로 시작] → [이 조건 적용] 2번 → [문항 구성 →]."
+          clicks="[지난 조건으로 시작] → [이 조건 적용] 2번 → [문항 검토 →]."
         >
           <W5A />
         </Option>
@@ -1506,7 +1506,7 @@ export function BuilderWire() {
           title="D · 최근 작업에서 «같은 조건으로 새로»"
           idea="시험지 만들기 밖, 최근 작업 목록의 행 단추. 누르면 그 시험지의 조건이 든 새 시험지가 1단계로 열린다. 지난 시험지를 이미 보고 있을 때 가장 짧다."
           cost="만들기 화면 안에는 입구가 없다 — 목록으로 나가야 한다. 지난 시험지를 찾는 일이 먼저다. 원본과 새것이 헷갈리지 않게 제목 · 알림이 필요하다."
-          clicks="[같은 조건으로 새로] 1번 → [문항 구성 →]."
+          clicks="[같은 조건으로 새로] 1번 → [문항 검토 →]."
         >
           <W5D />
         </Option>

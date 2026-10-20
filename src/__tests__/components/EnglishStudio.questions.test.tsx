@@ -61,7 +61,7 @@ async function compose() {
   fireEvent.change(screen.getByLabelText(`${item.title} 구성 수`), {
     target: { value: "1" },
   });
-  fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+  fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
   await screen.findByRole("button", { name: "원본 세트 열기" });
 }
 describe("English bank workspace integration", () => {

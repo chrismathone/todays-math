@@ -668,7 +668,7 @@ describe("H2 순서표 바로 다음의 출력 차단 안내", () => {
     expect(onIntentIssueChange).toHaveBeenLastCalledWith(
       expect.stringContaining("총 4문항 지정 · 현재 2문항"),
     );
-    fireEvent.click(screen.getByRole("button", { name: "이전: 범위 설정" }));
+    fireEvent.click(screen.getAllByRole("button", { name: "이전: 범위 설정" })[0]);
     changeNumber(
       allocations().getByRole("spinbutton", { name: "총 문항 수" }),
       "2",
@@ -706,7 +706,7 @@ describe("H2 순서표 바로 다음의 출력 차단 안내", () => {
     expect(
       allocations().getByRole("spinbutton", { name: "총 문항 수" }),
     ).toHaveValue(null);
-    fireEvent.click(screen.getByRole("button", { name: "문항 구성 →" }));
+    fireEvent.click(screen.getByRole("button", { name: "문항 검토 →" }));
     await screen.findByRole("region", { name: "다음 단계 안내" });
     const { next, explanation } = outputAdvice(/총 5문항 지정 · 현재 3문항/);
     expect(explanation).toHaveAttribute("role", "alert");
@@ -766,7 +766,7 @@ describe("H2 순서표 바로 다음의 출력 차단 안내", () => {
     );
     fireEvent.click(next);
     expect(adapter.prepareOutput).not.toHaveBeenCalled();
-    fireEvent.click(screen.getByRole("button", { name: "이전: 범위 설정" }));
+    fireEvent.click(screen.getAllByRole("button", { name: "이전: 범위 설정" })[0]);
     fireEvent.click(
       allocations().getByText(/^형식별 수/, { selector: "summary" }),
     );
