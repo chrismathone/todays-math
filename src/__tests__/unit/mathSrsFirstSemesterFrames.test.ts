@@ -9,7 +9,9 @@ function numeric(tex: string) {
   return m ? Number(m[1] ?? 0) + Number(m[2]) / Number(m[3]) : Number(tex);
 }
 it("independently solves new first-semester numeric frames", () => {
-  for (const s of COURSE_SECTIONS.filter((s) => ["5-1-3-2"].includes(s.id)))
+  for (const s of COURSE_SECTIONS.filter((s) =>
+    ["5-1-3-2", "5-1-4-2"].includes(s.id),
+  ))
     for (const tier of ["기본", "응용"] as const)
       for (let seed = 1; seed <= 32; seed++) {
         const frames = extraFirstSemesterFrames(s.unit, seed * 7919, tier);
@@ -74,10 +76,10 @@ it("independently solves new first-semester numeric frames", () => {
                   ? reduced[0][0]
                   : reduced[0][1];
             else
-              expected = p.content.includes("분모의 합")
-                ? reduced[0][1] + reduced[1][1]
-                : p.content.includes("분자와 분모의 합")
-                  ? reduced[0][0] + reduced[0][1]
+              expected = p.content.includes("분자와 분모의 합")
+                ? reduced[0][0] + reduced[0][1]
+                : p.content.includes("분모의 합")
+                  ? reduced[0][1] + reduced[1][1]
                   : fs[0][1] - reduced[0][1];
           } else {
             const values = parts.map(numeric);

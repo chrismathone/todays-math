@@ -12,6 +12,60 @@ export function extraFirstSemesterFrames(
 ): ElemProblem[] {
   const code = unit.section.split(" ")[0];
   const rng = createRng(seed);
+  if (code === "1-4-2") {
+    const den = [3, 5, 7, 11][intBetween(rng, 0, 3)];
+    const num = intBetween(rng, 1, den - 1),
+      factor = intBetween(rng, 2, 6);
+    const den2 = [3, 5, 7, 11][intBetween(rng, 0, 3)];
+    const num2 = intBetween(rng, 1, den2 - 1),
+      factor2 = intBetween(rng, 2, 6);
+    const fraction = `$\\frac{${num * factor}}{${den * factor}}$`;
+    const fraction2 = `$\\frac{${num2 * factor2}}{${den2 * factor2}}$`;
+    const reduced = `$\\frac{${num}}{${den}}$`;
+    const reason = `${fraction}와 크기가 같은 기약분수는 ${reduced}입니다.`;
+    if (tier === "기본")
+      return [
+        make(
+          unit,
+          `${fraction}와 크기가 같은 기약분수의 분자는 얼마입니까?`,
+          n(num),
+          reason,
+        ),
+        make(
+          unit,
+          `${fraction}와 크기가 같은 기약분수의 분모는 얼마입니까?`,
+          n(den),
+          reason,
+        ),
+        make(
+          unit,
+          `${fraction}의 분자와 분모를 각각 같은 자연수로 나누어 기약분수를 만들었습니다. 나눈 수는 얼마입니까?`,
+          n(factor),
+          `${reason} 분자와 분모를 각각 ${n(factor)}로 나누었습니다.`,
+        ),
+      ];
+    if (tier === "응용")
+      return [
+        make(
+          unit,
+          `${fraction}와 ${fraction2}를 각각 크기가 같은 기약분수로 만들었습니다. 두 기약분수의 분모의 합은 얼마입니까?`,
+          n(den + den2),
+          `${reason} 다른 분수의 분모는 ${n(den2)}이므로 합은 $${den}+${den2}=${den + den2}$입니다.`,
+        ),
+        make(
+          unit,
+          `${fraction}와 크기가 같은 기약분수에서 분자와 분모의 합은 얼마입니까?`,
+          n(num + den),
+          `${reason} 분자와 분모의 합은 $${num}+${den}=${num + den}$입니다.`,
+        ),
+        make(
+          unit,
+          `${fraction}와 크기가 같은 기약분수를 만들면 분모는 얼마나 작아집니까?`,
+          n(den * (factor - 1)),
+          `${reason} 분모가 ${n(den * factor)}에서 ${n(den)}로 바뀌므로 $${den * factor}-${den}=${den * (factor - 1)}$만큼 작아집니다.`,
+        ),
+      ];
+  }
   if (code === "1-3-2") {
     const factor = intBetween(rng, 2, 8),
       x = intBetween(rng, 5, 10),
