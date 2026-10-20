@@ -1,10 +1,9 @@
-import {
-  generateElementaryProblem,
-  supportedTiers,
-} from "@/lib/elementary/generate";
+import { supportedTiers } from "@/lib/elementary/generate";
 import type { ElemTier } from "@/lib/elementary/difficulty";
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
+import { courseFigureCandidates } from "@/lib/math-srs/elementary/courseFigureCandidates";
+import { courseFigureFingerprint } from "@/lib/math-srs/elementary/figureFingerprint";
 
 export const runtime = "nodejs";
 const cache = new Map<string, string>();
@@ -29,7 +28,8 @@ export async function GET(request: Request) {
       { status: 400 },
     );
   }
-  const key = `${section.id}:${seed}:${tier}`;
+  const spec = query.get("spec");
+  const key = JSON.stringify([section.id, seed, tier, spec]);
   function image(svg: string) {
     return new Response(svg, {
       headers: {
@@ -48,8 +48,16 @@ export async function GET(request: Request) {
         { status: 503, headers: { "Retry-After": "2" } },
       );
     const task = (async () => {
-      const original = generateElementaryProblem(section.unit, seed, tier);
-      if (!original.figureSpec) return null;
+      const candidates = courseFigureCandidates(section.unit, seed, tier);
+      const original =
+        spec === null
+          ? candidates[0]
+          : candidates.find(
+              (candidate) =>
+                candidate.figureSpec &&
+                courseFigureFingerprint(candidate.figureSpec) === spec,
+            );
+      if (!original?.figureSpec) return null;
       const result = await renderFigureSpec(original.figureSpec);
       if (!result.ok) throw new Error("Figure rendering failed");
       if (cache.size >= 128) cache.delete(cache.keys().next().value!);
