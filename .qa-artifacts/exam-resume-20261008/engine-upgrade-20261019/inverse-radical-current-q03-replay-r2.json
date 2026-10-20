@@ -1,0 +1,66 @@
+{
+  "utc": "2026-10-20T06:17:32.622Z",
+  "candidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-authoring-20261020-r1/daegudong/q03.json",
+    "sha256": "5dc280d921e735bde950948e1d8c242b1c1ced2be8e50df21f3de31ab85d18f8"
+  },
+  "studentDigest": "5687e3f56b37fd0cd57aca1b86bc8935fa8def0f93bdea5a267b47164617453a",
+  "candidateDigest": "94b69f1744ed39667ef22d82cce7ab9332d8cf8cefb5c23de33c532ea4bbce98",
+  "conditionsExtractedFromBoundPrintedTable": {
+    "rootCoefficient": 3,
+    "reciprocalRadicand": 5,
+    "reciprocalScale": 2,
+    "ratioProduct": "8",
+    "domain": "a,b,k-positive"
+  },
+  "positiveDomainObservedFromBoundStem": true,
+  "result": {
+    "domain": "a,b,k-positive",
+    "printedModel": {
+      "rootCoefficient": 3,
+      "reciprocalRadicand": 5,
+      "reciprocalScale": 2,
+      "ratioProduct": {
+        "numerator": "8",
+        "denominator": "1"
+      }
+    },
+    "calculationOnly": true,
+    "curriculumApproved": false,
+    "studentMethodProved": false,
+    "rightsApproved": false,
+    "permitsLoad": false,
+    "status": "unique",
+    "solutions": [
+      {
+        "a": {
+          "numerator": "4",
+          "denominator": "5"
+        },
+        "b": {
+          "numerator": "10",
+          "denominator": "1"
+        },
+        "k": {
+          "numerator": "16",
+          "denominator": "25"
+        }
+      }
+    ],
+    "witness": {
+      "radicand": {
+        "numerator": "48",
+        "denominator": "25"
+      },
+      "positiveRootBranchRequired": true,
+      "denominatorNonzero": true,
+      "allPrintedRelationsRechecked": true,
+      "uniqueness": "The reciprocal relation fixes b, the positive product fixes a, and the positive-root relation fixes k; the positive substitution also proves existence"
+    }
+  },
+  "authorReplayNotIndependentStudentSolve": true,
+  "studentGradeMethodOrRightsApproval": false,
+  "publicTemplateImplemented": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

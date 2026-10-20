@@ -31,3 +31,18 @@ test('rejects missing domains, degenerate radicals/denominators and unsupported 
 test('retains exact bounded extremes, deterministic output and caller bytes',()=>{
  const x={...input,rootCoefficient:1000000,reciprocalRadicand:1000000,reciprocalScale:1000,ratioProduct:'999999999.999999'},before=JSON.stringify(x),r=inverseRadicalRatio(x),s=r.solutions[0];assert.equal(r.status,'unique');equals(s.b,1000000000,1);equals(s.a,999999999999999n,1000000000000000n);equals(s.k,999999999999999n**2n,1000000000000000n**2n);assert.equal(JSON.stringify(x),before);assert.deepEqual(inverseRadicalRatio(x),r);
 });
+test('rejects the three independently observed changing-coefficient accessors without reading them',()=>{
+ for(const [key,first,second]of [['rootCoefficient',3,7],['reciprocalRadicand',5,11],['reciprocalScale',2,3]]){
+  let reads=0;const record={...input};Object.defineProperty(record,key,{enumerable:true,get(){return ++reads===1?first:second;}});
+  assert.throws(()=>inverseRadicalRatio(record),/accessors/);assert.equal(reads,0);
+ }
+ for(const key of ['domain','ratioProduct']){let reads=0;const record={...input};Object.defineProperty(record,key,{enumerable:true,get(){reads++;throw Error('caller getter executed');}});assert.throws(()=>inverseRadicalRatio(record),/accessors/);assert.equal(reads,0);}
+});
+test('accepts frozen/null-prototype data and rejects proxies, hidden fields and symbols',()=>{
+ assert.deepEqual(inverseRadicalRatio(Object.freeze({...input})),inverseRadicalRatio(input));
+ assert.deepEqual(inverseRadicalRatio(Object.assign(Object.create(null),input)),inverseRadicalRatio(input));
+ let traps=0;const proxy=new Proxy({...input},{get(){traps++;throw Error('proxy invoked');},ownKeys(){traps++;return[];}});assert.throws(()=>inverseRadicalRatio(proxy),/plain data/);assert.equal(traps,0);
+ const hidden={...input};Object.defineProperty(hidden,'rootCoefficient',{value:3,enumerable:false});assert.throws(()=>inverseRadicalRatio(hidden),/enumerable/);
+ assert.throws(()=>inverseRadicalRatio({...input,[Symbol('approval')]:true}),/named/);
+ assert.throws(()=>inverseRadicalRatio(Object.assign(Object.create({}),input)),/plain data/);
+});

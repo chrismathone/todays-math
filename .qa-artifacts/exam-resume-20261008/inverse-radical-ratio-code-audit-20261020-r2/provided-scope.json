@@ -1,0 +1,30 @@
+{
+  "utc": "2026-10-20T06:17:12.265083+00:00",
+  "kind": "repaired-U57-plain-data-boundary-independent-audit/v2",
+  "files": [
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "snapshot": "provided-code-snapshots/inverseRadicalRatioConditions.mjs.snapshot",
+      "runtime": "provided-code-runtime-local/inverseRadicalRatioConditions.mjs",
+      "sha256": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.test.mjs",
+      "snapshot": "provided-code-snapshots/inverseRadicalRatioConditions.test.mjs.snapshot",
+      "runtime": "provided-code-runtime-local/inverseRadicalRatioConditions.test.mjs",
+      "sha256": "665ed0467d44884b501ed755d3dc72823d0df4b44763d672846a8e7e1e38d9b4"
+    }
+  ],
+  "priorTechnicalHold": {
+    "commit": "29a6f49b61d6eba80a28c70bb02b8fd3d2f052f5",
+    "reportSha256": "a057659e73ce38e2ed1ee830bf3f2a947c6ca225f1987cc0743e638ade3cdac3",
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-radical-ratio-code-audit-20261020-r1/own-audit-report.json"
+  },
+  "repair": "Reject proxies/non-plain/accessor/symbol/non-enumerable records before invoking caller callbacks. Read own data descriptors once; snapshot primitive values for both calculation and returned model. Frozen/null-prototype own data allowed.",
+  "requiredReaudit": "Rerun own654controls including3originalgetterfailures on exactnewsource, plus own variations all5fields/proxytraps/prototype/symbol/hiddenfields/frozen/null records. Validate plain-data530independentoracle unchanged, actualprintedq03/raw/report unchanged, flagsclosed. Preserve alloldfailurebytes. No parent test count as independent evidence.",
+  "noPublicTemplateOrStudentGradeRightsApproval": true,
+  "actualPrintedExampleAlreadySupplied": true,
+  "dbWrites": 0,
+  "loadable": 0,
+  "readOnlyAfterCurrentU58TaskComplete": true
+}

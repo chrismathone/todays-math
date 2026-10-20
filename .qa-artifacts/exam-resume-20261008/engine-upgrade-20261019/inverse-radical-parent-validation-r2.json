@@ -1,0 +1,42 @@
+{
+  "utc": "2026-10-20T06:18:04.717Z",
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "sha256": "c9823d69136ed83f4dfb8a4d351c959cbd22154c883c1a7bf39c382f48d38f14"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.test.mjs",
+      "sha256": "665ed0467d44884b501ed755d3dc72823d0df4b44763d672846a8e7e1e38d9b4"
+    }
+  ],
+  "currentPrintedCandidateReplay": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-radical-current-q03-replay-r2.json",
+    "sha256": "626c4113a196fc6a3f0554ef052f8d5348cd51c102c473266c2ca56c608410d1"
+  },
+  "nodeFiles": 16,
+  "nodeSummary": "nce\nok 181 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 25.7177\n  type: 'test'\n  ...\n1..181\n# tests 181\n# suites 0\n# pass 181\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 23849.5614\n",
+  "ownConstructedRationalWitnessesInsideOneTest": 1296,
+  "lintPassed": true,
+  "previous93OtherCodeFilesUnchanged": true,
+  "priorU57TechnicalHoldPreserved": {
+    "path": ".qa-artifacts/exam-resume-20261008/inverse-radical-ratio-code-audit-20261020-r1/own-audit-report.json",
+    "sha256": "a057659e73ce38e2ed1ee830bf3f2a947c6ca225f1987cc0743e638ade3cdac3"
+  },
+  "getterFailureRepair": "Own enumerable data fields only; reject accessors/proxies before executing callbacks; snapshot primitives once for calculation and returned model",
+  "candidateBytesUnchanged": true,
+  "logs": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-radical-node-r2.tap",
+      "sha256": "23c295ff60ef7e84080e7f54ed4280e315ab8835a7c26096b121e5c74323ba99"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/inverse-radical-lint-r2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "independentCodeAuditPending": true,
+  "standaloneAuthoringHelperNotPublicAppTemplate": true,
+  "dbWrites": 0,
+  "loadable": 0
+}
