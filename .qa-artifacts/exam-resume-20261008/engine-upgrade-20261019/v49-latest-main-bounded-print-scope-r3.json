@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-20T10:33:46.181115+00:00",
+  "files": [
+    "src/__tests__/components/conceptBlankWritingArea.test.tsx",
+    "src/__tests__/components/descriptivePaper.test.tsx",
+    "src/__tests__/components/descriptiveUnifiedPrint.test.tsx",
+    "src/__tests__/components/PrintCheck.test.tsx",
+    "src/__tests__/components/nativeDescriptiveAuthorPrint.test.tsx",
+    "src/__tests__/components/TemplateT2.test.tsx",
+    "src/__tests__/components/PrintColorImplementation.test.tsx",
+    "src/__tests__/components/WorksheetPrint.preview.test.tsx",
+    "src/__tests__/unit/conceptBlankWritingAreaRegression.test.ts"
+  ],
+  "memoryScope": "Bounded local print regressions only; no whole41/catalog/browser/typecheck run",
+  "nodeV8MaxOldSpaceMiB": 256,
+  "maxWorkers": 1,
+  "minimumAvailableGiB": 1.5,
+  "heapLimitNotWholeOSProcessLimit": true,
+  "coauthorMain": "aa904fd6e5dc7eda4ad1c3dc2bd29ee3335ac323",
+  "noProductEdits": true,
+  "dbWrites": 0
+}
