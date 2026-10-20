@@ -1,0 +1,87 @@
+.root,
+.surface {
+  --writing-grid: #e8e8eb;
+  --writing-rule: #a0a0a8;
+  --writing-light: #d4d4d8;
+  --writing-paper: #fff;
+  --writing-ink: #424247;
+}
+.root {
+  break-inside: avoid;
+  min-width: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.heading {
+  min-height: 5mm;
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--writing-ink);
+}
+.area {
+  height: var(--writing-height);
+  min-height: var(--writing-min-height);
+  position: relative;
+  background-color: var(--writing-paper);
+  outline: 1px solid var(--writing-rule);
+  outline-offset: -1px;
+}
+.root[data-fill] {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.root[data-fill] .area {
+  flex: 1;
+}
+.grid {
+  background-image:
+    linear-gradient(var(--writing-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--writing-grid) 1px, transparent 1px);
+  background-size: var(--writing-grid-size) var(--writing-grid-size);
+}
+.lines {
+  background-image: linear-gradient(var(--writing-light) 1px, transparent 1px);
+  background-size: 100% var(--writing-line-height);
+}
+.linesBottom {
+  background-image: linear-gradient(
+    to bottom,
+    transparent calc(var(--writing-line-height) - 1px),
+    var(--writing-light) calc(var(--writing-line-height) - 1px)
+  );
+  background-repeat: repeat-y;
+}
+.blank {
+  background-image: none;
+}
+.section {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--writing-rule);
+  background-color: var(--writing-paper);
+}
+.section:last-child {
+  border-bottom: 0;
+}
+.label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 8mm;
+  padding: 1mm 2mm;
+  background: var(--writing-paper);
+  border-right: 1px solid var(--writing-light);
+  border-bottom: 1px solid var(--writing-light);
+  color: var(--writing-ink);
+  font-family: var(--paper-font-sans);
+  font-weight: 700;
+  font-size: 12px;
+}
+:global([data-print-monochrome="true"]) .root {
+  --writing-grid: #e8e8e8;
+  --writing-rule: #a0a0a0;
+  --writing-light: #d4d4d4;
+  --writing-ink: #424242;
+}

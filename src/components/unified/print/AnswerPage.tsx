@@ -136,6 +136,7 @@ function QuickAnswerTable({
                 problem={problems[cell.index].variant}
                 number={
                   problems[cell.index].variant.arithmetic?.number ??
+                  problems[cell.index].number ??
                   startingNumber + cell.index
                 }
                 span={cell.span}
@@ -188,7 +189,9 @@ export function AnswerPage(props: AnswerPageProps) {
       key={problems[index].id}
       problem={problems[index].variant}
       number={
-        problems[index].variant.arithmetic?.number ?? startingNumber + index
+        problems[index].variant.arithmetic?.number ??
+        problems[index].number ??
+        startingNumber + index
       }
       options={options}
       scale={layout?.scales[offset] ?? props.itemScales?.[offset]}

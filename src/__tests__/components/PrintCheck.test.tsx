@@ -254,11 +254,15 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 140: question-smart-spacing-20261020 — 문항별 균등 여백·스마트 배치 실물 검수 대기.
     // 141: H2 빠른 채점표의 실물 검수 대기(2026-10-20).
     // 142: 선택한 A · T2의 여섯 제품 양식 묶음 검수 대기 추가.
-    expect(ITEMS.length).toBe(142);
+    // 143: 서술형 B — 일일·확인·기출 답안지·교사용, 실제 프린터 검수 대기.
+    // 144: 개념 백지 공용 WritingArea 적용 뒤 실물 회귀 검수 대기.
+    expect(ITEMS.length).toBe(144);
     for (const id of [
       "question-smart-spacing-20261020",
       "answer-quick-key-h2",
       "template-a-t2-20261020",
+      "descriptive-paper-b-20261020",
+      "concept-blank-writing-area-20261020",
     ])
       expect(ITEMS).toContainEqual(
         expect.objectContaining({

@@ -83,6 +83,46 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "concept-blank-writing-area-20261020",
+    title: "개념 백지 공용 답란 — 다섯 형식 · 서술형 B 회귀",
+    changed:
+      "개념 백지의 줄·모눈·빈 내부를 WritingArea로 공유한다. 기존 30px 줄, 16px 그림 모눈, 점선 예 상자, 최소 높이와 쪽 나눔은 유지한다.",
+    look: "새 질문·옛 자료의 A~E 학생지와 채점표를 A4 100%·배경 그래픽 켬으로 출력한다. A 좌우 아랫변과 점선 예 상자, B의 ○× 아래와 까닭 첫 줄, C의 빈 풀 자리·답 밑줄, D 가지 줄, E 그림 아래 줄, 머리말·지면 코드·쪽 번호 잘림을 확인한다. 서술형 B의 4mm 모눈과 16·24·32mm 분할도 이전과 대조한다. 흑백·복사 후 옅은 줄과 모눈이 사라지면 불합격이다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-concept-blank-writing-area-codex.md",
+      "docs/planning/tracks/reports/concept-blank-writing-area-20261020.md",
+      "src/components/print/WritingArea.tsx",
+      "src/components/concept-blank/paper/StudentBody.tsx",
+    ],
+    needs:
+      "그림·예 칸이 모두 있는 A, ○×가 있는 B, 적용이 있는 C, 새·옛 지도 D, 그림 E와 서술형 B.",
+    scale:
+      "개념 백지 A~E의 학생 답란. 채점표·머리말·지면 코드·서술형 B는 회귀 대조 대상.",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
+  {
+    id: "descriptive-paper-b-20261020",
+    title: "서술형 답란 B — 일일 · 확인 · 기출 답안지 · 교사용",
+    changed:
+      "주 저자 r2 서술형은 일일·확인 문제 아래 4mm 옅은 모눈 답란, 기출형은 별도 답안지를 쓴다. 소문항 ⑴⑵⑶을 나누고 마지막 칸에 여유를 둔다. 교사용에는 기준별 점수·□·합계·선행 오류 원칙을 넣는다.",
+    look: "/dev/descriptive-paper의 미등록 직사각형 시연을 학생용·교사용, 컬러·흑백으로 출력한다. A4 100%에서 모눈 4mm, 전체 답란 72mm와 16·24·32mm 분할, 문제·그림·답란·푸터 잘림, 번호 옆 8점과 채점표 □·부분점수·합계를 확인한다. 옅은 모눈이 프린터·복사기에서 사라지지 않는지, 손풀이가 칸에 들어가는지는 실물로 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/brief-descriptive-paper-impl-codex.md",
+      "src/components/print/WritingArea.tsx",
+      "src/lib/print/descriptive.ts",
+      "src/components/print/DescriptiveRubricPage.tsx",
+    ],
+    needs:
+      "미등록 rectangleDemo를 /dev/descriptive-paper에서 인쇄. 실제 출제·등록 배선은 범위 밖.",
+    scale:
+      "구조화된 nativeDescriptive r2 렌더 경로. 일반 풀이 공간·개념 백지는 변경하지 않음.",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
+  {
     id: "template-a-t2-20261020",
     title: "시험지 여섯 양식 A · T2 머리·번호·풀이 공간",
     changed:

@@ -304,6 +304,12 @@
   padding-top: 14px;
 }
 
+.descriptiveItem {
+  display: block;
+  flex: none;
+  border-bottom: 0;
+}
+
 .questionArea {
   min-width: 0;
 }

@@ -5,6 +5,8 @@ import type { PrintChoiceLayout } from "@/lib/math/choiceLayout";
 import type { FontPackId } from "./fontPacks";
 export interface ProblemReview {
   id: string;
+  /** Original printed number, preserved when native rubrics leave the answer list. */
+  number?: number;
   variant: StudioProblem & { topic: string };
   /** Measured with the first question, so a type heading cannot be orphaned. */
   sectionHeading?: string;

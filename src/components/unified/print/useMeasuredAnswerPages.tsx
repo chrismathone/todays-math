@@ -280,7 +280,9 @@ export function useMeasuredAnswerPages(
       };
     }
     const numberOf = (index: number) =>
-      problems[index].variant.arithmetic?.number ?? index + 1;
+      problems[index].variant.arithmetic?.number ??
+      problems[index].number ??
+      index + 1;
     try {
       return {
         pages: groups.flatMap((group, groupIndex) => {
@@ -336,11 +338,11 @@ export function useMeasuredAnswerPages(
       className={`${paper.measureHost} ${paper.document}`}
       style={fontStyle}
     >
-      {problems.map(({ id, variant }, index) => (
+      {problems.map(({ id, number, variant }, index) => (
         <div key={id}>
           <QuickAnswerCell
             problem={variant}
-            number={variant.arithmetic?.number ?? index + 1}
+            number={variant.arithmetic?.number ?? number ?? index + 1}
             natural
             style={{ width: "max-content" }}
             measureKey={`${index}:natural`}
@@ -349,7 +351,7 @@ export function useMeasuredAnswerPages(
             <QuickAnswerCell
               key={span}
               problem={variant}
-              number={variant.arithmetic?.number ?? index + 1}
+              number={variant.arithmetic?.number ?? number ?? index + 1}
               span={span}
               style={{ width: ((fullWidth - 1) * span) / 5 }}
               measureKey={`${index}:${span}`}
@@ -362,7 +364,7 @@ export function useMeasuredAnswerPages(
             >
               <AnswerSolution
                 problem={variant}
-                number={variant.arithmetic?.number ?? index + 1}
+                number={variant.arithmetic?.number ?? number ?? index + 1}
                 options={options}
               />
             </div>

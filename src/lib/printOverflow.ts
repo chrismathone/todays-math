@@ -35,6 +35,7 @@
  *    `scripts/qa/eval-overflow-rules.ts` 가 이 판정을 그 실측과 대조해 채점한다.
  */
 import type { TestPrintProblem } from "@/components/print/types";
+import { descriptiveWritingLayout } from "@/lib/print/descriptive";
 import {
   type FigureDimension as FigureDimensionType,
   figurePrintWidthPx,
@@ -744,6 +745,8 @@ export function packProblems<T extends SeatProblem>(
     const next = problems[index + 1];
     const pairs =
       next !== undefined &&
+      !here.nativeDescriptive &&
+      !next.nativeDescriptive &&
       !assessSeat(here, shared).tooTall &&
       !assessSeat(next, shared).tooTall;
 
@@ -824,6 +827,7 @@ export type SeatProblem = Pick<TestPrintProblem, "content"> &
       | "figureSourceMm"
       | "figureSvg"
       | "choiceFigureIndex"
+      | "nativeDescriptive"
     >
   >;
 
@@ -851,11 +855,25 @@ export function assessSeat(
   // 🔴 엔진 문항은 그림이 `figureSvg` 한 컬럼에만 있다(`figureUrls` 전량 비었다).
   //    여기서 안 넘기면 그 4,640문항의 그림이 통째로 0으로 세어진다.
   const svg = problem.figureSvg ?? null;
+  // Native B uses the full content width and a fixed writing surface instead
+  // of the narrow question column + "내 정답" row. Ordinary seats are unchanged.
+  const native = problem.nativeDescriptive;
+  const fullWidth = mmToCssPx(210) - 100;
+  const ruler: RulerMetrics = native
+    ? {
+        ...JASEUP_RULER,
+        problemColumn: fullWidth,
+        choiceTextColumn: fullWidth - 18.5,
+        boxItemColumn: fullWidth - 34,
+        fixedChrome:
+          24 + mmToCssPx(5 + descriptiveWritingLayout(native).heightMm),
+      }
+    : JASEUP_RULER;
   const px = estimateProblemPx(
     problem.content,
     figures,
     svg,
-    JASEUP_RULER,
+    ruler,
     problem.choiceFigureIndex,
   );
   const lines = Math.ceil(px / JASEUP_MEASURED_PX.line);

@@ -1,0 +1,32 @@
+Unified native r2 descriptive print — worker report (2026-10-20)
+
+Implementation
+- Added render-only StudioProblem.nativeDescriptive using the parent NativeDescriptivePrint type; no stored contracts or loading paths changed.
+- Five daily/review templates render the common answer area beneath the native question; all six print native rubric total points next to the number and suppress repeated embedded content scores only for native r2.
+- Workbook/Jaseup native cards omit their old scratch/short answer area. Explicit right scratch stays intact for ordinary-only pages and occupies ordinary rows only on mixed pages; native rows receive no second scratch area.
+- Pyeongga appends one separate descriptive answer sheet per native problem. showAnswers appends one dedicated rubric page per native problem, including quick-answer mode, while ordinary key/solution pages omit native content.
+- Optional ProblemReview.number keeps original question numbering through the filtered ordinary answer renderer and its measurement probes; arithmetic/English numbering retains existing precedence.
+- Native inline handwriting is never scaled to fit. A required scale below 1 blocks export; separate sheets measure actual DOM after fonts/layout and block overflow instead of shrinking writing or clipping a rubric silently.
+
+TDD and automated checks
+- Initial tests: 11 expected failures / 1 existing-compatible pass before implementation.
+- Added scratch/no-shrink tests: 7 expected failures / 12 passes, then green.
+- Added dedicated-page overflow test: 1 expected failure / 20 passes, then green.
+- Final targeted regression: 14 Vitest files, 161 tests passed (including all 21 descriptiveUnifiedPrint tests); see vitest-results.txt.
+- Full repository TypeScript: node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit --incremental false — passed.
+- ESLint on all 17 owned code/test files, D-30 affordance check on changed TSX, and git diff --check — passed.
+- Existing score visibility, ordinary answers, measured pagination, geometry, smart spacing, color and arithmetic-output tests are included in the 14-file run.
+
+Real browser evidence
+- Run from repository root: node docs/planning/tracks/reports/descriptive-unified-print-20261020/verify-browser.mjs
+- Script starts and closes an isolated Vite server and installed Chrome, using harness.tsx.txt with a synthetic three-part r2 fixture (no API, DB, registration, generated originals or external calls).
+- Final browser-results.json: 6 templates × 2 student/teacher modes × 3 layouts (one column, two columns, one column plus ruled right scratch) = 36 ready variants, no student teacher-text leaks, native 72mm writing height retained at 272.125 CSS px, and ordinary answer numbering preserved.
+- A deliberately oversized native rubric blocks readiness and displays the descriptive overflow alert.
+- Final page errors, console errors and warnings: zero. workbook-mixed.png shows the native grid directly beneath the question and ordinary-only right scratch.
+- The final script includes a doctype and inline favicon; initial harness diagnostics were corrected. An initial shared rubric p/div nesting warning was escalated and fixed by the parent; the final evidence uses the corrected shared file.
+
+Delivery and boundaries
+- implementation.patch contains only the 17 owned production/test files in modified-files.txt; it excludes every parent-owned shared component and type file.
+- Shared files were copied read-only from /Users/pss/Desktop/creative/today-desc-paper for local validation, then removed from this worker tree. Parent must apply the patch where its shared components already exist.
+- Report artifacts were added at the coordinator's explicit follow-up request; no commit, staging, push, DB, registration/loading, or concept-blank changes.
+- Parent owns the actual Next route, rectangleDemo fixture, Chromium PDF/pixel checks and overall product report; this worker's synthetic browser evidence does not claim those validations or physical printing.
