@@ -124,6 +124,8 @@ export const coursePublicSessionSchema = z.strictObject({
     .nullable(),
   startedAt: isoDateTimeSchema,
   completedAt: isoDateTimeSchema.nullable(),
+  /** A lesson of a section finished before; only for `x-course-relearn: 1`. */
+  relearn: z.literal(true).optional(),
 });
 export type CoursePublicSession = z.infer<typeof coursePublicSessionSchema>;
 export const courseHintInputSchema = z.strictObject({
@@ -144,6 +146,12 @@ export type CourseAttemptInput = z.infer<typeof courseAttemptInputSchema>;
  * `x-course-follow-up: 1`, which turns on the response's `followUp` field.
  */
 export const COURSE_FOLLOW_UP_HEADER = "x-course-follow-up";
+/**
+ * Consensus 2026-10-20: the preview card opens by itself only on a section's
+ * first lesson. Screens that know this send `x-course-relearn: 1` and get the
+ * public session's `relearn`; tabs opened before parse strictly without it.
+ */
+export const COURSE_RELEARN_HEADER = "x-course-relearn";
 export const courseFollowUpInputSchema = z
   .strictObject({
     sessionId: uuidSchema,

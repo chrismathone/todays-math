@@ -71,12 +71,18 @@ export function courseStudentDto(
   saved: Saved,
   now: Date,
   requestedSessionId?: string,
-  options: { followUp?: boolean } = {},
+  options: { followUp?: boolean; relearn?: boolean } = {},
 ): CourseStudentState {
   const course = saved.state.course ?? emptyCourseState();
   const session = requestedSessionId
     ? findStoredCourseSession(course, requestedSessionId)
     : course.learner.session;
+  // Finished sessions of this section before this one; `history` keeps only 30.
+  const relearn =
+    options.relearn &&
+    session?.mode === "learn" &&
+    (course.learner.progress[session.sectionId]?.completedSessions ?? 0) >
+      (session.completedAt ? 1 : 0);
   const mission = visibleExpeditionMission(saved.state, now);
   const prerequisiteContext = coursePrerequisiteContext(
     course,
@@ -104,7 +110,12 @@ export function courseStudentDto(
         ? { todayAnswered: mission.answered, todayGoal: 10 as const }
         : {}),
     },
-    session: session ? publicCourseSession(session, options) : null,
+    session: session
+      ? {
+          ...publicCourseSession(session, options),
+          ...(relearn ? { relearn: true as const } : {}),
+        }
+      : null,
   };
 }
 
