@@ -49,3 +49,34 @@
 - 50·100문항은 자체 제작 25문항의 답을 반복한 스트레스 표본이다.
 - 템플릿 제안은 첫 2~6문항의 첫 쪽 Wire다. 25문항 전체의 새 페이지 수나 제품 페이지 나눔의 검증 결과로 해석하지 않는다.
 - 선택 전 Hi-fi나 제품 구현, `/dev/print-check` 항목 추가, 실물 검수는 하지 않는다.
+
+## WorksheetPrint template measurement
+
+This DB-free harness imports the real `WorksheetPrint`, `useMeasuredPages`, all six product templates, unified math/figure rendering, app global CSS, CSS modules and KaTeX CSS. It creates no Next route and does not install packages or generate Prisma. It does not create template or quick-key Wire designs.
+
+Run from the repository root **only when the supervising parent has cleared the machine's memory gate**:
+
+```powershell
+node scripts/qa/print-templates/measure.mjs
+python scripts/qa/print-templates/compare.py
+```
+
+Requires the existing Vite/React/Playwright packages, Playwright Chromium and Python Pillow. Each Vite/Chromium launch waits for `os.freemem() >= 3GiB`. Vite serves only the small harness root and auto-discovers dependencies from its `index.html`; its cache lives under ignored `.qa-artifacts/`. React transformation excludes dependencies and caches. Tailwind scans only math components, the two unified problem renderers, and the shared choice/figure class definitions; the actual global declarations and print CSS are retained. No renderer, pagination function or font loader is mocked. The app's default `system` print font pack uses installed Windows fonts; browser-reported platform fonts are queried at a direct Korean-text leaf, so these captures must not be described as server-PDF font evidence.
+
+The stable 25-item fixture repeats a deliberately authored five-problem mix five times: fraction short answer, equation multiple choice, inline SVG geometry, long word problem, fraction multiple choice. Thus 10 multiple-choice and 15 short-answer problems, including five figures and five long prompts. This is layout evidence, not a curriculum-valid examination or a bank-content audit. The fixture uses the ordinary markdown problem renderer; OCR/crop/English variants are outside this sample.
+
+All settings except `template` are identical: product defaults, A4, one column, 18px gap, normal margins (top/bottom 12mm, left/right 15mm), system font, navy `#1B2A4E`, automatic choices, chapter/difficulty/date on, answers off, explicit solving area off. Workbook and self-study still render their built-in one-column workspaces. All template-specific metadata is populated to avoid comparing empty headers. This compares selecting templates from one fixed settings state; it does not invent per-template defaults.
+
+Pagination completes in screen media, with `WorksheetPrint.onReady === true`, then the same production export document is captured in print media. After preserving original DOM/metrics, the export document is cloned directly into body, retaining head CSS, as export clients do; app ancestor paint contexts must not obscure capture. Page internals remain unchanged. PNGs use a fixed 794×1123 crop (A4 rounded up at 96dpi), device scale 1; the DOM itself remains 793.6875×1122.515625 CSS px. `metrics.json` records all pages, question rectangles, text-line top counts, computed font values, loaded platform fonts, source SHA-256 fingerprints, browser, platform and base commit. Line counts merge text fragment tops at half-pixel resolution and exclude KaTeX accessibility text; fraction/superscript vertical fragments also count, so these are comparative rendered baselines, not semantic sentence counts or pure prose lines. `compare.py` rejects captures with fewer than 1,001 dark pixels; visual inspection remains necessary.
+
+Artifacts under `evidence/`:
+
+- `{template}-{first,last}.png`: twelve actual A4 captures.
+- `contact-{first,last}.png`: six-column reading aids, downscaled from captures.
+- `rendered-pages.json`: parent builder schema `{styles, templates:{[template]:{first,last,items}}}`. `first`/`last` preserve the export-document wrapper and its actual A4 `[data-unified-paper]` child; `firstSheet`/`lastSheet` also retain bare sheet outerHTML. `items` contains only actual export-page questions in original order. Capture-only visibility CSS is excluded. CSS font URLs become data URIs; inline fixture figures require no external URL. The wrapper preserves CSS-module ancestry and inherited font variables. A `:root` bridge supplies the same font variables for standalone question snippets. Per-template style snapshots are retained too.
+- `fixture.json`, `metrics.json`, `partial-metrics.json`: exact input, completed manifest, checkpoint.
+- `pixel-comparisons.json`: all fifteen pairs on first and last pages.
+- `capture-ink-checks.json`: size and actual dark/nonwhite pixel counts for every capture.
+- `pyeongga-jeongtong-{first,last}-difference.png`: absolute RGB difference images.
+
+Pixel comparisons use same-size, top-left-aligned, full-resolution captures without shifting, masking or background removal. A pixel differs if its largest absolute channel difference exceeds 16/255; report both total-page percentage and the nonwhite-union denominator (either source has a channel below 245). Blank paper can make the total-page ratio small. Different pagination/content on the last page is intentionally included; it measures the complete printed result, not identical-content typography. Do not interpret these numbers as perceptual similarity scores or learning-effect measures.
