@@ -1,0 +1,198 @@
+{
+  "kind": "independent-next2-student-only-raw-replay/v1",
+  "solverId": "codex-helper-independent-next2-student-20261020",
+  "exposureDeclaration": {
+    "priorOriginalSourceComponentsReviewed": true,
+    "priorRelatedExposure": "Completed source9 first-question components and their full original first-page images with incidental handwritten marks; earlier root variants, source-method proposals and U54/U55/U56 code audits. This is not an unseen-source-corpus claim.",
+    "currentTransformedAuthorAnswerSeenBeforeRawSeal": false,
+    "currentTransformedAuthorSolutionSeenBeforeRawSeal": false,
+    "currentAuthorMetadataOrPrivatePackageRead": false,
+    "parentWorktreeOrAuthorHistoryRead": false,
+    "answerSearchUsed": false,
+    "method": "Solve current printed student conditions afresh; original answers, handwritten markings, prior variant outputs and image pixels are not answer oracles."
+  },
+  "studentInputsBefore": {
+    "studentDigest": "cd419ce5848d1631a758075f0913081bce78acc3bbd5d56ee958ef05a3f1d094",
+    "packageDigestAsProvided": "69565bdecc59d73a169b34b8b21171ab64d66616f95c81630869e536baabd0ef",
+    "filesBefore": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/SOLVE-BRIEF.md",
+        "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/student-problems.json",
+        "sha256": "e8db1c8c93d1dde4e0fd73a0dd7e7da7990c1836c2c6328a0028febbd1607953"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/blind-manifest.json",
+        "sha256": "409f7e48b8f6b4669c830819fc9efb127aa1b3d5ceef324a45d164975b6098d8"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/student-preview/q02.png",
+        "sha256": "a7cbd3a1f90d01eed1c421c96ff7eb14cdf3e3d0ee00d6bd16fdc401973cba57"
+      }
+    ],
+    "utf8ProbeSha256": "645816a59566f4f4fe052cf13704ecf80d5c82df413399ca095c6c5405a5909b",
+    "actualStudentPngViewed": true,
+    "noExternalFiguresOrModel": true
+  },
+  "studentInputsAfter": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/SOLVE-BRIEF.md",
+      "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/student-problems.json",
+      "sha256": "e8db1c8c93d1dde4e0fd73a0dd7e7da7990c1836c2c6328a0028febbd1607953"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/blind-manifest.json",
+      "sha256": "409f7e48b8f6b4669c830819fc9efb127aa1b3d5ceef324a45d164975b6098d8"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/student-preview/q02.png",
+      "sha256": "a7cbd3a1f90d01eed1c421c96ff7eb14cdf3e3d0ee00d6bd16fdc401973cba57"
+    }
+  ],
+  "inputBytesUnchanged": true,
+  "studentDigestIndependentlyRecomputed": true,
+  "raw": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daeguil/blind/solve/q02.json",
+    "sha256": "9d6d04296bb729a815ebf3992fa481028114cc5ebd1763528703754f96069c0c",
+    "studentDigest": "cd419ce5848d1631a758075f0913081bce78acc3bbd5d56ee958ef05a3f1d094",
+    "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group2-r1-q02"
+  },
+  "calculation": {
+    "sqrt016": {
+      "radicand": {
+        "numerator": "4",
+        "denominator": "25"
+      },
+      "positiveRoot": {
+        "numerator": "2",
+        "denominator": "5"
+      },
+      "decimalRoot": "0.4",
+      "rational": true
+    },
+    "repeatingDecimal": {
+      "printedDotDigits": [
+        "2",
+        "7"
+      ],
+      "repeatingBlock": "27",
+      "meaning": "0.272727...",
+      "exactFraction": {
+        "numerator": "3",
+        "denominator": "11"
+      },
+      "repeatFractionCheck99r": {
+        "numerator": "27",
+        "denominator": "1"
+      },
+      "rational": true
+    },
+    "sqrt5": {
+      "radicand": 5,
+      "positive": true,
+      "betweenSquares": [
+        4,
+        9
+      ],
+      "irrational": true,
+      "justification": "Use the2015 M3 property that the square root of a nonsquare natural number is irrational. The code check4<5<9 identifies nonsquareness; it is not by itself a floating or finite-search proof of irrationality, and no high-school theorem is required from the student."
+    },
+    "printedClasses": {
+      "ㄱ": "irrational",
+      "ㄴ": "irrational",
+      "ㄷ": "irrational"
+    },
+    "trueClasses": {
+      "ㄱ": "rational",
+      "ㄴ": "rational",
+      "ㄷ": "irrational"
+    },
+    "allWrongItems": [
+      "ㄱ",
+      "ㄴ"
+    ],
+    "allFiveChoices": [
+      {
+        "index": 1,
+        "mark": "①",
+        "items": [
+          "ㄱ"
+        ],
+        "exactlyAllWrongItems": false,
+        "omittedWrongItems": [
+          "ㄴ"
+        ],
+        "includedCorrectlyClassifiedItems": []
+      },
+      {
+        "index": 2,
+        "mark": "②",
+        "items": [
+          "ㄴ"
+        ],
+        "exactlyAllWrongItems": false,
+        "omittedWrongItems": [
+          "ㄱ"
+        ],
+        "includedCorrectlyClassifiedItems": []
+      },
+      {
+        "index": 3,
+        "mark": "③",
+        "items": [
+          "ㄱ",
+          "ㄴ"
+        ],
+        "exactlyAllWrongItems": true,
+        "omittedWrongItems": [],
+        "includedCorrectlyClassifiedItems": []
+      },
+      {
+        "index": 4,
+        "mark": "④",
+        "items": [
+          "ㄱ",
+          "ㄷ"
+        ],
+        "exactlyAllWrongItems": false,
+        "omittedWrongItems": [
+          "ㄴ"
+        ],
+        "includedCorrectlyClassifiedItems": [
+          "ㄷ"
+        ]
+      },
+      {
+        "index": 5,
+        "mark": "⑤",
+        "items": [
+          "ㄴ",
+          "ㄷ"
+        ],
+        "exactlyAllWrongItems": false,
+        "omittedWrongItems": [
+          "ㄱ"
+        ],
+        "includedCorrectlyClassifiedItems": [
+          "ㄷ"
+        ]
+      }
+    ],
+    "domainAndNonzero": "Radicands0.16 and5 are positive. Their principal roots are unique and positive. The explicitly stated first/last-dot convention uniquely specifies the two-digit repeating block27. Denominators25,5,99,11 are positive nonzero integers.",
+    "existenceUniqueness": "All three printed real constants are well-defined. Each table classification has a determined truth value; the complete wrong-label set is uniquely {ㄱ,ㄴ}, exactly one of the five distinct options.",
+    "studentMethod": "Exact decimal square-root evaluation, M2 repeating-decimal rationality, and M3 irrational-number/root definitions. The optional99r=27 verification uses ordinary subtraction, not a geometric-series formula or higher-grade machinery.",
+    "units": "Pure number classification, no physical lengths or units."
+  },
+  "all5OptionsChecked": true,
+  "currentAuthorAnswerUnexposed": true,
+  "sourceAnswerOracleUsed": false,
+  "dbApiWrites": 0,
+  "newWorkersOrWorktrees": 0,
+  "modelUnchanged": true,
+  "noApprovalCountIncrease": true
+}
