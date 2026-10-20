@@ -98,8 +98,8 @@ export function GuidePicker() {
           >
             <img
               src={`/lab/guides/${id}/guide.webp`}
-              width={100}
-              height={100}
+              width={200}
+              height={152}
               alt=""
             />
             <span>{names[id]}</span>

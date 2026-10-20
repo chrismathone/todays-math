@@ -19,6 +19,8 @@ function gate(stage) {
   if (processes.trim()) throw Error(`${stage}: tsc is running`);
 }
 const root = process.cwd();
+const pickerOnly = process.argv.includes("--picker-only");
+const measureOnly = process.argv.includes("--measure-only");
 const out = path.join(
   root,
   "docs/planning/tracks/reports/srs-e5-guide-screens-20261020",
@@ -89,7 +91,9 @@ try {
   });
   for (const theme of ["classic", "sky", "sea", "space", "forest", "shapes"])
     for (const width of [1280, 1440, 390])
-      for (scene of ["picker", "home", "done", "relearn"]) {
+      for (scene of pickerOnly
+        ? ["picker"]
+        : ["picker", "home", "done", "relearn"]) {
         await page.setViewportSize({ width, height: 1000 });
         await page.goto(
           `${server.resolvedUrls.local[0]}?theme=${theme}&scene=${scene}`,
@@ -121,19 +125,107 @@ try {
             .filter((i) => !i.complete || !i.naturalWidth)
             .map((i) => i.src),
         }));
+        if (scene === "picker") {
+          check.picker = await page.evaluate(() => {
+            const grid = document.querySelector('[aria-label="길잡이 고르기"]');
+            const images = [...grid.querySelectorAll("img")].map((img) => {
+              const rect = img.getBoundingClientRect();
+              const canvas = document.createElement("canvas");
+              canvas.width = img.naturalWidth;
+              canvas.height = img.naturalHeight;
+              const ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0);
+              const data = ctx.getImageData(
+                0,
+                0,
+                canvas.width,
+                canvas.height,
+              ).data;
+              let top = canvas.height,
+                bottom = -1;
+              for (let y = 0; y < canvas.height; y++)
+                for (let x = 0; x < canvas.width; x++)
+                  if (data[(y * canvas.width + x) * 4 + 3] > 32) {
+                    top = Math.min(top, y);
+                    bottom = Math.max(bottom, y);
+                  }
+              const scale = Math.min(
+                rect.width / canvas.width,
+                rect.height / canvas.height,
+              );
+              return {
+                width: rect.width,
+                height: rect.height,
+                inkHeight: (bottom - top + 1) * scale,
+                attributeWidth: img.getAttribute("width"),
+                attributeHeight: img.getAttribute("height"),
+              };
+            });
+            const start = [...document.querySelectorAll("button")]
+              .find((b) => b.textContent.trim() === "이 친구와 시작")
+              .getBoundingClientRect();
+            const rows = [...grid.querySelectorAll("button")].map((b) =>
+              Math.round(b.getBoundingClientRect().top),
+            );
+            return {
+              images,
+              rows,
+              gridBottom: grid.getBoundingClientRect().bottom,
+              startTop: start.top,
+              startBottom: start.bottom,
+              startHeight: start.height,
+            };
+          });
+          const p = check.picker;
+          check.sizePass =
+            p.images.length === 5 &&
+            p.images.every(
+              (img) =>
+                img.inkHeight >= 90 &&
+                img.inkHeight <= 115 &&
+                Math.abs(img.width / img.height - 200 / 152) < 0.01 &&
+                img.attributeWidth === "200" &&
+                img.attributeHeight === "152",
+            ) &&
+            p.gridBottom + 16 <= p.startTop &&
+            p.startHeight >= 56 &&
+            (width === 390 ||
+              (p.startBottom <= 750 &&
+                p.rows[0] === p.rows[2] &&
+                p.rows[3] === p.rows[4] &&
+                p.rows[3] > p.rows[0]));
+        }
         const file = `${theme}-${width}-${scene}.png`;
-        await page.screenshot({ path: path.join(out, file), fullPage: true });
+        if (!measureOnly)
+          await page.screenshot({ path: path.join(out, file), fullPage: true });
         results.push({ theme, width, scene, file, ...check });
       }
   await writeFile(
-    path.join(out, "browser-checks.json"),
+    path.join(
+      out,
+      pickerOnly
+        ? measureOnly
+          ? "picker-size-red.json"
+          : "picker-checks.json"
+        : "browser-checks.json",
+    ),
     JSON.stringify({ browser: browser.version(), results, errors }, null, 2),
   );
-  if (errors.length || results.some((r) => r.overflow || r.broken.length))
+  if (
+    errors.length ||
+    results.some((r) => r.overflow || r.broken.length || r.sizePass === false)
+  )
     throw Error(
       JSON.stringify({
         errors,
-        failed: results.filter((r) => r.overflow || r.broken.length),
+        failed: results
+          .filter((r) => r.overflow || r.broken.length || r.sizePass === false)
+          .map((r) => ({
+            theme: r.theme,
+            width: r.width,
+            sizePass: r.sizePass,
+            inkHeights: r.picker?.images.map((i) => i.inkHeight),
+          })),
       }),
     );
   console.log(`PASS ${results.length} browser screens`);
