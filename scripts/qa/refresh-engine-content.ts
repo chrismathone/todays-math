@@ -6,6 +6,7 @@
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --all-plans --families <목록.json> --label <이름> --apply
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --revert <원장.json.gz>
  *   … --replay <목록.json>   # 계획 폴더 밖에서 승인된 행을 그 승인 계획 · 고정 씨앗으로 되만들어 같이 견준다(`refreshReplay.ts`)
+ *     `--all-plans` 는 `scripts/import/replays/*.json` 을 기본으로 같이 읽는다(`--no-replays` 로 끈다)
  *
  * ## 왜 있나 — 「엔진을 고친 것과 적재본을 고친 것은 다른 일이다」
  *
@@ -79,6 +80,8 @@ import {
 const prisma = new PrismaClient();
 const REPO = process.cwd();
 const PLANS = path.join(REPO, "scripts", "import", "plans");
+/** 계획 폴더 밖에서 승인된 행의 되만들기 목록(`refreshReplay.ts`) — `--all-plans` 가 같이 읽는다(`--no-replays` 로 끈다). */
+const REPLAYS = path.join(REPO, "scripts", "import", "replays");
 const REPORTS = path.join(
   REPO,
   "scripts",
@@ -284,11 +287,19 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     `되만든 행 ${made.size} · 던진 대상 ${failures.length} · 계획끼리 어긋난 열쇠 ${conflicts.length}`,
   );
   // 계획 폴더 밖에서 승인된 행(D-164 3회차) — 승인된 계획 · 고정한 씨앗으로 되만들어 같은 문지기에 세운다.
+  // `--all-plans` 면 `scripts/import/replays/` 의 목록도 기본으로 읽는다 — 계획 밖 씨앗은 여기 없으면 갱신 도구에 영영 안 보인다.
   const replayFile = arg("--replay");
+  const replayFiles = [
+    ...(has("--all-plans") && !has("--no-replays") && existsSync(REPLAYS)
+      ? readdirSync(REPLAYS).filter((f) => f.endsWith(".json")).sort().map((f) => path.join(REPLAYS, f))
+      : []),
+    ...(replayFile ? [replayFile] : []),
+  ];
   const replayIds = new Set<string>();
   let replayMissing: ReturnType<typeof replayRows>["missing"] = [];
-  if (replayFile) {
-    const manifest = readReplayManifest(replayFile);
+  if (replayFiles.length) {
+    const manifest = { version: 1 as const, label: replayFiles.map((f) => path.basename(f)).join(" + "), entries: replayFiles.flatMap((f) => readReplayManifest(f).entries) };
+    console.log(`되만들기 목록 ${replayFiles.map((f) => path.basename(f)).join(" · ")}`);
     const replay = replayRows(manifest);
     replayMissing = replay.missing;
     // 겹침은 목록의 **요청 열쇠 전부**로 본다 — 못 되만든 열쇠가 계획 쪽으로 조용히 넘어가지 않게.
@@ -724,8 +735,8 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         })),
         fresh: top(fresh, 500),
         buildFailures: failures,
-        replay: replayFile
-          ? { file: path.basename(replayFile), made: replayIds.size, missing: replayMissing }
+        replay: replayFiles.length
+          ? { files: replayFiles.map((f) => path.basename(f)), made: replayIds.size, missing: replayMissing }
           : null,
         changes: changes.length,
         skipped,
