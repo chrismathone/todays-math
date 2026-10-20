@@ -63,4 +63,33 @@ describe("H2 answer paper", () => {
     );
     expect(solution.textContent).toContain("분모를 같게 하여 계산합니다.");
   });
+  it("draws a shrunk wide answer smaller in the key only, never in the solution", () => {
+    const { container } = render(
+      <AnswerPage
+        {...props}
+        layout={{
+          keyRows: [
+            { cells: [{ index: 0, span: 5, scale: 0.84 }], height: 40 },
+          ],
+          solutionIndices: [0],
+          indices: [0],
+          scales: [1],
+          splitIndex: 1,
+          groupStart: 0,
+        }}
+      />,
+    );
+    const grid = screen.getByRole("table", { name: "빠른 채점표" });
+    const shrunk = grid.querySelector<HTMLElement>("[data-answer-scale]")!;
+    expect(shrunk.dataset.answerScale).toBe("0.84");
+    expect(shrunk.style.fontSize).toBe("0.84em");
+    expect(shrunk.querySelector(".katex")).not.toBeNull();
+    const solution = container.querySelector("[data-answer-solution]")!;
+    expect(solution.querySelector("[data-answer-scale]")).toBeNull();
+  });
+  it("keeps a fitting answer at full size", () => {
+    render(<AnswerPage {...props} />);
+    const grid = screen.getByRole("table", { name: "빠른 채점표" });
+    expect(grid.querySelector("[data-answer-scale]")).toBeNull();
+  });
 });

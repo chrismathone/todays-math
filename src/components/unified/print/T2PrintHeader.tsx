@@ -59,7 +59,6 @@ export function T2PrintHeader({ meta, options, round, totalProblems }: Props) {
   ) : null;
   const tags = (
     <div className={legacy.examPeriod}>
-      {template === "pyeongga" && <span>제 1 교시</span>}
       <ArithmeticRoundLabel round={round} />
       {template === "yuhyung" ? (
         <span>{String(totalProblems ?? 0).padStart(2, "0")} 문항</span>

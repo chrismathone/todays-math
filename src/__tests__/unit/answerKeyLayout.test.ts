@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
+  answerFit,
   answerSpan,
+  MIN_ANSWER_SCALE,
   packAnswerRows,
   paginateAnswerPages,
   type AnswerMetrics,
@@ -49,6 +51,33 @@ describe("H2 measured answers", () => {
       candidate.overflow = true;
     });
     expect(() => answerSpan(tooWide)).toThrow();
+  });
+  it("shrinks a five-cell answer down to 80% and refuses below that (consensus 2026-10-20 Q1)", () => {
+    expect(MIN_ANSWER_SCALE).toBe(0.8);
+    const wide = metrics(false, 5);
+    wide.candidates.forEach((candidate) => {
+      candidate.overflow = true;
+    });
+    wide.candidates[3].fit = 0.85;
+    expect(answerFit(wide)).toEqual({ span: 5, scale: 0.84 });
+    wide.candidates[3].fit = 0.8;
+    expect(answerFit(wide)).toEqual({ span: 5, scale: 0.8 });
+    wide.candidates[3].fit = 0.79;
+    expect(() => answerFit(wide)).toThrow(
+      /채점표 폭보다 넓습니다.*정답지 포함을 끄면 문제지만 출력할 수 있습니다/,
+    );
+    // An answer that fits keeps its full size.
+    expect(answerFit(metrics(false, 3))).toEqual({ span: 3, scale: 1 });
+  });
+  it("carries a shrink into the key cell only when the answer needs it", () => {
+    const wide = metrics(false, 5);
+    wide.candidates.forEach((candidate) => {
+      candidate.overflow = true;
+    });
+    wide.candidates[3].fit = 0.9;
+    expect(
+      packAnswerRows([metrics(true, 1), wide]).map((row) => row.cells),
+    ).toEqual([[{ index: 0, span: 1 }], [{ index: 1, span: 5, scale: 0.9 }]]);
   });
   it("names the printed number of the answer it refuses, so the director can find it", () => {
     const tooWide = metrics(false, 5);

@@ -124,21 +124,33 @@ export function useMeasuredAnswerPages(
               "[data-answer-value]",
             )!;
             const rect = value.getBoundingClientRect();
+            const inks = Array.from(
+              value.querySelectorAll<HTMLElement>(".katex-html"),
+              (ink) => ink.getBoundingClientRect(),
+            );
             const overflow =
               value.scrollWidth > value.clientWidth + 1 ||
-              Array.from(
-                value.querySelectorAll<HTMLElement>(".katex-html"),
-              ).some((ink) => {
-                const bounds = ink.getBoundingClientRect();
-                return (
-                  bounds.left < rect.left - 1 || bounds.right > rect.right + 1
-                );
-              });
+              inks.some(
+                (bounds) =>
+                  bounds.left < rect.left - 1 || bounds.right > rect.right + 1,
+              );
+            // The width the answer actually needs, for a shrink that fits it.
+            const inkWidth = Math.max(
+              value.scrollWidth,
+              ...inks.map(
+                (bounds) =>
+                  Math.max(rect.right, bounds.right) -
+                  Math.min(rect.left, bounds.left),
+              ),
+            );
             return {
               span,
               height: cell.getBoundingClientRect().height,
               answerHeight: rect.height,
               overflow,
+              ...(overflow
+                ? { fit: value.clientWidth / Math.max(1, inkWidth) }
+                : {}),
             };
           }),
         };

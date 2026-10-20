@@ -48,6 +48,33 @@ const problems: ProblemReview[] = [
 ];
 
 describe("selected template A T2", () => {
+  it("prints no automatic label the chosen T2 does not show (consensus 2026-10-20 Q5)", () => {
+    for (const [template, columns] of [
+      ["pyeongga", 2],
+      ["workbook", 2],
+      ["workbook", 1],
+    ] as const) {
+      const Template = TEMPLATE_COMPONENTS[template];
+      const view = render(
+        <Template
+          page={1}
+          totalPages={1}
+          totalProblems={1}
+          columns={columns}
+          startingNumber={1}
+          problems={problems}
+          meta={meta}
+          options={{ ...DEFAULT_PRINT_OPTIONS, template, columns }}
+        />,
+      );
+      const text = view.container.textContent!;
+      expect(text, template).not.toContain("교시");
+      expect(text, template).not.toContain("컴팩트");
+      // Authored values stay printed.
+      if (template === "workbook") expect(text).toContain("검증 학원");
+      view.unmount();
+    }
+  });
   it("keeps an authored assessment title containing the question count exactly once", () => {
     const Template = TEMPLATE_COMPONENTS.pyeongga;
     const view = render(

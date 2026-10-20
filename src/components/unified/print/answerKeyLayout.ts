@@ -9,12 +9,23 @@ export interface AnswerMetrics {
     height: number;
     answerHeight: number;
     overflow: boolean;
+    /** Cell width over the answer's ink width when it overflows (≤ 1). */
+    fit?: number;
   }[];
 }
 export interface AnswerKeyRow {
-  cells: { index: number; span: AnswerSpan }[];
+  /** `scale` appears only on a five-cell answer drawn smaller to fit. */
+  cells: { index: number; span: AnswerSpan; scale?: number }[];
   height: number;
 }
+/**
+ * Consensus 2026-10-20 Q1: a teacher still reads fractions and exponents at
+ * 80% of the 12-13px answer type, so one wide answer shrinks rather than
+ * stopping the export; below that it stops and names the way out.
+ */
+export const MIN_ANSWER_SCALE = 0.8;
+const REFUSAL =
+  "정답이 채점표 폭보다 넓습니다. 답의 줄 구성을 고치거나, 정답지 포함을 끄면 문제지만 출력할 수 있습니다.";
 export interface AnswerPageLayout {
   keyRows: AnswerKeyRow[];
   solutionIndices: number[];
@@ -25,6 +36,12 @@ export interface AnswerPageLayout {
   groupStart: number;
 }
 export function answerSpan(metrics: AnswerMetrics): AnswerSpan {
+  return answerFit(metrics).span;
+}
+export function answerFit(metrics: AnswerMetrics): {
+  span: AnswerSpan;
+  scale: number;
+} {
   const one = metrics.candidates.find((candidate) => candidate.span === 1);
   const long =
     !one || one.overflow || one.answerHeight > metrics.naturalHeight + 1;
@@ -34,13 +51,15 @@ export function answerSpan(metrics: AnswerMetrics): AnswerSpan {
       !candidate.overflow &&
       candidate.answerHeight <= metrics.naturalHeight + metrics.lineHeight + 1,
   );
-  if (fit) return fit.span;
+  if (fit) return { span: fit.span, scale: 1 };
   // Keep very long prose complete at full width, even when it needs >2 lines.
   const full = metrics.candidates.find((candidate) => candidate.span === 5);
-  if (full && !full.overflow) return 5;
-  throw new Error(
-    "정답의 수식이 지면 너비보다 깁니다. 정답의 줄 구성을 확인해 주세요.",
-  );
+  if (full && !full.overflow) return { span: 5, scale: 1 };
+  // Round down in 2% steps so the drawn answer never ends wider than measured.
+  const scale =
+    full?.fit === undefined ? 0 : Math.floor(full.fit * 50 + 1e-9) / 50;
+  if (scale >= MIN_ANSWER_SCALE) return { span: 5, scale };
+  throw new Error(REFUSAL);
 }
 /** A refusal names the printed number, so the director knows which answer to fix. */
 const defaultNumber = (index: number) => index + 1;
@@ -53,20 +72,26 @@ export function packAnswerRows(
   let row: AnswerKeyRow = { cells: [], height: 0 };
   let used = 0;
   metrics.forEach((item, index) => {
-    let span: AnswerSpan;
+    let fitted: { span: AnswerSpan; scale: number };
     try {
-      span = answerSpan(item);
+      fitted = answerFit(item);
     } catch (error) {
       throw new Error(
         `${numberOf(startIndex + index)}번 ${(error as Error).message}`,
       );
     }
+    const { span, scale } = fitted;
     if (used + span > 5) {
       rows.push(row);
       row = { cells: [], height: 0 };
       used = 0;
     }
-    row.cells.push({ index: startIndex + index, span });
+    row.cells.push(
+      scale < 1
+        ? { index: startIndex + index, span, scale }
+        : { index: startIndex + index, span },
+    );
+    // The unshrunk height: a shrunk answer only ever leaves the row roomier.
     row.height = Math.max(
       row.height,
       item.candidates.find((candidate) => candidate.span === span)!.height,
@@ -107,7 +132,7 @@ export function paginateAnswerPages(
   for (const row of rows) {
     if (row.height > config.available)
       throw new Error(
-        `${(config.numberOf ?? defaultNumber)(row.cells[0].index)}번 정답이 든 행이 한 쪽보다 깁니다. 정답의 줄 구성을 확인해 주세요.`,
+        `${(config.numberOf ?? defaultNumber)(row.cells[0].index)}번 정답이 든 행이 한 쪽보다 깁니다. 답의 줄 구성을 고치거나, 정답지 포함을 끄면 문제지만 출력할 수 있습니다.`,
       );
     if (!page || used + row.height > config.available) {
       page = create();
