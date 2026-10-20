@@ -1,0 +1,236 @@
+{
+  "studentDigest": "c78985e01a697b82be5d9495651ba30a36b0c7d33890f425db2d5711cdb8ae8f",
+  "solverId": "independent-helper-gangbuk-first2-student-only-20261020-r1",
+  "answer": "⑤",
+  "solution": "왼쪽을 전개하면 ax²+(a-2)x-2이다. 오른쪽의 ax+3x²-x+4를 왼쪽으로 이항하여 정리하면 (a-3)x²-x-6=0이다. 일차방정식이 되려면 x²의 계수가 0이어야 하므로 a-3=0, 즉 a=3이다. 이때 x의 계수는 -1≠0이므로 실제 일차방정식 -x-6=0이 되고 해는 x=-6이다. 원식에 a=3, x=-6을 넣으면 양변이 모두 100이어서 성립한다. 보기 a=-3,-1,1,2,3에서 x²의 계수는 각각 -6,-4,-2,-1,0이고 x의 계수는 모두 -1이므로 마지막 보기만 일차방정식이다. 따라서 정답은 ⑤이다.",
+  "evidence": {
+    "exposure": {
+      "solverId": "independent-helper-gangbuk-first2-student-only-20261020-r1",
+      "priorExposure": "이전 원문9개 구성요소와 Gachang2문항의 학생/저자/원문검토, 공개코드와 기존 관련변형 검토, 현재166개 후보의 메타데이터/해시 검사, Gangbuk 메타데이터-only 이력이 있다. 전체 원문집합 미노출이라는 주장은 하지 않는다.",
+      "currentAuthoredGangbukAnswersSolutionsPrivateExposed": false,
+      "currentGangbukOriginalsExposed": false,
+      "currentReadScope": "현재 r2 blind brief/student-problems/manifest 및 학생PNG2개만 읽음. 두 PNG를 실제 view_image로 확인. parent/root author/private/source/raw parser/이전Gangbukdraft를 읽지 않음.",
+      "pixelOracle": false,
+      "newApprovalCounts": 0
+    },
+    "ownExactCalculations": [
+      {
+        "choice": "①",
+        "a": -3,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "-5",
+          "-3"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "-4",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "-6"
+        ],
+        "degree": 2,
+        "isFirstDegreeEquation": false
+      },
+      {
+        "choice": "②",
+        "a": -1,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "-3",
+          "-1"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "-2",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "-4"
+        ],
+        "degree": 2,
+        "isFirstDegreeEquation": false
+      },
+      {
+        "choice": "③",
+        "a": 1,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "-1",
+          "1"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "0",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "-2"
+        ],
+        "degree": 2,
+        "isFirstDegreeEquation": false
+      },
+      {
+        "choice": "④",
+        "a": 2,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "0",
+          "2"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "1",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "-1"
+        ],
+        "degree": 2,
+        "isFirstDegreeEquation": false
+      },
+      {
+        "choice": "⑤",
+        "a": 3,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "1",
+          "3"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "2",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "0"
+        ],
+        "degree": 1,
+        "isFirstDegreeEquation": true
+      }
+    ],
+    "allChoices": [
+      {
+        "choice": "①",
+        "a": -3,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "-5",
+          "-3"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "-4",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "-6"
+        ],
+        "degree": 2,
+        "isFirstDegreeEquation": false
+      },
+      {
+        "choice": "②",
+        "a": -1,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "-3",
+          "-1"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "-2",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "-4"
+        ],
+        "degree": 2,
+        "isFirstDegreeEquation": false
+      },
+      {
+        "choice": "③",
+        "a": 1,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "-1",
+          "1"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "0",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "-2"
+        ],
+        "degree": 2,
+        "isFirstDegreeEquation": false
+      },
+      {
+        "choice": "④",
+        "a": 2,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "0",
+          "2"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "1",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "-1"
+        ],
+        "degree": 2,
+        "isFirstDegreeEquation": false
+      },
+      {
+        "choice": "⑤",
+        "a": 3,
+        "leftCoefficientsConstantFirst": [
+          "-2",
+          "1",
+          "3"
+        ],
+        "rightCoefficientsConstantFirst": [
+          "4",
+          "2",
+          "3"
+        ],
+        "residualCoefficientsConstantFirst": [
+          "-6",
+          "-1",
+          "0"
+        ],
+        "degree": 1,
+        "isFirstDegreeEquation": true
+      }
+    ],
+    "domainAndUniqueness": "a는 상수, x는 실수. 차수는 전개·이항 후 정리한 식으로 판단. a=3만 x²계수0이며 남는x계수-1은 비영. 해x=-6은 원식 성립하고 유일. 길이·넓이 단위나 양수제약은 없는 대수문항이다.",
+    "studentMethod": "다항식의 분배법칙 전개/동류항 정리, 일차방정식 정의와 앞학년 일차방정식 풀이.",
+    "gradeAndReleaseLimit": "2015M3의 실제 학생방법으로 풀이 가능하다는 raw판단일뿐 공식7표면/메타데이터/권리/출처/family/native/출시 승인이나 새 수학승인 count가 아니다.",
+    "calculationScript": "../../own-raw-evidence-r1/own-calculate.py"
+  },
+  "status": "solved"
+}
