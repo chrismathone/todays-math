@@ -1,0 +1,31 @@
+{
+  "skillPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.agents\\skills\\typesafe-ai\\SKILL.md",
+  "liveReceiptSHA256": "3824f810be91f0f253619591da74c8c89f524664b0a5797e1230a1e4e3b11206",
+  "bodyHashesVerified": true,
+  "fetchedBy": "Parent supplied same-day HTTP200 receipt; own actual provided bodies read, no own network/model API fetch",
+  "application": "Keep known method/grade restrictions and effect ordering in deterministic code. Optional uncertain semantic judgments remain separate evidence with explicit pending/escalation; confidence does not override a known grade restriction or release authority. No TypeSafe API/integration introduced.",
+  "primaryDocs": [
+    {
+      "url": "https://docs.typesafe.ai/concepts/how-to-build-with-system-one.md",
+      "status": 200,
+      "sha256": "9f5a20ac39383695d554bf812b365ed4b70622b8e5ac10484dce290469c68972",
+      "bytes": 41034,
+      "fullDocumentLocalOnly": true
+    },
+    {
+      "url": "https://docs.typesafe.ai/confidence.md",
+      "status": 200,
+      "sha256": "5c325ec0c0b69e78129406ca7c5d3aef113bce365abd34985b8674cd278c81be",
+      "bytes": 24090,
+      "fullDocumentLocalOnly": true
+    },
+    {
+      "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails.md",
+      "status": 200,
+      "sha256": "798d204918d9a1aa0ec98b47ebb6147f86f9558fb8d12e1548fde3641c20dd25",
+      "bytes": 22845,
+      "fullDocumentLocalOnly": true
+    }
+  ],
+  "fullBodiesCommitted": false
+}

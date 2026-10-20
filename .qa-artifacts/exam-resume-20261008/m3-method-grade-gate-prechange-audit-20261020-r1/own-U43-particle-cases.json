@@ -1,0 +1,1045 @@
+{
+  "scope": "Actualexisting32printedcontent/solutions read fromsealed audit samples; each current TS solution template bound by own literalplaceholder reconstruction. NO generate/make/verify/productionmath function call.",
+  "inputSourceSHA256": "d83369af0e4e8117305d03d50d6376c54a316a2860115587444ba31cdf3d16eb",
+  "archivedPrintedSolutionsSHA256": "536e5d4c16f83b5991069845823c0773443a1d86d95314dbeeab1f1ff8f8dc3f",
+  "cases": [
+    {
+      "variantZeroBased": 0,
+      "case1Based": 1,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -4,
+      "ownDerivedK": -2,
+      "slope": -3,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "6a1722cc6b7449880fa38b96c708f40492e291bedd98bed86006b7ef787b7bb3",
+      "kObjectParticle": {
+        "actual": "$k=-2$을",
+        "occurs": true,
+        "expectedParticle": "를",
+        "wrong": true
+      },
+      "slopeTopicParticle": {
+        "actual": "$-3$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-4$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 1,
+      "case1Based": 2,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -10,
+      "ownDerivedK": 0,
+      "slope": -3,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "5f06e0d8d8465e213f9aa7194ffa4920f156d406cf01b43593523cf87967cf5e",
+      "kObjectParticle": {
+        "actual": "$k=0$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-3$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-10$으로",
+        "occurs": false,
+        "expectedParticle": "으로",
+        "wrong": false
+      }
+    },
+    {
+      "variantZeroBased": 2,
+      "case1Based": 3,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -19,
+      "ownDerivedK": 3,
+      "slope": -3,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "e85dc46298b2e534b6f174ceb2adb7f0047331c03604107fc1b3c7272ea0f572",
+      "kObjectParticle": {
+        "actual": "$k=3$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-3$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-19$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 3,
+      "case1Based": 4,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -34,
+      "ownDerivedK": 8,
+      "slope": -3,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "44ccb79842573455dd0c4864cfc4d8a1dcfd227849fbfa21a28f5a58e988329f",
+      "kObjectParticle": {
+        "actual": "$k=8$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-3$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-34$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 4,
+      "case1Based": 5,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -4,
+      "ownDerivedK": -2,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "c7ad9ca49ec42e43aed10d3d97de05da31407d351ed456ad3cc028855071aab3",
+      "kObjectParticle": {
+        "actual": "$k=-2$을",
+        "occurs": true,
+        "expectedParticle": "를",
+        "wrong": true
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-4$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 5,
+      "case1Based": 6,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -6,
+      "ownDerivedK": 0,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "5f0f2f12cf19f6b2c1542b7546909f95b0eb6743101c9a9cbffcd58615ca6e58",
+      "kObjectParticle": {
+        "actual": "$k=0$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-6$으로",
+        "occurs": false,
+        "expectedParticle": "으로",
+        "wrong": false
+      }
+    },
+    {
+      "variantZeroBased": 6,
+      "case1Based": 7,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -9,
+      "ownDerivedK": 3,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "f70f1786135a17020db09bde18b4c7931a3eb917c1642ef142034524247c15a7",
+      "kObjectParticle": {
+        "actual": "$k=3$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-9$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 7,
+      "case1Based": 8,
+      "printedFactors": {
+        "a": 2,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -14,
+      "ownDerivedK": 8,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "4885a3958b31e9f9ef5ffdc003ed479bc6677102f6537cbd8c6b8b9eccedc3d5",
+      "kObjectParticle": {
+        "actual": "$k=8$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-14$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 8,
+      "case1Based": 9,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -8,
+      "ownDerivedK": -2,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "17e9d6d65079ca1a1652e5054d4c5293d9ba49f00238302e5f77146b4634a637",
+      "kObjectParticle": {
+        "actual": "$k=-2$을",
+        "occurs": true,
+        "expectedParticle": "를",
+        "wrong": true
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-8$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 9,
+      "case1Based": 10,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -10,
+      "ownDerivedK": 0,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "755643ff363df8ab2e7cd7ccb13e3f3be44cfad0c0e24b4dbafc47071fb3605b",
+      "kObjectParticle": {
+        "actual": "$k=0$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-10$으로",
+        "occurs": false,
+        "expectedParticle": "으로",
+        "wrong": false
+      }
+    },
+    {
+      "variantZeroBased": 10,
+      "case1Based": 11,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -13,
+      "ownDerivedK": 3,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "d95d947573bb1234eea79d4e18ec8ca25362423925fe39e2385c2ab25551c7b7",
+      "kObjectParticle": {
+        "actual": "$k=3$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-13$으로",
+        "occurs": false,
+        "expectedParticle": "으로",
+        "wrong": false
+      }
+    },
+    {
+      "variantZeroBased": 11,
+      "case1Based": 12,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -18,
+      "ownDerivedK": 8,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "26974230734a2a923404b1391394f4c27e534749ec148136751f0df0a95e13be",
+      "kObjectParticle": {
+        "actual": "$k=8$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-18$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 12,
+      "case1Based": 13,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -8,
+      "ownDerivedK": -2,
+      "slope": 1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "dbec4e2fe108634fd2fd9d3c19495f9f125ab02ec350a92acaad51886c4ef9f1",
+      "kObjectParticle": {
+        "actual": "$k=-2$을",
+        "occurs": true,
+        "expectedParticle": "를",
+        "wrong": true
+      },
+      "slopeTopicParticle": {
+        "actual": "$1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-8$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 13,
+      "case1Based": 14,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -6,
+      "ownDerivedK": 0,
+      "slope": 1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "af825cf44421a6378df4b2458c68519a0ef8bbc89211a883e88f21e4f1d56128",
+      "kObjectParticle": {
+        "actual": "$k=0$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-6$으로",
+        "occurs": false,
+        "expectedParticle": "으로",
+        "wrong": false
+      }
+    },
+    {
+      "variantZeroBased": 14,
+      "case1Based": 15,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -3,
+      "ownDerivedK": 3,
+      "slope": 1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "5ba04577359cd85f9cd8d6556b47717b6743127f2a9816c166dac342df505f75",
+      "kObjectParticle": {
+        "actual": "$k=3$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-3$으로",
+        "occurs": false,
+        "expectedParticle": "으로",
+        "wrong": false
+      }
+    },
+    {
+      "variantZeroBased": 15,
+      "case1Based": 16,
+      "printedFactors": {
+        "a": 2,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": 2,
+      "ownDerivedK": 8,
+      "slope": 1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "06ff72c361b9cf08d525a43e0539ab68d1eb7d6a21dae19a3dac9bca9396b916",
+      "kObjectParticle": {
+        "actual": "$k=8$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$2$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 16,
+      "case1Based": 17,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -9,
+      "ownDerivedK": -2,
+      "slope": -3,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "59d2e9a6b4bbd3594cb2aa01d742daa146723a5050de8b6ed28e755c758bb826",
+      "kObjectParticle": {
+        "actual": "$k=-2$을",
+        "occurs": true,
+        "expectedParticle": "를",
+        "wrong": true
+      },
+      "slopeTopicParticle": {
+        "actual": "$-3$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-9$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 17,
+      "case1Based": 18,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -15,
+      "ownDerivedK": 0,
+      "slope": -3,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "82ab821c4d18c04d61af670f02627a47a56e9f08598cbe1878f96d673c27e6de",
+      "kObjectParticle": {
+        "actual": "$k=0$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-3$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-15$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 18,
+      "case1Based": 19,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -24,
+      "ownDerivedK": 3,
+      "slope": -3,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "5b5ba90ec6b7c7dee7d0e39557d20a5aaf22e3e2c391b5c6caeeaa6f410a7b4a",
+      "kObjectParticle": {
+        "actual": "$k=3$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-3$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-24$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 19,
+      "case1Based": 20,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -39,
+      "ownDerivedK": 8,
+      "slope": -3,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "942a1bfd8097ab1963c496f17332bcdd0dcd4d7e924ac6607160bd042ffb95d7",
+      "kObjectParticle": {
+        "actual": "$k=8$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-3$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-39$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 20,
+      "case1Based": 21,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -7,
+      "ownDerivedK": -2,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "aec7157b12021ec5cad1eccda2ac6f3ac50f79a28852f47d4c565201961e5fa5",
+      "kObjectParticle": {
+        "actual": "$k=-2$을",
+        "occurs": true,
+        "expectedParticle": "를",
+        "wrong": true
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-7$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 21,
+      "case1Based": 22,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -9,
+      "ownDerivedK": 0,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "d0d425f4df4bf22080684d80c28ec80dac12420920da77fdd0027289794477df",
+      "kObjectParticle": {
+        "actual": "$k=0$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-9$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 22,
+      "case1Based": 23,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -12,
+      "ownDerivedK": 3,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "704bb4a859330aa47268a0ab5be1d949e76c80b1703edfd09865d25d3f8f077d",
+      "kObjectParticle": {
+        "actual": "$k=3$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-12$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 23,
+      "case1Based": 24,
+      "printedFactors": {
+        "a": 3,
+        "c": 2,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -17,
+      "ownDerivedK": 8,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "df0b774d9fd597cf8a31eddbae7545ab7cd4937d539aec69947c0718ae3532f0",
+      "kObjectParticle": {
+        "actual": "$k=8$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-17$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 24,
+      "case1Based": 25,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -13,
+      "ownDerivedK": -2,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "6d4489d9bea1cd8671d62ffc86b02f69f08f9fcb0cbe5a887d4ea8daffb6269f",
+      "kObjectParticle": {
+        "actual": "$k=-2$을",
+        "occurs": true,
+        "expectedParticle": "를",
+        "wrong": true
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-13$으로",
+        "occurs": false,
+        "expectedParticle": "으로",
+        "wrong": false
+      }
+    },
+    {
+      "variantZeroBased": 25,
+      "case1Based": 26,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -15,
+      "ownDerivedK": 0,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "e63e4faad5f402f86824f199f6c224b066affbb04a3f63fd84c73439b0e2b8c2",
+      "kObjectParticle": {
+        "actual": "$k=0$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-15$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 26,
+      "case1Based": 27,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -18,
+      "ownDerivedK": 3,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "0e110e725d93cda2fc7842590d520c12b29ef9b6b910c3bccabccd958f3b2fa3",
+      "kObjectParticle": {
+        "actual": "$k=3$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-18$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 27,
+      "case1Based": 28,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -5
+      },
+      "printedKnownCoefficientSum": -23,
+      "ownDerivedK": 8,
+      "slope": -1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "e0a46f56133f3622fc6dcf7eb35ec5db01f95d411a0dc7dbf443a1ce33ab02e2",
+      "kObjectParticle": {
+        "actual": "$k=8$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$-1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-23$으로",
+        "occurs": false,
+        "expectedParticle": "으로",
+        "wrong": false
+      }
+    },
+    {
+      "variantZeroBased": 28,
+      "case1Based": 29,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -11,
+      "ownDerivedK": -2,
+      "slope": 1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "30087c775369409ca56e732c639cdb030b6249fdeaec2ee09fea9d8e203a0b33",
+      "kObjectParticle": {
+        "actual": "$k=-2$을",
+        "occurs": true,
+        "expectedParticle": "를",
+        "wrong": true
+      },
+      "slopeTopicParticle": {
+        "actual": "$1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-11$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 29,
+      "case1Based": 30,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -9,
+      "ownDerivedK": 0,
+      "slope": 1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "08579b0789423c89c608f0e33a7fc55d686ace79e50fcf1c658b41f2984d354f",
+      "kObjectParticle": {
+        "actual": "$k=0$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-9$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    },
+    {
+      "variantZeroBased": 30,
+      "case1Based": 31,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -6,
+      "ownDerivedK": 3,
+      "slope": 1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "b9ce654e8bada98e7b6ca5f727370ecd7de716490046b00065e9efbaa67919de",
+      "kObjectParticle": {
+        "actual": "$k=3$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-6$으로",
+        "occurs": false,
+        "expectedParticle": "으로",
+        "wrong": false
+      }
+    },
+    {
+      "variantZeroBased": 31,
+      "case1Based": 32,
+      "printedFactors": {
+        "a": 3,
+        "c": 4,
+        "d": -3
+      },
+      "printedKnownCoefficientSum": -1,
+      "ownDerivedK": 8,
+      "slope": 1,
+      "currentTemplateExactlyMatchesArchivedPrintedSolution": true,
+      "solutionSHA256": "ed1ff15dfa25148a91f86cbbde8fbbd38cd1f7d8486770591a7ff6e671266e46",
+      "kObjectParticle": {
+        "actual": "$k=8$을",
+        "occurs": true,
+        "expectedParticle": "을",
+        "wrong": false
+      },
+      "slopeTopicParticle": {
+        "actual": "$1$은",
+        "expectedParticle": "은",
+        "wrong": false
+      },
+      "resultInstrumentalParticle": {
+        "actualEnding": "=$-1$으로",
+        "occurs": false,
+        "expectedParticle": "로",
+        "wrong": true
+      }
+    }
+  ],
+  "counts": {
+    "actualPrintedCases": 32,
+    "currentTemplateMatches": 32,
+    "kEqualsMinus2ParticleErrors": 8,
+    "wrongKObjectCaseIds1Based": [
+      1,
+      5,
+      9,
+      13,
+      17,
+      21,
+      25,
+      29
+    ],
+    "wrongSlopeTopicParticles": 0,
+    "actualResultInstrumentalErrors": 23,
+    "wrongResultCaseIds1Based": [
+      1,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      12,
+      13,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      26,
+      27,
+      29,
+      30,
+      32
+    ],
+    "distinctCasesWithSomeParticleError": 24
+  },
+  "conclusion": "k=-2을 is actually present in8cases and should be k=-2를 orneutralprose. All slope은 phrases for actualslopes-3/-1/1 arecorrect; do not misclassify slopeparticles. Actual result으로 endings have23mismatches inthisdomain (e.g -4으로->-4로); preferneutralprose instead ofnewgenericKorean-numberengine.",
+  "math": "Only exactprinted coefficient reading/substitution checks, no new question/wholetemplategradeapproval.",
+  "noSourceEdits": true
+}

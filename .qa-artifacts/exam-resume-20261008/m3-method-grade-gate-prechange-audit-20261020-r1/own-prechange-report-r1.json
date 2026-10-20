@@ -1,0 +1,263 @@
+{
+  "task": "Independent READONLY M3-method-grade-gate prechange review",
+  "status": "PRECHANGE specific-grade-gate technical hold forfourrequirements; all publicrelease controls closed",
+  "productionEdits": 0,
+  "sourceFreeze": {
+    "beforeAfterBindings": 21,
+    "allUnchanged": true,
+    "currentCurriculumPolicy": "20261020-reviewed-student-methods-r3",
+    "currentReleasePolicy": "20261020-source-informed-template-review-r5",
+    "HEADNotUsedAsByteEquality": true
+  },
+  "conclusion": "studyCurriculumHold currently recognizes U62 belowM3 but returnsnull for actualfourotherrequirements. Actual generatechecks curriculum before release; for thosefour it falls through to review-onlyreleasehold, neverfactory. A release-only block is not a specific student-grade exclusion. Existing null/M3/component results never curriculumcertification.",
+  "specificPrechangeFindings": [
+    {
+      "requirement": "algebra.inverse-coefficient-sum",
+      "specificHardGradeMissingCases": 156,
+      "example": {
+        "requirement": "algebra.inverse-coefficient-sum",
+        "fixture": "study-middle-inverse-coefficient-sum",
+        "course": "중1",
+        "level": "component",
+        "variant": "all-flags",
+        "format": "혼합",
+        "gradeStatus": null,
+        "releaseStatus": "review-only-template",
+        "specificHardGradeExpected": true,
+        "specificHardGradeObserved": false,
+        "specificHardGradeGap": true,
+        "unavailable": true,
+        "questions": 0,
+        "factoryCalls": 0,
+        "gradeWarning": false,
+        "releaseWarning": true,
+        "warnings": [
+          "계수 합 역산 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      },
+      "actualNecessaryMethod": "Multiply two printed first-degree expressions inx/y, collectxy andy² coefficients, addad+(c+d)k andsolveone numerically linear equation forconstantk. Negative/zero/positivek allowed. This is binomial polynomial multiplication, not merely a squaredglyph and not a highschoolidentity theorem.",
+      "capturedPrimaryPlacement": "MOE2015HWP Section0record3956[9수02-12] plusprior3916[9수02-05]; inspectedICE2021-0141 PDFzeroBased89/printed90 explicitlymiddle3 polynomial multiplication. DocumentSHA38d16720f6d0162d9d3dfc4c0042ef4cb0f56a95da409da97c61f05a881750a0.",
+      "limit": "Currentpublicreleaseholdstillclosed; no publicexposure/factorybypass claim. Current specificbelowM3 method-policy missing."
+    },
+    {
+      "requirement": "number.inverse-root-table",
+      "specificHardGradeMissingCases": 156,
+      "example": {
+        "requirement": "number.inverse-root-table",
+        "fixture": "study-middle-inverse-root-table",
+        "course": "중1",
+        "level": "component",
+        "variant": "all-flags",
+        "format": "혼합",
+        "gradeStatus": null,
+        "releaseStatus": "review-only-template",
+        "specificHardGradeExpected": true,
+        "specificHardGradeObserved": false,
+        "specificHardGradeGap": true,
+        "unavailable": true,
+        "questions": 0,
+        "factoryCalls": 0,
+        "gradeWarning": false,
+        "releaseWarning": true,
+        "warnings": [
+          "제곱근표 입력 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      },
+      "actualNecessaryMethod": "Frompositivea²=x/100 inferexacta=sqrt(x)/10, keepprintedrootapproximation s separatefromactualroot, useapproximatea=s/10 andnumeric100a+b relation to recoveroneoffivecolumns. StudentdoesnotrunproducerBigIntrootsearch.",
+      "capturedPrimaryPlacement": "MOErecords3776[9수01-07],3788[9수01-10],3916linear plusroundingprerequisite3413[6수03-02]. InspectedGOEofficialPDFSHA55940c49ff61b01a38f3304fe7d67c56d4a5d73e42a1d0949a767afb830fbffa zeroBased38/39/40 explicitlyM3 root/real/arithmetic/approximatevalues. Elementaryrounding is only a prerequisite, not whole-methodpermission.",
+      "limit": "Currentpublicreleaseholdstillclosed; no publicexposure/factorybypass claim. Current specificbelowM3 method-policy missing."
+    },
+    {
+      "requirement": "number.inverse-extreme-range",
+      "specificHardGradeMissingCases": 156,
+      "example": {
+        "requirement": "number.inverse-extreme-range",
+        "fixture": "study-middle-inverse-extreme-minimum",
+        "course": "중1",
+        "level": "component",
+        "variant": "all-flags",
+        "format": "혼합",
+        "gradeStatus": null,
+        "releaseStatus": "review-only-template",
+        "specificHardGradeExpected": true,
+        "specificHardGradeObserved": false,
+        "specificHardGradeGap": true,
+        "unavailable": true,
+        "questions": 0,
+        "factoryCalls": 0,
+        "gradeWarning": false,
+        "releaseWarning": true,
+        "warnings": [
+          "누락 최솟값 역추론 유형은 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      },
+      "actualNecessaryMethod": "Useexactinteger squarebounds toorderirrationalroots, identifymaximumabove1, recovermissingminimum bysubtracting givenradicalrange, proveitbelowallfourvalues includingpossiblynegativefourth, andcheckuniqueness.",
+      "capturedPrimaryPlacement": "MOE3776/3780/3784/3788 [9수01-07/08/09/10]: roots,irrationals,realnumberordering,radicalarithmetic. SameactuallyinspectedGOEM3 placementPDF38. CurrentauditR2 exactdraftbinding retainedwhole24studentmethods.",
+      "limit": "Currentpublicreleaseholdstillclosed; no publicexposure/factorybypass claim. Current specificbelowM3 method-policy missing."
+    },
+    {
+      "requirement": "geometry.inverse-tangent-rectangle",
+      "specificHardGradeMissingCases": 156,
+      "example": {
+        "requirement": "geometry.inverse-tangent-rectangle",
+        "fixture": "study-middle-inverse-tangent-rectangle",
+        "course": "중1",
+        "level": "component",
+        "variant": "all-flags",
+        "format": "혼합",
+        "gradeStatus": null,
+        "releaseStatus": "review-only-template",
+        "specificHardGradeExpected": true,
+        "specificHardGradeObserved": false,
+        "specificHardGradeGap": true,
+        "unavailable": true,
+        "questions": 0,
+        "factoryCalls": 0,
+        "gradeWarning": false,
+        "releaseWarning": true,
+        "warnings": [
+          "접선 길이 역추론 유형은 전체 학년·도형·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      },
+      "actualNecessaryMethod": "Use circle tangency tothree rectangle sides, radius/perpendicular andequal tangentsfromonepoint, expresspartiallengths withx, applyPythagoras to(x+s)²=(x-s)²+w², expand to4sx=w² andcheckpositivepieces. No tangent-product,circleproportionality,sine law ortrigidentity shortcut.",
+      "capturedPrimaryPlacement": "PrioractuallyinspectedKOSAC2015 [9수04-19]circlechord/tangent and[9수04-16]Pythagoras pluspolynomialexpansion/linear prerequisites; circleproportionality exclusion retained. Official2024M3planphysical74/printed72 tangentrow placedatM3; source-school authority/manualq08 approval not inherited. SeeexistingU52R4currentgrade-rebind actualeachfullsolution trace.",
+      "limit": "Currentpublicreleaseholdstillclosed; no publicexposure/factorybypass claim. Current specificbelowM3 method-policy missing."
+    }
+  ],
+  "actualOwnControls": {
+    "actualRootGenerateUnmocked": true,
+    "actualFourFamilyMetadata": true,
+    "customOptionsFamiliesOnly": true,
+    "factoryReplacedWithThrowingTripwire": true,
+    "originalFactoryOrMakeOrProductionMathCalls": 0,
+    "requests": 860,
+    "publicUnavailableZeroQuestions": 860,
+    "specificHardGradeExpectedButAbsent": 624,
+    "U62BelowM3HardGradeControls": 156,
+    "M3ReleaseOnlyNoGradeApprovalControls": 80,
+    "invariantAssertions": {
+      "assertions": 21,
+      "passed": 21,
+      "failed": 0
+    },
+    "supportedBelowM3": [
+      "초3",
+      "초4",
+      "초5",
+      "초6",
+      "중1",
+      "중2"
+    ],
+    "coverageLevels": [
+      "full",
+      "component"
+    ],
+    "flags": [
+      "baseline",
+      "renamed ID",
+      "future/claimed approved version",
+      "approval flags",
+      "native source",
+      "confidence1",
+      "combinedallflags"
+    ],
+    "formats": "Baseline/all-flags across4formats; independent individualflag variants mixedformatonly. Exactcontextbycaseinreceipt; not a fabricatedfullCartesian claim.",
+    "U62Boundary": "Synthetic requirement-control using first realfamily metadata with U62 requirement, not actual U62factory import/execution",
+    "perRequirementGapCounts": {
+      "algebra.inverse-coefficient-sum": 156,
+      "number.inverse-root-table": 156,
+      "number.inverse-extreme-range": 156,
+      "geometry.inverse-tangent-rectangle": 156
+    },
+    "perCourseGapCounts": {
+      "초3": 104,
+      "초4": 104,
+      "초5": 104,
+      "초6": 104,
+      "중1": 104,
+      "중2": 104
+    },
+    "DBImports": 0,
+    "networkCalls": 0,
+    "notParentTestsOrHistoricalCounts": true,
+    "failureAccounting": "624 concrete failures of the requested specifichardgrade property, representing4missing requirement entries;21 separate factual/public/preservation controlassertions passed. Do not call this all-grade-controls-passed.",
+    "noFullRegistryCatalogHTTPDBOrProductionRoute": true
+  },
+  "gateOrder": {
+    "actualGenerateSourceGradeBeforeRelease": true,
+    "observedCurrentFourWarning": "Releasewarning present, grade=null andgrade-warningabsent inall624belowM3counterexamples.",
+    "observedU62": "Grade-warningpresent and releasewarningabsent inall156belowM3controls.",
+    "notMockedRelease": "No policy or release monkeypatch; no hypothetical release-disable/factory test."
+  },
+  "methodGradeEvidence": {
+    "file": "own-method-grade-recommendation.json",
+    "basis": "Read actual fourcurrentrequiredstudentmethods and exactdesign-referencedwholemethodaudits, plusdirectprimarygrade records/placementreferences. Not numeric2glyph/course string/source school alone.",
+    "proposedNarrowRepair": "Specific currentrequiredmethod dictionary matched byfulfills requirement forboth full/component andsupportedbelowM3, before release/factory. KeepU62existingreason, M1symbolic-sum andexacttwo reviewedM1geometry rules; no model/confidence/sourceflag exceptions. Bumpcurriculumpolicy version tobindmanifests; releasehold remainsindependent andunchanged.",
+    "2027M3/2022": "Existing wholemethodaudits explicitlypending; directM3null/runtimecourseonly not actual2022placementapproval. Keepmetadata/releasegates anddo notinfernewyearscope.",
+    "M1GeometryBoundary": "Only policy branch controls executed: correctreviewed IDs/versions returnnull (notblanketgradecert), old/future/renamed fullmethods stillpending;componentnull likewise notcert. No allowedM1factory invoked ornewM1wholemethodcertification."
+  },
+  "U43KoreanAudit": {
+    "input": "Archived actual32printedcontent/fullsolutions inexistingwholemethodaudit, eachsamecurrent TSsolutiontemplate confirmed byownliteralplaceholder reconstruction. No factory/make/verify orproductionmath executed.",
+    "actualDomainBinding": "32distinctprinted tuples match current a2/3,c2/4,d-5/-3,k-2/0/3/8; ownexactFractionkderivedfromprintedfactors+sum.",
+    "kEqualsMinus2WrongParticleCases1Based": [
+      1,
+      5,
+      9,
+      13,
+      17,
+      21,
+      25,
+      29
+    ],
+    "kWrongCount": 8,
+    "zeroBasedVariants": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28
+    ],
+    "correctSlopeParticles": "Actualslopes-3/-1/1 alltake은;0wrong slope topicparticles, no guesses.",
+    "otherActualObservedIssue": "23actualresult endings use으로 where 로isappropriate inthisboundeddomain. ExactcaseIDsandprintedvalues inown-U43-particle-cases.json;24distinctcases affectedbyanyparticle issue.",
+    "recommendedWording": "Neutralprose such as 이 값을 대입하면 / 계산 결과가 주어진 값과 같으므로, ratherthan a newgeneralKoreanparticle engine. Do not changevalid slope은 based onnegative sign alone.",
+    "notNewMathGradeCredit": true
+  },
+  "TypeSafeDesignReview": {
+    "skillApplied": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.agents\\skills\\typesafe-ai\\SKILL.md",
+    "receipt": "Provided same-daytypesafe-grade-gate-live-20261020-r2 HTTP200/SHA receipts andactual3localbodies checked/read. OwnnewliveHTTPfetch notclaimed; noAPI needed/requested.",
+    "recommendation": "Deterministicknownmethod/gradefacts andeffect-order stayincode. Optional futuresemanticreview shouldbenarrow/evidence-aware withpending; confidence describesdistribution andnever grantspermission toclear a known grade restriction. No integration/modelcall introduced.",
+    "fullDocsBodiesCommitted": false
+  },
+  "limits": [
+    "Prechange audit/recommendation only; didnot implementorretest afuturefix.",
+    "No new primary sweep/allstudentcurriculumcertification; only suppliedactuallycapturedprimaryevidence andactualcurrentmethods assessed.",
+    "Customfamily controls are not realHTTP/client-injection/DB/native/loadability tests.",
+    "Publicreleaseclosedforallevaluatedcases; noexposure,bypass orcurrentfactoryreachability asserted.",
+    "No new manualquestions/blindsolves/rights/sourceidentity/family/native/2022approval."
+  ],
+  "operations": {
+    "sourceEdits": 0,
+    "heavyTestsFullCatalogBrowser": 0,
+    "DBCalls": 0,
+    "APICalls": 0,
+    "paidModelCalls": 0,
+    "NOriginalReads": 0,
+    "installs": 0,
+    "newWorkersWorktreesSessions": 0
+  },
+  "artifactSHA256": {
+    "own-policy-counterexamples.json": "e4c5cab1e362bf4cdfeba0c8a3f28cbfbf3ae5d94800c30e41fb26dd7261359d",
+    "own-method-grade-recommendation.json": "8c4f0d437a03e46162973fd4374343d35e911150749c055ce3927c55bf1fdbe5",
+    "own-U43-particle-cases.json": "7c1e1af53d5573fb63a94592009a0a357a0e4a2e7cfd2828e380b3347b74cafc",
+    "own-U43-domain-binding.json": "3077518f531a6e98f22a33a04111a699d5b74b4f6a2a2d5ad7d744b4413ae041",
+    "own-docs-design-reading.json": "4772f4d59cae83b72e38feea48df515d2d8e66f2f34eb4eb59a48a1d01a63857",
+    "own-after.json": "71463a15ee63903449a3f6f3c4994a52c0110a09df62408272eb182f5b0fd29a"
+  }
+}
