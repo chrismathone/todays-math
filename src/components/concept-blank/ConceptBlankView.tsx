@@ -893,11 +893,7 @@ export default function ConceptBlankView({
       )}
 
       <div className={s.grid}>
-        <ConceptBlankUnitPicker
-          selected={chosen.map((key) =>
-            sectionTitleTex(getBlankSection(key)?.title ?? key),
-          )}
-        >
+        <ConceptBlankUnitPicker selected={chosen}>
           <section
             className={`${s.card} ${s.treeCard}`}
             aria-labelledby={`${uid}-tree`}

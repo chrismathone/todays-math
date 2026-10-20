@@ -39,11 +39,24 @@
   display: grid;
   gap: 4px;
 }
-.selected > span {
+.group {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.groupHeading,
+.section {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
+}
+.groupHeading {
+  color: var(--b-ink);
+  font-weight: 600;
+}
+.section {
+  padding-left: 8px;
 }
 .action {
   display: flex;
