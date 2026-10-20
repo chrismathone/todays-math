@@ -1,0 +1,53 @@
+{
+  "squaredBounds": [
+    [
+      9,
+      11,
+      16
+    ],
+    [
+      1,
+      3,
+      4
+    ],
+    [
+      9,
+      10,
+      16
+    ],
+    [
+      1,
+      2,
+      4
+    ],
+    [
+      9,
+      15,
+      16
+    ]
+  ],
+  "betweenZeroAndOne": [
+    true,
+    false,
+    false,
+    true,
+    true
+  ],
+  "count": 3,
+  "correctChoices": [
+    false,
+    false,
+    false,
+    true,
+    false
+  ],
+  "candidateFileSha256": "95885bfc8e9ef761849a6aa37c1b20eccdebfb1e91f713c7b888c5a2ffb79de6",
+  "candidateDigest": "ca02b8c89d9c7426401c1763f54adc9343b9cee8924afda99f4cddfe1382afa3",
+  "studentDigest": "353675a5a861e6dd7100f27338744c817afb22cc8a1ba88f939cec009727b65b",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+  "authorOnly": true,
+  "independentReview": false,
+  "loadable": 0,
+  "dbWrites": 0
+}

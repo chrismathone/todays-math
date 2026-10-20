@@ -1,0 +1,93 @@
+{
+  "kind": "internal-original-pdf-alias-component-observation/v1",
+  "utc": "2026-10-20T07:25:12.527069+00:00",
+  "examId": "personal-59bbe8ebff319ec20b823103fa6c5e8d",
+  "boundImages": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-gangbuk-visual-page-bindings-r1.json",
+    "sha256": "5b825a0c0186d059162db2733318af6ff85107d1c4b41f76cf255ebbb4d4c1f6"
+  },
+  "allEightPageImagesActuallyViewed": true,
+  "observedCommonHeader": {
+    "year": 2025,
+    "grade": 3,
+    "semester": 1,
+    "round": "final",
+    "date": "July2",
+    "schoolFooterMatchesInventory": true,
+    "printedCounts": {
+      "multipleChoice": 16,
+      "constructedResponse": 5,
+      "totalParents": 21
+    }
+  },
+  "pageMapping": [
+    {
+      "reference1PdfPage": 1,
+      "reference2PdfPage": 1,
+      "printedPage": "4-1",
+      "printedItems": [
+        "MC01",
+        "MC02",
+        "MC03",
+        "MC04",
+        "MC05",
+        "MC06"
+      ]
+    },
+    {
+      "reference1PdfPage": 2,
+      "reference2PdfPage": 2,
+      "printedPage": "4-2",
+      "printedItems": [
+        "MC07",
+        "MC08",
+        "MC09",
+        "MC10",
+        "MC11"
+      ]
+    },
+    {
+      "reference1PdfPage": 4,
+      "reference2PdfPage": 3,
+      "printedPage": "4-3",
+      "printedItems": [
+        "MC12",
+        "MC13",
+        "MC14",
+        "MC15",
+        "MC16"
+      ]
+    },
+    {
+      "reference1PdfPage": 3,
+      "reference2PdfPage": 4,
+      "printedPage": "4-4",
+      "printedItems": [
+        "CR01",
+        "CR02",
+        "CR03",
+        "CR04",
+        "CR05"
+      ]
+    }
+  ],
+  "observedCorrespondence": "All21 printed parent components, choices, numeric conditions, scores, required figures and constructed-response conditions visually correspond. Page order differs in reference1 and rotation/handwriting differ. This is an explicit bounded human-agent visual observation, not a pixel oracle or automatic text fidelity proof.",
+  "internalSameExamPdfAliasGrouping": "bounded-content-observed-common-paper; retain both immutable files and printed-order map",
+  "byteIdentical": false,
+  "reference1NeedsPrintedPageReordering": [
+    1,
+    2,
+    4,
+    3
+  ],
+  "mathCalculationUsedPixels": false,
+  "sourceHandwrittenAnswerMarksUsedForAnyTwinApproval": false,
+  "printedCopyrightNoticeSeen": true,
+  "hwpPdfContentPairApproved": false,
+  "transcriptionFidelityApproved": false,
+  "studentCurriculumApproved": false,
+  "rightsApproved": false,
+  "sourceObservationCredit": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}

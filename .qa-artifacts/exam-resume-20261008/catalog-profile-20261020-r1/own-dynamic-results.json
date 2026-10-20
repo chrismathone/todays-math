@@ -1,0 +1,40 @@
+{
+  "total": 8,
+  "passed": 8,
+  "results": [
+    {
+      "name": "same-array-field-mutation-observed",
+      "passed": true
+    },
+    {
+      "name": "same-enumerator-closure-mutation-observed",
+      "passed": true
+    },
+    {
+      "name": "frozen-family-is-not-immutable-domain-behavior",
+      "passed": true
+    },
+    {
+      "name": "format-change-observed",
+      "passed": true
+    },
+    {
+      "name": "ordering-canonical",
+      "passed": true
+    },
+    {
+      "name": "validation-rechecks-dynamic-domain",
+      "passed": true
+    },
+    {
+      "name": "grade-policy-remains-dynamic",
+      "passed": true
+    },
+    {
+      "name": "hard-grade-exclusion-and-release-both-retained",
+      "passed": true
+    }
+  ],
+  "sharedRegistryMutations": 0,
+  "factoryCalls": 0
+}

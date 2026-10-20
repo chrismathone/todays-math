@@ -1,0 +1,100 @@
+{
+  "mode": "cold",
+  "node": "v22.17.1",
+  "importMs": 4933.522499999999,
+  "ticks": [
+    {
+      "name": "cold-first-M3-catalog",
+      "ms": 17285.6479
+    },
+    {
+      "name": "warm-second-M3-catalog",
+      "ms": 74.64489999999932
+    }
+  ],
+  "totalMs": 22353.8646,
+  "registry": {
+    "families": 4224,
+    "byCourse": {
+      "중1": 588,
+      "중2": 638,
+      "중3": 320,
+      "공통수학2": 8,
+      "초3": 589,
+      "초4": 673,
+      "초5": 633,
+      "초6": 607,
+      "공통수학1": 168
+    },
+    "bySource": {
+      "authored": 34,
+      "elementary": 2499,
+      "middle": 1517,
+      "high": 168,
+      "native": 6
+    },
+    "finiteFamilies": 38,
+    "sampledFamilies": 4186,
+    "totalDeclaredFiniteSize": 1804
+  },
+  "m3": {
+    "registered": 320,
+    "catalog": 316,
+    "profiles": 1,
+    "formats": [
+      "단답형",
+      "객관식",
+      "서술형"
+    ]
+  },
+  "engineVersion": "exam-study-1",
+  "curriculumPolicy": "20261019-m1-reviewed-student-methods-r2",
+  "releasePolicy": "20261020-source-informed-template-review-r4",
+  "manifest": "exam-study-manifest-dcdcf20d929c54803818cbd2",
+  "catalogSHA256": [
+    "8ace3b1ebc3f3b54ebe8a56633fea3147b6a7ddf9e0f6544695f47576e707eae",
+    "8ace3b1ebc3f3b54ebe8a56633fea3147b6a7ddf9e0f6544695f47576e707eae"
+  ],
+  "holds": [
+    {
+      "id": "study-middle-coprime-symbolic-sum",
+      "course": "중1",
+      "curriculum": "excluded-required-out-of-grade-method",
+      "release": null
+    },
+    {
+      "id": "study-middle-inverse-coefficient-sum",
+      "course": "중3",
+      "curriculum": null,
+      "release": "review-only-template"
+    },
+    {
+      "id": "study-middle-inverse-root-table",
+      "course": "중3",
+      "curriculum": null,
+      "release": "review-only-template"
+    },
+    {
+      "id": "study-middle-inverse-extreme-minimum",
+      "course": "중3",
+      "curriculum": null,
+      "release": "review-only-template"
+    },
+    {
+      "id": "study-middle-inverse-tangent-rectangle",
+      "course": "중3",
+      "curriculum": null,
+      "release": "review-only-template"
+    }
+  ],
+  "decomposition": null,
+  "domainRows": [],
+  "memory": {
+    "rss": 372371456,
+    "heapTotal": 290234368,
+    "heapUsed": 258377176,
+    "external": 4989329,
+    "arrayBuffers": 25091
+  },
+  "networkCalls": 0
+}

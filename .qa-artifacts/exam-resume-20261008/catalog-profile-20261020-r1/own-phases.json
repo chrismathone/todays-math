@@ -1,0 +1,475 @@
+{
+  "mode": "phases",
+  "node": "v22.17.1",
+  "importMs": 5411.8922,
+  "ticks": [
+    {
+      "name": "cold-legacy-adapter-construction",
+      "ms": 16931.8885
+    },
+    {
+      "name": "registry-assembly-and-initial-validation-after-legacy",
+      "ms": 37.85179999999673
+    },
+    {
+      "name": "repeat-validation-observed-copies",
+      "ms": 23.56920000000173
+    },
+    {
+      "name": "enumeration-subcost-inside-validation",
+      "ms": 0.3525000000045111,
+      "calls": 38
+    },
+    {
+      "name": "manifest-direct-1",
+      "ms": 85.5047999999988
+    },
+    {
+      "name": "manifest-direct-2",
+      "ms": 77.06629999999859
+    },
+    {
+      "name": "first-M3-catalog-after-registry",
+      "ms": 77.57690000000002
+    },
+    {
+      "name": "warm-M3-catalog-repeat",
+      "ms": 86.62590000000273
+    }
+  ],
+  "totalMs": 22913.4489,
+  "registry": {
+    "families": 4224,
+    "byCourse": {
+      "중1": 588,
+      "중2": 638,
+      "중3": 320,
+      "공통수학2": 8,
+      "초3": 589,
+      "초4": 673,
+      "초5": 633,
+      "초6": 607,
+      "공통수학1": 168
+    },
+    "bySource": {
+      "authored": 34,
+      "elementary": 2499,
+      "middle": 1517,
+      "high": 168,
+      "native": 6
+    },
+    "finiteFamilies": 38,
+    "sampledFamilies": 4186,
+    "totalDeclaredFiniteSize": 1804
+  },
+  "m3": {
+    "registered": 320,
+    "catalog": 316,
+    "profiles": 1,
+    "formats": [
+      "단답형",
+      "객관식",
+      "서술형"
+    ]
+  },
+  "engineVersion": "exam-study-1",
+  "curriculumPolicy": "20261019-m1-reviewed-student-methods-r2",
+  "releasePolicy": "20261020-source-informed-template-review-r4",
+  "manifest": "exam-study-manifest-dcdcf20d929c54803818cbd2",
+  "catalogSHA256": [
+    "8ace3b1ebc3f3b54ebe8a56633fea3147b6a7ddf9e0f6544695f47576e707eae",
+    "8ace3b1ebc3f3b54ebe8a56633fea3147b6a7ddf9e0f6544695f47576e707eae"
+  ],
+  "holds": [
+    {
+      "id": "study-middle-coprime-symbolic-sum",
+      "course": "중1",
+      "curriculum": "excluded-required-out-of-grade-method",
+      "release": null
+    },
+    {
+      "id": "study-middle-inverse-coefficient-sum",
+      "course": "중3",
+      "curriculum": null,
+      "release": "review-only-template"
+    },
+    {
+      "id": "study-middle-inverse-root-table",
+      "course": "중3",
+      "curriculum": null,
+      "release": "review-only-template"
+    },
+    {
+      "id": "study-middle-inverse-extreme-minimum",
+      "course": "중3",
+      "curriculum": null,
+      "release": "review-only-template"
+    },
+    {
+      "id": "study-middle-inverse-tangent-rectangle",
+      "course": "중3",
+      "curriculum": null,
+      "release": "review-only-template"
+    }
+  ],
+  "decomposition": {
+    "projectionMs": 7.09349999999904,
+    "stringifyMs": 78.17789999999877,
+    "hashMs": 4.141899999998714,
+    "canonicalChars": 1404519,
+    "manifest": "exam-study-manifest-dcdcf20d929c54803818cbd2",
+    "matchesActual": true
+  },
+  "domainRows": [
+    {
+      "id": "exam-advanced:absolute-rational-levels",
+      "course": "공통수학2",
+      "size": 624,
+      "entries": 624,
+      "enumerateMs": 0.0005999999993946403,
+      "stringifyMs": 5.330599999997503,
+      "canonicalChars": 54945
+    },
+    {
+      "id": "legacy:mid:1-1|일차방정식의 풀이|11",
+      "course": "중1",
+      "size": 120,
+      "entries": 120,
+      "enumerateMs": 0.0005000000019208528,
+      "stringifyMs": 0.8255000000026484,
+      "canonicalChars": 8161
+    },
+    {
+      "id": "exam-advanced:finite-bijection-chain",
+      "course": "공통수학2",
+      "size": 108,
+      "entries": 108,
+      "enumerateMs": 0.001299999999901047,
+      "stringifyMs": 0.46410000000105356,
+      "canonicalChars": 7417
+    },
+    {
+      "id": "legacy:mid:1-1|문자의 사용과 식의 계산|13",
+      "course": "중1",
+      "size": 144,
+      "entries": 144,
+      "enumerateMs": 0.004700000001321314,
+      "stringifyMs": 0.36969999999928405,
+      "canonicalChars": 4921
+    },
+    {
+      "id": "exam-advanced:quadratic-coefficient-reuse",
+      "course": "중3",
+      "size": 25,
+      "entries": 25,
+      "enumerateMs": 0.22430000000167638,
+      "stringifyMs": 0.10169999999925494,
+      "canonicalChars": 540
+    },
+    {
+      "id": "exam-advanced:restricted-quadratic-bijection",
+      "course": "공통수학2",
+      "size": 108,
+      "entries": 108,
+      "enumerateMs": 0.0007000000005064066,
+      "stringifyMs": 0.26819999999861466,
+      "canonicalChars": 6229
+    },
+    {
+      "id": "exam-advanced:iterated-finite-range",
+      "course": "공통수학2",
+      "size": 63,
+      "entries": 63,
+      "enumerateMs": 0.0005999999993946403,
+      "stringifyMs": 0.21750000000247383,
+      "canonicalChars": 4159
+    },
+    {
+      "id": "legacy:native:m3-quadratic-domain-r1",
+      "course": "중3",
+      "size": 60,
+      "entries": 60,
+      "enumerateMs": 0.0011000000013154931,
+      "stringifyMs": 0.1992000000027474,
+      "canonicalChars": 1585
+    },
+    {
+      "id": "study-middle-piecewise-multi-claim",
+      "course": "중1",
+      "size": 12,
+      "entries": 12,
+      "enumerateMs": 0.06590000000142027,
+      "stringifyMs": 0.12779999999838765,
+      "canonicalChars": 285
+    },
+    {
+      "id": "exam-advanced:truth-set-inclusion",
+      "course": "공통수학2",
+      "size": 72,
+      "entries": 72,
+      "enumerateMs": 0.0014000000010128133,
+      "stringifyMs": 0.1647000000011758,
+      "canonicalChars": 4609
+    },
+    {
+      "id": "exam-advanced:parabola-line-chain",
+      "course": "중3",
+      "size": 72,
+      "entries": 72,
+      "enumerateMs": 0.0011000000013154931,
+      "stringifyMs": 0.15099999999802094,
+      "canonicalChars": 3055
+    },
+    {
+      "id": "study-middle-stopped-travel",
+      "course": "중2",
+      "size": 16,
+      "entries": 16,
+      "enumerateMs": 0.009399999999004649,
+      "stringifyMs": 0.12190000000191503,
+      "canonicalChars": 657
+    },
+    {
+      "id": "study-middle-doubling-time-offset",
+      "course": "중1",
+      "size": 12,
+      "entries": 12,
+      "enumerateMs": 0.027699999998731073,
+      "stringifyMs": 0.09270000000105938,
+      "canonicalChars": 627
+    },
+    {
+      "id": "study-middle-translated-coefficient-reuse-linear",
+      "course": "중2",
+      "size": 16,
+      "entries": 16,
+      "enumerateMs": 0.010699999998905696,
+      "stringifyMs": 0.10069999999905122,
+      "canonicalChars": 732
+    },
+    {
+      "id": "study-middle-inverse-coefficient-sum",
+      "course": "중3",
+      "size": 32,
+      "entries": 32,
+      "enumerateMs": 0.0054000000018277206,
+      "stringifyMs": 0.1022000000011758,
+      "canonicalChars": 873
+    },
+    {
+      "id": "study-middle-shifted-system-coupling",
+      "course": "중2",
+      "size": 16,
+      "entries": 16,
+      "enumerateMs": 0.009400000002642628,
+      "stringifyMs": 0.09230000000025029,
+      "canonicalChars": 609
+    },
+    {
+      "id": "study-middle-ray-area-partition",
+      "course": "중1",
+      "size": 12,
+      "entries": 12,
+      "enumerateMs": 0.005300000000715954,
+      "stringifyMs": 0.075700000001234,
+      "canonicalChars": 391
+    },
+    {
+      "id": "legacy:mid:1-1|일차방정식의 풀이|06",
+      "course": "중1",
+      "size": 32,
+      "entries": 32,
+      "enumerateMs": 0.0010000000002037268,
+      "stringifyMs": 0.0764999999992142,
+      "canonicalChars": 1545
+    },
+    {
+      "id": "study-middle-dependent-formula-min-time",
+      "course": "중1",
+      "size": 12,
+      "entries": 12,
+      "enumerateMs": 0.009600000001228182,
+      "stringifyMs": 0.06750000000101863,
+      "canonicalChars": 505
+    },
+    {
+      "id": "study-middle-inverse-root-table",
+      "course": "중3",
+      "size": 45,
+      "entries": 45,
+      "enumerateMs": 0.0039999999971769284,
+      "stringifyMs": 0.06850000000122236,
+      "canonicalChars": 1561
+    },
+    {
+      "id": "exam-advanced:intermediate-truth-sets",
+      "course": "공통수학2",
+      "size": 18,
+      "entries": 18,
+      "enumerateMs": 0.0007000000005064066,
+      "stringifyMs": 0.06929999999920256,
+      "canonicalChars": 1141
+    },
+    {
+      "id": "study-middle-inverse-area-ratio",
+      "course": "중1",
+      "size": 12,
+      "entries": 12,
+      "enumerateMs": 0.011699999999109423,
+      "stringifyMs": 0.0507999999972526,
+      "canonicalChars": 319
+    },
+    {
+      "id": "exam-advanced:radical-inverse-circle",
+      "course": "공통수학2",
+      "size": 7,
+      "entries": 7,
+      "enumerateMs": 0.03410000000076252,
+      "stringifyMs": 0.022500000002764864,
+      "canonicalChars": 278
+    },
+    {
+      "id": "study-middle-intercept-integer-area",
+      "course": "중2",
+      "size": 12,
+      "entries": 12,
+      "enumerateMs": 0.006000000001222361,
+      "stringifyMs": 0.04539999999906286,
+      "canonicalChars": 249
+    },
+    {
+      "id": "study-middle-inverse-extreme-minimum",
+      "course": "중3",
+      "size": 24,
+      "entries": 24,
+      "enumerateMs": 0.002799999998387648,
+      "stringifyMs": 0.04719999999724678,
+      "canonicalChars": 1313
+    },
+    {
+      "id": "study-middle-shared-side-square",
+      "course": "중1",
+      "size": 8,
+      "entries": 8,
+      "enumerateMs": 0.009099999999307329,
+      "stringifyMs": 0.038200000002689194,
+      "canonicalChars": 177
+    },
+    {
+      "id": "study-middle-coprime-symbolic-sum",
+      "course": "중1",
+      "size": 14,
+      "entries": 14,
+      "enumerateMs": 0.005700000001525041,
+      "stringifyMs": 0.040300000000570435,
+      "canonicalChars": 401
+    },
+    {
+      "id": "study-middle-linear-fuel-model",
+      "course": "중2",
+      "size": 8,
+      "entries": 8,
+      "enumerateMs": 0.005499999999301508,
+      "stringifyMs": 0.03329999999914435,
+      "canonicalChars": 309
+    },
+    {
+      "id": "study-middle-two-work-rates",
+      "course": "중2",
+      "size": 8,
+      "entries": 8,
+      "enumerateMs": 0.004000000000814907,
+      "stringifyMs": 0.03430000000298605,
+      "canonicalChars": 193
+    },
+    {
+      "id": "study-middle-circle-revolution-percentage",
+      "course": "중1",
+      "size": 10,
+      "entries": 10,
+      "enumerateMs": 0.005300000000715954,
+      "stringifyMs": 0.03269999999974971,
+      "canonicalChars": 297
+    },
+    {
+      "id": "study-middle-intercept-trapezoid-cases",
+      "course": "중2",
+      "size": 8,
+      "entries": 8,
+      "enumerateMs": 0.004799999998795101,
+      "stringifyMs": 0.03259999999863794,
+      "canonicalChars": 161
+    },
+    {
+      "id": "exam-advanced:incircle-shaded-area",
+      "course": "중2",
+      "size": 24,
+      "entries": 24,
+      "enumerateMs": 0.0008999999990919605,
+      "stringifyMs": 0.027000000001862645,
+      "canonicalChars": 561
+    },
+    {
+      "id": "study-middle-signed-inverse-trapezoid",
+      "course": "중1",
+      "size": 4,
+      "entries": 4,
+      "enumerateMs": 0.00480000000243308,
+      "stringifyMs": 0.017899999998917338,
+      "canonicalChars": 59
+    },
+    {
+      "id": "exam-advanced:split-triangle-incenters",
+      "course": "중2",
+      "size": 15,
+      "entries": 15,
+      "enumerateMs": 0.0008999999990919605,
+      "stringifyMs": 0.019799999998213025,
+      "canonicalChars": 346
+    },
+    {
+      "id": "study-middle-inverse-equal-legs",
+      "course": "중1",
+      "size": 4,
+      "entries": 4,
+      "enumerateMs": 0.004899999999906868,
+      "stringifyMs": 0.013199999997596024,
+      "canonicalChars": 57
+    },
+    {
+      "id": "exam-advanced:radical-triangle-area",
+      "course": "공통수학2",
+      "size": 11,
+      "entries": 11,
+      "enumerateMs": 0.000499999998282874,
+      "stringifyMs": 0.01630000000295695,
+      "canonicalChars": 309
+    },
+    {
+      "id": "study-middle-inverse-tangent-rectangle",
+      "course": "중3",
+      "size": 10,
+      "entries": 10,
+      "enumerateMs": 0.0017000000007101335,
+      "stringifyMs": 0.014600000002246816,
+      "canonicalChars": 271
+    },
+    {
+      "id": "exam-advanced:two-centers-angle",
+      "course": "중2",
+      "size": 6,
+      "entries": 6,
+      "enumerateMs": 0.0005000000019208528,
+      "stringifyMs": 0.010900000001129229,
+      "canonicalChars": 218
+    }
+  ],
+  "memory": {
+    "rss": 405987328,
+    "heapTotal": 319959040,
+    "heapUsed": 290718856,
+    "external": 4989329,
+    "arrayBuffers": 25091
+  },
+  "networkCalls": 0
+}
