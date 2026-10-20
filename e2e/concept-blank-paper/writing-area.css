@@ -1,0 +1,7 @@
+/* 기존 하네스의 화면 바깥 여백은 PDF의 A4 쪽 예산에 넣지 않는다. */
+@media print {
+  body {
+    padding: 0;
+    background: #fff;
+  }
+}
