@@ -71,7 +71,8 @@ function shownText(html: string): string {
   const root = document.createElement("div");
   root.innerHTML = html;
   root.querySelectorAll(".katex-mathml").forEach((node) => node.remove());
-  return root.textContent ?? "";
+  // 식 뒤 조사 앞의 WORD JOINER(U+2060 · D-164 ⑴)는 폭이 없어 안 보인다 — 보이는 글에서 뺀다.
+  return (root.textContent ?? "").replace(/\u2060/g, "");
 }
 const MATH_OUTSIDE = /[0-9⁰¹²³⁴⁵⁶⁷⁸⁹ⁿ+\-−×÷=≠<>≤≥±:/√π°%…→↔□△()]/g;
 

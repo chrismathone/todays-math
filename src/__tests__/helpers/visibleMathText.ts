@@ -68,7 +68,8 @@ export function visibleMath(html: string): VisibleMath {
     for (const child of node.childNodes) walk(child, inMath || isKatex);
   };
   walk(root, false);
-  text = text.replace(/\s+/g, " ").trim();
+  // 식 뒤 조사 앞의 WORD JOINER(U+2060 — `rehypeMathNowrap` 의 `joinParticles`, D-164 ⑴)는 폭이 없어 안 보인다.
+  text = text.replace(/\u2060/g, "").replace(/\s+/g, " ").trim();
   return {
     text,
     // 붉은 원문은 조판이 아니라 노출이다 — 샘으로 센다. 회색 폴백은 따로(`raw`).

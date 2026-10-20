@@ -93,7 +93,8 @@ const REMARK_PLUGINS_FORMULA = [...REMARK_PLUGINS, remarkFormulaLines];
  */
 const REHYPE_PLUGINS: PluggableList = [
   [rehypeKatex, UI_KATEX_OPTIONS],
-  // 짧은 인라인 식은 안에서 줄을 안 바꾸고 붙은 낱말과도 안 떨어진다 — 근거는 `rehypeMathNowrap.ts`.
+  // 짧은 인라인 식은 안에서 줄을 안 바꾸고, 식 뒤에 붙은 조사 · 서술격과도 안 떨어진다(단위 · 의존명사는 그대로) —
+  // 근거는 `rehypeMathNowrap.ts`.
   rehypeMathNowrap,
 ];
 

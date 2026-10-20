@@ -60,8 +60,9 @@ function measure() {
       const katex = cell.querySelector(".katex-html");
       const box = cell.getBoundingClientRect();
       // 제품은 KaTeX 클래스에 접두사를 붙인다(`katex-base`). 맨 KaTeX(`base`)도 같이 본다.
+      // 식 뒤에 조사가 붙은 긴 식은 마지막 조각이 nowrap 상자 안에 있다(`rehypeMathNowrap` 의 `pinLastPiece`).
       const bases = katex
-        ? [...katex.querySelectorAll(":scope > .katex-base, :scope > .base")]
+        ? [...katex.querySelectorAll(":scope > .katex-base, :scope > span > .katex-base, :scope > .base")]
         : [];
       if (bases.length === 0)
         return { tex: "", width: 0, room: 0, wrapped: false };
