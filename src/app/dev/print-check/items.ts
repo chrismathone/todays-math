@@ -3810,6 +3810,30 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "2026-10-21",
   },
+  {
+    id: "math-particle-join-20261021",
+    title: "식 뒤 조사 · 서술격 — 식과 한 줄에 (D-164 ⑴)",
+    changed:
+      "인라인 식 바로 뒤에 붙은 조사 · 서술격(«$x$의» · «$25$입니다» · «$a=3$이므로» · «$\\overline{AB}$에서는» …)은 식과 같은 줄에 선다. " +
+      "렌더러가 조사 글 맨 앞에 폭 없는 글자(U+2060)를 넣고, 긴 식은 마지막 조각만 nowrap 상자에 넣는다(`rehypeMathNowrap` 의 `joinParticles`) — " +
+      "Chrome 은 U+2060 하나로는 식 뒤에서 줄을 안 막는다(실측). 줄이 모자라면 식(의 마지막 조각)과 조사가 함께 다음 줄로 내려간다. " +
+      "단위 · 의존명사(«$3$개» · «$3$가지») · 독립 낱말(«이상» · «이하»)과 띄어 쓴 조사는 그대로다. 보이는 글자는 한 자도 안 바뀐다.",
+    look:
+      "(제안) ① 식이 줄 끝에 걸리는 문항에서 식만 윗줄에 남고 «의» · «입니다» 가 다음 줄 머리에 찍히는 일이 없는가. " +
+      "② 긴 식 «$y=-2(x^2+2x+2)^2+8(x^2+2x+2)+k$이므로» 의 «이므로» 가 식의 마지막 조각과 한 줄인가 · 칸 오른쪽으로 넘치지 않는가. " +
+      "③ 식과 조사 사이에 빈칸이나 네모(□) 같은 글자가 안 찍히는가(U+2060 은 보이면 안 된다). ④ HWPX 로 내보낸 파일에서도 ③.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/math/rehypeMathNowrap.ts · src/lib/math/mathParticles.ts",
+      "src/__tests__/unit/mathParticleBreakChrome.test.tsx(대조군은 갈리고 제품은 0 · 화면 · 인쇄 · keep-all) · src/__tests__/unit/mathNowrap.test.tsx · src/__tests__/unit/mathParticles.test.ts",
+      "docs/planning/tracks/reports/problem-display-decisions-consensus-20261021.md(①)",
+    ],
+    scale:
+      "식 바로 뒤에 조사가 붙은 자리 — 공유 DB 문항 118,246행에서 521,169곳(«이다» 111,228 · «의» 76,669 · «이므로» 47,524 …). 초등은 생성기 붙임(초등 갈래) 뒤에 늘어난다",
+    needs: "식 뒤 조사가 줄 끝에 걸리는 문항 여럿(중등 · 교과서) · 고등 공통수학1 이차함수의 최대·최소 문항 하나(긴 식)",
+    status: "대기",
+    changedOn: "2026-10-21",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

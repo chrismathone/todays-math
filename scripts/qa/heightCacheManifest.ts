@@ -40,6 +40,8 @@ const PAGE_INPUT_FILES = [
   "src/components/math/MarkdownRenderer.tsx",
   "src/components/math/remarkFormulaLines.ts",
   "src/components/math/rehypeMathNowrap.ts",
+  // D-164(2026-10-21): 식 뒤 조사 잇기의 목록 — 줄바꿈을 바꾼다
+  "src/lib/math/mathParticles.ts",
   "src/lib/math/formulaLine.ts",
   "src/app/globals.css",
   "src/lib/math/displayWidth.ts",
