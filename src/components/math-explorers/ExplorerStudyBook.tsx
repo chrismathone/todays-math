@@ -10,6 +10,12 @@ import { StudyBook } from "@/components/math-srs/StudyBook";
 import { curriculumName } from "@/components/fading/labels";
 import { ExplorerMath } from "./ExplorerMath";
 import b from "./explorer-study-book.module.css";
+import {
+  GuideArt,
+  GuidePicker,
+  GuideReward,
+  useExplorerGuide,
+} from "./ExplorerGuide";
 
 const StudyUnit = createContext<string | null>(null);
 
@@ -48,17 +54,13 @@ export function DailyStudy({
             <h2>내일 할 것</h2>
             <p>기억 복습과 다음 공부를 이어 가요.</p>
           </section>
-          <div className={b.reward} aria-label="보상 그림 자리">
-            오늘의 한 장을 채웠어요
-          </div>
+          <GuideReward />
         </>
       ) : (
         <>
           <p className={b.invitation}>배운 것을 떠올리고, 새 내용을 배워요.</p>
           <div className={b.guide}>
-            <div aria-label="길잡이 그림 자리" className={b.guideArt}>
-              길잡이
-            </div>
+            <GuideArt />
           </div>
           <button
             id={startId}
@@ -90,6 +92,7 @@ export function ExplorerStudyBook({
   study: ReactNode;
   journey: ReactNode;
 }) {
+  const guide = useExplorerGuide();
   return (
     <StudyBook
       theme={theme}
@@ -98,7 +101,11 @@ export function ExplorerStudyBook({
       left={
         <>
           <p className={b.grade}>{grade}</p>
-          <StudyUnit.Provider value={unit}>{study}</StudyUnit.Provider>
+          {guide?.picking ? (
+            <GuidePicker />
+          ) : (
+            <StudyUnit.Provider value={unit}>{study}</StudyUnit.Provider>
+          )}
         </>
       }
       right={journey}
