@@ -10,12 +10,14 @@ function numeric(tex: string) {
 }
 it("independently solves new first-semester numeric frames", () => {
   for (const s of COURSE_SECTIONS.filter((s) =>
-    ["5-1-3-2", "5-1-4-2", "5-1-5-4"].includes(s.id),
+    ["5-1-3-2", "5-1-4-2", "5-1-5-2", "5-1-5-4"].includes(s.id),
   ))
     for (const tier of ["기본", "응용"] as const)
       for (let seed = 1; seed <= 32; seed++) {
         const frames = extraFirstSemesterFrames(s.unit, seed * 7919, tier);
-        expect(frames.length > 0).toBe(s.id !== "5-1-5-4" || tier === "응용");
+        expect(frames.length > 0).toBe(
+          !["5-1-5-2", "5-1-5-4"].includes(s.id) || tier === "응용",
+        );
         for (const p of frames) {
           expect(
             getCourseProblemInput(p).mode === "self-check",
@@ -83,9 +85,12 @@ it("independently solves new first-semester numeric frames", () => {
                   : fs[0][1] - reduced[0][1];
           } else {
             const values = parts.map(numeric);
-            expected = p.content.includes("오전")
-              ? values[0] - values[1] - values[2]
-              : values[0] - values[2] - (values[1] - values[3]);
+            expected =
+              s.id === "5-1-5-2"
+                ? values[0] + values[1] - values[2]
+                : p.content.includes("오전")
+                  ? values[0] - values[1] - values[2]
+                  : values[0] - values[2] - (values[1] - values[3]);
           }
           expect(numeric(p.answer.replaceAll("$", "")), p.content).toBeCloseTo(
             expected,

@@ -4,8 +4,6 @@ import { describe, expect, it } from "vitest";
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
   generateElementaryProblem,
-  generateElementaryForm,
-  coreForms,
   supportedTiers,
 } from "@/lib/elementary/generate";
 import {
@@ -21,7 +19,7 @@ import {
 } from "@/lib/math-srs/elementary/answers";
 import { generateCourseSession } from "@/lib/math-srs/elementary/generator";
 import type { CourseProblem } from "@/lib/math-srs/elementary/types";
-import { extraCourseFrames } from "@/lib/math-srs/elementary/extraFrames";
+import { generateCourseEngineRedraw } from "@/lib/math-srs/elementary/engineFrames";
 
 const NOW = new Date("2026-09-23T00:00:00.000Z");
 function question(answer: string, content = "답을 구하시오."): CourseProblem {
@@ -94,22 +92,11 @@ describe("elementary course curriculum and generation", () => {
           const original =
             defaultProblem.content === problem.content
               ? defaultProblem
-              : [
-                  ...coreForms(section.unit)
-                    .filter((form) => form.tier === problem.tier)
-                    .map((form) =>
-                      generateElementaryForm(
-                        section.unit,
-                        problem.seed,
-                        form.id,
-                      ),
-                    ),
-                  ...extraCourseFrames(
-                    section.unit,
-                    problem.seed,
-                    problem.tier,
-                  ),
-                ].find((candidate) => candidate.content === problem.content)!;
+              : generateCourseEngineRedraw(
+                  section.unit,
+                  problem.seed,
+                  problem.tier,
+                );
           expect(original).toBeDefined();
           expect(problem.content).toBe(original.content);
           expect(problem.answer).toBe(original.answer);

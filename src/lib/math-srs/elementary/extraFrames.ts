@@ -19,6 +19,46 @@ export function extraCourseFrames(
   if (code.startsWith("2-5-")) return extraBoxFrames(unit, seed, tier);
   if (code.startsWith("2-6-")) return extraAverageFrames(unit, seed, tier);
   const rng = createRng(seed);
+  if (code === "2-1-6" && tier === "기본") {
+    const value = intBetween(rng, 12, 98) * 10 + intBetween(rng, 1, 9);
+    const rounded = Math.round(value / 10) * 10;
+    const difference = Math.abs(rounded - value);
+    return [
+      make(
+        unit,
+        `${n(value)}에 반올림을 적용하여 십의 자리까지 나타낸 수와 원래 수의 차를 구하시오.`,
+        n(difference),
+        `반올림한 값은 ${n(rounded)}입니다. 원래 수와의 차는 ${n(difference)}입니다.`,
+      ),
+    ];
+  }
+  if (code === "2-2-3" && tier === "기본") {
+    const d = intBetween(rng, 4, 9),
+      e = intBetween(rng, 4, 9);
+    const a = intBetween(rng, 1, d - 1),
+      b = intBetween(rng, 1, e - 1);
+    return [
+      make(
+        unit,
+        `두 진분수 $\\frac{${a}}{${d}}$, $\\frac{${b}}{${e}}$에서 분자끼리, 분모끼리 각각 곱해 분수를 만들었습니다. 이렇게 만든 분수의 분자는 얼마입니까?`,
+        n(a * b),
+        `분자끼리 곱하므로 $${a}\\times${b}=${a * b}$입니다.`,
+      ),
+    ];
+  }
+  if (code === "2-4-7" && tier === "응용") {
+    const scaled = intBetween(rng, 101, 999);
+    const value = scaled / 100,
+      difference = (scaled * 90) / 100;
+    return [
+      make(
+        unit,
+        `$${value}\\times10$의 값과 $${value}\\times100$의 값의 차를 구하시오.`,
+        n(difference),
+        `두 값은 각각 ${n(scaled / 10)}, ${n(scaled)}입니다. 큰 값에서 작은 값을 빼면 ${n(difference)}입니다.`,
+      ),
+    ];
+  }
   if ((code === "2-4-5" || code === "2-4-6") && tier === "응용") {
     if (code === "2-4-5") {
       const a = intBetween(rng, 2, 9);

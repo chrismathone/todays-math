@@ -1,10 +1,11 @@
-import type { UnitSeed } from "../../../../prisma/seed-data/units";
+﻿import type { UnitSeed } from "../../../../prisma/seed-data/units";
 import type { ElemTier } from "../../elementary/difficulty";
 import type { ElemProblem } from "../../elementary/types";
 import { fig, make } from "../../elementary/make";
 import { n } from "../../elementary/format";
 import { createRng, intBetween } from "../../elementary/rng";
 import { mixedSubtractionFrames } from "./mixedSubtractionFrames";
+import { mixedAdditionFrames } from "./mixedAdditionFrames";
 
 export function extraFirstSemesterFrames(
   unit: UnitSeed,
@@ -12,6 +13,8 @@ export function extraFirstSemesterFrames(
   tier: ElemTier,
 ): ElemProblem[] {
   const code = unit.section.split(" ")[0];
+  if (code === "1-5-2" && tier === "응용")
+    return mixedAdditionFrames(unit, seed);
   if (code === "1-5-4" && tier === "응용")
     return mixedSubtractionFrames(unit, seed);
   const rng = createRng(seed);
@@ -25,18 +28,18 @@ export function extraFirstSemesterFrames(
     const fraction = `$\\frac{${num * factor}}{${den * factor}}$`;
     const fraction2 = `$\\frac{${num2 * factor2}}{${den2 * factor2}}$`;
     const reduced = `$\\frac{${num}}{${den}}$`;
-    const reason = `${fraction}와 크기가 같은 기약분수는 ${reduced}입니다.`;
+    const reason = `주어진 분수 ${fraction}에 대해 크기가 같은 기약분수는 ${reduced}입니다.`;
     if (tier === "기본")
       return [
         make(
           unit,
-          `${fraction}와 크기가 같은 기약분수의 분자는 얼마입니까?`,
+          `주어진 분수 ${fraction}에 대해 크기가 같은 기약분수의 분자는 얼마입니까?`,
           n(num),
           reason,
         ),
         make(
           unit,
-          `${fraction}와 크기가 같은 기약분수의 분모는 얼마입니까?`,
+          `주어진 분수 ${fraction}에 대해 크기가 같은 기약분수의 분모는 얼마입니까?`,
           n(den),
           reason,
         ),
@@ -51,19 +54,19 @@ export function extraFirstSemesterFrames(
       return [
         make(
           unit,
-          `${fraction}와 ${fraction2}를 각각 크기가 같은 기약분수로 만들었습니다. 두 기약분수의 분모의 합은 얼마입니까?`,
+          `두 분수 ${fraction}, ${fraction2}에 대해 각각 크기가 같은 기약분수로 만들었습니다. 두 기약분수의 분모의 합은 얼마입니까?`,
           n(den + den2),
-          `${reason} 다른 분수의 분모는 ${n(den2)}이므로 합은 $${den}+${den2}=${den + den2}$입니다.`,
+          `${reason} 다른 분수의 분모는 ${n(den2)}입니다. 두 분모의 합은 $${den}+${den2}=${den + den2}$입니다.`,
         ),
         make(
           unit,
-          `${fraction}와 크기가 같은 기약분수에서 분자와 분모의 합은 얼마입니까?`,
+          `주어진 분수 ${fraction}에 대해 크기가 같은 기약분수에서 분자와 분모의 합은 얼마입니까?`,
           n(num + den),
           `${reason} 분자와 분모의 합은 $${num}+${den}=${num + den}$입니다.`,
         ),
         make(
           unit,
-          `${fraction}와 크기가 같은 기약분수를 만들면 분모는 얼마나 작아집니까?`,
+          `주어진 분수 ${fraction}에 대해 크기가 같은 기약분수를 만들면 분모는 얼마나 작아집니까?`,
           n(den * (factor - 1)),
           `${reason} 분모가 ${n(den * factor)}에서 ${n(den)}로 바뀌므로 $${den * factor}-${den}=${den * (factor - 1)}$만큼 작아집니다.`,
         ),
@@ -107,7 +110,7 @@ export function extraFirstSemesterFrames(
           unit,
           `표와 같은 대응 관계에서 □가 ${n(x)}일 때의 △와 □가 ${n(y)}일 때의 △의 합을 구하시오.`,
           n(factor * (x + y)),
-          `△의 두 값은 ${n(factor * x)}, ${n(factor * y)}이므로 합은 $${factor * x}+${factor * y}=${factor * (x + y)}$입니다.`,
+          `△의 두 값은 ${n(factor * x)}, ${n(factor * y)}입니다. 합은 $${factor * x}+${factor * y}=${factor * (x + y)}$입니다.`,
           figure,
         ),
       ];

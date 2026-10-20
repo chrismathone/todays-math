@@ -21,9 +21,12 @@ it("solves decimal redraws by counting scaled pieces and checking forward constr
         const last = Number(s.id.split("-").at(-1));
         let expected: number;
         if (!id) {
-          expected = p.content.includes("정사각형")
-            ? Math.abs(product(a, b) - product(a, a))
-            : product(a, b) - c;
+          expected =
+            last === 7
+              ? Math.abs(product(a, b) - product(c, d))
+              : p.content.includes("정사각형")
+                ? Math.abs(product(a, b) - product(a, a))
+                : product(a, b) - c;
         } else if (last === 7) {
           if (id === "05") expected = String(b).length - 1;
           else if (id === "06")

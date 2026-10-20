@@ -29,7 +29,15 @@ it("recalculates fraction redraws from the printed quantities and inverse constr
         const code = s.id;
         const id = p.formId;
         let expected: number;
-        if (id === "08") {
+        if (!id) {
+          const numerators = [...p.content.matchAll(/\\frac\{(\d+)\}/g)].map(
+            (m) => Number(m[1]),
+          );
+          expected = Array.from(
+            { length: numerators[0] },
+            () => numerators[1],
+          ).reduce((a, b) => a + b, 0);
+        } else if (id === "08") {
           const [left, right] = parts[0].split("=");
           const factor = left
             .split("\\times")
