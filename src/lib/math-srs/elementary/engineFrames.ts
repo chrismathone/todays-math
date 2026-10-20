@@ -9,7 +9,7 @@ import { getCourseProblemInput } from "./answers";
 import { extraCourseFrames } from "./extraFrames";
 
 /** Opt in chapter by chapter after reviewing the existing authored forms. */
-const CHAPTERS = new Set(["2-1", "2-2", "2-3", "2-4", "2-5", "2-6"]);
+const CHAPTERS = new Set(["2-1", "2-2", "2-3", "2-4", "2-5", "2-6", "1-1"]);
 
 // Incomplete conditions or questions that only count objects without using the concept.
 const EXCLUDED: Record<string, readonly string[]> = {
