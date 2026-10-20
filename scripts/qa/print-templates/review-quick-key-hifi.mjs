@@ -1,4 +1,4 @@
-﻿// Do not run until the lead explicitly releases the heavy-work hold.
+// Do not run until the lead explicitly releases the heavy-work hold.
 // One browser, one context at a time. Never starts Vite, Next, typecheck, or DB.
 import { chromium } from "@playwright/test";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -89,4 +89,3 @@ try {
 } finally {
   await browser.close();
 }
-
