@@ -1,0 +1,74 @@
+{
+  "utc": "2026-10-20T07:42:41.018995+00:00",
+  "code": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/preflight-unpaired-pdfs.py",
+      "sha256": "dd4a0f2d2082a024665a0eed59d5fb3bfd0dcf946bb216030abe9765b803cb88"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/unpaired_pdf_scope.py",
+      "sha256": "4de6945b35335d80e3a0ccacfde5fe580b4fc546578d3e610fba1dc5e046e5eb"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/test_unpaired_pdf_scope.py",
+      "sha256": "f904e83a8b57d4a117084b912cde46f31555c2497ec9209391981732c43306ee"
+    }
+  ],
+  "originalTechnicalHold": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-audit-report.json",
+    "sha256": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+  },
+  "originalPilot": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/unpaired-pdf-preflight-20261020-r1/aggregate-receipt.json",
+    "sha256": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c"
+  },
+  "newReplayAggregate": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/unpaired-pdf-replay-20261020-r2/isolated-local-spool/unpaired-pdf-preflight-existing2-r2/aggregate-receipt.json",
+    "sha256": "80f753cd194a0dea62a7c381df825631b4ea763760dccf3eb469c1888279907f"
+  },
+  "comparisons": [
+    {
+      "examId": "personal-273b85b46b6ea294fef26b4de34becfc",
+      "reference": 1,
+      "inputSha256": "3058a6f8bfc84d64fa8169438556dc0edec1674acae8c774fdd44f3a58404a4c",
+      "pageMetadataEqual": true,
+      "firstPageBytesEqual": true,
+      "quarantinedParserBytesEqual": true,
+      "status": "parser-output-quarantined-unverified"
+    },
+    {
+      "examId": "personal-59bbe8ebff319ec20b823103fa6c5e8d",
+      "reference": 1,
+      "inputSha256": "745db2a94fe5d3f459c8892fb9b0bbd8b178f8602b3713dd5140e4ad4dc443c4",
+      "pageMetadataEqual": true,
+      "firstPageBytesEqual": true,
+      "quarantinedParserBytesEqual": true,
+      "status": "visual-reference-held-parser-unavailable"
+    },
+    {
+      "examId": "personal-59bbe8ebff319ec20b823103fa6c5e8d",
+      "reference": 2,
+      "inputSha256": "08bad7dbf73b359c099361e9de522eacf5a7a710a37348df37243f295a36acda",
+      "pageMetadataEqual": true,
+      "firstPageBytesEqual": true,
+      "quarantinedParserBytesEqual": true,
+      "status": "visual-reference-held-parser-unavailable"
+    }
+  ],
+  "pythonScopeTests": "...............\n----------------------------------------------------------------------\nRan 15 tests in 0.038s\n\nOK",
+  "actualReplayedJobs": 2,
+  "actualReplayedReferences": 3,
+  "allInputPageParserBytesUnchanged": true,
+  "replayQuestionObservationCredit": 0,
+  "codePreservedDuringRun": true,
+  "priorRawReportsNeverRewritten": true,
+  "repairs": [
+    "strict safe Windows output component before import",
+    "same resolved output fence for directories, PNGs and JSON",
+    "bounded explicit standalone Korean/English answer filename tokens"
+  ],
+  "independentR2AuditPending": true,
+  "sourceIdentityGradeRightsApproved": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

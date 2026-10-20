@@ -1,0 +1,46 @@
+{
+  "utc": "2026-10-20T07:43:25.185369+00:00",
+  "kind": "unpaired-pdf-repair-r2-bounded-independent-audit-scope",
+  "code": [
+    {
+      "path": "scripts/import/exam-twin/unpaired_pdf_scope.py",
+      "sha256": "4de6945b35335d80e3a0ccacfde5fe580b4fc546578d3e610fba1dc5e046e5eb"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_unpaired_pdf_scope.py",
+      "sha256": "f904e83a8b57d4a117084b912cde46f31555c2497ec9209391981732c43306ee"
+    },
+    {
+      "path": "scripts/import/exam-twin/preflight-unpaired-pdfs.py",
+      "sha256": "dd4a0f2d2082a024665a0eed59d5fb3bfd0dcf946bb216030abe9765b803cb88"
+    },
+    {
+      "path": "scripts/import/exam-twin/source_inventory_scope_v2.py",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    }
+  ],
+  "allowedMetadataOnly": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-pdf-parent-validation-r2.json",
+      "sha256": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-preflight-20261020-r1/aggregate-receipt.json",
+      "sha256": "6985519ab2a81ecb9e4bf092d26d4763ad7e2bb40a00f61fd4614c258d09c05c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-audit-report.json",
+      "sha256": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+    }
+  ],
+  "historicalInventoryMetadataOnly": "C:/Users/user/orca/artifacts/outputs/exam-inventory-20261003/extraction-job-manifest-reviewed.json",
+  "originalR1Commit": "369fb8d176bbb815924ab81c7ca1ee4847e99437",
+  "originalControls": 12261,
+  "originalFailingControls": 11,
+  "uniqueFindings": 2,
+  "rootReadOnly": true,
+  "noNOrRawLocalContent": true,
+  "noNewQuestionObservations": true,
+  "dbWrites": 0,
+  "loadable": 0
+}

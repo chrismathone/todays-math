@@ -1,0 +1,60 @@
+{
+  "utc": "2026-10-20T07:54:01.287897+00:00",
+  "canonicalSelected": 166,
+  "canonicalMathGrade": 165,
+  "actualAuthoredIncludingNewDrafts": 168,
+  "additionalUnselectedAuthored": 2,
+  "newGachangDrafts": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r1/gachang/q01.json",
+      "sha256": "bacd9d7e120144f8da3bd58cbcc7b09cbc173ba82dcfab32082debe23ba37184"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gachang-first2-authoring-20261020-r1/gachang/q02.json",
+      "sha256": "0fbf8750ab46ab2287ddd0d78820d25bae19f85fb590f8485314f17584b6a3a3"
+    }
+  ],
+  "newFigures": 1,
+  "newTables": 1,
+  "newStudentOnlyTransport": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/gachang-first2-student-only-transport-r1.json",
+    "sha256": "e0997abf41b2334c1e0bde0b39f288bc267ea66e6074f6e83899596f6fd1e3cc"
+  },
+  "newStudentRawNotYetSolved": true,
+  "U60R1TechnicalHold": {
+    "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-audit-report.json",
+    "sha256": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+  },
+  "U60CurrentRepairCode": [
+    {
+      "path": "scripts/import/exam-twin/preflight-unpaired-pdfs.py",
+      "sha256": "dd4a0f2d2082a024665a0eed59d5fb3bfd0dcf946bb216030abe9765b803cb88"
+    },
+    {
+      "path": "scripts/import/exam-twin/unpaired_pdf_scope.py",
+      "sha256": "4de6945b35335d80e3a0ccacfde5fe580b4fc546578d3e610fba1dc5e046e5eb"
+    },
+    {
+      "path": "scripts/import/exam-twin/test_unpaired_pdf_scope.py",
+      "sha256": "f904e83a8b57d4a117084b912cde46f31555c2497ec9209391981732c43306ee"
+    }
+  ],
+  "U60R2ParentActualReplay": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unpaired-pdf-parent-validation-r2.json",
+    "sha256": "f6dccef24fb96aef8eb89ef2235aa878a64c8cf82438cb365bc82d5d24fe2e10"
+  },
+  "U60IndependentR2AuditPending": {
+    "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r2/provided-scope.json",
+    "sha256": "be654068144fc982854ee7c9698b8b823416d99f655e38ec58aec70dd465b766"
+  },
+  "unpairedHwpUnverified40Parents": {
+    "path": ".qa-artifacts/exam-resume-20261008/unpaired-hwp-first2-extraction-20261020-r1/aggregate-receipt.json",
+    "sha256": "b217f9906ae172044b5ff562c5bebf1565c90e82ff4ffef3bfd94b2ebd5c6685"
+  },
+  "canonicalSourceObservationsUnchanged": 12080,
+  "newHwpOrPdfQuestionCountCredit": 0,
+  "latestVerifiedFeaturePush": "958fd813704158a3bfdcf50696a531e15d042ecc",
+  "loadable": 0,
+  "dbWrites": 0,
+  "wholeGoalComplete": false
+}

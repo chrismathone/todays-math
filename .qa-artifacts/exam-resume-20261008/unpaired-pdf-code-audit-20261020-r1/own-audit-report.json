@@ -1,0 +1,235 @@
+{
+  "audit": "Unpaired original PDF preflight independent bounded code and metadata audit R1",
+  "status": "technical-hold",
+  "scopeSHA256": "bc04e15e59365383dc1acbccae3f23cb7bf44e995091598b5e96f58dfb1d0238",
+  "ownRuns": {
+    "total": 12261,
+    "passed": 12250,
+    "failed": 11,
+    "directControls": 12164,
+    "cli": 33,
+    "metadataAndIsolatedFences": 64,
+    "uniqueFindings": 2,
+    "note": "6 direct failing counterexamples and5 related CLI guard failures describe2 underlying findings, not11 different defects. Initial30CLI run retained but not double-counted.",
+    "parentTestsRun": 0,
+    "realPositiveSourceParses": 0,
+    "modelsApiDbCalls": 0
+  },
+  "findings": [
+    {
+      "id": "UPDF-R1-unfenced-output-examId",
+      "status": "technical-hold",
+      "observed": "eligible_unpaired_job accepts ../own-output-escape,backslash parent traversal,C:/absolute-path and own:stream IDs. Type/nonblank/trim checks alone do not validate a safe relative output component.",
+      "actualCodePath": "main joins output / job[examId] / index, calls folder.mkdir and writes first-page PNG through get_pixmap().save(first). Only later parser JSON uses nested write() resolve fence.",
+      "exactCounterexamples": [
+        {
+          "category": "unsafe-output-id",
+          "id": "../own-output-escape",
+          "expected": "False",
+          "actual": "True",
+          "detail": {
+            "basis": "ID is later joined as output subdirectory and PNG save is outside nested write() fence; no actual N extraction performed."
+          }
+        },
+        {
+          "category": "unsafe-output-id",
+          "id": "..\\own-output-escape",
+          "expected": "False",
+          "actual": "True",
+          "detail": {
+            "basis": "ID is later joined as output subdirectory and PNG save is outside nested write() fence; no actual N extraction performed."
+          }
+        },
+        {
+          "category": "unsafe-output-id",
+          "id": "C:/own-output-escape",
+          "expected": "False",
+          "actual": "True",
+          "detail": {
+            "basis": "ID is later joined as output subdirectory and PNG save is outside nested write() fence; no actual N extraction performed."
+          }
+        },
+        {
+          "category": "unsafe-output-id",
+          "id": "own:stream",
+          "expected": "False",
+          "actual": "True",
+          "detail": {
+            "basis": "ID is later joined as output subdirectory and PNG save is outside nested write() fence; no actual N extraction performed."
+          }
+        }
+      ],
+      "ownPathCalculations": [
+        {
+          "jobId": "../own-output-escape",
+          "acceptedByActualEligibility": true,
+          "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-output-escape\\1\\original-first-page.local.png",
+          "insideQuarantine": false,
+          "actualFilesystemWrite": false
+        },
+        {
+          "jobId": "..\\own-output-escape",
+          "acceptedByActualEligibility": true,
+          "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-output-escape\\1\\original-first-page.local.png",
+          "insideQuarantine": false,
+          "actualFilesystemWrite": false
+        },
+        {
+          "jobId": "C:/own-output-escape",
+          "acceptedByActualEligibility": true,
+          "computedPngPath": "C:\\own-output-escape\\1\\original-first-page.local.png",
+          "insideQuarantine": false,
+          "actualFilesystemWrite": false
+        },
+        {
+          "jobId": "own:stream",
+          "acceptedByActualEligibility": true,
+          "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-quarantine\\own:stream\\1\\original-first-page.local.png",
+          "insideQuarantine": true,
+          "actualFilesystemWrite": false
+        }
+      ],
+      "cliEvidence": [
+        "unsafe-parent",
+        "unsafe-backslash",
+        "unsafe-absolute"
+      ],
+      "cliResult": "Actual main with OWN minimal inventory and OWN BASE accepted all3 until TEXTLAYER import. Audit fence denied opening D textlayer pycache before body read; no N reads or writes. This proves metadata rejection is missing, not a full actual parser exploit execution.",
+      "scopeLimits": "All1715 real inventory exam IDs are not shown to exploit this path. Inventory is a trusted historical metadata file today; vulnerability needs malformed/injected/future metadata ID. own:stream demonstrates missing ID/path validation, not independently proven successful Windows ADS creation.",
+      "proposalOnly": "Reject unsafe/noncanonical ID path components before planning; use one resolved-contained target helper for every directory/PNG/JSON artifact. Parent repair/new audit required; no source modification."
+    },
+    {
+      "id": "UPDF-R1-standalone-answer-markers-admitted",
+      "status": "technical-hold against answer-unlabelled routing claim",
+      "observed": "original_pdf_candidates excludes 답안/해답/정답/해설 but admits unequivocal standalone 답.pdf and(답).pdf. CLI says no answer-unlabelled ref would be selected, yet both synthetic cases pass metadata guard.",
+      "counterexamples": [
+        {
+          "category": "explicit-answer-marker",
+          "id": "(답)",
+          "expected": "[]",
+          "actual": "[{'path': 'N:/개인/기출/2025/(답).pdf', 'ext': 'pdf', 'role': '원본', 'conflict': False, 'school': '새학교', 'year': 2025, 'grade': 3, 'semester': 1, 'exam': '기말'}]",
+          "detail": {
+            "basis": "CLI claims answer-unlabelled refs. Standalone 답/(답) explicitly labels an answer file in this corpus; quarantine remains no approval even if routed."
+          }
+        },
+        {
+          "category": "explicit-answer-marker",
+          "id": "답",
+          "expected": "[]",
+          "actual": "[{'path': 'N:/개인/기출/2025/답.pdf', 'ext': 'pdf', 'role': '원본', 'conflict': False, 'school': '새학교', 'year': 2025, 'grade': 3, 'semester': 1, 'exam': '기말'}]",
+          "detail": {
+            "basis": "CLI claims answer-unlabelled refs. Standalone 답/(답) explicitly labels an answer file in this corpus; quarantine remains no approval even if routed."
+          }
+        }
+      ],
+      "cliEvidence": [
+        "answer-only",
+        "answer-short"
+      ],
+      "cliResult": "Actual main on synthetic metadata reaches denied TEXTLAYER import; no actual parser/N source body opened.",
+      "limits": "No admitted standalone(답) marker found among currently eligible historical metadata in this bounded scan. Filename selection never proves absence of answers; all quarantine/approvalfalse policies still apply. Not evidence pilot references contain an answer key.",
+      "proposalOnly": "Define/review bounded explicit answer-label token policy, including common standalone parenthetical 답, while preserving benign school/title text. Keep content quarantine even after a better name filter."
+    }
+  ],
+  "passingMetadataRouting": {
+    "inventoryJobs": 1715,
+    "sixScopeChecks": 10290,
+    "independentFileMetadataChecks": 1715,
+    "routing": [
+      {
+        "level": "middle",
+        "grade": 1,
+        "eligible": 98,
+        "withPdfRefs": 87
+      },
+      {
+        "level": "middle",
+        "grade": 2,
+        "eligible": 136,
+        "withPdfRefs": 130
+      },
+      {
+        "level": "middle",
+        "grade": 3,
+        "eligible": 110,
+        "withPdfRefs": 96
+      },
+      {
+        "level": "high",
+        "grade": 1,
+        "eligible": 117,
+        "withPdfRefs": 107
+      },
+      {
+        "level": "high",
+        "grade": 2,
+        "eligible": 235,
+        "withPdfRefs": 171
+      },
+      {
+        "level": "high",
+        "grade": 3,
+        "eligible": 37,
+        "withPdfRefs": 35
+      }
+    ],
+    "oracle": "Own independent typed state predicate and ntpath token/drive/normalization file-reference oracle, no parent tests or original reparsing. Normal1715 metadata routes match all6scope rows.",
+    "boundaries": "Protected4schools and padded forms,registered/missing/unknown counts andIDs,selectedPairNone required(no invented pair),seen IDs,year2025+,exact integer grade1..3/semester1..2,round/status/files shape. Lexical input root,relative/traversal/ADS/UNC/extended-drive and known answer words rejected; case/slash/dot reference dedupe correct.",
+    "noMutation": true
+  },
+  "wiringCliAndFences": {
+    "actualModules": "Imported exactly authorized root preflight/unpaired scope/V2 with Python -B and no source patches. Parent test file read only, not run.",
+    "actualMainCases": "8parser/help/output/count controls,22synthetic inventory/BASE controls(including prior receipt),3actual historical paired/protected/prior cases. No validation mocks. Source parser never mocked or executed.",
+    "filesystemFence": "Own OS audit hook denies ALL writes and reads outside exactly allowed metadata/OWN fixture/stdlib. Source-helper5open attempts denied. Input hashes before/after match.",
+    "isolatedTests": "Actual nested JSON write function compiled from its AST into own namespace: rejects escape and overwriting, preserves earlier own fixture bytes. Actual Path.resolve(strict=True)/is_relative_to checked against own inside/outside metadata files. These are isolated fence controls, not original N/PDF runs.",
+    "staticOrdering": "CLI validates all jobs/candidates before TEXTLAYER import and output.mkdir. Actual per-source path resolves strict then compares N_ROOT.resolve(strict=True) before reading bytes. This covers resolved target containment statically; no live N junction/symlink/Windows reparse-point race test authorized.",
+    "residuals": "Rootresolve fence and before/after SHA checks reduce escapes/mutation but are not an OS sandbox/TOCTOU proof. Output argument immediate-directory check is not a substitute for checking per-job artifact targets. No production prior receipt overwritten."
+  },
+  "pilotMetadataOnly": {
+    "parentExecutedJobs": 2,
+    "pdfReferences": 3,
+    "partialUnverifiedParserOutputs": 1,
+    "scanHolds": 2,
+    "parser5Printed19": "Parent observation and aggregate SHA bind parserQuestionCountUnverified5 against observed19printed parents; questionBoundaryApprovedfalse. Remains PARTIAL, not5credited source questions.",
+    "scans": "Both reference pages report zero native text and parser-unavailable scan hold. Parent image observations alone do not create transcribed questions.",
+    "separateHwp": [
+      {
+        "examId": "personal-273b85b46b6ea294fef26b4de34becfc",
+        "hwpMetadataFiles": 1
+      },
+      {
+        "examId": "personal-59bbe8ebff319ec20b823103fa6c5e8d",
+        "hwpMetadataFiles": 1
+      }
+    ],
+    "alias": "Supplied parent observed21components and printed-page reorder1,2,4,3 across non-byte-identical PDFs. Checked metadata arithmetic/bindings only; no own page/image/text inspection. HWP/PDF pairing/transcription/grade/rights stillfalse.",
+    "parentPreservation": "Allowed aggregate reports before/after equality for source/tool/prior metadata; worker independently rehashes only4code+4allowed receipts+inventory, never the referenced originals.",
+    "semanticApprovals": "Entry sourceIdentity/curriculum/rights/contentPair/authorDistributionfalse; aggregate actualNewQuestionObservations/gradeApprovals/rightsApprovals/twins/dbWrites/loadable0. selectedPair actuallyNone in historical inventory for both pilot jobs. No new source/manual/blind/question count or release approval."
+  },
+  "preservation": {
+    "rootCodeFiles": 4,
+    "allowedMetadataReceipts": 4,
+    "inventory": 1,
+    "beforeAfterEqual": true,
+    "sourceEdits": 0,
+    "NOriginalOrRawParserOrImageReads": 0,
+    "onlyOwnedFixtureWrites": true,
+    "utf8ProbeSHA256": "9d3c55f0344e8b415bbbb3d5b3217b0dd42959ee626cc60a32e01697c00f4bbb"
+  },
+  "harnessDiagnostic": "Added real metadata fixture selector initially contained ? from own shell-pipe Unicode encoding and raised StopIteration before main; corrected with Unicode escape/imported protected set. Initial30results and diagnostic preserved. This is separate from5actual metadata-guard failures.",
+  "artifacts": {
+    "own-prepare.py": "6a75478e54ce271dc37cae0104a82f7aa4245ec8bb84cedfc9fd187bf9481421",
+    "own-before.json": "9683bf9a14ebcde66b549bfd147b1009ab57c6e8891b540f6b7326b23607c307",
+    "own-after.json": "9683bf9a14ebcde66b549bfd147b1009ab57c6e8891b540f6b7326b23607c307",
+    "own-utf8-probe.txt": "9d3c55f0344e8b415bbbb3d5b3217b0dd42959ee626cc60a32e01697c00f4bbb",
+    "own-controls.py": "f830b0cdeac0628850a531212b63bebe338c235ccbf9984d7933fc9eb7b4dd6d",
+    "own-controls-results.json": "53490d49e75bedc99c1d22de485560f68c4c70ed61323ec7e457160478c81aed",
+    "own-cli-probe.py": "17aa552fa52aae7874469211a5cba5bf28e905922f2595c1fc572b6387c7ca56",
+    "own-run-cli.py": "7507cc3cfbebd2a8364fd5d52a379a2c5894a3370397eff60e274c049940c03c",
+    "own-cli-results.json": "e835761a3d2c05a4d9c6df798e444c93b6fa6eb23b0004870b12d87421479cf8",
+    "own-cli-results-r2.json": "548988f2d456d88f87693f3307b7b650fa5fa590eca34e169d65b332db810df4",
+    "own-harness-diagnostic.json": "3e88cb383c53201eeb90b2ea18bc936b854b263aa4b18908d768472f734e0b0a",
+    "own-metadata-fence-controls.py": "0458867f07290129d2eae21cc91a8424eb3edb81ca4b48f156bb80ab8641cd04",
+    "own-metadata-fence-results.json": "aebc7b4911c45bfda6cee70fa6357325410f8fc99f4db784da70971ea5e63676"
+  }
+}

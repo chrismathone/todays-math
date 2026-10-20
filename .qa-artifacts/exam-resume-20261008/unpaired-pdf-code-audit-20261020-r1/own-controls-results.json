@@ -1,0 +1,144 @@
+{
+  "total": 12164,
+  "passed": 12158,
+  "counts": {
+    "historical-six-scope": 10290,
+    "historical-file-metadata": 1715,
+    "malformed-job": 64,
+    "missing-job": 12,
+    "synthetic-six-scopes": 30,
+    "invalid-scope": 5,
+    "seen": 1,
+    "file-negative": 36,
+    "dedup": 2,
+    "no-mutation": 1,
+    "unsafe-output-id": 4,
+    "explicit-answer-marker": 4
+  },
+  "failed": [
+    {
+      "category": "unsafe-output-id",
+      "id": "../own-output-escape",
+      "expected": "False",
+      "actual": "True",
+      "detail": {
+        "basis": "ID is later joined as output subdirectory and PNG save is outside nested write() fence; no actual N extraction performed."
+      }
+    },
+    {
+      "category": "unsafe-output-id",
+      "id": "..\\own-output-escape",
+      "expected": "False",
+      "actual": "True",
+      "detail": {
+        "basis": "ID is later joined as output subdirectory and PNG save is outside nested write() fence; no actual N extraction performed."
+      }
+    },
+    {
+      "category": "unsafe-output-id",
+      "id": "C:/own-output-escape",
+      "expected": "False",
+      "actual": "True",
+      "detail": {
+        "basis": "ID is later joined as output subdirectory and PNG save is outside nested write() fence; no actual N extraction performed."
+      }
+    },
+    {
+      "category": "unsafe-output-id",
+      "id": "own:stream",
+      "expected": "False",
+      "actual": "True",
+      "detail": {
+        "basis": "ID is later joined as output subdirectory and PNG save is outside nested write() fence; no actual N extraction performed."
+      }
+    },
+    {
+      "category": "explicit-answer-marker",
+      "id": "(답)",
+      "expected": "[]",
+      "actual": "[{'path': 'N:/개인/기출/2025/(답).pdf', 'ext': 'pdf', 'role': '원본', 'conflict': False, 'school': '새학교', 'year': 2025, 'grade': 3, 'semester': 1, 'exam': '기말'}]",
+      "detail": {
+        "basis": "CLI claims answer-unlabelled refs. Standalone 답/(답) explicitly labels an answer file in this corpus; quarantine remains no approval even if routed."
+      }
+    },
+    {
+      "category": "explicit-answer-marker",
+      "id": "답",
+      "expected": "[]",
+      "actual": "[{'path': 'N:/개인/기출/2025/답.pdf', 'ext': 'pdf', 'role': '원본', 'conflict': False, 'school': '새학교', 'year': 2025, 'grade': 3, 'semester': 1, 'exam': '기말'}]",
+      "detail": {
+        "basis": "CLI claims answer-unlabelled refs. Standalone 답/(답) explicitly labels an answer file in this corpus; quarantine remains no approval even if routed."
+      }
+    }
+  ],
+  "routing": [
+    {
+      "level": "middle",
+      "grade": 1,
+      "eligible": 98,
+      "withPdfRefs": 87
+    },
+    {
+      "level": "middle",
+      "grade": 2,
+      "eligible": 136,
+      "withPdfRefs": 130
+    },
+    {
+      "level": "middle",
+      "grade": 3,
+      "eligible": 110,
+      "withPdfRefs": 96
+    },
+    {
+      "level": "high",
+      "grade": 1,
+      "eligible": 117,
+      "withPdfRefs": 107
+    },
+    {
+      "level": "high",
+      "grade": 2,
+      "eligible": 235,
+      "withPdfRefs": 171
+    },
+    {
+      "level": "high",
+      "grade": 3,
+      "eligible": 37,
+      "withPdfRefs": 35
+    }
+  ],
+  "unsafeOutputPathCalculations": [
+    {
+      "jobId": "../own-output-escape",
+      "acceptedByActualEligibility": true,
+      "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-output-escape\\1\\original-first-page.local.png",
+      "insideQuarantine": false,
+      "actualFilesystemWrite": false
+    },
+    {
+      "jobId": "..\\own-output-escape",
+      "acceptedByActualEligibility": true,
+      "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-output-escape\\1\\original-first-page.local.png",
+      "insideQuarantine": false,
+      "actualFilesystemWrite": false
+    },
+    {
+      "jobId": "C:/own-output-escape",
+      "acceptedByActualEligibility": true,
+      "computedPngPath": "C:\\own-output-escape\\1\\original-first-page.local.png",
+      "insideQuarantine": false,
+      "actualFilesystemWrite": false
+    },
+    {
+      "jobId": "own:stream",
+      "acceptedByActualEligibility": true,
+      "computedPngPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\unpaired-pdf-code-audit-20261020-r1\\own-quarantine\\own:stream\\1\\original-first-page.local.png",
+      "insideQuarantine": true,
+      "actualFilesystemWrite": false
+    }
+  ],
+  "parentTestsRun": 0,
+  "originalSourceReads": 0
+}

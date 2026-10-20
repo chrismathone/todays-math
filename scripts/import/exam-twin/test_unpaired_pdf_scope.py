@@ -1,6 +1,9 @@
 import copy
 import unittest
 from unpaired_pdf_scope import eligible_unpaired_job, original_pdf_candidates
+import importlib.util
+from pathlib import Path
+import tempfile
 
 
 def fixture():
@@ -74,6 +77,42 @@ class UnpairedPdfScopeTest(unittest.TestCase):
             eligible_unpaired_job(job, set(), level='middle', grade=True)
         self.assertFalse(eligible_unpaired_job(job, set(), level='high', grade=3))
         self.assertTrue(eligible_unpaired_job({**job, 'level': '고'}, set(), level='high', grade=3))
+
+    def test_output_ids_cannot_be_paths_streams_or_windows_devices(self):
+        job = fixture()
+        for bad in ['../escape', '..\\escape', 'C:/escape', 'own:stream',
+                    '/absolute', '.', '..', 'CON', 'nul', 'COM1', 'lpt9',
+                    'trailing.', 'two words', 'newline\n', 'a/b', 'a\\b',
+                    'x' * 129]:
+            with self.subTest(examId=bad):
+                self.assertFalse(self.eligible({**job, 'examId': bad}))
+        for good in ['new-only', 'personal-' + 'a' * 32, 'COM10', 'con-school']:
+            self.assertTrue(self.eligible({**job, 'examId': good}))
+
+    def test_explicit_answer_tokens_but_not_benign_school_name(self):
+        job = fixture()
+        f = job['files'][0]
+        for name in ['답', '(답)', '[답]', '시험 (답포함)', '답지', '답 2',
+                     'exam answer', 'exam answers key', 'SOLUTIONS', 'answer-1']:
+            self.assertEqual(original_pdf_candidates({**job, 'files': [{**f, 'path': 'N:/개인/기출/2025/' + name + '.pdf'}]}), [])
+        for name in ['답동중-2025-원본', '대답중-원본', 'answering-school-original']:
+            self.assertEqual(len(original_pdf_candidates({**job, 'files': [{**f, 'path': 'N:/개인/기출/2025/' + name + '.pdf'}]})), 1)
+
+    def test_all_artifact_kinds_share_resolved_output_fence(self):
+        script = Path(__file__).with_name('preflight-unpaired-pdfs.py')
+        spec = importlib.util.spec_from_file_location('preflight_fence_unit', script)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / 'new-quarantine'
+            root.mkdir()
+            for suffix in ['original-first-page.local.png', 'parser-question-output.local.json', 'subdirectory']:
+                self.assertEqual(module.quarantine_target(root, 'safe-id', '1', suffix), (root / 'safe-id' / '1' / suffix).resolve())
+                for bad in [Path(tmp) / suffix, root / '..' / suffix]:
+                    with self.assertRaises(ValueError):
+                        module.quarantine_target(root, bad)
+            with self.assertRaises(ValueError):
+                module.quarantine_target(root, root)
 
 
 if __name__ == '__main__':

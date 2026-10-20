@@ -1,0 +1,71 @@
+{
+  "utc": "2026-10-20T07:41:32.708202+00:00",
+  "commit": "369fb8d176bbb815924ab81c7ca1ee4847e99437",
+  "files": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-after.json",
+      "sha256": "9683bf9a14ebcde66b549bfd147b1009ab57c6e8891b540f6b7326b23607c307"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-audit-report.json",
+      "sha256": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-before.json",
+      "sha256": "9683bf9a14ebcde66b549bfd147b1009ab57c6e8891b540f6b7326b23607c307"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-cli-probe.py",
+      "sha256": "17aa552fa52aae7874469211a5cba5bf28e905922f2595c1fc572b6387c7ca56"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-cli-results-r2.json",
+      "sha256": "548988f2d456d88f87693f3307b7b650fa5fa590eca34e169d65b332db810df4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-cli-results.json",
+      "sha256": "e835761a3d2c05a4d9c6df798e444c93b6fa6eb23b0004870b12d87421479cf8"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-controls-results.json",
+      "sha256": "53490d49e75bedc99c1d22de485560f68c4c70ed61323ec7e457160478c81aed"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-controls.py",
+      "sha256": "f830b0cdeac0628850a531212b63bebe338c235ccbf9984d7933fc9eb7b4dd6d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-harness-diagnostic.json",
+      "sha256": "3e88cb383c53201eeb90b2ea18bc936b854b263aa4b18908d768472f734e0b0a"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-metadata-fence-controls.py",
+      "sha256": "0458867f07290129d2eae21cc91a8424eb3edb81ca4b48f156bb80ab8641cd04"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-metadata-fence-results.json",
+      "sha256": "aebc7b4911c45bfda6cee70fa6357325410f8fc99f4db784da70971ea5e63676"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-prepare.py",
+      "sha256": "6a75478e54ce271dc37cae0104a82f7aa4245ec8bb84cedfc9fd187bf9481421"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-run-cli.py",
+      "sha256": "7507cc3cfbebd2a8364fd5d52a379a2c5894a3370397eff60e274c049940c03c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-seal.py",
+      "sha256": "48a40797fd8bb1f1c649e3a165604e29144ff25aa3561b6c9c64cec6f4a9d7f4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/unpaired-pdf-code-audit-20261020-r1/own-utf8-probe.txt",
+      "sha256": "9d3c55f0344e8b415bbbb3d5b3217b0dd42959ee626cc60a32e01697c00f4bbb"
+    }
+  ],
+  "reportSha256": "29f7130ef0d848bfd93fb417a795113b27fa0fb7f1b599aad954c2cd1f62a022",
+  "twoFindingsAcross11FailingControls": true,
+  "actualNBodyReads": 0,
+  "loadable": 0,
+  "dbWrites": 0
+}

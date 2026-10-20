@@ -32,6 +32,15 @@ def ref(path):
     return dict(path=str(p), sha256=hashlib.sha256(data).hexdigest(), bytes=len(data))
 
 
+def quarantine_target(output, *parts):
+    """Resolve every output directory, PNG and JSON through the same fence."""
+    root = Path(output).resolve()
+    target = root.joinpath(*parts).resolve()
+    if target == root or not target.is_relative_to(root):
+        raise ValueError('Output escapes local quarantine')
+    return target
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--job-ids', nargs='+', required=True)
@@ -71,9 +80,7 @@ def main():
     output.mkdir()
 
     def write(path, value):
-        target = Path(path).resolve()
-        if not target.is_relative_to(output):
-            raise ValueError('Output escapes local quarantine')
+        target = quarantine_target(output, path)
         target.parent.mkdir(parents=True, exist_ok=True)
         with target.open('x', encoding='utf-8', newline='\n') as f:
             json.dump(value, f, ensure_ascii=False, indent=2)
@@ -94,7 +101,7 @@ def main():
                 src = ref(path)
                 sources.append(src)
                 observation['input'] = src
-                folder = output / job['examId'] / str(i)
+                folder = quarantine_target(output, job['examId'], str(i))
                 folder.mkdir(parents=True)
                 with fitz.open(path) as doc:
                     if doc.needs_pass or not 1 <= len(doc) <= 80:
@@ -105,7 +112,7 @@ def main():
                         pages.append(dict(page=n + 1, width=page.rect.width, height=page.rect.height,
                                           nativeTextCharacters=len(text), rawTextSha256=hashlib.sha256(text.encode()).hexdigest(),
                                           rawPuaCharacters=sum(pdf.ispua(c) for c in text)))
-                    first = folder / 'original-first-page.local.png'
+                    first = quarantine_target(output, job['examId'], str(i), 'original-first-page.local.png')
                     doc[0].get_pixmap(matrix=fitz.Matrix(1.2, 1.2)).save(first)
                     local_refs.append(ref(first))
                     observation.update(pages=pages, firstPage=ref(first), firstPageActuallyViewed=False)

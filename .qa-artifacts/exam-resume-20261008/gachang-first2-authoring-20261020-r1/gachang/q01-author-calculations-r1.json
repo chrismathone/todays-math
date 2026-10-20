@@ -1,0 +1,129 @@
+{
+  "symbolicSquareCoefficients": [
+    1,
+    -6,
+    9
+  ],
+  "witnessCases": [
+    {
+      "a": 4,
+      "positiveSide": 1,
+      "area": 1,
+      "coefficient": -6
+    },
+    {
+      "a": 5,
+      "positiveSide": 2,
+      "area": 4,
+      "coefficient": -6
+    },
+    {
+      "a": 6,
+      "positiveSide": 3,
+      "area": 9,
+      "coefficient": -6
+    },
+    {
+      "a": 7,
+      "positiveSide": 4,
+      "area": 16,
+      "coefficient": -6
+    },
+    {
+      "a": 8,
+      "positiveSide": 5,
+      "area": 25,
+      "coefficient": -6
+    },
+    {
+      "a": 9,
+      "positiveSide": 6,
+      "area": 36,
+      "coefficient": -6
+    },
+    {
+      "a": 10,
+      "positiveSide": 7,
+      "area": 49,
+      "coefficient": -6
+    },
+    {
+      "a": 11,
+      "positiveSide": 8,
+      "area": 64,
+      "coefficient": -6
+    },
+    {
+      "a": 12,
+      "positiveSide": 9,
+      "area": 81,
+      "coefficient": -6
+    },
+    {
+      "a": 13,
+      "positiveSide": 10,
+      "area": 100,
+      "coefficient": -6
+    },
+    {
+      "a": 14,
+      "positiveSide": 11,
+      "area": 121,
+      "coefficient": -6
+    },
+    {
+      "a": 15,
+      "positiveSide": 12,
+      "area": 144,
+      "coefficient": -6
+    },
+    {
+      "a": 16,
+      "positiveSide": 13,
+      "area": 169,
+      "coefficient": -6
+    },
+    {
+      "a": 17,
+      "positiveSide": 14,
+      "area": 196,
+      "coefficient": -6
+    },
+    {
+      "a": 18,
+      "positiveSide": 15,
+      "area": 225,
+      "coefficient": -6
+    },
+    {
+      "a": 19,
+      "positiveSide": 16,
+      "area": 256,
+      "coefficient": -6
+    },
+    {
+      "a": 20,
+      "positiveSide": 17,
+      "area": 289,
+      "coefficient": -6
+    }
+  ],
+  "uniqueCoefficient": -6,
+  "coordinateWitnessNotStudentGiven": 10,
+  "correctChoices": [
+    false,
+    true,
+    false,
+    false,
+    false
+  ],
+  "candidateFileSha256": "bacd9d7e120144f8da3bd58cbcc7b09cbc173ba82dcfab32082debe23ba37184",
+  "candidateDigest": "ca60467c60c8faa250d1c7579516d938df28760a44aae6e7118c2dc35dbbaaaf",
+  "studentDigest": "7339433c7a843c18986f1b4544cba554d74caa34c92696558666a5f3fbd3cd40",
+  "assetDigest": "515c6361b828ba6998912ea97d0733387197390ba8ee06ce7f352de1243dee6d",
+  "authorOnly": true,
+  "independentReview": false,
+  "sourceIdentityRightsPending": true,
+  "dbWrites": 0,
+  "loadable": 0
+}
