@@ -3,8 +3,8 @@
  "baseCommit": "1b3f05e54",
  "agreedWith": "Codex gpt-6-astra xhigh 검토(2026-10-20) — 문형별 결론은 display-survey/codex/reply-engine.md(저장소 밖)",
  "sourceSha256": {
-  "src/lib/elementary/g3.ts": "992b5002f59099bc6efbe05fc23bcfe25c38caf692adce0cf9a40571b14af26c",
-  "src/lib/elementary/g4.ts": "6473e3a3febe84ac14a65df7215f2638813b92e2e4ebbc66d49fe6736f43e0e7",
+  "src/lib/elementary/g3.ts": "336bc8c03d105105f4ffabc079b48f2dfae634dbd65ba72ef13383ac4efb721e",
+  "src/lib/elementary/g4.ts": "d1f6434019c557274128a369a7fcc821a1ede4188508ee649884ed0d0aac4c66",
   "src/lib/elementary/g5.ts": "a05a638e903a3c03e26639089be45f41a5edc6c34ae11d33c6d5fd4893da4356",
   "src/lib/elementary/g6.ts": "959da75b14e9dc234dd8523c3564a4585bc35637f33ec4b3b2f19006068c1a53"
  },
@@ -1270,6 +1270,168 @@
     }
    ],
    "afterRowSha256": "0ac43bc7a808c0a25ce8ccea45dd0cb77d61840886694c5b7a851888bf21dc8d"
+  },
+  {
+   "familyKey": "elem:초3|1-2-1 선분, 반직선, 직선|10",
+   "beforeRow": [
+    "초3",
+    "1-2-1 선분, 반직선, 직선",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "1-2 평면도형",
+     "section": "1-2-1 선분, 반직선, 직선",
+     "orderIndex": 135,
+     "content": "그림에 점이 $4$개 있습니다. 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.",
+     "answer": "$18$",
+     "solution": "반직선은 $4\\times3=12$ 개, 선분은 $4\\times3\\div2=6$ 개이므로 합은 $12+6=18$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 4,
+      "rows": 3,
+      "dots": [
+       {
+        "c": 0,
+        "r": 2,
+        "label": "ㄱ",
+        "side": "up"
+       },
+       {
+        "c": 2,
+        "r": 0,
+        "label": "ㄴ",
+        "side": "up"
+       },
+       {
+        "c": 4,
+        "r": 2,
+        "label": "ㄷ",
+        "side": "up"
+       },
+       {
+        "c": 2,
+        "r": 3,
+        "label": "ㄹ",
+        "side": "up"
+       }
+      ],
+      "lines": []
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "b643a3ccf739e8b644686467707e5276d787f7e6592c445937dc55ff6359e0f4"
+  },
+  {
+   "familyKey": "elem:초3|1-2-1 선분, 반직선, 직선|10",
+   "beforeRow": [
+    "초3",
+    "1-2-1 선분, 반직선, 직선",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "1-2 평면도형",
+     "section": "1-2-1 선분, 반직선, 직선",
+     "orderIndex": 135,
+     "content": "그림에 점이 $4$개 있습니다. 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.",
+     "answer": "$18$",
+     "solution": "반직선은 $4\\times3=12$ 개, 선분은 $4\\times3\\div2=6$ 개이므로 합은 $12+6=18$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 4,
+      "rows": 3,
+      "dots": [
+       {
+        "c": 0,
+        "r": 2,
+        "label": "ㄱ",
+        "side": "up"
+       },
+       {
+        "c": 2,
+        "r": 0,
+        "label": "ㄴ",
+        "side": "up"
+       },
+       {
+        "c": 4,
+        "r": 2,
+        "label": "ㄷ",
+        "side": "up"
+       },
+       {
+        "c": 2,
+        "r": 3,
+        "label": "ㄹ",
+        "side": "up"
+       }
+      ],
+      "lines": []
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "c44e691f9f3d8fb5bd38eaa0191d236621c23cd6f7ff427f550346a82bd01d9b"
+  },
+  {
+   "familyKey": "elem:초3|1-2-1 선분, 반직선, 직선|10",
+   "beforeRow": [
+    "초3",
+    "1-2-1 선분, 반직선, 직선",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "1-2 평면도형",
+     "section": "1-2-1 선분, 반직선, 직선",
+     "orderIndex": 135,
+     "content": "그림에 점이 $4$개 있습니다. 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.",
+     "answer": "$18$",
+     "solution": "반직선은 $4\\times3=12$ 개, 선분은 $4\\times3\\div2=6$ 개이므로 합은 $12+6=18$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "pointGrid",
+      "cols": 4,
+      "rows": 3,
+      "dots": [
+       {
+        "c": 0,
+        "r": 1,
+        "label": "ㄱ",
+        "side": "up"
+       },
+       {
+        "c": 2,
+        "r": 0,
+        "label": "ㄴ",
+        "side": "up"
+       },
+       {
+        "c": 4,
+        "r": 3,
+        "label": "ㄷ",
+        "side": "up"
+       },
+       {
+        "c": 1,
+        "r": 3,
+        "label": "ㄹ",
+        "side": "up"
+       }
+      ],
+      "lines": []
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "bf37df1fa67b0bffaab8236b279a009db82490193f69e57f327182f31431f373"
   },
   {
    "familyKey": "elem:초3|1-2-2 각, 직각 알아보기|03",
@@ -12220,6 +12382,222 @@
     }
    ],
    "afterRowSha256": "3ad7e43ef70bfb3fc683b2354f943a11c6e98b5f5f90e14d4d87d5148bbc704b"
+  },
+  {
+   "familyKey": "elem:초4|1-4-2 평면도형 밀기|06",
+   "beforeRow": [
+    "초4",
+    "1-4-2 평면도형 밀기",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-2 평면도형 밀기",
+     "orderIndex": 208,
+     "content": "가로 $8\\,\\mathrm{cm}$, 세로 $7\\,\\mathrm{cm}$인 직사각형을 왼쪽으로 $6\\,\\mathrm{cm}$ 밀었습니다. 민 도형의 가로는 몇 cm인가?",
+     "answer": "$8\\,\\mathrm{cm}$",
+     "solution": "밀어도 크기는 변하지 않으므로 가로는 $8\\,\\mathrm{cm}$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "markedShape",
+      "shape": "rect"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "33b9358c3638ba1ff6550a9a1629ad0e962883099a2cc2d10223cd7e9373ac19"
+  },
+  {
+   "familyKey": "elem:초4|1-4-2 평면도형 밀기|06",
+   "beforeRow": [
+    "초4",
+    "1-4-2 평면도형 밀기",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-2 평면도형 밀기",
+     "orderIndex": 208,
+     "content": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형을 아래쪽으로 $4\\,\\mathrm{cm}$ 밀었습니다. 민 도형의 가로는 몇 cm인가?",
+     "answer": "$6\\,\\mathrm{cm}$",
+     "solution": "밀어도 크기는 변하지 않으므로 가로는 $6\\,\\mathrm{cm}$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "markedShape",
+      "shape": "rect"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "f3fb9130a0de95d385a8f5a729b1fbf2cab6ad083585c96ddd0505e38d5f304d"
+  },
+  {
+   "familyKey": "elem:초4|1-4-2 평면도형 밀기|06",
+   "beforeRow": [
+    "초4",
+    "1-4-2 평면도형 밀기",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-2 평면도형 밀기",
+     "orderIndex": 208,
+     "content": "가로 $6\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형을 오른쪽으로 $7\\,\\mathrm{cm}$ 밀었습니다. 민 도형의 가로는 몇 cm인가?",
+     "answer": "$6\\,\\mathrm{cm}$",
+     "solution": "밀어도 크기는 변하지 않으므로 가로는 $6\\,\\mathrm{cm}$입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "markedShape",
+      "shape": "rect"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "8671e6db6ff427534817cb5e78c278e1fc3452073fdc5eae6bf4966b458379fd"
+  },
+  {
+   "familyKey": "elem:초4|1-5-3 막대그래프의 활용|02",
+   "beforeRow": [
+    "초4",
+    "1-5-3 막대그래프의 활용",
+    "02",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-3 막대그래프의 활용",
+     "orderIndex": 213,
+     "content": "방과후 교실 학생들이 좋아하는 장소를 조사하여 나타낸 막대그래프입니다. 학생 수가 가장 많은 장소는 가장 적은 장소보다 몇 명 더 많은가?",
+     "answer": "$8$명",
+     "solution": "가장 많은 것은 공원으로 $10$명, 가장 적은 것은 바다로 $2$명입니다. $10-2=8$ 이므로 $8$명 더 많습니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "산",
+        "value": 8
+       },
+       {
+        "label": "바다",
+        "value": 2
+       },
+       {
+        "label": "계곡",
+        "value": 4
+       },
+       {
+        "label": "공원",
+        "value": 10
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "3867b1580d245c9482f71677202661010e413d6446ac646e4f42cd0c3b0309cd"
+  },
+  {
+   "familyKey": "elem:초4|1-5-3 막대그래프의 활용|02",
+   "beforeRow": [
+    "초4",
+    "1-5-3 막대그래프의 활용",
+    "02",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-3 막대그래프의 활용",
+     "orderIndex": 213,
+     "content": "$3$학년과 $4$학년 전체 학생이 좋아하는 책을 조사하여 나타낸 막대그래프입니다. 학생 수가 가장 많은 책은 가장 적은 책보다 몇 명 더 많은가?",
+     "answer": "$60$명",
+     "solution": "가장 많은 것은 시집으로 $80$명, 가장 적은 것은 잡지로 $20$명입니다. $80-20=60$ 이므로 $60$명 더 많습니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "위인전",
+        "value": 60
+       },
+       {
+        "label": "시집",
+        "value": 80
+       },
+       {
+        "label": "사전",
+        "value": 30
+       },
+       {
+        "label": "잡지",
+        "value": 20
+       }
+      ],
+      "yMax": 81,
+      "yStep": 10,
+      "yLabel": "명"
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "600c85dda006f4687718c230e8c0b3e82e9844cab132ec2d6ac5dd96b4a1477e"
+  },
+  {
+   "familyKey": "elem:초4|1-5-3 막대그래프의 활용|02",
+   "beforeRow": [
+    "초4",
+    "1-5-3 막대그래프의 활용",
+    "02",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-3 막대그래프의 활용",
+     "orderIndex": 213,
+     "content": "방과후 교실 학생들이 좋아하는 장소를 조사하여 나타낸 막대그래프입니다. 학생 수가 가장 많은 장소는 가장 적은 장소보다 몇 명 더 많은가?",
+     "answer": "$6$명",
+     "solution": "가장 많은 것은 계곡으로 $8$명, 가장 적은 것은 바다로 $2$명입니다. $8-2=6$ 이므로 $6$명 더 많습니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "산",
+        "value": 4
+       },
+       {
+        "label": "바다",
+        "value": 2
+       },
+       {
+        "label": "계곡",
+        "value": 8
+       },
+       {
+        "label": "공원",
+        "value": 6
+       }
+      ],
+      "yMax": 9,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "6ca5b13a1f044d0b5485b2059555d6d2ddc3c6e5be72d065de69de99d96756ad"
   },
   {
    "familyKey": "elem:초4|1-5-3 막대그래프의 활용|09",

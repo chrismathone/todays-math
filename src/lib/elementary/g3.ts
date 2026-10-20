@@ -9860,7 +9860,8 @@ function line121RayPlusSeg(unit: UnitSeed, rng: Rng): ElemProblem {
   const segs = (k * (k - 1)) / 2;
   return make(
     unit,
-    `그림에 점이 ${n(k)}개 있습니다. 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.`,
+    // 무엇을 잇는지 밝힌다 — «그을 수 있는» 만으로는 셀 범위가 열려 있었다(2026-10-20 교차 검수 2회차).
+    `그림에 점이 ${n(k)}개 있습니다. 이 점들 가운데 두 점을 골라 그을 수 있는 반직선의 수와 선분의 수를 더한 값을 쓰시오.`,
     n(rays + segs),
     `반직선은 ${expr(`${k}\\times${k - 1}=${rays}`)} 개, 선분은 ${expr(`${k}\\times${k - 1}\\div2=${segs}`)} 개이므로 합은 ${expr(`${rays}+${segs}=${rays + segs}`)} 입니다.`,
     dotsOnly(layout, letters),

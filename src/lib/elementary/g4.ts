@@ -4439,7 +4439,7 @@ function barGraph(unit: UnitSeed, rng: Rng): ElemProblem {
     }
     return make(
       unit,
-      `${intro} ${josa(pairA.label, "은", "는")} ${pairB.label}보다 몇 명 더 많은가?`,
+      `${intro} ${josa(pairA.label, "을", "를")} 좋아하는 학생은 ${josa(pairB.label, "을", "를")} 좋아하는 학생보다 몇 명 더 많은가?`,
       `${n(pairA.value - pairB.value)}명`,
       `${josa(pairA.label, "이", "가")} ${n(pairA.value)}명, ${josa(pairB.label, "이", "가")} ` +
         `${n(pairB.value)}명이므로 ${expr(`${pairA.value}-${pairB.value}=${pairA.value - pairB.value}`)} 입니다.`,
@@ -4839,7 +4839,8 @@ function tier53Basic(unit: UnitSeed, rng: Rng): ElemProblem {
   const d = barData(unit, rng);
   return make(
     unit,
-    `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}보다 몇 명 더 많은가?`,
+    // «가장 많은 책은 가장 적은 책보다 몇 명 더 많은가» 는 주어(책)와 단위(명)가 어긋났다(2026-10-20 교차 검수 2회차).
+    `${d.intro} 학생 수가 가장 많은 ${josa(d.theme.item, "은", "는")} 가장 적은 ${d.theme.item}보다 좋아하는 학생이 몇 명 더 많은가?`,
     `${n(d.max - d.min)}명`,
     `가장 많은 것은 ${josa(d.top, "으로", "로")} ${n(d.max)}명, 가장 적은 것은 ` +
       `${josa(d.bottom, "으로", "로")} ${n(d.min)}명입니다. ` +
@@ -8258,7 +8259,7 @@ function move142WidthSame(unit: UnitSeed, rng: Rng): ElemProblem {
     `가로 ${cm(w)}, 세로 ${cm(h)}인 직사각형을 ${dir}으로 ${cm(dist)} 밀었습니다. 민 도형의 가로는 몇 cm인가?`,
     cm(w),
     `밀어도 크기는 변하지 않으므로 가로는 ${cm(w)}입니다.`,
-    fig("markedShape", { shape: "rect" }),
+    // 그림(치수 없는 기본 직사각형)은 걷었다 — 세로가 더 긴 모양으로 그려져 «가로 5 · 세로 4» 와 어긋났고 민 모습도 없었다(2026-10-20 교차 검수 2회차).
   );
 }
 

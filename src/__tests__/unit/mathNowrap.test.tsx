@@ -56,3 +56,13 @@ describe("KaTeX 글리프 없는 기호 «⫽» · «ﾟ» (교과서 89 · 22�
     expect(out).toContain("50°");
   });
 });
+
+describe("한 줄의 보기 항목 여럿 «ㄱ. … ㄴ. …» (교과서 44 · 변형 2행)", () => {
+  it("항목 이름 앞을 전각 공백 둘로 벌린다 — 줄 머리가 «ㄱ.» 인 줄만", async () => {
+    const { preprocessMarkdown } = await import("@/lib/math/markdownPreprocess");
+    const out = preprocessMarkdown("다음 중 고르시오.\nㄱ. $a+b$ ㄴ. $a-b$ ㄷ. $b-a$");
+    expect(out).toContain("$  ㄴ. ");
+    expect(out).toContain("$  ㄷ. ");
+    expect(preprocessMarkdown("그림의 ㄱ. 과 ㄴ. 을 비교")).not.toContain(" ");
+  });
+});

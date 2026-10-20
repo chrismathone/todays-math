@@ -61,6 +61,18 @@ function mapGlyphlessSymbols(text: string): string {
     .join("");
 }
 
+/**
+ * 한 줄에 보기 항목이 여럿(«ㄱ. $y=\frac34x$ ㄴ. $y=-5x$») — 한 칸 띄움으로는 «x ㄴ.» 처럼 식과 다음 항목 이름이
+ * 붙어 보인다(2026-10-20 교차 검수 2회차 · 교과서 44 · 변형 2행). 항목 이름 앞을 전각 공백 둘로 벌린다.
+ */
+function spaceInlineItems(text: string): string {
+  if (!/[ㄴ-ㅎ]\.\s/.test(text)) return text;
+  return text
+    .split("\n")
+    .map((line) => (/^\s*(?:>\s*)?[ㄱ-ㅎ]\.\s/.test(line) ? line.replace(/(\S)[ \t]+([ㄴ-ㅎ]\.\s)/g, "$1\u2003\u2003$2") : line))
+    .join("\n");
+}
+
 const LEFT_SUBSCRIPT = /(^|\$|\\displaystyle|[+\-=(,]|\\times|\\cdot)(\s*)_\{/g;
 
 /**
@@ -87,7 +99,7 @@ export function preprocessMarkdown(content: string): string {
   // 상자 배치(열 수·칸)는 수식 전처리 **전에** 정한다 — 검수 카드와 같은 원문을 봐야 같은 격자다.
   const result = applyHardBreaks(
     preprocessMathText(
-      protectBoxHeaders(layoutQuotedBoxes(decodeHtmlEntities(content))),
+      protectBoxHeaders(layoutQuotedBoxes(spaceInlineItems(decodeHtmlEntities(content)))),
     )
       .replace(BARE_LIM, "\\lim\\limits")
       .replace(LEFT_SUBSCRIPT, "$1$2{}_{")

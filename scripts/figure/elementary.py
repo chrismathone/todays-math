@@ -1587,7 +1587,8 @@ def _frac_pie(spec: Mapping[str, Any]) -> str:
     r, pad = 48.0, 8.0
     cx = cy = pad + r
     step = 360.0 / n
-    leftover, eaten = str(spec.get("fill") or "#e2b48a"), "#f4efe6"
+    # 칠하지 않은 조각은 흰색 — 옅은 베이지였을 때 «색칠하지 않은 부분» 도 칠한 것처럼 보였다(2026-10-20 교차 검수 2회차).
+    leftover, eaten = str(spec.get("fill") or "#e2b48a"), "#ffffff"
     parts: list[str] = []
     for i in range(n):
         a0 = math.radians(start + i * step)

@@ -347,7 +347,7 @@ describe.skipIf(!hasEngine)("[초등 그림] 무작위 20 스펙", () => {
     if (!r.ok) return;
     expect((r.svg.match(/<path /g) ?? []).length).toBe(8);
     expect((r.svg.match(/fill="#e2b48a"/g) ?? []).length).toBe(4);
-    expect((r.svg.match(/fill="#f4efe6"/g) ?? []).length).toBe(4);
+    expect((r.svg.match(/fill="#ffffff"/g) ?? []).length).toBe(4);
     expect(r.svg).not.toMatch(/fill="#(?:c5d4e8|d4d0e8|e8e4f0)/i);
     expect(r.svg).toMatch(/stroke-dasharray="5 4"/);
   });

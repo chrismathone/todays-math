@@ -187,8 +187,11 @@ function collect(text: string): Candidate[] {
       true,
     );
   }
+  // 수식 **안**의 괄호원문자(식 번호 «$$…\tag*{⑴}$$» 등)는 소문항 머리가 아니다(2026-10-20 교차 검수 2회차).
+  const mathRanges = [...text.matchAll(/\$\$[\s\S]*?\$\$|\$[^$]*\$/g)].map((m) => [m.index, m.index + m[0].length] as const);
+  const insideMath = (i: number) => mathRanges.some(([a, b]) => i > a && i < b - 1);
   for (const m of text.matchAll(BARE_PAREN_DIGIT))
-    push(m.index, 1, parenDigitNumber(m[0]) ?? 0, 1, false);
+    if (!insideMath(m.index)) push(m.index, 1, parenDigitNumber(m[0]) ?? 0, 1, false);
 
   found.sort((a, b) => a.index - b.index || b.priority - a.priority);
 
