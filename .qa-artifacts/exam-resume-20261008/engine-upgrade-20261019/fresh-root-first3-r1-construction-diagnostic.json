@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-20T05:09:08.098202+00:00",
+  "oldScript": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\author-fresh-root-first3-20261020-r1.ts",
+  "oldScriptSha256": "629612250d1ff68126f6e1cc0470ac9de1c76db45c411524d115b73577070620",
+  "failure": "All3r1 outputs created; final console object used undefined canonicalSelectedStill157 identifier.",
+  "oldOutputsAndScriptPreserved": true,
+  "newR2Script": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\author-fresh-root-first3-20261020-r2.ts",
+  "newR2Changes": [
+    "Fix final reporting identifier",
+    "Exact symbolic root-product check and integer square enumeration instead of floating calculation assertions",
+    "Bind reproduction script SHA256 in new candidate metadata"
+  ],
+  "studentBodiesChoicesAnswersAndGeometricModelsUnchanged": true,
+  "priorBlindExposure": false,
+  "newCurrentLogicalQuestionsNotDoubleCounted": 3,
+  "loadable": 0
+}

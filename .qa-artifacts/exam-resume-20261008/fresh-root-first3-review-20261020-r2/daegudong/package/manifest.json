@@ -1,0 +1,60 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-20T05:12:29.895Z",
+  "questionNumbers": [
+    1,
+    2
+  ],
+  "packageDigest": "28cc69d4f79109f8720119a8c83fc2a60fbb4d10793ba21c06472d1d8ba96b40",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "privateCandidatePath": "private/q01/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-twin-authoring-20261020-r2\\daegudong\\q01.json",
+        "sha256": "048b94d9d68684a6412bb11c201af3bf9dc924fc1fb072b3dcedc25e57dd25af"
+      },
+      "candidateFileSha256": "7681a0e433df04c653dc5f18fbc069b9ac1b0a7e5ba8e41c80172fda6f26fba8",
+      "candidateDigest": "77bfcbcaecb9880fd81946dae755ca343c95b9458f26fd451caa212efcb90221",
+      "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+      "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "992d1b0834ac6f124ef8cc6e56a366c59c7fa59f1ba61a03d7d74e559d4595b4",
+          "svgSha256": "3f014f8efe71848e24ee6555238216b0205768adc6824dfc08dd8b464506ec92",
+          "intendedWidthMm": 80,
+          "studentPath": "figures/q01-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q02/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-twin-authoring-20261020-r2\\daegudong\\q02.json",
+        "sha256": "19d73d462611fa9ce5b2a7040b413b34b7bc55bac3b4cf4aa5009447e99dcc33"
+      },
+      "candidateFileSha256": "4b6fa19fae62e36b3ea50d874dcd9a4b4abeae1ab77b8cd1044f15c27e99c59d",
+      "candidateDigest": "3f661a64b2e900cbc9e326a1c413b2e887a9d71f799780e785b0d4116c46a7a8",
+      "studentDigest": "2817f3234dac2e1b07dcd504b94f5b026bac73201c22d3b4e187186ff26417af",
+      "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "4d2111b73756542330c9beb0b56520ae0facc08913cbea6e61f6683594d6e141",
+          "svgSha256": "5bf0f4ac4f00312a7c8278fd8294480a239bf0bd9e64214c36440fd85eb1a2f0",
+          "intendedWidthMm": 65,
+          "studentPath": "figures/q02-1.svg"
+        }
+      ]
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

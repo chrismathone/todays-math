@@ -1,0 +1,56 @@
+{
+  "firstFiveNaturalCases": [
+    {
+      "n": 1,
+      "area": 45,
+      "isIntegerSide": false
+    },
+    {
+      "n": 2,
+      "area": 90,
+      "isIntegerSide": false
+    },
+    {
+      "n": 3,
+      "area": 135,
+      "isIntegerSide": false
+    },
+    {
+      "n": 4,
+      "area": 180,
+      "isIntegerSide": false
+    },
+    {
+      "n": 5,
+      "area": 225,
+      "isIntegerSide": true
+    }
+  ],
+  "minimalParameter": 5,
+  "positiveSide": 15,
+  "area": 225,
+  "perimeter": 60,
+  "allSmallerParametersExactlyExcluded": true,
+  "studentPrimeFactorizationRequired": false,
+  "choicesCorrect": [
+    false,
+    false,
+    false,
+    true,
+    false
+  ],
+  "diagramNotCalculationOracle": true,
+  "utc": "2026-10-20T05:19:33.572Z",
+  "candidateFileSha256": "2faa1909d4f1353ced47dbbc52067c866bab9d2748d1531fce818cabf4215353",
+  "candidateDigest": "4adb8c800d868f27c571b2424ead0c0abdc8ba468ac12babd1e5c372ff45a654",
+  "studentDigest": "5c5ee5e427138b176f6f88c4dfc70ae70fbf02edb059d5188037d96b6ef039ab",
+  "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac",
+  "authorOnly": true,
+  "independentReview": false,
+  "dbWrites": 0,
+  "loadable": 0,
+  "priorAuthorCalculation": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegudong/q02-author-calculations-r1.json",
+    "sha256": "f282b8111e6c52f7a5557d1e15190b384cc3beada363f8e5681fa435c7472014"
+  }
+}

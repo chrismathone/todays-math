@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r1-q01",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "수직선 위의 두 점 A, B에 대하여 A의 좌표는 $\\sqrt{625}$의 음의 제곱근이고, B의 좌표는 $(-8)^2$의 양의 제곱근이다. 선분 AB의 길이는?",
+  "choices": [
+    "$3$",
+    "$8$",
+    "$13$",
+    "$16$",
+    "$25$"
+  ],
+  "answer": "③",
+  "solution": "먼저 $\\sqrt{625}=25$이다. $25$의 제곱근은 $5$, $-5$이므로 A의 좌표는 음수인 $-5$이다. 처음에 적힌 근호의 값 $25$를 구한 다음 그 수의 음의 제곱근을 정해야 한다.\n\n$(-8)^2=64$이고 $64$의 양의 제곱근은 $8$이므로 B의 좌표는 $8$이다. A와 B가 원점의 양쪽에 있으므로 선분 AB의 길이는 $8-(-5)=13$이다. 따라서 정답은 ③이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "q01.figure.spec.json",
+      "svgPath": "q01.figure.svg",
+      "intendedWidthMm": 80
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-daegudong-3-1-mid-1",
+    "inventoryExamId": "personal-87311a760e702909b5a0fe1cd63004ca",
+    "sourceQuestionNumber": 1,
+    "newSourceReferenceId": "source-ref-daegudong-2025-1-mid-group1-r1-q01",
+    "sourceContentSha256": "0b7903ae75dde78b724efd590b75c50ac1303c13466083f007b0cfdc51f8be54",
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-87311a760e702909b5a0fe1cd63004ca/q01.json",
+      "sha256": "59dd668b175a3d9d389af09841ea90fcfa66dbeb11b13a008d7dc2ae76d38638"
+    },
+    "sourceSchoolInternal": "대구동중",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "extractionManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-87311a760e702909b5a0fe1cd63004ca\\source-manifest.local.json",
+      "sha256": "d5f98a5ac5822b8427898328c668e53578b5c5812ed2728d58ea0b758bc6d687",
+      "bytes": 1619047
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구동중][3][25-1-중간][지학사] (완료).hwp",
+        "sha256": "46d7a7c0b4db876847dcdeabc6713a5026b86356c8da0aec7b98a2cdf2314ac9",
+        "bytes": 321024
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구동중][3][25-1-중간][지학사] (완료).PDF",
+        "sha256": "c2f3e8c529262aab18eb8744242f32b28ad0c72be401b2518d88f42986024a8e",
+        "bytes": 150948
+      }
+    ],
+    "originalIdentityReference": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구동중][3][25-1-중간] (원본) (오티스).pdf",
+      "sha256": "71a09fcb63c36f4987c8b0d69d8a825e722dc63182802883f96b762fbfec6efe",
+      "bytes": 476087
+    },
+    "sourceComponentEvidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r1/daegudong/q01-source-component-evidence-r1.json",
+      "sha256": "cbd967bbd8b1e1cb721b0a082578e3965fb611dd052e223411a346e430064aeb"
+    },
+    "sourceComponentReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+      "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "component": "대구동중-q01"
+    },
+    "gradeMethodProposal": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+      "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+      "component": "대구동중-q01"
+    },
+    "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write"
+  },
+  "variantDelta": {
+    "modes": [
+      "algebra-to-geometry",
+      "question-target-change",
+      "structure",
+      "new-vector"
+    ],
+    "before": "이미 근호로 적힌 수의 음의 제곱근과 다른 제곱수의 양의 제곱근을 정하고 두 수를 더한다.",
+    "after": "두 단계의 제곱근 해석을 수직선의 두 좌표로 옮기고 그 점 사이의 양수 길이를 구한다.",
+    "sharedConcept": "중첩된 수의 제곱근을 순서대로 해석하고 양/음의 지정된 근을 고르기",
+    "sharedProcedure": "안쪽 근호값625→25 확인→25의 음의 제곱근−5→제곱수64의 양의 근8→수직선 거리8−(−5)",
+    "actualStructuralChange": "두 단계의 제곱근 해석을 수직선의 두 좌표로 옮기고 그 점 사이의 양수 길이를 구한다. 새 조건·질문·답·전체 해설·그림/표를 만들었고 숫자/학교명 치환만으로 완료하지 않는다.",
+    "domainProof": "안쪽 근호값은25이며625의 음의 제곱근−25와 혼동하지 않는다. A−5/B8로 유일하고 좌표는 부호를 유지하며 길이는13>0이다. 두 단계의 간단한 제곱근 정의와 이미 배운 수직선 거리만 사용한다.",
+    "difficultyBasis": "같은 핵심 정의/관계와 인쇄 배점을 유지하는 저자 제안이다. 새 표현의 실제 난도 동등성/진도/정확한 family는 독립 검수 전 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수01-07"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수01-07"
+      ]
+    },
+    "legitimateMethodDraft": "안쪽 근호값625→25 확인→25의 음의 제곱근−5→제곱수64의 양의 근8→수직선 거리8−(−5)",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+    "sourceExamYear": 2025,
+    "targetAcademicYear": 2026,
+    "curriculum": "2015",
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "standard": "9수01-07",
+      "capturedPrimaryReceipt": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+        "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+      },
+      "providedMOEEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      "actualScope": "2015 M3 simple square-root definitions/properties; geometry uses previously learned number-line distance or square area/perimeter only. No general nested-radical elimination/fractional exponents/general irrational-equation method. Actual new seven surfaces independently pending."
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 4,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본~응용 저자 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "두 단계의 제곱근 해석을 수직선의 두 좌표로 옮기고 그 점 사이의 양수 길이를 구한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 M3 제곱근 Unit UUID와2015 성취기준 연결. 새 거리/넓이/입력 역추론의 정확한 live family는 별도 보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-graph-1-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "안쪽 근호값은25이며625의 음의 제곱근−25와 혼동하지 않는다. A−5/B8로 유일하고 좌표는 부호를 유지하며 길이는13>0이다. 두 단계의 간단한 제곱근 정의와 이미 배운 수직선 거리만 사용한다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-first3-20261020-r1.ts",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "제곱근의 정의와 근호의 양의 값",
+        "양의/음의 제곱근",
+        "정수의 제곱",
+        "수직선의 좌표와 두 점 사이 거리"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+  }
+}

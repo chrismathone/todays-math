@@ -145,6 +145,23 @@ test("a renderable lost radical command is held before freeze without changing i
     f.clean();
   }
 });
+test("a renderable lost unit marker in a choice is held before any blind package exists", () => {
+  const f = fixture();
+  try {
+    f.candidate.choices[0] = "$15,mathrm{cm}$";
+    const file = path.join(f.root, "candidate.json");
+    fs.writeFileSync(file, JSON.stringify(f.candidate));
+    const before = fs.readFileSync(file);
+    const result = f.run("freeze", "package", "candidate.json");
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /lost math command escapes/);
+    assert(!fs.existsSync(path.join(f.root, "package")));
+    assert.deepEqual(fs.readFileSync(file), before);
+    assert(bindCandidate(file).validation.studentMathNotationWarnings.some(x => x.token === "mathrm"));
+  } finally {
+    f.clean();
+  }
+});
 test("independent solve is frozen before new answer exposure; later alteration rejects", () => {
   const f = fixture();
   try {

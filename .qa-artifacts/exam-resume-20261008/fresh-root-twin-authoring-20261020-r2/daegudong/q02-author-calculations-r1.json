@@ -1,0 +1,52 @@
+{
+  "firstFiveNaturalCases": [
+    {
+      "n": 1,
+      "area": 45,
+      "isIntegerSide": false
+    },
+    {
+      "n": 2,
+      "area": 90,
+      "isIntegerSide": false
+    },
+    {
+      "n": 3,
+      "area": 135,
+      "isIntegerSide": false
+    },
+    {
+      "n": 4,
+      "area": 180,
+      "isIntegerSide": false
+    },
+    {
+      "n": 5,
+      "area": 225,
+      "isIntegerSide": true
+    }
+  ],
+  "minimalParameter": 5,
+  "positiveSide": 15,
+  "area": 225,
+  "perimeter": 60,
+  "allSmallerParametersExactlyExcluded": true,
+  "studentPrimeFactorizationRequired": false,
+  "choicesCorrect": [
+    false,
+    false,
+    false,
+    true,
+    false
+  ],
+  "diagramNotCalculationOracle": true,
+  "utc": "2026-10-20T05:09:38.632Z",
+  "candidateFileSha256": "19d73d462611fa9ce5b2a7040b413b34b7bc55bac3b4cf4aa5009447e99dcc33",
+  "candidateDigest": "909910b782f4dadf3ac3243f21f501b57f38ebd428ccd0b16d1210d60842c1de",
+  "studentDigest": "2817f3234dac2e1b07dcd504b94f5b026bac73201c22d3b4e187186ff26417af",
+  "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac",
+  "authorOnly": true,
+  "independentReview": false,
+  "dbWrites": 0,
+  "loadable": 0
+}

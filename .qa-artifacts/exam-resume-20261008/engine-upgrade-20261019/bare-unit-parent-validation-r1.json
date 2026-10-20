@@ -1,0 +1,47 @@
+{
+  "utc": "2026-10-20T05:21:57.851Z",
+  "before": {
+    "scripts/import/exam-twin/authoredMathNotation.mjs": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f",
+    "scripts/import/exam-twin/authoredMathNotation.test.mjs": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2"
+  },
+  "after": {
+    "scripts/import/exam-twin/authoredMathNotation.mjs": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f",
+    "scripts/import/exam-twin/authoredMathNotation.test.mjs": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de",
+    "scripts/import/exam-twin/reviewWorkflow.test.mjs": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2"
+  },
+  "oldActualDraft": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegudong/q02.json",
+    "sha256": "19d73d462611fa9ce5b2a7040b413b34b7bc55bac3b4cf4aa5009447e99dcc33",
+    "lostMarkers": 5,
+    "freezeRejected": true,
+    "packageNotCreated": true,
+    "bytesPreserved": true
+  },
+  "fixedCurrentDraft": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r3/daegudong/q02.json",
+    "sha256": "2faa1909d4f1353ced47dbbc52067c866bab9d2748d1531fce818cabf4215353",
+    "notationWarnings": 0,
+    "assetBytesUnchanged": true
+  },
+  "previous157CandidateBindingsAndZeroNotationWarningsRetained": true,
+  "nodeTestFiles": 15,
+  "nodeSummary": "nce\nok 174 - generation record hash comes from the same bytes as its validated provenance\n  ---\n  duration_ms: 39.0906\n  type: 'test'\n  ...\n1..174\n# tests 174\n# suites 0\n# pass 174\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 44697.6607\n",
+  "lintPassed": true,
+  "results": [
+    {
+      "log": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/bare-unit-node-tests-r1.tap",
+      "status": 0
+    },
+    {
+      "log": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/bare-unit-lint-r1.log",
+      "status": 0
+    }
+  ],
+  "independentCodeAuditPending": true,
+  "boundedCmAndMMarkerOnly": true,
+  "noAutomaticTextRepair": true,
+  "noGeneralTeXOrUnitsProof": true,
+  "dbWrites": 0,
+  "loadable": 0
+}

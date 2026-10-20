@@ -1,0 +1,39 @@
+{
+  "mode": "student",
+  "bankImageWidthCapMm": 70,
+  "nativeReaderParity": false,
+  "effectiveFigureWidths": [
+    {
+      "n": 1,
+      "role": "stem",
+      "requestedWidthMm": 80,
+      "displayedWidthMm": 70
+    },
+    {
+      "n": 2,
+      "role": "stem",
+      "requestedWidthMm": 65,
+      "displayedWidthMm": 65
+    }
+  ],
+  "questionCount": 2,
+  "productMathRendererSafe": true,
+  "redOrRawMathCount": 0,
+  "overflowingCards": [],
+  "htmlSha256": "a2adbf53af66f42d17c71b179ca1a17457e18758b4c0516a67531119f7178e50",
+  "candidates": [
+    {
+      "n": 1,
+      "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+      "candidateDigest": "41c185707f90f71b0dfc4097a0b5a1a08bdfdfc82c04a17ae477c3a85235f6fb",
+      "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da"
+    },
+    {
+      "n": 2,
+      "studentDigest": "2817f3234dac2e1b07dcd504b94f5b026bac73201c22d3b4e187186ff26417af",
+      "candidateDigest": "909910b782f4dadf3ac3243f21f501b57f38ebd428ccd0b16d1210d60842c1de",
+      "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac"
+    }
+  ],
+  "visualReviewStatus": "pending-human-agent-image-inspection"
+}

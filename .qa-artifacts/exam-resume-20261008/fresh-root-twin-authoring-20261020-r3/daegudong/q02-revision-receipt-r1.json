@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-20T05:19:33.564Z",
+  "prior": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegudong/q02.json",
+    "sha256": "19d73d462611fa9ce5b2a7040b413b34b7bc55bac3b4cf4aa5009447e99dcc33"
+  },
+  "current": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r3/daegudong/q02.json",
+    "sha256": "2faa1909d4f1353ced47dbbc52067c866bab9d2748d1531fce818cabf4215353"
+  },
+  "reason": "Actual student preview exposed a lost JS unit escape. String.raw supplies complete explicit cm markers; new warning gate rejects the old five choices.",
+  "oldDraftPackageAndPreviewsPreserved": true,
+  "priorMathSafeRendererWasSyntaxOnlyNotUnitCorrectness": true,
+  "choicesChanged": true,
+  "mathAnswerSolutionAndAssetBytesUnchanged": true,
+  "newLogicalFiguresNotDoubleCounted": true,
+  "anyBlindSolverExposureBeforeRevision": false,
+  "loadable": 0
+}

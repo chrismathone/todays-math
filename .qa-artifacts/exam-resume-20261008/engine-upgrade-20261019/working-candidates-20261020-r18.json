@@ -1,0 +1,52 @@
+{
+  "utc": "2026-10-20T05:33:15.798230+00:00",
+  "canonicalSelected": 157,
+  "additionalCurrentAuthoredDrafts": 3,
+  "allCurrentAuthoredIncludingUnselected": 160,
+  "additionalCurrentFigures": 2,
+  "additionalCurrentTables": 1,
+  "current": [
+    {
+      "candidate": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegudong/q01.json",
+      "sha256": "048b94d9d68684a6412bb11c201af3bf9dc924fc1fb072b3dcedc25e57dd25af"
+    },
+    {
+      "candidate": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r3/daegudong/q02.json",
+      "sha256": "2faa1909d4f1353ced47dbbc52067c866bab9d2748d1531fce818cabf4215353"
+    },
+    {
+      "candidate": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegubuk/q02.json",
+      "sha256": "9d17f0727361a996ab314dbdcede7575129c150fa637885626196283724f06d0"
+    }
+  ],
+  "independentRawSolvesPending": 0,
+  "supersededDraftsNotDoubleCounted": true,
+  "badUnitR2DraftRetainedAndHeld": true,
+  "studentOnlyFilesCopiedToExistingHelper": true,
+  "authorPrivatePackageCopiedToHelper": true,
+  "codeSinceCheckpoint": [
+    "U56 bounded bare cm/m unit-marker warning; parent174tests/lint passed; independent code audit pending"
+  ],
+  "rightsAndLoadable": 0,
+  "dbWrites": 0,
+  "independentRawSolvesGitSealed": 3,
+  "workerRawSeal": "3a496d7669cda8c18859b351e7ca851d609c9c81",
+  "parentRawSeal": "9196516133eac6ead23f05204d8a3dfd73eee3ae",
+  "fullMathGradeContentReviewPending": 3,
+  "privateExposureAfterRawSeal": true,
+  "workingReport": "docs/planning/tracks/reports/exam-twin-engine-working-checkpoint-20261020-r1.md",
+  "codeFiles": [
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.mjs",
+      "sha256": "68b7137739df554f3ce48ccd887bbe47ef8135111417c862fbed69b4cf45e60f"
+    },
+    {
+      "path": "scripts/import/exam-twin/authoredMathNotation.test.mjs",
+      "sha256": "0493c6806b41a9e4591a6a37af5e7d05298be12233664c01bef700eb90f614de"
+    },
+    {
+      "path": "scripts/import/exam-twin/reviewWorkflow.test.mjs",
+      "sha256": "8c24ab6a2c957f1a0e801694b061cac741acd0c8f4e9191e306458e6c0aed0b2"
+    }
+  ]
+}

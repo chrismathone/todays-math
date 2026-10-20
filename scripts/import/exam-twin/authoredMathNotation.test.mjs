@@ -27,3 +27,17 @@ test('non-BMP characters do not shift literal masks or diagnostic offsets',()=>{
   const text=String.raw`$😀+\text{sqrt2 {ldots}}+sqrt3$`;
   const found=warnings(text);assert.equal(found.length,1);assert.equal(text.slice(found[0].offset,found[0].offset+4),'sqrt');
 });
+
+test('the actual renderable lost unit marker is diagnosed, including an adjacent variable',()=>{
+  for(const value of ['$15,mathrm{cm}$','$60,mathrm{cm}$','$2mathrm{m}^{2}$','$amathrm{cm}$']){
+    const before=value,found=warnings(value);assert.equal(found.length,1);assert.equal(found[0].token,'mathrm');assert.equal(value.slice(found[0].offset,found[0].offset+6),'mathrm');assert.equal(value,before);
+  }
+});
+test('proper cm/m commands, ordinary prose and deliberately quoted marker text are untouched',()=>{
+  assert.deepEqual(warnings(String.raw`$15\,\mathrm{cm}+2\,\mathrm{m}^{2}+a\mathrm{cm}$`),[]);
+  assert.deepEqual(warnings(String.raw`Prose:mathrm{cm}. $\texttt{mathrm{cm}}+\text{mathrm{m}}+\operatorname{mathrm{cm}}$`),[]);
+});
+test('unit losses retain UTF16 offsets and source order with existing radical/fraction warnings',()=>{
+  const text=String.raw`$😀+mathrm{cm}+sqrt2+\text{mathrm{m}}+frac{1}{2}+mathrm { m }$`;
+  const found=warnings(text);assert.deepEqual(found.map(x=>x.token),['mathrm','sqrt','frac','mathrm']);for(const x of found)assert.equal(text.slice(x.offset,x.offset+x.token.length),x.token);
+});

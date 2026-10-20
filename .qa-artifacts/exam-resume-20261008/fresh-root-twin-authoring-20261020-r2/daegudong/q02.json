@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q02",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 3,
+  "content": "그림의 정사각형의 넓이는 $45n\\,\\mathrm{cm}^{2}$이고, $n$은 $1$ 이상의 자연수이다. 한 변의 길이가 자연수 $\\mathrm{cm}$가 되도록 하는 $n$의 최솟값을 사용할 때, 이 정사각형의 둘레는?",
+  "choices": [
+    "$15,mathrm{cm}$",
+    "$30,mathrm{cm}$",
+    "$45,mathrm{cm}$",
+    "$60,mathrm{cm}$",
+    "$225,mathrm{cm}$"
+  ],
+  "answer": "④",
+  "solution": "한 변의 길이가 자연수이려면 넓이 $45n$이 어떤 자연수의 제곱이어야 한다.\n\n$n=1,2,3,4$일 때의 넓이는 각각 $45$, $90$, $135$, $180$이다. 이들은 각각 $6^2$과 $7^2$, $9^2$과 $10^2$, $11^2$과 $12^2$, $13^2$과 $14^2$ 사이에 있으므로 자연수의 제곱이 아니다.\n\n$n=5$이면 넓이가 $225=15^2$이 되어 한 변의 길이가 $15\\,\\mathrm{cm}$이다. 따라서 가능한 $n$의 최솟값은 $5$이고, 그때 둘레는 $4\\times15=60\\,\\mathrm{cm}$이다. 정답은 ④이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "q02.figure.spec.json",
+      "svgPath": "q02.figure.svg",
+      "intendedWidthMm": 65
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-daegudong-3-1-mid-2",
+    "inventoryExamId": "personal-87311a760e702909b5a0fe1cd63004ca",
+    "sourceQuestionNumber": 2,
+    "newSourceReferenceId": "source-ref-daegudong-2025-1-mid-group1-r2-q02",
+    "sourceContentSha256": "b7eb7b847bd7fca2e90255a43837219312adbf78112cb124a9643d87c8d4ee5c",
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-87311a760e702909b5a0fe1cd63004ca/q02.json",
+      "sha256": "2082e645307e9db24005348ab3d6760701802083e62092e64035d26aefc367a4"
+    },
+    "sourceSchoolInternal": "대구동중",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "extractionManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-87311a760e702909b5a0fe1cd63004ca\\source-manifest.local.json",
+      "sha256": "d5f98a5ac5822b8427898328c668e53578b5c5812ed2728d58ea0b758bc6d687",
+      "bytes": 1619047
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구동중][3][25-1-중간][지학사] (완료).hwp",
+        "sha256": "46d7a7c0b4db876847dcdeabc6713a5026b86356c8da0aec7b98a2cdf2314ac9",
+        "bytes": 321024
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구동중][3][25-1-중간][지학사] (완료).PDF",
+        "sha256": "c2f3e8c529262aab18eb8744242f32b28ad0c72be401b2518d88f42986024a8e",
+        "bytes": 150948
+      }
+    ],
+    "originalIdentityReference": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구동중][3][25-1-중간] (원본) (오티스).pdf",
+      "sha256": "71a09fcb63c36f4987c8b0d69d8a825e722dc63182802883f96b762fbfec6efe",
+      "bytes": 476087
+    },
+    "sourceComponentEvidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegudong/q02-source-component-evidence-r1.json",
+      "sha256": "07dbd926a83eb697b1eab8b9cc11e01fa7f7fa6cb129417a81b8370a5d86d235"
+    },
+    "sourceComponentReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+      "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "component": "대구동중-q02"
+    },
+    "gradeMethodProposal": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+      "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+      "component": "대구동중-q02"
+    },
+    "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write"
+  },
+  "variantDelta": {
+    "modes": [
+      "algebra-to-geometry",
+      "question-target-change",
+      "structure",
+      "new-vector"
+    ],
+    "before": "근호 안의 곱이 자연수의 제곱이 되게 하는 자연수 매개변수의 최솟값을 직접 찾는다.",
+    "after": "자연수인 변 길이의 조건을 정사각형 넓이로 표현하고 최소 매개변수일 때의 둘레를 구한다.",
+    "sharedConcept": "자연수인 제곱근과 제곱수 조건, 자연수 매개변수의 최솟값",
+    "sharedProcedure": "넓이45n이 제곱수임을 해석→작은 자연수1..4 배제→n5의 존재 확인→양수 변15→둘레60",
+    "actualStructuralChange": "자연수인 변 길이의 조건을 정사각형 넓이로 표현하고 최소 매개변수일 때의 둘레를 구한다. 새 조건·질문·답·전체 해설·그림/표를 만들었고 숫자/학교명 치환만으로 완료하지 않는다.",
+    "domainProof": "n은1이상으로0을 배제한다. n1..4는 각 두 연속 제곱수 사이임을 정확히 확인했고 n5에서225=15²다. 한 변의 양수조건으로15만 가능하며 둘레60cm이다. 학생 해설은 소인수 지수 일반식이나 상위 수론 도구 없이 유한 최소성 확인을 제시한다. 그림 모델은 이 최소 상태의 실제15×15 정사각형이며 길이를 픽셀로 읽지 않는다.",
+    "difficultyBasis": "같은 핵심 정의/관계와 인쇄 배점을 유지하는 저자 제안이다. 새 표현의 실제 난도 동등성/진도/정확한 family는 독립 검수 전 보류."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수01-07"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수01-07"
+      ]
+    },
+    "legitimateMethodDraft": "넓이45n이 제곱수임을 해석→작은 자연수1..4 배제→n5의 존재 확인→양수 변15→둘레60",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+    "sourceExamYear": 2025,
+    "targetAcademicYear": 2026,
+    "curriculum": "2015",
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "standard": "9수01-07",
+      "capturedPrimaryReceipt": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+        "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+      },
+      "providedMOEEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      "actualScope": "2015 M3 simple square-root definitions/properties; geometry uses previously learned number-line distance or square area/perimeter only. No general nested-radical elimination/fractional exponents/general irrational-equation method. Actual new seven surfaces independently pending."
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 3,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본~응용 저자 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "자연수인 변 길이의 조건을 정사각형 넓이로 표현하고 최소 매개변수일 때의 둘레를 구한다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "실제 M3 제곱근 Unit UUID와2015 성취기준 연결. 새 거리/넓이/입력 역추론의 정확한 live family는 별도 보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "existing-graph-1-vector-engine-strict",
+      "newFigures": 1,
+      "newTables": 0,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "coordinateConstruction": "n은1이상으로0을 배제한다. n1..4는 각 두 연속 제곱수 사이임을 정확히 확인했고 n5에서225=15²다. 한 변의 양수조건으로15만 가능하며 둘레60cm이다. 학생 해설은 소인수 지수 일반식이나 상위 수론 도구 없이 유한 최소성 확인을 제시한다. 그림 모델은 이 최소 상태의 실제15×15 정사각형이며 길이를 픽셀로 읽지 않는다.",
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-first3-20261020-r2.ts",
+      "reproductionScriptSha256": "acafb0c153fa1b910564fc6c879c044073ee43c33d6c0922a461a5516c7f909b",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "제곱근과 제곱수",
+        "자연수와 크기 비교",
+        "정사각형의 넓이와 둘레",
+        "양수인 길이와 cm/cm²의 구별"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+  }
+}

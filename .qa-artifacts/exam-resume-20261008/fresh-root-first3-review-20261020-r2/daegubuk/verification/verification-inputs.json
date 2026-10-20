@@ -1,0 +1,348 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group1-r2-q02",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "다음 계산 기록에서 $x$는 음수이다. 출력값 칸에 들어갈 수는?\n\n| 입력 조건 | 계산식 | 출력값 |\n| --- | --- | --- |\n| $\\sqrt{x^2}=5$ | $(\\sqrt7)^2+x$ | $\\square$ |",
+      "choices": [
+        "$-12$",
+        "$-2$",
+        "$0$",
+        "$2$",
+        "$12$"
+      ],
+      "answer": "④",
+      "solution": "$\\sqrt{x^2}=5$이므로 $x^2=25$이다. 제곱하여 $25$가 되는 수는 $5$, $-5$이고 $x$는 음수이므로 $x=-5$이다.\n\n한편 $(\\sqrt7)^2=7$이므로 출력값은 $7+(-5)=2$이다. $x=5$는 주어진 음수 조건에 맞지 않는다. 따라서 정답은 ④이다.",
+      "figureArtifacts": [],
+      "sourceReference": {
+        "externalId": "2025-daegubuk-3-1-mid-2",
+        "inventoryExamId": "personal-dc9efb798219b732ebd608105298f220",
+        "sourceQuestionNumber": 2,
+        "newSourceReferenceId": "source-ref-daegubuk-2025-1-mid-group1-r2-q02",
+        "sourceContentSha256": "d14204ffa0786f1437f923ec0399d094cad3c7fe1d53a80da7073627cf2b970b",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q02.json",
+          "sha256": "0e7d7d02548b1d8dba3a343cdd910b286dedb09779870bf28a83047ea977903f"
+        },
+        "sourceSchoolInternal": "대구북중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-dc9efb798219b732ebd608105298f220\\source-manifest.local.json",
+          "sha256": "890a7d4ed291f70b6f5f03d5ce7a0f17ef281f657158dcfda7b602b50c09d51b",
+          "bytes": 1546963
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구북중][3][25-1-중간][비상] (완료).hwp",
+            "sha256": "2f89044cdfdbe4873b487b6a4ce9b6b17fd6a1f5ea62168a110294787c4ae8e5",
+            "bytes": 366080
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구북중][3][25-1-중간][비상] (완료).PDF",
+            "sha256": "848fd7e57fc4d42fb112b3c6a0bd9cb46c496ded6cd875c3a803a4a21d5092c0",
+            "bytes": 171567
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구북중][3][25-1-중간] (원본) (간짬뽕).pdf",
+          "sha256": "8f599954067c085ff2461e8aa53876960d652e9828e653729c3e69608fb8471f",
+          "bytes": 423901
+        },
+        "sourceComponentEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegubuk/q02-source-component-evidence-r1.json",
+          "sha256": "34e118ec9e966c03c8693d32045663d75c677a7d2b1f0b72dfccd03bf5868033"
+        },
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구북중-q02"
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구북중-q02"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write"
+      },
+      "variantDelta": {
+        "modes": [
+          "inverse-target",
+          "structure",
+          "new-table"
+        ],
+        "before": "한 식의 목표 결과에서 빈칸의 값이 되는 근호 표현과 그렇지 않은 표현을 골라 구별한다.",
+        "after": "근호의 값과 입력 부호를 조건으로 주고 입력을 역으로 결정하여 새 계산 기록의 출력값을 구한다.",
+        "sharedConcept": "제곱의 괄호·근호의 양의 값·바깥 부호와 양/음의 제곱근 구별",
+        "sharedProcedure": "근호값5에서 제곱수25 확인→그 두 제곱근 중 음수입력−5 선택→근호를 제곱한값7과 더하여 출력2",
+        "actualStructuralChange": "근호의 값과 입력 부호를 조건으로 주고 입력을 역으로 결정하여 새 계산 기록의 출력값을 구한다. 새 조건·질문·답·전체 해설·그림/표를 만들었고 숫자/학교명 치환만으로 완료하지 않는다.",
+        "domainProof": "제곱근 정의에서 x²25이고 가능한 입력±5 중 음수−5만 남아 출력2가 유일하다. 임의의 무리방정식 해법/고등 함수 도구를 요구하지 않고 제곱근의 정의와 부호 조건으로 해결한다. 모든 보기는 학년내 정수다.",
+        "difficultyBasis": "같은 핵심 정의/관계와 인쇄 배점을 유지하는 저자 제안이다. 새 표현의 실제 난도 동등성/진도/정확한 family는 독립 검수 전 보류."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-07"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수01-07"
+          ]
+        },
+        "legitimateMethodDraft": "근호값5에서 제곱수25 확인→그 두 제곱근 중 음수입력−5 선택→근호를 제곱한값7과 더하여 출력2",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+        "sourceExamYear": 2025,
+        "targetAcademicYear": 2026,
+        "curriculum": "2015",
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "standard": "9수01-07",
+          "capturedPrimaryReceipt": {
+            "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+            "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+          },
+          "providedMOEEvidence": {
+            "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+            "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+          },
+          "actualScope": "2015 M3 simple square-root definitions/properties; geometry uses previously learned number-line distance or square area/perimeter only. No general nested-radical elimination/fractional exponents/general irrational-equation method. Actual new seven surfaces independently pending."
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "근호의 값과 입력 부호를 조건으로 주고 입력을 역으로 결정하여 새 계산 기록의 출력값을 구한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 M3 제곱근 Unit UUID와2015 성취기준 연결. 새 거리/넓이/입력 역추론의 정확한 live family는 별도 보류."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "제곱근 정의에서 x²25이고 가능한 입력±5 중 음수−5만 남아 출력2가 유일하다. 임의의 무리방정식 해법/고등 함수 도구를 요구하지 않고 제곱근의 정의와 부호 조건으로 해결한다. 모든 보기는 학년내 정수다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-first3-20261020-r2.ts",
+          "reproductionScriptSha256": "acafb0c153fa1b910564fc6c879c044073ee43c33d6c0922a461a5516c7f909b",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "제곱근의 정의와 근호의 양의 값",
+            "음수와 부호 조건",
+            "제곱과 괄호의 적용 순서",
+            "정수의 덧셈"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      }
+    },
+    "assets": [],
+    "studentDigest": "201360974a1901e9704d89466631679550fe34af26fe1f7f68dbe3dbbf51e3cf",
+    "candidateDigest": "4244dd51978bfecaf3424451fd2c6ab5a846f05e9743486c68fccd82026d4263",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "201360974a1901e9704d89466631679550fe34af26fe1f7f68dbe3dbbf51e3cf",
+      "solverId": "codex-helper-independent-fresh-roots-20261020",
+      "answer": "④",
+      "solution": "√(x²)=5이므로 x²=25이다. 제곱해서 25가 되는 수는 -5와 5이며, x는 음수이므로 x=-5로 하나만 정해진다. 또한 (√7)²=7이므로 계산식의 출력값은 7+(-5)=2이다. x=-5를 입력하면 √((-5)²)=5가 되어 원래 조건도 만족한다. 보기 -12, -2, 0, 2, 12 중 2만 두 입력 조건과 계산식에 맞으므로 ④이다. 음수 조건을 빼면 x=5도 가능하여 출력값이 12가 되므로, 음수라는 조건을 반드시 사용해야 한다.",
+      "evidence": {
+        "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group1-r2-q02",
+        "exposureDeclaration": {
+          "priorOriginalSourceExposure": true,
+          "priorScope": "Previously reviewed these schools original first3 question components, whole first-page reference images with incidental handwritten markings, and related root-property problems in earlier independent scopes. This is not an unseen-original-corpus claim.",
+          "currentTransformedAuthorAnswerExposed": false,
+          "currentTransformedAuthorSolutionExposed": false,
+          "currentPrivateSpecMetadataRead": false,
+          "allowedCurrentInputsOnly": true,
+          "authorAnswerSearch": false,
+          "calculationsFrom": "Current printed student conditions, not original handwritten marks, prior source answers, pixels, SVG coordinates or hidden model."
+        },
+        "ownExactCalculation": {
+          "xCandidatesFromRootDefinition": [
+            -5,
+            5
+          ],
+          "negativeUniqueX": -5,
+          "sqrtXSquared": 5,
+          "sqrt7Squared": 7,
+          "output": 2,
+          "allChoices": [
+            {
+              "index": 1,
+              "mark": "①",
+              "output": -12,
+              "impliedX": -19,
+              "xNegative": true,
+              "rootConditionHolds": false,
+              "bothInputConditionsHold": false
+            },
+            {
+              "index": 2,
+              "mark": "②",
+              "output": -2,
+              "impliedX": -9,
+              "xNegative": true,
+              "rootConditionHolds": false,
+              "bothInputConditionsHold": false
+            },
+            {
+              "index": 3,
+              "mark": "③",
+              "output": 0,
+              "impliedX": -7,
+              "xNegative": true,
+              "rootConditionHolds": false,
+              "bothInputConditionsHold": false
+            },
+            {
+              "index": 4,
+              "mark": "④",
+              "output": 2,
+              "impliedX": -5,
+              "xNegative": true,
+              "rootConditionHolds": true,
+              "bothInputConditionsHold": true
+            },
+            {
+              "index": 5,
+              "mark": "⑤",
+              "output": 12,
+              "impliedX": 5,
+              "xNegative": false,
+              "rootConditionHolds": true,
+              "bothInputConditionsHold": false
+            }
+          ],
+          "withoutNegativeConditionOutputs": [
+            2,
+            12
+          ],
+          "domain": "For every real x, x^2 is nonnegative so sqrt(x^2) is defined. The equation gives x^2=25; both signed roots are legitimate before x<0 selects-5. sqrt7 is real and positive. No denominators and no physical units.",
+          "existenceUniqueness": "x=-5 satisfies negativity and principal sqrt25=5; the only other square root+5 violates negativity. Consequently output2 exists and is unique.",
+          "method2015M3": "Definition and sign of square roots, (sqrt7)^2=7, prior signed arithmetic; no general high-school radical-equation squaring/extra-root method."
+        },
+        "inputs": {
+          "filesBefore": [
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r2/daegubuk/blind/SOLVE-BRIEF.md",
+              "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r2/daegubuk/blind/student-problems.json",
+              "sha256": "ab14f7e719f48a2a10563145984833e5260149a83712ccdcceb6681a01faa935"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r2/daegubuk/blind/blind-manifest.json",
+              "sha256": "bb101d4e8b9b921b96460a0a7393012f7bc5ef88ef69a14eafee0a89f2d97e44"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r2/daegubuk/student-preview/q02.png",
+              "sha256": "f326aa38166459a5a417a02e754bf6ca2822e174809c27a2bc8e4dea53323802"
+            }
+          ],
+          "manifestSha256": "bb101d4e8b9b921b96460a0a7393012f7bc5ef88ef69a14eafee0a89f2d97e44",
+          "packageDigestAsProvided": "a3020f4d0341ac9a8e21d7b5c518edb51f6ab34de3fa7c79d9fc59c2bc7cae15",
+          "utf8ProbeSha256": "2fffc3a408e96157e51bd9fe4f1be2b4e29e875f0f57e2f1ff1db307c80c4b45",
+          "pngsActuallyViewed": true,
+          "svgReadForHashOnly": true
+        },
+        "pngInspection": "Actual current PNG viewed. Stem, all5 choices and printed diagram/table labels match the student JSON. No pixels/coordinates used for numerical lengths or answers.",
+        "denominators": "No variable denominator; all own Fraction denominators used for checking choices are explicit positive integers.",
+        "gradeMethodStatus": "Student route uses2015 M3 root properties after its prior arithmetic/prime-factorization/elementary-measurement prerequisites. This raw math solve grants no formal grade/content/family/rights/native/release approval."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "5ba1c727f7a53bec57e3e1151f6461ca92700fc882f367b2a3e59bb49ce99d0a"
+  }
+]

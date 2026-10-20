@@ -1,0 +1,819 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 1,
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q01",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "수직선 위의 두 점 A, B에 대하여 A의 좌표는 $\\sqrt{625}$의 음의 제곱근이고, B의 좌표는 $(-8)^2$의 양의 제곱근이다. 선분 AB의 길이는?",
+      "choices": [
+        "$3$",
+        "$8$",
+        "$13$",
+        "$16$",
+        "$25$"
+      ],
+      "answer": "③",
+      "solution": "먼저 $\\sqrt{625}=25$이다. $25$의 제곱근은 $5$, $-5$이므로 A의 좌표는 음수인 $-5$이다. 처음에 적힌 근호의 값 $25$를 구한 다음 그 수의 음의 제곱근을 정해야 한다.\n\n$(-8)^2=64$이고 $64$의 양의 제곱근은 $8$이므로 B의 좌표는 $8$이다. A와 B가 원점의 양쪽에 있으므로 선분 AB의 길이는 $8-(-5)=13$이다. 따라서 정답은 ③이다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 80
+        }
+      ],
+      "sourceReference": {
+        "externalId": "2025-daegudong-3-1-mid-1",
+        "inventoryExamId": "personal-87311a760e702909b5a0fe1cd63004ca",
+        "sourceQuestionNumber": 1,
+        "newSourceReferenceId": "source-ref-daegudong-2025-1-mid-group1-r2-q01",
+        "sourceContentSha256": "0b7903ae75dde78b724efd590b75c50ac1303c13466083f007b0cfdc51f8be54",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-87311a760e702909b5a0fe1cd63004ca/q01.json",
+          "sha256": "59dd668b175a3d9d389af09841ea90fcfa66dbeb11b13a008d7dc2ae76d38638"
+        },
+        "sourceSchoolInternal": "대구동중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-87311a760e702909b5a0fe1cd63004ca\\source-manifest.local.json",
+          "sha256": "d5f98a5ac5822b8427898328c668e53578b5c5812ed2728d58ea0b758bc6d687",
+          "bytes": 1619047
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구동중][3][25-1-중간][지학사] (완료).hwp",
+            "sha256": "46d7a7c0b4db876847dcdeabc6713a5026b86356c8da0aec7b98a2cdf2314ac9",
+            "bytes": 321024
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구동중][3][25-1-중간][지학사] (완료).PDF",
+            "sha256": "c2f3e8c529262aab18eb8744242f32b28ad0c72be401b2518d88f42986024a8e",
+            "bytes": 150948
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구동중][3][25-1-중간] (원본) (오티스).pdf",
+          "sha256": "71a09fcb63c36f4987c8b0d69d8a825e722dc63182802883f96b762fbfec6efe",
+          "bytes": 476087
+        },
+        "sourceComponentEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegudong/q01-source-component-evidence-r1.json",
+          "sha256": "78698780b53b5d3be33276983de4e2531fd9439eed50e5073d576b01a51c754b"
+        },
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구동중-q01"
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구동중-q01"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write"
+      },
+      "variantDelta": {
+        "modes": [
+          "algebra-to-geometry",
+          "question-target-change",
+          "structure",
+          "new-vector"
+        ],
+        "before": "이미 근호로 적힌 수의 음의 제곱근과 다른 제곱수의 양의 제곱근을 정하고 두 수를 더한다.",
+        "after": "두 단계의 제곱근 해석을 수직선의 두 좌표로 옮기고 그 점 사이의 양수 길이를 구한다.",
+        "sharedConcept": "중첩된 수의 제곱근을 순서대로 해석하고 양/음의 지정된 근을 고르기",
+        "sharedProcedure": "안쪽 근호값625→25 확인→25의 음의 제곱근−5→제곱수64의 양의 근8→수직선 거리8−(−5)",
+        "actualStructuralChange": "두 단계의 제곱근 해석을 수직선의 두 좌표로 옮기고 그 점 사이의 양수 길이를 구한다. 새 조건·질문·답·전체 해설·그림/표를 만들었고 숫자/학교명 치환만으로 완료하지 않는다.",
+        "domainProof": "안쪽 근호값은25이며625의 음의 제곱근−25와 혼동하지 않는다. A−5/B8로 유일하고 좌표는 부호를 유지하며 길이는13>0이다. 두 단계의 간단한 제곱근 정의와 이미 배운 수직선 거리만 사용한다.",
+        "difficultyBasis": "같은 핵심 정의/관계와 인쇄 배점을 유지하는 저자 제안이다. 새 표현의 실제 난도 동등성/진도/정확한 family는 독립 검수 전 보류."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-07"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수01-07"
+          ]
+        },
+        "legitimateMethodDraft": "안쪽 근호값625→25 확인→25의 음의 제곱근−5→제곱수64의 양의 근8→수직선 거리8−(−5)",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+        "sourceExamYear": 2025,
+        "targetAcademicYear": 2026,
+        "curriculum": "2015",
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "standard": "9수01-07",
+          "capturedPrimaryReceipt": {
+            "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+            "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+          },
+          "providedMOEEvidence": {
+            "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+            "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+          },
+          "actualScope": "2015 M3 simple square-root definitions/properties; geometry uses previously learned number-line distance or square area/perimeter only. No general nested-radical elimination/fractional exponents/general irrational-equation method. Actual new seven surfaces independently pending."
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 4,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "두 단계의 제곱근 해석을 수직선의 두 좌표로 옮기고 그 점 사이의 양수 길이를 구한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 M3 제곱근 Unit UUID와2015 성취기준 연결. 새 거리/넓이/입력 역추론의 정확한 live family는 별도 보류."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-graph-1-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "안쪽 근호값은25이며625의 음의 제곱근−25와 혼동하지 않는다. A−5/B8로 유일하고 좌표는 부호를 유지하며 길이는13>0이다. 두 단계의 간단한 제곱근 정의와 이미 배운 수직선 거리만 사용한다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-first3-20261020-r2.ts",
+          "reproductionScriptSha256": "acafb0c153fa1b910564fc6c879c044073ee43c33d6c0922a461a5516c7f909b",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "제곱근의 정의와 근호의 양의 값",
+            "양의/음의 제곱근",
+            "정수의 제곱",
+            "수직선의 좌표와 두 점 사이 거리"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-first3-review-20261020-r3\\daegudong\\package\\private\\q01\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-first3-review-20261020-r3\\daegudong\\package\\private\\q01\\figure-1.svg",
+        "specSha256": "992d1b0834ac6f124ef8cc6e56a366c59c7fa59f1ba61a03d7d74e559d4595b4",
+        "svgSha256": "3f014f8efe71848e24ee6555238216b0205768adc6824dfc08dd8b464506ec92",
+        "intendedWidthMm": 80,
+        "studentPath": "figures/q01-1.svg"
+      }
+    ],
+    "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+    "candidateDigest": "77bfcbcaecb9880fd81946dae755ca343c95b9458f26fd451caa212efcb90221",
+    "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da",
+    "independentSolve": {
+      "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+      "solverId": "codex-helper-independent-fresh-roots-20261020",
+      "answer": "③",
+      "solution": "먼저 √625=25이다. A의 좌표는 이 25의 음의 제곱근이므로 -5이다. 한편 (-8)²=64이고, 64의 양의 제곱근은 8이므로 B의 좌표는 8이다. 따라서 A는 원점의 왼쪽, B는 오른쪽에 있어 AB=AO+OB=5+8=13이다. 두 좌표는 각각 지정된 부호의 제곱근으로 하나씩 정해지고, 두 점이 서로 달라 길이도 양수로 유일하다. 보기의 3, 8, 13, 16, 25 중 13만 이 길이와 같으므로 ③이다. 여기서 A의 좌표를 -√625=-25로 읽으면 안 된다.",
+      "evidence": {
+        "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q01",
+        "exposureDeclaration": {
+          "priorOriginalSourceExposure": true,
+          "priorScope": "Previously reviewed these schools original first3 question components, whole first-page reference images with incidental handwritten markings, and related root-property problems in earlier independent scopes. This is not an unseen-original-corpus claim.",
+          "currentTransformedAuthorAnswerExposed": false,
+          "currentTransformedAuthorSolutionExposed": false,
+          "currentPrivateSpecMetadataRead": false,
+          "allowedCurrentInputsOnly": true,
+          "authorAnswerSearch": false,
+          "calculationsFrom": "Current printed student conditions, not original handwritten marks, prior source answers, pixels, SVG coordinates or hidden model."
+        },
+        "ownExactCalculation": {
+          "innerPrincipalRoot": 25,
+          "aCandidatesBeforeSign": [
+            -5,
+            5
+          ],
+          "aNegativeUnique": -5,
+          "bSquaredRadicand": 64,
+          "bCandidatesBeforeSign": [
+            -8,
+            8
+          ],
+          "bPositiveUnique": 8,
+          "leftToRight": [
+            "A",
+            "O",
+            "B"
+          ],
+          "AO": 5,
+          "OB": 8,
+          "AB": 13,
+          "allChoices": [
+            {
+              "index": 1,
+              "mark": "①",
+              "value": 3,
+              "equalsRequiredDistance": false
+            },
+            {
+              "index": 2,
+              "mark": "②",
+              "value": 8,
+              "equalsRequiredDistance": false
+            },
+            {
+              "index": 3,
+              "mark": "③",
+              "value": 13,
+              "equalsRequiredDistance": true
+            },
+            {
+              "index": 4,
+              "mark": "④",
+              "value": 16,
+              "equalsRequiredDistance": false
+            },
+            {
+              "index": 5,
+              "mark": "⑤",
+              "value": 25,
+              "equalsRequiredDistance": false
+            }
+          ],
+          "nestedReadingCounterexample": {
+            "wrongNegatedInnerRoot": -25,
+            "reason": "Negative square root OF the inner root is a different operation; -25 squared is625, not the inner root25."
+          },
+          "domain": "625 and64 positive, both inner and outer real roots exist; sign selects one coordinate per point. Distance positive, dimensionless coordinate units; no cm claimed.",
+          "method2015M3": "Square-root definition/properties, prior signed arithmetic, number-line distance as AO+OB. No general radical-equation or high-school theorem."
+        },
+        "inputs": {
+          "filesBefore": [
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/SOLVE-BRIEF.md",
+              "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/student-problems.json",
+              "sha256": "2844d405754c7eb28cfd9ad7c678f6fb4f138440f8dadb2126f38e822e1fc194"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/blind-manifest.json",
+              "sha256": "bfb3c3987d7c9c22b368737e985c4c20da62ad6f85086b5641acb5558ae29503"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/figures/q01-1.svg",
+              "sha256": "3f014f8efe71848e24ee6555238216b0205768adc6824dfc08dd8b464506ec92"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/figures/q02-1.svg",
+              "sha256": "5bf0f4ac4f00312a7c8278fd8294480a239bf0bd9e64214c36440fd85eb1a2f0"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/student-preview/q01.png",
+              "sha256": "09715746c07b44caa4f717248bb2bd41d962cdc8f7100fedfb1251674a4636be"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/student-preview/q02.png",
+              "sha256": "25e7a1b64b68d5b5cd193083e47bb0676649ac9a2925c9cbc54826553d2f9d3a"
+            }
+          ],
+          "manifestSha256": "bfb3c3987d7c9c22b368737e985c4c20da62ad6f85086b5641acb5558ae29503",
+          "packageDigestAsProvided": "68ab261cc45f8609e8daae94860dbf3e31f7f300de1d6a7c62ace86fcbd1412e",
+          "utf8ProbeSha256": "2fffc3a408e96157e51bd9fe4f1be2b4e29e875f0f57e2f1ff1db307c80c4b45",
+          "pngsActuallyViewed": true,
+          "svgReadForHashOnly": true
+        },
+        "pngInspection": "Actual current PNG viewed. Stem, all5 choices and printed diagram/table labels match the student JSON. No pixels/coordinates used for numerical lengths or answers.",
+        "denominators": "No variable denominator; all own Fraction denominators used for checking choices are explicit positive integers.",
+        "gradeMethodStatus": "Student route uses2015 M3 root properties after its prior arithmetic/prime-factorization/elementary-measurement prerequisites. This raw math solve grants no formal grade/content/family/rights/native/release approval."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "608a0f32501a6749e811e7f3c2ed1bbcc4205115eeae879cf27335c1c72610f8"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r3-q02",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "그림의 정사각형의 넓이는 $45n\\,\\mathrm{cm}^{2}$이고, $n$은 $1$ 이상의 자연수이다. 한 변의 길이가 자연수 $\\mathrm{cm}$가 되도록 하는 $n$의 최솟값을 사용할 때, 이 정사각형의 둘레는?",
+      "choices": [
+        "$15\\,\\mathrm{cm}$",
+        "$30\\,\\mathrm{cm}$",
+        "$45\\,\\mathrm{cm}$",
+        "$60\\,\\mathrm{cm}$",
+        "$225\\,\\mathrm{cm}$"
+      ],
+      "answer": "④",
+      "solution": "한 변의 길이가 자연수이려면 넓이 $45n$이 어떤 자연수의 제곱이어야 한다.\n\n$n=1,2,3,4$일 때의 넓이는 각각 $45$, $90$, $135$, $180$이다. 이들은 각각 $6^2$과 $7^2$, $9^2$과 $10^2$, $11^2$과 $12^2$, $13^2$과 $14^2$ 사이에 있으므로 자연수의 제곱이 아니다.\n\n$n=5$이면 넓이가 $225=15^2$이 되어 한 변의 길이가 $15\\,\\mathrm{cm}$이다. 따라서 가능한 $n$의 최솟값은 $5$이고, 그때 둘레는 $4\\times15=60\\,\\mathrm{cm}$이다. 정답은 ④이다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 65
+        }
+      ],
+      "sourceReference": {
+        "externalId": "2025-daegudong-3-1-mid-2",
+        "inventoryExamId": "personal-87311a760e702909b5a0fe1cd63004ca",
+        "sourceQuestionNumber": 2,
+        "newSourceReferenceId": "source-ref-daegudong-2025-1-mid-group1-r3-q02",
+        "sourceContentSha256": "b7eb7b847bd7fca2e90255a43837219312adbf78112cb124a9643d87c8d4ee5c",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-87311a760e702909b5a0fe1cd63004ca/q02.json",
+          "sha256": "2082e645307e9db24005348ab3d6760701802083e62092e64035d26aefc367a4"
+        },
+        "sourceSchoolInternal": "대구동중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-87311a760e702909b5a0fe1cd63004ca\\source-manifest.local.json",
+          "sha256": "d5f98a5ac5822b8427898328c668e53578b5c5812ed2728d58ea0b758bc6d687",
+          "bytes": 1619047
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구동중][3][25-1-중간][지학사] (완료).hwp",
+            "sha256": "46d7a7c0b4db876847dcdeabc6713a5026b86356c8da0aec7b98a2cdf2314ac9",
+            "bytes": 321024
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구동중][3][25-1-중간][지학사] (완료).PDF",
+            "sha256": "c2f3e8c529262aab18eb8744242f32b28ad0c72be401b2518d88f42986024a8e",
+            "bytes": 150948
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구동중][3][25-1-중간] (원본) (오티스).pdf",
+          "sha256": "71a09fcb63c36f4987c8b0d69d8a825e722dc63182802883f96b762fbfec6efe",
+          "bytes": 476087
+        },
+        "sourceComponentEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegudong/q02-source-component-evidence-r1.json",
+          "sha256": "07dbd926a83eb697b1eab8b9cc11e01fa7f7fa6cb129417a81b8370a5d86d235"
+        },
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구동중-q02"
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구동중-q02"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write"
+      },
+      "variantDelta": {
+        "modes": [
+          "algebra-to-geometry",
+          "question-target-change",
+          "structure",
+          "new-vector"
+        ],
+        "before": "근호 안의 곱이 자연수의 제곱이 되게 하는 자연수 매개변수의 최솟값을 직접 찾는다.",
+        "after": "자연수인 변 길이의 조건을 정사각형 넓이로 표현하고 최소 매개변수일 때의 둘레를 구한다.",
+        "sharedConcept": "자연수인 제곱근과 제곱수 조건, 자연수 매개변수의 최솟값",
+        "sharedProcedure": "넓이45n이 제곱수임을 해석→작은 자연수1..4 배제→n5의 존재 확인→양수 변15→둘레60",
+        "actualStructuralChange": "자연수인 변 길이의 조건을 정사각형 넓이로 표현하고 최소 매개변수일 때의 둘레를 구한다. 새 조건·질문·답·전체 해설·그림/표를 만들었고 숫자/학교명 치환만으로 완료하지 않는다.",
+        "domainProof": "n은1이상으로0을 배제한다. n1..4는 각 두 연속 제곱수 사이임을 정확히 확인했고 n5에서225=15²다. 한 변의 양수조건으로15만 가능하며 둘레60cm이다. 학생 해설은 소인수 지수 일반식이나 상위 수론 도구 없이 유한 최소성 확인을 제시한다. 그림 모델은 이 최소 상태의 실제15×15 정사각형이며 길이를 픽셀로 읽지 않는다.",
+        "difficultyBasis": "같은 핵심 정의/관계와 인쇄 배점을 유지하는 저자 제안이다. 새 표현의 실제 난도 동등성/진도/정확한 family는 독립 검수 전 보류."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-07"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수01-07"
+          ]
+        },
+        "legitimateMethodDraft": "넓이45n이 제곱수임을 해석→작은 자연수1..4 배제→n5의 존재 확인→양수 변15→둘레60",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+        "sourceExamYear": 2025,
+        "targetAcademicYear": 2026,
+        "curriculum": "2015",
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "standard": "9수01-07",
+          "capturedPrimaryReceipt": {
+            "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+            "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+          },
+          "providedMOEEvidence": {
+            "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+            "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+          },
+          "actualScope": "2015 M3 simple square-root definitions/properties; geometry uses previously learned number-line distance or square area/perimeter only. No general nested-radical elimination/fractional exponents/general irrational-equation method. Actual new seven surfaces independently pending."
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "자연수인 변 길이의 조건을 정사각형 넓이로 표현하고 최소 매개변수일 때의 둘레를 구한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "실제 M3 제곱근 Unit UUID와2015 성취기준 연결. 새 거리/넓이/입력 역추론의 정확한 live family는 별도 보류."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-graph-1-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "n은1이상으로0을 배제한다. n1..4는 각 두 연속 제곱수 사이임을 정확히 확인했고 n5에서225=15²다. 한 변의 양수조건으로15만 가능하며 둘레60cm이다. 학생 해설은 소인수 지수 일반식이나 상위 수론 도구 없이 유한 최소성 확인을 제시한다. 그림 모델은 이 최소 상태의 실제15×15 정사각형이며 길이를 픽셀로 읽지 않는다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/revise-fresh-root-daegudong-q02-unit-r3.mjs",
+          "reproductionScriptSha256": "fc61042460955b883422f38b2977d0cbe083ac32e288963a3c16bdbac7b8f9ef",
+          "renderingReviewPending": true,
+          "priorConstruction": {
+            "candidate": {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r2/daegudong/q02.json",
+              "sha256": "19d73d462611fa9ce5b2a7040b413b34b7bc55bac3b4cf4aa5009447e99dcc33"
+            },
+            "script": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-first3-20261020-r2.ts",
+            "scriptSha256": "acafb0c153fa1b910564fc6c879c044073ee43c33d6c0922a461a5516c7f909b"
+          }
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "제곱근과 제곱수",
+            "자연수와 크기 비교",
+            "정사각형의 넓이와 둘레",
+            "양수인 길이와 cm/cm²의 구별"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-first3-review-20261020-r3\\daegudong\\package\\private\\q02\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-first3-review-20261020-r3\\daegudong\\package\\private\\q02\\figure-1.svg",
+        "specSha256": "4d2111b73756542330c9beb0b56520ae0facc08913cbea6e61f6683594d6e141",
+        "svgSha256": "5bf0f4ac4f00312a7c8278fd8294480a239bf0bd9e64214c36440fd85eb1a2f0",
+        "intendedWidthMm": 65,
+        "studentPath": "figures/q02-1.svg"
+      }
+    ],
+    "studentDigest": "5c5ee5e427138b176f6f88c4dfc70ae70fbf02edb059d5188037d96b6ef039ab",
+    "candidateDigest": "27b3eaef28e19ade0e618d5b147cb0af3c760e2a6e5565881255c9ef76cc5425",
+    "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac",
+    "independentSolve": {
+      "studentDigest": "5c5ee5e427138b176f6f88c4dfc70ae70fbf02edb059d5188037d96b6ef039ab",
+      "solverId": "codex-helper-independent-fresh-roots-20261020",
+      "answer": "④",
+      "solution": "정사각형의 한 변이 자연수 cm이려면 넓이의 수 45n이 자연수의 제곱이어야 한다. 45=3²×5이므로 소인수 5의 개수를 짝수로 만들려면 n에는 적어도 5가 곱해져야 한다. 따라서 가능한 양의 자연수 n은 5 이상이고, n=5이면 45n=225=15²이 되어 실제로 조건을 만족한다. 그러므로 n의 최솟값은 5이다. 이때 한 변의 길이는 양수인 15 cm이고, 둘레는 4×15=60 cm이다. 넓이 225 cm²와 둘레의 단위를 구별해야 한다. 보기 15, 30, 45, 60, 225 cm 중 요구된 둘레는 60 cm 하나이므로 ④이다.",
+      "evidence": {
+        "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r3-q02",
+        "exposureDeclaration": {
+          "priorOriginalSourceExposure": true,
+          "priorScope": "Previously reviewed these schools original first3 question components, whole first-page reference images with incidental handwritten markings, and related root-property problems in earlier independent scopes. This is not an unseen-original-corpus claim.",
+          "currentTransformedAuthorAnswerExposed": false,
+          "currentTransformedAuthorSolutionExposed": false,
+          "currentPrivateSpecMetadataRead": false,
+          "allowedCurrentInputsOnly": true,
+          "authorAnswerSearch": false,
+          "calculationsFrom": "Current printed student conditions, not original handwritten marks, prior source answers, pixels, SVG coordinates or hidden model."
+        },
+        "ownExactCalculation": {
+          "factorizationOf45": {
+            "3": 2,
+            "5": 1
+          },
+          "necessaryMissingPrimeMultiplier": 5,
+          "minimumProof": "45=3^2*5. For45n to be an integer square, the exponent of5 must be even, so5 divides n. Any positive natural such n is at least5. n5 attains square225. Thus global minimum5, not merely the smallest listed choice.",
+          "smallNaturalCrossCheck": [
+            {
+              "n": 1,
+              "areaCm2": 45,
+              "integerSide": false
+            },
+            {
+              "n": 2,
+              "areaCm2": 90,
+              "integerSide": false
+            },
+            {
+              "n": 3,
+              "areaCm2": 135,
+              "integerSide": false
+            },
+            {
+              "n": 4,
+              "areaCm2": 180,
+              "integerSide": false
+            },
+            {
+              "n": 5,
+              "areaCm2": 225,
+              "integerSide": true
+            }
+          ],
+          "minimumN": 5,
+          "areaCm2": 225,
+          "positiveSideCm": 15,
+          "negativeRootRejectedAsLength": -15,
+          "perimeterCm": 60,
+          "allChoices": [
+            {
+              "index": 1,
+              "mark": "①",
+              "perimeterCm": 15,
+              "impliedSideCm": {
+                "numerator": "15",
+                "denominator": "4"
+              },
+              "impliedN": {
+                "numerator": "5",
+                "denominator": "16"
+              },
+              "naturalPositiveSide": false,
+              "naturalPositiveN": false,
+              "isRequiredMinimumCase": false
+            },
+            {
+              "index": 2,
+              "mark": "②",
+              "perimeterCm": 30,
+              "impliedSideCm": {
+                "numerator": "15",
+                "denominator": "2"
+              },
+              "impliedN": {
+                "numerator": "5",
+                "denominator": "4"
+              },
+              "naturalPositiveSide": false,
+              "naturalPositiveN": false,
+              "isRequiredMinimumCase": false
+            },
+            {
+              "index": 3,
+              "mark": "③",
+              "perimeterCm": 45,
+              "impliedSideCm": {
+                "numerator": "45",
+                "denominator": "4"
+              },
+              "impliedN": {
+                "numerator": "45",
+                "denominator": "16"
+              },
+              "naturalPositiveSide": false,
+              "naturalPositiveN": false,
+              "isRequiredMinimumCase": false
+            },
+            {
+              "index": 4,
+              "mark": "④",
+              "perimeterCm": 60,
+              "impliedSideCm": {
+                "numerator": "15",
+                "denominator": "1"
+              },
+              "impliedN": {
+                "numerator": "5",
+                "denominator": "1"
+              },
+              "naturalPositiveSide": true,
+              "naturalPositiveN": true,
+              "isRequiredMinimumCase": true
+            },
+            {
+              "index": 5,
+              "mark": "⑤",
+              "perimeterCm": 225,
+              "impliedSideCm": {
+                "numerator": "225",
+                "denominator": "4"
+              },
+              "impliedN": {
+                "numerator": "1125",
+                "denominator": "16"
+              },
+              "naturalPositiveSide": false,
+              "naturalPositiveN": false,
+              "isRequiredMinimumCase": false
+            }
+          ],
+          "domain": "n is a natural integer at least1; positive area45n and unique positive side sqrt(45n). At the unique minimum n5, side15 and perimeter60 are unique. cm^2 area and cm perimeter are kept separate.",
+          "figure": "Printed square and its45n cm^2 area label only; no dimension obtained by measuring image or reading SVG geometry.",
+          "method2015M3": "M1 prime factorization and even prime exponents of an integer square, M3 square-root properties, elementary square area/perimeter. No high-school number theory."
+        },
+        "inputs": {
+          "filesBefore": [
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/SOLVE-BRIEF.md",
+              "sha256": "ee4e6b71ce230c806ac1028a04635a06161ec90dc3a0074e5b45a2f414b7586c"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/student-problems.json",
+              "sha256": "2844d405754c7eb28cfd9ad7c678f6fb4f138440f8dadb2126f38e822e1fc194"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/blind-manifest.json",
+              "sha256": "bfb3c3987d7c9c22b368737e985c4c20da62ad6f85086b5641acb5558ae29503"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/figures/q01-1.svg",
+              "sha256": "3f014f8efe71848e24ee6555238216b0205768adc6824dfc08dd8b464506ec92"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/figures/q02-1.svg",
+              "sha256": "5bf0f4ac4f00312a7c8278fd8294480a239bf0bd9e64214c36440fd85eb1a2f0"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/student-preview/q01.png",
+              "sha256": "09715746c07b44caa4f717248bb2bd41d962cdc8f7100fedfb1251674a4636be"
+            },
+            {
+              "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/student-preview/q02.png",
+              "sha256": "25e7a1b64b68d5b5cd193083e47bb0676649ac9a2925c9cbc54826553d2f9d3a"
+            }
+          ],
+          "manifestSha256": "bfb3c3987d7c9c22b368737e985c4c20da62ad6f85086b5641acb5558ae29503",
+          "packageDigestAsProvided": "68ab261cc45f8609e8daae94860dbf3e31f7f300de1d6a7c62ace86fcbd1412e",
+          "utf8ProbeSha256": "2fffc3a408e96157e51bd9fe4f1be2b4e29e875f0f57e2f1ff1db307c80c4b45",
+          "pngsActuallyViewed": true,
+          "svgReadForHashOnly": true
+        },
+        "pngInspection": "Actual current PNG viewed. Stem, all5 choices and printed diagram/table labels match the student JSON. No pixels/coordinates used for numerical lengths or answers.",
+        "denominators": "No variable denominator; all own Fraction denominators used for checking choices are explicit positive integers.",
+        "gradeMethodStatus": "Student route uses2015 M3 root properties after its prior arithmetic/prime-factorization/elementary-measurement prerequisites. This raw math solve grants no formal grade/content/family/rights/native/release approval."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "91118315acc53fd0063207174425b5cd2868e7d1318186b3f57445775548e44b"
+  }
+]

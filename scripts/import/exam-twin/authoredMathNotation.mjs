@@ -30,8 +30,16 @@ export function unescapedMathCommandWarnings(text) {
     while (end < text.length && !(text.startsWith(delimiter, end) && !escaped(text, end))) end++;
     if (end === text.length) break;
     const math = maskLiteralText(text.slice(start, end));
-    const lost = /(?<![A-Za-z\\])(?:sqrt(?=\s*[0-9A-Za-z{])|(?:dfrac|tfrac|frac)(?=\s*\{)|(?:ldots|cdots)\b)/gu;
-    for (const match of math.matchAll(lost)) warnings.push({token:match[0],offset:start+match.index,delimiter});
+    const patterns = [
+      /(?<![A-Za-z\\])(?:sqrt(?=\s*[0-9A-Za-z{])|(?:dfrac|tfrac|frac)(?=\s*\{)|(?:ldots|cdots)\b)/gu,
+      // A lost JS string escape can render "15,mathrm{cm}" as legal TeX
+      // letter products. Diagnose this explicit cm/m marker, never repair it.
+      // Proper commands and intentionally quoted text were masked above.
+      /(?<!\\)mathrm(?=\s*\{\s*(?:cm|m)\s*\})/gu,
+    ];
+    const matches = patterns.flatMap(pattern => [...math.matchAll(pattern)])
+      .sort((a, b) => a.index - b.index);
+    for (const match of matches) warnings.push({token:match[0],offset:start+match.index,delimiter});
     i = end + delimiter.length - 1;
   }
   return warnings;
