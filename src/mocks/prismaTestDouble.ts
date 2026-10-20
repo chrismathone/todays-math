@@ -3361,7 +3361,7 @@ async function testLockQuery(query: { sql: string; values?: readonly unknown[] }
     /^SELECT pg_advisory_xact_lock\(hashtextextended\(\?,0\)\)::text AS locked$/.test(
       sql,
     ) ||
-    /^SELECT id FROM public\.problem WHERE id IN \([?, ]+\) ORDER BY id FOR SHARE$/.test(
+    /^SELECT id FROM public\.problem WHERE id IN \((?:\?(?:::uuid)?,? ?)+\) ORDER BY id FOR SHARE$/.test(
       sql,
     )
   )
