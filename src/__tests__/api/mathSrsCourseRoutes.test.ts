@@ -879,7 +879,11 @@ describe("relearn flag for the preview card (consensus 2026-10-20)", () => {
     };
     const start = (state: StoredCourse, when: Date, seed: number) =>
       startAutomaticCourse(state, when, seed, randomUUID);
-    const planned = setCoursePlan(emptyCourseState(), plan, at(0));
+    const planned = setCoursePlan(
+      emptyCourseState(),
+      { ...plan, dailyQuestionCount: 10 },
+      at(0),
+    );
     const poor = finish(start(planned, at(0), 71), at(0), true);
     const reviewed = finish(start(poor, at(1), 99), at(1), false);
     const again = start(reviewed, at(1), 123);
