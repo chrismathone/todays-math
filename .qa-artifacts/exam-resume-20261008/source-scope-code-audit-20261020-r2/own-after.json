@@ -1,0 +1,977 @@
+{
+  "bindings": [
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r2\\provided-scope.json",
+      "sha256": "43d9f91f7b5f689e6e64838e7318daba15729626f2e7037055672d376fc605c8"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\parent-validation-r1.json",
+      "sha256": "8c34d80336629a678fc140279df1d231ee3a8730c5bcc74e4746b2bb886c740f"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\remaining-ready-scopes-extraction-20261020-r1\\explicit-plan.json",
+      "sha256": "6d376976a9b5ea72c35896f1891ef03cebe949d0c93b7f6bd543ddc197b635d7"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+      "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\source_inventory_scope_v2.py",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r2\\provided-code-snapshots\\source_inventory_scope_v2.py.snapshot",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r2\\provided-code-runtime-local\\source_inventory_scope_v2.py",
+      "sha256": "187479a99da35fe9e519fee9fae26065c3771824aa603c286aede4f34d446e04"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\import\\exam-twin\\test_source_inventory_scope_v2.py",
+      "sha256": "1936c50a7f568f86cecb21b3727cdb7c300b34cbb769a01bc2c571dabae52d09"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r2\\provided-code-snapshots\\test_source_inventory_scope_v2.py.snapshot",
+      "sha256": "1936c50a7f568f86cecb21b3727cdb7c300b34cbb769a01bc2c571dabae52d09"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r2\\provided-code-runtime-local\\test_source_inventory_scope_v2.py",
+      "sha256": "1936c50a7f568f86cecb21b3727cdb7c300b34cbb769a01bc2c571dabae52d09"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\build-source-policy-overlays-20261020-r1.py",
+      "sha256": "742aed259cf8d5e516e5155d619d3d173ae503ccd9ea0638effd09c2027e3d35"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r2\\provided-code-snapshots\\build-source-policy-overlays-20261020-r1.py.snapshot",
+      "sha256": "742aed259cf8d5e516e5155d619d3d173ae503ccd9ea0638effd09c2027e3d35"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r2\\provided-code-runtime-local\\build-source-policy-overlays-20261020-r1.py",
+      "sha256": "742aed259cf8d5e516e5155d619d3d173ae503ccd9ea0638effd09c2027e3d35"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r100.policy-overlay.json",
+      "sha256": "e3e339a7c64322a06e26850c9c1ec77063f16f39b7a7ad30019935072c1db0f5"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r100\\aggregate-receipt.json",
+      "sha256": "6c2acb2dca65b1971bb7cb15be1009f2df9a88cb1e46516150595784971f9430"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r101.policy-overlay.json",
+      "sha256": "8e13918762994d521102a98121ea3710e8d17b7b57e3af81510c42d1004ac758"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r101\\aggregate-receipt.json",
+      "sha256": "c0aa58e34fad7cb9cc2fb0089d45da06ec1dc28343d152f4614c06b705a9ddac"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r102.policy-overlay.json",
+      "sha256": "e784203a223c821228439b5f352dbc899ca2f9cb9fa16844c8ada4c054b26b2a"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r102\\aggregate-receipt.json",
+      "sha256": "c0e5cc5118e774d5620d98565dedf85d6f95f330f8e92bf48c847acc4be8fe2c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r103.policy-overlay.json",
+      "sha256": "6135d403e077f6623a4d29f0c6d2d0bd4e94ecc99d1c00658615abb6f07691a0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r103\\aggregate-receipt.json",
+      "sha256": "bee940fd714954e867d2541faf94799d6e28fe4be5fbecdbac469c85173beb0d"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r104.policy-overlay.json",
+      "sha256": "b82838a5ad7030d1438e7f3d4ebff37011d8c0eaba0b8fb7c1efe0d1ded02369"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r104\\aggregate-receipt.json",
+      "sha256": "d824bdc1bea39b6baeb1229c73c4db3ff4ec194cb7fdbcdc635a5af4cb5fbe61"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r105.policy-overlay.json",
+      "sha256": "13439fb129b41851ce563b15675721217872c1a7efe89688b007eb74c8fa15e3"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r105\\aggregate-receipt.json",
+      "sha256": "de97772fb37848a204955680bc3cc15027540e1a3f6022e451d7cf73f70e9771"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r106.policy-overlay.json",
+      "sha256": "2edab8ce5c6f572899e588115f7602203ca4a589308544573d753193074df2c7"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r106\\aggregate-receipt.json",
+      "sha256": "fc21de1fd0bff624c544c8190b0d37b2b601269ccfcd8abc741630f2b4de4bda"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r107.policy-overlay.json",
+      "sha256": "b530c9aa4539ea56ba3cf7e4474dd9be6a0b7cc53a001c85b21ced35b2511d8c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r107\\aggregate-receipt.json",
+      "sha256": "fa086ee4591ca2aecd925cc5794db3537ba6ef36097e2eff86c61b351603afae"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r108.policy-overlay.json",
+      "sha256": "dcfdc706306fa66618cdcc4f40d7de965e8d317185c56a8311745a536d188662"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r108\\aggregate-receipt.json",
+      "sha256": "e1a4a97a1f4f7015b23707bed6db3599baad4e162cd9289c4e371281d7e4404e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r109.policy-overlay.json",
+      "sha256": "f0d97d20c35e77adb218fc370af268ced04d04de04bc34d8fd7e53fbc5d4eb0c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r109\\aggregate-receipt.json",
+      "sha256": "c097744f6c0569f6535b4d23345e90e417160748c691dde8c339d55af05bfb9c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r110.policy-overlay.json",
+      "sha256": "a9f7820994654d79af6a0f1dbcd8b58df80dc37818023272518a42fc4e7471c0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r110\\aggregate-receipt.json",
+      "sha256": "41638cd6f891a404de867ba5fd5984c87edb5db08a8f30c271e6a6b9e5e76cfb"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r111.policy-overlay.json",
+      "sha256": "25a8483769ed6f7b83188407444fb0995433b24b250549cd7a85c64fe74765a4"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r111\\aggregate-receipt.json",
+      "sha256": "9bcdc3169aa910dba22ebb6b2cc792981fbdda453f4d5c9fc693f93282bee798"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r112.policy-overlay.json",
+      "sha256": "fbc4ae2d325be793195ad6ece9247b6325765064ce167867d07c018837ea4c9b"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r112\\aggregate-receipt.json",
+      "sha256": "c333092aeb2f5d424fe6f4c711a51933fc45e1d7dc8bde3bfa814bc7e4977f85"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r113.policy-overlay.json",
+      "sha256": "cc021f841d54b756e2dd870790b12474eb1a4c576518694db77473f129034173"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r113\\aggregate-receipt.json",
+      "sha256": "cbaede50885f1bbd31c4bc9d0ce3c6b44f94d2d6adce191656afcb0ac2596f1e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r114.policy-overlay.json",
+      "sha256": "8ec3f4e707a427a618f08e6ed4e2e2ee25b4a6f61df6ea160f890102b6e8d4da"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r114\\aggregate-receipt.json",
+      "sha256": "5f8db504230db8764c962f3d130400a9b3990c4f2d70fc1e1544c2c65f54a438"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r115.policy-overlay.json",
+      "sha256": "f0f52d2201d71b5ee8d0da013ffd3d6d070ad791d8603619216dc428064daab9"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r115\\aggregate-receipt.json",
+      "sha256": "acdf3dbac4e4f91af04ceb09ec0d270df6724be0bc37dab2c1f6b25a99e8ba52"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r116.policy-overlay.json",
+      "sha256": "f24ebf6463a0e9442f4060a6f523fdb22751dd78d440769ae65e8b7cb567bb69"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r116\\aggregate-receipt.json",
+      "sha256": "b6fe2e05eeb4ba74ced4820fc8ced036ac81ce7549aa821314b0ef04641df9ef"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r117.policy-overlay.json",
+      "sha256": "22c18df8f6a0239e021c2003e11f68f0e8ef63ad6b836dfa0b28fd4ad5fc2b82"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r117\\aggregate-receipt.json",
+      "sha256": "8492905b53a3c98435eb6f9e0f0490f84cbcd63ab7bb8caa538747666dfe18d1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r118.policy-overlay.json",
+      "sha256": "f3e0e6ff9a218fb03cd462ab2c00f17ae1ebc669cdd4432efc6b42350829a7d5"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r118\\aggregate-receipt.json",
+      "sha256": "1a2425fb04889e60bf6915c80de112c1bceee4e0f9d56031eabfa09dc724ca0a"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r119.policy-overlay.json",
+      "sha256": "7daa5d62dca7964e2dd6ea59c9ca813bad5f2ba4b6b223403e7f9cb8af265b89"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r119\\aggregate-receipt.json",
+      "sha256": "d944c70e77ca811693eca09dbadc4af36e0aaef60f83d3dafc3bcb60f8c05f74"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r120.policy-overlay.json",
+      "sha256": "17e20d0991ee1db7cf52f82181562d47578071fb7ffca5f15c12d56ebe7297a1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r120\\aggregate-receipt.json",
+      "sha256": "79eea03286d15f15b6240f6b79a58fd60b9a799cc0ef2dc818b02f1d4c3d8f9f"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r121.policy-overlay.json",
+      "sha256": "681a40ec5cd261a97cd6a9120596324d628ad6c380d53ace814bf50e8074f422"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r121\\aggregate-receipt.json",
+      "sha256": "52b64258ea31ace9e8b1d146bfebd3c7197b2c6e450722d560b4cd2a5a8563a3"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r122.policy-overlay.json",
+      "sha256": "0a8d2c8fcef0ef87aa4612715b548728dee2654b3b74a800c86db094ca9590c8"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r122\\aggregate-receipt.json",
+      "sha256": "c09c9e33ad5de66b73e245bbc0006324b3dbb228498099a6d6ba2a874ceea67e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r123.policy-overlay.json",
+      "sha256": "726d57d2c143ec6c2219398dcc40748e9049283bb94760b9bdd3fbac08971fb1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r123\\aggregate-receipt.json",
+      "sha256": "9e2c2958c67df358875a505163dc435805481a1e43badf3ea672a21352b55eaf"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r124.policy-overlay.json",
+      "sha256": "932a516dce2ffc5b67dc4851c83c1e2ca02d60448937a87d6ef0e607f4765a0e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r124\\aggregate-receipt.json",
+      "sha256": "1c8c857a5206526219ed548014eec265aac0773f056e37f960d2ca3ffd3905de"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r125.policy-overlay.json",
+      "sha256": "1c48da7d885bf79ba3811ed5d688ca1a613549e80264b483d6a1720290cdc708"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r125\\aggregate-receipt.json",
+      "sha256": "d0605f0170bd1098332dc49c4ddf69edb9bf81c8806ecfab0d0cc0e6257d018b"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r126.policy-overlay.json",
+      "sha256": "05e6a25f8f2cedf94ce98e1868f4fb36db6ccde96a5e38b60cabd875fc29b96c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r126\\aggregate-receipt.json",
+      "sha256": "a39b775c33235a572ca43000b0bb629774e647a1e1a52cb7a35f6294209a9b6f"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r127.policy-overlay.json",
+      "sha256": "b8fa2f59a53501e01eb1a09931573d961cfe8969ce86539f50a89b6f9ce45c7d"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r127\\aggregate-receipt.json",
+      "sha256": "ccab09fb6a4c5378643b0933844744b7f96c275f2aebe2a757480821a3930bcc"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r128.policy-overlay.json",
+      "sha256": "5bcf4410371191d55b3c5edd429332b7494762e64fa545b3df69aea4b61a2fac"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r128\\aggregate-receipt.json",
+      "sha256": "6214fd3b1ea41e37eb987eba460c7091dbf39e08cc3f5e47affdc8ed85524845"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r129.policy-overlay.json",
+      "sha256": "6c551ab0e3b403db93245995b7ccf704ec16605958d3a030294a2e24780a6808"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r129\\aggregate-receipt.json",
+      "sha256": "4d4a53fd8f934f9431d7889fe3412dcd63ba44773df3ca4ff0792ef0d0528811"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r130.policy-overlay.json",
+      "sha256": "6fcc1f154ef575af02f87aca75e4f016885269dca1320d1e3032f23a84617ae0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r130\\aggregate-receipt.json",
+      "sha256": "cad42e68e0dd96995f8c6c122ce180c5be2075abf7bc973f6320e4b3c8c1d6c9"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r131.policy-overlay.json",
+      "sha256": "218daed4dbc3ea8360154d5a53fe309bb3268bbe596da1760cd04883be9321a6"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r131\\aggregate-receipt.json",
+      "sha256": "02f2008dbb7ba7fb02dcabb64836f9bfd2c0c09e6f1bee767c830137c2f8437e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r132.policy-overlay.json",
+      "sha256": "f608cf1aca13c5b6a78fb9dec984fffc67b0f3981271ab2ed0da3dd809ddfdd8"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r132\\aggregate-receipt.json",
+      "sha256": "53f7f3a9a304cfcf455c7a0aab50ec99b81f38937d72c258759f39980d121a0d"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r133.policy-overlay.json",
+      "sha256": "2204b9bda9f6e124a5ad67e6e3363576daf5ac7356ff95eeb094fe9a7ce3b03d"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r133\\aggregate-receipt.json",
+      "sha256": "c05b17ad928970be8c9d8489aac31e5eed405c161898c03595d734fe10e9ede2"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r134.policy-overlay.json",
+      "sha256": "498c06fcf0fa28919119b2615498542629182f77e1d62244d3ff5ce92c5a9ef1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r134\\aggregate-receipt.json",
+      "sha256": "15110db2d36843e2650b9eba523d0f7cfdb698f63f605ee0023564a370609792"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r135.policy-overlay.json",
+      "sha256": "970191c5f419f2a6141e5b6cec82b04ec642147bbc5224880f106cdbddefc2bb"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r135\\aggregate-receipt.json",
+      "sha256": "a7084e14e09149133c227cd5404e0e6415ca5fd1aa10da73e46104c31a3906ff"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r136.policy-overlay.json",
+      "sha256": "db82a896b2705f007c13330b5c4296d2ef9ec3d00a2027a02c2886f4c5aa5c41"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r136\\aggregate-receipt.json",
+      "sha256": "871372f27e06cfd44f61e59a2caecfeae9848c41e41c2bde6659a2e6dda190dc"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r137.policy-overlay.json",
+      "sha256": "ccfba565dccac7fbfd1386d73d1999043de226a0227eba9ae04733886a6f4db6"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r137\\aggregate-receipt.json",
+      "sha256": "8523dc9955f8ef40614711273e8c4dbb095760fac6e0bf3c2aa3ab1ac8111432"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r138.policy-overlay.json",
+      "sha256": "665b05f507c687148304b08a6fba7d68c618121a5ce9a25938219e00b9f6c4b3"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r138\\aggregate-receipt.json",
+      "sha256": "a0ed52a7fc3b84c7859aa73048ce672c4ea245a51dd8eb3ef6049b4e07b6b7c1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r139.policy-overlay.json",
+      "sha256": "1f0a9acb5d51b5f06e9a9cfa5cf168959b9e3106008994714dac81d643e0a0c2"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r139\\aggregate-receipt.json",
+      "sha256": "3075d99d3ee9f0101c4f035cefae55077a0e02c076ff3ebc052b6d34ddfe42f8"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r140.policy-overlay.json",
+      "sha256": "2a9c55fd6e79aa5945502d292587f71cbef65722aa4a42fa16cf441497bc65b7"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r140\\aggregate-receipt.json",
+      "sha256": "fa78c02202ec157f47f0b4c62d25307b7a03b04d30fc1d01507f600fd6a12a23"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r141.policy-overlay.json",
+      "sha256": "f69a9544ff3727dd2b0f7c910afbddd2f186cecfd117199a65d175511134354b"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r141\\aggregate-receipt.json",
+      "sha256": "89bf9ab5676eba2b0e71ffc7769b0ee5c3be6be44d7b051847c69c037e3d3e67"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r142.policy-overlay.json",
+      "sha256": "6793ab2d14041e79ab8fa2f9c94963f50111994311155ed8b82fecd785ef7aca"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r142\\aggregate-receipt.json",
+      "sha256": "3820425ce39fb1ae8c8fff5424aad5933570d54bc12847dbd9b449efb173260a"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r143.policy-overlay.json",
+      "sha256": "2b3d160b32a2935c00d7c1b08490c47764f22ac1f4279b9d6115408cc07bf6c0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r143\\aggregate-receipt.json",
+      "sha256": "4643dc6fff5a5de9250af81d29b3287e127fe661323a190db8d23717d6d0f299"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r031.policy-overlay.json",
+      "sha256": "13f1629624330dace2b865b574770523e664384918333ea516344e70ba8240fc"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r31\\aggregate-receipt.json",
+      "sha256": "d7be08427a2c5c6c4375ebbc27a2c980b6e6ac019ba84f6ef82d21cccb38a14d"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r032.policy-overlay.json",
+      "sha256": "8d35e50b320e2c983290a9c40cadf1f9d182e423a9d41e91b6250f9a50444bcb"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r32\\aggregate-receipt.json",
+      "sha256": "9c05adf4698e6f15ce64ab746bd90c471b6e4cb14b0ecb2ed5f8ff4abef1b670"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r033.policy-overlay.json",
+      "sha256": "751cea81f14c586ceeacbf60141fb11d844c3d00d5e3995a73a26ce8a7b52836"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r33\\aggregate-receipt.json",
+      "sha256": "52354937b7d3512dca9518e0a551455fa0ffb8869ae6c1d5e596a1a161046419"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r034.policy-overlay.json",
+      "sha256": "82257e85b3065823036a4708002aab9368d98e36eb01dd3c714de8419c55ac3b"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r34\\aggregate-receipt.json",
+      "sha256": "c25e43b313a68e4ad3a54e919d34bc5bf77c25227d1da3310fd0a80f65f6c916"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r035.policy-overlay.json",
+      "sha256": "d393b5d54a4cb63b1d088990c93c45bca8222c52f8ef34929d32dd965ddc3c66"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r35\\aggregate-receipt.json",
+      "sha256": "c1762c15bba297c456026b71d5a440013ceb7ac0ef2904411e5f2ec0ed500498"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r036.policy-overlay.json",
+      "sha256": "7a60110c07e52e968577f1274e769c31ff16859020bf9f771d6a4a89b4baa7fa"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r36\\aggregate-receipt.json",
+      "sha256": "cc3091f944410ac4349dbb34fde03afa185f2a5338581d9d717dd0d0197d76e9"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r037.policy-overlay.json",
+      "sha256": "7a5bb648f2268e915ae9e8f2c4c371d785fa718a9ba6330c4be1dc7e745cc44d"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r37\\aggregate-receipt.json",
+      "sha256": "a5eee55b9100614d6fa8428452337d96682563e189c78bd5372629c9ff1aac6c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r038.policy-overlay.json",
+      "sha256": "7ae3605dbe8f9143b8a2105331ab766d1045c6f82362de1bafebfbbe2184d7ca"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r38\\aggregate-receipt.json",
+      "sha256": "e01035dd224c4f31ef7236211e3ff19252749482fc52b2bb4e8a195872a5d9b0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r039.policy-overlay.json",
+      "sha256": "74bfd5a64d89dabee9b8d896ca322504fce485f0fb6b3df559b613da0da34342"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r39\\aggregate-receipt.json",
+      "sha256": "565389ce58f7375218cdd5bc3b9a019170ba0dd38c536e893f93c9ab88c1ec34"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r040.policy-overlay.json",
+      "sha256": "76eb321942d5d5364571bc475e4096f5b3a44c4e318e6560781358f20103b013"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r40\\aggregate-receipt.json",
+      "sha256": "2ce61b9e9726afbd9e05420ead7771b9c1326f23c43eac571460a1a4dad89e0b"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r041.policy-overlay.json",
+      "sha256": "aeb05d211ff42c4dffca53c93224af88beedeed2c09c1fc2043c8d3562898378"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r41\\aggregate-receipt.json",
+      "sha256": "8fba463e8fa0bdbc9669c91157402a3e922dc720af2a9fb542959f1439d5356c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r042.policy-overlay.json",
+      "sha256": "9e7f74ad9eb33dfccbaf87dfb26251d4a69e4d5dff78084db69312951b0f976b"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r42\\aggregate-receipt.json",
+      "sha256": "02c297b56b356acee1484c6888dd3712312a16d2af3289abab5e276b1bae71e0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r043.policy-overlay.json",
+      "sha256": "e3929c75c8e9f13240f742dbb19bf69d66f192b2e37f32e15941d5b7c1ee5de3"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r43\\aggregate-receipt.json",
+      "sha256": "e80e42361e185484ca1812b2db75a8fbb6d3e181390c5b3feb0bc613beac7019"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r044.policy-overlay.json",
+      "sha256": "a36bbecd3919365b055a18276f886a008fc47bc7c5d811e46e77bfe283f9fb01"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r44\\aggregate-receipt.json",
+      "sha256": "5b4a4dbae5cdde9acfd040f8d0f617786f9c16ffd21fb0c387afa184850fafba"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r045.policy-overlay.json",
+      "sha256": "4034fade01f080cfae336d18777a7d4e741c62e9dc7f4bfad2a39564811b24ab"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r45\\aggregate-receipt.json",
+      "sha256": "029e517fc360f41358378c80821ce48ee4728f986a7ea7bbe92a00131d8e0c33"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r046.policy-overlay.json",
+      "sha256": "355d4bf02e9a5f5222dc89a023e12f4e681525147c003f9ac8e3d7faedeeedef"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r46\\aggregate-receipt.json",
+      "sha256": "10aac319644d70ec87a5e4b26543bb4a221739353f879d9a74ee9b67917df9ce"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r047.policy-overlay.json",
+      "sha256": "70a0bb965ca8d26267b2f48ae9991077ba7e1bded176dda150e489361374c072"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r47\\aggregate-receipt.json",
+      "sha256": "c16c33380e802a0ed21609575968bb10a6ae707442fb251312e9ece36a20b605"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r048.policy-overlay.json",
+      "sha256": "3ed116cdc571de4b9235bfc9442ca1a9244294e6aca6a45af3324f832ec70e4a"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r48\\aggregate-receipt.json",
+      "sha256": "25e196833e938f7dd061cf8b7b2790a70adfbfa1209fa8e22ea450086b44eac0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r049.policy-overlay.json",
+      "sha256": "ae8603e7adef5869e7123a2504cc522fb388d3fb4e75613fb8cfae9ac048bacc"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r49\\aggregate-receipt.json",
+      "sha256": "2a88747ab9b51379bf290ef44430959396f6ae0c4278dd364047df072c376dfe"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r050.policy-overlay.json",
+      "sha256": "55d777fab39c1dda2f31afae86d3658cb1a0665d51abde25211a45777029f86e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r50\\aggregate-receipt.json",
+      "sha256": "ba1e6a9c955e38030fd4d1c43bbe26af67283921d1a6f324ab1ab3f96b7e91bb"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r051.policy-overlay.json",
+      "sha256": "104fa360fa4c202ec56fe4e85fb2402fe6e8385d29694c1abd4874130bdf6dd2"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r51\\aggregate-receipt.json",
+      "sha256": "022bd406540b64e8cae4361d1dea81ee886a36ed0e0ce2ad89f3ac7aa3457e93"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r052.policy-overlay.json",
+      "sha256": "99f99f477eb4d906a764321a46fd6ffbfef0fc1236c83964a87310ba78efde9c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r52\\aggregate-receipt.json",
+      "sha256": "e4e5c80967e78f90442511e88a174d0da12942b74531bc455d71df180a2e486b"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r053.policy-overlay.json",
+      "sha256": "679b50e87303686d24a582b10d9b586d4720e9b44c465b2b6d3bc839162187c5"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r53\\aggregate-receipt.json",
+      "sha256": "ec612c441fc0da5f09a7e8612cb2604c8cc9df67289dbd403f30ff21d8169cf8"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r054.policy-overlay.json",
+      "sha256": "e84747ca741e3fa29c93d973d9f1e0e5a679c50013a2fdd6d23944c9079db163"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r54\\aggregate-receipt.json",
+      "sha256": "3008bf8b471ae215ad5aed8e8b064e286179e6abbbbfd001f8863a742addc60f"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r055.policy-overlay.json",
+      "sha256": "bbd7d07b05f63371493dfa1fca5da1853bf400be1090cf5c43b747396cd4a069"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r55\\aggregate-receipt.json",
+      "sha256": "5174dfab45cabd235fa6eb201136a8a0d977da8401e591dde2d8133bc067657a"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r056.policy-overlay.json",
+      "sha256": "5d9b4900ced54fece6c3abbcce4a755db518a99c7e258531fce7c4bfd6589bf6"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r56\\aggregate-receipt.json",
+      "sha256": "694dba0f4070f1b5d3b5e13509094a20d6b806906c2bb5c2f1d3686094f3a7ed"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r057.policy-overlay.json",
+      "sha256": "cb35ffc174e0497b63dafbdff8a166bb9eb8be21d0e4cfc893b2bc24c08160cf"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r57\\aggregate-receipt.json",
+      "sha256": "4175932b252e611f5bd7c54beab4e0b6bb6be7a86ed4dcedbfad543ae96bddff"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r058.policy-overlay.json",
+      "sha256": "b7696b739631aa1d9e0ad03a52b7f0fa08f39ec89293db5f5972e1351d53b516"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r58\\aggregate-receipt.json",
+      "sha256": "49f8ca4c20262e889f50e67f431f2c55bb1dc900ea973d8a9a2db34439595268"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r059.policy-overlay.json",
+      "sha256": "a0f1acbaa9a482afb35ce5c7c4f58d3cbacfb2619aa4524736fea59408e5e724"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r59\\aggregate-receipt.json",
+      "sha256": "cef74b6f86eadf0673dce71ab02f346c96cf9d2dd0809c45001f9451193b51a2"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r060.policy-overlay.json",
+      "sha256": "562f31add239fb8b98c1f820128cd62f3f2c52bc30ac8db1aa887b0e5ad7c610"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r60\\aggregate-receipt.json",
+      "sha256": "3be145aae79952191c1af1eb7bfb23e1a171836c54a7be96ab255c5b994956cf"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r061.policy-overlay.json",
+      "sha256": "0c3840d6666d378542b9940b4eb1e711bb6a5f29ea3061f19875de77949c4f45"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r61\\aggregate-receipt.json",
+      "sha256": "2626797d612d750454ab1ce2015439fc315d073abdade691c6a855b8e788b007"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r062.policy-overlay.json",
+      "sha256": "6f168848dee57318fb48c2e246a9595775ba8d3ce676c1b2eefb22d91ace32f3"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r62\\aggregate-receipt.json",
+      "sha256": "dcd2adf238ae7b43fcf0913f30fdc3c883b772381acd758d8297993a8da47952"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r063.policy-overlay.json",
+      "sha256": "efa78723466125756abee780a1eb006dce447174f90cbf79f4a84451c3c0eb6e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r63\\aggregate-receipt.json",
+      "sha256": "d3d7c471fadf897e659c8577a48186d9133649013a2f01ceab895d417c182875"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r064.policy-overlay.json",
+      "sha256": "9cd2bf155b6d76b7304514502ab68b32feea52294861d2fef93b243fc41dbb01"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r64\\aggregate-receipt.json",
+      "sha256": "bf35654569aedcff71cd6fa19049a965b19f81c61f9d77b48d1723ad7731f419"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r065.policy-overlay.json",
+      "sha256": "31f001b6d12a4fa9897228f1b5602b33014bf103993eaa608e5f9a070d3473e5"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r65\\aggregate-receipt.json",
+      "sha256": "dff1e62474f3a67f82e4bff6816bbd1b69e47ea5a1240d684539f63bb6dea598"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r066.policy-overlay.json",
+      "sha256": "db3e1d9f659ec3384cd59de7f55828174f3a09189ddc7180ebc2a7fb015c54ce"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r66\\aggregate-receipt.json",
+      "sha256": "0ee94c7cc22b9666a50252d5591416ba892a80dc403b4ffea2ab7cd92454af48"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r067.policy-overlay.json",
+      "sha256": "38c29b226c0046441f58ed33bf83f317e7c8f5b738a025bf3d5cfff82ef19d3a"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r67\\aggregate-receipt.json",
+      "sha256": "3f04f8da972c21d0efcf4a13ae41e62f6aba7598b5316d0d57635ab566584c4a"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r068.policy-overlay.json",
+      "sha256": "74b93c6a1e14580d9155db77281b41c345c5e3e1f034d443af2ec1c048bf14e9"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r68\\aggregate-receipt.json",
+      "sha256": "93cc681c35ee256e2b1673ce16842bd2689508147383b3b16dfa19a973c51e13"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r069.policy-overlay.json",
+      "sha256": "b94caa695c29a18640715dfff13270d508fabffeca94dc4472020574fdf52011"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r69\\aggregate-receipt.json",
+      "sha256": "04e4c413c99601321128dfa43aaaf5ff892a0c3c6a2ddc7f9b3619a0b4dfe24b"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r070.policy-overlay.json",
+      "sha256": "3e7f7b20fd9c5a3b4fe576c22659981eaa2d0426232d449611a4422a9227414d"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r70\\aggregate-receipt.json",
+      "sha256": "12f0da3884e604c387e5d92bd9de7917dc52b3c7f78749815535edc967c3782e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r071.policy-overlay.json",
+      "sha256": "46e5997d0fc6be662b9331ae0fd510592649bd27d8078a35e09002ede6c218dc"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r71\\aggregate-receipt.json",
+      "sha256": "7ee0d46920420138c6d2de747f405a0055ec56a138e95350ef4ba3b47389ebc1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r072.policy-overlay.json",
+      "sha256": "1e07bef24b2a1d0cbb5b29e2cf15eb6a74cd9c4c1d37656c4ef324f2556024e3"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r72\\aggregate-receipt.json",
+      "sha256": "e01f396820205c77160a16b81fcead87c8e666683d8b1152155505138446170e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r073.policy-overlay.json",
+      "sha256": "96517edefbadaa5a87d3796510f2cb5db0c17f4d769dfc343597c15ba7228897"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r73\\aggregate-receipt.json",
+      "sha256": "c1849e97aacd205be112f07a34c71323f7290209f8465b37c64e76fe40235288"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r074.policy-overlay.json",
+      "sha256": "585f3f44cc6dae6749be27660f0c60ce40a75eaf7e15b05bfd1885f4a118ee6c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r74\\aggregate-receipt.json",
+      "sha256": "456344df4fe092526d7feaa5643fbc82988374a552fc3ef9836cfd7a44b58c21"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r075.policy-overlay.json",
+      "sha256": "dedb6b222fee69470674443e00694e0cbbcfb23fc291910f5f76eccbcf0db091"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r75\\aggregate-receipt.json",
+      "sha256": "c1e5007bd98956a768a9802f7b25c9ef14f6c1e5c713e373bacd078762445af4"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r076.policy-overlay.json",
+      "sha256": "f6b8f419f9d8cb2db6de992ef2a5627336abaff84856da8f30157ac4e4e150bf"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r76\\aggregate-receipt.json",
+      "sha256": "9a5aa08adb3210b067e69f73db3361c3f2638ad23764b19408bc307cc0186437"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r077.policy-overlay.json",
+      "sha256": "e8e208518fd468c48e6752b7c13acb7afb4ab2f42ef33ccff485e5d89ba63c33"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r77\\aggregate-receipt.json",
+      "sha256": "a3a245e6d78e42fea0f5bc05664a3737f1efb73d3bcfad3b4f4050763aa995d0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r078.policy-overlay.json",
+      "sha256": "2f72e8812b52eb2b9879b60a230299907a28342a1d4b2e9636b284a31a2f7372"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r78\\aggregate-receipt.json",
+      "sha256": "f01918eb54914ba2a4efee2ee167105636b945fb97451c94e52912a478b5815d"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r079.policy-overlay.json",
+      "sha256": "73cfa7d7f54eef0ef2a077a8ea097fb99cf8c10b2efd152b232c320a9f9d62d1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r79\\aggregate-receipt.json",
+      "sha256": "174abb47a34144e86848af41b1da4a146bdec32edbc160babcf0e75e6f796663"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r080.policy-overlay.json",
+      "sha256": "4f501ce9bbcab16ce661edefaac8fc2073e395c3563d264bfabc4c44cd95345e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r80\\aggregate-receipt.json",
+      "sha256": "440d81a9bb9da2d7d71425684d459de5af40b2d951c0c626c82285494f421eb0"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r081.policy-overlay.json",
+      "sha256": "a82f67c3c039735bdc5ecfcda6c2a8da18dce43d8779912c9139d448d620cdca"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r81\\aggregate-receipt.json",
+      "sha256": "2d1422da74261c2189421439e73a6131f63ed7778927134da2393e636ae9e383"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r082.policy-overlay.json",
+      "sha256": "75b8ce4ad1d0cd6d80be79d9fa6cb7197958ff8f2bbe92d921bd0fb3964d3d50"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r82\\aggregate-receipt.json",
+      "sha256": "84ff1728e7c771d18ef58d09922139f9f216124f9079cf83b68c01a6122d5497"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r083.policy-overlay.json",
+      "sha256": "dc98f46cf9214281df7d2c448b48d73887f451fa60e53e6c3bd05a7442be2c2a"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r83\\aggregate-receipt.json",
+      "sha256": "48ecc2b3a470abdaf8fac53530ee5c5c8953cd7f1ece708c1a8ccd48c64204a1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r084.policy-overlay.json",
+      "sha256": "e622ca31a024025abd72aa1ab4aeed7140c27c446db312be5e711ec6af1c2076"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r84\\aggregate-receipt.json",
+      "sha256": "28281916a9f339e5fbf41e9079825114ab3ebb4d58a298287ce704e215bc8bb9"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r085.policy-overlay.json",
+      "sha256": "6640f2bf2071383021e665c17da7d5ae0019eda508e00e566ebd22e1b2d19180"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r85\\aggregate-receipt.json",
+      "sha256": "512facfe876fa01aca57461f21421901c613f6c31ed25672e112e9b24d911c9d"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r086.policy-overlay.json",
+      "sha256": "453c1c73fce066721ff255604cb9ae836c21b9bf5c5ba9ac6f7a5bff8cc3f4e1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r86\\aggregate-receipt.json",
+      "sha256": "9334ddd70202a37160aac2c2aad33d33af76718f344beeddc664580b380ebbff"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r087.policy-overlay.json",
+      "sha256": "225247fe45aeba72cc5ac035e010e532de2f7dfff37d4690cd365469446df65c"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r87\\aggregate-receipt.json",
+      "sha256": "7727be9bd43fb8fbea84a5783f4a5ebd25b919b92bb16dc019225b00bd99dab3"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r088.policy-overlay.json",
+      "sha256": "315f5b5d2404723d1a7eb3b62427055934d441e086ce73d7cc145ed694bae71e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r88\\aggregate-receipt.json",
+      "sha256": "6e4882da1caeee00c0dd5de6b7c9af1cdf452ea22252de4c3b41f8215ee64463"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r089.policy-overlay.json",
+      "sha256": "851059257b8ccf28d68f344198c22858a1514b2dbeb9103625ddc873b7fb20c4"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r89\\aggregate-receipt.json",
+      "sha256": "72eb6ca681a0a11758c4982729d4da99a40a652ab5242c3bfb62f1fdd925d5bc"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r090.policy-overlay.json",
+      "sha256": "9aed7f9ac685016e263d5054c44c0ffaf2a7e228a0abd73cb52febbaf9cc183b"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r90\\aggregate-receipt.json",
+      "sha256": "9e2d04b79a55335e99d25b9ac29d434b5301420cd81875e878b5f8e7d5fa5715"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r091.policy-overlay.json",
+      "sha256": "66261a6906ba4d2cd5c2ff95c752041d66ac50fbbdf2471139be249d088c8477"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r91\\aggregate-receipt.json",
+      "sha256": "e68c9349b6bae532cc22ac99ac96259ffe4d752fb3f6d1c11e3f935d159448c6"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r092.policy-overlay.json",
+      "sha256": "0e98f1f8b9c497e846d39b77ba3d2c62e26253f28d178251b2bba51a07d22256"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r92\\aggregate-receipt.json",
+      "sha256": "3271215112081d4877a59290115a73a298801af2fadb999758d2a058a20d04c1"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r093.policy-overlay.json",
+      "sha256": "a17849bdf6367bddfc96465fc9f55978c56f1fdfb0c64d1bac79606a920873d5"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r93\\aggregate-receipt.json",
+      "sha256": "d57851b6103d766d411f94e41842162f933c019fc4f53a29cb6205941d83eb07"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r094.policy-overlay.json",
+      "sha256": "57478805fe1c2cbd08c1db8bac4b93ceacd8b63e6617833bc2d96631854fedbd"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r94\\aggregate-receipt.json",
+      "sha256": "86bf581ef5eb3d1e4007a9ad097049e8da2fd7d800416704a31a5f140a7c8e97"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r095.policy-overlay.json",
+      "sha256": "127cab1446a7a2f8b035d7e0c21d1a308c4862136b5323d2c54ecdde1b3a418e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r95\\aggregate-receipt.json",
+      "sha256": "09a9ad2668cb26afeef03a3da04c5c6b92dc480692b02d0153f2ca97d8423ce7"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r096.policy-overlay.json",
+      "sha256": "736ecfcbb6ba23d3345f6eb78bf5bebe6299c0722bea0e588fbffb6875324607"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r96\\aggregate-receipt.json",
+      "sha256": "50235274f7b68d536c2a177d4e19580d34a5dc9e8c52d6a2a623217f08b71d4e"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r097.policy-overlay.json",
+      "sha256": "b44aeb474e8fd03c05319776c6b3d8b7fd121ab99ead52cea093dd7f93fb49ac"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r97\\aggregate-receipt.json",
+      "sha256": "6c7fcfae632c30214065477ba766abc21516b22dfadd83ef9eab5ffb93963229"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r098.policy-overlay.json",
+      "sha256": "894d7cd13f5712f13e5b6911845ae8494c5b207f6f1990ddf9dc7c8a60adda77"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r98\\aggregate-receipt.json",
+      "sha256": "87ee314c89dcee2e389de7bb14d2f334266ad1dc67a443872377165192e41654"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-policy-overlays-20261020-r1\\r099.policy-overlay.json",
+      "sha256": "4f286ca4b8d7dcfb6d85bcaa7ad8797882c40bbee5f42fdcd1aca8cb242be7bb"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r99\\aggregate-receipt.json",
+      "sha256": "c1300b5aefe10c45c05f521b3fc291446b8102c35b017ce55951cc3eb95eb944"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r1\\own-audit-report.json",
+      "sha256": "1f5d04a1355bf9f288bce28f368078e1d26988a7db219f22c94fe30145dffbf9"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r1\\own-controls-results-r2.json",
+      "sha256": "574154c0fa6ee0e93c98ef0df1be14b89f307d5cb178a932111bd4a9bde5d278"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r1\\own-controls-r2.py",
+      "sha256": "9fb9c7bffe321ab400228b0c5ee6219f430491efecee53397538cae593029768"
+    },
+    {
+      "path": ".qa-artifacts\\exam-resume-20261008\\source-scope-generalization-20261020-r1\\extract-fresh-sources-before.py.snapshot",
+      "sha256": "866d9c41bc08f19ff65af611bd197fdf90325e5465dee3a87880c4ab3458b455"
+    }
+  ],
+  "unchanged": true
+}
