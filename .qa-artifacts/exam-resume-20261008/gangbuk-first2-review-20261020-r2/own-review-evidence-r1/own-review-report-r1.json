@@ -1,0 +1,97 @@
+{
+  "task": "Gangbuk current2 post-seal independent full review",
+  "status": "math2-grade2-content0-final0",
+  "counts": {
+    "mathematicalVerified": 2,
+    "gradeReviewed": 2,
+    "contentVerified": 0,
+    "finalApproved": 0,
+    "loadable": 0,
+    "sevenSurfacesPassed": 14,
+    "newBlindSolvesThisReview": 0
+  },
+  "ownChecks": {
+    "passed": 39,
+    "failed": 0,
+    "receiptSHA256": "59e24e960f8372819d724b99008719c89e4c23fa03551c91d6a274cb7a9522a2",
+    "method": "Own Fraction expansion/coefficient subtraction and3row root substitution, each choice and nonzero linear slope; no original answer/pixel oracle."
+  },
+  "rawSeal": {
+    "helperCommit": "aa46a2fd80ed27026b404ec46021a94aa116e01d",
+    "parentCommit": "04b4705df8de2b6003300866e4b722d8f7ae657c",
+    "SHA256": {
+      "q01": "7dc42bb33b2347c3d3b680b6f45ce50b440c0ade4478749d9ea5a1dcf9ee1411",
+      "q02": "a6d16b9a660beced3307240c081f95bea33f6a0bca1ac2db69e792bd29d70d05"
+    },
+    "GitBytesVerified": true,
+    "rawModified": false
+  },
+  "currentRootCollector": {
+    "actualUnmocked": true,
+    "mathGradeContentFinal": [
+      2,
+      2,
+      0,
+      0
+    ],
+    "resultSHA256": "41adb17a7abf9915a99c9f168317774e26e142058f76fd8c1ec9771475c08faa",
+    "outputOnlyOwnFolder": true,
+    "doesNotReplaceIndependentGradeEvidence": true
+  },
+  "sourceCoreAndChange": {
+    "q01": "Observed original degree classification after expansion; current actual degree cancellation/inverse parameter plus nonzero remaining linear coefficient preserves core and changes target. No original answer computation.",
+    "q02": "Observed original known-root substitution to determine coefficient; current3records/error diagnosis+correction uses same root definition and earlier linear equation with substantive table/answer-role change.",
+    "actualOriginalPage": "Viewed supplied sideways firstpage:2025grade3semester1final header and q1/2 printed3/4points match question-only components. Incidental handwriting and other questions now visible, not answers/approval oracles.",
+    "originalContextLocalOnly": [
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-source-context-local-20261020-r1\\q01.local.json",
+        "sha256": "74ad13c1010020eecb09721c255ffc8f22d69bb0ab0d455b0801ed212631ac7f"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-source-context-local-20261020-r1\\q02.local.json",
+        "sha256": "8506aced43320d9488de9ed2c0577d56e1c87a94a5c60979a18c0026a53123ca"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\gangbuk-source-context-local-20261020-r1\\original-first-page.local.png",
+        "sha256": "af983d605055bcc36d01b05e9561bd2c2765ff4c631dda51f18c59052266b8d0"
+      }
+    ],
+    "wholeSourceIdentityAndRights": false
+  },
+  "grade": {
+    "q01": "Whole current student solution expands polynomial/collects degree, cancels quadratic coefficient and checks linear coefficient-1, using9수02-12/13 and earlier9수02-04/05.",
+    "q02": "Whole current solution directly substitutes each root/value, flags onlyC and solves2a4/rechecks0. No Vieta/discriminant/advanced identities or need to find both roots.",
+    "officialPrimaryAndUnitReceiptSHA256": "b35a2bd0b7e084f1bf9979cf0fd472f22a9b799e6c50e513ca5b6454ab49abeb",
+    "actualM3Semester1Unit": "82399e51-340d-4165-b016-3e941e65f810",
+    "yearScope": "2015M3source2025/practice2026after indicated prerequisites;2027M3/2022pending",
+    "limits": "Provided previously verified official text/record/page and capturedUnit plus actual whole methods; not school/band-code/metadata alone or live DBpromise."
+  },
+  "editorial": {
+    "score": "Observed3/4sourcepoints and current3/4. Basic3/ basic-to-standard4 proposals reasonable by current step burden; no measured/source-equal difficulty.",
+    "q02Language": "Each row is the root with its then-value of a; separate cases, not one simultaneous a with3roots. An explicit each-row-is-separate sentence could improve clarity but current context supports intended reading.",
+    "rendering": "Both actual solutionPNGs and original firstpage viewed, table/sign/fraction labels match. No pixel arithmetic/full native/print parity certification."
+  },
+  "holds": {
+    "exactLiveFamily": null,
+    "unitFamilyFit": false,
+    "wholeSourceIdentity": false,
+    "rights": false,
+    "similarity": false,
+    "native": false,
+    "loadable": false,
+    "2022": false
+  },
+  "preservation": {
+    "inputHashBindings": 41,
+    "beforeAfterEqual": true,
+    "sourceOrProductionEditsByWorker": 0,
+    "initialUnownedSourceGitChanges": "Existing helper candidatePack/review modifications and untracked curriculumDeclarations code/test appeared before this scope and are preserved, not staged or attributed to this review.",
+    "originalContextNeverGitAdded": true
+  },
+  "reportSHA256": {
+    "q01": "b825b510249abd840848b6f8055e2b0e1f817d92790ddc7f481a8770f3ddbe45",
+    "q02": "fe8c5fe6e40f1a065dab4eb4c7a1a7e84a3422ae7e2398cc29713c2577b38088"
+  },
+  "harnessDiagnostic": "Initial own script assumed package/manifest, FileNotFound; supplied root manifest/private verified by authorized root-only listing and used thereafter. Prior diagnostic retained.",
+  "APIModelDBCalls": 0
+}

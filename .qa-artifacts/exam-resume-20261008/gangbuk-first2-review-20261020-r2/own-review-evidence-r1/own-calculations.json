@@ -1,0 +1,297 @@
+{
+  "passed": 39,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "verification-input-sha",
+      "passed": true
+    },
+    {
+      "id": "q1/candidate-exact",
+      "passed": true
+    },
+    {
+      "id": "q1/candidate-file-sha",
+      "passed": true
+    },
+    {
+      "id": "q1/student-fields",
+      "passed": true
+    },
+    {
+      "id": "q1/raw-sha",
+      "passed": true
+    },
+    {
+      "id": "q1/git-pre-exposure-raw",
+      "passed": true
+    },
+    {
+      "id": "q1/answer-match",
+      "passed": true
+    },
+    {
+      "id": "q1/raw-object-match",
+      "passed": true
+    },
+    {
+      "id": "q1/unit",
+      "passed": true
+    },
+    {
+      "id": "q1/local-original-sha",
+      "passed": true
+    },
+    {
+      "id": "q1/printed-score",
+      "passed": true
+    },
+    {
+      "id": "q2/candidate-exact",
+      "passed": true
+    },
+    {
+      "id": "q2/candidate-file-sha",
+      "passed": true
+    },
+    {
+      "id": "q2/student-fields",
+      "passed": true
+    },
+    {
+      "id": "q2/raw-sha",
+      "passed": true
+    },
+    {
+      "id": "q2/git-pre-exposure-raw",
+      "passed": true
+    },
+    {
+      "id": "q2/answer-match",
+      "passed": true
+    },
+    {
+      "id": "q2/raw-object-match",
+      "passed": true
+    },
+    {
+      "id": "q2/unit",
+      "passed": true
+    },
+    {
+      "id": "q2/local-original-sha",
+      "passed": true
+    },
+    {
+      "id": "q2/printed-score",
+      "passed": true
+    },
+    {
+      "id": "q01-expansion/-3",
+      "passed": true
+    },
+    {
+      "id": "q01-expansion/-1",
+      "passed": true
+    },
+    {
+      "id": "q01-expansion/1",
+      "passed": true
+    },
+    {
+      "id": "q01-expansion/2",
+      "passed": true
+    },
+    {
+      "id": "q01-expansion/3",
+      "passed": true
+    },
+    {
+      "id": "q01-unique-linear",
+      "passed": true
+    },
+    {
+      "id": "q01-root-substitution",
+      "passed": true
+    },
+    {
+      "id": "q02-nonzero-slope/A",
+      "passed": true
+    },
+    {
+      "id": "q02-root-correction/A",
+      "passed": true
+    },
+    {
+      "id": "q02-nonzero-slope/B",
+      "passed": true
+    },
+    {
+      "id": "q02-root-correction/B",
+      "passed": true
+    },
+    {
+      "id": "q02-nonzero-slope/C",
+      "passed": true
+    },
+    {
+      "id": "q02-root-correction/C",
+      "passed": true
+    },
+    {
+      "id": "q02-only-C-wrong",
+      "passed": true
+    },
+    {
+      "id": "q02-residuals",
+      "passed": true
+    },
+    {
+      "id": "q02-correct-values",
+      "passed": true
+    },
+    {
+      "id": "q02-unique-choice",
+      "passed": true
+    },
+    {
+      "id": "q02-always-quadratic",
+      "passed": true
+    }
+  ],
+  "q01AllChoices": [
+    {
+      "a": -3,
+      "residualConstantFirst": [
+        "-6",
+        "-1",
+        "-6"
+      ],
+      "linear": false
+    },
+    {
+      "a": -1,
+      "residualConstantFirst": [
+        "-6",
+        "-1",
+        "-4"
+      ],
+      "linear": false
+    },
+    {
+      "a": 1,
+      "residualConstantFirst": [
+        "-6",
+        "-1",
+        "-2"
+      ],
+      "linear": false
+    },
+    {
+      "a": 2,
+      "residualConstantFirst": [
+        "-6",
+        "-1",
+        "-1"
+      ],
+      "linear": false
+    },
+    {
+      "a": 3,
+      "residualConstantFirst": [
+        "-6",
+        "-1",
+        "0"
+      ],
+      "linear": true
+    }
+  ],
+  "q02AllRecords": [
+    {
+      "row": "A",
+      "x": "2",
+      "recordedA": "1/3",
+      "residual": "0",
+      "correctA": "1/3",
+      "slope": "3",
+      "wrong": false
+    },
+    {
+      "row": "B",
+      "x": "-2",
+      "recordedA": "-1",
+      "residual": "0",
+      "correctA": "-1",
+      "slope": "-1",
+      "wrong": false
+    },
+    {
+      "row": "C",
+      "x": "1",
+      "recordedA": "3",
+      "residual": "2",
+      "correctA": "2",
+      "slope": "2",
+      "wrong": true
+    }
+  ],
+  "q02AllChoices": [
+    {
+      "choice": "①",
+      "row": "A",
+      "proposedA": "1/3",
+      "residual": "0",
+      "requestedWrongRowAndCorrectValue": false
+    },
+    {
+      "choice": "②",
+      "row": "A",
+      "proposedA": "3",
+      "residual": "8",
+      "requestedWrongRowAndCorrectValue": false
+    },
+    {
+      "choice": "③",
+      "row": "B",
+      "proposedA": "-1",
+      "residual": "0",
+      "requestedWrongRowAndCorrectValue": false
+    },
+    {
+      "choice": "④",
+      "row": "C",
+      "proposedA": "2",
+      "residual": "0",
+      "requestedWrongRowAndCorrectValue": true
+    },
+    {
+      "choice": "⑤",
+      "row": "C",
+      "proposedA": "3",
+      "residual": "2",
+      "requestedWrongRowAndCorrectValue": false
+    }
+  ],
+  "sourceObservationsNoOriginalWording": [
+    {
+      "n": 1,
+      "localComponentSHA256": "74ad13c1010020eecb09721c255ffc8f22d69bb0ab0d455b0801ed212631ac7f",
+      "printedScore": 3,
+      "preparedDifficultyLabel": "하",
+      "sourceMethod": "degree-classification-after-expansion",
+      "originalAnswersOrMarksUsed": false
+    },
+    {
+      "n": 2,
+      "localComponentSHA256": "8506aced43320d9488de9ed2c0577d56e1c87a94a5c60979a18c0026a53123ca",
+      "printedScore": 4,
+      "preparedDifficultyLabel": "하",
+      "sourceMethod": "known-root-substitution-to-linear-parameter",
+      "originalAnswersOrMarksUsed": false
+    }
+  ],
+  "sourcePageActuallyViewed": true,
+  "sourcePageSHA256": "af983d605055bcc36d01b05e9561bd2c2765ff4c631dda51f18c59052266b8d0",
+  "newSourceSolveCount": 0,
+  "newBlindSolveCount": 0
+}

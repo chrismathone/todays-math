@@ -1,0 +1,115 @@
+{
+  "status": "pending",
+  "studentDigest": "c78985e01a697b82be5d9495651ba30a36b0c7d33890f425db2d5711cdb8ae8f",
+  "candidateDigest": "c8465ab688dc3f54fe1ea21557e2afb4add0a1d62205171caccf430c0ef31fc9",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-gangbuk-first2-full-review-20261020-r1",
+  "solveDigest": "d73298a24f6f3483de5f604453fed75eac7404c6cf57c8e3b1617e2005f93b61",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "reviewKind": "post-Git-seal actual whole-method review, not new blind solve",
+    "rawCommit": "04b4705df8de2b6003300866e4b722d8f7ae657c",
+    "helperRawCommit": "aa46a2fd80ed27026b404ec46021a94aa116e01d",
+    "exposure": "원문9/Gachang2/공개코드/current166metadata/Gangbukmetadata 이력이 있고 pristine corpus blind가 아니다. 현재 Gangbuk저자/원문/해설은 raw봉인 뒤 처음 노출. 실제 원문첫페이지의 손글씨와 다른 문항은 부수적으로 보였지만 답/키 일치를 승인근거로 사용하지 않음.",
+    "actualImagesViewed": [
+      "solution-preview/q01.solution.png",
+      "solution-preview/q02.solution.png",
+      "local-only original-first-page.local.png"
+    ],
+    "calculationReceipt": {
+      "path": "../../own-review-evidence-r1/own-calculations.json",
+      "sha256": "59e24e960f8372819d724b99008719c89e4c23fa03551c91d6a274cb7a9522a2",
+      "passed": 39,
+      "failed": 0,
+      "method": "Own Fraction polynomial convolution and substitution, allchoices/3records; no author-answer or pixel oracle."
+    },
+    "primaryReceipt": {
+      "path": "../../own-review-evidence-r1/own-primary-receipt.json",
+      "sha256": "b35a2bd0b7e084f1bf9979cf0fd472f22a9b799e6c50e513ca5b6454ab49abeb",
+      "documentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "basis": "기존 실제공식텍스트/record/page 검증과 현재허용curriculum-evidence/Unit캡처를 재대조. 학년군코드/원문학교/목록일치만으로 승인하지 않는다.",
+      "placement": "source2025/practice2026 M3=2015 after learned prerequisites;2027M3/2022pending"
+    },
+    "separateHolds": {
+      "exactLiveFamily": null,
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "nativeReaderParity": false,
+      "loadable": false,
+      "wholePaperHwpPdfIdentity": false,
+      "2027M3And2022": "pending"
+    },
+    "sourceComponentLimits": "실제원문첫페이지의2025/3학년/1학기기말 표제와 두 구성요소·3/4점·대수식을 현재로컬question-only와 대조한 관찰이다. 전체HWP/PDF대응/학교출처/권리/답키/내용유사성 기준 통과를 뜻하지 않으며 원문본문/이미지를 Git에 복사하지 않는다.",
+    "questionNumber": 1,
+    "checkBasis": {
+      "answerCorrect": "정리식(a-3)x²-x-6=0에서 a=3만 일차방정식이며⑤. 독립봉인raw와현재저자답이일치하고 원문답을사용하지 않았다.",
+      "solutionCorrect": "저자전문의 왼쪽ax²+(a-2)x-2/오른쪽3x²+(a-1)x+4→이항→a=3→남은x계수-1을 모두검산. 단순히이차항을없애는조건만썼다가항등식이되는오류없음. 해x=-6의원식대입도양변100으로자체확인.",
+      "existenceUniqueness": "a=3에서x²계수0,x계수-1≠0. 따라서 실제일차방정식이고x=-6으로해존재/유일. 다른실수a는이차항비영이므로요청조건불가. a나x의양수조건없다.",
+      "choicesCorrect": "보기a=-3,-1,1,2,3의이차항계수는-6,-4,-2,-1,0이고일차항계수는항상-1. 다섯보기중⑤만조건충족.",
+      "figureConsistent": "도형/표자산없음. 현재solutionPNG의양변식/정리식/보기/답과JSON을실제확인했다. 이미지수치측정이나좌표추론필요없음.",
+      "sameCoreConceptAndProcedure": "실제원문구성요소는다섯등식을전개·정리해차수를분류한다. 현재도최고차항상쇄여부를전개후판정하는정의·절차가핵심이며 원문정답은계산/사용하지않았다.",
+      "distinctPresentation": "여러식에서차수예외를고르던역할을하나의매개변수식이일차가되게입력을정하는역추론으로변경. 이차항0외에일차항비영을확인해야하는실제구조변경이며숫자교체만아님.",
+      "naturalKorean": "x에대한일차방정식과상수a라는역할을분명히명시. 해x와매개변수a를혼동하지않고전개/항정리기준으로차수를읽게한다. 단위없는대수이며길이/넓이양수제약을추가하지않음.",
+      "curriculumAppropriate": "2015 9수02-12다항식곱셈(HWPrecord3956/offset201534),9수02-13이차방정식(record3964/offset201786),PDFphysical34/printed30. 실제Unit82399e51-340d-4165-b016-3e941e65f810은중3semester1이차방정식풀이. 전체방법은기학습전개/차수/일차등식으로완결,고등방정식계수정리불필요.",
+      "allStudentSurfacesInScope": "아래7면의실제요구를각각검토. 현재학생해설전체가분배법칙·동류항정리·차수정의와계수비영확인으로끝나며과도한매개변수경우분류없음.",
+      "unitFamilyFit": "캡처Unit의기초방정식분류주제는부합하나정확한livefamily의정의/미지계수역차수목표호환은증명하지않았다. familyKeynull/false유지.",
+      "scoreAppropriate": "실제원문3점과현재3점확인. 전개·소거·비영계수의짧은역추론이라기본3점편집제안수용. preparation하라벨은학교실측난도아니며원문동난도/측정효과는보류."
+    },
+    "currentUnit": {
+      "id": "82399e51-340d-4165-b016-3e941e65f810",
+      "grade": "중3",
+      "chapter": "3. 이차방정식",
+      "section": "이차방정식의 풀이",
+      "semester": 1,
+      "orderIndex": 475,
+      "problemCodePrefix": "J30301"
+    },
+    "rawFileSHA256": "7dc42bb33b2347c3d3b680b6f45ce50b440c0ade4478749d9ea5a1dcf9ee1411"
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "다항식을전개하여일차방정식이되게입력을구하는조건은2015 9수02-12/13과M1등식·차수선수범위. 실제M3semester1 Unit과학습후조건을함께사용하며 band나code일치만으로허용하지않음."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "다섯정수a를넣어x²계수가없어지고x계수는남는지확인한다. 음수/계수연산과9수02-12전개수준,고등근관계/함수판정없음."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "도형/표없고PNG는문자식만표시. 추가기하·좌표·그림암묵조건없이주어진대수식으로완결,보기/정리식도JSON과일치."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "a는x와구별되는상수,x²/곱/괄호는기학습다항식기호. x계수-1≠0와a-3=0의단순조건을읽으며고급항등식표기나단위혼동없음."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "상수3에대응하는단일⑤로답한다. 다항식정리와앞학년일차방정식의결과이며원래식의해x=-6과답a를명확히구분."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "저자전문은전개→이항/동류항정리→이차항0→남은일차항비영확인.9수02-12/13과9수02-04/05(record3912/3916,PDF34/30)안에서해결되며근의공식/판별식/Vieta없음."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "분배법칙/다항식곱셈/항정리,상수·계수·차수,일차/이차방정식의뜻을먼저학습해야한다. 실제M3semester1기초Unit학습후배정,2027M3/2022나학교진도는별도pending."
+    }
+  }
+}

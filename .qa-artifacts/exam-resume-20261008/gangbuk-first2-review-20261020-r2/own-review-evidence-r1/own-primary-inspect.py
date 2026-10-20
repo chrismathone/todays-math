@@ -1,0 +1,3 @@
+﻿from pathlib import Path
+import json
+R=Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008');c=json.loads((R/'.qa-artifacts/exam-resume-20261008/curriculum-evidence.json').read_text(encoding='utf-8-sig'));print(json.dumps([x for x in c['achievement_standards']if x['code']in ['9수02-12','9수02-13','9수02-04','9수02-05']],ensure_ascii=False,indent=2));s=json.loads((R/'.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json').read_text(encoding='utf-8-sig'));print(json.dumps([u for u in s['units']if u['id']=='82399e51-340d-4165-b016-3e941e65f810'],ensure_ascii=False))
