@@ -1,0 +1,652 @@
+{
+  "audit": "U58 deterministic SOURCE SCOPE, metadata and negative CLI only",
+  "status": "technical-hold",
+  "scopeSHA256": "420013b3b5435c988f774a02ae9f1fc4ac04465254806f3e077bf15e08531bb2",
+  "ownRuns": {
+    "finalIndependentChecks": 14129,
+    "passed": 14109,
+    "failed": 20,
+    "controlCategories": {
+      "scope-matrix": 180,
+      "field-corruption": 79,
+      "missing-field": 9,
+      "seen-id": 2,
+      "object-shape": 6,
+      "invalid-request-level": 5,
+      "invalid-request-grade": 8,
+      "historical-default-parity": 3430,
+      "inventory-six-scope-oracle": 10290,
+      "determinism-no-mutation": 12,
+      "parent-pilot-closure": 84,
+      "parent-pilot-metadata": 8,
+      "parent-pilot-preservation-metadata": 4,
+      "static-order": 1
+    },
+    "actualNegativeCliAndHelp": 11,
+    "parentTestsRun": 0,
+    "originalExtractions": 0,
+    "validationMocks": 0,
+    "modelsApiDbCalls": 0,
+    "note": "Final count excludes repeated initial harness attempts and the one corrected oracle expectation; all diagnostics preserved."
+  },
+  "normalMetadataResults": {
+    "defaultM3Parity": {
+      "bumil-only": {
+        "jobs": 1715,
+        "mismatches": 0
+      },
+      "bounded-extra-seen": {
+        "jobs": 1715,
+        "mismatches": 0
+      }
+    },
+    "oracleSixScopes": {
+      "inventoryJobs": 1715,
+      "checks": 10290,
+      "mismatches": 0,
+      "eligibleCounts": {
+        "high/1": 123,
+        "high/2": 209,
+        "middle/1": 70,
+        "middle/2": 111,
+        "middle/3": 118,
+        "high/3": 0
+      }
+    },
+    "protectedSchools": [
+      "동도중",
+      "강동중",
+      "경산여중",
+      "정화중"
+    ],
+    "bounds": "Explicit middle/high grades1..3, years2024 rejected, 2025/2026/2027/2100 admitted when all other metadata eligible. Year has no artificial future upper cap. Typed grade/year bool,float,string rejected. Existing actual IDs/counts, protected4 schools, seen, unready and unselected controls held.",
+    "noMutation": "12 repeated plain-data checks unchanged; historical inventory/source metadata hashes unchanged."
+  },
+  "findings": [
+    {
+      "id": "U58-R1-malformed-or-unknown-registration-metadata-accepted",
+      "status": "technical-hold",
+      "ownCounterexamples": 20,
+      "observed": [
+        {
+          "category": "field-corruption",
+          "label": "selectedPair/6",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": true,
+            "existingExamIds": [],
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "selectedPair/7",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": 1,
+            "existingExamIds": [],
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "selectedPair/8",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": "false",
+            "existingExamIds": [],
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "selectedPair/9",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": [
+              "pair"
+            ],
+            "existingExamIds": [],
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "selectedPair/10",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "x"
+            },
+            "existingExamIds": [],
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "selectedPair/11",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "hwp": "x"
+            },
+            "existingExamIds": [],
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "selectedPair/12",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": null,
+              "hwp": null
+            },
+            "existingExamIds": [],
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingExamIds/4",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": {},
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingExamIds/5",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": null,
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingExamIds/6",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": false,
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingExamIds/7",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": 0,
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingExamIds/8",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": "",
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingQuestionCount/5",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": [],
+            "existingQuestionCount": null
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingQuestionCount/6",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": [],
+            "existingQuestionCount": false
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingQuestionCount/7",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": [],
+            "existingQuestionCount": 0.0
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingQuestionCount/8",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": [],
+            "existingQuestionCount": ""
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingQuestionCount/9",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": [],
+            "existingQuestionCount": []
+          }
+        },
+        {
+          "category": "field-corruption",
+          "label": "existingQuestionCount/10",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": [],
+            "existingQuestionCount": {}
+          }
+        },
+        {
+          "category": "missing-field",
+          "label": "existingExamIds",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingQuestionCount": 0
+          }
+        },
+        {
+          "category": "missing-field",
+          "label": "existingQuestionCount",
+          "expected": false,
+          "actual": true,
+          "fixture": {
+            "examId": "own-unseen-id",
+            "school": "독립새학교",
+            "level": "중",
+            "grade": 3,
+            "year": 2025,
+            "status": "readyForExtraction",
+            "selectedPair": {
+              "pdf": "own-fixture.pdf",
+              "hwp": "own-fixture.hwp"
+            },
+            "existingExamIds": []
+          }
+        }
+      ],
+      "cause": "bool(selectedPair) and not existingExamIds/not existingQuestionCount use truthiness instead of validating the metadata shapes/known zero state.",
+      "examples": [
+        "selectedPair=true,1,\"false\",nonempty list or missing/null pdf/hwp fields can return eligible=True.",
+        "existingExamIds={},null,false,0,\"\" or absent returns eligible=True.",
+        "existingQuestionCount=null,false,0.0,\"\",[],{} or absent returns eligible=True."
+      ],
+      "oracleBasis": "Normal authorized inventory represents selectedPair as null or dictionary(pdf,hwp), existingExamIds as list and existingQuestionCount as integer. Unknown/malformed prior registration cannot establish that a source is unregistered. A completed selected pair requires both nonempty string pointers. Extra harmless pair metadata is allowed in corrected own oracle.",
+      "limits": "Inherited truthiness behavior also appears in prior narrow reader; this is not a proven routing regression on any of the 1715 current records. Ordinary inventory matches independently. A malformed eligibility acceptance is not successful source parse or release; downstream parsing may hold. No production queue/input modified.",
+      "proposalOnly": "Fail closed on missing/malformed known-registration fields and validate selected-pair shape before eligibility; parent decides separately versioned repair, not this worker."
+    },
+    {
+      "id": "U58-R1-stale-selectionPolicy-receipt-description",
+      "status": "metadata-provenance-hold",
+      "observedReceipts": 4,
+      "observedText": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+      "actualScopes": [
+        [
+          "middle",
+          1
+        ],
+        [
+          "middle",
+          2
+        ],
+        [
+          "high",
+          1
+        ],
+        [
+          "high",
+          2
+        ]
+      ],
+      "rootLine": [
+        208
+      ],
+      "cause": "Generalized CLI records correct extractionScopeAsProvided per entry but retains hardcoded middle3 aggregate selectionPolicy.",
+      "limits": "Eight pilot entry grades/levels match provided scope and correct per-entry extractionScope; stale description does not prove wrong extracted school grade. It is a contradictory aggregate policy description, not original source-fidelity or grade approval.",
+      "proposalOnly": "Bind aggregate policy text/structured scope to actual level/grade in future version."
+    }
+  ],
+  "cli": {
+    "resultSHA256": "d41a7dd9d4e0cecca35561f2a67d844749dfdb43cbbd6689e4964b334a91331c",
+    "passed": 11,
+    "cases": [
+      "mixed-grade",
+      "mixed-level",
+      "default-m3-reject-m1",
+      "grade-zero",
+      "level-invalid",
+      "duplicates",
+      "one-id",
+      "seven-ids",
+      "traversal",
+      "absolute-output",
+      "help"
+    ],
+    "actualMain": true,
+    "guardMethod": "Actual copied production main and helper execute unchanged. Python OS audit hook permits exact authorized inventory plus standard library read-only, rejects all writes and other reads; no eligibility/parser mocks. Mixed grade/level fail through actual ineligible-job parser.error, exit2. Help exit0.",
+    "observed": "No source read, mkdir or output artifact event in bounded runs. Only authorized inventory and standard-library reads occur.",
+    "staticOrder": {
+      "eligibilityGuard": [
+        77,
+        108
+      ],
+      "outputMkdir": [
+        80
+      ],
+      "parserImport": [
+        96
+      ]
+    },
+    "limits": "Copied runtime ROOT differs from production and has no production prior-manifest history. main loads prior next-*/source-manifest.json for seen metadata before eligibility in production; these can contain question bodies. Therefore this audit does not claim every possible prior question-bearing file is read only after the guard. Actual newly selected HWP/PDF reads/parser imports follow eligibility and mkdir. No positive CLI, source reparse, source-specific tool import, or active 505 queue run."
+  },
+  "pilotMetadata": {
+    "papers": 8,
+    "aggregateReceipts": 4,
+    "parentReportedNewObservations": 171,
+    "bindings": [
+      {
+        "receiptSHA256": "d7be08427a2c5c6c4375ebbc27a2c980b6e6ac019ba84f6ef82d21cccb38a14d",
+        "papers": 2,
+        "parentReportedNewObservations": 41,
+        "scope": [
+          "middle",
+          1
+        ],
+        "policyText": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+        "independentOriginalVerification": false
+      },
+      {
+        "receiptSHA256": "9c05adf4698e6f15ce64ab746bd90c471b6e4cb14b0ecb2ed5f8ff4abef1b670",
+        "papers": 2,
+        "parentReportedNewObservations": 40,
+        "scope": [
+          "middle",
+          2
+        ],
+        "policyText": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+        "independentOriginalVerification": false
+      },
+      {
+        "receiptSHA256": "52354937b7d3512dca9518e0a551455fa0ffb8869ae6c1d5e596a1a161046419",
+        "papers": 2,
+        "parentReportedNewObservations": 45,
+        "scope": [
+          "high",
+          1
+        ],
+        "policyText": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+        "independentOriginalVerification": false
+      },
+      {
+        "receiptSHA256": "c25e43b313a68e4ad3a54e919d34bc5bf77c25227d1da3310fd0a80f65f6c916",
+        "papers": 2,
+        "parentReportedNewObservations": 45,
+        "scope": [
+          "high",
+          2
+        ],
+        "policyText": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+        "independentOriginalVerification": false
+      }
+    ],
+    "whatVerified": "Four actual aggregate files match supplied hashes, expected 8 IDs/scopes and parsed-quarantined status; metadata counts and recorded before/after preservation equality checked.",
+    "notVerified": "No receipt-referenced HWP/PDF/question manifest/image/source hash reread, no question text/formula/figure/score/source identity fidelity inspection. Parent-executed observations are not own extractions or approval."
+  },
+  "closureStaticAndMetadata": {
+    "observedAggregateZeros": [
+      "componentsApproved",
+      "twins",
+      "dbWrites",
+      "wholePairCertifications",
+      "gradeApprovals",
+      "rightsApprovals"
+    ],
+    "observedEntryFalse": [
+      "identityApproved",
+      "wholePairCertified",
+      "extractionScopeAsProvided.studentCurriculumApproval"
+    ],
+    "observedQuarantine": "Manifest sets contentApproved=False, authorDistributionAllowed=False, quarantined=True, originalAnswersExported=False; aggregate authorDistributionAllowed=False and allSourcesExtracted=False.",
+    "sourceGrade": "Year/level/grade are explicitly as-provided; curriculumEdition=pending-original-year-grade-evidence. Successful parse never certifies a student method or curriculum.",
+    "flagsNotPresent": "No native/loadable/family release approval is introduced by this standalone extraction scope; absence is not a newly tested app release gate. No whole-app/API/DB/native routing certification.",
+    "unknownsRemainHeld": [
+      "whole-source/HWP-PDF identity",
+      "rights",
+      "student curriculum and method",
+      "native/loadability",
+      "family fit",
+      "2022 placement"
+    ]
+  },
+  "preservation": {
+    "all17BindingsBeforeAfterEqual": true,
+    "sourceRootSnapshotRuntimeFiles": 3,
+    "sourceInstances": 9,
+    "metadataBindings": 8,
+    "productionEdits": 0,
+    "activeQueueTouched": false,
+    "u57RepairRead": false,
+    "oldRawReportsChanged": false,
+    "utf8ProbeSHA256": "6827ff4315e48e0204ed3acb05e5c8399c0c63e989bf16170d8f1e2904e575f4"
+  },
+  "harnessCorrections": [
+    {
+      "initial": "Own oracle initially rejected an otherwise complete pdf/hwp pair containing extra metadata.",
+      "correction": "Allow extra pair keys; retain initial 21 failures, corrected final20. This one expectation is not a source defect."
+    },
+    {
+      "initial": "First audit fence rejected lazy Python standard-library locale import before argparse ran.",
+      "correction": "Allow Python standard library read-only while retaining inventory-only project data and all-write deny. Initial11 aborted results preserved, not production failures."
+    },
+    {
+      "initial": "Second CLI harness console cp949 could not print en dash in parser error; later inspection omitted UTF8 read encoding.",
+      "correction": "Explicit UTF8 console and file reads. Own harness failures, not production failures. No source change."
+    }
+  ],
+  "artifacts": {
+    "own-controls.py": "b2303cb04808e1e84040105a9f9b0f64abc45f0e7810ab2eb064a3a4beb78e07",
+    "own-controls-r2.py": "9fb9c7bffe321ab400228b0c5ee6219f430491efecee53397538cae593029768",
+    "own-controls-results.json": "712c390bf8ab9dc97d4b488bc9e120043741d14b0858d44b41e59405cfee6529",
+    "own-controls-results-r2.json": "574154c0fa6ee0e93c98ef0df1be14b89f307d5cb178a932111bd4a9bde5d278",
+    "own-cli-probe.py": "c9215d1970d6d432bb8a221f36731cbd65b45de7be521223c7123ad0ddb5eb37",
+    "own-cli-probe-r2.py": "c12c4aaec0c5c745f9a43c7e80753bb3fcc213552ef76751b8eeed85bc234cb8",
+    "own-cli-probe-r3.py": "3bbcd3b83a33445e05d650761ad69f8877804839e3ae0741bc5e10eb4b000619",
+    "own-run-cli.py": "7bc8477e1cf66b8af2fbf20626b5dfda200a0b7dbdf740ddb2f7226130615295",
+    "own-cli-results.json": "18ff1b935d1044ae6e5d1d9342a250a9383fddf4074d9af771976f9d18f64536",
+    "own-cli-results-r3.json": "d41a7dd9d4e0cecca35561f2a67d844749dfdb43cbbd6689e4964b334a91331c",
+    "own-before.json": "1dcff389d111884e9a71bc6a830852fec58fb291748462282db25a0b32da0740",
+    "own-recheck-before.json": "1dcff389d111884e9a71bc6a830852fec58fb291748462282db25a0b32da0740",
+    "own-after.json": "1dcff389d111884e9a71bc6a830852fec58fb291748462282db25a0b32da0740",
+    "own-utf8-probe.txt": "6827ff4315e48e0204ed3acb05e5c8399c0c63e989bf16170d8f1e2904e575f4"
+  }
+}

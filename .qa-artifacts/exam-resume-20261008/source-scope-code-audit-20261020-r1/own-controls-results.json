@@ -1,0 +1,495 @@
+{
+  "counts": {
+    "scope-matrix": 180,
+    "field-corruption": 79,
+    "missing-field": 9,
+    "seen-id": 2,
+    "object-shape": 6,
+    "invalid-request-level": 5,
+    "invalid-request-grade": 8,
+    "historical-default-parity": 3430,
+    "inventory-six-scope-oracle": 10290,
+    "determinism-no-mutation": 12,
+    "parent-pilot-closure": 84,
+    "parent-pilot-metadata": 8,
+    "parent-pilot-preservation-metadata": 4,
+    "static-order": 1
+  },
+  "total": 14118,
+  "passed": 14097,
+  "failures": [
+    {
+      "category": "field-corruption",
+      "label": "selectedPair/6",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": true,
+        "existingExamIds": [],
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "selectedPair/7",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": 1,
+        "existingExamIds": [],
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "selectedPair/8",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": "false",
+        "existingExamIds": [],
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "selectedPair/9",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": [
+          "pair"
+        ],
+        "existingExamIds": [],
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "selectedPair/10",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "x"
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "selectedPair/11",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "hwp": "x"
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "selectedPair/12",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": null,
+          "hwp": null
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "selectedPair/13",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "x",
+          "hwp": "y",
+          "extra": true
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingExamIds/4",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": {},
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingExamIds/5",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": null,
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingExamIds/6",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": false,
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingExamIds/7",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": 0,
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingExamIds/8",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": "",
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingQuestionCount/5",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": null
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingQuestionCount/6",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": false
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingQuestionCount/7",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": 0.0
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingQuestionCount/8",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": ""
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingQuestionCount/9",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": []
+      }
+    },
+    {
+      "category": "field-corruption",
+      "label": "existingQuestionCount/10",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": [],
+        "existingQuestionCount": {}
+      }
+    },
+    {
+      "category": "missing-field",
+      "label": "existingExamIds",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingQuestionCount": 0
+      }
+    },
+    {
+      "category": "missing-field",
+      "label": "existingQuestionCount",
+      "expected": false,
+      "actual": true,
+      "fixture": {
+        "examId": "own-unseen-id",
+        "school": "독립새학교",
+        "level": "중",
+        "grade": 3,
+        "year": 2025,
+        "status": "readyForExtraction",
+        "selectedPair": {
+          "pdf": "own-fixture.pdf",
+          "hwp": "own-fixture.hwp"
+        },
+        "existingExamIds": []
+      }
+    }
+  ],
+  "defaultParity": {
+    "bumil-only": {
+      "jobs": 1715,
+      "mismatches": 0
+    },
+    "bounded-extra-seen": {
+      "jobs": 1715,
+      "mismatches": 0
+    }
+  },
+  "sixScopeEligibleCounts": {
+    "high/1": 123,
+    "high/2": 209,
+    "middle/1": 70,
+    "middle/2": 111,
+    "middle/3": 118
+  },
+  "pilotBindings": [
+    {
+      "receiptSHA256": "d7be08427a2c5c6c4375ebbc27a2c980b6e6ac019ba84f6ef82d21cccb38a14d",
+      "papers": 2,
+      "parentReportedNewObservations": 41,
+      "scope": [
+        "middle",
+        1
+      ],
+      "policyText": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+      "independentOriginalVerification": false
+    },
+    {
+      "receiptSHA256": "9c05adf4698e6f15ce64ab746bd90c471b6e4cb14b0ecb2ed5f8ff4abef1b670",
+      "papers": 2,
+      "parentReportedNewObservations": 40,
+      "scope": [
+        "middle",
+        2
+      ],
+      "policyText": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+      "independentOriginalVerification": false
+    },
+    {
+      "receiptSHA256": "52354937b7d3512dca9518e0a551455fa0ffb8869ae6c1d5e596a1a161046419",
+      "papers": 2,
+      "parentReportedNewObservations": 45,
+      "scope": [
+        "high",
+        1
+      ],
+      "policyText": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+      "independentOriginalVerification": false
+    },
+    {
+      "receiptSHA256": "c25e43b313a68e4ad3a54e919d34bc5bf77c25227d1da3310fd0a80f65f6c916",
+      "papers": 2,
+      "parentReportedNewObservations": 45,
+      "scope": [
+        "high",
+        2
+      ],
+      "policyText": "unparsed 2025+ middle3 completed pair, protected schools/known parsed IDs excluded",
+      "independentOriginalVerification": false
+    }
+  ],
+  "parentTestsRun": 0,
+  "ownSourceExtractions": 0,
+  "noInputMutation": true
+}

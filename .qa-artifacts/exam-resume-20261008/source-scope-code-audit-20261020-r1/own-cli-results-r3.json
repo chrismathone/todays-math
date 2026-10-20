@@ -1,0 +1,620 @@
+{
+  "actualProductionMain": true,
+  "validationMocks": 0,
+  "filesystemFence": "Audit hook denies all writes and non-inventory/non-standard-library reads; no successful extraction invoked. Initial fence omitted lazy locale import; second harness hit cp949 console encoding. Both harness issues, not production faults.",
+  "cases": [
+    {
+      "mode": "mixed-grade",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--level",
+        "middle",
+        "--grade",
+        "1"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: personal-11c64124bf2ff6eef6749d12cb777e8f\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "mixed-level",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-8eec901cfcf0f5f6e58dec34775bc19f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--level",
+        "middle",
+        "--grade",
+        "1"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: personal-8eec901cfcf0f5f6e58dec34775bc19f\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "default-m3-reject-m1",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-57992c45fa81adc2866b0dd6fc4972b1",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Ineligible, protected, duplicate or previously parsed job: personal-324e5308ec33be22e950f921204b6a5a\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\encodings\\__pycache__\\utf_8_sig.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "grade-zero",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--grade",
+        "0"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: argument --grade: invalid choice: 0 (choose from 1, 2, 3)\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "level-invalid",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "own-u58-negative-never-created",
+        "--level",
+        "elementary"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: argument --level: invalid choice: 'elementary' (choose from 'middle', 'high')\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "duplicates",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Supply 2–6 unique explicit IDs, including optional fallbacks\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "one-id",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Supply 2–6 unique explicit IDs, including optional fallbacks\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "seven-ids",
+      "args": [
+        "--job-ids",
+        "own-0",
+        "own-1",
+        "own-2",
+        "own-3",
+        "own-4",
+        "own-5",
+        "own-6",
+        "--out",
+        "own-u58-negative-never-created"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: Supply 2–6 unique explicit IDs, including optional fallbacks\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "traversal",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "../own-u58-outside"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: A new immediate evidence directory is required\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "absolute-output",
+      "args": [
+        "--job-ids",
+        "personal-324e5308ec33be22e950f921204b6a5a",
+        "personal-11c64124bf2ff6eef6749d12cb777e8f",
+        "--out",
+        "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\source-scope-code-audit-20261020-r1\\own-never-created-output"
+      ],
+      "exit": 2,
+      "stdout": "",
+      "stderr": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\nextract-fresh-sources-20261019.py: error: A new immediate evidence directory is required\n",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    },
+    {
+      "mode": "help",
+      "args": [
+        "--help"
+      ],
+      "exit": 0,
+      "stdout": "usage: extract-fresh-sources-20261019.py [-h] --job-ids JOB_IDS [JOB_IDS ...]\n                                         --out OUT [--max-success {2,3}]\n                                         [--level {middle,high}]\n                                         [--grade {1,2,3}]\n\nExplicit-job, offline question extraction. Raw outputs stay local/quarantined.\nOnly aggregate-receipt.json is intended for Git. No source text/images are\nreleased. Run with python -B; original reader/converter/textlayer are imported\nunchanged.\n\noptions:\n  -h, --help            show this help message and exit\n  --job-ids JOB_IDS [JOB_IDS ...]\n  --out OUT\n  --max-success {2,3}\n  --level {middle,high}\n  --grade {1,2,3}\n",
+      "stderr": "",
+      "exception": null,
+      "events": [
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\locale.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\shutil.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\bz2.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\_compression.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\lzma.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        },
+        {
+          "event": "open",
+          "path": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__pycache__\\textwrap.cpython-311.pyc",
+          "mode": "r",
+          "flags": 32896
+        }
+      ],
+      "runtimeBASE": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\.qa-artifacts\\exam-resume-20261008",
+      "wouldBeOutputExists": false,
+      "passed": true
+    }
+  ],
+  "total": 11,
+  "passed": 11
+}
