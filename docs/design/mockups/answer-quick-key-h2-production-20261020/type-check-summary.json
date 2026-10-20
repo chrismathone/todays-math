@@ -65,5 +65,10 @@
       "src/lib/eywa/managedTestResults.ts",
       30
     ]
-  ]
+  ],
+  "qaHarnessDiagnosticsFixedAfterRun": [
+    "scripts/qa/print-templates/fixture.tsx: Window assertion replaced by Object.assign",
+    "scripts/qa/print-templates/h2-production.tsx: Window assertion replaced by Object.assign"
+  ],
+  "fullCheckRepeated": false
 }
