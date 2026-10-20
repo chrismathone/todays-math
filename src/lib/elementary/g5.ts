@@ -8736,7 +8736,7 @@ function fm222AfterDen(unit: UnitSeed, rng: Rng): ElemProblem {
   const [, den] = simplify(k * a, d);
   return make(
     unit,
-    `${expr(`${k}\\times\\frac{${a}}{${d}}`)}를 계산하여 기약분수로 나타낼 때 분모는 얼마입니까?`,
+    `${lj(`${k}\\times\\frac{${a}}{${d}}`, "을", "를")} 계산하여 기약분수로 나타낼 때 분모는 얼마입니까?`,
     n(den),
     `${expr(`\\frac{${k}\\times${a}}{${d}}=${fracLatex(...simplify(k * a, d))}`)}이므로 분모는 ${n(den)}입니다.`,
   );
