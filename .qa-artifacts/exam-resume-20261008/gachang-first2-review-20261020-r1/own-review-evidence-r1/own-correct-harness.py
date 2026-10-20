@@ -1,0 +1,3 @@
+﻿from pathlib import Path
+import json
+P=Path('.qa-artifacts/exam-resume-20261008/gachang-first2-review-20261020-r1/own-review-evidence-r1');p=P/'own-review-check.py';t=p.read_text(encoding='utf-8-sig');p.write_text(t.replace('{rawpath.as_posix()}','{rawpath.relative_to(Path.cwd()).as_posix()}'),encoding='utf-8');(P/'own-harness-diagnostic.json').write_text(json.dumps({'ownHarnessFailure':'Initial git show used absolute Windows path after commit colon; Git interpreted invalid object path and rejected before raw comparison.','correction':'Repo-relative exact allowed raw path; no raw/candidate/source changes.','productionFault':False},indent=2)+'\n',encoding='utf-8')

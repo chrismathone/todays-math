@@ -1,0 +1,11 @@
+﻿import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath,pathToFileURL} from 'node:url';
+import crypto from 'node:crypto';
+const evidence=path.dirname(fileURLToPath(import.meta.url)),base=path.dirname(evidence);
+const collector=path.resolve('.qa-artifacts/exam-resume-20261008/bare-unit-notation-code-audit-20261020-r1/provided-code-runtime-local/review-exam-twins.mjs');
+const module=await import(pathToFileURL(collector).href);
+const result=await module.auditCollectedPack(path.join(base,'package'),path.join(base,'blind'),path.join(base,'verification'));
+const out={method:'Actual existing scoped production collector runtime, no mocks, current local package/blind/verification. No DB/API/model; collector gates do not replace independent human/math/grade evidence.',collectorSHA256:crypto.createHash('sha256').update(fs.readFileSync(collector)).digest('hex'),result};
+fs.writeFileSync(path.join(evidence,'own-collector-result.json'),JSON.stringify(out,null,2)+'\n');
+console.log(JSON.stringify(result,null,2));
