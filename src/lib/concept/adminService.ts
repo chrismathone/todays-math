@@ -1,6 +1,6 @@
 import {
   accessibleClassesWhere,
-  loadOperationalRoster,
+  loadOperationalRosterSummary,
 } from "@/lib/classAccess";
 /**
  * 오늘의 개념 — 원장님 메뉴의 **DB 쪽** (브리프 §1.4). 라우트는 권한만 보고 여기를 부른다.
@@ -33,8 +33,7 @@ import { db } from "@/lib/db";
 import { kstDateOf } from "@/lib/kstDate";
 import { type ScopeViewer } from "@/lib/ownerScope";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
-import { getCurrentProgress } from "@/lib/progressResolver";
-import { serializeProgress } from "@/lib/serializers";
+import { loadLatestClassProgress } from "./latestClassProgress";
 
 import {
   assembleConceptBoard,
@@ -67,11 +66,6 @@ const fail = (
   details?: unknown,
 ): ServiceResult<never> => ({ ok: false, status, code, message, details });
 
-/** `/api/progress` · `/api/progress/advance` 와 **글자 그대로** 같은 «최신» 순서 */
-const LATEST_FIRST = [
-  { recordedAt: "desc" as const },
-  { createdAt: "desc" as const },
-];
 const LECTURE_ORDER = [
   { sortOrder: "asc" as const },
   { createdAt: "asc" as const },
@@ -181,23 +175,8 @@ export async function loadConceptBoard(
   const classIds = classes.map((c) => c.id);
 
   const [students, latestProgress] = await Promise.all([
-    loadOperationalRoster(classIds, true),
-    // 반 진도 최신 한 건 — `/api/progress` 의 반 진도 조회와 같은 질의·같은 판정.
-    Promise.all(
-      classIds.map(async (classId) => {
-        const rows = await db.progress.findMany({
-          where: { retiredAt: null, classId, studentId: null },
-          orderBy: LATEST_FIRST,
-          take: 1,
-        });
-        const current = getCurrentProgress({
-          classProgress: rows.map(serializeProgress),
-        });
-        return current
-          ? { classId, unitId: current.unitId, recordedAt: current.recordedAt }
-          : null;
-      }),
-    ),
+    loadOperationalRosterSummary(classes, true),
+    loadLatestClassProgress(classIds),
   ]);
 
   // 반 목록 순서 = 학생 화면(`GET /api/students`)과 같은 등록순.
@@ -209,7 +188,7 @@ export async function loadConceptBoard(
   const base = {
     classes,
     students: roster,
-    latestProgress: latestProgress.filter((p) => p !== null),
+    latestProgress,
     units: boardUnits,
   };
 

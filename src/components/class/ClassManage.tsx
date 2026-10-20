@@ -21,12 +21,14 @@ import { useClassManage } from "@/hooks/useClassManage";
 import { emptyPlanDraft, type PlanDraft } from "@/lib/class/planDraft";
 import { kstDateOf } from "@/lib/kstDate";
 import { findUnit, type UnitNode } from "@/lib/units/groupUnits";
+import type { TeachingClasses } from "@/contracts/teaching.contract";
 
 import planStyles from "./ProgressPlan.module.css";
 import s from "./ClassManage.module.css";
 
 type ClassManageProps = {
   units: UnitNode[];
+  initialClasses?: TeachingClasses;
   /** 반 추가 — 지점 전체(원장·관리자). `ownerScope.canManageRoster` */
   canManageRoster?: boolean;
   /** 학생 등록 — 담당 강사도 가능. 로그인 계정 권한과 별도로 판정한다. */
@@ -43,13 +45,14 @@ type MutationFeedback = {
 
 export function ClassManage({
   units,
+  initialClasses,
   canManageRoster = false,
   canManageStudents = canManageRoster,
   canManageAccounts = false,
 }: ClassManageProps) {
   const query = useScreenQuery();
   const context = contextParams(query);
-  const manage = useClassManage(context.get("classId") ?? "");
+  const manage = useClassManage(context.get("classId") ?? "", initialClasses);
   const current = findUnit(units, manage.currentUnitId);
   const selectedClass = manage.selectedClass;
   const progressDisabled =

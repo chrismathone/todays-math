@@ -48,7 +48,7 @@ import {
   ArithmeticBasketSelection,
   useArithmeticBasketSelection,
 } from "./ArithmeticBasketSelection";
-import { arithmeticReviewRounds } from "@/lib/arithmeticOutput";
+import { arithmeticReviewRounds } from "@/lib/arithmeticReviewRounds";
 import type {
   ArithmeticRegenerationResult,
   ArithmeticRegenerationTarget,

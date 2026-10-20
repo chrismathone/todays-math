@@ -22,6 +22,7 @@ describe.each([
 
   it("removes only checked rows across catalog filters, preserving counts, rounds and the generated draft", async () => {
     render(<Workbench canOutput preview />);
+    await screen.findByLabelText(catalogLabel);
     fireEvent.click(cards()[1]);
     fireEvent.click(cards()[2]);
     const quantities = basket().getAllByRole("spinbutton", {
@@ -65,8 +66,9 @@ describe.each([
     ).toBe(snapshot);
   });
 
-  it("supports select-all, partial selection, deselect-all and removing all without selecting newly added rows", () => {
+  it("supports select-all, partial selection, deselect-all and removing all without selecting newly added rows", async () => {
     render(<Workbench canOutput preview />);
+    await screen.findByLabelText(catalogLabel);
     fireEvent.click(cards()[1]);
     fireEvent.click(all());
     expect(checks().every((input) => (input as HTMLInputElement).checked)).toBe(
@@ -101,8 +103,9 @@ describe.each([
     expect(remove()).toBeDisabled();
   });
 
-  it("forgets checked rows removed individually or through a catalog card before re-adding them", () => {
+  it("forgets checked rows removed individually or through a catalog card before re-adding them", async () => {
     render(<Workbench canOutput preview />);
+    await screen.findByLabelText(catalogLabel);
     fireEvent.click(cards()[1]);
     fireEvent.click(checks()[1]);
     fireEvent.click(basket().getAllByRole("button", { name: / 빼기$/ })[1]);

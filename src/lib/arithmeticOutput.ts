@@ -3,7 +3,7 @@ import type { ArithmeticSheetPayload } from "@/contracts/arithmeticSheet.contrac
 import type { ArithmeticV2SheetPayload } from "@/contracts/arithmeticV2.contract";
 import type { ArithmeticSkillSelection } from "@/contracts/arithmetic.contract";
 import { listArithmeticSkills } from "@/lib/arithmetic/catalog";
-import { listArithmeticV2Types } from "@/lib/arithmetic-v2";
+import { arithmeticV2Definitions } from "@/lib/arithmetic-v2/registry";
 import { arithmeticSelectionTitle } from "@/lib/arithmeticPresentation";
 import {
   arithmeticGeometrySvg,
@@ -43,10 +43,6 @@ export function arithmeticToStudioProblems(
   sheet: ArithmeticOutputSheet,
 ): StudioProblem[] {
   let number = 0;
-  const types = new Map(listArithmeticV2Types().map((type) => [type.id, type]));
-  const skills = new Map(
-    listArithmeticSkills().map((skill) => [skill.skillId, skill]),
-  );
   const base = {
     questionType: "short-answer" as const,
     solution: "",
@@ -57,6 +53,10 @@ export function arithmeticToStudioProblems(
     figureSourceMm: [],
   };
   if (sheet.payloadVersion === 2) {
+    // Saved items need only type metadata, never all 737 generated examples.
+    const types = new Map(
+      arithmeticV2Definitions().map((type) => [type.id, type]),
+    );
     return sheet.rounds.flatMap((round) =>
       round.items.map((item) => {
         const type = types.get(item.typeId);
@@ -149,6 +149,9 @@ export function arithmeticToStudioProblems(
       }),
     );
   }
+  const skills = new Map(
+    listArithmeticSkills().map((skill) => [skill.skillId, skill]),
+  );
   return sheet.rounds.flatMap((round) =>
     round.items.map((item) => {
       const skill = skills.get(item.spec.skillId);
@@ -190,39 +193,7 @@ export function arithmeticToStudioProblems(
   );
 }
 
-/** Regeneration from review preserves EACH saved round, including heterogeneous rounds. */
-export function arithmeticV2ReviewRounds(sheet: ArithmeticV2SheetPayload) {
-  return sheet.rounds.map((round) => {
-    const counts = new Map<string, number>();
-    for (const item of round.items)
-      counts.set(item.typeId, (counts.get(item.typeId) ?? 0) + 1);
-    return {
-      allocations: [...counts].map(([typeId, count]) => ({ typeId, count })),
-    };
-  });
-}
-
-export function arithmeticReviewRounds(sheet: ArithmeticSheetPayload) {
-  return sheet.rounds.map((round) => {
-    const groups = new Map<
-      string,
-      {
-        skillId: (typeof round.items)[number]["spec"]["skillId"];
-        constraints: (typeof round.items)[number]["spec"]["constraints"];
-        count: number;
-      }
-    >();
-    for (const { spec } of round.items) {
-      const key = JSON.stringify([spec.skillId, spec.constraints]);
-      const previous = groups.get(key);
-      if (previous) previous.count++;
-      else
-        groups.set(key, {
-          skillId: spec.skillId,
-          constraints: structuredClone(spec.constraints),
-          count: 1,
-        });
-    }
-    return { skills: [...groups.values()] };
-  });
-}
+export {
+  arithmeticV2ReviewRounds,
+  arithmeticReviewRounds,
+} from "./arithmeticReviewRounds";
