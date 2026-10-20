@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {readJson,sha256} from '../../../scripts/import/exam-twin/candidatePack.mjs';
+const e='.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/',git=(...a)=>{const x=spawnSync('git',a,{encoding:'utf8'});assert.equal(x.status,0,x.stderr);return x.stdout.trim();},head=git('rev-parse','HEAD'),main=git('rev-parse','origin/main');git('merge-base','--is-ancestor',main,head);
+const code=readJson('.qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r35.json').code;
+for(const r of code)assert.equal(sha256(fs.readFileSync(r.path)),r.sha256);
+const tests=fs.readdirSync('scripts/import/exam-twin').filter(p=>p.endsWith('.test.mjs')).map(p=>'scripts/import/exam-twin/'+p),units=['courseListAnswers','mathSrsElementaryCourse','srsStoredContractWalk','printSpacingReader','mathgenPrint','examStudyContract','examStudyInverseMinimum','examStudyInverseTangentRectangle','lockProblemRows','smartPrintSpacing'].map(p=>'src/__tests__/unit/'+p+'.test.ts'),jobs=[
+ ['v43-post-main-node-r1.tap',['--test',...tests]],
+ ['v43-post-main-vitest-r1.log',['node_modules/vitest/vitest.mjs','run',...units,...['PrintOptionsPanel','smartPrintSpacing','useMeasuredPages'].map(n=>'src/__tests__/components/'+n+'.test.tsx'),'--maxWorkers=1','--reporter=json','--reporter=default','--outputFile.json='+e+'v43-post-main-vitest-r1.json']]
+];
+for(const[name,args]of jobs){const r=spawnSync(process.execPath,args,{encoding:'utf8',maxBuffer:16*1024*1024});fs.writeFileSync(e+name,r.stdout+r.stderr,{flag:'wx'});console.log(JSON.stringify({name,status:r.status}));assert.equal(r.status,0,(r.stdout+r.stderr).slice(-4000));}
+const v=readJson(e+'v43-post-main-vitest-r1.json');assert.equal(v.numFailedTests,0);for(const r of code)assert.equal(sha256(fs.readFileSync(r.path)),r.sha256);assert.equal(git('rev-parse','HEAD'),head);
+const receipt={utc:new Date().toISOString(),head,main,mainIsAncestorOfTestedHead:true,priorBuilderIntegrationValidation:e+'working-post-main-validation-r1.json',priorReaderFloorValidation:e+'working-post-main-validation-r2.json',current162Finalization:e+'canonical-v43-finalization-r1.json',newMainDelta:'Latest main print smart-spacing writer/pagination and coauthor visual evidence; preserve reader and writer floors and current 97code hashes',nodeFiles:tests.length,nodeSummary:fs.readFileSync(e+'v43-post-main-node-r1.tap','utf8').slice(-250),vitestFiles:v.testResults.length,vitestPassed:v.numPassedTests,vitestFailed:v.numFailedTests,code,logs:jobs.map(([p])=>({path:e+p,sha256:sha256(fs.readFileSync(e+p))})),dbWrites:0,loadable:0};fs.writeFileSync(e+'v43-post-main-validation-r1.json',JSON.stringify(receipt,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(receipt));

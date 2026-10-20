@@ -1,0 +1,6 @@
+from pathlib import Path
+import sys,json,subprocess
+p=Path('.qa-artifacts/exam-resume-20261008/source-scope-code-audit-20261020-r3');rows=[]
+for mode in ['mixed-grade','mixed-level','default-m3-reject-m1','grade-zero','level-invalid','duplicates','one-id','seven-ids','traversal','absolute-output','help',*[f'fault-{i}'for i in range(20)]]:
+ r=subprocess.run([sys.executable,'-B',str(p/'own-cli-probe.py'),mode],capture_output=True,encoding='utf-8');assert r.returncode==0,(mode,r.stderr);d=json.loads(r.stdout);expected=0 if mode=='help'else 2;d['passed']=d['exit']==expected and not d['exception']and not d['wouldBeOutputExists']and d['inputSHA256Before']==d['inputSHA256After']and all(e['event']=='open'for e in d['events']);rows.append(d)
+(p/'own-cli-results.json').write_text(json.dumps({'actualProductionMain':True,'validationMocks':0,'filesystemFence':'Audit hook denies all writes and non-inventory/non-standard-library reads; no successful extraction invoked. Twenty negative cases configure only INVENTORY to own minimal metadata fixtures; real parser/helper unchanged. Other negative cases use authorized historical inventory. Inputs hashed before/after.','cases':rows,'total':len(rows),'passed':sum(r['passed']for r in rows)},ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps([{k:r[k]for k in ['mode','exit','exception','passed']}for r in rows]))

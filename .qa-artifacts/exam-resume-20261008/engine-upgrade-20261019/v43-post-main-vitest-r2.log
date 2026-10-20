@@ -1,0 +1,37 @@
+
+ RUN  v4.1.10 C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008
+
+ ✓ src/__tests__/unit/examStudyInverseMinimum.test.ts (9 tests) 15072ms
+     ✓ independently solves all24 printed data sets, including positive and negative fourth values  817ms
+     ✓ retains a captured Unit proposal while the internal factory stays hidden in public catalogs  14133ms
+ ✓ src/__tests__/unit/examStudyInverseTangentRectangle.test.ts (9 tests) 14126ms
+     ✓ registers the internal requirement while hiding it from public catalogs and retaining grade/rights holds  13634ms
+ ✓ src/__tests__/unit/mathSrsElementaryCourse.test.ts (58 tests) 11964ms
+     ✓ covers every existing grade 3–6 section exactly once in curriculum order  372ms
+     ✓ generates all 230 sections at seed 1 with supported tiers and original content/figures  3428ms
+     ✓ generates all 230 sections at seed 123 with supported tiers and original content/figures  2846ms
+     ✓ generates all 230 sections at seed 20260923 with supported tiers and original content/figures  2769ms
+     ✓ generates all 230 sections at seed 4294967295 with supported tiers and original content/figures  2482ms
+ ✓ src/__tests__/unit/srsStoredContractWalk.test.ts (6 tests) 2229ms
+     ✓ chooses 초5 and a unit in the settings, then studies every day without a teacher plan  918ms
+     ✓ studies from a teacher plan through sections that hand out self-check problems  445ms
+     ✓ finishes a bank day whose given-up problems were resolved on the spot (follow-ups)  471ms
+ ✓ src/__tests__/components/PrintOptionsPanel.test.tsx (6 tests) 1118ms
+     ✓ keeps arithmetic type headings mandatory without offering ineffective per-question metadata toggles  531ms
+ ✓ src/__tests__/components/smartPrintSpacing.test.tsx (1 test) 673ms
+   ✓ shows five spacing choices, maps saved 4 to narrow without changing it, and toggles smart  667ms
+ ✓ src/__tests__/components/useMeasuredPages.test.tsx (1 test) 575ms
+     ✓ retains mounted pages during metadata remeasurement, then uses the changed header height  569ms
+ ✓ src/__tests__/unit/courseListAnswers.test.ts (30 tests) 197ms
+ ✓ src/__tests__/unit/smartPrintSpacing.test.ts (12 tests) 156ms
+ ✓ src/__tests__/unit/printSpacingReader.test.ts (1 test) 89ms
+ ✓ src/__tests__/unit/mathgenPrint.test.ts (23 tests) 112ms
+ ✓ src/__tests__/unit/examStudyContract.test.ts (17 tests) 100ms
+ ✓ src/__tests__/unit/lockProblemRows.test.ts (1 test) 114ms
+
+ Test Files  13 passed (13)
+      Tests  174 passed (174)
+   Start at  15:49:11
+   Duration  99.52s (transform 14.89s, setup 15.67s, import 18.27s, tests 46.52s, environment 15.59s)
+
+JSON report written to C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/v43-post-main-vitest-r2.json

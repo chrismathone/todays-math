@@ -1,0 +1,36 @@
+{
+  "utc": "2026-10-20T07:03:24.379Z",
+  "canonicalSelected": 162,
+  "canonicalMathGrade": 161,
+  "additionalUnselectedAuthored": 0,
+  "sourceObservationTotalNotContentDedupCertified": 12080,
+  "completed505Plan": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/remaining-ready-scopes-extraction-20261020-r1/aggregate-queue-receipt.json",
+    "sha256": "f3dcc023039766cfa02bd27859b637613ffc3053aea23e63fed92ceeff6bc0d9"
+  },
+  "actualReaderV3IndependentAudit": {
+    "path": ".qa-artifacts/exam-resume-20261008/source-scope-code-audit-20261020-r3/own-audit-report.json",
+    "sha256": "69ae58b375155a4f5e283de4382c878cb5ffc7fff0e89c50433e8456d45bfb1c"
+  },
+  "actualReaderV3ParentReplay": {
+    "path": ".qa-artifacts/exam-resume-20261008/source-reader-v3-replay-20261020-r2/parent-validation-r1.json",
+    "sha256": "2f149b47e30767d1767704292de43d9a03760ad6ee4d7b1749e881e0c33b002c"
+  },
+  "fourReplaysAreNotNewObservations": true,
+  "all174PolicyOverlays": {
+    "path": ".qa-artifacts/exam-resume-20261008/source-scope-policy-overlays-20261020-r2/parent-validation-r1.json",
+    "sha256": "0eb5cb040e891d5c406b2c05d580d243a0c23d462c642cce906b4bd186ddd7be"
+  },
+  "eligibleHistoricalSelectedPairUnattempted": 0,
+  "next733UnpairedMetadata": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/next-unpaired-source-route-plan-20261020-r1.json",
+    "sha256": "da65716df98f032b588e72d82ede095065cfa68b37744dc7b5634dacbc8c6d37"
+  },
+  "latestOriginalUseClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-20261020-r4.json",
+    "sha256": "24776d20ab96b7dbe08328fcab207d0b8403f6857699ab7f7c131d970011ef72"
+  },
+  "catalogColdPerformanceProfile": "existing-one-helper-read-only-in-progress; no optimization code claimed",
+  "dbWrites": 0,
+  "loadable": 0
+}
