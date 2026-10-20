@@ -3703,7 +3703,7 @@ export const ITEMS: PrintCheckItem[] = [
     title: "글 다음 식만 있는 줄 — 한 줄 띄우고 가운데",
     changed:
       "발문에서 글 다음 문단이 식(`$…$`)뿐이면 그 식을 **가운데**에 두고 글과 식 사이를 **한 줄** 띄운다(원장님 2026-10-20 «글과 식 사이에 한 줄 정도 여백을 두고, 식만 가운데 정렬»). " +
-      "전에는 문단 사이 여백이 0 이라 식이 글 바로 아래 왼쪽에 붙어 나갔다. 식 문단이 잇다는 «번호 없는 보기»와 식만 있는 단독 문항(«$141\\times90=\\square$»)은 그대로다. " +
+      "전에는 문단 사이 여백이 0 이라 식이 글 바로 아래 왼쪽에 붙어 나갔다. 식 문단이 잇달거나 식 여럿을 공백으로만 이은 줄(번호 없는 보기)와 식만 있는 단독 문항(«$141\\times90=\\square$»)은 그대로다. " +
       "보기 · 상자 · 정답지 해설은 안 바뀐다. 높이 자(`estimateProblemPx`)도 같은 규칙으로 한 줄씩 더 센다.",
     look:
       "원장님 말씀 그대로: ① «다음 곱셈을 어림하려고 합니다. … 합을 구하시오.» 다음 줄의 «563 × 42» 가 칸 **가운데**에 있고 글과 **한 줄쯤** 떨어져 있는가. " +
@@ -3712,7 +3712,7 @@ export const ITEMS: PrintCheckItem[] = [
     evidence: [
       "src/lib/math/formulaLine.ts · src/components/math/remarkFormulaLines.ts · MarkdownRenderer `formulaLines` · ProblemContent 발문",
       "src/__tests__/unit/formulaLine.test.tsx",
-      "전수 집계(저장소 밖 보고서 report.md) — 공유 DB 에서 «글 뒤 식만 문단»이 있는 행: 엔진초등 3,689 · 엔진중등 3,769 · 교과서 1,406 · 변형 1,093",
+      "전수 집계(저장소 밖 보고서 report.md) — 공유 DB 에서 이 규칙이 표지를 다는 행 7,799(출제 가능 7,670): 엔진초등 3,525 · 엔진중등 2,501 · 교과서 757 · 변형 1,016",
     ],
     scale: "엔진 초등 · 중등 문항의 «…구하시오.» + 식 줄 꼴 전부(초4 1-3-3 곱셈의 어림셈 문형05 가 원장님이 보신 문항)",
     needs: "초4 1-3-3 «다음 곱셈을 어림하려고 합니다» 문항(예: E40303-A05-001) + 중2 «다음 등식이 성립할 때» 문항(예: J20106-A04-001) + 보기가 있는 객관식 하나",
@@ -3735,7 +3735,7 @@ export const ITEMS: PrintCheckItem[] = [
       "src/__tests__/unit/elemDisplayDupes.test.ts",
       "docs/planning/tracks/reports/problem-display-dupes-20261020/elem-display-repair-baseline.json",
     ],
-    scale: "공유 DB 적재본 기준 세로셈 3a 1,040행 · 정답 노출 그림 약 90행 — 적재본은 `refresh-engine-content.ts` 적용(원장님 승인) 전까지 그대로",
+    scale: "공유 DB 적재본 기준 세로셈 3a 1,040행 · 정답 노출 그림 94행 · 그림이 빠지는 행 1,088 — 적재본은 `refresh-engine-content.ts` 적용(원장님 승인) 전까지 그대로",
     needs: "적재본 갱신 뒤의 시험지, 또는 개발 서버 `/dev/elem-engine` 로 뽑은 초4 1-3-1 · 1-3-2 · 2-3-6 · 초5 2-3-2 문항",
     blockedBy: "공유 DB 적재본 갱신(원장님 승인) 전에는 시험지 만들기로 출제한 지면에 옛 그림이 그대로 나온다",
     status: "대기",
