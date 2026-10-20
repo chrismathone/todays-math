@@ -1,0 +1,1510 @@
+{
+  "runtime": "ACTUAL ROOT generateExamStudy, bounded custom families (not mocked generate); throwing factory, DB import stub and network guards; no DB/HTTP invocation",
+  "checks": [
+    {
+      "name": "grade-priority/초1/혼합/{}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/혼합/{}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/객관식/{}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/객관식/{}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/단답형/{}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/단답형/{}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/서술형/{}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/서술형/{}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초1/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초1/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/혼합/{}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/혼합/{}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/객관식/{}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/객관식/{}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/단답형/{}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/단답형/{}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/서술형/{}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/서술형/{}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초2/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "request-reject/초2/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": "출제 조건을 확인해 주세요."
+    },
+    {
+      "name": "grade-priority/초3/혼합/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/혼합/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/객관식/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/객관식/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/단답형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/단답형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/서술형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/서술형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초3/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초3/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/혼합/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/혼합/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/객관식/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/객관식/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/단답형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/단답형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/서술형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/서술형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초4/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초4/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/혼합/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/혼합/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/객관식/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/객관식/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/단답형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/단답형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/서술형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/서술형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초5/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초5/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/혼합/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/혼합/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/객관식/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/객관식/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/단답형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/단답형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/서술형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/서술형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/초6/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/초6/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/혼합/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/혼합/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/객관식/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/객관식/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/단답형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/단답형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/서술형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/서술형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중1/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중1/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/혼합/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/혼합/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/객관식/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/객관식/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/단답형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/단답형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/서술형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/서술형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중2/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중2/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "초등·중1·중2 범위로 승인하지 않은 이차방정식 차수 조건 유형은 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/혼합/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/혼합/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/혼합/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/혼합/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/객관식/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/객관식/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/객관식/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/객관식/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/단답형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/단답형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/단답형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/단답형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/서술형/{}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/서술형/{}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/서술형/{\"id\":\"renamed\",\"version\":\"approved\",\"source\":\"native\",\"confidence\":1,\"gradeApproved\":true,\"curriculumApproved\":true}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "grade-priority/중3/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true
+    },
+    {
+      "name": "generate-held/중3/서술형/{\"fulfills\":[{\"requirement\":\"algebra.inverse-equation-degree\",\"level\":\"component\"}]}",
+      "pass": true,
+      "detail": {
+        "status": "unavailable",
+        "warnings": [
+          "차수 조건 역산 유형은 전체 학년·출처·권리·등록 검토 중이므로 현재 제공하지 않습니다.",
+          "조건을 유지한 서로 다른 문항 0/1개를 제공했습니다. 유한 변형·재시도·가족 상한을 넘어 채우지 않았습니다."
+        ]
+      }
+    },
+    {
+      "name": "version-changes-manifest",
+      "pass": true
+    },
+    {
+      "name": "requirement-changes-manifest",
+      "pass": true
+    },
+    {
+      "name": "factory0",
+      "pass": true
+    },
+    {
+      "name": "network0",
+      "pass": true
+    },
+    {
+      "name": "DB-not-imported",
+      "pass": true
+    }
+  ],
+  "counts": {
+    "unique": 221,
+    "passed": 221,
+    "failed": 0
+  },
+  "factoryCalls": 0,
+  "manifest": "exam-study-manifest-10739193b2c909d332e1fe1e",
+  "DBImports": 0,
+  "networkCalls": 0
+}
