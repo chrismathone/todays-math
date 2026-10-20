@@ -3,10 +3,10 @@
  "baseCommit": "1b3f05e54",
  "agreedWith": "Codex gpt-6-astra xhigh 검토(2026-10-20) — 문형별 결론은 display-survey/codex/reply-engine.md(저장소 밖)",
  "sourceSha256": {
-  "src/lib/elementary/g3.ts": "336bc8c03d105105f4ffabc079b48f2dfae634dbd65ba72ef13383ac4efb721e",
-  "src/lib/elementary/g4.ts": "d1f6434019c557274128a369a7fcc821a1ede4188508ee649884ed0d0aac4c66",
-  "src/lib/elementary/g5.ts": "a05a638e903a3c03e26639089be45f41a5edc6c34ae11d33c6d5fd4893da4356",
-  "src/lib/elementary/g6.ts": "959da75b14e9dc234dd8523c3564a4585bc35637f33ec4b3b2f19006068c1a53"
+  "src/lib/elementary/g3.ts": "c594bf26888524a84091178d9355b0396c7f063d324534b4661c0c81e728d0ea",
+  "src/lib/elementary/g4.ts": "507920a3a8e546f87fff423a8b5bfafae8cc8799571472ebb7b9090b56ab4e84",
+  "src/lib/elementary/g5.ts": "d78762dbc0da50b18cabb834e1d164a387a5c1908b7dc867b9584f8d4f1985f7",
+  "src/lib/elementary/g6.ts": "cffff2f0e68cc68a335792d7689c7be27a5f2c8ef99d45d939ea21bf89a11eaf"
  },
  "changes": [
   {
@@ -10692,6 +10692,336 @@
    "afterRowSha256": "cc774c078a82367cd6e52109b3649c093ee23a71035b1479dc78b5fe5c676a05"
   },
   {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|02",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "02",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "가 양동이의 들이는 $1\\,\\mathrm{L}\\ 695\\,\\mathrm{mL}$, 나 양동이의 들이는 $2093\\,\\mathrm{mL}$ 입니다. 더 적게 담기는 양동이의 기호를 쓰시오.",
+     "answer": "가",
+     "solution": "가 양동이의 들이는 $1\\,\\mathrm{L}\\ 695\\,\\mathrm{mL}$, 곧 $1695\\,\\mathrm{mL}$ 입니다. $2093>1695$ 이므로 나 양동이가 더 많이 담깁니다. 따라서 답은 가 양동이 입니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "728db6b45b3d45b71b5e9b6a79eec0bdac033c87a56abb54dc406e0f5b5dbd90"
+  },
+  {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|03",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "세 물뿌리개의 들이가 다음과 같습니다. 많이 담기는 물뿌리개부터 차례로 기호를 쓰시오.\n\n가 물뿌리개: $4\\,\\mathrm{L}\\ 847\\,\\mathrm{mL}$\n나 물뿌리개: $4577\\,\\mathrm{mL}$\n다 물뿌리개: $4\\,\\mathrm{L}\\ 466\\,\\mathrm{mL}$",
+     "answer": "가, 나, 다",
+     "solution": "$1\\,\\mathrm{L}=1000\\,\\mathrm{mL}$ 이므로 모두 mL 로 고쳐 견줍니다. 가 물뿌리개는 $4847\\,\\mathrm{mL}$, 나 물뿌리개는 $4577\\,\\mathrm{mL}$, 다 물뿌리개는 $4466\\,\\mathrm{mL}$ 입니다. $4847>4577>4466$ 이므로 가, 나, 다 입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "3e406198df80ef95a15b4bb809b9fc817ec1db692e7ea210ac04c2eeda81499c"
+  },
+  {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|04",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "04",
+    "심화하",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "가 냄비의 들이는 $\\square\\,\\mathrm{mL}$ 입니다. 가 냄비는 나 냄비보다 많이 담기고, 다 냄비보다 적게 담깁니다. 나 냄비의 들이는 $4\\,\\mathrm{L}\\ 655\\,\\mathrm{mL}$, 다 냄비의 들이는 $5\\,\\mathrm{L}\\ 438\\,\\mathrm{mL}$ 입니다. $\\square$ 안에 들어갈 수 있는 수 중 가장 큰 수를 쓰시오.",
+     "answer": "$5437$",
+     "solution": "나 냄비는 $4655\\,\\mathrm{mL}$, 다 냄비는 $5438\\,\\mathrm{mL}$ 입니다. $\\square$ 안의 수는 $4655$ 보다 크고 $5438$ 보다 작아야 하므로 $4656$ 부터 $5437$ 까지입니다. 그중 가장 큰 수는 $5437$ 입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "3a5f38411afc935ea15d23ab98b4a5f6828890bde654e3cf02f45620d14c2585"
+  },
+  {
+   "familyKey": "elem:초3|2-5-1 들이 비교하기|04",
+   "beforeRow": [
+    "초3",
+    "2-5-1 들이 비교하기",
+    "04",
+    "심화하",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-1 들이 비교하기",
+     "orderIndex": 179,
+     "content": "가 물뿌리개의 들이는 $\\square\\,\\mathrm{mL}$ 입니다. 가 물뿌리개는 나 물뿌리개보다 많이 담기고, 다 물뿌리개보다 적게 담깁니다. 나 물뿌리개의 들이는 $4\\,\\mathrm{L}\\ 517\\,\\mathrm{mL}$, 다 물뿌리개의 들이는 $5\\,\\mathrm{L}\\ 186\\,\\mathrm{mL}$ 입니다. $\\square$ 안에 들어갈 수 있는 수 중 가장 큰 수를 쓰시오.",
+     "answer": "$5185$",
+     "solution": "나 물뿌리개는 $4517\\,\\mathrm{mL}$, 다 물뿌리개는 $5186\\,\\mathrm{mL}$ 입니다. $\\square$ 안의 수는 $4517$ 보다 크고 $5186$ 보다 작아야 하므로 $4518$ 부터 $5185$ 까지입니다. 그중 가장 큰 수는 $5185$ 입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "f5931a6ac5b0738185993bbb8b56a3c0617e75f799b112f5e6571cd738ca8f96"
+  },
+  {
+   "familyKey": "elem:초3|2-5-2 들이의 단위|02",
+   "beforeRow": [
+    "초3",
+    "2-5-2 들이의 단위",
+    "02",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-2 들이의 단위",
+     "orderIndex": 180,
+     "content": "양동이에 담긴 주스의 들이는 $3\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$ 입니다. 이 들이는 몇 mL인지 쓰시오.",
+     "answer": "$3300$",
+     "solution": "$1\\,\\mathrm{L}=1000\\,\\mathrm{mL}$ 이므로 $1000\\times3=3000$ 이고, $3000+300=3300$ 입니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "1824383286880cf338395bf0b1ba4a69dbbcac1b16c89a8fd1ad9946612a2c46"
+  },
+  {
+   "familyKey": "elem:초3|2-5-2 들이의 단위|04",
+   "beforeRow": [
+    "초3",
+    "2-5-2 들이의 단위",
+    "04",
+    "심화하",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-2 들이의 단위",
+     "orderIndex": 180,
+     "content": "물뿌리개에 있던 우유 중에서 $1\\,\\mathrm{L}\\ 500\\,\\mathrm{mL}$ 를 덜어 내고 나니 $3\\,\\mathrm{L}\\ 900\\,\\mathrm{mL}$ 가 남았습니다. 처음에 있던 우유는 몇 mL인지 쓰시오.",
+     "answer": "$5400$",
+     "solution": "덜어 낸 것은 $1500\\,\\mathrm{mL}$, 남은 것은 $3900\\,\\mathrm{mL}$ 입니다. 처음에 있던 우유는 이 둘을 더한 것이므로 $1500+3900=5400$ 입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "286368180b8e5dd77920fcc39dec51030dce66ac781640db5f72aae9c37aaaf2"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|02",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "02",
+    "기본",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "양동이에 주스가 $5\\,\\mathrm{L}\\ 337\\,\\mathrm{mL}$ 있었습니다. 그중 $2\\,\\mathrm{L}\\ 411\\,\\mathrm{mL}$ 를 덜어 냈다면 남은 주스는 몇 L 몇 mL인지 쓰시오.",
+     "answer": "$2\\,\\mathrm{L}\\ 926\\,\\mathrm{mL}$",
+     "solution": "mL끼리 뺄 수 없으므로 $1\\,\\mathrm{L}$ 를 $1000\\,\\mathrm{mL}$ 로 바꿉니다. $1337-411=926$ 이고 $4-2=2$ 이므로 $2\\,\\mathrm{L}\\ 926\\,\\mathrm{mL}$ 입니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "231620989a851939caefa08362ebb6d95be590cd3d1d55f4227e2c0091d77128"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|02",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "02",
+    "기본",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "물뿌리개에 보리차를 어제 $1\\,\\mathrm{L}\\ 577\\,\\mathrm{mL}$, 오늘 $3\\,\\mathrm{L}\\ 880\\,\\mathrm{mL}$ 담았습니다. 담은 보리차는 모두 몇 L 몇 mL인지 쓰시오.",
+     "answer": "$5\\,\\mathrm{L}\\ 457\\,\\mathrm{mL}$",
+     "solution": "mL끼리 더하면 $577+880=1457$ 이므로 받아올림하여 L끼리 $1+3+1=5$ 입니다. 따라서 $5\\,\\mathrm{L}\\ 457\\,\\mathrm{mL}$ 입니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "fe2d969a0fd398b1f27e36fdaa896f00b6c5e5992944a0fa53235a7ed4b596c9"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|02",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "02",
+    "기본",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "냄비에 포도즙을 어제 $2\\,\\mathrm{L}\\ 823\\,\\mathrm{mL}$, 오늘 $1\\,\\mathrm{L}\\ 927\\,\\mathrm{mL}$ 담았습니다. 담은 포도즙은 모두 몇 L 몇 mL인지 쓰시오.",
+     "answer": "$4\\,\\mathrm{L}\\ 750\\,\\mathrm{mL}$",
+     "solution": "mL끼리 더하면 $823+927=1750$ 이므로 받아올림하여 L끼리 $2+1+1=4$ 입니다. 따라서 $4\\,\\mathrm{L}\\ 750\\,\\mathrm{mL}$ 입니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "e199dcebfd97281b94b9a30299c9356af0bf5ce2c024d58d1dd330797855e71f"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|03",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "물뿌리개에 간장이 $2\\,\\mathrm{L}\\ 420\\,\\mathrm{mL}$ 있었습니다. 여기에 간장을 $1\\,\\mathrm{L}\\ 900\\,\\mathrm{mL}$ 더 담고, 다시 $600\\,\\mathrm{mL}$ 를 덜어 냈습니다. 지금 물뿌리개에 있는 간장은 몇 L 몇 mL인지 쓰시오.",
+     "answer": "$3\\,\\mathrm{L}\\ 720\\,\\mathrm{mL}$",
+     "solution": "먼저 더하면 $2420+1900=4320$ 입니다. 여기서 덜어 내면 $4320-600=3720$ 이므로 $3\\,\\mathrm{L}\\ 720\\,\\mathrm{mL}$ 입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "addb3d02aa91c59be1677a17f881e490394f1b01797da96af58d19579001966c"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|04",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "04",
+    "심화하",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "수조에 보리차를 $1\\,\\mathrm{L}\\ 691\\,\\mathrm{mL}$ 더 담았더니 보리차가 모두 $4\\,\\mathrm{L}\\ 246\\,\\mathrm{mL}$ 가 되었습니다. 처음에 들어 있던 보리차는 몇 L 몇 mL인지 쓰시오.",
+     "answer": "$2\\,\\mathrm{L}\\ 555\\,\\mathrm{mL}$",
+     "solution": "처음 양은 나중 양에서 더 담은 양을 뺀 것입니다. mL끼리 뺄 수 없으므로 $1\\,\\mathrm{L}$ 를 $1000\\,\\mathrm{mL}$ 로 바꾸어 $1246-691=555$ 이고, $3-1=2$ 이므로 $2\\,\\mathrm{L}\\ 555\\,\\mathrm{mL}$ 입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "4e90a8a5449e793cbe0654e64d3e93ab4d032c86c7bc5d9d90474aa6c1a19bb6"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|04",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "04",
+    "심화하",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "양동이에 우유를 $1\\,\\mathrm{L}\\ 774\\,\\mathrm{mL}$ 더 담았더니 우유가 모두 $4\\,\\mathrm{L}\\ 116\\,\\mathrm{mL}$ 가 되었습니다. 처음에 들어 있던 우유는 몇 L 몇 mL인지 쓰시오.",
+     "answer": "$2\\,\\mathrm{L}\\ 342\\,\\mathrm{mL}$",
+     "solution": "처음 양은 나중 양에서 더 담은 양을 뺀 것입니다. mL끼리 뺄 수 없으므로 $1\\,\\mathrm{L}$ 를 $1000\\,\\mathrm{mL}$ 로 바꾸어 $1116-774=342$ 이고, $3-1=2$ 이므로 $2\\,\\mathrm{L}\\ 342\\,\\mathrm{mL}$ 입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "f24442683b65907c2e23f7d4285bb3d514300bb60820a625214adef6a7de8e26"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|11",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "11",
+    "심화중",
+    0,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "똑같은 병에 포도즙을 $1\\,\\mathrm{L}\\ 650\\,\\mathrm{mL}$ 씩 담았습니다. 이 병에 담긴 포도즙을 모두 한 수조에 부었더니 포도즙이 $6\\,\\mathrm{L}\\ 600\\,\\mathrm{mL}$ 가 되었습니다. 병은 몇 개인지 쓰시오.",
+     "answer": "$4$",
+     "solution": "mL끼리만 봅니다. 한 번 부을 때마다 mL 자리는 $650$ 씩 커지고, $1000\\,\\mathrm{mL}$ 가 되면 $1\\,\\mathrm{L}$ 로 받아올림합니다. 그래서 mL 자리는 차례로 $650,\\ 300,\\ 950,\\ 600$ 입니다. mL 자리가 $600$ 인 것은 $4$ 번째가 처음입니다. 확인하면 mL끼리는 $650\\times4=2600$, L끼리는 $1\\times4=4$ 이고, $2600\\,\\mathrm{mL}$ 는 $2\\,\\mathrm{L}\\ 600\\,\\mathrm{mL}$ 이므로 $4+2=6$ 에서 $6\\,\\mathrm{L}\\ 600\\,\\mathrm{mL}$ 입니다. 따라서 $4$개입니다.",
+     "figureSpec": null,
+     "formId": "11"
+    }
+   ],
+   "afterRowSha256": "9483ceab61581465871bb819f8d32ce654ebbfe3e6100ad8b73637355ee2c098"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|12",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "12",
+    "심화상",
+    7,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "똑같은 그릇에 매실청을 $1\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$ 씩 담았습니다. 이 그릇들을 한 양동이에 모두 부었습니다. 부은 매실청이 $5\\,\\mathrm{L}$ 보다 많고 $7\\,\\mathrm{L}$ 보다 적다면 그릇은 몇 개인지 쓰시오.",
+     "answer": "$3$",
+     "solution": "한 번에 붓는 양은 $1\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$, 곧 $1800\\,\\mathrm{mL}$ 입니다. 수를 하나씩 늘려 가며 모두 얼마가 되는지 만들어 봅니다. 처음 한 개는 $1800\\,\\mathrm{mL}$, $2$개까지 부으면 $1800+1800=3600$, $3$개까지 부으면 $3600+1800=5400$, $4$개까지 부으면 $5400+1800=7200$ 입니다. $5\\,\\mathrm{L}$ 는 $5000\\,\\mathrm{mL}$, $7\\,\\mathrm{L}$ 는 $7000\\,\\mathrm{mL}$ 입니다. 이 사이에 있는 것은 $5400\\,\\mathrm{mL}$ 하나뿐이므로 $3$개입니다.",
+     "figureSpec": null,
+     "formId": "12"
+    }
+   ],
+   "afterRowSha256": "d87f8f9db855acfcfaf4e40bc28bb00440afeb13d72bb2d89436b9077c2df232"
+  },
+  {
+   "familyKey": "elem:초3|2-5-3 들이의 합과 차|12",
+   "beforeRow": [
+    "초3",
+    "2-5-3 들이의 합과 차",
+    "12",
+    "심화상",
+    20261018,
+    {
+     "grade": "초3",
+     "chapter": "2-5 들이와 무게",
+     "section": "2-5-3 들이의 합과 차",
+     "orderIndex": 181,
+     "content": "똑같은 그릇에 매실청을 $1\\,\\mathrm{L}\\ 450\\,\\mathrm{mL}$ 씩 담았습니다. 이 그릇들을 한 물뿌리개에 모두 부었습니다. 부은 매실청이 $7\\,\\mathrm{L}$ 보다 많고 $8\\,\\mathrm{L}$ 보다 적다면 그릇은 몇 개인지 쓰시오.",
+     "answer": "$5$",
+     "solution": "한 번에 붓는 양은 $1\\,\\mathrm{L}\\ 450\\,\\mathrm{mL}$, 곧 $1450\\,\\mathrm{mL}$ 입니다. 수를 하나씩 늘려 가며 모두 얼마가 되는지 만들어 봅니다. 처음 한 개는 $1450\\,\\mathrm{mL}$, $2$개까지 부으면 $1450+1450=2900$, $3$개까지 부으면 $2900+1450=4350$, $4$개까지 부으면 $4350+1450=5800$, $5$개까지 부으면 $5800+1450=7250$, $6$개까지 부으면 $7250+1450=8700$ 입니다. $7\\,\\mathrm{L}$ 는 $7000\\,\\mathrm{mL}$, $8\\,\\mathrm{L}$ 는 $8000\\,\\mathrm{mL}$ 입니다. 이 사이에 있는 것은 $7250\\,\\mathrm{mL}$ 하나뿐이므로 $5$개입니다.",
+     "figureSpec": null,
+     "formId": "12"
+    }
+   ],
+   "afterRowSha256": "ad4a4aad89f2d66db39c8c5cbe8c6546e5132e75f61143c49c077b1921b5ae52"
+  },
+  {
    "familyKey": "elem:초3|2-6-1 그림그래프 알아보기|07",
    "beforeRow": [
     "초3",
@@ -12462,6 +12792,1273 @@
    "afterRowSha256": "8671e6db6ff427534817cb5e78c278e1fc3452073fdc5eae6bf4966b458379fd"
   },
   {
+   "familyKey": "elem:초4|1-4-3 평면도형 뒤집기|03",
+   "beforeRow": [
+    "초4",
+    "1-4-3 평면도형 뒤집기",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-3 평면도형 뒤집기",
+     "orderIndex": 209,
+     "content": "도형을 좌우로 $4$번, 위아래로 $2$번 뒤집었습니다. 그 결과는 처음 도형을 어떻게 움직인 도형과 같은지 쓰시오.",
+     "answer": "처음 도형과 같다",
+     "solution": "같은 방향으로 $2$번 뒤집으면 처음 도형과 같습니다. 좌우 $4$는 짝수라 뒤집지 않은 것과 같고, 위아래 $2$는 짝수라 뒤집지 않은 것과 같습니다. 그러므로 처음 도형과 같습니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "56259858b3ab3aac8db1f47f7b4aa5a5e193aeb668b5286ff465be29c89bb110"
+  },
+  {
+   "familyKey": "elem:초4|1-4-3 평면도형 뒤집기|03",
+   "beforeRow": [
+    "초4",
+    "1-4-3 평면도형 뒤집기",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-3 평면도형 뒤집기",
+     "orderIndex": 209,
+     "content": "도형을 좌우로 $4$번, 위아래로 $3$번 뒤집었습니다. 그 결과는 처음 도형을 어떻게 움직인 도형과 같은지 쓰시오.",
+     "answer": "위아래로 한 번 뒤집은 도형과 같다",
+     "solution": "같은 방향으로 $2$번 뒤집으면 처음 도형과 같습니다. 좌우 $4$는 짝수라 뒤집지 않은 것과 같고, 위아래 $3$은 홀수라 한 번 뒤집은 것과 같습니다. 그러므로 위아래로 한 번 뒤집은 도형과 같습니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "b0cf47210e949ef22f4d4e9f868c60722df422992005ac6fb0733344a64bcbde"
+  },
+  {
+   "familyKey": "elem:초4|1-4-3 평면도형 뒤집기|03",
+   "beforeRow": [
+    "초4",
+    "1-4-3 평면도형 뒤집기",
+    "03",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-3 평면도형 뒤집기",
+     "orderIndex": 209,
+     "content": "도형을 좌우로 $4$번, 위아래로 $3$번 뒤집었습니다. 그 결과는 처음 도형을 어떻게 움직인 도형과 같은지 쓰시오.",
+     "answer": "위아래로 한 번 뒤집은 도형과 같다",
+     "solution": "같은 방향으로 $2$번 뒤집으면 처음 도형과 같습니다. 좌우 $4$는 짝수라 뒤집지 않은 것과 같고, 위아래 $3$은 홀수라 한 번 뒤집은 것과 같습니다. 그러므로 위아래로 한 번 뒤집은 도형과 같습니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "bc5b4288b52e4dd5cfe7cfec1597179e80a19240702b157d0f47de3a8a9bcbf3"
+  },
+  {
+   "familyKey": "elem:초4|1-4-3 평면도형 뒤집기|09",
+   "beforeRow": [
+    "초4",
+    "1-4-3 평면도형 뒤집기",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-3 평면도형 뒤집기",
+     "orderIndex": 209,
+     "content": "색칠한 칸이 $4$개인 도형을 위아래로 뒤집었습니다. 뒤집은 도형의 색칠한 칸은 몇 개인가?",
+     "answer": "$4$",
+     "solution": "뒤집어도 칸 수는 변하지 않으므로 $4$개입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "rotateFlip",
+      "cells": [
+       [
+        0,
+        0
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        1,
+        2
+       ]
+      ],
+      "op": "flipV",
+      "n": 4
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "a69d0c2ba15454288786a706bc4c096944d235540f3720791620a6a1751a3460"
+  },
+  {
+   "familyKey": "elem:초4|1-4-3 평면도형 뒤집기|09",
+   "beforeRow": [
+    "초4",
+    "1-4-3 평면도형 뒤집기",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-3 평면도형 뒤집기",
+     "orderIndex": 209,
+     "content": "색칠한 칸이 $3$개인 도형을 위아래로 뒤집었습니다. 뒤집은 도형의 색칠한 칸은 몇 개인가?",
+     "answer": "$3$",
+     "solution": "뒤집어도 칸 수는 변하지 않으므로 $3$개입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "rotateFlip",
+      "cells": [
+       [
+        0,
+        0
+       ],
+       [
+        0,
+        1
+       ],
+       [
+        1,
+        1
+       ]
+      ],
+      "op": "flipV",
+      "n": 4
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "59dac531579fc588fb285dcc8d6975fb0519290707894d244e9a5c03b9bf9e0a"
+  },
+  {
+   "familyKey": "elem:초4|1-4-3 평면도형 뒤집기|09",
+   "beforeRow": [
+    "초4",
+    "1-4-3 평면도형 뒤집기",
+    "09",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-4 평면도형의 이동",
+     "section": "1-4-3 평면도형 뒤집기",
+     "orderIndex": 209,
+     "content": "색칠한 칸이 $4$개인 도형을 위아래로 뒤집었습니다. 뒤집은 도형의 색칠한 칸은 몇 개인가?",
+     "answer": "$4$",
+     "solution": "뒤집어도 칸 수는 변하지 않으므로 $4$개입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "rotateFlip",
+      "cells": [
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        2,
+        2
+       ]
+      ],
+      "op": "flipV",
+      "n": 4
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "5aea5aef39ac6f15ac43e979ce51d8e3578443016082a35dcb70ff27d262d391"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|01",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "01",
+    "연산",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 과일을 조사하여 나타낸 막대그래프입니다. 학생 수가 가장 많은 과일을 한눈에 찾으려면 그래프에서 무엇을 비교하면 되는가?",
+     "answer": "막대의 길이",
+     "solution": "막대의 길이가 학생 수를 나타내므로, 막대의 길이를 비교하면 가장 긴 막대가 학생 수가 가장 많은 과일입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "사과",
+        "value": 6
+       },
+       {
+        "label": "배",
+        "value": 8
+       },
+       {
+        "label": "포도",
+        "value": 2
+       },
+       {
+        "label": "딸기",
+        "value": 4
+       }
+      ],
+      "yMax": 9,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "ec610403fc281bba2a6652a2da775f87de8ec66738d74864e39cd722f84f22ca"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|01",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "01",
+    "연산",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 과일을 조사하여 나타낸 막대그래프입니다. 학생 수가 가장 많은 과일을 한눈에 찾으려면 그래프에서 무엇을 비교하면 되는가?",
+     "answer": "막대의 길이",
+     "solution": "막대의 길이가 학생 수를 나타내므로, 막대의 길이를 비교하면 가장 긴 막대가 학생 수가 가장 많은 과일입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "사과",
+        "value": 6
+       },
+       {
+        "label": "배",
+        "value": 4
+       },
+       {
+        "label": "포도",
+        "value": 10
+       },
+       {
+        "label": "딸기",
+        "value": 8
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "6d11c6ab45e97b2d8a5ce6bbe02873dc6cd3f7bf1fb5267deb96ef22a2e88d7b"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|02",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "02",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 운동을 조사하여 나타낸 막대그래프입니다. 수영과 태권도를 좋아하는 학생은 모두 몇 명인가?",
+     "answer": "$14$명",
+     "solution": "수영은 $8$명, 태권도는 $6$명입니다. $8+6=14$ 이므로 모두 $14$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "줄넘기",
+        "value": 4
+       },
+       {
+        "label": "수영",
+        "value": 8
+       },
+       {
+        "label": "달리기",
+        "value": 10
+       },
+       {
+        "label": "태권도",
+        "value": 6
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "2b0e78911b6bffa0840c1b6c25543bc2cf3adbe2014fff12bd1123b26afe31fb"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|03",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 간식을 조사하여 나타낸 막대그래프입니다. 튀김의 막대는 김밥의 막대보다 눈금 몇 칸 더 긴가?",
+     "answer": "$1$칸",
+     "solution": "튀김은 $10$명, 김밥은 $8$명이므로 차는 $10-8=2$ 입니다. 세로 눈금 한 칸은 $2$명이므로 $2\\div2=1$ 칸 더 깁니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "김밥",
+        "value": 8
+       },
+       {
+        "label": "만두",
+        "value": 6
+       },
+       {
+        "label": "떡",
+        "value": 4
+       },
+       {
+        "label": "튀김",
+        "value": 10
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "90fc30bfbbe7f107a658a3272a7d2b1e1f67a142f6e0f5d7228e9b0ddd44691a"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|03",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 동물을 조사하여 나타낸 막대그래프입니다. 학생 수가 가장 많은 동물의 막대는 가장 적은 동물의 막대보다 눈금 몇 칸 더 긴가?",
+     "answer": "$3$칸",
+     "solution": "가장 많은 것은 토끼로 $8$명, 가장 적은 것은 고양이로 $2$명이므로 차는 $8-2=6$ 입니다. 세로 눈금 한 칸은 $2$명이므로 $6\\div2=3$ 칸 더 깁니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "개",
+        "value": 6
+       },
+       {
+        "label": "고양이",
+        "value": 2
+       },
+       {
+        "label": "토끼",
+        "value": 8
+       },
+       {
+        "label": "햄스터",
+        "value": 4
+       }
+      ],
+      "yMax": 9,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "1b7c76987d7e0c92a26e884e0af5181c3b41d60fe0a4e933bc4c91124c195f16"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|04",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "04",
+    "심화하",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 동물을 조사하여 나타낸 막대그래프입니다. 고양이를 좋아하는 학생은 햄스터를 좋아하는 학생보다 $4$명 더 적다고 합니다. 고양이를 좋아하는 학생은 몇 명인가?",
+     "answer": "$2$명",
+     "solution": "그래프에서 햄스터를 좋아하는 학생은 $6$명입니다. $6-4=2$ 이므로 고양이를 좋아하는 학생은 $2$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "개",
+        "value": 4
+       },
+       {
+        "label": "고양이",
+        "unknown": true
+       },
+       {
+        "label": "토끼",
+        "value": 8
+       },
+       {
+        "label": "햄스터",
+        "value": 6
+       }
+      ],
+      "yMax": 9,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "45f40a3504a09e133c66f49256c8e53d931109f962a6cced61e04ee64556dc1e"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|04",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "04",
+    "심화하",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 동물을 조사하여 나타낸 막대그래프입니다. 고양이를 좋아하는 학생은 햄스터를 좋아하는 학생보다 $2$명 더 적다고 합니다. 고양이를 좋아하는 학생은 몇 명인가?",
+     "answer": "$2$명",
+     "solution": "그래프에서 햄스터를 좋아하는 학생은 $4$명입니다. $4-2=2$ 이므로 고양이를 좋아하는 학생은 $2$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "개",
+        "value": 10
+       },
+       {
+        "label": "고양이",
+        "unknown": true
+       },
+       {
+        "label": "토끼",
+        "value": 8
+       },
+       {
+        "label": "햄스터",
+        "value": 4
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "386ca90c6e66449e6da3c420d9f4ba5d503877104104315669b4cd505ea84e51"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|05",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 간식을 조사하여 나타낸 막대그래프입니다. 학생 수가 가장 적은 것은 어느 간식인가?",
+     "answer": "김밥",
+     "solution": "김밥의 막대가 가장 짧습니다. $2$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "김밥",
+        "value": 2
+       },
+       {
+        "label": "만두",
+        "value": 10
+       },
+       {
+        "label": "떡",
+        "value": 6
+       },
+       {
+        "label": "튀김",
+        "value": 8
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "43c313f1223c854bc9d9e5bedd316f65a37770a728c76728e3fd5b4b256f1572"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|05",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "05",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 간식을 조사하여 나타낸 막대그래프입니다. 학생 수가 가장 적은 것은 어느 간식인가?",
+     "answer": "김밥",
+     "solution": "김밥의 막대가 가장 짧습니다. $2$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "김밥",
+        "value": 2
+       },
+       {
+        "label": "만두",
+        "value": 10
+       },
+       {
+        "label": "떡",
+        "value": 4
+       },
+       {
+        "label": "튀김",
+        "value": 8
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "76ab36a3301a9db6c804f254c07161a703b432dd4759a3156695abce1a5a1077"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|06",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 과일을 조사하여 나타낸 막대그래프입니다. 사과를 좋아하는 학생은 몇 명인가?",
+     "answer": "$4$명",
+     "solution": "사과의 막대가 눈금 $4$에 닿아 있으므로 $4$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "사과",
+        "value": 4
+       },
+       {
+        "label": "배",
+        "value": 10
+       },
+       {
+        "label": "포도",
+        "value": 6
+       },
+       {
+        "label": "딸기",
+        "value": 8
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "b19201c4539af12f45dc13832cdba6c70278f64ed88d5904aa3084b10d41c978"
+  },
+  {
+   "familyKey": "elem:초4|1-5-1 막대그래프 알아보기|08",
+   "beforeRow": [
+    "초4",
+    "1-5-1 막대그래프 알아보기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-1 막대그래프 알아보기",
+     "orderIndex": 211,
+     "content": "방과후 교실 학생들이 좋아하는 과일을 조사하여 나타낸 막대그래프입니다. 학생 수가 가장 많은 것은 어느 과일인가?",
+     "answer": "포도",
+     "solution": "포도의 막대가 가장 높습니다. $10$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "사과",
+        "value": 6
+       },
+       {
+        "label": "배",
+        "value": 4
+       },
+       {
+        "label": "포도",
+        "value": 10
+       },
+       {
+        "label": "딸기",
+        "value": 8
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "23577bcdc1cc0d5b42527199a8e9f12a47992a12e31b0897a8e16d29d71c8158"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|02",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "02",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 색을 조사하여 나타낸 표입니다. 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금은 적어도 몇 명까지 나타낼 수 있어야 하는가?",
+     "answer": "$8$명",
+     "solution": "표에서 가장 큰 수는 주황의 $8$명입니다. 세로 눈금은 가장 큰 수까지 나타낼 수 있어야 하므로 적어도 $8$명까지 나타내야 합니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "색",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "보라",
+        "6"
+       ],
+       [
+        "주황",
+        "8"
+       ],
+       [
+        "분홍",
+        "4"
+       ],
+       [
+        "연두",
+        "2"
+       ]
+      ]
+     },
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "f7f1df2aaf036dec189764422c5619c0ca0acddc838d6caf56cfe85fd6a94cd5"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|03",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 과일을 조사하여 나타낸 표입니다. 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 $2$명으로 하면 세로 눈금은 적어도 몇 칸 있어야 하는가?",
+     "answer": "$4$칸",
+     "solution": "표에서 가장 큰 수는 감의 $8$명입니다. 한 칸이 $2$명이므로 눈금은 적어도 $8\\div2=4$ 칸 있어야 합니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "과일",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "수박",
+        "2"
+       ],
+       [
+        "참외",
+        "4"
+       ],
+       [
+        "감",
+        "8"
+       ],
+       [
+        "귤",
+        "6"
+       ]
+      ]
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "e103c97f1e3973c804aedf51934d27a07a1503e1c805b5da177ffd699d7b32a3"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|03",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 동물을 조사하여 나타낸 표입니다. 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 $2$명으로 하면 세로 눈금은 적어도 몇 칸 있어야 하는가?",
+     "answer": "$5$칸",
+     "solution": "표에서 가장 큰 수는 오리의 $10$명입니다. 한 칸이 $2$명이므로 눈금은 적어도 $10\\div2=5$ 칸 있어야 합니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "동물",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "닭",
+        "2"
+       ],
+       [
+        "오리",
+        "10"
+       ],
+       [
+        "염소",
+        "8"
+       ],
+       [
+        "돼지",
+        "6"
+       ]
+      ]
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "4ae73afb1704b7cf5c9daf8bf65d78986987e1c3c6ccc29e2568cfc1a59e590f"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|03",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "03",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 색을 조사하여 나타낸 표입니다. 표를 보고 막대그래프를 그리려고 합니다. 세로 눈금 한 칸을 $2$명으로 하면 분홍의 막대는 보라의 막대보다 몇 칸 더 길게 그려야 하는가?",
+     "answer": "$1$칸",
+     "solution": "표에서 분홍은 $8$명, 보라는 $6$명이므로 차는 $8-6=2$ 입니다. 한 칸이 $2$명이므로 $2\\div2=1$ 칸 더 길게 그려야 합니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "색",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "보라",
+        "6"
+       ],
+       [
+        "주황",
+        "4"
+       ],
+       [
+        "분홍",
+        "8"
+       ],
+       [
+        "연두",
+        "10"
+       ]
+      ]
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "f72ae9a9796491145ec48dd767987c63e1c2b2ef4bd7769da7f1f0cbde433c7e"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|06",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 과일을 조사하여 나타낸 표입니다. 표에서 참외를 좋아하는 학생은 몇 명인가?",
+     "answer": "$8$명",
+     "solution": "표에서 참외는 $8$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "과일",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "수박",
+        "6"
+       ],
+       [
+        "참외",
+        "8"
+       ],
+       [
+        "감",
+        "10"
+       ],
+       [
+        "귤",
+        "2"
+       ]
+      ]
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "5057ce7ca8cabd0a0d25bed6211e9d7b20964eae3bd3f477887ad02a406055af"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|06",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 책을 조사하여 나타낸 표입니다. 표에서 과학책을 좋아하는 학생은 몇 명인가?",
+     "answer": "$10$명",
+     "solution": "표에서 과학책은 $10$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "책",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "동화책",
+        "2"
+       ],
+       [
+        "과학책",
+        "10"
+       ],
+       [
+        "역사책",
+        "6"
+       ],
+       [
+        "만화책",
+        "8"
+       ]
+      ]
+     },
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "5db6c9f2b725c6821d4995f5f534a0c14c53cb72afe386cf4a2beec8e2b8cc9f"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|07",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 책을 조사하여 나타낸 표입니다. 표에서 동화책과 만화책을 좋아하는 학생은 모두 몇 명인가?",
+     "answer": "$10$명",
+     "solution": "동화책은 $6$명, 만화책은 $4$명입니다. $6+4=10$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "책",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "동화책",
+        "6"
+       ],
+       [
+        "과학책",
+        "8"
+       ],
+       [
+        "역사책",
+        "2"
+       ],
+       [
+        "만화책",
+        "4"
+       ]
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "44913730b8e51a924ccdac4b34af781e051e5467c2bca8ef873d0b338e717077"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|07",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 책을 조사하여 나타낸 표입니다. 표에서 과학책과 동화책을 좋아하는 학생은 모두 몇 명인가?",
+     "answer": "$14$명",
+     "solution": "과학책은 $8$명, 동화책은 $6$명입니다. $8+6=14$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "책",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "동화책",
+        "6"
+       ],
+       [
+        "과학책",
+        "8"
+       ],
+       [
+        "역사책",
+        "10"
+       ],
+       [
+        "만화책",
+        "4"
+       ]
+      ]
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "13206b6b5d0ddfc75b987b7b437b68d11f45cd7342ab7b832a56f27158642446"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|08",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 동물을 조사하여 나타낸 표입니다. 표에서 학생 수가 가장 적은 동물의 학생 수는 몇 명인가?",
+     "answer": "$2$명",
+     "solution": "가장 적은 것은 오리로 $2$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "동물",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "닭",
+        "8"
+       ],
+       [
+        "오리",
+        "2"
+       ],
+       [
+        "염소",
+        "10"
+       ],
+       [
+        "돼지",
+        "4"
+       ]
+      ]
+     },
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "0c04b995c7a6a8ba6ac44ae40732ac297cd71443715311fc629a917a12ae5b3c"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|09",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "09",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 색을 조사하여 나타낸 표입니다. 표에서 학생 수가 가장 많은 색과 가장 적은 색의 차는 몇 명인가?",
+     "answer": "$6$명",
+     "solution": "주황은 $8$명, 연두는 $2$명입니다. $8-2=6$ 입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "색",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "보라",
+        "6"
+       ],
+       [
+        "주황",
+        "8"
+       ],
+       [
+        "분홍",
+        "4"
+       ],
+       [
+        "연두",
+        "2"
+       ]
+      ]
+     },
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "751dcf0ce6f0170a00fcf85207c967137e774197c36205d466efc2a248449c67"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|10",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 색을 조사하여 나타낸 표입니다. 세로 눈금 한 칸을 $2$명으로 하여 막대그래프를 그리려고 합니다. 가장 긴 막대는 몇 칸인가?",
+     "answer": "$5$칸",
+     "solution": "가장 많은 것은 주황으로 $10$명입니다. $10\\div2=5$ 칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "색",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "보라",
+        "4"
+       ],
+       [
+        "주황",
+        "10"
+       ],
+       [
+        "분홍",
+        "2"
+       ],
+       [
+        "연두",
+        "6"
+       ]
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "7d62f5f8097e9180878a8fc025f9aa79dde6b4caebd90b72bb1712f0851a4931"
+  },
+  {
+   "familyKey": "elem:초4|1-5-2 막대그래프 그리기|10",
+   "beforeRow": [
+    "초4",
+    "1-5-2 막대그래프 그리기",
+    "10",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-2 막대그래프 그리기",
+     "orderIndex": 212,
+     "content": "방과후 교실 학생들이 좋아하는 과일을 조사하여 나타낸 표입니다. 세로 눈금 한 칸을 $2$명으로 하여 막대그래프를 그리려고 합니다. 가장 긴 막대는 몇 칸인가?",
+     "answer": "$5$칸",
+     "solution": "가장 많은 것은 감으로 $10$명입니다. $10\\div2=5$ 칸입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "table",
+      "headers": [
+       "과일",
+       "학생 수(명)"
+      ],
+      "rows": [
+       [
+        "수박",
+        "4"
+       ],
+       [
+        "참외",
+        "6"
+       ],
+       [
+        "감",
+        "10"
+       ],
+       [
+        "귤",
+        "8"
+       ]
+      ]
+     },
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "2eebcb45ed7a5ce3800261b622536f5090987bcf1995a5efbade7f21de5d3a7f"
+  },
+  {
    "familyKey": "elem:초4|1-5-3 막대그래프의 활용|02",
    "beforeRow": [
     "초4",
@@ -12505,7 +14102,7 @@
      "formId": "02"
     }
    ],
-   "afterRowSha256": "3867b1580d245c9482f71677202661010e413d6446ac646e4f42cd0c3b0309cd"
+   "afterRowSha256": "fad1855fafbb2d7e22e0d608dc78906e2f29e589d27d7f8f61cc5bb0e94d91ca"
   },
   {
    "familyKey": "elem:초4|1-5-3 막대그래프의 활용|02",
@@ -12597,7 +14194,99 @@
      "formId": "02"
     }
    ],
-   "afterRowSha256": "6ca5b13a1f044d0b5485b2059555d6d2ddc3c6e5be72d065de69de99d96756ad"
+   "afterRowSha256": "58da23aaead1d4f8dee0bc67e7dda105357a12fd9a46fa06a81ec542f65a9e54"
+  },
+  {
+   "familyKey": "elem:초4|1-5-3 막대그래프의 활용|05",
+   "beforeRow": [
+    "초4",
+    "1-5-3 막대그래프의 활용",
+    "05",
+    "기본",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-3 막대그래프의 활용",
+     "orderIndex": 213,
+     "content": "방과후 교실 학생들이 좋아하는 운동을 조사하여 나타낸 막대그래프입니다. 네 운동을 좋아하는 학생을 모두 더하면 몇 명인가?",
+     "answer": "$28$명",
+     "solution": "$10+4+8+6=28$ 이므로 $28$명입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "축구",
+        "value": 10
+       },
+       {
+        "label": "농구",
+        "value": 4
+       },
+       {
+        "label": "배구",
+        "value": 8
+       },
+       {
+        "label": "야구",
+        "value": 6
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "05"
+    }
+   ],
+   "afterRowSha256": "753b6bd657f0acdc7051acb26acad4190747d362d73351c47f0cefbcc2db7900"
+  },
+  {
+   "familyKey": "elem:초4|1-5-3 막대그래프의 활용|07",
+   "beforeRow": [
+    "초4",
+    "1-5-3 막대그래프의 활용",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "1-5 막대그래프",
+     "section": "1-5-3 막대그래프의 활용",
+     "orderIndex": 213,
+     "content": "방과후 교실 학생들이 좋아하는 운동을 조사하여 나타낸 막대그래프입니다. 막대가 가장 짧은 운동의 이름을 쓰시오.",
+     "answer": "농구",
+     "solution": "막대가 가장 짧은 것은 농구입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "barChart",
+      "values": [
+       {
+        "label": "축구",
+        "value": 8
+       },
+       {
+        "label": "농구",
+        "value": 2
+       },
+       {
+        "label": "배구",
+        "value": 4
+       },
+       {
+        "label": "야구",
+        "value": 10
+       }
+      ],
+      "yMax": 11,
+      "yStep": 2,
+      "yLabel": "명"
+     },
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "4f6aa307f03a50f5d92b6200e49a9309edab99564f76aebd0139526f1ba3eb7a"
   },
   {
    "familyKey": "elem:초4|1-5-3 막대그래프의 활용|09",
@@ -12643,7 +14332,7 @@
      "formId": "09"
     }
    ],
-   "afterRowSha256": "92e950950bcfe9600f22daaf042fe314c8c3eec13636eccea7d62edaa5180727"
+   "afterRowSha256": "844352d8894c001c962aed6b4b1c53805db6bf7a11d4dbda31f95951126cf12a"
   },
   {
    "familyKey": "elem:초4|2-2-1 삼각형을 변의 길이에 따라 분류하기|05",
@@ -14032,6 +15721,156 @@
    "afterRowSha256": "0301ca61b38bce4bea7a6ea75b6b2865177104b047e5082e08c55eb29d74af9c"
   },
   {
+   "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|03",
+   "beforeRow": [
+    "초4",
+    "2-5-1 꺾은선그래프 알아보기",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-1 꺾은선그래프 알아보기",
+     "orderIndex": 242,
+     "content": "고구마 싹의 키를 조사하여 나타낸 꺾은선그래프입니다. $4$주와 $5$주의 한가운데 때의 값은 약 몇 cm인가?",
+     "answer": "$36$cm",
+     "solution": "꺾은선그래프는 이웃한 두 점을 선분으로 이어 그리므로, 그 사이의 값은 선분 위에서 읽습니다. 한가운데 때의 값은 두 값의 한가운데이므로 $(30+42)\\div2=36$ 이므로 약 $36$cm입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "1주",
+        "value": 10
+       },
+       {
+        "label": "2주",
+        "value": 12
+       },
+       {
+        "label": "3주",
+        "value": 22
+       },
+       {
+        "label": "4주",
+        "value": 30
+       },
+       {
+        "label": "5주",
+        "value": 42
+       }
+      ],
+      "yMax": 45,
+      "yStep": 10,
+      "yLabel": "cm"
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "52a1bfa37f0f3d73bf4402650630468d8932338ca1e5ead0a1ccebda10c879e0"
+  },
+  {
+   "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|03",
+   "beforeRow": [
+    "초4",
+    "2-5-1 꺾은선그래프 알아보기",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-1 꺾은선그래프 알아보기",
+     "orderIndex": 242,
+     "content": "교실의 기온을 조사하여 나타낸 꺾은선그래프입니다. $5$월과 $6$월의 한가운데 때의 값은 약 몇 ℃인가?",
+     "answer": "$17$℃",
+     "solution": "꺾은선그래프는 이웃한 두 점을 선분으로 이어 그리므로, 그 사이의 값은 선분 위에서 읽습니다. 한가운데 때의 값은 두 값의 한가운데이므로 $(19+15)\\div2=17$ 이므로 약 $17$℃입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "3월",
+        "value": 13
+       },
+       {
+        "label": "4월",
+        "value": 18
+       },
+       {
+        "label": "5월",
+        "value": 19
+       },
+       {
+        "label": "6월",
+        "value": 15
+       },
+       {
+        "label": "7월",
+        "value": 21
+       }
+      ],
+      "yMax": 24,
+      "yStep": 5,
+      "yLabel": "℃"
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "4e8cd1d45046cc38827eb377759d6df4242e0ace18f322f12c66e85b868b85fa"
+  },
+  {
+   "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|03",
+   "beforeRow": [
+    "초4",
+    "2-5-1 꺾은선그래프 알아보기",
+    "03",
+    "응용",
+    20261018,
+    {
+     "grade": "초4",
+     "chapter": "2-5 꺾은선그래프",
+     "section": "2-5-1 꺾은선그래프 알아보기",
+     "orderIndex": 242,
+     "content": "교실의 기온을 조사하여 나타낸 꺾은선그래프입니다. $4$월과 $5$월의 한가운데 때의 값은 약 몇 ℃인가?",
+     "answer": "$14$℃",
+     "solution": "꺾은선그래프는 이웃한 두 점을 선분으로 이어 그리므로, 그 사이의 값은 선분 위에서 읽습니다. 한가운데 때의 값은 두 값의 한가운데이므로 $(13+15)\\div2=14$ 이므로 약 $14$℃입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "lineChart",
+      "values": [
+       {
+        "label": "3월",
+        "value": 12
+       },
+       {
+        "label": "4월",
+        "value": 13
+       },
+       {
+        "label": "5월",
+        "value": 15
+       },
+       {
+        "label": "6월",
+        "value": 18
+       },
+       {
+        "label": "7월",
+        "value": 22
+       }
+      ],
+      "yMax": 25,
+      "yStep": 5,
+      "yLabel": "℃"
+     },
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "b5329620f92dd071b6d80668847b79b925280ef0507af24123b535c2e2a0874b"
+  },
+  {
    "familyKey": "elem:초4|2-5-1 꺾은선그래프 알아보기|05",
    "beforeRow": [
     "초4",
@@ -14703,6 +16542,165 @@
    "afterRowSha256": "96e0eacee24c112c6a50139859587b55f5413a34a2d9180941cce63c9fedbeab"
   },
   {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|01",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "01",
+    "연산",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "그림의 삼각형과 서로 합동인 삼각형이 있습니다. 그 삼각형의 둘레는 몇 cm입니까?",
+     "answer": "$47$",
+     "solution": "합동인 두 도형에서 대응하는 변의 길이는 서로 같으므로 둘레도 같습니다. $23+12+12=47$이므로 $47$ cm입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "markedShape",
+      "shape": "isoTri",
+      "sides": [
+       "23 cm",
+       "12 cm",
+       "12 cm"
+      ]
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "22433f9ee94adc1ec0345734ea23e41138916e9217ef29f8c6be65e7197ff1ed"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|01",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "01",
+    "연산",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "그림의 삼각형과 서로 합동인 삼각형이 있습니다. 합동인 삼각형의 세 변의 길이의 합은 몇 cm입니까?",
+     "answer": "$27$",
+     "solution": "합동인 두 도형에서 대응하는 변의 길이는 서로 같으므로 둘레도 같습니다. $5+11+11=27$이므로 $27$ cm입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "markedShape",
+      "shape": "isoTri",
+      "sides": [
+       "5 cm",
+       "11 cm",
+       "11 cm"
+      ]
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "189cf77c606e950e9abe370d6c0fbcf5daf181e614485f27e0a2363aeed47df0"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|01",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "01",
+    "연산",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "그림의 삼각형과 서로 합동인 삼각형이 있습니다. 그 삼각형의 둘레는 몇 cm입니까?",
+     "answer": "$22$",
+     "solution": "합동인 두 도형에서 대응하는 변의 길이는 서로 같으므로 둘레도 같습니다. $4+9+9=22$이므로 $22$ cm입니다.",
+     "figureSpec": {
+      "version": "elem-1",
+      "kind": "markedShape",
+      "shape": "isoTri",
+      "sides": [
+       "4 cm",
+       "9 cm",
+       "9 cm"
+      ]
+     },
+     "formId": "01"
+    }
+   ],
+   "afterRowSha256": "6316fbbff1dba5eda8b5fa93b154c2251e0ca1a22ff4100bbc4c11746c8a1601"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|03",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "03",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 두 삼각형의 둘레의 합이 $54$ cm이고, 한 삼각형의 두 변이 $7$ cm, $10$ cm일 때 나머지 한 변은 몇 cm입니까?",
+     "answer": "$10$",
+     "solution": "두 삼각형이 합동이므로 둘레가 서로 같습니다. 한 삼각형의 둘레는 $54\\div2=27$ cm입니다. 여기서 두 변을 빼면 $27-7-10=10$이므로 $10$ cm입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "c019c45b37bb039002b5142d1caa51f52224d376ae1bce3ae058053871e3e22c"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|03",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 두 삼각형의 둘레의 합이 $60$ cm이고, 한 삼각형의 두 변이 $5$ cm, $11$ cm일 때 나머지 한 변은 몇 cm입니까?",
+     "answer": "$14$",
+     "solution": "두 삼각형이 합동이므로 둘레가 서로 같습니다. 한 삼각형의 둘레는 $60\\div2=30$ cm입니다. 여기서 두 변을 빼면 $30-5-11=14$이므로 $14$ cm입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "feab8504edb6e4ba744831e83a5ecd91bd1f7afd9611f0caabc6da310f350e73"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|03",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "03",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 두 삼각형의 둘레의 합이 $72$ cm이고, 한 삼각형의 두 변이 $11$ cm, $10$ cm일 때 나머지 한 변은 몇 cm입니까?",
+     "answer": "$15$",
+     "solution": "두 삼각형이 합동이므로 둘레가 서로 같습니다. 한 삼각형의 둘레는 $72\\div2=36$ cm입니다. 여기서 두 변을 빼면 $36-11-10=15$이므로 $15$ cm입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "04b2d677b1d4154a5f8481115167b7415d6d2413ced9c31aa98a742c3040eeb2"
+  },
+  {
    "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|04",
    "beforeRow": [
     "초5",
@@ -14812,6 +16810,336 @@
     }
    ],
    "afterRowSha256": "5383b671227735142edc875e3143cb6678435843c3b7932cf0a4875f484bffba"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|06",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 한 삼각형의 세 변이 $12$ cm, $9$ cm, $17$ cm일 때, 다른 삼각형의 가장 긴 변은 몇 cm입니까?",
+     "answer": "$17$",
+     "solution": "합동이면 대응하는 변의 길이가 같으므로 가장 긴 변도 $17$ cm입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "e25fc8725ba023915ec4fb9f1605ccdb05135971c0a7cbcbc5b4b89f560489f3"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|06",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 한 삼각형의 세 변이 $6$ cm, $5$ cm, $2$ cm일 때, 다른 삼각형의 가장 긴 변은 몇 cm입니까?",
+     "answer": "$6$",
+     "solution": "합동이면 대응하는 변의 길이가 같으므로 가장 긴 변도 $6$ cm입니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "b2ce93be05bb9037db1a8b3af962541944971cc3bb8d6074079614375e6053c0"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|07",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 한 삼각형의 세 변이 $8$ cm, $7$ cm, $14$ cm일 때, 다른 삼각형의 가장 짧은 변은 몇 cm입니까?",
+     "answer": "$7$",
+     "solution": "합동이면 대응하는 변의 길이가 같으므로 가장 짧은 변도 $7$ cm입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "cde531512943bdff612cf29a6c8c068b3ad15c4bba24ca59af11368afddab2e7"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|07",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 한 삼각형의 세 변이 $12$ cm, $9$ cm, $17$ cm일 때, 다른 삼각형의 가장 짧은 변은 몇 cm입니까?",
+     "answer": "$9$",
+     "solution": "합동이면 대응하는 변의 길이가 같으므로 가장 짧은 변도 $9$ cm입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "9f56fc9663492af9c831fec9c6afb72f176843c766fe026e30c96a2b5c56c2d6"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|07",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 한 삼각형의 세 변이 $8$ cm, $10$ cm, $14$ cm일 때, 다른 삼각형의 가장 짧은 변은 몇 cm입니까?",
+     "answer": "$8$",
+     "solution": "합동이면 대응하는 변의 길이가 같으므로 가장 짧은 변도 $8$ cm입니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "7064a18b8d5dc0fc0fcebee23d18feaad4bedfc19a10a463793b8274992e1673"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|08",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "08",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 한 삼각형의 세 변이 $10$ cm, $5$ cm, $11$ cm일 때, 두 삼각형의 둘레의 합은 몇 cm입니까?",
+     "answer": "$52$",
+     "solution": "한 둘레는 $10+5+11=26$ cm이고 두 삼각형이 합동이므로 합은 $26\\times2=52$ cm입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "e059770bbe6d7a08394d792ece005ba9c4a4c4978f61c3977b6b3a6aa16504c3"
+  },
+  {
+   "familyKey": "elem:초5|2-3-2 합동인 도형의 성질 알아보기|08",
+   "beforeRow": [
+    "초5",
+    "2-3-2 합동인 도형의 성질 알아보기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-2 합동인 도형의 성질 알아보기",
+     "orderIndex": 286,
+     "content": "서로 합동인 두 삼각형이 있습니다. 한 삼각형의 세 변이 $10$ cm, $7$ cm, $9$ cm일 때, 두 삼각형의 둘레의 합은 몇 cm입니까?",
+     "answer": "$52$",
+     "solution": "한 둘레는 $10+7+9=26$ cm이고 두 삼각형이 합동이므로 합은 $26\\times2=52$ cm입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "414a6ae25bed8f16ab35ec4966aa08ffb3adbeaaa67ce105773f197631cea295"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|02",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "02",
+    "기본",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "점대칭인 육각형의 마주 보는 변은 서로 길이가 같습니다. 이웃한 세 변이 $11$ cm, $12$ cm, $21$ cm일 때 이 육각형의 둘레는 몇 cm입니까?",
+     "answer": "$88$",
+     "solution": "점대칭도형에서 대응하는 변의 길이는 서로 같으므로 나머지 세 변도 $11$ cm, $12$ cm, $21$ cm입니다. 둘레는 $(11+12+21)\\times2=88$이므로 $88$ cm입니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "4b5f4ccfcc5cea35c3fcc5c7285a5c6a203651b6390de3f0b1da4a7443e4024f"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|02",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "02",
+    "기본",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "점대칭인 육각형의 마주 보는 변은 서로 길이가 같습니다. 이웃한 세 변이 $5$ cm, $7$ cm, $3$ cm일 때 이 육각형의 둘레는 몇 cm입니까?",
+     "answer": "$30$",
+     "solution": "점대칭도형에서 대응하는 변의 길이는 서로 같으므로 나머지 세 변도 $5$ cm, $7$ cm, $3$ cm입니다. 둘레는 $(5+7+3)\\times2=30$이므로 $30$ cm입니다.",
+     "figureSpec": null,
+     "formId": "02"
+    }
+   ],
+   "afterRowSha256": "27ccfd393b9c84e6551510dcf6ceb6e639f0729e5e1a66e4c157045d9e66c450"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|03",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "03",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "둘레가 $52$ cm인 점대칭 육각형이 있습니다. 마주 보는 변은 서로 같고 이웃한 세 변 중 둘이 $8$ cm, $12$ cm일 때, 나머지 한 변은 몇 cm입니까?",
+     "answer": "$6$",
+     "solution": "마주 보는 변끼리 같으므로 이웃한 세 변의 합은 둘레의 절반인 $52\\div2=26$ cm입니다. 여기서 두 변을 빼면 $26-8-12=6$이므로 $6$ cm입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "449c90ea07daad898dc295051f6c9c88e2a281e7d757e22a77920543174e3988"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|03",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "03",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "둘레가 $48$ cm인 점대칭 육각형이 있습니다. 마주 보는 변은 서로 같고 이웃한 세 변 중 둘이 $5$ cm, $9$ cm일 때, 나머지 한 변은 몇 cm입니까?",
+     "answer": "$10$",
+     "solution": "마주 보는 변끼리 같으므로 이웃한 세 변의 합은 둘레의 절반인 $48\\div2=24$ cm입니다. 여기서 두 변을 빼면 $24-5-9=10$이므로 $10$ cm입니다.",
+     "figureSpec": null,
+     "formId": "03"
+    }
+   ],
+   "afterRowSha256": "a26c4de7c910bc77f477ea523ab5ef15e8bfabfe6c4e6074cc347d54c7b41598"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|08",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "08",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "점대칭인 육각형의 이웃한 세 변이 $12$ cm, $6$ cm, $17$ cm일 때, 둘레의 절반은 몇 cm입니까?",
+     "answer": "$35$",
+     "solution": "마주 보는 변이 같으므로 둘레의 절반은 $12+6+17=35$ cm입니다.",
+     "figureSpec": null,
+     "formId": "08"
+    }
+   ],
+   "afterRowSha256": "11b54c3c7ff6911f8cb82aee8b3ddadae94c194540cd5238efc502eb4aa08c2b"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|09",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "09",
+    "응용",
+    7,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "점대칭인 육각형의 이웃한 세 변이 $9$ cm, $10$ cm, $17$ cm일 때, 가장 긴 변은 몇 cm입니까?",
+     "answer": "$17$",
+     "solution": "이웃한 세 변 중 가장 긴 변은 $17$ cm이고, 마주 보는 변도 같습니다.",
+     "figureSpec": null,
+     "formId": "09"
+    }
+   ],
+   "afterRowSha256": "c29442e97ad37573ca6468510112b31a2040f750226f361e8e1dcdbba6cfa7a7"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|10",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "10",
+    "응용",
+    0,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "점대칭인 육각형의 이웃한 세 변이 $6$ cm, $8$ cm, $12$ cm일 때, 둘레는 몇 cm입니까?",
+     "answer": "$52$",
+     "solution": "점대칭인 육각형은 마주 보는 변의 길이가 같으므로 둘레는 $(6+8+12)\\times2=52$ cm입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "67ef79f98fb415208c2221426f90d924dce19b5d9c6c291c2cc84fbcc774f9e2"
+  },
+  {
+   "familyKey": "elem:초5|2-3-4 점대칭도형과 그 성질 알아보기|10",
+   "beforeRow": [
+    "초5",
+    "2-3-4 점대칭도형과 그 성질 알아보기",
+    "10",
+    "응용",
+    20261018,
+    {
+     "grade": "초5",
+     "chapter": "2-3 합동과 대칭",
+     "section": "2-3-4 점대칭도형과 그 성질 알아보기",
+     "orderIndex": 288,
+     "content": "점대칭인 육각형의 이웃한 세 변이 $9$ cm, $7$ cm, $8$ cm일 때, 둘레는 몇 cm입니까?",
+     "answer": "$48$",
+     "solution": "점대칭인 육각형은 마주 보는 변의 길이가 같으므로 둘레는 $(9+7+8)\\times2=48$ cm입니다.",
+     "figureSpec": null,
+     "formId": "10"
+    }
+   ],
+   "afterRowSha256": "863951810c8021a3672577eb662f655bfcf52300e3eab11f07a5525240b03a66"
   },
   {
    "familyKey": "elem:초5|2-6-1 평균 알아보기|05",
@@ -15221,7 +17549,7 @@
      "formId": "09"
     }
    ],
-   "afterRowSha256": "425c2237fc8c98f081113e2ef98cfc1ac2a08515ca3005e2d26f91c011f94545"
+   "afterRowSha256": "6000672c18e630ca0c0f6c189266903771e01d1443789054d834399280b90b20"
   },
   {
    "familyKey": "elem:초5|2-6-1 평균 알아보기|09",
@@ -15262,7 +17590,7 @@
      "formId": "09"
     }
    ],
-   "afterRowSha256": "7d2e64df776685a3f1b8d7130a3e5348333ad1bd56eddb6192bcf5706f747a68"
+   "afterRowSha256": "54137d97ef9c8657b15b9623b034f7ec02f3bbcf2cc5a5d700063a8bcd84d700"
   },
   {
    "familyKey": "elem:초5|2-6-1 평균 알아보기|09",
@@ -15303,7 +17631,7 @@
      "formId": "09"
     }
    ],
-   "afterRowSha256": "b17b31eaa915296a796fa9f1eddfcd66959ad532f8f5cbbc278803611d066c46"
+   "afterRowSha256": "9e104f1a831452748220b8e33817e4108d9ac6d45f1b48a80fac0997f102c6ad"
   },
   {
    "familyKey": "elem:초5|2-6-1 평균 알아보기|10",
@@ -15493,6 +17821,182 @@
     }
    ],
    "afterRowSha256": "6ad21f7c1cc30c5969dc9dc4b5bb4cda5678e8660c3812ccdc06c5d2f705591b"
+  },
+  {
+   "familyKey": "elem:초6|1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기|06",
+   "beforeRow": [
+    "초6",
+    "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+    "06",
+    "기본",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "1-3 소수의 나눗셈",
+     "section": "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+     "orderIndex": 314,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$5.4$는 $9$보다 작으므로 몫의 자연수 부분에 $0$을 쓴다.",
+     "answer": "예",
+     "solution": "나누어지는 수가 더 작으면 몫의 자연수 부분에 $0$을 씁니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "b887e77e39aa55d6dea2e43bffafb7e767cba115e5b638f0da476756ca537fd8"
+  },
+  {
+   "familyKey": "elem:초6|1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기|06",
+   "beforeRow": [
+    "초6",
+    "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+    "06",
+    "기본",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "1-3 소수의 나눗셈",
+     "section": "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+     "orderIndex": 314,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$0.9$는 $3$보다 작으므로 몫의 자연수 부분에 $0$을 쓴다.",
+     "answer": "예",
+     "solution": "나누어지는 수가 더 작으면 몫의 자연수 부분에 $0$을 씁니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "dd87e270b997235fa8b3fae3147aa7dd38cfe01b30762f7c39f1f6aa4a2ad019"
+  },
+  {
+   "familyKey": "elem:초6|1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기|06",
+   "beforeRow": [
+    "초6",
+    "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+    "06",
+    "기본",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "1-3 소수의 나눗셈",
+     "section": "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+     "orderIndex": 314,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$2.5$는 $5$보다 작으므로 몫의 자연수 부분에 $0$을 쓴다.",
+     "answer": "예",
+     "solution": "나누어지는 수가 더 작으면 몫의 자연수 부분에 $0$을 씁니다.",
+     "figureSpec": null,
+     "formId": "06"
+    }
+   ],
+   "afterRowSha256": "491ad04df02ceb6e65d7a049cc763576d4592dbe9a0351a7f3cf9f127c579cd8"
+  },
+  {
+   "familyKey": "elem:초6|1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+    "07",
+    "기본",
+    0,
+    {
+     "grade": "초6",
+     "chapter": "1-3 소수의 나눗셈",
+     "section": "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+     "orderIndex": 314,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$1.4\\div7=0.2$ 의 몫은 $1$보다 크다.",
+     "answer": "아니요",
+     "solution": "몫 $0.2$는 $1$보다 작습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "0a1e174482669dd876dde59d1cd92d96fba984e7a37bd79c680d6831014edbfa"
+  },
+  {
+   "familyKey": "elem:초6|1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+    "07",
+    "기본",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "1-3 소수의 나눗셈",
+     "section": "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+     "orderIndex": 314,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$1.2\\div3=0.4$ 의 몫은 $1$보다 크다.",
+     "answer": "아니요",
+     "solution": "몫 $0.4$는 $1$보다 작습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "1549b6c7e81988ee537908fdc21fa373b068190bfc7c97beb636de31cec93ea4"
+  },
+  {
+   "familyKey": "elem:초6|1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기|07",
+   "beforeRow": [
+    "초6",
+    "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+    "07",
+    "기본",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "1-3 소수의 나눗셈",
+     "section": "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+     "orderIndex": 314,
+     "content": "다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n$1.8\\div6=0.3$ 의 몫은 $1$보다 크다.",
+     "answer": "아니요",
+     "solution": "몫 $0.3$은 $1$보다 작습니다.",
+     "figureSpec": null,
+     "formId": "07"
+    }
+   ],
+   "afterRowSha256": "14d954bd765f6a0e1870ea887a36e82f94e437561835ad31aaaa6121c898f5cf"
+  },
+  {
+   "familyKey": "elem:초6|1-4-2 비|04",
+   "beforeRow": [
+    "초6",
+    "1-4-2 비",
+    "04",
+    "심화하",
+    7,
+    {
+     "grade": "초6",
+     "chapter": "1-4 비와 비율",
+     "section": "1-4-2 비",
+     "orderIndex": 319,
+     "content": "어떤 비의 두 항의 합이 $8$이고, 비교하는 양이 기준량보다 $6$만큼 작습니다. 이 비를 쓰시오.",
+     "answer": "$1:7$",
+     "solution": "합에서 차를 더하면 기준량의 $2$배입니다. $8+6=14$ 이고 $14\\div2=7$ 이므로 기준량은 $7$입니다. 비교하는 양은 $7-6=1$ 입니다. 비는 (비교하는 양):(기준량)이므로 $1:7$ 입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "e3b4af338a11ca7ddabecf7a49dfd51786a42a35e1abcf7247301978cb3acfeb"
+  },
+  {
+   "familyKey": "elem:초6|1-4-2 비|04",
+   "beforeRow": [
+    "초6",
+    "1-4-2 비",
+    "04",
+    "심화하",
+    20261018,
+    {
+     "grade": "초6",
+     "chapter": "1-4 비와 비율",
+     "section": "1-4-2 비",
+     "orderIndex": 319,
+     "content": "어떤 비의 두 항의 합이 $9$이고, 비교하는 양이 기준량보다 $1$만큼 작습니다. 이 비를 쓰시오.",
+     "answer": "$4:5$",
+     "solution": "합에서 차를 더하면 기준량의 $2$배입니다. $9+1=10$ 이고 $10\\div2=5$ 이므로 기준량은 $5$입니다. 비교하는 양은 $5-1=4$ 입니다. 비는 (비교하는 양):(기준량)이므로 $4:5$ 입니다.",
+     "figureSpec": null,
+     "formId": "04"
+    }
+   ],
+   "afterRowSha256": "04290705623fa2a1e1a8622d74aa5a1aa405cfabcaa579221f713063a0e716c0"
   },
   {
    "familyKey": "elem:초6|1-5-1 띠그래프|01",

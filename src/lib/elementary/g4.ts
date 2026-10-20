@@ -3925,8 +3925,8 @@ function tier43Apply(unit: UnitSeed, rng: Rng): ElemProblem {
       : "";
   return make(
     unit,
-    `도형을 좌우로 ${n(t1)}번, 위아래로 ${n(t2)}번 뒤집었습니다. 그 결과는 처음 도형을 ` +
-      `어떻게 움직인 도형과 같은지 쓰시오.`,
+    `도형을 좌우로 ${n(t1)}번, 위아래로 ${n(t2)}번 뒤집었습니다. 그 결과는 ` +
+      `어떤 도형과 같은지 쓰시오.`,
     answer,
     `같은 방향으로 ${n(2)}번 뒤집으면 처음 도형과 같습니다. 좌우 ${josaNum(t1, "은", "는")} ` +
       `${h ? "홀수라 한 번 뒤집은 것과 같고" : "짝수라 뒤집지 않은 것과 같고"}, ` +
@@ -4175,7 +4175,7 @@ const BAR_SCALES: readonly BarScale[] = [
   },
   // 방과후 교실 서른 명 남짓. 최댓값 8~11 → 축이 9~12 → 눈금 한 칸 2명.
   {
-    who: "방과후 교실 학생들",
+    who: "방과 후 교실 학생들",
     totals: [20, 22, 24, 26, 28],
     minTop: 8,
     maxTop: 10,
@@ -8362,7 +8362,7 @@ function move143CellCount(unit: UnitSeed, rng: Rng): ElemProblem {
     `색칠한 칸이 ${n(shape.cells.length)}개인 도형을 위아래로 뒤집었습니다. 뒤집은 도형의 색칠한 칸은 몇 개인가?`,
     n(shape.cells.length),
     `뒤집어도 칸 수는 변하지 않으므로 ${n(shape.cells.length)}개입니다.`,
-    fig("rotateFlip", { cells: shape.cells, op: "flipV", n: shape.n }),
+    fig("rotateFlip", { cells: shape.cells, op: "flipV", n: shape.n, showAfter: false }),
   );
 }
 
@@ -16244,7 +16244,7 @@ function tier251Apply(unit: UnitSeed, rng: Rng): ElemProblem {
   return make(
     unit,
     `${lineIntro(theme)} ${josa(theme.labels[at]!.math, "과", "와")} ` +
-      `${theme.labels[at + 1]!.math}의 한가운데 때의 값은 약 몇 ${theme.unit}인가?`,
+      `${theme.labels[at + 1]!.math} 사이의 한가운데 때의 값은 약 몇 ${theme.unit}인가?`,
     `${n(mid)}${theme.unit}`,
     // 「약」이 붙는 유일한 갈래다 — **왜 그렇게 읽어도 되는지**를 말한다(리드 2026-08-23).
     `꺾은선그래프는 이웃한 두 점을 선분으로 이어 그리므로, 그 사이의 값은 선분 위에서 ` +

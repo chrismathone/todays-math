@@ -1773,6 +1773,9 @@ def _rotate_flip(spec: Mapping[str, Any]) -> str:
     size, pad = 16.0, 8.0
     g = n * size
     parts = [_draw_cell_grid(pad, pad, n, set(cells), size)]
+    # showAfter=false — 처음 도형만(뒤집은 결과를 보여 주면 답을 세어 버린다)
+    if spec.get("showAfter", True) is False:
+        return _svg(pad * 2 + g, pad * 2 + g, "".join(parts))
     parts.append(_arrow_right(pad + g + 4, pad + g + 28, pad + g / 2))
     parts.append(_draw_cell_grid(pad + g + 36, pad, n, set(after), size))
     w = pad * 2 + g * 2 + 36
@@ -4907,7 +4910,7 @@ ADV_OPTIONAL: dict[str, frozenset[str]] = {
     "stripChart": frozenset(),
     "pieChart": frozenset(),
     "pictograph": frozenset({"hideUnit"}),
-    "rotateFlip": frozenset({"n"}),
+    "rotateFlip": frozenset({"n", "showAfter"}),
     "symmetry": frozenset({"n", "cells", "motif"}),
     "stackCubes": frozenset({"views"}),
     "netCylinder": frozenset({"pi", "layout"}),

@@ -3764,6 +3764,30 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "2026-10-20",
   },
+  {
+    id: "sheet-third-pass-nowrap-symbols-figures",
+    title: "지면 3차 — 짧은 식 한 줄 · 지수 속 분수 · 기호 · <보기> 간격 · 초등 그림 넷",
+    changed:
+      "표시 폭 24단위 이하의 짧은 인라인 식은 줄을 바꾸지 않는다(`rehypeMathNowrap` — 긴 식은 전처럼 등호 · 부호 뒤에서 바뀐다). " +
+      "지수 · 첨자 속 분수(«$8^{\\frac14}$» · «$2^{\\frac{x}{4}}$»)는 작은 분수로 둔다(전에는 큰 분수로 떠서 거듭제곱으로 안 읽혔다). " +
+      "글리프 없는 기호 «⫽» · «ﾟ» 를 «∥» · «°» 로 그린다. 한 줄에 놓인 <보기> 항목 «ㄱ. … ㄴ. …» 사이를 넓혔다. 식 안의 «⋯ ⑴» 뒤 번호는 소문항으로 안 가른다. " +
+      "초등 그림: 시계 바늘이 숫자를 덮지 않는다 · 뒤집기 «색칠한 칸은 몇 개» 는 처음 도형만 그린다 · 라벨 없는 도형(«정사각형의 대칭축») 위아래 빈 여백을 줄였다 · 합동 둘레의 이등변삼각형이 납작하지 않다. " +
+      "교과서 계산 과정의 단계 이름표 «⑴ ⑵ · ㉠ ㉡» 는 그 단계 등호 위에 얹는다(J10203-D15 · D23 · D42 — 공유 DB 묶음).",
+    look:
+      "(제안) ① 고등 «$y=-2(x^2+2x+2)^2+8(x^2+2x+2)+k$» 문항이 칸 오른쪽으로 넘치지 않는가(넘치면 이 항목이 틀렸다). ② «$8^{\\frac14}$» 의 1/4 이 작은 지수인가. " +
+      "③ 교과서 «∠A=40°» 보기의 도 기호가 네모로 안 찍히는가. ④ 초4 시계 «2시» 그림의 «12» 가 바늘에 안 가려지는가. ⑤ J10203-D15-001 의 «⑴» «⑵» 가 등호 위 작은 글자로 찍히고 식과 안 겹치는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/math/rehypeMathNowrap.ts · src/lib/math/textPreprocess.ts(`upgradeFracOutsideScripts`) · src/lib/math/markdownPreprocess.ts(기호 · <보기> 간격) · src/lib/math/subQuestion.ts · src/lib/problem/parseProblemContent.ts",
+      "scripts/figure/elementary.py(`_clock_face` · `_marked_shape`) · scripts/figure/elem_advanced.py(`_rotate_flip` showAfter) · src/lib/elementary/g4.ts · g5.ts",
+      "교차 검수 3회차(세 모델 · 지면 222문항) — 저장소 밖 보고서 report.md",
+    ],
+    scale: "짧은 식 묶음은 지면의 모든 인라인 식(24단위 이하) · 지수 속 분수 · 기호는 은행 전수에서 해당 행 · 초등 그림은 문형 넷",
+    needs: "고등 공통수학1 이차함수의 최대·최소 문항 하나 · 지수 분수가 든 대수 문항 하나 · 교과서 J20502-A50-001 · J10203-D15-001 · 초4 각의 크기 시계 문항",
+    blockedBy: "교과서 이름표 · 초등 그림은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 지면이다",
+    status: "대기",
+    changedOn: "2026-10-20",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

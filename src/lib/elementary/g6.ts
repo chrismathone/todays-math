@@ -3261,7 +3261,7 @@ function biDeep(unit: UnitSeed, rng: Rng): ElemProblem {
       `${bigger ? "큽니다" : "작습니다"}. 이 비를 쓰시오.`,
     expr(`${first}:${b0}`),
     [
-      `합에서 차를 ${bigger ? "빼면" : "더하면"} 기준량의 ${num(2)}배입니다. ` +
+      `합${bigger ? "에서" : "에"} 차를 ${bigger ? "빼면" : "더하면"} 기준량의 ${num(2)}배입니다. ` +
         `${expr(`${sum}${bigger ? "-" : "+"}${d}=${2 * b0}`)} 이고 ${expr(`${2 * b0}\\div2=${b0}`)} 이므로 기준량은 ${num(b0)}입니다.`,
       `비교하는 양은 ${expr(`${b0}${bigger ? "+" : "-"}${d}=${first}`)} 입니다.`,
       `비는 (비교하는 양):(기준량)이므로 ${expr(`${first}:${b0}`)} 입니다.`,
@@ -11666,7 +11666,7 @@ function decUnderFormSmallerTf(unit: UnitSeed, rng: Rng): ElemProblem {
   const a = fromCents(c.a);
   return make(
     unit,
-    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${num(a)}${centsJosa(c.a, "은", "는")} ${num(c.b)}보다 작으므로 몫의 자연수 부분에 ${num(0)}을 쓴다.`,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}`)}에서 ${num(a)}${centsJosa(c.a, "은", "는")} ${num(c.b)}보다 작으므로 몫의 자연수 부분에 ${num(0)}을 쓴다.`,
     "예",
     `나누어지는 수가 더 작으면 몫의 자연수 부분에 ${num(0)}을 씁니다.`,
   );
@@ -11679,9 +11679,9 @@ function decUnderFormOverTf(unit: UnitSeed, rng: Rng): ElemProblem {
   const q = fromCents(c.q);
   return make(
     unit,
-    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}=${q}`)} 의 몫은 ${num(1)}보다 크다.`,
+    `다음이 맞으면 예, 틀리면 아니요를 쓰시오.\n\n${expr(`${a}\\div${c.b}`)} 의 몫은 ${num(1)}보다 크다.`,
     "아니요",
-    `몫 ${num(q)}${centsJosa(c.q, "은", "는")} ${num(1)}보다 작습니다.`,
+    `${expr(`${a}\\div${c.b}=${q}`)} 이므로 몫 ${num(q)}${centsJosa(c.q, "은", "는")} ${num(1)}보다 작습니다.`,
   );
 }
 

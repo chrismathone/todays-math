@@ -41,12 +41,16 @@ describe("Cube 3-1 practice from the real elementary generator", () => {
           Number(sourceSeed),
           "연산",
         );
-        expect(source.figureSpec).toMatchObject({
-          kind: "columnOp",
-          top: String(a),
-          bottom: String(b),
-        });
-        expect(source.figureSpec!.op).toBe(operation === "add" ? "+" : "−");
+        // 원본 문항의 식(세로셈 그림이 있으면 그림, 없으면 해설 «$a+b=c$» — 지면 전수 검사 2026-10-20 뒤 대부분 해설)
+        const sign = operation === "add" ? "+" : "−";
+        if (source.figureSpec?.kind === "columnOp") {
+          expect(source.figureSpec).toMatchObject({ top: String(a), bottom: String(b) });
+          expect(source.figureSpec.op).toBe(sign);
+        } else {
+          expect(source.solution.trim()).toMatch(
+            new RegExp(`^\\$${a}[${sign}-]${b}=${answer}\\$$`),
+          );
+        }
         expect(source.answer).toBe(`$${answer}$`);
         expect(answer).toBe(operation === "add" ? a + b : a - b);
         expect(a).toBeGreaterThanOrEqual(100);
@@ -103,14 +107,14 @@ describe("Cube 3-1 practice from the real elementary generator", () => {
     },
   );
 
-  it("uses a bounded search and fails explicitly when column figures are unavailable", () => {
+  it("uses a bounded search and fails explicitly when column operands are unavailable", () => {
     const unit = CURRICULUM_UNITS.find(
       (item) => item.grade === "초3" && item.section.startsWith("1-1-1 "),
     )!;
     const source = elementary.generateElementaryProblem(unit, 1, "연산");
     const spy = vi
       .spyOn(elementary, "generateElementaryProblem")
-      .mockReturnValue({ ...source, figureSpec: null });
+      .mockReturnValue({ ...source, figureSpec: null, solution: "두 수를 더합니다." });
     expect(() => generateCubePractice()).toThrow("after 2048 attempts");
     expect(spy).toHaveBeenCalledTimes(2048);
     expect(

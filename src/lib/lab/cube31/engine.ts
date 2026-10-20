@@ -18,25 +18,33 @@ const CONCEPTS: CubePractice["concept"][] = [
 ];
 const SECTIONS = ["1-1-1", "1-1-2", "1-1-3", "1-1-4"];
 
-function extract(problem: ElemProblem, id: string): CubePractice | null {
+/**
+ * 두 수와 연산 — 세로셈 그림이 있으면 그림에서, 없으면 해설의 식 «$a+b=c$» 에서 읽는다.
+ * 발문의 식을 다시 그린 세로셈은 지면 전수 검사(2026-10-20)에서 걷혀 연산 문항 대부분에 그림이 없다.
+ */
+function operands(problem: ElemProblem): { top: string; bottom: string; op: string } | null {
   const figure = problem.figureSpec;
-  if (figure?.kind !== "columnOp") return null;
-  if (
-    typeof figure.top !== "string" ||
-    !/^[1-9]\d{2}$/.test(figure.top) ||
-    typeof figure.bottom !== "string" ||
-    !/^[1-9]\d{2}$/.test(figure.bottom)
-  )
-    return null;
+  if (figure?.kind === "columnOp") {
+    if (typeof figure.top !== "string" || typeof figure.bottom !== "string") return null;
+    return { top: figure.top, bottom: figure.bottom, op: String(figure.op) };
+  }
+  const m = /^\$(\d+)([+\-−])(\d+)=\d+\$$/.exec(problem.solution.trim());
+  return m ? { top: m[1]!, bottom: m[3]!, op: m[2]! } : null;
+}
+
+function extract(problem: ElemProblem, id: string): CubePractice | null {
+  const found = operands(problem);
+  if (!found) return null;
+  if (!/^[1-9]\d{2}$/.test(found.top) || !/^[1-9]\d{2}$/.test(found.bottom)) return null;
   const operation =
-    figure.op === "+"
+    found.op === "+"
       ? "add"
-      : figure.op === "−" || figure.op === "-"
+      : found.op === "−" || found.op === "-"
         ? "subtract"
         : null;
   if (!operation) return null;
-  const a = Number(figure.top);
-  const b = Number(figure.bottom);
+  const a = Number(found.top);
+  const b = Number(found.bottom);
   if (operation === "subtract" && a < b) return null;
   const answer = operation === "add" ? a + b : a - b;
   // A figure can outlive a generator change: never silently trust its answer.

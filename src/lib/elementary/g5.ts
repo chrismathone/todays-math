@@ -11061,7 +11061,7 @@ function avg261MaxGap(unit: UnitSeed, rng: Rng): ElemProblem {
   const maxv = Math.max(...values);
   return make(
     unit,
-    `다섯 날 읽은 쪽수가 차례로 ${nums(values)} 쪽입니다. 가장 많이 읽은 날과 평균의 차는 몇 쪽입니까?`,
+    `다섯 날 읽은 쪽수가 차례로 ${nums(values)} 쪽입니다. 가장 많이 읽은 날의 쪽수와 평균의 차는 몇 쪽입니까?`,
     n(maxv - avg),
     `평균은 ${n(avg)} 쪽이고 가장 많은 날은 ${n(maxv)} 쪽이므로 차는 ${expr(`${maxv}-${avg}=${maxv - avg}`)} 쪽입니다.`,
   );
@@ -11701,7 +11701,9 @@ function cong231HowManyOf(unit: UnitSeed, rng: Rng): ElemProblem {
 function triSides(rng: Rng): [number, number, number] {
   const a = intBetween(rng, 5, 12);
   const b = intBetween(rng, 5, 12);
-  const c = intBetween(rng, Math.abs(a - b) + 1, a + b - 1);
+  // 두 변의 합 · 차에 바짝 붙은 셋째 변은 납작한 삼각형이 된다 — 양 끝 두 칸씩 띄운다(구간이 비면 가운데).
+  const lo = Math.abs(a - b) + 2, hi = a + b - 3;
+  const c = lo <= hi ? intBetween(rng, lo, hi) : Math.round((a + b + Math.abs(a - b)) / 2);
   return [a, b, c];
 }
 
@@ -11710,7 +11712,9 @@ function cong232Calc(unit: UnitSeed, rng: Rng): ElemProblem {
   // ⚠️ `isoTri` 에 부등변 세 변을 주면 **이름과 그림이 어긋난다** — 비율을 반영하는
   //    엔진이라 이등변으로 안 그려진다. 두 변을 같게 지어 그림과 수를 맞춘다.
   const leg = intBetween(rng, 6, 13);
-  const base = intBetween(rng, 3, 2 * leg - 1);
+  // 밑변이 두 변의 합에 가까우면 납작해져 변 라벨이 치수 점선과 붙는다(«21 · 11 · 11» — 2026-10-20 3차 교차 검수).
+  //   꼭지각이 100° 남짓까지(밑변 ≤ 1.5 × 빗변)만 낸다.
+  const base = intBetween(rng, 3, Math.floor(leg * 1.5));
   const [a, b, c] = [base, leg, leg];
   return make(
     unit,

@@ -14,6 +14,7 @@ import {
   listedForms,
   supportedTiers,
 } from "@/lib/elementary/generate";
+import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 
 const SEEDS = Array.from({ length: 30 }, (_, s) => 20260825 + s * 1009);
 
@@ -181,5 +182,113 @@ describe("TeX · 낱말이 지면에서 어긋나지 않는다", () => {
         const p = generateElementaryForm(unit, seed, form.id);
         expect(p.content).not.toMatch(/두 시간 \$/);
       }
+  });
+});
+
+/* ── 교차 검수 3회차(2026-10-20) — 세 모델이 제품 렌더 지면에서 짚은 초등 그림 · 문장 ── */
+
+describe("3차 교차 검수 — 그림", () => {
+  it("초4 1-4-3 문형09 «색칠한 칸은 몇 개» — 뒤집은 결과를 그리지 않는다(처음 도형만)", async () => {
+    const unit = unitOf("초4", "1-4-3");
+    for (const seed of SEEDS.slice(0, 8)) {
+      const p = generateElementaryForm(unit, seed, "09");
+      expect(p.figureSpec?.kind, p.content).toBe("rotateFlip");
+      expect(p.figureSpec?.showAfter, p.content).toBe(false);
+      const r = await renderFigureSpec(p.figureSpec as never);
+      expect(r.ok).toBe(true);
+      if (!r.ok) return;
+      // 격자 하나 — 화살표(뒤집은 결과로 가는 길)가 없다
+      expect(r.svg).not.toMatch(/<polygon[^>]*points="[^"]*"[^>]*fill="#111111"/);
+      const vb = /viewBox="0 0 ([\d.]+) ([\d.]+)"/.exec(r.svg)!;
+      expect(Number(vb[1])).toBe(Number(vb[2]));
+    }
+  });
+
+  it("시계 — 긴바늘 · 짧은바늘이 숫자 고리(r − 14) 안에서 멈춘다", async () => {
+    const r = await renderFigureSpec({ version: "elem-1", kind: "clocks", items: [{ hour: 2, minute: 0 }] } as never);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const face = /<circle cx="([\d.]+)" cy="([\d.]+)" r="([\d.]+)" fill="#ffffff"/.exec(r.svg)!;
+    const [cx, cy, rad] = [Number(face[1]), Number(face[2]), Number(face[3])];
+    const hands = [...r.svg.matchAll(/<line x1="([\d.]+)" y1="([\d.]+)" x2="([-\d.]+)" y2="([-\d.]+)"[^>]*stroke-linecap="round"/g)];
+    expect(hands.length).toBe(2);
+    for (const h of hands) {
+      expect(Number(h[1])).toBeCloseTo(cx);
+      expect(Number(h[2])).toBeCloseTo(cy);
+      const len = Math.hypot(Number(h[3]) - cx, Number(h[4]) - cy);
+      // 숫자(8px) 중심이 r − 14 — 바늘 끝은 그 글자 상자(반 높이 4px) 안쪽
+      expect(len).toBeLessThanOrEqual(rad - 14 - 4);
+    }
+  });
+
+  it("라벨 없는 도형(«정사각형의 대칭축») — 위아래 빈 여백이 라벨 자리(40px)가 아니다 · 라벨이 있으면 그대로", async () => {
+    const bare = await renderFigureSpec({ version: "elem-1", kind: "markedShape", shape: "square" } as never);
+    const labelled = await renderFigureSpec({ version: "elem-1", kind: "markedShape", shape: "square", sides: ["5 cm"] } as never);
+    expect(bare.ok && labelled.ok).toBe(true);
+    if (!bare.ok || !labelled.ok) return;
+    const h = (svg: string) => Number(/viewBox="0 0 [\d.]+ ([\d.]+)"/.exec(svg)![1]);
+    const w = (svg: string) => Number(/viewBox="0 0 ([\d.]+)/.exec(svg)![1]);
+    expect(h(bare.svg)).toBeLessThanOrEqual(104 + 2 * 12);
+    expect(w(bare.svg)).toBe(w(labelled.svg)); // 너비(크기 등급)는 같다
+    expect(h(labelled.svg)).toBeGreaterThanOrEqual(104 + 2 * 40);
+  });
+
+  it("초5 2-3-2 합동 — 삼각형 세 변 그림이 납작하지 않다(가장 긴 변 ≤ 나머지 합 − 3)", () => {
+    const unit = unitOf("초5", "2-3-2");
+    const forms = listedForms(unit).map((f) => f.id);
+    let seen = 0;
+    for (const id of forms)
+      for (const seed of SEEDS) {
+        const p = generateElementaryForm(unit, seed, id);
+        const sides = (p.figureSpec?.kind === "markedShape" ? (p.figureSpec.sides as (string | null)[] | undefined) : undefined)
+          ?.map((s) => (s === null ? NaN : parseFloat(s)));
+        if (!sides || sides.length !== 3 || sides.some((v) => Number.isNaN(v))) continue;
+        seen++;
+        const [a, b, c] = [...sides].sort((x, y) => x - y) as [number, number, number];
+        expect(c, `${id} @${seed}: ${sides.join(" · ")}`).toBeLessThanOrEqual(a + b - 3);
+      }
+    expect(seen).toBeGreaterThan(0);
+  });
+});
+
+describe("3차 교차 검수 — 문장", () => {
+  it("초3 1-1 «$a$ 에서 $b$ 만큼 더한» 이 없다(더할 때는 «에»)", () => {
+    for (const code of ["1-1-1", "1-1-2", "1-1-3", "1-1-4"]) {
+      const unit = unitOf("초3", code);
+      for (const tier of supportedTiers(unit))
+        for (const seed of SEEDS) {
+          const p = generateElementaryProblem(unit, seed, tier);
+          expect(p.content, `${code} ${tier} @${seed}`).not.toMatch(/에서 \$\d+\$ 만큼 더한/);
+        }
+    }
+  });
+
+  it("초6 1-3-2 문형06 — 참거짓 문장 앞에 어떤 나눗셈인지 적는다", () => {
+    const unit = unitOf("초6", "1-3-2");
+    for (const seed of SEEDS.slice(0, 10)) {
+      const p = generateElementaryForm(unit, seed, "06");
+      expect(p.content, p.content).toMatch(/\$[\d.]+\\div\d+\$에서 /);
+    }
+  });
+
+  it("초4 1-4-3 응용 «좌우로 m번, 위아래로 n번» — «처음 도형을 어떻게 움직인» 꼴로 묻지 않는다(답이 «처음 도형과 같다» 일 수 있다)", () => {
+    const unit = unitOf("초4", "1-4-3");
+    for (const seed of SEEDS) {
+      const p = generateElementaryProblem(unit, seed, "응용");
+      expect(p.content).not.toContain("처음 도형을 어떻게 움직인");
+    }
+  });
+
+  it("방과후 → 방과 후 · «가장 많이 읽은 날의 쪽수와 평균의 차» · 보리차를 물뿌리개에 담지 않는다", () => {
+    const g4 = unitOf("초4", "1-5-2");
+    for (const seed of SEEDS) expect(generateElementaryForm(g4, seed, "06").content).not.toContain("방과후");
+    const g5 = unitOf("초5", "2-6-1");
+    for (const seed of SEEDS) {
+      const c = generateElementaryForm(g5, seed, "09").content;
+      if (c.includes("가장 많이 읽은 날")) expect(c).toContain("가장 많이 읽은 날의 쪽수와 평균의 차");
+    }
+    const g3 = unitOf("초3", "2-5-2");
+    for (const tier of supportedTiers(g3))
+      for (const seed of SEEDS) expect(generateElementaryProblem(g3, seed, tier).content).not.toContain("물뿌리개");
   });
 });

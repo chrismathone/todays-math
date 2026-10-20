@@ -1146,10 +1146,12 @@ def _clock_face(cx: float, cy: float, r: float, hour: int, minute: int, second: 
 
     h = hour % 12
     m = minute
-    parts.append(hand(30 * h + 0.5 * m, r * 0.45, 2.4, INK))
-    parts.append(hand(6 * m, r * 0.68, 1.8, INK))
+    # 바늘은 숫자 고리(r - 14) 안에서 멈춘다 — 긴바늘이 숫자를 덮으면 «12» 가 뭉개진다
+    reach = r - 20
+    parts.append(hand(30 * h + 0.5 * m, reach * 0.64, 2.4, INK))
+    parts.append(hand(6 * m, reach, 1.8, INK))
     if second is not None:
-        parts.append(hand(6 * second, r * 0.72, 1.0, "#c04545"))
+        parts.append(hand(6 * second, reach + 1, 1.0, "#c04545"))
     parts.append(f'<circle cx="{_n(cx)}" cy="{_n(cy)}" r="2.2" fill="{INK}"/>')
     return "".join(parts)
 
@@ -2166,6 +2168,12 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
     shape_h = max(p[1] for p in pts) - top
     pts = [(x, y - top + pad) for x, y in pts]
     frame_h = pad * 2 + max(shape_h, size * 0.25)
+    # 바깥 라벨(변 길이 · 각)이 하나도 없으면 위아래 40px 은 빈 여백뿐이다 — 「정사각형의 대칭축은 몇 개」의
+    # 빈 정사각형이 칸을 크게 차지했다(2026-10-20 3차 교차 검수). 너비는 그대로 둔다(크기 등급 유지).
+    if all(v is None for v in sides) and all(v is None for v in angles):
+        lean = 10.0
+        pts = [(x, y - pad + lean) for x, y in pts]
+        frame_h = lean * 2 + max(shape_h, size * 0.25)
 
     cxr = sum(p[0] for p in pts) / n
     cyr = sum(p[1] for p in pts) / n
