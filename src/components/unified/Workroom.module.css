@@ -705,6 +705,10 @@
   padding: 0 7px;
 }
 .draftFeedback {
+  /* 시험지 만들기의 단계 띠는 sticky 이고 위쪽 여백을 배경으로 덮는다(z-index 20) — 그 덮개가
+     이 알림 글자를 가렸다(원장님 2026-10-20 «경고 문구가 잘림»). 알림을 띠 위로 올린다. */
+  position: relative;
+  z-index: 21;
   padding: var(--workspace-page-padding);
   padding-bottom: 0;
   color: #963d2a;
