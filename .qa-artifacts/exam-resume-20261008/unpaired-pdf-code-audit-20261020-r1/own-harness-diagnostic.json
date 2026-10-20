@@ -1,0 +1,6 @@
+{
+  "stage": "Added actual metadata cases after initial30CLI results",
+  "failure": "Own patch through shell pipe converted Korean comparison literals into ?; next(...) raised StopIteration before actual main.",
+  "classification": "Own fixture selection/encoding error, not production fault.",
+  "correction": "Use explicit Unicode escape and exact imported protected-school constant to select metadata records. Initial30result evidence preserved separately."
+}
