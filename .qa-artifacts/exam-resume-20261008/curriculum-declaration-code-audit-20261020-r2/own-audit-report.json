@@ -1,0 +1,148 @@
+{
+  "audit": "U61 R2 independent repair replay of explicit curriculum declaration comparator and actual bind/freeze/collector",
+  "status": "bounded-repair-pass",
+  "scopeSHA256": "1d70909bf3be7149dbd7c8f20f501eb3351d74e254890bd996320fc7f013789a",
+  "sourceCheckpointPointer": "72a69274a; exact current file SHAs bind this audit, not mutable HEAD equality",
+  "ownRuns": {
+    "recordedAssertions": 2672,
+    "recordedPassed": 2672,
+    "recordedFailed": 0,
+    "fourRepeatedEmptyWrapperStatusAssertionsExcluded": 4,
+    "uniqueAssertions": 2668,
+    "uniquePassed": 2668,
+    "uniqueFailed": 0,
+    "priorUnique2638Replayed": 2638,
+    "additionalNewWhitespaceAndOpaqueCases": 30,
+    "components": {
+      "originalMatrixAndIntegration": 2557,
+      "R1EmptyBracketCounterexample": 81,
+      "actualCurrentAndStaleCollectors": 4,
+      "newWhitespaceAndOpaque": 30
+    },
+    "counting": "PriorR1counts/failures are historical only, not summed intoR2. Same4duplicate assertions as R1 excluded. No parent188tests or lint counted. No new blind/manual/mathematical question credit.",
+    "parentTestsRunOrCredited": 0
+  },
+  "originalFinding": {
+    "id": "CURRICULUM-R1-empty-bracket-normalization",
+    "R1Status": "technical-hold preserved",
+    "R1Commit": "22a2933b9bc6fa609872f3b062359387589c401f",
+    "R1ReportSHA256": "59970a15cd2bd02b5a860613c1e24b8286d61a762485de8ab1e1272b05b32b48",
+    "R1UniqueAssertions": 2638,
+    "R1Failed": 39,
+    "R1UnderlyingFindings": 1,
+    "R1OwnFilesGitIdentical": 14,
+    "currentResolution": "Both empty-bracket declarations now normalize empty and conflict; blank wrappers/spaces/tabs/linebreak/NBSP/ideographic/em spaces are checked. Original malformed-vs-absent classification differences resolve as malformed, not reworded expected values.",
+    "actualCurrentBind": {
+      "comparisonPerformed": true,
+      "conflicts": [
+        {
+          "path": "curriculumReview",
+          "kind": "malformed-explicit-standard-declaration",
+          "basis": "Both declared fields must be nonempty arrays of individual nonempty code strings"
+        }
+      ],
+      "curriculumApproved": false,
+      "permitsLoad": false,
+      "status": "conflict"
+    },
+    "actualCurrentSyntheticGradeWiring": {
+      "mathematicalVerified": true,
+      "gradeReviewed": false,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "curriculum-metadata-declarations-conflict",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    "actualCurrentCLI": {
+      "exit": 1,
+      "outputExists": false,
+      "errorContainsCurriculumConflict": true
+    },
+    "actualWitnessMethod": "Unchanged expected rejection applied to NEW OWN q02copy; actual root bind/evaluate and actual CLI. Synthetic externalallGreen report clearly labelled wiring-only. No code/original/raw/report mutation; no old fixture deletion.",
+    "noRelease": true
+  },
+  "minimalDeltaProof": {
+    "onlyComparatorProductionChange": true,
+    "actualCurrentSHA256": "18c9c50a6c43b0db33e625706ae3ee8d7c008d4818e76b9ba07f754d2ad9b6b6",
+    "reconstructedOldSHA256": "434cd32443d3d2bad70640bca4bc74b9d4fb456cfabcd509c13aeb7372a66e4b",
+    "matchesOldSourceSHA256": true,
+    "method": "Reconstructing current regex quantifier* as+ yields exact R1source SHA. This proves all other comparator bytes equal without broad historical source reads.",
+    "candidatePackAndCollectorHashesUnchanged": true,
+    "testFileChange": "Current authorized test snapshot read, not run or counted."
+  },
+  "preservedContract": {
+    "explicitComparisonOnly": "Compares primary codes as subset of declared list after bounded trim/optional-single-bracket normalization; ordering/duplicates/subsets/malformed/missing/sparse arrays and input immutability independently rechecked.",
+    "missingFields": "not-comparable-missing-declaration, comparisonPerformedfalse, not a match or semantic approval.",
+    "unknownNonemptyTokens": "Opaque unknown matching strings stay consistent-as-declared; cannot validate official registry/grade placement. Five additional opaque values checked independently.",
+    "bothNonApprovalFlags": "curriculumApprovedfalse and permitsLoadfalse in all tested results. Matching alone without external independent evidence does not produce grade/load permission.",
+    "semanticAndPublicGates": "No source/curriculum/rights/native/public release asserted. Native hold makes overallVerified/loadablefalse even for syntheticallGreen/forged gates."
+  },
+  "existing166": {
+    "rows": 166,
+    "hashesAllMatchIndex": true,
+    "metadataOracleComparisons": 166,
+    "comparable": 25,
+    "notComparable": 141,
+    "conflicts": 0,
+    "beforeAfterUnchanged": true,
+    "limits": "Metadata declarations and file hashes only, no other existing candidate answers/figures/math read as audit oracle or approval. Existing166/25are preservation counts, not grade certification."
+  },
+  "actualCollectors": {
+    "oldGachangR1": {
+      "mathematicalVerified": 2,
+      "gradeReviewed": 0,
+      "contentFinalLoadable": [
+        0,
+        0,
+        0
+      ]
+    },
+    "currentFreshGachangR2": {
+      "math": 2,
+      "grade": 2,
+      "content": 0,
+      "final": 0,
+      "loadable": 0
+    },
+    "R2WithStaleR1Report": {
+      "math": 0,
+      "grade": 0,
+      "staleDigestReasonObserved": true
+    },
+    "method": "Actual current immutable ROOT collector invoked against copied own package/blind/report inputs; stale old reports copied only into NEW OWN fixture. All outputs under new auditprefix. No authentic report or raw rewrites/new Gachang solves."
+  },
+  "preservation": {
+    "inputBeforeAfterEqual": true,
+    "hashBindings": 242,
+    "rootCode": 4,
+    "rootDependencies": 17,
+    "rulesData": 1,
+    "providedMetadata": 4,
+    "existingSelectedCandidates": 166,
+    "ownR1SealedFilesGitIdentical": 14,
+    "sourceEditsByWorker": 0,
+    "APIModelDBCalls": 0,
+    "NOriginalsRawParserImagesReads": 0,
+    "originalsOrRuntimeCopiesGitAdded": false,
+    "initialUnownedHelperSourceChanges": "Existing candidatePack/review modifications and untracked comparator/test preserved; no edits or staging by worker."
+  },
+  "harnessDiagnostic": "Initial own literal needle lost backslashes in command transport, so hash proof asserted before reconstruction. Corrected own probe to unambiguous ASCII suffix, exact old SHA then matched. Diagnostic preserved; no source fault or changed expectation.",
+  "limits": [
+    "Bounded code consistency audit, not general official-code registry/grade-law validation or curriculum approval.",
+    "Plain JSON artifact boundary; no hostile executable getter/proxy sandbox proof.",
+    "No whole-source identity/rights/family/native/2027curriculum certification or release; current2grade reports are independent existing documents, not auto-approved by helper.",
+    "Actual CLI negatives/ownedfixtures only, no DB/API/source extraction or production writes; parent188test/lint claims remain parent evidence."
+  ],
+  "artifacts": {
+    "own-controls-results.json": "6e94f83d5917f3560ecdc9620c8b44649f634b832ebabc835bdf485b258f682f",
+    "own-empty-bracket-reproduction.json": "c2840039c4298477ef63c2f0c251908070c80458e45c41929fcddafb4309a7a1",
+    "own-current-and-stale-collector-results.json": "4204b571887cbfdff21f3e033f5740d3e397cbbb3f5c97048bdf07c05b78d639",
+    "own-extra-boundary-results.json": "a782781f0f44769c2bbede9db8f712d4efe0a36eb9e1b4b6713b848f5ae7206d",
+    "own-source-delta-and-r1-preservation.json": "cea8782953120537b3961344cb185fa7fabb958c15cdc4d2f27bac187ea2e184",
+    "own-before-complete.json": "966ef8093cf051d5bb61ba8fc7739e4211be3adfe69115b20acaa30b6417b4c1",
+    "own-after.json": "966ef8093cf051d5bb61ba8fc7739e4211be3adfe69115b20acaa30b6417b4c1"
+  }
+}

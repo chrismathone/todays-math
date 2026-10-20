@@ -1,0 +1,5 @@
+{
+  "productionFault": false,
+  "ownHarnessFailure": "Exact regex-literal needle in initial source-delta probe lost backslashes in command transport and did not match; assertion stopped before hash reconstruction.",
+  "correction": "Use unambiguous ASCII ]*) suffix to change only * to +; old SHA equality independently proves exact original bytes. No source edits or old artifact overwrite."
+}

@@ -1,0 +1,292 @@
+{
+  "total": 30,
+  "passed": 30,
+  "failed": [],
+  "rows": [
+    {
+      "id": "new-whitespace/0",
+      "tokenCodepoints": [
+        "20",
+        "5b",
+        "20",
+        "5d",
+        "20"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/1",
+      "tokenCodepoints": [
+        "9",
+        "5b",
+        "20",
+        "5d",
+        "a"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/2",
+      "tokenCodepoints": [
+        "5b",
+        "9",
+        "5d"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/3",
+      "tokenCodepoints": [
+        "20",
+        "5b",
+        "9",
+        "5d",
+        "20"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/4",
+      "tokenCodepoints": [
+        "9",
+        "5b",
+        "9",
+        "5d",
+        "a"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/5",
+      "tokenCodepoints": [
+        "20",
+        "5b",
+        "a",
+        "5d",
+        "20"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/6",
+      "tokenCodepoints": [
+        "9",
+        "5b",
+        "a",
+        "5d",
+        "a"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/7",
+      "tokenCodepoints": [
+        "5b",
+        "d",
+        "a",
+        "5d"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/8",
+      "tokenCodepoints": [
+        "20",
+        "5b",
+        "d",
+        "a",
+        "5d",
+        "20"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/9",
+      "tokenCodepoints": [
+        "9",
+        "5b",
+        "d",
+        "a",
+        "5d",
+        "a"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/10",
+      "tokenCodepoints": [
+        "5b",
+        "a0",
+        "5d"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/11",
+      "tokenCodepoints": [
+        "20",
+        "5b",
+        "a0",
+        "5d",
+        "20"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/12",
+      "tokenCodepoints": [
+        "9",
+        "5b",
+        "a0",
+        "5d",
+        "a"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/13",
+      "tokenCodepoints": [
+        "5b",
+        "3000",
+        "5d"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/14",
+      "tokenCodepoints": [
+        "20",
+        "5b",
+        "3000",
+        "5d",
+        "20"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/15",
+      "tokenCodepoints": [
+        "9",
+        "5b",
+        "3000",
+        "5d",
+        "a"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/16",
+      "tokenCodepoints": [
+        "5b",
+        "2003",
+        "5d"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/17",
+      "tokenCodepoints": [
+        "20",
+        "5b",
+        "2003",
+        "5d",
+        "20"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/18",
+      "tokenCodepoints": [
+        "9",
+        "5b",
+        "2003",
+        "5d",
+        "a"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/19",
+      "tokenCodepoints": [
+        "5b",
+        "2028",
+        "5d"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/20",
+      "tokenCodepoints": [
+        "20",
+        "5b",
+        "2028",
+        "5d",
+        "20"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/21",
+      "tokenCodepoints": [
+        "9",
+        "5b",
+        "2028",
+        "5d",
+        "a"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/22",
+      "tokenCodepoints": [
+        "5b",
+        "2029",
+        "5d"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/23",
+      "tokenCodepoints": [
+        "20",
+        "5b",
+        "2029",
+        "5d",
+        "20"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-whitespace/24",
+      "tokenCodepoints": [
+        "9",
+        "5b",
+        "2029",
+        "5d",
+        "a"
+      ],
+      "passed": true
+    },
+    {
+      "id": "new-opaque/opaque-new",
+      "passed": true
+    },
+    {
+      "id": "new-opaque/[[new]]",
+      "passed": true
+    },
+    {
+      "id": "new-opaque/[new] [unknown]",
+      "passed": true
+    },
+    {
+      "id": "new-opaque/9수99-99",
+      "passed": true
+    },
+    {
+      "id": "new-opaque/not-a-code!",
+      "passed": true
+    }
+  ],
+  "limits": "New inputs beyond exact R1empty-wrapper set; opaque nonempty labels remain consistency-only, no registry/curriculum approval."
+}
