@@ -13,6 +13,34 @@ export function extraCourseFrames(
 ) {
   const code = unit.section.split(" ")[0];
   const rng = createRng(seed);
+  if ((code === "2-4-5" || code === "2-4-6") && tier === "응용") {
+    if (code === "2-4-5") {
+      const a = intBetween(rng, 2, 9);
+      const b = intBetween(rng, 2, 9);
+      const remaining = (a * b - 1) / 100;
+      return [
+        make(
+          unit,
+          `가로가 ${n(a / 10)} m, 세로가 ${n(b / 10)} m인 직사각형 종이에서 넓이가 ${n(0.01)} m²인 조각을 잘라 냈습니다. 남은 종이의 넓이는 몇 m²입니까?`,
+          n(remaining),
+          `전체 넓이는 $${a / 10}\\times${b / 10}=${(a * b) / 100}$ m²입니다. 잘라 낸 넓이를 빼면 ${n(remaining)} m²입니다.`,
+        ),
+      ];
+    }
+    const rawA = intBetween(rng, 11, 28);
+    const a = rawA % 10 === 0 ? rawA + 1 : rawA;
+    const rawB = a + intBetween(rng, 2, 8);
+    const b = rawB % 10 === 0 ? rawB + 1 : rawB;
+    const difference = (a * b - a * a) / 100;
+    return [
+      make(
+        unit,
+        `가로가 ${n(a / 10)} m, 세로가 ${n(b / 10)} m인 직사각형과 한 변이 ${n(a / 10)} m인 정사각형이 있습니다. 두 도형의 넓이의 차는 몇 m²입니까?`,
+        n(difference),
+        `직사각형의 넓이는 ${n((a * b) / 100)} m²이고 정사각형의 넓이는 ${n((a * a) / 100)} m²입니다. 차는 ${n(difference)} m²입니다.`,
+      ),
+    ];
+  }
   if (code === "2-3-1") {
     const source = generateElementaryForm(unit, seed, "05");
     const spec = source.figureSpec as { items: { shape: string }[] };
