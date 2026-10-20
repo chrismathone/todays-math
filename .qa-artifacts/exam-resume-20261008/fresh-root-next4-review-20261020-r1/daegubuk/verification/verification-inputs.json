@@ -1,0 +1,659 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 1,
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q01",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "양수 $k$의 두 제곱근을 작은 것부터 $a$, $b$라 하자. 수직선 위에서 좌표가 $a$, $b$인 점을 각각 A, B라 할 때, 선분 AB의 길이가 $8$이다. $k$의 값은?",
+      "choices": [
+        "$4$",
+        "$8$",
+        "$16$",
+        "$32$",
+        "$64$"
+      ],
+      "answer": "③",
+      "solution": "양수의 두 제곱근은 부호가 서로 다르고 절댓값은 같다. 따라서 A와 B는 원점의 양쪽에 있고 원점에서 같은 거리만큼 떨어져 있다.\n\n선분 AB의 길이가 $8$이므로 원점에서 각 점까지의 거리는 $8\\div2=4$이다. 따라서 $a=-4$, $b=4$이다. 이 두 수를 제곱한 값이 $k$이므로 $k=4^2=16$이다. 실제로 $16$의 두 제곱근 $-4$, $4$에 대응하는 두 점 사이의 거리는 $8$이다. 정답은 ③이다.",
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 80
+        }
+      ],
+      "sourceReference": {
+        "externalId": "2025-daegubuk-3-1-mid-1",
+        "inventoryExamId": "personal-dc9efb798219b732ebd608105298f220",
+        "sourceQuestionNumber": 1,
+        "newSourceReferenceId": "source-ref-daegubuk-2025-1-mid-group3-r1-q01",
+        "sourceContentSha256": "6edeb3a06b51109710db8e39c905889d033a84b5b7d2590819f46b6130efb11e",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-dc9efb798219b732ebd608105298f220/q01.local.json",
+          "sha256": "3181a8ee614607c9193974e1afc5971ac0d03d789282acdf000a306d1ba16350"
+        },
+        "sourceSchoolInternal": "대구북중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-dc9efb798219b732ebd608105298f220\\source-manifest.local.json",
+          "sha256": "890a7d4ed291f70b6f5f03d5ce7a0f17ef281f657158dcfda7b602b50c09d51b",
+          "bytes": 1546963
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구북중][3][25-1-중간][비상] (완료).hwp",
+            "sha256": "2f89044cdfdbe4873b487b6a4ce9b6b17fd6a1f5ea62168a110294787c4ae8e5",
+            "bytes": 366080
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구북중][3][25-1-중간][비상] (완료).PDF",
+            "sha256": "848fd7e57fc4d42fb112b3c6a0bd9cb46c496ded6cd875c3a803a4a21d5092c0",
+            "bytes": 171567
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구북중][3][25-1-중간] (원본) (간짬뽕).pdf",
+          "sha256": "8f599954067c085ff2461e8aa53876960d652e9828e653729c3e69608fb8471f",
+          "bytes": 423901
+        },
+        "sourceComponentEvidence": null,
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구북중-q01",
+          "originalR1ProposalResolvedBySeparateLocalR3Observation": true
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구북중-q01"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write",
+        "originalUnchangedStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q01.json",
+          "sha256": "c85d07a8d2b8688468d74cc51d1bb7d57a6e5a2afeafe8ba9b1aebd0f8da7e3a"
+        },
+        "localNormalizationObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-nine-local-normalization-observations-r3.json",
+          "sha256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "algebra-to-geometry",
+          "inverse-target",
+          "structure",
+          "new-vector"
+        ],
+        "before": "제곱근의 뜻·부호와 근호의 값을 여러 일반 진술에서 구별한다.",
+        "after": "같은 수의 두 제곱근을 두 좌표로 제시하고 그 사이 거리에서 원래 양수를 역추론한다.",
+        "sharedConcept": "양수의 두 제곱근이 서로 반대 부호이고 제곱값은 같다는 정의",
+        "sharedProcedure": "두 근은 원점에 대칭 → 주어진 거리8의 절반4 → 좌표−4와4 → 제곱값16 확인",
+        "actualStructuralChange": "같은 수의 두 제곱근을 두 좌표로 제시하고 그 사이 거리에서 원래 양수를 역추론한다.",
+        "domainProof": "k>0이고 a<b이므로 a<0<b이다. 두 근의 크기가 같아 거리8에서 크기4가 유일하고 k16>0이 존재한다. 수직선 거리와 제곱근 정의만 사용한다. 원문의 모든 부수 근호 계산을 복제하지 않아 목표 난도 동등성과 정확한 family는 독립 보류한다.",
+        "difficultyBasis": "원문과 동일한 핵심 개념·풀이 관계를 사용한 저자 제안이다. 단순 숫자/학교명 치환으로 통과하지 않는다. 실제 목표 난도·정확한 family·모든 학년 면은 별도 검수 전 보류."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-07"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수01-07"
+          ]
+        },
+        "legitimateMethodDraft": "두 근은 원점에 대칭 → 주어진 거리8의 절반4 → 좌표−4와4 → 제곱값16 확인",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+        "sourceExamYear": 2025,
+        "targetAcademicYear": 2026,
+        "curriculum": "2015",
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "standard": "9수01-07",
+          "capturedPrimaryReceipt": {
+            "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+            "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+          },
+          "providedMOEEvidence": {
+            "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+            "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+          },
+          "actualScope": "2015 중3 실수·제곱근과 이미 배운 수직선/정사각형/유리수 성질. 2027년 중3의2022 적용으로 자동 전용하지 않는다."
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "같은 수의 두 제곱근을 두 좌표로 제시하고 그 사이 거리에서 원래 양수를 역추론한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "1682f01b-5293-4672-91cd-07fc02e305ac",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "캡처된 실제2015중3 Unit UUID. 새 구조에 정확히 맞는 live family는 불명이며 자동 배정하지 않는다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "existing-graph-1-vector-engine-strict",
+          "newFigures": 1,
+          "newTables": 0,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "k>0이고 a<b이므로 a<0<b이다. 두 근의 크기가 같아 거리8에서 크기4가 유일하고 k16>0이 존재한다. 수직선 거리와 제곱근 정의만 사용한다. 원문의 모든 부수 근호 계산을 복제하지 않아 목표 난도 동등성과 정확한 family는 독립 보류한다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next4-20261020-r1.ts",
+          "reproductionScriptSha256": "83c51c9d38dadc0e0395aa68b68814edf0626cb924d133e26c14344f1dbc1ec6",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "제곱근의 뜻과 성질",
+            "semester": 1,
+            "orderIndex": 469,
+            "problemCodePrefix": "J30101"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "양수의 두 제곱근",
+            "양수·음수와 수직선",
+            "두 점 사이 거리",
+            "정수의 제곱"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next4-review-20261020-r1\\daegubuk\\private\\q01\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-root-next4-review-20261020-r1\\daegubuk\\private\\q01\\figure-1.svg",
+        "specSha256": "34d0b57740b68d352083fa0a89ee4b1a2aff3f0411a25079ef8f1338de22e953",
+        "svgSha256": "a3b20d65e6998a41457934dc9117b71abff7011f647111cb7807426f2e4535f4",
+        "intendedWidthMm": 80,
+        "studentPath": "figures/q01-1.svg"
+      }
+    ],
+    "studentDigest": "1457138e33c8d74f2d5cd8ecef5020c69631d4e5d498a5a23ada1d43fbf8fa0f",
+    "candidateDigest": "e7bd4b9a2e5895b57229f6342d961512bb71663070d2500443bf94f84db0b2e2",
+    "assetDigest": "d7f51469a207e0d4d36d5888f5d3da9507ebaca2daca47a30574e1712ae0c7df",
+    "independentSolve": {
+      "studentDigest": "1457138e33c8d74f2d5cd8ecef5020c69631d4e5d498a5a23ada1d43fbf8fa0f",
+      "solverId": "independent-helper-current-next4-20261020-r1",
+      "answer": "③",
+      "solution": "양수 k의 두 제곱근은 부호가 반대이고 절댓값이 같다. 작은 근 a는 음수, 큰 근 b는 양수이므로 a=-b이다. A에서 B까지의 거리는 b-a=2b=8이므로 b=4, a=-4이고 k=4²=16이다. 실제로 두 수의 제곱은 모두16이고 두 점 사이의 거리는8이므로 조건을 만족한다. 보기의 k=4,8,16,32,64에서 거리의 제곱4k는 각각16,32,64,128,256이므로 요구된8²=64에 맞는 것은16뿐이다. 따라서 ③이다.",
+      "evidence": {
+        "status": "independently-solved-current-student-only",
+        "exposureDeclaration": {
+          "solverId": "independent-helper-current-next4-20261020-r1",
+          "priorExposure": "Previously viewed original nine source components/first-page references, prior related root variants, and public engine code. No pristine-corpus-blindness claim.",
+          "currentAuthorAnswerExposureBeforeSeal": false,
+          "currentPrivateSolutionsSpecsMetadataRead": false,
+          "currentStudentInputsReadOnly": [
+            "two SOLVE-BRIEFs",
+            "two student-problems.json",
+            "two blind manifests",
+            "two student SVGs",
+            "four student PNGs"
+          ],
+          "studentPNGsActuallyViewed": 4,
+          "svgDirectView": "view_image does not support SVG; Cairo rasterization unavailable. Original SVG labels/hashes inspected, and each figure actually viewed within its provided student PNG. No pixel/coordinate math oracle.",
+          "scope": "Raw independent student solving, not formal current author/source comparison or grade/rights/family/native/loadability approval."
+        },
+        "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q01",
+        "ownExactCalculation": {
+          "a": "-4",
+          "b": "4",
+          "k": "16",
+          "choices": [
+            {
+              "choice": "①",
+              "k": "4",
+              "squaredDistance": "16",
+              "requiredSquaredDistance": "64",
+              "satisfies": false
+            },
+            {
+              "choice": "②",
+              "k": "8",
+              "squaredDistance": "32",
+              "requiredSquaredDistance": "64",
+              "satisfies": false
+            },
+            {
+              "choice": "③",
+              "k": "16",
+              "squaredDistance": "64",
+              "requiredSquaredDistance": "64",
+              "satisfies": true
+            },
+            {
+              "choice": "④",
+              "k": "32",
+              "squaredDistance": "128",
+              "requiredSquaredDistance": "64",
+              "satisfies": false
+            },
+            {
+              "choice": "⑤",
+              "k": "64",
+              "squaredDistance": "256",
+              "requiredSquaredDistance": "64",
+              "satisfies": false
+            }
+          ],
+          "existence": "Both roots square to16, opposite signs, a<b, distance8; k>0.",
+          "uniqueness": "a=-b and b>0, so8=b-a=2b fixes b=4 then k=16."
+        },
+        "ownCalculationReceiptSHA256": "a2f042faa975919fdb960ec2718da75588bd87579ed281b1ced2c069396334fc",
+        "studentProblemsSHA256": "2a38f1ace325e3d098c645a566e079ec590fa1f4b9e63948c7f788d23685c71a",
+        "figureSHA256s": [
+          "a3b20d65e6998a41457934dc9117b71abff7011f647111cb7807426f2e4535f4"
+        ],
+        "methodGrade": "Proposed2015M3 after root definitions/comparison/irrationality, <=M2 prerequisites; no automatic formal grade/release approval.",
+        "everyChoiceChecked": true,
+        "pixelsOrCoordinatesUsedAsNumericOracle": false
+      },
+      "status": "solved"
+    },
+    "solveDigest": "a4b2c7029d56bdecd01f93d4029e5f634292ebe636b22d9b814198db24298f22"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 3,
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q03",
+      "authorId": "codex-parent-engine-upgrade-20261020",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "다음 표에서 유리수가 적힌 칸을 모두 지운다. 남아 있는 칸은 몇 개인가? (순환소수는 순환하는 부분의 처음과 끝 숫자 위에 점을 찍어 나타냈다.)\n\n| A | B | C | D | E |\n| --- | --- | --- | --- | --- |\n| $\\sqrt{0.09}$ | $\\sqrt7$ | $-0.\\dot2\\dot7$ | $\\sqrt{\\dfrac{49}{9}}$ | $\\sqrt5-2$ |",
+      "choices": [
+        "$0$개",
+        "$1$개",
+        "$2$개",
+        "$3$개",
+        "$4$개"
+      ],
+      "answer": "③",
+      "solution": "A의 수는 $\\sqrt{0.09}=0.3=\\dfrac3{10}$이고, C의 수는 순환소수로 $-0.\\dot2\\dot7=-\\dfrac{27}{99}=-\\dfrac3{11}$이다. D의 수는 $\\sqrt{\\dfrac{49}{9}}=\\dfrac73$이다. 이 세 수는 모두 유리수이므로 지운다.\n\nB의 $\\sqrt7$은 제곱수가 아닌 자연수 $7$의 제곱근이므로 무리수이다. E의 $\\sqrt5-2$도 무리수이다. 만약 이 수가 유리수라면 여기에 유리수 $2$를 더한 $\\sqrt5$도 유리수가 되어야 하지만 $\\sqrt5$는 무리수이다.\n\n따라서 남는 칸은 B와 E, 모두 $2$개이다. 정답은 ③이다.",
+      "figureArtifacts": [],
+      "sourceReference": {
+        "externalId": "2025-daegubuk-3-1-mid-3",
+        "inventoryExamId": "personal-dc9efb798219b732ebd608105298f220",
+        "sourceQuestionNumber": 3,
+        "newSourceReferenceId": "source-ref-daegubuk-2025-1-mid-group3-r1-q03",
+        "sourceContentSha256": "fa2f527e3cdb50af950f2f2a6c3fc9580c0fec6d81f38ec6553532ce7c8acd05",
+        "questionOnlyStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-nine-source-local-normalization-20261020-r3/personal-dc9efb798219b732ebd608105298f220/q03.local.json",
+          "sha256": "6bb12f39fb24f277f274df09ee2de60db997221d190ef0b2eb66b8c36ae3a533"
+        },
+        "sourceSchoolInternal": "대구북중",
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "extractionManifest": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-dc9efb798219b732ebd608105298f220\\source-manifest.local.json",
+          "sha256": "890a7d4ed291f70b6f5f03d5ce7a0f17ef281f657158dcfda7b602b50c09d51b",
+          "bytes": 1546963
+        },
+        "sourceFiles": [
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구북중][3][25-1-중간][비상] (완료).hwp",
+            "sha256": "2f89044cdfdbe4873b487b6a4ce9b6b17fd6a1f5ea62168a110294787c4ae8e5",
+            "bytes": 366080
+          },
+          {
+            "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구북중][3][25-1-중간][비상] (완료).PDF",
+            "sha256": "848fd7e57fc4d42fb112b3c6a0bd9cb46c496ded6cd875c3a803a4a21d5092c0",
+            "bytes": 171567
+          }
+        ],
+        "originalIdentityReference": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구북중][3][25-1-중간] (원본) (간짬뽕).pdf",
+          "sha256": "8f599954067c085ff2461e8aa53876960d652e9828e653729c3e69608fb8471f",
+          "bytes": 423901
+        },
+        "sourceComponentEvidence": null,
+        "sourceComponentReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+          "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+          "component": "대구북중-q03",
+          "originalR1ProposalResolvedBySeparateLocalR3Observation": true
+        },
+        "gradeMethodProposal": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+          "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+          "component": "대구북중-q03"
+        },
+        "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "originalAnswerKeyUsed": false,
+        "sourceTextCopiedToCandidate": false,
+        "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write",
+        "originalUnchangedStaged": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q03.json",
+          "sha256": "02baec10eaf137c4982ad99ba10366d0102826de7a3ad7fe130616f6d21cb66a"
+        },
+        "localNormalizationObservation": {
+          "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/fresh-nine-local-normalization-observations-r3.json",
+          "sha256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0"
+        }
+      },
+      "variantDelta": {
+        "modes": [
+          "data-reorganization",
+          "question-target-change",
+          "structure",
+          "new-table"
+        ],
+        "before": "근호·순환소수·유리수와 무리수의 합을 포함한 수 쌍 중 무리수만 있는 쌍을 고른다.",
+        "after": "다섯 수를 단일 표로 재조직하고 유리수를 제거한 뒤 남는 칸 수를 구한다.",
+        "sharedConcept": "근호가 있어도 유리수인 수와 순환소수, 무리수에 유리수를 더하거나 빼는 경우의 분류",
+        "sharedProcedure": "유한소수 근호·순환소수·분수 근호를 유리수로 확인 → 제곱수가 아닌 자연수의 근호와 유리수 이동을 무리수로 판단 → 남는 칸2개",
+        "actualStructuralChange": "다섯 수를 단일 표로 재조직하고 유리수를 제거한 뒤 남는 칸 수를 구한다.",
+        "domainProof": "A3/10,C−3/11,D7/3은 분모가0이 아닌 정수비이고 B√7은 무리수이다. E는 유리수의 덧셈에 닫힘과 √5의 무리수 성질로 판단한다. 학생용 해설은 형식적 고등 증명 용어나 무한급수를 사용하지 않는다. 이 설명의 실제 중3 적합성은 별도 일곱 면 검수 전 보류한다.",
+        "difficultyBasis": "원문과 동일한 핵심 개념·풀이 관계를 사용한 저자 제안이다. 단순 숫자/학교명 치환으로 통과하지 않는다. 실제 목표 난도·정확한 family·모든 학년 면은 별도 검수 전 보류."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수01-07",
+          "9수01-08",
+          "9수01-10"
+        ],
+        "officialBasis": {
+          "document": "MOE2020-236 Book8,2015 revised curriculum",
+          "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "stream": "BodyText/Section0",
+          "primaryStandardCodes": [
+            "9수01-07"
+          ]
+        },
+        "legitimateMethodDraft": "유한소수 근호·순환소수·분수 근호를 유리수로 확인 → 제곱수가 아닌 자연수의 근호와 유리수 이동을 무리수로 판단 → 남는 칸2개",
+        "sevenSurfaces": {
+          "stem": "author-proposed-independent-review-pending",
+          "choices": "author-proposed-independent-review-pending",
+          "figuresAndTables": "author-proposed-independent-review-pending",
+          "notation": "author-proposed-independent-review-pending",
+          "answer": "author-proposed-independent-review-pending",
+          "studentSolution": "author-proposed-independent-review-pending",
+          "prerequisites": "author-proposed-independent-review-pending"
+        },
+        "independentReviewPending": true,
+        "authorCannotApprove": true,
+        "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+        "sourceExamYear": 2025,
+        "targetAcademicYear": 2026,
+        "curriculum": "2015",
+        "officialPrimary": {
+          "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+          "standard": "9수01-07, 9수01-08, 9수01-10",
+          "capturedPrimaryReceipt": {
+            "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+            "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+          },
+          "providedMOEEvidence": {
+            "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+            "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+          },
+          "actualScope": "2015 중3 실수·제곱근과 이미 배운 수직선/정사각형/유리수 성질. 2027년 중3의2022 적용으로 자동 전용하지 않는다."
+        }
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 1,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 1,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "answerFormat": "single-choice-symbol",
+        "score": 3,
+        "source": "transformed",
+        "originProblemId": null,
+        "difficultyProposal": "기본~응용 저자 제안",
+        "difficultyStatus": "author-proposed-independent-calibration-pending",
+        "problemTypeProposal": "다섯 수를 단일 표로 재조직하고 유리수를 제거한 뒤 남는 칸 수를 구한다.",
+        "problemTypeStatus": "author-proposed",
+        "assignment": {
+          "status": "pending",
+          "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          },
+          "snapshot": {
+            "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+            "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+          },
+          "evidence": "캡처된 실제2015중3 Unit UUID. 새 구조에 정확히 맞는 live family는 불명이며 자동 배정하지 않는다."
+        },
+        "schoolSubstitution": {
+          "visibleSchoolNames": [],
+          "replacementRequired": false,
+          "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+        },
+        "figureAuthoring": {
+          "method": "new-native-Markdown-table",
+          "newFigures": 0,
+          "newTables": 1,
+          "originalCropEmbedded": false,
+          "pixelOracle": false,
+          "coordinateConstruction": "A3/10,C−3/11,D7/3은 분모가0이 아닌 정수비이고 B√7은 무리수이다. E는 유리수의 덧셈에 닫힘과 √5의 무리수 성질로 판단한다. 학생용 해설은 형식적 고등 증명 용어나 무한급수를 사용하지 않는다. 이 설명의 실제 중3 적합성은 별도 일곱 면 검수 전 보류한다.",
+          "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next4-20261020-r1.ts",
+          "reproductionScriptSha256": "83c51c9d38dadc0e0395aa68b68814edf0626cb924d133e26c14344f1dbc1ec6",
+          "renderingReviewPending": true
+        },
+        "authorOnly": true,
+        "independentMathApproval": false,
+        "independentGradeApproval": false,
+        "sourceIdentityApproved": false,
+        "rightsApproved": false,
+        "similarityApproved": false,
+        "nativeProvenanceApproved": false,
+        "loadable": false,
+        "sourceDifficultyLabelObserved": "하",
+        "prerequisiteUnits": [
+          {
+            "id": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+            "grade": "중3",
+            "chapter": "1. 실수와 그 계산",
+            "section": "무리수와 실수",
+            "semester": 1,
+            "orderIndex": 470,
+            "problemCodePrefix": "J30102"
+          }
+        ],
+        "placementConditions": {
+          "practiceAcademicYear": 2026,
+          "curriculumEdition": "2015",
+          "grade": "중3",
+          "requiresLearnedBeforeAssignment": [
+            "제곱근의 뜻",
+            "유리수·무리수의 뜻",
+            "순환소수의 분수 표현",
+            "유리수끼리의 덧셈"
+          ],
+          "schoolMidtermPacingCertified": false,
+          "m3From2027": "pending-separate-2022-grade-placement-review"
+        },
+        "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+      }
+    },
+    "assets": [],
+    "studentDigest": "a6921ad1dbff81357594be8db798968a002e40ae55e1cb5373f2fbe7cf8719b3",
+    "candidateDigest": "ab3992701fc79833b905787f855d72164e9c3090b3be7808d31cfdb62be92475",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "a6921ad1dbff81357594be8db798968a002e40ae55e1cb5373f2fbe7cf8719b3",
+      "solverId": "independent-helper-current-next4-20261020-r1",
+      "answer": "③",
+      "solution": "A의 √0.09=0.3=3/10은 유리수이다. B의 √7은7이 제곱수가 아니므로 무리수이다. C는 -0.272727…이다. x=0.272727…라 하면100x-x=27이므로 x=27/99=3/11이고, C=-3/11은 유리수이다. D의 √(49/9)=7/3도 유리수이다. E의 √5-2는 무리수인 √5에서 정수2를 뺀 수이므로 무리수이다. E가 유리수라면2를 더한 √5도 유리수가 되어 맞지 않는다. 따라서 유리수가 적힌 A,C,D를 지우면 B,E의2칸이 남는다. 보기의0,1,2,3,4개 중 맞는 것은2개이므로 ③이다. 모든 근호 안의 수는 양수이고 C의 분모99,11은0이 아니다.",
+      "evidence": {
+        "status": "independently-solved-current-student-only",
+        "exposureDeclaration": {
+          "solverId": "independent-helper-current-next4-20261020-r1",
+          "priorExposure": "Previously viewed original nine source components/first-page references, prior related root variants, and public engine code. No pristine-corpus-blindness claim.",
+          "currentAuthorAnswerExposureBeforeSeal": false,
+          "currentPrivateSolutionsSpecsMetadataRead": false,
+          "currentStudentInputsReadOnly": [
+            "two SOLVE-BRIEFs",
+            "two student-problems.json",
+            "two blind manifests",
+            "two student SVGs",
+            "four student PNGs"
+          ],
+          "studentPNGsActuallyViewed": 4,
+          "svgDirectView": "view_image does not support SVG; Cairo rasterization unavailable. Original SVG labels/hashes inspected, and each figure actually viewed within its provided student PNG. No pixel/coordinate math oracle.",
+          "scope": "Raw independent student solving, not formal current author/source comparison or grade/rights/family/native/loadability approval."
+        },
+        "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q03",
+        "ownExactCalculation": {
+          "classifications": [
+            {
+              "record": "A",
+              "rational": true,
+              "exact": "3/10",
+              "sign": "positive"
+            },
+            {
+              "record": "B",
+              "rational": false,
+              "exact": "sqrt(7)",
+              "strictBounds": "2<sqrt(7)<3",
+              "squareBounds": [
+                4,
+                7,
+                9
+              ]
+            },
+            {
+              "record": "C",
+              "rational": true,
+              "exact": "-3/11",
+              "sign": "negative",
+              "repeatingBlock": "27",
+              "fractionEquation": "100x-x=27; x=27/99 before negative sign"
+            },
+            {
+              "record": "D",
+              "rational": true,
+              "exact": "7/3",
+              "sign": "positive"
+            },
+            {
+              "record": "E",
+              "rational": false,
+              "exact": "sqrt(5)-2",
+              "strictBounds": "0<sqrt(5)-2<1",
+              "basis": "sqrt(5) irrational; subtracting integer2 cannot make it rational"
+            }
+          ],
+          "remaining": 2,
+          "uniqueness": "All five real records have one rationality classification; exactly B,E remain."
+        },
+        "ownCalculationReceiptSHA256": "a2f042faa975919fdb960ec2718da75588bd87579ed281b1ced2c069396334fc",
+        "studentProblemsSHA256": "2a38f1ace325e3d098c645a566e079ec590fa1f4b9e63948c7f788d23685c71a",
+        "figureSHA256s": [],
+        "methodGrade": "Proposed2015M3 after root definitions/comparison/irrationality, <=M2 prerequisites; no automatic formal grade/release approval.",
+        "everyChoiceChecked": true,
+        "pixelsOrCoordinatesUsedAsNumericOracle": false
+      },
+      "status": "solved"
+    },
+    "solveDigest": "111a9c925465fd110e6bd8d828acaaf005d65d89cd642299d4c9c5f50669dbdd"
+  }
+]

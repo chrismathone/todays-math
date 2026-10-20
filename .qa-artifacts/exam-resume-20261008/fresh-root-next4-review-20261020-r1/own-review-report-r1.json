@@ -1,0 +1,168 @@
+{
+  "kind": "bounded-independent-next4-full-review/v1",
+  "method": "independent-solve-then-review",
+  "rawCommit": "96e8765a780ca382f8ea44ddcb658c566a63dd30",
+  "parentPreExposureSeal": "617a23934a60be011fb89c09e4cf36ff6bfc97f0",
+  "currentIds": [
+    {
+      "exam": "daegubuk",
+      "question": 1,
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/verification/reports/q01.json",
+      "sha256": "339d7d72079397145948adba7d02fdc4445d1c0d167e3ce8ec0da7077f6dec27",
+      "checksPassed": 11,
+      "gradeSurfacesPassed": 7,
+      "status": "pending",
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q01"
+    },
+    {
+      "exam": "daegubuk",
+      "question": 3,
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daegubuk/verification/reports/q03.json",
+      "sha256": "77b2850568dc62d0a38a6d3fb05a11b0b0141be209ed133dd906f4aae8ddeb99",
+      "checksPassed": 11,
+      "gradeSurfacesPassed": 7,
+      "status": "pending",
+      "twinExternalId": "exam-twin-daegubuk-2025-1-mid-author-group3-r1-q03"
+    },
+    {
+      "exam": "daeguil",
+      "question": 1,
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/verification/reports/q01.json",
+      "sha256": "fbba336a612bf76abdb6f084922eb347e1653e135473fdb5109ab707586c91ed",
+      "checksPassed": 11,
+      "gradeSurfacesPassed": 7,
+      "status": "pending",
+      "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group3-r1-q01"
+    },
+    {
+      "exam": "daeguil",
+      "question": 3,
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/daeguil/verification/reports/q03.json",
+      "sha256": "c6b563590a205e3efd2e5468eb53f7450b718aaaf93f7a72e9f9a473ce647450",
+      "checksPassed": 11,
+      "gradeSurfacesPassed": 7,
+      "status": "pending",
+      "twinExternalId": "exam-twin-daeguil-2025-1-mid-author-group3-r1-q03"
+    }
+  ],
+  "counts": {
+    "currentAuthored": 4,
+    "mathematicalVerified": 4,
+    "gradeReviewed": 4,
+    "contentVerified": 0,
+    "contentHeld": 4,
+    "finalVerified": 0,
+    "loadable": 0,
+    "checkBooleansTrue": 44,
+    "unitFamilyHolds": 4,
+    "individualGradeSurfacesPassed": 28,
+    "newBlindOrQuestionCountFromReview": 0
+  },
+  "actualCollector": {
+    "executed": true,
+    "version": "Existing locally supplied U56 production closure; candidatePack13da6274441c78cb7c5eb9df1c83cc55dd6a9489aec0ac4205a5764aa3ddafb4. Not a claim of reauditing newer parent collector versions.",
+    "inputs": "Actual current package, raw, human reports. No synthetic reports, mocked validation, author-source comparisons as answer oracle, DB/API or root reads.",
+    "output": ".qa-artifacts/exam-resume-20261008/fresh-root-next4-review-20261020-r1/own-review-evidence-r1/own-existing-collector-results.json",
+    "sha256": "aa1c6b3313f2aac791d802b6eeaed9dc7a8a086c3f86b22f086353ce71cc3e39",
+    "rawSolveDigest": "Independently recomputed by exact local digest function for all4 before collection; currentPackage rebinds candidate/student/assets against manifest.",
+    "bindingDependencies": 17
+  },
+  "mathematics": "All4 match independently sealed answers③,③,③,④. Check all choices, signs, domain, positive k/side, two roots versus principal root, repeating decimal fraction and strict endpoints. New own arithmetic uses Fraction/isqrt; no numerical pixels or generation factory oracle. Author full solutions and4solutionPNGs actually inspected.",
+  "grade": "All28actual surfaces individually supported by prior actually inspected2015 official root/irrational/comparison standards and <=M2 prerequisites; actual captured M3semester1Unit rows are separate placement evidence, not band-code-only approval. Assign after explicitly listed prerequisites; no high-school necessary method.2027M3/2022pending.",
+  "sourceComparison": "Uses own previously sealed9component review, grade-method proposals, actual original-page exposure memory and supplied local-normalization observation overlay. No further original N/HWP/PDF/image/question-body read. Core shared parts and actual inverse/record/table target changes independently described; not an assertion every original subsidiary skill or same difficulty is retained.",
+  "difficulty": [
+    {
+      "exam": "daegubuk",
+      "question": 1,
+      "judgement": {
+        "basis": "현재 네 문항은 각3점의 짧은 개념/분류/비교형으로 편집상 과도하지 않다. 대칭에 따른 절반과 제곱의 두 단순 단계라 기본이 적절하며 응용 상단은 근거가 약하다.",
+        "score": 3,
+        "sourcePrintedScoreObserved": 3,
+        "sourceDifficultyLabelObserved": "하",
+        "sourceLabelAuthority": "completed-preparation label, not measured original-school difficulty",
+        "targetDifficultyJudgement": "기본",
+        "authorBroadProposal": "기본~응용 저자 제안",
+        "empiricalCalibration": "pending",
+        "sameDifficultyApproved": false
+      }
+    },
+    {
+      "exam": "daegubuk",
+      "question": 3,
+      "judgement": {
+        "basis": "현재 네 문항은 각3점의 짧은 개념/분류/비교형으로 편집상 과도하지 않다. 다섯 항목과 E의 짧은 설명이 필요하지만 개별 계산은 간단하다. 기본 상단 또는 응용 초입은 편집 판단이며 측정 난도는 미교정이다.",
+        "score": 3,
+        "sourcePrintedScoreObserved": 3,
+        "sourceDifficultyLabelObserved": "하",
+        "sourceLabelAuthority": "completed-preparation label, not measured original-school difficulty",
+        "targetDifficultyJudgement": "기본 상단",
+        "authorBroadProposal": "기본~응용 저자 제안",
+        "empiricalCalibration": "pending",
+        "sameDifficultyApproved": false
+      }
+    },
+    {
+      "exam": "daeguil",
+      "question": 1,
+      "judgement": {
+        "basis": "현재 네 문항은 각3점의 짧은 개념/분류/비교형으로 편집상 과도하지 않다. 0.9² 확인과 길이 양수 조건만 필요한 기본 개념 구별형이다. 원문 하 라벨과 같다는 경험적 승인은 아니다.",
+        "score": 3,
+        "sourcePrintedScoreObserved": 3,
+        "sourceDifficultyLabelObserved": "하",
+        "sourceLabelAuthority": "completed-preparation label, not measured original-school difficulty",
+        "targetDifficultyJudgement": "기본",
+        "authorBroadProposal": "기본~응용 저자 제안",
+        "empiricalCalibration": "pending",
+        "sameDifficultyApproved": false
+      }
+    },
+    {
+      "exam": "daeguil",
+      "question": 3,
+      "judgement": {
+        "basis": "현재 네 문항은 각3점의 짧은 개념/분류/비교형으로 편집상 과도하지 않다. 다섯 번의 간단한 끼워 비교와 개수 집계라 기본 상단, 응용 초입까지의 편집 제안은 가능하다. 새 난도와 원문 난도 동등성은 실측하지 않았다.",
+        "score": 3,
+        "sourcePrintedScoreObserved": 3,
+        "sourceDifficultyLabelObserved": "하",
+        "sourceLabelAuthority": "completed-preparation label, not measured original-school difficulty",
+        "targetDifficultyJudgement": "기본 상단",
+        "authorBroadProposal": "기본~응용 저자 제안",
+        "empiricalCalibration": "pending",
+        "sameDifficultyApproved": false
+      }
+    }
+  ],
+  "exposure": {
+    "prior": "Original9source components/firstpages with incidental handwritten markings and related public engine code had been seen. Incidental marks not used as current answer oracle, no pristine corpus-blindness claim.",
+    "currentAuthorExposure": "Only after raw Git seals; current review is not a new blind solve.",
+    "figures": "Student andsolutionPNGs viewed. Prior separate SVG render failed due local Cairo absence/toolSVGsupport; raw limitation retained unchanged. Current SVG/private spec SHA bound and geometry checked only after seal as author consistency; no pixel/coord answer oracle.",
+    "nativeReaderParity": false
+  },
+  "separateHolds": [
+    "exact live family null:unitFamilyFitfalse inall4",
+    "whole-source/HWP-PDFidentity",
+    "rights",
+    "similarity",
+    "native provenance/fullreader parity",
+    "production loadability",
+    "school pacing",
+    "empirical difficulty and same-difficulty approval",
+    "2022M3placement"
+  ],
+  "preservation": {
+    "inputHashBindings": 40,
+    "beforeAfterEqual": true,
+    "rawAnd12StudentInputsGitEqual": true,
+    "oldEvidenceChanged": false,
+    "sourceEdits": 0,
+    "modelsApiDbWrites": 0
+  },
+  "ownedEvidence": {
+    "own-review.py": "0bd7ab53a15e26f057a741e218231a2971caf90d9257c5e42b57c04a88f910f0",
+    "own-exact-review-calculations.json": "488d6d2439c6e07ad055fe163981f0a3e5b7b62cbf81a9d0db42fe6d9898f7c0",
+    "own-inputs-before.json": "dae4caa1ee97867c5a9791328f81e9d4ea1ed3ef37edda37b73cdbc7f76009fe",
+    "own-inputs-after.json": "dae4caa1ee97867c5a9791328f81e9d4ea1ed3ef37edda37b73cdbc7f76009fe",
+    "own-utf8-probe.txt": "f93064e0d5ab38c4862b9dc9e6c54577c455192fc41507c6a0bb40c9e5006129",
+    "own-run-existing-collector.mjs": "038e558247af704c04afa342a37f36a57667a30c98ad0af4dce8d4a10c25c533"
+  }
+}

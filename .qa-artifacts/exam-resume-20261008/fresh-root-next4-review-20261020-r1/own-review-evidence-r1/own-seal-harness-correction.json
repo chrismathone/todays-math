@@ -1,0 +1,5 @@
+{
+  "initialFailure": "Before receipt retained extra raw-row fields(exam,question,studentDigest,status), but after-building projected only path/sha; shape inequality caused AssertionError before aggregation.",
+  "classification": "Own hash-receipt harness bug, not raw/input mutation or candidate fault.",
+  "correction": "Preserve each receipt row and replace only recomputed sha256, then compare full rows. No raw/report/input edits."
+}

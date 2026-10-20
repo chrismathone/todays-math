@@ -1,0 +1,285 @@
+{
+  "status": "pending",
+  "studentDigest": "a6921ad1dbff81357594be8db798968a002e40ae55e1cb5373f2fbe7cf8719b3",
+  "candidateDigest": "ab3992701fc79833b905787f855d72164e9c3090b3be7808d31cfdb62be92475",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "independent-helper-current-next4-full-review-20261020-r1",
+  "solveDigest": "111a9c925465fd110e6bd8d828acaaf005d65d89cd642299d4c9c5f50669dbdd",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "ownExactCurrentCalculations": {
+      "A": "3/10",
+      "C": "-3/11",
+      "D": "7/3",
+      "irrationalRadicandsNonSquare": {
+        "5": true,
+        "7": true
+      },
+      "remainingRecords": [
+        "B",
+        "E"
+      ],
+      "count": 2
+    },
+    "answerCorrect": {
+      "basis": "봉인 전 독립 계산을 그대로 보존하여 현재 답과 비교했고 모든 보기를 직접 검산했다.",
+      "rawSHA256": "cc36582143d2799bda8dcd4030b876ea004fcfb87d5507ae1d1bde2818a0de14",
+      "answer": "③"
+    },
+    "solutionCorrect": {
+      "basis": "실제 해설은 A,C,D를 정확한 분수로 바꾸고 비제곱수7의 근과 √5-2를 분류한다. E에2를 더하면 √5가 된다는 짧은 설명은 유리수 사칙 성질과 [9수01-08]로 충분하며 고교 형식 논리·무한급수는 요구하지 않는다.",
+      "currentAuthorSolutionSHA256": "81fa2660111a507da99d3dd5d1bdb3e1200c16e756fd0aae82f290f57a8999ed",
+      "solutionPNGViewed": true
+    },
+    "existenceUniqueness": {
+      "basis": "③=2개는 유리수3/10,-3/11,7/3을 제외한 B,E의 수다. 분모10,11,3이0이 아니고 근호 안 수는 모두 양수다.",
+      "details": {
+        "A": "3/10",
+        "C": "-3/11",
+        "D": "7/3",
+        "irrationalRadicandsNonSquare": {
+          "5": true,
+          "7": true
+        },
+        "remainingRecords": [
+          "B",
+          "E"
+        ],
+        "count": 2
+      }
+    },
+    "choicesCorrect": {
+      "basis": "0~4개 보기는 분류된 칸의 정수 개수만 비교한다. 범위를 벗어나는 통계·경우의 수 정리 없이 B,E 두 칸을 센다.",
+      "all5Checked": true,
+      "rawDetailedChecksRetained": true
+    },
+    "figureConsistent": {
+      "basis": "A~E 표에 유한소수 근호, √7, 음의 순환소수, 분수 근호, √5-2가 실제로 한 개씩 표시돼 있다. 표를 읽는 데 추가 수학 모델은 없다.",
+      "assets": [],
+      "solutionAndStudentPNGActuallyViewed": true,
+      "nativeReaderParity": false
+    },
+    "sameCoreConceptAndProcedure": {
+      "basis": "원문은 유리수·무리수가 섞인 수의 쌍에서 무리수만 있는 쌍을 고르는 분류였다. 새 항목도 유한소수/분수 근호·순환소수·무리수의 유리수 이동을 정의로 분류한다.",
+      "priorOwnComponent": "대구북중-q03",
+      "priorSourceEvidenceSHA256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "normalizationObservationSHA256": "b4e4d51d1af29463e839008012f7a5908cfd81e0e51579a12e6de865d96b2ab0",
+      "boundedLocalNormalizationResolved": true,
+      "wholeSourceIdentityApproved": false
+    },
+    "distinctPresentation": {
+      "basis": "수 쌍의 선택에서 단일5칸 표를 지우고 남은 수를 묻는 전체 집계로 재구조화했다. 선택지별 쌍 비교와 현재의 개별 분류/제거/계수 대상이 다르다.",
+      "moreThanNumericSubstitution": true
+    },
+    "naturalKorean": {
+      "basis": "지문의 요청 대상과 표/그림 라벨, 5개 보기의 대응이 명확하다. 현재 solution PNG에서 기호·줄바꿈·근호 범위가 읽힌다."
+    },
+    "curriculumAppropriate": {
+      "basis": "2015M3 실제 현재 전체 방법은 아래7면별 근거 및 선수학습 조건 내에 있다. 원본 학교·저자 제안·코드 통과만으로 승인한 것이 아니다.",
+      "primary": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "allStudentSurfacesInScope": {
+      "basis": "현재 stem/choices/figuresAndTables/notation/answer/full studentSolution/prerequisites 각각 실제 내용을 구분해 판단했다.",
+      "appliesAfterListedPrerequisites": true,
+      "2022": "pending"
+    },
+    "unitFamilyFit": {
+      "basis": "캡처된 Unit UUID와 현재 목표 개념은 위와 같이 대응하지만 정확한 live family 정의/전체 목표·도메인·형식 적합성은 증명하지 못했다. null family를 추정 키로 채우지 않는다.",
+      "unitId": "28032bdd-3db3-4788-9e7a-2f1909233fdb",
+      "course": "중3",
+      "unitSection": "무리수와 실수",
+      "liveFamilyKey": null,
+      "status": "pending"
+    },
+    "scoreAppropriate": {
+      "basis": "현재 네 문항은 각3점의 짧은 개념/분류/비교형으로 편집상 과도하지 않다. 다섯 항목과 E의 짧은 설명이 필요하지만 개별 계산은 간단하다. 기본 상단 또는 응용 초입은 편집 판단이며 측정 난도는 미교정이다.",
+      "score": 3,
+      "sourcePrintedScoreObserved": 3,
+      "sourceDifficultyLabelObserved": "하",
+      "sourceLabelAuthority": "completed-preparation label, not measured original-school difficulty",
+      "targetDifficultyJudgement": "기본 상단",
+      "authorBroadProposal": "기본~응용 저자 제안",
+      "empiricalCalibration": "pending",
+      "sameDifficultyApproved": false
+    },
+    "exposure": {
+      "priorSourceNineAndRelatedPublicCode": true,
+      "currentAuthorExposedOnlyAfterRawCommit": "96e8765a780ca382f8ea44ddcb658c566a63dd30",
+      "parentPreExposureSeal": "617a23934a60be011fb89c09e4cf36ff6bfc97f0",
+      "rawUnchanged": true,
+      "notNewBlindClaimAfterExposure": true
+    },
+    "separateHolds": {
+      "sourceIdentityApproved": false,
+      "rightsApproved": false,
+      "similarityApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false,
+      "2022Placement": "pending",
+      "schoolPacingCertified": false
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "다섯 실수를 유리수/무리수로 분류해 유리수 칸을 지운다. [9수01-07/08]과 M2 순환소수 [9수01-06] 이후의 단순 분류다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "0~4개 보기는 분류된 칸의 정수 개수만 비교한다. 범위를 벗어나는 통계·경우의 수 정리 없이 B,E 두 칸을 센다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "A~E 표에 유한소수 근호, √7, 음의 순환소수, 분수 근호, √5-2가 실제로 한 개씩 표시돼 있다. 표를 읽는 데 추가 수학 모델은 없다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "-0.dot2dot7은 순환마디27로 본문에서 명시됐다. 근호 전체 49/9와 괄호 범위가 PNG에서도 보인다. [9수01-06/07] 표기이며 근호가 있다는 이유만으로 무리수로 분류하지 않는다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "③=2개는 유리수3/10,-3/11,7/3을 제외한 B,E의 수다. 분모10,11,3이0이 아니고 근호 안 수는 모두 양수다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 해설은 A,C,D를 정확한 분수로 바꾸고 비제곱수7의 근과 √5-2를 분류한다. E에2를 더하면 √5가 된다는 짧은 설명은 유리수 사칙 성질과 [9수01-08]로 충분하며 고교 형식 논리·무한급수는 요구하지 않는다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "M2 유리수/순환소수와 분수변환 [9수01-06], 정수비 사칙 [9수01-05], M3 제곱근·무리수 [9수01-07/08] 뒤에 배정한다. 정의만 처음 배운 차시로 소급 승인하지 않는다.",
+      "primaryReference": {
+        "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+        "priorActuallyInspectedPrimaryReceipt": {
+          "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+          "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+        },
+        "2015TabLines": "84-85",
+        "standardsLine": "466",
+        "teachingLimits": "477-485",
+        "MOE2015Placement": "MOE2015-74 Book8 physical33/printed29 root07..10; MOE2020-236 Book8 BodyText/Section0 records3776/3780/3784/3788",
+        "MOE2020DocumentSHA256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "capturedActualM3Sem1Units": "Prior source-nine grade-method evidence rows order469(root definition),470(real numbers),471(root calculation), captured2026-10-19 18:07:30.165227+00; not a current DB/pacing/family promise.",
+        "yearScope": "2025source/2026practice M3=2015 after prerequisites.2027M3/2022 pending separate review.",
+        "newPrimaryFetch": false
+      }
+    }
+  }
+}
