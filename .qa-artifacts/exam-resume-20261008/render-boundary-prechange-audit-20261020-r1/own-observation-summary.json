@@ -1,0 +1,284 @@
+[
+  {
+    "name": "pure-prepare-independent-snapshots",
+    "factoryCalls": 3,
+    "renderCalls": 2,
+    "delivered": 2,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "pure-repeat",
+    "factoryCalls": 3,
+    "renderCalls": 2,
+    "delivered": 2,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "svg-byte-variation",
+    "factoryCalls": 3,
+    "renderCalls": 2,
+    "delivered": 2,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "prepare-sync-answer",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": [
+      0
+    ]
+  },
+  {
+    "name": "prepare-sync-content",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": [
+      0
+    ]
+  },
+  {
+    "name": "prepare-sync-solution",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "prepare-sync-nestedParameters",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [
+      0
+    ],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "prepare-sync-figureSpec",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": [
+      0
+    ]
+  },
+  {
+    "name": "prepare-after-await-answer",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": [
+      0
+    ]
+  },
+  {
+    "name": "prepare-after-await-content",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": [
+      0
+    ]
+  },
+  {
+    "name": "prepare-after-await-solution",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "prepare-after-await-nestedParameters",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [
+      0
+    ],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "prepare-after-await-figureSpec",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [
+      0
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": [
+      0
+    ]
+  },
+  {
+    "name": "shared-object",
+    "factoryCalls": 3,
+    "renderCalls": 2,
+    "delivered": 2,
+    "verifierFailures": [
+      0,
+      1
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": [
+      0,
+      1
+    ]
+  },
+  {
+    "name": "shared-object-snapshot",
+    "factoryCalls": 3,
+    "renderCalls": 2,
+    "delivered": 2,
+    "verifierFailures": [
+      0,
+      1
+    ],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": [
+      0,
+      1
+    ]
+  },
+  {
+    "name": "shared-nested",
+    "factoryCalls": 3,
+    "renderCalls": 2,
+    "delivered": 2,
+    "verifierFailures": [
+      0,
+      1
+    ],
+    "logicalKeyMismatches": [
+      0,
+      1
+    ],
+    "contentDigestMismatches": [
+      0,
+      1
+    ]
+  },
+  {
+    "name": "retained-after-return",
+    "factoryCalls": 1,
+    "renderCalls": 1,
+    "delivered": 1,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "no-figure",
+    "factoryCalls": 1,
+    "renderCalls": 0,
+    "delivered": 1,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "missing-renderer",
+    "factoryCalls": 3,
+    "renderCalls": 0,
+    "delivered": 0,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "failure-next-parameters",
+    "factoryCalls": 3,
+    "renderCalls": 2,
+    "delivered": 1,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "throw",
+    "factoryCalls": 2,
+    "renderCalls": 2,
+    "delivered": 0,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "invalid-svg",
+    "factoryCalls": 2,
+    "renderCalls": 2,
+    "delivered": 0,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "null-svg",
+    "factoryCalls": 2,
+    "renderCalls": 2,
+    "delivered": 0,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "hold-\uc9111",
+    "factoryCalls": 0,
+    "renderCalls": 0,
+    "delivered": 0,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  },
+  {
+    "name": "hold-\uc9113",
+    "factoryCalls": 0,
+    "renderCalls": 0,
+    "delivered": 0,
+    "verifierFailures": [],
+    "logicalKeyMismatches": [],
+    "contentDigestMismatches": []
+  }
+]
