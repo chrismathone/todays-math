@@ -1,0 +1,101 @@
+{
+  "studentDigest": "e1507b45c216a653535b98850aabb5982e6221d4882aaf510c643fe299cc625e",
+  "solverId": "independent-helper-gangbuk-first2-student-only-20261020-r1",
+  "answer": "④",
+  "solution": "각 행은 그 행의 한 근을 대입했을 때의 상수 a를 따로 기록한 경우이다. 근은 방정식에 대입했을 때 좌변을 0으로 만드는 수이므로 직접 확인한다. A의 x=2를 넣으면 4+2a+a-5=0, 즉 3a-1=0이어서 a=1/3이다. 기록이 맞다. B의 x=-2를 넣으면 4-2a+a-5=0, 즉 -a-1=0이어서 a=-1이다. 이 기록도 맞다. C의 x=1을 넣으면 1+a+a-5=0, 즉 2a-4=0이어서 a=2이다. 기록한 a=3을 대입하면 좌변이 2여서 틀리고, 고친 a=2를 대입하면 0이다. 각 행에서 a의 계수는 3,-1,2로 모두 0이 아니므로 고칠 값도 각각 유일하다. 원래 방정식의 x²계수는 항상 1이므로 세 경우 모두 이차방정식이다. 보기 ①은 A의 맞는 기록을 잘못된 행으로 지목했고, ②의 A에서 a=3은 근 x=2를 만족시키지 않는다. ③도 맞는 B기록을 지목한다. ④는 틀린 C행과 올바른 값2를 짝지었고, ⑤는 C의 틀린 값3을 그대로 두었다. 따라서 정답은 ④이다.",
+  "evidence": {
+    "exposure": {
+      "solverId": "independent-helper-gangbuk-first2-student-only-20261020-r1",
+      "priorExposure": "이전 원문9개 구성요소와 Gachang2문항의 학생/저자/원문검토, 공개코드와 기존 관련변형 검토, 현재166개 후보의 메타데이터/해시 검사, Gangbuk 메타데이터-only 이력이 있다. 전체 원문집합 미노출이라는 주장은 하지 않는다.",
+      "currentAuthoredGangbukAnswersSolutionsPrivateExposed": false,
+      "currentGangbukOriginalsExposed": false,
+      "currentReadScope": "현재 r2 blind brief/student-problems/manifest 및 학생PNG2개만 읽음. 두 PNG를 실제 view_image로 확인. parent/root author/private/source/raw parser/이전Gangbukdraft를 읽지 않음.",
+      "pixelOracle": false,
+      "newApprovalCounts": 0
+    },
+    "ownExactCalculations": [
+      {
+        "row": "A",
+        "root": "2",
+        "recordedA": "1/3",
+        "linearCoefficientInA": "3",
+        "constantAfterSubstitution": "-1",
+        "recordedResidual": "0",
+        "correctA": "1/3",
+        "incorrectRecord": false
+      },
+      {
+        "row": "B",
+        "root": "-2",
+        "recordedA": "-1",
+        "linearCoefficientInA": "-1",
+        "constantAfterSubstitution": "-1",
+        "recordedResidual": "0",
+        "correctA": "-1",
+        "incorrectRecord": false
+      },
+      {
+        "row": "C",
+        "root": "1",
+        "recordedA": "3",
+        "linearCoefficientInA": "2",
+        "constantAfterSubstitution": "-4",
+        "recordedResidual": "2",
+        "correctA": "2",
+        "incorrectRecord": true
+      }
+    ],
+    "allChoices": [
+      {
+        "choice": "①",
+        "row": "A",
+        "proposedA": "1/3",
+        "rowActuallyWrong": false,
+        "rootResidualWithProposedA": "0",
+        "valueMakesPrintedRootValid": true,
+        "isRequestedWrongRowAndCorrection": false
+      },
+      {
+        "choice": "②",
+        "row": "A",
+        "proposedA": "3",
+        "rowActuallyWrong": false,
+        "rootResidualWithProposedA": "8",
+        "valueMakesPrintedRootValid": false,
+        "isRequestedWrongRowAndCorrection": false
+      },
+      {
+        "choice": "③",
+        "row": "B",
+        "proposedA": "-1",
+        "rowActuallyWrong": false,
+        "rootResidualWithProposedA": "0",
+        "valueMakesPrintedRootValid": true,
+        "isRequestedWrongRowAndCorrection": false
+      },
+      {
+        "choice": "④",
+        "row": "C",
+        "proposedA": "2",
+        "rowActuallyWrong": true,
+        "rootResidualWithProposedA": "0",
+        "valueMakesPrintedRootValid": true,
+        "isRequestedWrongRowAndCorrection": true
+      },
+      {
+        "choice": "⑤",
+        "row": "C",
+        "proposedA": "3",
+        "rowActuallyWrong": true,
+        "rootResidualWithProposedA": "2",
+        "valueMakesPrintedRootValid": false,
+        "isRequestedWrongRowAndCorrection": false
+      }
+    ],
+    "domainAndUniqueness": "각 행의 a는 해당 근 조건으로 정하는 별도 값. 근2,-2,1에서 r+1=3,-1,2≠0. 세 유리수값1/3,-1,2가 존재하며 각각 유일. x²계수1은a와 무관하여 이차항이 사라지지 않는다. 잘못된 행은C하나이며 고친값2와 짝지은 보기④만 정답.",
+    "studentMethod": "이차방정식의 근의 뜻에 따라 직접 대입한 뒤 앞학년 일차방정식으로a를 정한다. 근과계수관계/판별식/근의공식/고등계수정리가 필요하지 않다.",
+    "gradeAndReleaseLimit": "2015M3의 실제 학생방법으로 풀이 가능하다는 raw판단일뿐 공식7표면/메타데이터/권리/출처/family/native/출시 승인이나 새 수학승인 count가 아니다.",
+    "calculationScript": "../../own-raw-evidence-r1/own-calculate.py"
+  },
+  "status": "solved"
+}
