@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { studyCatalog, studyGeneration } from "./examStudyFixtures";
 import type {
   ExamStudyDraft,
@@ -88,6 +88,9 @@ const request = (
   });
 
 beforeEach(() => {
+  // Keep the real same-origin guard independent of the runner's deployment URL.
+  vi.stubEnv("AUTH_URL", "http://localhost");
+  vi.stubEnv("NEXTAUTH_URL", "");
   fixture.session = { user: { ...teacher } };
   fixture.generate
     .mockReset()
@@ -100,6 +103,7 @@ beforeEach(() => {
     svg: '<svg xmlns="http://www.w3.org/2000/svg"/>',
   });
 });
+afterEach(() => vi.unstubAllEnvs());
 
 describe("exam study authenticated route boundary", () => {
   it.each([
@@ -125,20 +129,39 @@ describe("exam study authenticated route boundary", () => {
 
   it("authorizes an approved teacher and keeps generated questions private", async () => {
     const response = await createExamStudy(request("POST", recipe));
-    expect(response.status).toBe(200);
+    expect(response.status, await response.clone().text()).toBe(200);
     expect(response.headers.get("cache-control")).toBe("private, no-store");
     expect((await response.json()).data.questions).toHaveLength(1);
   });
 
   it("uses the same-origin mutation guard even when the menu is available", async () => {
-    expect(
-      (
-        await createExamStudy(
-          request("POST", recipe, undefined, "https://external.example"),
-        )
-      ).status,
-    ).toBe(403);
+    for (const [handler, path, body] of [
+      [createExamStudy, "/api/exam/practice", recipe],
+      [
+        resolveExamStudy,
+        "/api/exam/practice/resolve",
+        { recipe, expectedDigest: "b".repeat(64) },
+      ],
+    ] as const) {
+      for (const kind of ["external-origin", "missing-origin", "cross-site"]) {
+        const input = request("POST", body, path);
+        if (kind === "external-origin")
+          input.headers.set("origin", "https://external.example");
+        if (kind === "missing-origin") input.headers.delete("origin");
+        if (kind === "cross-site")
+          input.headers.set("sec-fetch-site", "cross-site");
+        const response = await handler(input);
+        expect(response.status, `${path}: ${kind}`).toBe(403);
+        expect(await response.json()).toEqual({
+          error: {
+            code: "FORBIDDEN",
+            message: "같은 사이트에서 요청해 주세요.",
+          },
+        });
+      }
+    }
     expect(fixture.generate).not.toHaveBeenCalled();
+    expect(fixture.render).not.toHaveBeenCalled();
   });
 
   it.each([

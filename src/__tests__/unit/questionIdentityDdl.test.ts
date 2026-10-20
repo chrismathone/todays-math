@@ -3,9 +3,9 @@ import {
   mkdtempSync,
   readFileSync,
   readdirSync,
-  rmSync,
   statSync,
 } from "node:fs";
+import { rm } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -898,7 +898,7 @@ describe("additive key invalidation and protected backfill on real local Postgre
         }),
       ).rejects.toThrow("Unsettled prior chunk");
     } finally {
-      rmSync(directory, { recursive: true, force: true });
+      await rm(directory, { recursive: true, force: true });
     }
   });
 });

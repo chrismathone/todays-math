@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type {
   ExamStudyGenerateRequest,
   ExamStudyGeneration,
@@ -36,6 +36,13 @@ import {
   getExamStudyCatalog,
 } from "@/lib/examStudy";
 import { createExamStudy, resolveExamStudy } from "@/lib/examStudyRoutes";
+
+beforeEach(() => {
+  // Keep the real same-origin guard independent of the runner's deployment URL.
+  vi.stubEnv("AUTH_URL", "http://localhost");
+  vi.stubEnv("NEXTAUTH_URL", "");
+});
+afterEach(() => vi.unstubAllEnvs());
 
 const request = (body: unknown, resolve = false) =>
   new Request(

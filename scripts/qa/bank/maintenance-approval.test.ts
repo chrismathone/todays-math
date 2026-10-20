@@ -4,9 +4,9 @@ import {
   mkdtempSync,
   mkdirSync,
   readFileSync,
-  rmSync,
   writeFileSync,
 } from "node:fs";
+import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import {
@@ -21,7 +21,7 @@ import {
 } from "../../import/protected-question-maintenance";
 
 describe("committed exact approval boundary", () => {
-  it("reads a committed artifact larger than the figure index and still rejects a local byte change", () => {
+  it("reads a committed artifact larger than the figure index and still rejects a local byte change", async () => {
     const dir = mkdtempSync(path.join(tmpdir(), "question-large-approval-"));
     const git = (...args: string[]) =>
       execFileSync(
@@ -50,10 +50,10 @@ describe("committed exact approval boundary", () => {
         /not committed/,
       );
     } finally {
-      rmSync(dir, { recursive: true, force: true });
+      await rm(dir, { recursive: true, force: true });
     }
   });
-  it("requires exact committed plan, source, manifest, before ledger and prewrite SHA with Claude approval", () => {
+  it("requires exact committed plan, source, manifest, before ledger and prewrite SHA with Claude approval", async () => {
     const dir = mkdtempSync(path.join(tmpdir(), "question-approval-"));
     const git = (...args: string[]) =>
       execFileSync(
@@ -147,7 +147,7 @@ describe("committed exact approval boundary", () => {
         verifyApproval(files, "bounded-family-reinforcement", evidence),
       ).toThrow(/mismatch/);
     } finally {
-      rmSync(dir, { recursive: true, force: true });
+      await rm(dir, { recursive: true, force: true });
     }
   });
 });

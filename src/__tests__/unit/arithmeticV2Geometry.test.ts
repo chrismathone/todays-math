@@ -202,12 +202,15 @@ describe("live geometry arithmetic", () => {
   it("projects saved SVG and degree answers without calling a geometry generator", () => {
     const sheet = buildArithmeticV2Sheet(request());
     const before = structuredClone(sheet);
-    const definition = getArithmeticV2Definition(ids[0]);
-    const spy = vi.spyOn(definition, "problemAt");
+    const spies = ids.map((id) =>
+      vi.spyOn(getArithmeticV2Definition(id), "problemAt"),
+    );
     try {
       const problems = arithmeticToStudioProblems(sheet);
-      // Existing projection reads the catalog's example once; it does not regenerate items.
-      expect(spy).toHaveBeenCalledTimes(1);
+      // 6bc01b85b: saved projection reads metadata only, including both geometry families.
+      // Neither catalog examples nor saved items may be regenerated.
+      for (const spy of spies) expect(spy).not.toHaveBeenCalled();
+      expect(problems).toHaveLength(sheet.rounds[0].items.length);
       problems.forEach((problem, i) => {
         const item = sheet.rounds[0].items[i];
         if (item.prompt.layout !== "math") throw new Error("Unexpected prompt");
@@ -238,7 +241,7 @@ describe("live geometry arithmetic", () => {
       });
       expect(sheet).toEqual(before);
     } finally {
-      spy.mockRestore();
+      for (const spy of spies) spy.mockRestore();
     }
   });
 
