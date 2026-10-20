@@ -5,6 +5,10 @@ import { WorksheetPrint } from "@/components/unified/print/WorksheetPrint";
 import { TEMPLATE_COMPONENTS } from "@/components/unified/print/templateComponents";
 import { packMeasured } from "@/components/unified/print/pack";
 import {
+  packAnswerRows,
+  paginateAnswerPages,
+} from "@/components/unified/print/answerKeyLayout";
+import {
   DEFAULT_PRINT_OPTIONS,
   type PrintMeta,
   type PrintOptions,
@@ -42,6 +46,55 @@ vi.mock("@/components/unified/print/useMeasuredPages", () => ({
     fontStyle: {},
     measureNode: null,
   }),
+}));
+
+vi.mock("@/components/unified/print/useMeasuredAnswerPages", () => ({
+  useMeasuredAnswerPages: (
+    problems: ProblemReview[],
+    options: PrintOptions,
+  ) => {
+    const starts = problems.flatMap((p, i) =>
+      i === 0 ||
+      p.variant.arithmetic?.round !== problems[i - 1].variant.arithmetic?.round
+        ? [i]
+        : [],
+    );
+    return {
+      pages: starts.flatMap((start, group) => {
+        const end = starts[group + 1] ?? problems.length;
+        const metrics = problems.slice(start, end).map(() => ({
+          naturalHeight: 20,
+          lineHeight: 20,
+          candidates: ([1, 2, 3, 5] as const).map((span) => ({
+            span,
+            height: 80,
+            answerHeight: 20,
+            overflow: false,
+          })),
+        }));
+        return paginateAnswerPages(
+          packAnswerRows(metrics, start),
+          options.quickAnswerOnly
+            ? []
+            : problems
+                .slice(start, end)
+                .map((_, i) => ({ index: start + i, height: 80 })),
+          {
+            available: 650,
+            headingHeight: 50,
+            gap: options.spacing,
+            columns: options.columns,
+            groupStart: start,
+          },
+        );
+      }),
+      ready: true,
+      layoutError: false,
+      fontError: false,
+      fontStyle: {},
+      measureNode: null,
+    };
+  },
 }));
 
 const meta: PrintMeta = {
@@ -235,7 +288,9 @@ describe.each(Object.entries(TEMPLATE_COMPONENTS))(
           const paper = page.firstElementChild!;
           const items = [
             ...paper.querySelectorAll(
-              isAnswer ? ".measure-body strong" : "[data-problem-header]",
+              isAnswer
+                ? "[data-answer-number] > strong"
+                : "[data-problem-header]",
             ),
           ];
           const pageNumbers = items.map((item) =>
@@ -294,7 +349,7 @@ it.each([true, false])(
     expect(label.closest("header")?.querySelector("h2")?.textContent).toContain(
       quickAnswerOnly ? "빠른 정답" : "정답과 해설",
     );
-    expect(paper.querySelector("strong")?.textContent).toBe("101.");
+    expect(paper.querySelector("strong")?.textContent).toBe("101");
     expect(paper.textContent?.includes("정답지에 숨기는 해설")).toBe(
       !quickAnswerOnly,
     );

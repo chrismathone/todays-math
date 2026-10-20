@@ -1,0 +1,74 @@
+{
+  "exitCode": 2,
+  "invocations": 1,
+  "errors": 2946,
+  "files": 487,
+  "changedFileErrors": [],
+  "topFiles": [
+    [
+      "src/lib/problem/questionCountSql.ts",
+      136
+    ],
+    [
+      "src/__tests__/unit/englishListeningComposeRuntime.test.ts",
+      64
+    ],
+    [
+      "src/lib/english/questionBank.ts",
+      52
+    ],
+    [
+      "src/lib/bankSourceQuestions.ts",
+      46
+    ],
+    [
+      "scripts/qa/bank/math-capacity-census.ts",
+      42
+    ],
+    [
+      "scripts/qa/english-listening/retirement/purge-live.mts",
+      39
+    ],
+    [
+      "scripts/import/question-group-backfill.ts",
+      38
+    ],
+    [
+      "scripts/qa/measure-eywa-daily-groups.ts",
+      38
+    ],
+    [
+      "scripts/qa/bank/bank-readiness-census.ts",
+      37
+    ],
+    [
+      "scripts/qa/probe-problem-order.ts",
+      37
+    ],
+    [
+      "src/lib/unifiedPreview.ts",
+      35
+    ],
+    [
+      "src/lib/eywa/managedRelations.ts",
+      34
+    ],
+    [
+      "src/lib/english/listening/runtime/assignments.ts",
+      32
+    ],
+    [
+      "scripts/qa/textbook/recovery/bank-fixtures.ts",
+      31
+    ],
+    [
+      "src/lib/eywa/managedTestResults.ts",
+      30
+    ]
+  ],
+  "qaHarnessDiagnosticsFixedAfterRun": [
+    "scripts/qa/print-templates/fixture.tsx: Window assertion replaced by Object.assign",
+    "scripts/qa/print-templates/h2-production.tsx: Window assertion replaced by Object.assign"
+  ],
+  "fullCheckRepeated": false
+}

@@ -1,0 +1,250 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #e5e5e5;
+  color: #0e0e10;
+  font-family: "Malgun Gothic", sans-serif;
+}
+main {
+  padding: 32px;
+  max-width: 1800px;
+  margin: auto;
+}
+h1 {
+  font-size: 28px;
+}
+main > p {
+  max-width: 1000px;
+  line-height: 1.7;
+}
+nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+a {
+  color: inherit;
+}
+details {
+  margin: 24px 0;
+}
+summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+.variant {
+  border-top: 2px solid #666;
+  margin-top: 40px;
+  padding-top: 16px;
+}
+.pages {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: start;
+}
+.sheet {
+  width: 793.7008px;
+  height: 1122.5197px;
+  flex-shrink: 0;
+  background: white;
+  padding: 45.3543px 56.6929px;
+  position: relative;
+  font-family: Batang, "Noto Serif KR", serif;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.sheet header {
+  font-family: "Malgun Gothic", sans-serif;
+  border-bottom: 2px solid #0e0e10;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+}
+.sheet h2 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 800;
+}
+.sheet header p {
+  margin: 8px 0 0;
+  font-weight: bold;
+}
+.sheet header p span {
+  float: right;
+}
+.sheet footer {
+  position: absolute;
+  bottom: 45px;
+  left: 57px;
+  right: 57px;
+  text-align: center;
+  font-size: 11px;
+}
+.unit {
+  break-inside: avoid;
+}
+.cell {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 6px;
+  border-bottom: 1px solid #aaa;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.cell b {
+  font-family: "Malgun Gothic", sans-serif;
+  min-width: 17px;
+  font-size: 11px;
+}
+.answer {
+  min-width: 0;
+  flex: 1;
+}
+.ten {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+.stripe {
+  text-align: center;
+  border: 1px solid #aaa;
+  margin-right: -1px;
+}
+.stripe b {
+  display: block;
+  background: #eee;
+  border-bottom: 1px solid #aaa;
+  font:
+    11px/24px "Malgun Gothic",
+    sans-serif;
+}
+.stripe > span {
+  display: block;
+  min-height: 34px;
+  padding: 4px 0;
+}
+.v0 .unit {
+  margin-bottom: 10px;
+}
+.five {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.five .cell {
+  border: 1px solid #aaa;
+  margin-right: -1px;
+  margin-bottom: -1px;
+  display: block;
+  min-height: 48px;
+}
+.five .cell b {
+  display: block;
+}
+.five .cell.medium {
+  grid-column: span 2;
+}
+.five .cell.long {
+  grid-column: span 5;
+}
+.choice .cell {
+  display: block;
+  text-align: center;
+  border: 1px solid #aaa;
+  margin-right: -1px;
+}
+.choice b {
+  display: block;
+}
+.section-title {
+  font-weight: bold;
+  padding: 10px 0 4px;
+}
+.two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.mark {
+  border: 1px solid #888;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+.explanation {
+  margin-top: 22px;
+}
+.explanation h3 {
+  border-top: 2px solid #111;
+  padding-top: 12px;
+  font:
+    700 16px "Malgun Gothic",
+    sans-serif;
+}
+.explanation section {
+  margin: 14px 0;
+}
+.note {
+  font-size: 11px;
+  color: #555;
+}
+.katex {
+  font-size: 1.1em;
+}
+.sheet .markdown-body p {
+  margin: 0;
+}
+.sample > h3 {
+  font-size: 16px;
+}
+.continuation {
+  color: #444;
+}
+.sheet .flow {
+  width: 100%;
+}
+@media (max-width: 850px) {
+  main {
+    padding: 16px;
+  }
+  .pages {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+}
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  body {
+    background: white;
+  }
+  main {
+    padding: 0;
+  }
+  .sheet {
+    break-after: page;
+  }
+  .pages {
+    display: block;
+  }
+  nav,
+  main > h1,
+  main > p,
+  .variant > h2,
+  .variant > p,
+  summary,
+  .sample > h3 {
+    display: none;
+  }
+  .variant {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  details {
+    margin: 0;
+  }
+}

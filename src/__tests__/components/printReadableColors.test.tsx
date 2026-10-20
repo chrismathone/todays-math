@@ -80,11 +80,12 @@ describe("readable ink preserves selected paper accents", () => {
             "text/html",
           )
           .querySelector("span")!;
-        const background = accent;
-        expect(
-          contrast(element.style.color, background),
-        ).toBeGreaterThanOrEqual(4.5);
-        expect(element.style.background).toBeTruthy();
+        // A/T2 (2026-10-20): white number box, the chosen accent on its border and digits.
+        expect(element.style.background).toBe("white");
+        expect(contrast(element.style.color, "#ffffff")).toBeGreaterThanOrEqual(
+          4.5,
+        );
+        expect(element.style.border).toContain(element.style.color);
         expect(element.hasAttribute("data-question-number")).toBe(true);
       }
       expect(DEFAULT_PRINT_OPTIONS.color).toBe(savedColor);

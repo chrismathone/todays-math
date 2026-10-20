@@ -1,0 +1,616 @@
+{
+  "before": {
+    "passed": 4,
+    "failed": 8,
+    "files": [
+      {
+        "file": "src/__tests__/components/TemplateT2.test.tsx",
+        "tests": [
+          {
+            "name": "selected template A T2 pyeongga uses its T2 head and outlined number with the real question renderer",
+            "status": "failed"
+          },
+          {
+            "name": "selected template A T2 jeongtong uses its T2 head and outlined number with the real question renderer",
+            "status": "failed"
+          },
+          {
+            "name": "selected template A T2 modern uses its T2 head and outlined number with the real question renderer",
+            "status": "failed"
+          },
+          {
+            "name": "selected template A T2 workbook uses its T2 head and outlined number with the real question renderer",
+            "status": "failed"
+          },
+          {
+            "name": "selected template A T2 jaseup uses its T2 head and outlined number with the real question renderer",
+            "status": "failed"
+          },
+          {
+            "name": "selected template A T2 yuhyung uses its T2 head and outlined number with the real question renderer",
+            "status": "failed"
+          },
+          {
+            "name": "selected template A T2 pyeongga measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 jeongtong measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 modern measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 workbook measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "failed"
+          },
+          {
+            "name": "selected template A T2 jaseup measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "failed"
+          },
+          {
+            "name": "selected template A T2 yuhyung measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          }
+        ]
+      }
+    ]
+  },
+  "regression": {
+    "passed": 104,
+    "failed": 0,
+    "files": [
+      {
+        "file": "src/__tests__/components/ArithmeticGroupedOutput.test.tsx",
+        "tests": [
+          {
+            "name": "arithmetic grouped shared output pyeongga keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "status": "passed"
+          },
+          {
+            "name": "arithmetic grouped shared output jeongtong keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "status": "passed"
+          },
+          {
+            "name": "arithmetic grouped shared output modern keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "status": "passed"
+          },
+          {
+            "name": "arithmetic grouped shared output workbook keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "status": "passed"
+          },
+          {
+            "name": "arithmetic grouped shared output jaseup keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "status": "passed"
+          },
+          {
+            "name": "arithmetic grouped shared output yuhyung keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "status": "passed"
+          },
+          {
+            "name": "arithmetic grouped shared output reviews by round and type while leaving saved expressions and answers unchanged",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticRoundForm.test.tsx",
+        "tests": [
+          {
+            "name": "pyeongga arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "pyeongga arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "pyeongga arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+            "status": "passed"
+          },
+          {
+            "name": "pyeongga arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+            "status": "passed"
+          },
+          {
+            "name": "jeongtong arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "jeongtong arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "jeongtong arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+            "status": "passed"
+          },
+          {
+            "name": "jeongtong arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+            "status": "passed"
+          },
+          {
+            "name": "modern arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "modern arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "modern arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+            "status": "passed"
+          },
+          {
+            "name": "modern arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+            "status": "passed"
+          },
+          {
+            "name": "workbook arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "workbook arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "workbook arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+            "status": "passed"
+          },
+          {
+            "name": "workbook arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+            "status": "passed"
+          },
+          {
+            "name": "jaseup arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "jaseup arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "jaseup arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+            "status": "passed"
+          },
+          {
+            "name": "jaseup arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+            "status": "passed"
+          },
+          {
+            "name": "yuhyung arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (1 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "yuhyung arithmetic round belongs to the paper form keeps the same dedicated round field on first, continuation and next-round pages (2 columns)",
+            "status": "passed"
+          },
+          {
+            "name": "yuhyung arithmetic round belongs to the paper form keeps round chrome out of question measurement and ordinary sheets",
+            "status": "passed"
+          },
+          {
+            "name": "yuhyung arithmetic round belongs to the paper form prints all 200 questions and matching answers across two separate rounds",
+            "status": "passed"
+          },
+          {
+            "name": "puts the answer round inside its title header (quick=true)",
+            "status": "passed"
+          },
+          {
+            "name": "puts the answer round inside its title header (quick=false)",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/EnglishWorksheetAdapter.test.tsx",
+        "tests": [
+          {
+            "name": "lossless English shared worksheet output retains original content/source indices and separates passage reading from gapped variants across sets",
+            "status": "passed"
+          },
+          {
+            "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through pyeongga",
+            "status": "passed"
+          },
+          {
+            "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through jeongtong",
+            "status": "passed"
+          },
+          {
+            "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through modern",
+            "status": "passed"
+          },
+          {
+            "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through workbook",
+            "status": "passed"
+          },
+          {
+            "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through jaseup",
+            "status": "passed"
+          },
+          {
+            "name": "lossless English shared worksheet output renders complete English underlining and global selection numbering through yuhyung",
+            "status": "passed"
+          },
+          {
+            "name": "lossless English shared worksheet output preserves answer, explanation and evidence verbatim on answer pages",
+            "status": "passed"
+          },
+          {
+            "name": "lossless English shared worksheet output blocks unacknowledged unreviewed and malformed underline output",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/JeongtongHeader.test.tsx",
+        "tests": [
+          {
+            "name": "school exam header prints each exam field once in the table, including the semester",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/mathgenTemplates.test.tsx",
+        "tests": [
+          {
+            "name": "original Mathgen template adapters pyeongga keeps number and optional metadata together above the body in both render modes",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters jeongtong keeps number and optional metadata together above the body in both render modes",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters modern keeps number and optional metadata together above the body in both render modes",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters workbook keeps number and optional metadata together above the body in both render modes",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters jaseup keeps number and optional metadata together above the body in both render modes",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters yuhyung keeps number and optional metadata together above the body in both render modes",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters renders pyeongga with real metadata and the unchanged crop",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters renders jeongtong with real metadata and the unchanged crop",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters renders modern with real metadata and the unchanged crop",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters renders workbook with real metadata and the unchanged crop",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters renders jaseup with real metadata and the unchanged crop",
+            "status": "passed"
+          },
+          {
+            "name": "original Mathgen template adapters renders yuhyung with real metadata and the unchanged crop",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/PrintCheck.test.tsx",
+        "tests": [
+          {
+            "name": "실물 출력 검수 목록 — 데이터 항목 수가 바뀌면 알아차린다",
+            "status": "passed"
+          },
+          {
+            "name": "실물 출력 검수 목록 — 데이터 근거가 가리키는 파일은 실재한다",
+            "status": "passed"
+          },
+          {
+            "name": "실물 출력 검수 목록 — 데이터 🔴 근거는 **커밋되는** 파일이어야 한다 (있기만 한 것은 그 창에서만 초록이다)",
+            "status": "passed"
+          },
+          {
+            "name": "실물 출력 검수 목록 — 데이터 id 가 겹치지 않는다 — 겹치면 한 항목이 조용히 덮인다",
+            "status": "passed"
+          },
+          {
+            "name": "실물 출력 검수 목록 — 데이터 모든 항목에 「종이에서 볼 것」과 근거가 있다",
+            "status": "passed"
+          },
+          {
+            "name": "실물 출력 검수 목록 — 데이터 검수 통과로 표시한 항목은 날짜를 남긴다",
+            "status": "passed"
+          },
+          {
+            "name": "실물 출력 검수 목록 — 화면 항목을 전부 그린다",
+            "status": "passed"
+          },
+          {
+            "name": "실물 출력 검수 목록 — 화면 체크하면 진행 수가 오르고 다시 열어도 남아 있다",
+            "status": "passed"
+          },
+          {
+            "name": "실물 출력 검수 목록 — 화면 「체크 지우기」는 전부 되돌린다",
+            "status": "passed"
+          },
+          {
+            "name": "실물 출력 검수 목록 — 화면 근거에 없는 판정 기준은 (제안) 으로 구분한다",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/PrintColorImplementation.test.tsx",
+        "tests": [
+          {
+            "name": "approved A T2 real paper composition matches the approved mockup's fields in all six templates and nine colors without mutating saved values",
+            "status": "passed"
+          },
+          {
+            "name": "approved A T2 real paper composition omits an absent tag and the hidden date in every form, including old saved sheets",
+            "status": "passed"
+          },
+          {
+            "name": "P1 real input panel shows all fields and disables only those omitted by the selected form without writing data on render",
+            "status": "passed"
+          },
+          {
+            "name": "P1 real input panel retains entered school and workbook strategy values while switching templates and back",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/smartPrintSpacing.test.tsx",
+        "tests": [
+          {
+            "name": "shows five spacing choices, maps saved 4 to narrow without changing it, and toggles smart",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/TemplateT2.test.tsx",
+        "tests": [
+          {
+            "name": "selected template A T2 pyeongga uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 jeongtong uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 modern uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 workbook uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 jaseup uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 yuhyung uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 pyeongga measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 jeongtong measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 modern measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 workbook measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 jaseup measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 yuhyung measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/useMeasuredPages.test.tsx",
+        "tests": [
+          {
+            "name": "stable measured preview retains mounted pages during metadata remeasurement, then uses the changed header height",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/WorksheetPrint.preview.test.tsx",
+        "tests": [
+          {
+            "name": "shared worksheet preview shows whole-page thumbnails while keeping one unscaled export document, including when enlarged",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/unit/printPresetContract.test.ts",
+        "tests": [
+          {
+            "name": "print preset contract (W6) covers every PrintOptions field — a new print option cannot be left out of 양식",
+            "status": "passed"
+          },
+          {
+            "name": "print preset contract (W6) carries only the seven rarely-changing head fields",
+            "status": "passed"
+          },
+          {
+            "name": "print preset contract (W6) rejects problems, sheet fields, tags, unknown options and other versions",
+            "status": "passed"
+          },
+          {
+            "name": "print preset contract (W6) trims names to 1–40 characters",
+            "status": "passed"
+          },
+          {
+            "name": "print preset contract (W6) stored payload adds the default flag and dates only",
+            "status": "passed"
+          },
+          {
+            "name": "print preset contract (W6) save and patch requests are strict",
+            "status": "passed"
+          },
+          {
+            "name": "print preset contract (W6) applying overwrites every carried value and leaves the sheet's own fields alone",
+            "status": "passed"
+          },
+          {
+            "name": "print preset contract (W6) any carried edit differs; edits to fields it does not carry do not",
+            "status": "passed"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/unit/smartPrintSpacing.test.ts",
+        "tests": [
+          {
+            "name": "measured question whitespace each question gets the same trailing space at minimum 16",
+            "status": "passed"
+          },
+          {
+            "name": "measured question whitespace each question gets the same trailing space at minimum 32",
+            "status": "passed"
+          },
+          {
+            "name": "measured question whitespace each question gets the same trailing space at minimum 56",
+            "status": "passed"
+          },
+          {
+            "name": "measured question whitespace each question gets the same trailing space at minimum 88",
+            "status": "passed"
+          },
+          {
+            "name": "measured question whitespace smart picks unequal counts and preserves order without adding pages",
+            "status": "passed"
+          },
+          {
+            "name": "measured question whitespace caps a sparse final column while keeping its first item at the top",
+            "status": "passed"
+          },
+          {
+            "name": "measured question whitespace handles sections, oversized questions and count mode",
+            "status": "passed"
+          },
+          {
+            "name": "measured question whitespace keeps minimum page count, order and finite shares across mixed lengths and both column counts",
+            "status": "passed"
+          },
+          {
+            "name": "measured question whitespace keeps answer-key gaps and oversized scaling unchanged",
+            "status": "passed"
+          },
+          {
+            "name": "spacing storage compatibility round-trips smart in presets and arithmetic, while old forms without the field remain valid",
+            "status": "passed"
+          },
+          {
+            "name": "spacing storage compatibility only new sheets default to smart; omitted saved fields stay off",
+            "status": "passed"
+          },
+          {
+            "name": "spacing storage compatibility legacy 4 remains stored and selects the nearest narrow preset",
+            "status": "passed"
+          }
+        ]
+      }
+    ]
+  },
+  "edge": {
+    "passed": 14,
+    "failed": 0,
+    "files": [
+      {
+        "file": "src/__tests__/components/TemplateT2.test.tsx",
+        "tests": [
+          {
+            "name": "selected template A T2 keeps an authored assessment title containing the question count exactly once",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 keeps missing school fields and an absent concept box omitted without filling saved values",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 pyeongga uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 jeongtong uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 modern uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 workbook uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 jaseup uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 yuhyung uses its T2 head and outlined number with the real question renderer",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 pyeongga measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 jeongtong measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 modern measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 workbook measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 jaseup measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          },
+          {
+            "name": "selected template A T2 yuhyung measures the same outlined question and keeps existing continuation-head behavior",
+            "status": "passed"
+          }
+        ]
+      }
+    ]
+  },
+  "uniquePassingCases": 106
+}

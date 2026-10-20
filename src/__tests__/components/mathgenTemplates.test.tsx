@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { TEMPLATE_COMPONENTS } from "@/components/unified/print/templateComponents";
+import { PRINTED_META_FIELDS } from "@/components/unified/print/templateFields";
 import {
   DEFAULT_PRINT_META,
   DEFAULT_PRINT_OPTIONS,
@@ -23,7 +24,8 @@ const PRINTED_FIXTURE_FIELDS: Record<
 > = {
   pyeongga: ["title", "schoolName", "examDate"],
   jeongtong: ["title", "schoolName", "examDate"],
-  modern: ["title", "schoolName", "examDate"],
+  // A/T2 (2026-10-20): the modern guidance head also prints the one-line goal.
+  modern: ["title", "schoolName", "examDate", "todayGoal"],
   workbook: ["title", "academyName", "examDate", "patternName"],
   jaseup: ["title", "examDate", "todayGoal", "conceptNote"],
   yuhyung: ["title", "patternName"],

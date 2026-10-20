@@ -1,0 +1,1186 @@
+{
+  "before": {
+    "total": 19,
+    "passed": 10,
+    "failed": 9,
+    "pending": 0,
+    "files": [
+      {
+        "file": "src/__tests__/components/ArithmeticGroupedOutput.test.tsx",
+        "passed": 1,
+        "failed": 6,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "arithmetic grouped shared output pyeongga keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "message": "AssertionError: expected [] to have a length of 2 but got +0"
+          },
+          {
+            "test": "arithmetic grouped shared output jeongtong keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "message": "AssertionError: expected [] to have a length of 2 but got +0"
+          },
+          {
+            "test": "arithmetic grouped shared output modern keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "message": "AssertionError: expected [] to have a length of 2 but got +0"
+          },
+          {
+            "test": "arithmetic grouped shared output workbook keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "message": "AssertionError: expected [] to have a length of 2 but got +0"
+          },
+          {
+            "test": "arithmetic grouped shared output jaseup keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "message": "AssertionError: expected [] to have a length of 2 but got +0"
+          },
+          {
+            "test": "arithmetic grouped shared output yuhyung keeps round labels in sheet headers, groups types and prints one continuous number with a matching answer key",
+            "message": "AssertionError: expected [] to have a length of 2 but got +0"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/PrintCheck.test.tsx",
+        "passed": 9,
+        "failed": 1,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "실물 출력 검수 목록 — 데이터 항목 수가 바뀌면 알아차린다",
+            "message": "AssertionError: expected 141 to be 139 // Object.is equality"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/useMeasuredAnswerPages.test.tsx",
+        "passed": 0,
+        "failed": 2,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "answer pages before browser geometry is available keeps an H2 answer page for each round without claiming export readiness",
+            "message": "AssertionError: expected [] to deeply equal [ [ +0, 1, 2, 3 ], [ 4, 5 ] ]"
+          },
+          {
+            "test": "answer pages before browser geometry is available replaces the provisional content when the selected round changes",
+            "message": "AssertionError: expected [] to deeply equal [ [ +0, 1 ] ]"
+          }
+        ]
+      }
+    ]
+  },
+  "mainBefore": {
+    "total": 42,
+    "passed": 36,
+    "failed": 6,
+    "pending": 0,
+    "files": [
+      {
+        "file": "src/__tests__/components/ArithmeticGroupedOutput.test.tsx",
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/JeongtongHeader.test.tsx",
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "school exam header prints each exam field once in the table, including the semester",
+            "message": "TypeError: Cannot read properties of null (reading 'textContent')"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/mathgenTemplates.test.tsx",
+        "passed": 9,
+        "failed": 3,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "original Mathgen template adapters renders workbook with real metadata and the unchanged crop",
+            "message": "AssertionError: expected '<div style=\"width:793.7007874015749px…' to contain '검증 학교'"
+          },
+          {
+            "test": "original Mathgen template adapters renders jaseup with real metadata and the unchanged crop",
+            "message": "AssertionError: expected '<div style=\"width:793.7007874015749px…' to contain '검증 학교'"
+          },
+          {
+            "test": "original Mathgen template adapters renders yuhyung with real metadata and the unchanged crop",
+            "message": "AssertionError: expected '<div style=\"width:793.7007874015749px…' to contain '검증 학교'"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/PrintCheck.test.tsx",
+        "passed": 9,
+        "failed": 1,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "실물 출력 검수 목록 — 데이터 항목 수가 바뀌면 알아차린다",
+            "message": "AssertionError: expected 140 to be 139 // Object.is equality"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2Geometry.test.ts",
+        "passed": 11,
+        "failed": 1,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "live geometry arithmetic projects saved SVG and degree answers without calling a geometry generator",
+            "message": "AssertionError: expected \"problemAt\" to be called 1 times, but got 0 times"
+          }
+        ]
+      }
+    ]
+  },
+  "fixedFocused": {
+    "total": 59,
+    "passed": 59,
+    "failed": 0,
+    "pending": 0,
+    "files": [
+      {
+        "file": "src/__tests__/components/AnswerPage.quickKey.test.tsx",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticGroupedOutput.test.tsx",
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticRoundForm.test.tsx",
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/PrintCheck.test.tsx",
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/useMeasuredAnswerPages.test.tsx",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/answerKeyLayout.test.ts",
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      }
+    ]
+  },
+  "full": {
+    "total": 5452,
+    "passed": 5421,
+    "failed": 28,
+    "pending": 3,
+    "files": [
+      {
+        "file": "src/__tests__/api/arithmeticGeometryRegeneration.test.ts",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/api/branchLibrary.test.ts",
+        "passed": 48,
+        "failed": 18,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "bank alone reads only worksheet drafts while keeping other document outputs closed",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "branch library read boundaries returns both colliding document IDs with distinct authors and filters to mine on demand",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "branch library read boundaries hides shared documents and copies after private",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "branch library read boundaries hides shared documents and copies after viewer-moved",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "branch library read boundaries hides shared documents and copies after owner-moved",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "branch library read boundaries hides shared documents and copies after independent",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "branch library read boundaries hides shared documents and copies after deleted",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "branch library read boundaries hides shared documents and copies after suspended",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "branch library read boundaries hides shared documents and copies after unapproved",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "arithmetic document persistence keeps list and verified snapshot reads usable with writers off and makes no usage writes",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "arithmetic document persistence retains library management but requires the arithmetic menu to save or copy arithmetic",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "exam conditions never surface through the library document routes is left out of 내 시험지 · 우리학원 시험지 lists and their counts, with or without a kind filter",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "exam conditions never surface through the library document routes is left out of the admin's per-user document list (owner view)",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "exam conditions never surface through the library document routes is never offered to a colleague even if a row were marked branch",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "print presets never surface through the library document routes is left out of 내 시험지 · 우리학원 시험지 lists and their counts, with or without a kind filter",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "print presets never surface through the library document routes is left out of the admin's per-user document list (owner view)",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "print presets never surface through the library document routes is never offered to a colleague even if a row were marked branch",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          },
+          {
+            "test": "sheet tags travel with the document lists the tag from a bounded projection of authorized rows only",
+            "message": "TypeError: __vite_ssr_import_1__.Prisma.sql is not a function"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/api/workspaceArithmetic.test.ts",
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/api/workspaceArithmeticRegeneration.test.ts",
+        "passed": 29,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/api/workspaceArithmeticV2.test.ts",
+        "passed": 16,
+        "failed": 5,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "v2 catalog and generation routes rejects mixed oversized and malformed rounds with 400",
+            "message": "AssertionError: expected \"vi.fn()\" to not be called at all, but actually been called 1 times"
+          },
+          {
+            "test": "v2 catalog and generation routes rejects mixed oversized and malformed rounds with 400",
+            "message": "AssertionError: expected \"vi.fn()\" to not be called at all, but actually been called 1 times"
+          },
+          {
+            "test": "v2 catalog and generation routes rejects mixed oversized and malformed rounds with 400",
+            "message": "AssertionError: expected \"vi.fn()\" to not be called at all, but actually been called 1 times"
+          },
+          {
+            "test": "v2 catalog and generation routes rejects mixed oversized and malformed rounds with 400",
+            "message": "AssertionError: expected \"vi.fn()\" to not be called at all, but actually been called 1 times"
+          },
+          {
+            "test": "v2 catalog and generation routes rejects mixed oversized and malformed rounds with 400",
+            "message": "AssertionError: expected \"vi.fn()\" to not be called at all, but actually been called 1 times"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/api/workspaceArithmeticV2CatalogIntegration.test.ts",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/AnswerPage.quickKey.test.tsx",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticBasketSelection.test.tsx",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticGeometryPrompt.test.tsx",
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticGroupedOutput.test.tsx",
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticManualSave.test.tsx",
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/arithmeticReview.test.tsx",
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticRoundForm.test.tsx",
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticSelectiveRegeneration.test.tsx",
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticTypePreview.test.tsx",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticTypeSelection.test.tsx",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticWorkbench.test.tsx",
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/ArithmeticWorkbenchRouting.test.tsx",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/EnglishPrintClient.test.tsx",
+        "passed": 28,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/EnglishPrintPaper.test.tsx",
+        "passed": 31,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/EnglishWorksheetAdapter.test.tsx",
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/EnglishWorksheetReadiness.test.tsx",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/GradeArithmeticPaper.test.tsx",
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/GradeArithmeticWorkbench.test.tsx",
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/JeongtongHeader.test.tsx",
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "school exam header prints each exam field once in the table, including the semester",
+            "message": "TypeError: Cannot read properties of null (reading 'textContent')"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/mathgenTemplates.test.tsx",
+        "passed": 9,
+        "failed": 3,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "original Mathgen template adapters renders workbook with real metadata and the unchanged crop",
+            "message": "AssertionError: expected '<div style=\"width:793.7007874015749px…' to contain '검증 학교'"
+          },
+          {
+            "test": "original Mathgen template adapters renders jaseup with real metadata and the unchanged crop",
+            "message": "AssertionError: expected '<div style=\"width:793.7007874015749px…' to contain '검증 학교'"
+          },
+          {
+            "test": "original Mathgen template adapters renders yuhyung with real metadata and the unchanged crop",
+            "message": "AssertionError: expected '<div style=\"width:793.7007874015749px…' to contain '검증 학교'"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/components/perProblemFractionView.test.tsx",
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/PrintCheck.test.tsx",
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/PrintColorImplementation.test.tsx",
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/PrintOptionsPanel.test.tsx",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/PrivateLibrary.test.tsx",
+        "passed": 48,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/SavedLayouts.test.tsx",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/smartPrintSpacing.test.tsx",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/solutionExits.test.tsx",
+        "passed": 13,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/StudioStepBar.test.tsx",
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/StudioView.ai.test.tsx",
+        "passed": 13,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/UnifiedWorkspace.access.test.tsx",
+        "passed": 72,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/UnifiedWorkspace.actions.test.tsx",
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/UnifiedWorkspace.cart.test.tsx",
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/UnifiedWorkspace.orderReset.test.tsx",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/useMeasuredAnswerPages.test.tsx",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/useMeasuredPages.test.tsx",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/WorksheetEditor.orderPanel.test.tsx",
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/WorksheetEditor.progress.test.tsx",
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/components/WorksheetPrint.preview.test.tsx",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/answerKeyLayout.test.ts",
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticAlgebraComplete.test.ts",
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticAnglePresentation.test.ts",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticByteBudget.test.ts",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticCatalogOrder.test.ts",
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticCenterAngles.test.ts",
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticCoefficientOne.test.ts",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticCurriculum.test.ts",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticDimensionPresentation.test.ts",
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticElementaryFractionDecimalExpansion.test.ts",
+        "passed": 45,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticElementaryGrade12.test.ts",
+        "passed": 87,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticElementaryNaturalExpansion.test.ts",
+        "passed": 38,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticEngine.test.ts",
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticFigureFirstAnnotated.test.ts",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticFigureFirstElementary.test.ts",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticFigureFirstTriangles.test.ts",
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticFigureFirstTrig.test.ts",
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticFigureNecessity.test.ts",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticFunctionsData.test.ts",
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticGeometryExpansion.test.ts",
+        "passed": 264,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticGeometryPack.test.ts",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticGeometrySubsetIntegration.test.ts",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticMiddle1Expansion.test.ts",
+        "passed": 52,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticMiddle2Expansion.test.ts",
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticMiddle3Expansion.test.ts",
+        "passed": 55,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticOutput.test.ts",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticPresentation.test.ts",
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticPresets.test.ts",
+        "passed": 296,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticRegeneration.test.ts",
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticRegenerationCatalog.test.ts",
+        "passed": 737,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticRoundLimits.test.ts",
+        "passed": 741,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticRoundSelection.test.ts",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticSegmentPresentation.test.ts",
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticTrigonometryComplete.test.ts",
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticTypeSelection.test.ts",
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticUnitIntegration.test.ts",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2AlgebraRadicalSupplement.test.ts",
+        "passed": 77,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2Compatibility.test.ts",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2Core.test.ts",
+        "passed": 24,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2Elementary.test.ts",
+        "passed": 96,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2ElementarySupplement.test.ts",
+        "passed": 67,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2Geometry.test.ts",
+        "passed": 11,
+        "failed": 1,
+        "skipped": 0,
+        "failures": [
+          {
+            "test": "live geometry arithmetic projects saved SVG and degree answers without calling a geometry generator",
+            "message": "AssertionError: expected \"problemAt\" to be called 1 times, but got 0 times"
+          }
+        ]
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2Integration.test.ts",
+        "passed": 740,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2Middle.test.ts",
+        "passed": 90,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2NumericSupplement.test.ts",
+        "passed": 67,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/arithmeticV2Usage.test.ts",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/choiceLayoutRender.test.tsx",
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/devPageAccess.test.ts",
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/geometryCounts.test.ts",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/geometryElementary.test.ts",
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/geometryMeasure.test.ts",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/geometryTriangles.test.ts",
+        "passed": 92,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/hwpxRepeatDot.test.ts",
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/lsubRules.test.ts",
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/mathgenPrint.test.ts",
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/middleM1Top3.test.ts",
+        "passed": 99,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/middleM1Top4.test.ts",
+        "passed": 94,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/middleM1Top5b.test.ts",
+        "passed": 105,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/middleM1Top5c.test.ts",
+        "passed": 113,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/middleM1Top5d.test.ts",
+        "passed": 90,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/middleM1Top5e.test.ts",
+        "passed": 102,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/middleM1Top5f.test.ts",
+        "passed": 94,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/middleM1Top5g.test.ts",
+        "passed": 91,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/middleM1Top5h.test.ts",
+        "passed": 99,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/pickPaperProblems.test.ts",
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/printPack.test.ts",
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/printPresetContract.test.ts",
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/printSpacingReader.test.ts",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/routeAccess.test.ts",
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/sheetTag.test.ts",
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/smartPrintSpacing.test.ts",
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/solutionWiring.test.ts",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/studentRouteAccess.test.ts",
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/textbookRecoveryAnswerCheckHeading.integration.test.ts",
+        "passed": 0,
+        "failed": 0,
+        "skipped": 3,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/usageLabels.test.ts",
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      },
+      {
+        "file": "src/__tests__/unit/workspaceDraftStore.test.ts",
+        "passed": 43,
+        "failed": 0,
+        "skipped": 0,
+        "failures": []
+      }
+    ]
+  },
+  "apiSourceDiffVsOriginMain": [],
+  "prismaSqlEnvironment": {
+    "local": "undefined",
+    "main": "function"
+  },
+  "mainApi": {
+    "commit": "ed17a8acbfa15712888e681f5cb561ab5560bfe5",
+    "checkout": "existing main, no new worktree",
+    "passed": 82,
+    "failed": 5,
+    "files": [
+      {
+        "file": "src/__tests__/api/branchLibrary.test.ts",
+        "passed": 66,
+        "failed": 0
+      },
+      {
+        "file": "src/__tests__/api/workspaceArithmeticV2.test.ts",
+        "passed": 16,
+        "failed": 5
+      }
+    ]
+  }
+}

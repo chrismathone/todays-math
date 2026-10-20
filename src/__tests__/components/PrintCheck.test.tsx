@@ -252,14 +252,21 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 132: 확정 C2의 실제 여섯 양식별 실물 검수 대기(2026-10-19).
     // 139: 합의한 성적표 H1·편지형·정오 격자형·장부형의 실물 검수 대기 넷 추가(2026-10-19).
     // 140: question-smart-spacing-20261020 — 문항별 균등 여백·스마트 배치 실물 검수 대기.
-    expect(ITEMS.length).toBe(140);
-    expect(ITEMS).toContainEqual(
-      expect.objectContaining({
-        id: "question-smart-spacing-20261020",
-        status: "대기",
-        changedOn: "2026-10-20",
-      }),
-    );
+    // 141: H2 빠른 채점표의 실물 검수 대기(2026-10-20).
+    // 142: 선택한 A · T2의 여섯 제품 양식 묶음 검수 대기 추가.
+    expect(ITEMS.length).toBe(142);
+    for (const id of [
+      "question-smart-spacing-20261020",
+      "answer-quick-key-h2",
+      "template-a-t2-20261020",
+    ])
+      expect(ITEMS).toContainEqual(
+        expect.objectContaining({
+          id,
+          status: "대기",
+          changedOn: "2026-10-20",
+        }),
+      );
   });
 
   /**
