@@ -1,0 +1,7252 @@
+{
+  "summary": {
+    "total": 438,
+    "passed": 438,
+    "failed": 0,
+    "byCategory": {
+      "independent-notation-oracle": {
+        "total": 409,
+        "failed": 0
+      },
+      "actual-bindings": {
+        "total": 3,
+        "failed": 0
+      },
+      "freeze": {
+        "total": 2,
+        "failed": 0
+      },
+      "surface-routing": {
+        "total": 16,
+        "failed": 0
+      },
+      "synthetic-evaluate": {
+        "total": 3,
+        "failed": 0
+      },
+      "synthetic-collector": {
+        "total": 2,
+        "failed": 0
+      },
+      "authentic-current-collector": {
+        "total": 1,
+        "failed": 0
+      },
+      "scope-limit": {
+        "total": 2,
+        "failed": 0
+      }
+    }
+  },
+  "failures": [],
+  "validationMocked": false,
+  "wholeCopiedRegressionSuiteRun": false,
+  "unsuppliedComposeHelperRead": false,
+  "ownFixturesLocalOnly": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\bare-unit-notation-code-audit-20261020-r1\\own-local-fixtures",
+  "cases": [
+    {
+      "id": "bare-0",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-0",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-2",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-2",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-4",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-4",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-6",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-6",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-8",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-8",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-10",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-10",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-12",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-12",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-14",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-14",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-16",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-16",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-18",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-18",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-20",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-20",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-22",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-22",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-24",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-24",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-26",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-26",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-28",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-28",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-30",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-30",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-32",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-32",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-34",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-34",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-36",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-36",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-38",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-38",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-40",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-40",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-42",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-42",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-44",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-44",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-46",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-46",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-48",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-48",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-50",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-50",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-52",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-52",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-54",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-54",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-56",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-56",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-58",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-58",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-60",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-60",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-62",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-62",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-64",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-64",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-66",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-66",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-68",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-68",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-70",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-70",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-72",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-72",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-74",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-74",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-76",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-76",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-78",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-78",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-80",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-80",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-82",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-82",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-84",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-84",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-86",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-86",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-88",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-88",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-90",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-90",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-92",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-92",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-94",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-94",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-96",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-96",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-98",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-98",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-100",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-100",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-102",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-102",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-104",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-104",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-106",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-106",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-108",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-108",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-110",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-110",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-112",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-112",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-114",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-114",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-116",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-116",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-118",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-118",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-120",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-120",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-122",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-122",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-124",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-124",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-126",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-126",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-128",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-128",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-130",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-130",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-132",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-132",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-134",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-134",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-136",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-136",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-138",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 8,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-138",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-140",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-140",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-142",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 14,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-142",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "literal-144",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 30,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 30,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-145",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 43,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 43,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-146",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-147",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 29,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 29,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-148",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 42,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 42,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-149",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-150",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-151",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-152",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-153",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-154",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-155",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-156",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-157",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-158",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-159",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-160",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-161",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-162",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-163",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-164",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-165",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-166",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-167",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-168",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-169",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-170",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-171",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-172",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-173",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-174",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 38,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 38,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-175",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 51,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 51,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-176",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-177",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 37,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 37,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-178",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 50,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 50,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-179",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 39,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 39,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-180",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "sqrt",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "sqrt",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-181",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "frac",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 42,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "frac",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 42,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-182",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "dfrac",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "dfrac",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-183",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "tfrac",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 43,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "tfrac",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 43,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-184",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "ldots",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 39,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "ldots",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 39,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-185",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "cdots",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 39,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          },
+          {
+            "token": "cdots",
+            "offset": 14,
+            "delimiter": "$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 39,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "outside-unit-scope-186",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-187",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-188",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-189",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-190",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-191",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-192",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-193",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-194",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-195",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-196",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-197",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-198",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-199",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-200",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-201",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-201",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-203",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-203",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-205",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-205",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-207",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-207",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-209",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-209",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-211",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-211",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-213",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-213",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-215",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-215",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-217",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-217",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-219",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-219",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-221",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-221",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-223",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-223",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-225",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-225",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-227",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-227",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-229",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-229",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-231",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-231",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-233",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-233",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-235",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-235",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-237",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-237",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-239",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-239",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-241",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-241",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-243",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-243",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-245",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-245",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-247",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-247",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-249",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-249",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-251",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-251",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-253",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-253",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-255",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-255",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-257",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-257",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-259",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-259",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-261",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-261",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-263",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-263",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-265",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-265",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-267",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-267",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-269",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-269",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-271",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-271",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-273",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-273",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-275",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-275",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-277",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-277",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-279",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-279",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-281",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-281",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-283",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-283",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-285",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-285",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-287",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-287",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-289",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-289",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-291",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-291",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-293",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-293",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-295",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-295",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-297",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-297",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-299",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-299",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-301",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-301",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-303",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-303",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-305",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-305",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-307",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-307",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-309",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-309",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-311",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-311",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-313",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-313",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-315",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-315",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-317",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-317",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-319",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-319",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-321",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-321",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-323",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-323",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-325",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-325",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-327",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-327",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-329",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-329",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-331",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-331",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-333",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-333",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-335",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-335",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-337",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 11,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-337",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-339",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 9,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-339",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-341",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 10,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-341",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "bare-343",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 15,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "escaped-343",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "literal-345",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 31,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-346",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-347",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-348",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 30,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 30,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-349",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 43,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 43,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-350",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-351",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-352",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 46,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 46,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-353",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 35,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 35,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-354",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-355",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-356",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-357",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-358",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 46,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 46,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-359",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 35,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 35,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-360",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-361",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-362",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-363",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-364",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 46,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 46,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-365",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 35,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 35,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-366",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-367",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-368",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-369",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 33,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-370",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 46,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 46,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-371",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 35,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 35,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-372",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 32,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-373",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-374",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 34,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-375",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 39,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 39,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-376",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 52,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 52,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-377",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 41,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 41,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-378",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 38,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 38,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-379",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 51,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 51,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "literal-380",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-381",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "sqrt",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 41,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "sqrt",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 41,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-382",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "frac",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 43,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "frac",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 43,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-383",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "dfrac",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "dfrac",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 45,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-384",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "tfrac",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "tfrac",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 44,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-385",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "ldots",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "ldots",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed-386",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "cdots",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$$"
+          },
+          {
+            "token": "cdots",
+            "offset": 15,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "outside-unit-scope-387",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-388",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-389",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-390",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-391",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-392",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-393",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-394",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "outside-unit-scope-395",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-396",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-397",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-398",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-399",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-400",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "proper-401",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "prose-402",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "prose-403",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "prose-404",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "prose-405",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "prose-406",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [],
+        "actual": []
+      }
+    },
+    {
+      "id": "escaped-dollar-and-real-math",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 25,
+            "delimiter": "$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 25,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "multiple-math-source-order",
+      "category": "independent-notation-oracle",
+      "status": "passed",
+      "detail": {
+        "expected": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$"
+          },
+          {
+            "token": "sqrt",
+            "offset": 15,
+            "delimiter": "$"
+          },
+          {
+            "token": "frac",
+            "offset": 29,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$$"
+          }
+        ],
+        "actual": [
+          {
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$"
+          },
+          {
+            "token": "sqrt",
+            "offset": 15,
+            "delimiter": "$"
+          },
+          {
+            "token": "frac",
+            "offset": 29,
+            "delimiter": "$$"
+          },
+          {
+            "token": "mathrm",
+            "offset": 40,
+            "delimiter": "$$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "actual-r2-five-bare-unit-warnings",
+      "category": "actual-bindings",
+      "status": "passed",
+      "detail": [
+        {
+          "surface": "choice-1",
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$"
+        },
+        {
+          "surface": "choice-2",
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$"
+        },
+        {
+          "surface": "choice-3",
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$"
+        },
+        {
+          "surface": "choice-4",
+          "token": "mathrm",
+          "offset": 4,
+          "delimiter": "$"
+        },
+        {
+          "surface": "choice-5",
+          "token": "mathrm",
+          "offset": 5,
+          "delimiter": "$"
+        }
+      ]
+    },
+    {
+      "id": "actual-r3-zero-warnings",
+      "category": "actual-bindings",
+      "status": "passed"
+    },
+    {
+      "id": "old-frozen-pack-warning-retained",
+      "category": "actual-bindings",
+      "status": "passed",
+      "detail": {
+        "candidateDigest": "3f661a64b2e900cbc9e326a1c413b2e887a9d71f799780e785b0d4116c46a7a8",
+        "warnings": [
+          {
+            "surface": "choice-1",
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$"
+          },
+          {
+            "surface": "choice-2",
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$"
+          },
+          {
+            "surface": "choice-3",
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$"
+          },
+          {
+            "surface": "choice-4",
+            "token": "mathrm",
+            "offset": 4,
+            "delimiter": "$"
+          },
+          {
+            "surface": "choice-5",
+            "token": "mathrm",
+            "offset": 5,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "actual-bad-freeze-before-directory-write",
+      "category": "freeze",
+      "status": "passed",
+      "detail": {
+        "exit": 1,
+        "outputExists": false,
+        "inputUnchanged": true,
+        "stderr": "node:internal/modules/run_main:123\r\n    triggerUncaughtException(\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: Suspected lost math command escapes require a corrected student version before a solve pack\r\n    at freeze (file:///C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bare-unit-notation-code-audit-20261020-r1/provided-code-runtime-local/review-exam-twins.mjs:93:3)\r\n    at main (file:///C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bare-unit-notation-code-audit-20261020-r1/provided-code-runtime-local/review-exam-twins.mjs:401:12)\r\n    at file:///C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bare-unit-notation-code-audit-20261020-r1/provided-code-runtime-local/review-exam-twins.mjs:429:3\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\r\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: false,\r\n  expected: true,\r\n  operator: '=='\r\n}\r\n\r\nNode.js v22.17.1\r\n"
+      }
+    },
+    {
+      "id": "actual-corrected-freeze-owned-output",
+      "category": "freeze",
+      "status": "passed",
+      "detail": {
+        "exit": 0,
+        "authoredFrozen": 1,
+        "notationWarnings": 0,
+        "inputUnchanged": true,
+        "outputLocalOnlyNotForGit": true
+      }
+    },
+    {
+      "id": "bare-in-stem",
+      "category": "surface-routing",
+      "status": "passed",
+      "detail": {
+        "synthetic": true,
+        "warnings": [
+          {
+            "surface": "stem",
+            "token": "mathrm",
+            "offset": 128,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bare-in-choice-1",
+      "category": "surface-routing",
+      "status": "passed",
+      "detail": {
+        "synthetic": true,
+        "warnings": [
+          {
+            "surface": "choice-1",
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bare-in-choice-2",
+      "category": "surface-routing",
+      "status": "passed",
+      "detail": {
+        "synthetic": true,
+        "warnings": [
+          {
+            "surface": "choice-2",
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bare-in-choice-3",
+      "category": "surface-routing",
+      "status": "passed",
+      "detail": {
+        "synthetic": true,
+        "warnings": [
+          {
+            "surface": "choice-3",
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bare-in-choice-4",
+      "category": "surface-routing",
+      "status": "passed",
+      "detail": {
+        "synthetic": true,
+        "warnings": [
+          {
+            "surface": "choice-4",
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bare-in-choice-5",
+      "category": "surface-routing",
+      "status": "passed",
+      "detail": {
+        "synthetic": true,
+        "warnings": [
+          {
+            "surface": "choice-5",
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bare-in-solution",
+      "category": "surface-routing",
+      "status": "passed",
+      "detail": {
+        "synthetic": true,
+        "warnings": [
+          {
+            "surface": "studentSolution",
+            "token": "mathrm",
+            "offset": 319,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bare-in-written-answer",
+      "category": "surface-routing",
+      "status": "passed",
+      "detail": {
+        "synthetic": true,
+        "warnings": [
+          {
+            "surface": "answer",
+            "token": "mathrm",
+            "offset": 3,
+            "delimiter": "$"
+          }
+        ]
+      }
+    },
+    {
+      "id": "proper-in-stem",
+      "category": "surface-routing",
+      "status": "passed"
+    },
+    {
+      "id": "proper-in-choice-1",
+      "category": "surface-routing",
+      "status": "passed"
+    },
+    {
+      "id": "proper-in-choice-2",
+      "category": "surface-routing",
+      "status": "passed"
+    },
+    {
+      "id": "proper-in-choice-3",
+      "category": "surface-routing",
+      "status": "passed"
+    },
+    {
+      "id": "proper-in-choice-4",
+      "category": "surface-routing",
+      "status": "passed"
+    },
+    {
+      "id": "proper-in-choice-5",
+      "category": "surface-routing",
+      "status": "passed"
+    },
+    {
+      "id": "proper-in-solution",
+      "category": "surface-routing",
+      "status": "passed"
+    },
+    {
+      "id": "proper-in-written-answer",
+      "category": "surface-routing",
+      "status": "passed"
+    },
+    {
+      "id": "actual-old-author-synthetic-all-green-still-held",
+      "category": "synthetic-evaluate",
+      "status": "passed",
+      "detail": {
+        "syntheticAssertionsOnly": true,
+        "result": {
+          "mathematicalVerified": false,
+          "gradeReviewed": false,
+          "overallVerified": false,
+          "loadable": false,
+          "reasons": [
+            "student-math-notation-command-escape-held",
+            "native-exam-twin-provenance-not-implemented"
+          ],
+          "productionWrites": false
+        }
+      }
+    },
+    {
+      "id": "actual-old-frozen-q2-synthetic-all-green-still-held",
+      "category": "synthetic-evaluate",
+      "status": "passed",
+      "detail": {
+        "syntheticAssertionsOnly": true,
+        "result": {
+          "mathematicalVerified": false,
+          "gradeReviewed": false,
+          "overallVerified": false,
+          "loadable": false,
+          "reasons": [
+            "student-math-notation-command-escape-held",
+            "native-exam-twin-provenance-not-implemented"
+          ],
+          "productionWrites": false
+        }
+      }
+    },
+    {
+      "id": "corrected-synthetic-control-not-a-grade-approval",
+      "category": "synthetic-evaluate",
+      "status": "passed",
+      "detail": {
+        "syntheticAssertionsOnly": true,
+        "authenticStudentReview": false,
+        "result": {
+          "mathematicalVerified": true,
+          "gradeReviewed": true,
+          "overallVerified": false,
+          "loadable": false,
+          "reasons": [
+            "native-exam-twin-provenance-not-implemented"
+          ],
+          "productionWrites": false
+        }
+      }
+    },
+    {
+      "id": "actual-verify-pack-on-synthetic-only-proofs",
+      "category": "synthetic-collector",
+      "status": "passed",
+      "detail": {
+        "syntheticProofs": true,
+        "exit": 0,
+        "notPreExposureGitProof": true,
+        "notAuthenticReview": true
+      }
+    },
+    {
+      "id": "actual-old-collector-rejects-bad-q2-synthetic-green",
+      "category": "synthetic-collector",
+      "status": "passed",
+      "detail": {
+        "syntheticProofsAndReports": true,
+        "notAuthenticGradeApproval": true,
+        "actualModuleUnmocked": true,
+        "result": {
+          "kind": "authored-exam-twin-review-result/v1",
+          "packageDigest": "28cc69d4f79109f8720119a8c83fc2a60fbb4d10793ba21c06472d1d8ba96b40",
+          "createdAt": "2026-10-20T05:47:47.510Z",
+          "authored": 2,
+          "mathematicalVerified": 1,
+          "gradeReviewed": 1,
+          "overallVerified": 0,
+          "loadable": 0,
+          "productionWrites": false,
+          "results": [
+            {
+              "n": 1,
+              "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q01",
+              "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+              "candidateDigest": "77bfcbcaecb9880fd81946dae755ca343c95b9458f26fd451caa212efcb90221",
+              "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da",
+              "solveDigest": "c0b11c1127683ed17f4a95e373077642bc60af4d11a231cf470d45de3c2616cf",
+              "reportSha256": "6001e1ef528fe1068d94a50daa8a1a333076781e58690d7770c28016bdfb6a61",
+              "mathematicalVerified": true,
+              "gradeReviewed": true,
+              "overallVerified": false,
+              "loadable": false,
+              "reasons": [
+                "source-identity-held",
+                "taxonomy-held",
+                "rights-review-pending",
+                "similarity-review-pending",
+                "native-exam-twin-provenance-not-implemented"
+              ],
+              "productionWrites": false
+            },
+            {
+              "n": 2,
+              "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q02",
+              "studentDigest": "2817f3234dac2e1b07dcd504b94f5b026bac73201c22d3b4e187186ff26417af",
+              "candidateDigest": "3f661a64b2e900cbc9e326a1c413b2e887a9d71f799780e785b0d4116c46a7a8",
+              "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac",
+              "solveDigest": "d52e72d6111ceef56f836d1d5fb882a017d99a1dbdcf4e80cb462e737f32311d",
+              "reportSha256": "a8bb43529c5738031465731d06c8edeeb87a5e107aee4fd5856906b9ba281cce",
+              "mathematicalVerified": false,
+              "gradeReviewed": false,
+              "overallVerified": false,
+              "loadable": false,
+              "reasons": [
+                "student-math-notation-command-escape-held",
+                "source-identity-held",
+                "taxonomy-held",
+                "rights-review-pending",
+                "similarity-review-pending",
+                "native-exam-twin-provenance-not-implemented"
+              ],
+              "productionWrites": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "actual-current-dong-collector-own-sealed-reports",
+      "category": "authentic-current-collector",
+      "status": "passed",
+      "detail": {
+        "unmockedActualCurrentPackAndReports": true,
+        "priorHumanReportsCommit": "eb4053d06d160dba787b8ac0d42840158598be02",
+        "newSemanticOrGradeApproval": false,
+        "result": {
+          "kind": "authored-exam-twin-review-result/v1",
+          "packageDigest": "68ab261cc45f8609e8daae94860dbf3e31f7f300de1d6a7c62ace86fcbd1412e",
+          "createdAt": "2026-10-20T05:47:47.526Z",
+          "authored": 2,
+          "mathematicalVerified": 2,
+          "gradeReviewed": 2,
+          "overallVerified": 0,
+          "loadable": 0,
+          "productionWrites": false,
+          "results": [
+            {
+              "n": 1,
+              "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q01",
+              "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+              "candidateDigest": "77bfcbcaecb9880fd81946dae755ca343c95b9458f26fd451caa212efcb90221",
+              "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da",
+              "solveDigest": "608a0f32501a6749e811e7f3c2ed1bbcc4205115eeae879cf27335c1c72610f8",
+              "reportSha256": "954713222d76514684a605185ef0749891d3ddace08198e4f5117e47645e71f4",
+              "mathematicalVerified": true,
+              "gradeReviewed": true,
+              "overallVerified": false,
+              "loadable": false,
+              "reasons": [
+                "review-status-pending",
+                "review-unitFamilyFit-not-passed",
+                "source-identity-held",
+                "taxonomy-held",
+                "rights-review-pending",
+                "similarity-review-pending",
+                "native-exam-twin-provenance-not-implemented"
+              ],
+              "productionWrites": false
+            },
+            {
+              "n": 2,
+              "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r3-q02",
+              "studentDigest": "5c5ee5e427138b176f6f88c4dfc70ae70fbf02edb059d5188037d96b6ef039ab",
+              "candidateDigest": "27b3eaef28e19ade0e618d5b147cb0af3c760e2a6e5565881255c9ef76cc5425",
+              "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac",
+              "solveDigest": "91118315acc53fd0063207174425b5cd2868e7d1318186b3f57445775548e44b",
+              "reportSha256": "41ad0bf527f09a8185a00aab85bba119f5dccdd86a35cd25c0aef3034da794f9",
+              "mathematicalVerified": true,
+              "gradeReviewed": true,
+              "overallVerified": false,
+              "loadable": false,
+              "reasons": [
+                "review-status-pending",
+                "review-unitFamilyFit-not-passed",
+                "source-identity-held",
+                "taxonomy-held",
+                "rights-review-pending",
+                "similarity-review-pending",
+                "native-exam-twin-provenance-not-implemented"
+              ],
+              "productionWrites": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "unclosed-math-remains-outside-validator-scope",
+      "category": "scope-limit",
+      "status": "passed",
+      "detail": {
+        "unclosedMathNotDiagnosed": true,
+        "generalTexProof": false
+      }
+    },
+    {
+      "id": "non-cm-m-unit-not-certified",
+      "category": "scope-limit",
+      "status": "passed",
+      "detail": {
+        "noAllUnitsClaim": true
+      }
+    }
+  ]
+}
