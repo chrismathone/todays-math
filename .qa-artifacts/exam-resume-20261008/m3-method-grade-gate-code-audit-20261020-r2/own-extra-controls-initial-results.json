@@ -1,0 +1,690 @@
+{
+  "checks": [
+    {
+      "name": "exact860contextorder",
+      "pass": true
+    },
+    {
+      "name": "624formerGapsNowGradeBeforeRelease",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/algebra.inverse-coefficient-sum/full/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/algebra.inverse-coefficient-sum/full/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/algebra.inverse-coefficient-sum/component/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/algebra.inverse-coefficient-sum/component/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-root-table/full/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-root-table/full/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-root-table/component/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-root-table/component/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-extreme-range/full/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-extreme-range/full/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-extreme-range/component/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/number.inverse-extreme-range/component/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/geometry.inverse-tangent-rectangle/full/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/geometry.inverse-tangent-rectangle/full/true",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/geometry.inverse-tangent-rectangle/component/false",
+      "pass": true
+    },
+    {
+      "name": "M1coprimePriority/geometry.inverse-tangent-rectangle/component/true",
+      "pass": true
+    },
+    {
+      "name": "currentVerifier/0",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/0",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/0",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/1",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/1",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/1",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/2",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/2",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/2",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/3",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/3",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/3",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/4",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/4",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/4",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/5",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/5",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/5",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/6",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/6",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/6",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/7",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/7",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/7",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/8",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/8",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/8",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/9",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/9",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/9",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/10",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/10",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/10",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/11",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/11",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/11",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/12",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/12",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/12",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/13",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/13",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/13",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/14",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/14",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/14",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/15",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/15",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/15",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/16",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/16",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/16",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/17",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/17",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/17",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/18",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/18",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/18",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/19",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/19",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/19",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/20",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/20",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/20",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/21",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/21",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/21",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/22",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/22",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/22",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/23",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/23",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/23",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/24",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/24",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/24",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/25",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/25",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/25",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/26",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/26",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/26",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/27",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/27",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/27",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/28",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/28",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/28",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/29",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/29",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/29",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/30",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/30",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/30",
+      "pass": false
+    },
+    {
+      "name": "currentVerifier/31",
+      "pass": {
+        "valid": true,
+        "checks": [
+          "independent-solution",
+          "essential-conditions"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "oldSolutionStale/31",
+      "pass": false
+    },
+    {
+      "name": "wrongAnswer/31",
+      "pass": false
+    }
+  ],
+  "counts": {
+    "total": 114,
+    "passed": 50,
+    "failed": 64
+  },
+  "limits": "Internal verifier calls canonical make; public route tripwires separately remain0; not factory-independent proof (Python oracle supplies it)."
+}
