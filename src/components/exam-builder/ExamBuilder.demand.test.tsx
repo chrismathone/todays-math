@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import {
   act,
   cleanup,
@@ -72,6 +72,8 @@ function fixture(
     holdCounts?: boolean;
     families?: number;
     allFamilies?: number;
+    navigationCounts?: boolean;
+    legacyCurriculum?: boolean;
   } = {},
 ) {
   let failCounts = options.failCounts ?? false;
@@ -106,13 +108,28 @@ function fixture(
     }
     if (params.get("view") !== "curriculum")
       throw new Error(`Unexpected request: ${params}`);
+    if (options.legacyCurriculum && params.has("availability"))
+      return Response.json({ error: "검색 조건" }, { status: 400 });
     const grade = params.get("grade");
     const chapter = params.get("chapter");
     const ids = params.get("unitIds")?.split(",");
     const all = [...units, other];
     return Response.json({
       view: "curriculum",
-      grades: !grade && !ids ? ["초3", "중1"] : [],
+      grades: !grade && !ids ? ["초1", "초3", "중1"] : [],
+      ...(options.navigationCounts !== false
+        ? {
+            gradeCounts: {
+              초3: 3,
+              초1: params.get("sourceGroup") === "school_textbook" ? 0 : 20,
+              중1: 20,
+            },
+            chapterCounts: {
+              "수와 연산": params.get("books") ? 0 : 20,
+              "다른 단원": 3,
+            },
+          }
+        : {}),
       chapters:
         grade && !chapter
           ? [
@@ -189,6 +206,88 @@ async function openLessons() {
 }
 
 describe("S2 demand-loaded scope inventory", () => {
+  it("disables empty grades for textbooks and reloads them when returning to all sources", async () => {
+    const textbook = fixture({ filters: "sourceGroup=school_textbook" });
+    const all = fixture();
+    const { rerender } = render(<textbook.Harness />);
+    expect(
+      await screen.findByRole("button", { name: "초1 · 출제 가능 문항 없음" }),
+    ).toBeDisabled();
+    expect(screen.getByRole("button", { name: "초3" })).toBeEnabled();
+    expect(String(textbook.requests.mock.calls[0][0])).toContain(
+      "sourceGroup=school_textbook",
+    );
+    rerender(<textbook.Harness activeSource={all.source} />);
+    expect(await screen.findByRole("button", { name: "초1" })).toBeEnabled();
+  });
+
+  it("reloads chapter availability after a book changes", async () => {
+    const all = fixture();
+    const book = fixture({
+      filters: `sourceGroup=school_textbook&books=${unitId(400)}`,
+    });
+    const { rerender } = render(<all.Harness />);
+    fireEvent.click(await screen.findByRole("button", { name: "중1" }));
+    expect(
+      await screen.findByRole("button", { name: "수와 연산" }),
+    ).toBeEnabled();
+    rerender(<all.Harness activeSource={book.source} />);
+    expect(
+      await screen.findByRole("button", {
+        name: "수와 연산 · 출제 가능 문항 없음",
+      }),
+    ).toBeDisabled();
+    expect(String(book.requests.mock.calls[0][0])).toContain("books=");
+  });
+
+  it("treats omitted availability from older servers as unknown and disabled", async () => {
+    const { Harness } = fixture({ navigationCounts: false });
+    render(<Harness />);
+    expect(
+      await screen.findByRole("button", {
+        name: "중1 · 출제 가능 수 확인 필요",
+      }),
+    ).toBeDisabled();
+  });
+
+  it("falls back to legacy metadata when an old server rejects filtered navigation", async () => {
+    const { Harness, requests } = fixture({
+      legacyCurriculum: true,
+      navigationCounts: false,
+      filters: "sourceGroup=school_textbook",
+    });
+    render(<Harness />);
+    expect(
+      await screen.findByRole("button", {
+        name: "중1 · 출제 가능 수 확인 필요",
+      }),
+    ).toBeDisabled();
+    expect(requests).toHaveBeenCalledTimes(2);
+    expect(String(requests.mock.calls[1][0])).toMatch(
+      /identity=question&view=curriculum$/,
+    );
+  });
+
+  it("keeps a selected lesson visible when the new source has zero eligible questions", async () => {
+    const original = fixture();
+    const empty = fixture({
+      families: 0,
+      allFamilies: 0,
+      filters: "sourceGroup=school_textbook",
+    });
+    const { rerender } = render(<original.Harness />);
+    fireEvent.click(await openLessons());
+    rerender(<original.Harness activeSource={empty.source} />);
+    expect(
+      await screen.findByRole("checkbox", {
+        name: "차시 1 출제 가능 문항 없음",
+      }),
+    ).toBeChecked();
+    expect(
+      screen.getByRole("button", { name: "차시 1 범위 제거" }),
+    ).toBeEnabled();
+  });
+
   it("restores legacy saved allocations from their selected curriculum path without global counts or changing saved questions", async () => {
     const question: StudioProblem = {
       id: unitId(200),
@@ -237,7 +336,7 @@ describe("S2 demand-loaded scope inventory", () => {
         String(requests.mock.calls[0][0]),
         "http://localhost",
       ).searchParams.toString(),
-    ).toBe("identity=question&view=curriculum");
+    ).toBe("identity=question&view=curriculum&availability=1");
     fireEvent.click(screen.getByRole("button", { name: "중1" }));
     expect(
       await screen.findByRole("button", { name: "수와 연산" }),

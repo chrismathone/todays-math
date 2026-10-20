@@ -151,9 +151,12 @@ export function createMathExamBuilderSource(
     });
     const body = await response.json();
     if (!response.ok)
-      throw new Error(
-        (typeof body.error === "string" ? body.error : body.error?.message) ||
-          "문제은행을 불러오지 못했습니다.",
+      throw Object.assign(
+        new Error(
+          (typeof body.error === "string" ? body.error : body.error?.message) ||
+            "문제은행을 불러오지 못했습니다.",
+        ),
+        { status: response.status },
       );
     return body as T;
   }
@@ -177,14 +180,38 @@ export function createMathExamBuilderSource(
     selection: Record<string, string>,
     signal: AbortSignal,
   ) {
-    const params = new URLSearchParams({
+    const legacyParams = new URLSearchParams({
       identity: "question",
       view: "curriculum",
       ...selection,
     });
-    const value = unifiedBankCurriculumSchema.parse(
-      await request<unknown>(`${endpoint()}?${params}`, signal),
-    );
+    // Only the new grade/chapter reader asks for inventory. Legacy strict
+    // readers and saved-lesson restoration retain their metadata-only contract.
+    const withAvailability = !selection.unitIds && !selection.chapter;
+    const params = withAvailability
+      ? new URLSearchParams(options.filters)
+      : new URLSearchParams();
+    legacyParams.forEach((value, key) => params.set(key, value));
+    if (withAvailability) params.set("availability", "1");
+    let response: unknown;
+    try {
+      response = await request<unknown>(`${endpoint()}?${params}`, signal);
+    } catch (cause) {
+      // Old servers reject the opt-in query. Read labels only; missing counts
+      // stay unknown rather than authorizing an empty branch or inventing zero.
+      if (
+        !withAvailability ||
+        !(cause instanceof Error) ||
+        !("status" in cause) ||
+        cause.status !== 400
+      )
+        throw cause;
+      response = await request<unknown>(
+        `${endpoint()}?${legacyParams}`,
+        signal,
+      );
+    }
+    const value = unifiedBankCurriculumSchema.parse(response);
     if (signal.aborted) throw new DOMException("Aborted", "AbortError");
     rememberUnits(value.units);
     return value;
@@ -306,10 +333,20 @@ export function createMathExamBuilderSource(
     ...(options.deferScopes
       ? {
           scopeNavigation: {
-            groups: async (signal: AbortSignal) =>
-              (await navigation({}, signal)).grades,
-            details: async (group: string, signal: AbortSignal) =>
-              (await navigation({ grade: group }, signal)).chapters,
+            groups: async (signal: AbortSignal) => {
+              const value = await navigation({}, signal);
+              return value.grades.map((label) => ({
+                label,
+                count: value.gradeCounts?.[label],
+              }));
+            },
+            details: async (group: string, signal: AbortSignal) => {
+              const value = await navigation({ grade: group }, signal);
+              return value.chapters.map((label) => ({
+                label,
+                count: value.chapterCounts?.[label],
+              }));
+            },
             lessons: async (
               group: string,
               detail: string,
