@@ -1,0 +1,268 @@
+{
+  "task": "Independent readonly public examStudy catalog performance profile",
+  "status": "profile-complete; no production optimization implemented",
+  "root": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+  "runs": {
+    "catalogColdProcesses": 3,
+    "unprofiled": 2,
+    "cpuSampled": 1,
+    "catalogCalls": 6,
+    "dynamicOwnedFixtureControls": 8,
+    "dynamicPassed": 8,
+    "unitLookupRequestsCompared": 1685,
+    "parentTestsRun": 0,
+    "validManualSourceOrPrivateReads": 0,
+    "modelsApiDbCalls": 0,
+    "environment": "Node22.17.1,installed tsx4.20.5,root tsconfig/root CWD,TSX_DISABLE_CACHE=1,fake localhost:1 database URL; no installs/generate. Actual public functions, no registry mock. Network guard observed0 attempts in catalog runs."
+  },
+  "observedTimingsMs": {
+    "cold1": {
+      "import": 4933.522499999999,
+      "ticks": [
+        {
+          "name": "cold-first-M3-catalog",
+          "ms": 17285.6479
+        },
+        {
+          "name": "warm-second-M3-catalog",
+          "ms": 74.64489999999932
+        }
+      ]
+    },
+    "phaseRun": {
+      "import": 5411.8922,
+      "ticks": [
+        {
+          "name": "cold-legacy-adapter-construction",
+          "ms": 16931.8885
+        },
+        {
+          "name": "registry-assembly-and-initial-validation-after-legacy",
+          "ms": 37.85179999999673
+        },
+        {
+          "name": "repeat-validation-observed-copies",
+          "ms": 23.56920000000173
+        },
+        {
+          "name": "enumeration-subcost-inside-validation",
+          "ms": 0.3525000000045111,
+          "calls": 38
+        },
+        {
+          "name": "manifest-direct-1",
+          "ms": 85.5047999999988
+        },
+        {
+          "name": "manifest-direct-2",
+          "ms": 77.06629999999859
+        },
+        {
+          "name": "first-M3-catalog-after-registry",
+          "ms": 77.57690000000002
+        },
+        {
+          "name": "warm-M3-catalog-repeat",
+          "ms": 86.62590000000273
+        }
+      ]
+    },
+    "cpuSampledCold": {
+      "import": 5387.2182999999995,
+      "ticks": [
+        {
+          "name": "cold-first-M3-catalog",
+          "ms": 21454.532700000003
+        },
+        {
+          "name": "warm-second-M3-catalog",
+          "ms": 81.92429999999877
+        }
+      ],
+      "limit": "CPU profiler adds overhead, not an unprofiled latency replicate."
+    },
+    "manifestDecomposition": {
+      "projectionMs": 7.09349999999904,
+      "stringifyMs": 78.17789999999877,
+      "hashMs": 4.141899999998714,
+      "canonicalChars": 1404519,
+      "manifest": "exam-study-manifest-dcdcf20d929c54803818cbd2",
+      "matchesActual": true
+    }
+  },
+  "stableOutput": {
+    "engine": "exam-study-1",
+    "manifest": "exam-study-manifest-dcdcf20d929c54803818cbd2",
+    "catalogSHA256": "8ace3b1ebc3f3b54ebe8a56633fea3147b6a7ddf9e0f6544695f47576e707eae",
+    "allSixCatalogCallsEqual": true,
+    "registryCounts": {
+      "families": 4224,
+      "byCourse": {
+        "중1": 588,
+        "중2": 638,
+        "중3": 320,
+        "공통수학2": 8,
+        "초3": 589,
+        "초4": 673,
+        "초5": 633,
+        "초6": 607,
+        "공통수학1": 168
+      },
+      "bySource": {
+        "authored": 34,
+        "elementary": 2499,
+        "middle": 1517,
+        "high": 168,
+        "native": 6
+      },
+      "finiteFamilies": 38,
+      "sampledFamilies": 4186,
+      "totalDeclaredFiniteSize": 1804
+    },
+    "m3": {
+      "registered": 320,
+      "catalog": 316,
+      "profiles": 1,
+      "formats": [
+        "단답형",
+        "객관식",
+        "서술형"
+      ]
+    },
+    "holds": [
+      {
+        "id": "study-middle-coprime-symbolic-sum",
+        "course": "중1",
+        "curriculum": "excluded-required-out-of-grade-method",
+        "release": null
+      },
+      {
+        "id": "study-middle-inverse-coefficient-sum",
+        "course": "중3",
+        "curriculum": null,
+        "release": "review-only-template"
+      },
+      {
+        "id": "study-middle-inverse-root-table",
+        "course": "중3",
+        "curriculum": null,
+        "release": "review-only-template"
+      },
+      {
+        "id": "study-middle-inverse-extreme-minimum",
+        "course": "중3",
+        "curriculum": null,
+        "release": "review-only-template"
+      },
+      {
+        "id": "study-middle-inverse-tangent-rectangle",
+        "course": "중3",
+        "curriculum": null,
+        "release": "review-only-template"
+      }
+    ],
+    "policies": {
+      "curriculum": "20261019-m1-reviewed-student-methods-r2",
+      "release": "20261020-source-informed-template-review-r4"
+    },
+    "scope": "M3 filtering happens after a global manifest over all4224families, including other courses and held families. Four held M3 review-only entries excluded,320registered→316catalog. M1 symbolic-sum exclusion remains. Three actual public formats retained. These are runtime behavior facts, not grade/rights/native approvals."
+  },
+  "bottleneck": {
+    "measured": "legacyStudyFamilies cold adapter construction16931.9ms vs registry assembly/initial validation37.9ms, repeated validation23.6ms,38finite enumerations within validation0.35ms. Declared finite total1804, not an enormous finite-space enumeration problem.",
+    "cpuEvidence": [
+      {
+        "url": "file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/elementary/forwardReach.ts",
+        "ms": 8435.764
+      },
+      {
+        "url": "",
+        "ms": 2861.085
+      },
+      {
+        "url": "file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/elementary/g5.ts",
+        "ms": 2610.258
+      },
+      {
+        "url": "file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Top4.ts",
+        "ms": 1114.774
+      },
+      {
+        "url": "file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/elementary/g6.ts",
+        "ms": 739.542
+      },
+      {
+        "url": "file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/problem/parseProblemContent.ts",
+        "ms": 675.146
+      },
+      {
+        "url": "file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/elementary/forms.ts",
+        "ms": 602.753
+      },
+      {
+        "url": "file:///C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/engine/deriveFormats.ts",
+        "ms": 561.021
+      }
+    ],
+    "interpretation": "Most startup function work is legacy sample generation/guards across all courses.2499 elementary adapters are generated even for M3. CPU self samples attribute8435.8ms to forwardReach.ts,2610.3ms to g5.ts in profiled run; parseProblemContent and other generators contribute. Samples are transformed-code attribution, not exact per-original-line call counts.",
+    "fingerprint": "Global canonical manifest is1404519chars; measured projection7.09ms,stableStringify78.18ms,SHA4.14ms. It explains most warm~75–87ms catalog cost, not17s cold adapter work. Exact own payload reproduction matches production manifest.",
+    "timeoutInterpretation": "Observed unprofiled function cold17.29s plus import4.93s total22.35s in this standalone process. Vitest often imports outside test timer; machine contention, GC and module caching differ. Supports narrow cold-start explanation, not proof of the particular parent20s timeout or a statistical p95. Three bounded processes, no production load study."
+  },
+  "optimizationOptions": {
+    "smallestVerifiedLocalOption": {
+      "proposal": "If a small actual code optimization is wanted, build an ephemeral nested Map(course→section→IDs) once within legacy adapter construction and return a fresh array for each units() lookup, instead of filtering CURRICULUM_UNITS for every middle/high adapter. No persistent/shared cache or freeze.",
+      "ownPrototype": {
+        "requests": 1685,
+        "oldMs": 12.957400000000234,
+        "indexedMs": 0.7246000000000095,
+        "exactOutputsEqual": true,
+        "perLookupFreshArray": true,
+        "scope": "OWN local prototype of ephemeral units lookup index per legacy construction, no shared/source cache, no production edit. Changes actual units() scan semantics only by exact order-preserving grouping and fresh copy.",
+        "limit": "Small lookup overhead only; does not remove slow elementary sample generation or prove a full catalog speedup."
+      },
+      "semantics": "Own standalone lookup experiment preserves exact order/duplicates/empty results and fresh-array mutation isolation across1685actual registration requests. All course and sample generation/fingerprint/grade gates remain untouched. Not integrated into source.",
+      "impact": "About12ms in this sample; DOES NOT resolve17s cold startup. A production patch still needs exact family/catalog/manifest parity and registry identity tests."
+    },
+    "meaningfulLatencyNextOption": "Prefer a separate readiness initialization of the EXISTING examStudyFamilies singleton once per worker before serving catalog, with an explicit startup budget; keep each getExamStudyCatalog grade/release filters and familyCoverage live and its current manifest semantics. This relocates cold work; it does not speed it up or justify relaxing checks. Review lifecycle integration separately; not implemented here.",
+    "coldAlgorithmWork": "For true startup reduction, narrowly profile/rewrite elementary forwardReach/g5 exact arithmetic/allocation paths and verify identical deterministic sample outputs/branch decisions. No safe large algorithm change proven here; cannot skip expensive guards, courses, formats, or samples merely to meet timeout.",
+    "unsafeShortcutsRejected": "No shared registry freeze,WeakMap-by-array manifest cache,course-only manifest,or blanket validation memoization. Owned dynamic tests show same-array field mutation and same-function enumerate closure changes must alter fingerprint; even frozen family/domain objects can close over mutable values. Existing arbitrary-family validation must still detect changed duplicate canonical parameters.",
+    "readerFloors": "No output/recipe/identity/contracts/schema/format/reader floor changed; exact baseline manifest policy versions retained. Do not bump fingerprint engine versions or change supported course membership as a performance shortcut."
+  },
+  "limits": {
+    "scope": "Pure public code/dependency static import closure193bindings. External npm module internals not source-hashed. No actual HTTP/service/DB/AI/rendering/private QA authoring/student data access.",
+    "data": "No random seed sweep: only existing registry fixed probe behavior,1804finite parameter enumeration metadata, six catalog calls,8owned synthetic controls,1685public unit lookup comparisons. No generated answer/solution source material saved.",
+    "mutations": "All mutation controls affect OWN synthetic family objects or own lookup arrays; shared production registry not altered.",
+    "harnessDiagnostics": [
+      "Initial Windows dynamic import used c: instead of file URL and failed before registry work; preserved own-loader-failure.json.",
+      "First CPU script preparation omitted explicit UTF8 and failed; subsequent missing-file launcher error was a harness dependency failure. Both corrected before CPU run, not production faults.",
+      "Initial own format mutation used a non-Korean invalid label; replaced by actual 객관식 and final8controls rerun. No source change or failed production assertion."
+    ],
+    "noClaim": "No new student grade/rights/source/native/family/public-load approval; null holds are not general certification."
+  },
+  "preservation": {
+    "sourceBindings": 193,
+    "allBeforeAfterHashesEqual": true,
+    "sourceEdits": 0,
+    "rootWritesByTask": 0,
+    "onlyOwnAuditOutputs": true,
+    "utf8ProbeSHA256": "1c61edc2cb24f2496a25e12aedb9a5b89840b57863b2ab3fc13e30c956b6d99a",
+    "rawCpuProfileLocalSHA256": "43e484f065760656d0287162add23566eb9cbfe998b00b64dfd58b567ff4cf29"
+  },
+  "artifacts": {
+    "own-source-closure.py": "5651cd15b9bb310b795734d136fa121c6059495eddee6dd8758cce796dac45f8",
+    "own-source-before.json": "46ce9720d2d2e666ae8dc5ac2bf080da1c118438eb7d1103bd91d41e13d80aa1",
+    "own-source-after.json": "5430455f8a41b6f3e7644309989f92cec5144d9039a0b4e30f385884967a4e8b",
+    "own-profile.ts": "52fe5ef1b233fc8cff80cea2943161359e2540c90b64df6c59acd5820dcc6898",
+    "own-cpu-profile.ts": "8adc45d176295bbb64ceb2dcf218b5eee8039ff1bae80f3007e798a9de471713",
+    "own-cold1.json": "75d9c9b3d1bda6b06a68ade2b771df97963292609704a58b8f8df9b37bc96203",
+    "own-phases.json": "7c55f96dc878449e6eb04fd2dcd2415483b487d267ac0e2a7bd32fd0217d858e",
+    "own-cold-cpu.json": "52b5d8abf596d35326c54a3077740aaced905d6ac599c46018d94dfb744ceed4",
+    "own-cpu-summary.json": "4700ccc57905b1a182c59f7255b5f5f1f7446dc5c70fa99f8180a9e354bc4be2",
+    "own-dynamic-controls.ts": "21742ed31b9894f58bf18571f9042a5a65bc70d53de5d47b37462f719a6992ab",
+    "own-dynamic-results.json": "2dc9074259efb9f59727f603554c1b7d72f3a6244f1ec721bb5bd72872af8cf7",
+    "own-lookup-prototype.ts": "5d5326cf9f6e2da86e49b20af17da13044775c757e1eb43071d15f912996e44c",
+    "own-lookup-results.json": "6203831f1d0398897d241632a981fae6d5bf2bf2443fc00f2b2385b542678a5d",
+    "own-loader-failure.json": "5177947047079333a1ee6e530edcfd9384436476ee7b726e497f9064920f89bb",
+    "own-run-profiles.py": "625f58829d1bd50a1ea2af9bf082d99064a91b85322dd63950979e797c240c5c",
+    "own-cpu-summary.py": "635e7a2f8c21ed0682271caf159c7c10c6b5cedbbc5a87cb10464c54be026b85"
+  }
+}
