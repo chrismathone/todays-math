@@ -1,0 +1,35 @@
+{
+  "scopeSha256": "9ca3bc6a4d419a81e570b68d4a195a817f373def90fe1c4dd4af38f3ddd00975",
+  "files": [
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.mjs",
+      "expected": "82c9f573334c1f1624a36d173ac843d8c2dc9779b95a25edcb95a8069d2ec316",
+      "root": "82c9f573334c1f1624a36d173ac843d8c2dc9779b95a25edcb95a8069d2ec316",
+      "snapshot": "82c9f573334c1f1624a36d173ac843d8c2dc9779b95a25edcb95a8069d2ec316",
+      "runtime": "82c9f573334c1f1624a36d173ac843d8c2dc9779b95a25edcb95a8069d2ec316"
+    },
+    {
+      "path": "scripts/import/exam-twin/inverseRadicalRatioConditions.test.mjs",
+      "expected": "2fa2907ff1877a8dabd0fcb6fec6610b93ec881ba9ef2ba3ee09186220498fba",
+      "root": "2fa2907ff1877a8dabd0fcb6fec6610b93ec881ba9ef2ba3ee09186220498fba",
+      "snapshot": "2fa2907ff1877a8dabd0fcb6fec6610b93ec881ba9ef2ba3ee09186220498fba",
+      "runtime": "2fa2907ff1877a8dabd0fcb6fec6610b93ec881ba9ef2ba3ee09186220498fba"
+    }
+  ],
+  "actualInputsAndOwnReview": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/package/private/q03/candidate.json",
+      "sha256": "5dc280d921e735bde950948e1d8c242b1c1ced2be8e50df21f3de31ab85d18f8"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/blind/solve/q03.json",
+      "sha256": "e19bc037022cb45b61205f0d8a8ec84ec5105ec2ec0b10a599d391b502dc9c3f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-next2-review-20261020-r1/daegudong/verification/reports/q03.json",
+      "sha256": "648e63c8451e949542939767e436ad61af456586122cc021a0002229fced9ae4",
+      "commit": "d3d60410118f23f029a34d1f2135a0fe59a51927"
+    }
+  ],
+  "probeSha256": "899ed176e0593462ae8350b3eb4b3d6a1e840900efac6f734eb0991304e43ff8"
+}

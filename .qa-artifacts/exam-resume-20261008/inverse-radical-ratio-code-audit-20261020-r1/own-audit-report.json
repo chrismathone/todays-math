@@ -1,0 +1,117 @@
+{
+  "audit": "U57 inverse radical ratio standalone offline helper",
+  "status": "technical-hold",
+  "scopeSha256": "9ca3bc6a4d419a81e570b68d4a195a817f373def90fe1c4dd4af38f3ddd00975",
+  "exposure": {
+    "currentQ03AuthorExposure": "Only after pre-exposure raw seal efc733df1885bcede47fe2f018eec500fe858831; full manual review d3d60410118f23f029a34d1f2135a0fe59a51927 preserved. This code audit is not a new blind solve.",
+    "priorSourceExposure": "Prior source-component review and related root variants/code audits declared; no whole-corpus unseen claim."
+  },
+  "ownRuns": {
+    "command": "node <audit-prefix>/own-controls.mjs",
+    "controls": 654,
+    "passed": 651,
+    "failed": 3,
+    "constructedExactWitnesses": 530,
+    "otherPassingControls": 121,
+    "parentTestsRun": 0,
+    "mockedWrappers": 0,
+    "realModule": "provided-code-runtime-local/inverseRadicalRatioConditions.mjs, byte-identical to authorized root/snapshot",
+    "apiOrDbCalls": 0
+  },
+  "mathematicalAssessment": {
+    "ordinaryDataInputs": "All 530 independently constructed positive rational witnesses, boundary checks and actual printed q03 replay passed. No ordinary JSON arithmetic defect observed.",
+    "oracle": "Python Fraction witnesses a>0, k=a^2, fixed b with different integer factorizations b=c*s and independent m; reverse construct R=a*b by integer long division. Maximum 9 whole/6 decimal product digits, no floating-root oracle. Two extremes attain a=10^-15 and maximum decimal R with maximum coefficients.",
+    "wholeProof": "Since c*sqrt(s)>0, the second relation gives b=c*s>0. Positive product fixes a=R/b. Since m>0 and k>0, sqrt(m*k)=sqrt(m)*sqrt(k); cancellation yields sqrt(k)=a, hence k=a^2. Positive signs make the squared substitutions sufficient and establish existence. These forced values prove uniqueness. If R<=0, a*b>0 contradicts R, so no solution; squaring must not create an extraneous solution.",
+    "checks": "Each constructed output equals known a,b,k and radicand; both squared radical relations have exact rational certificates with positive sides, product matches, repeated output deterministic, frozen data input unchanged. Invalid integer bounds/types, product syntax, missing/enumerable extra keys, domain and object shape rejected.",
+    "currentPrintedReplay": {
+      "coefficients": {
+        "domain": "a,b,k-positive",
+        "rootCoefficient": 3,
+        "reciprocalRadicand": 5,
+        "reciprocalScale": 2,
+        "ratioProduct": "8"
+      },
+      "a": "4/5",
+      "b": "10",
+      "k": "16/25",
+      "choice": "③",
+      "inputDerivation": "Regex extracts actual printed coefficients and explicit positive-domain wording, not author parameters/answer. Result matches unchanged pre-exposure raw and sealed full review.",
+      "studentMethod": "The bounded current student solution uses positive-root definition, root multiplication/cancellation and earlier linear arithmetic; full seven-surface judgment remains in sealed q03 report. This helper is not permission for unrestricted radical equations."
+    }
+  },
+  "findings": [
+    {
+      "id": "U57-R1-accessor-coefficient-reread",
+      "severity": "technical-hold at direct JavaScript input boundary",
+      "observed": [
+        {
+          "id": "accessor-returned-model-consistency-reciprocalRadicand",
+          "passed": false,
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n10n !== 22n\n"
+        },
+        {
+          "id": "accessor-returned-model-consistency-reciprocalScale",
+          "passed": false,
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n10n !== 15n\n"
+        },
+        {
+          "id": "accessor-returned-model-consistency-rootCoefficient",
+          "passed": false,
+          "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1200n !== 2800n\n"
+        }
+      ],
+      "reproduction": "Own controls define an enumerable getter for exactly one coefficient. Its first read returns validated/calculated 5 (s), 2 (c), or 3 (m); second read returns 11, 3, or 7 in base.printedModel. No wrapper mock or source mutation. Actual export returns unique and allPrintedRelationsRechecked=true despite inconsistency.",
+      "consequences": [
+        "s getter: returned printed s=11,c=2 but b=10 instead of22.",
+        "c getter: returned printed c=3,s=5 but b=10 instead of15.",
+        "m getter: returned printed m=7 but witness radicand remains48/25 based on m=3, instead of112/25. The solution a,b,k itself is invariant to positive m."
+      ],
+      "cause": "Validated coefficient values are captured for calculations, then input coefficients are read again for returned printedModel. The assertions recheck captured values, not the returned model.",
+      "limits": "Plain JSON.parse data cannot contain getters. This finding does not invalidate the 530 plain data calculations/current q03, and no public route is supplied. Approval flags remain false. An unrestricted object accepted by this exported helper nevertheless can produce an internally inconsistent certificate.",
+      "proposalOnly": "Capture validated scalar values once for both model and calculation, or explicitly reject accessor/non-data records; parent must implement and independently re-audit. No self-fix performed."
+    }
+  ],
+  "otherObservedLimits": {
+    "hiddenKeys": [
+      {
+        "kind": "symbol",
+        "accepted": true
+      },
+      {
+        "kind": "nonenumerable",
+        "accepted": true
+      }
+    ],
+    "interpretation": "Object.keys enforces enumerable string JSON keys, not all Reflect.ownKeys. Symbol/nonenumerable extras are accepted; no broad all-JavaScript-key rejection claim.",
+    "numericProduct": "Number inputs are interpreted through String(number); original lexical precision cannot be recovered. Exact supplied decimals should be strings.",
+    "integration": "Static source and supplied test inspected; only actual standalone export executed, not public routing/catalog/collector/renderer or unspecified modules."
+  },
+  "releaseAndGrade": {
+    "calculationOnly": true,
+    "curriculumApproved": false,
+    "studentMethodProved": false,
+    "rightsApproved": false,
+    "permitsLoad": false,
+    "flagsTested": "False in every returned own positive/nonpositive result and accessor reproduction; forged enumerable approval keys reject.",
+    "grade": "No new seven-surface/template certification. Reuse only the already sealed current manual q03 bounded 2015 M3 after-prerequisites review; 2022 placement pending.",
+    "familyRegistrationNativeSourceSimilarityRightsLoadability": "All remain unapproved; helper has no registration, routing or release operation. No new manual/blind/question counts."
+  },
+  "immutability": {
+    "beforeAfterEqual": true,
+    "rootSnapshotRuntimeSourceFiles": 2,
+    "actualCandidateRawReport": 3,
+    "rawEqualsSealedGitBlob": true,
+    "priorReportCommit": "d3d60410118f23f029a34d1f2135a0fe59a51927",
+    "probe": "Actual PowerShell command and UTF8 Korean write/read; own-before.json binds probe SHA.",
+    "sourceEdits": 0
+  },
+  "evidence": {
+    "own-prepare.py": "44147726fa1167c10efab5d2bf55e0902aaffbbf0b81bc2f32fa5cc5b567b5d3",
+    "own-before.json": "1c592a717678aa6e73959cfc57a19d692f6d5eb92d66f1ae374955079a843b3b",
+    "own-utf8-probe.txt": "899ed176e0593462ae8350b3eb4b3d6a1e840900efac6f734eb0991304e43ff8",
+    "own-rational-oracle.json": "d786e5c18fdc502ec8cea291bf03f4007a75aa015df8bef9985f98fcff5abe07",
+    "own-controls.mjs": "6a205efd15d8f9d7b12ce598878fb6784018b5e2524bd4cce76638b7d8650bce",
+    "own-controls-results.json": "69dd169083aeed40c56dd9d08462017bdddba2c60c6f02634b057df6a8de8ac4",
+    "own-after.json": "1c592a717678aa6e73959cfc57a19d692f6d5eb92d66f1ae374955079a843b3b"
+  }
+}
