@@ -1,0 +1,334 @@
+{
+  "status": "pending",
+  "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+  "candidateDigest": "77bfcbcaecb9880fd81946dae755ca343c95b9458f26fd451caa212efcb90221",
+  "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da",
+  "method": "independent-solve-then-review",
+  "verifierId": "codex-helper-independent-fresh-root-review-20261020",
+  "solveDigest": "608a0f32501a6749e811e7f3c2ed1bbcc4205115eeae879cf27335c1c72610f8",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "checks": {
+      "answerCorrect": {
+        "basis": "자체 봉인 raw에서 안쪽 √625=25, 그 음의 제곱근 A=-5, 양의 제곱근 B=8을 정해 거리13과③을 얻었다. 현재 저자 답③과 일치한다.",
+        "verdict": "passed"
+      },
+      "solutionCorrect": {
+        "basis": "저자 해설은25의 두 제곱근±5에서 음수-5를 고르고,64의 양의 근8을 정한 다음8-(-5)=13으로 계산한다. 이미 적힌 근호의 수를 먼저 평가하는 단계가 실제 해설에 명시되어 있다. -√625=-25로 잘못 읽지 않으며 모든 단계가 정의와 signed arithmetic이다.",
+        "verdict": "passed"
+      },
+      "existenceUniqueness": {
+        "basis": "양수625와64의 근호가 정의되고 안쪽25도 양수다. a²=25의 두 실근 중 음수-5, b²=64의 두 실근 중 양수8이 각각 유일하다. -5<0<8이므로 서로 다른 두 점의 길이13>0이다. 물리 단위는 주어지지 않았다.",
+        "verdict": "passed"
+      },
+      "choicesCorrect": {
+        "basis": "보기3,8,13,16,25를 각각 고정된 거리13과 정확 비교했다.13 한 개만 맞고 다른 네 수는 길이가 아니다. 원점에서 B까지의8 또는 안쪽 근호값25를 AB로 대체하면 틀린다.",
+        "verdict": "passed"
+      },
+      "figureConsistent": {
+        "basis": "현재 student PNG와 solution PNG의 수직선은 A,O,B 순서와 원점0을 표시한다. 봉인 후 spec의 A(-5,0),O(0,0),B(8,0),라벨을 자체 계산값과 대조하고 SVG 해시를 student 자산과 비교했다. 픽셀/좌표를 먼저 읽어 수치를 얻지 않았다.",
+        "verdict": "passed"
+      },
+      "sameCoreConceptAndProcedure": {
+        "basis": "원문은 이미 근호로 적힌 수의 음의 제곱근과 다른 제곱수의 양의 제곱근을 차례로 정한다. 새 문항도 같은 두 단계 정의와 부호 선택을 보존한다. 원문 정답이 아니라 원문 질문 구조와 현재 학생 절차를 비교했다.",
+        "verdict": "passed"
+      },
+      "distinctPresentation": {
+        "basis": "원문의 수 합 a+b라는 목표가 수직선의 두 좌표와 양수 거리 b-a로 바뀌었다. A<0<B에서 두 목표의 차는 -2a>0이므로 마지막 산술 대상도 달라진다. 새로운 벡터 그림/양수 거리 해석이 추가된 유한한 구조 변화이며, 일반 역방정식 문제라고 과장하지 않는다.",
+        "verdict": "passed"
+      },
+      "naturalKorean": {
+        "basis": "좌표가 어떤 수의 지정된 제곱근인지와 요구 대상 AB의 길이가 문장에 명시되어 있다. 근호 뒤 음의 제곱근이라는 용어가 원문 핵심을 보존하고 해설도 두 단계로 설명한다. 양의 제곱근을 임의로 음수로 바꾸는 문구가 없다. 실제 PNG에서 문장/수식/보기 누락을 보지 않았다.",
+        "verdict": "passed"
+      },
+      "curriculumAppropriate": {
+        "basis": "2015 공식 KOSAC의 [9수01-07]와 각 실제 선수 근거로 현재 전체 학생 방법을 확인했다. 원본/target metadata는2025출처·2026중3연습·2015이고 captured Unit은중3·1학기다. 이 판정은 제곱근을 배운 뒤의 범위에 한정되며 [9수] 학년군 코드만으로 정확한 학교 진도를 승인하지 않는다.2027중3/2022는 별도 pending이다.",
+        "verdict": "passed"
+      },
+      "allStudentSurfacesInScope": {
+        "basis": "실제 지문·보기·그림/표·표기·답·학생 해설·선수학습 일곱 면을 서로 다른 아래 basis로 각각 검토했다. 현재 필요한 전체 경로는 초등 측정 및 이전 signed arithmetic,중3 제곱근 성질에서 닫힌다.",
+        "verdict": "passed"
+      },
+      "unitFamilyFit": {
+        "basis": "제곱근의 뜻과 성질 Unit1682f01b-5293-4672-91cd-07fc02e305ac는 실제 제공 snapshot의 중3·1학기 row와 같고 개념상 primary Unit 제안은 타당하다. 그러나 이 새 전체 목표/표현/조건/풀이/형식과 정확히 맞는 live family 정의는 제공·검증되지 않았다. familyKey=null을 유지하며 family count/이름으로 fit를 추론하지 않는다.",
+        "verdict": "pending"
+      },
+      "scoreAppropriate": {
+        "basis": "원본 인쇄4점과 새4점은 일치한다. 안쪽 근호, 지정된 부호의 두 근, 거리 계산의 짧은 연결을 요구하므로4점 배치는 편집상 수용 가능하다. 기본~응용은 넓은 저자 제안으로만 유지하며 동일난도나 실측 난도는 승인하지 않는다.",
+        "verdict": "passed"
+      }
+    },
+    "ownCalculation": {
+      "innerRoot": 25,
+      "A": -5,
+      "B": 8,
+      "length": 13,
+      "choices": [
+        {
+          "value": 3,
+          "correct": false
+        },
+        {
+          "value": 8,
+          "correct": false
+        },
+        {
+          "value": 13,
+          "correct": true
+        },
+        {
+          "value": 16,
+          "correct": false
+        },
+        {
+          "value": 25,
+          "correct": false
+        }
+      ],
+      "authorStepAudit": "25 then roots±5; negative-5, positive root64=8; distance8-(-5)=13. Every step checked against printed givens.",
+      "structureWitness": {
+        "sourceTarget": "a+b",
+        "newTarget": "b-a when a<0<b",
+        "differenceExpression": "(b-a)-(a+b)=-2a>0; different target, not mere number substitution"
+      }
+    },
+    "geometryAfterSealedMath": [
+      {
+        "role": "number-line",
+        "pointsVerifiedAfterOwnMath": [
+          [
+            -5,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "labels": [
+          "A",
+          "O",
+          "0",
+          "B"
+        ],
+        "noPixelOracle": true
+      }
+    ],
+    "currentBinding": {
+      "n": 1,
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q01",
+      "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+      "candidateDigest": "77bfcbcaecb9880fd81946dae755ca343c95b9458f26fd451caa212efcb90221",
+      "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da",
+      "solveDigest": "608a0f32501a6749e811e7f3c2ed1bbcc4205115eeae879cf27335c1c72610f8",
+      "rawSha256": "996f94b31964a60f812c9f74bf963cbe4f8751cbb2802f531eb36c21633ae67b",
+      "candidateFileSha256": "7681a0e433df04c653dc5f18fbc069b9ac1b0a7e5ba8e41c80172fda6f26fba8",
+      "solutionPngSha256": "ef1bdd4eece44aa49e711ee5f1ce42e7b385eb07e2e8b4a5d6c5e34f840974cf",
+      "sourceRecordSha256": "59dd668b175a3d9d389af09841ea90fcfa66dbeb11b13a008d7dc2ae76d38638",
+      "calculation": {
+        "innerRoot": 25,
+        "A": -5,
+        "B": 8,
+        "length": 13,
+        "choices": [
+          {
+            "value": 3,
+            "correct": false
+          },
+          {
+            "value": 8,
+            "correct": false
+          },
+          {
+            "value": 13,
+            "correct": true
+          },
+          {
+            "value": 16,
+            "correct": false
+          },
+          {
+            "value": 25,
+            "correct": false
+          }
+        ],
+        "authorStepAudit": "25 then roots±5; negative-5, positive root64=8; distance8-(-5)=13. Every step checked against printed givens.",
+        "structureWitness": {
+          "sourceTarget": "a+b",
+          "newTarget": "b-a when a<0<b",
+          "differenceExpression": "(b-a)-(a+b)=-2a>0; different target, not mere number substitution"
+        }
+      },
+      "geometry": [
+        {
+          "role": "number-line",
+          "pointsVerifiedAfterOwnMath": [
+            [
+              -5,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ]
+          ],
+          "labels": [
+            "A",
+            "O",
+            "0",
+            "B"
+          ],
+          "noPixelOracle": true
+        }
+      ]
+    },
+    "replayReceipt": {
+      "path": "own-review-replay-receipt.json",
+      "sha256": "776b215eb4df3957d0db742a9a51f552dc556ed8209ae921b1e659e954b0086a"
+    },
+    "exposure": {
+      "helperRawCommit": "3a496d7669cda8c18859b351e7ca851d609c9c81",
+      "parentSealBeforeExposure": "9196516133eac6ead23f05204d8a3dfd73eee3ae",
+      "currentAuthorSolutionReadOnlyAfterSeal": true,
+      "rawDeclarationRemainsUnchanged": {
+        "priorOriginalSourceExposure": true,
+        "priorScope": "Previously reviewed these schools original first3 question components, whole first-page reference images with incidental handwritten markings, and related root-property problems in earlier independent scopes. This is not an unseen-original-corpus claim.",
+        "currentTransformedAuthorAnswerExposed": false,
+        "currentTransformedAuthorSolutionExposed": false,
+        "currentPrivateSpecMetadataRead": false,
+        "allowedCurrentInputsOnly": true,
+        "authorAnswerSearch": false,
+        "calculationsFrom": "Current printed student conditions, not original handwritten marks, prior source answers, pixels, SVG coordinates or hidden model."
+      },
+      "noNewBlindOrQuestionClaim": true,
+      "originalKeyUsed": false
+    },
+    "sourceComparison": {
+      "recordSha256": "59dd668b175a3d9d389af09841ea90fcfa66dbeb11b13a008d7dc2ae76d38638",
+      "sourceComponentReportSha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "priorSourcePlanOnlySha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+      "oldOriginalFirstPagesPreviouslyActuallyViewed": true,
+      "unchangedOriginalImageHashes": [
+        {
+          "path": "source-only-input\\original-first-pages\\personal-87311a760e702909b5a0fe1cd63004ca.png",
+          "sha256": "b2dfb86fb461f75f3dda1c90f093d0065fb82d0ebb3880564d72145001db2c33",
+          "bytes": 543003
+        },
+        {
+          "path": "source-only-input\\original-first-pages\\personal-dc9efb798219b732ebd608105298f220.png",
+          "sha256": "3f2077c2a7325f2c07b5a46c87d06498939b0bda1bce2f04f1d9fd9b61321445",
+          "bytes": 382637
+        },
+        {
+          "path": "source-only-input\\original-first-pages\\personal-1c6091af710ddaaa7e6671a2ef018a1c.png",
+          "sha256": "c501445ba25573c5c007b160d55864f5d13cc74034fe858557893fcc8b17056b",
+          "bytes": 447415
+        }
+      ],
+      "componentCorrespondenceOnly": true,
+      "wholeSourceIdentityApproved": false
+    },
+    "curriculumPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "2015TabLines": "84-85",
+      "middleBandLine": "461",
+      "rootAndPriorArithmeticStandardsLine": "466",
+      "squarePerimeterAreaUnitStandardsLine": "404:6수03-03,04,05",
+      "rootStandard": "9수01-07",
+      "capturedPrimaryReceiptSha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7",
+      "actualPrimaryHtmlSha256": "5cee94c0f333c30dde3c56770b438a373a5169c4a2f034b699c7977027193bb7",
+      "providedMOEEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "capturedUnit": {
+        "id": "1682f01b-5293-4672-91cd-07fc02e305ac",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "제곱근의 뜻과 성질",
+        "semester": 1,
+        "orderIndex": 469,
+        "problemCodePrefix": "J30101"
+      },
+      "snapshotSha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2",
+      "capturedAt": "2026-10-19 18:07:30.165227+00",
+      "scope": "Normative method and previous prerequisites plus captured real Unit; conditional after learning. Not source-school pacing, live DB promise or2022 placement."
+    },
+    "metadata": {
+      "sourceYear": 2025,
+      "sourceSemester": 1,
+      "practiceYear": 2026,
+      "curriculum": "2015",
+      "printedAndCurrentScore": 4,
+      "sourceDifficulty": "하 is correctly labeled completed-preparation metadata, not observed original-school measured difficulty",
+      "difficultyProposalReview": "기본~응용 has bounded editorial plausibility; measured calibration and same-difficulty certification pending",
+      "actualPrimaryUnitCompatible": true,
+      "exactLiveFamilyCompatible": false,
+      "authorOnlyAndApprovalFlagsPreserved": true
+    },
+    "holds": {
+      "unitFamilyFit": true,
+      "sourceIdentity": true,
+      "rights": true,
+      "similarity": true,
+      "nativeProvenance": true,
+      "loadable": true,
+      "2022M3from2027": true,
+      "difficultyCalibration": true
+    },
+    "collector": {
+      "executed": false,
+      "mocked": false,
+      "reason": "Current task authorizes review artifacts, not production collector code. Parent runs collector; no actual collector pass count asserted."
+    },
+    "dbApiWrites": 0
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "현재 지문은 구체적인 양수의 제곱근을 두 번 해석하고 수직선 좌표로 놓는다. 2015 [9수01-07]의 정의·성질과 이전 정수/수직선 개념 [9수01-03~05]로 전체 지문을 읽을 수 있다. 일반 중첩근호 해소법·분수지수는 없다."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "현재5개 보기는 모두 정수인 길이 후보다. 선행 signed arithmetic으로 거리13과 직접 비교할 수 있고, 선택지를 판별하는 데 다른 학년 정리가 필요하지 않다."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "수직선의 A,O,B와0만 있는 실제 그림이다. 이미 학습한 정수의 수직선 위치/두 점 간 길이를 보조하며 함수 그래프나 도형 방정식을 요구하지 않는다. actual spec/SVG/학생 및 해설 PNG 대응을 확인했다."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "√625의 음의 제곱근은 안쪽 값을 먼저 구한 뒤 근을 정하는 표준 용어로 읽는다. (-8)²의 괄호, 좌표의 음수와 길이의 양수를 구별한다. 학생에게4제곱근 기호나 고교용 논리 기호를 도입하지 않는다."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "정답③은 길이13인 현재 세 번째 보기와 일치한다. 좌표가 아닌 거리라는 요청을 지키며 cm 등 주어지지 않은 물리 단위를 붙이지 않는다."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 해설은25→±5→-5와64→8 다음8-(-5)=13의 순서다. [9수01-07]과 이전 signed arithmetic만으로 전 과정을 수행하며 단순히 마지막 답만 맞는 것으로 처리하지 않았다."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "제곱근 정의/근호의 음이 아닌 값, 양수의 두 제곱근과 지정된 부호 선택, 정수 제곱/사칙계산/수직선 거리를 먼저 배워야 한다. 현재 metadata의 학습 선행 조건에 이 항목들이 있다. captured Unit은 중3·1학기 제곱근 UUID이며 학교 중간고사 진도를 인증하지 않는다."
+    }
+  }
+}

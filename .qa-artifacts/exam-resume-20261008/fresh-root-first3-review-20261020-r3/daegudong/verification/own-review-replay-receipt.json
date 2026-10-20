@@ -1,0 +1,662 @@
+{
+  "kind": "own-sealed-student-then-author-review-replay/v1",
+  "helperRawCommit": "3a496d7669cda8c18859b351e7ca851d609c9c81",
+  "parentPreExposureSeal": "9196516133eac6ead23f05204d8a3dfd73eee3ae",
+  "currentAuthorExposure": "Authorized only after immutable raw Git seal. Earlier original-page/component exposure is recorded in each raw and remains true. No original answer key used.",
+  "allActualSolutionPngsViewed": true,
+  "inputsBefore": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/verification/VERIFY-BRIEF.md",
+      "sha256": "35f0141b096cf184d92c0fdb4f5da623e99cf1882faa33bff9b2cda745d835b5"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/verification/verification-inputs.json",
+      "sha256": "33be39da7cb19d8766d9094066f47a5ce0b368e886baf765230878fd9325d376"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/verification/verification-manifest.json",
+      "sha256": "49b117c903d2da6984028dec2eeab9954fa9fa2a65b261e302d07e4d62923266"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/verification/sealed-raw-commit.json",
+      "sha256": "0907f3af0dc7fc45314a6751683cff21434171eaa3947bc64933cb27f5007592"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/package/manifest.json",
+      "sha256": "f8b206a2eb4f6aa521161eca49b374222ef4948cc6a7b7c361fbfa38a171e5a8"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/student-problems.json",
+      "sha256": "2844d405754c7eb28cfd9ad7c678f6fb4f138440f8dadb2126f38e822e1fc194"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/blind-manifest.json",
+      "sha256": "bfb3c3987d7c9c22b368737e985c4c20da62ad6f85086b5641acb5558ae29503"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/input-manifest.json",
+      "sha256": "2c67967d471e2612e7c9dc7f96a5810a5187f2a742de0caa2d2c004eac14a135"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+      "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+      "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+      "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-87311a760e702909b5a0fe1cd63004ca/q01.json",
+      "sha256": "59dd668b175a3d9d389af09841ea90fcfa66dbeb11b13a008d7dc2ae76d38638"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-87311a760e702909b5a0fe1cd63004ca/q02.json",
+      "sha256": "2082e645307e9db24005348ab3d6760701802083e62092e64035d26aefc367a4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-87311a760e702909b5a0fe1cd63004ca/q03.json",
+      "sha256": "f254e76831759eac4967aae40ab535b91b0903a9ea09beb843c22c2f77291fa7"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/original-first-pages/personal-87311a760e702909b5a0fe1cd63004ca.png",
+      "sha256": "b2dfb86fb461f75f3dda1c90f093d0065fb82d0ebb3880564d72145001db2c33"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q01.json",
+      "sha256": "c85d07a8d2b8688468d74cc51d1bb7d57a6e5a2afeafe8ba9b1aebd0f8da7e3a"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q02.json",
+      "sha256": "0e7d7d02548b1d8dba3a343cdd910b286dedb09779870bf28a83047ea977903f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-dc9efb798219b732ebd608105298f220/q03.json",
+      "sha256": "02baec10eaf137c4982ad99ba10366d0102826de7a3ad7fe130616f6d21cb66a"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/original-first-pages/personal-dc9efb798219b732ebd608105298f220.png",
+      "sha256": "3f2077c2a7325f2c07b5a46c87d06498939b0bda1bce2f04f1d9fd9b61321445"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-1c6091af710ddaaa7e6671a2ef018a1c/q01.json",
+      "sha256": "5e136450651e4444def25294eebce750a591bdbc0e1fb24ef0e3a9680aa7a5b0"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-1c6091af710ddaaa7e6671a2ef018a1c/q02.json",
+      "sha256": "ed4f493a4ae4d58ec079763b82e8290591632e5f890391f79e7b9b6951898c67"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-1c6091af710ddaaa7e6671a2ef018a1c/q03.json",
+      "sha256": "1a1ff755e46ce650a10f4ccced705e8f33eb9f4e05f2e52b31924884f25a81e0"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/original-first-pages/personal-1c6091af710ddaaa7e6671a2ef018a1c.png",
+      "sha256": "c501445ba25573c5c007b160d55864f5d13cc74034fe858557893fcc8b17056b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/provided-curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/provided-live-family-snapshot.json",
+      "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/solve/q01.json",
+      "sha256": "996f94b31964a60f812c9f74bf963cbe4f8751cbb2802f531eb36c21633ae67b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/package/private/q01/candidate.json",
+      "sha256": "7681a0e433df04c653dc5f18fbc069b9ac1b0a7e5ba8e41c80172fda6f26fba8"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/student-preview/q01.png",
+      "sha256": "09715746c07b44caa4f717248bb2bd41d962cdc8f7100fedfb1251674a4636be"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r3/daegudong/solution-preview/q01.solution.png",
+      "sha256": "ef1bdd4eece44aa49e711ee5f1ce42e7b385eb07e2e8b4a5d6c5e34f840974cf"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/package/private/q01/figure-1.spec.json",
+      "sha256": "992d1b0834ac6f124ef8cc6e56a366c59c7fa59f1ba61a03d7d74e559d4595b4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/package/private/q01/figure-1.svg",
+      "sha256": "3f014f8efe71848e24ee6555238216b0205768adc6824dfc08dd8b464506ec92"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/figures/q01-1.svg",
+      "sha256": "3f014f8efe71848e24ee6555238216b0205768adc6824dfc08dd8b464506ec92"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/solve/q02.json",
+      "sha256": "00cdd6ae3c0562929083068d68056ed06101e1695f793e8df379987e284f9dad"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/package/private/q02/candidate.json",
+      "sha256": "252ea013b5f84907bb929dafe6a304a79652b6403690c7ef9ce2f990e4837133"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/student-preview/q02.png",
+      "sha256": "25e7a1b64b68d5b5cd193083e47bb0676649ac9a2925c9cbc54826553d2f9d3a"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-twin-authoring-20261020-r3/daegudong/solution-preview/q02.solution.png",
+      "sha256": "35fec81db305d125a705d33ed523f61125c24d535363c83b97f497a1e20fd663"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/package/private/q02/figure-1.spec.json",
+      "sha256": "4d2111b73756542330c9beb0b56520ae0facc08913cbea6e61f6683594d6e141"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/package/private/q02/figure-1.svg",
+      "sha256": "5bf0f4ac4f00312a7c8278fd8294480a239bf0bd9e64214c36440fd85eb1a2f0"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-root-first3-review-20261020-r3/daegudong/blind/figures/q02-1.svg",
+      "sha256": "5bf0f4ac4f00312a7c8278fd8294480a239bf0bd9e64214c36440fd85eb1a2f0"
+    }
+  ],
+  "items": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r2-q01",
+      "studentDigest": "3a3cfc9fa57dd7a1f7d9c956c6683221d1d3280aebf347b057e0d7e1ca261f03",
+      "candidateDigest": "77bfcbcaecb9880fd81946dae755ca343c95b9458f26fd451caa212efcb90221",
+      "assetDigest": "a88313aedc72e714f253c19495581b5c4ef379405a687dbdc3c3a5ed1cf9d0da",
+      "solveDigest": "608a0f32501a6749e811e7f3c2ed1bbcc4205115eeae879cf27335c1c72610f8",
+      "rawSha256": "996f94b31964a60f812c9f74bf963cbe4f8751cbb2802f531eb36c21633ae67b",
+      "candidateFileSha256": "7681a0e433df04c653dc5f18fbc069b9ac1b0a7e5ba8e41c80172fda6f26fba8",
+      "solutionPngSha256": "ef1bdd4eece44aa49e711ee5f1ce42e7b385eb07e2e8b4a5d6c5e34f840974cf",
+      "sourceRecordSha256": "59dd668b175a3d9d389af09841ea90fcfa66dbeb11b13a008d7dc2ae76d38638",
+      "calculation": {
+        "innerRoot": 25,
+        "A": -5,
+        "B": 8,
+        "length": 13,
+        "choices": [
+          {
+            "value": 3,
+            "correct": false
+          },
+          {
+            "value": 8,
+            "correct": false
+          },
+          {
+            "value": 13,
+            "correct": true
+          },
+          {
+            "value": 16,
+            "correct": false
+          },
+          {
+            "value": 25,
+            "correct": false
+          }
+        ],
+        "authorStepAudit": "25 then roots±5; negative-5, positive root64=8; distance8-(-5)=13. Every step checked against printed givens.",
+        "structureWitness": {
+          "sourceTarget": "a+b",
+          "newTarget": "b-a when a<0<b",
+          "differenceExpression": "(b-a)-(a+b)=-2a>0; different target, not mere number substitution"
+        }
+      },
+      "geometry": [
+        {
+          "role": "number-line",
+          "pointsVerifiedAfterOwnMath": [
+            [
+              -5,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              0
+            ]
+          ],
+          "labels": [
+            "A",
+            "O",
+            "0",
+            "B"
+          ],
+          "noPixelOracle": true
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group1-r3-q02",
+      "studentDigest": "5c5ee5e427138b176f6f88c4dfc70ae70fbf02edb059d5188037d96b6ef039ab",
+      "candidateDigest": "27b3eaef28e19ade0e618d5b147cb0af3c760e2a6e5565881255c9ef76cc5425",
+      "assetDigest": "c458b287efbc88331042eedbcd8d1c0f04aba4b908d2661c0e001117a6f07cac",
+      "solveDigest": "91118315acc53fd0063207174425b5cd2868e7d1318186b3f57445775548e44b",
+      "rawSha256": "00cdd6ae3c0562929083068d68056ed06101e1695f793e8df379987e284f9dad",
+      "candidateFileSha256": "252ea013b5f84907bb929dafe6a304a79652b6403690c7ef9ce2f990e4837133",
+      "solutionPngSha256": "35fec81db305d125a705d33ed523f61125c24d535363c83b97f497a1e20fd663",
+      "sourceRecordSha256": "2082e645307e9db24005348ab3d6760701802083e62092e64035d26aefc367a4",
+      "calculation": {
+        "completeCasesBelow5": [
+          {
+            "n": 1,
+            "lowerSquare": 36,
+            "area": 45,
+            "upperSquare": 49
+          },
+          {
+            "n": 2,
+            "lowerSquare": 81,
+            "area": 90,
+            "upperSquare": 100
+          },
+          {
+            "n": 3,
+            "lowerSquare": 121,
+            "area": 135,
+            "upperSquare": 144
+          },
+          {
+            "n": 4,
+            "lowerSquare": 169,
+            "area": 180,
+            "upperSquare": 196
+          }
+        ],
+        "firstAttainedN": 5,
+        "areaCm2": 225,
+        "positiveSideCm": 15,
+        "perimeterCm": 60,
+        "choices": [
+          {
+            "valueCm": 15,
+            "correct": false
+          },
+          {
+            "valueCm": 30,
+            "correct": false
+          },
+          {
+            "valueCm": 45,
+            "correct": false
+          },
+          {
+            "valueCm": 60,
+            "correct": true
+          },
+          {
+            "valueCm": 225,
+            "correct": false
+          }
+        ],
+        "minimality": "n is an integer>=1;1..4 are the entire set below5, each excluded by strict adjacent-square bounds;5 attained. No test n>=6 needed for minimum proof.",
+        "studentMethod": "Actual author solution uses only this finite square comparison, not prime-factorization parity. Raw prime-factor proof remains supplemental independent evidence."
+      },
+      "geometry": [
+        {
+          "role": "square",
+          "squaredEdgeLengths": [
+            225,
+            225,
+            225,
+            225
+          ],
+          "adjacentDotProducts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "label": "45n cm^2",
+          "coordinateUnitsNotAStudentGiven": true,
+          "noPixelOracle": true
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": ".qa-artifacts\\exam-resume-20261008\\fresh-root-first3-review-20261020-r3\\daegudong-utf8",
+      "passed": true
+    },
+    {
+      "id": ".qa-artifacts\\exam-resume-20261008\\fresh-root-first3-review-20261020-r3\\daegudong-verification-input-hash",
+      "passed": true
+    },
+    {
+      "id": ".qa-artifacts\\exam-resume-20261008\\fresh-root-first3-review-20261020-r3\\daegudong-package-manifest-binding",
+      "passed": true
+    },
+    {
+      "id": ".qa-artifacts\\exam-resume-20261008\\fresh-root-first3-review-20261020-r3\\daegudong-parent-pre-exposure-seal",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-raw-git-bytes",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-seal-sha",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-raw-in-verification",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-solve-digest",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-student-digest",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-candidate-file-sha",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-actual-current-candidate",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-candidateDigest",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-studentDigest",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-assetDigest",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-student-content",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-student-choices",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-student-score",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-student-questionType",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-student-twinExternalId",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-answer-vs-sealed-raw",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-distinct-author",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-all-five-choices",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-author-flag-held-independentMathApproval",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-author-flag-held-independentGradeApproval",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-author-flag-held-sourceIdentityApproved",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-author-flag-held-rightsApproved",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-author-flag-held-similarityApproved",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-author-flag-held-nativeProvenanceApproved",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-author-flag-held-loadable",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-author-only",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-family-null",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-source-record-hash",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-source-content-reference",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-source-year-score",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-spec-sha",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-svg-sha",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-figure-points-after-raw",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-labels",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-nested-root-definition",
+      "passed": true
+    },
+    {
+      "id": "dong-q01-one-choice",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-raw-git-bytes",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-seal-sha",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-raw-in-verification",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-solve-digest",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-student-digest",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-candidate-file-sha",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-actual-current-candidate",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-candidateDigest",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-studentDigest",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-assetDigest",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-student-content",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-student-choices",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-student-score",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-student-questionType",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-student-twinExternalId",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-answer-vs-sealed-raw",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-distinct-author",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-all-five-choices",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-flag-held-independentMathApproval",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-flag-held-independentGradeApproval",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-flag-held-sourceIdentityApproved",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-flag-held-rightsApproved",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-flag-held-similarityApproved",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-flag-held-nativeProvenanceApproved",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-flag-held-loadable",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-only",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-family-null",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-source-record-hash",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-source-content-reference",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-source-year-score",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-spec-sha",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-svg-sha",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-four-equal-positive-sides",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-four-right-angles",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-square-render-aspect",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-area-label",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-complete-small-n-1",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-complete-small-n-2",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-complete-small-n-3",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-author-complete-small-n-4",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-attained-minimum",
+      "passed": true
+    },
+    {
+      "id": "dong-q02-one-choice",
+      "passed": true
+    }
+  ],
+  "checksPassed": 82,
+  "candidateAssetDigestBindingLimit": "Current manifest digests carried exactly after file/asset hashes and private candidate equality checked. Canonical student and solve digests independently recomputed. No collector or binding production module imported; candidateDigest is not assumed to be digest(candidate) alone.",
+  "collectorExecuted": false,
+  "mockCollectorUsed": false,
+  "dbApiWrites": 0
+}

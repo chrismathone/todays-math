@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-daegudong-2025-1-mid-author-group2-r1-q03",
+  "authorId": "codex-parent-engine-upgrade-20261020",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "양수 $a$, $b$, $k$가 다음 세 조건을 모두 만족한다. $k$의 값은?\n\n| 조건 | 식 |\n| --- | --- |\n| 첫째 | $\\sqrt{3k}=a\\sqrt3$ |\n| 둘째 | $\\sqrt5=\\dfrac{b}{2\\sqrt5}$ |\n| 셋째 | $ab=8$ |",
+  "choices": [
+    "$0.08$",
+    "$0.16$",
+    "$0.64$",
+    "$0.8$",
+    "$6.4$"
+  ],
+  "answer": "③",
+  "solution": "둘째 식의 양변에 $2\\sqrt5$를 곱하면 $b=2\\sqrt5\\times\\sqrt5=10$이다. 따라서 셋째 식에서 $10a=8$이므로 $a=\\dfrac45$이다.\n\n첫째 식에서 $\\sqrt{3k}=\\dfrac45\\sqrt3$이다. 양변을 제곱하면 $3k=\\dfrac{16}{25}\\times3$이므로 $k=\\dfrac{16}{25}=0.64$이다.\n\n이때 $a=\\dfrac45$, $b=10$, $k=\\dfrac{16}{25}$는 모두 양수이다. 또한 $\\left(\\dfrac45\\sqrt3\\right)^2=\\dfrac{48}{25}=3k$이고 $\\dfrac45\\sqrt3>0$이므로 첫째 식도 만족한다. 따라서 정답은 ③이다.",
+  "figureArtifacts": [],
+  "sourceReference": {
+    "externalId": "2025-daegudong-3-1-mid-3",
+    "inventoryExamId": "personal-87311a760e702909b5a0fe1cd63004ca",
+    "sourceQuestionNumber": 3,
+    "newSourceReferenceId": "source-ref-daegudong-2025-1-mid-group2-r1-q03",
+    "sourceContentSha256": "030b100ba3fc6a8bdd35f311886b9c3a3de34dbb434742dff46c94ec2839343a",
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/source-only-input/personal-87311a760e702909b5a0fe1cd63004ca/q03.json",
+      "sha256": "f254e76831759eac4967aae40ab535b91b0903a9ea09beb843c22c2f77291fa7"
+    },
+    "sourceSchoolInternal": "대구동중",
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "extractionManifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\fresh-source-extraction-20261020-r1\\personal-87311a760e702909b5a0fe1cd63004ca\\source-manifest.local.json",
+      "sha256": "d5f98a5ac5822b8427898328c668e53578b5c5812ed2728d58ea0b758bc6d687",
+      "bytes": 1619047
+    },
+    "sourceFiles": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\워드\\중3\\[대구동중][3][25-1-중간][지학사] (완료).hwp",
+        "sha256": "46d7a7c0b4db876847dcdeabc6713a5026b86356c8da0aec7b98a2cdf2314ac9",
+        "bytes": 321024
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\PDF\\중3\\[대구동중][3][25-1-중간][지학사] (완료).PDF",
+        "sha256": "c2f3e8c529262aab18eb8744242f32b28ad0c72be401b2518d88f42986024a8e",
+        "bytes": 150948
+      }
+    ],
+    "originalIdentityReference": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 1학기 중간고사 모음\\원본\\중학교\\중3\\[대구동중][3][25-1-중간] (원본) (오티스).pdf",
+      "sha256": "71a09fcb63c36f4987c8b0d69d8a825e722dc63182802883f96b762fbfec6efe",
+      "bytes": 476087
+    },
+    "sourceComponentEvidence": null,
+    "sourceComponentReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+      "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5",
+      "component": "대구동중-q03"
+    },
+    "gradeMethodProposal": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-grade-method-proposals.json",
+      "sha256": "56c430c3e7ac656cab874e33603f8a13c94cefc985b3f82e8fc55cff080b7947",
+      "component": "대구동중-q03"
+    },
+    "sourceIdentityAsProvided": "printed-component-correspondence-observed-not-whole-pair-certified",
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "originalAnswerKeyUsed": false,
+    "sourceTextCopiedToCandidate": false,
+    "currentDbSourceDuplicateCheck": "not-yet-run-no-operational-write"
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "new-table"
+    ],
+    "before": "근호 표현 두 쌍의 배율을 각각 구한 뒤 두 배율의 곱을 직접 계산한다.",
+    "after": "두 배율의 곱을 조건으로 주고, 먼저 배율을 역으로 결정한 뒤 처음 근호 안의 양수 매개변수를 찾는다.",
+    "sharedConcept": "근호를 포함한 두 배율 관계에서 근호의 곱셈·나눗셈과 양의 제곱근을 해석한다.",
+    "sharedProcedure": "두 번째 배율 b=10 → 주어진 곱8에서 a=4/5 → 양의 제곱근 정의를 이용하여 k=16/25 → 세 조건에 다시 대입",
+    "actualStructuralChange": "두 배율의 곱을 조건으로 주고, 먼저 배율을 역으로 결정한 뒤 처음 근호 안의 양수 매개변수를 찾는다.",
+    "domainProof": "분모2√5는 양수여서 0이 아니며 b10과 a4/5가 유일하다. 첫째 식의 양변은 양수여서 제곱 후 k16/25를 얻고 원식에 다시 대입하여 존재를 확인한다. 임의의 무리방정식 해법이나 상위 함수·역함수를 요구하지 않는다. 원문의 두 배율 관계는 유지하며 결과값을 묻는 대신 근호 안 입력을 역추론한다. 새 역추론의 실제 목표 난도는 별도 검수 전 보류다.",
+    "difficultyBasis": "새 조건과 목표 난도 동등성은 독립 검수 전 저자 제안이며 자동 승인하지 않는다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수01-07",
+      "9수01-10"
+    ],
+    "officialBasis": {
+      "document": "MOE2020-236 Book8,2015 revised curriculum",
+      "documentSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "stream": "BodyText/Section0",
+      "primaryStandardCodes": [
+        "9수01-07"
+      ]
+    },
+    "legitimateMethodDraft": "두 번째 배율 b=10 → 주어진 곱8에서 a=4/5 → 양의 제곱근 정의를 이용하여 k=16/25 → 세 조건에 다시 대입",
+    "sevenSurfaces": {
+      "stem": "author-proposed-independent-review-pending",
+      "choices": "author-proposed-independent-review-pending",
+      "figuresAndTables": "author-proposed-independent-review-pending",
+      "notation": "author-proposed-independent-review-pending",
+      "answer": "author-proposed-independent-review-pending",
+      "studentSolution": "author-proposed-independent-review-pending",
+      "prerequisites": "author-proposed-independent-review-pending"
+    },
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "2025/2026 M3 uses2015;2027+M3/2022 requires separate review",
+    "sourceExamYear": 2025,
+    "targetAcademicYear": 2026,
+    "curriculum": "2015",
+    "officialPrimary": {
+      "url": "https://askmath.kosac.re.kr/mathEduProcess/index.do",
+      "standard": "9수01-07, 9수01-10",
+      "capturedPrimaryReceipt": {
+        "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-primary-receipt.json",
+        "sha256": "d11ce0f9972d0081fcda9642c6e1b049158176d7147a96a51b6d22a494c16ce7"
+      },
+      "providedMOEEvidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      "actualScope": "2015 중3 1학기의 근호 계산/실수 분류. 중2 이하 선수 지식만 사용하며 현재 일곱 면 독립 학년 검수 전이다."
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 1,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 1,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "answerFormat": "single-choice-symbol",
+    "score": 4,
+    "source": "transformed",
+    "originProblemId": null,
+    "difficultyProposal": "기본~응용 저자 제안",
+    "difficultyStatus": "author-proposed-independent-calibration-pending",
+    "problemTypeProposal": "두 배율의 곱을 조건으로 주고, 먼저 배율을 역으로 결정한 뒤 처음 근호 안의 양수 매개변수를 찾는다.",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "근호를 포함한 식의 계산",
+        "semester": 1,
+        "orderIndex": 471,
+        "problemCodePrefix": "J30103"
+      },
+      "snapshot": {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+        "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+      },
+      "evidence": "현재 캡처된 실제 Unit UUID와 성취기준을 연결한다. 새 역추론/분류 기록의 정확한 live family는 보류."
+    },
+    "schoolSubstitution": {
+      "visibleSchoolNames": [],
+      "replacementRequired": false,
+      "reason": "새 본문/보기/그림/해설에 학교명이 없다. 실제 출처 학교는 내부 sourceReference에 보존한다."
+    },
+    "figureAuthoring": {
+      "method": "new-native-Markdown-table",
+      "newFigures": 0,
+      "newTables": 1,
+      "originalCropEmbedded": false,
+      "pixelOracle": false,
+      "reproductionScript": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/author-fresh-root-next2-20261020-r1.mjs",
+      "reproductionScriptSha256": "726512cd7648bd5acacdd019d323baa78a99643d44a522cdfdb8b9e64f7b5884",
+      "renderingReviewPending": true
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "sourceIdentityApproved": false,
+    "rightsApproved": false,
+    "similarityApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "sourceDifficultyLabelObserved": "하",
+    "prerequisiteUnits": [
+      {
+        "id": "99ca37c0-1df4-40b1-bd25-c2b0bbd7fcf1",
+        "grade": "중3",
+        "chapter": "1. 실수와 그 계산",
+        "section": "근호를 포함한 식의 계산",
+        "semester": 1,
+        "orderIndex": 471,
+        "problemCodePrefix": "J30103"
+      }
+    ],
+    "placementConditions": {
+      "practiceAcademicYear": 2026,
+      "curriculumEdition": "2015",
+      "grade": "중3",
+      "requiresLearnedBeforeAssignment": [
+        "양의 제곱근의 정의",
+        "근호를 포함한 식의 곱셈과 나눗셈",
+        "일차 관계에서 미지수 구하기",
+        "분수의 제곱"
+      ],
+      "schoolMidtermPacingCertified": false,
+      "m3From2027": "pending-separate-2022-grade-placement-review"
+    },
+    "sourceDifficultyStatus": "completed-preparation-label-not-original-school-measured-difficulty"
+  }
+}

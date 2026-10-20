@@ -1,0 +1,119 @@
+{
+  "kind": "exam-continuation-index/v40",
+  "version": 40,
+  "createdAt": "2026-10-20T05:44:33.324Z",
+  "previousIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v39.json",
+    "sha256": "cf5bfe5f23b9099469173ad6550c596aef49112b0e8881d6f88c4e376490d3aa"
+  },
+  "statusLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v40.json",
+    "sha256": "1b2cc874530bd0561075057b26e25437fe9d3a78ac9be53b285f9f7fba3f1ee1"
+  },
+  "currentCandidateIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v40.json",
+    "sha256": "1d9c79a52b5ba9cfb4a977a631c5f4118cdafc677c9a423f13d30cee62b586c7"
+  },
+  "progressReport": "docs/planning/tracks/reports/exam-twin-engine-checkpoint-v40-20261020.md",
+  "counts": {
+    "authoredCurrentCandidates": 160,
+    "currentFigureInstances": 113,
+    "recreatedStatTables": 18,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 160,
+    "independentMathReviewed": 159,
+    "independentFullGradeReviewed": 159,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 144,
+    "awaitingCollectedIndependentReview": 1,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0,
+    "currentRawSolved": 159,
+    "currentRawPending": 1,
+    "awaitingFirstSealedBlindSolve": 0,
+    "historicalRawEncodingHoldVersions": 1,
+    "historicalRawAnswerFormatHoldVersions": 2,
+    "historicalCollectedAnswerGrammarHolds": 5,
+    "failedStudentRenderDraftVersions": 1,
+    "currentRawPointTranscriptionLimitations": 1
+  },
+  "sourceAccess": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/source-access-current-r10.json",
+    "sha256": "fd21940c7da538567e7946f6c310a54a9d41ea1a51e7562a66494388b24de37e"
+  },
+  "freshExtraction": {
+    "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261020-r3/aggregate-receipt.json",
+    "sha256": "ce53d49ce0f6693d3280b66e16810ef7d52a9cbc031fd72cfacf243971278d4b"
+  },
+  "engine": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r32.json",
+    "sha256": "4ec766c601806cb36e0580053182190afa96cd8b95a7378f3d1b69f9b5576d19"
+  },
+  "latestClosure": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/past-exam-closure-20261020-r3.json",
+    "sha256": "353cdf1f3afe482521e3a059432489c5ef0fc6fa20b0cb4870a26b16cc02c052"
+  },
+  "cleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/unused-worktree-cleanup.json",
+    "sha256": "ab14a261bdaeca2ab258c1d8c3ae654da14ed3688ad9adf39c986aa992c0cc6d"
+  },
+  "sourceQueue": {
+    "currentFirst9SourceComponentReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-three-source-component-review-20261020-r1/own-source-component-review.json",
+      "sha256": "510b973fc8c78d878e995e22f85a9c31104b08a9be080976f818d8cf8d12afc5"
+    },
+    "latestFreshReceipt": {
+      "path": ".qa-artifacts/exam-resume-20261008/fresh-source-extraction-20261020-r3/aggregate-receipt.json",
+      "sha256": "ce53d49ce0f6693d3280b66e16810ef7d52a9cbc031fd72cfacf243971278d4b"
+    },
+    "historicalInventoryNotCurrentCorpus": true,
+    "individualHoldsDoNotStopOtherSources": true
+  },
+  "nextActions": [
+    "Finish independent U56 actual/frozen-package guard audit preserving old source/test/failure bytes.",
+    "Fresh student-only Gitseal and full math/grade/content review for two new next2 drafts; never expose author answers before seal.",
+    "Continue additional2025+ source components/authoring. Source9four local correction proposals and original-reference-absent DaeguJeil stay held.",
+    "Keep exact families, source identity, rights/similarity and native provenance separate. No auto approval, no operational writes.",
+    "Fetch/preserve-integrate main and target and rerun related checks before feature checkpoint push."
+  ],
+  "restrictions": [
+    "No DB apply/delete/reload/unlock/deploy",
+    "Protected82, three correction ledgers and permanent exclusion unchanged",
+    "N/originals/old proof bytes/shared dependencies preserved",
+    "Rights/similarity/source identity and curriculum never auto-approved",
+    "No active or unpreserved worktree cleanup"
+  ],
+  "wholeGoalComplete": false,
+  "latestMainIntegration": {
+    "ref": "daa2630edf8338707adaa5c4e55d35a88627e342",
+    "featurePush": "cd5e348b2804a80298184b7482337b0622cd1777",
+    "validations": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-validation-r1.json",
+        "sha256": "59324f42dfc9896a3c676fd4cd9019e587baa157f0b0c5bc0e2e45919aa798cc"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-post-main-validation-r2.json",
+        "sha256": "5ee7470ef3a8b557c03e380d9afc6728fa7cdc2e27e71aa72957d92346c5f55d"
+      }
+    ],
+    "pushReceipt": {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/push-working-root-first3-r1.json",
+      "sha256": "450ffff1f6bcf1fa2cd9bdb6afc292c26b10899dd3b28c814adcdeece6e7f1b2"
+    }
+  },
+  "currentSourceAccess": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/source-access-current-r10.json",
+    "sha256": "fd21940c7da538567e7946f6c310a54a9d41ea1a51e7562a66494388b24de37e"
+  },
+  "liveClassification": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/live-family-snapshot-r2.json",
+    "sha256": "a755032bd15af63a2151658a2c17490b0c461fc980fa5fc601c3d2598eb591d2"
+  },
+  "workingDrafts": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/working-candidates-20261020-r19.json",
+    "sha256": "54df4137896b822ed0bfbccaa3df969d37e86159d2383d992ddff472518629e7"
+  },
+  "previousSourceQueue": "Preserved initial continuation-index.json and original20261003 inventory; newly successful fresh aggregate receipts exclude repeat extraction jobs."
+}
