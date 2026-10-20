@@ -69,6 +69,7 @@ export default function StudentCoursePractice(props: Props) {
   const [previewDismissedFor, setPreviewDismissedFor] = useState<string | null>(
     null,
   );
+  const [previewOpenedFor, setPreviewOpenedFor] = useState<string | null>(null);
   const section = getCourseSection(session.sectionId);
   const retry = (
     session as CoursePublicSession & {
@@ -117,7 +118,8 @@ export default function StudentCoursePractice(props: Props) {
     !session.completedAt &&
     !pendingFollowUp &&
     !retryActive &&
-    previewDismissedFor !== session.id
+    ((!session.relearn && previewDismissedFor !== session.id) ||
+      previewOpenedFor === session.id)
       ? previewCardFor(session.sectionId)
       : null;
   if (preview) {
@@ -127,7 +129,10 @@ export default function StudentCoursePractice(props: Props) {
         card={preview}
         journeyTheme={props.journeyTheme}
         busy={props.busy}
-        onStart={() => setPreviewDismissedFor(session.id)}
+        onStart={() => {
+          setPreviewDismissedFor(session.id);
+          setPreviewOpenedFor(null);
+        }}
         onExit={onExit}
       />
     );
@@ -195,6 +200,24 @@ export default function StudentCoursePractice(props: Props) {
         <p className={s.prerequisiteReason}>
           {props.prerequisiteContext.reason}
         </p>
+      ) : null}
+      {session.relearn &&
+      session.mode === "learn" &&
+      session.attempts.length === 0 &&
+      !session.completedAt &&
+      !pendingFollowUp &&
+      !retryActive &&
+      previewCardFor(session.sectionId) ? (
+        <div>
+          <button
+            type="button"
+            className={s.secondary}
+            disabled={props.busy}
+            onClick={() => setPreviewOpenedFor(session.id)}
+          >
+            개념 다시 보기
+          </button>
+        </div>
       ) : null}
       <CourseQuestion
         key={questionKey}
