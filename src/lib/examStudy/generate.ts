@@ -41,6 +41,7 @@ import {
 import { REQUIREMENT_BY_ID } from "./requirements";
 import { studyCurriculumHold } from "./curriculumEligibility";
 import { studyReleaseHold } from "./releaseEligibility";
+import { copyStudyValue, immutableStudySnapshot } from "./draftSnapshot";
 
 export class ExamStudyRequestError extends Error {
   readonly name = "ExamStudyRequestError";
@@ -365,7 +366,9 @@ export async function generateExamStudy(
         family: `${family.id}@${family.version}`,
       });
       try {
-        const base = family.generate(seed, variant);
+        // Own the complete value graph before verification: factories may reuse
+        // their outer draft, nested figure data or parameter arrays next time.
+        const base = immutableStudySnapshot(family.generate(seed, variant));
         const verification = verifyDraft(family, base);
         if (!verification.valid) {
           note(family, `출력 검산 실패: ${verification.errors.join(" / ")}`);
@@ -383,7 +386,7 @@ export async function generateExamStudy(
           note(family, "필수 그림 자료가 없습니다.");
           continue;
         }
-        const params = family.canonicalParams(base);
+        const params = immutableStudySnapshot(family.canonicalParams(base));
         assertCanonicalParams(params);
         if (
           domainKeys.has(family.id) &&
@@ -448,7 +451,8 @@ export async function generateExamStudy(
         digests.add(digest);
         candidates.push({
           family,
-          draft,
+          // MC packaging creates another outer draft; protect that actual task.
+          draft: immutableStudySnapshot(draft),
           params,
           levels,
           full: ids.filter((id) => levels.get(id) === "full"),
@@ -528,7 +532,11 @@ export async function generateExamStudy(
       if (renderCalls < renderBudget) {
         renderCalls++;
         try {
-          const result = await options.prepare(candidate.draft);
+          // The transport gets its own deeply frozen copy. It must not change
+          // the already verified task, including after an await or after return.
+          const result = await options.prepare(
+            immutableStudySnapshot(candidate.draft),
+          );
           if (result.ok && isSvg(result.figureSvg)) {
             prepared.set(candidate.key, result.figureSvg);
             ready = true;
@@ -554,14 +562,15 @@ export async function generateExamStudy(
   }
 
   const questions: ExamStudyItem[] = selected.map((c) => ({
-    ...c.draft,
-    parameters: c.params,
+    // Callers own their returned nested data, not the pool/renderer references.
+    ...copyStudyValue(c.draft),
+    parameters: copyStudyValue(c.params),
     id: `exam-study:${sha256({ seedMaterial, logicalKey: c.key, content: c.digest }).slice(0, 32)}`,
     familyId: c.family.id,
     familyVersion: c.family.version,
     title: c.family.title,
     course: c.family.course,
-    unitSections: c.family.unitSections,
+    unitSections: [...c.family.unitSections],
     logicalKey: c.key,
     contentDigest: c.digest,
     seed: c.seed,

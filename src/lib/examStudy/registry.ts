@@ -15,6 +15,7 @@ import { MIDDLE_STUDY_FAMILIES } from "./families/middle";
 import { sha256, stableStringify } from "./identity";
 import { EXAM_STUDY_PROFILES } from "./profiles";
 import { STUDY_REQUIREMENTS } from "./requirements";
+import { STUDY_DRAFT_SNAPSHOT_POLICY_VERSION } from "./draftSnapshot";
 import {
   STUDY_CURRICULUM_POLICY_VERSION,
   studyCurriculumHold,
@@ -122,6 +123,7 @@ export function studyManifestVersion(
     engine: EXAM_STUDY_ENGINE_VERSION,
     curriculumPolicy: STUDY_CURRICULUM_POLICY_VERSION,
     releasePolicy: STUDY_RELEASE_POLICY_VERSION,
+    draftSnapshotPolicy: STUDY_DRAFT_SNAPSHOT_POLICY_VERSION,
     requirements: STUDY_REQUIREMENTS,
     families: [...families]
       .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))

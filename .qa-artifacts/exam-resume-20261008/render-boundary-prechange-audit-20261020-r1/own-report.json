@@ -1,0 +1,135 @@
+{
+  "kind": "independent prechange generation/render ownership audit",
+  "status": "TECHNICAL_HOLD",
+  "root": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
+  "ownedSourceChanges": 0,
+  "sourceBinding": {
+    "explicit11Before": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\generate.ts": "4a3e920e0df7d40a26549f7099ef6a54271f6820fae4488cd1553d6eb24eb7bc",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\identity.ts": "1f9042a4e0d7f8f2370b394fc29a84e8541827d8d31e20e6cd83c2c399c4ddf5",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\evidence.ts": "3d6b4d9b3d91a64151e870aa08aee09deb83105755de63fcce3bf4eb7cb39de8",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\registry.ts": "06cfdee87781d753b8b15767632fc2fd3b7d7ffc39fa0063b388944e2d037378",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\curriculumEligibility.ts": "d962ba000211422cb9073632ee134c631dfa8803b036af9b744a223f00f99a9a",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\releaseEligibility.ts": "7e83611c376eafa7f1fb9c23dd846adc05cac850d61b156b8b04c716b597bdd4",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\planner.ts": "1446df2e9e71d0e1e6e548fc97aa1234b0bb6f82e6357ae4368ea07e6e3961e6",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "199734c48116d1115754339c8f3e45a24a0cbf81f100d0581d320942950dd712",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\profiles.ts": "8f0ea98553bd6d3ffc2ad2d44414035a7b12cb917ffe3c9f270e5ec113ec2e76",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\requirements.ts": "62984cd03bfbbc6a1a2a716fad7bfc89f40e8ce693f417d013deb5e9745df934",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\contracts\\examStudy.contract.ts": "a62b5edf30e0c8108c275090801a6d82b5938e4a79e81b0ac63517c32cc870a6"
+    },
+    "runtimeFirstImportModules": 187,
+    "beforeAfterUniqueFiles": 187,
+    "changed": [],
+    "importResolution": "Absolute ROOT imports for generate/evidence/identity; tsconfig @/* ROOT/src/*. Module._resolveFilename captures actual ROOT source dependency SHA before first execution.187static import closure modules hashed, default bank/family registry/catalog functions never invoked. External node_modules tooling used read-only."
+  },
+  "execution": {
+    "uniqueCases": 25,
+    "assertions": 33,
+    "passed": 33,
+    "failed": 0,
+    "interpretation": "Passing controls include assertions positively demonstrating invariant failures; NOT engine approval. Same25cases repeated for memory-limit correction/replay, never added to unique totals.",
+    "initialAvailablePhysicalMemoryBytes": 2356158464,
+    "finalEnvironment": {
+      "availablePhysicalMemoryBytes": 5920591872,
+      "nodeVersion": "v22.17.1",
+      "maxSemiSpaceMiB": 8,
+      "minimumBytes": 1610612736,
+      "maxOldSpaceMiB": 192,
+      "cwd": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008"
+    },
+    "finalNodeHeapLimitBytes": 226492416,
+    "memoryLimitDiagnostic": {
+      "initialMaxOldSpaceMiB": 256,
+      "initialReportedHeapLimitBytes": 318767104,
+      "classification": "Harness limit mismatch, not source fault. Initial results preserved. Corrected maxold192/semispace8 gives216MiB total reported heap, below256MiB. Final replay gated actual available memory >=1.5GiB before execution."
+    },
+    "DBImports": 0,
+    "networkCalls": 0,
+    "realRendererCalls": 0,
+    "noHeavyRunnerCatalogueBrowserCIM": true
+  },
+  "findings": [
+    {
+      "id": "RB1",
+      "status": "demonstrated-technical-hold",
+      "severity": "moderate engine correctness/integrity; trusted callback boundary, not end-user exploit",
+      "source": "generate.ts:369,441-452,531,556-558",
+      "reproduce": [
+        "prepare-sync-answer",
+        "prepare-after-await-answer",
+        "prepare-sync-content",
+        "prepare-after-await-content",
+        "prepare-sync-solution",
+        "prepare-after-await-solution",
+        "prepare-sync-nestedParameters",
+        "prepare-after-await-nestedParameters",
+        "prepare-sync-figureSpec",
+        "prepare-after-await-figureSpec"
+      ],
+      "observed": "10cases delivered one modified item each after original verifier passed. Answer/content/figure changes leave cached contentDigest stale; nested parameter mutation leaves logicalKey stale. Solution-only mutation fails verifier although contentDigest intentionally excludes solution, so no claim solution-only causes contentDigest mismatch. Cached SVG built before figure mutation disagrees with returned synthetic figure value.",
+      "mechanism": "prepare receives engine candidate.draft directly, no immutable transport snapshot or post-prepare invariant check. Generation digest is computed using current returned fields at return; not falsely claimed stale at that instant, but it embeds an already stale cached contentDigest in affected cases."
+    },
+    {
+      "id": "RB2",
+      "status": "demonstrated-technical-hold",
+      "severity": "moderate engine correctness for reusable factory objects",
+      "source": "generate.ts:368-395,449-458",
+      "reproduce": [
+        "shared-object",
+        "shared-object-snapshot",
+        "shared-nested"
+      ],
+      "observed": "Factory3variants all passed own verifier at generation time.2selected items subsequently fail verifier and contentDigest equality because later calls mutate referenced draft/nested state. Even deep-copying canonicalParams alone did not save shared draft. Shared nested arrays/spec also stale logical keys.",
+      "mechanism": "Pool owns references rather than independently snapshotted draft/params; outer object reuse and fresh outer objects with shared nested graphs both demonstrated."
+    },
+    {
+      "id": "RB3",
+      "status": "demonstrated-technical-hold",
+      "severity": "moderate returned-result ownership/immutability",
+      "source": "generate.ts:531,556-558",
+      "reproduce": [
+        "retained-after-return"
+      ],
+      "observed": "After await generate returns, explicit mutation of retained callback draft top-level content/answer/solution does NOT alter returned primitive fields (positive shallow-copy boundary). Explicit nested parameters/figure mutation DOES immediately alter returned objects while logicalKey/contentDigest and SVG remain previous values. Before/after objects in result receipt.",
+      "limits": "No arbitrary timer race or unbounded future behavior inferred. Controlled immediate caller mutation only. No production/DB/persistent corruption demonstrated."
+    }
+  ],
+  "positiveControls": [
+    "Pure async prepare and independent per-variant snapshots preserve actual verifier/logicalKey/contentDigest; repeated results deterministic.",
+    "SVG bytes may differ while math/generation digest remains same, intentional transport-only exclusion. Not SVG semantic correctness proof.",
+    "No-figure case delivered without calling callback; missing renderer unavailable.",
+    "First render failure replaced by different finite parameters; bounded2calls. Exceptions/invalid/null SVG all held across2bounded attempts.",
+    "M1 coefficient-method hardgrade and M3 release hold before factory+prepare: both0calls. This is2targeted controls, not exhaustive policy audit.",
+    "Postreturn mutation of callback top-level strings does not alter returned top-level strings."
+  ],
+  "fixtureBoundary": {
+    "family": "own finite3variants n1..3, with singleton/twoelement variants for selected controls",
+    "verification": "Own printed integer/content/answer/solution/nesteddata consistency; actual production verifyDraft executes it. No real-question content or factory oracle.",
+    "figure": "Own audit-only JSON spec and SVG desc strings. Real renderer/schema/pixels not used or approved. SVG only proves transport/spec reference mismatch.",
+    "coverage": "No requirement selected for ordinary synthetic fixtures, no genuine achievement/grade/fullcoverage certification. Held fixtures use requirement metadata only.",
+    "trustedTransport": "prepare treated as server-owned trusted callback with possible accidental mutation; not adversarial end-user capability."
+  },
+  "recommendation": [
+    "Snapshot each returned factory draft into an engine-owned supported-value graph immediately, then validate/verify that snapshot; detach canonicalParams deeply before cached key/domain bookkeeping and pooling.",
+    "Pass a detached deeply read-only transport snapshot to prepare, or detect/reject every mutation relative to validated input before accepting SVG; do not merely rehash a changed task and silently accept unverified or mismatched rendered data. Preserve MC-derived task semantics and existing SVG-byte exclusion.",
+    "Return detached result parameters/spec/rubric and other nested metadata so neither reusable factory nor retained transport references can mutate output. Preserve bounded distinct-parameter render retries and grade/release-before-factory order. Add these small regression fixtures before widening any release."
+  ],
+  "limits": [
+    "No parent production change made; postchange behavior needs separate scope.",
+    "No actual DB,HTTP,real renderer,bank catalogue,source question,candidate/private or student data mutation. No authored question/blind/math/grade/native/layout/rights/release credit.",
+    "Gachang q09/q10 raw remains sealed and private unopened; group4private also unopened. Existing dirty unrelated files untouched.",
+    "No claim all nested shapes/accessor/proxy/cycles or arbitrary future callbacks covered. Synthetic transport spec is deliberately not a real figureSpec renderer model."
+  ],
+  "artifacts": {
+    "own-runtime-controls.ts": "1627eeda179577f147c8d0c6e30096046346a1ca341cb661504e17ff6545f361",
+    "own-runtime-results.json": "8788bc576239c619e375a4212211ecf5f79307107352dd117892ac821ecd6260",
+    "own-initial-oldspace256-results.json": "18403a8e084196ff34a333fa6ce5cc435257ba2995f9b1080135a9c65d2f7b9c",
+    "own-observation-summary.json": "f7edae36ac21577b4beed5ccde5f78ba2a7cf3aabb9c79107ab7f08dd5dc9148",
+    "own-source-before.json": "505337553a78089a4aad542a5deac522b8b3db14826bb1e966739bf478faf97d",
+    "own-source-after.json": "b2eb43e10ffba6d01bcb561a20cd1b118938bd2f32439303192fdb656c3d204e",
+    "own-execution-environment.json": "7c9fd95e7759ba347f763f8a276ef224ac46976f99d9e0c52fdc8012680fe241",
+    "own-replay.ps1": "252c3bd8d45aca6af58d39a4b5973885400b5335676b8d052b78a1114f89b43f",
+    "own-guard.cjs": "8b1e13879596b087457bb9ae752bcb8077de117139a3929a401f2288a5d48489",
+    "own-tsconfig.json": "d1caf31f3b59274a3f085837500d55520a89687ebe7c8f9fe6525da2f7a02956"
+  }
+}

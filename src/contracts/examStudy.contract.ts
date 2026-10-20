@@ -295,7 +295,11 @@ export interface ExamStudyCatalog {
   limits: typeof EXAM_STUDY_LIMITS;
 }
 
-/** A server-only caller supplies strict Python figure rendering. No renderer means no figure item. */
+/**
+ * A server-only caller supplies strict Python figure rendering. No renderer means
+ * no figure item. prepare receives a detached, deeply frozen draft for reading;
+ * writing its fields/nested data cannot change a verified task or returned item.
+ */
 export interface ExamStudyGenerateOptions {
   families?: readonly ExamStudyFamily[];
   profiles?: readonly ExamStudyProfile[];

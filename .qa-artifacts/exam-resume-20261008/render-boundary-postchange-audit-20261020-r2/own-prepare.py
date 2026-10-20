@@ -1,0 +1,12 @@
+﻿from pathlib import Path
+import hashlib,json,difflib
+P=Path(__file__).resolve().parent;O=P.parent/'render-boundary-postchange-audit-20261020-r1';R=Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008');A=R/'.qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-prototype-r1';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();sources=['src/lib/examStudy/draftSnapshot.ts','src/lib/examStudy/generate.ts','src/lib/examStudy/registry.ts','src/contracts/examStudy.contract.ts','src/__tests__/unit/examStudyDraftSnapshots.test.ts'];delta=[];paths=list(O.glob('own-*'))
+for name in sources:
+ old=A/name;new=R/name;paths.extend([old,new]);delta.append({'path':name,'R1SHA256':sha(old),'R2SHA256':sha(new),'changed':sha(old)!=sha(new)})
+assert [x['path'] for x in delta if x['changed']]==[sources[0],sources[4]]
+for name in ['identity','evidence','curriculumEligibility','releaseEligibility']:paths.append(R/f'src/lib/examStudy/{name}.ts')
+for name in ['support','remaining']:paths.append(R/f'src/lib/examStudy/families/middle/{name}.ts')
+(P/'own-before.json').write_text(json.dumps({str(p):sha(p) for p in paths},indent=2),encoding='utf-8');(P/'own-source-delta.json').write_text(json.dumps(delta,indent=2),encoding='utf-8');(P/'own-utf8-probe.txt').write_text('R2 독립 검증 UTF-8 기록\n',encoding='utf-8');assert (P/'own-utf8-probe.txt').read_text(encoding='utf-8')=='R2 독립 검증 UTF-8 기록\n'
+for name in ['own-runtime-controls.ts','own-extra-controls.ts','own-guard.cjs','own-tsconfig.json','own-replay.ps1','own-hash-after.py']:
+ s=(O/name).read_text(encoding='utf-8-sig');s=s.replace("STUDY_DRAFT_SNAPSHOT_POLICY_VERSION==='20261020-detached-immutable-drafts-r1'","STUDY_DRAFT_SNAPSHOT_POLICY_VERSION==='20261020-detached-immutable-drafts-r2'");(P/name).write_text(s,encoding='utf-8')
+s=(O/'own-r1-addendum-controls.ts').read_text(encoding='utf-8-sig');s=s.replace("!after.valid&&JSON.stringify(before)!==JSON.stringify(copied)","after.valid&&JSON.stringify(before)===JSON.stringify(copied)").replace("r.questions.length===0&&r.warnings.some((x:string)=>x.includes('0/1'))","r.questions.length===1").replace('-copy-order-only-break','-copy-order-preserved').replace('-actual-generation-rejects-valid-factory','-actual-generation-accepts-valid-factory').replace('TECHNICAL_HOLD-key-order-compatibility','R2-key-order-preserved').replace('own-r1-addendum-results.json','own-order-results.json');(P/'own-order-controls.ts').write_text(s,encoding='utf-8')

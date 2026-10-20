@@ -1,0 +1,415 @@
+{
+  "utc": "2026-10-20T12:17:11.178Z",
+  "code": [
+    {
+      "path": "src/lib/examStudy/draftSnapshot.ts",
+      "sha256": "2dfcfcf8670f22bf1cf1e1dfd552058962b673a8b9834522b16279d5f51bc0df"
+    },
+    {
+      "path": "src/lib/examStudy/generate.ts",
+      "sha256": "29df46ff324fd38c8a15d70961b45b9e0fe8030496f48519607e26c7cfa34657"
+    },
+    {
+      "path": "src/lib/examStudy/registry.ts",
+      "sha256": "1f873f97f26fecadb95aa87276f86b9dc0aa9aff0cb77f4f20b617327b43bca3"
+    },
+    {
+      "path": "src/contracts/examStudy.contract.ts",
+      "sha256": "e1992a23e5730a8fc7b302df7c00fc9054a5d2b53edeffab35bd6be1ff5e62d0"
+    },
+    {
+      "path": "src/__tests__/unit/examStudyDraftSnapshots.test.ts",
+      "sha256": "fbcb62ad0378f78e7935d1a0019b3c3b35b72710b34d4a6eb99ab9825e2f7147"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-prechange-transport-r1.json",
+      "sha256": "2d434ecd6a18692308f0a8ace1aaa66ae36acdf49f4b86d7d632ac83dd0b8791"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-before.py",
+      "sha256": "27d422d378939c7edf92707612f9b7d644d27e90abfd439ec3201e4658459c35"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-execution-environment.json",
+      "sha256": "7c9fd95e7759ba347f763f8a276ef224ac46976f99d9e0c52fdc8012680fe241"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-finalize.py",
+      "sha256": "03108c0895edfcf448a0c8f58a40f86d36c15d7ec5a1f3ccf2a93a92931c2c00"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-guard.cjs",
+      "sha256": "8b1e13879596b087457bb9ae752bcb8077de117139a3929a401f2288a5d48489"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-hash-after.py",
+      "sha256": "303085a769473981466bfa7b553db51c6911bfd0880ce434157d3ee39097a6e2"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-initial-oldspace256-results.json",
+      "sha256": "18403a8e084196ff34a333fa6ce5cc435257ba2995f9b1080135a9c65d2f7b9c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-observation-summary.json",
+      "sha256": "f7edae36ac21577b4beed5ccde5f78ba2a7cf3aabb9c79107ab7f08dd5dc9148"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-replay.ps1",
+      "sha256": "252c3bd8d45aca6af58d39a4b5973885400b5335676b8d052b78a1114f89b43f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-report.json",
+      "sha256": "b49d61483807d2fa928bf7d3dcf83ab3feccae781cc621421861fcdabcdbb387"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-runtime-controls.ts",
+      "sha256": "1627eeda179577f147c8d0c6e30096046346a1ca341cb661504e17ff6545f361"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-runtime-results.json",
+      "sha256": "8788bc576239c619e375a4212211ecf5f79307107352dd117892ac821ecd6260"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-source-after.json",
+      "sha256": "b2eb43e10ffba6d01bcb561a20cd1b118938bd2f32439303192fdb656c3d204e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-source-before.json",
+      "sha256": "505337553a78089a4aad542a5deac522b8b3db14826bb1e966739bf478faf97d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-tsconfig.json",
+      "sha256": "d1caf31f3b59274a3f085837500d55520a89687ebe7c8f9fe6525da2f7a02956"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-utf8-probe.txt",
+      "sha256": "e4c54a962f76586a2f7ea885dce5ff6ebf394dd6cb4001e8a9bc183aa92a9aef"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-postchange-transport-r1.json",
+      "sha256": "4f3681f04e05c72907222fdb2a497926a1369e0868db888b6013f2a576bdf8e1"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-after.json",
+      "sha256": "6ceb97e8296926ae452b7a38667ebefc1aec03f0d6223819d54e45fd04a071bf"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-before.json",
+      "sha256": "76b9d59dc0fa52f3d798ec29ab62824970acf23769a492eb75570f3d5c8a9953"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-correct-expectation.py",
+      "sha256": "3c74614c15449961b20b034ae4f2ea2d0b5c1d67e482c88638c116b452f7f0af"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-execution-environment.json",
+      "sha256": "b0437956bc0e0499e020381cd605468b6e3cbbe8139af821f16ec45861c1ce47"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-controls.ts",
+      "sha256": "fca10f5f53affadcfc1c7391846a6818740a2021a4113d8f75f8ae712ffff330"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-correct-expectation.py",
+      "sha256": "06abe99f1684198eec722761a373311ad28400d2d41a4ea8a8c7896c9d355c6f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-initial-controls.ts",
+      "sha256": "6d273cb605c43d8ff7aaf65ee5efa582a627d4e60c8cb5ee0d64b2737f2224a6"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-initial-results.json",
+      "sha256": "2877ebcea60ac5e5388cd8961a92d374977a641b33a641e21ff3aea18667d84b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-results.json",
+      "sha256": "0ff29e8412c54ec5772a9b23e044df77b5b2ec00f779e2a50078aad674259254"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-final-hashes.json",
+      "sha256": "6ceb97e8296926ae452b7a38667ebefc1aec03f0d6223819d54e45fd04a071bf"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-finalize.py",
+      "sha256": "5b76e320318e2519cc8f134780d2331672be944cbc964a376cd515c7b714e959"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-guard.cjs",
+      "sha256": "8b1e13879596b087457bb9ae752bcb8077de117139a3929a401f2288a5d48489"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-hash-after.py",
+      "sha256": "2f4b7dbf99041621c2feeadf391662baf34fe23f049a440d85acf8d671db75ae"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-initial-controls.ts",
+      "sha256": "818ba5b0297dd57d71c9c1bb7ecc12196e83bf3a036011bfff6e6ea7ff62a9b7"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-initial-expectation-results.json",
+      "sha256": "9557007167afa19205af2b7c31794569b511cbe63b54b012916d5dfd53ab3c38"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-inspect-mc.py",
+      "sha256": "99ac8216b5ad30b12e4785801ec97d10bc723eaa72461aa5d4b737be65f1e27f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-prepare.py",
+      "sha256": "306771333353dfbeb730d86a4cb2386315dbca92744e21e72b159544db2f5f2b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-replay.ps1",
+      "sha256": "adb338031287139f73b55b452002c1b71ff6ffb8911b5b879259955d798fef82"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-report.json",
+      "sha256": "b4c97ad8cfd2b382a88cebdaaea3861a7a8b6272b276d910f12232b93fcc9fc4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-runtime-controls.ts",
+      "sha256": "d27ca25f04eba0018502053aa7b38bb599b81f7e53931aed1edaca445c19ab8e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-runtime-results.json",
+      "sha256": "44e6055d84832dcc4f9e9b343b0bd01a8758c71c90a4cf663259aad513ba9207"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-tsconfig.json",
+      "sha256": "d1caf31f3b59274a3f085837500d55520a89687ebe7c8f9fe6525da2f7a02956"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-utf8-probe.txt",
+      "sha256": "04df162f73a4195c04c60d9a5c21fe31c17c9091fabd0d9c3e6bec3304831c2c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-r1-order-hold-transport-r1.json",
+      "sha256": "74f4f8e32f37e06e9f437dc1991753971b9e0a671ae907675a2abc3193a24f9f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-controls.ts",
+      "sha256": "76af12d2093ca8708eb15c8cea873aa5a5933936be704b35e0c86d3b60711c96"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-finalize-corrected.py",
+      "sha256": "1fd946402ffc5de3de533db773e8510d3c4ba2b51c5b243c17f2734fbdfc9e43"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-finalize.py",
+      "sha256": "4bf8390df9e179bd1d1124064a607125787eac70d0c966b12a23cb6e41d38032"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-report.json",
+      "sha256": "c57bf100686a4717fd555b11aa2d58e6e929387a45619c3d051d12a5756dccb9"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-results.json",
+      "sha256": "428703d680cec0a95d61dbfed27934627754c4e354ecf25267205380bde4e948"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-postchange-transport-r2.json",
+      "sha256": "96f92a3cc06e0938548fb6898670a40608ca7bbb726a79093efbd20dc49a4ce5"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-after.json",
+      "sha256": "ea94b0f63b29cb5fd36a3fc6b29e15561e5d741e5e180e81504e03025e630001"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-before.json",
+      "sha256": "063e2e531f54b34ccce197b7018228115b59bfa1ba2284f0a8092d77cd825957"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-execution-environment.json",
+      "sha256": "b3a749b781b2bbfa7912df5dcec75220d6d366d5a8c91c74f1569250474dc839"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-extra-controls.ts",
+      "sha256": "968170784f96219a50899f03c05734e074bb29296144de2ea8ba066447e619ad"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-extra-results.json",
+      "sha256": "4a47aa9cd076eba8d9cee6409fcfc163e5b7e48fdba4c42c37b6797aafa552d4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-final-hashes.json",
+      "sha256": "ea94b0f63b29cb5fd36a3fc6b29e15561e5d741e5e180e81504e03025e630001"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-finalize.py",
+      "sha256": "aef4e166708f7d13ad3b16547752099a0ad712ce754041791b3049276f19a923"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-guard.cjs",
+      "sha256": "ca763fdc220401cf5d269b9e879420d1cf6e75f58038e165bc52f2395aeafa1b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-hash-after.py",
+      "sha256": "0338811ec7b6f2b7780171a8c23cc467326249bf3729bb9620907e8c865f6cff"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-native-boundary-controls.ts",
+      "sha256": "1f074b2b3acb10b0fcac4552dbf3c3c079535b93b434ad70c77386246ee21ce4"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-native-boundary-results.json",
+      "sha256": "220b7359d3837847ee37da46c69baedc3069ed351153f6d2973be393f70ba958"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-order-controls.ts",
+      "sha256": "5d7da53cc7498dc32b78ac35bbbc6c17bea6a8a43594a1cf896b9077e13f2a47"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-order-results.json",
+      "sha256": "c55b6e1740cf201c5030cd6d238114544bc94163e652395f15c06f8f801ec80f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-prepare.py",
+      "sha256": "b32c3d5527770213826dfb445c588e665f6613a56f580b870129c9db2a0e4413"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-replay.ps1",
+      "sha256": "0110addd9e9c6a0c884fb862ec3ae127692154bde9c2b1528caefec54c0a59f9"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-report.json",
+      "sha256": "8b025d30fc3a399a0e07856aca0b21eb5c27ce405c2217e01d383792ec5202d6"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-runtime-controls.ts",
+      "sha256": "d27ca25f04eba0018502053aa7b38bb599b81f7e53931aed1edaca445c19ab8e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-runtime-results.json",
+      "sha256": "1fc5ec7830050d7d30d26f62db85b25089d181e7f099299e1087592b5f7a6915"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-source-delta.json",
+      "sha256": "d92548dac44a6a3407ec14096f3a2f5af5b9d285087f342215a893f1b16c357d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-tsconfig.json",
+      "sha256": "ce969bc9120ea598f7cece33df8237bf7ee1fdd8728e50a87684482b20456963"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-utf8-probe.txt",
+      "sha256": "db681a2882edd15db3feff16f3d9e91da7a4cce07f180af2bd8a4e7f549a2713"
+    }
+  ],
+  "parentTests": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-engine-r2.json",
+    "sha256": "19d7f4f5ef50f5938beb4e551218230277d2949b1a159a4dfdbe774d718a93f6"
+  },
+  "parentPassed": 422,
+  "independent": {
+    "path": ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-report.json",
+    "sha256": "8b025d30fc3a399a0e07856aca0b21eb5c27ce405c2217e01d383792ec5202d6"
+  },
+  "independentCommit": "c23a46bb53be919bdbfebb7fcde669f6ed00a23f",
+  "files": [
+    "src/lib/examStudy/draftSnapshot.ts",
+    "src/lib/examStudy/generate.ts",
+    "src/lib/examStudy/registry.ts",
+    "src/contracts/examStudy.contract.ts",
+    "src/__tests__/unit/examStudyDraftSnapshots.test.ts",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-prechange-transport-r1.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-before.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-execution-environment.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-finalize.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-guard.cjs",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-hash-after.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-initial-oldspace256-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-observation-summary.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-replay.ps1",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-report.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-runtime-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-runtime-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-source-after.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-source-before.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-tsconfig.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-prechange-audit-20261020-r1/own-utf8-probe.txt",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-postchange-transport-r1.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-after.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-before.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-correct-expectation.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-execution-environment.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-correct-expectation.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-initial-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-initial-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-extra-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-final-hashes.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-finalize.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-guard.cjs",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-hash-after.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-initial-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-initial-expectation-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-inspect-mc.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-prepare.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-replay.ps1",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-report.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-runtime-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-runtime-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-tsconfig.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-utf8-probe.txt",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-r1-order-hold-transport-r1.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-finalize-corrected.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-finalize.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-report.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r1/own-r1-addendum-results.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-postchange-transport-r2.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-after.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-before.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-execution-environment.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-extra-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-extra-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-final-hashes.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-finalize.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-guard.cjs",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-hash-after.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-native-boundary-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-native-boundary-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-order-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-order-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-prepare.py",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-replay.ps1",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-report.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-runtime-controls.ts",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-runtime-results.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-source-delta.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-tsconfig.json",
+    ".qa-artifacts/exam-resume-20261008/render-boundary-postchange-audit-20261020-r2/own-utf8-probe.txt",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-prototype-r1/src/contracts/examStudy.contract.ts",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-prototype-r1/src/lib/examStudy/draftSnapshot.ts",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-prototype-r1/src/lib/examStudy/generate.ts",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-prototype-r1/src/lib/examStudy/registry.ts",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-prototype-r1/src/__tests__/unit/examStudyDraftSnapshots.test.ts",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-u64-red-r1.mts",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-u64-red-r2.mts",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/vitest-u64-engine-r1.mts",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-red-r1.log",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-red-r2.log",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-red-r2.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-green-r1.log",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-green-r1.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-engine-r1.log",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-engine-r1.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-engine-r2.log",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-engine-r2.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-eslint-r1.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-eslint-r2.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-types-r1.log",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-types-r1.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/check-u64-types-r1.mjs",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-prechange-brief-r1.md",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-postchange-brief-r1.md",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/render-boundary-postchange-brief-r2.md",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/push-engine-ownership-checkpoint-r1.json",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/prepare-u64-checkpoint-r1.mjs",
+    "docs/planning/tracks/reports/exam-engine-draft-ownership-20261020.md",
+    ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/u64-checkpoint-preparation-r1.json"
+  ],
+  "dbWrites": 0,
+  "existingBankQuestionsChanged": 0
+}

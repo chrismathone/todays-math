@@ -1,0 +1,16 @@
+﻿from pathlib import Path
+import json,hashlib
+P=Path(__file__).resolve().parent;O=P.parent/'render-boundary-prechange-audit-20261020-r1';R=Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008');probe=P/'own-utf8-probe.txt';probe.write_text('수정 후 독립 감사 UTF-8 확인\n',encoding='utf-8');assert probe.read_text(encoding='utf-8')=='수정 후 독립 감사 UTF-8 확인\n'
+files=[R/'src/lib/examStudy'/f'{n}.ts' for n in ['draftSnapshot','generate','registry','identity','evidence','curriculumEligibility','releaseEligibility']]+[R/'src/contracts/examStudy.contract.ts',R/'src/__tests__/unit/examStudyDraftSnapshots.test.ts']+list(O.glob('own-*'))
+(P/'own-before.json').write_text(json.dumps({str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in files},indent=2),encoding='utf-8')
+for name in ['own-guard.cjs','own-tsconfig.json','own-replay.ps1']:(P/name).write_bytes((O/name).read_bytes())
+s=(O/'own-runtime-controls.ts').read_text(encoding='utf-8-sig');s=s.replace("x.r.questions.length===1&&!x.row.observations[0].passesCurrentVerifier","x.r.questions.length===0").replace('-demonstrated-unverified-delivery','-held-without-unverified-delivery')
+s=s.replace("x.r.questions.length===2&&x.row.observations.some((o:any)=>!o.passesCurrentVerifier||!o.logicalKeyMatchesCurrentParams||!o.contentDigestMatchesCurrentTask)","x.r.questions.length===2&&x.row.observations.every((o:any)=>o.passesCurrentVerifier&&o.logicalKeyMatchesCurrentParams&&o.contentDigestMatchesCurrentTask)").replace("mode+'-pool-alias-observed'","mode+'-pool-snapshots-isolated'")
+s=s.replace("retained.answer='999';retained.content='Find audit integer 999';retained.solution='changed later';","const retainedAttempts:any[]=[];for(const write of [()=>retained.answer='999',()=>retained.content='Find audit integer 999',()=>retained.solution='changed later']){try{write();retainedAttempts.push('no-throw')}catch{retainedAttempts.push('blocked')}};")
+s=s.replace("retained.parameters.nested[1][0]=999;retained.figureSpec.value=999;retained.figureSpec.points[0].x=999;","for(const write of [()=>retained.parameters.nested[1][0]=999,()=>retained.figureSpec.value=999,()=>retained.figureSpec.points[0].x=999]){try{write();retainedAttempts.push('no-throw')}catch{retainedAttempts.push('blocked')}};retainedRun.row.retainedWriteAttempts=retainedAttempts;")
+s=s.replace("ck('retained-nested-result-alias',retainedRun.r.questions[0].parameters.nested[1][0]===999&&retainedRun.r.questions[0].figureSpec.value===999)","ck('retained-nested-result-isolated',JSON.stringify(retainedRun.r)===JSON.stringify(before)&&retainedAttempts.every(x=>x==='blocked'))")
+s=s.replace("ck('retained-identities-now-stale',retainedRun.row.afterObservations.some((o:any)=>!o.logicalKeyMatchesCurrentParams||!o.contentDigestMatchesCurrentTask))","ck('retained-identities-remain-valid',retainedRun.row.afterObservations.every((o:any)=>o.logicalKeyMatchesCurrentParams&&o.contentDigestMatchesCurrentTask&&o.passesCurrentVerifier))")
+# Export own fixtures for narrow new controls; no parent test import.
+s=s.replace('async function main(){','export {family,request,svg,clone,observe};\nasync function main(){')
+s=s.replace('}main().catch','}if(!process.env.AUDIT_FIXTURES_ONLY)main().catch')
+(P/'own-runtime-controls.ts').write_text(s,encoding='utf-8')
