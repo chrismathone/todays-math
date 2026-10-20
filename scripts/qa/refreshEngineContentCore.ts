@@ -152,7 +152,7 @@ export function shouldApply(
  *    (`--same-problem <목록.json>`). 기계가 «같다»고 믿는 것은 공백 · 조사 · 정답의 끝자리 0 뿐이다.
  */
 export type IdentityRisk =
-  "발문의 수" | "발문의 글" | "정답의 값" | "그림의 라벨";
+  "발문의 수" | "발문의 글" | "정답의 값" | "그림의 라벨" | "보기";
 
 /** 조사 — 받침에 따라 갈리는 짝. 문구 수리(을/를 · 이/가 …)는 문제를 바꾸지 않는다. */
 const PARTICLES = /[은는이가을를와과으로]/g;
@@ -215,6 +215,20 @@ export function identityRisk(
   )
     return "그림의 라벨";
   return null;
+}
+
+/**
+ * 객관식 보기 다섯이 **하나하나** 글자 그대로 같은가(공백만 뺀다 — 정답 보기만 보는 `identityRisk` 보다 좁다).
+ * 계획 밖에서 되만든 행(`--replay`)에 건다 — 보기 섞기 번호를 잘못 되살리면 정답 보기는 같아도 오답 보기 · 번호가 달라진다.
+ */
+export function choicesRisk(db: Cols, made: Cols): "보기" | null {
+  const a = parseProblemContent(db.content).choices;
+  const b = parseProblemContent(made.content).choices;
+  if (a.length !== b.length) return "보기";
+  // 보기는 수의 자리 · 차례가 뜻이다(«3-2» 와 «2-3» · «\frac{2}{3}» 과 «\frac{3}{2}») — 정렬하거나 수를 지우지 않고, 공백만 뺀 글자 그대로 견준다.
+  const plain = (c: string) => c.replace(/\s+/g, "");
+  for (let i = 0; i < a.length; i++) if (plain(a[i]!) !== plain(b[i]!)) return "보기";
+  return db.answer.trim() === made.answer.trim() || a.length === 0 ? null : "보기";
 }
 
 /**

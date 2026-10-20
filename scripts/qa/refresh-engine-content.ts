@@ -5,6 +5,7 @@
  *   npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --all-plans --families <목록.json>  # 드라이런 — 무엇을 덮게 되나
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --all-plans --families <목록.json> --label <이름> --apply
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --revert <원장.json.gz>
+ *   … --replay <목록.json>   # 계획 폴더 밖에서 승인된 행을 그 승인 계획 · 고정 씨앗으로 되만들어 같이 견준다(`refreshReplay.ts`)
  *
  * ## 왜 있나 — 「엔진을 고친 것과 적재본을 고친 것은 다른 일이다」
  *
@@ -52,9 +53,11 @@ import type { JudgeRegistry } from "../../src/lib/middle/judge/registry";
 import { parseNativeExternalId } from "../../src/contracts/nativeDescriptive.contract";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 import { deadBackslashHits } from "./probe-middle-raw-latex";
+import { readReplayManifest, replayRequestedIds, replayRows } from "./refreshReplay";
 import {
   appendLedger,
   brokenChoiceReason,
+  choicesRisk,
   classifyDiff,
   decideApply,
   identityRisk,
@@ -280,6 +283,27 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
   console.log(
     `되만든 행 ${made.size} · 던진 대상 ${failures.length} · 계획끼리 어긋난 열쇠 ${conflicts.length}`,
   );
+  // 계획 폴더 밖에서 승인된 행(D-164 3회차) — 승인된 계획 · 고정한 씨앗으로 되만들어 같은 문지기에 세운다.
+  const replayFile = arg("--replay");
+  const replayIds = new Set<string>();
+  let replayMissing: ReturnType<typeof replayRows>["missing"] = [];
+  if (replayFile) {
+    const manifest = readReplayManifest(replayFile);
+    const replay = replayRows(manifest);
+    replayMissing = replay.missing;
+    // 겹침은 목록의 **요청 열쇠 전부**로 본다 — 못 되만든 열쇠가 계획 쪽으로 조용히 넘어가지 않게.
+    for (const id of replayRequestedIds(manifest))
+      if (made.has(id)) throw new Error(`되만들기 목록의 열쇠를 계획도 낸다 — 어느 쪽이 적재본인지 모른다: ${id}`);
+    for (const [id, r] of replay.made) {
+      made.set(id, r);
+      replayIds.add(id);
+    }
+    // 🔴 승인된 행을 하나라도 못 되만들면 적용하지 않는다 — 그 행이 «못 맞댐»으로 떨어져 잠금 쪽으로 가면 결정(④ 잠그지 않는다)과 어긋난다.
+    if (doApply && replayMissing.length)
+      throw new Error(`되만들기 목록 가운데 ${replayMissing.length}행을 못 되만들었다 — 확정 목록과 다르다. 적용하지 않는다`);
+    console.log(`계획 밖 승인 행 되만듦 ${replayIds.size} · 못 되만듦 ${replayMissing.length}`);
+    for (const m of replayMissing.slice(0, 10)) console.log(`   🔴 ${m.externalId} — ${m.reason}`);
+  }
   for (const f of failures.slice(0, 20)) console.log(`   🔴 ${f}`);
   if (failures.length > 20) console.log(`   … ${failures.length - 20}건 더`);
   if (conflicts.length)
@@ -421,14 +445,16 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     }
     if (!inFamily && cls === "solution")
       bump(solutionOutside, row.familyKey ?? "?");
-    const risk = cls === "same" ? null : identityRisk(row, m);
+    // 되만든 행은 보기 다섯까지 견준다 — 이 까닭은 «같은 문제» 목록으로도 지나가지 않는다.
+    const choiceRisk = replayIds.has(ext) ? choicesRisk(row, m) : null;
+    const risk = choiceRisk ?? (cls === "same" ? null : identityRisk(row, m));
     const decision = decideApply(
       row.familyKey,
-      cls,
+      cls === "same" && choiceRisk ? "stem" : cls,
       broken,
       scope,
       risk,
-      confirmedSame.has(ext),
+      choiceRisk ? false : confirmedSame.has(ext),
     );
     if (decision === "apply") todo.push({ db: row, made: m, cls, broken });
     else if (decision === "refuse") {
@@ -591,8 +617,10 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     }
     if (sameSnapshot(b, after)) return null;
     // 그림만 다시 그린 행도 문지기를 지난다 — 라벨이 달라지면 그림이 주는 정보가 바뀐 것이다.
-    const figureRisk = identityRisk(b, after);
-    if (figureRisk !== null && !confirmedSame.has(t.db.externalId!)) {
+    // 되만든 행은 **다시 읽은 앞 값**으로 보기 다섯을 한 번 더 본다 — 처음 읽은 뒤 오답 보기만 바뀌어도 막는다(«같은 문제» 목록으로 못 지나간다).
+    const replayChoice = replayIds.has(t.db.externalId!) ? choicesRisk(b, after) : null;
+    const figureRisk = replayChoice ?? identityRisk(b, after);
+    if (figureRisk !== null && (replayChoice !== null || !confirmedSame.has(t.db.externalId!))) {
       bump(refusedBy, figureRisk);
       refused.push({
         externalId: t.db.externalId!,
@@ -696,6 +724,9 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         })),
         fresh: top(fresh, 500),
         buildFailures: failures,
+        replay: replayFile
+          ? { file: path.basename(replayFile), made: replayIds.size, missing: replayMissing }
+          : null,
         changes: changes.length,
         skipped,
         identityRefused: refused,
