@@ -7786,7 +7786,8 @@ function mul133Bigger(unit: UnitSeed, rng: Rng): ElemProblem {
   const act = a * b;
   return make(
     unit,
-    `다음 곱셈의 어림한 곱이 실제로 계산한 곱보다 큰가? '예' 또는 '아니요'로 답하시오.\n\n${expr(`${a}\\times${b}`)}`,
+    // 어림하는 자리를 정한다 — 안 정하면 $644\times48$ 을 $600\times50$ 으로도 $640\times50$ 으로도 읽어 답이 갈린다(2026-10-20 교차 검수).
+    `${josaNum(a, "을", "를")} 몇백으로, ${josaNum(b, "을", "를")} 몇십으로 어림하여 곱한 값이 실제로 계산한 곱보다 큰가? '예' 또는 '아니요'로 답하시오.`,
     est > act ? "예" : "아니요",
     `어림한 곱은 ${n(est)}, 실제 곱은 ${n(act)}입니다.`,
   );
@@ -13992,7 +13993,8 @@ function dec237Need(unit: UnitSeed, rng: Rng): ElemProblem {
   );
   return make(
     unit,
-    `한 통에 ${n(dec1(need))} L가 필요합니다. 지금은 ${n(dec1(have))} L가 있습니다. 몇 L가 모자라는가?`,
+    // «한 통에 $8.6$ L가 필요합니다» 는 무엇을 채우는지 빠졌다(2026-10-20 교차 검수).
+    `물통 하나를 가득 채우려면 물이 ${n(dec1(need))} L 필요합니다. 지금 물통에는 물이 ${n(dec1(have))} L 있습니다. 몇 L가 모자라는가?`,
     n(dec1(need - have)),
     `${expr(`${dec1(need)}-${dec1(have)}=${dec1(need - have)}`)} 입니다.`,
   );
@@ -16643,7 +16645,8 @@ function line252PairDiff(unit: UnitSeed, rng: Rng): ElemProblem {
   const gap = Math.abs(nums[i + 1]! - nums[i]!);
   return make(
     unit,
-    `${tableIntro(theme)} ${josa(theme.labels[i]!.math, "과", "와")} ${theme.labels[i + 1]!.math} 사이의 차는 몇 ${theme.unit}인가?`,
+    // «사이의 차» 는 무엇의 차인지 빠졌다(2026-10-20 교차 검수) — «무게의 차» · «기온의 차».
+    `${tableIntro(theme)} ${josa(theme.labels[i]!.math, "과", "와")} ${theme.labels[i + 1]!.math}의 ${theme.topic.split("의 ").pop()}의 차는 몇 ${theme.unit}인가?`,
     `${n(gap)}${theme.unit}`,
     `${expr(`${Math.max(nums[i]!, nums[i + 1]!)}-${Math.min(nums[i]!, nums[i + 1]!)}=${gap}`)} 입니다.`,
     tableFigure(theme, nums),

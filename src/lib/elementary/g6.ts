@@ -10061,19 +10061,24 @@ type PctWindowCase = {
  */
 const PCT_GROUPS = [
   { who: "안경을 쓴", unit: "학생", lo: 8, hi: 45 },
-  { who: "여학생인", unit: "학생", lo: 35, hi: 65 },
+  // «여학생인 학생» 은 같은 말이 겹친다(2026-10-20 교차 검수 — 세 모델 중 둘) — 지면에는 «여학생».
+  { who: "여학생인", unit: "학생", lo: 35, hi: 65, phrase: "여학생" },
   { who: "버스로 통학하는", unit: "학생", lo: 10, hi: 60 },
   { who: "강아지를 기르는", unit: "학생", lo: 5, hi: 40 },
 ] as const;
+
+/** 지면에 찍는 소재 이름 — «안경을 쓴 학생» · «여학생». */
+const pctPhrase = (g: (typeof PCT_GROUPS)[number]): string =>
+  "phrase" in g ? g.phrase : `${g.who} ${g.unit}`;
 
 /** 그 백분율에 어울리는 소재들. 없으면 그 자리는 안 만든다. */
 const pctGroupsFor = (p: number) =>
   PCT_GROUPS.filter((g) => p >= g.lo && p <= g.hi);
 
 const pctWindowStem = (c: PctWindowCase, g: (typeof PCT_GROUPS)[number]) =>
-  `어느 학교 전체 학생의 ${expr(`${c.p}\\%`)} 가 ${g.who} ${g.unit}입니다. ` +
-  `${g.who} ${g.unit} 수가 자연수이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +
-  `${num(c.hi)}명보다 적을 때, ${g.who} ${g.unit}은 몇 명입니까?`;
+  `어느 학교 전체 학생의 ${expr(`${c.p}\\%`)} 가 ${pctPhrase(g)}입니다. ` +
+  `${pctPhrase(g)} 수가 자연수이고 전체 ${g.unit}이 ${num(c.lo)}명보다 많고 ` +
+  `${num(c.hi)}명보다 적을 때, ${pctPhrase(g)}은 몇 명입니까?`;
 
 const PCT_WINDOW_MID = lazyTable("g6.PCT_WINDOW_MID", () => {
   const table: PctWindowCase[] = [];
@@ -10123,11 +10128,11 @@ function pctWindowMid(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(unit, pctWindowStem(c, g), num(c.ans), [
     `${expr(`${c.p}\\%`)} 를 기약분수로 고치면 ` +
       `${expr(`\\frac{${c.p}}{100}=\\frac{${a}}{${b}}`)} 입니다. ` +
-      `${g.who} ${g.unit} 수가 자연수이려면 전체 ${g.unit} 수가 ${num(b)}의 배수여야 합니다.`,
+      `${pctPhrase(g)} 수가 자연수이려면 전체 ${g.unit} 수가 ${num(b)}의 배수여야 합니다.`,
     `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(b)}의 배수는 ` +
       `${expr(`${b}\\times${c.total / b}=${c.total}`)} 하나이므로 전체 ${g.unit}은 ${num(c.total)}명입니다.`,
     `${expr(`${c.total}\\times\\frac{${a}}{${b}}=${c.ans}`)} 이므로 ` +
-      `${g.who} ${g.unit}은 ${num(c.ans)}명입니다.`,
+      `${pctPhrase(g)}은 ${num(c.ans)}명입니다.`,
   ]);
 }
 
@@ -13042,7 +13047,7 @@ function volFormCubes(unit: UnitSeed, rng: Rng): ElemProblem {
   const { w, d, h } = cuboid3(rng);
   return make(
     unit,
-    `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체를 한 모서리 ${unitNum(1, "cm")} 인 쌓기나무로 빈틈없이 채우면 쌓기나무는 몇 개 필요합니까?`,
+    `가로 ${unitNum(w, "cm")}, 세로 ${unitNum(d, "cm")}, 높이 ${unitNum(h, "cm")} 인 직육면체를 한 모서리의 길이가 ${unitNum(1, "cm")} 인 쌓기나무로 빈틈없이 채우면 쌓기나무는 몇 개 필요합니까?`,
     num(w * d * h),
     `${expr(`${w}\\times${d}\\times${h}=${w * d * h}`)} 개입니다.`,
     fig("cuboid", { w, d, h }),

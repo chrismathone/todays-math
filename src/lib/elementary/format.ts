@@ -56,6 +56,10 @@ export function unitNum(value: number | string, unit: string): string {
 
 /** 수 하나를 읽은 끝소리의 받침. 연산식·문자·단위는 읽는 법을 추측하지 않는다. */
 export function mathFinal(latex: string): number | null {
+  // 식이 연산 기호 뒤의 수 · 분수로 끝나면 읽는 끝소리는 그 토막이다 — «$\frac16\times\frac38$» 은 «… 8분의 3» → «을»
+  // (2026-10-20 교차 검수). 지수 · 단위 · 문자로 끝나는 식은 여전히 모른다고 둔다.
+  const tail = /(?:\\times|\\div|\\le|\\ge|\\leq|\\geq|[-+=<>:])\s*((?:\d+)?\\frac\{\d+\}\{\d+\}|\d+(?:\.\d+)?)$/.exec(latex);
+  if (tail) return mathFinal(tail[1]!);
   const fraction = /^-?(?:\d+)?\\frac\{(\d+)\}\{\d+\}$/.exec(latex);
   const value = fraction?.[1] ?? latex;
   if (!/^-?\d+(?:\.\d+)?$/.test(value)) return null;

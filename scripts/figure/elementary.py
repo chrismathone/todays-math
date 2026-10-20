@@ -2158,6 +2158,14 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
             f"«{kind}» 는 아직 sides·angles 를 그림에 반영하지 못합니다 — "
             f"값을 빼고 모양·표시만 쓰거나 그 수를 발문에 적으십시오"
         )
+    # 납작한 도형(밑변이 긴 이등변삼각형 · 낮은 평행사변형)은 정사각 틀의 위아래가 비었다 — 시험지 칸이
+    # 쓸데없이 길어졌다(2026-10-20 교차 검수). 꼭짓점을 위 여백에 붙이고 틀 높이를 도형 높이에 맞춘다.
+    # 너비는 그대로라 그림 크기 등급(figureSvgFrame)은 안 바뀐다. 라벨이 넘치면 `_svg` 가 다시 넓힌다.
+    top = min(p[1] for p in pts)
+    shape_h = max(p[1] for p in pts) - top
+    pts = [(x, y - top + pad) for x, y in pts]
+    frame_h = pad * 2 + max(shape_h, size * 0.25)
+
     cxr = sum(p[0] for p in pts) / n
     cyr = sum(p[1] for p in pts) / n
 
@@ -2234,7 +2242,7 @@ def _marked_shape(spec: Mapping[str, Any]) -> str:
         hyp = math.hypot(dx, dy) or 1.0
         parts.append(_text(px + dx / hyp * 22, py + dy / hyp * 22 + 4, str(label), size=12))
 
-    return _svg(pad * 2 + size, pad * 2 + size, "".join(parts))
+    return _svg(pad * 2 + size, frame_h, "".join(parts))
 
 
 def _seg(

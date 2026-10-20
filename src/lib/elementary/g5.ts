@@ -11010,12 +11010,7 @@ function avg261Deep(unit: UnitSeed, rng: Rng): ElemProblem {
   );
 }
 
-function dayTable(values: readonly number[]): Record<string, unknown> {
-  return fig("table", {
-    headers: values.map((_, i) => `${i + 1}일`),
-    rows: [values.map(String)],
-  });
-}
+// 쪽수 표(`dayTable`)는 걷었다 — 발문이 «차례로 $34, 32, …$ 쪽» 으로 값을 다 적어 표가 같은 자료를 한 번 더 보였다(2026-10-20 교차 검수).
 
 /** 문형 05 — 자료의 합. 연산은 합이 이미 주어진다. */
 function avg261Sum(unit: UnitSeed, rng: Rng): ElemProblem {
@@ -11027,7 +11022,6 @@ function avg261Sum(unit: UnitSeed, rng: Rng): ElemProblem {
     `다섯 날 읽은 쪽수가 차례로 ${nums(values)} 쪽입니다. 쪽수의 합은 얼마입니까?`,
     n(sum),
     `모두 더하면 ${n(sum)} 쪽입니다.`,
-    dayTable(values),
   );
 }
 
@@ -11056,7 +11050,6 @@ function avg261Below(unit: UnitSeed, rng: Rng): ElemProblem {
     `${n(size)}일 동안 읽은 쪽수가 차례로 ${nums(values)} 쪽입니다. 하루 평균보다 적게 읽은 날은 며칠입니까?`,
     n(unders.length),
     `평균은 ${expr(`${sum}\\div${size}=${avg}`)} 쪽입니다. ${n(avg)} 쪽보다 적게 읽은 날은 ${n(unders.length)}일입니다.`,
-    dayTable(values),
   );
 }
 
@@ -11070,7 +11063,6 @@ function avg261MaxGap(unit: UnitSeed, rng: Rng): ElemProblem {
     `다섯 날 읽은 쪽수가 차례로 ${nums(values)} 쪽입니다. 가장 많이 읽은 날과 평균의 차는 몇 쪽입니까?`,
     n(maxv - avg),
     `평균은 ${n(avg)} 쪽이고 가장 많은 날은 ${n(maxv)} 쪽이므로 차는 ${expr(`${maxv}-${avg}=${maxv - avg}`)} 쪽입니다.`,
-    dayTable(values),
   );
 }
 
@@ -11084,7 +11076,6 @@ function avg261Min(unit: UnitSeed, rng: Rng): ElemProblem {
     `다섯 날 읽은 쪽수가 차례로 ${nums(values)} 쪽입니다. 가장 적게 읽은 날은 몇 쪽입니까?`,
     n(minv),
     `가장 작은 수는 ${n(minv)}입니다.`,
-    dayTable(values),
   );
 }
 
@@ -11098,7 +11089,6 @@ function avg261EqualDays(unit: UnitSeed, rng: Rng): ElemProblem {
     `다섯 날 읽은 쪽수가 차례로 ${nums(values)} 쪽입니다. 하루 평균과 같은 쪽수를 읽은 날은 며칠입니까?`,
     n(eqs),
     `평균은 ${n(avg)} 쪽이므로 그와 같은 날은 ${n(eqs)}일입니다.`,
-    dayTable(values),
   );
 }
 

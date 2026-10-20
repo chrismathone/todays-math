@@ -3497,9 +3497,11 @@ function div133Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     ["상자", "담았더니", "담으면", "담았더니"],
   ] as const);
   const w이가 = josa(w, "이", "가");
+  // «한 봉지의 수» 는 봉지 개수로도 읽힌다(2026-10-20 교차 검수) — «한 봉지에 든 사탕 수».
+  const 한개수 = `한 ${w}에 든 ${thing} 수`;
   const cmp = f.more
-    ? `${w} 수가 한 ${w}의 수보다 많았습니다`
-    : `${w} 수가 한 ${w}의 수보다 적었습니다`;
+    ? `${w} 수가 ${한개수}보다 많았습니다`
+    : `${w} 수가 ${한개수}보다 적었습니다`;
   const 묶기 = vAgain === "묶었더니";
   // 「한 묶음에 $6$개씩 묶으면」은 겹말이다 — 묶기에서는 그릇 말을 안 붙인다.
   const 그릇 = 묶기 ? "" : `한 ${w}에 `;
@@ -3507,7 +3509,7 @@ function div133Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     ? `다시 ${묶기 ? "묶은" : "담은"} ${w}${josa(w, "은", "는")} 몇 ${w}인지 쓰시오.`
     : `다시 ${묶기 ? "묶을" : "담을"} 때 한 ${w}에 넣은 수는 몇 개인지 쓰시오.`;
   const ans = f.askGroups ? f.q : f.k;
-  const 다시 = `같은 ${thing}${을를} 처음과 다른 수씩 남김없이 다시 ${vAgain} 한 ${w}의 수와 ${w} 수가 모두 한 자리 수였고, ${cmp}.`;
+  const 다시 = `같은 ${thing}${을를} 처음과 다른 수씩 남김없이 다시 ${vAgain} ${한개수}와 ${w} 수가 모두 한 자리 수였고, ${cmp}.`;
   const stem = pick(rng, [
     `${thing}${이가} 있습니다. 이 ${thing}${을를} ${그릇}${n(f.b0)}개씩 ${vPast} 남는 것 없이 ${n(f.q0)}${w}${w이가} 되었습니다. ${다시} ${ask}`,
     `${thing} 몇 개를 ${그릇}${n(f.b0)}개씩 ${vPast} 꼭 ${n(f.q0)}${w}${w이가} 되었습니다. ${다시} ${ask}`,
@@ -3515,8 +3517,8 @@ function div133Mid(unit: UnitSeed, rng: Rng): ElemProblem {
     `${thing} 몇 개가 있습니다. ${그릇}${n(f.b0)}개씩 ${vIf} 남는 것 없이 ${n(f.q0)}${w}입니다. ${다시} ${ask}`,
   ]);
   const why = f.more
-    ? `${w} 수가 한 ${w}의 수보다 많은 것`
-    : `${w} 수가 한 ${w}의 수보다 적은 것`;
+    ? `${w} 수가 ${한개수}보다 많은 것`
+    : `${w} 수가 ${한개수}보다 적은 것`;
   // 🔴 마지막 나눗셈은 **답이 몫이 되는 쪽**으로 적는다 — 그러지 않으면 해설이
   //    답과 다른 수로 끝나 「정답은 마지막 걸음의 값」이라는 이 대단원의 읽는 법이 깨진다.
   const lastDiv = f.askGroups
@@ -6410,18 +6412,22 @@ function mul21High(unit: UnitSeed, rng: Rng): ElemProblem {
       ? expr(`${k}\\times${f.a}=${f.a * k}`)
       : expr(`${f.a}\\times${k}=${f.a * k}`);
   const { decl, adj } = range21(f);
+  // 곱의 일의 자리가 $0$ 이고 «…보다 작습니다» 면 $0$ 도 맞는다(2026-10-20 교차 검수 — 답이 둘) — 그때는 $0$ 을 뺀다고 적는다.
+  // 초3 은 수 뒤에 조사를 아예 안 붙인다(`elemTiersG3` 이 문다) — 그래서 «단» 절로 적는다.
+  const one = "한 자리 수";
+  const unlessZero = f.r === 0 ? " (단, $0$ 제외)" : "";
   const stem = pick(rng, [
-    `어떤 한 자리 수와 ${n(f.a)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 이고, 그 곱이 ${decl}. 어떤 수를 구하시오.`,
-    `${n(f.a)} 에 어떤 한 자리 수를 곱했더니 곱의 일의 자리 숫자가 ${n(f.r)} 이고 곱이 ${decl}. 어떤 수를 구하시오.`,
-    `${n(f.a)} 에 어떤 한 자리 수를 곱한 값의 일의 자리 숫자가 ${n(f.r)} 이고, 그 값이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
+    `어떤 ${one}와 ${n(f.a)} 의 곱은 일의 자리 숫자가 ${n(f.r)} 이고, 그 곱이 ${decl}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 ${one}를 곱했더니 곱의 일의 자리 숫자가 ${n(f.r)} 이고 곱이 ${decl}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 ${one}를 곱한 값의 일의 자리 숫자가 ${n(f.r)} 이고, 그 값이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
     // ⚠️ 마지막을 「그 수를 구하시오」로 두면 **자리수 조건 판정기가 문다** — 곱의
     //    일의 자리가 $0$ 인 씨앗에서는 발문에 한 자리 수가 한 번도 안 서고,
     //    「어떤 수」가 없으면 그것을 갈음할 미지수도 없다(실측 7/40). 「어떤 수」로 적는다.
-    `${n(f.a)} 에 곱해서 ${adj} 곱이 나오게 하는 한 자리 수가 있습니다. 그 곱의 일의 자리 숫자가 ${n(f.r)} 일 때 어떤 수인지 구하시오.`,
-    `어떤 한 자리 수와 ${n(f.a)} 의 곱에서 일의 자리 숫자가 ${n(f.r)} 입니다. 그 곱이 ${decl}. 어떤 수를 구하시오.`,
-    `${n(f.a)} 에 어떤 한 자리 수를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 그 곱이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
+    `${n(f.a)} 에 곱해서 ${adj} 곱이 나오게 하는 ${one}가 있습니다. 그 곱의 일의 자리 숫자가 ${n(f.r)} 일 때 어떤 수인지 구하시오.`,
+    `어떤 ${one}와 ${n(f.a)} 의 곱에서 일의 자리 숫자가 ${n(f.r)} 입니다. 그 곱이 ${decl}. 어떤 수를 구하시오.`,
+    `${n(f.a)} 에 어떤 ${one}를 곱했습니다. 곱의 일의 자리 숫자가 ${n(f.r)} 이고 그 곱이 ${decl}. 어떤 수는 얼마인지 쓰시오.`,
   ]);
-  return makeDeep(unit, stem, n(ans), [
+  return makeDeep(unit, `${stem}${unlessZero}`, n(ans), [
     `${n(f.a)} 의 일의 자리 숫자가 ${n(f.a % 10)} 이므로, 곱의 일의 자리 숫자가 ${n(f.r)} 인 경우를 곱셈구구에서 찾으면 곱하는 수는 ${list21(f.ks)} 입니다.`,
     `${f.ks.map((k) => step(k)).join(", ")} 이므로 ${adj} 것은 ${step(ans)} 뿐입니다.`,
     `따라서 어떤 수는 ${n(ans)} 입니다.`,
@@ -9345,10 +9351,11 @@ function circ231NameVar(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 05 — 정의: 중심과 원 위 한 점. */
 function circ231DefRadius(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  // «한 원에 이런 선분을 $n$개 그을 수 있습니다» 는 틀린 말이다 — 셀 수 없이 많이 그을 수 있다(2026-10-20 교차 검수).
+  const [p] = defPoints(rng);
   return make(
     unit,
-    `원의 중심과 원 위의 한 점을 이은 선분을 무엇이라고 합니까? 한 원에 이런 선분을 ${n(many)}개 그을 수 있습니다.`,
+    `원의 중심 ㅇ과 원 위의 한 점 ${p === "ㅇ" ? "ㅅ" : p}을 이은 선분을 무엇이라고 합니까?`,
     "반지름",
     `원의 중심과 원 위의 한 점을 이은 선분이 반지름입니다.`,
   );
@@ -9356,10 +9363,11 @@ function circ231DefRadius(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 06 — 정의: 원 위 두 점 + 중심을 지남. */
 function circ231DefDiameter(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  // 문형 05 와 같은 까닭으로 개수 문장을 빼고 점 이름으로 가른다.
+  const [p, q] = defPoints(rng).map((x) => (x === "ㅇ" ? "ㅈ" : x)) as [string, string];
   return make(
     unit,
-    `원 위의 두 점을 잇고 원의 중심을 지나는 선분을 무엇이라고 합니까? 한 원에 이런 선분을 ${n(many)}개 그을 수 있습니다.`,
+    `원 위의 두 점 ${p}, ${q}을 잇고 원의 중심 ㅇ을 지나는 선분을 무엇이라고 합니까?`,
     "지름",
     `원 위의 두 점을 잇고 원의 중심을 지나는 선분이 지름입니다.`,
   );
@@ -9774,12 +9782,23 @@ function line121Dots(rng: Rng): { layout: Pt[]; k: number; letters: string[] } {
   return { layout, k, letters: LINE_LETTERS.slice(0, k).map(String) };
 }
 
+/**
+ * 정의 문형의 점 이름 — «점 ㄱ과 점 ㄴ». 수가 없는 정의 문형은 씨앗마다 발문이 달라야 하는데,
+ * 예전에는 «그런 선을 $n$개 그을 수 있습니다» 같은 **틀린 문장**으로 갈랐다(2026-10-20 교차 검수).
+ * 자모 이름(기역 · 니은 · …)은 모두 받침으로 끝나 «과 · 을» 이 맞다.
+ */
+const DEF_POINT_NAMES = ["ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ"] as const;
+function defPoints(rng: Rng): [string, string] {
+  const i = intBetween(rng, 0, DEF_POINT_NAMES.length - 2);
+  return [DEF_POINT_NAMES[i]!, DEF_POINT_NAMES[i + 1]!];
+}
+
 /** 문형 05 — 정의: 두 점을 곧게 이은 선. */
 function line121DefSeg(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  const [p, q] = defPoints(rng);
   return make(
     unit,
-    `두 점을 곧게 이은 선을 무엇이라고 합니까? 그런 선을 ${n(many)}개 그을 수 있습니다.`,
+    `점 ${p}과 점 ${q}을 곧게 이은 선을 무엇이라고 합니까?`,
     "선분",
     `두 점을 곧게 이은 선이 선분입니다.`,
   );
@@ -9787,10 +9806,10 @@ function line121DefSeg(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 06 — 정의: 한쪽으로만 끝없이. */
 function line121DefRay(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  const [p, q] = defPoints(rng);
   return make(
     unit,
-    `한 점에서 출발하여 한쪽으로만 끝없이 늘인 곧은 선을 무엇이라고 합니까? 출발점을 ${n(many)}개 고를 수 있습니다.`,
+    `점 ${p}에서 출발하여 점 ${q}을 지나 한쪽으로만 끝없이 늘인 곧은 선을 무엇이라고 합니까?`,
     "반직선",
     `한쪽으로만 끝없이 늘인 곧은 선이 반직선입니다.`,
   );
@@ -9798,10 +9817,10 @@ function line121DefRay(unit: UnitSeed, rng: Rng): ElemProblem {
 
 /** 문형 07 — 정의: 양쪽으로 끝없이. */
 function line121DefLine(unit: UnitSeed, rng: Rng): ElemProblem {
-  const many = intBetween(rng, 2, 6);
+  const [p, q] = defPoints(rng);
   return make(
     unit,
-    `양쪽으로 끝없이 늘인 곧은 선을 무엇이라고 합니까? 그런 선을 ${n(many)}개 그을 수 있습니다.`,
+    `점 ${p}과 점 ${q}을 지나도록 양쪽으로 끝없이 늘인 곧은 선을 무엇이라고 합니까?`,
     "직선",
     `양쪽으로 끝없이 늘인 곧은 선이 직선입니다.`,
   );
