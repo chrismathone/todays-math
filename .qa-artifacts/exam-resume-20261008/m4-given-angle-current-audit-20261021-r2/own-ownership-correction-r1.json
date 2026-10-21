@@ -1,0 +1,15 @@
+{
+  "kind": "factual-correction-only",
+  "originalReportSHA256": "df73102dbabef81b9422f6e1a54f181d1b1157812b990182f1057853aabedcfc",
+  "originalResultsSHA256": "0d6efbbbc6eef443b080c9f788ff2a2499f9e9505ae2b791bdb955b24ec2657d",
+  "independentRecount": {
+    "counterexampleRows": 16,
+    "negativeMarginRowsByVertex": {
+      "B": 6,
+      "D": 10
+    },
+    "all54CentersNearestA": true
+  },
+  "correction": "The 16 full halo-box ownership boundary crossings comprise B:6 and D:10, not B alone. This corrects the prior terminal summary; original report/results remain byte-identical.",
+  "unchangedConclusion": "Conservative semantic ownership HOLD for 16 cases; no proven wrong-angle assignment, geometric collision, or clipping. No expanded audit or production change."
+}
