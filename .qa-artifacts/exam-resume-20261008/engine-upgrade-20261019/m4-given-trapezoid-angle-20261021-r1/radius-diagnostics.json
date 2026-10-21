@@ -1,0 +1,3865 @@
+{
+  "QAOnly": true,
+  "productionChanged": false,
+  "results": [
+    {
+      "p": 11,
+      "c": 4,
+      "radius": 10,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            42.53,
+            129.5
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            177.47,
+            129.5
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "11 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            42.53,
+            129.5
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            177.47,
+            129.5
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "11 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "11 cm": [
+            2.444,
+            0.666,
+            0.011
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": false,
+      "error": "도형을 그리지 못했습니다: dimension 'd_AD' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 12,
+      "c": 4,
+      "radius": 10,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            41,
+            132.16
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            179,
+            132.16
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            41,
+            132.16
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            179,
+            132.16
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "12 cm": [
+            2.444,
+            0.666,
+            0.011
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": false,
+      "error": "도형을 그리지 못했습니다: dimension 'd_AD' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 4,
+      "c": 4,
+      "radius": 10,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.32
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.32
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.32
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.32
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r10-p4-c4.svg"
+    },
+    {
+      "p": 4,
+      "c": 14,
+      "radius": 10,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            89.56,
+            48.06
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            130.44,
+            48.06
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            89.56,
+            48.06
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            130.44,
+            48.06
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "14 cm": [
+            2.444,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": false,
+      "error": "도형을 그리지 못했습니다: dimension 'd_AD' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 12,
+      "c": 14,
+      "radius": 10,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            67.54,
+            86.2
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            152.46,
+            86.2
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            67.54,
+            86.2
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            152.46,
+            86.2
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "12 cm": [
+            2.444,
+            0.666,
+            0.011
+          ],
+          "14 cm": [
+            2.444,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r10-p12-c14.svg"
+    },
+    {
+      "p": 8,
+      "c": 8,
+      "radius": 10,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.33
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.33
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.33
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.33
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 10,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "8 cm": [
+            1.944,
+            0.666,
+            0.022
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r10-p8-c8.svg"
+    },
+    {
+      "p": 11,
+      "c": 4,
+      "radius": 14,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            42.53,
+            129.5
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            177.47,
+            129.5
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "11 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            42.53,
+            129.5
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            177.47,
+            129.5
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "11 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "11 cm": [
+            2.444,
+            0.666,
+            0.011
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": false,
+      "error": "도형을 그리지 못했습니다: dimension 'd_AD' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 12,
+      "c": 4,
+      "radius": 14,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            41,
+            132.16
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            179,
+            132.16
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            41,
+            132.16
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            179,
+            132.16
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "12 cm": [
+            2.444,
+            0.666,
+            0.011
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": false,
+      "error": "도형을 그리지 못했습니다: dimension 'd_AD' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 4,
+      "c": 4,
+      "radius": 14,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.32
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.32
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.32
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.32
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r14-p4-c4.svg"
+    },
+    {
+      "p": 4,
+      "c": 14,
+      "radius": 14,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            89.56,
+            48.06
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            130.44,
+            48.06
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            89.56,
+            48.06
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            130.44,
+            48.06
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "14 cm": [
+            2.444,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r14-p4-c14.svg"
+    },
+    {
+      "p": 12,
+      "c": 14,
+      "radius": 14,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            67.54,
+            86.2
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            152.46,
+            86.2
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            67.54,
+            86.2
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            152.46,
+            86.2
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "12 cm": [
+            2.444,
+            0.666,
+            0.011
+          ],
+          "14 cm": [
+            2.444,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r14-p12-c14.svg"
+    },
+    {
+      "p": 8,
+      "c": 8,
+      "radius": 14,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.33
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.33
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.33
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.33
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 14,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "8 cm": [
+            1.944,
+            0.666,
+            0.022
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r14-p8-c8.svg"
+    },
+    {
+      "p": 11,
+      "c": 4,
+      "radius": 18,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            42.53,
+            129.5
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            177.47,
+            129.5
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "11 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            42.53,
+            129.5
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            177.47,
+            129.5
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "11 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "11 cm": [
+            2.444,
+            0.666,
+            0.011
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": false,
+      "error": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 12,
+      "c": 4,
+      "radius": 18,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            41,
+            132.16
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            179,
+            132.16
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            41,
+            132.16
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            179,
+            132.16
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "12 cm": [
+            2.444,
+            0.666,
+            0.011
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": false,
+      "error": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 4,
+      "c": 4,
+      "radius": 18,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.32
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.32
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.32
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.32
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r18-p4-c4.svg"
+    },
+    {
+      "p": 4,
+      "c": 14,
+      "radius": 18,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            89.56,
+            48.06
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            130.44,
+            48.06
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            89.56,
+            48.06
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            130.44,
+            48.06
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "4 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "4 cm": [
+            1.944,
+            0.677,
+            0.011
+          ],
+          "14 cm": [
+            2.444,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r18-p4-c14.svg"
+    },
+    {
+      "p": 12,
+      "c": 14,
+      "radius": 18,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            67.54,
+            86.2
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            152.46,
+            86.2
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            67.54,
+            86.2
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            152.46,
+            86.2
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "12 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "14 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "12 cm": [
+            2.444,
+            0.666,
+            0.011
+          ],
+          "14 cm": [
+            2.444,
+            0.677,
+            0.011
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r18-p12-c14.svg"
+    },
+    {
+      "p": 8,
+      "c": 8,
+      "radius": 18,
+      "spec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.33
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.33
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        }
+      },
+      "measuredSpec": {
+        "version": 2,
+        "points": {
+          "A": [
+            64,
+            92.33
+          ],
+          "B": [
+            18,
+            172
+          ],
+          "C": [
+            202,
+            172
+          ],
+          "D": [
+            156,
+            92.33
+          ]
+        },
+        "segments": {
+          "AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "parallel": 1
+          },
+          "AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "ticks": 1
+          },
+          "DC": {
+            "points": [
+              "D",
+              "C"
+            ],
+            "ticks": 1
+          },
+          "BC": {
+            "points": [
+              "B",
+              "C"
+            ],
+            "parallel": 1
+          }
+        },
+        "angles": {
+          "angA": {
+            "vertex": "A",
+            "points": [
+              "B",
+              "D"
+            ],
+            "radius": 18,
+            "label": "120°"
+          }
+        },
+        "labels": {
+          "A": "A",
+          "B": "B",
+          "C": "C",
+          "D": "D"
+        },
+        "dimensions": {
+          "d_AD": {
+            "points": [
+              "A",
+              "D"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          },
+          "d_AB": {
+            "points": [
+              "A",
+              "B"
+            ],
+            "label": "8 cm",
+            "side": "auto"
+          }
+        },
+        "label_metrics": {
+          "120°": [
+            1.9365999999999999,
+            0.707,
+            0.022
+          ],
+          "8 cm": [
+            1.944,
+            0.666,
+            0.022
+          ],
+          "A": [
+            0.75,
+            0.716,
+            0
+          ],
+          "B": [
+            0.708,
+            0.683,
+            0
+          ],
+          "C": [
+            0.722,
+            0.705,
+            0.021
+          ],
+          "D": [
+            0.764,
+            0.683,
+            0
+          ]
+        }
+      },
+      "ok": true,
+      "svg": "candidate-r18-p8-c8.svg"
+    }
+  ],
+  "newQuestionCredits": 0
+}

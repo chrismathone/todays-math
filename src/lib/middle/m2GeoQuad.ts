@@ -295,6 +295,7 @@ function figIsoTrap(
   opts: {
     foot?: boolean;
     diagBD?: boolean;
+    angA?: string;
     angB?: string;
     angADB?: string;
     labels?: Record<string, string>;
@@ -326,6 +327,12 @@ function figIsoTrap(
     segments.BC = { points: ["B", "C"], parallel: 1 };
   }
   if (opts.diagBD) segments.BD = ["B", "D"];
+  if (opts.angA !== undefined) {
+    // Type08's A=120°: keep the mark and text inside, away from given AD/AB dimensions.
+    // This bounded layout is checked on all54 original (top, leg) pairs with real metrics.
+    angles.angA = { vertex: "A", points: ["B", "D"], radius: 14,
+      label_distance: 30, label: opts.angA };
+  }
   if (opts.angB !== undefined) {
     angles.angB = { vertex: "B", points: ["A", "C"], label: opts.angB };
   }
@@ -1222,7 +1229,7 @@ export const M2_GEO_QUAD: TypeEntry[] = [
         solution: `$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle B=180^\\circ-120^\\circ=60^\\circ$이다.\n꼭짓점 $A$, $D$에서 $\\overline{BC}$에 내린 수선의 발을 각각 $E$, $H$라 하면 $\\overline{BE}=\\overline{CH}=${c}\\times\\dfrac{1}{2}=${c / 2}\\,(\\mathrm{cm})$이고 $\\overline{EH}=\\overline{AD}=${p}\\,\\mathrm{cm}$이다.\n따라서 $\\overline{BC}=${c / 2}+${p}+${c / 2}=${x}\\,(\\mathrm{cm})$이다.`,
         facts: { mode, p, c, x },
         figureSpec: figIsoTrap(p * 9, x * 9, r2(c * 9 * Math.sin(60 * DEG)), {
-          angB: "60°",
+          angA: "120°",
           labels: { top: `${p} cm`, left: `${c} cm` },
         }),
       };
