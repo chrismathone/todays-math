@@ -1,0 +1,94 @@
+{
+  "classification": "stdlib arithmetic, not TS/DOM runtime",
+  "witnesses": [
+    {
+      "id": "rotated-square45",
+      "correct": [
+        -7.071067811865475,
+        0.0,
+        7.071067811865475,
+        14.14213562373095
+      ],
+      "externalTwoCornerFormula": [
+        0.0,
+        0.0,
+        0.0,
+        14.14213562373095
+      ],
+      "discrepancy": true
+    },
+    {
+      "id": "rotated-unit-circle45",
+      "correct": [
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "externalTwoCornerFormula": [
+        0.0,
+        -1.414213562373095,
+        0.0,
+        1.414213562373095
+      ],
+      "discrepancy": true
+    },
+    {
+      "id": "rotated-ellipse45",
+      "correct": [
+        -1.5811388300841898,
+        -1.5811388300841898,
+        1.5811388300841898,
+        1.5811388300841898
+      ],
+      "externalTwoCornerFormula": [
+        -0.7071067811865475,
+        -2.1213203435596424,
+        0.7071067811865475,
+        2.1213203435596424
+      ],
+      "discrepancy": true
+    },
+    {
+      "id": "relative-HV",
+      "path": "M100 100 h10 v10",
+      "correct": [
+        100,
+        100,
+        110,
+        110
+      ],
+      "rawNumberPairs": [
+        10,
+        10,
+        100,
+        100
+      ],
+      "discrepancy": true
+    },
+    {
+      "id": "absolute-HV",
+      "path": "M100 100 H110 V110",
+      "correct": [
+        100,
+        100,
+        110,
+        110
+      ],
+      "rawNumberPairs": [
+        100,
+        100,
+        110,
+        110
+      ],
+      "note": "coincidental pairing works here; grammar still not established"
+    },
+    {
+      "id": "arc-parameters",
+      "path": "M0 0 A10 20 45 0 1 30 40",
+      "note": "radii,rotation,flags are not xy pairs; return unknown unless actual SVG arc grammar/transform handled"
+    }
+  ],
+  "executableArithmeticChecks": 3,
+  "passed": 3
+}

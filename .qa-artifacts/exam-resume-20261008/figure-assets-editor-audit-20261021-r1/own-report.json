@@ -1,0 +1,71 @@
+{
+  "scope": "src05 sevenfile editor merge contract static investigation only",
+  "status": "STATIC_TECHNICAL_HOLDS_RUNTIME_PENDING",
+  "counts": {
+    "patchSrcFiles": 7,
+    "ownSyntheticSVGFixtures": 12,
+    "stdlibGeometryArithmeticChecks": 3,
+    "arithmeticPassed": 3,
+    "TSNodeDOMBrowserRuntimeExecuted": 0,
+    "questionGradeRightsOperationalApproval": 0
+  },
+  "findings": [
+    {
+      "id": "AE-GROUP-BOUNDS",
+      "classification": "source-inferred integration gap",
+      "evidence": "figureBake localPoints lacks g; runBake emptyextents return; selected group-only rotation/mirror likely no-op, mixed centre excludes asset; needs direct test"
+    },
+    {
+      "id": "AE-ASSETBOX",
+      "classification": "independent arithmetic/grammar witness",
+      "evidence": "two-corner45degree square/circle/ellipse and raw H/V numeric-pair bbox wrong; separate from existing browser four-corner selection bounds"
+    },
+    {
+      "id": "AE-METADATA",
+      "classification": "source-inferred trust boundary",
+      "evidence": "unknown/leaf/nested/forged marker and stale child IDs need shared group validator and ordinary geometry preservation"
+    },
+    {
+      "id": "AE-STRIP",
+      "classification": "source-inferred semantic loss",
+      "evidence": "known slug around mathematical AB line strips AB from model text; exact asset body/provenance binding needed before opacity"
+    },
+    {
+      "id": "AE-UNITS",
+      "classification": "parity/semantic limits pending runtime",
+      "evidence": "mL may be handled by prior wordroman step; uppercaseL mathmode and special spaces need actualTS/Python comparison; spaced variable ambiguity remains"
+    }
+  ],
+  "sourceBinding": {
+    "before": "own-before.json",
+    "after": "own-after.json",
+    "changedWhileParentIntegrates": [
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureEditElements.ts",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureObjectNames.ts",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSvgEditing.ts",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\mathjaxLabel.ts",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\dev-ai\\figure-prompt.ts",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\assetCatalog.ts",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxLabel.ts",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureBake.ts"
+    ],
+    "supplement": "own-supplement-read-hashes.json; later explicit source read, not first-import receipt"
+  },
+  "harnessAndScopeIncidents": [
+    "generic geometry/selection filename guesses missing, actual files subsequently located",
+    "one misparsed quoted rg searched helperpublic SVG scope; original data not reused or committed; subsequent explicit-path Python reads only"
+  ],
+  "preserved": [
+    "Root/SourceD no writes",
+    "existing dirty and prior evidence",
+    "latest exact engine import instruction; no production edits proposed here"
+  ],
+  "limits": [
+    "No runtime pass claim for any asset manipulation/ID/undo/size lock behavior",
+    "No source provenance/licence or geometric/math approval from dataasset marker",
+    "No model/API/DB/Node/browser/newworker/worktree",
+    "Root source is integrating concurrently; claims bind read snapshot only"
+  ],
+  "reviewSHA256": "65f5152a4f1d2e604139e4aeeb7c97e2464524b46f5933db395cdb419c992026",
+  "pendingPlanSHA256": "90d5e21737bc5ac6d64c672b36e2504796bbb68434ff368df0ac5531b3bb21e4"
+}
