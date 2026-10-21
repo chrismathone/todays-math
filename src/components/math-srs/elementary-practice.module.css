@@ -1559,7 +1559,8 @@
   }
   .fixedPractice .fixedQuestion {
     display: grid;
-    flex: 1 1 0;
+    /* The managed student shell has auto height; keep the paper's content basis. */
+    flex: 1 1 auto;
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr) auto;
     gap: 8px;
@@ -1587,7 +1588,7 @@
     line-height: 1.35;
   }
   .fixedPractice .fixedQuestion .problemScroll {
-    flex: 1 1 0;
+    flex: 1 1 auto;
     min-height: 0;
     max-height: none;
     overflow: auto;
