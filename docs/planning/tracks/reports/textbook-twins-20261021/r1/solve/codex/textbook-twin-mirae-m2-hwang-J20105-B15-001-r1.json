@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B15-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d69-33dc-7653-b32b-cdbd38554292",
+ "startedAt": "2026-10-21T16:42:18+0900",
+ "elapsedSec": 18.5,
+ "studentSha256": {
+  "student.json": "b56d666acec0c0ba2ef2038d5114a4fad8755650b394c1af811d4947c0555b61"
+ },
+ "promptSha256": "696a32b472a8b8009bb1e2e30208f528b584d9e3281abebf42d222d4dc4b3c2f",
+ "freezeCommit": "979b5cb658dc644b63bb3ece524cd11abbcb9c57",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$2^{34}\\\\,\\\\mathrm{B}$\",\"work\":\"1 GiB = 2^{10} × 2^{20} B = 2^{30} B이다.\\n따라서 16 GiB = 2^4 × 2^{30} B = 2^{34} B이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$2^{34}\\,\\mathrm{B}$",
+  "work": "1 GiB = 2^{10} × 2^{20} B = 2^{30} B이다.\n따라서 16 GiB = 2^4 × 2^{30} B = 2^{34} B이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "02645720cde48d6254474afe8cd7ffb6cf83bc9b8a10ad1dd2037743347015f0"
+}

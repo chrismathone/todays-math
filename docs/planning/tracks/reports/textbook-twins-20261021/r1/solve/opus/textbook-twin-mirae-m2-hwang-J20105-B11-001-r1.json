@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B11-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "07bd8387-0427-4ec3-a2dc-e86bd552db4d",
+ "startedAt": "2026-10-21T16:23:53+0900",
+ "elapsedSec": 4.3,
+ "studentSha256": {
+  "student.json": "c333119003b273684dee4f67afbb9a97283cf902d7c52b431f8360225994766e"
+ },
+ "promptSha256": "384d03d9ac8c0e9db6acd387827027d95ceb0d6631aaf032cd727de06af53326",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "15=3·5, 24=2^3·3, 50=2·5^2. Total 2^4·3^2·5^3.\n\n```json\n{\"answer\": \"a=4, b=2, c=3\", \"work\": \"15=3×5, 24=2^3×3, 50=2×5^2 이므로 15×24×50=2^{3+1}×3^{1+1}×5^{1+2}=2^4×3^2×5^3\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "a=4, b=2, c=3",
+  "work": "15=3×5, 24=2^3×3, 50=2×5^2 이므로 15×24×50=2^{3+1}×3^{1+1}×5^{1+2}=2^4×3^2×5^3",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fb05e3acb71fd0fd1bf2c8f9d17bc369057ee314ff567cc0709ba0fa96ce2ab3"
+}

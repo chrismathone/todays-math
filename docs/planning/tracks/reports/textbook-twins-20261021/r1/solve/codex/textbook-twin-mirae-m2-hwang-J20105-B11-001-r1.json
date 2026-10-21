@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B11-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d68-6dd9-7513-8150-ce117464e2ed",
+ "startedAt": "2026-10-21T16:41:27+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "student.json": "c333119003b273684dee4f67afbb9a97283cf902d7c52b431f8360225994766e"
+ },
+ "promptSha256": "384d03d9ac8c0e9db6acd387827027d95ceb0d6631aaf032cd727de06af53326",
+ "freezeCommit": "979b5cb658dc644b63bb3ece524cd11abbcb9c57",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$a=4$, $b=2$, $c=3$\",\"work\":\"각 수를 소인수분해하면 $15=3\\\\times5$, $24=2^3\\\\times3$, $50=2\\\\times5^2$이다.\\n따라서 $15\\\\times24\\\\times50=2^{3+1}\\\\times3^{1+1}\\\\times5^{1+2}=2^4\\\\times3^2\\\\times5^3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$a=4$, $b=2$, $c=3$",
+  "work": "각 수를 소인수분해하면 $15=3\\times5$, $24=2^3\\times3$, $50=2\\times5^2$이다.\n따라서 $15\\times24\\times50=2^{3+1}\\times3^{1+1}\\times5^{1+2}=2^4\\times3^2\\times5^3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "85020c6cc38fe9cf1775ac6a2726a4d73eeb786f7ca5c3679e27ad2d69b27a15"
+}
