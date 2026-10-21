@@ -1,0 +1,88 @@
+{
+  "status": "BOUNDED_CURRENT_DIRECT_FUNCTION_DOM_PASS",
+  "scope": "current frozen Root geometry identity/registry/prepare/bake/describe direct-function and native cohorts only",
+  "counts": {
+    "actualUniqueNodeControls": 88,
+    "passed": 88,
+    "failed": 0,
+    "cohorts": {
+      "registered39": 39,
+      "native23": 23,
+      "additionalDirectDOM": 26
+    },
+    "ownPythonNativeRenderJsonCalls": 23,
+    "ownPythonUnitParseCalls": 13,
+    "nativeAndSourceBindingsIncludedNotAddedAsNewNodeControls": true,
+    "parent175AndBrowserResultsCounted": 0,
+    "fullUIBlindGradeRightsOperationalCredits": 0,
+    "NodeProcesses": 1,
+    "browserProcesses": 0,
+    "modelDBAPICalls": 0
+  },
+  "execution": {
+    "memoryBytes": 2547142656,
+    "floorBytes": 1610612736,
+    "V8HeapLimitMiB": 216,
+    "maxOldMiB": 192,
+    "maxSemiMiB": 8,
+    "NodeEnded": true,
+    "SourceDExecutionOrWrites": 0,
+    "RootWrites": 0,
+    "actualNodeModulePaths": {
+      "geometry": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureAssetGeometry.ts",
+      "bake": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureBake.ts",
+      "describe": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureEditElements.ts"
+    },
+    "actualPythonModulePaths": "own-execution-r1/own-python-module-paths.json",
+    "aliasFirstImportSHA256": "own-execution-r1/own-runtime-results.json",
+    "unboundImportPolicy": "hold before evaluating unexpected Rootsrc source"
+  },
+  "bindings": {
+    "newFreezeBefore": "own-execution-r1/own-before.json",
+    "immediateNodeAfter": "own-execution-r1/own-runtime-results.json after",
+    "finalAfter": "own-execution-r1/own-final-after.json",
+    "sourceHashFiles": 144,
+    "firstImportedRootFiles": 30,
+    "finalChanged": [],
+    "nativeChanged": [],
+    "nodeChanged": [],
+    "inputSHA256": "a1dfb8ce3503226b7ea2a43528a6b6a6232053c4b775560c9b9a9ca5e833c837",
+    "nativeInputOutputSHA256": "4241998a198d15abf23633f3c25933b9607e19778529be73767db94d10550e5f",
+    "resultSHA256": "bae8a48b0b09555dc750166fee1d457d86feb994dffab4c19ba0e33aca1823f9",
+    "currentGeometrySourceSHA256": "c8b4fecb39fd9e3a0f706161b383c86bacfb9a27b7462931d39049a0c264d3a0",
+    "registryRawSHA256": "ebaa87fb68464fba6dcace09e77fc8f9f42fd0e8b4943fafc2868bac7ae63ba8"
+  },
+  "registry": {
+    "sourceDigestKind": "sha256-utf8-lf",
+    "LFSourceMatches": 39,
+    "rawVsLFDifferentCount": 39,
+    "identityNotProvenancePolicy": "stock-geometry-identity-only-not-provenance-or-rights-approval",
+    "implementationDeltaBeforeFirstRun": "explicitlatestuser LF-normalized digest contract replaced unexecuted preparation raw hash assumption; old preparation commit preserved; no failed expectation changed"
+  },
+  "observedPasses": [
+    "39 actual registered source bodies validate identity and literal viewBox fourcorner frame; names match manifests; sourceLF digests bind actualRoot SVG bytes",
+    "23 independently constructed native v2 picture specs rendered by actualRoot render_json then prepare/identity/onegroupID/nochildIDs/describe finitebox checks pass",
+    "unknown/prototype/leaf/addedmath/forged/wronggeometry/text/depth markers do not hide ordinary geometry; valid inner group may remain within demoted forged outer wrapper",
+    "nonfinite/unknown/zero/90degree-skew outer transform negatives return unknown frame as required",
+    "independent45degree parent transform fourcorner equation agrees; cw4/doublemirror/frame identity and singlecw ordinaryline/text invariance pass",
+    "move preserves shape and ordinary geometry; outer size lock blocks rotate/mirror while permits translation",
+    "stale child ID removed, outer ID stable through rotation; stripAssetBodies export absent, no rawSVG text stripping called"
+  ],
+  "limitations": [
+    "No fullReactEditor pointer/keyboard/focus/history undo-redo or delete-restore execution; parent browser results are not ours",
+    "jsdom does not validate native SVG layout/getBBox/getScreenCTM/readability or ink accuracy; viewBox containers are conservative",
+    "Two TS MathJax typesetting paths were NOT run: optional unit cohort remainsPENDING;13actualPython piece observations are recorded, not a crossruntime parity pass",
+    "Customuser role/group editing and style inheritance across all assets not fully exercised",
+    "No adversarialproxy/sandbox or generalSVG semantic proof",
+    "Names/body hashes/stock geometry do not establish source ownership/licence/rights or question/grade/release approvals"
+  ],
+  "harness": {
+    "runtimeFailures": [],
+    "runtimeReruns": 0,
+    "preparationPreservedAt": "f282a0e500690d81f56b715b04831b0e7a5db734",
+    "actualRunNamespace": "own-execution-r1",
+    "parentTestsNotCopied": true,
+    "sourceEdits": false
+  },
+  "next": "Scope complete; optional typesetting/fullUI remains separate; no further execution without scope."
+}

@@ -1,0 +1,1253 @@
+[
+  {
+    "id": "registered-tree",
+    "input": {
+      "slug": "tree",
+      "sourceSHA256": "effaa07a0e81229e02befc93576494c973d216453aa8633be76d7c68f408b1e9"
+    }
+  },
+  {
+    "id": "registered-water-tank",
+    "input": {
+      "slug": "water-tank",
+      "sourceSHA256": "65a9362802f17e348ab95ea9eb05f5846bc0502f5a9224e20241fd59ed18686a"
+    }
+  },
+  {
+    "id": "registered-cup-cylinder",
+    "input": {
+      "slug": "cup-cylinder",
+      "sourceSHA256": "0e757b18f93f46e7a3d79dbce9922ce44bb202621624f7d735b3b27f1df03d21"
+    }
+  },
+  {
+    "id": "registered-cup-cone",
+    "input": {
+      "slug": "cup-cone",
+      "sourceSHA256": "1b973d68e0b5b0b054c8e781b518401c5eac422d226af965b4149f12163d01d9"
+    }
+  },
+  {
+    "id": "registered-can",
+    "input": {
+      "slug": "can",
+      "sourceSHA256": "fe6e5fdb05dbe4f5e8b17a1de7e39ad7f2809db183285b03df2b839a1a0e5be0"
+    }
+  },
+  {
+    "id": "registered-cake-roll",
+    "input": {
+      "slug": "cake-roll",
+      "sourceSHA256": "c19061b96f1342f3bf12390783f227d61d5bafc2975cc87c12c41220e1ad9395"
+    }
+  },
+  {
+    "id": "registered-pizza",
+    "input": {
+      "slug": "pizza",
+      "sourceSHA256": "34cb8153b714b63a1b4d7f307bdd3ecfd965bb1851db0143f924fadfe946ebb8"
+    }
+  },
+  {
+    "id": "registered-ice-cream-cone",
+    "input": {
+      "slug": "ice-cream-cone",
+      "sourceSHA256": "7e14744a242404ae7e077a0067199dc70f033aa9d55235601b27cdbf65eef68c"
+    }
+  },
+  {
+    "id": "registered-baduk-black",
+    "input": {
+      "slug": "baduk-black",
+      "sourceSHA256": "1eaf181567108031b23cbd28a55d34145d0c41794be40271279e4f957d5e4825"
+    }
+  },
+  {
+    "id": "registered-baduk-white",
+    "input": {
+      "slug": "baduk-white",
+      "sourceSHA256": "a22347efb0ce723d584b26ea50c38d00aa4837e39d01a215de8fb20ca83166f0"
+    }
+  },
+  {
+    "id": "registered-matchstick",
+    "input": {
+      "slug": "matchstick",
+      "sourceSHA256": "0ac104838067e8cd2faeac208fb5415f84dfc077537e82cc80b43a5b0691ac63"
+    }
+  },
+  {
+    "id": "registered-picture-frame",
+    "input": {
+      "slug": "picture-frame",
+      "sourceSHA256": "3c36910444ee911ab3b6e7c1e0690fff9b1be781968ffad4c6ad427ac528745f"
+    }
+  },
+  {
+    "id": "registered-balance-scale",
+    "input": {
+      "slug": "balance-scale",
+      "sourceSHA256": "a40d3eb73e2bdb8751067944248f52476c2985d51951a6e158b05f5082470499"
+    }
+  },
+  {
+    "id": "registered-thermometer",
+    "input": {
+      "slug": "thermometer",
+      "sourceSHA256": "ad5a1982e18545f2b47d919e5a017751d46ed70093c586b434c083ebe060f604"
+    }
+  },
+  {
+    "id": "registered-dice",
+    "input": {
+      "slug": "dice",
+      "sourceSHA256": "37ab4eea560a96c562769b29f3c95ec4219d6020681ec2e7949c5ee61bb39e6e"
+    }
+  },
+  {
+    "id": "registered-train-side",
+    "input": {
+      "slug": "train-side",
+      "sourceSHA256": "3d5ae0fe52d8d976092900b2233c5534405861fd9bda04c0ed269cf28f47bd10"
+    }
+  },
+  {
+    "id": "registered-tunnel",
+    "input": {
+      "slug": "tunnel",
+      "sourceSHA256": "d7261a76ebc1efe5c4552b528dc8de63fa6e39341ee0d893941e560451d20a8c"
+    }
+  },
+  {
+    "id": "registered-bridge",
+    "input": {
+      "slug": "bridge",
+      "sourceSHA256": "f8665a0feb50e22fda07807c213cdcadf70a058768cacd8989cfbdf13ed39b04"
+    }
+  },
+  {
+    "id": "registered-streetlamp",
+    "input": {
+      "slug": "streetlamp",
+      "sourceSHA256": "3d21656054a9b2f62e9728ab4153e3878269ba04de12c3c3024ece65dc537a5a"
+    }
+  },
+  {
+    "id": "registered-building",
+    "input": {
+      "slug": "building",
+      "sourceSHA256": "73f04149bc26e991fd1728eb1ead8f1d2079740e185c135f4618660cbe824e40"
+    }
+  },
+  {
+    "id": "registered-flagpole",
+    "input": {
+      "slug": "flagpole",
+      "sourceSHA256": "f23f23de7eec4fca3ae4ccca995d96e1ca87964a420b66fd290ea495e758d2d2"
+    }
+  },
+  {
+    "id": "registered-mountain",
+    "input": {
+      "slug": "mountain",
+      "sourceSHA256": "a49113b5bdcc37a67341d29e3f3ece14a7ea530e41b04f3172e23f6749b17df0"
+    }
+  },
+  {
+    "id": "registered-person-standing",
+    "input": {
+      "slug": "person-standing",
+      "sourceSHA256": "526058772cc7ae168621a3f17b433f971a993b656cae9ad6adb780d4c8e596d3"
+    }
+  },
+  {
+    "id": "registered-person-walking",
+    "input": {
+      "slug": "person-walking",
+      "sourceSHA256": "9b6563f579744d7705beb7f6d786619f9741a2b5e6699979a41608497f51507f"
+    }
+  },
+  {
+    "id": "registered-bicycle",
+    "input": {
+      "slug": "bicycle",
+      "sourceSHA256": "41bba2be06e1031b472a5428b3740983fa29b372e9a950c3222b1983af168ad8"
+    }
+  },
+  {
+    "id": "registered-car-side",
+    "input": {
+      "slug": "car-side",
+      "sourceSHA256": "d4b515ecf52c6bd2681a483b1442f9d2fcbcf7240ded955bfbebc285bad66050"
+    }
+  },
+  {
+    "id": "registered-boat",
+    "input": {
+      "slug": "boat",
+      "sourceSHA256": "c8b477c9d45c06bb8c5dd5837d2880314de6756e58431444a1a34298b3620aaa"
+    }
+  },
+  {
+    "id": "registered-house",
+    "input": {
+      "slug": "house",
+      "sourceSHA256": "b83a1c549f910fa957bbb2e5aabfb59bfcce2453657f62b3750a0770cd3c3141"
+    }
+  },
+  {
+    "id": "registered-lighthouse",
+    "input": {
+      "slug": "lighthouse",
+      "sourceSHA256": "c660c4e7740e2de9c28c2a805918c0eeba99425d2af29010c76deb09d489e0ab"
+    }
+  },
+  {
+    "id": "registered-airplane",
+    "input": {
+      "slug": "airplane",
+      "sourceSHA256": "6d58a9b5c8f4b9c3e776a9940bc38f94416c33dff9d8cd3299d9849915fa3659"
+    }
+  },
+  {
+    "id": "registered-tower",
+    "input": {
+      "slug": "tower",
+      "sourceSHA256": "7bfe81460ab7a029ddcdc6b0a1eee8997d9eda3d435d2235987f1a77d3c3276d"
+    }
+  },
+  {
+    "id": "registered-ladder",
+    "input": {
+      "slug": "ladder",
+      "sourceSHA256": "ee2f2db7e1c714cdf4b104503af8457e51b288d803eb2d30a7f4bd88711621b1"
+    }
+  },
+  {
+    "id": "registered-utility-pole",
+    "input": {
+      "slug": "utility-pole",
+      "sourceSHA256": "929571031efa6a3f5c77e475bf9fdf082dccbe18544890d75c14b432be8173c3"
+    }
+  },
+  {
+    "id": "registered-hot-air-balloon",
+    "input": {
+      "slug": "hot-air-balloon",
+      "sourceSHA256": "ba3c54d6674589e609ffac8ae376b27d6eb950b83ff552895bf54c064540aacc"
+    }
+  },
+  {
+    "id": "registered-kite",
+    "input": {
+      "slug": "kite",
+      "sourceSHA256": "0a0467f2ee6d276d3e8792720fbdc01716d4e00fcd393cf55195293eaf941c90"
+    }
+  },
+  {
+    "id": "registered-sun",
+    "input": {
+      "slug": "sun",
+      "sourceSHA256": "5747673195f7cacff4492ab0f195be41e88046edf3aba420213c0e7007fd99cd"
+    }
+  },
+  {
+    "id": "registered-slide",
+    "input": {
+      "slug": "slide",
+      "sourceSHA256": "b9cc45d2c80596111b38246d575daa7a3129839acb62eebbdcf03740d574fb30"
+    }
+  },
+  {
+    "id": "registered-ferris-wheel",
+    "input": {
+      "slug": "ferris-wheel",
+      "sourceSHA256": "14f0b906cc3d41783f1c2690a61f924e0903bbd818381a9a7a142389614d4d57"
+    }
+  },
+  {
+    "id": "registered-bowl",
+    "input": {
+      "slug": "bowl",
+      "sourceSHA256": "9cfde448aca3907743bcb0f2f7d3abf1b39510a4339c704aaa754db95fadd6a1"
+    }
+  },
+  {
+    "id": "native-house",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "house",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "f819968f12c5aea5621f046a105f1996ec2ef7acc186074bed31f3f59c0987e0"
+    }
+  },
+  {
+    "id": "native-building",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "building",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "d04f8d39577ca6374dbe66191a0853c065bf3b73e9bc9ae2d00f81b9d81bcc59"
+    }
+  },
+  {
+    "id": "native-lighthouse",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "lighthouse",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "7080dc6245cc82c05a7770d93827467c15c65ddcac41cc63b1c265916f883978"
+    }
+  },
+  {
+    "id": "native-tower",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "tower",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "a3d97c388a4430b7d30b761b781c859ffc82b5e2260bbc289a27f21111f5a5ab"
+    }
+  },
+  {
+    "id": "native-utility-pole",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "utility-pole",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "0faf5f8d742e514d7a55c21d48236a7b871bcc25c585d9287b308f7b2db47542"
+    }
+  },
+  {
+    "id": "native-streetlamp",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "streetlamp",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "d8aab898ed748ecc7a0a99ca74be1d68742e8afb1913a1ca68308b97511feb60"
+    }
+  },
+  {
+    "id": "native-flagpole",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "flagpole",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "e3e7269673aa047fa3350d9dc5dedff090e435c13ef8bb19c221cbb017d3763f"
+    }
+  },
+  {
+    "id": "native-tree",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "tree",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "d0ea1b2e3a6cf47f2d08b4dc7b68773b2ab6a87772af743b4185067b97e24928"
+    }
+  },
+  {
+    "id": "native-mountain",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "mountain",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "37739495e79e04e94d14ab72a3431c3b6046c4701ef3aa0d89f0605e003d1ea6"
+    }
+  },
+  {
+    "id": "native-tunnel",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "tunnel",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "dfea27c5c677b56fa0c7a02e7e2c46462ce2406d065dc5db38c7a6542b32166e"
+    }
+  },
+  {
+    "id": "native-bridge",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "bridge",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "4f610fe150e336d31959bad930e540cefa390e24100dc62dbfd3c793a1c00950"
+    }
+  },
+  {
+    "id": "native-person-standing",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "person-standing",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "7ee2c7512fce07c3e23d91bec7bdf1cec1b534c4909e9e64a0b40bcfa7e79ffd"
+    }
+  },
+  {
+    "id": "native-person-walking",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "person-walking",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "54ca5b74cb1806a0fb7086a032cfe3e4a1d1b86c1e8de3af1075cd4ff597eb3e"
+    }
+  },
+  {
+    "id": "native-bicycle",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "bicycle",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "8f2fca53125e3e670585a7ad4c6a54d11d7be39b2c9f6e1d1e40c34ed7f27efb"
+    }
+  },
+  {
+    "id": "native-car-side",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "car-side",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "26f6382c0ef0bf0a9b57b7bcfede50c30cd1740acb0d89453724f43eb6ffb361"
+    }
+  },
+  {
+    "id": "native-train-side",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "train-side",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "35fdb53e4362e5922050d543808224f5ae6b7ee41052d2e7e7479fc4b426741f"
+    }
+  },
+  {
+    "id": "native-boat",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "boat",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "7df3ed6b4a742f684214a86975382001502d4076afb7f95d100f36a94cda38f7"
+    }
+  },
+  {
+    "id": "native-airplane",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "airplane",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "71c21a5b0eb39776e77fe343bdc613579870a88c92d11f1af5629658231923d4"
+    }
+  },
+  {
+    "id": "native-hot-air-balloon",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "hot-air-balloon",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "7f63f533967f105265a69806062d9283a92d23747fa4e079d02be45f70d85602"
+    }
+  },
+  {
+    "id": "native-kite",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "kite",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "2fa61565b2e7410eb4c3d45340b799f246d6d0ab0e840ebabc12dd95a71bd18e"
+    }
+  },
+  {
+    "id": "native-sun",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "sun",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "e55bb97768fc5845306340610d167028e438540195ae0aabcb95bd6382a98222"
+    }
+  },
+  {
+    "id": "native-ladder",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "ladder",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "255cdb596f5783e37c137487967002efc0a2394b6fcd81e13be2ce139d91572e"
+    }
+  },
+  {
+    "id": "native-slide",
+    "input": {
+      "input": {
+        "version": 2,
+        "points": {
+          "A": [
+            180,
+            180
+          ],
+          "B": [
+            280,
+            180
+          ]
+        },
+        "segments": {
+          "AB": [
+            "A",
+            "B"
+          ]
+        },
+        "labels": {
+          "A": "A",
+          "B": "B"
+        },
+        "assets": [
+          {
+            "asset": "slide",
+            "at": "A",
+            "anchor": "center",
+            "width": 60
+          }
+        ],
+        "background": "transparent"
+      },
+      "inputSHA256": "1a0e0b6a17695b10fbcd8918e961dc6641507002988b56319eecdb55a79eaf2a"
+    }
+  },
+  {
+    "id": "prototype-__proto__",
+    "input": "__proto__"
+  },
+  {
+    "id": "prototype-constructor",
+    "input": "constructor"
+  },
+  {
+    "id": "prototype-toString",
+    "input": "toString"
+  },
+  {
+    "id": "prototype-prototype",
+    "input": "prototype"
+  },
+  {
+    "id": "invalid-marker-unknown",
+    "input": "<g data-asset=\"no-such-slug\"><line id=\"math\" x1=\"0\" y1=\"0\" x2=\"50\" y2=\"50\"/></g>"
+  },
+  {
+    "id": "invalid-marker-leaf",
+    "input": "<line id=\"math\" data-asset=\"house\" x1=\"0\" y1=\"0\" x2=\"50\" y2=\"50\"/>"
+  },
+  {
+    "id": "invalid-marker-addedmath",
+    "input": "<g id=\"asset\" data-asset=\"house\" >\n<rect xmlns=\"http://www.w3.org/2000/svg\" x=\"10\" y=\"39\" width=\"80\" height=\"60.3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon xmlns=\"http://www.w3.org/2000/svg\" points=\"0.7,40 50,0.7 99.3,40\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect xmlns=\"http://www.w3.org/2000/svg\" x=\"24\" y=\"64\" width=\"20\" height=\"35.3\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect xmlns=\"http://www.w3.org/2000/svg\" x=\"59\" y=\"59\" width=\"19\" height=\"20\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line xmlns=\"http://www.w3.org/2000/svg\" x1=\"68.5\" y1=\"59\" x2=\"68.5\" y2=\"79\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n<line id=\"math\" x1=\"0\" y1=\"0\" x2=\"50\" y2=\"50\"/></g>"
+  },
+  {
+    "id": "invalid-marker-forged",
+    "input": "<g id=\"asset\" data-asset=\"house\" ><line id=\"math\" x1=\"0\" y1=\"0\" x2=\"50\" y2=\"50\"/></g>"
+  },
+  {
+    "id": "invalid-marker-text",
+    "input": "<g id=\"asset\" data-asset=\"house\" >\n<rect xmlns=\"http://www.w3.org/2000/svg\" x=\"10\" y=\"39\" width=\"80\" height=\"60.3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon xmlns=\"http://www.w3.org/2000/svg\" points=\"0.7,40 50,0.7 99.3,40\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect xmlns=\"http://www.w3.org/2000/svg\" x=\"24\" y=\"64\" width=\"20\" height=\"35.3\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect xmlns=\"http://www.w3.org/2000/svg\" x=\"59\" y=\"59\" width=\"19\" height=\"20\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line xmlns=\"http://www.w3.org/2000/svg\" x1=\"68.5\" y1=\"59\" x2=\"68.5\" y2=\"79\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\nNOT STOCK</g>"
+  },
+  {
+    "id": "invalid-marker-deep",
+    "input": "<g id=\"asset\" data-asset=\"house\" ><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><g><line id=\"math\" x1=\"0\" y1=\"0\" x2=\"50\" y2=\"50\"/></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g></g>"
+  },
+  {
+    "id": "invalid-marker-wrongd",
+    "input": "<g xmlns=\"http://www.w3.org/2000/svg\" id=\"asset\" data-asset=\"house\">\n<rect x=\"M0 0L123 99\" y=\"39\" width=\"80\" height=\"60.3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"0.7,40 50,0.7 99.3,40\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"24\" y=\"64\" width=\"20\" height=\"35.3\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"59\" y=\"59\" width=\"19\" height=\"20\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><line x1=\"68.5\" y1=\"59\" x2=\"68.5\" y2=\"79\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/>\n</g>"
+  },
+  {
+    "id": "nested-marker-safe",
+    "input": null
+  },
+  {
+    "id": "invalid-transform-rotate(NaN)",
+    "input": "rotate(NaN)"
+  },
+  {
+    "id": "invalid-transform-matrix(1 0 0 1 Infinity 0)",
+    "input": "matrix(1 0 0 1 Infinity 0)"
+  },
+  {
+    "id": "invalid-transform-skewX(90)",
+    "input": "skewX(90)"
+  },
+  {
+    "id": "invalid-transform-scale(0)",
+    "input": "scale(0)"
+  },
+  {
+    "id": "invalid-transform-bogus(10)",
+    "input": "bogus(10)"
+  },
+  {
+    "id": "four-corners-rotated-parent",
+    "input": null
+  },
+  {
+    "id": "rotate-group-alone-and-ordinary",
+    "input": null
+  },
+  {
+    "id": "four-rotations",
+    "input": null
+  },
+  {
+    "id": "mirror-twice",
+    "input": null
+  },
+  {
+    "id": "move-group-preserves-shape",
+    "input": null
+  },
+  {
+    "id": "locked-rotation-mirror-move",
+    "input": null
+  },
+  {
+    "id": "stale-child-id-cleared",
+    "input": null
+  },
+  {
+    "id": "stable-id-rotate",
+    "input": null
+  },
+  {
+    "id": "removed-body-strip-export",
+    "input": null
+  }
+]
