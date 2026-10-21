@@ -25,24 +25,23 @@ export function useBuilderScrollFrame(step: ExamBuilderStep, enabled = true) {
             "--builder-viewport-top",
             `${Math.ceil(frame.getBoundingClientRect().top)}px`,
           );
-          // The output editor and its shell both own bottom padding. Reserve
-          // that space too, so the viewport frame cannot create page scrolling.
-          if (frame.hasAttribute("data-output-layout")) {
-            let bottom = 0;
-            for (
-              let parent = frame.parentElement;
-              parent;
-              parent = parent.parentElement
-            ) {
-              const style = getComputedStyle(parent);
-              bottom += parseFloat(style.paddingBottom) || 0;
-              bottom += parseFloat(style.marginBottom) || 0;
-            }
-            frame.style.setProperty(
-              "--builder-viewport-bottom",
-              `${Math.ceil(bottom)}px`,
-            );
+          // The builder and its shell own bottom padding below every frame.
+          // Reserve that space too, so the viewport frame cannot create page
+          // scrolling (원장님 2026-10-21 «외부 스크롤이 필요없어보임»).
+          let bottom = 0;
+          for (
+            let parent = frame.parentElement;
+            parent;
+            parent = parent.parentElement
+          ) {
+            const style = getComputedStyle(parent);
+            bottom += parseFloat(style.paddingBottom) || 0;
+            bottom += parseFloat(style.marginBottom) || 0;
           }
+          frame.style.setProperty(
+            "--builder-viewport-bottom",
+            `${Math.ceil(bottom)}px`,
+          );
         });
     };
     measure();
@@ -50,6 +49,11 @@ export function useBuilderScrollFrame(step: ExamBuilderStep, enabled = true) {
     const observer = new ResizeObserver(measure);
     observer.observe(band);
     observer.observe(root);
+    // A shell notice above the builder (a failed save) moves the frames when
+    // it appears, folds or goes away, without resizing the builder. An
+    // ancestor resizes instead.
+    for (let node = root.parentElement; node; node = node.parentElement)
+      observer.observe(node);
     let pending = 0;
     const onScroll = () => {
       cancelAnimationFrame(pending);

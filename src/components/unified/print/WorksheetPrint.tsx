@@ -305,10 +305,11 @@ export function WorksheetPrint({
           </button>
         </div>
       )}
-      <div className={s.screenPreview}>
+      <div className={`${s.screenPreview} ${editor.previewStrip}`}>
         <PaperStrip
           id="worksheet-preview"
           label="시험지 미리보기"
+          fill
           busy={!ready}
           hint="옆으로 넘겨 보고, 쪽을 누르면 크게 볼 수 있어요."
           pages={pages.map((page, index) => ({

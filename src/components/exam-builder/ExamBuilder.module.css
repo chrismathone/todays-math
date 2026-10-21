@@ -1457,3 +1457,18 @@ label.sequenceLesson {
     flex-wrap: nowrap;
   }
 }
+/* 단 아래의 껍데기 여백(--builder-viewport-bottom)까지 비워 페이지 바깥 스크롤을 없앤다 — 단만 안에서
+   스크롤한다(원장님 2026-10-21 «이중스크롤 · 외부 스크롤이 필요없어보임»). 낮은 화면(600px 이하)은
+   페이지를 내려 단을 키우던 대로 둔다. */
+@media (min-height: 601px) {
+  @container exam-builder (min-width: 901px) {
+    .sequenceLayout > *,
+    .reviewLayout > * {
+      max-height: calc(
+        100dvh -
+          max(var(--builder-column-top), var(--builder-viewport-top, 0px)) -
+          max(12px, var(--builder-viewport-bottom, 0px))
+      );
+    }
+  }
+}

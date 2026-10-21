@@ -1353,6 +1353,12 @@ export default function ExamBuilder<T>({
           {error}
         </p>
       )}
+      {/* 단 위에 둔다 — 단 아래에 있으면 넓은 화면에서 그 높이만큼 페이지가 넘친다(원장님 2026-10-21 «이중스크롤»). */}
+      {identityError && (
+        <p role="alert" className={s.error}>
+          {identityError} 현재 문항은 유지했습니다.
+        </p>
+      )}
       {notice && (
         <p className={s.notice} role="status">
           {notice}
@@ -2476,11 +2482,6 @@ export default function ExamBuilder<T>({
             </section>
           </div>
         </div>
-      )}
-      {identityError && (
-        <p role="alert" className={s.error}>
-          {identityError} 현재 문항은 유지했습니다.
-        </p>
       )}
       {activeReorder.drag && activeReorder.line && (
         <div className={s.dropTarget} style={activeReorder.line} role="status">

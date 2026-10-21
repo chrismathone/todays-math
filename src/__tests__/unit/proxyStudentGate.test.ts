@@ -127,6 +127,7 @@ const STATIC = [
   "/apple-icon.png",
   "/brand/today-math-mark.svg",
   "/images/journey/sky-board.webp",
+  "/images/guides/marten/guide.webp",
   "/figures/a.png",
   "/figures-svg/a.svg",
 ];
@@ -411,6 +412,9 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         ...brand,
         "GET /audio/math-learning/correct.wav",
         "HEAD /audio/math-learning/correct.wav",
+        // 길잡이 그림(2026-10-20) — 로그인한 학생만. 첫 로그인 · 로그인 전에는 열지 않는다.
+        "GET /images/guides/marten/guide.webp",
+        "HEAD /images/guides/marten/guide.webp",
         ...LAB,
       ].sort(),
     );

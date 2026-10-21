@@ -104,9 +104,7 @@ describe("course learn preview", () => {
       ).toBe(true);
       expect(screen.queryByText("첫 문제와 다음 문제 0")).toBeNull();
       expect(screen.queryByText(sectionId)).toBeNull();
-      fireEvent.click(
-        screen.getByRole("button", { name: "문제 풀기" }),
-      );
+      fireEvent.click(screen.getByRole("button", { name: "문제 풀기" }));
       expect(
         await screen.findByText("첫 문제와 다음 문제 0"),
       ).toBeInTheDocument();
@@ -155,9 +153,7 @@ describe("course learn preview", () => {
     fireEvent.click(check);
     expect(screen.getByRole("status")).toHaveTextContent(card.practice.hint);
     expect(screen.queryByText(card.practice.explanation)).toBeNull();
-    expect(
-      screen.getByRole("button", { name: "문제 풀기" }),
-    ).toBeEnabled();
+    expect(screen.getByRole("button", { name: "문제 풀기" })).toBeEnabled();
     fireEvent.change(input, {
       target: { value: ` ${card.practice.answer}${card.practice.unit} ` },
     });
@@ -185,5 +181,34 @@ describe("course learn preview", () => {
     expect(first).toHaveAttribute("aria-pressed", "true");
     fireEvent.click(second);
     expect(second).toHaveAttribute("aria-pressed", "true");
+  });
+});
+
+describe("relearn preview", () => {
+  it("opens only on request and returns to the first problem", async () => {
+    const run: CoursePublicSession = { ...session(), relearn: true };
+    render(<StudentCoursePractice {...props(run)} />);
+    expect(
+      await screen.findByText("첫 문제와 다음 문제 0"),
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "개념 다시 보기" }));
+    expect(
+      await screen.findByRole("heading", {
+        name: previewCardFor(run.sectionId)!.title,
+      }),
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "문제 풀기" }));
+    expect(
+      await screen.findByText("첫 문제와 다음 문제 0"),
+    ).toBeInTheDocument();
+  });
+  it("has no reopen button without a card", async () => {
+    render(
+      <StudentCoursePractice
+        {...props({ ...session("5-2-2-1"), relearn: true })}
+      />,
+    );
+    await screen.findByText("첫 문제와 다음 문제 0");
+    expect(screen.queryByRole("button", { name: "개념 다시 보기" })).toBeNull();
   });
 });
