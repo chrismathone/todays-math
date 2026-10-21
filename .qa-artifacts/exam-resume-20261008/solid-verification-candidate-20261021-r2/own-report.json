@@ -1,0 +1,63 @@
+{
+  "status": "QA-only candidate R2, not production applied; bounded regression pass",
+  "r1Disposition": "FAILED candidate due consumed condition generator. Own independent reproduction writes only R2 results. R1 candidate/report/raw bytes preserved; historical green counts do not establish iterable correctness.",
+  "r1CandidateSHA256": "a99f66a9af0abe5b46e290aae972dd35c8380126c3a81b671cc97dabab0c9689",
+  "r1ReportSHA256": "702ca3ff78bc6136ef9d0c6cd3d176c120b45af6506bef9a9f2cd1ea7ebae658",
+  "rootBaselineSHA256": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+  "candidateSHA256": "cf20e6c8af66a3de7405e4a25e4ac1c8ab9979a3719603e958b735c1b8126a09",
+  "patchSHA256": "1692169d3ac7d7fdd1c7e7696111f8e3c48bcb6fee1d215630370b5ffd2cbee0",
+  "gitApplyCheckExit": 0,
+  "cohorts": {
+    "original47": {
+      "passed": 47,
+      "failed": 0,
+      "sameExpectations": true,
+      "positive9": true,
+      "retry5": true
+    },
+    "carriedAdditional16": {
+      "passed": 16,
+      "count": 16
+    },
+    "copiedExistingSourceTests": {
+      "run": 32,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "newIterableAndIntermediateScenarios": {
+      "uniqueScenarios": 28,
+      "passed": 28,
+      "failed": 0,
+      "structure": "14 list/generator comparison scenarios across7conditions,7materialization failure retry cases,2view traversal cases,5nonfinite intermediate rejection cases; per-mode runs not counted as separate independent scenarios"
+    }
+  },
+  "changesFromR1": [
+    "Immediately after registry pop tuple-capture feet/angles/areas/lengths/equations/perpendicular/on_plane; reuse same captured outer conditions in validation, arithmetic and optional view pass. No registration before tuple collection.",
+    "Check feet reference norm and computed tolerance finite, area/label thresholds finite, every ratio and relative error finite. Check projected view coordinates/scale-square before collapse test.",
+    "Public math helpers remain unchanged; AST verification rerun in additional16 cohort. No normalization or implicit task repair."
+  ],
+  "intermediatePolicy": "Reject observed overflow/nonfinite reference norms, tolerance products, length ratios and view calculations. Huge inputs are not asserted mathematically supported. Some existing Python arithmetic may raise OverflowError before finite validation: rejection recorded, not falsely counted as successful verification or a stable exception-type guarantee.",
+  "binding": {
+    "allBoundRootFilesParentProbeR1FilesUnchanged": true,
+    "beforeAfterHashes": "own-bindings-before.json / own-bindings-after.json",
+    "candidateActualPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\solid-verification-candidate-20261021-r2\\own-shadow\\core\\figure_solid.py",
+    "dependencies": "Root figure_svg.py and core/__init__.py copied exact bytes into QA shadow; candidate only substitutes figure_solid. Import paths in own-additional-results.json.",
+    "noSourceDExecutionOrGeneration": true
+  },
+  "limits": [
+    "Materializes top-level condition iterables only; nested polygon/coordinate/coefficient inputs retain documented Sequence contract. Not a deep immutable-data or arbitrary callback/generator sandbox.",
+    "Iterable side effects/errors propagate after old registration invalidation; no promise of accepting malformed iterables.",
+    "Registration remains scope/key history, not geometry/SVG hash binding.",
+    "No entire3D/math/grade/prerequisite/rights/native/public-release approval.",
+    "No Root/docs/DB/bank/otherdirty changes, Node/heavy/API/network/newworker/worktree.",
+    "All historical R1/prechange/Pytha c459 data preserved; not summing repeated test cohorts into new content/approval counts."
+  ],
+  "reproduce": [
+    "python -B own-prepare.py",
+    "python -B -S own-reproduce-r1.py",
+    "python -B -S own-original47.py",
+    "python -B -S own-tests.py",
+    "python -B -S own-generator-tests.py"
+  ]
+}
