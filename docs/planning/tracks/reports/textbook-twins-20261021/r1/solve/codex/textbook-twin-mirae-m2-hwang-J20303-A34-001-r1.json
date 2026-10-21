@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A34-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d76-46f2-72d2-9f7a-b38752a0b684",
+ "startedAt": "2026-10-21T16:56:34+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "student.json": "ea714bac63656324db1150aff1b811ad508a5b0493c2f19ed9ea21c6cdde6c8f"
+ },
+ "promptSha256": "65ad90181c6d713494d753b0ee297436db0a1afffac66e7f73ee8afb63858035",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"첫째 식을 정리하고 10을 곱하면 x+5y=28이다.\\n둘째 식에서 6(x+2)=5(y+1)이므로 6x-5y=-7이다.\\n두 식을 더하면 7x=21이므로 x=3이고, 이를 대입하면 y=5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "첫째 식을 정리하고 10을 곱하면 x+5y=28이다.\n둘째 식에서 6(x+2)=5(y+1)이므로 6x-5y=-7이다.\n두 식을 더하면 7x=21이므로 x=3이고, 이를 대입하면 y=5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "aaac0df6934b1d285180e00824f49f99b457e48b9d988e156d377c0d9fb4fbef"
+}

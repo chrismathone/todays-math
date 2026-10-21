@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A21-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d76-9853-73d2-8c98-eabd5b0c3573",
+ "startedAt": "2026-10-21T16:56:55+0900",
+ "elapsedSec": 15.9,
+ "studentSha256": {
+  "student.json": "d40683ba187cbc41de395e209d36d0dcf664ca50697bd939667c3f477679cd1a"
+ },
+ "promptSha256": "e83947341e3331dd947964902190709c8af2ade47d549a00faa8d46896862cce",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"192명\",\"work\":\"작년 전체 회원 수는 422+28=450명이다.\\n작년 성인 회원 수를 x명이라 하면 어린이 회원 수는 (450−x)명이므로, 0.08x+0.04(450−x)=28이다.\\n이를 풀면 0.04x=10, x=250이므로 작년 어린이 회원 수는 200명이다.\\n따라서 올해 어린이 회원 수는 200×0.96=192명이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "192명",
+  "work": "작년 전체 회원 수는 422+28=450명이다.\n작년 성인 회원 수를 x명이라 하면 어린이 회원 수는 (450−x)명이므로, 0.08x+0.04(450−x)=28이다.\n이를 풀면 0.04x=10, x=250이므로 작년 어린이 회원 수는 200명이다.\n따라서 올해 어린이 회원 수는 200×0.96=192명이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "71eec25e403c1766b7cf8842995d69965c06ab354a37f0fa58004cf461e6477f"
+}

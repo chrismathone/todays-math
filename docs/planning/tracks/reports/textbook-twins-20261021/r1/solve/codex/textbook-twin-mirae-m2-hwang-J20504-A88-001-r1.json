@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A88-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d78-f6a6-7572-b8f0-18d24a338517",
+ "startedAt": "2026-10-21T16:59:30+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "fig-1.png": "9e5be1dd9dd7ac8b19bb899b950c463159b495bc83a5b36b9139d99e11159282",
+  "student.json": "b4cd008780711105871c47d058dd0769c193eea77ab55c0cfa3017d5ac1806b9"
+ },
+ "promptSha256": "375dc985fc0a17807466288d3b8b32adf98996cd05d59dd80dd46fc41c9eb4e4",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"119°\",\"work\":\"I는 내심이므로 ∠C=2×29°=58°이고, AI와 BI는 각각 ∠A와 ∠B의 이등분선이다. 따라서 삼각형 AIB에서 x=180°−(∠A+∠B)/2=180°−(180°−58°)/2=119°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "119°",
+  "work": "I는 내심이므로 ∠C=2×29°=58°이고, AI와 BI는 각각 ∠A와 ∠B의 이등분선이다. 따라서 삼각형 AIB에서 x=180°−(∠A+∠B)/2=180°−(180°−58°)/2=119°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a4b6a0713b595da6078440cd065b689b2ec93b78b3e8b1d8b263c47427e0b992"
+}

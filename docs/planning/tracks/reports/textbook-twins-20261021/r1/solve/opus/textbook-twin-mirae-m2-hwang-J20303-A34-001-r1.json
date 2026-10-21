@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A34-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "869e9366-c9dd-4245-a503-19150577ebe9",
+ "startedAt": "2026-10-21T16:30:48+0900",
+ "elapsedSec": 5.3,
+ "studentSha256": {
+  "student.json": "ea714bac63656324db1150aff1b811ad508a5b0493c2f19ed9ea21c6cdde6c8f"
+ },
+ "promptSha256": "65ad90181c6d713494d753b0ee297436db0a1afffac66e7f73ee8afb63858035",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"첫째 식: 0.1x+0.5y=2.8 → x+5y=28. 둘째 식: 6(x+2)=5(y+1) → 6x-5y=-7. 두 식을 더하면 7x=21이므로 x=3, y=5. 검산: 3+25=28, (3+2):(5+1)=5:6 ✓\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "첫째 식: 0.1x+0.5y=2.8 → x+5y=28. 둘째 식: 6(x+2)=5(y+1) → 6x-5y=-7. 두 식을 더하면 7x=21이므로 x=3, y=5. 검산: 3+25=28, (3+2):(5+1)=5:6 ✓",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6a8009ec90c1125304dc57f7c8028ded2f344b2ac8d22b4007e2c321bbfcdb42"
+}

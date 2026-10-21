@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A16-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d76-70bd-77d3-9bc1-588505bdf02d",
+ "startedAt": "2026-10-21T16:56:45+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "student.json": "d4a5f9c64e227df0463d0d1e86c47d794499f5c449c222bee1bc55e34010e323"
+ },
+ "promptSha256": "08f59c55a4cd0a2c3cd088f526f5ee04cadc05c4198438f53b0098f84b41c77f",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"소프라노 단원을 x명이라 하면 알토 단원은 (x+6)명이다. 전체가 40명이므로 x+(x+6)=40, 2x=34에서 x=17이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "소프라노 단원을 x명이라 하면 알토 단원은 (x+6)명이다. 전체가 40명이므로 x+(x+6)=40, 2x=34에서 x=17이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a9106aa3a231f82219ff5db1785ee28ed7736996ffc9a2c943880c1b8b8191a1"
+}

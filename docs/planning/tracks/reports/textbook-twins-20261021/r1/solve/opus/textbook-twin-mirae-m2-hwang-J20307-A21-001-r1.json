@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20307-A21-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "78373570-04b4-4916-891c-c8d803ead841",
+ "startedAt": "2026-10-21T16:30:59+0900",
+ "elapsedSec": 5.4,
+ "studentSha256": {
+  "student.json": "d40683ba187cbc41de395e209d36d0dcf664ca50697bd939667c3f477679cd1a"
+ },
+ "promptSha256": "e83947341e3331dd947964902190709c8af2ade47d549a00faa8d46896862cce",
+ "freezeCommit": "dd3e1e40fe0c84a80225c45ead5d2d56b96dd2fd",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"192명\", \"work\": \"작년 성인 회원을 x명, 어린이 회원을 y명이라 하면 작년 전체는 422+28=450명이다. 연립방정식은 x+y=450, 0.08x+0.04y=28이다. 둘째 식에 25를 곱하면 2x+y=700이 된다. 첫째 식을 빼면 x=250이고, 따라서 y=200이다. 올해 어린이 회원은 200×(1−0.04)=192명이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "192명",
+  "work": "작년 성인 회원을 x명, 어린이 회원을 y명이라 하면 작년 전체는 422+28=450명이다. 연립방정식은 x+y=450, 0.08x+0.04y=28이다. 둘째 식에 25를 곱하면 2x+y=700이 된다. 첫째 식을 빼면 x=250이고, 따라서 y=200이다. 올해 어린이 회원은 200×(1−0.04)=192명이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "467d5ccb5f500264547c525a88fe6ce331f47cb84a23f965714e680f2f8d9881"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A87-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d78-cb0e-72a0-94f2-5f4968e49e8b",
+ "startedAt": "2026-10-21T16:59:19+0900",
+ "elapsedSec": 11.1,
+ "studentSha256": {
+  "fig-1.png": "3eccdb6fb3e0562b76a14dfa22e87709a96f18d1dbd7d53d2538e3e39c5d09d8",
+  "student.json": "8bb338dec3f8624e754f303dfbd4fc05146419e9797a53269b213f152329d74a"
+ },
+ "promptSha256": "ca885081b8dc5c1c56a31cb7c771a5f9538d1af8c2f744503bbed5e33d51321f",
+ "freezeCommit": "8604416d89cf3d3c39e226eec4efd50d54816648",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"15°\",\"work\":\"내심 I는 각의 이등분선의 교점이므로 ∠A=2×45°=90°, ∠B=2×30°=60°이다. 삼각형의 내각의 합에 의해 ∠C=180°−90°−60°=30°이므로 ∠ICA=30°÷2=15°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "15°",
+  "work": "내심 I는 각의 이등분선의 교점이므로 ∠A=2×45°=90°, ∠B=2×30°=60°이다. 삼각형의 내각의 합에 의해 ∠C=180°−90°−60°=30°이므로 ∠ICA=30°÷2=15°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "70e92b3e35ac331614e31652a0313b94eaa413d9e82c18662b24c3d4dfa262f3"
+}
