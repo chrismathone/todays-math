@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A66-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "3ee15dfb-d9c3-425c-a7fe-3bbae1fdac78",
+ "startedAt": "2026-10-21T18:19:34+0900",
+ "elapsedSec": 24.0,
+ "studentSha256": {
+  "fig-1.png": "2d14c1a1169cc395898fefb1f54d23535c19859dc2b8e30ac744878aa49cdd84",
+  "student.json": "8d45431fe324607950f8465636a94d2c9b3c2d9cd4bea45bce7fc0ade065e343"
+ },
+ "promptSha256": "f8a89ecae379b1a8bf4e844f61e1ee996752064675911030b350b685ac798ecf",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"△ABC에서 AB=AC이므로 ∠B=∠C=72°, ∠A=180°-2×72°=36°이다. BD가 ∠B의 이등분선이므로 ∠ABD=∠DBC=36°이다. △ABD에서 ∠A=∠ABD=36°이므로 이등변삼각형이 되어 BD=AD=12 cm이다. △BCD에서 ∠BDC=180°-(36°+72°)=72°=∠C이므로 이등변삼각형이 되어 BC=BD=12 cm이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "△ABC에서 AB=AC이므로 ∠B=∠C=72°, ∠A=180°-2×72°=36°이다. BD가 ∠B의 이등분선이므로 ∠ABD=∠DBC=36°이다. △ABD에서 ∠A=∠ABD=36°이므로 이등변삼각형이 되어 BD=AD=12 cm이다. △BCD에서 ∠BDC=180°-(36°+72°)=72°=∠C이므로 이등변삼각형이 되어 BC=BD=12 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a463124311e9a2833ca53b809e848802b37ca013b7e047baf3aa615a730876f5"
+}

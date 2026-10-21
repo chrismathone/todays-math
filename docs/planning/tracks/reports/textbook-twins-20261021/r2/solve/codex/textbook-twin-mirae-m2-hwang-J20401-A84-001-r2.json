@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A84-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dec-409d-7123-bf0a-60117809d7d1",
+ "startedAt": "2026-10-21T19:05:26+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "student.json": "58c6a801c7da6a98e657cd07471afcc83a561979c9e710f29674184bbd7ab07e"
+ },
+ "promptSha256": "7b51b3f67dd7fa920b0e25417d018a38398f4f5062346a2efee23ff0663a9cab",
+ "freezeCommit": "28e291a7c313f6b588535fd815794e8167fa998e",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"$f\\\\left(-\\\\frac{4}{7}\\\\right)=-\\\\frac{5}{4}\\\\times\\\\left(-\\\\frac{4}{7}\\\\right)=\\\\frac{5}{7}$이므로 ③은 옳지 않다. 나머지 보기는 모두 옳다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$f\\left(-\\frac{4}{7}\\right)=-\\frac{5}{4}\\times\\left(-\\frac{4}{7}\\right)=\\frac{5}{7}$이므로 ③은 옳지 않다. 나머지 보기는 모두 옳다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "708eb6dd4b6d3a8686e6c507ddaa4f2a490ae1ae47e1234dde9fb0ef85f8904f"
+}

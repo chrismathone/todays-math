@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A65-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "a5ba1c4e-1053-4a0e-acc1-83e51795937d",
+ "startedAt": "2026-10-21T18:19:18+0900",
+ "elapsedSec": 18.4,
+ "studentSha256": {
+  "fig-1.png": "d60359b6ebe969d18b230b150673ba92eb603e6aa52012e230e35fd6d3fd477a",
+  "student.json": "0e5f6558db4f27824a9b49c65209ed99866aee66eb5741df336b29a005323445"
+ },
+ "promptSha256": "70b478bff683e0f868e2e988cec261148a5d2454a82372e945eee68c85e73881",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"삼각형 $DEF$는 $\\\\overline{DE}=\\\\overline{DF}$인 이등변삼각형이므로 두 밑각의 크기가 서로 같다. 즉, $\\\\angle E = \\\\angle F = 72^{\\\\circ}$이다. 삼각형의 세 내각의 크기의 합은 $180^{\\\\circ}$이므로 $\\\\angle D = 180^{\\\\circ} - (72^{\\\\circ} + 72^{\\\\circ}) = 180^{\\\\circ} - 144^{\\\\circ} = 36^{\\\\circ}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "삼각형 $DEF$는 $\\overline{DE}=\\overline{DF}$인 이등변삼각형이므로 두 밑각의 크기가 서로 같다. 즉, $\\angle E = \\angle F = 72^{\\circ}$이다. 삼각형의 세 내각의 크기의 합은 $180^{\\circ}$이므로 $\\angle D = 180^{\\circ} - (72^{\\circ} + 72^{\\circ}) = 180^{\\circ} - 144^{\\circ} = 36^{\\circ}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "affe94b029f0dbd530b233aca45940d2e8281ada0d01ca94bf13edb578cc01cc"
+}

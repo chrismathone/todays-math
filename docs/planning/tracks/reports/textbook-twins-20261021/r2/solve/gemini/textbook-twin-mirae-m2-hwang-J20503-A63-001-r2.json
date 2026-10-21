@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A63-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "ccbd5d78-bcf0-4907-9546-051bb4080386",
+ "startedAt": "2026-10-21T18:19:11+0900",
+ "elapsedSec": 23.3,
+ "studentSha256": {
+  "fig-1.png": "465321fc70b20bf57748651f03760d9b2393e2002e863af5122982e6466aaecd",
+  "student.json": "4b53fb0835d4c4b2154704862de1a99033e1f017c204d8658c6003f4a2965868"
+ },
+ "promptSha256": "0ff2af512f853ab701fadda2ab1afaa0c1e1d99941fba360c31a23aa7541abab",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"점 $O$는 $\\\\triangle ABC$의 외심이므로 $\\\\overline{OA}=\\\\overline{OB}=\\\\overline{OC}$이다. $\\\\triangle OCA$의 세 변의 길이의 합에서 $\\\\overline{OA}+\\\\overline{OC}+\\\\overline{CA}=41\\\\,\\\\mathrm{cm}$이고 $\\\\overline{CA}=15\\\\,\\\\mathrm{cm}$이므로 $2\\\\overline{OA}+15=41$, 즉 $\\\\overline{OA}=13\\\\,\\\\mathrm{cm}$이다. 따라서 $\\\\overline{OB}=\\\\overline{OA}=13\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "점 $O$는 $\\triangle ABC$의 외심이므로 $\\overline{OA}=\\overline{OB}=\\overline{OC}$이다. $\\triangle OCA$의 세 변의 길이의 합에서 $\\overline{OA}+\\overline{OC}+\\overline{CA}=41\\,\\mathrm{cm}$이고 $\\overline{CA}=15\\,\\mathrm{cm}$이므로 $2\\overline{OA}+15=41$, 즉 $\\overline{OA}=13\\,\\mathrm{cm}$이다. 따라서 $\\overline{OB}=\\overline{OA}=13\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7f8a98318e5ec89a6efba61b6c405371b32af4b29afb132f2ffe8a0d446d97f6"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A78-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dec-1bf7-70f2-b4cd-fdbe0d2803a0",
+ "startedAt": "2026-10-21T19:05:17+0900",
+ "elapsedSec": 9.3,
+ "studentSha256": {
+  "student.json": "f5b0aea73ad6d94eb72a370d2fab4612d2b42f572bbd9b347d17969381b9377c"
+ },
+ "promptSha256": "1fdf0a3d7527d7825f4e31faf962e5b8b1b8c38364bb2d3a7316ee38fbff5b6c",
+ "freezeCommit": "28e291a7c313f6b588535fd815794e8167fa998e",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"각 보기의 x좌표를 y=4x-7에 대입하면 y값은 차례로 -27, -23, 9, 13, 17이다. 주어진 y좌표와 일치하는 점은 ④ (5, 13)이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "각 보기의 x좌표를 y=4x-7에 대입하면 y값은 차례로 -27, -23, 9, 13, 17이다. 주어진 y좌표와 일치하는 점은 ④ (5, 13)이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "528738f911ca7fe714f3a135c13cc6926c2b59de73ec75feffc284ddb58f5bac"
+}

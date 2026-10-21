@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A66-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dec-c871-7910-8da0-11a4daf5e76c",
+ "startedAt": "2026-10-21T19:06:01+0900",
+ "elapsedSec": 14.6,
+ "studentSha256": {
+  "fig-1.png": "2d14c1a1169cc395898fefb1f54d23535c19859dc2b8e30ac744878aa49cdd84",
+  "student.json": "8d45431fe324607950f8465636a94d2c9b3c2d9cd4bea45bce7fc0ade065e343"
+ },
+ "promptSha256": "58388a565b65dcee34d9d235c37b85452ca1bef83832d0b4e21a802de71075f4",
+ "freezeCommit": "28e291a7c313f6b588535fd815794e8167fa998e",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"AB=AC이므로 ∠ABC=72°, ∠BAD=36°이다. BD는 각의 이등분선이므로 ∠ABD=∠DBC=36°이다.\\n삼각형 ABD에서 ∠BAD=∠ABD이므로 BD=AD=12 cm이다.\\n삼각형 BCD에서 ∠BDC=180°−36°−72°=72°=∠BCD이므로 BC=BD=12 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "AB=AC이므로 ∠ABC=72°, ∠BAD=36°이다. BD는 각의 이등분선이므로 ∠ABD=∠DBC=36°이다.\n삼각형 ABD에서 ∠BAD=∠ABD이므로 BD=AD=12 cm이다.\n삼각형 BCD에서 ∠BDC=180°−36°−72°=72°=∠BCD이므로 BC=BD=12 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8679535284d24743c6653f877bdad9702a516c30eafa771fca080feee55fda60"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20406-A17-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "3cb6db2c-f96d-460b-b455-882e6aba7b4a",
+ "startedAt": "2026-10-21T18:18:40+0900",
+ "elapsedSec": 14.1,
+ "studentSha256": {
+  "student.json": "32ac3a000a2838b8ba6720da6eb9d6492ba42a8ec63b710f50c9623157159c15"
+ },
+ "promptSha256": "ad160a53392f502a02128f131ad6815f2abc91e608b534450685296d04c67b86",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"용수철의 원래 길이는 15 cm이고, 1 g당 늘어나는 길이는 3/8 cm입니다. 무게가 20 g인 물체를 걸었을 때 늘어나는 길이는 20 × (3/8) = 7.5 cm이므로, 전체 용수철의 길이는 15 + 7.5 = 22.5 cm가 됩니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "용수철의 원래 길이는 15 cm이고, 1 g당 늘어나는 길이는 3/8 cm입니다. 무게가 20 g인 물체를 걸었을 때 늘어나는 길이는 20 × (3/8) = 7.5 cm이므로, 전체 용수철의 길이는 15 + 7.5 = 22.5 cm가 됩니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a6ce19d943b3822de34942dba187b629f78f3f62d6ef7dc0ee1f4a1b98b9998d"
+}

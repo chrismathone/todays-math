@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A91-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "a45f4a81-8951-4eef-a45a-4bea0ebc40fe",
+ "startedAt": "2026-10-21T18:22:43+0900",
+ "elapsedSec": 47.7,
+ "studentSha256": {
+  "fig-1.png": "654454248447bf755f72ba542fb62e993a929f7d420cdc8d84cb7a50c1eabdc3",
+  "student.json": "d3c1356a9dc435a36ecc093fad4b23801358fe54c4946d4faa00514045281fc2"
+ },
+ "promptSha256": "77319fb6177c403cacc6815874c8e4199451cf37bbe7343eea1699aec0d8dc6c",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"직사각형에서 $\\\\overline{AD} \\\\parallel \\\\overline{BC}$이므로 엇각의 성질에 의해 $\\\\angle GEF = \\\\angle EFC$이다.\\n종이를 $\\\\overline{EF}$를 접는 선으로 하여 접었으므로 $\\\\angle GFE = \\\\angle EFC$이다.\\n따라서 $\\\\angle GEF = \\\\angle GFE$이므로 $\\\\triangle GEF$는 $\\\\overline{GE} = \\\\overline{GF}$인 이등변삼각형이다.\\n$\\\\overline{GF} = 8\\\\,\\\\mathrm{cm}$이므로 $\\\\overline{GE} = 8\\\\,\\\\mathrm{cm}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "직사각형에서 $\\overline{AD} \\parallel \\overline{BC}$이므로 엇각의 성질에 의해 $\\angle GEF = \\angle EFC$이다.\n종이를 $\\overline{EF}$를 접는 선으로 하여 접었으므로 $\\angle GFE = \\angle EFC$이다.\n따라서 $\\angle GEF = \\angle GFE$이므로 $\\triangle GEF$는 $\\overline{GE} = \\overline{GF}$인 이등변삼각형이다.\n$\\overline{GF} = 8\\,\\mathrm{cm}$이므로 $\\overline{GE} = 8\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "40d2829a7452a2711ac05391c7b7b2615ba4017d0905f7f31b3c395607a8e67d"
+}
