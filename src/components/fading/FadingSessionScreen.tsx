@@ -580,6 +580,16 @@ export function FadingSessionScreen({
         `${concept.ordinal}/${concept.siblings}`,
       ].join(" · ");
   const disabled = paused || saving || !!failure;
+  // Completed blanks belong to the result, not the cleared next-step input.
+  const progressResult =
+    compare ??
+    (done || local.phase === "rating"
+      ? local.results.find((result) => result.step === local.step)
+      : undefined);
+  const visibleStep = progressResult?.step ?? local.step;
+  const progressDone =
+    progressResult?.blanks ?? Object.keys(local.filled).length;
+  const progressTotal = progressResult?.blanks ?? blanks.length;
   function chooseNumber(index: number) {
     if (disabled || compare || done) return;
     if (local.phase === "rating") {
@@ -620,7 +630,7 @@ export function FadingSessionScreen({
       ref={sessionRoot}
       className={s.session}
       data-fading-session="true"
-      data-step={local.step}
+      data-step={visibleStep}
       inert={paused}
       aria-hidden={paused || undefined}
     >
@@ -655,24 +665,24 @@ export function FadingSessionScreen({
         <div className={s.sessionStatus}>
           <div className={s.left}>
             <span className={s.stepPill}>
-              STEP {String(local.step).padStart(2, "0")} ·{" "}
-              {(student ? studentStepNames : stepNames)[local.step]}
+              STEP {String(visibleStep).padStart(2, "0")} ·{" "}
+              {(student ? studentStepNames : stepNames)[visibleStep]}
             </span>
             {!student && (
               <span className={s.erasurePill}>
-                소거율 {toPercent(erasureRate(concept, local.step))}%
+                소거율 {toPercent(erasureRate(concept, visibleStep))}%
               </span>
             )}
           </div>
-          {local.step !== 1 && (
+          {visibleStep !== 1 && (
             <span className={s.code}>
-              {Object.keys(local.filled).length} / {blanks.length} 완료
+              {progressDone} / {progressTotal} 완료
             </span>
           )}
           <div className={s.sessionProgress}>
             <span
               style={{
-                width: `${toPercent(blanks.length ? Object.keys(local.filled).length / blanks.length : 0)}%`,
+                width: `${toPercent(progressTotal ? progressDone / progressTotal : 0)}%`,
               }}
             />
           </div>
