@@ -497,6 +497,24 @@ describe("그림에 기대는 원본은 변형본을 채택할 수 없다 (2026-
 });
 
 describe("POST /api/problems/transform/adopt — 채택분만 넣는다", () => {
+  /**
+   * 원본의 그림 자리 `[그림:n]`(D-164 ③④)이 후보에 남으면 변형본에는 그 그림이 없다 — 저장하지 않는다(2026-10-21 Codex 검토).
+   * 음성 대조: 같은 요청에서 자리 표기만 빼면 저장된다(아래 «201» 시험).
+   */
+  it("그림 자리 표기가 남은 후보는 400 으로 거부하고 아무것도 저장하지 않는다", async () => {
+    const origin = MOCK_PROBLEMS[0]!;
+    const before = await prismaTestDouble.problem.count();
+    const res = await adoptRoute(
+      jsonRequest("http://localhost/api/problems/transform/adopt", {
+        originProblemId: origin.id,
+        items: [adoptItem("다음 그림을 보고 답하시오.\n[그림:1] ⑴ (　　)")],
+      }),
+    );
+    expect(res.status).toBe(400);
+    expect(JSON.stringify(await res.json())).toContain("그림 자리 표기");
+    expect(await prismaTestDouble.problem.count()).toBe(before);
+  });
+
   it("201과 함께 transformed/pending 으로 저장하고, 분류는 원본에서 물려받는다", async () => {
     const origin = MOCK_PROBLEMS[0]!;
 

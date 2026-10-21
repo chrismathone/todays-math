@@ -28,16 +28,25 @@ function serialize(node: Paragraph, source: string): string {
   return out;
 }
 
+/**
+ * 루트 바로 아래 마디들의 갈래(글 · 식 · 그 밖) — 이 플러그인과 그림 자리 검사(`figureSlots.ts` — 발문을 자리에서 잘라 조각마다
+ * 그려도 식 줄 표지가 같은가)가 같이 쓴다. `source` 는 그 나무를 읽은 원문이다.
+ */
+export function formulaLineKinds(tree: Root, source: string): ParagraphKind[] {
+  return tree.children.map((node: RootContent): ParagraphKind =>
+    node.type !== "paragraph"
+      ? "other"
+      : isFormulaOnlyParagraph(serialize(node, source))
+        ? "formula"
+        : "text",
+  );
+}
+
 export function remarkFormulaLines() {
   return (tree: Root, file: { value?: unknown }) => {
-    const source = typeof file.value === "string" ? file.value : String(file.value ?? "");
-    const kindOf = (node: RootContent): ParagraphKind =>
-      node.type !== "paragraph"
-        ? "other"
-        : isFormulaOnlyParagraph(serialize(node, source))
-          ? "formula"
-          : "text";
-    const plan = formulaLinePlan(tree.children.map(kindOf));
+    const source =
+      typeof file.value === "string" ? file.value : String(file.value ?? "");
+    const plan = formulaLinePlan(formulaLineKinds(tree, source));
     tree.children.forEach((node, i) => {
       if (!plan[i]) return;
       node.data = {

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { HttpResponse, http } from "msw";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { server } from "@/mocks/server";
 import {
   ENGLISH_MOCK_EXAMS,
@@ -48,6 +48,12 @@ beforeEach(() => {
       HttpResponse.json({ data: [item] }),
     ),
   );
+});
+// «문항 검토 →»가 출력 화면을 미리 불러온다(`EnglishExamBuilder` `loadOutput` — 기다리지 않는다). 시험이 그 불러오기보다
+// 먼저 끝나면 해체된 환경에서 모듈을 읽다 «EnvironmentTeardownError» 가 난다(부하가 큰 전체 시험에서 — 2026-10-21) —
+// 같은 모듈을 끝까지 기다려 시험 안에서 마친다.
+afterEach(async () => {
+  await import("@/components/english/EnglishExamOutput");
 });
 async function compose() {
   // 1단계 «범위 고르기»는 화면에 펴져 있다 — 체크하면 바로 구성표에 들어간다(적용 단추 없음).

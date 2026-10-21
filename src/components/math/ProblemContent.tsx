@@ -6,7 +6,10 @@
  *
  * 보기 마커가 없는 문항(OCR 유실 등)은 지문만 렌더한다 — 임의로 쪼개지 않는다.
  */
+import { Fragment, type ReactNode } from "react";
+
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
+import { MathText } from "@/components/math/MathText";
 import { PracticeProblemText } from "@/components/math/PracticeProblemText";
 import {
   figureSvgFrameClass,
@@ -20,12 +23,8 @@ import {
 } from "@/lib/math/choiceLayout";
 import { fitsTwoColumns } from "@/lib/math/displayWidth";
 import { CHOICE_MARKS } from "@/lib/math/circledNumber";
-import { hideFigureMarker } from "@/lib/problem/figureMarker";
-import {
-  choiceFigureMode,
-  UNLINKED_FIGURE_CHOICES_NOTICE,
-} from "@/lib/problem/choiceFigureIndex";
-import { parseProblemContent } from "@/lib/problem/parseProblemContent";
+import { UNLINKED_FIGURE_CHOICES_NOTICE } from "@/lib/problem/choiceFigureIndex";
+import { slottedProblem, type FigureSlotItem } from "@/lib/problem/figureSlots";
 
 /**
  * 오려 온 그림은 배경이 **순백(#FFFFFF)** 인데 지면은 `--paper-warm`(#FCFCF8) 이다.
@@ -120,10 +119,25 @@ export function ProblemContent({
   practiceLayout = false,
   staticLayout = false,
 }: ProblemContentProps) {
-  const { question: rawQuestion, choices } = parseProblemContent(content);
   const figures = figureUrls ?? [];
   /**
-   * 보기 그림의 짝을 읽는 갈래 — 규칙은 `choiceFigureMode` 한 곳에 있다(자 `estimateProblemPx` 도 같은 함수를 부른다).
+   * 읽는 차례(그림 자리 `[그림:n]` 뽑기 → 파서 → `[그림]` 자국 가리기 → 보기 그림 짝 → 발문 자리 배치)는
+   * `slottedProblem` 한 곳이다 — **넘침 자(`estimateProblemPx`)도 같은 함수를 부른다.** 한쪽만 고치면 높이가 갈라진다.
+   *
+   * 그림 자리(D-164 ③④)는 파서보다 먼저 뽑는다 — 파서가 캡션의 «⑴»을 소문항으로 갈라 그림과 떼어 놓는다.
+   * 보기 쪽이 그리는 그림은 발문 자리로 못 쓰고, 제자리에 그린 그림은 뒤 모음에서 뺀다. 자리가 없으면 오늘 그대로다.
+   *
+   * 그림이 붙어 있는데 발문에 `[그림]` 자국이 남은 문항이 3,951건 있다
+   * (원장님 2026-08-20). 그림은 바로 아래 그려지므로 그 글자는 군더더기다(`hideFigureMarker`).
+   */
+  const { choices, figureMode, slots } = slottedProblem(
+    content,
+    figures.length,
+    choiceFigureIndex,
+    figures.length > 0 || Boolean(figureSvg),
+  );
+  /**
+   * 보기 그림의 짝을 읽는 갈래(`figureMode`) — 규칙은 `choiceFigureMode` 한 곳에 있다(자 `estimateProblemPx` 도 같은 함수를 부른다).
    *
    *  ㉠ `choiceFigures`(grid) — 짝이 온전하다(은행 · 3자 합의 B1): 그림이 `[그림]` 자리를 **대신해** 번호 칸 안에 서고 보기는 늘 2열.
    *  ㉡ `mapped`(loose) — 글 보기에 그림이 딸린 문항의 덜 된 짝(교재 스냅샷): 아는 그림은 그 보기의 글 **아래**에,
@@ -131,24 +145,12 @@ export function ProblemContent({
    *  ㉢ 그 밖(none) — 예전 조판 그대로. 그림뿐인 보기가 있는데 짝이 온전하지 않으면(`unlinkedChoices`) 보기 위에
    *     «번호를 확인할 수 없는 문항»이라고 **한 번** 적는다(3자 합의 A2). 그림 없는 문항 · 글 보기 문항은 한 글자도 안 바뀐다.
    */
-  const figureMode = choiceFigureMode(
-    figures.length,
-    choiceFigureIndex,
-    choices,
-  );
   const choiceFigures = figureMode.mode === "grid" ? figureMode.plan : null;
   const unlinkedChoices =
     figureMode.mode === "none" && figureMode.unlinkedFigureChoices;
-  const stemFigures = choiceFigures?.stem ?? figures.map((_, index) => index);
-  /**
-   * 그림이 붙어 있는데 발문에 `[그림]` 자국이 남은 문항이 3,951건 있다
-   * (원장님 2026-08-20). 그림은 바로 아래 그려지므로 그 글자는 군더더기다.
-   * **자(`estimateProblemPx`)도 같은 함수를 부른다** — 한쪽만 고치면 높이가 갈라진다.
-   */
-  const question = hideFigureMarker(
-    rawQuestion,
-    figures.length > 0 || Boolean(figureSvg),
-  );
+  const stemFigures = (
+    choiceFigures?.stem ?? figures.map((_, index) => index)
+  ).filter((index) => !slots.used.has(index));
   /**
    * 🔴 **넘침 판정과 같은 함수**다(`printOverflow` 도 이걸 부른다). 규칙이 두 벌이 되면
    * 자가 재는 지면과 실제 지면이 갈라지는데, 그건 아무도 모르게 어긋난다.
@@ -210,17 +212,88 @@ export function ProblemContent({
       />
     </div>
   );
+  // 발문 그림 한 장 — 발문 뒤 그림 모음과 그림 자리(`[그림:n]`)가 같은 것을 그린다.
+  const stemImage = (index: number) => (
+    // 원본 비율·자연 크기를 그대로 써야 인쇄물이 원본 시험지와 같아진다.
+    // next/image 는 리사이즈·포맷 변환을 하므로 여기선 쓰지 않는다.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      key={figures[index]}
+      src={figures[index]}
+      alt={figures.length > 1 ? `문항 그림 ${index + 1}` : "문항 그림"}
+      // 원본이 최대 1,423px 이라 자연 크기로 두면 본문을 압도한다(실측 표시폭 1,178px).
+      // 작은 그림은 그대로 두고 큰 것만 줄인다.
+      // ⚠️ 상한 클래스는 mm 를 알아도 **그대로 둔다** — mm 를 모르는 그림이
+      //    같은 지면에 섞이고, `max-width` 는 인라인 `width` 도 이겨 이중 안전망이다.
+      className={`h-auto w-auto max-w-full sm:max-w-[360px] print:max-w-[70mm] ${FIGURE_BLEND_CLASS}`}
+      /**
+       * 원본 지면에서 그 그림이 차지하던 **물리 폭**. 모르면 `undefined` 라
+       * React 가 `style` 속성을 아예 안 만든다 — 마크업이 2026-08-19 이전 그대로다.
+       * ⚠️ 인라인 style 은 Tailwind 를 이긴다. 그래서 값 자체를 70mm 로 잘라
+       *    보낸다(`figureWidthStyle`) — CSS 상한 한쪽만 믿지 않는다.
+       */
+      style={figureWidthStyle(placements[index]?.sourceMm)}
+      // height 는 넣지 않는다 — 폭만 정하고 높이는 비율대로 따라오게 둔다
+      // (`h-auto`). 원본 치수를 모르는 채로 적으면 비율이 틀어진다.
+      loading={figureLoading}
+      decoding={figureDecoding}
+    />
+  );
+  const questionText = (text: string) =>
+    practiceLayout ? (
+      <PracticeProblemText content={text} />
+    ) : (
+      <MarkdownRenderer
+        content={text}
+        staticLayout={staticLayout}
+        formulaLines
+      />
+    );
+  /**
+   * 그림 자리 묶음 — 발문 뒤 그림 모음과 같은 꼴(가로로 늘어서 가운데 · 지면에서 안 갈린다)에 그림마다 캡션을
+   * **바로 아래**에 단다(D-164 ④). 캡션은 본문 글씨 그대로다 — 새 꾸밈이 없다(05 §0).
+   * 자는 `estimateFigureSlotGroupPx` 가 같은 꼴(`mt-3` · `gap-4` · 캡션 `mt-1` 한 줄)로 센다.
+   */
+  const slotGroup = (
+    items: readonly FigureSlotItem[],
+    key: number,
+  ): ReactNode => (
+    <div
+      key={key}
+      data-figure-slots=""
+      // HWPX 에 칸을 알린다 — 칸(그림 + 캡션)의 첫 줄끼리 · 둘째 줄끼리 한 문단이 된다(그림들 / 캡션들 — `writer.py` 의 `grid_rows`).
+      // «top» — 가운데 맞춤 · 폭이 다른 칸은 다음 줄 첫 칸이 더 오른쪽일 수 있어 위쪽 끝으로 행을 가른다(`hwpxLayout.ts` `gridCellMarks`).
+      data-hwpx-grid="top"
+      className="mt-3 flex flex-wrap items-start justify-center gap-4 print:break-inside-avoid"
+    >
+      {items.map((item) => (
+        <div
+          key={item.index}
+          data-figure-slot={item.index + 1}
+          className="flex max-w-full flex-col items-center print:break-inside-avoid"
+        >
+          {stemImage(item.index)}
+          {item.caption ? (
+            <div
+              data-figure-caption=""
+              className="mt-1 text-center leading-relaxed"
+            >
+              <MathText text={item.caption} staticLayout={staticLayout} />
+            </div>
+          ) : null}
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <div className={className}>
-      {practiceLayout ? (
-        <PracticeProblemText content={question} />
-      ) : (
-        <MarkdownRenderer
-          content={question}
-          staticLayout={staticLayout}
-          formulaLines
-        />
+      {slots.parts.map((part, i) =>
+        part.kind === "text" ? (
+          <Fragment key={i}>{questionText(part.text)}</Fragment>
+        ) : (
+          slotGroup(part.items, i)
+        ),
       )}
       {figureSvg ? (
         // 발문 뒤 — 스캔 그림과 같은 자리다. 장식 없음(05 §0).
@@ -238,9 +311,10 @@ export function ProblemContent({
       ) : null}
       {mapped ? (
         figures.map((url, i) =>
-          associations[i] === 0 ||
-          associations[i] === null ||
-          associations[i]! > choices.length
+          (associations[i] === 0 ||
+            associations[i] === null ||
+            associations[i]! > choices.length) &&
+          !slots.used.has(i)
             ? mappedFigure(url, i)
             : null,
         )
@@ -250,32 +324,7 @@ export function ProblemContent({
         // `justify-center` — 원장님 지시(2026-08-20): 「그림이 문제 중앙 정렬 되면
         // 좋겠네」. 여러 장이면 줄마다 가운데로 모인다(원본 순서는 그대로).
         <div className="mt-3 flex flex-wrap items-start justify-center gap-4 print:break-inside-avoid">
-          {stemFigures.map((index) => (
-            // 원본 비율·자연 크기를 그대로 써야 인쇄물이 원본 시험지와 같아진다.
-            // next/image 는 리사이즈·포맷 변환을 하므로 여기선 쓰지 않는다.
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={figures[index]}
-              src={figures[index]}
-              alt={figures.length > 1 ? `문항 그림 ${index + 1}` : "문항 그림"}
-              // 원본이 최대 1,423px 이라 자연 크기로 두면 본문을 압도한다(실측 표시폭 1,178px).
-              // 작은 그림은 그대로 두고 큰 것만 줄인다.
-              // ⚠️ 상한 클래스는 mm 를 알아도 **그대로 둔다** — mm 를 모르는 그림이
-              //    같은 지면에 섞이고, `max-width` 는 인라인 `width` 도 이겨 이중 안전망이다.
-              className={`h-auto w-auto max-w-full sm:max-w-[360px] print:max-w-[70mm] ${FIGURE_BLEND_CLASS}`}
-              /**
-               * 원본 지면에서 그 그림이 차지하던 **물리 폭**. 모르면 `undefined` 라
-               * React 가 `style` 속성을 아예 안 만든다 — 마크업이 2026-08-19 이전 그대로다.
-               * ⚠️ 인라인 style 은 Tailwind 를 이긴다. 그래서 값 자체를 70mm 로 잘라
-               *    보낸다(`figureWidthStyle`) — CSS 상한 한쪽만 믿지 않는다.
-               */
-              style={figureWidthStyle(placements[index]?.sourceMm)}
-              // height 는 넣지 않는다 — 폭만 정하고 높이는 비율대로 따라오게 둔다
-              // (`h-auto`). 원본 치수를 모르는 채로 적으면 비율이 틀어진다.
-              loading={figureLoading}
-              decoding={figureDecoding}
-            />
-          ))}
+          {stemFigures.map((index) => stemImage(index))}
         </div>
       ) : null}
       {unlinkedChoices ? (

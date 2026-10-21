@@ -3716,8 +3716,10 @@ export const ITEMS: PrintCheckItem[] = [
       "src/__tests__/unit/formulaLine.test.tsx",
       "전수 집계(저장소 밖 보고서 report.md) — 공유 DB 에서 이 규칙이 표지를 다는 행 11,786(출제 가능 11,491): 엔진초등 6,028 · 엔진중등 3,926 · 교과서 810 · 변형 1,022 — 그 가운데 쉼표 나열 갈래 1,105 · 같은 줄 갈래 2,882(`parse-census` 전후 비교 · 보기 개수 변화 0)",
     ],
-    scale: "엔진 초등 · 중등 문항의 «…구하시오.» + 식 줄 꼴 전부(초4 1-3-3 곱셈의 어림셈 문형05 가 원장님이 보신 문항)",
-    needs: "초4 1-3-3 «다음 곱셈을 어림하려고 합니다» 문항(예: E40303-A05-001) + 중2 «다음 등식이 성립할 때» 문항(예: J20106-A04-001) + 보기가 있는 객관식 하나",
+    scale:
+      "엔진 초등 · 중등 문항의 «…구하시오.» + 식 줄 꼴 전부(초4 1-3-3 곱셈의 어림셈 문형05 가 원장님이 보신 문항)",
+    needs:
+      "초4 1-3-3 «다음 곱셈을 어림하려고 합니다» 문항(예: E40303-A05-001) + 중2 «다음 등식이 성립할 때» 문항(예: J20106-A04-001) + 보기가 있는 객관식 하나",
     status: "대기",
     changedOn: "2026-10-20",
   },
@@ -3737,9 +3739,12 @@ export const ITEMS: PrintCheckItem[] = [
       "src/__tests__/unit/elemDisplayDupes.test.ts",
       "docs/planning/tracks/reports/problem-display-dupes-20261020/elem-display-repair-baseline.json",
     ],
-    scale: "공유 DB 적재본 기준 세로셈 3a 1,040행 · 정답 노출 그림 94행 · 그림이 빠지는 행 1,088 — 적재본은 `refresh-engine-content.ts` 적용(원장님 승인) 전까지 그대로",
-    needs: "적재본 갱신 뒤의 시험지, 또는 개발 서버 `/dev/elem-engine` 로 뽑은 초4 1-3-1 · 1-3-2 · 2-3-6 · 초5 2-3-2 문항",
-    blockedBy: "공유 DB 적재본 갱신(원장님 승인) 전에는 시험지 만들기로 출제한 지면에 옛 그림이 그대로 나온다",
+    scale:
+      "공유 DB 적재본 기준 세로셈 3a 1,040행 · 정답 노출 그림 94행 · 그림이 빠지는 행 1,088 — 적재본은 `refresh-engine-content.ts` 적용(원장님 승인) 전까지 그대로",
+    needs:
+      "적재본 갱신 뒤의 시험지, 또는 개발 서버 `/dev/elem-engine` 로 뽑은 초4 1-3-1 · 1-3-2 · 2-3-6 · 초5 2-3-2 문항",
+    blockedBy:
+      "공유 DB 적재본 갱신(원장님 승인) 전에는 시험지 만들기로 출제한 지면에 옛 그림이 그대로 나온다",
     status: "대기",
     changedOn: "2026-10-20",
   },
@@ -3758,15 +3763,18 @@ export const ITEMS: PrintCheckItem[] = [
       "src/lib/elementary/format.ts · g3.ts · g4.ts · g6.ts · scripts/figure/elem_advanced.py(pictograph hideUnit) · src/lib/math/subQuestion.ts",
       "src/__tests__/unit/elemJosaDisplay.test.ts · src/__tests__/unit/subQuestion.test.ts",
     ],
-    scale: "초등 엔진 문형 · 난이도 전부(조사 — 고치기 전 10씨앗에서 642건) · 그림그래프 1문형 · 은행 파싱이 바뀐 행 1(`parse-census`)",
-    needs: "엔진으로 새로 뽑은 초6 1-5-1 · 초3 2-6-1 문항, 교과서 J10203-D15-001",
+    scale:
+      "초등 엔진 문형 · 난이도 전부(조사 — 고치기 전 10씨앗에서 642건) · 그림그래프 1문형 · 은행 파싱이 바뀐 행 1(`parse-census`)",
+    needs:
+      "엔진으로 새로 뽑은 초6 1-5-1 · 초3 2-6-1 문항, 교과서 J10203-D15-001",
     blockedBy: "초등 문항은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 글이다",
     status: "대기",
     changedOn: "2026-10-20",
   },
   {
     id: "sheet-third-pass-nowrap-symbols-figures",
-    title: "지면 3차 — 짧은 식 한 줄 · 지수 속 분수 · 기호 · <보기> 간격 · 초등 그림 넷",
+    title:
+      "지면 3차 — 짧은 식 한 줄 · 지수 속 분수 · 기호 · <보기> 간격 · 초등 그림 넷",
     changed:
       "표시 폭 24단위 이하의 짧은 인라인 식은 줄을 바꾸지 않는다(`rehypeMathNowrap` — 긴 식은 전처럼 등호 · 부호 뒤에서 바뀐다). " +
       "지수 · 첨자 속 분수(«$8^{\\frac14}$» · «$2^{\\frac{x}{4}}$»)는 작은 분수로 둔다(전에는 큰 분수로 떠서 거듭제곱으로 안 읽혔다). " +
@@ -3782,15 +3790,19 @@ export const ITEMS: PrintCheckItem[] = [
       "scripts/figure/elementary.py(`_clock_face` · `_marked_shape`) · scripts/figure/elem_advanced.py(`_rotate_flip` showAfter) · src/lib/elementary/g4.ts · g5.ts",
       "교차 검수 3회차(세 모델 · 지면 222문항) — 저장소 밖 보고서 report.md",
     ],
-    scale: "짧은 식 묶음은 지면의 모든 인라인 식(24단위 이하) · 지수 속 분수 · 기호는 은행 전수에서 해당 행 · 초등 그림은 문형 넷",
-    needs: "고등 공통수학1 이차함수의 최대·최소 문항 하나 · 지수 분수가 든 대수 문항 하나 · 교과서 J20502-A50-001 · J10203-D15-001 · 초4 각의 크기 시계 문항",
-    blockedBy: "교과서 이름표 · 초등 그림은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 지면이다",
+    scale:
+      "짧은 식 묶음은 지면의 모든 인라인 식(24단위 이하) · 지수 속 분수 · 기호는 은행 전수에서 해당 행 · 초등 그림은 문형 넷",
+    needs:
+      "고등 공통수학1 이차함수의 최대·최소 문항 하나 · 지수 분수가 든 대수 문항 하나 · 교과서 J20502-A50-001 · J10203-D15-001 · 초4 각의 크기 시계 문항",
+    blockedBy:
+      "교과서 이름표 · 초등 그림은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 지면이다",
     status: "대기",
     changedOn: "2026-10-20",
   },
   {
     id: "sheet-fourth-fifth-pass-marks-grids",
-    title: "지면 4 · 5차 — 기호 보기 «㉠ 식» 붙임 · 점 옮기기 모눈 · 답을 보여 주던 초등 그림",
+    title:
+      "지면 4 · 5차 — 기호 보기 «㉠ 식» 붙임 · 점 옮기기 모눈 · 답을 보여 주던 초등 그림",
     changed:
       "한 줄에 늘어놓은 기호 보기 «㉠ $식$  ㉡ $식$» 에서 «㉠» 이 줄 끝에 홀로 남던 것을 기호와 식을 한 덩어리로 묶어 막았다(`rehypeMathNowrap`). " +
       "초4 점의 이동 모눈은 발문의 움직임이 다 들어가게 크기와 출발점을 정한다(전에는 6×6 의 정한 자리에서 «위쪽으로 5칸» 이 모눈 밖으로 나갔다). " +
@@ -3804,9 +3816,12 @@ export const ITEMS: PrintCheckItem[] = [
       "src/__tests__/unit/mathNowrap.test.tsx · src/__tests__/unit/elemDisplayDupes.test.ts(4 · 5차)",
       "교차 검수 4 · 5회차(세 모델 · 지면 227 · 231문항) — 저장소 밖 보고서 report.md",
     ],
-    scale: "기호 보기는 초5 문형 9곳(엔진 출력 약 220건) · 점의 이동 5문형 · 초등 그림 넷",
-    needs: "엔진으로 새로 뽑은 초5 1-1-1 응용 · 초4 1-4-1 · 초6 2-3-1 연산 문항",
-    blockedBy: "초등 문항은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 지면이다",
+    scale:
+      "기호 보기는 초5 문형 9곳(엔진 출력 약 220건) · 점의 이동 5문형 · 초등 그림 넷",
+    needs:
+      "엔진으로 새로 뽑은 초5 1-1-1 응용 · 초4 1-4-1 · 초6 2-3-1 연산 문항",
+    blockedBy:
+      "초등 문항은 공유 DB 적재본 갱신(원장님 승인) 전에는 옛 지면이다",
     status: "대기",
     changedOn: "2026-10-21",
   },
@@ -3830,7 +3845,39 @@ export const ITEMS: PrintCheckItem[] = [
     ],
     scale:
       "식 바로 뒤에 조사가 붙은 자리 — 공유 DB 문항 118,246행에서 521,169곳(«이다» 111,228 · «의» 76,669 · «이므로» 47,524 …). 초등은 생성기 붙임(초등 갈래) 뒤에 늘어난다",
-    needs: "식 뒤 조사가 줄 끝에 걸리는 문항 여럿(중등 · 교과서) · 고등 공통수학1 이차함수의 최대·최소 문항 하나(긴 식)",
+    needs:
+      "식 뒤 조사가 줄 끝에 걸리는 문항 여럿(중등 · 교과서) · 고등 공통수학1 이차함수의 최대·최소 문항 하나(긴 식)",
+    status: "대기",
+    changedOn: "2026-10-21",
+  },
+  {
+    id: "figure-slots-20261021",
+    title:
+      "그림 자리 `[그림:n]` — 설명과 물음 사이의 그림 · 그림마다 아래 번호 (D-164 ③④)",
+    changed:
+      "본문의 독립된 줄 `[그림:1]` · `[그림:1] ⑴ (　　　　)` 자리에 그 그림을 그리고, 뒤 글을 그 그림 **바로 아래** 캡션으로 단다(본문 글씨 · 가운데). " +
+      "이어진 자리는 한 묶음으로 가로로 늘어서고(발문 뒤 그림 묶음과 같은 꼴) 쪽 사이에서 안 갈린다. 제자리에 그린 그림은 발문 뒤 그림 모음에서 빠진다. " +
+      "잘못 적힌 자리(번호가 범위 밖 · 같은 그림 두 번 · 보기 그림 · 상자 안 · 보기 안 · 수식 안 · 한 줄에 둘)는 원문 그대로 글로 찍힌다. 넘침 자도 같은 함수(`slottedProblem`)로 센다. " +
+      "같은 판정으로 HWPX(묶음을 격자로 — 그림들 한 문단 · 캡션들 한 문단, 줄은 칸의 위쪽 끝으로 가른다 · 캡션 응답칸의 전각 공백을 이제 안 접는다) · 교재 지면(인라인 스타일 — 자리 없는 교재는 바이트 그대로) · " +
+      "학생 QR · 교재 인쇄본(엔진 SVG 가 그림 배열 맨 앞이면 번호를 옮긴다)까지. AI 변형 채택은 자리 표기가 남은 후보를 저장하지 않는다.",
+    look:
+      "(제안) 은행 지면 ① 캡션 «⑴ (　　　　)» 이 제 그림 바로 아래 가운데에 붙어 있는가 · 다른 그림 아래로 가지 않는가. ② 그림과 캡션이 쪽 사이에서 갈리지 않는가. " +
+      "③ «다음은 상용로그표의 일부이다 ⏎ (표) ⏎ 이 표를 이용하여 …» 처럼 그림이 설명과 물음 사이에 서는가 · 같은 그림이 문항 아래에 또 찍히지 않는가. ④ 캡션 응답칸의 괄호가 손으로 쓸 만한 폭인가. " +
+      "HWPX ⑤ 한글에서 그림들이 한 줄 · 그 아래 캡션들이 한 줄이고 캡션 응답칸 괄호가 «( )» 로 줄지 않았는가(캡션 밖의 «(　　)» 응답칸은 예전처럼 접힌다 — 자리 없는 문항의 HWPX 는 그대로다). " +
+      "교재 ⑥ 자리 없는 교재 문항이 예전과 같은가 · 자리 문항의 그림 · 캡션이 은행 지면과 같은 자리인가 · 엔진 SVG 와 스캔 그림이 같이 있는 문항에서 캡션이 SVG 가 아니라 제 스캔 그림 아래에 붙는가 · 분수 보기의 줄 간격이 그대로인가.",
+    lookFromSource: false,
+    evidence: [
+      "src/lib/problem/figureSlots.ts(지면 글은 자리 줄을 뺀 같은 문항의 것 · 자리표는 그림이 설 자리만 · 판정이나 마크다운 마디를 바꾸는 자리는 하나도 안 세운다) · src/components/math/ProblemContent.tsx · src/lib/printOverflow.ts(`estimateFigureSlotGroupPx`)",
+      "src/lib/export/hwpxLayout.ts(전각 공백) · src/lib/textbook/render/blocks/problem.ts · src/lib/textbook/render/slotCut.ts(교재 GFM · 쓰기 검사 `checkFigureSlotsForWrite`) · src/lib/textbook/snapshotSlots.ts · src/app/api/problems/transform/adopt/route.ts",
+      "src/__tests__/unit/figureSlots.test.tsx · src/__tests__/unit/figureSlotsChrome.test.tsx(자와 지면 0.03px · 캡션 4px · 쪽 끝 조각 나눔: 대조군 12높이 갈림 / 제품 0) · src/__tests__/unit/figureSlotsHwpx.test.tsx · src/__tests__/unit/textbookFigureSlots.test.ts · src/__tests__/unit/figureSlotsInvariant.test.ts",
+      "docs/planning/tracks/reports/problem-display-decisions-consensus-20261021.md(③④)",
+    ],
+    scale:
+      "교과서 행별 확인 목록 — 제자리 배치 행 · 그림별 번호(합의 약 25행 · 실측 후보 155행 — 범위는 2단계에서 정한다) · HWPX 의 전각 공백 보존은 그림 자리 캡션 안만",
+    needs:
+      "2단계 교과서 묶음이 공유 DB 에 들어간 뒤의 해당 행 — 그림 여러 장에 ⑴ ⑵ 가 붙은 문항(예: J20505-A85-001 · J20503-A16-001) · 상용로그표 문항 · 그 문항을 담은 교재 한 권과 HWPX 내보내기",
+    blockedBy:
+      "공유 DB 에 `[그림:n]` 표기가 들어가기 전(2단계 · 리드 적용)에는 지면에 나오지 않는다(자리 없는 문항은 HWPX 까지 그대로다)",
     status: "대기",
     changedOn: "2026-10-21",
   },
