@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A62-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddd-fc2d-73a1-ba2d-6b525f5a9531",
+ "startedAt": "2026-10-21T18:49:51+0900",
+ "elapsedSec": 11.0,
+ "studentSha256": {
+  "student.json": "e7ab55bcbe48e84c18aa53e05b1f9f7c03cca6c0386dba29db80138451149e1a"
+ },
+ "promptSha256": "e8c220c625c7af96cf5d753e136c95634126557be3bfd813b075e88531b54160",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"$4-3x<x+16$에서 $-4x<12$이다.\\n양변을 $-4$로 나누면 부등호의 방향이 바뀌므로 $x>-3$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "$4-3x<x+16$에서 $-4x<12$이다.\n양변을 $-4$로 나누면 부등호의 방향이 바뀌므로 $x>-3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e94de0aec3142e3e6ffbf4b748febcac4ecf3b710efb9bedae32cbeff1f7b2a3"
+}

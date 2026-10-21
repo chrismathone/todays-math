@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A59-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddd-7e8d-77a3-9800-36845d6dbd08",
+ "startedAt": "2026-10-21T18:49:19+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "student.json": "ae2769b81f9007cd516b44d6c7c0d271860cd27008fbe9e1bf485e6cdc81de4b"
+ },
+ "promptSha256": "1cca43ac7fadd7a2df33aef4f437be1c8ce9af2690360c8ceb88078f7f06698b",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"양변에 10을 곱하면 $5(x-3)<2x+3$이므로 $3x<18$, 즉 $x<6$이다.\\n자연수인 해는 1, 2, 3, 4, 5이므로 그 합은 $1+2+3+4+5=15$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "양변에 10을 곱하면 $5(x-3)<2x+3$이므로 $3x<18$, 즉 $x<6$이다.\n자연수인 해는 1, 2, 3, 4, 5이므로 그 합은 $1+2+3+4+5=15$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2eb775e749e623754e62be8440bd2fd5745c80c3180e4ec944962457a206e361"
+}

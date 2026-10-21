@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A43-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "5a4c6b7f-ed00-49a1-b31e-ae8ab79cb238",
+ "startedAt": "2026-10-21T17:59:25+0900",
+ "elapsedSec": 40.5,
+ "studentSha256": {
+  "fig-1.png": "2954a56cf0afc2e93dacb672c753177b1a40b5c2a78ab0bd3f97ffacc5bb9e76",
+  "student.json": "2d250831575cdd644a6b75e0a4b2c546c251d6b97d786c7d13125813515cec8f"
+ },
+ "promptSha256": "2480d35653c19d8fbde0043ba1145d90a4beff7c5d0dfe90c2dc18c246c6faed",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"-5\",\n  \"work\": \"부등식의 양변에 10을 곱하여 정리하면 5(x-a)-2(4x+3)>10, -3x-5a-6>10, -3x>5a+16이므로 x<-\\\\frac{5a+16}{3}이다. 수직선이 나타내는 해는 x<3이므로 -\\\\frac{5a+16}{3}=3이다. 5a+16=-9에서 5a=-25이므로 a=-5이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "-5",
+  "work": "부등식의 양변에 10을 곱하여 정리하면 5(x-a)-2(4x+3)>10, -3x-5a-6>10, -3x>5a+16이므로 x<-\\frac{5a+16}{3}이다. 수직선이 나타내는 해는 x<3이므로 -\\frac{5a+16}{3}=3이다. 5a+16=-9에서 5a=-25이므로 a=-5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6dcfeb8d758bd6b3efd70c10047b29741bdf2e961d841a8946e791070b5b0726"
+}

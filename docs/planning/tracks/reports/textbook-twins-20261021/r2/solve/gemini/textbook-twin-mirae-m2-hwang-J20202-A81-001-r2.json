@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A81-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "ac350c17-cc3e-4611-97ed-ab1a4871c363",
+ "startedAt": "2026-10-21T18:00:17+0900",
+ "elapsedSec": 15.5,
+ "studentSha256": {
+  "student.json": "89279f632e5962607b4cd254ce6bc9cd76257f986140866589851313090c0ce7"
+ },
+ "promptSha256": "8c757d5baa96187cf9f4f71997588a420ad7062262ab2f2e7f7c33f8d52f4d7a",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"1) 양변에 12를 곱하면 8x+9 > 12x-2에서 4x < 11, 즉 x < 11/4이므로 a = 11/4\\n2) 양변을 0.3으로 나누면 2(x+3) ≤ 3x+10에서 2x+6 ≤ 3x+10, 즉 x ≥ -4이므로 b = -4\\n따라서 ab = (11/4) × (-4) = -11\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "1) 양변에 12를 곱하면 8x+9 > 12x-2에서 4x < 11, 즉 x < 11/4이므로 a = 11/4\n2) 양변을 0.3으로 나누면 2(x+3) ≤ 3x+10에서 2x+6 ≤ 3x+10, 즉 x ≥ -4이므로 b = -4\n따라서 ab = (11/4) × (-4) = -11",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b7c7c128c4c599fbcce93ed80fd6d25a25b9eef702f2af88e0e9525c69ae5e7a"
+}

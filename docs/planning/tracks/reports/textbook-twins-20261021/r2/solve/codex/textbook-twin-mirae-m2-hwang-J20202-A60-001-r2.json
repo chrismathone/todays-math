@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A60-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddd-a7f5-7bc3-a97e-fe8a06fe959e",
+ "startedAt": "2026-10-21T18:49:29+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "4ad22af01e09da955cc0f0be039307c2e26563604a8717d8297b21e1a0732cc5"
+ },
+ "promptSha256": "51946e9f82d1371a908af0dec27c556ac46ea9b2f2ec8d0511a9242fa0b201ab",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"11\",\"work\":\"$4x+5\\\\ge x+11$을 정리하면 $3x\\\\ge 6$, 즉 $x\\\\ge 2$이다.\\n따라서 $7x-3\\\\ge 7\\\\times 2-3=11$이고, $x=2$일 때 최솟값 11을 갖는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "11",
+  "work": "$4x+5\\ge x+11$을 정리하면 $3x\\ge 6$, 즉 $x\\ge 2$이다.\n따라서 $7x-3\\ge 7\\times 2-3=11$이고, $x=2$일 때 최솟값 11을 갖는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3cccbbc92333f166e635f33ab03556990e4be4a8a9f98a4d099bc042ae8f098c"
+}

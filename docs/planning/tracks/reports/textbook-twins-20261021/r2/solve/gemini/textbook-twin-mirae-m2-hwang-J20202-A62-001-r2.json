@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A62-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "2c784985-26f0-4525-8347-e7017b5e2880",
+ "startedAt": "2026-10-21T18:00:05+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "e7ab55bcbe48e84c18aa53e05b1f9f7c03cca6c0386dba29db80138451149e1a"
+ },
+ "promptSha256": "84f2ce2b57807910040a285d53fc8bb6c940b99ba59c1e928e1fa8e8dd3571df",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"$4-3x < x+16$에서 좌변의 $4$를 우변으로, 우변의 $x$를 좌변으로 이항하여 정리하면 $-4x < 12$이다. 양변을 $-4$로 나누면 부등호의 방향이 바뀌므로 $x > -3$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "$4-3x < x+16$에서 좌변의 $4$를 우변으로, 우변의 $x$를 좌변으로 이항하여 정리하면 $-4x < 12$이다. 양변을 $-4$로 나누면 부등호의 방향이 바뀌므로 $x > -3$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7951938a55eae12c87a99fb40b9684b1c44148a12649a541dc4cd639ed5962d6"
+}

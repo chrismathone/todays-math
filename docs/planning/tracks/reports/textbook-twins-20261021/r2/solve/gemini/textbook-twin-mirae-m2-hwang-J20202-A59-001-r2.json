@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A59-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "e2f439c9-b638-43ef-b6c2-99cb0e732acd",
+ "startedAt": "2026-10-21T17:59:38+0900",
+ "elapsedSec": 15.4,
+ "studentSha256": {
+  "student.json": "ae2769b81f9007cd516b44d6c7c0d271860cd27008fbe9e1bf485e6cdc81de4b"
+ },
+ "promptSha256": "9d14810cbd26052c9a2e97f85d92daef6d71277098dc1d5107a55b6d15c4f4cb",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"부등식의 양변에 10을 곱하면 5(x-3) < 2x + 3입니다. 전개하여 정리하면 5x - 15 < 2x + 3, 3x < 18이 되어 x < 6을 얻습니다. 해 중 자연수는 1, 2, 3, 4, 5이므로 그 합은 1 + 2 + 3 + 4 + 5 = 15입니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "부등식의 양변에 10을 곱하면 5(x-3) < 2x + 3입니다. 전개하여 정리하면 5x - 15 < 2x + 3, 3x < 18이 되어 x < 6을 얻습니다. 해 중 자연수는 1, 2, 3, 4, 5이므로 그 합은 1 + 2 + 3 + 4 + 5 = 15입니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a18ea7c81b7d5fb948ef38be6aabfb38bad95148ed2fbc606ad7c320cd0d3b17"
+}

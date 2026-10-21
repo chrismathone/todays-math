@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A61-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "28011b10-f16f-4ecc-b23b-a58abfb8df56",
+ "startedAt": "2026-10-21T18:00:05+0900",
+ "elapsedSec": 13.7,
+ "studentSha256": {
+  "student.json": "d50456a4eb16babbf36c77ee214516cdcc9830fb0d0bd625b74e7d6648eefaad"
+ },
+ "promptSha256": "24397f79363fe783ab42a000478e4849f9c652c2ec42bec524247eec88bd1352",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"6\",\n  \"work\": \"양변에 6을 곱하면 5(x+2) > 3x + 21, 전개하여 정리하면 5x + 10 > 3x + 21, 2x > 11에서 x > 5.5를 얻습니다. 따라서 이를 만족시키는 가장 작은 자연수 x는 6입니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "6",
+  "work": "양변에 6을 곱하면 5(x+2) > 3x + 21, 전개하여 정리하면 5x + 10 > 3x + 21, 2x > 11에서 x > 5.5를 얻습니다. 따라서 이를 만족시키는 가장 작은 자연수 x는 6입니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2ef6b2fde832d51a76e42498a2b6caf5f3f2d76dd6b100f3f0927e22d9cbb9e5"
+}

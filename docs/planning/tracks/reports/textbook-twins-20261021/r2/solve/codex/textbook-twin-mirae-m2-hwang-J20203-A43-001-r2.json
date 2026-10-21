@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20203-A43-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddd-1f45-7bb0-b975-0900bd886655",
+ "startedAt": "2026-10-21T18:48:54+0900",
+ "elapsedSec": 11.9,
+ "studentSha256": {
+  "fig-1.png": "2954a56cf0afc2e93dacb672c753177b1a40b5c2a78ab0bd3f97ffacc5bb9e76",
+  "student.json": "2d250831575cdd644a6b75e0a4b2c546c251d6b97d786c7d13125813515cec8f"
+ },
+ "promptSha256": "289df9a66dbd7b7f4477228abdd867d5d5db6f177d6e4b991baa93750adb4727",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$a=-5$\",\"work\":\"그림에서 3은 포함하지 않고 왼쪽을 나타내므로 해는 $x<3$이다.\\n주어진 부등식의 양변에 10을 곱하면 $5(x-a)-2(4x+3)>10$이다.\\n정리하면 $-3x>5a+16$이므로 $x<-\\\\frac{5a+16}{3}$이다.\\n따라서 $-\\\\frac{5a+16}{3}=3$이므로 $5a+16=-9$, $a=-5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$a=-5$",
+  "work": "그림에서 3은 포함하지 않고 왼쪽을 나타내므로 해는 $x<3$이다.\n주어진 부등식의 양변에 10을 곱하면 $5(x-a)-2(4x+3)>10$이다.\n정리하면 $-3x>5a+16$이므로 $x<-\\frac{5a+16}{3}$이다.\n따라서 $-\\frac{5a+16}{3}=3$이므로 $5a+16=-9$, $a=-5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e0173e88feb3c89630b188dbac2b0756cea58151f960c65b560b529f3a5d00c3"
+}
