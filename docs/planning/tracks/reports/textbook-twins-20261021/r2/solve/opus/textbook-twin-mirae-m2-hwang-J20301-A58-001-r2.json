@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A58-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "725cdf32-857b-4862-9b0a-5ec38058ceb1",
+ "startedAt": "2026-10-21T17:55:47+0900",
+ "elapsedSec": 5.2,
+ "studentSha256": {
+  "student.json": "fe26d7fd06cbf7e13705e145775d0481c8220abe25402190e5c9214f070b0566"
+ },
+ "promptSha256": "92edb4c2b54f0e5d03e72622faf743fdd4ad0d23431de3ea2e25df4d1efdbaf3",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"ㄱ: 8x-y-7=0으로 미지수 2개인 일차방정식이다. ㄴ: x²항이 있어 일차방정식이 아니다. ㄷ: 양변에 18을 곱하면 3x-2y-108=0으로 미지수 2개인 일차방정식이다. ㄹ: 7x-y=7x-7y를 정리하면 6y=0으로 미지수가 1개이다. ㅁ: xy+6x=xy-8을 정리하면 6x+8=0으로 미지수가 1개이다. 따라서 ㄱ, ㄷ이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "ㄱ: 8x-y-7=0으로 미지수 2개인 일차방정식이다. ㄴ: x²항이 있어 일차방정식이 아니다. ㄷ: 양변에 18을 곱하면 3x-2y-108=0으로 미지수 2개인 일차방정식이다. ㄹ: 7x-y=7x-7y를 정리하면 6y=0으로 미지수가 1개이다. ㅁ: xy+6x=xy-8을 정리하면 6x+8=0으로 미지수가 1개이다. 따라서 ㄱ, ㄷ이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "465665200fff7c047e64e0e463a7c10258442f5430d656694361edcf892392e0"
+}

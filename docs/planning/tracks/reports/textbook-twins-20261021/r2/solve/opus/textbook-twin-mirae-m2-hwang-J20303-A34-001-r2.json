@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A34-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8f897d94-5406-476d-9892-e79504e238e0",
+ "startedAt": "2026-10-21T17:55:57+0900",
+ "elapsedSec": 5.8,
+ "studentSha256": {
+  "student.json": "6cb8ee312b1c29c2271771bb0c49a43c22b1785fcdf5e6d8ec0c77b74c3d4d0f"
+ },
+ "promptSha256": "f24b3f96d2f78ff1c78869540d4d87ab5119ad062c173f50e4d95deb81c9005c",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"첫째 식: 0.4x+0.4y+0.6x-0.6y=5 → x-0.2y=5 → 5x-y=25\\n둘째 식: 4(x+5)=9(y+9) → 4x-9y=61\\ny=5x-25를 대입: 4x-9(5x-25)=61 → -41x=-164 → x=4, y=-5\\n검산: (4+5):(-5+9)=9:4 ✓\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "첫째 식: 0.4x+0.4y+0.6x-0.6y=5 → x-0.2y=5 → 5x-y=25\n둘째 식: 4(x+5)=9(y+9) → 4x-9y=61\ny=5x-25를 대입: 4x-9(5x-25)=61 → -41x=-164 → x=4, y=-5\n검산: (4+5):(-5+9)=9:4 ✓",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5e305ee9d9ee041322f6b140b9bc78d35798db7c621d242c266bf842c13690fa"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A78-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2e18d12b-5871-4f39-95aa-096973d491d1",
+ "startedAt": "2026-10-21T17:55:49+0900",
+ "elapsedSec": 5.7,
+ "studentSha256": {
+  "student.json": "a8c06dcfad3b26e189f5c9250e1f3ce93eea67fd104228b2b699d995b134471f"
+ },
+ "promptSha256": "6676e3f04e871fe7cb9e5e8c32008032ea57af58f96a9a236652458304b908f3",
+ "freezeCommit": "36649034d9909d5761521bd06e3ef74ce84df67f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"각 순서쌍을 4x−y에 대입한다. ① 4·(−2)−(−17)=−8+17=9로 10이 아니다. ② 16−6=10, ③ 24−14=10, ④ 28−18=10, ⑤ 36−26=10으로 모두 10이다. 따라서 해가 아닌 것은 ①이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "각 순서쌍을 4x−y에 대입한다. ① 4·(−2)−(−17)=−8+17=9로 10이 아니다. ② 16−6=10, ③ 24−14=10, ④ 28−18=10, ⑤ 36−26=10으로 모두 10이다. 따라서 해가 아닌 것은 ①이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "969b097e5c411c479331a9e8ce9bce808a2ab77d6157955eaca1163db35e2f1c"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A34-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dda-5772-7270-a112-064965a81327",
+ "startedAt": "2026-10-21T18:45:52+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "6cb8ee312b1c29c2271771bb0c49a43c22b1785fcdf5e6d8ec0c77b74c3d4d0f"
+ },
+ "promptSha256": "46e9a97f0e37e947ae6c9a79d2539da84708f01e62ccf7c7807eef4b2c2a065f",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"첫째 식을 정리하면 $5x-y=25$이다.\\n둘째 식에서 $4(x+5)=9(y+9)$이므로 $4x-9y=61$이다.\\n$y=5x-25$를 대입하면 $-41x=-164$이므로 $x=4$, $y=-5$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "첫째 식을 정리하면 $5x-y=25$이다.\n둘째 식에서 $4(x+5)=9(y+9)$이므로 $4x-9y=61$이다.\n$y=5x-25$를 대입하면 $-41x=-164$이므로 $x=4$, $y=-5$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "196b9532dcf4e9b87c7bb91470c84c8a3cf2ca201e3230ffb67473a7af89a9e0"
+}

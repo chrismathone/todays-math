@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A79-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd9-f488-7a43-9767-ecd0f73db48d",
+ "startedAt": "2026-10-21T18:45:27+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "student.json": "7144d953a8e74fd1de0090a434c6890d409a188060bb9413dcbf220ce71449fe"
+ },
+ "promptSha256": "c5ac32946117f37b68062d13aa0d5fafe3813b9dd743fa814bbecef1c09efb83",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"④는 양변에서 $4x$를 빼면 $5y=-5$가 되어 미지수가 $y$ 하나뿐이다. ②는 양변의 $xy$가 소거되어 $4x-y=6$이 된다. ①, ②, ③, ⑤는 모두 정리하면 미지수가 2개인 일차방정식이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "④는 양변에서 $4x$를 빼면 $5y=-5$가 되어 미지수가 $y$ 하나뿐이다. ②는 양변의 $xy$가 소거되어 $4x-y=6$이 된다. ①, ②, ③, ⑤는 모두 정리하면 미지수가 2개인 일차방정식이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "79ed6ef18587503992f6bcb8988bd0e15463330ee5a3225211f65429e88b098d"
+}

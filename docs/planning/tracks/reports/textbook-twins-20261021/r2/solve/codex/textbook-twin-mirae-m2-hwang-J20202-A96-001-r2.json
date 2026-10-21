@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A96-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd8-fd40-76d3-87dc-3859692b165c",
+ "startedAt": "2026-10-21T18:44:24+0900",
+ "elapsedSec": 11.5,
+ "studentSha256": {
+  "fig-1.png": "7c293aee9f2af0ee7ddac224bdd256e1eae4ef46c2772ea40088869f22049693",
+  "student.json": "9869e4b5cff7a1b5707864cc0df2d3260de520a5d66f56e96f2382e9fe056de5"
+ },
+ "promptSha256": "66904e638b5d781e8a03594d447f393543db289fdaf42667c5c14858c786bb3b",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"그림은 10에 색칠한 점이 있고 오른쪽으로 이어지므로 해는 $x\\\\ge 10$이다.\\n③을 풀면 $12x-30\\\\ge 90$, $12x\\\\ge 120$, 즉 $x\\\\ge 10$이므로 그림과 일치한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "그림은 10에 색칠한 점이 있고 오른쪽으로 이어지므로 해는 $x\\ge 10$이다.\n③을 풀면 $12x-30\\ge 90$, $12x\\ge 120$, 즉 $x\\ge 10$이므로 그림과 일치한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3f2b2d7e23454d33c58b6f6feb2fbb84935bb8cd6c10ece96c0ff297e218c143"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A53-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd9-2a65-7cf2-b72c-8397ba251762",
+ "startedAt": "2026-10-21T18:44:35+0900",
+ "elapsedSec": 11.4,
+ "studentSha256": {
+  "student.json": "f4ae4abd69d16d756240aa7871888fe241d6c22b6f489111df2a02467583a49d"
+ },
+ "promptSha256": "1e8b23004844a100629fe8ad20f6db327ea34ec015b2d974fa885351e5a02c12",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①, ③\",\"work\":\"각 순서쌍을 9x+4y에 대입하면 ① 86, ② 87, ③ 86, ④ 88, ⑤ 89이다. 따라서 방정식을 참이 되게 하는 것은 ①, ③이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①, ③",
+  "work": "각 순서쌍을 9x+4y에 대입하면 ① 86, ② 87, ③ 86, ④ 88, ⑤ 89이다. 따라서 방정식을 참이 되게 하는 것은 ①, ③이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "72769cb61532b010d39d7bb53161b29c9bb8e9a057e29a53db5e13e84585db5d"
+}
