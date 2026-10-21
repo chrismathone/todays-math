@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B34-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dcc-daa5-7ba3-8793-a3a4e62a7ee3",
+ "startedAt": "2026-10-21T18:31:08+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "435e310b7cef79fd6d836bd86bd42f2184c0a84c06e5f7ace361a479c6008365"
+ },
+ "promptSha256": "421d7a75104526770286344225ec8cba32f47be461284717f1d7e522c1f7d1a2",
+ "freezeCommit": "fb112db9cb55ae71ee9156bec2ac9c85b84c4008",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"20개의 공에 적힌 수는 모두 1 이상이므로 그 확률은 20/20=1이다.\\n20 또는 7이 적힌 공이 나올 확률은 각각 1/20이고, 21 이상의 수 또는 0이 적힌 공이 나올 확률은 0이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "20개의 공에 적힌 수는 모두 1 이상이므로 그 확률은 20/20=1이다.\n20 또는 7이 적힌 공이 나올 확률은 각각 1/20이고, 21 이상의 수 또는 0이 적힌 공이 나올 확률은 0이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bc5dce123c4a065a1d85e1022a19c0b369a03c0b1e44c8f5fdb717faa57112b2"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B35-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "c474a988-0e54-4b51-86ca-7afcece65e16",
+ "startedAt": "2026-10-21T17:13:13+0900",
+ "elapsedSec": 3.7,
+ "studentSha256": {
+  "student.json": "7c57c3b528950e26965236c1327313efcc6e0af1ab16ac5e3a90dbda907fe52c"
+ },
+ "promptSha256": "10548ffa024d75b12a59cc1f63bd0b3cf99070a90a25740d1538186edfa65ec5",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{1}{4}$\", \"work\": \"자전거를 탈 줄 모르는 학생 수: 28 − 21 = 7명. 구하는 확률은 7/28 = 1/4. (또는 1 − 21/28 = 1 − 3/4 = 1/4)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{1}{4}$",
+  "work": "자전거를 탈 줄 모르는 학생 수: 28 − 21 = 7명. 구하는 확률은 7/28 = 1/4. (또는 1 − 21/28 = 1 − 3/4 = 1/4)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "503ec2c964560bdf4322c5281b5e6d5e40867b0d16abc9e313c139b931d5fc2b"
+}

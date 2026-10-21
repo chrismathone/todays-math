@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B88-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "da01601d-ebd6-4674-a9b9-2582af9ac791",
+ "startedAt": "2026-10-21T17:13:17+0900",
+ "elapsedSec": 3.4,
+ "studentSha256": {
+  "student.json": "1644daa0965f41e9e60af8586112406e19499baa9427c77305cb5d6ecc7f2522"
+ },
+ "promptSha256": "08e22fe1d04d0e2a1d326a197dc28fa64bf59838b6dec6e53471925e045c69e9",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{1}{3}$\", \"work\": \"전체 공의 개수: 6+3=9 (모든 경우의 수 9)\\n파란 공이 나오는 경우의 수: 3\\n확률 = 3/9 = 1/3\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{1}{3}$",
+  "work": "전체 공의 개수: 6+3=9 (모든 경우의 수 9)\n파란 공이 나오는 경우의 수: 3\n확률 = 3/9 = 1/3",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e051413e523362b5c794d77db017815ca7aa78d646076ad65335077939c2cfe7"
+}
