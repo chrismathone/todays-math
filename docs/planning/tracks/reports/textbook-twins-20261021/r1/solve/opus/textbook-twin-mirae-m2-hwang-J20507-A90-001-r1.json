@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A90-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e2b598a1-af59-4e90-abcb-6e6c468867c8",
+ "startedAt": "2026-10-21T17:06:17+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "fig-1.png": "c2d05b0a8f6587cd171061c564a7befa0d4bb27cdf9baffd60112546a217bb6f",
+  "student.json": "42315871a134af43276128d7d24ea691931cb30f4479591af15b231ee0f96a8b"
+ },
+ "promptSha256": "d208fc08bb37c317e4bb733e0e1e2e879a7bc7f3e8441a61047731cc935c3a3a",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"MN이 BD의 수직이등분선이므로 MB=MD, NB=ND이다. 또 △MOD≡△NOB(ASA, OD=OB, ∠MDO=∠NBO는 엇각, ∠MOD=∠NOB는 맞꼭지각)이므로 MD=NB이다. 따라서 네 변의 길이가 모두 같아 □MBND는 마름모이다. 한 변의 길이는 52÷4=13 cm이므로 MD=13 cm이다. AD=BC=18 cm이므로 AM=18−13=5 cm이다. (검산: △ABM에서 AB=√(13²−5²)=12 cm로 모순이 없다.)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "MN이 BD의 수직이등분선이므로 MB=MD, NB=ND이다. 또 △MOD≡△NOB(ASA, OD=OB, ∠MDO=∠NBO는 엇각, ∠MOD=∠NOB는 맞꼭지각)이므로 MD=NB이다. 따라서 네 변의 길이가 모두 같아 □MBND는 마름모이다. 한 변의 길이는 52÷4=13 cm이므로 MD=13 cm이다. AD=BC=18 cm이므로 AM=18−13=5 cm이다. (검산: △ABM에서 AB=√(13²−5²)=12 cm로 모순이 없다.)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "adbf9eaa1a1a18dd4c948fbe4d4bb2dff3ff66bb65628605db5f338bf2bcd3be"
+}

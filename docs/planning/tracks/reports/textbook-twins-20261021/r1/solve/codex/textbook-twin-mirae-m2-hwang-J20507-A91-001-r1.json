@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A91-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db4-5e5b-7942-a191-461e66181948",
+ "startedAt": "2026-10-21T18:04:24+0900",
+ "elapsedSec": 19.3,
+ "studentSha256": {
+  "fig-1.png": "985f1261485b439df5d699fef76f9af4301a399cbd84c5253271be6a52a0aa34",
+  "student.json": "df1231224d1a7b2bfd8431598472dde2d30c6cdb67f92e508b08811a8eafb611"
+ },
+ "promptSha256": "0ab5140dfa5eb80a8c739bc7b6109fa7f3fe24d1f1e570a228277c71ea5e7491",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"59°\",\"work\":\"정사각형의 대각선이므로 ∠BAE=∠DAE=45°이다. A, E, C가 일직선 위에 있으므로 ∠AEB=180°−104°=76°, 따라서 ∠ABE=180°−45°−76°=59°이다. AB=AD이고 AE는 공통이므로 △ABE≡△ADE(SAS). 따라서 ∠ADE=59°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "59°",
+  "work": "정사각형의 대각선이므로 ∠BAE=∠DAE=45°이다. A, E, C가 일직선 위에 있으므로 ∠AEB=180°−104°=76°, 따라서 ∠ABE=180°−45°−76°=59°이다. AB=AD이고 AE는 공통이므로 △ABE≡△ADE(SAS). 따라서 ∠ADE=59°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c45afb65fc8c43345f3ad9c61bd74594a6fd3e56e4b2b4092ccd6b089a4ee508"
+}

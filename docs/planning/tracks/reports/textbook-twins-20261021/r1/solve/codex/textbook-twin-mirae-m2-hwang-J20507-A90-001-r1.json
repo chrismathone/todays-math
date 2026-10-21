@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A90-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db3-f525-7232-a156-9ac52826cb4e",
+ "startedAt": "2026-10-21T18:03:57+0900",
+ "elapsedSec": 26.9,
+ "studentSha256": {
+  "fig-1.png": "c2d05b0a8f6587cd171061c564a7befa0d4bb27cdf9baffd60112546a217bb6f",
+  "student.json": "42315871a134af43276128d7d24ea691931cb30f4479591af15b231ee0f96a8b"
+ },
+ "promptSha256": "7639e257c4a11eeaaa0ff74c68575e8b52fe27b9db31fe3d4b995a90182c0efb",
+ "freezeCommit": "22e6fe8c0f12875bf16c6378a8fd2318994dff8f",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"BD와 MN의 교점을 O라 하자. MD∥BN이고 BO=DO이므로 △MOD≅△NOB에서 MD=BN이다.\\n수직이등분선 위의 점은 양 끝점까지의 거리가 같으므로 MB=MD, NB=ND이다. 따라서 사각형 MBND의 네 변은 모두 같고, MD=52÷4=13 cm이다.\\nAM=AD−MD=18−13=5 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "BD와 MN의 교점을 O라 하자. MD∥BN이고 BO=DO이므로 △MOD≅△NOB에서 MD=BN이다.\n수직이등분선 위의 점은 양 끝점까지의 거리가 같으므로 MB=MD, NB=ND이다. 따라서 사각형 MBND의 네 변은 모두 같고, MD=52÷4=13 cm이다.\nAM=AD−MD=18−13=5 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d4066e496d510d6a01fdc4a4a56495e773e2577ad4404f98c6e7db7f3f16812d"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A82-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "7e732d65-3713-431e-897d-73d42ffc2f44",
+ "startedAt": "2026-10-21T17:06:37+0900",
+ "elapsedSec": 6.4,
+ "studentSha256": {
+  "fig-1.png": "99360cf615c9cd5529c991f5a8b959006b7d050e1a9a76971c5f3d92d5a6edd6",
+  "student.json": "1f6b2f64ae7ba57b12ea0c792cb436eba8c30606844f83199e22c6384b1ba875"
+ },
+ "promptSha256": "8cb15e1fcf5c95632424c9426fcaacfabedd1dc61cf4fdad135c77a3b582ca2d",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"평행사변형에서 이웃한 두 각의 합은 180°이므로 ∠B = 180° − ∠BCD = 180° − 112° = 68°. 그림에서 x는 ∠AEB이다. △ABE에서 x = 180° − 28° − 68° = 84°.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행사변형에서 이웃한 두 각의 합은 180°이므로 ∠B = 180° − ∠BCD = 180° − 112° = 68°. 그림에서 x는 ∠AEB이다. △ABE에서 x = 180° − 28° − 68° = 84°.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4861dbb2d7f549ec740f93ccb0b558bd4e293f6d54ecabf0ca536b2dbc4444c6"
+}

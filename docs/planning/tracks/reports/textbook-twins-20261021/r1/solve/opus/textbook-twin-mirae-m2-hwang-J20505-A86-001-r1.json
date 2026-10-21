@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A86-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "17fd254f-e43a-49a6-95cd-3db9a7efd33d",
+ "startedAt": "2026-10-21T17:06:54+0900",
+ "elapsedSec": 6.5,
+ "studentSha256": {
+  "fig-1.png": "fb51fab2227314bfad50aaefa88f23fde19041f087b65cb60ab3f0b35e8d9af2",
+  "student.json": "0676f4dc84ac0788b63cbdd0f7033e35a3b70ade6ae4c798ad71a0b1750b8d7b"
+ },
+ "promptSha256": "babfcb2004ca63637603a17f64456253c50ac19261b081b39f3ff63a56b13ecd",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"78°\", \"work\": \"AD ∥ BE이므로 엇각에 의해 ∠DAE = ∠AEB = 39°. AE가 ∠A의 이등분선이므로 ∠BAD = 2×39° = 78°. 평행사변형의 대각은 크기가 같으므로 ∠BCD = ∠BAD = 78°.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "78°",
+  "work": "AD ∥ BE이므로 엇각에 의해 ∠DAE = ∠AEB = 39°. AE가 ∠A의 이등분선이므로 ∠BAD = 2×39° = 78°. 평행사변형의 대각은 크기가 같으므로 ∠BCD = ∠BAD = 78°.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "10279e49cc2a3c8d6c818bfe1e80b6ae34ce00596478a3f07504c1ec73d6bb3b"
+}

@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A87-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db7-d2fd-7c21-ba83-f35826b27c93",
+ "startedAt": "2026-10-21T18:08:10+0900",
+ "elapsedSec": 18.0,
+ "studentSha256": {
+  "fig-1.png": "3c439d2d8fa5a03c473503a5ab743992b6ddeb826910926245b3a8f0a63ea57d",
+  "student.json": "9c883878ca5ea30c7c7ae82e17e4391377a5aef97438bd64085c3d058388c666"
+ },
+ "promptSha256": "1166f1db8c9209e2a947026d293d6e88c7e066e5be287dad089726c4da09f2b3",
+ "freezeCommit": "d806744ec11490305d2a0decdf5e9fc47769219b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"평행사변형의 두 대각선은 서로를 이등분하므로 AO=CO이다. AD∥BC이므로 ∠EAO=∠FCO이고, 맞꼭지각이므로 ∠AOE=∠COF이다. 따라서 △AEO≡△CFO(ASA 합동)이므로 OE=OF, AE=CF이다. AE=BF는 항상 성립하지 않으므로 옳지 않은 것은 ②이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "평행사변형의 두 대각선은 서로를 이등분하므로 AO=CO이다. AD∥BC이므로 ∠EAO=∠FCO이고, 맞꼭지각이므로 ∠AOE=∠COF이다. 따라서 △AEO≡△CFO(ASA 합동)이므로 OE=OF, AE=CF이다. AE=BF는 항상 성립하지 않으므로 옳지 않은 것은 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7a52f57f055960044e177e75e23e0184ccda395a4a0b7610d5990fd8dee2994b"
+}
