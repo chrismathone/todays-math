@@ -11,7 +11,9 @@ import { BANK_SOURCE_GROUP_LABEL } from "@/components/problem/labels";
  * v1 수는 서버가 책마다 실어 준 자료 종류별 수(`BankSourceBook.kinds`)로 **요청 없이** 센다 — 창 안에서 체크를
  * 바꿔도 «걸리는 문항 n개»만 바뀌고 목록 요청은 [적용]을 눌러야 나간다(⑷). 규칙은 시안(`/dev/bank-source-hifi`)과 같다:
  * 책을 안 고르면 교과서 전부, 자료 종류를 안 고르면 종류 전부.
- * question 보기에서는 서로 겹칠 수 있는 집합의 합을 만들지 않는다.
+ * 문항 보기(question)에서도 더한다 — 문항 하나는 자료 하나에만 든다(묶음 키는 같은 자료의 행끼리만 붙고
+ * (`proveQuestionPair`), 자료가 바뀌면 트리거가 키를 지운다). 그래서 책 × 자료 종류의 수는 서로 겹치지 않는다
+ * (2026-10-21 공유 DB 실측: 교과서 12,301행 · 묶음 키 0 · 중1 자료 종류 10가지 모두 «책별 합 = 문항 단위 합집합»).
  */
 
 /** 고른 것 — 출처 갈래(`""` = 전체) · 책(`source_book.id`) · 자료 종류. */
@@ -39,10 +41,11 @@ export function kindCount(
   counts: BankSourceCounts,
   books: string[],
   kind: string,
-): number | null {
-  const pool = poolOf(counts, books);
-  if (counts.countUnit === "question" && pool.length > 1) return null;
-  return pool.reduce((sum, book) => sum + (book.kinds[kind] ?? 0), 0);
+): number {
+  return poolOf(counts, books).reduce(
+    (sum, book) => sum + (book.kinds[kind] ?? 0),
+    0,
+  );
 }
 
 /**
@@ -53,12 +56,9 @@ export function matchedCount(
   counts: BankSourceCounts,
   books: string[],
   kinds: string[],
-): number | null {
+): number {
   if (!books.length && !kinds.length) return counts.textbook.total;
-  const pool = poolOf(counts, books);
-  if (counts.countUnit === "question" && (pool.length > 1 || kinds.length > 1))
-    return null;
-  return pool.reduce(
+  return poolOf(counts, books).reduce(
     (sum, book) =>
       sum +
       (kinds.length

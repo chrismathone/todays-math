@@ -82,7 +82,7 @@ const counts: BankSourceCounts = {
 };
 
 describe("걸리는 문항 · 고른 책에 맞춘 자료 종류별 수", () => {
-  it("does not add overlapping per-book or per-kind question counts", () => {
+  it("문항 보기에서도 책 · 자료 종류의 수를 더한다 — 문항 하나는 자료 하나에만 든다(0권 · 1권 · 여러 권)", () => {
     const grouped = {
       ...counts,
       version: 2 as const,
@@ -91,12 +91,13 @@ describe("걸리는 문항 · 고른 책에 맞춘 자료 종류별 수", () => 
     expect(matchedCount(grouped, [], [])).toBe(25);
     expect(matchedCount(grouped, [KIM], [])).toBe(10);
     expect(matchedCount(grouped, [KIM], ["대단원 평가"])).toBe(1);
+    expect(matchedCount(grouped, [KIM, JANG], [])).toBe(15);
+    expect(matchedCount(grouped, [KIM], ["대단원 평가", "형성 평가"])).toBe(4);
+    expect(matchedCount(grouped, [], ["기초 연산"])).toBe(8);
+    expect(kindCount(grouped, [], "기초 연산")).toBe(8);
     expect(kindCount(grouped, [KIM], "기초 연산")).toBe(6);
-    expect(matchedCount(grouped, [KIM, JANG], [])).toBeNull();
-    expect(
-      matchedCount(grouped, [KIM], ["대단원 평가", "형성 평가"]),
-    ).toBeNull();
-    expect(kindCount(grouped, [KIM, JANG], "대단원 평가")).toBeNull();
+    expect(kindCount(grouped, [KIM, JANG], "대단원 평가")).toBe(6);
+    expect(kindCount(grouped, [KIM, JANG], "서술형 평가")).toBe(0);
   });
   it("아무것도 안 고르면 교과서 전부 — 자료 없는 문항까지 든 수(textbook.total)", () => {
     expect(matchedCount(counts, [], [])).toBe(25);

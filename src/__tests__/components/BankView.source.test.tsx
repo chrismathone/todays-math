@@ -353,6 +353,56 @@ describe("⑵ 고른 책에 0문항인 자료 종류 — 흐리게 · 체크 막
       "data-zero",
     );
   });
+
+  it("자료 종류의 수는 고른 책들의 합 — 0권(모든 책) · 1권 · 여러 권, 문항 보기에서도 «미확인»이 없다", async () => {
+    mount();
+    const dialog = await openPicker();
+    pick(dialog, /^교과서/);
+    const listed = () =>
+      within(kinds(dialog))
+        .getAllByRole("checkbox")
+        .map((box) => box.closest("label")!.textContent);
+    expect(listed()).toEqual([
+      "기초 연산60",
+      "형성 평가30",
+      "대단원 평가60",
+      "서술형 평가60",
+    ]);
+    fireEvent.click(
+      within(dialog).getByRole("checkbox", { name: /천재교육 · 김화경/ }),
+    );
+    expect(listed()).toEqual([
+      "기초 연산60",
+      "형성 평가30",
+      "대단원 평가10",
+      "서술형 평가0",
+    ]);
+    fireEvent.click(
+      within(dialog).getByRole("checkbox", { name: /지학사 · 장경윤/ }),
+    );
+    expect(listed()).toEqual([
+      "기초 연산60",
+      "형성 평가30",
+      "대단원 평가60",
+      "서술형 평가0",
+    ]);
+  });
+
+  it("수를 받기 전에는 창이 «불러오는 중» — 자료 종류 칸을 지어내지 않는다", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => new Promise<Response>(() => {})),
+    );
+    mount();
+    fireEvent.click(sourceField());
+    const dialog = await screen.findByRole("dialog", { name: "출처 고르기" });
+    expect(within(dialog).getByRole("status")).toHaveTextContent(
+      "출처별 문항 수를 불러오는 중입니다.",
+    );
+    expect(
+      within(dialog).queryByRole("group", { name: "자료 종류" }),
+    ).toBeNull();
+  });
 });
 
 describe("⑶ 창은 필터 줄의 학년을 따라 열린다", () => {
@@ -438,8 +488,12 @@ describe("⑷ [적용]을 눌러야 걸린다 · Esc 는 버린다", () => {
     fireEvent.click(kind(dialog, "대단원 평가"));
     expect(footer(dialog)).toHaveTextContent("걸리는 문항 10개 / 교과서 250");
     fireEvent.click(kind(dialog, "형성 평가"));
-    expect(footer(dialog)).toHaveTextContent("걸리는 문항 미확인 / 교과서 250");
-    expect(footer(dialog)).toHaveTextContent("적용 후 목록에서 확인합니다");
+    expect(footer(dialog)).toHaveTextContent("걸리는 문항 40개 / 교과서 250");
+    fireEvent.click(
+      within(dialog).getByRole("checkbox", { name: /지학사 · 장경윤/ }),
+    );
+    expect(footer(dialog)).toHaveTextContent("걸리는 문항 90개 / 교과서 250");
+    expect(footer(dialog)).not.toHaveTextContent("미확인");
     expect(requests.length).toBe(before);
   });
 
@@ -518,9 +572,9 @@ describe("⑷ [적용]을 눌러야 걸린다 · Esc 는 버린다", () => {
     const all = within(dialog).getByRole("checkbox", {
       name: /^중1 교과서 전부/,
     });
-    expect(all.closest("label")).toHaveTextContent("미확인");
+    expect(all.closest("label")).toHaveTextContent("150");
     fireEvent.click(all);
-    expect(footer(dialog)).toHaveTextContent("걸리는 문항 미확인");
+    expect(footer(dialog)).toHaveTextContent("걸리는 문항 150개");
     fireEvent.click(all);
     expect(footer(dialog)).toHaveTextContent("걸리는 문항 250개");
   });
