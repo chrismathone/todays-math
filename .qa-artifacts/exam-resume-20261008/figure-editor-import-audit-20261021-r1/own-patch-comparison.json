@@ -1,0 +1,50 @@
+{
+  "targets": [
+    "src/components/unified/figure-editor/FigureChipText.tsx",
+    "src/components/unified/figure-editor/FigureEditor.tsx",
+    "src/components/unified/figure-editor/FigureGridPanel.tsx",
+    "src/components/unified/figure-editor/FigureLabelInput.tsx",
+    "src/components/unified/figure-editor/FigureObjectList.tsx",
+    "src/components/unified/figure-editor/FigurePanelFold.tsx",
+    "src/components/unified/figure-editor/figureGrid.ts",
+    "src/components/unified/figure-editor/figureSvgEditing.ts",
+    "src/components/unified/figure-editor/mathjaxLabel.ts",
+    "src/components/unified/figure-editor/types.ts",
+    "src/lib/dev-ai/figure-prompt.ts",
+    "src/lib/figure/mathjaxLabel.ts",
+    "src/lib/figure/vectorLabel.ts",
+    "scripts/figure/engine-catalog.json",
+    "scripts/figure/graph_scene.py",
+    "vendor/figure-engine/core/figure_quality.py",
+    "vendor/figure-engine/core/label_markup.py"
+  ],
+  "checks": [
+    {
+      "patch": "01-editor-grid-labels.patch",
+      "sha256": "60c620a2824918f188bde2ec44af348e1303d99d7c8e48af6b3a40698ba45784",
+      "rootReadonlyApplyCheckExit": 0,
+      "rootCheckStderr": "",
+      "ownShadowApplyExit": 1,
+      "ownShadowStderr": "error: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/FigureEditor.tsx:52\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/FigureEditor.tsx: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/FigureLabelInput.tsx:3\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/FigureLabelInput.tsx: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/FigureObjectList.tsx:1\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/FigureObjectList.tsx: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/FigurePanelFold.tsx:5\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/FigurePanelFold.tsx: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/figureSvgEditing.ts:16\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/figureSvgEditing.ts: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/mathjaxLabel.ts:27\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/mathjaxLabel.ts: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/types.ts:42\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/components/unified/figure-editor/types.ts: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/lib/dev-ai/figure-prompt.ts:6\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/lib/dev-ai/figure-prompt.ts: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/lib/figure/mathjaxLabel.ts:26\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/src/lib/figure/mathjaxLabel.ts: patch does not apply\n"
+    },
+    {
+      "patch": "02-engine-grid.patch",
+      "sha256": "d783a932015d1862a828300e441b18ca37714a8dcd3cde4d6a33d6629c9c49bd",
+      "rootReadonlyApplyCheckExit": 0,
+      "rootCheckStderr": "",
+      "ownShadowApplyExit": 1,
+      "ownShadowStderr": "error: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/scripts/figure/engine-catalog.json:16\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/scripts/figure/engine-catalog.json: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/scripts/figure/graph_scene.py:27\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/scripts/figure/graph_scene.py: patch does not apply\nerror: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/vendor/figure-engine/core/figure_quality.py:152\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/vendor/figure-engine/core/figure_quality.py: patch does not apply\n"
+    },
+    {
+      "patch": "03-engine-label-markup-escape.patch",
+      "sha256": "2ad3cfa18889d5eb44ecaf0b5530e75280cf5be7e2b9672c134145fe67a98a54",
+      "rootReadonlyApplyCheckExit": 0,
+      "rootCheckStderr": "",
+      "ownShadowApplyExit": 1,
+      "ownShadowStderr": "error: patch failed: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/vendor/figure-engine/core/label_markup.py:38\nerror: .qa-artifacts/exam-resume-20261008/figure-editor-import-audit-20261021-r1/own-shadow-root/vendor/figure-engine/core/label_markup.py: patch does not apply\n"
+    }
+  ],
+  "sourceExternalExecuted": false,
+  "RootWrites": false,
+  "shadowRoot": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\figure-editor-import-audit-20261021-r1\\own-shadow-root"
+}

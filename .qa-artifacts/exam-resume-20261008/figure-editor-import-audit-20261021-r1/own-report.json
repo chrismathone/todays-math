@@ -1,0 +1,66 @@
+{
+  "scope": "independent external patch pre-import audit, Python/static only",
+  "verdict": "TECHNICAL_HOLD",
+  "actualPythonControls": {
+    "unique": 54,
+    "passed": 46,
+    "contractCounterexamples": 8,
+    "escapeEquivalence": 40
+  },
+  "separatePortedFilterCounterexamples": 4,
+  "findings": [
+    {
+      "id": "FE1",
+      "severity": "medium",
+      "evidence": "own-python-results.json",
+      "detail": "data-grid regex accepts zero cell/count, counts61/999, non-square cells; transformed/nested markers accepted although editor excludes all closest[data-grid] geometry. Tight semantic placement+numeric validation needed; no claim of arbitrary SVG execution."
+    },
+    {
+      "id": "FE2",
+      "severity": "high if adopted as approval",
+      "evidence": "own-review-filter-counterexamples.json",
+      "detail": "unconditional no-fix/style substring deletion loses real actionable mixed issues and negation; README passed promotion turns model false true. Parent decision not to adopt is supported. Even preserving false alone does not protect passed=true mixed issues."
+    },
+    {
+      "id": "FE3",
+      "severity": "bounded UX limitation",
+      "detail": "cover clamps to60 and cannot cover610 units at10 units/cell. Existing panel recalculates missing alert; do not claim a demonstrated false success. Add explicit cannot-cover result, preserve shape coordinates."
+    },
+    {
+      "id": "FE4",
+      "severity": "pending runtime",
+      "detail": "canvas click now invokes hwpLabelToTex before placement. Warning state is local to input commit; helper returns string only, repeated unchanged commit clears warning. Actual browser/event ordering not executed; warning retention remains pending."
+    }
+  ],
+  "positiveObservations": [
+    "escape actual patched Python equals stdlib across40 inputs/entity maps",
+    "grid panel derives remaining shortfall instead of unconditional success",
+    "resize/cover code modifies grid metadata only; DOM ownership replay still pending",
+    "current Root parseReview requires model passed AND no issues; keep this conservative invariant",
+    "retain final source-and-rendered-images review; absence would change existing stored figureReview provenance contract"
+  ],
+  "bindings": {
+    "before": "own-before.json",
+    "after": "own-after.json",
+    "changes": [],
+    "externalPatchExecution": false,
+    "onlyQAshadowExecuted": true
+  },
+  "harnessDiagnostics": [
+    "initial shadow git apply failed due line-ending context; all3 succeed after QA-only LF normalization; original failures retained",
+    "one guessed patch filename and wildcard rg path failed, no source fault inferred"
+  ],
+  "limits": [
+    "No Node/DOM/browser/React render/graph raster or actual Root adapted implementation tests",
+    "review regex cases are Python branch reproductions, not actual TS invocation",
+    "No model/API/DB, no math/grade/rights/native/source/public approval",
+    "12/12 and speed numbers remain exporter claims",
+    "No automatic snap adopted; mathematical geometry changes require independent verification"
+  ],
+  "reproduction": [
+    "python -B own-shadow-retry.py (only once on original copied baseline)",
+    "python -B own-controls.py",
+    "python -B own-static-review.py"
+  ],
+  "pendingRuntimeVectors": "own-pending-runtime-vectors.json"
+}

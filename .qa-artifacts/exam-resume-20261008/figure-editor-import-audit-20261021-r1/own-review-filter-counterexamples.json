@@ -1,0 +1,50 @@
+{
+  "cases": [
+    {
+      "issue": "수정 불필요하지 않습니다. 선분 CD를 추가할 것",
+      "case": "negation",
+      "referenceBranchDrops": true,
+      "required": "retain actionable HOLD",
+      "execution": "Python port of exact unconditional NO_FIX/ENGINE_STYLE branches, NOT TypeScript runtime"
+    },
+    {
+      "issue": "차이가 없습니다. 점 H를 추가할 것",
+      "case": "mixed-no-difference",
+      "referenceBranchDrops": true,
+      "required": "retain actionable HOLD",
+      "execution": "Python port of exact unconditional NO_FIX/ENGINE_STYLE branches, NOT TypeScript runtime"
+    },
+    {
+      "issue": "선 굵기는 맞지만 끝점을 옮길 것",
+      "case": "mixed-style",
+      "referenceBranchDrops": true,
+      "required": "retain actionable HOLD",
+      "execution": "Python port of exact unconditional NO_FIX/ENGINE_STYLE branches, NOT TypeScript runtime"
+    },
+    {
+      "issue": "폰트는 동일하지만 점 H를 추가할 것",
+      "case": "mixed-font",
+      "referenceBranchDrops": true,
+      "required": "retain actionable HOLD",
+      "execution": "Python port of exact unconditional NO_FIX/ENGINE_STYLE branches, NOT TypeScript runtime"
+    }
+  ],
+  "suggestedPromotionCounterexample": {
+    "modelPassed": false,
+    "originalIssues": [
+      "확인할 수 없다"
+    ],
+    "dropped": 1,
+    "kept": 0,
+    "readmeSuggestedPassed": true,
+    "requiredPassed": false
+  },
+  "coverBound": {
+    "cell": 10,
+    "cols": 60,
+    "boxWidth": 610,
+    "coverCols": 60,
+    "remainingRightCells": 1,
+    "panelObservation": "missing alert and figureGridSummary are recalculated; no demonstrated false-success toast. Button cannot fulfill >60 promise."
+  }
+}

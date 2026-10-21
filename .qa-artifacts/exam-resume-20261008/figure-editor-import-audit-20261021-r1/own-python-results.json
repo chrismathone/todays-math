@@ -1,0 +1,389 @@
+{
+  "uniqueExecutedControls": 54,
+  "passed": 46,
+  "failed": 8,
+  "controls": [
+    {
+      "id": "escape-0",
+      "expected": "",
+      "actual": "",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-1",
+      "expected": "",
+      "actual": "",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-2",
+      "expected": "",
+      "actual": "",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-3",
+      "expected": "",
+      "actual": "",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-4",
+      "expected": "",
+      "actual": "",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-5",
+      "expected": "abc",
+      "actual": "abc",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-6",
+      "expected": "abc",
+      "actual": "abc",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-7",
+      "expected": "abc",
+      "actual": "abc",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-8",
+      "expected": "abc",
+      "actual": "abc",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-9",
+      "expected": "abc",
+      "actual": "abc",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-10",
+      "expected": "&lt;&gt;&amp;",
+      "actual": "&lt;&gt;&amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-11",
+      "expected": "&lt;&gt;&amp;",
+      "actual": "&lt;&gt;&amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-12",
+      "expected": "&lt;&gt;&amp;",
+      "actual": "&lt;&gt;&amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-13",
+      "expected": "&lt;&gt;&amp;",
+      "actual": "&lt;&gt;&amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-14",
+      "expected": "&lt;&gt;&amp;",
+      "actual": "&lt;&gt;&amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-15",
+      "expected": "&amp;amp;",
+      "actual": "&amp;amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-16",
+      "expected": "&amp;amp;",
+      "actual": "&amp;amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-17",
+      "expected": "&amp;amp;",
+      "actual": "&amp;amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-18",
+      "expected": "&amp;amp;",
+      "actual": "&amp;amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-19",
+      "expected": "&amp;amp;",
+      "actual": "&amp;amp;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-20",
+      "expected": "\"'",
+      "actual": "\"'",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-21",
+      "expected": "\"'",
+      "actual": "\"'",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-22",
+      "expected": "&quot;'",
+      "actual": "&quot;'",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-23",
+      "expected": "\"&apos;",
+      "actual": "\"&apos;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-24",
+      "expected": "\"'",
+      "actual": "\"'",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-25",
+      "expected": "한글\n&lt;가&gt;",
+      "actual": "한글\n&lt;가&gt;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-26",
+      "expected": "한글\n&lt;가&gt;",
+      "actual": "한글\n&lt;가&gt;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-27",
+      "expected": "한글\n&lt;가&gt;",
+      "actual": "한글\n&lt;가&gt;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-28",
+      "expected": "한글\n&lt;가&gt;",
+      "actual": "한글\n&lt;가&gt;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-29",
+      "expected": "한글\n&lt;가&gt;",
+      "actual": "한글\n&lt;가&gt;",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-30",
+      "expected": "x&amp;#38;y",
+      "actual": "x&amp;#38;y",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-31",
+      "expected": "x&amp;#38;y",
+      "actual": "x&amp;#38;y",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-32",
+      "expected": "x&amp;#38;y",
+      "actual": "x&amp;#38;y",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-33",
+      "expected": "x&amp;#38;y",
+      "actual": "x&amp;#38;y",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-34",
+      "expected": "X&amp;#38;Y",
+      "actual": "X&amp;#38;Y",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-35",
+      "expected": "a&gt;b&lt;c",
+      "actual": "a&gt;b&lt;c",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-36",
+      "expected": "a&gt;b&lt;c",
+      "actual": "a&gt;b&lt;c",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-37",
+      "expected": "a&gt;b&lt;c",
+      "actual": "a&gt;b&lt;c",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-38",
+      "expected": "a&gt;b&lt;c",
+      "actual": "a&gt;b&lt;c",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "escape-39",
+      "expected": "a&gt;b&lt;c",
+      "actual": "a&gt;b&lt;c",
+      "pass_": true,
+      "kind": "actual patched Python vs stdlib"
+    },
+    {
+      "id": "grid-valid",
+      "expected": true,
+      "actual": true,
+      "pass_": true,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-zero-width",
+      "expected": false,
+      "actual": true,
+      "pass_": false,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-zero-height",
+      "expected": false,
+      "actual": true,
+      "pass_": false,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-zero-columns",
+      "expected": false,
+      "actual": true,
+      "pass_": false,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-oversize",
+      "expected": false,
+      "actual": true,
+      "pass_": false,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-999",
+      "expected": false,
+      "actual": true,
+      "pass_": false,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-nonsquare",
+      "expected": false,
+      "actual": true,
+      "pass_": false,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-negative-width",
+      "expected": false,
+      "actual": false,
+      "pass_": true,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-nan",
+      "expected": false,
+      "actual": false,
+      "pass_": true,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-inf",
+      "expected": false,
+      "actual": false,
+      "pass_": true,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-float-count",
+      "expected": false,
+      "actual": false,
+      "pass_": true,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-max",
+      "expected": true,
+      "actual": true,
+      "pass_": true,
+      "kind": "actual patched sanitizer; expected importer semantic contract"
+    },
+    {
+      "id": "grid-nested",
+      "expected": false,
+      "actual": true,
+      "pass_": false,
+      "kind": "actual sanitizer acceptance; editor metadata boundary requires review"
+    },
+    {
+      "id": "grid-transform",
+      "expected": false,
+      "actual": true,
+      "pass_": false,
+      "kind": "actual sanitizer acceptance; editor metadata boundary requires review"
+    }
+  ],
+  "baselineChanges": [],
+  "nodeExecuted": false,
+  "RootWrites": false,
+  "externalExecution": false
+}
