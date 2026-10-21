@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A82-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "03c830cc-de08-4e4f-9492-b1aad1388ab5",
+ "startedAt": "2026-10-21T18:00:19+0900",
+ "elapsedSec": 15.3,
+ "studentSha256": {
+  "student.json": "dc9e50ed4e43b142186f861aecbc7874cc078ce956149f41c9c37abfcc952c2d"
+ },
+ "promptSha256": "d4e45ab669df278dc1a41f8ca0a96bc4aadf23a4d43cba4717818f2e0dbc80bc",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"부등식의 모든 항을 좌변으로 이항하여 정리했을 때 (일차식) ≤ 0, < 0, ≥ 0, > 0 꼴이 되는 것을 찾는다.\\n① -15 < 0 (x항이 소거되어 일차부등식이 아님)\\n② x² - x - 7 ≥ 0 (이차부등식)\\n③ 2x² + 6x ≤ 2x² + 8에서 이차항이 소거되어 6x - 8 ≤ 0 (일차부등식)\\n④ 2 > 6 (미지수가 없음)\\n⑤ 4x < 4x에서 0 < 0 (x항이 소거됨)\\n따라서 일차부등식은 ③이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "부등식의 모든 항을 좌변으로 이항하여 정리했을 때 (일차식) ≤ 0, < 0, ≥ 0, > 0 꼴이 되는 것을 찾는다.\n① -15 < 0 (x항이 소거되어 일차부등식이 아님)\n② x² - x - 7 ≥ 0 (이차부등식)\n③ 2x² + 6x ≤ 2x² + 8에서 이차항이 소거되어 6x - 8 ≤ 0 (일차부등식)\n④ 2 > 6 (미지수가 없음)\n⑤ 4x < 4x에서 0 < 0 (x항이 소거됨)\n따라서 일차부등식은 ③이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4d5efee7cce75404b627cc1ecf8bba8c0c8a6249478d521da19cc3eda1bf0662"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20204-A19-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "5ac049a1-a134-4be3-befc-39b3ae9c277e",
+ "startedAt": "2026-10-21T18:00:53+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "student.json": "1ff830b0cd1b88c7679fee75ffec30d1621fc796b4e3c1be8247b5b5f9648260"
+ },
+ "promptSha256": "0468d22cfc6de5e0b21c787ed257dc3f79081dd216f1eb37fa14a5d07e1e7ff6",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"6년 후\",\n  \"work\": \"x년 후 이모의 나이는 (40+x)살, 도하의 나이는 (10+x)살이다. 부등식 40+x < 3(10+x)을 풀면 40+x < 30+3x, 2x > 10에서 x > 5이다. 따라서 가장 작은 자연수 x는 6이므로 처음으로 작아지는 것은 6년 후이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "6년 후",
+  "work": "x년 후 이모의 나이는 (40+x)살, 도하의 나이는 (10+x)살이다. 부등식 40+x < 3(10+x)을 풀면 40+x < 30+3x, 2x > 10에서 x > 5이다. 따라서 가장 작은 자연수 x는 6이므로 처음으로 작아지는 것은 6년 후이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4191b68df36197a2f19e40b90a7493c39d41c9f499a97336c5221ed5ceaadb7b"
+}

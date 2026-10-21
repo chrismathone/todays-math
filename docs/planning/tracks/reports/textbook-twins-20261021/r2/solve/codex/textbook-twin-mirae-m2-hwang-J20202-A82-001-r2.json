@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A82-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dde-678e-70a2-9d87-8b7f751aae94",
+ "startedAt": "2026-10-21T18:50:18+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "dc9e50ed4e43b142186f861aecbc7874cc078ce956149f41c9c37abfcc952c2d"
+ },
+ "promptSha256": "2f6fc46bfe722a4fc5d3aa117bfa3ebbb6d7995fa5736dadfea3bab32b5d8e6e",
+ "freezeCommit": "cd54355b971601690f6037ec76fcee13165683e8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"③을 전개하면 $2x^2+6x\\\\le 2x^2+8$이고, 정리하면 $6x-8\\\\le 0$이므로 일차부등식이다.\\n①, ④, ⑤는 정리하면 미지수 항이 없고, ②는 이차항이 남는다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "③을 전개하면 $2x^2+6x\\le 2x^2+8$이고, 정리하면 $6x-8\\le 0$이므로 일차부등식이다.\n①, ④, ⑤는 정리하면 미지수 항이 없고, ②는 이차항이 남는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "02f3c5b24898e35af280218f0f483949c1ff4ef1e80ec3c0ba5ec71ebcf459c7"
+}

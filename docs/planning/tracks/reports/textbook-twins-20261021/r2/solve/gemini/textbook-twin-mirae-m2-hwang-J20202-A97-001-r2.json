@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A97-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "58e3ef70-e047-41c5-9d87-483170e13c6c",
+ "startedAt": "2026-10-21T18:00:33+0900",
+ "elapsedSec": 51.0,
+ "studentSha256": {
+  "fig-1.png": "d757bacd3251987f493bae7382a3f99c937ad6f9934569e585f77c6ba53e5033",
+  "student.json": "e23ef0f871116871ba4e43fe460f89ef6b5fc59402769a92b51a29c01d836662"
+ },
+ "promptSha256": "e475817bc1499a84345f439a7990a108261e0551c521930ca77d84140777dc0d",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"$5ax+7a>4ax+3a$에서 동류항을 이항하여 정리하면 $ax>-4a$이다. $a<0$이므로 양변을 $a$로 나누면 부등호의 방향이 반대로 바뀌어 $x<-4$가 된다. 따라서 $-4$에 빈 점을 찍고 왼쪽으로 나타낸 수직선인 ②가 정답이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "$5ax+7a>4ax+3a$에서 동류항을 이항하여 정리하면 $ax>-4a$이다. $a<0$이므로 양변을 $a$로 나누면 부등호의 방향이 반대로 바뀌어 $x<-4$가 된다. 따라서 $-4$에 빈 점을 찍고 왼쪽으로 나타낸 수직선인 ②가 정답이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "54aeb9462d688de1023ea9366e3e493eec8480502d0e448091dad89ca8fd74fe"
+}

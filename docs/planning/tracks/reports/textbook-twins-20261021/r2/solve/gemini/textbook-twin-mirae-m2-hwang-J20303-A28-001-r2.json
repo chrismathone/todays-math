@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20303-A28-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "fa19eb74-bf75-4166-b928-bcecf5f6b353",
+ "startedAt": "2026-10-21T18:01:24+0900",
+ "elapsedSec": 11.3,
+ "studentSha256": {
+  "student.json": "edf3ed185f30ed3c04efafb03970140bf291bc4021099a5e5157cf5d874706aa"
+ },
+ "promptSha256": "2e1b285edb7d8b9d2e9b83e2fee60d2c30712dcbc6b9cb1d5cc34ac51d55cff7",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"③\",\n  \"work\": \"첫 번째 식의 양변에 10을 곱하면 2x + 5y = -4이고, 두 번째 식의 양변에 6을 곱하면 2x - 3y = 12이다. 두 식을 변끼리 빼면 8y = -16이 되어 y = -2이다. 이를 2x - 3y = 12에 대입하면 2x + 6 = 12이므로 x = 3이다. 따라서 해는 x = 3, y = -2이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "③",
+  "work": "첫 번째 식의 양변에 10을 곱하면 2x + 5y = -4이고, 두 번째 식의 양변에 6을 곱하면 2x - 3y = 12이다. 두 식을 변끼리 빼면 8y = -16이 되어 y = -2이다. 이를 2x - 3y = 12에 대입하면 2x + 6 = 12이므로 x = 3이다. 따라서 해는 x = 3, y = -2이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8481e7f1c3a1212bfbbc845447f516dcff8b2b4209b2e51de0031be1e0300e39"
+}

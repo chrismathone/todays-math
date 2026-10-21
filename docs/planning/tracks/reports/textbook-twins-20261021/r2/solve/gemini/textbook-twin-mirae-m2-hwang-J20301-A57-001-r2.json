@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A57-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "75d888e4-445c-43e0-80e2-378fa82fdfb8",
+ "startedAt": "2026-10-21T18:01:06+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "student.json": "dfcc82fce361022b5a2615c9c29b9f6c5bc350b5e0740fcefcdedd8aa521f4e4"
+ },
+ "promptSha256": "945c48ddd6380f6c692608f3eec2d28ab57912886219193ffb83467780492228",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $3x + 4y = 31$, ⑵ $2x + 3y = 23$\",\n  \"work\": \"⑴ 세발자전거 1대의 바퀴 수는 3개, 승용차 1대의 바퀴 수는 4개이므로 전체 바퀴 수는 $3x + 4y = 31$이다.\\n⑵ 2점짜리 슛의 점수는 $2x$점, 3점짜리 슛의 점수는 $3y$점이므로 총 점수는 $2x + 3y = 23$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "⑴ $3x + 4y = 31$, ⑵ $2x + 3y = 23$",
+  "work": "⑴ 세발자전거 1대의 바퀴 수는 3개, 승용차 1대의 바퀴 수는 4개이므로 전체 바퀴 수는 $3x + 4y = 31$이다.\n⑵ 2점짜리 슛의 점수는 $2x$점, 3점짜리 슛의 점수는 $3y$점이므로 총 점수는 $2x + 3y = 23$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "56311d5d99185baf03bf4847a76f5d2c3cd51af2640008dcb04de84f8bfa6fec"
+}

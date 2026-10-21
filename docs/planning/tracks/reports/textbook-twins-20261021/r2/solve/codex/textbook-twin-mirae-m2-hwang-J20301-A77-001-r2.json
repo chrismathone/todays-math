@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A77-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15ddf-3b63-76d1-b1ef-aa27a38d2549",
+ "startedAt": "2026-10-21T18:51:13+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "d8651bac59f7d7dc2f64738412d405f788c0e71cff15429570aa4dfe2013638b"
+ },
+ "promptSha256": "82317ce96951c8a6a878f1f56ee66ec1f9826257571451c90aaa8015c889b778",
+ "freezeCommit": "313d839bc131f21a5bfd4638d786a1ac66141849",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$(-8, -4)$\",\n  \"work\": \"주어진 방정식을 정리하면 $3x-4y=-8$이다.\\n$x=2y$를 대입하면 $6y-4y=-8$이므로 $y=-4$이다.\\n따라서 $x=2(-4)=-8$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$(-8, -4)$",
+  "work": "주어진 방정식을 정리하면 $3x-4y=-8$이다.\n$x=2y$를 대입하면 $6y-4y=-8$이므로 $y=-4$이다.\n따라서 $x=2(-4)=-8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "519fff6f8c60f0aad73bfaf7b65cc4a39fe91032f638ee6498b16a41b7cbe0f3"
+}
