@@ -1,0 +1,74 @@
+{
+  "status": "bounded direct-function audit passed; browser/integration/semantic approval outside scope",
+  "NodeEnded": true,
+  "uniqueRuntimeControls": 42,
+  "passed": 42,
+  "failed": 0,
+  "cohorts": {
+    "actualGrayFixturesWithRepeatAndImmutability": 14,
+    "invalidInputContracts": 15,
+    "containLandscapePortraitSquareRationalCoordinates": 5,
+    "forgedOverlayRejections": 6,
+    "newCountAndSpaceRejections": 2
+  },
+  "independence": "Own fixtures and rational expectations; no parent tests or browser count included. Repeats are assertions inside42 controls, not extra unique counts. No new question/blind/math approval counts.",
+  "runtime": {
+    "actualModule": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\gridMeasure.ts",
+    "firstImportedResolvedModule": [
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\gridMeasure.ts"
+    ],
+    "moduleSHA256": "fc2ba00a23c29188f51186a412d283153961c3179805426e9f36955aecab9238",
+    "heapLimitBytes": 226492416,
+    "availablePreflightBytes": 4779786240,
+    "singleProcessAtATime": true,
+    "sourceDExecution": 0,
+    "browser": 0,
+    "API": 0,
+    "DB": 0
+  },
+  "delta": {
+    "changed": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\gridMeasure.ts": {
+        "preparedSHA": "474385a867265a3695c31f1c0d58a549bd701ae4368185ee84deb6bef93a3e66",
+        "currentSHA": "fc2ba00a23c29188f51186a412d283153961c3179805426e9f36955aecab9238"
+      },
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\dev-ai\\figure-comparison.ts": {
+        "preparedSHA": "0e98dc580d3ce86440ec8b9fa5f0781ec7c77fcb2a553567e395de6c6188851d",
+        "currentSHA": "a19493fd6359498b16d0aab87a69cbd231fa863057e84495e46e7192f257a8e9"
+      }
+    },
+    "contract": "New inset48/side804; minimum3 cells; exact analysis coordinateSpace. Previous pending observations were NOT executed and are now rejection assertions. No runtime expectation changed after execution."
+  },
+  "coordinates": "Fresh rational expected contain804/inset48, rounded analysis900 max-side, landscape/portrait/square and nonuniform rounded dimensions. Actual helper coordinates match rational projections; does not execute browser pixel-center/antialias/resampling.",
+  "guardResults": "Current exact coordinateSpace and minimum3 cells reject the formerly pending synthetic observations. Old preparation expectations/results remain untouched, never counted as historical runtime failures.",
+  "graySemantics": "Pixel-identical table and grid produce same measured grid. This is expected ambiguity, not graph-paper semantic approval. Returned kind remains heuristic-only/requiresReview:true without passed/approved. Original arrays unchanged, repeated results identical.",
+  "staticOnlyBoundaries": {
+    "layout": "figure-comparison current CSS observed legend13/20 and tick13/16; no independent rendered text-overlap/viewport proof",
+    "review": "Existing parseReview retains false and contradictory issues cannot turn true; final source-and-rendered-images review remains; timeout fallback false, no automatic snapping in scoped path",
+    "preservation": "No source dataURL/SVG input rewrite or production writes performed; derived annotations only",
+    "cancel": "Request abort/page-finally/timeout read statically only; no actual browser/model cancellation execution"
+  },
+  "sourceHashesBeforeAfterEqual": true,
+  "sourceMetadataFilesBound": 8,
+  "harnessDiagnostic": "First sequential Node launch omitted --go and guard stopped before imports/controls; source-free harness failure retained. Corrected launcher argument, no control expectations or production code changed. Actual cohort executed once.",
+  "limitations": [
+    "No actual gray browser decoding/resampling canvas",
+    "No screenshot/full UI/legend overlap verification",
+    "No final model review or timeout/cancel integration execution",
+    "No arbitrary accessor/proxy sandbox claim",
+    "No grade/rights/native/public release/math correctness approval"
+  ],
+  "artifactHashes": {
+    "own-after.json": "ba634e74545ac8270351a4b4a3c5aab17159b64033b292a640a177e0a16f9305",
+    "own-before.json": "ba634e74545ac8270351a4b4a3c5aab17159b64033b292a640a177e0a16f9305",
+    "own-delta.json": "94d65f49793e6385eda2ef5df78d002bb1a4b7c58595788df855f5eb65ae4af5",
+    "own-fixtures.json": "b92d83a6b37ae97523e8657bc8058a331bfbf2c7a437c5dc00099c2cbefaf515",
+    "own-go-memory.json": "903fd36254d2af86ebea22c50e01eea19c24e825ff78b554c2bc8c21da04be16",
+    "own-launcher-diagnostic.txt": "78e7fd0610b0b34ae8b09256b01f14c642b2d3ea3d73253eeef6025964bf6ef7",
+    "own-prepared-input-hashes.json": "e87875dea87aacbd8327bce26815a43cd66f5cc6f4b00117ad01f86ed9749e3a",
+    "own-probe.txt": "1d8aef3aa396e0061dfa8c2178aae506dba24b1c3ab03d197191cadaa0aee147",
+    "own-runner.cjs": "229f74251086d282280704dd459a9f6e664d74f89669b9cb19448c1813fca8b3",
+    "own-runtime-results.json": "d4934072be8663c4aa570034c794487daacb055f6936382092b02df92449eb04"
+  },
+  "preparationUnchanged": true
+}
