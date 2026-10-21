@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B21-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "86561a18-bc56-4167-bfb8-ac24a5ba94af",
+ "startedAt": "2026-10-21T17:12:38+0900",
+ "elapsedSec": 5.8,
+ "studentSha256": {
+  "student.json": "e5c97c3e04a0e715fc94d0973353dd394b5bbdf95988613d96834e23301ebc79"
+ },
+ "promptSha256": "0612ecc1e875e97436538f404b0fa0e9692a05e084881413ef0a73aa0b4578b2",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②, ④\", \"work\": \"① 주사위 눈은 1~6이므로 7 이상은 나올 수 없어 확률은 0이다. ② 상자에 빨간 구슬만 들어 있으므로 반드시 빨간 구슬이 나와 확률은 1이다. ③ 경우의 수 4가지 중 둘 다 뒷면인 1가지를 빼면 3가지이므로 확률은 3/4이다. ④ 두 눈의 수의 곱은 최대 6×6=36이므로 항상 40 이하이고 확률은 1이다. ⑤ 1~9 중 홀수는 1, 3, 5, 7, 9의 5개이므로 확률은 5/9이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②, ④",
+  "work": "① 주사위 눈은 1~6이므로 7 이상은 나올 수 없어 확률은 0이다. ② 상자에 빨간 구슬만 들어 있으므로 반드시 빨간 구슬이 나와 확률은 1이다. ③ 경우의 수 4가지 중 둘 다 뒷면인 1가지를 빼면 3가지이므로 확률은 3/4이다. ④ 두 눈의 수의 곱은 최대 6×6=36이므로 항상 40 이하이고 확률은 1이다. ⑤ 1~9 중 홀수는 1, 3, 5, 7, 9의 5개이므로 확률은 5/9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f35535301fbc7c1569b8bd8e5d6ed08fecc76aa8d01feaafc44ac8b8e58e0acf"
+}

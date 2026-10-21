@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B22-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dca-9742-7d72-8606-1fcc9d7f2100",
+ "startedAt": "2026-10-21T18:28:40+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "ad49298db6ddc8a51d26abd8667dfe50dfcb752ace32c024adb29bfb6067fac0"
+ },
+ "promptSha256": "c3df3d5958ae3d4a5716aee323979d0fddb1c7f317d892a423e5b033509f07e4",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"맨 뒤에 놓일 수 있는 카드는 5장이고, 각 카드가 놓일 확률은 같다. 이 중 P 또는 E는 2장이므로 구하는 확률은 2/5이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "맨 뒤에 놓일 수 있는 카드는 5장이고, 각 카드가 놓일 확률은 같다. 이 중 P 또는 E는 2장이므로 구하는 확률은 2/5이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3b601eecef004b6fd2090980050e0851af86bf5979c95155ac5579498b879ffa"
+}

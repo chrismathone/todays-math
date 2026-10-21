@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B29-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "8308dfd2-7cba-4ff5-a46c-e21ad9220146",
+ "startedAt": "2026-10-21T17:12:58+0900",
+ "elapsedSec": 5.1,
+ "studentSha256": {
+  "student.json": "b13879285411294fedca303b731a1a7d0137b81ca1d3742b5000415a7fa870bd"
+ },
+ "promptSha256": "51135c71a2503bf5ba20ae0e618469a6788c459a62ebe30c68e4e9d5583fb05f",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"복원 추출이므로 전체 경우의 수는 9×9=81이다. 두 수의 합은 2 이상 18 이하이므로 9의 배수는 9와 18뿐이다. 합이 9인 경우는 (1,8),(2,7),…,(8,1)의 8가지, 합이 18인 경우는 (9,9)의 1가지로 모두 9가지이다. 따라서 확률은 9/81=1/9이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "복원 추출이므로 전체 경우의 수는 9×9=81이다. 두 수의 합은 2 이상 18 이하이므로 9의 배수는 9와 18뿐이다. 합이 9인 경우는 (1,8),(2,7),…,(8,1)의 8가지, 합이 18인 경우는 (9,9)의 1가지로 모두 9가지이다. 따라서 확률은 9/81=1/9이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3f98c6ee28b99814b9a88aec29bbd1b862ca8af2d348181490e2f2f630396641"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B23-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dca-c9f9-7fe2-8161-dc7558e47d07",
+ "startedAt": "2026-10-21T18:28:53+0900",
+ "elapsedSec": 11.8,
+ "studentSha256": {
+  "student.json": "28e72e957e242bb688472f9a7a0a79674d88ac250a40b9eae2a122a86de94e57"
+ },
+ "promptSha256": "351acae92f8bac694b391b195730e5339eb5dcfaba2eff8184559f97c224c088",
+ "freezeCommit": "36b2aaf0ac1be8c3e68e8939305c3561d4cc6eb4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{3}{4}$\",\"work\":\"두 눈의 곱이 홀수이려면 두 눈이 모두 홀수여야 한다. 각 주사위에서 홀수가 나올 확률은 3/6이므로 곱이 홀수일 확률은 (3/6)×(3/6)=1/4이다. 따라서 곱이 짝수일 확률은 1−1/4=3/4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{3}{4}$",
+  "work": "두 눈의 곱이 홀수이려면 두 눈이 모두 홀수여야 한다. 각 주사위에서 홀수가 나올 확률은 3/6이므로 곱이 홀수일 확률은 (3/6)×(3/6)=1/4이다. 따라서 곱이 짝수일 확률은 1−1/4=3/4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8ea0e0187cca9ae0fb2b296f6df9f41348cf7689287d12a300e799015993fd2d"
+}

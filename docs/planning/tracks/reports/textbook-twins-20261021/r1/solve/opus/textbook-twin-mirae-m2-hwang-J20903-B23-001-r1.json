@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20903-B23-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "cc81d707-d80d-46c2-8cf2-9e720475ab5c",
+ "startedAt": "2026-10-21T17:12:43+0900",
+ "elapsedSec": 3.6,
+ "studentSha256": {
+  "student.json": "28e72e957e242bb688472f9a7a0a79674d88ac250a40b9eae2a122a86de94e57"
+ },
+ "promptSha256": "351acae92f8bac694b391b195730e5339eb5dcfaba2eff8184559f97c224c088",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{3}{4}$\", \"work\": \"전체 경우의 수 6×6=36. 곱이 홀수인 경우는 두 눈이 모두 홀수일 때로 3×3=9가지, 확률 9/36=1/4. 따라서 곱이 짝수일 확률은 1-1/4=3/4.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{3}{4}$",
+  "work": "전체 경우의 수 6×6=36. 곱이 홀수인 경우는 두 눈이 모두 홀수일 때로 3×3=9가지, 확률 9/36=1/4. 따라서 곱이 짝수일 확률은 1-1/4=3/4.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c6ca760694e3236d371f130afce9c0161764e265df9ce0faeb6caab00490a2ef"
+}
