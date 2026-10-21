@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
+import { MATH_TEXT_WRAP } from "@/components/math/mathTextWrap";
 import {
   textbookStudentQrSchema,
   type TextbookStudentQr,
@@ -106,10 +107,14 @@ export function TextbookQrScreen({
       {data.textSolutionAvailable && (
         <details className={s.block}>
           <summary>정답과 풀이 확인</summary>
-          <MarkdownRenderer content={data.answer ?? ""} />
+          <MarkdownRenderer
+            content={data.answer ?? ""}
+            className={MATH_TEXT_WRAP}
+          />
           {data.solution !== null && (
             <MarkdownRenderer
               content={solutionForDisplay(data.solution) ?? ""}
+              className={MATH_TEXT_WRAP}
             />
           )}
         </details>

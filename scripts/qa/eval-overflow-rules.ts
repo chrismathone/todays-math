@@ -21,7 +21,7 @@
  *
  * ⚠️ 채점기가 제품과 갈라지면 «세는 쪽과 고치는 쪽이 같이 눈이 먼다»(CLAUDE.md
  *    2026-08-18). 그래서 제품 상수값에서 이 스크립트의 판정과
- *    `assessOverflowRisk` 가 **한 건도 다르지 않은지** 매 실행 검산한다.
+ *    제품의 자리 판단(`assessSeat`)이 **한 건도 다르지 않은지** 매 실행 검산한다.
  */
 import { readFileSync } from "node:fs";
 
@@ -37,13 +37,10 @@ import { displayWidth, fitsTwoColumns } from "../../src/lib/math/displayWidth";
 import { parseProblemContent } from "../../src/lib/problem/parseProblemContent";
 import { JASEUP_MEASURED_PX } from "../../src/lib/printGeometry";
 import {
-  OVERFLOW_FIGURE_LIMIT,
   OVERFLOW_MARGIN_PX,
   OVERFLOW_WIDTH_LIMIT,
-  assessOverflowRisk,
+  assessSeat,
   estimateFigureBlockPx,
-  estimateProblemLines,
-  estimateProblemPx,
   parseFigureDimensions,
 } from "../../src/lib/printOverflow";
 
@@ -131,6 +128,8 @@ interface Row {
   choiceFigureIndex: number[] | null;
   solution: string | null;
   questionType: string | null;
+  /** 엔진 SVG 그림 — 측정기 · 판정 · 지문이 같이 본다(D-164 ② — 측정기가 이제 그린다). */
+  figureSvg: string | null;
 }
 
 function arg(name: string): string | undefined {
@@ -187,7 +186,7 @@ async function main() {
       `SELECT id, content, figure_urls AS "figureUrls", figure_dims AS "figureDims",
               figure_source_mm AS "figureSourceMm",
               choice_figure_index AS "choiceFigureIndex", solution,
-              question_type AS "questionType"
+              question_type AS "questionType", figure_svg AS "figureSvg"
        FROM problem ORDER BY id`,
     )
     .catch(
@@ -197,7 +196,7 @@ async function main() {
           `SELECT id, content, figure_urls AS "figureUrls", NULL::int[] AS "figureDims",
                 NULL::double precision[] AS "figureSourceMm",
                 NULL::int[] AS "choiceFigureIndex", solution,
-                question_type AS "questionType"
+                question_type AS "questionType", NULL::text AS "figureSvg"
          FROM problem ORDER BY id`,
         )) as Row[],
     )) as Row[];
@@ -310,17 +309,38 @@ async function main() {
     console.log("\n그림 모형 검산 — 치수가 적재되지 않았다(전부 «모른다»).");
   }
 
+  /**
+   * 채점할 문항 — 제품 인쇄 경로가 판정에 넘기는 칸을 **전부** 넘긴다(그림 mm · 보기 그림 짝 · 엔진 SVG).
+   * 🔴 2026-10-21(D-164 ②): 높이 모형 검산이 `estimateProblemPx(본문, 치수)` 만 불러 엔진 SVG 그림을 0 으로 셌다 —
+   *    측정기가 SVG 를 그리게 된 뒤 «20px 넘게 과소 17.8%»가 나왔는데, 제품의 자는 SVG 를 센다(과소 1.0%).
+   */
+  const problemOf = (row: Row): TestPrintProblem => {
+    const flat = flatDimsFor(row);
+    // ⚠️ mm 를 같이 넘긴다 — 제품 지면이 폭을 mm 로 못 박기 때문이다.
+    const sourceMm = sourceMmFor(row);
+    return {
+      id: row.id,
+      orderIndex: 0,
+      content: row.content ?? "",
+      answer: "",
+      solution: row.solution,
+      figureUrls: row.figureUrls,
+      figureDims: flat,
+      figureSourceMm: sourceMm,
+      choiceFigureIndex: noDims
+        ? undefined
+        : (row.choiceFigureIndex ?? undefined),
+      figureSvg: row.figureSvg,
+    };
+  };
+
   /* ── 자 검산 ③ 문항 전체 높이 모형이 실측과 얼마나 맞는가 ────────────────── */
   {
     const err = heights
-      .map((h) => {
-        const row = byId.get(h.pid)!;
-        const dims = parseFigureDimensions(
-          row.figureUrls.length,
-          flatDimsFor(row),
-        );
-        return estimateProblemPx(row.content ?? "", dims) - h.neededPx;
-      })
+      .map(
+        (h) =>
+          assessSeat(problemOf(byId.get(h.pid)!), h.availPx).px - h.neededPx,
+      )
       .sort((a, b) => a - b);
     const q = (p: number) => err[Math.floor(err.length * p)]!;
     const within = err.filter((e) => Math.abs(e) <= 20).length / err.length;
@@ -340,57 +360,32 @@ async function main() {
   const graded = heights.map((h) => {
     const row = byId.get(h.pid)!;
     const content = row.content ?? "";
-    const flat = flatDimsFor(row);
-    // ⚠️ mm 를 같이 넘긴다 — 제품 지면이 폭을 mm 로 못 박기 때문이다.
-    const sourceMm = sourceMmFor(row);
-    const dims = parseFigureDimensions(row.figureUrls.length, flat, sourceMm);
-    const problem: TestPrintProblem = {
-      id: row.id,
-      orderIndex: 0,
-      content,
-      answer: "",
-      solution: row.solution,
-      figureUrls: row.figureUrls,
-      figureDims: flat,
-      figureSourceMm: sourceMm,
-      choiceFigureIndex: noDims
-        ? undefined
-        : (row.choiceFigureIndex ?? undefined),
-    };
     /**
-     * 판정이 **장을 보게 된 뒤로**(리뷰 §11-2) 문항 하나만 넘기면 늘 «첫 장 1번»이
-     * 된다. 이어지는 장을 채점할 때는 앞에 채움 문항을 두어 3번 자리에 놓는다 —
-     * 안 그러면 캐시(484px)와 판정(405px 한계)이 **다른 장을 본다.**
+     * 판정의 본체는 **자리 하나의 판단**(`assessSeat`)이다 — 분할(`packProblems`)이 짝을 지을지와 경고(`assessOverflowRisk`)가
+     * 둘 다 이것을 부른다. 캐시가 잰 칸(`availPx` — 둘이 앉은 칸)에서 그대로 부르면 «둘이 앉았을 때 넘치는가»를 제품 그대로 묻는다.
+     *
+     * 🔴 2026-10-21(D-164 ②) 전에는 `assessOverflowRisk([채움, 채움, 문항, 채움])` 의 경고로 채점했다. 분할이 높이를 보게 된
+     *    뒤로 «둘이 앉기엔 높다»는 문항은 장을 **혼자** 쓰고(칸 997px), 경고는 그 칸에서 나온다 — 캐시의 484px 넘침과
+     *    맞댈 수 없어 측정기가 «재현율 0.2%»를, 이 채점기가 «제품과 115건 다르다»를 냈다(둘 다 지면 탓이 아니다).
+     * ⚠️ «놓침»(경고 없음)과 «겹쳐 찍힘»은 다르다 — 분할은 `tooTall` 만 보고 혼자 앉히므로, 장수 규칙(`manyFigures`)으로
+     *    경고만 받은 문항은 둘이 앉아 넘칠 수 있다. 겹쳐 찍힘은 `paired`(혼자 안 앉힘)로 따로 센다.
      */
-    const filler: TestPrintProblem = {
-      id: "filler",
-      orderIndex: 0,
-      content: "",
-      answer: "",
-      solution: null,
-    };
-    // 판정은 «그 장에 몇 개인가»로 칸을 고른다(혼자면 두 배). 캐시는 장마다 두
-    // 문항을 그려 잰 것이므로, 판정에도 **짝을 채워** 같은 칸을 보게 한다.
-    const placed = firstPage
-      ? [problem, filler]
-      : [filler, filler, problem, filler];
-    const at = firstPage ? 1 : 3;
+    const seat = assessSeat(problemOf(row), h.availPx);
     return {
       pid: h.pid,
       overflows: h.neededPx > h.availPx,
       excess: h.neededPx - h.availPx,
       width: displayWidth(content),
       // 판정의 본체 — 2026-08-20 부터 줄 수가 아니라 이 px 를 칸과 견준다.
-      px: estimateProblemPx(content, dims),
+      px: seat.px,
       slot: h.availPx,
-      lines: estimateProblemLines(content, dims),
+      lines: seat.lines,
       legacyLines: legacyLines(content),
       figures: row.figureUrls.length,
       // 장수 규칙은 **치수를 모를 때만** 켜진다 — 제품과 같은 조건이어야 한다.
-      countRule:
-        row.figureUrls.length >= OVERFLOW_FIGURE_LIMIT &&
-        dims.some((d) => d === null),
-      product: assessOverflowRisk(placed).some((r) => r.number === at),
+      countRule: seat.manyFigures,
+      product: seat.risky,
+      paired: !seat.tooTall,
     };
   });
 
@@ -430,6 +425,9 @@ async function main() {
   report(
     `여유 ${productMargin}px`,
     score(graded.map((g) => ({ overflows: g.overflows, warned: g.product }))),
+  );
+  console.log(
+    `  겹쳐 찍힘(넘치는데 둘이 앉힘) ${graded.filter((g) => g.overflows && g.paired).length}`,
   );
 
   /**

@@ -156,6 +156,22 @@ ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/refresh-engine-conten
 | 보기 파서(`parseProblemContent`)를 고쳤다 | `parse-census.ts dump <앞.json>` → 고침 → `dump <뒤.json>` → `compare <앞> <뒤>` | 운영 DB 전 행의 파싱 결과(발문 · 보기 · 라벨)를 지문으로 떠서 견준다(작업트리마다 제 파서를 쓴다). **바뀐 행 0** 이 병합 조건(뜻한 변화면 그 행을 하나씩 본다) |
 | 원장님이 맡긴 결정을 codex · grok 과 정한다 | `consult-three-way.ts <요청서.md> <답 앞머리>` | 블라인드 · 도구 없음 · 빈 폴더. 🔴 **요청서의 «사실»에는 어디서 쟀는지를 붙인다** — 둘은 요청서를 의심할 길이 없다 |
 
+
+### 3.3 지면 높이 · 넘침을 전수로 잴 때 (2026-10-21 · D-164 ②)
+
+지면 탐침(`paperProbe` · `examPaperProbe`)을 부르는 도구는 `npx tsx --require ./scripts/qa/css-module-stub.cjs …` 로 돈다(2026-09-26 부터 CSS 모듈 하나로 죽었다).
+🔴 탐침은 **제품 글꼴을 싣고 그 적재를 가드한다**(`PAPER_FONT_CSS` · `katexCss` · `assertFontsLoaded`) — 2026-10-21 까지는 본문이 브라우저 기본 서체였다(20번 교훈).
+
+| 무엇을 | 연장 | 한 줄 |
+| --- | --- | --- |
+| 자습 지면 칸 넘침(첫 장 · 이어지는 장) · 가로로 새는 너비 | `measure-print-overflow.tsx --json <캐시> [--first-page]` | 118,551행 ≈ 15분(부하에 따라 둘 셋) · 지문(`*.manifest.json`)이 같이 나온다 · 요약의 «겹쳐 찍힘»은 넘치는데 둘이 앉힌 문항 |
+| 위 캐시로 판정을 채점 | `eval-overflow-rules.ts --heights <캐시> [--first-page]` | 제품의 자리 판단 `assessSeat` 그대로 — 채점기 ↔ 제품 0건 불일치가 먼저 |
+| 기출 2단 — 문항마다 왼쪽 · 오른쪽 단 + 제품 배치 그대로의 단 넘침 | `measure-exam-paper-overflow.tsx --json <출력>` | 오른쪽 단은 룰 · 여백만큼 좁다(왼쪽만 재면 안 된다) · 쓸 수 있는 세로는 같은 문서의 빈 장으로 |
+| 정답지 해설이 단 밖으로 밀리나 | `measure-answerkey-overflow.tsx --with-solution --tests <n> --json <출력>` | `.answerSolutions` 는 `overflow:hidden` — 밀린 해설은 통째로 사라진다 |
+| 보기 2열 판정이 지면과 맞나 | `measure-choice-columns.tsx --take <n> --json <출력>` | nowrap 폭으로 갈라 줄바꿈 규칙과 무관하다 |
+
+전후를 견줄 때는 **같은 탐침 · 같은 스냅숏**(행 지문이 같은지 매니페스트로)에서 «제품 코드만» 바꾼 두 트리를 나란히 잰다 — 전 트리 = HEAD + 측정 도구만.
+
 ---
 
 ## 4. 이 데이터에 대해 이미 잰 것 — 다시 재지 말 것

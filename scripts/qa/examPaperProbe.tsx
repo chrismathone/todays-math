@@ -26,7 +26,16 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import { ProblemContent } from "../../src/components/math/ProblemContent";
 import type { NativeDescriptivePrint } from "../../src/lib/print/descriptive";
-import { PAPER_VARS_ATTR, buildTailwindCss, FIGURE_ROOT } from "./paperProbe";
+import {
+  FONT_GUARD,
+  PAPER_FONT_CSS,
+  PAPER_VARS_ATTR,
+  assertFontsLoaded,
+  buildTailwindCss,
+  FIGURE_ROOT,
+  katexCss,
+  type FontGuard,
+} from "./paperProbe";
 
 const ROOT = process.cwd();
 
@@ -47,10 +56,7 @@ export interface ExamSlot {
 
 /** 기출 지면 CSS 원문 — 클래스 이름을 해시하지 않고 그대로 쓴다. */
 export async function examPaperStyles(): Promise<string> {
-  const katex = readFileSync(
-    path.join(ROOT, "node_modules/katex/dist/katex.min.css"),
-    "utf8",
-  );
+  // 글꼴은 자습 탐침과 한 벌이다 — 지면 명조 · 절대 경로 KaTeX(`paperProbe.PAPER_FONT_CSS` · `katexCss` 주석).
   const tailwind = await buildTailwindCss();
   const shell = readFileSync(
     path.join(ROOT, "src/components/print/TestPrint.module.css"),
@@ -68,7 +74,7 @@ export async function examPaperStyles(): Promise<string> {
   );
   const score = descriptive.match(/^\.score\s*\{[^}]*\}/m)?.[0];
   if (!score) throw new Error("서술형 배점 스타일을 찾지 못했습니다.");
-  return `<style>${katex}</style><style>${tailwind}</style><style>${shell}</style><style>${paper}</style><style>${score}</style>`;
+  return `<style>${PAPER_FONT_CSS}</style><style>${katexCss()}</style><style>${tailwind}</style><style>${shell}</style><style>${paper}</style><style>${score}</style>`;
 }
 
 function bodyMarkup(slot: ExamSlot): string {
@@ -157,21 +163,24 @@ export const EXAM_GUARD = `(() => {
   const a4 = document.querySelector(".a4Page");
   const text = document.querySelector(".problemText");
   const band = document.querySelector(".bandRow");
-  const katex = document.querySelector(".katex-mathml");
+  const katex = document.querySelector(".katex-mathml");${FONT_GUARD}
   return {
     a4Height: a4 ? a4.getBoundingClientRect().height : 0,
     fontSize: text ? getComputedStyle(text).fontSize : "",
     bandGold: band ? getComputedStyle(band).borderLeftWidth : "",
     katexOk: katex ? getComputedStyle(katex).position === "absolute" : true,
+    ...fonts,
   };
 })()`;
 
-export function assertExamSane(g: {
-  a4Height: number;
-  fontSize: string;
-  bandGold: string;
-  katexOk: boolean;
-}) {
+export function assertExamSane(
+  g: {
+    a4Height: number;
+    fontSize: string;
+    bandGold: string;
+    katexOk: boolean;
+  } & FontGuard,
+) {
   if (!g.katexOk) throw new Error("KaTeX CSS 미적용 — 측정 중단");
   if (Math.abs(g.a4Height - 1122.5) > 2)
     throw new Error(`A4 높이가 297mm 가 아니다: ${g.a4Height}`);
@@ -180,4 +189,5 @@ export function assertExamSane(g: {
   // 머리띠가 안 붙으면 문항 높이가 통째로 낮게 나온다 — 지면 CSS 미적용의 증거.
   if (g.bandGold !== "3px")
     throw new Error(`기출 지면 CSS 미적용 (머리띠 금색 바 ${g.bandGold})`);
+  assertFontsLoaded(g);
 }

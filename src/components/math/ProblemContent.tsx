@@ -10,6 +10,7 @@ import { Fragment, type ReactNode } from "react";
 
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
 import { MathText } from "@/components/math/MathText";
+import { MATH_TEXT_WRAP } from "@/components/math/mathTextWrap";
 import { PracticeProblemText } from "@/components/math/PracticeProblemText";
 import {
   figureSvgFrameClass,
@@ -287,7 +288,9 @@ export function ProblemContent({
   );
 
   return (
-    <div className={className}>
+    <div
+      className={className ? `${MATH_TEXT_WRAP} ${className}` : MATH_TEXT_WRAP}
+    >
       {slots.parts.map((part, i) =>
         part.kind === "text" ? (
           <Fragment key={i}>{questionText(part.text)}</Fragment>

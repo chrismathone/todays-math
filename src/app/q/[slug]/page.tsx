@@ -17,6 +17,7 @@ import { LearnTopBar } from "@/components/learn/LearnTopBar";
 import { TextbookQrScreen } from "@/components/learn/textbook/TextbookQrScreen";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
+import { MATH_TEXT_WRAP } from "@/components/math/mathTextWrap";
 import learn from "@/components/learn/learn.module.css";
 import styles from "@/components/learn/textbook/textbookLearn.module.css";
 
@@ -112,10 +113,14 @@ export default async function TextbookQrPage({
         <PaperProblemView {...printable} />
         <section className={styles.block}>
           <h2>정답과 풀이</h2>
-          <MarkdownRenderer content={printable.answer} />
+          <MarkdownRenderer
+            content={printable.answer}
+            className={MATH_TEXT_WRAP}
+          />
           {printable.solution !== null && (
             <MarkdownRenderer
               content={solutionForDisplay(printable.solution) ?? ""}
+              className={MATH_TEXT_WRAP}
             />
           )}
         </section>
