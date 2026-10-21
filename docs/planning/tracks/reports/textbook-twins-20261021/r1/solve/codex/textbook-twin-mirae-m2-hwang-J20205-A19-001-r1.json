@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20205-A19-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d72-f289-7801-8a28-0c468efdc0e7",
+ "startedAt": "2026-10-21T16:52:56+0900",
+ "elapsedSec": 8.6,
+ "studentSha256": {
+  "student.json": "99058a76a2afd3674616a4241e0938fcf1c0b5e6c4d957d923d208623e1ca974"
+ },
+ "promptSha256": "e2f8cc01e8b297f1ecd394312f4cffd3598a93738118bb6294151f1dbe702efa",
+ "freezeCommit": "7c874374dd2e0402b7721dd957a43b7896e3fdc8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"사과를 x개 사면 800x+3000≤9300이므로 x≤7.875이다. x는 자연수이므로 최대 7개까지 살 수 있다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "사과를 x개 사면 800x+3000≤9300이므로 x≤7.875이다. x는 자연수이므로 최대 7개까지 살 수 있다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "29f3d74cf4cc24f1a8beb318b3c12c669026697d4a213f8560d582cdde429339"
+}

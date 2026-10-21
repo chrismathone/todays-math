@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20204-A19-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d73-8f09-7991-af62-ccb9058f696a",
+ "startedAt": "2026-10-21T16:53:36+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "student.json": "2f70fff03d21c0bb7e6473ba4811dae94dd162d54d13c08e7730810248304fc3"
+ },
+ "promptSha256": "ffa6017b6cb8d7294381f9b000f60c0aaa01b7d4b19c9fa9aa8335a4c839c399",
+ "freezeCommit": "7c874374dd2e0402b7721dd957a43b7896e3fdc8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"7년 후부터\",\"work\":\"x년 후 할머니는 62+x살, 하루는 11+x살이다.\\n62+x<4(11+x)를 풀면 18<3x, 즉 x>6이다.\\n따라서 7년 후부터이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "7년 후부터",
+  "work": "x년 후 할머니는 62+x살, 하루는 11+x살이다.\n62+x<4(11+x)를 풀면 18<3x, 즉 x>6이다.\n따라서 7년 후부터이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e17ee2446a88076ea8aea8e383223f7ed8d1d7fa351ae99d21573621e2a8bbc2"
+}

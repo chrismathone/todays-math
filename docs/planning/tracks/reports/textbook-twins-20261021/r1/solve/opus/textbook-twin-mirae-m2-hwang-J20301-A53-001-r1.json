@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A53-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "9136932a-7629-4c0f-81e6-9dccefad33eb",
+ "startedAt": "2026-10-21T16:29:40+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "8fc7da92ed17a73c226c61df930d7226fab7a34622a892d342535233e28a36b0"
+ },
+ "promptSha256": "c7a02ad190bd8bebc2f79e719f1a970bf9c11cefaa44ae92488e2db9239de813",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②, ⑤\", \"work\": \"4x+3y=29 에 대입: ① 4+24=28 ✗, ② 8+21=29 ✓, ③ 12+18=30 ✗, ④ 16+12=28 ✗, ⑤ 20+9=29 ✓\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②, ⑤",
+  "work": "4x+3y=29 에 대입: ① 4+24=28 ✗, ② 8+21=29 ✓, ③ 12+18=30 ✗, ④ 16+12=28 ✗, ⑤ 20+9=29 ✓",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c38e72e93c09ba551a68b2fe35e8d6b52d61961b41a656f05079769dd64094a8"
+}

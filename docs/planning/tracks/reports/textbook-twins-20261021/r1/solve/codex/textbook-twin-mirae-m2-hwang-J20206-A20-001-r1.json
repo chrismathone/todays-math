@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20206-A20-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d73-3c68-7f22-883a-770e83901265",
+ "startedAt": "2026-10-21T16:53:15+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "021d1d25f1237eb3e4dcb6d0e0158c318dc883f4025b27fe7bfdf3dc597200a7"
+ },
+ "promptSha256": "639767852188d92d6cb47ac1a7a3a3971787505e1ac5c58675e27f720b9acce4",
+ "freezeCommit": "7c874374dd2e0402b7721dd957a43b7896e3fdc8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12 cm\",\"work\":\"가로의 길이를 x cm라 하면 세로의 길이는 (x-3) cm이다.\\n테두리 전체 길이가 42 cm보다 작지 않으므로 2x+2(x-3)≥42이다.\\n이를 풀면 4x-6≥42, 4x≥48, x≥12이다.\\n따라서 가로의 길이는 최소 12 cm로 해야 한다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12 cm",
+  "work": "가로의 길이를 x cm라 하면 세로의 길이는 (x-3) cm이다.\n테두리 전체 길이가 42 cm보다 작지 않으므로 2x+2(x-3)≥42이다.\n이를 풀면 4x-6≥42, 4x≥48, x≥12이다.\n따라서 가로의 길이는 최소 12 cm로 해야 한다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f535f05a18f757024848e28ae691c4add533642d7d286f2c6999b200bf742504"
+}

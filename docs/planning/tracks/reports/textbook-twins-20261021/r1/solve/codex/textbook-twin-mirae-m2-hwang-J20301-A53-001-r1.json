@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A53-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d74-401c-7a00-b08d-370a9e1834be",
+ "startedAt": "2026-10-21T16:54:22+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "student.json": "8fc7da92ed17a73c226c61df930d7226fab7a34622a892d342535233e28a36b0"
+ },
+ "promptSha256": "c7a02ad190bd8bebc2f79e719f1a970bf9c11cefaa44ae92488e2db9239de813",
+ "freezeCommit": "aefa2fe00ebc4644e2fd6dc4cfb65732094eac9a",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②, ⑤\",\"work\":\"주어진 식을 정리하면 $4x+3y=29$이다.\\n①~⑤를 대입한 왼쪽 값은 각각 28, 29, 30, 28, 29이므로 식을 만족하는 것은 ②, ⑤이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②, ⑤",
+  "work": "주어진 식을 정리하면 $4x+3y=29$이다.\n①~⑤를 대입한 왼쪽 값은 각각 28, 29, 30, 28, 29이므로 식을 만족하는 것은 ②, ⑤이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "476f717bbb6bf747b77e744409626720ace3d18e78a544450e8aef18bd515ccf"
+}
