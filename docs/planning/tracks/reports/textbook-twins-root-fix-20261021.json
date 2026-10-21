@@ -1,0 +1,248 @@
+{
+  "baseline": "662b7c10c2d7e9168b0ede49050e262ec99439ac",
+  "scope": "R1~R5 deterministic follow-up; no new model calls; no frozen content changes",
+  "answerReplay": {
+    "candidates": 672,
+    "answers": 2688,
+    "pairComparisons": 4032,
+    "comparisonChanges": 0,
+    "finalBefore": {
+      "통과": 200,
+      "보류 — 너무 닮음": 42,
+      "보류 — 검수": 107,
+      "보류 — 수학": 27,
+      "보류 — 답 표기(값은 같음)": 14,
+      "보류 — 형식": 2,
+      "보류 — 그림": 3
+    },
+    "finalAfter": {
+      "통과": 200,
+      "보류 — 너무 닮음": 42,
+      "보류 — 검수": 107,
+      "보류 — 수학": 27,
+      "보류 — 답 표기(값은 같음)": 14,
+      "보류 — 형식": 2,
+      "보류 — 그림": 3
+    }
+  },
+  "executionReplay": {
+    "candidateCount": 672,
+    "statusChanges": [],
+    "finalTally": {
+      "통과": 200,
+      "보류 — 답 표기(값은 같음)": 14,
+      "보류 — 너무 닮음": 42,
+      "보류 — 검수": 107,
+      "보류 — 수학": 27,
+      "보류 — 형식": 2,
+      "보류 — 그림": 3
+    },
+    "solverEvidence": {
+      "verified-retained-evidence": 1344
+    },
+    "solverToolCalls": {
+      "codex": 0,
+      "opus": 137,
+      "gemini": 75
+    },
+    "codexReconnections": 1,
+    "reviewToolTraceStates": {
+      "legacy-unverified-paths": 672
+    },
+    "reviewsWithDeclaredFigureInputs": 217,
+    "finalPassReviewsWithDeclaredFigureInputs": 58,
+    "specificity": {
+      "crossGroupDuplicates": 271,
+      "withinChecksDuplicates": 0,
+      "withinSurfacesDuplicates": 0,
+      "genericEvidence": 0
+    },
+    "uniqueFreezeSealRelations": 249
+  },
+  "provenance": {
+    "authorRecords": 351,
+    "historicalBodyRecords": 71,
+    "bodyCandidates": 71,
+    "bodyFinalPass": 29,
+    "figureRepairEvents": 69,
+    "figureRepairEnvelopesVerified": 19,
+    "figureMissingEnvelopeEvents": 50,
+    "figureMissingEnvelopeCandidates": 42,
+    "figureMissingModelFieldEvents": 45,
+    "figureRecordedOpusMissingEnvelopeEvents": 5,
+    "figureFinalPass": 8,
+    "finalPassIntersection": 1,
+    "finalPassUnion": 36,
+    "finalPassTotal": 200,
+    "finalPassWithoutTheseTwoMissingEnvelopeCategories": 164
+  },
+  "rootCauses": {
+    "holds": 195,
+    "categories": [
+      {
+        "key": "M01",
+        "count": 11
+      },
+      {
+        "key": "M02",
+        "count": 1
+      },
+      {
+        "key": "M03",
+        "count": 1
+      },
+      {
+        "key": "M04",
+        "count": 1
+      },
+      {
+        "key": "M05",
+        "count": 1
+      },
+      {
+        "key": "M06",
+        "count": 1
+      },
+      {
+        "key": "M07",
+        "count": 3
+      },
+      {
+        "key": "M08",
+        "count": 1
+      },
+      {
+        "key": "M09",
+        "count": 1
+      },
+      {
+        "key": "M10",
+        "count": 1
+      },
+      {
+        "key": "M11",
+        "count": 1
+      },
+      {
+        "key": "M12",
+        "count": 2
+      },
+      {
+        "key": "M13",
+        "count": 2
+      },
+      {
+        "key": "R01",
+        "count": 64
+      },
+      {
+        "key": "R02",
+        "count": 12
+      },
+      {
+        "key": "R03",
+        "count": 9
+      },
+      {
+        "key": "R04",
+        "count": 5
+      },
+      {
+        "key": "R05",
+        "count": 1
+      },
+      {
+        "key": "R06",
+        "count": 4
+      },
+      {
+        "key": "R07",
+        "count": 1
+      },
+      {
+        "key": "R08",
+        "count": 1
+      },
+      {
+        "key": "R09",
+        "count": 10
+      },
+      {
+        "key": "S01",
+        "count": 41
+      },
+      {
+        "key": "S02",
+        "count": 1
+      },
+      {
+        "key": "U01",
+        "count": 14
+      },
+      {
+        "key": "F01",
+        "count": 2
+      },
+      {
+        "key": "F02",
+        "count": 3
+      }
+    ],
+    "sameGateAcrossRounds": 82
+  },
+  "syntheticRegression": {
+    "redFailed": 35,
+    "redPassed": 49,
+    "greenPassed": 84,
+    "cli": "fake subprocess only",
+    "git": "real temporary repository"
+  },
+  "limitations": [
+    "missing author envelopes are not verified",
+    "672 historical reviewer tool paths unverified",
+    "164 outside two missing-envelope categories are not fully approved",
+    "source answers, SSD figure identity and official 2022 standards remain unverified"
+  ],
+  "externalEvidence": [
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/root-cause-plan-20261021.md",
+      "sha256": "df8bc645db4bdc5ae42321a0e4a9ee94279270e50e8711591fdf406ca5e66f29"
+    },
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/root-cause-plan-20261021.json",
+      "sha256": "5353345968f2a49fe6ce80c71e270f517e39e5c7b535d840b86d87d8d4040c1c"
+    },
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/root-fix-answer-impact-20261021.json",
+      "sha256": "028a18e3a038747c2935e33257b4ffd0fac06b2cd3abbc5e76a7bc97a1a8be5f"
+    },
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/root-fix-provenance-audit-20261021.json",
+      "sha256": "d16a705ddf276efad0cc0cfebd56cda64442416e0ed1c2bc600cb1df06dabeed"
+    },
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/root-fix-execution-audit-20261021.json",
+      "sha256": "725c7bdbe5541a2958a68850fb3c4b3a13ee1520b2c6e8d8023c3b0597e9c129"
+    },
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/root-fix-preservation-20261021.json",
+      "sha256": "72e505c93a2da7950dcbcc716be859d2d2dc64fdbc2eec98c734bd1cda618451"
+    },
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/root-fix-all-red.log",
+      "sha256": "ce9b79cbc7f803ca6dcff218f26b6d4ca17441b1024d51b5d3b20d78c3d969c4"
+    },
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/root-fix-evidence-green.log",
+      "sha256": "540863d95b48caacfc6925e20411ea223cab251ccdfd5d779f907beb0762be31"
+    },
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/final-gate-review-codex.md",
+      "sha256": "b87ec7e38794cabda8fc516e842969a250fbf44621118bbf19be5f3d887b0941"
+    },
+    {
+      "path": "/Users/pss/Desktop/creative/display-survey/textbook-twins/final-gate-provenance-impact-codex.json",
+      "sha256": "ae3aa850077db2614a1ef2f61c45675a95258db441760367dfc7f85b5c5d5703"
+    }
+  ]
+}

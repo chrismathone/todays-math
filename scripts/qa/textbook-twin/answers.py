@@ -30,7 +30,9 @@ def fold(text: str) -> str:
     t = re.sub(r"\\(?:le|leq)\b", "≤", t)
     t = re.sub(r"\\(?:ge|geq)\b", "≥", t)
     t = t.replace("\\times", "×").replace("\\div", "÷").replace("\\cdot", "·")
-    t = re.sub(r"\{\s*([^{}\s])\s*\}", r"\1", t)  # 한 글자 묶음 `x^{2}` → `x^2`
+    # 지수/첨자의 한 토큰만 접는다. 일반 묶음을 지우면 분수의 인수 경계나
+    # 뒤에 붙은 수가 합쳐진다: `\frac{1}{2}3` → `\frac123` → 잘못된 12/3.
+    t = re.sub(r"([\^_])\{\s*([^{}\s])\s*\}", r"\1\2", t)
     t = re.sub(r"[.。]\s*$", "", t)
     # 괄호 숫자는 답 맨 앞에서 소문항이 시작할 때만 표지로 읽는다. x(1)은 함수/곱이다.
     if re.match(r"^" + _ASCII_SUB + r"\s", t):
@@ -68,9 +70,13 @@ def parts_of(t: str) -> list[tuple[str, str]] | None:
 
 
 def _number(t: str) -> Fraction | None:
-    m = re.fullmatch(r"(-?)\\frac\{?(\d+)\}?\{?(\d+)\}?", t)
+    # TeX 인수는 중괄호 속 정수 또는 단일 숫자 토큰이다. 중괄호는 쌍으로
+    # 요구하며, 두 인수 뒤에 숫자/곱/다른 식이 남으면 수 하나로 읽지 않는다.
+    arg = r"(\{\d+\}|\d)"
+    m = re.fullmatch(r"(-?)\\frac" + arg + arg, t)
     if m:
-        return Fraction(int(m.group(2)), int(m.group(3))) * (-1 if m.group(1) else 1) if int(m.group(3)) else None
+        numerator, denominator = (int(m.group(i).strip("{}")) for i in (2, 3))
+        return Fraction(numerator, denominator) * (-1 if m.group(1) else 1) if denominator else None
     m = re.fullmatch(r"(-?)(\d+)/(\d+)", t)
     if m:
         return Fraction(int(m.group(2)), int(m.group(3))) * (-1 if m.group(1) else 1) if int(m.group(3)) else None

@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+from functools import lru_cache
 from pathlib import Path
 
 
@@ -22,7 +23,8 @@ def author_roles(candidate: dict) -> tuple[set[str], set[str]]:
     model, _, session = identity.partition(":")
     models, sessions = ({model} if model else set()), ({session} if session else set())
     for repair in (metadata.get("figureAuthoring") or {}).get("specRepairs", []):
-        # 전환 전 기록은 저자와 같은 모델로만 그림을 고쳤다.
+        # 과거 라우팅용 추정일 뿐 실제 모델 응답의 증거가 아니다.
+        # 실제/기록/추정의 구분은 audit_author_provenance.py에서 별도 보고한다.
         if repair.get("model") or model:
             models.add(repair.get("model") or model)
         if repair.get("session"):
@@ -71,11 +73,23 @@ def read_review(path: Path) -> dict:
     data = Path(pointer["externalReview"]).read_bytes()
     if digest(data) != pointer["sha256"]:
         raise ValueError("외부 검수 기록 해시가 다르다")
-    return json.loads(data)
+    record = json.loads(data)
+    for key in ("twinExternalId", "candidateSha256", "sealCommit", "reviewer", "sessionId"):
+        if not pointer.get(key) or pointer[key] != record.get(key):
+            raise ValueError(f"검수 포인터/원기록 필수 필드 불일치: {key}")
+    return record
 
 
 def git_head(bundle: Path) -> str:
     return subprocess.check_output(["git", "-C", str(bundle.resolve()), "rev-parse", "HEAD"], text=True).strip()
+
+
+@lru_cache(maxsize=4096)
+def is_ancestor(root: Path, ancestor: str, descendant: str, strict: bool = False) -> bool:
+    if not ancestor or not descendant or (strict and ancestor == descendant):
+        return False
+    return subprocess.run(["git", "-C", str(root), "merge-base", "--is-ancestor", ancestor, descendant],
+                          capture_output=True).returncode == 0
 
 
 def committed_bytes(path: Path, commit: str = "HEAD") -> bytes | None:

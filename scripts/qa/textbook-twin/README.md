@@ -4,6 +4,12 @@
 고르심 «대조 먼저 + 시범 책 하나». 대조는 `../textbook-verify/`, 시범은 여기. 결과와 판단은
 `docs/planning/tracks/reports/textbook-twins-20261021.md`.
 
+**662b 이후 보완:** 독립 검토 R1~R5의 수정과 한계는
+`docs/planning/tracks/reports/textbook-twins-root-fix-20261021.md`를 먼저 읽는다.
+기존 200통과는 내용 관문 판정이며 실행계보의 완전한 승인이 아니다. 최종 통과36개는 본문/그림 보완
+원봉투가 없고, 과거 검수672개의 실제 도구 경로도 미확인이다. 기존 묶음과75개 봉인은 보존한다.
+아래 생성 절차는 시범 이력/향후 별도 배정을 위한 설명이며 현재 추가 모델 실행은 금지돼 있다.
+
 🔴 **적재하지 않는다** — 모든 후보가 `loadable: false` · `productionWrites: false`. DB 를 안 만진다.
 🔴 교과서 글 · 원본 그림은 저장소 밖(`display-survey/textbook-twins/`). 저장소의 묶음에는 **새 글만** 있고 원본은 해시로만 잇는다.
 🔴 유료 API 금지 — 구독 CLI 만(`claude -p` · `codex exec`; 한도 시 `agy --model gemini-3.8-flash-high -p=…`). API 키 환경변수는 자식 CLI에 전달하지 않는다. Codex 는 한 번에 하나(리드 규칙 ⑤).
@@ -45,7 +51,7 @@ $PY scripts/qa/textbook-twin/review_ready.py $T/sources.jsonl $B $T/run --watch
 $PY scripts/qa/textbook-twin/collect.py $B
 npx tsx scripts/qa/textbook-twin/preview.ts $T/sources.jsonl $B $T
 # 시험
-$PY -m pytest scripts/qa/textbook-twin/test_twin.py -q -p no:cacheprovider
+$PY -m pytest scripts/qa/textbook-twin/test_twin.py scripts/qa/textbook-twin/test_evidence.py -q -p no:cacheprovider
 npx vitest run src/__tests__/unit/textbookTwinHelpers.test.ts --maxWorkers=3
 # 운영 빌드·DB 적재·푸시는 하지 않는다.
 ```
@@ -67,6 +73,11 @@ npx vitest run src/__tests__/unit/textbookTwinHelpers.test.ts --maxWorkers=3
 원문 전체 복제·긴 그대로 인용이 검출된 새 후보는 외부 `quarantine/`에 보존한다. 유사도 눈금은 별개의 잠정
 검사이며, 문턱 미만이라는 이유만으로 저작권·독창성·성취기준 준수를 승인하지 않는다.
 
+후속 `collect.py --output <외부 JSON>`은 기존 집계 파일을 덮어쓰지 않고 원응답/parsed·실제 CLI 사건·
+입력 바이트·도구 선언·허용 검수 모델·freeze→seal→HEAD 조상을 재검증한다. 새 검수에는 전체 stream과
+그림 입력 해시/실제 Read가 필요하다. 662b에 봉인된 과거 검수만 `legacy-unverified-paths`로 읽으며,
+그 경로를 확인한 것처럼 채우지 않는다. 일반/반복 근거 표시는 의미의 타당성 인증이 아니다.
+
 미리보기는 외부의 `review.html`(원본 비교·상태/검색), `student.html`(정답 없는 통과 문항),
 `answers.html`(정답·풀이)이다. KaTeX CSS와 글꼴도 외부 `assets/`에 복사하므로 인터넷 없이 열린다.
 
@@ -82,6 +93,9 @@ npx vitest run src/__tests__/unit/textbookTwinHelpers.test.ts --maxWorkers=3
 | `similarity.py` | 너무 닮음 — 4글자 겹침 · 이어진 같은 글 · 짧은 글 · 수 보존 · 같은 정답(Codex 1회차 D 잠정 눈금) |
 | `solve.py` | 블라인드 풀이(Codex · Opus · Gemini) — 학생 면만 · 문항마다 새 세션 · 도구 사용 기록 |
 | `answers.py` | 답 비교 — 표기만 접고 부호 · 단위 · 소문항 순서를 지킨다 |
+| `recheck_answers.py` | 이전 SHA와 현재 비교기로 전체 답/집계 재생 — 외부 출력만 |
+| `audit_author_provenance.py` | 본문·그림 보완 원봉투/기록/추정 및 최종 영향 합집합 — 외부 출력만 |
+| `execution_evidence.py` · `test_evidence.py` | 실제 사건/원응답 검증, 실제 임시 Git과 대역 CLI 회귀 |
 | `review.py` · `review_ready.py` | 봉인 뒤 검수(Sonnet) — 12 검수 · 7 면 · 엔진 유형 맞춤 · 난이도 · 물음 꼴 |
 | `collect.py` | 문항마다 상태 하나(통과 · 보류 — 수학 / 검수 / 너무 닮음 / 봉인) |
 | `integrity.py` · `export_guard.py` | 실제 학생 면·그림·후보·커밋 연결과 원문 반출 검사 |

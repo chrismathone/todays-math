@@ -24,6 +24,7 @@ import time
 from pathlib import Path
 
 import integrity
+from execution_evidence import codex_trace
 from subscription_cli import cli_env, run_gemini, claude_model_matches
 
 MODELS = {"codex": "gpt-6-astra", "opus": "claude-opus-5-5", "gemini": "gemini-3.8-flash-high"}
@@ -71,12 +72,11 @@ def run_codex(workdir: Path, prompt: str, has_figure: bool) -> dict:
             events.append(json.loads(line))
         except json.JSONDecodeError:
             continue
-    thread = next((e.get("thread_id") for e in events if e.get("thread_id")), None)
-    # 말 · 생각 말고 다른 항목(command_execution · file_change · mcp_tool_call · web_search …)은 전부 «도구 사용»으로 센다
-    commands = [e for e in events if e.get("type") == "item.completed"
-                and (e.get("item") or {}).get("type") not in ("agent_message", "reasoning")]
+    trace = codex_trace(events)
     last = (workdir / "last.txt").read_text(encoding="utf-8") if (workdir / "last.txt").exists() else ""
-    return {"returncode": proc.returncode, "sessionId": thread, "raw": last, "toolCalls": len(commands),
+    success = trace["executionComplete"] and trace["raw"] == last
+    return {**trace, "returncode": proc.returncode if success else (proc.returncode or 1), "raw": last,
+            "toolPolicyVerified": bool(success and trace["toolPolicyVerified"]),
             "eventsSha256": hashlib.sha256(proc.stdout.encode("utf-8")).hexdigest(), "stderrTail": proc.stderr[-400:]}
 
 
@@ -152,6 +152,8 @@ def solve_one(solver: str, tid: str, bundle: Path, run_dir: Path, freeze: dict) 
         raise RuntimeError(f"CLI 실패/응답 손상 — 재실행 가능, 원응답 보존: {workdir}")
     if "eventsSha256" in result:
         record["eventsSha256"] = result["eventsSha256"]
+        name = {"codex": "events.jsonl", "opus": "claude-envelope.json", "gemini": "agy-envelope.json"}[solver]
+        record["executionEvidence"] = {"eventsPath": str((workdir / name).resolve())}
     out_file.parent.mkdir(parents=True, exist_ok=True)
     pending = out_file.with_suffix(".pending")
     pending.write_text(json.dumps(record, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

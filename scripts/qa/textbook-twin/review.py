@@ -23,6 +23,7 @@ from pathlib import Path
 
 import integrity
 from subscription_cli import cli_env, claude_model_matches
+from execution_evidence import events_from, claude_trace
 
 MODEL = "claude-sonnet-5-5"
 CHECKS = ["answerCorrect", "solutionCorrect", "existenceUniqueness", "choicesCorrect", "figureConsistent",
@@ -93,6 +94,8 @@ def parse(text: str) -> dict | None:
 
 
 def review_one(tid: str, src: dict, bundle: Path, run_dir: Path, model: str = MODEL) -> str:
+    if model != MODEL:
+        raise ValueError("검수자는 명시적 허용 모델이어야 한다")
     out_file = bundle / "reviews" / f"{tid}.json"
     if out_file.exists():
         return f"{tid}: 이미 있음"
@@ -126,27 +129,39 @@ def review_one(tid: str, src: dict, bundle: Path, run_dir: Path, model: str = MO
     if twin_fig:
         shutil.copyfile(bundle / "blind" / tid / "fig-1.png", workdir / "twin-fig-1.png")
     prompt = prompt_for(src, cand, solves, original_figs, twin_fig)
+    allowed_names = original_figs + (["twin-fig-1.png"] if twin_fig else [])
+    input_hashes = {name: integrity.digest((workdir / name).read_bytes()) for name in allowed_names}
     started = time.time()
     proc = subprocess.run(
-        ["claude", "-p", "--model", model, "--output-format", "json", "--restricted", "--strict-mcp-config", "--no-session-persistence",
+        ["claude", "-p", "--model", model, "--output-format", "stream-json", "--verbose", "--restricted", "--strict-mcp-config", "--no-session-persistence",
          "--tools", "Read" if (original_figs or twin_fig) else ""],
         input=prompt, capture_output=True, text=True, cwd=workdir, timeout=1800, env=cli_env(),
     )
-    (workdir / "review-envelope.json").write_text(proc.stdout, encoding="utf-8")
+    event_file = workdir / "review-events.jsonl"
+    event_file.write_text(proc.stdout, encoding="utf-8")
     try:
-        envelope = json.loads(proc.stdout)
-    except json.JSONDecodeError:
-        envelope = {}
+        events = events_from(proc.stdout)
+    except ValueError:
+        events = []
+    envelope = next((event for event in reversed(events) if event.get("type") == "result"), {})
+    trace = claude_trace(events, workdir, allowed_names, model)
+    images_read = {(workdir / name).resolve() for name in allowed_names}.issubset(
+        {Path(path) for path in trace["accessedPaths"]})
+    # 최종 봉투도 따로 보존하되 실제 도구 접근의 증거는 전체 stream이다.
+    (workdir / "review-envelope.json").write_text(json.dumps(envelope, ensure_ascii=False), encoding="utf-8")
     parsed = parse(envelope.get("result", ""))
     record = {"twinExternalId": tid, "reviewer": model, "sessionId": envelope.get("session_id"),
               "candidateSha256": frozen["candidateSha256"], "studentSha256": frozen["student"],
               "solveSha256": solve_digests, "sealCommit": seal_commit,
               "elapsedSec": round(time.time() - started, 1), "returncode": proc.returncode,
               "exposure": {"sawOriginal": True, "sawAuthorAnswer": True, "sawSolverAnswers": sorted(solves),
-                           "sawEngineRationale": False, "priorExposureToThisItem": False},
+                           "sawEngineRationale": False, "priorExposureToThisItem": False,
+                           "toolCalls": trace["toolCalls"], "toolPolicyVerified": trace["toolPolicyVerified"]},
+              "executionEvidence": {"version": 1, "eventsPath": str(event_file.resolve()),
+                                    "eventsSha256": integrity.digest(event_file.read_bytes()), "inputSha256": input_hashes},
               "raw": envelope.get("result", ""), "parsed": parsed}
     if (proc.returncode != 0 or envelope.get("is_error", True) or not isinstance(parsed, dict)
-            or not claude_model_matches(envelope, model)):
+            or not claude_model_matches(envelope, model) or not trace["toolPolicyVerified"] or not images_read):
         (workdir / "failed-review.json").write_text(json.dumps(record, ensure_ascii=False, indent=1), encoding="utf-8")
         raise RuntimeError(f"검수 CLI 실패/응답 손상: {workdir}")
     # 검수자가 원문을 재인용할 수 있으므로 원시 응답과 근거는 저장소 밖에만 남긴다.

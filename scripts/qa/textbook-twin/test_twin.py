@@ -56,6 +56,44 @@ def test_notation_folds_but_value_is_kept():
     assert answers.compare("$12\\,\\mathrm{cm}$", "12 cm")[0] == "match"
 
 
+@pytest.mark.parametrize(("left", "right"), [
+    (r"\frac{1}{2}3", "4"),
+    (r"\frac{12}{3}4", "6/17"),
+    (r"\frac{1}{2}3", r"\frac{12}{3}"),
+    (r"\frac{1}{23}", r"\frac{12}{3}"),
+    (r"\frac123", "4"),
+    (r"\frac{1}23", "4"),
+    (r"\frac1{2}3", "4"),
+    (r"-\frac{1}{2}3", "-4"),
+    (r"\frac{1}{2}3 cm", "4 cm"),
+    (r"\frac{1}{2}3", "4 cm"),
+    (r"\frac{1}{2}3", "1.5"),  # 곱을 계산해 동치 범위를 넓히지 않는다.
+    (r"x{1}2", "x12"),
+    (r"\frac{1}{0}2", "0.5"),
+    (r"\frac{1}{2", "0.5"),
+    (r"⑴ \frac{1}{2}3 ⑵ 5", "⑴ 4 ⑵ 5"),
+])
+def test_fraction_and_group_boundaries_never_create_a_match(left, right):
+    assert answers.compare(left, right)[0] == "different"
+    assert answers.compare(right, left)[0] == "different"
+
+
+@pytest.mark.parametrize(("left", "right"), [
+    (r"\frac{12}{35}", "12/35"),
+    (r"\frac{1}{23}", "1/23"),
+    (r"\frac{12}{3}", "4"),
+    (r"-\frac{12}{3}", "-4"),
+    (r"\frac12", "0.5"),
+    (r"\frac1{23}", "1/23"),
+    (r"\frac{12}3", "4"),
+    (r"\frac{12}{3}\,\mathrm{cm}", "4 cm"),
+    (r"⑴ \frac{12}{3} ⑵ -\frac{1}{2}", "(1) 4 (2) -0.5"),
+    (r"x^{2}", "x^2"),
+])
+def test_fraction_arguments_remain_separate_numbers(left, right):
+    assert answers.compare(left, right)[0] == "match"
+
+
 def test_sign_unit_and_spacing_are_not_folded():
     assert answers.compare("$-3$", "3")[0] == "different"
     assert answers.compare("$12\\,\\mathrm{cm}$", "12 m")[0] == "different"
@@ -257,56 +295,4 @@ def test_review_applies_na_to_actual_candidate_and_checks_its_answer():
     assert collect.derived_verdict(r, {**c, "figureArtifacts": [], "content": "<table><tr><td>5</td></tr></table>"}) == "hold"
 
 
-@pytest.mark.parametrize("mutation", [None, "one-solver", "failed-cli", "exposed", "same-session", "author-model", "author-session", "wrong-review-answer", "changed-candidate"])
-def test_collection_never_promotes_invalid_evidence(tmp_path, monkeypatch, mutation):
-    tid = "synthetic-twin"
-    candidate = {"answer": "5", "content": "합성 문제", "questionType": "단답형", "choices": [], "figureArtifacts": [],
-                 "route": "engine", "authorId": "middle-engine:synthetic", "sourceReference": {"problemCode": "synthetic"},
-                 "metadata": {"similarity": {"verdict": "pass", "reasons": []},
-                              "engine": {"proposedBy": "synthetic-author:synthetic-session"}}}
-    if mutation == "author-model":
-        candidate["metadata"]["engine"]["proposedBy"] = collect.MODELS["opus"] + ":synthetic-session"
-    if mutation == "author-session":
-        candidate["metadata"]["engine"]["proposedBy"] = "synthetic-author:opus"
-    student = {"twinExternalId": tid, "grade": "중2", "content": candidate["content"], "questionType": "단답형", "choices": [], "figures": []}
-    def write(path, value):
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(value, ensure_ascii=False))
-    write(tmp_path / "candidates" / f"{tid}.json", candidate)
-    write(tmp_path / "blind" / tid / "student.json", student)
-    student_hashes = {"student.json": integrity.digest((tmp_path / "blind" / tid / "student.json").read_bytes())}
-    frozen = {"candidateSha256": integrity.digest(integrity.canonical(candidate)), "student": student_hashes, "figures": {}}
-    write(tmp_path / "freeze.json", {"candidates": {tid: frozen}})
-    write(tmp_path / "holds.json", [])
-    solvers = ["codex"] if mutation == "one-solver" else ["codex", "opus"]
-    solve_hashes = {}
-    for solver in solvers:
-        record = {"twinExternalId": tid, "solver": solver, "model": collect.MODELS[solver], "sessionId": solver,
-                  "returncode": 0, "studentSha256": student_hashes, "freezeCommit": "synthetic-freeze",
-                  "parsed": {"answer": "5", "work": "2+3=5", "issues": []},
-                  "exposure": {"received": ["student.json"], "toolPolicyVerified": True, "answerKeyOrSourceAvailableInWorkdir": False}}
-        if solver == "opus":
-            if mutation == "failed-cli": record["returncode"] = 9
-            if mutation == "exposed": record["exposure"]["answerKeyOrSourceAvailableInWorkdir"] = True
-            if mutation == "same-session": record["sessionId"] = "codex"
-        path = tmp_path / "solve" / solver / f"{tid}.json"
-        write(path, record)
-        solve_hashes[solver] = integrity.digest(path.read_bytes())
-    parsed = {"checks": {k: {"value": True, "evidence": f"{k} 검토 근거"} for k in review_module.CHECKS},
-              "surfaces": {k: {"status": "passed", "basis": f"{k} 검토 근거"} for k in SURFACE_NAMES},
-              "engineTypeFit": "same", "difficulty": "same", "questionTypeSame": True, "verdict": "pass",
-              "verifiedAnswer": "999" if mutation == "wrong-review-answer" else "5", "issues": []}
-    record = {"twinExternalId": tid, "reviewer": review_module.MODEL, "sessionId": "review", "returncode": 0,
-              "candidateSha256": frozen["candidateSha256"], "studentSha256": student_hashes, "solveSha256": solve_hashes,
-              "sealCommit": "synthetic-seal", "exposure": {"sawSolverAnswers": sorted(solvers)}, "parsed": parsed}
-    write(tmp_path / "reviews" / f"{tid}.json", record)
-    if mutation == "changed-candidate":
-        write(tmp_path / "candidates" / f"{tid}.json", {**candidate, "content": "바뀐 문제"})
-    monkeypatch.setattr(integrity, "committed_freeze", lambda *a: True)
-    monkeypatch.setattr(integrity, "committed", lambda *a: True)
-    monkeypatch.setattr(sys, "argv", ["collect.py", str(tmp_path)])
-    collect.main()
-    result = json.loads((tmp_path / "collect.json").read_text())["rows"][0]
-    assert (result["status"] == "통과") is (mutation is None)
-    checks = {k: {"value": "n/a", "evidence": "없음"} for k in review_module.CHECKS}
-    assert _review(checks=checks) == "hold"
+# 수집기의 합성 봉인 회귀는 test_evidence.py의 실제 Git 저장소로 옮겼다.

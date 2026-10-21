@@ -28,8 +28,11 @@ sys.path.insert(0, str(HERE))
 
 import answers  # noqa: E402
 import integrity
-from review import CHECKS, SURFACES
+from review import CHECKS, SURFACES, MODEL as REVIEW_MODEL
 from solve import MODELS
+from execution_evidence import solver_evidence, review_evidence, evidence_specificity
+
+LEGACY_BASELINE = "662b7c10c2d7e9168b0ede49050e262ec99439ac"
 
 SOLVERS = ("codex", "opus", "gemini")
 STAGE_LABELS = {"author": "저작", "figure": "그림", "engine": "엔진", "shape": "형식", "source-copy": "원문 복제 의심"}
@@ -79,8 +82,10 @@ def derived_verdict(review: dict | None, candidate: dict | None = None) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("bundle")
+    parser.add_argument("--output", type=Path, help="재검증 결과를 기존 봉인 묶음 대신 별도 경로에 보존")
     args = parser.parse_args()
     bundle = Path(args.bundle)
+    head = integrity.git_head(bundle)
     freeze = json.loads((bundle / "freeze.json").read_text(encoding="utf-8"))
     rows, tally = [], collections.Counter()
     for tid, frozen in freeze["candidates"].items():
@@ -123,21 +128,38 @@ def main() -> None:
             review_record = {}
             reasons.append(f"검수 기록 손상: {error}")
         review = review_record.get("parsed")
+        proof = {"solvers": {}, "review": {}, "specificity": evidence_specificity(review or {})}
         if review_record:
             if (review_record.get("returncode") != 0 or not review_record.get("sessionId") or
                     review_record.get("candidateSha256") != frozen["candidateSha256"] or
                     review_record.get("studentSha256") != frozen["student"] or not review_record.get("sealCommit")):
                 reasons.append("검수가 현재 동결본/봉인 커밋과 연결되지 않았다")
-            if (review_record.get("twinExternalId") != tid or
+            if (review_record.get("twinExternalId") != tid or review_record.get("reviewer") != REVIEW_MODEL or
                     review_record.get("reviewer") in {*author_models, *(r.get("model") for r in records.values())} or
                     review_record.get("sessionId") in {*author_sessions, *(r.get("sessionId") for r in records.values())} or
                     (review_record.get("exposure") or {}).get("sawSolverAnswers") != sorted(records)):
                 reasons.append("검수자의 문항/모델/세션/공개 대상이 독립 역할과 맞지 않는다")
+            try:
+                pointer = json.loads(review_file.read_text())
+                external = Path(pointer["externalReview"]) if pointer.get("externalReview") else None
+                run_root = external.parents[2] if external else None
+                legacy = integrity.committed(review_file, LEGACY_BASELINE) and integrity.is_ancestor(bundle, LEGACY_BASELINE, head)
+                proof["review"] = review_evidence(review_record, external, legacy)
+                reasons += proof["review"]["errors"]
+                for solver, record in records.items():
+                    proof["solvers"][solver] = solver_evidence(record, run_root)
+                    reasons += [f"{solver}: {error}" for error in proof["solvers"][solver]["errors"]]
+            except (OSError, ValueError, KeyError, TypeError) as error:
+                reasons.append(f"외부 실행 증거 읽기/검증 실패: {type(error).__name__}")
             for solver in records:
                 solve_file = bundle / "solve" / solver / f"{tid}.json"
                 if ((review_record.get("solveSha256") or {}).get(solver) != integrity.digest(solve_file.read_bytes()) or
                         not integrity.committed(solve_file, review_record.get("sealCommit", "HEAD"))):
                     reasons.append(f"{solver} 원시 풀이를 검수 전에 커밋하지 않았거나 이후 바뀌었다")
+                freeze_commit, seal_commit = records[solver].get("freezeCommit", ""), review_record.get("sealCommit", "")
+                if (not integrity.is_ancestor(bundle, freeze_commit, seal_commit, strict=True)
+                        or not integrity.is_ancestor(bundle, seal_commit, head)):
+                    reasons.append(f"{solver} freeze→seal→현재 HEAD 조상 관계 위반")
         sim = cand["metadata"]["similarity"]
         if sim.get("verdict") not in {"pass", "warn", "manual", "hold"}:
             reasons.append("알 수 없는 유사도 판정")
@@ -172,13 +194,14 @@ def main() -> None:
         tally[status] += 1
         rows.append({"twinExternalId": tid, "problemCode": cand["sourceReference"]["problemCode"], "route": cand["route"],
                      "status": status, "reasons": reasons, "solves": solves, "similarity": sim["verdict"],
+                     "executionEvidence": proof,
                      "review": {**{k: (review or {}).get(k) for k in ("verdict", "engineTypeFit", "difficulty", "questionTypeSame")},
                                 "derived": derived_verdict(review, cand)}})
     holds = json.loads((bundle / "holds.json").read_text(encoding="utf-8"))
     for h in holds:
         tally[f"보류 — {STAGE_LABELS.get(h['stage'], h['stage'])}"] += 1
     result = {"tally": dict(tally), "candidates": len(rows), "earlierHolds": len(holds), "loadable": 0, "rows": rows}
-    (bundle / "collect.json").write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    (args.output or bundle / "collect.json").write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     for k, v in sorted(tally.items(), key=lambda kv: -kv[1]):
         print(f"{k}: {v}")
 
