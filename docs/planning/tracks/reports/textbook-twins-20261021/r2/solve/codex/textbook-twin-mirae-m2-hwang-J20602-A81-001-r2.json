@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A81-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df8-6b0a-7a43-b7cc-e07b3e45e0a4",
+ "startedAt": "2026-10-21T19:18:43+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "fig-1.png": "c185492c3a23f8380c417c7a991b907596b51930e0e8358d238e552fb630dfd5",
+  "student.json": "e9adebc948a75342cadaa91e1d529e4e85fcd6fecbd4829d5f4f0252e9987368"
+ },
+ "promptSha256": "c921fc2c7e5bb82cd25dd72e46a034179eeffb770a2d2078677778a4f0bee876",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $\\\\triangle OAB\\\\backsim\\\\triangle ODC$, AA 닮음 ⑵ $\\\\triangle PST\\\\backsim\\\\triangle PRQ$, SAS 닮음\",\n  \"work\": \"⑴ $\\\\angle OAB=\\\\angle ODC=40^\\\\circ$이고, 맞꼭지각인 $\\\\angle AOB=\\\\angle DOC$이므로 AA 닮음이다.\\n⑵ $PQ=4+8=12\\\\,\\\\mathrm{cm}$, $PR=6+2=8\\\\,\\\\mathrm{cm}$이다. $\\\\frac{PS}{PR}=\\\\frac{4}{8}=\\\\frac{PT}{PQ}=\\\\frac{6}{12}=\\\\frac12$이고 끼인각 $\\\\angle SPT=\\\\angle RPQ$이므로 SAS 닮음이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $\\triangle OAB\\backsim\\triangle ODC$, AA 닮음 ⑵ $\\triangle PST\\backsim\\triangle PRQ$, SAS 닮음",
+  "work": "⑴ $\\angle OAB=\\angle ODC=40^\\circ$이고, 맞꼭지각인 $\\angle AOB=\\angle DOC$이므로 AA 닮음이다.\n⑵ $PQ=4+8=12\\,\\mathrm{cm}$, $PR=6+2=8\\,\\mathrm{cm}$이다. $\\frac{PS}{PR}=\\frac{4}{8}=\\frac{PT}{PQ}=\\frac{6}{12}=\\frac12$이고 끼인각 $\\angle SPT=\\angle RPQ$이므로 SAS 닮음이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "5ef0a134ef9d5ddd077e4b83f10027897971d2174e326344b2e4a89bb247c8dc"
+}

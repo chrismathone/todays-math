@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A12-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "0d95b739-d838-48de-a4c8-e0e8581a4f81",
+ "startedAt": "2026-10-21T18:39:38+0900",
+ "elapsedSec": 20.8,
+ "studentSha256": {
+  "fig-1.png": "066c63610514e0ce0e8593a4e9e2bb35f77716818cf21c2f20720cdc78e2d71b",
+  "student.json": "599238247b4d7159f8ebe20fbdcd196569df1e3dadff02ebc4e842b9ced75ff4"
+ },
+ "promptSha256": "50614ea0038308e751ff78ba0386cb4546d928355c855ed58ebcbf1eedc953f6",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"삼각형의 두 변의 중점을 연결한 선분의 성질에 의해 $\\\\overline{PQ} = \\\\overline{SR} = \\\\frac{1}{2}\\\\overline{AC} = 9\\\\,\\\\mathrm{m}$, $\\\\overline{PS} = \\\\overline{QR} = \\\\frac{1}{2}\\\\overline{BD} = 7\\\\,\\\\mathrm{m}$이다. 따라서 산책로의 둘레의 길이는 $9 + 7 + 9 + 7 = 32\\\\,\\\\mathrm{m}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "삼각형의 두 변의 중점을 연결한 선분의 성질에 의해 $\\overline{PQ} = \\overline{SR} = \\frac{1}{2}\\overline{AC} = 9\\,\\mathrm{m}$, $\\overline{PS} = \\overline{QR} = \\frac{1}{2}\\overline{BD} = 7\\,\\mathrm{m}$이다. 따라서 산책로의 둘레의 길이는 $9 + 7 + 9 + 7 = 32\\,\\mathrm{m}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9095a8033773a92a74ce289626a3198b6f0ced93cd09e96eb554fffbc6b84026"
+}

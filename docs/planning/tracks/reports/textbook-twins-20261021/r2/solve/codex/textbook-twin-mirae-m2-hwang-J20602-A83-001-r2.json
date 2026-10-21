@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A83-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df8-9c24-7c72-ac1b-efe5b47faad6",
+ "startedAt": "2026-10-21T19:18:56+0900",
+ "elapsedSec": 15.3,
+ "studentSha256": {
+  "fig-1.png": "e9f64a6ec4d379eef705413606b0f37a55673f4a398565f6ec85aa208ee4b80c",
+  "student.json": "3b5037d3bf7fd2153a7fc60b75f2cc2e042e86378e51d1add01357da1611c850"
+ },
+ "promptSha256": "4245de6e0269d40c292114479e7341bb2130441e789e9505258e110866953a50",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②, ⑤\",\"work\":\"② AB=6 cm이면 AB:DE=6:4=3:2, BC:EF=12:8=3:2이고 그 끼인각 ∠B=∠E=60°이므로 SAS 닮음이다.\\n⑤ ∠F=180°−90°−60°=30°이므로 ∠C=30°이면 두 쌍의 대응각이 같아 AA 닮음이다.\\n닮음이 되려면 ∠A=90°, AB=6 cm여야 하므로 ①, ④는 불가능하다. ③이면 AC=BC여서 ∠A=∠B=60°이므로 불가능하다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②, ⑤",
+  "work": "② AB=6 cm이면 AB:DE=6:4=3:2, BC:EF=12:8=3:2이고 그 끼인각 ∠B=∠E=60°이므로 SAS 닮음이다.\n⑤ ∠F=180°−90°−60°=30°이므로 ∠C=30°이면 두 쌍의 대응각이 같아 AA 닮음이다.\n닮음이 되려면 ∠A=90°, AB=6 cm여야 하므로 ①, ④는 불가능하다. ③이면 AC=BC여서 ∠A=∠B=60°이므로 불가능하다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f762d45c397d57eb08214c4f8675d0386665e5f7578f7e598681c2bffd9d8e6e"
+}

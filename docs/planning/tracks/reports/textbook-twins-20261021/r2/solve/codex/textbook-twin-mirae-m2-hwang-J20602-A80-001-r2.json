@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-A80-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df8-2b9c-7f31-9fc9-81f6fb369e18",
+ "startedAt": "2026-10-21T19:18:27+0900",
+ "elapsedSec": 16.2,
+ "studentSha256": {
+  "fig-1.png": "eda3cdd8b53a210f4d7468c54a32dc689d2b14e2c93d34047da7fc2e9b7d78fc",
+  "student.json": "92bbaea5bc3f79a131ce434d1de829d520e130b8d538edb42943b06ad26a2d69"
+ },
+ "promptSha256": "294688998ba8e0c1de877e45d7375dc457707875ba3b8ff2d1b27b88dcfd66e3",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"ㄱ과 ㅁ: SAS 닮음, ㄴ과 ㅂ: SSS 닮음, ㄷ과 ㄹ: AA 닮음\",\n  \"work\": \"ㄱ과 ㅁ은 두 변의 길이의 비가 6:9=10:15=2:3이고, 그 끼인각이 70°로 같다.\\nㄴ과 ㅂ은 세 변의 길이의 비가 4:12=5:15=7:21=1:3이다.\\nㄷ의 나머지 각은 180°−40°−75°=65°이므로, ㄷ과 ㄹ은 두 각이 각각 75°, 65°로 같다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "ㄱ과 ㅁ: SAS 닮음, ㄴ과 ㅂ: SSS 닮음, ㄷ과 ㄹ: AA 닮음",
+  "work": "ㄱ과 ㅁ은 두 변의 길이의 비가 6:9=10:15=2:3이고, 그 끼인각이 70°로 같다.\nㄴ과 ㅂ은 세 변의 길이의 비가 4:12=5:15=7:21=1:3이다.\nㄷ의 나머지 각은 180°−40°−75°=65°이므로, ㄷ과 ㄹ은 두 각이 각각 75°, 65°로 같다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e50854d724efb984e5d483f0a85e5a88881f51da556666011dc27c1b72d9d1a2"
+}

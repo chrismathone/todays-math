@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20706-A49-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15df9-3286-7e00-adbf-dc015cb54f3e",
+ "startedAt": "2026-10-21T19:19:34+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "fig-1.png": "8ca00c52c1f12cabd4fd1c76549c8c0645238843fb97df5fa71cd7396efa54b0",
+  "student.json": "e5dd89f155edac411cea19d6f6fa633a93bb9915b9da3a4c0121d8e00f108360"
+ },
+ "promptSha256": "5c2d0df8d56643467992ddfe754f5239692e2e629898f0db4fb052fcd49e7173",
+ "freezeCommit": "ec27e99b9a1819c0205cc881514d8f756951edc6",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$\\\\frac{50}{9}\\\\,\\\\mathrm{cm}^{2}$\",\n  \"work\": \"∠A가 공통이고 ∠AED=∠ABC이므로 △ADE∽△ACB이다. AC=4+5=9 cm이므로 닮음비는 AD:AC=3:9=1:3이다. 따라서 넓이의 비는 1:9이므로 △ADE의 넓이는 50÷9=50/9 cm²이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$\\frac{50}{9}\\,\\mathrm{cm}^{2}$",
+  "work": "∠A가 공통이고 ∠AED=∠ABC이므로 △ADE∽△ACB이다. AC=4+5=9 cm이므로 닮음비는 AD:AC=3:9=1:3이다. 따라서 넓이의 비는 1:9이므로 △ADE의 넓이는 50÷9=50/9 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "07350cc3d3a1fe4817c6cff5816c58a01d3884ef6c99813df271d47ac69d8c03"
+}
