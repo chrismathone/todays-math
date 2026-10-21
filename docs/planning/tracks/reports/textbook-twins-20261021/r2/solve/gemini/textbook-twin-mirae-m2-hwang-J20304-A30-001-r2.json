@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A30-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "fffb4d36-f4c2-4055-8ba6-049c2b780af9",
+ "startedAt": "2026-10-21T18:22:54+0900",
+ "elapsedSec": 218.0,
+ "studentSha256": {
+  "student.json": "e4f570583ddec35259e2f1839536ad86e3e27962ec1af52eb069a182e76c9816"
+ },
+ "promptSha256": "e2467008a69b097b0309d4c665e7ff6390f6d4b3c3e8f173d0d3acb32de15ec2",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"연립방정식의 첫째 식에서 y = -4x - 7을 둘째 식에 대입하면 7x - 3(-4x - 7) = -36, 19x = -57이 되어 x = -3, y = 5를 얻는다. 이 해를 9x + ky = 3에 대입하면 9(-3) + 5k = 3, 5k = 30이므로 k = 6이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "연립방정식의 첫째 식에서 y = -4x - 7을 둘째 식에 대입하면 7x - 3(-4x - 7) = -36, 19x = -57이 되어 x = -3, y = 5를 얻는다. 이 해를 9x + ky = 3에 대입하면 9(-3) + 5k = 3, 5k = 30이므로 k = 6이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e56f440f0b779331bf8426e12d900932c2b780d322574b83955230fa4a965ec9"
+}

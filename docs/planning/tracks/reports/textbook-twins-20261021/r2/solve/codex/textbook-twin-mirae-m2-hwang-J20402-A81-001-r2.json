@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A81-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15def-0a25-7a30-a5dc-24f1b308979f",
+ "startedAt": "2026-10-21T19:08:29+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "student.json": "834ceeed5c4a7f6c66bcfa2edf8c80e2cae04cefaed1cba462eb042fbc3d2de5"
+ },
+ "promptSha256": "b86988a9cca95335f490cff45686b901d54e9f0573b6e5754dedc7f81b298bbb",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"30\",\"work\":\"점 (5, 0)을 지나므로 0=-30-5k에서 k=-6이다.\\ny절편은 -5k=-5×(-6)=30이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "30",
+  "work": "점 (5, 0)을 지나므로 0=-30-5k에서 k=-6이다.\ny절편은 -5k=-5×(-6)=30이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f246012a7e85d2137a52059b65d366326c71dfc1ae7d6f9804b984ccf14c881d"
+}

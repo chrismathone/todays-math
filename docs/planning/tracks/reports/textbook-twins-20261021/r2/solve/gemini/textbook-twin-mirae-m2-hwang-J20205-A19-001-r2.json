@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20205-A19-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "02e39914-8627-4db4-ac70-264816088fd7",
+ "startedAt": "2026-10-21T18:22:43+0900",
+ "elapsedSec": 10.8,
+ "studentSha256": {
+  "student.json": "c6768923b0536d7099cfe205318f917a7ac5ce2dc3223e85809d3e72e2b60ddd"
+ },
+ "promptSha256": "b6391271d9a3f886993f3880f832c50e94eb50ab52220a34264aa9da8943380e",
+ "freezeCommit": "552027dda5bc3675a93c01eb12325d76151ab857",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"볼펜의 개수를 $x$라 하면, $4500 + 700x \\\\le 14000$입니다. 양변에서 $4500$을 빼면 $700x \\\\le 9500$, 즉 $x \\\\le \\\\frac{95}{7} = 13.57\\\\dots$입니다. 따라서 볼펜은 최대 $13$자루까지 살 수 있습니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "볼펜의 개수를 $x$라 하면, $4500 + 700x \\le 14000$입니다. 양변에서 $4500$을 빼면 $700x \\le 9500$, 즉 $x \\le \\frac{95}{7} = 13.57\\dots$입니다. 따라서 볼펜은 최대 $13$자루까지 살 수 있습니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "86442406d7071067974827e2d58d77d8504d5e7b4ee84e16200085323d6586fc"
+}

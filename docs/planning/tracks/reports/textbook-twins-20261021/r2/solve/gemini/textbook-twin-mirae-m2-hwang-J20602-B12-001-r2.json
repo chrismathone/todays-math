@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-B12-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "00cf72b3-d91a-4820-ba29-dbb7a1a750bc",
+ "startedAt": "2026-10-21T18:20:42+0900",
+ "elapsedSec": 78.3,
+ "studentSha256": {
+  "fig-1.png": "c11fd3fad9177e8067a7aebe786d237fbeea7719c0e43ffca3b568d53a92a740",
+  "student.json": "13e180b36833073cb6afed584a6a44bb68acad8229da37cd464ba8e7f2534b33"
+ },
+ "promptSha256": "67581121b331f8958020deb7e4093070046b6691590fab7d5aa4f80575e1d16d",
+ "freezeCommit": "1b293d74476a53162251ee11d4bd5d3f6b0bb2c5",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ 25 ⑵ 12\",\n  \"work\": \"⑴ $\\\\angle B$는 공통이고 $\\\\angle BAD = \\\\angle C$이므로 $\\\\triangle ABD \\\\sim \\\\triangle CBA$ (AA 닮음)이다. 따라서 $\\\\overline{AB} : \\\\overline{BC} = \\\\overline{BD} : \\\\overline{BA}$에서 $20 : x = 16 : 20$, $16x = 400 \\\\implies x = 25$.\\n⑵ $\\\\angle A$는 공통이고 $\\\\angle ADE = \\\\angle C$이므로 $\\\\triangle ADE \\\\sim \\\\triangle ACB$ (AA 닮음)이다. $\\\\overline{AB} = 10 + 6 = 16\\\\text{ cm}$, $\\\\overline{AC} = 8 + x\\\\text{ cm}$이므로 $\\\\overline{AD} : \\\\overline{AC} = \\\\overline{AE} : \\\\overline{AB}$에서 $10 : (8 + x) = 8 : 16 = 1 : 2$, $8 + x = 20 \\\\implies x = 12$.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "⑴ 25 ⑵ 12",
+  "work": "⑴ $\\angle B$는 공통이고 $\\angle BAD = \\angle C$이므로 $\\triangle ABD \\sim \\triangle CBA$ (AA 닮음)이다. 따라서 $\\overline{AB} : \\overline{BC} = \\overline{BD} : \\overline{BA}$에서 $20 : x = 16 : 20$, $16x = 400 \\implies x = 25$.\n⑵ $\\angle A$는 공통이고 $\\angle ADE = \\angle C$이므로 $\\triangle ADE \\sim \\triangle ACB$ (AA 닮음)이다. $\\overline{AB} = 10 + 6 = 16\\text{ cm}$, $\\overline{AC} = 8 + x\\text{ cm}$이므로 $\\overline{AD} : \\overline{AC} = \\overline{AE} : \\overline{AB}$에서 $10 : (8 + x) = 8 : 16 = 1 : 2$, $8 + x = 20 \\implies x = 12$.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7acf64bf47741abd40c15c3ac5483df2029d8f0c4a1dd339fbabf388f72a1423"
+}

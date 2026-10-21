@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20701-A47-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dee-72d0-7be2-aac0-0e254cf4ab91",
+ "startedAt": "2026-10-21T19:07:50+0900",
+ "elapsedSec": 16.2,
+ "studentSha256": {
+  "fig-1.png": "909c03f93c31405fcef7421df6d28af93a0c7d698be9bf3b25619daf6855a882",
+  "student.json": "7a3962f6e4d9307a834e17116237ce9ebbb53d9f79ba11b54c99d1ada131126e"
+ },
+ "promptSha256": "df88b0237185e559331e2b044c2653c3711557e3a496469e56f632d1c5bb6acb",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"$CD=10+15=25\\\\,\\\\mathrm{cm}$이다.\\n$AB\\\\parallel CD$이므로 $\\\\triangle AEB\\\\sim\\\\triangle DEC$에서 $AE:ED=AB:CD=5:25=1:5$. 따라서 $ED=35\\\\,\\\\mathrm{cm}$이다.\\n$GF\\\\parallel ED$이므로 $\\\\triangle CGF\\\\sim\\\\triangle CED$에서 $GF=ED\\\\times\\\\frac{CF}{CD}=35\\\\times\\\\frac{10}{25}=14\\\\,\\\\mathrm{cm}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "$CD=10+15=25\\,\\mathrm{cm}$이다.\n$AB\\parallel CD$이므로 $\\triangle AEB\\sim\\triangle DEC$에서 $AE:ED=AB:CD=5:25=1:5$. 따라서 $ED=35\\,\\mathrm{cm}$이다.\n$GF\\parallel ED$이므로 $\\triangle CGF\\sim\\triangle CED$에서 $GF=ED\\times\\frac{CF}{CD}=35\\times\\frac{10}{25}=14\\,\\mathrm{cm}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "08e120c149c6de2ecd0343fd7b99763d82e90034e2f3be0cc165830141a564b2"
+}

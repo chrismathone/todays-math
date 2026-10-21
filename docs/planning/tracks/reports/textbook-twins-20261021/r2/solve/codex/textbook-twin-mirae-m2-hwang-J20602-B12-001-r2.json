@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20602-B12-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dee-07bb-76b3-b30d-9fe99d58781a",
+ "startedAt": "2026-10-21T19:07:23+0900",
+ "elapsedSec": 27.3,
+ "studentSha256": {
+  "fig-1.png": "c11fd3fad9177e8067a7aebe786d237fbeea7719c0e43ffca3b568d53a92a740",
+  "student.json": "13e180b36833073cb6afed584a6a44bb68acad8229da37cd464ba8e7f2534b33"
+ },
+ "promptSha256": "c132a594f660c33eb5372bc5c8e17cae0935ea95b3bed6b560029e9a49552c72",
+ "freezeCommit": "28e291a7c313f6b588535fd815794e8167fa998e",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ 25 cm ⑵ 12 cm\",\"work\":\"⑴ $\\\\triangle BAD\\\\sim\\\\triangle BCA$이므로 $20:x=16:20$. 따라서 $x=25$이다.\\n⑵ $AB=10+6=16$ cm이고, $\\\\triangle ADE\\\\sim\\\\triangle ACB$이므로 $10:(8+x)=8:16$. 따라서 $8+x=20$이므로 $x=12$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ 25 cm ⑵ 12 cm",
+  "work": "⑴ $\\triangle BAD\\sim\\triangle BCA$이므로 $20:x=16:20$. 따라서 $x=25$이다.\n⑵ $AB=10+6=16$ cm이고, $\\triangle ADE\\sim\\triangle ACB$이므로 $10:(8+x)=8:16$. 따라서 $8+x=20$이므로 $x=12$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f566075cfca544181f445fb73cc03f5481f8f60662651d32cc4c9141a047f1c1"
+}

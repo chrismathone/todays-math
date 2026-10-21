@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A30-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dee-e001-7e02-b24f-0271ec43db1b",
+ "startedAt": "2026-10-21T19:08:18+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "student.json": "e4f570583ddec35259e2f1839536ad86e3e27962ec1af52eb069a182e76c9816"
+ },
+ "promptSha256": "e2467008a69b097b0309d4c665e7ff6390f6d4b3c3e8f173d0d3acb32de15ec2",
+ "freezeCommit": "4fe69fbb9431d660ee62253b1448716e946def4c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"첫째 식에 3을 곱한 뒤 둘째 식과 더하면 $19x=-57$이므로 $x=-3$이다.\\n이를 첫째 식에 대입하면 $y=5$이다.\\n$9x+ky=3$에 대입하면 $-27+5k=3$이므로 $k=6$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "첫째 식에 3을 곱한 뒤 둘째 식과 더하면 $19x=-57$이므로 $x=-3$이다.\n이를 첫째 식에 대입하면 $y=5$이다.\n$9x+ky=3$에 대입하면 $-27+5k=3$이므로 $k=6$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1477e1edbfa80ae602d031aabadb40f0e80f4a8b52ff9e197cb675a971754d45"
+}
