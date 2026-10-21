@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A77-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "65531a44-b2cf-44e5-a4b8-79e6831eb4d0",
+ "startedAt": "2026-10-21T17:03:37+0900",
+ "elapsedSec": 3.8,
+ "studentSha256": {
+  "student.json": "ee12ef49336c4e0b417d74d278365f2095298ab81a1f3168f523e38923f087e7"
+ },
+ "promptSha256": "b2f6848d49682d8cca08f022e396e88450e9aeb33d4066d9bcf5fd910d303f24",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"평행이동하면 기울기는 변하지 않고 y절편만 바뀐다. 따라서 기울기가 $-\\\\frac{4}{5}$인 일차함수를 찾는다. 기울기가 $-\\\\frac{4}{5}$인 것은 ③ $y=-\\\\frac{4}{5}x-1$뿐이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행이동하면 기울기는 변하지 않고 y절편만 바뀐다. 따라서 기울기가 $-\\frac{4}{5}$인 일차함수를 찾는다. 기울기가 $-\\frac{4}{5}$인 것은 ③ $y=-\\frac{4}{5}x-1$뿐이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9cae4ea3b93ad332de15657efeba43bb68d6fe14f76336995ab1dfb8a689fcad"
+}

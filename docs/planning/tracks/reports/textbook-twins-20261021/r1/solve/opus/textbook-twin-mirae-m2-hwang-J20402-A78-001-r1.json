@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A78-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "17f2da9d-2c5f-4829-b9a6-b48a4932bcae",
+ "startedAt": "2026-10-21T17:03:37+0900",
+ "elapsedSec": 6.3,
+ "studentSha256": {
+  "student.json": "b3cb64b238f955c6fb3ea8bae981bcc026c364739c1993725c680ec99b6d7253"
+ },
+ "promptSha256": "b0caceeb3f2505f30dc459d17482bec2d16e451197541fc651dd5aa840dd1d98",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "x-intercepts: ① -3, ② 3, ③ -3, ④ -3, ⑤ -3. Answer ②.\n\n```json\n{\"answer\": \"②\", \"work\": \"y=0으로 두고 x절편을 구한다. ① x=-3, ② 2x-6=0 → x=3, ③ (1/3)x+1=0 → x=-3, ④ -2x-6=0 → x=-3, ⑤ -(4/3)x-4=0 → x=-3. 나머지 넷은 (-3, 0)에서 만나고 ②만 (3, 0)에서 만난다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "y=0으로 두고 x절편을 구한다. ① x=-3, ② 2x-6=0 → x=3, ③ (1/3)x+1=0 → x=-3, ④ -2x-6=0 → x=-3, ⑤ -(4/3)x-4=0 → x=-3. 나머지 넷은 (-3, 0)에서 만나고 ②만 (3, 0)에서 만난다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "20ea2f544d6483e1d94424e14a119ad5755ee6e98f82ca1831b4291e5475cb2c"
+}

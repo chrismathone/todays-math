@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A52-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3a0e0892-79aa-42bc-8446-161d6f858477",
+ "startedAt": "2026-10-21T17:03:33+0900",
+ "elapsedSec": 3.8,
+ "studentSha256": {
+  "student.json": "30f55581055d0d67f4da99c093f53cd004825aa4c8ed7fe8fe1068e08c80f352"
+ },
+ "promptSha256": "d6ab4aa0f44641ed7cd7090856b707ebf9e5ab1684ee548af1e91ae2cb7e9fc9",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "0 = -15 + a → a = 15, y절편 15 → ③\n\n```json\n{\"answer\": \"③\", \"work\": \"점 (5, 0)을 대입하면 0 = -3·5 + a, a = 15. 따라서 y = -3x + 15이고 y절편은 15.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "점 (5, 0)을 대입하면 0 = -3·5 + a, a = 15. 따라서 y = -3x + 15이고 y절편은 15.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6488acbc104b63914d57870ae96a47acf2d974e5b58a4a880cc4c9c067df76a2"
+}

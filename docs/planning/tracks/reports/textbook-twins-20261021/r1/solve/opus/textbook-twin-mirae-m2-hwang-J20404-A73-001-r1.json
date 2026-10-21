@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20404-A73-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "36ccfbde-dce2-47bc-9da8-40efc68a8f0f",
+ "startedAt": "2026-10-21T17:03:48+0900",
+ "elapsedSec": 10.1,
+ "studentSha256": {
+  "fig-1.png": "d16be4eb1d8097c5112ab6aeb8479c17d75e233aec193061721b5a2802202f5c",
+  "student.json": "08ca26879b71563c6cc6506ad2296d1af9610cf435a3916496aaa608a44bd9f7"
+ },
+ "promptSha256": "b446581df92c5c2a009a0c7935150ec5bdb66976b8bf9563d875a60e402658c6",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "그래프는 $y=-2x+4$입니다. 따라서 옳은 설명은 ②입니다.\n\n```json\n{\"answer\": \"②\", \"work\": \"그래프는 두 점 (-2, 8)과 (3, -2)를 지나므로 기울기는 (-2-8)/(3-(-2)) = -10/5 = -2이다. 8 = -2·(-2) + b에서 b = 4이므로 y = -2x + 4이다. ① y = 0이면 x = 2이므로 x절편은 2이다(×). ② x = -1이면 y = 2 + 4 = 6이므로 점 (-1, 6)을 지난다(○). ③ y절편이 4이므로 y축과 (0, 4)에서 만난다(×). ④ 기울기가 2로 달라 평행하지 않다(×). ⑤ y = -2x - 1을 y축의 방향으로 3만큼 평행이동하면 y = -2x + 2가 된다(×).\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "그래프는 두 점 (-2, 8)과 (3, -2)를 지나므로 기울기는 (-2-8)/(3-(-2)) = -10/5 = -2이다. 8 = -2·(-2) + b에서 b = 4이므로 y = -2x + 4이다. ① y = 0이면 x = 2이므로 x절편은 2이다(×). ② x = -1이면 y = 2 + 4 = 6이므로 점 (-1, 6)을 지난다(○). ③ y절편이 4이므로 y축과 (0, 4)에서 만난다(×). ④ 기울기가 2로 달라 평행하지 않다(×). ⑤ y = -2x - 1을 y축의 방향으로 3만큼 평행이동하면 y = -2x + 2가 된다(×).",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d3e57252b051493d3aa577080f752a4a04077fb3e450a37fdaf82499d1d5c393"
+}
