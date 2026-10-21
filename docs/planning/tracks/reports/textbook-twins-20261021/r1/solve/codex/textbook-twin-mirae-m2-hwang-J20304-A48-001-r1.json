@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A48-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da3-c1a3-7302-a02a-90ceecdb7a87",
+ "startedAt": "2026-10-21T17:46:15+0900",
+ "elapsedSec": 10.3,
+ "studentSha256": {
+  "student.json": "632494982d0539abd4ed78a948246c435872483ba0a81973b9d4890294610caf"
+ },
+ "promptSha256": "af43651168931bde8e0fb3bb56831c3ef5e3b1dd46234bdf18d22a022acd5e00",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"㉡에 $x=2$를 대입하면 $10+2y=4$이므로 $y=-3$이다.\\n따라서 잘못 본 수는 $3×2-4×(-3)=18$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "㉡에 $x=2$를 대입하면 $10+2y=4$이므로 $y=-3$이다.\n따라서 잘못 본 수는 $3×2-4×(-3)=18$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e64c2596d6c428c4a97aedd745d6f50cfc7cb9a444f63d6dd6e92539be41c6f9"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A27-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da4-ad4f-7af1-a699-1ce0689790d1",
+ "startedAt": "2026-10-21T17:47:15+0900",
+ "elapsedSec": 9.9,
+ "studentSha256": {
+  "student.json": "368ec3ce5df9e13e3d5c8d4ff3cb407f327df4841abad5cb0ccf1ac641cef7b1"
+ },
+ "promptSha256": "7b5372bfc137fae6a7260804ddaf3fcd405e8cba154db7a4739dd9ca26f776e5",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$라 하면 $3y=x+12$, $10y+x=10x+y-18$이다.\\n두 번째 식에서 $x-y=2$이므로 $x=y+2$이다. 이를 첫 번째 식에 대입하면 $3y=y+14$이므로 $y=7$, $x=9$이다.\\n따라서 처음 수는 $97$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$라 하면 $3y=x+12$, $10y+x=10x+y-18$이다.\n두 번째 식에서 $x-y=2$이므로 $x=y+2$이다. 이를 첫 번째 식에 대입하면 $3y=y+14$이므로 $y=7$, $x=9$이다.\n따라서 처음 수는 $97$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fddf995c0e2d1e32c2225635577761138921905ccdb627b61e934522803f6acc"
+}

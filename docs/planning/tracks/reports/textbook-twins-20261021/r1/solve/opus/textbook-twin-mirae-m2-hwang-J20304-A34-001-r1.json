@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A34-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e480dbb9-a65a-47fd-b3bb-9168bdc6a867",
+ "startedAt": "2026-10-21T17:01:51+0900",
+ "elapsedSec": 5.5,
+ "studentSha256": {
+  "student.json": "786552facd40a075e62de71dce6764c8963fec9c5621f1c2798b7397bed201e1"
+ },
+ "promptSha256": "2d1f02f6aa292d82b3890dd9bc98df30370eb77ff012f7628724aaa845798ff7",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"7\", \"work\": \"a와 b를 바꾼 연립방정식은 bx+ay=13, ax-by=-11이다. 여기에 x=-1, y=3을 대입하면 -b+3a=13, -a-3b=-11, 즉 3a-b=13, a+3b=11이다. 첫 식에서 b=3a-13이고, 이를 둘째 식에 대입하면 a+9a-39=11이므로 a=5, b=2이다. 따라서 a+b=7이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "7",
+  "work": "a와 b를 바꾼 연립방정식은 bx+ay=13, ax-by=-11이다. 여기에 x=-1, y=3을 대입하면 -b+3a=13, -a-3b=-11, 즉 3a-b=13, a+3b=11이다. 첫 식에서 b=3a-13이고, 이를 둘째 식에 대입하면 a+9a-39=11이므로 a=5, b=2이다. 따라서 a+b=7이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "001893cbd48c9b386d2621ad9e645467aa8f19346ad9417598e6a173b556e8cc"
+}

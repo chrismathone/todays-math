@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A27-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "7ff42de7-e2f4-4665-bdac-557c92073ad7",
+ "startedAt": "2026-10-21T17:02:11+0900",
+ "elapsedSec": 6.0,
+ "studentSha256": {
+  "student.json": "368ec3ce5df9e13e3d5c8d4ff3cb407f327df4841abad5cb0ccf1ac641cef7b1"
+ },
+ "promptSha256": "7b5372bfc137fae6a7260804ddaf3fcd405e8cba154db7a4739dd9ca26f776e5",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑤\", \"work\": \"십의 자리 숫자를 x, 일의 자리 숫자를 y라 하자. 첫 조건에서 3y = x + 12이다. 두 자리를 바꾼 수에 대한 조건에서 10y + x = (10x + y) − 18이고, 정리하면 x − y = 2이다. 두 식을 연립하면 3y = y + 14이므로 y = 7, x = 9이다. 따라서 처음 수는 97이다. 검산: 3×7 = 21 = 9 + 12이고, 79 = 97 − 18이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "십의 자리 숫자를 x, 일의 자리 숫자를 y라 하자. 첫 조건에서 3y = x + 12이다. 두 자리를 바꾼 수에 대한 조건에서 10y + x = (10x + y) − 18이고, 정리하면 x − y = 2이다. 두 식을 연립하면 3y = y + 14이므로 y = 7, x = 9이다. 따라서 처음 수는 97이다. 검산: 3×7 = 21 = 9 + 12이고, 79 = 97 − 18이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bf9e582187c69cdde56d294384d199b728de0fda38fe05e69e638bc2ba07b9f6"
+}

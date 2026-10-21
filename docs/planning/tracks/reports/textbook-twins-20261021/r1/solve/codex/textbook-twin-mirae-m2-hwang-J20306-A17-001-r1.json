@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A17-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da4-4fee-7293-b1d6-b56ececa785a",
+ "startedAt": "2026-10-21T17:46:51+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "1b86b2465f3e16dca3ad7ebc0276cddf23368be87eba3fca3ec83481a0db744c"
+ },
+ "promptSha256": "5966f9b9822e2b472b1015117cb346c7051e4dadc7b5a5699d6ec1257cf7cbf2",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"작은 수를 $x$라 하면 큰 수는 $4x+3$이다.\\n$(4x+3)-x=39$이므로 $3x=36$, $x=12$이다.\\n따라서 큰 수는 $4×12+3=51$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "작은 수를 $x$라 하면 큰 수는 $4x+3$이다.\n$(4x+3)-x=39$이므로 $3x=36$, $x=12$이다.\n따라서 큰 수는 $4×12+3=51$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7ccc466b0228743c066845230cbc7ab8aab596f3f6235b3ac5b87f4b09a6a20c"
+}

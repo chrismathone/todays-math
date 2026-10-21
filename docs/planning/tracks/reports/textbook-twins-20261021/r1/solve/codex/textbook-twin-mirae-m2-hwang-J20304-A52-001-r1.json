@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A52-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15da4-1ce4-74d0-bf2f-1bfcba6f370b",
+ "startedAt": "2026-10-21T17:46:38+0900",
+ "elapsedSec": 13.0,
+ "studentSha256": {
+  "student.json": "67c439a367a927d4bb93907cea82dfca43cec0ea8e5c1bba2674004c6ba6566c"
+ },
+ "promptSha256": "7ec10285c7785b57f1a8208c8c682d2462dffda8701d281b350756a2a98c2ce8",
+ "freezeCommit": "76f275b2705b7ae7331f3b535342b7130e7f16b4",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"2\",\"work\":\"둘째 식을 정리하면 3x-2y=13이고, 주어진 일차방정식에 6을 곱하면 x-3y=9이다.\\n두 식을 연립하면 x=3, y=-2이다.\\n이를 kx-y=8에 대입하면 3k+2=8이므로 k=2이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "2",
+  "work": "둘째 식을 정리하면 3x-2y=13이고, 주어진 일차방정식에 6을 곱하면 x-3y=9이다.\n두 식을 연립하면 x=3, y=-2이다.\n이를 kx-y=8에 대입하면 3k+2=8이므로 k=2이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f3c827c3b03ed5c149bee6c7ce1e609cb77fb0cc6b49447fa52b55ab262d76ac"
+}

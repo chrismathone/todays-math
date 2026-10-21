@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A48-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5cf92aba-d4d4-4c56-ab83-0c02f578ea97",
+ "startedAt": "2026-10-21T17:01:57+0900",
+ "elapsedSec": 5.4,
+ "studentSha256": {
+  "student.json": "632494982d0539abd4ed78a948246c435872483ba0a81973b9d4890294610caf"
+ },
+ "promptSha256": "af43651168931bde8e0fb3bb56831c3ef5e3b1dd46234bdf18d22a022acd5e00",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑤\", \"work\": \"서아는 ㉡을 바르게 보았으므로 ㉡에 x=2를 대입한다: 10+2y=4, 따라서 y=-3. 이 해를 ㉠의 좌변에 대입하면 3(2)-4(-3)=6+12=18. 그러므로 서아는 9를 18로 잘못 보았다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "서아는 ㉡을 바르게 보았으므로 ㉡에 x=2를 대입한다: 10+2y=4, 따라서 y=-3. 이 해를 ㉠의 좌변에 대입하면 3(2)-4(-3)=6+12=18. 그러므로 서아는 9를 18로 잘못 보았다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "808c508a45d006b2f7979693c34538a8ee31e82a23e72fe719f5c6bf4da66698"
+}

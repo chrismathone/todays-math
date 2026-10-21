@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A32-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "68af854e-da9a-424b-9e9a-9d10ecfac77a",
+ "startedAt": "2026-10-21T17:01:46+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "0326da8b701afca696e2b8e58cdbe59f02f6dbfd731d6672e114a9c9e4dde6ee"
+ },
+ "promptSha256": "fd20f4ea0c5f41471e8b1b06cc8c02dd7923a568f2003650af91be7c950ceb29",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①\", \"work\": \"첫 번째 식은 잘못 읽지 않았으므로 x=-2를 x+4y=10에 대입하면 -2+4y=10, 즉 y=3이다. 이 해 (x, y)=(-2, 3)은 잘못 읽은 식 3x-2y=c를 만족한다. 따라서 c=3(-2)-2(3)=-6-6=-12이다.\", \"confidence\": \"high\", \"issues\": [\"문제에는 x=-2만 주어졌다. y=3은 잘못 읽지 않은 첫 번째 식에서 구한 값이다.\"]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "첫 번째 식은 잘못 읽지 않았으므로 x=-2를 x+4y=10에 대입하면 -2+4y=10, 즉 y=3이다. 이 해 (x, y)=(-2, 3)은 잘못 읽은 식 3x-2y=c를 만족한다. 따라서 c=3(-2)-2(3)=-6-6=-12이다.",
+  "confidence": "high",
+  "issues": [
+   "문제에는 x=-2만 주어졌다. y=3은 잘못 읽지 않은 첫 번째 식에서 구한 값이다."
+  ]
+ },
+ "eventsSha256": "8352559f43b3278ecd3ef71467c43879ed3d38f7402acbcdbad61b0d6d892942"
+}

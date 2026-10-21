@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A32-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d87-4d4e-7672-924f-1a29e88ae5b3",
+ "startedAt": "2026-10-21T17:15:10+0900",
+ "elapsedSec": 10.5,
+ "studentSha256": {
+  "student.json": "0326da8b701afca696e2b8e58cdbe59f02f6dbfd731d6672e114a9c9e4dde6ee"
+ },
+ "promptSha256": "fd20f4ea0c5f41471e8b1b06cc8c02dd7923a568f2003650af91be7c950ceb29",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"①\",\"work\":\"x=-2를 첫째 식에 대입하면 -2+4y=10이므로 y=3이다.\\n따라서 c=3x-2y=3×(-2)-2×3=-12이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "x=-2를 첫째 식에 대입하면 -2+4y=10이므로 y=3이다.\n따라서 c=3x-2y=3×(-2)-2×3=-12이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8f47d5fe759efa7d11f6448af48ab8856592fe27d41aaa38dbc34c422f7aefa4"
+}

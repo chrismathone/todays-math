@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A33-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3639b52c-d3b5-477a-b000-cc8cda49da5e",
+ "startedAt": "2026-10-21T17:01:47+0900",
+ "elapsedSec": 4.7,
+ "studentSha256": {
+  "student.json": "79faebaffddd4020d80ae7c4db9d7361473e63b0fe30edb7e8e18eb12839c896"
+ },
+ "promptSha256": "aaf37f8b1dba3e7e003ae869ea6e7e74453ff3d39691f9907d196fe244561f81",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"(1,2) 대입: a+2b=8, (-2,4) 대입: -2a+4b=8. 첫 식×2에서 둘째 식을 빼면 4a=8이므로 a=2, b=3. 따라서 2x+3y=8이고, (k,6)을 대입하면 2k+18=8이므로 k=-5.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "(1,2) 대입: a+2b=8, (-2,4) 대입: -2a+4b=8. 첫 식×2에서 둘째 식을 빼면 4a=8이므로 a=2, b=3. 따라서 2x+3y=8이고, (k,6)을 대입하면 2k+18=8이므로 k=-5.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8db1e95d6c3dc1b212a9976f07daa70a4ff3e232be327c078ae03c7963ec312f"
+}
