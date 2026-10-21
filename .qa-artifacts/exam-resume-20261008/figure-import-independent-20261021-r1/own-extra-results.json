@@ -1,0 +1,46 @@
+{
+  "malformedVerificationControls": [
+    {
+      "name": "angle_nan",
+      "expected": "reject malformed geometric evidence",
+      "accepted": true,
+      "contractSatisfied": false,
+      "error": null
+    },
+    {
+      "name": "on_circle_nan",
+      "expected": "reject malformed geometric evidence",
+      "accepted": true,
+      "contractSatisfied": false,
+      "error": null
+    },
+    {
+      "name": "negative_length_mixed",
+      "expected": "reject malformed geometric evidence",
+      "accepted": true,
+      "contractSatisfied": false,
+      "error": null
+    }
+  ],
+  "conflictingAngleMarks": {
+    "input": {
+      "a": {
+        "vertex": "A",
+        "points": [
+          "B",
+          "C"
+        ],
+        "ticks": 2,
+        "arcs": 1
+      }
+    },
+    "outputArcs": 1,
+    "notes": [
+      "angles.a-ticks"
+    ]
+  },
+  "sourceSHA256": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "272f22b70c057a19eb4d665e9ea3a087f1536fd582f8454c9487a7ff4035d9f7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_spec_repair.py": "d53bcb4d5fde4036faa07bfbb66105b2c1e566aaf338028cf6dec27737bd2ad7"
+  }
+}

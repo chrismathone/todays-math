@@ -1,0 +1,252 @@
+{
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "sitePackagesDisabled": 1,
+  "controls": [
+    {
+      "name": "imports-without-site-packages",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "full-background-none",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "full-background-transparent",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "full-background-white",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "full-background-#fff",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "full-background-#ffffff",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "partial-invisible-none",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "partial-invisible-transparent",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-<script>x</script>",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-<image",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-<line",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "missing-rasterizer-none",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "missing-rasterizer-lint-not-clean",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'../out'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'..\\\\out'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'C:out'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'.'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'..'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'NUL'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'CON.png'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'file.'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'file '",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'a/b'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'COM1'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unsafe-key-'x\\x00y'",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "unregistered-rejected",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "empty-call-rejected",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "wrong-scope-rejected",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "mocked-build-success-hash",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "lint-all-before-write",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "raster-all-before-write",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "repair-input-copy",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "mixed-unknown-semantic-held",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "missing-dimension-not-deleted",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "snap-default-held",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "snap-optin-recorded",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "inventory-missing-label",
+      "passed": true,
+      "result": true
+    },
+    {
+      "name": "inventory-empty-is-no-evidence",
+      "passed": true,
+      "result": true
+    }
+  ],
+  "uniqueControls": 38,
+  "passed": 38,
+  "failed": 0,
+  "observations": {
+    "angle_ticks_0": {
+      "notes": [
+        "angles.a-ticks"
+      ],
+      "arcs": 1
+    },
+    "angle_ticks_2": {
+      "notes": [
+        "angles.a-ticks"
+      ],
+      "arcs": 2
+    },
+    "angle_ticks_4": {
+      "notes": [
+        "angles.a-ticks"
+      ],
+      "arcs": 1
+    },
+    "case_alias": {
+      "reports": 2,
+      "files": 1,
+      "firstPathBytes": "SECOND"
+    },
+    "unknown_only_selection": {}
+  },
+  "before": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "272f22b70c057a19eb4d665e9ea3a087f1536fd582f8454c9487a7ff4035d9f7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "c53a31cfd077c2301b4755920af79135cc54c3b926bec07e9272ea7569498bf6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_exam.py": "963873b7c5ab42856432f0c0d5a3720c3383ac20c2f1f753ee224503ad1cd010",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_spec_repair.py": "d53bcb4d5fde4036faa07bfbb66105b2c1e566aaf338028cf6dec27737bd2ad7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_vendor_tools.py": "855513397061c95b9a1e8aed6eb878e4e987ce3b4f7a06119f9a5549578a2650",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\figure-authoring-import-20261021.md": "03463f153c1774acbc5ea6018ba8abb9f7a65a3a5906d54b3c220c95eb91e6ac",
+    "D:\\시험지 한글화\\docs\\export\\todays-math\\patches\\01-figure-engine.patch": "3035151b7cd3169006874e828d0466e9b014a254c04b4c5a70190979f6e7741a"
+  },
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "272f22b70c057a19eb4d665e9ea3a087f1536fd582f8454c9487a7ff4035d9f7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "c53a31cfd077c2301b4755920af79135cc54c3b926bec07e9272ea7569498bf6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_exam.py": "963873b7c5ab42856432f0c0d5a3720c3383ac20c2f1f753ee224503ad1cd010",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_spec_repair.py": "d53bcb4d5fde4036faa07bfbb66105b2c1e566aaf338028cf6dec27737bd2ad7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\test_vendor_tools.py": "855513397061c95b9a1e8aed6eb878e4e987ce3b4f7a06119f9a5549578a2650",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\figure-authoring-import-20261021.md": "03463f153c1774acbc5ea6018ba8abb9f7a65a3a5906d54b3c220c95eb91e6ac",
+    "D:\\시험지 한글화\\docs\\export\\todays-math\\patches\\01-figure-engine.patch": "3035151b7cd3169006874e828d0466e9b014a254c04b4c5a70190979f6e7741a"
+  },
+  "importedClosureHashes": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_quality.py": "c53a31cfd077c2301b4755920af79135cc54c3b926bec07e9272ea7569498bf6",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "272f22b70c057a19eb4d665e9ea3a087f1536fd582f8454c9487a7ff4035d9f7",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\label_markup.py": "3e8d625f15f6c4f094d2d08dfd1d0f07a6ffb7fe1a8160d04d6275ac8fef1c4c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_scene.py": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_exam.py": "963873b7c5ab42856432f0c0d5a3720c3383ac20c2f1f753ee224503ad1cd010",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_spec_repair.py": "d53bcb4d5fde4036faa07bfbb66105b2c1e566aaf338028cf6dec27737bd2ad7"
+  },
+  "raster": "Stubbed lint/raster for orchestration and path writes; missing-dependency actual behavior tested; no pixel/native claim"
+}
