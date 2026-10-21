@@ -1,0 +1,82 @@
+{
+  "status": "CONFIRMED source/figure reference defect M14, bounded Python reproduction; production unchanged",
+  "selectedPriority": "Highest-priority immediately actionable item selected in this limited read-only triage: a required named construction point is absent, objectively checkable without AI/style judgement. This is not a whole38-card current audit or a global severity ranking.",
+  "originalAttribution": {
+    "handoff": "docs/planning/tracks/brief-engine-handoff-display-20261021.md",
+    "card": "M14",
+    "origin": "교차 검수2회차, original note Codex 높음; original Mac display-survey scripts unavailable and not executed",
+    "exactCardRow": "| M14 | `2-2\\|평행선 사이의 선분의 길이의 비\\|10` | `src/lib/middle/m2GeoSim.ts` | 발문의 핵심인 대각선의 교점 $O$ 가 그림에 없음(Codex 높음) | 그림에 대각선 · $O$ |",
+    "originalSeed": "not specified on M14 card; no invented seed/API claim",
+    "originalTypeKey": "2-2|평행선 사이의 선분의 길이의 비|10"
+  },
+  "ledger": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r60.json",
+    "relevantObservation": "pendingM38.otherOriginalCardsRemainOpen=true; scopedCodeFixes omitsM14. Ledger M28 field predates newer inset audit; not treated as currentM28 regression. Issued question data/DB not read or touched."
+  },
+  "currentSource": {
+    "path": "src/lib/middle/m2GeoSim.ts",
+    "locations": {
+      "function figTrapMid09": 1188,
+      "const pts: Record<string, XY> = { A, B, C, D, E, F };": 760,
+      "segments.AC =": 1223,
+      "content: `그림과 같이 $\\\\overline{AD}\\\\parallel\\\\overline{BC}$인 사다리꼴 $ABCD$에서 점 $O$": 1664
+    },
+    "function": "figTrapMid09 and MINOR_PAR type10 modes0/1",
+    "finding": "Current helper already draws AC and BD when diag:true, so original card is partly addressed. It still builds only A/B/C/D/E/F points+labels. Both current10 branches explicitly name O as intersection and EF passing through it; neither helper nor withDims adds O. Do not report missing diagonals as current failure."
+  },
+  "minimalSpecimen": {
+    "literalPair": [
+      6,
+      12
+    ],
+    "basis": "Actual HARMONIC_PAIRS[0], mode0 helper equations, no new authored question or answer copied",
+    "expected": "Exact AC/BD intersection O=(75,72) before fit; O lies on EF and is their midpoint. Named O should be represented and labelled, not merely an anonymous line crossing.",
+    "observed": "Actual Root Python renderer accepts source-derivedFigureSpec and renders A/B/C/D/E/F+given dims, no O. Raw minimal current SVG and exact proposed-only spec included."
+  },
+  "execution": {
+    "PythonExactPairCalculations": 10,
+    "actualRootSourceDerivedSpecRenders": 10,
+    "requiredMissingOObserved": 10,
+    "QAOnlyAddOLabelRenders": 10,
+    "proposedAllOldPointCoordinatesPreserved": true,
+    "Node": 0,
+    "actualTSGeneratorOrPublicAPI": 0,
+    "browser": 0,
+    "model": 0,
+    "DB": 0,
+    "networkAPI": 0
+  },
+  "independentExpected": "Fraction line-line intersection and collinearity computed before comparing visual labels. No answer/facts/pixels oracle. Literal domain only, no RNG or actualseed execution. Source-derived Python port is explicitly distinct from actual TS handler execution.",
+  "boundedFixProposal": [
+    "Only in opts.diag branch, compute intersection of existingAC andBD from original unrounded geometry (or prove midpointEF for these centered trapezoids). Add pts.O and out.O=O. Do not add new lines: AC/BD/EF already exist.",
+    "Keep original six point positions/parallel marks/given dimensions/stem/answers/solution/parameters and RNG consumption unchanged. Adding an interior O must not change fitPts extrema; own10 proposed witness preserves every old point.",
+    "Leave sharedhelper non-diagonal09 mode untouched and protect unrelated callers. Add actual type10 bothmode tests for O onAC/BD/EF, single O label and no revealed target length; reject false/missing references.",
+    "Use current rounding policy consciously: exact pre-fit intersection is established; after2-decimal fit, verify numerical incidence error rather than assuming exact intersection on all serialized segments. Label collision/readability and layout shift require later native visual check.",
+    "Version future relevant adapter/generator output fingerprint as needed. Preserve original IDs/old seed outputs/issued records/evidence. No automatic DB refresh, rewrite, unlock or rights propagation."
+  ],
+  "compatibilityAndGradeLimits": [
+    "QA proposed SVG only, production code untouched",
+    "No actual30seed/type API replay under Python-only instruction; parent should later run authorized narrow TS regression",
+    "M2 similarity/triangle ratios are intended method context; no primary whole-grade/Unit or student prerequisite certification in this engine-reference check",
+    "Mode1 solution harmonic identity teaching depth not audited here",
+    "No rights/source identity/native print/wholebank approval and no new question/blind counts"
+  ],
+  "scopeBoundary": "Distinct from M28/editor08/assets41/grid and issued-question review. No original school sources/student records or other QA answer keys used.",
+  "hashes": {
+    "beforeAfterUnchanged": true,
+    "boundFiles": 68,
+    "helperSourceSHA256": "bb20d65681b42dd87855f55725ce529c00116825bb2f447dd4611096a35dd0e8"
+  },
+  "harnessDiagnostics": "First assumed ledger under engine-upgrade subfolder did not exist; exact filename found in QA root using rg. No failed production control or source mutation.",
+  "artifactSHA256": {
+    "own-after.json": "9759892dd88f6b429252267c8b2b7330887971815e0cc5787a3dd9358ad93361",
+    "own-audit.py": "3606c1a1ee6e4b46c384e3aecc17daa877ec1d451830122d9835e978d2ff0c62",
+    "own-before.json": "9759892dd88f6b429252267c8b2b7330887971815e0cc5787a3dd9358ad93361",
+    "own-finalize.py": "8cc9a46ada3e990be2544f427b28a7964edf01944ae0a58f7f3e5a8d797ee936",
+    "own-minimal-current.svg": "7fac410567f6bb3445e74e043a5d0185189f329181136b84326594b96889b207",
+    "own-minimal-proposed.svg": "2735c7e004d91dba94030c8b852f79c3d537038137d851a41996f939336bb674",
+    "own-minimal-source-specimen.json": "6c24c87a225edaf7ccee8a9a3af5c247b1ee533e7e04e7c24235caee00a90b4b",
+    "own-probe.txt": "f5a4221d42a03125406674755a08d4542c8a9f78add99cd7840fbc390ab8da8e",
+    "own-results.json": "835b7ee76ca383860bfe0dd36bdcab217d6e58909607a7f3ed7a23d6aa147ee4"
+  }
+}
