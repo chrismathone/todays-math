@@ -53,17 +53,24 @@
   font-size: 13px;
 }
 
-/* ── 창 안 ── */
+/* ── 창 안 ──
+   남는 높이는 아래가 갖는다 — 세 단(단 줄이 창 아래까지) · 안내 · 홀로 선 상태 문구(불러오는 중 · 오류).
+   출처 줄은 내용 높이 그대로다: 첫 자식을 늘이던 때 교과서 이외를 고르면 그 줄이 창 높이를 다 먹고, 줄바꿈 flex 의
+   줄 늘이기로 단추가 세로로 길어졌다(2026-10-21 — 시험지 만들기 · 문제은행이 같이 쓴다). */
 .wrap {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 }
-.wrap > :first-child {
+.wrap > .pane,
+.wrap > .note,
+.wrap > .state:last-child {
   flex: 1;
 }
 /* 맨 위 출처 줄 — 전체 · 엔진 · 교과서 · 기출 · 그 밖 */
 .segments {
+  flex: none;
+  align-content: flex-start;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -219,8 +226,10 @@
 
 /* 폰 폭 — 단을 쌓고, 과목은 옆으로 미는 한 줄 */
 @media (max-width: 760px) {
+  /* 쌓인 세 단은 늘이지 않는다 — 남는 높이는 맨 아래에 */
   .pane {
     grid-template-columns: minmax(0, 1fr);
+    align-content: start;
   }
   .pane > * + * {
     border-left: 0;

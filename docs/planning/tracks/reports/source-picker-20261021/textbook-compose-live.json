@@ -1,0 +1,275 @@
+{
+  "measuredAt": "2026-10-21T05:27:40.376Z",
+  "readOnly": true,
+  "grade": "중1",
+  "books": 2,
+  "kinds": [
+    "기초 연산",
+    "형성 평가"
+  ],
+  "scenarios": [
+    {
+      "name": "교과서 · 책 전부 · 자료 전부",
+      "units": 3,
+      "filters": "sourceGroup=school_textbook",
+      "scopeCounts": {
+        "questions": 909,
+        "families": 909
+      },
+      "sql": {
+        "eligibleRows": 909,
+        "eligibleQuestions": 909,
+        "formatUnknownRows": 0,
+        "formatUnverifiedRows": 0,
+        "lockedRows": 22,
+        "otherSourceEligible": 2017
+      },
+      "list": {
+        "total": 909,
+        "firstPage": 100
+      },
+      "countsAgree": true,
+      "composeFit": {
+        "status": "complete",
+        "requested": 90,
+        "actual": 90
+      },
+      "composeOver": {
+        "status": "complete",
+        "requested": 90,
+        "actual": 90
+      },
+      "checkedRows": 264,
+      "missingRows": 0,
+      "violations": 0
+    },
+    {
+      "name": "책 1권 · 자료 종류 1",
+      "units": 3,
+      "filters": "sourceGroup=school_textbook&books=<id>&materialKinds=%EA%B8%B0%EC%B4%88+%EC%97%B0%EC%82%B0",
+      "scopeCounts": {
+        "questions": 213,
+        "families": 213
+      },
+      "sql": {
+        "eligibleRows": 213,
+        "eligibleQuestions": 213,
+        "formatUnknownRows": 0,
+        "formatUnverifiedRows": 0,
+        "lockedRows": 4,
+        "otherSourceEligible": 2017
+      },
+      "list": {
+        "total": 213,
+        "firstPage": 100
+      },
+      "countsAgree": true,
+      "composeFit": {
+        "status": "complete",
+        "requested": 90,
+        "actual": 90
+      },
+      "composeOver": {
+        "status": "complete",
+        "requested": 90,
+        "actual": 90
+      },
+      "checkedRows": 175,
+      "missingRows": 0,
+      "violations": 0
+    },
+    {
+      "name": "책 2권 · 자료 종류 2",
+      "units": 3,
+      "filters": "sourceGroup=school_textbook&books=<id>%2C<id>&materialKinds=%EA%B8%B0%EC%B4%88+%EC%97%B0%EC%82%B0%2C%ED%98%95%EC%84%B1+%ED%8F%89%EA%B0%80",
+      "scopeCounts": {
+        "questions": 496,
+        "families": 496
+      },
+      "sql": {
+        "eligibleRows": 496,
+        "eligibleQuestions": 496,
+        "formatUnknownRows": 0,
+        "formatUnverifiedRows": 0,
+        "lockedRows": 7,
+        "otherSourceEligible": 2017
+      },
+      "list": {
+        "total": 496,
+        "firstPage": 100
+      },
+      "countsAgree": true,
+      "composeFit": {
+        "status": "complete",
+        "requested": 90,
+        "actual": 90
+      },
+      "composeOver": {
+        "status": "complete",
+        "requested": 90,
+        "actual": 90
+      },
+      "checkedRows": 226,
+      "missingRows": 0,
+      "violations": 0
+    },
+    {
+      "name": "책 1권 · 자료 종류 1 · 자료 고르기 1편",
+      "units": 1,
+      "filters": "sourceGroup=school_textbook&books=<id>&materialKinds=%EA%B8%B0%EC%B4%88+%EC%97%B0%EC%82%B0&materials=<id>",
+      "scopeCounts": {
+        "questions": 20,
+        "families": 20
+      },
+      "sql": {
+        "eligibleRows": 20,
+        "eligibleQuestions": 20,
+        "formatUnknownRows": 0,
+        "formatUnverifiedRows": 0,
+        "lockedRows": 0,
+        "otherSourceEligible": 579
+      },
+      "list": {
+        "total": 20,
+        "firstPage": 20
+      },
+      "countsAgree": true,
+      "composeFit": {
+        "status": "complete",
+        "requested": 20,
+        "actual": 20
+      },
+      "composeOver": {
+        "status": "insufficient",
+        "requested": 22,
+        "actual": 20
+      },
+      "checkedRows": 20,
+      "missingRows": 0,
+      "violations": 0
+    }
+  ],
+  "kindSums": {
+    "grade": "중1",
+    "books": 7,
+    "perKind": [
+      {
+        "kind": "기초 연산",
+        "union": 1396,
+        "sumOfBooks": 1396,
+        "equal": true
+      },
+      {
+        "kind": "대단원 평가",
+        "union": 1178,
+        "sumOfBooks": 1178,
+        "equal": true
+      },
+      {
+        "kind": "서술형 평가",
+        "union": 29,
+        "sumOfBooks": 29,
+        "equal": true
+      },
+      {
+        "kind": "소단원 평가",
+        "union": 854,
+        "sumOfBooks": 854,
+        "equal": true
+      },
+      {
+        "kind": "수준별 문제",
+        "union": 345,
+        "sumOfBooks": 345,
+        "equal": true
+      },
+      {
+        "kind": "시험 대비",
+        "union": 283,
+        "sumOfBooks": 283,
+        "equal": true
+      },
+      {
+        "kind": "쌍둥이 문제",
+        "union": 150,
+        "sumOfBooks": 150,
+        "equal": true
+      },
+      {
+        "kind": "중단원 평가",
+        "union": 144,
+        "sumOfBooks": 144,
+        "equal": true
+      },
+      {
+        "kind": "진단 평가",
+        "union": 88,
+        "sumOfBooks": 88,
+        "equal": true
+      },
+      {
+        "kind": "형성 평가",
+        "union": 476,
+        "sumOfBooks": 476,
+        "equal": true
+      }
+    ],
+    "global": [
+      {
+        "kind": "기초 연산",
+        "n": 2058
+      },
+      {
+        "kind": "기타",
+        "n": 296
+      },
+      {
+        "kind": "대단원 평가",
+        "n": 3012
+      },
+      {
+        "kind": "서술형 평가",
+        "n": 29
+      },
+      {
+        "kind": "소단원 평가",
+        "n": 1798
+      },
+      {
+        "kind": "수업 자료",
+        "n": 2
+      },
+      {
+        "kind": "수준별 문제",
+        "n": 1739
+      },
+      {
+        "kind": "수행 과제",
+        "n": 5
+      },
+      {
+        "kind": "시험 대비",
+        "n": 1039
+      },
+      {
+        "kind": "쌍둥이 문제",
+        "n": 554
+      },
+      {
+        "kind": "중단원 평가",
+        "n": 745
+      },
+      {
+        "kind": "진단 평가",
+        "n": 88
+      },
+      {
+        "kind": "형성 평가",
+        "n": 936
+      }
+    ],
+    "pickerKindCountsEqualsGlobal": true
+  },
+  "textbookRowsWhoseUnitGradeDiffersFromBook": 0,
+  "textbookRowsWithNullActualFormat": 0
+}

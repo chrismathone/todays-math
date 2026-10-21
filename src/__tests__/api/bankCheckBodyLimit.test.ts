@@ -7,7 +7,8 @@
  * 64문항부터는 계약(1~100문항)이 받는 요청을 읽기 전에 버렸다. 교과서만의 일이 아니라 문항 수의 일이다.
  *
  * 그래서 둘을 잠근다: 화면이 실제로 만드는 본문이 dev 짝 라우트를 그대로 지나는가(운영 재현) ·
- * 계약이 허용하는 가장 큰 요청(100문항 · 가장 긴 신분 · 형식 · 판)이 상한 안에 드는가. 상한은 그대로 있다.
+ * 앱이 만드는 가장 큰 요청(100문항 · 가장 긴 신분 · 형식 · 서버가 만든 판)이 상한 안에 드는가. 상한은 그대로 있다.
+ * (계약의 `revision` 은 길이를 묶지 않는다 — «계약이 받는 모든 요청»이 아니라 «앱이 만드는 요청»을 덮는다.)
  *
  * DB 는 공유 인메모리 대역(`prismaTestDouble`).
  */
@@ -144,7 +145,11 @@ describe("출력 직전 재검증 — 본문 상한", () => {
     },
   );
 
-  it("계약이 허용하는 가장 큰 요청(100문항 · 가장 긴 신분 · 형식 · 판)이 상한 안에 들고 라우트가 읽는다", async () => {
+  it("앱이 만드는 가장 큰 요청(100문항 · `q:v1` 신분 · 객관식 · 서버가 만든 판)이 상한 안에 들고 라우트가 읽는다", async () => {
+    // 판은 서버(`questionRevisionOf`)가 만든 값의 길이 그대로 — 판의 꼴이 바뀌면 이 시험이 다시 잰다.
+    const [actual] = await readAsBuilder(1);
+    const revision = actual.questionFormats![0].revision;
+    expect(revision).toMatch(/^qr:v1:[0-9a-f]{64}$/);
     const hex = "f".repeat(64);
     const ids = Array.from({ length: BANK_CHECK_LIMIT }, () =>
       crypto.randomUUID(),
@@ -155,7 +160,7 @@ describe("출력 직전 재검증 — 본문 상한", () => {
         questionId: `q:v1:${hex}`,
         problemId,
         format: "multiple_choice",
-        revision: `qr:v1:${hex}`,
+        revision,
       })),
     };
     expect(bankCheckRequestSchema.safeParse(body).success).toBe(true);

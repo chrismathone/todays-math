@@ -277,7 +277,6 @@ export function BankSourcePicker({
         })),
       ]
     : [];
-  const matched = counts ? matchedCount(counts, books, kinds) : null;
 
   return (
     <PickerDialog
@@ -305,51 +304,43 @@ export function BankSourcePicker({
           </p>
         ) : (
           <>
-            <div>
-              <div className={s.segments} role="group" aria-label="출처">
-                {rows.map(({ key, label, count }) => (
-                  <button
-                    key={key || "all"}
-                    type="button"
-                    className={s.segment}
-                    aria-pressed={group === key}
-                    onClick={() => setGroup(key)}
-                  >
-                    {label}
-                    <span className={s.count}>{n(count)}</span>
-                  </button>
-                ))}
-              </div>
-              {textbook ? (
-                <TextbookPanes
-                  counts={counts}
-                  filterGrade={filterGrade}
-                  draft={draft}
-                  setBooks={setBooksState}
-                  setKinds={setKindsState}
-                />
-              ) : (
-                <p className={s.note}>
-                  {group
-                    ? `${BANK_SOURCE_GROUP_LABEL[group]} 문항은 책 · 자료 종류가 없습니다. [적용]을 누르면 출처만 걸립니다.`
-                    : "출처를 가리지 않고 모든 문항을 봅니다. 교과서를 고르면 책 · 자료 종류로 거를 수 있습니다."}
-                </p>
-              )}
+            <div className={s.segments} role="group" aria-label="출처">
+              {rows.map(({ key, label, count }) => (
+                <button
+                  key={key || "all"}
+                  type="button"
+                  className={s.segment}
+                  aria-pressed={group === key}
+                  onClick={() => setGroup(key)}
+                >
+                  {label}
+                  <span className={s.count}>{n(count)}</span>
+                </button>
+              ))}
             </div>
+            {textbook ? (
+              <TextbookPanes
+                counts={counts}
+                filterGrade={filterGrade}
+                draft={draft}
+                setBooks={setBooksState}
+                setKinds={setKindsState}
+              />
+            ) : (
+              <p className={s.note}>
+                {group
+                  ? `${BANK_SOURCE_GROUP_LABEL[group]} 문항은 책 · 자료 종류가 없습니다. [적용]을 누르면 출처만 걸립니다.`
+                  : "출처를 가리지 않고 모든 문항을 봅니다. 교과서를 고르면 책 · 자료 종류로 거를 수 있습니다."}
+              </p>
+            )}
             {textbook ? (
               <div className={s.footer}>
                 <span>
-                  걸리는 문항 <b>{n(matched)}</b>
-                  {matched === null ? "" : "개"}
+                  걸리는 문항 <b>{n(matchedCount(counts, books, kinds))}</b>개
                   <span className={s.count}>
                     {" "}
                     / 교과서 {n(counts.textbook.total)}
                   </span>
-                  {matched === null && (
-                    <small className={s.sub}>
-                      겹치는 문항 수는 적용 후 목록에서 확인합니다.
-                    </small>
-                  )}
                 </span>
                 <button
                   type="button"

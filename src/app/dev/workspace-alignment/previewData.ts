@@ -10,6 +10,7 @@ import type { EnglishExam, EnglishSet } from "@/contracts/english.contract";
 import type { EnglishListeningDocument } from "@/contracts/englishListening.contract";
 import type { EnglishPassageDetail } from "@/contracts/englishBank.contract";
 import { DEFAULT_PRINT_OPTIONS } from "@/components/unified/print/types";
+import { SOURCE_MATERIAL_KINDS } from "@/contracts/sourceMaterial.contract";
 import {
   englishExamCandidatesSchema,
   englishExamComposeSchema,
@@ -322,6 +323,38 @@ const mathViewMetadata = {
   countUnit: "question",
   queryKey: "workspace-authored-fixture",
 };
+// 출처 고르기 창의 수 — 지어낸 출판사 · 저자(실제 교과서가 아니다). 이 예시에는 교과서 문항이 없고 창의 수만 보인다.
+const previewBooks = (
+  [
+    [
+      "중1",
+      "가람출판",
+      "김예시",
+      40,
+      { "기초 연산": 18, "형성 평가": 12, "대단원 평가": 10 },
+    ],
+    ["중1", "누리출판", "이예시", 25, { "형성 평가": 15, "서술형 평가": 10 }],
+    ["중1", "다온출판", null, 9, { "쌍둥이 문제": 9 }],
+    ["중2", "가람출판", "박예시", 30, { "기초 연산": 20, "시험 대비": 10 }],
+  ] as const
+).map(([grade, publisher, author, count, kinds], index) => ({
+  id: `50000000-0000-4000-8000-30000000000${index + 1}`,
+  grade,
+  publisher,
+  author,
+  title: `${grade} 수학`,
+  count,
+  open: count,
+  materials: Object.keys(kinds).length,
+  kinds: kinds as Record<string, number>,
+}));
+const previewSources = {
+  total: mathProblems.length + 104,
+  engine: mathProblems.length,
+  school_textbook: 104,
+  past_exam: 0,
+  other: 0,
+};
 const mathViewProblems = mathProblems.map((row) => {
   const format =
     row.questionType === "multiple-choice"
@@ -472,6 +505,75 @@ function mathPreview(url: URL, method: string, init?: RequestInit) {
         row.questionFormats[0].state === "available" &&
         !(recent && mathRecent.has(row.id)),
     );
+  // 출처 고르기 창 — 시험지 만들기는 `view=picker-groups · picker-books · picker-book-counts · picker-kind-counts`(필요한 단만),
+  // 문제은행은 `GET …/sources`(창 전체의 수) — 운영과 같은 모양.
+  if (path === `${base}/sources` && body.view === "picker-groups")
+    return Response.json({
+      ...mathViewMetadata,
+      view: "picker-groups",
+      sources: previewSources,
+    });
+  if (path === `${base}/sources` && body.view === "picker-kind-counts") {
+    const kinds: Record<string, number> = {};
+    for (const book of previewBooks)
+      for (const [kind, count] of Object.entries(book.kinds))
+        kinds[kind] = (kinds[kind] ?? 0) + count;
+    return Response.json({
+      ...mathViewMetadata,
+      view: "picker-kind-counts",
+      kinds,
+    });
+  }
+  if (
+    path === `${base}/sources` &&
+    (body.view === "picker-books" || body.view === "picker-book-counts")
+  ) {
+    const picked = String(body.books ?? "")
+      .split(",")
+      .filter(Boolean);
+    const shown = previewBooks.filter(
+      (book) => book.grade === body.grade || picked.includes(book.id),
+    );
+    return body.view === "picker-books"
+      ? Response.json({
+          ...mathViewMetadata,
+          view: "picker-books",
+          grades: [...new Set(previewBooks.map((book) => book.grade))],
+          kinds: [...SOURCE_MATERIAL_KINDS],
+          books: shown.map(({ id, grade, publisher, author, title }) => ({
+            id,
+            grade,
+            publisher,
+            author,
+            title,
+          })),
+        })
+      : Response.json({
+          ...mathViewMetadata,
+          view: "picker-book-counts",
+          books: shown.map(({ id, count, open, kinds }) => ({
+            id,
+            count,
+            open,
+            kinds,
+          })),
+        });
+  }
+  if (
+    path === `${base}/sources` &&
+    method === "GET" &&
+    !url.searchParams.get("view")
+  )
+    return Response.json({
+      ...mathViewMetadata,
+      sources: previewSources,
+      textbook: {
+        total: previewSources.school_textbook,
+        grades: [...new Set(previewBooks.map((book) => book.grade))],
+        kinds: [...SOURCE_MATERIAL_KINDS],
+        books: previewBooks,
+      },
+    });
   // 1단계에서 고른 차시의 출제 가능 수 — 운영 `view=scope-counts` 와 같은 모양.
   if (path === `${base}/sources` && body.view === "scope-counts") {
     const ids = String(body.unitIds ?? "")

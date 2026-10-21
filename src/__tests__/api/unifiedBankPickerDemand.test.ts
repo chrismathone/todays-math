@@ -12,6 +12,7 @@ import {
   loadQuestionPickerGroups,
   loadQuestionPickerBooks,
   loadQuestionPickerBookCounts,
+  loadQuestionPickerKindCounts,
   loadQuestionMaterialsPage,
 } from "@/lib/bankSourceQuestions";
 import { bankSourcesResponse } from "@/lib/bankSourceRoute";
@@ -19,6 +20,7 @@ import {
   unifiedBankPickerGroupsSchema,
   unifiedBankPickerBooksSchema,
   unifiedBankPickerBookCountsSchema,
+  unifiedBankPickerKindCountsSchema,
   unifiedBankMaterialsPageSchema,
 } from "@/contracts/unifiedBankBootstrap.contract";
 import type { CountSql } from "@/lib/problem/questionCountSql";
@@ -137,6 +139,44 @@ describe("source picker scope and parity", () => {
     expect(
       raw.mock.calls.every(([sql]) => !(sql as CountSql).questionCountRead),
     ).toBe(true);
+  });
+
+  it("kind totals before any book is chosen equal the per-book kinds summed over every textbook book — one held SQL, no metadata", async () => {
+    const original = await loadQuestionSourceCounts(
+      new URLSearchParams({ identity: "question" }),
+    );
+    const expected: Record<string, number> = {};
+    for (const book of original.textbook.books)
+      for (const [kind, count] of Object.entries(book.kinds))
+        expected[kind] = (expected[kind] ?? 0) + count;
+    const raw = vi.spyOn(prismaTestDouble, "$queryRaw");
+    const bookReads = vi.spyOn(db.sourceBook, "findMany");
+    const materialReads = vi.spyOn(db.sourceMaterial, "findMany");
+    const value = await loadQuestionPickerKindCounts(params("picker-kind-counts"));
+    expect(unifiedBankPickerKindCountsSchema.parse(value)).toEqual(value);
+    expect(value.kinds).toEqual(expected);
+    expect(value.kinds).toEqual({ "형성 평가": 14, "수업 자료": 14 });
+    expect(bookReads).not.toHaveBeenCalled();
+    expect(materialReads).not.toHaveBeenCalled();
+    expect(
+      raw.mock.calls.filter(
+        ([sql]) =>
+          (sql as { bankHeldTextbookKinds?: boolean }).bankHeldTextbookKinds,
+      ),
+    ).toHaveLength(1);
+    expect(
+      raw.mock.calls.every(([sql]) => !(sql as CountSql).questionCountRead),
+    ).toBe(true);
+    const response = await bankSourcesResponse(
+      new Request("http://localhost/api/dev/unified/problems/sources", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ identity: "question", view: "picker-kind-counts" }),
+      }),
+      {},
+    );
+    expect(response.status).toBe(200);
+    expect((await response.json()).kinds).toEqual(expected);
   });
 
   it("reads only grade labels before selecting a textbook grade, then current grade and already selected book metadata", async () => {

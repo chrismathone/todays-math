@@ -68,6 +68,7 @@ const RECORD_MODULES = [
   "math-explorers/teacherRoutes", // 탐험 기록의 교사 보기(27번 문서) — 기록을 읽어 강사에게 내보낸다
 ];
 /** 지금 그 모듈을 부르는 곳 — 학생 학습·통합 탐험·강사 기록 보기·DB 없는 QA 시뮬레이터. */
+const HARNESS = "scripts/qa/srs-e5-harness/";
 const ALLOWED = [
   "src/lib/math-srs/",
   "src/lib/math-explorers/",
@@ -82,6 +83,9 @@ const ALLOWED = [
   "scripts/qa/star-economy/", // 원장님 2026-09-28 허용 · DB 없는 별 경제 시뮬레이터(D-144)
   // «오늘의 기억» 변이 실험기(2026-10-06) — 기록을 읽지 않는다. 변이를 걸 파일의 이름으로 저장 모듈의 길을 글로 적을 뿐이다.
   "scripts/qa/fading-mutants/",
+  // 초5 SRS 로컬 실서버 하네스(2026-10-21 인수인계로 저장소에 옴) — 로컬 격리 DB(127.0.0.1:54335)에만 닿는다.
+  // 아래 «하네스는 로컬 DB 로 묶여 있다» 시험이 그 묶음을 지킨다.
+  HARNESS,
   // Owner-authorized aggregate-only READ ONLY comparison; it never runs student actions.
   "scripts/qa/measure-sweep-20261020.ts",
 ];
@@ -165,8 +169,26 @@ describe("보기형 전용 문항이 사는 기록의 격리", () => {
         .sort(),
     ).toEqual([
       "scripts/qa/apply-student-srs-migration.ts",
+      // 로컬 하네스가 test_s 의 «로컬» 기록을 비운다 — 공유 DB 에는 못 닿는다(아래 시험)
+      "scripts/qa/srs-e5-harness/reset-student.ts",
       "src/lib/math-srs/serverStore.ts",
     ]);
+  });
+
+  it("하네스는 로컬 DB 로 묶여 있다 — 복습 기록에 닿는 하네스 파일은 모두 127.0.0.1:54335 가 아니면 던진다", () => {
+    const table = /studentSrsState|student_srs_state|StudentSrsState/;
+    const touching = sources.filter(
+      (s) =>
+        s.path.startsWith(HARNESS) &&
+        (recordReference.test(s.text) || table.test(s.text)),
+    );
+    expect(touching.length).toBeGreaterThan(0);
+    const unbound = touching
+      .filter(
+        (s) => !/127\.0\.0\.1:54335/.test(s.raw) || !/local only/.test(s.raw),
+      )
+      .map((s) => s.path);
+    expect(unbound).toEqual([]);
   });
 
   it("강사 반 현황 데이터는 문항 전문·보기·정답을 싣지 않는다", () => {

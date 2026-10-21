@@ -14,3 +14,17 @@ export function heldQuestionSourceGroupsSql() {
       FILTER (WHERE p.source::text=ANY(${[...BANK_SOURCE_GROUP_SOURCES[group]]}::text[]))::int AS ${Prisma.raw(group)}`))}
     FROM public.problem p WHERE p.pool=${problemVisibleWhere().pool}::problem_pool`, { bankHeldSourceGroups: true });
 }
+
+/** The picker's kind column before any book is chosen: held question unions per material kind
+ * over every textbook book — the per-book `kinds` of `picker-book-counts` summed (a question lies
+ * in one material, so kinds never overlap). Same rules as above: no formats or eligibility.
+ */
+export function heldQuestionTextbookKindsSql() {
+  const identity = Prisma.sql`COALESCE(p.question_group_key, 'row:' || p.id::text) COLLATE "C"`;
+  return Object.assign(Prisma.sql`SELECT m.kind, count(DISTINCT ${identity})::int AS count
+    FROM public.problem p
+    JOIN public.source_material m ON m.id = p.source_material_id
+    JOIN public.source_book b ON b.id = m.book_id AND b.kind = 'school_textbook'
+    WHERE p.pool=${problemVisibleWhere().pool}::problem_pool AND p.source='school_textbook'::problem_source
+    GROUP BY m.kind`, { bankHeldTextbookKinds: true });
+}
