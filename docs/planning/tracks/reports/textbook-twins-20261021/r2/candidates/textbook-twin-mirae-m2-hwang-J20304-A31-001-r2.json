@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 184,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A31-001-r2",
+ "authorId": "claude-opus-5-5:79238022-f725-41f3-b544-d14dccdc5fb1",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20304-A31-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "도하가 연립방정식 $\\begin{cases} \\,2x+ay=10 \\\\ \\,bx-y=1 \\end{cases}$을 풀었더니 해가 $x=-1$, $y=4$였다. 상수 $a$, $b$에 대하여 $ab$의 값은?",
+ "choices": [
+  "$-20$",
+  "$-15$",
+  "$-12$",
+  "$-10$",
+  "$15$"
+ ],
+ "answer": "②",
+ "solution": "$x=-1$, $y=4$를 첫째 식에 대입하면 $-2+4a=10$, $4a=12$이므로 $a=3$이다. 둘째 식에 대입하면 $-b-4=1$, $-b=5$이므로 $b=-5$이다. 따라서 $ab=3\\times(-5)=-15$이고, 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-9",
+  "problemCode": "J20304-A31-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "a88fc6dd13c7c5a6009df8ae90d114d92b3d0bedd20622f5e6dce916c5ac6a70",
+  "dbContentSha256": "d94ac1d5c47c28e33c8905efc6b8b3cfa20382bafa7d8f5763d866b321da0eb8",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "structure"
+  ],
+  "before": "해가 직접 주어진 연립방정식에서, 한 식은 y의 계수가, 다른 식은 x의 계수가 미지수일 때 두 계수의 곱을 고른다.",
+  "after": "인물이 연립방정식을 풀어 얻은 해를 주고 두 계수의 곱을 고른다. 첫째 식은 y의 계수가, 둘째 식은 x의 계수가 미지수이다. 해의 x값이 음수라서 대입할 때 부호를 처리해야 하고, 곱은 음수가 된다.",
+  "sharedConcept": "연립방정식의 해는 두 일차방정식을 모두 만족시킨다",
+  "sharedProcedure": "해를 각 식에 대입 → 일차방정식 두 개를 풀어 a, b 구하기 → ab 계산 → 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이의 응용"
+  },
+  "prerequisites": [
+   "연립방정식의 해의 뜻",
+   "일차방정식의 풀이",
+   "정수의 곱셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20304-A31-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "연립방정식의 해가 주어질 때 두 미지 계수의 곱 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.071,
+   "longestRun": 5,
+   "residualChars": 59,
+   "params": 7,
+   "numberRetention": 0.429,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

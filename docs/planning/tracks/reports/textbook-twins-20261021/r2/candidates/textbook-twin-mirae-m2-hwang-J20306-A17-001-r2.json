@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 194,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A17-001-r2",
+ "authorId": "claude-opus-5-5:2065a1cc-1105-4aa2-a7ce-6fb53d6c301f",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20306-A17-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "도하가 카드 두 장에 자연수를 하나씩 적었다. 두 카드에 적힌 수를 더하면 $67$이고, 큰 수를 작은 수로 나누면 몫이 $7$, 나머지가 $3$이다. 두 카드에 적힌 수 중 작은 수는?",
+ "choices": [
+  "$6$",
+  "$7$",
+  "$8$",
+  "$9$",
+  "$10$"
+ ],
+ "answer": "③",
+ "solution": "큰 수를 $x$, 작은 수를 $y$라 하면 $x+y=67$, $x=7y+3$이다. 둘째 식을 첫째 식에 대입하면 $7y+3+y=67$, $8y=64$, $y=8$이다. $y=8$을 둘째 식에 대입하면 $x=7\\times 8+3=59$이고, 나머지 $3$이 나누는 수 $8$보다 작으므로 조건에 맞는다. 따라서 작은 수는 $8$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-13",
+  "problemCode": "J20306-A17-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "0719311c79e180c40b0d7ad9cb966dc88cffe5fb539a19460517cb35b2c7cc93",
+  "dbContentSha256": "954470510d674ec2e95a85423e75bc7b0cd926006e5fe8caf0b669943d3a56dc",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "두 정수의 합과, 큰 수를 작은 수로 나눈 몫과 나머지가 주어지고 작은 수를 보기에서 고른다.",
+  "after": "카드 두 장에 적힌 두 자연수의 합과, 큰 수를 작은 수로 나눈 몫과 나머지가 주어지고 작은 수를 보기에서 고른다(수 67 · 7 · 3으로 모두 새로).",
+  "sharedConcept": "나눗셈의 몫과 나머지 관계(나누어지는 수 = 나누는 수 × 몫 + 나머지)를 이용한 연립일차방정식의 활용",
+  "sharedProcedure": "두 수를 미지수로 놓기 → 합의 식 세우기 → 몫·나머지 관계식 세우기 → 대입법으로 풀기 → 나머지가 나누는 수보다 작은지 확인 → 작은 수 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 활용(수, 평균, 나이)"
+  },
+  "prerequisites": [
+   "나눗셈의 몫과 나머지 관계",
+   "연립일차방정식의 풀이(대입법)",
+   "문장을 일차방정식으로 나타내기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20306-A17-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 수의 합과 나눗셈의 몫·나머지로 두 수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 8개 가운데 62% 그대로"
+   ],
+   "overlap4": 0.23,
+   "longestRun": 12,
+   "residualChars": 68,
+   "params": 8,
+   "numberRetention": 0.625,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 217,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A76-001-r2",
+ "authorId": "claude-opus-5-5:2b3fac76-469a-4712-ada0-d3662338134d",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20409-A76-001-r1",
+ "route": "author",
+ "questionType": "서술형",
+ "content": "[그림]\n그림과 같이 좌표평면 위에 두 직선 $l$, $m$이 있다. 이 두 직선과 $y$축이 만들어 내는 삼각형(색칠한 부분)의 넓이를 풀이 과정과 함께 구하시오.",
+ "choices": [],
+ "answer": "$8$",
+ "solution": "① 직선 $l$은 두 점 $(-3,\\,0)$, $(0,\\,6)$을 지나므로 기울기가 $\\dfrac{6-0}{0-(-3)}=2$이고, 식은 $y=2x+6$이다.\n② 직선 $m$은 두 점 $(-2,\\,0)$, $(0,\\,2)$를 지나므로 기울기가 $\\dfrac{2-0}{0-(-2)}=1$이고, 식은 $y=x+2$이다.\n③ $2x+6=x+2$에서 $x=-4$이고, $y=-4+2=-2$이므로 두 직선의 교점은 $(-4,\\,-2)$이다.\n④ 밑변은 $y$축 위의 두 $y$절편 $2$와 $6$ 사이이므로 길이가 $6-2=4$이고, 높이는 교점에서 $y$축까지의 거리 $|-4|=4$이다.\n따라서 삼각형의 넓이는 $\\dfrac{1}{2}\\times 4\\times 4=8$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20409-A76-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20409-A76-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-20",
+  "problemCode": "J20409-A76-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 20,
+  "sourceContentSha256": "430547f1cc05de940af21e905e3eefb121d3ba9ffd71b24cbc748ce63bef028d",
+  "dbContentSha256": "cf242b7e3730c458622d3bfe6d9c379f1512a32c3a5bc82d746fa104f81db370",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [
+   "02e8a36ea683d417d03b382b1ee3f403bf3b5bb626a6164120e74efbe5e14eba"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "그림에 두 직선의 x절편·y절편이 표시되어 있고, 두 직선과 x축으로 둘러싸인 삼각형의 넓이를 구한다. 밑변은 x축 위 두 x절편 사이, 높이는 교점의 y좌표.",
+  "after": "그림에 두 직선의 x절편·y절편이 표시되어 있고(식은 주지 않음), 두 직선과 y축으로 둘러싸인 삼각형의 넓이를 구한다. 밑변은 y축 위 두 y절편 사이, 높이는 교점의 x좌표의 절댓값이며 교점은 제3사분면에 있다.",
+  "sharedConcept": "두 일차함수 그래프의 교점은 연립방정식의 해이고, 교점과 축 위 절편으로 삼각형의 밑변과 높이를 정한다.",
+  "sharedProcedure": "그림의 두 점으로 각 직선의 식 구하기 → 두 식을 연립해 교점 구하기 → 축 위 밑변 길이와 교점까지의 높이 정하기 → 삼각형 넓이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 연립방정식의 해"
+  },
+  "prerequisites": [
+   "두 점을 지나는 직선의 기울기와 일차함수의 식",
+   "연립일차방정식의 풀이",
+   "좌표평면 위의 점과 축 사이의 거리",
+   "삼각형의 넓이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "서술형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20409-A76-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "그림에서 두 직선의 식을 구하고 교점을 이용해 두 직선과 좌표축으로 둘러싸인 삼각형의 넓이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "52effd18-3020-4706-a26b-621db166ce67",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.06,
+   "longestRun": 5,
+   "residualChars": 53,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 249,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A84-001-r2",
+ "authorId": "claude-opus-5-5:7b7783da-f007-48a9-b29e-b0f6961aeba0",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20401-A84-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "함수 $f(x)=-\\frac{5}{4}x$의 함숫값을 나타낸 것으로 옳지 않은 것은?",
+ "choices": [
+  "$f(-8)=10$",
+  "$f\\left(\\frac{1}{10}\\right)=-\\frac{1}{8}$",
+  "$f\\left(-\\frac{4}{7}\\right)=-\\frac{5}{7}$",
+  "$f(4)=-5$",
+  "$f\\left(\\frac{16}{5}\\right)=-4$"
+ ],
+ "answer": "③",
+ "solution": "① $f(-8)=-\\frac{5}{4}\\times (-8)=10$ (옳다)\n② $f\\left(\\frac{1}{10}\\right)=-\\frac{5}{4}\\times \\frac{1}{10}=-\\frac{1}{8}$ (옳다)\n③ $f\\left(-\\frac{4}{7}\\right)=-\\frac{5}{4}\\times \\left(-\\frac{4}{7}\\right)=\\frac{5}{7}$이므로 $-\\frac{5}{7}$이 아니다. (옳지 않다)\n④ $f(4)=-\\frac{5}{4}\\times 4=-5$ (옳다)\n⑤ $f\\left(\\frac{16}{5}\\right)=-\\frac{5}{4}\\times \\frac{16}{5}=-4$ (옳다)\n따라서 옳지 않은 것은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-7e414ec61e43d647-0-3",
+  "problemCode": "J20401-A84-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "d1f638e765eeb88283a7127533ed4c24aece7e318a6e96a05d4658b142d8cec2",
+  "dbContentSha256": "96cc4aa84367eb70f071a90dbe2b021e76e74db47e4d071e15c894af6ce38a13",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-1_함수.hwp",
+    "sha256": "5ac9c673d2833948611c0498687c20180428dfd38bf6f76d40bddd1722192182",
+    "bytes": 53248
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure"
+  ],
+  "before": "정수 계수 정비례 꼴 함수에 음의 정수 · 0 · 분수를 넣은 함숫값 다섯 가운데 부호가 틀린 하나를 고른다(틀린 보기는 두 번째).",
+  "after": "음의 분수 계수 정비례 꼴 함수에 정수 · 분수를 넣은 함숫값 다섯 가운데 부호가 틀린 하나를 고른다. 0을 넣는 보기는 빼고, 약분이 필요한 분수×분수 보기를 넣었으며, 틀린 보기는 세 번째에 둔다.",
+  "sharedConcept": "함숫값 f(a)의 뜻",
+  "sharedProcedure": "보기마다 x에 주어진 값을 대입 → 계수와 곱해 약분 · 부호 결정 → 적힌 값과 비교 → 맞지 않는 보기를 고름"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "함수와 함숫값"
+  },
+  "prerequisites": [
+   "정비례 관계",
+   "유리수의 곱셈과 부호",
+   "분수의 약분",
+   "함수와 함숫값의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20401-A84-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "정비례 꼴 함수의 함숫값을 계산해 옳지 않은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.151,
+   "longestRun": 8,
+   "residualChars": 79,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

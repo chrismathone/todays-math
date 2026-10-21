@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 227,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A77-001-r2",
+ "authorId": "claude-opus-5-5:06660a33-7243-4ee0-b696-4586a6023faa",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20402-A77-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차함수 $y=-\\frac{5}{4}x+2$의 그래프를 $y$축의 방향으로 알맞게 평행이동하였더니 어떤 일차함수의 그래프와 완전히 포개어졌다. 그 일차함수로 알맞은 것은?",
+ "choices": [
+  "$y=\\frac{5}{4}x+2$",
+  "$y=-\\frac{5}{2}x+4$",
+  "$y=-\\frac{4}{5}x-2$",
+  "$y=-\\frac{5}{4}x-6$",
+  "$y=-\\frac{1}{4}x+2$"
+ ],
+ "answer": "④",
+ "solution": "일차함수 $y=-\\frac{5}{4}x+2$의 그래프를 $y$축의 방향으로 $k$만큼 평행이동하면 $y=-\\frac{5}{4}x+2+k$의 그래프가 된다. 따라서 $x$의 계수는 $-\\frac{5}{4}$로 그대로이고 상수항만 바뀐다. 보기 가운데 $x$의 계수가 $-\\frac{5}{4}$인 것은 ④ $y=-\\frac{5}{4}x-6$뿐이다. 이 경우 $2+k=-6$이므로 $k=-8$, 즉 $y$축의 방향으로 $-8$만큼 평행이동한 것이다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-6d2b7e156d996e54-0-3",
+  "problemCode": "J20402-A77-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "d6bdce348d838ee72ea5624fca68c25cc837fdbc60e036a558bdd2fcb852c6fc",
+  "dbContentSha256": "5de51c4fbeb3356e956dbdd5391aecdeeea5f89d48a0f92b34b9e7de58da2388",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-2_일차함수와그그래프.hwp",
+    "sha256": "738b0e7870ca46a39301619f9978cd042293e87e29e401c4088a212e966f61b5",
+    "bytes": 50688
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "상수항이 없는 일차함수 하나를 주고, 다섯 식 가운데 그 그래프를 평행이동해서 겹치는 것을 고르게 한다. 오답은 계수의 부호를 바꾸거나 역수로 바꾼 식이다.",
+  "after": "상수항이 있는 일차함수 하나를 주고, y축 방향으로 평행이동해서 포개어지는 식을 고르게 한다. 오답은 상수항은 같고 x의 계수만 다른 식, 계수와 상수항을 같은 배수로 키운 식, 부호를 바꾼 식, 역수로 바꾼 식, 분자만 바꾼 식처럼 서로 다른 함정으로 짰고, 정답은 상수항이 크게 달라진 식이다.",
+  "sharedConcept": "일차함수 y=ax+b의 그래프를 y축 방향으로 평행이동하면 x의 계수 a는 그대로이고 상수항만 바뀐다",
+  "sharedProcedure": "평행이동한 식 y=ax+b+k 쓰기 → 보기에서 x의 계수가 같은 식 찾기 → 이동한 양 확인"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 절편"
+  },
+  "prerequisites": [
+   "일차함수의 뜻",
+   "일차함수 y=ax의 그래프",
+   "그래프의 y축 방향 평행이동"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20402-A77-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행이동하여 포개어지는 일차함수의 그래프 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.074,
+   "longestRun": 6,
+   "residualChars": 110,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 229,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A80-001-r2",
+ "authorId": "claude-opus-5-5:fc6031a0-18de-430f-a297-c50268290bd5",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20402-A80-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "두 일차함수 $y=-2x+n$, $y=mx-5$가 있다. 뒤의 함수의 그래프를 $y$축의 방향으로 $8$만큼 평행이동하면 앞의 함수의 그래프와 겹친다고 할 때, $n-m$의 값을 구하시오. (단, $m$, $n$은 상수)",
+ "choices": [],
+ "answer": "$5$",
+ "solution": "$y=mx-5$의 그래프를 $y$축의 방향으로 $8$만큼 평행이동하면 $y=mx-5+8$, 곧 $y=mx+3$이다. 이 그래프가 $y=-2x+n$의 그래프와 겹치므로 기울기와 $y$절편이 각각 같다. 따라서 $m=-2$, $n=3$이다. 그러므로 $n-m=3-(-2)=5$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-6d2b7e156d996e54-0-4",
+  "problemCode": "J20402-A80-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "6dd214de2b7ad80b6668a0fac6433506c32a54e19332ca8c224ee39d13287e31",
+  "dbContentSha256": "6dd214de2b7ad80b6668a0fac6433506c32a54e19332ca8c224ee39d13287e31",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-2_일차함수와그그래프.hwp",
+    "sha256": "738b0e7870ca46a39301619f9978cd042293e87e29e401c4088a212e966f61b5",
+    "bytes": 50688
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "기울기를 모르는 일차함수의 그래프를 y축 방향으로 아래로 옮긴 결과가 y절편을 모르는 식과 같다는 조건에서 두 미지수를 구하고, 두 수의 차를 계산한다. 옮기기 전 식이 먼저 나오고 결과 식이 뒤에 나온다.",
+  "after": "두 일차함수를 먼저 나란히 제시하고, 뒤의 식(기울기 미지)을 y축 방향으로 위로 옮기면 앞의 식(y절편 미지)과 겹친다는 조건에서 m, n을 구해 n−m을 계산한다. 제시 순서와 이동 방향, 구하는 식의 순서가 바뀌었다.",
+  "sharedConcept": "일차함수 그래프의 y축 방향 평행이동과 두 그래프가 겹칠 조건(기울기와 y절편이 각각 같음)",
+  "sharedProcedure": "평행이동한 그래프의 식 세우기 → 상수항 정리 → 주어진 식과 기울기·y절편 비교 → 두 상수를 구해 식의 값 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 절편"
+  },
+  "prerequisites": [
+   "일차함수 y=ax+b의 기울기와 y절편",
+   "일차함수 그래프의 y축 방향 평행이동",
+   "정수의 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20402-A80-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행이동한 그래프가 다른 일차함수의 그래프와 겹칠 때 상수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.25,
+   "longestRun": 12,
+   "residualChars": 71,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

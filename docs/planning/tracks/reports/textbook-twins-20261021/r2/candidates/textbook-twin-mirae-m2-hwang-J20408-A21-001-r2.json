@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 201,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A21-001-r2",
+ "authorId": "claude-opus-5-5:80388861-a04f-45aa-b849-faba967f9cab",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20408-A21-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "도하가 좌표평면 위에 점 $(-7,\\,2)$를 찍고, 이 점을 지나면서 $y$축과 수직으로 만나는 직선을 하나 그었다. 도하가 그은 직선을 나타내는 방정식은?",
+ "choices": [
+  "$2x=-14$",
+  "$-7y=14$",
+  "$9x=18$",
+  "$6y=12$",
+  "$2y=-14$"
+ ],
+ "answer": "④",
+ "solution": "$y$축에 수직인 직선은 $x$축에 평행하므로 $y=q$ 꼴이다. 점 $(-7,\\,2)$를 지나므로 $y=2$이다.\n① $2x=-14$에서 $x=-7$\n② $-7y=14$에서 $y=-2$\n③ $9x=18$에서 $x=2$\n④ $6y=12$에서 $y=2$\n⑤ $2y=-14$에서 $y=-7$\n따라서 도하가 그은 직선의 방정식은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2ab1927fe714b703-0-10",
+  "problemCode": "J20408-A21-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "15b6a449cc03763ac8944b0ce09e6520a97041d4f505923924520e5ec9effa49",
+  "dbContentSha256": "602e4d0e7a1b392cc40fa7cb3a896ef8a9c1810f31ba0787369d6f8e7d314763",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_5_일차함수.hwp",
+    "sha256": "d8e8e864ce0b01aa94319c16f694cb39d1b29f9c9414d2b9e0bf36638cab6ab5",
+    "bytes": 226304
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "주어진 한 점을 지나며 x축과 수직인 직선(세로 직선)을 정리되지 않은 일차방정식 보기 다섯에서 고른다.",
+  "after": "인물이 좌표평면에 그은 직선이라는 장면으로, 주어진 한 점을 지나며 y축과 수직인 직선(가로 직선)을 고른다. 보기는 모두 '계수×문자=수' 꼴로 두었고, 점의 x좌표·y좌표를 서로 바꾸어 쓴 함정과 부호를 바꾼 함정을 넣었다. 다섯 보기가 나타내는 직선은 모두 다르다.",
+  "sharedConcept": "좌표축에 수직(다른 축에 평행)인 직선의 방정식 x=p, y=q",
+  "sharedProcedure": "축과의 관계로 직선의 꼴(x=p 또는 y=q) 정하기 → 지나는 점의 좌표로 상수 정하기 → 보기 식을 정리해 같은 것 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수와 일차방정식"
+  },
+  "prerequisites": [
+   "좌표평면과 점의 좌표",
+   "일차방정식 x=p, y=q의 그래프",
+   "간단한 일차방정식 풀기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20408-A21-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "한 점을 지나고 좌표축에 수직인 직선의 방정식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.024,
+   "longestRun": 5,
+   "residualChars": 88,
+   "params": 6,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

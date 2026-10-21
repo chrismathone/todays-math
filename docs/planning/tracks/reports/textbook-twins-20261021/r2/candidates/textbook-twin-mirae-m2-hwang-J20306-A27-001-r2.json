@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 196,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A27-001-r2",
+ "authorId": "claude-opus-5-5:3e11e12d-2f08-4667-a97c-0de98d641977",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20306-A27-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "미나가 사물함 암호로 정한 두 자리 자연수가 있다. 이 수의 십의 자리 숫자를 $3$배 하면 일의 자리 숫자보다 $2$만큼 작고, 두 자리의 숫자를 맞바꾸어 만든 수는 처음 수보다 $54$만큼 크다. 미나가 정한 자연수는?",
+ "choices": [
+  "$15$",
+  "$17$",
+  "$28$",
+  "$39$",
+  "$82$"
+ ],
+ "answer": "③",
+ "solution": "처음 수의 십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$라 하면 $3x=y-2$, $10y+x=10x+y+54$이다. 둘째 식을 정리하면 $9y-9x=54$, 즉 $y-x=6$이므로 $y=x+6$이다. 이것을 첫째 식에 대입하면 $3x=x+4$에서 $x=2$이고 $y=8$이다. 따라서 처음 수는 $28$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-9",
+  "problemCode": "J20306-A27-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "97a19b29496b01f3d6f280494d5c901e8d32f8662f8d63754da949338cd36eee",
+  "dbContentSha256": "cd3a8229d1913cad950f9a827dae05a94e9a2d5b4ea29598e7f0deecacff345f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "representation"
+  ],
+  "before": "십의 자리 숫자의 몇 배가 일의 자리 숫자보다 얼마 큰지와, 두 숫자를 바꾼 수가 처음 수보다 얼마 큰지를 주고 처음 두 자리 수를 고르게 한다.",
+  "after": "사물함 암호 장면에서 십의 자리 숫자의 3배가 일의 자리 숫자보다 얼마 작은지(크다 대신 작다로 나타냄)와, 숫자를 맞바꾼 수가 처음 수보다 얼마 큰지를 주고 처음 수를 고르게 한다. 오답 보기는 두 조건 가운데 하나만 맞는 수로 짰다.",
+  "sharedConcept": "두 자리 자연수를 자릿값으로 $10x+y$로 나타내고 연립일차방정식을 세워 푸는 활용",
+  "sharedProcedure": "십의 자리·일의 자리 숫자를 미지수로 놓기 → 배수 관계식 세우기 → 자리 바꾼 수의 차로 식 세우기 → 정리하여 연립방정식 풀기 → 처음 수 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 활용(수, 평균, 나이)"
+  },
+  "prerequisites": [
+   "두 자리 자연수의 자릿값 표현",
+   "연립일차방정식의 풀이(대입법·가감법)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20306-A27-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "숫자 사이의 배수 관계와 자리 바꾼 수의 차로 두 자리 자연수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.148,
+   "longestRun": 6,
+   "residualChars": 93,
+   "params": 8,
+   "numberRetention": 0.125,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

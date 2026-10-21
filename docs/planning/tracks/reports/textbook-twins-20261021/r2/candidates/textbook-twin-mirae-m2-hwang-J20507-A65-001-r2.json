@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 286,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A65-001-r2",
+ "authorId": "claude-opus-5-5:91b13d01-eee1-44e2-93e4-264e207f11ba",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20507-A65-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n직사각형 $ABCD$에 대각선 $BD$의 수직이등분선을 그었더니 변 $AD$와는 점 $P$에서, 변 $BC$와는 점 $Q$에서 만났다. 대각선 $BD$와 이 수직이등분선의 교점을 $M$이라 하자. $\\overline{BQ}=11\\,\\mathrm{cm}$일 때, 네 점 $P$, $B$, $Q$, $D$를 차례로 이어 만든 $\\square PBQD$는 어떤 사각형인지 쓰고, 그 둘레의 길이를 구하시오.",
+ "choices": [],
+ "answer": "마름모, $44\\,\\mathrm{cm}$",
+ "solution": "$\\triangle MBQ$와 $\\triangle MDP$에서 $\\overline{MB}=\\overline{MD}$이고, $\\overline{AD}\\,/\\!/\\,\\overline{BC}$이므로 $\\angle MBQ=\\angle MDP$(엇각)이며, $\\angle BMQ=\\angle DMP=90^{\\circ}$이다. 따라서 $\\triangle MBQ\\equiv\\triangle MDP$(ASA 합동)이므로 $\\overline{MQ}=\\overline{MP}$이다.\n$\\square PBQD$의 두 대각선 $\\overline{BD}$, $\\overline{PQ}$가 서로를 수직이등분하므로 $\\square PBQD$는 마름모이다.\n마름모의 네 변의 길이는 모두 같으므로 둘레의 길이는 $11\\times 4=44\\,(\\mathrm{cm})$이다.\n따라서 마름모이고, 둘레의 길이는 $44\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20507-A65-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20507-A65-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-18",
+  "problemCode": "J20507-A65-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 18,
+  "sourceContentSha256": "a7478da0bf951a97eb01a39b3d1ee2dc89b2476b9a3290dd14f43eb8ca2e1b4f",
+  "dbContentSha256": "2450d2d18cb2eb6427c8dd6d8138a5487f299ab755b14b204b89d2248b1749f6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "6bd377bfdb4ce3f103434689fb5b10c1db8693b85b83be08bd0aaf351273c127"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "직사각형의 한 대각선(왼쪽 위–오른쪽 아래)의 중점을 지나 그 대각선에 수직인 직선이 윗변·아랫변과 만나 생긴 사각형의 종류와, 윗변 위에 그림으로 표시된 한 변의 길이로 둘레를 구함",
+  "after": "다른 대각선(왼쪽 아래–오른쪽 위)의 수직이등분선으로 설명하고, 교점에 새 이름을 붙이며, 아랫변 위에 놓인 마름모의 한 변 길이를 발문과 그림에 함께 주어 사각형의 종류와 둘레를 구함",
+  "sharedConcept": "두 대각선이 서로를 수직이등분하는 사각형은 마름모이다(평행선의 엇각 · ASA 합동 활용)",
+  "sharedProcedure": "대각선이 나눈 두 삼각형에서 대응변 · 엇각 · 직각 확인 → ASA 합동 → 다른 대각선도 이등분됨 → 마름모 판정 → 한 변 × 4로 둘레"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "15c4bdd0-5dba-4c07-9552-66cf1e62a500",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직사각형, 마름모, 정사각형"
+  },
+  "prerequisites": [
+   "평행선의 엇각",
+   "삼각형의 ASA 합동",
+   "마름모가 되는 조건(두 대각선이 서로를 수직이등분)",
+   "직사각형의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20507-A65-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직사각형 대각선의 수직이등분선으로 만든 사각형이 마름모임을 보이고 둘레 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "15c4bdd0-5dba-4c07-9552-66cf1e62a500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.12,
+   "longestRun": 9,
+   "residualChars": 109,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

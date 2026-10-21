@@ -1,0 +1,146 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 261,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A63-001-r2",
+ "authorId": "claude-opus-5-5:0a26e692-7e6a-4ba7-af9d-0c28b1a1f3c1",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20503-A63-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림에서 점 $O$는 $\\triangle ABC$의 외심이고 $\\overline{CA}=15\\,\\mathrm{cm}$이다. $\\triangle OCA$의 세 변의 길이의 합이 $41\\,\\mathrm{cm}$일 때, $\\overline{OB}$의 길이는?",
+ "choices": [
+  "$12\\,\\mathrm{cm}$",
+  "$13\\,\\mathrm{cm}$",
+  "$14\\,\\mathrm{cm}$",
+  "$15\\,\\mathrm{cm}$",
+  "$16\\,\\mathrm{cm}$"
+ ],
+ "answer": "②",
+ "solution": "점 $O$가 $\\triangle ABC$의 외심이므로 $\\overline{OA}=\\overline{OB}=\\overline{OC}$이다. $\\triangle OCA$에서 $\\overline{OC}+\\overline{OA}+15=41$이므로 $2\\times\\overline{OC}=26$, $\\overline{OC}=13\\,(\\mathrm{cm})$이다. $\\overline{OB}=\\overline{OC}$이므로 $\\overline{OB}=13\\,\\mathrm{cm}$이고, 정답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A63-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A63-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-4",
+  "problemCode": "J20503-A63-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "8c6b7c2c650fa16390ef48c06784cdc8ef5fe9fc176f998f8671f653a60abf26",
+  "dbContentSha256": "608a1ee21a5cb9dcaab32456520021c13a1d77687d15c601c7931bccf6271dd6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "c851655f63519ea82eac8b5d0a30fd9b2abb8aa2da3f42fb78f51466bdeff95f"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "외심과 두 꼭짓점이 만드는 삼각형에서 한 변의 길이와 둘레가 주어지고, 그 삼각형 안에 있는 외심-꼭짓점 선분의 길이를 묻는다.",
+  "after": "외심 O와 꼭짓점 C, A가 만드는 삼각형의 한 변과 세 변의 합이 주어지고, 그 삼각형 바깥의 선분 OB의 길이를 묻는다. 세 거리가 모두 같다는 것까지 써야 한다.",
+  "sharedConcept": "삼각형의 외심에서 세 꼭짓점까지의 거리는 같다",
+  "sharedProcedure": "외심의 성질로 두 선분이 같다고 놓기 → 둘레 식 세우기 → 일차방정식 풀어 길이 구하기 → 같은 길이로 답 정하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "삼각형의 외심의 뜻과 성질",
+   "삼각형의 둘레",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A63-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외심과 두 꼭짓점이 이루는 삼각형의 둘레로 외심에서 꼭짓점까지의 거리 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.136,
+   "longestRun": 10,
+   "residualChars": 63,
+   "params": 6,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

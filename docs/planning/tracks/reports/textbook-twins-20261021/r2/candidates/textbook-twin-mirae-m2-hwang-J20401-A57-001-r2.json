@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 244,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20401-A57-001-r2",
+ "authorId": "claude-opus-5-5:8a2ad605-bd56-4021-afab-472a34d8a272",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20401-A57-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$x$의 값에 따라 $y$의 값이 정해지는 두 함수 $f(x)=-\\frac{12}{x}$, $g(x)=8-2x$가 있다. 다음 중 옳지 않은 것은?",
+ "choices": [
+  "$f(-6)=2$",
+  "$f\\left(\\frac{2}{3}\\right)=2g(10)$",
+  "$g(-2)=12$",
+  "$f(4)=g\\left(\\frac{11}{2}\\right)$",
+  "$f(-3)-g(6)=8$"
+ ],
+ "answer": "②",
+ "solution": "① $f(-6)=-\\frac{12}{-6}=2$ (옳다)\n② $f\\left(\\frac{2}{3}\\right)=-12\\div\\frac{2}{3}=-12\\times\\frac{3}{2}=-18$, $2g(10)=2\\times(8-2\\times 10)=2\\times(-12)=-24$이므로 $f\\left(\\frac{2}{3}\\right)\\neq 2g(10)$ (옳지 않다)\n③ $g(-2)=8-2\\times(-2)=8+4=12$ (옳다)\n④ $f(4)=-\\frac{12}{4}=-3$, $g\\left(\\frac{11}{2}\\right)=8-2\\times\\frac{11}{2}=8-11=-3$이므로 $f(4)=g\\left(\\frac{11}{2}\\right)$ (옳다)\n⑤ $f(-3)=-\\frac{12}{-3}=4$, $g(6)=8-2\\times 6=-4$이므로 $f(-3)-g(6)=4-(-4)=8$ (옳다)\n따라서 옳지 않은 것은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2ab1927fe714b703-0-1",
+  "problemCode": "J20401-A57-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "586cbb07ba9edee38679b43c7859015faf99d4eb2a30e41aec49996c84af3eb1",
+  "dbContentSha256": "2d09ae6bb5853f0f343ef8e9aa9373025a2b5ad1cdc183ca183ef7881324e992",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_5_일차함수.hwp",
+    "sha256": "d8e8e864ce0b01aa94319c16f694cb39d1b29f9c9414d2b9e0bf36638cab6ab5",
+    "bytes": 226304
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "분수꼴 함수와 x에 수를 더한 일차식 함수를 주고, 함숫값 하나 · 두 함숫값의 같음 · 한쪽에 2배를 곱한 비교 · 두 함숫값의 합을 담은 다섯 보기에서 거짓 하나를 고른다. 거짓인 보기는 네 번째 자리에 있고, 분수를 넣는 쪽은 분수꼴 함수뿐이다.",
+  "after": "분수꼴 함수와 상수에서 x의 2배를 빼는 일차식 함수를 주고, 함숫값 하나(두 개) · 2배 비교 · 분수를 일차식 함수에 넣은 같음 비교 · 두 함숫값의 차를 담은 다섯 보기에서 거짓 하나를 고른다. 거짓인 보기는 두 번째 자리로 옮겼고, 합 대신 음수를 빼는 차를 묻는다.",
+  "sharedConcept": "함숫값 — 함수식에 x의 값을 대입하여 y의 값 구하기",
+  "sharedProcedure": "보기마다 필요한 함숫값을 대입해 계산 → 분수 입력은 나눗셈을 곱셈으로 바꿔 계산 → 양변(또는 합 · 차 · 배수)을 비교 → 성립하지 않는 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "함수와 함숫값"
+  },
+  "prerequisites": [
+   "유리수의 사칙계산(분수의 나눗셈 포함)",
+   "문자에 수 대입하기",
+   "정비례 · 반비례 관계식",
+   "함수와 함숫값의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20401-A57-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 함수의 함숫값을 계산하여 옳지 않은 관계 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "43a21b1d-ded8-493e-a4e2-c7da8526ef85",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.125,
+   "longestRun": 9,
+   "residualChars": 92,
+   "params": 7,
+   "numberRetention": 0.429,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
