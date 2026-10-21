@@ -1,0 +1,141 @@
+{
+  "status": "R1 combined-limit defect resolved under same114 controls; R2 remains narrow technical HOLD for empty existing attribute mutators",
+  "NodeEnded": true,
+  "actualUnique": 136,
+  "passed": 134,
+  "failed": 2,
+  "cohorts": {
+    "original114": {
+      "executed": 114,
+      "passed": 114,
+      "failed": 0
+    },
+    "new22": {
+      "executed": 22,
+      "passed": 20,
+      "failed": 2
+    }
+  },
+  "R1Resolution": {
+    "rawR1FailuresPreserved": true,
+    "actualOriginalLoopNow": {
+      "id": "long-stack-must-preserve-or-reject-before-commit",
+      "passed": true,
+      "observed": {
+        "rejectedBeforeNextCommit": 63,
+        "error": "Error: 묶음 이력의 길이와 이름을 확인해 주세요."
+      }
+    },
+    "exact8128To8259Case": {
+      "id": "exact-r1-8128-to8259-reject-preserves-original",
+      "passed": true,
+      "observed": {
+        "before": 8128,
+        "proposed": 8259,
+        "originalSVG_SHA": "4503425e78d1e6340c31a48d4f07b97d01ef10ea5c37ef29c3907961e9d48722"
+      }
+    },
+    "controlsUnchanged": true,
+    "noNewBlindOrQuestionCounts": true
+  },
+  "newRejections": "Malformed JSON/object/literal null/65 depth/129-character name/non-string/unsafe name/over8192/whitespace existing metadata reject on both push/pop; successful rejection controls verify original cached SVG, mathematical coords and object numbers unchanged. Absent attribute still supports valid push/pop.",
+  "remainingFinding": {
+    "id": "E08-EMPTY-EXISTING",
+    "severity": "bounded input-contract/metadata ambiguity; not a demonstrated nonempty-history loss or math/DB corruption",
+    "failedControls": [
+      {
+        "id": "invalid-existing:empty-existing-attribute:push",
+        "passed": false,
+        "error": "AssertionError [ERR_ASSERTION]: Missing expected exception.\n    at C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\editor08-current-audit-20261021-r1\\own-execution-r2\\own-runner.cjs:56:10\n    at test (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\editor08-current-audit-20261021-r1\\own-execution-r2\\own-runner.cjs:18:76)\n    at C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\editor08-current-audit-20261021-r1\\own-execution-r2\\own-runner.cjs:54:69"
+      },
+      {
+        "id": "invalid-existing:empty-existing-attribute:pop",
+        "passed": false,
+        "error": "AssertionError [ERR_ASSERTION]: Missing expected exception.\n    at C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\editor08-current-audit-20261021-r1\\own-execution-r2\\own-runner.cjs:56:10\n    at test (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\editor08-current-audit-20261021-r1\\own-execution-r2\\own-runner.cjs:18:76)\n    at C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\editor08-current-audit-20261021-r1\\own-execution-r2\\own-runner.cjs:54:69"
+      }
+    ],
+    "input": "Existing data-group=CURRENT with data-group-stack=\"\" on a selected ordinary math line. Unchanged raw fixture base and exact runner reconstruct the input.",
+    "cause": "parseGroupStack if(!value)return[] treats empty present attribute the same as null/undefined absence. editableGroupStack therefore does not reject it.",
+    "expected": "Absent=null/undefined may be[]; explicitly present unparseable empty value should reject before mutation under the strict existing-metadata contract.",
+    "recommendation": "Use null/undefined-only absence test or explicitly document/justify a separate empty-attribute normalization policy; do not silently amend current audit expected rejection.",
+    "preservationLimitation": "The two failing assert.throws controls stop before post-rejection preservation assertions. Preservation is verified for the other18 invalid-mutator controls and exact overflow rejection; do not claim successful rejection/immutability for failed empty cases."
+  },
+  "sourceBinding": {
+    "filesIncludingPublicAssets": 123,
+    "beforeAfterUnchanged": true,
+    "freshPreparedDelta": {},
+    "actualRootImports33": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSvgEditing.ts": "e0066e0b4f3726e7ccf3877facfcf99040048bf423056ae3052ee3989540364a",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureGridMetadata.ts": "4e66e4d293b280e79ed0da6072f2aa0e3f2a00a62166e45d287fe0a256f020db",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureAssetGeometry.ts": "0a8905bf82001a2877856bb95b8202e6b6d3ab022a42ee98a573dd00a254f679",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\asset-editor-geometry.json": "918ddc47b9e204c63309f8257bc13e94bf9a21568dd70653f79c74f5fe480a9b",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\asset-editor-geometry-legacy-20261021.json": "ebaa87fb68464fba6dcace09e77fc8f9f42fd0e8b4943fafc2868bac7ae63ba8",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureEditGeometry.ts": "25a371c33215e3b76692b585bb3ea97d6cc08945bb18d657bb2e352ce605a4d5",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureAssetLibrary.ts": "4c381b1790b772c1bd7ba0fa5e7f19b782aba19be2e3ad449e25e7534bbaf5bc",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\assetCatalog.ts": "12b0cfba1551fb0e6cd5b2918a05256e007ed6591e575441b66cd4347f8be867",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureAngleMark.ts": "6c98717fd33cac2a55b4aff49cb9975b54646f734e39c05a61539164577494f4",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFlip.ts": "3754a7f4fff448779ca88cfa9647b86bc9c11770c57ca80029053460f6fdbfe8",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureClipboard.ts": "f1873f72f4abc8dbdf552adafd70547307a8af811d56ab83426fe1ae0f8563f1",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureEditElements.ts": "96205f545a70906d1002766e329bf2c236cd3c67da9f4e1552e8ed7991f07279",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\dev-ai\\figure-edit-contract.ts": "35e39851d716799440ab2c3bbea702348165862eb2a9647c676c38eb7291eee7",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureHandles.ts": "3254de796386eab3fed031e58385b6565ff31def2544a230aed8da20cd0e82cc",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureObjectNames.ts": "b0fb5d7b4128a45968c18009cb05b4efa007febecedd67a2a051b734a9a81ff4",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureLabelInput.tsx": "9ef127de15db20aac11dbf7485a4053a9a69a64654095df5598427d0b1a37e68",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\hwpEquation.ts": "53fa803e506bb7a4859719656a6bef2ae4fd50f201c3d40a07067434b8f1122c",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\hwpEquationVocab.json": "cc3e6775631215aea45f57e6313c50f01abc08c0aa93cffe1e7623af26a1daf1",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSymbols.ts": "c9440b6fbd7e6b1b88ac78755dc63d51bc5406f8144f1c2b81d9cf5b9ad250fc",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureObjectGroups.ts": "724880c56eedd210d2e49d53a6bfd3ed128bb08fe1b05f65382e1b7c89ca7171",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSegmentMarks.ts": "fce8e090c8c839b9420db4329b6828b17fb60314c8ecaff854a15a50a8a1c830",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSizeLock.ts": "4979cdfdde1f8dcde9edb37cae08a81ac1fb0daaa6e07de46ad0f5a3ef74899f",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFaceEditing.ts": "f8f33e4b341b84efd385e815f40790edaf1f9420d72247daa9b9e6c059e5d192",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFaceGeometry.ts": "c03d902de5a7d175ede53ec15e6ccf16540dbe4b98344aa3672d965a85f40a91",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFaceSources.ts": "0f6d101b83184150516c34fc4da72d38bbba2e6335a4261f288d01d42c04a1a0",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureShapeAdjust.ts": "68d5250abb3bb45d94f1299ec32043c7bd6f9ff0878f1977db895fc62c1e5480",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFrame.ts": "d60dca34cc0989fb38c71b1247db8ce411dd81dc11cb86e77aecdc9cfd80591c",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureTypeset.ts": "2566a6fec5deb8a553a805258ebc0505a17eb72582f1e1197df7b9a3fa9cf1d3",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureTextBackground.ts": "87d45b03c509f955d57d8658536c170bf57dae089918858eba076dde2831c8c9",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureMidLabel.ts": "e605e5ca728d7ffc7b2a1b388634da3f2f723ffe4ccd2efe09fb25590a152a0a",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureRotate.ts": "8671be1030b525d06debea6e89adba928b477e6d275f61b542580d0f920aef25",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureBake.ts": "d4558484409c8a22f451dd15a909a71ba075cfa3de5cf6b3c10b18a4e8745445",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureMirror.ts": "114a76ca3891d0e718b74d336330e826bdf645ec4d9929c52ac4cafd3a0b87c6"
+    },
+    "fixturesByteIdenticalR1": true,
+    "newFixtureSHA256": "9ec584db971f9e4c01b53d495792c7b24f6f7a172606e76a9c0b2bb52e943200",
+    "actualResultSHA256": "5a01efb916cca3e4b788d5363b976a4ac77f1d4eef9d86aae7a7f4043841844c"
+  },
+  "runtime": {
+    "actualNodeCohortProcesses": 1,
+    "heapLimitBytes": 226492416,
+    "availablePreflightBytes": 5552664576,
+    "realNetworkCalls": 0,
+    "fakeFetchCalls": 41,
+    "browser": 0,
+    "model": 0,
+    "API": 0,
+    "DB": 0,
+    "SourceDOrRootWrites": 0
+  },
+  "limits": [
+    "Actual direct Root functions/jsdom only; no full React error-display/undo-step/focus/fake-selection UI execution",
+    "Current Root UI improvements and parent580 tests/types/lint are parent evidence, not these136 controls",
+    "Projected perspective path is display only, no actual spatial right-angle proof",
+    "No source/grade/rights/native/operational approval",
+    "No production self-fix or expectation relaxation; raw R1 and R2 failures retained"
+  ],
+  "artifactSHA256": {
+    "own-after.json": "8aadb38c418c6e3f68d63870442d4f2da918dbb0b7f69e6a5472d7090512820f",
+    "own-before.json": "8aadb38c418c6e3f68d63870442d4f2da918dbb0b7f69e6a5472d7090512820f",
+    "own-execution-delta.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "own-execution-probe.txt": "314038a8dda9cbaebf8d300d305a66e05c54d67816ee6e22d708c02aa32499f8",
+    "own-fixtures.json": "1c75622bc62e4f3fc3b7c56a5628e768e17ccaf5f8cb6b16e10c4000d24cdcab",
+    "own-go-freeze.json": "c324a529b2d153624166583584881678e7893e3b2c24b6ede7cfce3b33adb354",
+    "own-lineage.json": "4fa39404a3a058f1cf0bba1f5e83ffa8256287e3f015286fc53d9c842d4047ea",
+    "own-new-invalid-fixtures.json": "9ec584db971f9e4c01b53d495792c7b24f6f7a172606e76a9c0b2bb52e943200",
+    "own-preparation-report.json": "b7f642f0b6958215ab0bce6bba63fc009f67998b6c851021c150a43af5653ead",
+    "own-prepared-after.json": "8aadb38c418c6e3f68d63870442d4f2da918dbb0b7f69e6a5472d7090512820f",
+    "own-prepared-before.json": "8aadb38c418c6e3f68d63870442d4f2da918dbb0b7f69e6a5472d7090512820f",
+    "own-probe.txt": "5872b5e297d43fa221aa8524755bb352a0f67cc01c2332a3afed5e1effac5ed6",
+    "own-runner.cjs": "3605feebd7effca6b98c66c7f31cff10b549e6c0381e4ac6f6190eea26dfe705",
+    "own-runtime-results.json": "5a01efb916cca3e4b788d5363b976a4ac77f1d4eef9d86aae7a7f4043841844c"
+  }
+}
