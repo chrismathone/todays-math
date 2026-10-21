@@ -1,0 +1,7 @@
+{
+  "definition": "x=(s-q)/(p-1), beta=p*x+q=(p*s-q)/(p-1); w=150,L=hypot(92,40), u=(L*cos(beta),L*sin(beta)), v=(w,0). B=0,A=u,C=v,D=u+v. beta is degrees converted internally to radians.",
+  "convexExistence": "9<=beta<=72 implies sin(beta)>0,w>0,L>0. Area=w*L*sin(beta)>0, successive edge cross products share one strict sign; hence simple strictly convex quadrilateral. No extra mathematical point/edge needed.",
+  "angles": "AtB, BA=u andBC=v so cos(angleB)=dot(u,v)/(L*w)=cos(beta), and beta in(0,180) fixes angleB=beta. AtD the rays are-u,-v, same angle. AtA/C one ray reverses so angleA=angleC=180-beta. Sum360.",
+  "studentMethodUnchanged": "Printed B=D solves(p-1)x=s-q uniquely becausep2..4; all originalx4..15 remain. Renderer trig only constructs coordinates and is not added to student explanation.",
+  "fit": "Existing uniform scale/reflection/translation preserves angles before existing r2 rounding. Candidate keeps fitPts byte-identical. Actual 0.01decimal round witness enumerated, max angle error recorded; not exact rational/trig equality after rounding."
+}
