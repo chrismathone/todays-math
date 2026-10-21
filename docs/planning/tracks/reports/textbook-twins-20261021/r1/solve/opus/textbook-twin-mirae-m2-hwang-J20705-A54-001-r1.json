@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A54-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "46b9c209-ce46-429d-98b8-373e716ee463",
+ "startedAt": "2026-10-21T17:10:18+0900",
+ "elapsedSec": 6.3,
+ "studentSha256": {
+  "fig-1.png": "c9be0465b0720695d504d9f6c99714cd967dd6617e334a413703dff867ba12a2",
+  "student.json": "a75745648e6daec4cf9e1cffaee6dacd85e0a77a987564327e0b88776002b7d1"
+ },
+ "promptSha256": "54112a916894882302b3a165857d6d57f729b1c6b67d1595b902514fe8b71e80",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"8 cm\", \"work\": \"E는 AB의 중점이고 EF∥AD이므로 △BAD에서 삼각형 중점연결 정리에 의해 EF = 1/2·AD 이다. 따라서 AD = 24 cm. G는 무게중심이므로 AG:GD = 2:1 이고, GD = 1/3·AD = 8 cm.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "8 cm",
+  "work": "E는 AB의 중점이고 EF∥AD이므로 △BAD에서 삼각형 중점연결 정리에 의해 EF = 1/2·AD 이다. 따라서 AD = 24 cm. G는 무게중심이므로 AG:GD = 2:1 이고, GD = 1/3·AD = 8 cm.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b709b149f3f02b3cbcf2327b10900aa9256525f55957cc397291c7525b023243"
+}

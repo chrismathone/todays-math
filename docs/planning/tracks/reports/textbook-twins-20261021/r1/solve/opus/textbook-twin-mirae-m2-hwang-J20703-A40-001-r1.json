@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A40-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "98d5d069-8989-44eb-9c7e-9b9500152ba3",
+ "startedAt": "2026-10-21T17:10:42+0900",
+ "elapsedSec": 7.4,
+ "studentSha256": {
+  "fig-1.png": "d6e8c7ab66f06b8a505a17bf44ba5f151e29aea01d4106fc1a32ac80e0a19389",
+  "student.json": "fbed829e7646ae111fd886b6dd00b6e9126fa43aed04dd4605bd5ae8b922ee59"
+ },
+ "promptSha256": "be588b817cf0ea1a886cf1d0ce8d6ea8aa804ce9221532d75a4c5a67b6cc2adc",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"x = 10, y = 21\", \"work\": \"세 평행선 l, m, n은 그들과 만나는 모든 직선을 같은 비로 나눈다. 왼쪽 직선에서 (l~m) : (m~n) = 5 : 7이다. 가운데 직선: 5 : 7 = x : 14이므로 x = 10이다. 오른쪽 직선: l~n 전체가 36 cm이고 m~n 구간이 y cm이므로 y = 36 × 7/12 = 21이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "x = 10, y = 21",
+  "work": "세 평행선 l, m, n은 그들과 만나는 모든 직선을 같은 비로 나눈다. 왼쪽 직선에서 (l~m) : (m~n) = 5 : 7이다. 가운데 직선: 5 : 7 = x : 14이므로 x = 10이다. 오른쪽 직선: l~n 전체가 36 cm이고 m~n 구간이 y cm이므로 y = 36 × 7/12 = 21이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f4da52f2259ea01cfcff4407fe54dfd82a242c517c48f3428b9e75530573d134"
+}

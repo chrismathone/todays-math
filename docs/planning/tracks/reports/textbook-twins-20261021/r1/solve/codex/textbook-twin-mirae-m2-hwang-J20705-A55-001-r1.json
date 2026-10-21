@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A55-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc1-4ea0-75b0-bb19-0fa122a51d84",
+ "startedAt": "2026-10-21T18:18:32+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "fig-1.png": "500f547730302489b2ca7e026a42c03a61f3dd68591cf49437ec8f4e97f20635",
+  "student.json": "1029870aa14cd0a7543ebaf5b4d24acc7cbb3fa34bcaa8f7f7bba8e9bff7e38f"
+ },
+ "promptSha256": "79953d2b55258938f9e1d23a70229522d2f8c135c3ae1c2b07aeb473ba6c6f88",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"30 cm\",\"work\":\"D, E는 각각 BP, PC의 중점이므로 DE=BC/2이다. 무게중심의 성질에 의해 AG/AD=AG′/AE=2/3이므로, 삼각형의 닮음을 이용하면 GG′=(2/3)DE=BC/3이다. 따라서 BC=3×10=30 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "30 cm",
+  "work": "D, E는 각각 BP, PC의 중점이므로 DE=BC/2이다. 무게중심의 성질에 의해 AG/AD=AG′/AE=2/3이므로, 삼각형의 닮음을 이용하면 GG′=(2/3)DE=BC/3이다. 따라서 BC=3×10=30 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d48b56309b223b150596ee289beda13ffe4e1a40d4c052e9202ffca179e09912"
+}

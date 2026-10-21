@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A38-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc2-3a17-7b81-8593-ff0a2d628f98",
+ "startedAt": "2026-10-21T18:19:32+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "fig-1.png": "ff2a15b383f2e9d9d9fd6454cd8de2c0fe6fd5c412417d3e7ac5d957d004d133",
+  "student.json": "1e75e86578c4f0d3c13ece97b5a4911ed3e88b12e07204e021f50f0905df912a"
+ },
+ "promptSha256": "6cf24da2e6b668a406dbfbd5cddc8642f36a78841d3f1e48ac52219fb85c41d9",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"평행선 사이의 대응하는 선분의 길이는 비례하므로 $10:5:x=y:3:9$이다.\\n$5:3=x:9$에서 $x=15$, $10:5=y:3$에서 $y=6$이다.\\n따라서 $x+y=15+6=21$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "평행선 사이의 대응하는 선분의 길이는 비례하므로 $10:5:x=y:3:9$이다.\n$5:3=x:9$에서 $x=15$, $10:5=y:3$에서 $y=6$이다.\n따라서 $x+y=15+6=21$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cd14443faceddfbd0bbcba1490fe0dbd8a0449edc8fa214d885cceeb043cfd2f"
+}

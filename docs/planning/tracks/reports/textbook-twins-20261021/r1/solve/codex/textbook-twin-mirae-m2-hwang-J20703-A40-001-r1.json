@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A40-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc2-63fb-78e0-81ac-16039221623a",
+ "startedAt": "2026-10-21T18:19:43+0900",
+ "elapsedSec": 16.5,
+ "studentSha256": {
+  "fig-1.png": "d6e8c7ab66f06b8a505a17bf44ba5f151e29aea01d4106fc1a32ac80e0a19389",
+  "student.json": "fbed829e7646ae111fd886b6dd00b6e9126fa43aed04dd4605bd5ae8b922ee59"
+ },
+ "promptSha256": "d2afae34e01e097515bea1df69472b9c924f33676f141fc8e53ae9f65d10692e",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$x=10$, $y=21$\",\"work\":\"평행선 사이에 생기는 선분의 길이의 비는 같으므로 $5:7=x:14$에서 $x=10$이다.\\n또한 $7:(5+7)=y:36$이므로 $y=36\\\\times\\\\frac{7}{12}=21$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$x=10$, $y=21$",
+  "work": "평행선 사이에 생기는 선분의 길이의 비는 같으므로 $5:7=x:14$에서 $x=10$이다.\n또한 $7:(5+7)=y:36$이므로 $y=36\\times\\frac{7}{12}=21$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "34e26e25c1a16c50e51ed5265ecee4a55b419b9a3705470a6acc0f53b1dc6499"
+}
