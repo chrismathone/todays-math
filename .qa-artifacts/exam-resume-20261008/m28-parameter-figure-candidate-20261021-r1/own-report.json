@@ -1,0 +1,49 @@
+{
+  "status": "STATIC PARAMETRIC GEOMETRY CANDIDATE ONLY; native small-angle layout PENDING",
+  "typeKey": "2-2|평행사변형|15A",
+  "baselineSHA256": "baa7eb6130d5a6aeb540a3b803ec219d4ea436aade22346cab49812b5baa168e",
+  "candidateSHA256": "3ed5332cf5ff2e535c3aa3f641a3965b2db704d981a917fabd6dc26f0579b6b6",
+  "patchSHA256": "369717a8242c539578dd0ad3508f1a0c296fcbdd66f0715b1387aac0a1bc6e31",
+  "applyCheck": 0,
+  "sourceBeforeAfterUnchanged": true,
+  "bindingsBeforeAfter": {
+    "before": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Quad.ts": "baa7eb6130d5a6aeb540a3b803ec219d4ea436aade22346cab49812b5baa168e",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\m28-m31-source-prechange-20261021-r1\\own-report.json": "692c3be2e68ec8696445421867d5541cdcb04cee09fb5e086f6c9db3655b6f15"
+    },
+    "after": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Quad.ts": "baa7eb6130d5a6aeb540a3b803ec219d4ea436aade22346cab49812b5baa168e",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\m28-m31-source-prechange-20261021-r1\\own-report.json": "692c3be2e68ec8696445421867d5541cdcb04cee09fb5e086f6c9db3655b6f15"
+    }
+  },
+  "originalMismatch": {
+    "oldFixedBD": 66.5014343240479,
+    "oldMinMismatchDeg": 0.49856567595209356,
+    "oldMaxMismatchDeg": 57.501434324047906,
+    "minBD": 9.0,
+    "maxBD": 72.0
+  },
+  "newWitness": {
+    "literalDomainTuples": 432,
+    "distinctBDValues": 64,
+    "allPassed": true,
+    "actualAPISeedRuns": 0,
+    "maxRoundedAngleErrorDeg": 0.0039042520139105363,
+    "smallestFittedVerticalSpan": 11.590000000000003
+  },
+  "preservation": [
+    "Exact original source reconstructed by undoing only figCondAngles optional-angle extension and15Afigure call; no other source bytes changed in normalized text.",
+    "Original content/answer/solution/facts fields, metadata grade/unit/difficulty and three RNG draws/ranges retained exactly. No new RNG use.",
+    "Original8type also uses shared helper; undefined fourth argument keeps its original quadPts(w,h,slant) output path. Initial single-call assumption failed before candidate write, recorded and narrowed to15Aonly.",
+    "Original return object including boundary4segments, A/C arcs1 each, vertexlabelsABCD, no parallel marks/extra lines/numeric answer labels kept exact. A/C same-arc marks encode legitimate givenA=C and are not removed."
+  ],
+  "change": "Pass beta derived directly from printed coefficients(p*s-q)/(p-1), retain side length hypot(92,40), set h=Lsin(beta),slant=Lcos(beta). Preserve optional default path for other helper consumer. No evaluatedbeta label or answer revealed.",
+  "proof": "own-proof.json analytic coordinate proof plus own-calculations.json432numeric witnesses. Geometry proof is mathematical construction, not pixel measurements or native rendering.",
+  "pending": [
+    "No TypeScript execution/transpile/API/renderer/browser run in this scope. Actual native labels/arcs at small angles, clipping/overlap/canvas and print readability NOT approved.",
+    "At beta9 fitted height about11.59: do not distort geometry, add lines or remove given labels/marks to hide potential native readability problem. Separate rendering review required; unresolved items remain held.",
+    "No student method/wholegrade/rights/source provenance/native/public release or manual/blind count approval.",
+    "Future adapter family version revision required for changed figure representation; not edited here. Existing issued/bank rows/IDs/oldseed outputs/evidence must remain preserved, no autoDBrefresh."
+  ],
+  "scope": "Only new own QA candidate/patch/evidence; Root code/docs/figure_scene and SourceD/N/otherdirty/Pytha evidence unchanged. Pythonstdlib only; Node/API/DB/network/newworker/worktree0."
+}

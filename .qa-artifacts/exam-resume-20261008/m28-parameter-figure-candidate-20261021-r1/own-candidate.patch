@@ -1,0 +1,31 @@
+--- a/src/lib/middle/m2Quad.ts
++++ b/src/lib/middle/m2Quad.ts
+@@ -254,8 +254,16 @@
+ }
+ 
+ /** 조건⑵(08) — 미확정 사각형, ∠A·∠C 에 이중 호(같은 각임을 표시, 숫자 없음). */
+-function figCondAngles(w: number, h: number, slant: number): Fig {
+-  const pts = quadPts(w, h, slant);
++function figCondAngles(w: number, h: number, slant: number, angleBDeg?: number): Fig {
++  // Engine-only coordinates; no evaluated angle/answer is added to student labels.
++  if (angleBDeg !== undefined && (!Number.isFinite(angleBDeg) || angleBDeg <= 0 || angleBDeg >= 180)) {
++    throw new Error("조건 각은 0도와 180도 사이여야 합니다");
++  }
++  const theta = angleBDeg === undefined ? undefined : angleBDeg * Math.PI / 180;
++  const leg = Math.hypot(h, slant);
++  const pts = theta === undefined
++    ? quadPts(w, h, slant)
++    : quadPts(w, leg * Math.sin(theta), leg * Math.cos(theta));
+   return {
+     version: 2,
+     points: fitPts(pts),
+@@ -745,7 +753,8 @@
+       answer: `$${answer}$`,
+       solution: `두 쌍의 대각의 크기가 각각 같으므로 이 사각형은 평행사변형이다. $${p}x+${q}=x+${s}$에서 $x=${answer}$이다.`,
+       facts: { p, q, s, ans: answer },
+-      figureSpec: figCondAngles(150, 92, 40),
++      // Solve the printed B=D relation for its angle, without changing the RNG or task.
++      figureSpec: figCondAngles(150, 92, 40, (p * s - q) / (p - 1)),
+     };
+   }),
+   def(
