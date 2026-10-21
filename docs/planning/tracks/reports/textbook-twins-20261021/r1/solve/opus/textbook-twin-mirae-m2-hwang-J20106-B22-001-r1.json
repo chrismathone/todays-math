@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B22-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "031d37a3-ba86-42db-9178-0ca8bac9a88b",
+ "startedAt": "2026-10-21T16:18:43+0900",
+ "elapsedSec": 7.2,
+ "studentSha256": {
+  "fig-1.png": "7ab445b551d8532d7d9ea10aaf2e20fdfeb94d147653dc70d48b2ec0a85e2a8c",
+  "student.json": "b28ca66f60d98b9e062468424a1199ca2f1673eb62e5ec88ebe4418460e184c9"
+ },
+ "promptSha256": "de5c41eac1ead833b1f8ef583dc417ff4ee05f04ecd1a1b4ea548eb93c602c98",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$5a^{2}b^{2}$\", \"work\": \"그림에서 AB = 6ab, BC = 2a^3이고 ∠B = 90°이다. 밑넓이 = (1/2)×6ab×2a^3 = 6a^4b. 높이 = 부피 ÷ 밑넓이 = 30a^6b^3 ÷ 6a^4b = 5a^2b^2.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$5a^{2}b^{2}$",
+  "work": "그림에서 AB = 6ab, BC = 2a^3이고 ∠B = 90°이다. 밑넓이 = (1/2)×6ab×2a^3 = 6a^4b. 높이 = 부피 ÷ 밑넓이 = 30a^6b^3 ÷ 6a^4b = 5a^2b^2.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d02060b47219f6f9fd878eec5bea762158b6cd4ef149539a83636e0e5e52d256"
+}

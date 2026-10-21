@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A59-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5d-04ca-7b93-bf43-4d3b91a12cea",
+ "startedAt": "2026-10-21T16:28:59+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "student.json": "650ddadca511c3349a02908bbfd6ea7ef20e216e337d08e92974629941309513"
+ },
+ "promptSha256": "2e95852800b3e706be0d69786e362ccb9ad39512e816aafd8ff99c63bb7cb6ff",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"소수점 아래에서 95가 반복되므로 순환마디는 95이다. 따라서 $1.\\\\overline{95}$로 나타낸다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "소수점 아래에서 95가 반복되므로 순환마디는 95이다. 따라서 $1.\\overline{95}$로 나타낸다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a0dc422d458b41691802a6affe8c6c7f7f2b2b0f179995b03b62fe16f6f2aaf9"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A65-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5e-2dba-7823-822e-135c4d0efe7c",
+ "startedAt": "2026-10-21T16:30:15+0900",
+ "elapsedSec": 12.6,
+ "studentSha256": {
+  "student.json": "ed34c0d65192be463933d0f085239fcda125641fe068df91e389bf4a4e81efdd"
+ },
+ "promptSha256": "484641c9cc937121a0974531224a1abea437f4aa9985f69032980e940e6ead8c",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"90\",\"work\":\"73÷44=1.65909090…이다. 소수점 아래 셋째 자리부터 90이 반복되므로 순환마디는 90이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "90",
+  "work": "73÷44=1.65909090…이다. 소수점 아래 셋째 자리부터 90이 반복되므로 순환마디는 90이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7e3b835b08993b3f338cea646a9c38b02babfeafebb3513ab0681d01705b81ba"
+}

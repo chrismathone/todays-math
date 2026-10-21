@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B18-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5c-2fb0-7b62-9cb5-dfb67e2d079b",
+ "startedAt": "2026-10-21T16:28:04+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "fig-1.png": "0b735abf9dd26a9588f6d468a5ed8ef1a04023399783c5859e20b5705ebd4f16",
+  "student.json": "d589bd5c02be8e77f2bf214661de1dc6c587d9084043dd596a1b35e37ba1d6af"
+ },
+ "promptSha256": "dfebf55309bef9c9c8ec8d0a9cd9b50ac983da4017d9279d94c3a83f89966bdf",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$7a^{2}b$\",\n  \"work\": \"밑넓이는 $6ab^{2}\\\\times 2a^{3}b=12a^{4}b^{3}$이다.\\n사각뿔의 부피는 밑넓이×높이÷3이므로, 높이는 $\\\\frac{3\\\\times 28a^{6}b^{4}}{12a^{4}b^{3}}=7a^{2}b$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$7a^{2}b$",
+  "work": "밑넓이는 $6ab^{2}\\times 2a^{3}b=12a^{4}b^{3}$이다.\n사각뿔의 부피는 밑넓이×높이÷3이므로, 높이는 $\\frac{3\\times 28a^{6}b^{4}}{12a^{4}b^{3}}=7a^{2}b$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8ccc61f3edc7547d60f6ab09f9348908a453900fd3b12232133f1e989c65bc1e"
+}

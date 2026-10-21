@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A99-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5b-baef-75f1-9aa3-56b1c835443b",
+ "startedAt": "2026-10-21T16:27:35+0900",
+ "elapsedSec": 14.3,
+ "studentSha256": {
+  "student.json": "624516801956b60079bc291391f70255ddb4f3b0633b29fd32297f3b34fb5598"
+ },
+ "promptSha256": "112fd06fe1b9baff0ae845b8a2d55f4180bd3029d51fbcce9fea0a4e6e8e3d25",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"⑴ $\\\\frac{3p^{2}}{q^{2}}$ ⑵ $-4xy$ ⑶ $-\\\\frac{a^{5}b}{4}$ ⑷ $\\\\frac{81}{a^{2}}$\",\n  \"work\": \"계수끼리 나누고, 같은 문자의 지수는 뺀다.\\n⑴ $(15\\\\div5)p^{3-1}q^{1-3}=\\\\frac{3p^{2}}{q^{2}}$\\n⑵ $(-32\\\\div8)x^{4-3}y^{2-1}=-4xy$\\n⑶ $\\\\frac{-a^{9}b^{3}}{4a^{4}b^{2}}=-\\\\frac{a^{5}b}{4}$\\n⑷ $\\\\frac{9a^{2}b^{2}}{\\\\frac19a^{4}b^{2}}=\\\\frac{81}{a^{2}}$\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "⑴ $\\frac{3p^{2}}{q^{2}}$ ⑵ $-4xy$ ⑶ $-\\frac{a^{5}b}{4}$ ⑷ $\\frac{81}{a^{2}}$",
+  "work": "계수끼리 나누고, 같은 문자의 지수는 뺀다.\n⑴ $(15\\div5)p^{3-1}q^{1-3}=\\frac{3p^{2}}{q^{2}}$\n⑵ $(-32\\div8)x^{4-3}y^{2-1}=-4xy$\n⑶ $\\frac{-a^{9}b^{3}}{4a^{4}b^{2}}=-\\frac{a^{5}b}{4}$\n⑷ $\\frac{9a^{2}b^{2}}{\\frac19a^{4}b^{2}}=\\frac{81}{a^{2}}$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b2435ceb7015805aa418dec61fb0d50a85536fde08421ccb782add915fceb8b1"
+}

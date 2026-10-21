@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A59-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "a1caad5c-bef9-4f0d-8366-b784c833a4bc",
+ "startedAt": "2026-10-21T16:18:51+0900",
+ "elapsedSec": 3.5,
+ "studentSha256": {
+  "student.json": "650ddadca511c3349a02908bbfd6ea7ef20e216e337d08e92974629941309513"
+ },
+ "promptSha256": "2e95852800b3e706be0d69786e362ccb9ad39512e816aafd8ff99c63bb7cb6ff",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑤\", \"work\": \"1.959595…에서 소수점 아래 9, 5가 반복되므로 순환마디는 95이고 정수 부분은 1이다. 따라서 $1.\\\\overline{95}$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "1.959595…에서 소수점 아래 9, 5가 반복되므로 순환마디는 95이고 정수 부분은 1이다. 따라서 $1.\\overline{95}$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9ea121c4c0888a389711efadd02dcc44c6ba84f51fc80763a943f510a45e4524"
+}

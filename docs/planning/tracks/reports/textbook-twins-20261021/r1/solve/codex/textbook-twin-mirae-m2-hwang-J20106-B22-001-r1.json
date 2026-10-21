@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B22-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d5c-d849-7b73-b06a-c1deac4e1e01",
+ "startedAt": "2026-10-21T16:28:48+0900",
+ "elapsedSec": 11.3,
+ "studentSha256": {
+  "fig-1.png": "7ab445b551d8532d7d9ea10aaf2e20fdfeb94d147653dc70d48b2ec0a85e2a8c",
+  "student.json": "b28ca66f60d98b9e062468424a1199ca2f1673eb62e5ec88ebe4418460e184c9"
+ },
+ "promptSha256": "c11a6941a292a1f38517425cf7c13d37e45fbb0000ead78067338d892fe5972a",
+ "freezeCommit": "7f18a6ad13c3d1be397057365908d7682a9c86a8",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$5a^{2}b^{2}$\",\"work\":\"밑넓이는 $\\\\frac12\\\\times 6ab\\\\times 2a^3=6a^4b$이다.\\n삼각기둥의 높이는 부피를 밑넓이로 나눈 값이므로 $30a^6b^3\\\\div 6a^4b=5a^2b^2$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$5a^{2}b^{2}$",
+  "work": "밑넓이는 $\\frac12\\times 6ab\\times 2a^3=6a^4b$이다.\n삼각기둥의 높이는 부피를 밑넓이로 나눈 값이므로 $30a^6b^3\\div 6a^4b=5a^2b^2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f7b47115712384f28e9b2dfa30723202170e572c109671ac484326a166a423c7"
+}

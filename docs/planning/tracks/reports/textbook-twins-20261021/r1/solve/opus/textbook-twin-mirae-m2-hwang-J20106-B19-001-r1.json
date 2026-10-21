@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B19-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "da6ea168-26be-452b-915c-c961b754aba5",
+ "startedAt": "2026-10-21T16:18:27+0900",
+ "elapsedSec": 7.9,
+ "studentSha256": {
+  "fig-1.png": "12a141af029a357cc54493e7669feb559aa9982a16c607f40a81c4dd8176e054",
+  "student.json": "ecddb4b04530412fda4614de0024c9d477164bcf1ae48ddc1653caca67976c6a"
+ },
+ "promptSha256": "4f7bb0be65a3227b37be71090db54c25ab71ccf2a41c6fad910f3ed090b98567",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"가로 = 30a^8 ÷ (3a^2 × 2a^3) = 30a^8 ÷ 6a^5 = 5a^3. 겉넓이 = 2(5a^3·3a^2 + 3a^2·2a^3 + 5a^3·2a^3) = 2(15a^5 + 6a^5 + 10a^6) = 20a^6 + 42a^5\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "가로 = 30a^8 ÷ (3a^2 × 2a^3) = 30a^8 ÷ 6a^5 = 5a^3. 겉넓이 = 2(5a^3·3a^2 + 3a^2·2a^3 + 5a^3·2a^3) = 2(15a^5 + 6a^5 + 10a^6) = 20a^6 + 42a^5",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "641570aa24983e6ad69124e67ecfe9ae7898e284cc03231c16a274758658a758"
+}
