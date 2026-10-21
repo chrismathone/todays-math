@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 34,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A59-001-r2",
+ "authorId": "claude-fable-5-1:a8150a39-0948-4fe2-a25f-925ea2e4e55f",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-A59-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 보기 가운데 계산 결과가 바르지 않은 것을 고르면?",
+ "choices": [
+  "$(-6m^{4})^{2}\\div 12m^{6}=3m^{2}$",
+  "$24m^{3}n^{2}\\div 6mn^{2}\\times 3n=12m^{2}n$",
+  "$(-3m^{2}n^{2})^{2}\\times(-2mn^{3})^{3}=-72m^{7}n^{13}$",
+  "$(m^{2}n^{3})^{3}\\div\\left(\\frac{1}{6}mn\\right)^{2}=\\frac{1}{36}m^{4}n^{7}$",
+  "$(-7m^{4}n)\\times 6m^{2}n^{3}\\div 21m^{3}n^{2}=-2m^{3}n^{2}$"
+ ],
+ "answer": "④",
+ "solution": "① $(-6m^{4})^{2}\\div 12m^{6}=36m^{8}\\div 12m^{6}=3m^{2}$\n② $24m^{3}n^{2}\\div 6mn^{2}\\times 3n=4m^{2}\\times 3n=12m^{2}n$\n③ $(-3m^{2}n^{2})^{2}\\times(-2mn^{3})^{3}=9m^{4}n^{4}\\times(-8m^{3}n^{9})=-72m^{7}n^{13}$\n④ $(m^{2}n^{3})^{3}\\div\\left(\\frac{1}{6}mn\\right)^{2}=m^{6}n^{9}\\div\\frac{1}{36}m^{2}n^{2}=m^{6}n^{9}\\times\\frac{36}{m^{2}n^{2}}=36m^{4}n^{7}$ 이므로 $\\frac{1}{36}m^{4}n^{7}$ 은 틀렸다.\n⑤ $(-7m^{4}n)\\times 6m^{2}n^{3}\\div 21m^{3}n^{2}=-42m^{6}n^{4}\\div 21m^{3}n^{2}=-2m^{3}n^{2}$\n따라서 바르지 않은 것은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-3",
+  "problemCode": "J20106-A59-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "71ae3de3b2ac6b62294b1d16f863c1444947e9a0ae458fbdf86eff14938ac2d6",
+  "dbContentSha256": "2d2a23a627ab63f9ff2c3c72a8aa4e505af0d0083278f96f88a800acc1c6636b",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "거듭제곱·곱셈·나눗셈이 섞인 단항식 계산 다섯 개를 보기로 주고, 결과가 틀린 보기 하나를 고른다. 틀린 보기는 거듭제곱을 나누는 계산에서 부호와 값을 잘못 쓴 것.",
+  "after": "같은 다섯 갈래(거듭제곱 나눗셈 · 나눗셈 뒤 곱셈 · 두 거듭제곱의 곱 · 분수 계수 거듭제곱으로 나누기 · 곱셈 뒤 나눗셈)를 순서를 바꿔 배치하고, 문자를 m, n 으로, 계수와 지수를 모두 새로 두었다. 틀린 보기는 분수 계수의 거듭제곱으로 나눌 때 역수를 곱하지 않고 그대로 곱한 오류.",
+  "sharedConcept": "단항식의 곱셈과 나눗셈(지수법칙, 역수를 곱하는 나눗셈)",
+  "sharedProcedure": "거듭제곱을 지수법칙으로 풀기 → 나눗셈을 역수의 곱셈으로 고치기 → 계수끼리·문자끼리 계산 → 보기와 비교해 틀린 것 찾기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙(곱·거듭제곱의 거듭제곱·나눗셈)",
+   "단항식의 곱셈",
+   "단항식의 나눗셈(역수의 곱셈)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A59-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식의 곱셈과 나눗셈 혼합 계산에서 옳지 않은 보기 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.055,
+   "longestRun": 5,
+   "residualChars": 165,
+   "params": 10,
+   "numberRetention": 0.4,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 18,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A68-001-r2",
+ "authorId": "claude-fable-5-1:74919a62-7c23-4153-83f7-f5cba4559bf9",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20107-A68-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 식을 간단히 하였을 때, $x$의 계수와 $y$의 계수를 더한 값은?\n$9y-\\left[ 4x-6y-\\left\\{ 9x-4y-(x+6y)\\right\\} \\right]$",
+ "choices": [
+  "$-9$",
+  "$-1$",
+  "$9$",
+  "$11$",
+  "$13$"
+ ],
+ "answer": "③",
+ "solution": "소괄호부터 푼다. $9x-4y-(x+6y)=8x-10y$\n중괄호를 풀면 $4x-6y-(8x-10y)=-4x+4y$\n대괄호를 풀면 $9y-(-4x+4y)=4x+5y$\n따라서 $x$의 계수는 $4$, $y$의 계수는 $5$이므로 두 계수의 합은 $4+5=9$이고, 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-8",
+  "problemCode": "J20107-A68-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "b678e0ae18ec9baf110bf13635a5d0c2ddc53a623b599ee71704add9939eff26",
+  "dbContentSha256": "5ba9216b4048e9713ab4ea51e4ffe022b69e9ac21a7459a2868dd60826b04829",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "맨 앞에 $x$항 하나가 있고 그 뒤 대괄호 안에 중괄호·소괄호가 차례로 들어 있는 식을 간단히 한 뒤, $x$의 계수와 $y$의 계수의 합을 다섯 보기에서 고른다.",
+  "after": "맨 앞 항을 $y$항으로 두고, 대괄호 안에 중괄호·소괄호가 들어 있는 식을 간단히 한 뒤 $x$의 계수와 $y$의 계수의 합을 고른다. 소괄호 안이 차가 아닌 합의 꼴이고, 계수는 모두 새 수로 바꾸었다.",
+  "sharedConcept": "괄호가 여러 겹인 다항식의 덧셈과 뺄셈, 계수의 뜻",
+  "sharedProcedure": "소괄호 풀기 → 중괄호 풀기 → 대괄호 풀기 → 동류항 정리 → 두 계수의 합 계산 → 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "동류항의 계산",
+   "괄호 풀기와 분배법칙",
+   "다항식의 덧셈과 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A68-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 겹의 괄호가 있는 다항식을 간단히 하고 계수의 합 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.179,
+   "longestRun": 11,
+   "residualChars": 59,
+   "params": 6,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

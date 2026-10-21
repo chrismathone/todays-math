@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 1,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A52-001-r2",
+ "authorId": "claude-fable-5-1:e29f37ea-8ee0-441d-97a3-d2f29e78aa35",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20108-A52-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음 식을 간단히 한 뒤, $a=-2$, $b=\\frac{1}{3}$ 일 때의 식의 값을 구하시오.\n$(6a^{2}+6ab)\\div 3a+(12ab-16b^{2})\\div (-4b)$",
+ "choices": [],
+ "answer": "$4$",
+ "solution": "$(6a^{2}+6ab)\\div 3a=2a+2b$이다.\n$(12ab-16b^{2})\\div(-4b)=-3a+4b$이다.\n두 식을 더하면 $-a+6b$이다.\n$a=-2$, $b=\\dfrac{1}{3}$을 대입하면 $-(-2)+6\\times\\dfrac{1}{3}=2+2=4$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-12",
+  "problemCode": "J20108-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "c727d551908831de766d8acba909b4c7cdbbefa4a34389533292da78d31930d7",
+  "dbContentSha256": "e8eed79f4f7cc1cb14e9f237e4e3ff9a9728b871b6bbedeeb0c11e5f8cd7a220",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "두 이항식을 각각 단항식으로 나눈 결과(각각 두 항)를 더한 뒤, 분수인 x와 정수 y를 대입해 값을 구한다. 음수 나눗셈이 앞쪽에 있고, 대입값은 식 앞에 주어진다.",
+  "after": "두 이항식을 각각 단항식으로 나눈 결과(각각 두 항)를 더한 뒤, 음의 정수 a와 분수 b를 대입해 값을 구한다. 음수 나눗셈이 뒤쪽에 있고, 간단히 한 뒤 대입하라는 순서를 발문에 드러내며 대입값을 식 바로 앞 문장 끝에 둔다.",
+  "sharedConcept": "다항식을 단항식으로 나누기와 식의 값",
+  "sharedProcedure": "각 (이항식)÷(단항식)을 항별로 나누기 → 두 결과를 더해 동류항 정리 → 문자에 수를 대입(음수는 괄호) → 값 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "단항식의 곱셈과 나눗셈",
+   "다항식의 덧셈과 뺄셈",
+   "식의 값(음수·분수 대입)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A52-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "다항식÷단항식 두 개를 더해 간단히 한 뒤 식의 값 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.042,
+   "longestRun": 4,
+   "residualChars": 51,
+   "params": 8,
+   "numberRetention": 0.375,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

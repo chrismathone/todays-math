@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 36,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A61-001-r2",
+ "authorId": "claude-fable-5-1:a3587d88-feec-4edf-bbad-6a725d2927e7",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-A61-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$\\dfrac{4}{5}a^{4}b^{2}\\times A=12a^{4}b^{5}$이 성립할 때, 단항식 $A$는?",
+ "choices": [
+  "$\\dfrac{48}{5}b^{3}$",
+  "$\\dfrac{48}{5}a^{8}b^{3}$",
+  "$15a^{8}b^{3}$",
+  "$15b^{3}$",
+  "$15a^{8}b^{7}$"
+ ],
+ "answer": "④",
+ "solution": "$A=12a^{4}b^{5}\\div\\dfrac{4}{5}a^{4}b^{2}$이다.\n나누는 식의 역수를 곱하면 $A=12a^{4}b^{5}\\times\\dfrac{5}{4a^{4}b^{2}}=15b^{3}$이다.\n따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-6",
+  "problemCode": "J20106-A61-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "23df0ad8b150f14c3394ac7f6af644740d54e4a5d5daa86e1adbda2c5a815a64",
+  "dbContentSha256": "4cd5d9e9ea4114b3b4e828d55539bbe0fd74b785a3e5af8245101079431fa221",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "미지의 식 A가 앞에 놓이고, 분수 계수 단항식을 곱한 결과가 주어진다. A를 결과 ÷ 곱한 식으로 구해 보기에서 고른다.",
+  "after": "분수 계수 단항식이 앞에, 미지의 식 A가 뒤에 놓인 곱셈 등식이다. 밑 문자를 a, b로 바꾸고 분수 계수와 모든 지수·계수를 새로 두었다. 역수 곱으로 A를 구해 보기에서 고른다.",
+  "sharedConcept": "단항식의 나눗셈(역수를 곱해 계수·지수를 정리)으로 곱셈 등식의 미지 식 구하기",
+  "sharedProcedure": "A = (결과) ÷ (곱한 식)으로 세우기 → 나누는 식의 역수를 곱하기 → 계수끼리 계산, 같은 문자의 지수끼리 빼기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "단항식의 곱셈",
+   "단항식의 나눗셈(역수 이용)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A61-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "곱셈 등식에서 미지의 단항식 구하기(분수 계수)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 60% 그대로"
+   ],
+   "overlap4": 0.021,
+   "longestRun": 4,
+   "residualChars": 68,
+   "params": 5,
+   "numberRetention": 0.6,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

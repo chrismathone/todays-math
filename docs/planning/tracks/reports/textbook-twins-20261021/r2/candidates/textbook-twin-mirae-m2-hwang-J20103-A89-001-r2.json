@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 74,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A89-001-r2",
+ "authorId": "claude-fable-5-1:9802b742-99c1-4e2e-8d53-d9109673b4b8",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20103-A89-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아는 순환소수 $2.\\dot{7}0\\dot{4}$ 를 $x$ 라 놓고, 소수 부분이 똑같아지는 두 식을 세워 변끼리 뺀 뒤 분수로 고치려고 한다. 이때 서아가 계산해야 하는 식으로 알맞은 것은?",
+ "choices": [
+  "$100x-x$",
+  "$1000x-100x$",
+  "$1000x-x$",
+  "$10000x-x$",
+  "$10000x-1000x$"
+ ],
+ "answer": "③",
+ "solution": "$x=2.704704\\cdots$ 이고 순환마디 $704$ 는 세 자리이므로 양변에 $1000$ 을 곱하면 $1000x=2704.704704\\cdots$ 이다. 두 식의 소수 부분이 같으므로 변끼리 빼면 $1000x-x=2702$, 즉 $999x=2702$ 에서 $x=\\dfrac{2702}{999}$ 이다. 따라서 계산해야 하는 식은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-c3b8fb93d4fa485d-0-1",
+  "problemCode": "J20103-A89-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "22709f257632f8c8697b4761ab2d1ab7d1133c0e0c3d4d82efc0b991b3be3084",
+  "dbContentSha256": "6b1bf4204b5ce1390bc062cc2c7b150aeb8cd3cfd09e9eccaaf7165ec7aa0956",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_1-3_순환소수의분수표현.hwp",
+    "sha256": "626f88a9ab44ae352a855e765fb4e7adfb2505b64c8ea4519587f15bacbf5eee",
+    "bytes": 41984
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "정수 부분이 0이고 순환마디가 두 자리인 순환소수를 x로 두고, 분수로 고칠 때 빼야 하는 두 식의 조합을 다섯 보기 가운데서 고른다. 보기는 10, 100, 1000의 거듭제곱 곱 조합이다.",
+  "after": "정수 부분이 있고 순환마디가 세 자리인 순환소수를 인물이 x로 두는 장면으로 바꾸고, 소수 부분이 같아지는 두 식을 빼는 조합을 고른다. 보기는 100, 1000, 10000의 거듭제곱 곱 조합으로 다시 짰고 10x 를 쓰지 않는다.",
+  "sharedConcept": "순환소수를 분수로 나타낼 때 10의 거듭제곱을 곱해 소수 부분이 같은 두 식을 만들어 빼는 원리",
+  "sharedProcedure": "순환마디의 자리 수 확인 → 그 자리 수만큼 10의 거듭제곱을 양변에 곱함 → 원래 식과 변끼리 빼 소수 부분을 없애는 식 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수와 순환마디",
+   "10의 거듭제곱 곱하기",
+   "등식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A89-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수를 분수로 고칠 때 필요한 식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.104,
+   "longestRun": 8,
+   "residualChars": 106,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

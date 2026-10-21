@@ -1,0 +1,79 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   110,
+   50
+  ],
+  "B": [
+   40,
+   200
+  ],
+  "C": [
+   300,
+   200
+  ],
+  "H": [
+   110,
+   200
+  ],
+  "hLen": [
+   110,
+   125
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "AH": {
+   "points": [
+    "A",
+    "H"
+   ],
+   "dashed": "5 3"
+  }
+ },
+ "angles": {
+  "rightH": {
+   "vertex": "H",
+   "points": [
+    "A",
+    "C"
+   ],
+   "right": true
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "N"
+  },
+  "B": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C": {
+   "text": "C",
+   "position": "SE"
+  },
+  "H": {
+   "text": "H",
+   "position": "S"
+  },
+  "hLen": {
+   "text": "5ab",
+   "dx": 18,
+   "dy": 0
+  }
+ }
+}

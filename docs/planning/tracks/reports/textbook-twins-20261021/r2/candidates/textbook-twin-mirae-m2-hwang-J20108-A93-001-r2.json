@@ -1,0 +1,130 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 12,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A93-001-r2",
+ "authorId": "claude-fable-5-1:de5cbe1a-54b8-498f-bd41-4c0509a5e99f",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20108-A93-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다항식 $A$를 $4xy^{2}$으로 나누었더니 몫이 $6x^{2}y-5xy+7$이 되었다. 다항식 $A$를 구하시오.",
+ "choices": [],
+ "answer": "$24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$",
+ "solution": "$A\\div 4xy^{2}=6x^{2}y-5xy+7$이므로 $A=(6x^{2}y-5xy+7)\\times 4xy^{2}$이다.\n분배법칙으로 $6x^{2}y\\times 4xy^{2}=24x^{3}y^{3}$, $-5xy\\times 4xy^{2}=-20x^{2}y^{3}$, $7\\times 4xy^{2}=28xy^{2}$이다.\n따라서 $A=24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-feefbeef705dff12-0-3",
+  "problemCode": "J20108-A93-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "ccbed1ec0600960b3c261ad5427019392d2478b4f7386cc9c9cb181357af2b8f",
+  "dbContentSha256": "0f1aaee6456d4f36f532a6c10556e48e03488d5bf137edc3944080d30dc66195",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-5_단항식과다항식의곱셈과나눗셈.hwp",
+    "sha256": "d7cf92d3a8fd3af1567b4247fe1604fba687ae16e4287ed8413961d2e46855e7",
+    "bytes": 56320
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": false,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "빈칸을 두 문자 단항식으로 나눈 몫이 세 항짜리 다항식으로 주어진 등식에서, 빈칸에 들어갈 식을 구한다.",
+  "after": "이름 붙인 다항식 A를 두 문자 단항식으로 나눈 몫이 세 항짜리 다항식이라는 문장 조건에서 A를 구한다. 나누는 단항식과 몫의 계수·차수를 모두 새로 두었다.",
+  "sharedConcept": "다항식을 단항식으로 나눈 몫에 나누는 단항식을 곱하면 원래 식이 된다(나눗셈의 역연산)",
+  "sharedProcedure": "나눗셈 관계를 곱셈으로 고쳐 쓰기 → 몫의 각 항에 단항식을 분배법칙으로 곱하기 → 지수법칙으로 각 항 정리하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "단항식의 곱셈",
+   "분배법칙을 이용한 단항식과 다항식의 곱셈",
+   "다항식을 단항식으로 나누기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A93-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "어떤 식 구하기 — 단항식으로 나눈 몫이 주어졌을 때 원래 식(세 항 · 두 문자 단항식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "상투 말을 걷은 글이 38자",
+    "원본 수 3개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.0,
+   "longestRun": 2,
+   "residualChars": 38,
+   "params": 3,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

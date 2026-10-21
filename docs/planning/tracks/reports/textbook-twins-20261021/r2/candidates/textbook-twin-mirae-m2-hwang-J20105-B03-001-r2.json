@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 93,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B03-001-r2",
+ "authorId": "claude-fable-5-1:89a2b14d-ba6d-445a-b272-546002238dbd",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B03-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 계산 가운데 바르게 한 것은?",
+ "choices": [
+  "$5^{7}\\times 5^{5}\\times 5^{11}=5^{385}$",
+  "$\\left\\{(x^{5})^{5}\\right\\}^{5}=x^{15}$",
+  "$a^{11}\\times a^{7}\\div a^{5}=a^{13}$",
+  "$y^{11}\\div y^{7}\\times y^{7}=1$",
+  "$\\left(-\\frac{x^{5}}{y^{7}}\\right)^{5}=\\frac{x^{25}}{y^{35}}$"
+ ],
+ "answer": "③",
+ "solution": "① 같은 밑의 곱은 지수를 더하므로 $5^{7+5+11}=5^{23}$이다.\n② 거듭제곱의 거듭제곱은 지수를 곱하므로 $x^{5\\times 5\\times 5}=x^{125}$이다.\n③ $a^{11}\\times a^{7}\\div a^{5}=a^{18}\\div a^{5}=a^{13}$이다.\n④ $y^{11}\\div y^{7}\\times y^{7}=y^{4}\\times y^{7}=y^{11}$이다.\n⑤ 홀수 번 거듭제곱하면 부호가 남으므로 $-\\frac{x^{25}}{y^{35}}$이다.\n따라서 바르게 한 것은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-1",
+  "problemCode": "J20105-B03-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "1f7a704bcb76c517260f852783bd460ef43b02211794ba32b39f57212abf800d",
+  "dbContentSha256": "84f66f7c8bc7ee1501a03ea5fbf866ba00d427aff44d3c99302c9ff5b4561160",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "지수법칙 네 가지(곱·거듭제곱의 거듭제곱·나눗셈·몫의 거듭제곱)를 한 보기씩 섞어 두고, 틀린 보기 넷(지수를 곱한 것·지수를 더한 것·나눗셈과 곱셈을 한꺼번에 지워 1로 둔 것·부호를 빠뜨린 것) 사이에서 곱셈·나눗셈이 섞인 마지막 보기 하나만 맞게 두었다.",
+  "after": "같은 네 법칙을 한 보기씩 두되 밑을 5로, 지수를 5·7·11 계열로 모두 바꾸고, 맞는 보기를 셋째 자리로 옮겼다. 1로 잘못 두는 함정은 나눗셈 뒤 곱셈 꼴에서 서로 지워진다고 착각하는 보기로, 지수를 곱하는 함정은 세 지수의 곱(385)으로 바꿨다. 정답 보기는 곱셈 뒤 나눗셈 꼴이다.",
+  "sharedConcept": "지수법칙 ⑴~⑷(곱·거듭제곱의 거듭제곱·나눗셈·몫의 거듭제곱)과 음수의 홀수 거듭제곱 부호",
+  "sharedProcedure": "보기마다 해당 지수법칙을 적용해 간단히 → 주어진 우변과 비교 → 맞는 보기 하나 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻",
+   "지수법칙 ⑴ 곱셈",
+   "지수법칙 ⑵ 거듭제곱의 거듭제곱",
+   "지수법칙 ⑶ 나눗셈",
+   "지수법칙 ⑷ 곱과 몫의 거듭제곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B03-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "지수법칙 네 가지를 섞은 보기 가운데 옳은 계산 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.032,
+   "longestRun": 4,
+   "residualChars": 101,
+   "params": 9,
+   "numberRetention": 0.111,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

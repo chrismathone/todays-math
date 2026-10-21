@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 25,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A75-001-r2",
+ "authorId": "claude-fable-5-1:32dfd9a2-4145-492d-af7b-980d4b1a4837",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20107-A75-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "도하가 다항식 $7x+6y-9$ 에서 어떤 다항식을 뺐더니 결과가 $-3x+10y-8$ 이 되었다. 도하가 뺀 다항식을 구하시오.",
+ "choices": [],
+ "answer": "$10x-4y-1$",
+ "solution": "뺀 다항식을 $P$ 라 하면 $(7x+6y-9)-P=-3x+10y-8$ 이므로 $P=(7x+6y-9)-(-3x+10y-8)$ 이다. 괄호를 풀면 $P=7x+6y-9+3x-10y+8$ 이고, 동류항끼리 모으면 $P=10x-4y-1$ 이다. 따라서 뺀 다항식은 $10x-4y-1$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-7ae2c937609c5837-1-2",
+  "problemCode": "J20107-A75-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "9690a1c960c5535d526194ea04d9b543d733d13b44b84405b3b40a8ee56b8687",
+  "dbContentSha256": "0e9f47f7146c7d72361d33095b1fc1f57be44e7cb4e544e7de4748e7265fcf1e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_2-4_다항식의덧셈과뺄셈.hwp",
+    "sha256": "cd79e084e46cc2c953ec978fc37f3afae29821d578fcb17109f20282cd5a0419",
+    "bytes": 288256
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "context",
+   "numbers"
+  ],
+  "before": "빈칸이 든 등식 꼴로, 어떤 다항식에서 빈칸의 식을 뺀 결과가 주어지고 빈칸에 들어갈 식(빼는 식)을 구한다. 문자는 a, b.",
+  "after": "등식 대신 인물이 다항식에서 어떤 다항식을 뺀 상황을 말로 서술하고, 뺀 다항식을 구한다. 문자는 x, y 이며 계수는 모두 새 값.",
+  "sharedConcept": "다항식의 뺄셈 — 빼는 식 = (빼어지는 식) − (결과)",
+  "sharedProcedure": "뺀 식을 미지수로 두고 등식 세우기 → (처음 식) − (결과) 로 옮기기 → 괄호 풀어 부호 바꾸기 → 동류항 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "동류항의 계산",
+   "괄호 앞 음의 부호 풀기",
+   "일차식의 덧셈과 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A75-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "뺄셈 결과에서 뺀 다항식 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.0,
+   "longestRun": 1,
+   "residualChars": 47,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

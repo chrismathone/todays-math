@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 97,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B07-001-r2",
+ "authorId": "claude-fable-5-1:348b79dc-134c-4925-8557-f14a215102b9",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B07-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아가 공책에 적어 둔 등식 $49^{5}=343\\times 7^{a-4}$ 에서 $a$ 는 자연수이다. 이때 $a$ 의 값은?",
+ "choices": [
+  "$10$",
+  "$11$",
+  "$12$",
+  "$13$",
+  "$14$"
+ ],
+ "answer": "②",
+ "solution": "$49=7^{2}$ 이므로 $49^{5}=(7^{2})^{5}=7^{10}$ 이다.\n$343=7^{3}$ 이므로 $343\\times 7^{a-4}=7^{3+(a-4)}=7^{a-1}$ 이다.\n$7^{10}=7^{a-1}$ 에서 $a-1=10$ 이므로 $a=11$ 이다.\n따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-2",
+  "problemCode": "J20105-B07-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "2d062cb0e50195e88739895819bc8abee34e9184c4040ce7893fb6d34e8f5dcc",
+  "dbContentSha256": "a294422b2234ef3529f79a983f2925c83fcfb6c589410c801c4f8794cf74fe10",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "context"
+  ],
+  "before": "밑이 3인 수와 미지수 지수의 거듭제곱의 곱이 왼쪽, 밑을 바꿔야 하는 거듭제곱이 오른쪽에 놓인 등식에서 지수 더하기 식에 자연수 더하기가 들어 있고 미지수 값을 고른다",
+  "after": "밑이 7인 거듭제곱의 거듭제곱이 왼쪽에 먼저 주어지고, 밑을 바꿔야 하는 수와 미지수 지수(빼기 꼴)의 곱이 오른쪽에 놓인 등식에서 미지수 값을 고른다. 보기 범위와 정답 기호가 다르다",
+  "sharedConcept": "지수법칙 — 밑을 같게 고친 뒤 지수끼리 비교",
+  "sharedProcedure": "두 수를 같은 밑의 거듭제곱으로 바꾸기 → 거듭제곱의 거듭제곱은 지수 곱하기 → 같은 밑의 곱은 지수 더하기 → 지수끼리 같다고 놓고 일차방정식 풀기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻",
+   "지수법칙 ⑴ 지수의 합",
+   "지수법칙 ⑵ 지수의 곱",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B07-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "밑을 통일한 뒤 지수를 비교하여 미지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.073,
+   "longestRun": 6,
+   "residualChars": 44,
+   "params": 7,
+   "numberRetention": 0.286,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

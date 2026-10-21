@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 21,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A71-001-r2",
+ "authorId": "claude-fable-5-1:8e84fe82-9b75-4365-81a4-8fcc9c34b610",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20107-A71-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 식을 옳게 계산한 것은?\n$-9(x^{2}-6x+7)+6(2x^{2}-7x+8)$",
+ "choices": [
+  "$-21x^{2}+12x-111$",
+  "$3x^{2}-12x-15$",
+  "$-3x^{2}+12x+15$",
+  "$3x^{2}+12x-15$",
+  "$3x^{2}+12x-111$"
+ ],
+ "answer": "④",
+ "solution": "$-9(x^{2}-6x+7)=-9x^{2}+54x-63$이다.\n$6(2x^{2}-7x+8)=12x^{2}-42x+48$이다.\n두 식을 더하면 $-9x^{2}+54x-63+12x^{2}-42x+48$이고, 동류항끼리 모으면 $3x^{2}+12x-15$이다.\n따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-11",
+  "problemCode": "J20107-A71-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "7287dd2561c6c079792d74d7d9520f8e4a58cd127e7b2b1b209c00665ee306f0",
+  "dbContentSha256": "fa06bc46f016bedd589551357e80ce8e575bcb4c75ad4a6489e785fd791ae8f7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "양의 수를 곱한 이차식에서 양의 수를 곱한 이차식을 빼는 꼴. 두 괄호를 각각 전개한 뒤 동류항을 정리해 맞는 결과를 보기에서 고른다.",
+  "after": "음의 수를 곱한 이차식이 앞에 오고 양의 수를 곱한 이차식을 더하는 꼴. 계수는 모두 새로 두었고 전개 뒤 동류항 정리로 맞는 결과를 보기에서 고른다.",
+  "sharedConcept": "이차식의 덧셈과 뺄셈 — 분배법칙으로 괄호 풀기와 동류항 정리",
+  "sharedProcedure": "각 괄호에 수를 분배하여 전개 → 부호에 주의해 두 식을 합침 → 동류항끼리 계수 정리 → 보기와 대조"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 덧셈과 뺄셈"
+  },
+  "prerequisites": [
+   "분배법칙",
+   "동류항의 정리",
+   "일차식의 덧셈과 뺄셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20107-A71-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "이차식의 덧셈과 뺄셈 — 수를 곱한 두 이차식 정리",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "71261bd2-bd55-4202-afae-57f8b11c0fe7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.212,
+   "longestRun": 12,
+   "residualChars": 97,
+   "params": 7,
+   "numberRetention": 0.429,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

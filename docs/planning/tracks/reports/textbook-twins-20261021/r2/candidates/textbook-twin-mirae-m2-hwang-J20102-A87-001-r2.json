@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 61,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A87-001-r2",
+ "authorId": "claude-fable-5-1:b3a47a7c-3fbc-4b2b-8a26-db4417f8fdf6",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20102-A87-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "서아는 분수 $\\frac{5}{13}$을 소수로 나타낸 뒤, 소수점 아래의 숫자를 왼쪽부터 한 칸에 하나씩 차례로 적어 나가려고 한다. $62$번째 칸과 $93$번째 칸에 적히는 두 숫자의 합을 구하시오.",
+ "choices": [],
+ "answer": "$12$",
+ "solution": "$\\frac{5}{13}=0.384615384615\\cdots=0.\\dot{3}8461\\dot{5}$이므로 순환마디 $384615$는 숫자 $6$개로 이루어지고 소수점 아래 첫째 자리부터 되풀이된다. $62=6\\times 10+2$이므로 $62$번째 칸의 숫자는 순환마디의 둘째 숫자인 $8$이고, $93=6\\times 15+3$이므로 $93$번째 칸의 숫자는 순환마디의 셋째 숫자인 $4$이다. 따라서 두 숫자의 합은 $8+4=12$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-4",
+  "problemCode": "J20102-A87-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "6d6e23446dff7cc833f58341a7fc52a8c383f318f786cd8e602d41c0d719e7ba",
+  "dbContentSha256": "e5ada1867cd599168203ebf4f86e6bfcaba2f97badf904a52b48848d4fd9cfd5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "분모가 7인 가분수를 소수로 고쳐 순환마디(6자리)를 찾고, 두 자리 번호를 각각 6으로 나눈 나머지로 숫자를 정해 두 숫자를 문자 a, b로 두고 더한다.",
+  "after": "분모가 13인 진분수를 소수로 고쳐 순환마디(6자리)를 찾고, 숫자를 칸에 차례로 적는 장면에서 두 칸 번호를 6으로 나눈 나머지로 숫자를 정해 두 숫자를 더한다(문자 없이 칸 번호로 제시).",
+  "sharedConcept": "분수를 순환소수로 나타내고 순환마디의 길이로 소수점 아래 특정 자리의 숫자 구하기",
+  "sharedProcedure": "분수를 나눗셈으로 소수로 고쳐 순환마디와 그 길이 구하기 → 자리 번호를 순환마디 길이로 나눈 나머지 구하기 → 나머지에 해당하는 순환마디의 숫자 읽기(두 자리 모두) → 두 숫자를 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "분수를 소수로 나타내기",
+   "순환소수와 순환마디",
+   "나눗셈의 몫과 나머지"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A87-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "분수를 순환소수로 나타내고 소수점 아래 두 자리의 숫자를 구해 합하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.078,
+   "longestRun": 6,
+   "residualChars": 67,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

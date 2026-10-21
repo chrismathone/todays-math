@@ -1,0 +1,141 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 13,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A98-001-r2",
+ "authorId": "claude-fable-5-1:699c6eae-a1a4-4b4b-bd5b-155420f21387",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20108-A98-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n넓이가 $10a^{2}b^{2}+15ab$인 삼각형 ABC가 있다. 그림과 같이 꼭짓점 A에서 변 BC에 내린 수선 $\\overline{AH}$의 길이가 $5ab$일 때, 밑변 $\\overline{BC}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$4ab+6$",
+ "solution": "삼각형의 넓이는 $\\frac{1}{2}\\times(\\text{밑변})\\times(\\text{높이})$이므로 $\\frac{1}{2}\\times \\overline{BC}\\times 5ab=10a^{2}b^{2}+15ab$이다.\n따라서 $\\overline{BC}=(10a^{2}b^{2}+15ab)\\times \\frac{2}{5ab}=(20a^{2}b^{2}+30ab)\\div 5ab=4ab+6$이다.\n밑변 $\\overline{BC}$의 길이는 $4ab+6$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20108-A98-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20108-A98-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-5b5f73316fb560b0-0-9",
+  "problemCode": "J20108-A98-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "eaafa1ce4c062ebef9fa24b780fd77a5dc2d045284c50407a530f7e14d9cdddd",
+  "dbContentSha256": "0eed2ae800659aa63f99b5c7cda5d30afba509d04d6d64adc2fcce2c1e7a8609",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_2_식의계산.hwp",
+    "sha256": "f4d0fa320d25da2b4ac0e83ae231d63ce2d7493bf2dc546629f2ec1e4a21e46f",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [
+   "a2369e83e8bc124afa50fdf43c3eeb92913faeaee6a84f4e8f45f051d017fc73"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "마름모 그림에 한 대각선의 길이(단항식)가 적혀 있고 넓이(다항식)가 글로 주어진다. 두 대각선 곱의 절반이 넓이라는 식을 세워 나머지 대각선의 길이를 다항식÷단항식으로 구한다.",
+  "after": "삼각형 그림에 높이(단항식)가 점선과 함께 그 선분 가운데에 적혀 있고 넓이(다항식)가 글로 주어진다. 밑변×높이의 절반이 넓이라는 식을 세워 밑변의 길이를 다항식÷단항식으로 구한다. 길이 표시는 묻지 않는 선분(높이) 옆에만 두어 어느 선분의 길이인지 분명하다.",
+  "sharedConcept": "도형의 넓이 공식에서 모르는 길이를 (다항식)÷(단항식)으로 구하기",
+  "sharedProcedure": "넓이 공식으로 등식 세우기 → 모르는 길이에 대해 정리(½ 처리) → 다항식을 단항식으로 나누기 → 식 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "다항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "삼각형의 넓이",
+   "다항식을 단항식으로 나누기",
+   "등식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20108-A98-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "넓이가 다항식으로 주어진 삼각형에서 밑변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "839c2c6c-9ca5-48a5-9139-8973559f0624",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.018,
+   "longestRun": 4,
+   "residualChars": 60,
+   "params": 4,
+   "numberRetention": 0.25,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
