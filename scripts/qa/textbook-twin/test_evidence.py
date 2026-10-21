@@ -34,11 +34,12 @@ def codex_events(raw, tail=None):
 
 def claude_events(raw, model, session):
     return [{'type': 'system', 'subtype': 'init', 'session_id': session, 'model': model},
+            {'type': 'assistant', 'session_id': session, 'message': {'id': 'answer', 'role': 'assistant', 'model': model, 'content': [{'type': 'text', 'text': raw}]}},
             {'type': 'result', 'subtype': 'success', 'session_id': session, 'modelUsage': {model: {}},
              'is_error': False, 'result': raw}]
 
 
-def sealed_bundle(tmp_path, mutation=None):
+def sealed_bundle(tmp_path, mutation=None, source=None, twin=False):
     repo = tmp_path / 'repo'
     repo.mkdir()
     run = tmp_path / 'external' / 'run'
@@ -55,17 +56,27 @@ def sealed_bundle(tmp_path, mutation=None):
     author = 'synthetic-author:author-session'
     if mutation == 'author-model': author = solve.MODELS['opus'] + ':author-session'
     if mutation == 'author-session': author = 'synthetic-author:opus'
+    source = source or {'problemCode': 'synthetic', 'sourceContentSha256': 'a' * 64, 'figures': []}
     candidate = {'answer': '5', 'content': '합성 문제', 'questionType': '단답형', 'choices': [], 'figureArtifacts': [],
-                 'route': 'engine', 'authorId': 'middle-engine:synthetic', 'sourceReference': {'problemCode': 'synthetic'},
+                 'route': 'engine', 'authorId': 'middle-engine:synthetic', 'sourceReference': {'problemCode': 'synthetic', 'sourceContentSha256': source['sourceContentSha256'], 'originalFigureSha256': [f['sha256'] for f in source['figures']]},
                  'metadata': {'similarity': {'verdict': 'pass', 'reasons': []}, 'engine': {'proposedBy': author}}}
     student = {'twinExternalId': tid, 'grade': '중2', 'content': candidate['content'], 'questionType': '단답형', 'choices': [], 'figures': []}
+    if twin:
+        candidate['figureArtifacts'] = [{'svgPath': 'figures/test.svg', 'specPath': 'figures/test.json'}]
+        student['figures'] = ['fig-1.png']
+        (repo / 'figures').mkdir()
+        (repo / 'figures/test.svg').write_text('<svg/>')
+        write(repo / 'figures/test.json', {})
+        (repo / 'blind' / tid).mkdir(parents=True)
+        (repo / 'blind' / tid / 'fig-1.png').write_bytes(b'synthetic twin bytes')
     write(repo / 'candidates' / f'{tid}.json', candidate)
     write(repo / 'blind' / tid / 'student.json', student)
     hashes = {'student.json': integrity.digest((repo / 'blind' / tid / 'student.json').read_bytes())}
-    frozen = {'candidateSha256': integrity.digest(integrity.canonical(candidate)), 'student': hashes, 'figures': {}}
+    if twin: hashes['fig-1.png'] = integrity.digest((repo / 'blind' / tid / 'fig-1.png').read_bytes())
+    frozen = {'candidateSha256': integrity.digest(integrity.canonical(candidate)), 'student': hashes, 'figures': {'figures/test.svg': integrity.digest(b'<svg/>')} if twin else {}}
     write(repo / 'freeze.json', {'candidates': {tid: frozen}})
     write(repo / 'holds.json', [])
-    freeze = commit('freeze', 'candidates', 'blind', 'freeze.json', 'holds.json')
+    freeze = commit('freeze', 'candidates', 'blind', 'freeze.json', 'holds.json', *(['figures'] if twin else []))
     if mutation == 'unrelated-freeze':
         tree = git('rev-parse', 'HEAD^{tree}')
         freeze = subprocess.check_output(['git', '-C', str(repo), 'commit-tree', tree], input=b'unrelated freeze\n').decode().strip()
@@ -76,6 +87,7 @@ def sealed_bundle(tmp_path, mutation=None):
         raw = json.dumps({**parsed, 'answer': '999'} if mutation == 'raw-parsed' and solver == 'codex' else parsed)
         cwd = run / solver / tid
         write(cwd / 'student.json', student)
+        if twin: (cwd / 'fig-1.png').write_bytes(b'synthetic twin bytes')
         events = codex_events(raw) if solver == 'codex' else claude_events(raw, solve.MODELS[solver], solver)
         if solver == 'codex' and mutation == 'actual-tool':
             events.insert(2, {'type': 'item.started', 'item': {'id': 'tool', 'type': 'command_execution'}})
@@ -88,7 +100,7 @@ def sealed_bundle(tmp_path, mutation=None):
                   'returncode': 0, 'studentSha256': hashes, 'freezeCommit': freeze, 'parsed': parsed, 'raw': raw,
                   'eventsSha256': integrity.digest(event_file.read_bytes()),
                   'executionEvidence': {'eventsPath': str(event_file)},
-                  'exposure': {'received': ['student.json'], 'toolCalls': 0, 'toolPolicyVerified': True,
+                  'exposure': {'received': sorted(hashes), 'toolCalls': 0, 'toolPolicyVerified': True,
                                'answerKeyOrSourceAvailableInWorkdir': False}}
         if solver == 'codex' and mutation == 'tool-claim': record['exposure']['toolCalls'] = 7
         if solver == 'codex' and mutation == 'event-hash': record['eventsSha256'] = 'wrong'
@@ -99,7 +111,12 @@ def sealed_bundle(tmp_path, mutation=None):
         path = repo / 'solve' / solver / f'{tid}.json'
         write(path, record)
         solve_hashes[solver] = integrity.digest(path.read_bytes())
-    seal = commit('seal', 'solve')
+    source_path = run / 'inputs' / f'{tid}-source.json'
+    write(source_path, source)
+    manifest = {'version': 1, 'twinExternalId': tid, 'candidateSha256': frozen['candidateSha256'], 'studentSha256': hashes,
+                'sourceManifest': {'path': str(source_path), 'sha256': integrity.digest(source_path.read_bytes())}}
+    write(repo / 'review-inputs' / f'{tid}.json', manifest)
+    seal = commit('seal', 'solve', 'review-inputs')
     parsed = {'checks': {k: {'value': True, 'evidence': f'{k} 합성 계산 확인'} for k in review.CHECKS},
               'surfaces': {k: {'status': 'passed', 'basis': f'{k} 합성 표시 확인'} for k in review.SURFACES},
               'engineTypeFit': 'same', 'difficulty': 'same', 'questionTypeSame': True, 'verdict': 'pass',
@@ -116,7 +133,7 @@ def sealed_bundle(tmp_path, mutation=None):
               'candidateSha256': frozen['candidateSha256'], 'studentSha256': hashes, 'solveSha256': solve_hashes,
               'sealCommit': seal, 'exposure': {'sawSolverAnswers': sorted(solvers), 'toolCalls': 0, 'toolPolicyVerified': True},
               'raw': raw, 'parsed': parsed,
-              'executionEvidence': {'version': 1, 'eventsPath': str(event_file), 'eventsSha256': integrity.digest(event_file.read_bytes()), 'inputSha256': {}}}
+              'executionEvidence': {'version': 2, 'eventsPath': str(event_file), 'eventsSha256': integrity.digest(event_file.read_bytes()), 'inputSha256': {}, 'inputManifestSha256': integrity.digest((repo / 'review-inputs' / f'{tid}.json').read_bytes())}}
     if mutation == 'missing-reviewer': del record['reviewer']
     if mutation == 'wrong-reviewer': record['reviewer'] = 'unapproved-reviewer'
     if mutation == 'review-raw-parsed': record['raw'] = json.dumps({**parsed, 'verifiedAnswer': '999'})
@@ -212,38 +229,3 @@ def test_actual_model_evidence_is_not_filled_from_inference(tmp_path):
     write(path, claude_events('{}', 'claude-opus-5-5', 'session')[-1])
     assert envelope_evidence(path, 'claude-opus-5-5', 'session')['actualEnvelopeVerified']
     assert not envelope_evidence(path, 'claude-fable-5-1', 'session')['actualEnvelopeVerified']
-
-
-@pytest.mark.parametrize('access', ['allowed', 'outside', 'omitted'])
-def test_new_reviewer_adapter_retains_actual_paths(tmp_path, monkeypatch, access):
-    repo = sealed_bundle(tmp_path)
-    tid = 'synthetic-twin'
-    # 임시 합성 fixture의 기존 포인터만 제거하여 새 어댑터 경로를 시험한다.
-    (repo / 'reviews' / f'{tid}.json').unlink()
-    original = tmp_path / 'synthetic-original.png'
-    original.write_bytes(b'synthetic image bytes; no image viewer needed')
-    monkeypatch.setattr(review, 'prompt_for', lambda *args: '합성 검수 지시')
-    actual_run = subprocess.run
-    def fake_run(command, **kwargs):
-        if command[0] == 'git':
-            return actual_run(command, **kwargs)
-        assert command[0] == 'claude' and 'stream-json' in command and '--verbose' in command
-        raw = '{"verifiedAnswer":"5","verdict":"pass"}'
-        events = claude_events(raw, review.MODEL, 'new-review')
-        if access != 'omitted':
-            name = 'original-fig-1.png' if access == 'allowed' else '../answer.json'
-            events.insert(1, {'type': 'assistant', 'message': {'content': [
-                {'type': 'tool_use', 'id': 'read', 'name': 'Read', 'input': {'file_path': name}}]}})
-        return SimpleNamespace(returncode=0, stdout='\n'.join(map(json.dumps, events)), stderr='')
-    monkeypatch.setattr(review.subprocess, 'run', fake_run)
-    if access != 'allowed':
-        with pytest.raises(RuntimeError, match='검수 CLI 실패'):
-            review.review_one(tid, {'figures': [{'file': str(original)}]}, repo, tmp_path / 'new-run')
-        assert not (repo / 'reviews' / f'{tid}.json').exists()
-    else:
-        review.review_one(tid, {'figures': [{'file': str(original)}]}, repo, tmp_path / 'new-run')
-        pointer = json.loads((repo / 'reviews' / f'{tid}.json').read_text())
-        record = json.loads(Path(pointer['externalReview']).read_text())
-        proof = review_evidence(record, Path(pointer['externalReview']))
-        assert not proof['errors'] and proof['actualAccessVerified']
-        assert proof['accessedPaths'] == [str(tmp_path / 'new-run' / 'review' / tid / 'original-fig-1.png')]

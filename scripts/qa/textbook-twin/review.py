@@ -22,6 +22,7 @@ import time
 from pathlib import Path
 
 import integrity
+import review_inputs
 from subscription_cli import cli_env, claude_model_matches
 from execution_evidence import events_from, claude_trace
 
@@ -116,21 +117,22 @@ def review_one(tid: str, src: dict, bundle: Path, run_dir: Path, model: str = MO
             solve_digests[solver] = integrity.digest(f.read_bytes())
     if "codex" not in solves or len(solves) < 2:
         raise ValueError("두 모델의 원시 풀이 봉인 전에는 검수하지 않는다")
+    inputs, sealed_source, input_manifest_sha = review_inputs.load(bundle, tid, seal_commit)
+    if integrity.canonical(src) != integrity.canonical(sealed_source):
+        raise ValueError("호출한 source와 사전 봉인 source manifest 불일치")
     workdir = run_dir / "review" / tid
     if workdir.exists():
         workdir = workdir.with_name(workdir.name + f"-attempt-{time.time_ns()}")
     workdir.mkdir(parents=True)
-    original_figs = []
-    for i, f in enumerate(src["figures"], 1):
-        name = f"original-fig-{i}{Path(f['file']).suffix}"
-        shutil.copyfile(f["file"], workdir / name)
-        original_figs.append(name)
-    twin_fig = (bundle / "blind" / tid / "fig-1.png").exists()
-    if twin_fig:
-        shutil.copyfile(bundle / "blind" / tid / "fig-1.png", workdir / "twin-fig-1.png")
+    for name, (file, expected) in inputs.items():
+        shutil.copyfile(file, workdir / name)
+        if integrity.digest((workdir / name).read_bytes()) != expected:
+            raise ValueError("복사된 검수 그림 바이트 불일치")
+    original_figs = [name for name in inputs if name.startswith("original-")]
+    twin_fig = "twin-fig-1.png" in inputs
     prompt = prompt_for(src, cand, solves, original_figs, twin_fig)
-    allowed_names = original_figs + (["twin-fig-1.png"] if twin_fig else [])
-    input_hashes = {name: integrity.digest((workdir / name).read_bytes()) for name in allowed_names}
+    allowed_names = list(inputs)
+    input_hashes = {name: sha for name, (_, sha) in inputs.items()}
     started = time.time()
     proc = subprocess.run(
         ["claude", "-p", "--model", model, "--output-format", "stream-json", "--verbose", "--restricted", "--strict-mcp-config", "--no-session-persistence",
@@ -144,7 +146,7 @@ def review_one(tid: str, src: dict, bundle: Path, run_dir: Path, model: str = MO
     except ValueError:
         events = []
     envelope = next((event for event in reversed(events) if event.get("type") == "result"), {})
-    trace = claude_trace(events, workdir, allowed_names, model)
+    trace = claude_trace(events, workdir, allowed_names, model, input_hashes)
     images_read = {(workdir / name).resolve() for name in allowed_names}.issubset(
         {Path(path) for path in trace["accessedPaths"]})
     # 최종 봉투도 따로 보존하되 실제 도구 접근의 증거는 전체 stream이다.
@@ -157,11 +159,13 @@ def review_one(tid: str, src: dict, bundle: Path, run_dir: Path, model: str = MO
               "exposure": {"sawOriginal": True, "sawAuthorAnswer": True, "sawSolverAnswers": sorted(solves),
                            "sawEngineRationale": False, "priorExposureToThisItem": False,
                            "toolCalls": trace["toolCalls"], "toolPolicyVerified": trace["toolPolicyVerified"]},
-              "executionEvidence": {"version": 1, "eventsPath": str(event_file.resolve()),
+              "executionEvidence": {"version": 2, "inputManifestSha256": input_manifest_sha, "eventsPath": str(event_file.resolve()),
                                     "eventsSha256": integrity.digest(event_file.read_bytes()), "inputSha256": input_hashes},
               "raw": envelope.get("result", ""), "parsed": parsed}
     if (proc.returncode != 0 or envelope.get("is_error", True) or not isinstance(parsed, dict)
-            or not claude_model_matches(envelope, model) or not trace["toolPolicyVerified"] or not images_read):
+            or not claude_model_matches(envelope, model) or not trace["toolPolicyVerified"] or not images_read
+            or any(not (workdir / name).is_file() or integrity.digest((workdir / name).read_bytes()) != sha
+                   for name, sha in input_hashes.items())):
         (workdir / "failed-review.json").write_text(json.dumps(record, ensure_ascii=False, indent=1), encoding="utf-8")
         raise RuntimeError(f"검수 CLI 실패/응답 손상: {workdir}")
     # 검수자가 원문을 재인용할 수 있으므로 원시 응답과 근거는 저장소 밖에만 남긴다.
