@@ -1,0 +1,79 @@
+{
+  "scope": "R3 current actual Root tiny direct-function jsdom audit",
+  "verdict": "BOUNDED_DOM_PASS_WITH_STRICT_SETTER_COUNT_HOLD",
+  "counts": {
+    "actualDirectFunctionAndDOMControls": 83,
+    "passed": 83,
+    "failedInCohort": 0,
+    "separateStrictCountBoundaryProbes": 3,
+    "unexpectedAcceptedStrictCounts": 3,
+    "parentTestsCounted": 0,
+    "questionBlindMathGradeCredit": 0
+  },
+  "finding": {
+    "id": "FE-R3-COUNT",
+    "severity": "medium internal input-contract discrepancy",
+    "source": "src/components/unified/figure-editor/figureGrid.ts:129",
+    "reproduction": "setFigureGrid(validSvg,{...validGrid,cols:1.001/0.999/60.001})",
+    "expectedUnderStrictInteger1to60Contract": "reject raw noninteger and out-of-range counts",
+    "actual": "accepted as cols1/1/60 respectively",
+    "cause": "validation calls map(round) before parseFigureGridData, hiding original fractional/out-of-range input; later clampInt normalizes again",
+    "limits": "No demonstrated end-user mathematical task corruption or DB effect. resizeFigureGrid intentionally rounds as its explicit editing operation; this finding concerns strict setter validation before normalization.",
+    "minimalRecommendation": "validate unrounded raw finite/count domain first, then serialize/round coordinates under separately explicit policy; add three rejection cases. Do not modify production in audit."
+  },
+  "positives": [
+    "14 malformed metadata cases: actual shapes remain editable after removing only invalid marker",
+    "6 invalid placement cases plus duplicate: nested/transformed/late/path-transform/empty/two-path markers do not hide ordinary geometry",
+    "set/resize/cover/remove preserve all attributes and text for non-grid line,text,circle snapshots",
+    "60-cell cover remainder stays positive rather than being declared covered",
+    "21 nonfinite setter fields and6 explicit invalid inputs rejected",
+    "actual vector marks uppercase AB/ABC upright long arrow, lowercase a unchanged; uppercase arc uses overparen",
+    "actual hwpLabelToTex converts math root2, retains ordinary root2/hwp2/text"
+  ],
+  "staticChecks": {
+    "modelFalseNeverPromoted": true,
+    "externalFilterNotImported": true,
+    "uncertaintyInstruction": true,
+    "recordedSourceAndRenderedReview": true,
+    "warningValueBound": true,
+    "chipNullGuard": true
+  },
+  "runtime": {
+    "memoryProbe": "own-launch-preflight.json",
+    "heapLimitMiB": 216,
+    "actualImports": {
+      "meta": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureGridMetadata.ts",
+      "grid": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureGrid.ts",
+      "edit": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSvgEditing.ts",
+      "label": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureLabelInput.tsx",
+      "jsdom": "D:\\todays-math\\node_modules\\jsdom\\lib\\api.js"
+    },
+    "firstImportAndAfter": "own-results.json",
+    "nodeEnded": true,
+    "nodeProcessCount": 1,
+    "networkOrDBCalls": 0,
+    "note": "jsdom localhost URL is an in-memory document origin; no external resource loading configured"
+  },
+  "bindings": {
+    "inputSHA256": "4015310974d45e4ef49c0e4bdda6b41df280e8ad7f91848edc6fe190230c0ea7",
+    "resultSHA256": "54b4c7d93129d64fee6639373b3f821a6059649c68fe3f96bb80829647f679f5",
+    "before": "own-before.json",
+    "after": "own-after.json",
+    "changedExplicitSources": [],
+    "changedImportedSources": [],
+    "parseReviewWholeFileSHA256": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab"
+  },
+  "limits": [
+    "No mounted React Editor pointerdown, warning Enter/blur or chip asynchronous failure lifecycle execution. Parent reports are references only.",
+    "jsdom has no physical SVG geometry/getBBox; no pixel math, browser readability/native or print approval.",
+    "Actual vector normalization functions tested, not visual long-arrow/arc appearance.",
+    "No model prompts executed. Static prompt and parser checks do not certify AI judgment reliability.",
+    "No general SVG semantics, mathematics, curriculum/rights/source/family/native/loadable approval.",
+    "R1/R2 counts retained separately, no cumulative independent/new-question claim.",
+    "No SourceD/runtime execution, Root/production/source edits, installation, DB/API calls or new worker."
+  ],
+  "harnessDiagnostics": [
+    "One bounded Node invocation completed; no harness correction or rerun. All diagnostic probes retained rather than silently accepted."
+  ],
+  "reproduce": "From Root cwd: node --max-old-space-size=192 --max-semi-space-size=8 --require ROOT/node_modules/tsx/dist/cjs/index.cjs ABS_OWN/own-dom-controls.cjs after RAM>=1.5GiB; then python -B -S own-finalize.py"
+}
