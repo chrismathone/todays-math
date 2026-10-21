@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A87-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "836c01d6-ebe7-472d-b214-cc21949116a9",
+ "startedAt": "2026-10-21T17:08:23+0900",
+ "elapsedSec": 5.8,
+ "studentSha256": {
+  "student.json": "3dbf97ee17551929579bdd0f3a6fb0da290dd4ea5f76280d349dd235a1749487"
+ },
+ "promptSha256": "ccf236084468f41f6a809672c5fecc30139aabb466d640b2bec4145cc8390f70",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"①, ④\", \"work\": \"x=-2 대입: ① 6-(-2)=8<9 참. ② -3(-2)-10=-4≥-2 거짓. ③ 좌변 -10, 우변 -10이므로 -10>-10 거짓. ④ -2/6+12/8=-1/3+3/2=7/6<2 참. ⑤ 9+12=21≤12 거짓.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①, ④",
+  "work": "x=-2 대입: ① 6-(-2)=8<9 참. ② -3(-2)-10=-4≥-2 거짓. ③ 좌변 -10, 우변 -10이므로 -10>-10 거짓. ④ -2/6+12/8=-1/3+3/2=7/6<2 참. ⑤ 9+12=21≤12 거짓.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ae77f8b6c91a79046f54324b95a97668bc498d40ac2b427489714103d33b4c3d"
+}

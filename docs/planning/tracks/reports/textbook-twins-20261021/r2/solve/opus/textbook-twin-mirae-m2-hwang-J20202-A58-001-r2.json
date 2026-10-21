@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A58-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "2bd4e74b-d6d0-4086-949d-15f0bb58e0ba",
+ "startedAt": "2026-10-21T17:08:41+0900",
+ "elapsedSec": 4.6,
+ "studentSha256": {
+  "student.json": "84b1fe39b87a5c3d7c826430a15d945504149ff2803a3e045dd1391ed300c339"
+ },
+ "promptSha256": "93a9136b1fc0943ae66f70cd2a1c2d13f9a0a832f12280268376c4fbe65d52d4",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "8-3x ≥ 6x+35 → -9x ≥ 27 → x ≤ -3.\n\n```json\n{\"answer\": \"①\", \"work\": \"8-3x ≥ 6x+35에서 -3x-6x ≥ 35-8, -9x ≥ 27. 양변을 -9로 나누면 부등호 방향이 바뀌어 x ≤ -3.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "8-3x ≥ 6x+35에서 -3x-6x ≥ 35-8, -9x ≥ 27. 양변을 -9로 나누면 부등호 방향이 바뀌어 x ≤ -3.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "73098136bfac4b2db45e8bc6f4b4c7981724b62180eb2616e9cc137d2b0e3487"
+}

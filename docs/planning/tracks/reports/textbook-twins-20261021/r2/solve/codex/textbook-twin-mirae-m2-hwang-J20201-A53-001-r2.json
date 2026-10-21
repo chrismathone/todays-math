@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A53-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd4-e967-7652-bd35-eb14816bfdd3",
+ "startedAt": "2026-10-21T18:39:56+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "c9576e8d2a81abb129597bcb0ee7310fe375dca7d34b4284837ae6ebf4a85b6c"
+ },
+ "promptSha256": "e75671c6faad7b47f69755e055dbfcb78430bcc9898196ae700f39fb09b0c4aa",
+ "freezeCommit": "469f941d3331835348b09a66b41ee1665509a675",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ ◯ ⑵ ✕ ⑶ ✕ ⑷ ◯ ⑸ ◯ ⑹ ✕ ⑺ ✕ ⑻ ◯\",\"work\":\"$x=3$을 대입하면 $x+4=7$, $5-x=2$, $3x-5=4$, $4x+3=15$이다.\\n따라서 참인 부등식은 ⑴, ⑷, ⑸, ⑻이고, 나머지는 거짓이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ ◯ ⑵ ✕ ⑶ ✕ ⑷ ◯ ⑸ ◯ ⑹ ✕ ⑺ ✕ ⑻ ◯",
+  "work": "$x=3$을 대입하면 $x+4=7$, $5-x=2$, $3x-5=4$, $4x+3=15$이다.\n따라서 참인 부등식은 ⑴, ⑷, ⑸, ⑻이고, 나머지는 거짓이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d390b02ac231f9c7ca8046a33de05b0fdde3de5e831efa12799d232bdb7952ac"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A91-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd5-fab8-7980-9be1-b4f4d2619795",
+ "startedAt": "2026-10-21T18:41:06+0900",
+ "elapsedSec": 11.8,
+ "studentSha256": {
+  "student.json": "feb493b970c88990e241881fbc2853394745179c1477eaf34c55373ee9bbe336"
+ },
+ "promptSha256": "5d4125219e67348f099e8cc0c17f024c9cef676c046d29ba454c5c43b7ce8915",
+ "freezeCommit": "e44c9f6aea8940959e28eeae63b1af1c60f9a7cf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $a\\\\ge b$ ⑵ $a>b$\",\"work\":\"⑴ 양변에서 9를 뺀 뒤 음수인 -7을 곱하면 부등호의 방향이 바뀌므로 $a\\\\ge b$이다.\\n⑵ 양변에 10을 더한 뒤 양수인 8로 나누면 부등호의 방향이 유지되므로 $a>b$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $a\\ge b$ ⑵ $a>b$",
+  "work": "⑴ 양변에서 9를 뺀 뒤 음수인 -7을 곱하면 부등호의 방향이 바뀌므로 $a\\ge b$이다.\n⑵ 양변에 10을 더한 뒤 양수인 8로 나누면 부등호의 방향이 유지되므로 $a>b$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "65abc9a9f46fc32a9b03bcc66eb9800cfb5063518151460d16ce52139e6d64d8"
+}
