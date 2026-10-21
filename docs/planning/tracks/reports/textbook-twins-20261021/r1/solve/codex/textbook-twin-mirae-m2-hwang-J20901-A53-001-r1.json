@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A53-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc6-5d76-7712-a92b-a2f4fd291efc",
+ "startedAt": "2026-10-21T18:24:03+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "42c6c0867085cc02d68c84d74004b7cdb886bba15d744084056c63e117c3d48b"
+ },
+ "promptSha256": "146e174918e63d60ec2d264660ad534fcc5be6af111aac429acd7283cceda6b8",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ 4가지 ⑵ 3가지\",\"work\":\"⑴ 서로 다른 두 주사위의 눈을 순서대로 나타내면 합이 9인 경우는 (3, 6), (4, 5), (5, 4), (6, 3)의 4가지이다.\\n⑵ 1부터 18까지의 자연수 중 5의 배수는 5, 10, 15이므로 3가지이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ 4가지 ⑵ 3가지",
+  "work": "⑴ 서로 다른 두 주사위의 눈을 순서대로 나타내면 합이 9인 경우는 (3, 6), (4, 5), (5, 4), (6, 3)의 4가지이다.\n⑵ 1부터 18까지의 자연수 중 5의 배수는 5, 10, 15이므로 3가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d625493abf5a5285102d337f74251f5c6bb28aaa585152a86a7c39f82305375a"
+}

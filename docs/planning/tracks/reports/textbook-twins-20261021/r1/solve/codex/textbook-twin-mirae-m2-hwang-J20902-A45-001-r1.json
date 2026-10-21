@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A45-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc7-7bfa-7643-8f8a-cd60b38bbf8a",
+ "startedAt": "2026-10-21T18:25:16+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "53f58c1b286a0fe17f0f22dd3aa78530b0ac6bd0fa59a6dba17f17fb0b767a1e"
+ },
+ "promptSha256": "7e68e4f748c025b9d7810485f747e2ba2a37a7f10dec24aed2b4378437b28c56",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"꽃을 고르는 경우는 7가지이고, 각각에 대해 포장지를 고르는 경우는 12가지이다. 따라서 경우의 수는 7×12=84이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "꽃을 고르는 경우는 7가지이고, 각각에 대해 포장지를 고르는 경우는 12가지이다. 따라서 경우의 수는 7×12=84이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c626c23c70cb6e754354e534633126443594b142c0bcc087e75d2969a77ddcac"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A87-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc7-0ba9-7203-a1ea-d628ece1f23a",
+ "startedAt": "2026-10-21T18:24:48+0900",
+ "elapsedSec": 7.2,
+ "studentSha256": {
+  "student.json": "e82deef2f8e7e7cc67a560a949d1edb3cdc12e954321e15b3c0f882c6a031596"
+ },
+ "promptSha256": "8c01cefb823db2118ac9523868b986909a611066200652a060d0cb5bd48f7355",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12가지\",\"work\":\"티셔츠 1종류마다 바지 4종류를 짝 지을 수 있다. 따라서 경우의 수는 3×4=12가지이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12가지",
+  "work": "티셔츠 1종류마다 바지 4종류를 짝 지을 수 있다. 따라서 경우의 수는 3×4=12가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "af37964ec8006c97b3c78936722d4c6eb13684d3999efcf1544f60d70e170f2a"
+}

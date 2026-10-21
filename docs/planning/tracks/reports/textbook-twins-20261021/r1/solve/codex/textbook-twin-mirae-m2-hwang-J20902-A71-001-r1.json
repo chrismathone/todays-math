@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20902-A71-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc7-cb8d-7c82-96bd-35fb67957b50",
+ "startedAt": "2026-10-21T18:25:37+0900",
+ "elapsedSec": 13.6,
+ "studentSha256": {
+  "fig-1.png": "31c3555e7715dd4dd825296375e89ec4518615ec720bffc0f0998280df96ffe3",
+  "student.json": "7d5a43637088b7c6781c6dcaa6eacc04445aa2ea440417125758a1a9163d3cf8"
+ },
+ "promptSha256": "9c568a10558820229cfefc16a61d40d57afa498fd654a68d5ca50486cd35b95f",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"20가지\",\"work\":\"최단 거리로 가려면 오른쪽으로 3번, 위쪽으로 3번 이동해야 한다. 총 6번의 이동 중 오른쪽으로 이동할 3번의 순서를 정하면 되므로, 경우의 수는 (6×5×4)÷(3×2×1)=20이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "20가지",
+  "work": "최단 거리로 가려면 오른쪽으로 3번, 위쪽으로 3번 이동해야 한다. 총 6번의 이동 중 오른쪽으로 이동할 3번의 순서를 정하면 되므로, 경우의 수는 (6×5×4)÷(3×2×1)=20이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "914c0635cf968c0ed1ba18fbf83821a6fc9a3eb47340186d6c7e073055674fcb"
+}

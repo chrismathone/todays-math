@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A87-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "ae12836f-1bd3-4b4d-a1fc-88e3a7b952c3",
+ "startedAt": "2026-10-21T17:11:51+0900",
+ "elapsedSec": 3.2,
+ "studentSha256": {
+  "student.json": "e82deef2f8e7e7cc67a560a949d1edb3cdc12e954321e15b3c0f882c6a031596"
+ },
+ "promptSha256": "8c01cefb823db2118ac9523868b986909a611066200652a060d0cb5bd48f7355",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"12\", \"work\": \"티셔츠 3가지 각각에 대하여 바지를 4가지씩 고를 수 있으므로 곱의 법칙에 의해 3 × 4 = 12\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "12",
+  "work": "티셔츠 3가지 각각에 대하여 바지를 4가지씩 고를 수 있으므로 곱의 법칙에 의해 3 × 4 = 12",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e7f01796ab7e6e8bb1410cd7a1588d592e7d7c6fac3e5d4b2dbe0fabe5899140"
+}

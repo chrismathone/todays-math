@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A55-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc6-b9f3-77a2-a81a-6fd32efd236c",
+ "startedAt": "2026-10-21T18:24:27+0900",
+ "elapsedSec": 8.1,
+ "studentSha256": {
+  "student.json": "5ebdf5e18efa506227e5d85af5255dd0e5f4c36ec8e4dd784e3e59eb80e29ee2"
+ },
+ "promptSha256": "486d2dcf443a14592238cba9dad22c2e1ffd7a90843d694533a924beb17c661f",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"9가지\",\"work\":\"버스를 타는 6가지와 지하철을 타는 3가지는 서로 겹치지 않으므로, 합의 법칙에 따라 6+3=9가지이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "9가지",
+  "work": "버스를 타는 6가지와 지하철을 타는 3가지는 서로 겹치지 않으므로, 합의 법칙에 따라 6+3=9가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "15242f64f4a0d3d1611fc9f18d76fbdee465ce10a4f1c538d4039b81040bfdf9"
+}

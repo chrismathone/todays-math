@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A55-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "cf764575-8efe-464d-a334-a81c1e464137",
+ "startedAt": "2026-10-21T17:11:47+0900",
+ "elapsedSec": 4.0,
+ "studentSha256": {
+  "student.json": "5ebdf5e18efa506227e5d85af5255dd0e5f4c36ec8e4dd784e3e59eb80e29ee2"
+ },
+ "promptSha256": "486d2dcf443a14592238cba9dad22c2e1ffd7a90843d694533a924beb17c661f",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"9\", \"work\": \"버스를 타는 경우와 지하철을 타는 경우는 동시에 일어나지 않으므로 합의 법칙을 쓴다. 6 + 3 = 9\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "9",
+  "work": "버스를 타는 경우와 지하철을 타는 경우는 동시에 일어나지 않으므로 합의 법칙을 쓴다. 6 + 3 = 9",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6ad12db8c1ba82b169918fa46d52163c5bc6399c0839e3c0feff0e413cd14ae3"
+}

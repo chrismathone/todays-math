@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A86-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "a14226a9-34da-494f-b628-239c6588fe57",
+ "startedAt": "2026-10-21T17:11:49+0900",
+ "elapsedSec": 6.6,
+ "studentSha256": {
+  "fig-1.png": "47c0c22b5b4ab788402099e64cdf19e7a4b8cae3c57067a09489046426613f55",
+  "student.json": "9d7be282cf55ccccc7604456030a5f25b233a94781d6f498fcb88394a5392692"
+ },
+ "promptSha256": "ad6cfac55421a0b88b3d70ba29906993faf7f999a21032a742f15767bdca432f",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"그림에서 산책로 수는 A–C 2개, A–D 1개, C–B 3개, D–B 3개이고 C–D 사이에는 길이 없다. A→C→B 경로는 2×3=6가지, A→D→B 경로는 1×3=3가지다. 두 경우를 더하면 6+3=9가지다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "그림에서 산책로 수는 A–C 2개, A–D 1개, C–B 3개, D–B 3개이고 C–D 사이에는 길이 없다. A→C→B 경로는 2×3=6가지, A→D→B 경로는 1×3=3가지다. 두 경우를 더하면 6+3=9가지다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "80b30ba83f000191fa073dd5c26080ee5ba2bcecafa56c4275362c565a43c4a0"
+}

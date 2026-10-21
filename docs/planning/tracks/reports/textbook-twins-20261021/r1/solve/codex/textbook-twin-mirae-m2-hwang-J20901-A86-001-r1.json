@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A86-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc6-d99c-7992-a34d-fade0cc58a1e",
+ "startedAt": "2026-10-21T18:24:35+0900",
+ "elapsedSec": 12.8,
+ "studentSha256": {
+  "fig-1.png": "47c0c22b5b4ab788402099e64cdf19e7a4b8cae3c57067a09489046426613f55",
+  "student.json": "9d7be282cf55ccccc7604456030a5f25b233a94781d6f498fcb88394a5392692"
+ },
+ "promptSha256": "67701a98abcac64a190466c68e076f5111ef2d1f7048c6c7b2943692d6f3de1c",
+ "freezeCommit": "c4da506ab337b7d568a87c06ace52bbcf39fcac9",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"A→C→B로 가는 경로는 2×3=6가지이다.\\nA→D→B로 가는 경로는 1×3=3가지이다.\\n따라서 전체 경로의 수는 6+3=9가지이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "A→C→B로 가는 경로는 2×3=6가지이다.\nA→D→B로 가는 경로는 1×3=3가지이다.\n따라서 전체 경로의 수는 6+3=9가지이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1d59fdcedab7e8f5c43a071fe7c5b8a70274fd1d7c50ce8d4e69f913d3e02bd5"
+}
