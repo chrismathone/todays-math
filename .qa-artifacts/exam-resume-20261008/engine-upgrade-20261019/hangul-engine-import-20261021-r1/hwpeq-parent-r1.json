@@ -1,0 +1,170 @@
+[
+  {
+    "input": "(2+\\sqrt{5})\\mathrm{cm}",
+    "expected": "LEFT ( 2+sqrt {5} RIGHT ) rm`cm",
+    "actual": "LEFT ( 2+sqrt {5} RIGHT ) rm`cm",
+    "passed": true
+  },
+  {
+    "input": "x\\mathrm{km/h}",
+    "expected": "x rm`km/h",
+    "actual": "x rm`km/h",
+    "passed": true
+  },
+  {
+    "input": "60\\mathrm{m/s}",
+    "expected": "60 rm {m/s}",
+    "actual": "60 rm {m/s}",
+    "passed": true
+  },
+  {
+    "input": "\\triangle AGG'\\sim\\triangle AEF",
+    "expected": "TRIANGLE rm {AGG'}∽ TRIANGLE rm {AEF}",
+    "actual": "TRIANGLE rm {AGG'}∽ TRIANGLE rm {AEF}",
+    "passed": true
+  },
+  {
+    "input": "m+g+h",
+    "expected": "m+g+h",
+    "actual": "m+g+h",
+    "passed": true
+  },
+  {
+    "input": "g(x)/h",
+    "expected": "g(x)/h",
+    "actual": "g(x)/h",
+    "passed": true
+  },
+  {
+    "input": "\\mathrm{A}/g",
+    "expected": "rm A it /g",
+    "actual": "rm A it /g",
+    "passed": true
+  },
+  {
+    "input": "\\mathrm{A}+g/h",
+    "expected": "rm A it +g/h",
+    "actual": "rm A it +g/h",
+    "passed": true
+  },
+  {
+    "input": "\\mathrm{A}x/g",
+    "expected": "rm A it x/g",
+    "actual": "rm A it x/g",
+    "passed": true
+  },
+  {
+    "input": "\\sim P",
+    "expected": "∼P",
+    "actual": "∼P",
+    "passed": true
+  },
+  {
+    "input": "\\sim f'(x)",
+    "expected": "∼f'(x)",
+    "actual": "∼f'(x)",
+    "passed": true
+  },
+  {
+    "input": "P'\\sim Q",
+    "expected": "P'∽ Q",
+    "actual": "P'∽ Q",
+    "passed": true
+  },
+  {
+    "input": "20\\mathrm{m}",
+    "expected": "20 rm {m}",
+    "actual": "20 rm {m}",
+    "passed": true
+  },
+  {
+    "input": "20\\mathrm{g}",
+    "expected": "20 rm`g",
+    "actual": "20 rm`g",
+    "passed": true
+  },
+  {
+    "input": "100\\mathrm{mL}",
+    "expected": "100 rm`mL",
+    "actual": "100 rm`mL",
+    "passed": true
+  },
+  {
+    "input": "100mL",
+    "expected": "100 rm`mL",
+    "actual": "100 rm`mL",
+    "passed": true
+  },
+  {
+    "input": "50\\mathrm{dL}",
+    "expected": "50 rm`dL",
+    "actual": "50 rm`dL",
+    "passed": true
+  },
+  {
+    "input": "12\\mathrm{cm}",
+    "expected": "12 rm`cm",
+    "actual": "12 rm`cm",
+    "passed": true
+  },
+  {
+    "input": "2m",
+    "expected": "2m",
+    "actual": "2m",
+    "passed": true
+  },
+  {
+    "input": "\\overline{AL}",
+    "expected": "bar {rm {AL}}",
+    "actual": "bar {rm {AL}}",
+    "passed": true
+  },
+  {
+    "input": "\\mathrm{A}/x",
+    "expected": "rm A it /x",
+    "actual": "rm A it /x",
+    "passed": true
+  },
+  {
+    "input": "\\left\\{ \\frac{x}{2} \\right.",
+    "expected": "LEFT { {x} over {2} RIGHT .",
+    "actual": "LEFT { {x} over {2} RIGHT .",
+    "passed": true
+  },
+  {
+    "input": "\\left. \\frac{x}{2} \\right\\}",
+    "expected": "LEFT . {x} over {2} RIGHT }",
+    "actual": "LEFT . {x} over {2} RIGHT }",
+    "passed": true
+  },
+  {
+    "input": "\\left( \\frac{x}{2} \\right)",
+    "expected": "LEFT ( {x} over {2} RIGHT )",
+    "actual": "LEFT ( {x} over {2} RIGHT )",
+    "passed": true
+  },
+  {
+    "input": "\\left. \\frac{x}{2} \\right.",
+    "expected": "{x} over {2}",
+    "actual": "{x} over {2}",
+    "passed": true
+  },
+  {
+    "input": "\\cfrac{1}{2}",
+    "expected": "{1} over {2}",
+    "actual": "{1} over {2}",
+    "passed": true
+  },
+  {
+    "input": "\\dfrac{1}{2}",
+    "expected": "{1} over {2}",
+    "actual": "{1} over {2}",
+    "passed": true
+  },
+  {
+    "input": "8\\sqrt{3}\\mathrm{cm}^{2}",
+    "expected": "8 sqrt {3} rm`cm^{2}",
+    "actual": "8 sqrt {3} rm`cm^{2}",
+    "passed": true
+  }
+]

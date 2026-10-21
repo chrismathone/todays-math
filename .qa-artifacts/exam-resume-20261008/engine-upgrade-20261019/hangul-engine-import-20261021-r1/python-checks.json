@@ -1,0 +1,65 @@
+{
+  "utc": "2026-10-21T05:46:41.959690+00:00",
+  "runs": [
+    {
+      "name": "local-regressions",
+      "returncode": 0,
+      "tests": 25,
+      "outputLog": "local-regressions-r2.log",
+      "outputSha256": "e40cac5443f3d8f973f9e828aa96ced695824a0bb3e73ed3d117608e91b8672c"
+    },
+    {
+      "name": "source-compatible-regressions",
+      "returncode": 0,
+      "tests": 96,
+      "outputLog": "source-compatible-regressions-r2.log",
+      "outputSha256": "586e13f4181f438987e9b05bbfbd68bfbba242222e3811176966dab0061187fb"
+    },
+    {
+      "name": "source-background-controls",
+      "returncode": 0,
+      "tests": null,
+      "outputLog": "source-background-controls-r2.log",
+      "outputSha256": "5a144eb01d60426878dbe3a34d819b399f20d6a63d20817408de7e08a0727440"
+    }
+  ],
+  "sourceTestCopies": [
+    {
+      "name": "test_figure_solid.py",
+      "sha256": "b8461f3dca6dc3034974156aec2680ec8b5013e99c2a7d7c737d827539e46fe6",
+      "rawCopyUnchanged": true
+    },
+    {
+      "name": "test_figure_svg_gate.py",
+      "sha256": "9c4e22f8123149b91011efa50b7b525ba33b2f7a1bf8b2bea4070a1facf3f7b4",
+      "rawCopyUnchanged": true
+    },
+    {
+      "name": "test_figure_svg_tangency.py",
+      "sha256": "df8067804223838d347f60ac625b272a32752a850231bf45b958a9e7a2dddccc",
+      "rawCopyUnchanged": true
+    },
+    {
+      "name": "test_figure_svg_dimension.py",
+      "sha256": "8939b4e0ed2dd98bc2ad55bbc5dc47bcf666100141481a89bc6a755fd2086f77",
+      "rawCopyUnchanged": true
+    },
+    {
+      "name": "test_figure_gate_warnings.py",
+      "sha256": "825c5cbe80cd371265e1d768812881fb27a5322bbcee28095ea8d03c80bc5bdf",
+      "rawCopyUnchanged": true
+    }
+  ],
+  "omittedPrivateCorpusTest": "test_wangseon_q1_renders_italic_x_run_instead_of_literal_markup",
+  "sourceExportUnchanged": true,
+  "preservedTargetModules": [
+    "figure_scene.py",
+    "figure_solid.py",
+    "label_markup.py",
+    "render_spec.py"
+  ],
+  "liveRepairRouting": false,
+  "defaultGeometrySnap": false,
+  "dbWrites": 0,
+  "priorHarnessFailure": "First copied-source run could not decode cp949 child stderr as UTF-8; no source-compatible pass was recorded. R2 sets PYTHONIOENCODING=utf-8; no source tests changed."
+}

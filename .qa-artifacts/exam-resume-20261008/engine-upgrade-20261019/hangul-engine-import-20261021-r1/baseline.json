@@ -1,0 +1,132 @@
+{
+  "utc": "2026-10-21T05:40:21.309545+00:00",
+  "head": "cbcd015ce1c92a07f7f673dddc20c717251bf32e",
+  "main": "4acac4e846e6501e0b5efc3fcaa81d62d9cf9060",
+  "sourceRoot": "D:\\시험지 한글화\\docs\\export\\todays-math",
+  "sourceFiles": [
+    {
+      "path": "01-엔진-동기화.md",
+      "sha256": "04f0400e27f19f41646bde5590aa5bd6310d79176a9df727c6735ee01a156f71",
+      "bytes": 7664
+    },
+    {
+      "path": "02-기출-도형-작도법.md",
+      "sha256": "b1b1cc5f7870aaaf44d216af8f69dffd76b0669bd2f0d1d6ed29aa2d2e6777fe",
+      "bytes": 12086
+    },
+    {
+      "path": "03-한글화-노하우-전체.md",
+      "sha256": "3ab1e68dd632e15fbb6f308416ba200a92564492f62c444522dd40f76d091c12",
+      "bytes": 16103
+    },
+    {
+      "path": "drop-in\\vendor\\figure-engine\\core\\figure_exam.py",
+      "sha256": "531f02ad7ca4422b4b453e2f8fb180b09a24f85ff07a457833d59d1739acc045",
+      "bytes": 17628
+    },
+    {
+      "path": "drop-in\\vendor\\figure-engine\\core\\figure_quality.py",
+      "sha256": "c2484d6709df88e62c3d19ae32c1137ae3fa0d2434db50b055c7403b29b34232",
+      "bytes": 56816
+    },
+    {
+      "path": "drop-in\\vendor\\figure-engine\\core\\figure_spec_repair.py",
+      "sha256": "64a129c8bf9d6a421bf91f61df0e52203788f3a9d163527bd7ebd18cacd1bde4",
+      "bytes": 15436
+    },
+    {
+      "path": "drop-in\\vendor\\figure-engine\\core\\figure_svg.py",
+      "sha256": "e4f67b4248394af0c57717ae7073ad80288fbe46c92171b6f39d6579d84e6762",
+      "bytes": 69341
+    },
+    {
+      "path": "drop-in\\vendor\\hwpx\\latex_to_hwpeq.py",
+      "sha256": "22d127ae42b4e57a136644b2c05ef0e928575e604654f54460ace28f4c7809bd",
+      "bytes": 81469
+    },
+    {
+      "path": "examples\\ex_plane_spec.py",
+      "sha256": "7db6b8959bf2811fbc9fd22de1489e7f49836e5cfa14ebd6c790af41942a9bbf",
+      "bytes": 2967
+    },
+    {
+      "path": "examples\\ex_solid_foot.py",
+      "sha256": "6c69b59cb88f6cdadefd9b60c4a38370b61b88e5843bebed7a79fa1d704d03b6",
+      "bytes": 3591
+    },
+    {
+      "path": "patches\\01-figure-engine.patch",
+      "sha256": "3035151b7cd3169006874e828d0466e9b014a254c04b4c5a70190979f6e7741a",
+      "bytes": 39321
+    },
+    {
+      "path": "patches\\02-latex-to-hwpeq.patch",
+      "sha256": "f9dcc1d3707d7038d0ef899f1661089fbf8afe788f70280a0d28f94a90313024",
+      "bytes": 3957
+    },
+    {
+      "path": "README.md",
+      "sha256": "ce8b75bd928c21d5304b8c2f024ffae07a0d4ff14724c0ea78651e3ae30671c9",
+      "bytes": 5600
+    }
+  ],
+  "targetBefore": [
+    {
+      "path": "vendor/figure-engine/core/figure_svg.py",
+      "sha256": "81587508b3f04a4e6e85feafc9b41caed42cdde1de1cd0098e1e489f67c7f1d8"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_quality.py",
+      "sha256": "62e4284e3d435eb55053af77cd33102c3cbdc32f6cf65829bbf946dd515a5934"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_scene.py",
+      "sha256": "5291fc1f92dc8a08bc3c850826e906eb1623aa4af20ced3813ad440827a0773e"
+    },
+    {
+      "path": "vendor/figure-engine/core/figure_solid.py",
+      "sha256": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293"
+    },
+    {
+      "path": "vendor/figure-engine/core/label_markup.py",
+      "sha256": "3e8d625f15f6c4f094d2d08dfd1d0f07a6ffb7fe1a8160d04d6275ac8fef1c4c"
+    },
+    {
+      "path": "vendor/hwpx/latex_to_hwpeq.py",
+      "sha256": "c19dc19997719b07d78a4334e84c0e357c7e85ef2f6b6d584d1cbec5d5fd07e6"
+    },
+    {
+      "path": "scripts/figure/render_spec.py",
+      "sha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627"
+    }
+  ],
+  "patchChecks": [
+    {
+      "patch": "01-figure-engine.patch",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "patch": "02-latex-to-hwpeq.patch",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "actualLintProbe": {
+    "returncode": 0,
+    "stdout": "{\"errorType\": \"ModuleNotFoundError\", \"error\": \"No module named 'core.figure_generator'\"}\n",
+    "stderr": ""
+  },
+  "dependencies": {
+    "resvg-py": "0.3.2",
+    "numpy": "2.4.1",
+    "Pillow": "12.1.0",
+    "pytest": "7.4.4",
+    "psutil": null
+  },
+  "sourceReadOnly": true,
+  "sourceTestsExecutedInPlace": false,
+  "dbWrites": 0
+}

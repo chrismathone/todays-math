@@ -13,8 +13,10 @@
 파이썬 원본을 저장소에 두는 것은 그 결정과 어긋나지 않는다.
 SVG를 사전 생성해 문자열로 DB에 저장하는 방식이다.
 
-가져온 것은 네 모듈뿐이다(`figure_svg` · `figure_scene` · `figure_solid` ·
-`figure_quality`, 합 240KB). **제3자 의존이 없다** — 모듈 최상단은 표준 라이브러리만
+기본 모듈은 `figure_svg` · `figure_scene` · `figure_solid` · `figure_quality` · `label_markup`다.
+2026-10-21 공용 제작 도구 `figure_exam`과 오프라인 후보 정리 `figure_spec_repair`를 추가했다.
+[반영 범위·제작 방법·제외 항목](figure-authoring-import-20261021.md)을 따른다.
+**모듈 import에 제3자 의존이 없다** — 모듈 최상단은 표준 라이브러리와 엔진 내부 모듈만
 쓰고, numpy·PIL 은 래스터 보조 함수 **안**에서만 불린다. `vendoredFigureEngine.test.ts`
 가 그 성질을 잠근다(최상단에 올라오면 빨개진다).
 

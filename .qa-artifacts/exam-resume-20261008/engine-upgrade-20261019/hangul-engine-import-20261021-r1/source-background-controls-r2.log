@@ -1,0 +1,15 @@
+A. 전면 배경 rect 는 통과(실사고 재현)
+  OK   배경 rect fill="none" 가 있어도 통과
+  OK   배경 rect fill="transparent" 가 있어도 통과
+  OK   배경 rect fill="#ffffff" 가 있어도 통과
+  OK   배경 rect fill="white" 가 있어도 통과
+  OK   x/y 를 명시한 전면 rect 도 통과
+B. 게이트를 약화시키지 않았다
+  OK   **부분** 크기의 안 보이는 rect 는 여전히 반려
+  OK   배경만 있고 보이는 도형이 없으면 반려
+  OK   반려 사유는 '보이는 도형 없음'
+  OK   투명 라벨(숨긴 내용)은 여전히 반려
+C. 보안 경계는 그대로
+  OK   script 는 정제/차단
+
+전부 통과

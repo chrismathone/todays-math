@@ -22,6 +22,8 @@ describe("[D-55] 도형 엔진 — 저장소 안에 있다", () => {
       "figure_scene.py",
       "figure_solid.py",
       "figure_quality.py",
+      "figure_exam.py",
+      "figure_spec_repair.py",
     ])
       expect(existsSync(`${VENDOR}/${f}`), `${VENDOR}/${f}`).toBe(true);
   });
@@ -64,12 +66,13 @@ describe("[D-55] 도형 엔진 — 저장소 안에 있다", () => {
   it("제3자 의존이 없다 — 모듈을 불러오는 데 필요한 것은 표준 라이브러리뿐이다", () => {
     // numpy·PIL 은 함수 **안**에서만 불린다(래스터 보조 기능). 모듈 최상단에
     // 올라오면 설치 없이는 도형이 아예 안 그려진다.
-    for (const f of ["figure_svg.py", "figure_scene.py", "figure_solid.py"]) {
+    for (const f of ["figure_svg.py", "figure_scene.py", "figure_solid.py", "figure_exam.py", "figure_spec_repair.py"]) {
       const head = readFileSync(`${VENDOR}/${f}`, "utf8")
         .split("\n")
         .filter((l) => /^(import|from) /.test(l))
         .join("\n");
       expect(head, f).not.toMatch(/numpy|PIL|matplotlib|sympy/);
+      expect(head, f).not.toMatch(/core\.figure_generator|utils|anthropic/);
     }
   });
 });
