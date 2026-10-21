@@ -1,0 +1,88 @@
+{
+  "runtimeExecuted": false,
+  "cohorts": [
+    {
+      "ids": [
+        "asset-only",
+        "asset-and-line",
+        "asset-nested-transform"
+      ],
+      "calls": [
+        "prepareFigureSvg",
+        "figureObjects",
+        "rotateFigureSelection cw4times",
+        "mirrorFigureSelection twice",
+        "move transform",
+        "describeFigureForEdit"
+      ],
+      "required": "one safe asset ID; all child worldpoints transformed exactly; no-op/wrong centre must fail; framing includes children"
+    },
+    {
+      "ids": [
+        "asset-locked"
+      ],
+      "calls": [
+        "rotationBlock",
+        "mirrorBlock",
+        "size-lock UI handles",
+        "move",
+        "undo/redo"
+      ],
+      "required": "rotation/mirror/resize blocked per existing policy; translation allowed; exact SVG restores"
+    },
+    {
+      "ids": [
+        "unknown-slug",
+        "leaf-marker",
+        "nested-markers",
+        "forged-math-line",
+        "old-child-id"
+      ],
+      "calls": [
+        "prepareFigureSvg",
+        "figureObjects",
+        "describeFigureForEdit",
+        "stripAssetBodies"
+      ],
+      "required": "untrusted metadata cannot hide mathematical geometry; clean stale IDs; preserve ordinary child visibility/editability"
+    },
+    {
+      "ids": [
+        "relative-path-asset",
+        "rotated-square-asset",
+        "rotated-ellipse-asset"
+      ],
+      "calls": [
+        "describeFigureForEdit",
+        "assetBox or replacement"
+      ],
+      "required": "correct grammar-aware bbox or explicit unknown, never guessed finite incorrect box"
+    },
+    {
+      "labels": [
+        "30 m",
+        "5 g",
+        "2m",
+        "g/h",
+        "$30 m$",
+        "2 L",
+        "3 mL",
+        "3 dL",
+        "3 kL",
+        "3 m",
+        "3 m"
+      ],
+      "calls": [
+        "Python parse_label",
+        "both toTex/typeset paths"
+      ],
+      "required": "document actual cross-engine differences, no whitespace semantic inference or changed variable identity"
+    }
+  ],
+  "visualPending": [
+    "SVG getBBox/getScreenCTM browser",
+    "actual pointer selection/drag",
+    "mounted history undo/redo",
+    "typeset label readability"
+  ]
+}
