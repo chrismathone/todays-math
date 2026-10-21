@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 57,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A65-001-r2",
+ "authorId": "claude-fable-5-1:b6bb5b88-5f29-403b-977b-934bce59de72",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20102-A65-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "서아네 마을 전체 $440$가구 가운데 $23$가구가 전기차를 가지고 있다. 전체 가구 수에 대한 전기차가 있는 가구 수의 비율을 소수로 나타내면 순환소수가 된다. 이 순환소수의 순환마디를 쓰시오.",
+ "choices": [],
+ "answer": "$27$",
+ "solution": "비율을 분수로 나타내면 $\\frac{23}{440}$이다.\n$23\\div 440=0.0522727\\cdots$이다.\n소수점 아래 넷째 자리부터 $2$, $7$이 되풀이되므로 $0.052\\dot{2}\\dot{7}$로 나타낼 수 있다.\n따라서 순환마디는 $27$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b7ee44265f9df98b-1-4",
+  "problemCode": "J20102-A65-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "b1c0319732bd34ff2ab09d4e397f9c90fc08820840c43a044817df938f707892",
+  "dbContentSha256": "5ab2ddc5e0729812b8058e1025b1203eb2de11d491c0da0e994bc8f09750a6ac",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_1-1_유리수와소수.hwp",
+    "sha256": "48bc34ffa3ade47fcf4666310ce22f7aa35c07e50a06438c10b4a66e74317c71",
+    "bytes": 274432
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "분수 하나가 그대로 주어지고, 그것을 소수로 고쳤을 때 되풀이되는 숫자 묶음을 묻는다. 분모가 2의 거듭제곱과 11의 곱이어서 순환이 소수점 아래 몇 자리 뒤에 시작하고 마디에 0이 들어간다.",
+  "after": "마을의 전체 가구 수와 전기차 보유 가구 수라는 장면에서 비율을 분수로 세우고, 그 분수를 소수로 고쳐 순환마디를 읽는다. 분모는 2의 거듭제곱 · 5 · 11의 곱이고 순환은 소수점 아래 넷째 자리부터 시작한다.",
+  "sharedConcept": "분수를 소수로 나타낼 때 생기는 순환소수와 순환마디",
+  "sharedProcedure": "분수를 세운다 → 분자를 분모로 직접 나눈다 → 순환이 시작되는 자리를 찾는다 → 되풀이되는 숫자 묶음을 순환마디로 읽는다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수"
+  },
+  "prerequisites": [
+   "분수를 소수로 나타내기(나눗셈)",
+   "순환소수와 순환마디의 뜻",
+   "비율을 분수로 나타내기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20102-A65-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "분수를 소수로 나타내어 순환마디 찾기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "e321e4db-e3ac-44e5-b909-6a42c06a80ad",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.056,
+   "longestRun": 6,
+   "residualChars": 76,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

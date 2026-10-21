@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 73,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A88-001-r2",
+ "authorId": "claude-fable-5-1:c6e57fb2-1a88-4868-bbfc-e2fe4873c6db",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20103-A88-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "지우와 서아가 같은 기약분수를 보고 각각 순환소수로 고쳤다. 지우는 분모를 잘못 읽어 $1.\\dot{4}$ 를 얻었고, 서아는 분자를 잘못 읽어 $0.58\\dot{3}$ 을 얻었다. 두 사람이 잘못 읽은 분수도 모두 기약분수였다고 할 때, 원래의 기약분수를 순환소수로 나타내시오.",
+ "choices": [],
+ "answer": "$1.08\\dot{3}$",
+ "solution": "$x=1.\\dot{4}$ 라 하면 $10x-x=14.444\\cdots-1.444\\cdots=13$ 이므로 $x=\\dfrac{13}{9}$ 이다. 지우는 분모만 잘못 읽었으므로 원래 분수의 분자는 $13$ 이다.\n$y=0.58\\dot{3}$ 이라 하면 $1000y-100y=583.333\\cdots-58.333\\cdots=525$ 이므로 $y=\\dfrac{525}{900}=\\dfrac{7}{12}$ 이다. 서아는 분자만 잘못 읽었으므로 원래 분수의 분모는 $12$ 이다.\n따라서 원래의 기약분수는 $\\dfrac{13}{12}=1.0833\\cdots=1.08\\dot{3}$ 이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-0a1308973467590b-0-13",
+  "problemCode": "J20103-A88-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "c5baf3b527d65e82a6658eb5deef7e9fa6e13b13786bc7a0d4f87186e58092c7",
+  "dbContentSha256": "f77550a4c7b21e4de9c764ec6e7b2a76e56046efc9c0e099d059413cf4df9d73",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_1_유리수와순환소수.hwp",
+    "sha256": "8f8663d9e97147e84aa2f31a8f913ab31b186ab456732a421afd2443c835425e",
+    "bytes": 107008
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "두 사람이 한 기약분수를 소수로 바꾸는데 첫 사람은 분자를, 둘째 사람은 분모를 잘못 보아 각각 순환소수(정수 부분 있는 것 · 순환하지 않는 자리 있는 것)를 얻었다. 각 순환소수를 분수로 되돌려 옳게 본 분모와 분자를 하나씩 모아 원래 분수를 만들고 다시 순환소수로 쓴다.",
+  "after": "두 학생이 같은 기약분수를 고치는데 첫 학생은 분모를, 둘째 학생은 분자를 잘못 읽어(순서를 바꿈) 각각 순환소수를 얻었다. 잘못 읽은 분수도 기약분수라는 조건을 발문에 명시해 분자 · 분모가 하나로 정해지게 했다. 각 순환소수를 분수로 되돌려 옳게 읽은 분자와 분모를 모아 원래 분수를 만들고 순환소수로 쓴다.",
+  "sharedConcept": "순환소수를 분수로 나타내기(10의 거듭제곱을 곱해 빼기)와 분수를 순환소수로 나타내기",
+  "sharedProcedure": "각 순환소수를 분수로 고치기 → 누가 무엇을 바르게 보았는지 판단해 옳은 분자 · 분모 고르기 → 원래 분수를 만들기 → 나누어 순환소수로 쓰기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내기",
+   "분수를 소수로 나타내기",
+   "기약분수"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A88-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "기약분수의 분자 · 분모를 잘못 보고 나타낸 순환소수에서 처음 분수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.155,
+   "longestRun": 10,
+   "residualChars": 94,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

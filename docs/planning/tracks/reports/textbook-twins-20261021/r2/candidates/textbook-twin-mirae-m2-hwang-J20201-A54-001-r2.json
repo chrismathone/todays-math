@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 123,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A54-001-r2",
+ "authorId": "claude-fable-5-1:4c4b3448-c490-42db-8f04-6207d02761c9",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20201-A54-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "주머니에 $4$, $5$, $6$, $7$이 하나씩 적힌 공 네 개가 들어 있다. 공을 하나 꺼내 거기 적힌 수를 $x$에 대입할 때, 아래 각 부등식이 참이 되게 하는 공의 수를 모두 쓰시오.\n⑴ $x+5<11$\n⑵ $x+5\\le 11$\n⑶ $4x-9>15$\n⑷ $4x-9\\ge 15$",
+ "choices": [],
+ "answer": "⑴ $4$, $5$ ⑵ $4$, $5$, $6$ ⑶ $7$ ⑷ $6$, $7$",
+ "solution": "$x=4, 5, 6, 7$을 각 부등식에 차례로 넣어 참이 되는 것을 고른다.\n⑴ $x+5$의 값은 차례로 $9, 10, 11, 12$이고 $11$보다 작은 것은 $9, 10$이므로 해는 $4$, $5$\n⑵ $11\\le 11$도 참이므로 해는 $4$, $5$, $6$\n⑶ $4x-9$의 값은 차례로 $7, 11, 15, 19$이고 $15$보다 큰 것은 $19$뿐이므로 해는 $7$\n⑷ $15\\ge 15$도 참이므로 해는 $6$, $7$",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-efb70e97c9d000da-0-3",
+  "problemCode": "J20201-A54-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "cd484a028d76eeacf1024b027b466de44b41acb3727301cde9ce94f8136ceaec",
+  "dbContentSha256": "63e3c4dbab0e7b452a3bae3e5be3e406fc4e86a3676d7cbbfd92fe52a3178560",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_3-1_부등식과그해.hwp",
+    "sha256": "35a4df147c8674b4cadb1c404c1963fbb18cb671d9b038cb84902ed987869ba3",
+    "bytes": 283648
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "context"
+  ],
+  "before": "네 개의 정수 후보가 나열되고, 부등호만 다른 두 쌍의 일차부등식(한 쌍은 x에 상수를 더한 꼴, 한 쌍은 x에 계수를 곱하고 상수를 뺀 꼴)에 대해 후보를 대입해 참이 되는 값을 괄호 안에 쓰게 한다.",
+  "after": "주머니 속 공에 적힌 네 수를 후보로 삼아, 같은 두 쌍 구조(덧셈 꼴의 < · ≤, 곱셈-뺄셈 꼴의 > · ≥)의 부등식을 참이 되게 하는 공의 수를 고르게 한다. 후보 수와 부등식의 계수·상수를 모두 새로 두었고, 괄호 채우기 대신 소재가 있는 장면으로 바꿨다.",
+  "sharedConcept": "부등식의 해 — 부등식을 참이 되게 하는 미지수의 값",
+  "sharedProcedure": "후보 값을 차례로 대입 → 좌변의 값 계산 → 부등호(<, ≤, >, ≥)에 따라 참·거짓 판별 → 참이 되는 값만 모음"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 뜻과 부등호의 의미",
+   "일차식에 수를 대입하여 값 구하기",
+   "정수의 대소 비교"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A54-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "주어진 후보 값을 대입하여 부등식의 해 찾기(부등호 종류별 비교)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.074,
+   "longestRun": 8,
+   "residualChars": 100,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

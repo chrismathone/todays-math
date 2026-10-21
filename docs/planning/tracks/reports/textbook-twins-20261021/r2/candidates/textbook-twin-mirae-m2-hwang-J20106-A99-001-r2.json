@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 44,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-A99-001-r2",
+ "authorId": "claude-fable-5-1:dcecdab6-059c-467d-a30a-f97f2bd421ef",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-A99-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "다음을 간단히 하시오.\n⑴ $20p^{4}q^{2}\\div 4p^{2}q^{5}$ ⑵ $28x^{3}y^{4}\\div\\left(-7xy^{3}\\right)$\n⑶ $\\left(-2ab^{2}\\right)^{2}\\div\\left(-a^{2}b\\right)^{3}$ ⑷ $\\left(\\frac{1}{3}xy^{2}\\right)^{2}\\div\\left(2x^{2}y\\right)^{2}$",
+ "choices": [],
+ "answer": "⑴ $\\frac{5p^{2}}{q^{3}}$ ⑵ $-4x^{2}y$ ⑶ $-\\frac{4b}{a^{4}}$ ⑷ $\\frac{y^{2}}{36x^{2}}$",
+ "solution": "⑴ $20p^{4}q^{2}\\div 4p^{2}q^{5}=\\dfrac{20p^{4}q^{2}}{4p^{2}q^{5}}=\\dfrac{5p^{2}}{q^{3}}$이다.\n⑵ $28x^{3}y^{4}\\div\\left(-7xy^{3}\\right)=\\dfrac{28x^{3}y^{4}}{-7xy^{3}}=-4x^{2}y$이다.\n⑶ $\\left(-2ab^{2}\\right)^{2}=4a^{2}b^{4}$, $\\left(-a^{2}b\\right)^{3}=-a^{6}b^{3}$이므로 $\\dfrac{4a^{2}b^{4}}{-a^{6}b^{3}}=-\\dfrac{4b}{a^{4}}$이다.\n⑷ $\\left(\\frac{1}{3}xy^{2}\\right)^{2}=\\dfrac{1}{9}x^{2}y^{4}$, $\\left(2x^{2}y\\right)^{2}=4x^{4}y^{2}$이므로 $\\dfrac{1}{9}x^{2}y^{4}\\times\\dfrac{1}{4x^{4}y^{2}}=\\dfrac{y^{2}}{36x^{2}}$이다.\n따라서 답은 ⑴ $\\frac{5p^{2}}{q^{3}}$ ⑵ $-4x^{2}y$ ⑶ $-\\frac{4b}{a^{4}}$ ⑷ $\\frac{y^{2}}{36x^{2}}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-aea973a819cd3a31-0-2",
+  "problemCode": "J20106-A99-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "9a251a5b6c91d8140ead80e186fa5631f4760985ad6715a987e29f618a677de4",
+  "dbContentSha256": "7831cc0027a078cfc33cf4cd877188366ec354b2eb3382f95e750c9cc3ea4ca0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-3_단항식의곱셈과나눗셈.hwp",
+    "sha256": "f86c854db9405fb705444de6982bb4aa1c61cb2ecdfe8dd9bbfc6b1ac6a856fc",
+    "bytes": 94208
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "네 소문항 모두 단항식 나눗셈. 음의 계수는 나뉘는 쪽에 있고, 세 번째는 음수 밑의 세제곱을 제곱으로 나누며, 네 번째는 분수 계수의 제곱이 나누는 쪽에 있어 역수를 곱해 정리한다.",
+  "after": "네 소문항 모두 단항식 나눗셈이지만 짜임을 바꿨다. 음의 계수가 나누는 쪽에 있고, 세 번째는 제곱을 음수 밑의 세제곱으로 나누어 음의 부호가 분모 쪽에서 나오며, 네 번째는 분수 계수의 제곱이 나뉘는 쪽에 있어 나누는 식의 역수를 곱한다. 문자와 계수·지수도 모두 새로 잡았다.",
+  "sharedConcept": "단항식의 나눗셈 — 지수법칙과 역수 곱셈으로 계수와 문자를 따로 정리한다",
+  "sharedProcedure": "거듭제곱을 지수법칙으로 전개 → 나눗셈을 분수 꼴(또는 역수의 곱)로 바꾼다 → 계수끼리 나누고 같은 문자는 지수를 뺀다 → 문자가 분모에 남으면 분수로 쓴다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙(곱 · 거듭제곱의 거듭제곱 · 나눗셈)",
+   "단항식의 곱셈",
+   "역수와 분수의 나눗셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-A99-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "단항식의 나눗셈 계산(거듭제곱 전개 · 분수 계수 포함)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.184,
+   "longestRun": 6,
+   "residualChars": 94,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

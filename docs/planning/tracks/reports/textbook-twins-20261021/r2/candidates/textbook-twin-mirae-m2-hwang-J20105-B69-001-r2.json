@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 115,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B69-001-r2",
+ "authorId": "claude-fable-5-1:f397db82-ff8c-47ef-b58a-0715dee1dc4f",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B69-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 계산 가운데 옳지 않은 것은?",
+ "choices": [
+  "$(-10a^{7})^{2}=100a^{14}$",
+  "$(7xy^{10})^{2}=14x^{2}y^{20}$",
+  "$(a^{7}b^{2})^{10}=a^{70}b^{20}$",
+  "$\\left(-\\frac{y}{x}\\right)^{7}=-\\frac{y^{7}}{x^{7}}$",
+  "$\\left(\\frac{a^{10}b}{7}\\right)^{2}=\\frac{a^{20}b^{2}}{49}$"
+ ],
+ "answer": "②",
+ "solution": "② $(7xy^{10})^{2}=7^{2}x^{2}y^{20}=49x^{2}y^{20}$이므로 계수를 $14$로 쓴 것은 옳지 않다.\n① $(-10)^{2}=100$, $(a^{7})^{2}=a^{14}$ ③ $(a^{7})^{10}=a^{70}$, $(b^{2})^{10}=b^{20}$ ④ 지수가 홀수이므로 부호는 $-$ ⑤ $7^{2}=49$, $(a^{10})^{2}=a^{20}$ 으로 모두 옳다.\n따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-27e81b57b3302127-0-3",
+  "problemCode": "J20105-B69-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "ea42b317b4e520b5915c179314009107ce62129b374b2f7855f65c6e752be879",
+  "dbContentSha256": "68f94afdd51219a316afac8734a1c83d9e7ed796f82fe380cb04f1002a645551",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-2_지수법칙2.hwp",
+    "sha256": "dcf5b1bb29c0cbdadf4de1aacfab4483ca6979b10c143bf554eb044154b17ddc",
+    "bytes": 38400
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "곱의 거듭제곱 · 몫의 거듭제곱을 계산한 등식 다섯 개 가운데, 계수를 거듭제곱할 때 지수를 하나 낮게 잡아 틀린 것(세 번째 보기)을 찾게 한다. 지수는 2~5의 작은 수.",
+  "after": "같은 다섯 꼴(음수 단항식의 짝수 제곱 · 두 문자 단항식의 거듭제곱 · 음수 분수의 홀수 제곱 · 분모에 수가 있는 분수의 제곱)이지만 지수에 7 · 10 · 20 같은 큰 수를 쓰고, 틀린 보기는 계수에 지수를 거듭제곱하지 않고 곱해 버린 오류(7×2=14)로 바꾸어 두 번째 보기에 둔다.",
+  "sharedConcept": "지수법칙 ⑷ 곱의 거듭제곱 $(ab)^{n}=a^{n}b^{n}$ · 몫의 거듭제곱 $\\left(\\frac{a}{b}\\right)^{n}=\\frac{a^{n}}{b^{n}}$ · 음수의 홀짝 거듭제곱 부호",
+  "sharedProcedure": "보기마다 계수 · 각 문자에 지수를 분배 → $(a^{m})^{n}=a^{mn}$ 으로 지수 계산 → 계수의 거듭제곱 값과 부호 확인 → 주어진 결과와 다른 보기 하나 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "거듭제곱의 뜻과 음수의 거듭제곱 부호",
+   "지수법칙 ⑴ $a^{m}\\times a^{n}=a^{m+n}$",
+   "지수법칙 ⑵ $(a^{m})^{n}=a^{mn}$"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B69-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "곱 · 몫의 거듭제곱 계산 결과 가운데 옳지 않은 것 찾기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.069,
+   "longestRun": 7,
+   "residualChars": 111,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

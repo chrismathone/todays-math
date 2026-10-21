@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 83,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A77-001-r2",
+ "authorId": "claude-fable-5-1:28a74158-11a9-4938-8f9d-e323d7172480",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20101-A77-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "두 자리 자연수 $n$은 $6$으로 나누어떨어지고, 분수 $\\frac{n}{330}$을 소수로 나타내면 유한소수가 된다. 이때 $n$의 값을 구하시오.",
+ "choices": [],
+ "answer": "$66$",
+ "solution": "$330=2\\times3\\times5\\times11$이므로 $\\frac{n}{330}$이 유한소수가 되려면 분모의 $3$과 $11$이 모두 약분되어야 한다. 즉 $n$은 $3\\times11=33$의 배수이다. 두 자리 자연수 중 $33$의 배수는 $33$, $66$, $99$이다. 이 가운데 $6$으로 나누어떨어지는 수, 곧 $33$과 $6$의 공배수는 $66$뿐이다. 실제로 $\\frac{66}{330}=\\frac{1}{5}=0.2$이다. 따라서 $n=66$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-17",
+  "problemCode": "J20101-A77-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 17,
+  "sourceContentSha256": "61d5cecc69413007f5e2bc18ea90c0dd7209286229b5a54b1a1726f45b09b7c9",
+  "dbContentSha256": "ebab0b8985f1894b432454fd4f06b31d7d01b9ec6555b36534c8d6a14f6d7ef1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation",
+   "structure"
+  ],
+  "before": "조건 두 개를 (가)(나)로 나열하고, 분모 2×3×5×7인 분수가 유한소수가 되는 조건(21의 배수)과 9의 배수 조건을 겹쳐 두 자리 자연수 하나를 찾게 한다.",
+  "after": "조건을 한 문장 서술로 주고, 분모 2×3×5×11인 분수가 유한소수가 되는 조건(33의 배수)과 6으로 나누어떨어지는 조건을 겹쳐 두 자리 자연수 하나를 찾게 한다. 약분해야 할 소인수가 둘(3, 11)이고 배수 조건(6)이 그 소인수 3과 겹쳐 최소공배수 처리가 필요하다.",
+  "sharedConcept": "분모의 소인수가 2, 5뿐이어야 유한소수가 된다는 조건과 배수·공배수",
+  "sharedProcedure": "분모 소인수분해 → 2, 5 이외의 소인수를 약분하기 위한 n의 배수 조건 → 두 자리 범위에서 후보 나열 → 추가 배수 조건과 겹쳐 하나로 확정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "유리수와 소수"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "배수와 공배수, 최소공배수",
+   "유한소수로 나타낼 수 있는 분수의 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20101-A77-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "유한소수가 되는 조건과 배수 조건을 함께 만족하는 두 자리 자연수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "da7a052e-597d-4a48-a7c8-295c17e0c911",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.184,
+   "longestRun": 7,
+   "residualChars": 41,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

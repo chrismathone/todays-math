@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 75,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A90-001-r2",
+ "authorId": "claude-fable-5-1:31b684e2-0f4b-4d8f-9abf-8e214ad802e5",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20103-A90-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "지우가 순환소수를 분수로 고쳐 다음과 같이 적었다. 잘못 고친 것은?",
+ "choices": [
+  "$0.\\dot{4}=\\frac{4}{9}$",
+  "$3.1\\dot{6}=\\frac{305}{90}$",
+  "$0.\\dot{2}\\dot{7}=\\frac{27}{99}$",
+  "$0.\\dot{3}5\\dot{8}=\\frac{358}{999}$",
+  "$0.5\\dot{2}=\\frac{47}{90}$"
+ ],
+ "answer": "②",
+ "solution": "① $0.\\dot{4}=\\frac{4}{9}$, ③ $0.\\dot{2}\\dot{7}=\\frac{27}{99}$, ④ $0.\\dot{3}5\\dot{8}=\\frac{358}{999}$, ⑤ $0.5\\dot{2}=\\frac{52-5}{90}=\\frac{47}{90}$ 은 모두 옳다. ② $x=3.1\\dot{6}$ 이라 하면 $100x=316.666\\cdots$, $10x=31.666\\cdots$ 이므로 $100x-10x=316-31$, 즉 $90x=285$ 에서 $x=\\frac{285}{90}$ 이다. 따라서 잘못 고친 것은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-c3b8fb93d4fa485d-0-2",
+  "problemCode": "J20103-A90-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "babbde5c59609848c060370e4a8410413c62d21398cfbf63a18f6b1712f9b126",
+  "dbContentSha256": "76257d04d191d7b5df551898b167741cc225442ce2207386721ebde10dc52cf5",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_1-3_순환소수의분수표현.hwp",
+    "sha256": "626f88a9ab44ae352a855e765fb4e7adfb2505b64c8ea4519587f15bacbf5eee",
+    "bytes": 41984
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "순환마디만 있는 소수 셋과 순환하지 않는 자리가 있는 소수 둘을 분수로 나타낸 다섯 보기 가운데 틀린 하나를 고른다. 틀린 보기는 정수 부분이 있는 소수의 분자가 잘못된 마지막 보기다.",
+  "after": "학생이 노트에 고쳐 적은 다섯 보기 가운데 잘못 고친 하나를 고른다. 보기는 원본처럼 약분하지 않은 꼴 그대로 두어 약분 확인 단계가 더 들지 않게 했고, 틀린 보기(정수 부분이 있는 소수의 분자 오류)를 둘째 자리에 두었다.",
+  "sharedConcept": "순환소수를 분수로 나타내기(순환마디 자릿수에 따른 9, 99, 999 와 비순환 자리의 90)",
+  "sharedProcedure": "보기마다 순환소수를 분수로 고친다 → 주어진 분수와 견준다 → 다른 것 하나를 고른다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수의 표현(순환마디와 점 표기)",
+   "10의 거듭제곱을 곱해 순환소수를 분수로 나타내기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A90-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순환소수를 분수로 나타낸 보기 가운데 옳지 않은 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.099,
+   "longestRun": 8,
+   "residualChars": 74,
+   "params": 14,
+   "numberRetention": 0.286,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

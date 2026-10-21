@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 47,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20106-B19-001-r2",
+ "authorId": "claude-fable-5-1:4929f2ae-a301-4f4c-a5e6-6049ba9c8fd6",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20106-B19-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "그림은 지우가 만든 직육면체 모양의 상자이다. 밑면의 가로의 길이는 $3a^{2}$, 높이는 $8a^{2}$이고 상자의 부피는 $84a^{5}$이다. 이 상자의 겉넓이는?\n[그림]",
+ "choices": [
+  "$48a^{4}+70a^{3}$",
+  "$48a^{4}+77a^{3}$",
+  "$24a^{4}+77a^{3}$",
+  "$48a^{3}+77a^{4}$",
+  "$42a^{4}+77a^{3}$"
+ ],
+ "answer": "②",
+ "solution": "밑면의 세로의 길이를 $k$라 하면 $3a^{2}\\times k\\times 8a^{2}=84a^{5}$이므로 $24a^{4}k=84a^{5}$이다.\n$k=84a^{5}\\div 24a^{4}=\\dfrac{7a}{2}$이다.\n겉넓이는 $2\\left(3a^{2}\\times \\dfrac{7a}{2}+3a^{2}\\times 8a^{2}+\\dfrac{7a}{2}\\times 8a^{2}\\right)=2\\left(\\dfrac{21a^{3}}{2}+24a^{4}+28a^{3}\\right)$이다.\n$=2\\left(24a^{4}+\\dfrac{77a^{3}}{2}\\right)=48a^{4}+77a^{3}$이다.\n따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B19-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20106-B19-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-9",
+  "problemCode": "J20106-B19-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "55f7b0e05646bd643d0c9f2ad076ec318659ca5dfcf1ef14c312292565423125",
+  "dbContentSha256": "af393ffcd85ee392bcd88400a466418af143dc083d32ebf3e7d113adc74d664e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [
+   "fa0759ad642ff47d315c08f69f344c4bc5b8fcdbbe54e545dc4512ff959b3008"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "직육면체 그림에 밑면의 두 변 길이가 단항식으로 적혀 있고 부피가 주어진다. 부피를 밑넓이로 나누어 높이를 구하는데 몫의 계수가 분수가 되고, 세 면의 넓이를 더해 두 배 한 겉넓이를 다섯 보기에서 고른다.",
+  "after": "상자 장면으로 바꾸고 밑면의 가로와 높이를 주어 밑면의 세로를 부피에서 나눗셈으로 구한다. 몫의 계수가 분수 $\\dfrac{7}{2}$가 되어 원본처럼 분수 계수를 다루며, 세 면의 넓이 가운데 둘이 동류항으로 합쳐져 두 항의 겉넓이를 보기에서 고른다.",
+  "sharedConcept": "단항식의 곱셈과 나눗셈을 직육면체의 부피와 겉넓이에 적용하기",
+  "sharedProcedure": "모르는 모서리를 문자로 놓고 부피식 세우기 → 단항식 나눗셈으로 그 모서리 구하기(분수 계수) → 세 면의 넓이를 단항식 곱셈으로 구하기 → 동류항을 모아 두 배 하여 겉넓이 정리 → 보기 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "단항식의 곱셈과 나눗셈"
+  },
+  "prerequisites": [
+   "지수법칙",
+   "단항식의 곱셈과 나눗셈",
+   "직육면체의 부피와 겉넓이",
+   "다항식의 덧셈과 동류항 정리"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20106-B19-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "부피가 주어진 직육면체에서 모르는 모서리를 구해 겉넓이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "044e4b67-5014-444d-8177-8efc976e3152",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.108,
+   "longestRun": 6,
+   "residualChars": 108,
+   "params": 11,
+   "numberRetention": 0.364,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

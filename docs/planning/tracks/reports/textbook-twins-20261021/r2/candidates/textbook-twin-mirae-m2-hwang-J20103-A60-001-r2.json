@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 66,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A60-001-r2",
+ "authorId": "claude-fable-5-1:ef03a4f6-47d7-41fb-91ab-6cc6556bac32",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20103-A60-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "서아는 가로의 길이가 순환소수 $0.8\\dot{5}$ 를 기약분수로 나타낸 수의 역수이고, 세로의 길이가 순환소수 $1.\\dot{1}$ 을 기약분수로 나타낸 수의 역수인 직사각형을 그렸다. 이 직사각형의 넓이는?",
+ "choices": [
+  "$\\frac{72}{77}$",
+  "$\\frac{9}{10}$",
+  "$\\frac{90}{91}$",
+  "$\\frac{81}{77}$",
+  "$\\frac{90}{77}$"
+ ],
+ "answer": "④",
+ "solution": "$0.8\\dot{5}=\\dfrac{85-8}{90}=\\dfrac{77}{90}$ 이므로 가로의 길이는 그 역수인 $\\dfrac{90}{77}$ 이다. $1.\\dot{1}=\\dfrac{11-1}{9}=\\dfrac{10}{9}$ 이므로 세로의 길이는 그 역수인 $\\dfrac{9}{10}$ 이다. 따라서 직사각형의 넓이는 $\\dfrac{90}{77}\\times\\dfrac{9}{10}=\\dfrac{81}{77}$ 이고 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-5aa200e34ce1b904-0-12",
+  "problemCode": "J20103-A60-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 12,
+  "sourceContentSha256": "f8b99156560dc215eaa0d43eddb5ba471197637f04c7b4c9f2a50714e8e185fc",
+  "dbContentSha256": "8b9a28ba854962cd9773a77dc2c004d8d0f488e612556264f1792faedcf472df",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_1_유리수와순환소수.hwp",
+    "sha256": "bcf7197089e8eee74a704338d51a13ac21fd53cc516365a62880f10bb37d5833",
+    "bytes": 374272
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "representation",
+   "numbers"
+  ],
+  "before": "혼합순환소수 하나와 정수 부분이 있는 순환소수 하나를 각각 기약분수로 고친 뒤 두 역수를 문자로 두고, 그 두 문자의 곱을 보기에서 고른다.",
+  "after": "같은 두 꼴의 순환소수를 기약분수로 고친 역수를 직사각형의 가로 · 세로 길이로 주고, 그 넓이(두 역수의 곱)를 보기에서 고른다. r1 지적(수와 이름만 바꿈)을 받아 장면과 나타낸 방식을 실제로 바꿨다.",
+  "sharedConcept": "순환소수의 분수 표현과 역수",
+  "sharedProcedure": "혼합순환소수를 공식(또는 10배·100배 빼기)으로 분수화 → 정수 부분 있는 순환소수를 분수화 → 각각 기약분수의 역수 → 두 역수의 곱(약분)"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "순환소수의 분수 표현"
+  },
+  "prerequisites": [
+   "순환소수를 분수로 나타내기",
+   "역수",
+   "분수의 곱셈과 약분"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20103-A60-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 순환소수를 기약분수로 고친 역수의 곱 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d5a2925a-1191-4cb6-be1b-3aac59dbb59a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.099,
+   "longestRun": 8,
+   "residualChars": 91,
+   "params": 12,
+   "numberRetention": 0.0,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
