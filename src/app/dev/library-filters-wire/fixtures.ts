@@ -171,3 +171,20 @@ export const WIRE_ROWS: WireRow[] = [
     owner: "me",
   },
 ];
+
+/**
+ * 수가 세 자리일 때 — 같은 16행을 21번 되풀이한 336행(Hi-fi 의 «자료 수 많음»). 제목 끝에 회차를 붙이고 날짜를 하루씩 뒤로 민다.
+ * 칸 글 «전체 자료 (336)» · «시험지 (189)»가 칸 폭을 얼마나 넓히는지 보려는 것이다.
+ */
+export const MANY_ROWS: WireRow[] = Array.from({ length: 21 }, (_, round) =>
+  WIRE_ROWS.map((row) => {
+    const updated = new Date(row.updatedAt);
+    updated.setDate(updated.getDate() - round * 14);
+    return {
+      ...row,
+      id: `${row.id}-${round}`,
+      title: round ? `${row.title} · ${round + 1}회` : row.title,
+      updatedAt: updated.toISOString(),
+    };
+  }),
+).flat();

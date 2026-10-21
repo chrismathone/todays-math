@@ -2,11 +2,8 @@
 
 import {
   createContext,
-  useCallback,
   useContext,
-  useEffect,
   useId,
-  useLayoutEffect,
   useRef,
   useState,
   type ReactNode,
@@ -15,23 +12,34 @@ import {
 import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import lib from "@/components/unified/PrivateLibrary.module.css";
 import o from "@/components/unified/print/OutputExtras.module.css";
-import wr from "@/components/unified/Workroom.module.css";
-import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import Icon from "@/components/unified/WorkspaceIcon";
 import {
   DOCUMENT_KINDS,
   documentKindLabel,
-  type DocumentKind,
 } from "@/contracts/privateWorkspace.contract";
-import {
-  SHEET_TAGS,
-  isTaggableKind,
-  type SheetTag,
-} from "@/contracts/sheetTag.contract";
-import type { DocumentWorkflow } from "@/contracts/workspaceWorkflow.contract";
+import { SHEET_TAGS } from "@/contracts/sheetTag.contract";
 
-import { COLLEAGUE, ME, WIRE_ROWS, type WireRow } from "./fixtures";
 import w from "./LibraryFiltersWire.module.css";
+import {
+  LibraryMock,
+  MeasureStore,
+  PAUSED_REASON,
+  PcFrame,
+  PhoneFrame,
+  SCREEN_OPTIONS,
+  Summary,
+  Switch,
+  partsStyles as p,
+  tagName,
+  taggableView,
+  useFilters,
+  type F,
+  type KindFilter,
+  type Scope,
+  type Screen,
+  type Sort,
+  type TagFilter,
+} from "./parts";
 
 /**
  * 내 자료(보관함) 거르기 줄 — Wire 5안. 지금 화면(기준) 하나와 A ~ E.
@@ -42,149 +50,8 @@ import w from "./LibraryFiltersWire.module.css";
  * 거르기 · 수 세기 규칙은 `PrivateLibrary.tsx` 를 옮겼다(권한 · 로딩 · 실패 · 사본은 그리지 않는다).
  */
 
-type KindFilter = DocumentKind | "all";
-type TagFilter = SheetTag | "none" | null;
-type Sort = "newest" | "name" | "count";
-type Scope = "all" | "mine" | "working";
-type Screen = "1536" | "1280" | "1024";
-
-const SCREENS: Record<Screen, { main: number; side: number }> = {
-  "1536": { main: 1296, side: 240 },
-  "1280": { main: 1040, side: 240 },
-  "1024": { main: 812, side: 212 },
-};
-/** 1536 × 864 화면(125%)에서 작업 표시줄 · 브라우저 머리를 뺀 안쪽 높이 — 가정이다. */
-const PC_HEIGHT = 740;
-const PHONE = { width: 390, height: 844, nav: 77 };
-
-const STAGE_LABEL: Record<DocumentWorkflow["step"], string> = {
-  import: "원본 가져오기",
-  crop: "문제 잘라내기",
-  scope: "1 범위 설정",
-  review: "2 문항 검토",
-  output: "3 양식 구성·출력",
-};
-
-const taggableView = (kind: KindFilter) =>
-  kind === "all" || isTaggableKind(kind);
-const tagMatches = (row: WireRow, tag: TagFilter) =>
-  tag === null
-    ? true
-    : tag === "none"
-      ? isTaggableKind(row.kind) && !row.tag
-      : row.tag === tag;
-/** `PrivateLibrary.tsx` 의 `isWorkingDocument` × `owned` — 출력 단계에서 저장한 연산 연습지는 작업 중이 아니다. */
-const isMyWork = (row: WireRow) =>
-  Boolean(row.step) &&
-  !(row.kind === "arithmeticSheet" && row.step === "output") &&
-  row.owner === "me";
-
-const dateFormat = new Intl.DateTimeFormat("ko-KR", {
-  month: "numeric",
-  day: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-});
-
 /** 페이지 맨 위 선택 — 다섯 안에 같이 걸린다. */
 const WireOptions = createContext({ labels: false, countInBar: false });
-/** 틀마다 잰 값을 맨 위 «잰 값 한눈에» 표로 올린다 — 열쇠는 «안:틀»(예: «C:pc»). */
-const MeasureReport = createContext<
-  (key: string, value: Measure | null) => void
->(() => undefined);
-
-function useFilters(branch: boolean) {
-  const [query, setQuery] = useState("");
-  const [kind, setKind] = useState<KindFilter>("all");
-  const [tag, setTag] = useState<TagFilter>(null);
-  const [workingOnly, setWorkingOnly] = useState(false);
-  const [mineOnly, setMineOnly] = useState(false);
-  const [sort, setSort] = useState<Sort>("newest");
-  // 서버가 주는 목록 — 학원 소속이 아니면 늘 내 자료만(`client.library(…, !branchId || mineOnly)`).
-  const items = WIRE_ROWS.filter(
-    (row) => (branch && !mineOnly) || row.owner === "me",
-  );
-  const tagFor = (view: KindFilter) => (taggableView(view) ? tag : null);
-  const activeTag = tagFor(kind);
-  const q = query.trim().toLocaleLowerCase();
-  const searched = items.filter((row) =>
-    row.title.toLocaleLowerCase().includes(q),
-  );
-  const base = workingOnly ? searched.filter(isMyWork) : searched;
-  const kindCounts = Object.fromEntries(
-    DOCUMENT_KINDS.map((entry) => [entry.id, 0]),
-  ) as Record<DocumentKind, number>;
-  for (const row of base)
-    if (tagMatches(row, tagFor(row.kind))) kindCounts[row.kind] += 1;
-  const allCount = base.filter((row) => tagMatches(row, tagFor("all"))).length;
-  const workingCount = searched.filter(
-    (row) =>
-      (kind === "all" || row.kind === kind) &&
-      tagMatches(row, activeTag) &&
-      isMyWork(row),
-  ).length;
-  const ofKind = base.filter((row) => kind === "all" || row.kind === kind);
-  const tagCounts = Object.fromEntries(
-    SHEET_TAGS.map((entry) => [entry, 0]),
-  ) as Record<SheetTag, number>;
-  for (const row of ofKind) if (row.tag) tagCounts[row.tag] += 1;
-  const noneCount = ofKind.filter((row) => tagMatches(row, "none")).length;
-  const filtered = ofKind
-    .filter((row) => tagMatches(row, activeTag))
-    .sort((a, b) => {
-      if (sort === "name") return a.title.localeCompare(b.title, "ko");
-      if (sort === "count" && a.problemCount !== b.problemCount)
-        return b.problemCount - a.problemCount;
-      return b.updatedAt.localeCompare(a.updatedAt);
-    });
-  return {
-    branch,
-    query,
-    setQuery,
-    kind,
-    setKind,
-    tag,
-    setTag,
-    activeTag,
-    workingOnly,
-    setWorkingOnly,
-    mineOnly,
-    setMineOnly,
-    sort,
-    setSort,
-    scope: (workingOnly ? "working" : mineOnly ? "mine" : "all") as Scope,
-    /**
-     * C안의 «보기» — 새 동작이다(무손실 치환이 아니다). «내 작업 중만»을 고르면 내 자료만 받아 온다(작업 중은 내 것만 센다).
-     * 지금의 두 체크와 달리 작업 중을 풀 때 «내 자료만»이 남아 있지 않고 범위를 다시 고른다.
-     */
-    setScope(next: Scope) {
-      setWorkingOnly(next === "working");
-      setMineOnly(branch && next !== "all");
-    },
-    items,
-    kindCounts,
-    allCount,
-    workingCount,
-    tagCounts,
-    noneCount,
-    filtered,
-    hasFilters:
-      Boolean(q) ||
-      kind !== "all" ||
-      mineOnly ||
-      workingOnly ||
-      activeTag !== null,
-    reset() {
-      setQuery("");
-      setKind("all");
-      setTag(null);
-      setWorkingOnly(false);
-      setMineOnly(false);
-    },
-  };
-}
-type F = ReturnType<typeof useFilters>;
-
 /* ───────────── 부품 — 드롭다운 · 체크 · 찾기 · 정렬 · 새로고침 · 결과 수 ───────────── */
 
 /** 드롭다운 한 칸 — «드롭다운 이름»을 켜면 칸 안 왼쪽에 작은 이름이 선다(누르면 그대로 드롭다운이 열린다). */
@@ -227,12 +94,6 @@ function KindSelect({ f }: { f: F }) {
  * 열면 «태그 풀기» 하나가 있다(따로 단추를 두지 않아 줄 · 칸 수가 그대로다). 고른 태그가 없으면 «태그 전체»로 꺼진다.
  * 그 종류로 돌아가면 기억한 태그가 다시 걸린다(지금 규칙).
  */
-const tagName = (tag: SheetTag | "none") =>
-  tag === "none" ? "태그 없음" : tag;
-
-const PAUSED_REASON =
-  "태그는 시험지 · 연산 연습지에만 있습니다. 그 종류를 고르면 다시 걸립니다.";
-
 function TagSelect({ f }: { f: F }) {
   const reasonId = useId();
   const paused = !taggableView(f.kind);
@@ -702,308 +563,18 @@ function BarE({ f }: { f: F }) {
   );
 }
 
-/* ───────────── 목록 그림 — 실제 PrivateLibrary 의 CSS 그대로 ───────────── */
-
-function LibraryMock({
+/** 결과 수 줄은 페이지 맨 위 선택을 따른다 — «지금»(기준)은 늘 그대로 둔다. */
+function WireMock({
   f,
   bar,
   now = false,
 }: {
   f: F;
   bar: ReactNode;
-  /** 지금 화면(기준) — 결과 수 줄은 페이지 선택과 상관없이 그대로 둔다. */
   now?: boolean;
 }) {
   const { countInBar } = useContext(WireOptions);
-  return (
-    <main className={lib.library}>
-      <WorkspacePageHeader
-        title="내 자료"
-        description={
-          f.branch
-            ? "내 자료와 같은 학원 선생님들이 공개한 자료를 함께 볼 수 있습니다."
-            : "내 계정에 저장한 시험지와 추출 자료를 어느 기기에서든 이어서 작업하세요."
-        }
-      >
-        <button type="button">작업 파일 불러오기</button>
-        <button type="button">새 시험지</button>
-      </WorkspacePageHeader>
-      {bar}
-      {f.workingOnly && (
-        <p className={lib.note}>
-          진행 단계가 기록된 내 자료입니다. ‘이어서 작업’은 기록된 단계로
-          엽니다.
-        </p>
-      )}
-      {(now || !countInBar) && (
-        <p className={lib.resultCount}>
-          저장한 자료 <strong>{f.items.length}</strong>개
-          {f.hasFilters && (
-            <>
-              {" "}
-              · 검색 결과 <strong>{f.filtered.length}</strong>개
-            </>
-          )}
-        </p>
-      )}
-      <div className={lib.board} data-board>
-        {f.filtered.length ? (
-          <table className={lib.table} aria-label="저장한 자료 목록(그림)">
-            <thead>
-              <tr>
-                <th scope="col" className={lib.numberCell}>
-                  번호
-                </th>
-                <th scope="col" className={lib.kindCell}>
-                  종류
-                </th>
-                <th scope="col" className={lib.titleCell}>
-                  자료 이름
-                </th>
-                <th scope="col" className={lib.countCell}>
-                  문항 수
-                </th>
-                <th scope="col" className={lib.updatedCell}>
-                  최근 수정
-                </th>
-                <th scope="col" className={lib.actionsCell}>
-                  관리
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {f.filtered.map((row, index) => (
-                <tr key={row.id} data-row>
-                  <td className={lib.numberCell}>{index + 1}</td>
-                  <td className={lib.kindCell}>
-                    <span className={o.kindStack}>
-                      <span className={lib.kindBadge} data-kind={row.kind}>
-                        {documentKindLabel(row.kind)}
-                      </span>
-                      {row.tag && <span className={o.tagBadge}>{row.tag}</span>}
-                    </span>
-                  </td>
-                  <td className={lib.titleCell}>
-                    <button type="button" className={lib.titleButton}>
-                      {row.title}
-                    </button>
-                    {row.step && (
-                      <div className={lib.progressLine}>
-                        <span>{STAGE_LABEL[row.step]}</span>
-                        {isMyWork(row) && (
-                          <button type="button">
-                            이어서 작업 <Icon name="arrow" size={14} />
-                          </button>
-                        )}
-                      </div>
-                    )}
-                    <small>
-                      작성자: {row.owner === "me" ? `${ME} (나)` : COLLEAGUE}
-                      {f.branch ? " · 학원에 공개" : ""}
-                      {row.owner === "me" ? "" : " · 사본으로 열기"}
-                    </small>
-                  </td>
-                  <td className={lib.countCell}>
-                    {row.problemCount}
-                    <span className={lib.mobileLabel}>문항</span>
-                  </td>
-                  <td className={lib.updatedCell}>
-                    <span className={lib.mobileLabel}>수정 </span>
-                    <time dateTime={row.updatedAt}>
-                      {dateFormat.format(new Date(row.updatedAt))}
-                    </time>
-                  </td>
-                  <td className={lib.actionsCell}>
-                    <div className={lib.actions}>
-                      <button type="button" aria-label={`${row.title} 정보`}>
-                        <Icon name="info" />
-                      </button>
-                      <button type="button" aria-label={`${row.title} 수정`}>
-                        <Icon name="edit" />
-                      </button>
-                      {row.owner === "me" && (
-                        <button type="button" aria-label={`${row.title} 삭제`}>
-                          <Icon name="trash" />
-                        </button>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <div className={lib.empty}>
-            <h2>조건에 맞는 자료가 없습니다</h2>
-            <p>자료 이름이나 종류 · 태그를 바꿔 다시 찾아보세요.</p>
-            <button type="button" onClick={f.reset}>
-              검색 조건 초기화
-            </button>
-          </div>
-        )}
-      </div>
-    </main>
-  );
-}
-
-/* ───────────── 틀과 자 — 폭은 제품 CSS 에서, 높이는 가정 ───────────── */
-
-type Measure = {
-  /** 머리(제목 · 설명 · 단추) 아래부터 목록(표) 위까지 */
-  gap: number;
-  /** 거르기 조작이 놓인 줄 수 */
-  lines: number;
-  /** 아래 끝이 첫 화면 높이 안에 드는 자료 행 수 */
-  rows: number;
-};
-
-function measure(frame: HTMLElement, visibleHeight: number): Measure | null {
-  const header = frame.querySelector("[data-workspace-page-header]");
-  const board = frame.querySelector("[data-board]");
-  const bar = frame.querySelector("[data-bar]");
-  if (!header || !board || !bar) return null;
-  const top = frame.getBoundingClientRect().top;
-  const gap = Math.round(
-    board.getBoundingClientRect().top - header.getBoundingClientRect().bottom,
-  );
-  const middles = [...bar.querySelectorAll("[data-ctl]")]
-    .map((element) => element.getBoundingClientRect())
-    .filter((rect) => rect.width > 0)
-    .map((rect) => rect.top + rect.height / 2)
-    .sort((a, b) => a - b);
-  let lines = 0;
-  let last = -Infinity;
-  for (const middle of middles) {
-    if (middle - last > 16) lines += 1;
-    last = middle;
-  }
-  const rows = [...frame.querySelectorAll("[data-row]")].filter(
-    (row) => row.getBoundingClientRect().bottom - top <= visibleHeight,
-  ).length;
-  return { gap, lines, rows };
-}
-
-function useMeasure(visibleHeight: number) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [value, setValue] = useState<Measure | null>(null);
-  useLayoutEffect(() => {
-    const frame = ref.current;
-    if (!frame) return;
-    const update = () => {
-      const next = measure(frame, visibleHeight);
-      setValue((previous) =>
-        previous &&
-        next &&
-        previous.gap === next.gap &&
-        previous.lines === next.lines &&
-        previous.rows === next.rows
-          ? previous
-          : next,
-      );
-    };
-    update();
-    const resize = new ResizeObserver(update);
-    const main = frame.querySelector("main");
-    if (main) resize.observe(main);
-    const mutations = new MutationObserver(update);
-    mutations.observe(frame, {
-      subtree: true,
-      childList: true,
-      characterData: true,
-      attributes: true,
-    });
-    void document.fonts?.ready.then(update);
-    return () => {
-      resize.disconnect();
-      mutations.disconnect();
-    };
-  }, [visibleHeight]);
-  return [ref, value] as const;
-}
-
-function MeasureLine({ value }: { value: Measure | null }) {
-  if (!value) return <span className={w.measure}>재는 중…</span>;
-  return (
-    <span className={w.measure}>
-      머리 아래 ~ 목록 위 <b>{value.gap}px</b> · 거르기 <b>{value.lines}줄</b> ·
-      첫 화면 안 자료 <b>{value.rows}행</b>
-    </span>
-  );
-}
-
-function useReport(key: string, value: Measure | null) {
-  const report = useContext(MeasureReport);
-  useEffect(() => report(key, value), [report, key, value]);
-}
-
-function PcFrame({
-  id,
-  screen,
-  children,
-}: {
-  id: string;
-  screen: Screen;
-  children: ReactNode;
-}) {
-  const [ref, value] = useMeasure(PC_HEIGHT);
-  useReport(`${id}:pc`, value);
-  const { main, side } = SCREENS[screen];
-  return (
-    <figure className={w.figure}>
-      <figcaption className={w.caption}>
-        <span>
-          PC {screen} 화면 — 본문 {main}px(옆 메뉴 {side} 뺌) · 높이 {PC_HEIGHT}
-          px(가정)
-        </span>
-        <MeasureLine value={value} />
-      </figcaption>
-      <div className={w.scrollX}>
-        <div
-          ref={ref}
-          className={w.pc}
-          data-screen={screen}
-          style={{ width: main, height: PC_HEIGHT }}
-        >
-          <div className={`${wr.workspace} ${w.shell}`}>{children}</div>
-        </div>
-      </div>
-    </figure>
-  );
-}
-
-function PhoneFrame({ id, children }: { id: string; children: ReactNode }) {
-  const [ref, value] = useMeasure(PHONE.height - PHONE.nav);
-  useReport(`${id}:phone`, value);
-  return (
-    <figure className={w.figure}>
-      <figcaption className={`${w.caption} ${w.phoneCaption}`}>
-        <span>폰 390 × 844 — 본문 358px</span>
-        <MeasureLine value={value} />
-      </figcaption>
-      <div
-        ref={ref}
-        className={w.phone}
-        style={{ width: PHONE.width, height: PHONE.height }}
-      >
-        <div className={`${wr.workspace} ${w.shell}`}>
-          <div className={w.phoneTop}>
-            <b>오늘 수학</b>
-            <span className={w.phoneNew}>
-              <Icon name="plus" size={16} /> 새로 만들기
-            </span>
-          </div>
-          {children}
-        </div>
-        <div className={w.phoneNav} aria-hidden>
-          {["오늘", "시험지 만들기", "내 자료", "더 보기"].map((item) => (
-            <span key={item} data-on={item === "내 자료" || undefined}>
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
-    </figure>
-  );
+  return <LibraryMock f={f} bar={bar} resultLine={now || !countInBar} />;
 }
 
 /* ───────────── 안 하나 ───────────── */
@@ -1092,13 +663,13 @@ function OptionSection({
   const { Bar } = spec;
   return (
     <section
-      className={w.option}
+      className={p.option}
       id={`wire-${spec.id}`}
       data-wire-option={spec.id}
     >
-      <div className={w.optionHead}>
+      <div className={p.optionHead}>
         <h2>{spec.title}</h2>
-        <dl className={w.spec}>
+        <dl className={p.spec}>
           <dt>순서</dt>
           <dd>{spec.order}</dd>
           <dt>체크 둘</dt>
@@ -1114,10 +685,10 @@ function OptionSection({
         </dl>
       </div>
       <PcFrame id={spec.id} screen={screen}>
-        <LibraryMock f={f} bar={<Bar f={f} />} />
+        <WireMock f={f} bar={<Bar f={f} />} />
       </PcFrame>
       <PhoneFrame id={spec.id}>
-        <LibraryMock f={f} bar={<Bar f={f} />} />
+        <WireMock f={f} bar={<Bar f={f} />} />
       </PhoneFrame>
     </section>
   );
@@ -1126,87 +697,22 @@ function OptionSection({
 function NowSection({ screen, branch }: { screen: Screen; branch: boolean }) {
   const f = useFilters(branch);
   return (
-    <section className={w.option} id="wire-now" data-wire-option="now">
-      <div className={w.optionHead}>
+    <section className={p.option} id="wire-now" data-wire-option="now">
+      <div className={p.optionHead}>
         <h2>지금 — 다섯 줄(기준)</h2>
-        <p className={w.lead}>
+        <p className={p.lead}>
           종류 칩 줄 · 태그 칩 줄 · 체크 줄 · 찾기 · 정렬 · 새로고침 줄 · 결과
           수 줄. 태그 없는 종류를 고르면 태그 줄이 안내 한 줄로 접힌다. 누르는
           수 — 종류 · 태그 · 작업 중 모두 1번.
         </p>
       </div>
       <PcFrame id="now" screen={screen}>
-        <LibraryMock f={f} bar={<BarNow f={f} />} now />
+        <WireMock f={f} bar={<BarNow f={f} />} now />
       </PcFrame>
       <PhoneFrame id="now">
-        <LibraryMock f={f} bar={<BarNow f={f} />} now />
+        <WireMock f={f} bar={<BarNow f={f} />} now />
       </PhoneFrame>
     </section>
-  );
-}
-
-/** 맨 위 «잰 값 한눈에» — 틀마다 브라우저에서 잰 값을 그대로 옮긴다(지금 고른 PC 틀 · 폰). */
-function Summary({
-  screen,
-  measures,
-}: {
-  screen: Screen;
-  measures: Record<string, Measure | null>;
-}) {
-  const cell = (value: Measure | null | undefined) =>
-    value ? `${value.gap}px · ${value.lines}줄 · ${value.rows}행` : "재는 중…";
-  return (
-    <table className={w.summary}>
-      <caption>
-        잰 값 한눈에 — 머리 아래 ~ 목록 위 높이 · 거르기 줄 수(조작들의 세로
-        자리로 셈) · 아래 끝이 첫 화면 높이 안에 드는 자료 행 수(틀 폭이 제품과
-        같아 가로로 잘리는 행은 없다)
-      </caption>
-      <thead>
-        <tr>
-          <th scope="col">안</th>
-          <th scope="col">PC {screen} 화면</th>
-          <th scope="col">폰 390</th>
-        </tr>
-      </thead>
-      <tbody>
-        {["now", ...OPTIONS.map((spec) => spec.id)].map((id) => (
-          <tr key={id}>
-            <th scope="row">{id === "now" ? "지금" : `${id}안`}</th>
-            <td>{cell(measures[`${id}:pc`])}</td>
-            <td>{cell(measures[`${id}:phone`])}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
-
-function Switch<T extends string | boolean>({
-  caption,
-  value,
-  options,
-  onChange,
-}: {
-  caption: string;
-  value: T;
-  options: { value: T; label: string }[];
-  onChange: (next: T) => void;
-}) {
-  return (
-    <div className={w.switches} role="group" aria-label={caption}>
-      <span>{caption}</span>
-      {options.map((option) => (
-        <button
-          key={String(option.value)}
-          type="button"
-          aria-pressed={value === option.value}
-          onClick={() => onChange(option.value)}
-        >
-          {option.label}
-        </button>
-      ))}
-    </div>
   );
 }
 
@@ -1215,113 +721,114 @@ export function LibraryFiltersWire() {
   const [branch, setBranch] = useState(true);
   const [countInBar, setCountInBar] = useState(false);
   const [labels, setLabels] = useState(false);
-  const [measures, setMeasures] = useState<Record<string, Measure | null>>({});
-  const report = useCallback(
-    (key: string, value: Measure | null) =>
-      setMeasures((previous) =>
-        previous[key] === value ? previous : { ...previous, [key]: value },
-      ),
-    [],
-  );
   return (
-    <MeasureReport.Provider value={report}>
-      <WireOptions.Provider value={{ labels, countInBar }}>
-        <div className={w.page}>
-          <header className={w.pageHead}>
-            <h1>내 자료 거르기 줄 — Wire 5안</h1>
-            <p>
-              원장님 2026-10-21 «상단 정렬하자. 드랍다운으로 스타일 맞춰서
-              깔끔하게» · «행을 너무 많이 써서 공간낭비함». 종류 · 태그를 정렬과
-              같은 드롭다운으로 바꾸고, 거르기 · 찾기 · 정렬 · 새로고침을 넓으면
-              한 줄 · 좁으면 두 줄에 모은다.
-            </p>
-            <ul className={w.common}>
-              <li>
-                다섯 안이 같은 것 — 드롭다운은 지금 정렬 칸과 같은 칸(44px ·
-                테두리 · 8px 모서리), 항목 글에 수 «시험지 (9)». 태그 드롭다운은
-                끝에 선을 긋고 «태그 없음». 같은 태그를 다시 눌러 푸는 대신
-                «태그 전체»를 고른다.
-              </li>
-              <li>
-                태그 없는 종류(추출한 자료 · 개념 백지)를 고르면 태그 칸이
-                꺼진다 — 고른 태그가 있으면 «숙제 · 미적용»과 [태그 풀기]. 그
-                종류로 돌아가면 다시 걸린다(지금 규칙). 지금의 접힌 안내 한 줄은
-                없어진다.
-              </li>
-              <li>
-                안마다 다른 것 — 순서 · 체크 둘의 자리 · 검색칸 폭 · 좁은 화면
-                줄바꿈. 드롭다운 · 체크는 실제로 걸러진다(교집합 · «고르면 몇 개
-                남나» 규칙은 지금 그대로).
-              </li>
-              <li>
-                틀 폭은 제품 CSS 에서 — 옆 메뉴 240(1024 화면은 212)을 뺀 본문.
-                높이 740 은 1536 × 864 화면의 브라우저 안쪽 높이를 가정한
-                값이다. 창 폭 1100 이상에서 보세요(그보다 좁으면 틀 밖 규칙이 틀
-                안에 들어온다). 지어낸 16행 · DB 를 읽지 않는다 · 아무것도
-                저장하지 않는다.
-              </li>
-            </ul>
-            <div className={w.switchRow}>
-              <Switch
-                caption="PC 틀"
-                value={screen}
-                options={(Object.keys(SCREENS) as Screen[]).map((key) => ({
-                  value: key,
-                  label: `${key} 화면`,
-                }))}
-                onChange={setScreen}
-              />
-              <Switch
-                caption="계정"
-                value={branch}
-                options={[
-                  { value: true, label: "학원 소속(내 자료만 보기 있음)" },
-                  { value: false, label: "혼자 쓰는 계정" },
+    <MeasureStore>
+      {(measures) => (
+        <WireOptions.Provider value={{ labels, countInBar }}>
+          <div className={p.page}>
+            <header className={p.pageHead}>
+              <h1>내 자료 거르기 줄 — Wire 5안</h1>
+              <p>
+                원장님 2026-10-21 «상단 정렬하자. 드랍다운으로 스타일 맞춰서
+                깔끔하게» · «행을 너무 많이 써서 공간낭비함». 종류 · 태그를
+                정렬과 같은 드롭다운으로 바꾸고, 거르기 · 찾기 · 정렬 ·
+                새로고침을 넓으면 한 줄 · 좁으면 두 줄에 모은다.
+              </p>
+              <ul className={p.common}>
+                <li>
+                  다섯 안이 같은 것 — 드롭다운은 지금 정렬 칸과 같은 칸(44px ·
+                  테두리 · 8px 모서리), 항목 글에 수 «시험지 (9)». 태그
+                  드롭다운은 끝에 선을 긋고 «태그 없음». 같은 태그를 다시 눌러
+                  푸는 대신 «태그 전체»를 고른다.
+                </li>
+                <li>
+                  태그 없는 종류(추출한 자료 · 개념 백지)를 고르면 태그 칸이
+                  꺼진다 — 고른 태그가 있으면 «숙제 · 미적용»과 [태그 풀기]. 그
+                  종류로 돌아가면 다시 걸린다(지금 규칙). 지금의 접힌 안내 한
+                  줄은 없어진다.
+                </li>
+                <li>
+                  안마다 다른 것 — 순서 · 체크 둘의 자리 · 검색칸 폭 · 좁은 화면
+                  줄바꿈. 드롭다운 · 체크는 실제로 걸러진다(교집합 · «고르면 몇
+                  개 남나» 규칙은 지금 그대로).
+                </li>
+                <li>
+                  틀 폭은 제품 CSS 에서 — 옆 메뉴 240(1024 화면은 212)을 뺀
+                  본문. 높이 740 은 1536 × 864 화면의 브라우저 안쪽 높이를
+                  가정한 값이다. 창 폭 1100 이상에서 보세요(그보다 좁으면 틀 밖
+                  규칙이 틀 안에 들어온다). 지어낸 16행 · DB 를 읽지 않는다 ·
+                  아무것도 저장하지 않는다.
+                </li>
+              </ul>
+              <div className={p.switchRow}>
+                <Switch
+                  caption="PC 틀"
+                  value={screen}
+                  options={SCREEN_OPTIONS}
+                  onChange={setScreen}
+                />
+                <Switch
+                  caption="계정"
+                  value={branch}
+                  options={[
+                    { value: true, label: "학원 소속(내 자료만 보기 있음)" },
+                    { value: false, label: "혼자 쓰는 계정" },
+                  ]}
+                  onChange={setBranch}
+                />
+              </div>
+              <div className={p.switchRow}>
+                <Switch
+                  caption="다섯 안 공통 · 결과 수"
+                  value={countInBar}
+                  options={[
+                    { value: false, label: "따로 한 줄(지금)" },
+                    { value: true, label: "거르기 줄 끝에" },
+                  ]}
+                  onChange={setCountInBar}
+                />
+                <Switch
+                  caption="드롭다운 이름"
+                  value={labels}
+                  options={[
+                    { value: false, label: "없음" },
+                    { value: true, label: "칸 안에 작게(종류 · 태그 · 정렬)" },
+                  ]}
+                  onChange={setLabels}
+                />
+              </div>
+              <Summary
+                screen={screen}
+                measures={measures}
+                rows={[
+                  { id: "now", label: "지금" },
+                  ...OPTIONS.map((spec) => ({
+                    id: spec.id,
+                    label: `${spec.id}안`,
+                  })),
                 ]}
-                onChange={setBranch}
               />
-            </div>
-            <div className={w.switchRow}>
-              <Switch
-                caption="다섯 안 공통 · 결과 수"
-                value={countInBar}
-                options={[
-                  { value: false, label: "따로 한 줄(지금)" },
-                  { value: true, label: "거르기 줄 끝에" },
-                ]}
-                onChange={setCountInBar}
+              <nav className={p.jump} aria-label="안으로 가기">
+                <a href="#wire-now">지금</a>
+                {OPTIONS.map((spec) => (
+                  <a key={spec.id} href={`#wire-${spec.id}`}>
+                    {spec.id}안
+                  </a>
+                ))}
+              </nav>
+            </header>
+            <NowSection key={`now-${branch}`} screen={screen} branch={branch} />
+            {OPTIONS.map((spec) => (
+              <OptionSection
+                key={`${spec.id}-${branch}`}
+                spec={spec}
+                screen={screen}
+                branch={branch}
               />
-              <Switch
-                caption="드롭다운 이름"
-                value={labels}
-                options={[
-                  { value: false, label: "없음" },
-                  { value: true, label: "칸 안에 작게(종류 · 태그 · 정렬)" },
-                ]}
-                onChange={setLabels}
-              />
-            </div>
-            <Summary screen={screen} measures={measures} />
-            <nav className={w.jump} aria-label="안으로 가기">
-              <a href="#wire-now">지금</a>
-              {OPTIONS.map((spec) => (
-                <a key={spec.id} href={`#wire-${spec.id}`}>
-                  {spec.id}안
-                </a>
-              ))}
-            </nav>
-          </header>
-          <NowSection key={`now-${branch}`} screen={screen} branch={branch} />
-          {OPTIONS.map((spec) => (
-            <OptionSection
-              key={`${spec.id}-${branch}`}
-              spec={spec}
-              screen={screen}
-              branch={branch}
-            />
-          ))}
-        </div>
-      </WireOptions.Provider>
-    </MeasureReport.Provider>
+            ))}
+          </div>
+        </WireOptions.Provider>
+      )}
+    </MeasureStore>
   );
 }
