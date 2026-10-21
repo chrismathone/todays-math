@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-21T15:36:35.101142+00:00",
+  "firstCommitPerformed": false,
+  "firstPushGateRefusedDirty": true,
+  "reason": "Captured external check stdout has trailing spaces on8 success lines; preserve original bytes",
+  "rawLog": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/m5-scatter-grid-20261022-r1/source-eight-r1.log",
+  "rawLogSHA256": "28c595a974db9ef4d5826d74b7e5219f83bbe82503d8a735b6c096673b794a6e",
+  "resolution": "Check all staged paths except this exact raw stdout file; do not alter source output or global whitespace rules"
+}

@@ -1,0 +1,31 @@
+{
+  "utc": "2026-10-21T15:27:04.176373+00:00",
+  "command": [
+    "node",
+    "--max-old-space-size=384",
+    "--max-semi-space-size=8",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m5-scatter-grid-20261022-r1\\grid-public-r1.mts",
+    "--maxWorkers=1",
+    "--no-file-parallelism",
+    "--reporter=json",
+    "--outputFile=C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m5-scatter-grid-20261022-r1\\grid-public-r1-results.json"
+  ],
+  "memory": {
+    "availableGiB": 6.454132080078125,
+    "minimumGiB": 1.5
+  },
+  "sourceSHA256": {
+    "src/lib/middle/generate.ts": "6a63b6fe714e412ccdb3e7ecda4a06058e915eff71795273a8f8db96b71f04be",
+    "src/lib/middle/m3Stat2.ts": "e1528f63fb2fa4b26ad04287f3a0c748063a63823bbcc75c7ef26ca2426ce353",
+    "src/lib/middle/studentInputIdentity.ts": "7d04c7846c7a55d7e6deb73a960e7be42de0d44c08f915aa51d4d678df0bccd1",
+    "src/__tests__/unit/middleStudentInputIdentity.test.ts": "a70901dd7b2d8c77aa54c91a321403359c018fe8f9adec7f34c833bc2e052856",
+    "scripts/figure/elem_advanced.py": "e09d4193828c6a2641b31ca2a1357d5a4cf03b58b127780a448affecf1aec3a8",
+    "src/__tests__/fixtures/m3Scatter-before-input-identity-20261022.json": "41a969f8966d04c521bfd36ad81131bf687fc0636e368dbf01ca57196312eead"
+  },
+  "sourcesUnchanged": true,
+  "exitcode": 1,
+  "dbWrites": 0
+}

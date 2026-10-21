@@ -1,0 +1,429 @@
+{
+  "beforeCommit": "541b7b11d0ac3ef88f482945335637f7d196d657",
+  "technicalOnly": true,
+  "dbWrites": 0,
+  "rows": [
+    {
+      "key": "3-2|상자그림과 산점도|06",
+      "spec": {
+        "version": "elem-1",
+        "kind": "scatterPlot",
+        "points": [
+          [
+            49,
+            63
+          ],
+          [
+            51,
+            74
+          ],
+          [
+            52,
+            86
+          ],
+          [
+            64,
+            91
+          ],
+          [
+            76,
+            41
+          ],
+          [
+            84,
+            63
+          ],
+          [
+            90,
+            72
+          ]
+        ],
+        "xMin": 20,
+        "xMax": 100,
+        "xStep": 20,
+        "yMin": 20,
+        "yMax": 100,
+        "yStep": 20,
+        "xLabel": "(점)",
+        "yLabel": "(점)"
+      },
+      "svg": "<svg viewBox=\"0 0 240 171.28\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"74.06\" y1=\"29.28\" x2=\"74.06\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"109.88\" y1=\"29.28\" x2=\"109.88\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"145.7\" y1=\"29.28\" x2=\"145.7\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"117.78\" x2=\"181.53\" y2=\"117.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"88.28\" x2=\"181.53\" y2=\"88.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"58.78\" x2=\"181.53\" y2=\"58.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"29.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"181.53\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"38.24\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.24\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">20</text><line x1=\"74.06\" y1=\"147.28\" x2=\"74.06\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"74.06\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">40</text><line x1=\"109.88\" y1=\"147.28\" x2=\"109.88\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"109.88\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"145.7\" y1=\"147.28\" x2=\"145.7\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"145.7\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">80</text><line x1=\"181.53\" y1=\"147.28\" x2=\"181.53\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.53\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">100</text><line x1=\"34.24\" y1=\"147.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"147.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">20</text><line x1=\"34.24\" y1=\"117.78\" x2=\"38.24\" y2=\"117.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"117.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">40</text><line x1=\"34.24\" y1=\"88.28\" x2=\"38.24\" y2=\"88.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"88.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">60</text><line x1=\"34.24\" y1=\"58.78\" x2=\"38.24\" y2=\"58.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"58.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">80</text><line x1=\"34.24\" y1=\"29.28\" x2=\"38.24\" y2=\"29.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"29.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">100</text><circle cx=\"90.18\" cy=\"83.86\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"93.76\" cy=\"67.63\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"95.55\" cy=\"49.93\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"117.05\" cy=\"42.56\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"138.54\" cy=\"116.31\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"152.87\" cy=\"83.86\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"163.61\" cy=\"70.58\" r=\"2.6\" fill=\"#111111\"/><text x=\"31.24\" y=\"9.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">(점)</text><text x=\"198.76\" y=\"161.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">(점)</text></svg>"
+    },
+    {
+      "key": "3-2|상자그림과 산점도|07",
+      "spec": {
+        "version": "elem-1",
+        "kind": "scatterPlot",
+        "points": [
+          [
+            49,
+            68
+          ],
+          [
+            55,
+            59
+          ],
+          [
+            69,
+            50
+          ],
+          [
+            73,
+            71
+          ],
+          [
+            84,
+            85
+          ],
+          [
+            90,
+            46
+          ],
+          [
+            94,
+            93
+          ]
+        ],
+        "xMin": 20,
+        "xMax": 100,
+        "xStep": 20,
+        "yMin": 20,
+        "yMax": 100,
+        "yStep": 20,
+        "xLabel": "(점)",
+        "yLabel": "(점)"
+      },
+      "svg": "<svg viewBox=\"0 0 240 171.28\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"74.06\" y1=\"29.28\" x2=\"74.06\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"109.88\" y1=\"29.28\" x2=\"109.88\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"145.7\" y1=\"29.28\" x2=\"145.7\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"117.78\" x2=\"181.53\" y2=\"117.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"88.28\" x2=\"181.53\" y2=\"88.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"58.78\" x2=\"181.53\" y2=\"58.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"29.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"181.53\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"38.24\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.24\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">20</text><line x1=\"74.06\" y1=\"147.28\" x2=\"74.06\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"74.06\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">40</text><line x1=\"109.88\" y1=\"147.28\" x2=\"109.88\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"109.88\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"145.7\" y1=\"147.28\" x2=\"145.7\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"145.7\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">80</text><line x1=\"181.53\" y1=\"147.28\" x2=\"181.53\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.53\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">100</text><line x1=\"34.24\" y1=\"147.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"147.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">20</text><line x1=\"34.24\" y1=\"117.78\" x2=\"38.24\" y2=\"117.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"117.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">40</text><line x1=\"34.24\" y1=\"88.28\" x2=\"38.24\" y2=\"88.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"88.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">60</text><line x1=\"34.24\" y1=\"58.78\" x2=\"38.24\" y2=\"58.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"58.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">80</text><line x1=\"34.24\" y1=\"29.28\" x2=\"38.24\" y2=\"29.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"29.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">100</text><circle cx=\"90.18\" cy=\"76.48\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"100.93\" cy=\"89.75\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"126\" cy=\"103.03\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"133.17\" cy=\"72.06\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"152.87\" cy=\"51.41\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"163.61\" cy=\"108.93\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"170.78\" cy=\"39.61\" r=\"2.6\" fill=\"#111111\"/><text x=\"31.24\" y=\"9.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">(점)</text><text x=\"198.76\" y=\"161.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">(점)</text></svg>"
+    },
+    {
+      "key": "3-2|상자그림과 산점도|08",
+      "spec": {
+        "version": "elem-1",
+        "kind": "scatterPlot",
+        "points": [
+          [
+            30,
+            65
+          ],
+          [
+            40,
+            61
+          ],
+          [
+            50,
+            59
+          ],
+          [
+            60,
+            56
+          ],
+          [
+            70,
+            36
+          ],
+          [
+            80,
+            32
+          ]
+        ],
+        "xMin": 20,
+        "xMax": 100,
+        "xStep": 20,
+        "yMin": 20,
+        "yMax": 100,
+        "yStep": 20,
+        "xLabel": "(점)",
+        "yLabel": "(점)"
+      },
+      "svg": "<svg viewBox=\"0 0 240 171.28\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"74.06\" y1=\"29.28\" x2=\"74.06\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"109.88\" y1=\"29.28\" x2=\"109.88\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"145.7\" y1=\"29.28\" x2=\"145.7\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"117.78\" x2=\"181.53\" y2=\"117.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"88.28\" x2=\"181.53\" y2=\"88.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"58.78\" x2=\"181.53\" y2=\"58.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"29.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"181.53\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"38.24\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.24\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">20</text><line x1=\"74.06\" y1=\"147.28\" x2=\"74.06\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"74.06\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">40</text><line x1=\"109.88\" y1=\"147.28\" x2=\"109.88\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"109.88\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"145.7\" y1=\"147.28\" x2=\"145.7\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"145.7\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">80</text><line x1=\"181.53\" y1=\"147.28\" x2=\"181.53\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.53\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">100</text><line x1=\"34.24\" y1=\"147.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"147.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">20</text><line x1=\"34.24\" y1=\"117.78\" x2=\"38.24\" y2=\"117.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"117.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">40</text><line x1=\"34.24\" y1=\"88.28\" x2=\"38.24\" y2=\"88.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"88.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">60</text><line x1=\"34.24\" y1=\"58.78\" x2=\"38.24\" y2=\"58.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"58.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">80</text><line x1=\"34.24\" y1=\"29.28\" x2=\"38.24\" y2=\"29.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"29.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">100</text><circle cx=\"56.15\" cy=\"80.91\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"74.06\" cy=\"86.81\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"91.97\" cy=\"89.75\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"109.88\" cy=\"94.18\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"127.79\" cy=\"123.68\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"145.7\" cy=\"129.58\" r=\"2.6\" fill=\"#111111\"/><text x=\"31.24\" y=\"9.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">(점)</text><text x=\"198.76\" y=\"161.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">(점)</text></svg>"
+    },
+    {
+      "key": "3-2|상자그림과 산점도|09",
+      "spec": {
+        "version": "elem-1",
+        "kind": "scatterPlot",
+        "points": [
+          [
+            92,
+            61
+          ],
+          [
+            50,
+            32
+          ],
+          [
+            48,
+            83
+          ],
+          [
+            74,
+            72
+          ],
+          [
+            83,
+            54
+          ],
+          [
+            74,
+            56
+          ],
+          [
+            41,
+            91
+          ],
+          [
+            94,
+            39
+          ]
+        ],
+        "xMin": 20,
+        "xMax": 100,
+        "xStep": 20,
+        "yMin": 20,
+        "yMax": 100,
+        "yStep": 20,
+        "xLabel": "(점)",
+        "yLabel": "(점)"
+      },
+      "svg": "<svg viewBox=\"0 0 240 171.28\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"74.06\" y1=\"29.28\" x2=\"74.06\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"109.88\" y1=\"29.28\" x2=\"109.88\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"145.7\" y1=\"29.28\" x2=\"145.7\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"117.78\" x2=\"181.53\" y2=\"117.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"88.28\" x2=\"181.53\" y2=\"88.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"58.78\" x2=\"181.53\" y2=\"58.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"29.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"181.53\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"38.24\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.24\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">20</text><line x1=\"74.06\" y1=\"147.28\" x2=\"74.06\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"74.06\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">40</text><line x1=\"109.88\" y1=\"147.28\" x2=\"109.88\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"109.88\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"145.7\" y1=\"147.28\" x2=\"145.7\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"145.7\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">80</text><line x1=\"181.53\" y1=\"147.28\" x2=\"181.53\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.53\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">100</text><line x1=\"34.24\" y1=\"147.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"147.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">20</text><line x1=\"34.24\" y1=\"117.78\" x2=\"38.24\" y2=\"117.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"117.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">40</text><line x1=\"34.24\" y1=\"88.28\" x2=\"38.24\" y2=\"88.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"88.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">60</text><line x1=\"34.24\" y1=\"58.78\" x2=\"38.24\" y2=\"58.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"58.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">80</text><line x1=\"34.24\" y1=\"29.28\" x2=\"38.24\" y2=\"29.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"29.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">100</text><circle cx=\"167.2\" cy=\"86.81\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"91.97\" cy=\"129.58\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"88.39\" cy=\"54.36\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"134.96\" cy=\"70.58\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"151.08\" cy=\"97.13\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"134.96\" cy=\"94.18\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"75.85\" cy=\"42.56\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"170.78\" cy=\"119.25\" r=\"2.6\" fill=\"#111111\"/><text x=\"31.24\" y=\"9.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">(점)</text><text x=\"198.76\" y=\"161.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">(점)</text></svg>"
+    },
+    {
+      "key": "3-2|상자그림과 산점도|10",
+      "spec": {
+        "version": "elem-1",
+        "kind": "scatterPlot",
+        "points": [
+          [
+            42,
+            77
+          ],
+          [
+            48,
+            85
+          ],
+          [
+            49,
+            88
+          ],
+          [
+            60,
+            53
+          ],
+          [
+            81,
+            81
+          ]
+        ],
+        "xMin": 20,
+        "xMax": 100,
+        "xStep": 20,
+        "yMin": 20,
+        "yMax": 100,
+        "yStep": 20,
+        "xLabel": "(점)",
+        "yLabel": "(점)"
+      },
+      "svg": "<svg viewBox=\"0 0 240 171.28\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"74.06\" y1=\"29.28\" x2=\"74.06\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"109.88\" y1=\"29.28\" x2=\"109.88\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"145.7\" y1=\"29.28\" x2=\"145.7\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"117.78\" x2=\"181.53\" y2=\"117.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"88.28\" x2=\"181.53\" y2=\"88.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"58.78\" x2=\"181.53\" y2=\"58.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"29.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"181.53\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"38.24\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.24\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">20</text><line x1=\"74.06\" y1=\"147.28\" x2=\"74.06\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"74.06\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">40</text><line x1=\"109.88\" y1=\"147.28\" x2=\"109.88\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"109.88\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"145.7\" y1=\"147.28\" x2=\"145.7\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"145.7\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">80</text><line x1=\"181.53\" y1=\"147.28\" x2=\"181.53\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.53\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">100</text><line x1=\"34.24\" y1=\"147.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"147.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">20</text><line x1=\"34.24\" y1=\"117.78\" x2=\"38.24\" y2=\"117.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"117.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">40</text><line x1=\"34.24\" y1=\"88.28\" x2=\"38.24\" y2=\"88.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"88.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">60</text><line x1=\"34.24\" y1=\"58.78\" x2=\"38.24\" y2=\"58.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"58.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">80</text><line x1=\"34.24\" y1=\"29.28\" x2=\"38.24\" y2=\"29.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"29.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">100</text><circle cx=\"77.64\" cy=\"63.2\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"88.39\" cy=\"51.41\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"90.18\" cy=\"46.98\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"109.88\" cy=\"98.61\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"147.49\" cy=\"57.31\" r=\"2.6\" fill=\"#111111\"/><text x=\"31.24\" y=\"9.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">(점)</text><text x=\"198.76\" y=\"161.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">(점)</text></svg>"
+    },
+    {
+      "key": "3-2|상자그림과 산점도|11",
+      "spec": {
+        "version": "elem-1",
+        "kind": "scatterPlot",
+        "points": [
+          [
+            46,
+            57
+          ],
+          [
+            53,
+            71
+          ],
+          [
+            54,
+            74
+          ],
+          [
+            63,
+            44
+          ],
+          [
+            71,
+            52
+          ],
+          [
+            83,
+            47
+          ],
+          [
+            90,
+            50
+          ]
+        ],
+        "xMin": 20,
+        "xMax": 100,
+        "xStep": 20,
+        "yMin": 20,
+        "yMax": 100,
+        "yStep": 20,
+        "xLabel": "(점)",
+        "yLabel": "(점)"
+      },
+      "svg": "<svg viewBox=\"0 0 240 171.28\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"74.06\" y1=\"29.28\" x2=\"74.06\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"109.88\" y1=\"29.28\" x2=\"109.88\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"145.7\" y1=\"29.28\" x2=\"145.7\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"117.78\" x2=\"181.53\" y2=\"117.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"88.28\" x2=\"181.53\" y2=\"88.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"58.78\" x2=\"181.53\" y2=\"58.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"29.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"181.53\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"38.24\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.24\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">20</text><line x1=\"74.06\" y1=\"147.28\" x2=\"74.06\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"74.06\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">40</text><line x1=\"109.88\" y1=\"147.28\" x2=\"109.88\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"109.88\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"145.7\" y1=\"147.28\" x2=\"145.7\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"145.7\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">80</text><line x1=\"181.53\" y1=\"147.28\" x2=\"181.53\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.53\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">100</text><line x1=\"34.24\" y1=\"147.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"147.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">20</text><line x1=\"34.24\" y1=\"117.78\" x2=\"38.24\" y2=\"117.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"117.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">40</text><line x1=\"34.24\" y1=\"88.28\" x2=\"38.24\" y2=\"88.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"88.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">60</text><line x1=\"34.24\" y1=\"58.78\" x2=\"38.24\" y2=\"58.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"58.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">80</text><line x1=\"34.24\" y1=\"29.28\" x2=\"38.24\" y2=\"29.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"29.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">100</text><circle cx=\"84.81\" cy=\"92.7\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"97.35\" cy=\"72.06\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"99.14\" cy=\"67.63\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"115.26\" cy=\"111.88\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"129.58\" cy=\"100.08\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"151.08\" cy=\"107.45\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"163.61\" cy=\"103.03\" r=\"2.6\" fill=\"#111111\"/><text x=\"31.24\" y=\"9.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">(점)</text><text x=\"198.76\" y=\"161.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">(점)</text></svg>"
+    },
+    {
+      "key": "3-2|상자그림과 산점도|12",
+      "spec": {
+        "version": "elem-1",
+        "kind": "scatterPlot",
+        "points": [
+          [
+            76,
+            67
+          ],
+          [
+            64,
+            75
+          ],
+          [
+            45,
+            48
+          ],
+          [
+            53,
+            94
+          ],
+          [
+            67,
+            49
+          ],
+          [
+            61,
+            73
+          ],
+          [
+            70,
+            87
+          ],
+          [
+            78,
+            55
+          ],
+          [
+            80,
+            88
+          ],
+          [
+            80,
+            91
+          ]
+        ],
+        "xMin": 20,
+        "xMax": 100,
+        "xStep": 20,
+        "yMin": 20,
+        "yMax": 100,
+        "yStep": 20,
+        "xLabel": "(점)",
+        "yLabel": "(점)"
+      },
+      "svg": "<svg viewBox=\"0 0 240 171.28\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"74.06\" y1=\"29.28\" x2=\"74.06\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"109.88\" y1=\"29.28\" x2=\"109.88\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"145.7\" y1=\"29.28\" x2=\"145.7\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"117.78\" x2=\"181.53\" y2=\"117.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"88.28\" x2=\"181.53\" y2=\"88.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"58.78\" x2=\"181.53\" y2=\"58.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"29.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"181.53\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"38.24\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.24\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">20</text><line x1=\"74.06\" y1=\"147.28\" x2=\"74.06\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"74.06\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">40</text><line x1=\"109.88\" y1=\"147.28\" x2=\"109.88\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"109.88\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"145.7\" y1=\"147.28\" x2=\"145.7\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"145.7\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">80</text><line x1=\"181.53\" y1=\"147.28\" x2=\"181.53\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.53\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">100</text><line x1=\"34.24\" y1=\"147.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"147.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">20</text><line x1=\"34.24\" y1=\"117.78\" x2=\"38.24\" y2=\"117.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"117.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">40</text><line x1=\"34.24\" y1=\"88.28\" x2=\"38.24\" y2=\"88.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"88.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">60</text><line x1=\"34.24\" y1=\"58.78\" x2=\"38.24\" y2=\"58.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"58.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">80</text><line x1=\"34.24\" y1=\"29.28\" x2=\"38.24\" y2=\"29.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"29.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">100</text><circle cx=\"138.54\" cy=\"77.95\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"117.05\" cy=\"66.16\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"83.02\" cy=\"105.98\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"97.35\" cy=\"38.13\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"122.42\" cy=\"104.5\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"111.67\" cy=\"69.11\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"127.79\" cy=\"48.45\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"142.12\" cy=\"95.66\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"145.7\" cy=\"46.98\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"145.7\" cy=\"42.56\" r=\"2.6\" fill=\"#111111\"/><text x=\"31.24\" y=\"9.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">(점)</text><text x=\"198.76\" y=\"161.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">(점)</text></svg>"
+    },
+    {
+      "key": "3-2|상자그림과 산점도|14",
+      "spec": {
+        "version": "elem-1",
+        "kind": "scatterPlot",
+        "points": [
+          [
+            48,
+            47
+          ],
+          [
+            65,
+            94
+          ],
+          [
+            75,
+            86
+          ],
+          [
+            82,
+            79
+          ],
+          [
+            91,
+            47
+          ],
+          [
+            93,
+            76
+          ],
+          [
+            95,
+            73
+          ]
+        ],
+        "xMin": 20,
+        "xMax": 100,
+        "xStep": 20,
+        "yMin": 20,
+        "yMax": 100,
+        "yStep": 20,
+        "xLabel": "(점)",
+        "yLabel": "(점)"
+      },
+      "svg": "<svg viewBox=\"0 0 240 171.28\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"74.06\" y1=\"29.28\" x2=\"74.06\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"109.88\" y1=\"29.28\" x2=\"109.88\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"145.7\" y1=\"29.28\" x2=\"145.7\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"117.78\" x2=\"181.53\" y2=\"117.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"88.28\" x2=\"181.53\" y2=\"88.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"58.78\" x2=\"181.53\" y2=\"58.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"29.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"181.53\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"38.24\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.24\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">20</text><line x1=\"74.06\" y1=\"147.28\" x2=\"74.06\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"74.06\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">40</text><line x1=\"109.88\" y1=\"147.28\" x2=\"109.88\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"109.88\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"145.7\" y1=\"147.28\" x2=\"145.7\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"145.7\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">80</text><line x1=\"181.53\" y1=\"147.28\" x2=\"181.53\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.53\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">100</text><line x1=\"34.24\" y1=\"147.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"147.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">20</text><line x1=\"34.24\" y1=\"117.78\" x2=\"38.24\" y2=\"117.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"117.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">40</text><line x1=\"34.24\" y1=\"88.28\" x2=\"38.24\" y2=\"88.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"88.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">60</text><line x1=\"34.24\" y1=\"58.78\" x2=\"38.24\" y2=\"58.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"58.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">80</text><line x1=\"34.24\" y1=\"29.28\" x2=\"38.24\" y2=\"29.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"29.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">100</text><circle cx=\"88.39\" cy=\"107.45\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"118.84\" cy=\"38.13\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"136.75\" cy=\"49.93\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"149.29\" cy=\"60.25\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"165.41\" cy=\"107.45\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"168.99\" cy=\"64.68\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"172.57\" cy=\"69.11\" r=\"2.6\" fill=\"#111111\"/><text x=\"31.24\" y=\"9.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">(점)</text><text x=\"198.76\" y=\"161.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">(점)</text></svg>"
+    },
+    {
+      "key": "3-2|상자그림과 산점도|15",
+      "spec": {
+        "version": "elem-1",
+        "kind": "scatterPlot",
+        "points": [
+          [
+            72,
+            95
+          ],
+          [
+            94,
+            88
+          ],
+          [
+            61,
+            41
+          ],
+          [
+            78,
+            90
+          ],
+          [
+            47,
+            61
+          ],
+          [
+            48,
+            67
+          ],
+          [
+            62,
+            58
+          ],
+          [
+            42,
+            86
+          ]
+        ],
+        "xMin": 20,
+        "xMax": 100,
+        "xStep": 20,
+        "yMin": 20,
+        "yMax": 100,
+        "yStep": 20,
+        "xLabel": "(점)",
+        "yLabel": "(점)"
+      },
+      "svg": "<svg viewBox=\"0 0 240 171.28\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"74.06\" y1=\"29.28\" x2=\"74.06\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"109.88\" y1=\"29.28\" x2=\"109.88\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"145.7\" y1=\"29.28\" x2=\"145.7\" y2=\"147.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"117.78\" x2=\"181.53\" y2=\"117.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"88.28\" x2=\"181.53\" y2=\"88.28\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"58.78\" x2=\"181.53\" y2=\"58.78\" stroke=\"#c8d7e4\" stroke-width=\"0.7\"/><line x1=\"38.24\" y1=\"29.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"181.53\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"1.3\"/><line x1=\"38.24\" y1=\"147.28\" x2=\"38.24\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"38.24\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">20</text><line x1=\"74.06\" y1=\"147.28\" x2=\"74.06\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"74.06\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">40</text><line x1=\"109.88\" y1=\"147.28\" x2=\"109.88\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"109.88\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">60</text><line x1=\"145.7\" y1=\"147.28\" x2=\"145.7\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"145.7\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">80</text><line x1=\"181.53\" y1=\"147.28\" x2=\"181.53\" y2=\"151.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"181.53\" y=\"161.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"middle\" dominant-baseline=\"middle\">100</text><line x1=\"34.24\" y1=\"147.28\" x2=\"38.24\" y2=\"147.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"147.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">20</text><line x1=\"34.24\" y1=\"117.78\" x2=\"38.24\" y2=\"117.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"117.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">40</text><line x1=\"34.24\" y1=\"88.28\" x2=\"38.24\" y2=\"88.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"88.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">60</text><line x1=\"34.24\" y1=\"58.78\" x2=\"38.24\" y2=\"58.78\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"58.78\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">80</text><line x1=\"34.24\" y1=\"29.28\" x2=\"38.24\" y2=\"29.28\" stroke=\"#111111\" stroke-width=\"0.9\"/><text x=\"31.24\" y=\"29.28\" fill=\"#111111\" font-size=\"14\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">100</text><circle cx=\"131.38\" cy=\"36.66\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"170.78\" cy=\"46.98\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"111.67\" cy=\"116.31\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"142.12\" cy=\"44.03\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"86.6\" cy=\"86.81\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"88.39\" cy=\"77.95\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"113.46\" cy=\"91.23\" r=\"2.6\" fill=\"#111111\"/><circle cx=\"77.64\" cy=\"49.93\" r=\"2.6\" fill=\"#111111\"/><text x=\"31.24\" y=\"9.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"end\" dominant-baseline=\"middle\">(점)</text><text x=\"198.76\" y=\"161.28\" fill=\"#111111\" font-size=\"13\" font-family=\"Batang, serif\" font-weight=\"700\" text-anchor=\"start\" dominant-baseline=\"middle\">(점)</text></svg>"
+    }
+  ]
+}

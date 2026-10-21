@@ -1509,7 +1509,103 @@ def _scatter_points(
     return out
 
 
+def _scatter_grid_integer(value: Any, name: str, lo: int, hi: int) -> int:
+    if (isinstance(value, bool) or not isinstance(value, (int, float))
+            or not lo <= value <= hi or not math.isfinite(value) or value != int(value)):
+        raise ValueError(f"모눈 산점도 {name} 은 {lo}~{hi}의 유한한 정수여야 합니다")
+    return int(value)
+
+
+def _scatter_grid_plot(spec: Mapping[str, Any]) -> str:
+    """정수 모눈을 명시한 산점도. 기본 산점도의 배치에는 적용하지 않는다."""
+    grid = _scatter_grid_integer(spec["gridStep"], "gridStep", 1, 100000)
+    for key in ("xMin", "xMax", "yMin", "yMax"):
+        _scatter_grid_integer(spec[key], key, -100000, 100000)
+    for key in ("xStep", "yStep"):
+        _scatter_grid_integer(spec[key], key, 1, 100000)
+    xlo, xhi, xstep, xticks = _axis_from_spec("xMin", "xMax", "xStep", spec, [])
+    ylo, yhi, ystep, yticks = _axis_from_spec("yMin", "yMax", "yStep", spec, [])
+    if any(int(v) % grid for v in (xhi - xlo, yhi - ylo, xstep, ystep)):
+        raise ValueError("gridStep 은 두 축 범위와 숫자 눈금 간격을 정확히 나누어야 합니다")
+    nx, ny = int(xhi - xlo) // grid, int(yhi - ylo) // grid
+    if not 1 <= nx <= 40 or not 1 <= ny <= 40:
+        raise ValueError("모눈 산점도는 축마다 1~40칸이어야 합니다")
+    pts = _scatter_points(spec["points"], (xlo, xhi), (ylo, yhi))
+    for i, (x, y) in enumerate(pts):
+        _scatter_grid_integer(x, f"points[{i}][0]", -100000, 100000)
+        _scatter_grid_integer(y, f"points[{i}][1]", -100000, 100000)
+        if int(x - xlo) % grid or int(y - ylo) % grid:
+            raise ValueError("모눈 산점도의 모든 점은 두 축 최솟값에서 시작한 모눈 교점에 있어야 합니다")
+    if len(set(pts)) != len(pts):
+        raise ValueError("모눈 산점도는 같은 위치에 관측값을 겹쳐 표시할 수 없습니다")
+    for key in ("xLabel", "yLabel"):
+        if not isinstance(spec.get(key), str) or not spec[key].strip():
+            raise ValueError(f"모눈 산점도 {key} 에 축의 뜻과 단위를 적어야 합니다")
+    xlab, ylab = spec["xLabel"].strip(), spec["yLabel"].strip()
+    title = spec.get("title", "")
+    if not isinstance(title, str):
+        raise ValueError("모눈 산점도 title 은 문자열이어야 합니다")
+    xlabels, ylabels = [_n(v) for v in xticks], [_n(v) for v in yticks]
+    # 축 이름은 위/아래 한 줄로 둬 과목 이름이 그림의 가로 칸을 잠식하지 않게 한다.
+    left = math.ceil(max(30.0, max(_label_w_max(t, 14) for t in ylabels) + 10) * 100) / 100
+    tail = max(_label_w_max(t, 14) for t in xlabels) / 2 + FIT_PAD
+    # 0.01단위 칸을 사용해 직렬화 후에도 가로·세로 칸의 길이를 같게 유지한다.
+    cell = math.floor(min((STAT_VIEWBOX - left - tail) / nx, 220.0 / ny) * 100) / 100
+    plot_w, plot_h = nx * cell, ny * cell
+    if cell < 8 or plot_w < STAT_MIN_PLOT_W or plot_h < STAT_MIN_PLOT_W:
+        raise ValueError("모눈이나 축 비율이 너무 촘촘합니다 — 범위·자료를 바꾸지 않고 그릴 수 없습니다")
+    if any(_label_w_max(t, 13) > plot_w for t in (xlab, ylab)) or _label_w_max(title, 14) > plot_w:
+        raise ValueError("모눈 산점도의 축 이름이나 제목이 그림 칸보다 넓습니다")
+    top = 64.0 if title else 38.0
+    bottom = top + plot_h
+
+    def px(v: float) -> float:
+        return left + (v - xlo) / grid * cell
+
+    def py(v: float) -> float:
+        return bottom - (v - ylo) / grid * cell
+
+    # 편집기와 보안 정제기가 이미 쓰는 여섯 수·단일 path 배경 계약을 공유한다.
+    from graph_scene import grid_svg
+    parts = [grid_svg(left, top, cell, cell, nx, ny, color=GRID, width=GRID_SW)]
+    parts += [_line((left, top), (left, bottom)), _line((left, bottom), (left + plot_w, bottom))]
+    for v, label in zip(xticks, xlabels):
+        parts += [_line((px(v), bottom), (px(v), bottom + 4), sw=0.9),
+                  _text(px(v), bottom + 18, label, size=14)]
+    for v, label in zip(yticks, ylabels):
+        parts += [_line((left - 4, py(v)), (left, py(v)), sw=0.9),
+                  _text(left - 7, py(v), label, size=14, anchor="end")]
+    parts += [_text(left + plot_w / 2, top - 22, ylab, size=13),
+              _text(left + plot_w / 2, bottom + 42, xlab, size=13)]
+    if title:
+        parts.append(_text(left + plot_w / 2, 16, title, size=14))
+    # 실제 출력 위치의 글자 상자로 검사한다. 데이터/눈금을 반올림하거나 생략하지 않는다.
+    boxes = _text_bboxes("".join(parts))
+    for i, (ax0, ay0, ax1, ay1, _) in enumerate(boxes):
+        for bx0, by0, bx1, by1, _ in boxes[i + 1:]:
+            if ax0 < bx1 + 2 and bx0 < ax1 + 2 and ay0 < by1 + 2 and by0 < ay1 + 2:
+                raise ValueError("모눈 산점도의 눈금·축 이름·제목이 너무 가깝습니다")
+    placed = [(px(x), py(y)) for x, y in pts]
+    for i, (x, y) in enumerate(placed):
+        for u, v in placed[i + 1:]:
+            if math.hypot(x - u, y - v) < 2 * SCATTER_R + 1.5:
+                raise ValueError("모눈 산점도의 점들이 너무 가까워 관측값을 구별할 수 없습니다")
+        for bx0, by0, bx1, by1, _ in boxes:
+            if math.hypot(max(bx0 - x, 0, x - bx1), max(by0 - y, 0, y - by1)) < SCATTER_R + 1.5:
+                raise ValueError("모눈 산점도의 점과 글자가 너무 가깝습니다")
+    parts += [f'<circle cx="{_n(x)}" cy="{_n(y)}" r="{_n(SCATTER_R)}" fill="{INK}"/>' for x, y in placed]
+    return _stat_svg(bottom + 54, "".join(parts))
+
+
 def _scatter_plot(spec: Mapping[str, Any]) -> str:
+    """gridStep 선택: 유한한 양의 정수 칸; 두 축 범위·주 눈금은 정수이며 칸으로
+    정확히 나누어진다. 모든 점은 축 최솟값 기준 교점 위의 서로 다른 정수 좌표다.
+    xLabel/yLabel에 축의 뜻·단위를 적는다. 최대40칸, 직렬화된 정사각형 칸,
+    주 눈금만 숫자 표시. 글자·점 간격이 부족하면 거부하며 자료를 옮기지 않는다.
+    생략하면 기존 산점도의 배치·출력을 그대로 유지한다.
+    """
+    if "gridStep" in spec:
+        return _scatter_grid_plot(spec)
     xlo, xhi, _xstep, xticks = _axis_from_spec("xMin", "xMax", "xStep", spec, [])
     ylo, yhi, _ystep, yticks = _axis_from_spec("yMin", "yMax", "yStep", spec, [])
     pts = _scatter_points(spec["points"], (xlo, xhi), (ylo, yhi))
@@ -4938,7 +5034,7 @@ ADV_OPTIONAL: dict[str, frozenset[str]] = {
     # `series2`·`label` — 상자그림 두 개를 겹쳐 그려 두 자료를 비교한다(유형05).
     # 둘 다 이름이 있어야 한다(histogram 의 같은 규칙과 무늬가 같다).
     "boxPlot": frozenset({"series2", "label", "xLabel"}),
-    "scatterPlot": frozenset({"xLabel", "yLabel", "title"}),
+    "scatterPlot": frozenset({"xLabel", "yLabel", "title", "gridStep"}),
 }
 ADV_RENDER = {
     "fracBars": _frac_bars,
