@@ -1395,11 +1395,24 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       svg: '<circle cx="90" cy="70" r="40"/>',
       tags: [{ x: 60, y: 70, w: 70, answer: "숨긴이름표답" }],
     };
-    const rendered = render(<FadingFigureView figure={figure} />);
+    const rendered = render(
+      <FadingFigureView
+        figure={figure}
+        proposition={concept.propositions[0]}
+      />,
+    );
     expect(rendered.container.innerHTML).not.toContain("숨긴이름표답");
-    rendered.rerender(<FadingFigureView figure={figure} answers />);
+    rendered.rerender(
+      <FadingFigureView
+        figure={figure}
+        proposition={concept.propositions[0]}
+        answers
+      />,
+    );
     expect(rendered.container).toHaveTextContent("숨긴이름표답");
-    rendered.rerender(<FadingFigureView figure={null} />);
+    rendered.rerender(
+      <FadingFigureView figure={null} proposition={concept.propositions[0]} />,
+    );
     expect(rendered.container).toBeEmptyDOMElement();
   });
 });
