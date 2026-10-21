@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A58-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd1-3a99-7d70-a439-886dc81a8505",
+ "startedAt": "2026-10-21T18:35:55+0900",
+ "elapsedSec": 10.4,
+ "studentSha256": {
+  "student.json": "ff1d874e1d08c400d3368589e38b66ccc1f59d2f55859bed354d3d0c063e029f"
+ },
+ "promptSha256": "3ea7fca6748841722b45e901e7b20d17d8d9aeef9ae967b9206d0a3214c89766",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"$0.a\\\\dot{5}=\\\\frac{10a+5-a}{90}=\\\\frac{9a+5}{90}$이다.\\n$\\\\frac{9a+5}{90}=\\\\frac{34}{45}=\\\\frac{68}{90}$이므로 $9a+5=68$, 따라서 $a=7$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "$0.a\\dot{5}=\\frac{10a+5-a}{90}=\\frac{9a+5}{90}$이다.\n$\\frac{9a+5}{90}=\\frac{34}{45}=\\frac{68}{90}$이므로 $9a+5=68$, 따라서 $a=7$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d1e464516375a5926ef8f0b038783650d840f67ce126c0ab4a940968c856271e"
+}

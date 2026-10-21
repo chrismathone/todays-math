@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A59-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "58154fa4-b460-4600-a8a3-0da94c5a8aec",
+ "startedAt": "2026-10-21T17:07:28+0900",
+ "elapsedSec": 4.3,
+ "studentSha256": {
+  "student.json": "09e984c96830a4eecd8b99f489209bec6152a37bf079e95e16a908a45750d278"
+ },
+ "promptSha256": "aac543fe28fa98640490007130f60f0300a7f3d38c5eacbcee3c55ef0f6e7181",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"x = 0.2454545…라 하면 1000x = 245.4545…, 10x = 2.4545…\\n두 식을 빼면 990x = 243이므로 x = 243/990 = 27/110\\n(공식: (245−2)/990 = 243/990 = 27/110)\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "x = 0.2454545…라 하면 1000x = 245.4545…, 10x = 2.4545…\n두 식을 빼면 990x = 243이므로 x = 243/990 = 27/110\n(공식: (245−2)/990 = 243/990 = 27/110)",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b9396dfb93ce51794b11431a14484f2c012c3ca8f5043b3536f9021cf241142d"
+}

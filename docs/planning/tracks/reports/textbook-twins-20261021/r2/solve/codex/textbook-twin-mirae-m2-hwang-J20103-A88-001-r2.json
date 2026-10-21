@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20103-A88-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd2-381e-7ca3-a844-d0af564aa78c",
+ "startedAt": "2026-10-21T18:37:00+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "student.json": "76675272ee781b3cb8a87f6ab4981f7f91d6f47cfa7014452c94206be5f7919a"
+ },
+ "promptSha256": "c4236bed16751da09214cd6da4c2a08f8a100474312125730dbf394991c57816",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$1.08\\\\dot{3}$\",\n  \"work\": \"$1.\\\\dot{4}=\\\\frac{13}{9}$, $0.58\\\\dot{3}=\\\\frac{583-58}{900}=\\\\frac{7}{12}$이다.\\n잘못 읽은 분수도 모두 기약분수이므로, 지우가 제대로 읽은 분자는 13이고 서아가 제대로 읽은 분모는 12이다.\\n따라서 원래 분수는 $\\\\frac{13}{12}=1.08\\\\dot{3}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$1.08\\dot{3}$",
+  "work": "$1.\\dot{4}=\\frac{13}{9}$, $0.58\\dot{3}=\\frac{583-58}{900}=\\frac{7}{12}$이다.\n잘못 읽은 분수도 모두 기약분수이므로, 지우가 제대로 읽은 분자는 13이고 서아가 제대로 읽은 분모는 12이다.\n따라서 원래 분수는 $\\frac{13}{12}=1.08\\dot{3}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6e1bb13887ff05259c297caad6c52b62df656331665e6ad56ee42c1014d39660"
+}

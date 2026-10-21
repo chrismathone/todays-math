@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20102-A86-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd1-0b17-7ba0-a5f8-50cf1bc51c90",
+ "startedAt": "2026-10-21T18:35:43+0900",
+ "elapsedSec": 12.1,
+ "studentSha256": {
+  "student.json": "d71a305a054cabaeda38dda240067e323e8a58ecb5e08d67aeb0f75b66fb2b6c"
+ },
+ "promptSha256": "b316731d159fa9628eb5755821a95fc4574f01a3f8d7cf47298b5c93451d5167",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"순환마디는 소수 부분에서 반복되는 가장 짧은 숫자 묶음이다.\\n①~⑤의 순환마디는 각각 4, 208, 61, 93, 65이므로 바르게 적은 것은 ②이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "순환마디는 소수 부분에서 반복되는 가장 짧은 숫자 묶음이다.\n①~⑤의 순환마디는 각각 4, 208, 61, 93, 65이므로 바르게 적은 것은 ②이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "995044226cbd63ef197cd60d34f5ab8fdf51715cfe65bffa26750bbd6545abe3"
+}

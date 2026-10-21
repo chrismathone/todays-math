@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20101-A73-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dd2-9e0b-7140-95db-84bfbd9b65e3",
+ "startedAt": "2026-10-21T18:37:26+0900",
+ "elapsedSec": 10.7,
+ "studentSha256": {
+  "student.json": "ec4ca3694c34d0df07d50bc35630e843af3b4db69e232d3e035bc404ccbdd750"
+ },
+ "promptSha256": "3f7db69cdfb54a6b00796d097cef080c0d91dba585601c41097f54befb4e87d6",
+ "freezeCommit": "d8c14de67e9f0da24f36c6152fadacd320371181",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"기약분수의 분모에 소인수 2와 5만 있어야 유한소수가 된다. 첫째 분수에서는 n이 11의 배수여야 하고, 둘째 분수에서는 78=2×3×13이므로 n이 39의 배수여야 한다. 따라서 가장 작은 n은 11과 39의 최소공배수인 429이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "기약분수의 분모에 소인수 2와 5만 있어야 유한소수가 된다. 첫째 분수에서는 n이 11의 배수여야 하고, 둘째 분수에서는 78=2×3×13이므로 n이 39의 배수여야 한다. 따라서 가장 작은 n은 11과 39의 최소공배수인 429이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "dcad8e2c18b03a13a69ca4dbba2a10cc5845ce8e5c3d55be0dabc68101d7890f"
+}
