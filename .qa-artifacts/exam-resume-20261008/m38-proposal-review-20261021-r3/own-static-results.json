@@ -1,0 +1,6206 @@
+{
+  "status": "STATIC_ONLY_PASS-runtime-pending",
+  "proposalPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\proposal.json",
+  "proposalSHA256": "58bb552f259af656998dd0da7b29768dd07f415566822379fe5e07a98129b8fd",
+  "bindings": [
+    {
+      "path": "src/lib/middle/m2GeoSim.ts",
+      "originalSHA256": "e79de0ce5130b02dcf97b43828fb56ff57fcdba1f3422f564c5c3c788062ff87",
+      "candidateSHA256": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+      "changedHunks": 2
+    },
+    {
+      "path": "src/lib/middle/m2Center.ts",
+      "originalSHA256": "70d2924d026f617afc846267008c687db557a4e0bcc527e5d1a2dab749d3f88b",
+      "candidateSHA256": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+      "changedHunks": 2
+    },
+    {
+      "path": "src/lib/middle/m2Mono.ts",
+      "originalSHA256": "974b779396e99bbfa76a2b71b6739117709a834be12b969d2757d377155a1a4e",
+      "candidateSHA256": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+      "changedHunks": 2
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "originalSHA256": "199734c48116d1115754339c8f3e45a24a0cbf81f100d0581d320942950dd712",
+      "candidateSHA256": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87",
+      "changedHunks": 1
+    },
+    {
+      "path": "src/__tests__/unit/middleM2Mono.test.ts",
+      "originalSHA256": "365fa38483972cba75d8001fc61ca19009bdfdb34793545028fd12c2593141a4",
+      "candidateSHA256": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd",
+      "changedHunks": 1
+    }
+  ],
+  "checks": [
+    {
+      "name": "originalHash/src/lib/middle/m2GeoSim.ts",
+      "pass": true
+    },
+    {
+      "name": "candidateHash/src/lib/middle/m2GeoSim.ts",
+      "pass": true
+    },
+    {
+      "name": "originalHash/src/lib/middle/m2Center.ts",
+      "pass": true
+    },
+    {
+      "name": "candidateHash/src/lib/middle/m2Center.ts",
+      "pass": true
+    },
+    {
+      "name": "originalHash/src/lib/middle/m2Mono.ts",
+      "pass": true
+    },
+    {
+      "name": "candidateHash/src/lib/middle/m2Mono.ts",
+      "pass": true
+    },
+    {
+      "name": "originalHash/src/lib/examStudy/adapters.ts",
+      "pass": true
+    },
+    {
+      "name": "candidateHash/src/lib/examStudy/adapters.ts",
+      "pass": true
+    },
+    {
+      "name": "originalHash/src/__tests__/unit/middleM2Mono.test.ts",
+      "pass": true
+    },
+    {
+      "name": "candidateHash/src/__tests__/unit/middleM2Mono.test.ts",
+      "pass": true
+    },
+    {
+      "name": "M8actualRangeExpression",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,2,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,3,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/2,4,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,2,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,3,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/3,4,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,2,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,3,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/4,4,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,2,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,3,10",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,1",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,2",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,3",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,4",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,5",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,6",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,7",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,8",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,9",
+      "pass": true
+    },
+    {
+      "name": "M8existence/5,4,10",
+      "pass": true
+    },
+    {
+      "name": "M9actualBoundsExpression",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,1,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,1,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,3,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,1,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,1,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,1,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,2,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,2,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,3,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,3,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,3,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,3,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,3,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,3,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/1,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,3,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,3,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/1,3,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,1,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,2,6",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,1,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,3,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,1,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,1,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,1,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,3,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,2,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,3,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/2,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/2,3,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,1,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,2,6",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,1,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,3,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,1,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,1,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,1,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,2,6",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,3,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,2,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,3,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,3,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/3,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/3,3,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,1,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,2,6",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,1,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,3,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,1,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,1,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,1,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,2,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,2,6",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,3,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,2,5,9",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,3,2",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,2,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,2,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,2,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,2,6",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,3,3",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,3,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,3,7",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,3,4",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,4,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,4,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,4,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,4,8",
+      "pass": true
+    },
+    {
+      "name": "M9nonemptyRange/4,3,5",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,5,6",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,5,7",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,5,8",
+      "pass": true
+    },
+    {
+      "name": "M9triangleExternalUnique/4,3,5,9",
+      "pass": true
+    },
+    {
+      "name": "M19eighteenUnique",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/8,6,10,2",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/8,10,6,2",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/10,6,8,2",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/10,8,6,2",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/10,10,12,3",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/10,12,10,3",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/12,5,13,2",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/12,9,15,3",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/12,10,10,3",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/12,13,5,2",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/12,15,9,3",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/14,13,15,4",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/14,15,13,4",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/20,7,15,2",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/20,11,13,3",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/20,13,11,3",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/20,15,7,2",
+      "pass": true
+    },
+    {
+      "name": "M19integerIdentity/24,15,15,4",
+      "pass": true
+    },
+    {
+      "name": "M19equalsAllOldFeasibleTuples",
+      "pass": true
+    },
+    {
+      "name": "M20symbolsDisjoint",
+      "pass": true
+    },
+    {
+      "name": "M20universalCondition",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-3,2,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-3,2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-3,2,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-3,2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-3,3,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-3,3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-3,3,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-3,3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-2,2,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-2,2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-2,2,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-2,2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-2,3,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-2,3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-2,3,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,-2,3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,2,2,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,2,2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,2,2,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,2,2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,2,3,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,2,3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,2,3,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,2,3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,3,2,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,3,2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,3,2,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,3,2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,3,3,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,3,3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,3,3,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/ab,3,3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-3,2,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-3,2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-3,2,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-3,2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-3,3,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-3,3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-3,3,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-3,3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-2,2,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-2,2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-2,2,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-2,2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-2,3,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-2,3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-2,3,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,-2,3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,2,2,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,2,2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,2,2,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,2,2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,2,3,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,2,3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,2,3,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,2,3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,3,2,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,3,2,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,3,2,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,3,2,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,3,3,2,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,3,3,2,2",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,3,3,3,1",
+      "pass": true
+    },
+    {
+      "name": "M20uniqueNatural/xy,3,3,3,2",
+      "pass": true
+    },
+    {
+      "name": "M20TeXSourceEscapesDouble",
+      "pass": true
+    },
+    {
+      "name": "M20newlinesOneSourceEscape",
+      "pass": true
+    },
+    {
+      "name": "M20testEquationLookupAndFreeBases",
+      "pass": true
+    },
+    {
+      "name": "fourFutureAdapterVersions",
+      "pass": true
+    },
+    {
+      "name": "allProvidedAndProductionBytesUnchanged",
+      "pass": true
+    }
+  ],
+  "counts": {
+    "assertions": 442,
+    "passed": 442,
+    "failed": 0,
+    "M8literalTuples": 120,
+    "M9bounds": 48,
+    "M9literalTuples": 171,
+    "M19tuples": 18,
+    "M20kind1Tuples": 64,
+    "actualSeedOutputs": 0
+  },
+  "M8": [
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 5,
+      "otherSides": "3/2",
+      "largerPerimeter": 10,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 6,
+      "otherSides": "2",
+      "largerPerimeter": 12,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 7,
+      "otherSides": "5/2",
+      "largerPerimeter": 14,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 8,
+      "otherSides": "3",
+      "largerPerimeter": 16,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 9,
+      "otherSides": "7/2",
+      "largerPerimeter": 18,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 10,
+      "otherSides": "4",
+      "largerPerimeter": 20,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 11,
+      "otherSides": "9/2",
+      "largerPerimeter": 22,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 12,
+      "otherSides": "5",
+      "largerPerimeter": 24,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 13,
+      "otherSides": "11/2",
+      "largerPerimeter": 26,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 4,
+      "perimeter": 14,
+      "otherSides": "6",
+      "largerPerimeter": 28,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 5,
+      "otherSides": "3/2",
+      "largerPerimeter": 15,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 6,
+      "otherSides": "2",
+      "largerPerimeter": 18,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 7,
+      "otherSides": "5/2",
+      "largerPerimeter": 21,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 8,
+      "otherSides": "3",
+      "largerPerimeter": 24,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 9,
+      "otherSides": "7/2",
+      "largerPerimeter": 27,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 10,
+      "otherSides": "4",
+      "largerPerimeter": 30,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 11,
+      "otherSides": "9/2",
+      "largerPerimeter": 33,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 12,
+      "otherSides": "5",
+      "largerPerimeter": 36,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 13,
+      "otherSides": "11/2",
+      "largerPerimeter": 39,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 6,
+      "perimeter": 14,
+      "otherSides": "6",
+      "largerPerimeter": 42,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 5,
+      "otherSides": "3/2",
+      "largerPerimeter": 20,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 6,
+      "otherSides": "2",
+      "largerPerimeter": 24,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 7,
+      "otherSides": "5/2",
+      "largerPerimeter": 28,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 8,
+      "otherSides": "3",
+      "largerPerimeter": 32,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 9,
+      "otherSides": "7/2",
+      "largerPerimeter": 36,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 10,
+      "otherSides": "4",
+      "largerPerimeter": 40,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 11,
+      "otherSides": "9/2",
+      "largerPerimeter": 44,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 12,
+      "otherSides": "5",
+      "largerPerimeter": 48,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 13,
+      "otherSides": "11/2",
+      "largerPerimeter": 52,
+      "valid": true
+    },
+    {
+      "AD": 2,
+      "AB": 8,
+      "perimeter": 14,
+      "otherSides": "6",
+      "largerPerimeter": 56,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 7,
+      "otherSides": "2",
+      "largerPerimeter": 14,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 8,
+      "otherSides": "5/2",
+      "largerPerimeter": 16,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 9,
+      "otherSides": "3",
+      "largerPerimeter": 18,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 10,
+      "otherSides": "7/2",
+      "largerPerimeter": 20,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 11,
+      "otherSides": "4",
+      "largerPerimeter": 22,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 12,
+      "otherSides": "9/2",
+      "largerPerimeter": 24,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 13,
+      "otherSides": "5",
+      "largerPerimeter": 26,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 14,
+      "otherSides": "11/2",
+      "largerPerimeter": 28,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 15,
+      "otherSides": "6",
+      "largerPerimeter": 30,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 6,
+      "perimeter": 16,
+      "otherSides": "13/2",
+      "largerPerimeter": 32,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 7,
+      "otherSides": "2",
+      "largerPerimeter": 21,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 8,
+      "otherSides": "5/2",
+      "largerPerimeter": 24,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 9,
+      "otherSides": "3",
+      "largerPerimeter": 27,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 10,
+      "otherSides": "7/2",
+      "largerPerimeter": 30,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 11,
+      "otherSides": "4",
+      "largerPerimeter": 33,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 12,
+      "otherSides": "9/2",
+      "largerPerimeter": 36,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 13,
+      "otherSides": "5",
+      "largerPerimeter": 39,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 14,
+      "otherSides": "11/2",
+      "largerPerimeter": 42,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 15,
+      "otherSides": "6",
+      "largerPerimeter": 45,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 9,
+      "perimeter": 16,
+      "otherSides": "13/2",
+      "largerPerimeter": 48,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 7,
+      "otherSides": "2",
+      "largerPerimeter": 28,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 8,
+      "otherSides": "5/2",
+      "largerPerimeter": 32,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 9,
+      "otherSides": "3",
+      "largerPerimeter": 36,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 10,
+      "otherSides": "7/2",
+      "largerPerimeter": 40,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 11,
+      "otherSides": "4",
+      "largerPerimeter": 44,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 12,
+      "otherSides": "9/2",
+      "largerPerimeter": 48,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 13,
+      "otherSides": "5",
+      "largerPerimeter": 52,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 14,
+      "otherSides": "11/2",
+      "largerPerimeter": 56,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 15,
+      "otherSides": "6",
+      "largerPerimeter": 60,
+      "valid": true
+    },
+    {
+      "AD": 3,
+      "AB": 12,
+      "perimeter": 16,
+      "otherSides": "13/2",
+      "largerPerimeter": 64,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 9,
+      "otherSides": "5/2",
+      "largerPerimeter": 18,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 10,
+      "otherSides": "3",
+      "largerPerimeter": 20,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 11,
+      "otherSides": "7/2",
+      "largerPerimeter": 22,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 12,
+      "otherSides": "4",
+      "largerPerimeter": 24,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 13,
+      "otherSides": "9/2",
+      "largerPerimeter": 26,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 14,
+      "otherSides": "5",
+      "largerPerimeter": 28,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 15,
+      "otherSides": "11/2",
+      "largerPerimeter": 30,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 16,
+      "otherSides": "6",
+      "largerPerimeter": 32,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 17,
+      "otherSides": "13/2",
+      "largerPerimeter": 34,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 8,
+      "perimeter": 18,
+      "otherSides": "7",
+      "largerPerimeter": 36,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 9,
+      "otherSides": "5/2",
+      "largerPerimeter": 27,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 10,
+      "otherSides": "3",
+      "largerPerimeter": 30,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 11,
+      "otherSides": "7/2",
+      "largerPerimeter": 33,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 12,
+      "otherSides": "4",
+      "largerPerimeter": 36,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 13,
+      "otherSides": "9/2",
+      "largerPerimeter": 39,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 14,
+      "otherSides": "5",
+      "largerPerimeter": 42,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 15,
+      "otherSides": "11/2",
+      "largerPerimeter": 45,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 16,
+      "otherSides": "6",
+      "largerPerimeter": 48,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 17,
+      "otherSides": "13/2",
+      "largerPerimeter": 51,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 12,
+      "perimeter": 18,
+      "otherSides": "7",
+      "largerPerimeter": 54,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 9,
+      "otherSides": "5/2",
+      "largerPerimeter": 36,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 10,
+      "otherSides": "3",
+      "largerPerimeter": 40,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 11,
+      "otherSides": "7/2",
+      "largerPerimeter": 44,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 12,
+      "otherSides": "4",
+      "largerPerimeter": 48,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 13,
+      "otherSides": "9/2",
+      "largerPerimeter": 52,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 14,
+      "otherSides": "5",
+      "largerPerimeter": 56,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 15,
+      "otherSides": "11/2",
+      "largerPerimeter": 60,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 16,
+      "otherSides": "6",
+      "largerPerimeter": 64,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 17,
+      "otherSides": "13/2",
+      "largerPerimeter": 68,
+      "valid": true
+    },
+    {
+      "AD": 4,
+      "AB": 16,
+      "perimeter": 18,
+      "otherSides": "7",
+      "largerPerimeter": 72,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 11,
+      "otherSides": "3",
+      "largerPerimeter": 22,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 12,
+      "otherSides": "7/2",
+      "largerPerimeter": 24,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 13,
+      "otherSides": "4",
+      "largerPerimeter": 26,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 14,
+      "otherSides": "9/2",
+      "largerPerimeter": 28,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 15,
+      "otherSides": "5",
+      "largerPerimeter": 30,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 16,
+      "otherSides": "11/2",
+      "largerPerimeter": 32,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 17,
+      "otherSides": "6",
+      "largerPerimeter": 34,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 18,
+      "otherSides": "13/2",
+      "largerPerimeter": 36,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 19,
+      "otherSides": "7",
+      "largerPerimeter": 38,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 10,
+      "perimeter": 20,
+      "otherSides": "15/2",
+      "largerPerimeter": 40,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 11,
+      "otherSides": "3",
+      "largerPerimeter": 33,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 12,
+      "otherSides": "7/2",
+      "largerPerimeter": 36,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 13,
+      "otherSides": "4",
+      "largerPerimeter": 39,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 14,
+      "otherSides": "9/2",
+      "largerPerimeter": 42,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 15,
+      "otherSides": "5",
+      "largerPerimeter": 45,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 16,
+      "otherSides": "11/2",
+      "largerPerimeter": 48,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 17,
+      "otherSides": "6",
+      "largerPerimeter": 51,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 18,
+      "otherSides": "13/2",
+      "largerPerimeter": 54,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 19,
+      "otherSides": "7",
+      "largerPerimeter": 57,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 15,
+      "perimeter": 20,
+      "otherSides": "15/2",
+      "largerPerimeter": 60,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 11,
+      "otherSides": "3",
+      "largerPerimeter": 44,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 12,
+      "otherSides": "7/2",
+      "largerPerimeter": 48,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 13,
+      "otherSides": "4",
+      "largerPerimeter": 52,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 14,
+      "otherSides": "9/2",
+      "largerPerimeter": 56,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 15,
+      "otherSides": "5",
+      "largerPerimeter": 60,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 16,
+      "otherSides": "11/2",
+      "largerPerimeter": 64,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 17,
+      "otherSides": "6",
+      "largerPerimeter": 68,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 18,
+      "otherSides": "13/2",
+      "largerPerimeter": 72,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 19,
+      "otherSides": "7",
+      "largerPerimeter": 76,
+      "valid": true
+    },
+    {
+      "AD": 5,
+      "AB": 20,
+      "perimeter": 20,
+      "otherSides": "15/2",
+      "largerPerimeter": 80,
+      "valid": true
+    }
+  ],
+  "M9": {
+    "bounds": [
+      {
+        "q": 1,
+        "p": 2,
+        "unit": 2,
+        "low": 3,
+        "high": 5
+      },
+      {
+        "q": 1,
+        "p": 2,
+        "unit": 3,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "q": 1,
+        "p": 2,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 1,
+        "p": 2,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 1,
+        "p": 3,
+        "unit": 2,
+        "low": 3,
+        "high": 3
+      },
+      {
+        "q": 1,
+        "p": 3,
+        "unit": 3,
+        "low": 4,
+        "high": 5
+      },
+      {
+        "q": 1,
+        "p": 3,
+        "unit": 4,
+        "low": 5,
+        "high": 7
+      },
+      {
+        "q": 1,
+        "p": 3,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 1,
+        "p": 4,
+        "unit": 2,
+        "low": 3,
+        "high": 3
+      },
+      {
+        "q": 1,
+        "p": 4,
+        "unit": 3,
+        "low": 4,
+        "high": 4
+      },
+      {
+        "q": 1,
+        "p": 4,
+        "unit": 4,
+        "low": 5,
+        "high": 6
+      },
+      {
+        "q": 1,
+        "p": 4,
+        "unit": 5,
+        "low": 6,
+        "high": 8
+      },
+      {
+        "q": 2,
+        "p": 3,
+        "unit": 2,
+        "low": 3,
+        "high": 6
+      },
+      {
+        "q": 2,
+        "p": 3,
+        "unit": 3,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "q": 2,
+        "p": 3,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 2,
+        "p": 3,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 2,
+        "p": 4,
+        "unit": 2,
+        "low": 3,
+        "high": 5
+      },
+      {
+        "q": 2,
+        "p": 4,
+        "unit": 3,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "q": 2,
+        "p": 4,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 2,
+        "p": 4,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 2,
+        "p": 5,
+        "unit": 2,
+        "low": 3,
+        "high": 4
+      },
+      {
+        "q": 2,
+        "p": 5,
+        "unit": 3,
+        "low": 4,
+        "high": 6
+      },
+      {
+        "q": 2,
+        "p": 5,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 2,
+        "p": 5,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 3,
+        "p": 4,
+        "unit": 2,
+        "low": 3,
+        "high": 6
+      },
+      {
+        "q": 3,
+        "p": 4,
+        "unit": 3,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "q": 3,
+        "p": 4,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 3,
+        "p": 4,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 3,
+        "p": 5,
+        "unit": 2,
+        "low": 3,
+        "high": 6
+      },
+      {
+        "q": 3,
+        "p": 5,
+        "unit": 3,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "q": 3,
+        "p": 5,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 3,
+        "p": 5,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 3,
+        "p": 6,
+        "unit": 2,
+        "low": 3,
+        "high": 5
+      },
+      {
+        "q": 3,
+        "p": 6,
+        "unit": 3,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "q": 3,
+        "p": 6,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 3,
+        "p": 6,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 4,
+        "p": 5,
+        "unit": 2,
+        "low": 3,
+        "high": 6
+      },
+      {
+        "q": 4,
+        "p": 5,
+        "unit": 3,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "q": 4,
+        "p": 5,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 4,
+        "p": 5,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 4,
+        "p": 6,
+        "unit": 2,
+        "low": 3,
+        "high": 6
+      },
+      {
+        "q": 4,
+        "p": 6,
+        "unit": 3,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "q": 4,
+        "p": 6,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 4,
+        "p": 6,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      },
+      {
+        "q": 4,
+        "p": 7,
+        "unit": 2,
+        "low": 3,
+        "high": 6
+      },
+      {
+        "q": 4,
+        "p": 7,
+        "unit": 3,
+        "low": 4,
+        "high": 7
+      },
+      {
+        "q": 4,
+        "p": 7,
+        "unit": 4,
+        "low": 5,
+        "high": 8
+      },
+      {
+        "q": 4,
+        "p": 7,
+        "unit": 5,
+        "low": 6,
+        "high": 9
+      }
+    ],
+    "tuples": [
+      {
+        "AB": 4,
+        "AC": 2,
+        "BC": 3,
+        "CD": "3",
+        "Bcoordinate": 0,
+        "Ccoordinate": 3,
+        "Dcoordinate": "6",
+        "altitudeSquared": "15/4",
+        "valid": true
+      },
+      {
+        "AB": 4,
+        "AC": 2,
+        "BC": 4,
+        "CD": "4",
+        "Bcoordinate": 0,
+        "Ccoordinate": 4,
+        "Dcoordinate": "8",
+        "altitudeSquared": "15/4",
+        "valid": true
+      },
+      {
+        "AB": 4,
+        "AC": 2,
+        "BC": 5,
+        "CD": "5",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "10",
+        "altitudeSquared": "231/100",
+        "valid": true
+      },
+      {
+        "AB": 6,
+        "AC": 3,
+        "BC": 4,
+        "CD": "4",
+        "Bcoordinate": 0,
+        "Ccoordinate": 4,
+        "Dcoordinate": "8",
+        "altitudeSquared": "455/64",
+        "valid": true
+      },
+      {
+        "AB": 6,
+        "AC": 3,
+        "BC": 5,
+        "CD": "5",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "10",
+        "altitudeSquared": "224/25",
+        "valid": true
+      },
+      {
+        "AB": 6,
+        "AC": 3,
+        "BC": 6,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "12",
+        "altitudeSquared": "135/16",
+        "valid": true
+      },
+      {
+        "AB": 6,
+        "AC": 3,
+        "BC": 7,
+        "CD": "7",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "14",
+        "altitudeSquared": "320/49",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 4,
+        "BC": 5,
+        "CD": "5",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "10",
+        "altitudeSquared": "1071/100",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 4,
+        "BC": 6,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "12",
+        "altitudeSquared": "15",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 4,
+        "BC": 7,
+        "CD": "7",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "14",
+        "altitudeSquared": "3135/196",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 4,
+        "BC": 8,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "16",
+        "altitudeSquared": "15",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 5,
+        "BC": 6,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "12",
+        "altitudeSquared": "231/16",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 5,
+        "BC": 7,
+        "CD": "7",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "14",
+        "altitudeSquared": "1056/49",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 5,
+        "BC": 8,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "16",
+        "altitudeSquared": "6279/256",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 5,
+        "BC": 9,
+        "CD": "9",
+        "Bcoordinate": 0,
+        "Ccoordinate": 9,
+        "Dcoordinate": "18",
+        "altitudeSquared": "224/9",
+        "valid": true
+      },
+      {
+        "AB": 6,
+        "AC": 2,
+        "BC": 6,
+        "CD": "3",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "9",
+        "altitudeSquared": "35/9",
+        "valid": true
+      },
+      {
+        "AB": 9,
+        "AC": 3,
+        "BC": 8,
+        "CD": "4",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "12",
+        "altitudeSquared": "35/4",
+        "valid": true
+      },
+      {
+        "AB": 9,
+        "AC": 3,
+        "BC": 10,
+        "CD": "5",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "15",
+        "altitudeSquared": "176/25",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 4,
+        "BC": 10,
+        "CD": "5",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "15",
+        "altitudeSquared": "351/25",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 4,
+        "BC": 12,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "18",
+        "altitudeSquared": "140/9",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 4,
+        "BC": 14,
+        "CD": "7",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "21",
+        "altitudeSquared": "495/49",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 5,
+        "BC": 12,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "18",
+        "altitudeSquared": "176/9",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 5,
+        "BC": 14,
+        "CD": "7",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "21",
+        "altitudeSquared": "1224/49",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 5,
+        "BC": 16,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 16,
+        "Dcoordinate": "24",
+        "altitudeSquared": "351/16",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 5,
+        "BC": 18,
+        "CD": "9",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "27",
+        "altitudeSquared": "1064/81",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 2,
+        "BC": 9,
+        "CD": "3",
+        "Bcoordinate": 0,
+        "Ccoordinate": 9,
+        "Dcoordinate": "12",
+        "altitudeSquared": "95/36",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 3,
+        "BC": 12,
+        "CD": "4",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "16",
+        "altitudeSquared": "567/64",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 4,
+        "BC": 15,
+        "CD": "5",
+        "Bcoordinate": 0,
+        "Ccoordinate": 15,
+        "Dcoordinate": "20",
+        "altitudeSquared": "63/4",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 4,
+        "BC": 18,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "24",
+        "altitudeSquared": "95/9",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 5,
+        "BC": 18,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "24",
+        "altitudeSquared": "3311/144",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 5,
+        "BC": 21,
+        "CD": "7",
+        "Bcoordinate": 0,
+        "Ccoordinate": 21,
+        "Dcoordinate": "28",
+        "altitudeSquared": "1104/49",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 5,
+        "BC": 24,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 24,
+        "Dcoordinate": "32",
+        "altitudeSquared": "1911/256",
+        "valid": true
+      },
+      {
+        "AB": 6,
+        "AC": 4,
+        "BC": 3,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 3,
+        "Dcoordinate": "9",
+        "altitudeSquared": "455/36",
+        "valid": true
+      },
+      {
+        "AB": 6,
+        "AC": 4,
+        "BC": 4,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 4,
+        "Dcoordinate": "12",
+        "altitudeSquared": "63/4",
+        "valid": true
+      },
+      {
+        "AB": 6,
+        "AC": 4,
+        "BC": 5,
+        "CD": "10",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "15",
+        "altitudeSquared": "63/4",
+        "valid": true
+      },
+      {
+        "AB": 6,
+        "AC": 4,
+        "BC": 6,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "18",
+        "altitudeSquared": "128/9",
+        "valid": true
+      },
+      {
+        "AB": 9,
+        "AC": 6,
+        "BC": 4,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 4,
+        "Dcoordinate": "12",
+        "altitudeSquared": "1463/64",
+        "valid": true
+      },
+      {
+        "AB": 9,
+        "AC": 6,
+        "BC": 5,
+        "CD": "10",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "15",
+        "altitudeSquared": "32",
+        "valid": true
+      },
+      {
+        "AB": 9,
+        "AC": 6,
+        "BC": 6,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "18",
+        "altitudeSquared": "567/16",
+        "valid": true
+      },
+      {
+        "AB": 9,
+        "AC": 6,
+        "BC": 7,
+        "CD": "14",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "21",
+        "altitudeSquared": "1760/49",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 8,
+        "BC": 5,
+        "CD": "10",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "15",
+        "altitudeSquared": "135/4",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 8,
+        "BC": 6,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "18",
+        "altitudeSquared": "455/9",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 8,
+        "BC": 7,
+        "CD": "14",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "21",
+        "altitudeSquared": "11583/196",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 8,
+        "BC": 8,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "24",
+        "altitudeSquared": "63",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 10,
+        "BC": 6,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "18",
+        "altitudeSquared": "6479/144",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 10,
+        "BC": 7,
+        "CD": "14",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "21",
+        "altitudeSquared": "3456/49",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 10,
+        "BC": 8,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "24",
+        "altitudeSquared": "21879/256",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 10,
+        "BC": 9,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 9,
+        "Dcoordinate": "27",
+        "altitudeSquared": "7616/81",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 4,
+        "BC": 6,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "12",
+        "altitudeSquared": "15",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 4,
+        "BC": 8,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "16",
+        "altitudeSquared": "15",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 4,
+        "BC": 10,
+        "CD": "10",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "20",
+        "altitudeSquared": "231/25",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 6,
+        "BC": 8,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "16",
+        "altitudeSquared": "455/16",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 6,
+        "BC": 10,
+        "CD": "10",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "20",
+        "altitudeSquared": "896/25",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 6,
+        "BC": 12,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "24",
+        "altitudeSquared": "135/4",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 6,
+        "BC": 14,
+        "CD": "14",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "28",
+        "altitudeSquared": "1280/49",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 8,
+        "BC": 10,
+        "CD": "10",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "20",
+        "altitudeSquared": "1071/25",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 8,
+        "BC": 12,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "24",
+        "altitudeSquared": "60",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 8,
+        "BC": 14,
+        "CD": "14",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "28",
+        "altitudeSquared": "3135/49",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 8,
+        "BC": 16,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 16,
+        "Dcoordinate": "32",
+        "altitudeSquared": "60",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 10,
+        "BC": 12,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "24",
+        "altitudeSquared": "231/4",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 10,
+        "BC": 14,
+        "CD": "14",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "28",
+        "altitudeSquared": "4224/49",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 10,
+        "BC": 16,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 16,
+        "Dcoordinate": "32",
+        "altitudeSquared": "6279/64",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 10,
+        "BC": 18,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "36",
+        "altitudeSquared": "896/9",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 4,
+        "BC": 9,
+        "CD": "6",
+        "Bcoordinate": 0,
+        "Ccoordinate": 9,
+        "Dcoordinate": "15",
+        "altitudeSquared": "575/36",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 4,
+        "BC": 12,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "20",
+        "altitudeSquared": "39/4",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 6,
+        "BC": 12,
+        "CD": "8",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "20",
+        "altitudeSquared": "2079/64",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 6,
+        "BC": 15,
+        "CD": "10",
+        "Bcoordinate": 0,
+        "Ccoordinate": 15,
+        "Dcoordinate": "25",
+        "altitudeSquared": "864/25",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 6,
+        "BC": 18,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "30",
+        "altitudeSquared": "351/16",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 8,
+        "BC": 15,
+        "CD": "10",
+        "Bcoordinate": 0,
+        "Ccoordinate": 15,
+        "Dcoordinate": "25",
+        "altitudeSquared": "5031/100",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 8,
+        "BC": 18,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "30",
+        "altitudeSquared": "575/9",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 8,
+        "BC": 21,
+        "CD": "14",
+        "Bcoordinate": 0,
+        "Ccoordinate": 21,
+        "Dcoordinate": "35",
+        "altitudeSquared": "231/4",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 8,
+        "BC": 24,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 24,
+        "Dcoordinate": "40",
+        "altitudeSquared": "39",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 10,
+        "BC": 18,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "30",
+        "altitudeSquared": "9911/144",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 10,
+        "BC": 21,
+        "CD": "14",
+        "Bcoordinate": 0,
+        "Ccoordinate": 21,
+        "Dcoordinate": "35",
+        "altitudeSquared": "96",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 10,
+        "BC": 24,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 24,
+        "Dcoordinate": "40",
+        "altitudeSquared": "25311/256",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 10,
+        "BC": 27,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 27,
+        "Dcoordinate": "45",
+        "altitudeSquared": "6944/81",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 6,
+        "BC": 3,
+        "CD": "9",
+        "Bcoordinate": 0,
+        "Ccoordinate": 3,
+        "Dcoordinate": "12",
+        "altitudeSquared": "935/36",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 6,
+        "BC": 4,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 4,
+        "Dcoordinate": "16",
+        "altitudeSquared": "135/4",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 6,
+        "BC": 5,
+        "CD": "15",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "20",
+        "altitudeSquared": "3591/100",
+        "valid": true
+      },
+      {
+        "AB": 8,
+        "AC": 6,
+        "BC": 6,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "24",
+        "altitudeSquared": "320/9",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 9,
+        "BC": 4,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 4,
+        "Dcoordinate": "16",
+        "altitudeSquared": "2975/64",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 9,
+        "BC": 5,
+        "CD": "15",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "20",
+        "altitudeSquared": "1664/25",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 9,
+        "BC": 6,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "24",
+        "altitudeSquared": "1215/16",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 9,
+        "BC": 7,
+        "CD": "21",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "28",
+        "altitudeSquared": "80",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 12,
+        "BC": 5,
+        "CD": "15",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "20",
+        "altitudeSquared": "6831/100",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 12,
+        "BC": 6,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "24",
+        "altitudeSquared": "935/9",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 12,
+        "BC": 7,
+        "CD": "21",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "28",
+        "altitudeSquared": "495/4",
+        "valid": true
+      },
+      {
+        "AB": 16,
+        "AC": 12,
+        "BC": 8,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "32",
+        "altitudeSquared": "135",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 15,
+        "BC": 6,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "24",
+        "altitudeSquared": "13079/144",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 15,
+        "BC": 7,
+        "CD": "21",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "28",
+        "altitudeSquared": "144",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 15,
+        "BC": 8,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "32",
+        "altitudeSquared": "45279/256",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 15,
+        "BC": 9,
+        "CD": "27",
+        "Bcoordinate": 0,
+        "Ccoordinate": 9,
+        "Dcoordinate": "36",
+        "altitudeSquared": "16016/81",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 6,
+        "BC": 6,
+        "CD": "9",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "15",
+        "altitudeSquared": "275/9",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 6,
+        "BC": 8,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "20",
+        "altitudeSquared": "36",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 6,
+        "BC": 10,
+        "CD": "15",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "25",
+        "altitudeSquared": "819/25",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 6,
+        "BC": 12,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "30",
+        "altitudeSquared": "224/9",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 9,
+        "BC": 8,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "20",
+        "altitudeSquared": "56",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 9,
+        "BC": 10,
+        "CD": "15",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "25",
+        "altitudeSquared": "1904/25",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 9,
+        "BC": 12,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "30",
+        "altitudeSquared": "81",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 9,
+        "BC": 14,
+        "CD": "21",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "35",
+        "altitudeSquared": "3800/49",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 12,
+        "BC": 10,
+        "CD": "15",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "25",
+        "altitudeSquared": "2079/25",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 12,
+        "BC": 12,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "30",
+        "altitudeSquared": "1100/9",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 12,
+        "BC": 14,
+        "CD": "21",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "35",
+        "altitudeSquared": "6831/49",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 12,
+        "BC": 16,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 16,
+        "Dcoordinate": "40",
+        "altitudeSquared": "144",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 15,
+        "BC": 12,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "30",
+        "altitudeSquared": "1001/9",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 15,
+        "BC": 14,
+        "CD": "21",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "35",
+        "altitudeSquared": "8424/49",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 15,
+        "BC": 16,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 16,
+        "Dcoordinate": "40",
+        "altitudeSquared": "819/4",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 15,
+        "BC": 18,
+        "CD": "27",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "45",
+        "altitudeSquared": "17864/81",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 6,
+        "BC": 9,
+        "CD": "9",
+        "Bcoordinate": 0,
+        "Ccoordinate": 9,
+        "Dcoordinate": "18",
+        "altitudeSquared": "135/4",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 6,
+        "BC": 12,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "24",
+        "altitudeSquared": "135/4",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 6,
+        "BC": 15,
+        "CD": "15",
+        "Bcoordinate": 0,
+        "Ccoordinate": 15,
+        "Dcoordinate": "30",
+        "altitudeSquared": "2079/100",
+        "valid": true
+      },
+      {
+        "AB": 18,
+        "AC": 9,
+        "BC": 12,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "24",
+        "altitudeSquared": "4095/64",
+        "valid": true
+      },
+      {
+        "AB": 18,
+        "AC": 9,
+        "BC": 15,
+        "CD": "15",
+        "Bcoordinate": 0,
+        "Ccoordinate": 15,
+        "Dcoordinate": "30",
+        "altitudeSquared": "2016/25",
+        "valid": true
+      },
+      {
+        "AB": 18,
+        "AC": 9,
+        "BC": 18,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "36",
+        "altitudeSquared": "1215/16",
+        "valid": true
+      },
+      {
+        "AB": 18,
+        "AC": 9,
+        "BC": 21,
+        "CD": "21",
+        "Bcoordinate": 0,
+        "Ccoordinate": 21,
+        "Dcoordinate": "42",
+        "altitudeSquared": "2880/49",
+        "valid": true
+      },
+      {
+        "AB": 24,
+        "AC": 12,
+        "BC": 15,
+        "CD": "15",
+        "Bcoordinate": 0,
+        "Ccoordinate": 15,
+        "Dcoordinate": "30",
+        "altitudeSquared": "9639/100",
+        "valid": true
+      },
+      {
+        "AB": 24,
+        "AC": 12,
+        "BC": 18,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "36",
+        "altitudeSquared": "135",
+        "valid": true
+      },
+      {
+        "AB": 24,
+        "AC": 12,
+        "BC": 21,
+        "CD": "21",
+        "Bcoordinate": 0,
+        "Ccoordinate": 21,
+        "Dcoordinate": "42",
+        "altitudeSquared": "28215/196",
+        "valid": true
+      },
+      {
+        "AB": 24,
+        "AC": 12,
+        "BC": 24,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 24,
+        "Dcoordinate": "48",
+        "altitudeSquared": "135",
+        "valid": true
+      },
+      {
+        "AB": 30,
+        "AC": 15,
+        "BC": 18,
+        "CD": "18",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "36",
+        "altitudeSquared": "2079/16",
+        "valid": true
+      },
+      {
+        "AB": 30,
+        "AC": 15,
+        "BC": 21,
+        "CD": "21",
+        "Bcoordinate": 0,
+        "Ccoordinate": 21,
+        "Dcoordinate": "42",
+        "altitudeSquared": "9504/49",
+        "valid": true
+      },
+      {
+        "AB": 30,
+        "AC": 15,
+        "BC": 24,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 24,
+        "Dcoordinate": "48",
+        "altitudeSquared": "56511/256",
+        "valid": true
+      },
+      {
+        "AB": 30,
+        "AC": 15,
+        "BC": 27,
+        "CD": "27",
+        "Bcoordinate": 0,
+        "Ccoordinate": 27,
+        "Dcoordinate": "54",
+        "altitudeSquared": "224",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 8,
+        "BC": 3,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 3,
+        "Dcoordinate": "15",
+        "altitudeSquared": "175/4",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 8,
+        "BC": 4,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 4,
+        "Dcoordinate": "20",
+        "altitudeSquared": "231/4",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 8,
+        "BC": 5,
+        "CD": "20",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "25",
+        "altitudeSquared": "6279/100",
+        "valid": true
+      },
+      {
+        "AB": 10,
+        "AC": 8,
+        "BC": 6,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "30",
+        "altitudeSquared": "64",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 12,
+        "BC": 4,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 4,
+        "Dcoordinate": "20",
+        "altitudeSquared": "4991/64",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 12,
+        "BC": 5,
+        "CD": "20",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "25",
+        "altitudeSquared": "2816/25",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 12,
+        "BC": 6,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "30",
+        "altitudeSquared": "2079/16",
+        "valid": true
+      },
+      {
+        "AB": 15,
+        "AC": 12,
+        "BC": 7,
+        "CD": "28",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "35",
+        "altitudeSquared": "6800/49",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 16,
+        "BC": 5,
+        "CD": "20",
+        "Bcoordinate": 0,
+        "Ccoordinate": 5,
+        "Dcoordinate": "25",
+        "altitudeSquared": "11439/100",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 16,
+        "BC": 6,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "30",
+        "altitudeSquared": "175",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 16,
+        "BC": 7,
+        "CD": "28",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "35",
+        "altitudeSquared": "41151/196",
+        "valid": true
+      },
+      {
+        "AB": 20,
+        "AC": 16,
+        "BC": 8,
+        "CD": "32",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "40",
+        "altitudeSquared": "231",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 20,
+        "BC": 6,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "30",
+        "altitudeSquared": "2431/16",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 20,
+        "BC": 7,
+        "CD": "28",
+        "Bcoordinate": 0,
+        "Ccoordinate": 7,
+        "Dcoordinate": "35",
+        "altitudeSquared": "11856/49",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 20,
+        "BC": 8,
+        "CD": "32",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "40",
+        "altitudeSquared": "76479/256",
+        "valid": true
+      },
+      {
+        "AB": 25,
+        "AC": 20,
+        "BC": 9,
+        "CD": "36",
+        "Bcoordinate": 0,
+        "Ccoordinate": 9,
+        "Dcoordinate": "45",
+        "altitudeSquared": "336",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 8,
+        "BC": 6,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 6,
+        "Dcoordinate": "18",
+        "altitudeSquared": "455/9",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 8,
+        "BC": 8,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "24",
+        "altitudeSquared": "63",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 8,
+        "BC": 10,
+        "CD": "20",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "30",
+        "altitudeSquared": "63",
+        "valid": true
+      },
+      {
+        "AB": 12,
+        "AC": 8,
+        "BC": 12,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "36",
+        "altitudeSquared": "512/9",
+        "valid": true
+      },
+      {
+        "AB": 18,
+        "AC": 12,
+        "BC": 8,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 8,
+        "Dcoordinate": "24",
+        "altitudeSquared": "1463/16",
+        "valid": true
+      },
+      {
+        "AB": 18,
+        "AC": 12,
+        "BC": 10,
+        "CD": "20",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "30",
+        "altitudeSquared": "128",
+        "valid": true
+      },
+      {
+        "AB": 18,
+        "AC": 12,
+        "BC": 12,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "36",
+        "altitudeSquared": "567/4",
+        "valid": true
+      },
+      {
+        "AB": 18,
+        "AC": 12,
+        "BC": 14,
+        "CD": "28",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "42",
+        "altitudeSquared": "7040/49",
+        "valid": true
+      },
+      {
+        "AB": 24,
+        "AC": 16,
+        "BC": 10,
+        "CD": "20",
+        "Bcoordinate": 0,
+        "Ccoordinate": 10,
+        "Dcoordinate": "30",
+        "altitudeSquared": "135",
+        "valid": true
+      },
+      {
+        "AB": 24,
+        "AC": 16,
+        "BC": 12,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "36",
+        "altitudeSquared": "1820/9",
+        "valid": true
+      },
+      {
+        "AB": 24,
+        "AC": 16,
+        "BC": 14,
+        "CD": "28",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "42",
+        "altitudeSquared": "11583/49",
+        "valid": true
+      },
+      {
+        "AB": 24,
+        "AC": 16,
+        "BC": 16,
+        "CD": "32",
+        "Bcoordinate": 0,
+        "Ccoordinate": 16,
+        "Dcoordinate": "48",
+        "altitudeSquared": "252",
+        "valid": true
+      },
+      {
+        "AB": 30,
+        "AC": 20,
+        "BC": 12,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "36",
+        "altitudeSquared": "6479/36",
+        "valid": true
+      },
+      {
+        "AB": 30,
+        "AC": 20,
+        "BC": 14,
+        "CD": "28",
+        "Bcoordinate": 0,
+        "Ccoordinate": 14,
+        "Dcoordinate": "42",
+        "altitudeSquared": "13824/49",
+        "valid": true
+      },
+      {
+        "AB": 30,
+        "AC": 20,
+        "BC": 16,
+        "CD": "32",
+        "Bcoordinate": 0,
+        "Ccoordinate": 16,
+        "Dcoordinate": "48",
+        "altitudeSquared": "21879/64",
+        "valid": true
+      },
+      {
+        "AB": 30,
+        "AC": 20,
+        "BC": 18,
+        "CD": "36",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "54",
+        "altitudeSquared": "30464/81",
+        "valid": true
+      },
+      {
+        "AB": 14,
+        "AC": 8,
+        "BC": 9,
+        "CD": "12",
+        "Bcoordinate": 0,
+        "Ccoordinate": 9,
+        "Dcoordinate": "21",
+        "altitudeSquared": "2015/36",
+        "valid": true
+      },
+      {
+        "AB": 14,
+        "AC": 8,
+        "BC": 12,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "28",
+        "altitudeSquared": "255/4",
+        "valid": true
+      },
+      {
+        "AB": 14,
+        "AC": 8,
+        "BC": 15,
+        "CD": "20",
+        "Bcoordinate": 0,
+        "Ccoordinate": 15,
+        "Dcoordinate": "35",
+        "altitudeSquared": "5439/100",
+        "valid": true
+      },
+      {
+        "AB": 14,
+        "AC": 8,
+        "BC": 18,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "42",
+        "altitudeSquared": "320/9",
+        "valid": true
+      },
+      {
+        "AB": 21,
+        "AC": 12,
+        "BC": 12,
+        "CD": "16",
+        "Bcoordinate": 0,
+        "Ccoordinate": 12,
+        "Dcoordinate": "28",
+        "altitudeSquared": "6615/64",
+        "valid": true
+      },
+      {
+        "AB": 21,
+        "AC": 12,
+        "BC": 15,
+        "CD": "20",
+        "Bcoordinate": 0,
+        "Ccoordinate": 15,
+        "Dcoordinate": "35",
+        "altitudeSquared": "3456/25",
+        "valid": true
+      },
+      {
+        "AB": 21,
+        "AC": 12,
+        "BC": 18,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "42",
+        "altitudeSquared": "2295/16",
+        "valid": true
+      },
+      {
+        "AB": 21,
+        "AC": 12,
+        "BC": 21,
+        "CD": "28",
+        "Bcoordinate": 0,
+        "Ccoordinate": 21,
+        "Dcoordinate": "49",
+        "altitudeSquared": "6480/49",
+        "valid": true
+      },
+      {
+        "AB": 28,
+        "AC": 16,
+        "BC": 15,
+        "CD": "20",
+        "Bcoordinate": 0,
+        "Ccoordinate": 15,
+        "Dcoordinate": "35",
+        "altitudeSquared": "15399/100",
+        "valid": true
+      },
+      {
+        "AB": 28,
+        "AC": 16,
+        "BC": 18,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "42",
+        "altitudeSquared": "2015/9",
+        "valid": true
+      },
+      {
+        "AB": 28,
+        "AC": 16,
+        "BC": 21,
+        "CD": "28",
+        "Bcoordinate": 0,
+        "Ccoordinate": 21,
+        "Dcoordinate": "49",
+        "altitudeSquared": "49335/196",
+        "valid": true
+      },
+      {
+        "AB": 28,
+        "AC": 16,
+        "BC": 24,
+        "CD": "32",
+        "Bcoordinate": 0,
+        "Ccoordinate": 24,
+        "Dcoordinate": "56",
+        "altitudeSquared": "255",
+        "valid": true
+      },
+      {
+        "AB": 35,
+        "AC": 20,
+        "BC": 18,
+        "CD": "24",
+        "Bcoordinate": 0,
+        "Ccoordinate": 18,
+        "Dcoordinate": "42",
+        "altitudeSquared": "29711/144",
+        "valid": true
+      },
+      {
+        "AB": 35,
+        "AC": 20,
+        "BC": 21,
+        "CD": "28",
+        "Bcoordinate": 0,
+        "Ccoordinate": 21,
+        "Dcoordinate": "49",
+        "altitudeSquared": "15504/49",
+        "valid": true
+      },
+      {
+        "AB": 35,
+        "AC": 20,
+        "BC": 24,
+        "CD": "32",
+        "Bcoordinate": 0,
+        "Ccoordinate": 24,
+        "Dcoordinate": "56",
+        "altitudeSquared": "95511/256",
+        "valid": true
+      },
+      {
+        "AB": 35,
+        "AC": 20,
+        "BC": 27,
+        "CD": "36",
+        "Bcoordinate": 0,
+        "Ccoordinate": 27,
+        "Dcoordinate": "63",
+        "altitudeSquared": "32144/81",
+        "valid": true
+      }
+    ],
+    "proofAllBoundsNonempty": "delta<=3 and2*q*unit-1>=3 imply floor(((p+q)unit-1)/delta)>=unit+1. The other minterm unit+4 also>=unit+1. Upper enforces strict integerBC<AB+AC, lower strictBC>AB-AC. AB>AC ensuresuniqueCD>0 andB,C,Dorder."
+  },
+  "M19": [
+    {
+      "sides": [
+        8,
+        6,
+        10
+      ],
+      "radius": 2,
+      "areaSquaredNumerator16": 9216,
+      "fourRSquaredPerimeterSquared": 9216,
+      "targetIBC": "8",
+      "valid": true
+    },
+    {
+      "sides": [
+        8,
+        10,
+        6
+      ],
+      "radius": 2,
+      "areaSquaredNumerator16": 9216,
+      "fourRSquaredPerimeterSquared": 9216,
+      "targetIBC": "8",
+      "valid": true
+    },
+    {
+      "sides": [
+        10,
+        6,
+        8
+      ],
+      "radius": 2,
+      "areaSquaredNumerator16": 9216,
+      "fourRSquaredPerimeterSquared": 9216,
+      "targetIBC": "10",
+      "valid": true
+    },
+    {
+      "sides": [
+        10,
+        8,
+        6
+      ],
+      "radius": 2,
+      "areaSquaredNumerator16": 9216,
+      "fourRSquaredPerimeterSquared": 9216,
+      "targetIBC": "10",
+      "valid": true
+    },
+    {
+      "sides": [
+        10,
+        10,
+        12
+      ],
+      "radius": 3,
+      "areaSquaredNumerator16": 36864,
+      "fourRSquaredPerimeterSquared": 36864,
+      "targetIBC": "15",
+      "valid": true
+    },
+    {
+      "sides": [
+        10,
+        12,
+        10
+      ],
+      "radius": 3,
+      "areaSquaredNumerator16": 36864,
+      "fourRSquaredPerimeterSquared": 36864,
+      "targetIBC": "15",
+      "valid": true
+    },
+    {
+      "sides": [
+        12,
+        5,
+        13
+      ],
+      "radius": 2,
+      "areaSquaredNumerator16": 14400,
+      "fourRSquaredPerimeterSquared": 14400,
+      "targetIBC": "12",
+      "valid": true
+    },
+    {
+      "sides": [
+        12,
+        9,
+        15
+      ],
+      "radius": 3,
+      "areaSquaredNumerator16": 46656,
+      "fourRSquaredPerimeterSquared": 46656,
+      "targetIBC": "18",
+      "valid": true
+    },
+    {
+      "sides": [
+        12,
+        10,
+        10
+      ],
+      "radius": 3,
+      "areaSquaredNumerator16": 36864,
+      "fourRSquaredPerimeterSquared": 36864,
+      "targetIBC": "18",
+      "valid": true
+    },
+    {
+      "sides": [
+        12,
+        13,
+        5
+      ],
+      "radius": 2,
+      "areaSquaredNumerator16": 14400,
+      "fourRSquaredPerimeterSquared": 14400,
+      "targetIBC": "12",
+      "valid": true
+    },
+    {
+      "sides": [
+        12,
+        15,
+        9
+      ],
+      "radius": 3,
+      "areaSquaredNumerator16": 46656,
+      "fourRSquaredPerimeterSquared": 46656,
+      "targetIBC": "18",
+      "valid": true
+    },
+    {
+      "sides": [
+        14,
+        13,
+        15
+      ],
+      "radius": 4,
+      "areaSquaredNumerator16": 112896,
+      "fourRSquaredPerimeterSquared": 112896,
+      "targetIBC": "28",
+      "valid": true
+    },
+    {
+      "sides": [
+        14,
+        15,
+        13
+      ],
+      "radius": 4,
+      "areaSquaredNumerator16": 112896,
+      "fourRSquaredPerimeterSquared": 112896,
+      "targetIBC": "28",
+      "valid": true
+    },
+    {
+      "sides": [
+        20,
+        7,
+        15
+      ],
+      "radius": 2,
+      "areaSquaredNumerator16": 28224,
+      "fourRSquaredPerimeterSquared": 28224,
+      "targetIBC": "20",
+      "valid": true
+    },
+    {
+      "sides": [
+        20,
+        11,
+        13
+      ],
+      "radius": 3,
+      "areaSquaredNumerator16": 69696,
+      "fourRSquaredPerimeterSquared": 69696,
+      "targetIBC": "30",
+      "valid": true
+    },
+    {
+      "sides": [
+        20,
+        13,
+        11
+      ],
+      "radius": 3,
+      "areaSquaredNumerator16": 69696,
+      "fourRSquaredPerimeterSquared": 69696,
+      "targetIBC": "30",
+      "valid": true
+    },
+    {
+      "sides": [
+        20,
+        15,
+        7
+      ],
+      "radius": 2,
+      "areaSquaredNumerator16": 28224,
+      "fourRSquaredPerimeterSquared": 28224,
+      "targetIBC": "20",
+      "valid": true
+    },
+    {
+      "sides": [
+        24,
+        15,
+        15
+      ],
+      "radius": 4,
+      "areaSquaredNumerator16": 186624,
+      "fourRSquaredPerimeterSquared": 186624,
+      "targetIBC": "48",
+      "valid": true
+    }
+  ],
+  "M20": [
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        2,
+        2
+      ],
+      "ownSum": 6,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        2,
+        4
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        2,
+        2
+      ],
+      "ownSum": 7,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        2,
+        4
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": -27,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        3,
+        3
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": -27,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        3,
+        6
+      ],
+      "ownSum": 11,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": -27,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        3,
+        3
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": -27,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        3,
+        6
+      ],
+      "ownSum": 12,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        2,
+        2
+      ],
+      "ownSum": 6,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        2,
+        4
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        2,
+        2
+      ],
+      "ownSum": 7,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        2,
+        4
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": -8,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        3,
+        3
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": -8,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        3,
+        6
+      ],
+      "ownSum": 11,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": -8,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        3,
+        3
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": -8,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        3,
+        6
+      ],
+      "ownSum": 12,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        2,
+        2
+      ],
+      "ownSum": 6,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        2,
+        4
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        2,
+        2
+      ],
+      "ownSum": 7,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        2,
+        4
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 8,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        3,
+        3
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 8,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        3,
+        6
+      ],
+      "ownSum": 11,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 8,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        3,
+        3
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 8,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        3,
+        6
+      ],
+      "ownSum": 12,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        2,
+        2
+      ],
+      "ownSum": 6,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        2,
+        4
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        2,
+        2
+      ],
+      "ownSum": 7,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        2,
+        4
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 27,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        3,
+        3
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 27,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        3,
+        6
+      ],
+      "ownSum": 11,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 27,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        3,
+        3
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "ab",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 27,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        3,
+        6
+      ],
+      "ownSum": 12,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        2,
+        2
+      ],
+      "ownSum": 6,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        2,
+        4
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        2,
+        2
+      ],
+      "ownSum": 7,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        2,
+        4
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": -27,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        3,
+        3
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": -27,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        3,
+        6
+      ],
+      "ownSum": 11,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": -27,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        3,
+        3
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -3,
+      "printedCoefficient": -27,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        3,
+        6
+      ],
+      "ownSum": 12,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        2,
+        2
+      ],
+      "ownSum": 6,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        2,
+        4
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        2,
+        2
+      ],
+      "ownSum": 7,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        2,
+        4
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": -8,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        3,
+        3
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": -8,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        3,
+        6
+      ],
+      "ownSum": 11,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": -8,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        3,
+        3
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": -2,
+      "printedCoefficient": -8,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        3,
+        6
+      ],
+      "ownSum": 12,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        2,
+        2
+      ],
+      "ownSum": 6,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        2,
+        4
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        2,
+        2
+      ],
+      "ownSum": 7,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 4,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        2,
+        4
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 8,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        3,
+        3
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 8,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        3,
+        6
+      ],
+      "ownSum": 11,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 8,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        3,
+        3
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 2,
+      "printedCoefficient": 8,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        3,
+        6
+      ],
+      "ownSum": 12,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        2,
+        2
+      ],
+      "ownSum": 6,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 4,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        2,
+        4
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        2,
+        2
+      ],
+      "ownSum": 7,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 9,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        2,
+        4
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 27,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        2,
+        3,
+        3
+      ],
+      "ownSum": 8,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 27,
+      "printedFirstExponent": 6,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        2,
+        3,
+        6
+      ],
+      "ownSum": 11,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 27,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 1,
+      "ownDerivedInputs": [
+        3,
+        3,
+        3
+      ],
+      "ownSum": 9,
+      "valid": true
+    },
+    {
+      "basePair": "xy",
+      "printedCoefficientBase": 3,
+      "printedCoefficient": 27,
+      "printedFirstExponent": 9,
+      "printedSecondExponentFactor": 2,
+      "ownDerivedInputs": [
+        3,
+        3,
+        6
+      ],
+      "ownSum": 12,
+      "valid": true
+    }
+  ],
+  "M20uniquenessProof": "Independent universal basevariables let basevalues1,1 identify kc^n=K. Sinceabs(kc)>=2, positive integerpowers strictlyincrease in magnitude, so n unique. Comparing firstbase variation with secondbase1 identifies mn=X (e.gbase2powers injective), m=X/n positiveunique. Varysecondbase withfirstbase1 givesk=ey*n positiveunique. Elementary exponentlaw semanticargument, not gradeapproval. Negative/zero basevalues cause no undefined powers since all exponents positiveintegers.",
+  "escapeEvidence": {
+    "TeX": [
+      {
+        "command": "left",
+        "sourceSlashCount": 2,
+        "blockLine": 10,
+        "safeEvenSlashPair": true
+      },
+      {
+        "command": "right",
+        "sourceSlashCount": 2,
+        "blockLine": 10,
+        "safeEvenSlashPair": true
+      },
+      {
+        "command": "left",
+        "sourceSlashCount": 2,
+        "blockLine": 15,
+        "safeEvenSlashPair": true
+      },
+      {
+        "command": "left",
+        "sourceSlashCount": 2,
+        "blockLine": 15,
+        "safeEvenSlashPair": true
+      },
+      {
+        "command": "right",
+        "sourceSlashCount": 2,
+        "blockLine": 15,
+        "safeEvenSlashPair": true
+      },
+      {
+        "command": "right",
+        "sourceSlashCount": 2,
+        "blockLine": 15,
+        "safeEvenSlashPair": true
+      }
+    ],
+    "newlineSlashCounts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "semanticEffectIfSingle": "Template literal \\l is identityescape losing slash; \\r becomescarriagereturn; needs2source slashes forTeX. One source\\n correctlymakesnewline. Staticlanguageanalysis, not actualNode/render."
+  },
+  "futureVersions": {
+    "2-2|평행선 사이의 선분의 길이의 비|60": "20261021-strict-triangle-perimeter-r1",
+    "2-2|평행선 사이의 선분의 길이의 비|17": "20261021-feasible-external-bisector-r1",
+    "2-2|삼각형의 외심과 내심|75": "20261021-consistent-incenter-inputs-r1",
+    "2-1|단항식의 계산|04": "20261021-independent-exponent-symbols-r1"
+  },
+  "before": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\proposal.json": "58bb552f259af656998dd0da7b29768dd07f415566822379fe5e07a98129b8fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2GeoSim.ts": "e79de0ce5130b02dcf97b43828fb56ff57fcdba1f3422f564c5c3c788062ff87",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2GeoSim.ts": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Center.ts": "70d2924d026f617afc846267008c687db557a4e0bcc527e5d1a2dab749d3f88b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2Center.ts": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Mono.ts": "974b779396e99bbfa76a2b71b6739117709a834be12b969d2757d377155a1a4e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2Mono.ts": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "199734c48116d1115754339c8f3e45a24a0cbf81f100d0581d320942950dd712",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\examStudy\\adapters.ts": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\middleM2Mono.test.ts": "365fa38483972cba75d8001fc61ca19009bdfdb34793545028fd12c2593141a4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\__tests__\\unit\\middleM2Mono.test.ts": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd"
+  },
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\proposal.json": "58bb552f259af656998dd0da7b29768dd07f415566822379fe5e07a98129b8fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2GeoSim.ts": "e79de0ce5130b02dcf97b43828fb56ff57fcdba1f3422f564c5c3c788062ff87",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2GeoSim.ts": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Center.ts": "70d2924d026f617afc846267008c687db557a4e0bcc527e5d1a2dab749d3f88b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2Center.ts": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Mono.ts": "974b779396e99bbfa76a2b71b6739117709a834be12b969d2757d377155a1a4e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2Mono.ts": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "199734c48116d1115754339c8f3e45a24a0cbf81f100d0581d320942950dd712",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\examStudy\\adapters.ts": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\middleM2Mono.test.ts": "365fa38483972cba75d8001fc61ca19009bdfdb34793545028fd12c2593141a4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\__tests__\\unit\\middleM2Mono.test.ts": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd"
+  },
+  "limits": [
+    "Python only; actual generated120seed replay remainspending.",
+    "Not uniformseedcoverage or fullengine/runtime/TeXcompile/render proof. All5candidate files bytechecked; suppliedtestsource inspected, testsnotrun.",
+    "No production apply/DB/issued-question updates; versions are proposedfuturegenerator revisions only.",
+    "No grade/sourceidentity/rights/native/release approval. Coremethod/sourceprovenance must remain separatelytracked."
+  ]
+}

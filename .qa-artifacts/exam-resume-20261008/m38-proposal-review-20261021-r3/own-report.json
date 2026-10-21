@@ -1,0 +1,201 @@
+{
+  "status": "STATIC_ONLY_PASS-RUNTIME_REPLAY_PENDING",
+  "proposalSHA256": "58bb552f259af656998dd0da7b29768dd07f415566822379fe5e07a98129b8fd",
+  "actualFiveFiles": [
+    {
+      "path": "src/lib/middle/m2GeoSim.ts",
+      "originalSHA256": "e79de0ce5130b02dcf97b43828fb56ff57fcdba1f3422f564c5c3c788062ff87",
+      "candidateSHA256": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+      "changedHunks": 2
+    },
+    {
+      "path": "src/lib/middle/m2Center.ts",
+      "originalSHA256": "70d2924d026f617afc846267008c687db557a4e0bcc527e5d1a2dab749d3f88b",
+      "candidateSHA256": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+      "changedHunks": 2
+    },
+    {
+      "path": "src/lib/middle/m2Mono.ts",
+      "originalSHA256": "974b779396e99bbfa76a2b71b6739117709a834be12b969d2757d377155a1a4e",
+      "candidateSHA256": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+      "changedHunks": 2
+    },
+    {
+      "path": "src/lib/examStudy/adapters.ts",
+      "originalSHA256": "199734c48116d1115754339c8f3e45a24a0cbf81f100d0581d320942950dd712",
+      "candidateSHA256": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87",
+      "changedHunks": 1
+    },
+    {
+      "path": "src/__tests__/unit/middleM2Mono.test.ts",
+      "originalSHA256": "365fa38483972cba75d8001fc61ca19009bdfdb34793545028fd12c2593141a4",
+      "candidateSHA256": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd",
+      "changedHunks": 1
+    }
+  ],
+  "counts": {
+    "assertions": 442,
+    "passed": 442,
+    "failed": 0,
+    "M8literalTuples": 120,
+    "M9bounds": 48,
+    "M9literalTuples": 171,
+    "M19tuples": 18,
+    "M20kind1Tuples": 64,
+    "actualSeedOutputs": 0
+  },
+  "mathematicalFindings": {
+    "M8": "All120literal a/k/margin tuples feasible: P=2a+margin,margin1..10 so positiveother sides(P-a)/2 form a strict triangle. k2..4 yieldsinternalD/E and uniqueconditionalABCperimeter kP. No answer/factsoracle.",
+    "M9": "All48q/delta/unit rangebound pairs nonempty. All171baseScale tuples satisfy |AB-AC|<BC<AB+AC; AB>AC,CD=AC*BC/(AB-AC)>0,BD=BC+CD implyuniqueD beyondC. Exactrational coordinatealtitude²>0 checked. Bounds proof2*q*unit-1>=delta holdsatminimumq1unit2delta3.",
+    "M19": "All18actual listed side/radius tuples distinct, satisfy stricttriangles, originalranges and exact integer identity4a²c²-(a²+c²-b²)²=4r²(a+b+c)². Tableequalsall18consistent tuples in independentlysealed old6534domain analysis. Student target stillheight=r, areaIBC=BC*r/2; generalidentity is engine validation, not a required student formula.",
+    "M20": "All64kind1pair/kc/n/m/ey tuples givepositiveunique m,n,k. m/n/k disjointfrombothbasepairsa/b andx/y; actualtext requires equalityregardlessbasevalues. |kc|>=2 ensurespositivepower magnitudeinjectivity, nidentifiedbycoefficient, thenm=X/n,k=ey*n. Substitution atfixedbasesalone insufficient; universalcondition solvesoldnumericcollision."
+  },
+  "escapeReview": {
+    "status": "passed-static-source-byte-review",
+    "actualEvidence": {
+      "TeX": [
+        {
+          "command": "left",
+          "sourceSlashCount": 2,
+          "blockLine": 10,
+          "safeEvenSlashPair": true
+        },
+        {
+          "command": "right",
+          "sourceSlashCount": 2,
+          "blockLine": 10,
+          "safeEvenSlashPair": true
+        },
+        {
+          "command": "left",
+          "sourceSlashCount": 2,
+          "blockLine": 15,
+          "safeEvenSlashPair": true
+        },
+        {
+          "command": "left",
+          "sourceSlashCount": 2,
+          "blockLine": 15,
+          "safeEvenSlashPair": true
+        },
+        {
+          "command": "right",
+          "sourceSlashCount": 2,
+          "blockLine": 15,
+          "safeEvenSlashPair": true
+        },
+        {
+          "command": "right",
+          "sourceSlashCount": 2,
+          "blockLine": 15,
+          "safeEvenSlashPair": true
+        }
+      ],
+      "newlineSlashCounts": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "semanticEffectIfSingle": "Template literal \\l is identityescape losing slash; \\r becomescarriagereturn; needs2source slashes forTeX. One source\\n correctlymakesnewline. Staticlanguageanalysis, not actualNode/render."
+    },
+    "sourceMeaning": "TeXleft/right eachhas2sourceU+005C; newlinehas1. No silentcorrection or runtimeexecution.",
+    "parentDiagnosticPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\escaping-diagnostic.json",
+    "parentDiagnosticSHA256": "352c3e6ba81d58e8009038c76fd805f781935e3ef12834ecd1663720893db4cd",
+    "parentDiagnostic": {
+      "r1ActualTexSourceBackslashes": 2,
+      "r1ActualNewlineSourceBackslashes": 1,
+      "r1WasCorrect": true,
+      "r2ReductionRejected": true,
+      "r3MatchesR1Escaping": true,
+      "productionChanged": false,
+      "reason": "Count source bytes, not JSON-escaped terminal presentation."
+    },
+    "comparisonLimit": "ParentstatesR3equalsR1candidate; this audit independentlybindsactualR3fivefilesandoriginalROOTfivehashes, not separatefullR1candidate comparison."
+  },
+  "testAndVersionReview": {
+    "testSource": "Currenttest nowfindsequationmathsegment, usesmnkseparatelyfromallfreebaseletters, checksuniversalwording. Staticreadonly; no testsrun. Samplepointtests alone are not universalproof; ownsymbolicargument recorded.",
+    "futureAdapterVersions": {
+      "2-2|평행선 사이의 선분의 길이의 비|60": "20261021-strict-triangle-perimeter-r1",
+      "2-2|평행선 사이의 선분의 길이의 비|17": "20261021-feasible-external-bisector-r1",
+      "2-2|삼각형의 외심과 내심|75": "20261021-consistent-incenter-inputs-r1",
+      "2-1|단항식의 계산|04": "20261021-independent-exponent-symbols-r1"
+    },
+    "existingRows": "Versionproposals invalidatefuturecachedrecipes whenapplied; no stored/issuedquestions,IDs,oldseedoutputs orDBupdated. Correctionsare mathematical condition/role changes, not merely display fixes.",
+    "sourceProvenance": "Reference/source origins not independentlyrecertified; preserveoldercode/outputs/evidence andseparatelyrecordfuturegeneratorrevision."
+  },
+  "preservedR2": {
+    "status": "REJECTED_PREPARATION",
+    "commit": "c1c063cc4f80e874a426fdc65be211fc21572786",
+    "reportSHA256": "a7e1958fad65251a5fc3192b1675b72da3cb6696b066485c428ab3e9526f7a91",
+    "files": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r2/own-diff-inspection.py",
+        "sha256": "898f9d59b63b4b8bd6617a0a9f6569e15d433b41bcae778e51120d99458be10d"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r2/own-escape-inspection.py",
+        "sha256": "f3f79f0139cd565d101e06eb1433261b25b2821b1e68888482bf42362e245c46"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r2/own-finalize.py",
+        "sha256": "94caea9d1b1a2321fcbe7c24bf2ede3e7c5fe93820ac82668ddc179129b3b280"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r2/own-report.json",
+        "sha256": "a7e1958fad65251a5fc3192b1675b72da3cb6696b066485c428ab3e9526f7a91"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r2/own-review.py",
+        "sha256": "d865812742aa55d1584818fbbadea57434829210591093f7281c9e204ace6d2d"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r2/own-static-results.json",
+        "sha256": "011ccd02f0fbbe52db79f7b76f2e702a33c4c79d69c5a59a2a9e83ad449a07b1"
+      }
+    ]
+  },
+  "before": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\proposal.json": "58bb552f259af656998dd0da7b29768dd07f415566822379fe5e07a98129b8fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2GeoSim.ts": "e79de0ce5130b02dcf97b43828fb56ff57fcdba1f3422f564c5c3c788062ff87",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2GeoSim.ts": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Center.ts": "70d2924d026f617afc846267008c687db557a4e0bcc527e5d1a2dab749d3f88b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2Center.ts": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Mono.ts": "974b779396e99bbfa76a2b71b6739117709a834be12b969d2757d377155a1a4e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2Mono.ts": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "199734c48116d1115754339c8f3e45a24a0cbf81f100d0581d320942950dd712",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\examStudy\\adapters.ts": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\middleM2Mono.test.ts": "365fa38483972cba75d8001fc61ca19009bdfdb34793545028fd12c2593141a4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\__tests__\\unit\\middleM2Mono.test.ts": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd"
+  },
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\proposal.json": "58bb552f259af656998dd0da7b29768dd07f415566822379fe5e07a98129b8fd",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2GeoSim.ts": "e79de0ce5130b02dcf97b43828fb56ff57fcdba1f3422f564c5c3c788062ff87",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2GeoSim.ts": "0de8d977d9e048669b8363b11a9d9844270c2aef11b757453c575c16ef22e567",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Center.ts": "70d2924d026f617afc846267008c687db557a4e0bcc527e5d1a2dab749d3f88b",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2Center.ts": "c6e61d282d5ffb26f29462b295bd190d6f46790ec023143344796e63b1ca33b3",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Mono.ts": "974b779396e99bbfa76a2b71b6739117709a834be12b969d2757d377155a1a4e",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\middle\\m2Mono.ts": "cfcfc17e3f509761c436073683d99614cec191c6731c4d458c5464af4139187c",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\examStudy\\adapters.ts": "199734c48116d1115754339c8f3e45a24a0cbf81f100d0581d320942950dd712",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\lib\\examStudy\\adapters.ts": "f89fe0025adb8cbb8d0f4fd216b4f3ac99346c2e269b8ae61150cb7216c60b87",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\__tests__\\unit\\middleM2Mono.test.ts": "365fa38483972cba75d8001fc61ca19009bdfdb34793545028fd12c2593141a4",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\m38-candidate-code-20261021-r3\\src\\__tests__\\unit\\middleM2Mono.test.ts": "621ebb66a7c8c17446b7168a5977e51c36a0d21c7516891cf52c8c8b4fb8f3fd"
+  },
+  "productionAndCandidatesChanged": [],
+  "runtimeAndApprovalLimits": {
+    "actualNodeCalls": 0,
+    "actualSeedOutputs": 0,
+    "actual120SeedReplay": "PENDING;notrepresentedbystaticdomaincounts",
+    "memoryProbes": 0,
+    "DBAPIModelNetworkCalls": 0,
+    "gradeRightsNativeSourceIdentityReleaseApproval": false,
+    "wholeEngineApproval": false,
+    "TSCompileLintRender": "NOTRUN",
+    "noProductionEdits": true
+  },
+  "artifactSHA256": {
+    "results": "a5ac01aa3a338de17ed7cf734305a6661705bc5e763fe4aad91f8d9673c8833b",
+    "reviewScript": "d865812742aa55d1584818fbbadea57434829210591093f7281c9e204ace6d2d",
+    "UTF8probe": "2e753edd7fcd943aa0729a3325716be67e9d481a688b8962e559189401a98571"
+  }
+}
