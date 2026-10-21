@@ -1099,13 +1099,29 @@ def verify_figure(name, lengths=(), arcs=(), angles=(), tangents=(), on_line=(),
     그림이 거짓 실패한다(왕선중 q5 실측). 단위계가 다르면 이름을 나눠
     ("q5", "q5-지름") 따로 호출한다.
     """
+    # A failing retry must not inherit an earlier success for the same key.
+    registry_key = (_caller_scope(), str(name))
+    _VERIFIED.pop(registry_key, None)
+    _finite(tol, tol_deg, tol_px, what="verify_figure tolerance")
+    if min(tol, tol_deg, tol_px) < 0:
+        raise ValueError("verify_figure: 허용오차는 음수가 될 수 없음")
     items = []
     for value, p, q in lengths:
+        _finite(value, what="verify_figure length label")
+        if float(value) <= 0:
+            raise ValueError("verify_figure: 길이 라벨은 양수여야 함")
         items.append((f"길이 {value}", float(value),
-                      math.hypot(q[0] - p[0], q[1] - p[1])))
+                      _nonzero_segment(p[0], p[1], q[0], q[1], "verify_figure.lengths")))
     for value, cx, cy, r, a0, a1 in arcs:
+        _finite(value, cx, cy, r, a0, a1, what="verify_figure arcs")
+        if float(value) <= 0 or float(r) <= 0:
+            raise ValueError("verify_figure: 호 라벨과 반지름은 양수여야 함")
         span = abs((float(a1) - float(a0) + 180.0) % 360.0 - 180.0)
         items.append((f"호 {value}", float(value), float(r) * math.radians(span)))
+    for _, _, measured in items:
+        _finite(measured, what="verify_figure measured length")
+        if measured <= 0:
+            raise ValueError("verify_figure: 측정 길이는 양수여야 함")
 
     problems = []
     if items:
@@ -1114,6 +1130,9 @@ def verify_figure(name, lengths=(), arcs=(), angles=(), tangents=(), on_line=(),
             raise ValueError(f"{name} 검산: 라벨값은 양수여야 함")
         mid = len(ratios) // 2
         k = ratios[mid] if len(ratios) % 2 else 0.5 * (ratios[mid - 1] + ratios[mid])
+        _finite(k, what="verify_figure length scale")
+        if k <= 0:
+            raise ValueError("verify_figure: 길이 척도는 양수여야 함")
         for desc, value, measured_px in items:
             want = k * value
             if want <= _EPS:
@@ -1125,6 +1144,11 @@ def verify_figure(name, lengths=(), arcs=(), angles=(), tangents=(), on_line=(),
                     f" (오차 {err * 100:.0f}% > 허용 {tol * 100:.0f}%)")
 
     for value, vtx, p1, p2 in angles:
+        _finite(value, what="verify_figure angle label")
+        if not 0 <= float(value) <= 180:
+            raise ValueError("verify_figure: 각 라벨은 0~180도여야 함")
+        _nonzero_segment(vtx[0], vtx[1], p1[0], p1[1], "verify_figure.angles")
+        _nonzero_segment(vtx[0], vtx[1], p2[0], p2[1], "verify_figure.angles")
         a0 = ray_angle(vtx[0], vtx[1], p1[0], p1[1])
         a1 = ray_angle(vtx[0], vtx[1], p2[0], p2[1])
         drawn = abs((a1 - a0 + 180.0) % 360.0 - 180.0)
@@ -1134,8 +1158,12 @@ def verify_figure(name, lengths=(), arcs=(), angles=(), tangents=(), on_line=(),
                 f" (차 {abs(drawn - float(value)):.1f}° > 허용 {tol_deg}°)")
 
     for p, q, cx, cy, r in tangents:
+        _finite(cx, cy, r, what="verify_figure tangent circle")
+        if float(r) <= 0:
+            raise ValueError("verify_figure: 반지름은 양수여야 함")
         L = _nonzero_segment(p[0], p[1], q[0], q[1], "verify_figure.tangents")
         d = abs((q[0] - p[0]) * (p[1] - cy) - (p[0] - cx) * (q[1] - p[1])) / L
+        _finite(d, what="verify_figure tangent distance")
         if abs(d - float(r)) > tol_px:
             problems.append(
                 f"  접선: 중심에서 선까지 {d:.2f}px 인데 반지름은 {float(r):.2f}px"
@@ -1144,12 +1172,17 @@ def verify_figure(name, lengths=(), arcs=(), angles=(), tangents=(), on_line=(),
                 f"(tangent_seg/tangent_beyond).")
 
     for pt_, a, b in on_line:
+        _finite(pt_[0], pt_[1], what="verify_figure point on line")
         L = _nonzero_segment(a[0], a[1], b[0], b[1], "verify_figure.on_line")
         d = abs((b[0] - a[0]) * (a[1] - pt_[1]) - (a[0] - pt_[0]) * (b[1] - a[1])) / L
+        _finite(d, what="verify_figure point-line distance")
         if d > tol_px:
             problems.append(f"  점이 직선 위에 없음: {d:.2f}px 벗어남")
 
     for pt_, cx, cy, r in on_circle:
+        _finite(pt_[0], pt_[1], cx, cy, r, what="verify_figure point on circle")
+        if float(r) <= 0:
+            raise ValueError("verify_figure: 반지름은 양수여야 함")
         d = abs(math.hypot(pt_[0] - cx, pt_[1] - cy) - float(r))
         if d > tol_px:
             problems.append(f"  점이 원 위에 없음: 반지름과 {d:.2f}px 차이")
@@ -1158,7 +1191,7 @@ def verify_figure(name, lengths=(), arcs=(), angles=(), tangents=(), on_line=(),
         raise ValueError(
             f"[{name}] 검산 실패 — 라벨과 작도가 모순된다. 좌표를 조건에서 유도할 것:\n"
             + "\n".join(problems))
-    _VERIFIED[(_caller_scope(), str(name))] = (
+    _VERIFIED[registry_key] = (
         len(items) + len(angles) + len(tangents) + len(on_line) + len(on_circle))
 
 

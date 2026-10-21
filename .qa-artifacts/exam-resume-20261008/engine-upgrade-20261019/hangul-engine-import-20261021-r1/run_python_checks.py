@@ -10,6 +10,7 @@ import sys
 
 ROOT = Path.cwd()
 OUT = Path(__file__).resolve().parent
+VERSION = sys.argv[1] if len(sys.argv) > 1 else 'r3'
 SOURCE = Path('D:/시험지 한글화')
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -67,7 +68,7 @@ commands = [
 for name, cmd in commands:
     r = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8',
                        env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONIOENCODING': 'utf-8'}, timeout=180)
-    log_name = name + '-r2.log'
+    log_name = name + '-' + VERSION + '.log'
     (OUT / log_name).write_bytes((r.stdout + r.stderr).encode('utf-8'))
     counts = re.findall(r'Ran (\d+) tests?', r.stderr)
     runs.append(dict(name=name, returncode=r.returncode, tests=int(counts[-1]) if counts else None,
@@ -78,6 +79,6 @@ result = dict(utc=datetime.datetime.now(datetime.timezone.utc).isoformat(), runs
               sourceExportUnchanged=True, preservedTargetModules=['figure_scene.py', 'figure_solid.py', 'label_markup.py', 'render_spec.py'],
               liveRepairRouting=False, defaultGeometrySnap=False, dbWrites=0)
 result['priorHarnessFailure'] = 'First copied-source run could not decode cp949 child stderr as UTF-8; no source-compatible pass was recorded. R2 sets PYTHONIOENCODING=utf-8; no source tests changed.'
-(OUT / 'python-checks.json').write_bytes((json.dumps(result, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
+(OUT / ('python-checks-' + VERSION + '.json')).write_bytes((json.dumps(result, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
 print(json.dumps(result, ensure_ascii=False, indent=2))
 sys.exit(any(r['returncode'] for r in runs))

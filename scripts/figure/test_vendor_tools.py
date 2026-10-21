@@ -103,6 +103,18 @@ class RepairCandidateTests(unittest.TestCase):
         with self.assertRaises(SpecRepairFailed):
             compile_with_repair(spec)
 
+    def test_invalid_or_conflicting_angle_ticks_are_not_erased(self):
+        for fields in [dict(ticks=0), dict(ticks=3), dict(ticks=4), dict(ticks=True), dict(ticks=2, arcs=1)]:
+            spec = triangle(angles=dict(a=dict(vertex='A', points=['B', 'C'], **fields)))
+            before = copy.deepcopy(spec)
+            with self.subTest(fields=fields), self.assertRaises(SpecRepairFailed):
+                compile_with_repair(spec)
+            self.assertEqual(spec, before)
+        for n in [1, 2]:
+            spec = triangle(angles=dict(a=dict(vertex='A', points=['B', 'C'], ticks=n, arcs=n)))
+            scene, _, _ = compile_with_repair(spec)
+            self.assertEqual(scene.angles['a'].arcs, n)
+
     def test_dimension_value_and_known_marks_are_preserved(self):
         base = dict(points=['A', 'B'], label='8 cm')
         spec = triangle(dimensions=dict(dAB=dict(**base, dashed=True, style='curve')),
@@ -211,6 +223,40 @@ class AuthoringBuildTests(unittest.TestCase):
             with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'key'):
                 fe.build_figures({key: '<svg/>'}, str(self.out), scope=__file__)
         self.assertFalse(self.out.exists())
+
+    def test_case_aliases_and_missing_selections_are_rejected_before_writing(self):
+        for figures, only in [({'Alias': '<svg/>', 'alias': '<svg/>'}, []), ({'ok': '<svg/>'}, ['typo'])]:
+            with self.subTest(figures=figures), self.assertRaises(ValueError):
+                fe.build_figures(figures, str(self.out), scope=__file__, only=only)
+        self.assertFalse(self.out.exists())
+
+    def test_malformed_verification_never_registers_success(self):
+        cases = [dict(angles=[(float('nan'), (0, 0), (1, 0), (0, 1))]),
+                 dict(on_circle=[((1, 0), 0, 0, float('nan'))]),
+                 dict(lengths=[(-1, (0, 0), (1, 0)), (1, (0, 0), (1, 0))]),
+                 dict(lengths=[(0, (0, 0), (1, 0))]),
+                 dict(lengths=[(float('inf'), (0, 0), (1, 0))]),
+                 dict(lengths=[(1, (0, 0), (float('nan'), 0))]),
+                 dict(lengths=[(1, (0, 0), (0, 0))]),
+                 dict(arcs=[(1, 0, 0, -1, 0, 90)]),
+                 dict(arcs=[(1, 0, 0, 1, 0, 0)]),
+                 dict(angles=[(90, (0, 0), (0, 0), (0, 1))]),
+                 dict(on_line=[((float('nan'), 0), (0, 0), (1, 0))]),
+                 dict(tangents=[((0, 0), (1, 0), 0, 1, -1)]),
+                 dict(tol=float('nan')), dict(tol_deg=-1), dict(tol_px=float('inf'))]
+        for i, kwargs in enumerate(cases):
+            key = 'invalid-' + str(i)
+            with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
+                verify_figure(key, **kwargs)
+            self.assertEqual(unverified({key: '<svg/>'}, scope=__file__, require_checks=True), [key])
+
+    def test_failed_retry_invalidates_an_earlier_verification(self):
+        key = 'failed-retry'
+        self.figure(key)
+        self.assertEqual(unverified({key: '<svg/>'}, scope=__file__, require_checks=True), [])
+        with self.assertRaises(ValueError):
+            verify_figure(key, angles=[(float('nan'), (0, 0), (1, 0), (0, 1))])
+        self.assertEqual(unverified({key: '<svg/>'}, scope=__file__, require_checks=True), [key])
 
     def test_only_builds_selected_current_verified_figures(self):
         svg = self.figure('selected')

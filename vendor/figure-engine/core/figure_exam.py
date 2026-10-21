@@ -321,7 +321,11 @@ def build_figures(svgs: Mapping[str, str], out_dir: str, *, scope: str,
     원장에 연결하고 별도 독립 검산을 수행할 것. 폭 규칙은 이 도구의 옵션이며 전역 지면
     규칙이 아니다.
     """
+    missing = [k for k in only if k not in svgs]
+    if missing:
+        raise ValueError(f"선택한 그림 key 가 없음: {missing}")
     selected = {k: svg for k, svg in svgs.items() if not only or k in only}
+    output_names = set()
     for key in selected:
         if (not isinstance(key, str) or not key or len(key) > 128
                 or key in {".", ".."} or key[-1] in {".", " "}
@@ -330,6 +334,10 @@ def build_figures(svgs: Mapping[str, str], out_dir: str, *, scope: str,
                 {"CON", "PRN", "AUX", "NUL", *(f"COM{i}" for i in range(1, 10)),
                  *(f"LPT{i}" for i in range(1, 10))}):
             raise ValueError("그림 key 는 안전한 파일 이름이어야 함")
+        folded = key.casefold()
+        if folded in output_names:
+            raise ValueError("그림 key 의 대소문자가 겹쳐 같은 파일을 덮어쓸 수 있음")
+        output_names.add(folded)
     miss = unverified(selected, scope=scope, require_checks=True)
     if miss:
         raise ValueError(f"검산 누락(verify_figure/verify_solid 미호출): {miss}")

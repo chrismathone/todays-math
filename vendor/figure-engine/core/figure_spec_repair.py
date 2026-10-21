@@ -186,6 +186,13 @@ def _repair_figure_spec(spec: dict, message: str, *, allow_geometry_snap: bool =
         if (not isinstance(entry, dict) or not fields
                 or not all(_spec_field_is_decorative(section, f) for f in fields)):
             return None
+        # ticks carries angle-mark meaning, not merely decoration. Convert only
+        # a valid, non-conflicting alias; never drop an unsupported mark count.
+        if section == "angles" and "ticks" in fields:
+            ticks = entry["ticks"]
+            if (not isinstance(ticks, int) or isinstance(ticks, bool) or not 1 <= ticks <= 2
+                    or ("arcs" in entry and entry["arcs"] != ticks)):
+                return None
         for f in fields:
             value = entry.pop(f, None)
             if (section == "segments" and f == "style" and isinstance(value, str)
@@ -193,7 +200,7 @@ def _repair_figure_spec(spec: dict, message: str, *, allow_geometry_snap: bool =
                 entry.setdefault("dashed", True)
             if (section == "angles" and f == "ticks" and "arcs" not in entry
                     and isinstance(value, int) and not isinstance(value, bool)
-                    and 1 <= value <= 3):
+                    and 1 <= value <= 2):
                 entry["arcs"] = value
         return f"{section}.{name}-{'+'.join(fields)}"
     m = _SPEC_DIM_SIDE_RE.search(message)
