@@ -1,0 +1,486 @@
+{
+  "controls": [
+    {
+      "name": "positive-angle-dihedral",
+      "group": "angles",
+      "expected": "accept",
+      "accepted": true,
+      "registered": true,
+      "passed": true,
+      "error": null,
+      "input": "{'angles': [(90, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))]}"
+    },
+    {
+      "name": "positive-angle-line",
+      "group": "angles",
+      "expected": "accept",
+      "accepted": true,
+      "registered": true,
+      "passed": true,
+      "error": null,
+      "input": "{'angles': [(90, 'line', (0, 0, 0), (0, 0, 1), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "positive-area-label",
+      "group": "areas",
+      "expected": "accept",
+      "accepted": true,
+      "registered": true,
+      "passed": true,
+      "error": null,
+      "input": "{'areas': [(2, [(0, 0, 0), (2, 0, 0), (0, 2, 0)], Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "positive-area-no-label",
+      "group": "areas",
+      "expected": "accept",
+      "accepted": true,
+      "registered": true,
+      "passed": true,
+      "error": null,
+      "input": "{'areas': [(None, [(0, 0, 0), (2, 0, 0), (0, 2, 0)], Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "positive-length-ratio",
+      "group": "lengths",
+      "expected": "accept",
+      "accepted": true,
+      "registered": true,
+      "passed": true,
+      "error": null,
+      "input": "{'lengths': [(1, (0, 0, 0), (1, 0, 0)), (2, (0, 0, 0), (2, 0, 0))]}"
+    },
+    {
+      "name": "positive-equation-sign",
+      "group": "equations",
+      "expected": "accept",
+      "accepted": true,
+      "registered": true,
+      "passed": true,
+      "error": null,
+      "input": "{'equations': [((0, 0, -2, 0), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "positive-on-plane",
+      "group": "on_plane",
+      "expected": "accept",
+      "accepted": true,
+      "registered": true,
+      "passed": true,
+      "error": null,
+      "input": "{'on_plane': [((1, 0, 0), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "positive-foot",
+      "group": "feet",
+      "expected": "accept",
+      "accepted": true,
+      "registered": true,
+      "passed": true,
+      "error": null,
+      "input": "{'feet': [((0, 0, 0), (0, 0, 1), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "positive-perpendicular",
+      "group": "perpendicular",
+      "expected": "accept",
+      "accepted": true,
+      "registered": true,
+      "passed": true,
+      "error": null,
+      "input": "{'perpendicular': [(((0, 0, 0), (1, 0, 0)), ((0, 0, 0), (0, 1, 0)))]}"
+    },
+    {
+      "name": "angle-nan",
+      "group": "angles",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'angles': [(nan, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))]}"
+    },
+    {
+      "name": "angle-inf",
+      "group": "angles",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: [angle-inf] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  각 inf°(dihedral): 실제 구성은 90.00° (차 inf° > 허용 2.0°)",
+      "input": "{'angles': [(inf, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))]}"
+    },
+    {
+      "name": "angle-negative-near-zero",
+      "group": "angles",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'angles': [(-1, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "angle-coordinate-nan",
+      "group": "angles",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: 좌표는 유한한 수여야 함",
+      "input": "{'angles': [(0, 'line', (0, 0, 0), (nan, 0, 0), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "angle-degenerate",
+      "group": "angles",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: 영벡터는 정규화할 수 없음",
+      "input": "{'angles': [(0, 'line', (0, 0, 0), (0, 0, 0), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "area-nan-label",
+      "group": "areas",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'areas': [(nan, [(0, 0, 0), (2, 0, 0), (0, 2, 0)], Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "area-inf-label",
+      "group": "areas",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'areas': [(inf, [(0, 0, 0), (2, 0, 0), (0, 2, 0)], Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "area-negative-label",
+      "group": "areas",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: [area-negative-label] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  정사영 넓이 라벨 -2: 실제 S′=2.000000",
+      "input": "{'areas': [(-2, [(0, 0, 0), (2, 0, 0), (0, 2, 0)], Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "area-nan-coordinate",
+      "group": "areas",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: 좌표는 유한한 수여야 함",
+      "input": "{'areas': [(2, [(0, 0, 0), (nan, 0, 0), (0, 1, 0)], Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "length-negative-mixed",
+      "group": "lengths",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'lengths': [(-1, (0, 0, 0), (1, 0, 0)), (1, (0, 0, 0), (1, 0, 0))]}"
+    },
+    {
+      "name": "length-zero-mixed",
+      "group": "lengths",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'lengths': [(0, (0, 0, 0), (1, 0, 0)), (1, (0, 0, 0), (1, 0, 0))]}"
+    },
+    {
+      "name": "length-nan-mixed",
+      "group": "lengths",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'lengths': [(nan, (0, 0, 0), (1, 0, 0)), (1, (0, 0, 0), (1, 0, 0))]}"
+    },
+    {
+      "name": "length-inf",
+      "group": "lengths",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'lengths': [(inf, (0, 0, 0), (1, 0, 0))]}"
+    },
+    {
+      "name": "length-degenerate",
+      "group": "lengths",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'lengths': [(1, (0, 0, 0), (0, 0, 0))]}"
+    },
+    {
+      "name": "length-nan-coordinate",
+      "group": "lengths",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: 좌표는 유한한 수여야 함",
+      "input": "{'lengths': [(1, (0, 0, 0), (nan, 0, 0))]}"
+    },
+    {
+      "name": "equation-nan-normal",
+      "group": "equations",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: 좌표는 유한한 수여야 함",
+      "input": "{'equations': [((nan, 0, 1, 0), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "equation-nan-constant",
+      "group": "equations",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: 좌표는 유한한 수여야 함",
+      "input": "{'equations': [((0, 0, 1, nan), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "equation-zero-normal",
+      "group": "equations",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: 법선이 영벡터라 평면이 아님",
+      "input": "{'equations': [((0, 0, 0, 1), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "equation-inf",
+      "group": "equations",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: 좌표는 유한한 수여야 함",
+      "input": "{'equations': [((0, 0, inf, 0), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "on-plane-nan-point",
+      "group": "on_plane",
+      "expected": "reject",
+      "accepted": false,
+      "registered": false,
+      "passed": true,
+      "error": "SolidGeometryError: 좌표는 유한한 수여야 함",
+      "input": "{'on_plane': [((nan, 0, 0), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "on-plane-zero-normal",
+      "group": "on_plane",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'on_plane': [((0, 0, 1), Plane(point=(0, 0, 0), normal=(0, 0, 0)))]}"
+    },
+    {
+      "name": "angle-zero-normal",
+      "group": "angles",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'angles': [(90, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0, 0, 0), normal=(0, 0, 0)))]}"
+    },
+    {
+      "name": "tol-deg-nan",
+      "group": "tolerance",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'angles': [(0, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))], 'tol_deg': nan}"
+    },
+    {
+      "name": "tol-deg-inf",
+      "group": "tolerance",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'angles': [(0, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))], 'tol_deg': inf}"
+    },
+    {
+      "name": "tol-abs-nan",
+      "group": "tolerance",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'on_plane': [((0, 0, 1), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))], 'tol_abs': nan}"
+    },
+    {
+      "name": "tol-abs-inf",
+      "group": "tolerance",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'on_plane': [((0, 0, 1), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))], 'tol_abs': inf}"
+    },
+    {
+      "name": "tol-relative-nan",
+      "group": "tolerance",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'lengths': [(1, (0, 0, 0), (1, 0, 0)), (1, (0, 0, 0), (20, 0, 0))], 'tol': nan}"
+    },
+    {
+      "name": "tol-relative-inf",
+      "group": "tolerance",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'lengths': [(1, (0, 0, 0), (1, 0, 0)), (1, (0, 0, 0), (20, 0, 0))], 'tol': inf}"
+    },
+    {
+      "name": "tol-relative-negative",
+      "group": "tolerance",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'angles': [(90, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))], 'tol': -1}"
+    },
+    {
+      "name": "tol-abs-negative",
+      "group": "tolerance",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'angles': [(90, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))], 'tol_abs': -1}"
+    },
+    {
+      "name": "equation-wrong-normal-nan-tol",
+      "group": "equations",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'equations': [((1, 0, 0, 0), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))], 'tol_deg': nan}"
+    },
+    {
+      "name": "foot-wrong-nan-tol",
+      "group": "feet",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'feet': [((1, 0, 0), (0, 0, 1), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))], 'tol_abs': nan}"
+    },
+    {
+      "name": "perpendicular-wrong-nan-tol",
+      "group": "perpendicular",
+      "expected": "reject",
+      "accepted": true,
+      "registered": true,
+      "passed": false,
+      "error": null,
+      "input": "{'perpendicular': [(((0, 0, 0), (1, 0, 0)), ((0, 0, 0), (1, 0, 0)))], 'tol_deg': nan}"
+    },
+    {
+      "name": "retry-angle",
+      "group": "retry",
+      "expected": "failure clears previous registration",
+      "passed": false,
+      "error": "SolidGeometryError: [retry-angle] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  각 0.0°(dihedral): 실제 구성은 90.00° (차 90.00° > 허용 2.0°)",
+      "staleRegistered": true,
+      "input": "{'angles': [(0, 'dihedral', Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)), Plane(point=(0, 0, 0), normal=(1, 0, 0)))]}"
+    },
+    {
+      "name": "retry-area",
+      "group": "retry",
+      "expected": "failure clears previous registration",
+      "passed": false,
+      "error": "SolidGeometryError: [retry-area] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  정사영 넓이 라벨 99: 실제 S′=2.000000",
+      "staleRegistered": true,
+      "input": "{'areas': [(99, [(0, 0, 0), (2, 0, 0), (0, 2, 0)], Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "retry-length",
+      "group": "retry",
+      "expected": "failure clears previous registration",
+      "passed": false,
+      "error": "SolidGeometryError: [retry-length] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  길이 1: 실제 길이가 라벨 대비 0.10배 (오차 90% > 허용 6%)\n  길이 1: 실제 길이가 라벨 대비 1.90배 (오차 90% > 허용 6%)",
+      "staleRegistered": true,
+      "input": "{'lengths': [(1, (0, 0, 0), (1, 0, 0)), (1, (0, 0, 0), (20, 0, 0))]}"
+    },
+    {
+      "name": "retry-equation",
+      "group": "retry",
+      "expected": "failure clears previous registration",
+      "passed": false,
+      "error": "SolidGeometryError: [retry-equation] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  방정식 라벨 z + 3 = 0: 실제 평면과 다름(법선 어긋남 0.00°, 거리 3.0000)",
+      "staleRegistered": true,
+      "input": "{'equations': [((0, 0, 1, 3), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    },
+    {
+      "name": "retry-on-plane",
+      "group": "retry",
+      "expected": "failure clears previous registration",
+      "passed": false,
+      "error": "SolidGeometryError: [retry-on-plane] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  평면 위 검사: 점이 평면에서 1.000000 떨어져 있음",
+      "staleRegistered": true,
+      "input": "{'on_plane': [((0, 0, 1), Plane(point=(0.0, 0.0, 0.0), normal=(0.0, 0.0, 1.0)))]}"
+    }
+  ],
+  "count": 47,
+  "passed": 20,
+  "failed": 27,
+  "before": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5"
+  },
+  "after": {
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5"
+  },
+  "siteDisabled": 1,
+  "apiDbNetworkCalls": 0,
+  "imports": {
+    "core.figure_svg": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_svg.py",
+    "core.figure_solid": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\vendor\\figure-engine\\core\\figure_solid.py"
+  }
+}
