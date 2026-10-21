@@ -79,7 +79,18 @@ function props(run = session()) {
 }
 
 describe("course learn preview", () => {
-  it.each(["5-2-1-1", "5-2-1-6"])(
+  it.each([
+    "5-2-1-1",
+    "5-2-1-6",
+    "5-2-2-1",
+    "5-2-2-2",
+    "5-2-2-3",
+    "5-2-2-4",
+    "5-2-3-1",
+    "5-2-3-2",
+    "5-2-3-3",
+    "5-2-3-4",
+  ])(
     "shows the authored two-page card before the first question of %s without writing",
     async (sectionId) => {
       const p = props(session(sectionId)),
@@ -127,7 +138,7 @@ describe("course learn preview", () => {
     "goes straight to the problem for %s",
     async (reason) => {
       const run = session(
-        reason === "no-card" ? "5-2-2-1" : "5-2-1-1",
+        reason === "no-card" ? "5-2-4-1" : "5-2-1-1",
         reason === "answered" ? 1 : 0,
       );
       if (reason === "review") run.mode = "review";
@@ -205,10 +216,35 @@ describe("relearn preview", () => {
   it("has no reopen button without a card", async () => {
     render(
       <StudentCoursePractice
-        {...props({ ...session("5-2-2-1"), relearn: true })}
+        {...props({ ...session("5-2-4-1"), relearn: true })}
       />,
     );
     await screen.findByText("첫 문제와 다음 문제 0");
     expect(screen.queryByRole("button", { name: "개념 다시 보기" })).toBeNull();
   });
+});
+
+it("uses the course fraction help and checks a mixed number locally without an attempt", async () => {
+  const p = props(session("5-2-2-1"));
+  const { rerender } = render(<StudentCoursePractice {...p} />);
+  const input = await screen.findByRole("textbox");
+  expect(input).not.toHaveAttribute("inputmode", "numeric");
+  expect(input).toHaveAttribute("placeholder", "예: 1/2, 1 1/2");
+  expect(input).toHaveAccessibleDescription(
+    /분수는 1\/2, 대분수는 1 1\/2로 쓸 수 있어요\./,
+  );
+  fireEvent.change(input, { target: { value: "2 2/5" } });
+  fireEvent.submit(input.closest("form")!);
+  expect(screen.getByRole("status")).toHaveTextContent("맞았어요");
+  expect(p.onAnswer).not.toHaveBeenCalled();
+  expect(p.onFollowUp).not.toHaveBeenCalled();
+  fireEvent.change(input, { target: { value: "12/0" } });
+  expect(screen.getByRole("status")).toBeEmptyDOMElement();
+  fireEvent.submit(input.closest("form")!);
+  expect(screen.getByRole("status")).toHaveTextContent(
+    previewCardFor("5-2-2-1")!.practice.hint,
+  );
+  rerender(<StudentCoursePractice {...p} busy />);
+  expect(input).toBeDisabled();
+  expect(screen.getByRole("button", { name: "확인" })).toBeDisabled();
 });

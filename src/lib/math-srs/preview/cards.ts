@@ -5,9 +5,16 @@
  * The meaning is the explorer concept card's own sentence (`definitionCard(...).definition`,
  * already corrected — D-143); worked examples and practice are written here and checked by
  * `previewCards.test.ts`, which recomputes every practice answer from its numbers.
- * Pilot scope (plan §4): 초5 2학기 1단원, the first sections a pilot student meets.
+ * Pilot scope (plan §4): 초5 2학기 1~3단원, the first sections a pilot student meets.
  */
+import { GEOMETRY_PREVIEW_CARDS } from "./geometryCards";
+import { FRACTION_PREVIEW_CARDS } from "./fractionCards";
 import type { NumberLineSpec } from "./numberLine";
+import type { PreviewEngineFigureId } from "./figureSpecs";
+
+export type PreviewFigure =
+  | ({ kind: "numberLine" } & NumberLineSpec)
+  | { kind: "engine"; id: PreviewEngineFigureId; title: string };
 
 export type PreviewCard = {
   sectionId: string;
@@ -17,7 +24,7 @@ export type PreviewCard = {
   meaning: { cardId: string } | { text: string };
   /** A line under the meaning (optional). */
   note?: string;
-  figure: NumberLineSpec;
+  figure: PreviewFigure;
   figureCaption: string;
   worked: { prompt: string; steps: string[]; answer: string }[];
   practice: {
@@ -37,6 +44,7 @@ export const PREVIEW_CARDS: PreviewCard[] = [
     meaning: { cardId: "g5-at-least" },
     note: "이상 · 이하에는 기준 수도 들어가요.",
     figure: {
+      kind: "numberLine",
       min: 40,
       max: 50,
       labels: [40, 42, 44, 45, 46, 48, 50],
@@ -74,6 +82,7 @@ export const PREVIEW_CARDS: PreviewCard[] = [
     meaning: { cardId: "g5-more-than" },
     note: "초과 · 미만에는 기준 수가 들어가지 않아요.",
     figure: {
+      kind: "numberLine",
       min: 25,
       max: 35,
       labels: [25, 27, 30, 33, 35],
@@ -112,6 +121,7 @@ export const PREVIEW_CARDS: PreviewCard[] = [
       text: "기준 두 개를 함께 쓰면 그 사이의 범위가 돼요. 이상 · 이하는 기준 수를 넣고, 초과 · 미만은 기준 수를 빼요.",
     },
     figure: {
+      kind: "numberLine",
       min: 18,
       max: 27,
       labels: [18, 20, 22, 25, 27],
@@ -153,6 +163,7 @@ export const PREVIEW_CARDS: PreviewCard[] = [
     meaning: { cardId: "g5-round-up" },
     note: "올림은 남길 자리 아래에 0이 아닌 수가 있으면 남길 자리에 1을 더해요.",
     figure: {
+      kind: "numberLine",
       min: 230,
       max: 240,
       labels: [230, 234, 240],
@@ -192,6 +203,7 @@ export const PREVIEW_CARDS: PreviewCard[] = [
     meaning: { cardId: "g5-round-up" },
     note: "버림은 남길 자리 아래의 수를 모두 0으로 해요.",
     figure: {
+      kind: "numberLine",
       min: 230,
       max: 240,
       labels: [230, 238, 240],
@@ -228,6 +240,7 @@ export const PREVIEW_CARDS: PreviewCard[] = [
     meaning: { cardId: "g5-round" },
     note: "바로 아래 자리 숫자만 봐요.",
     figure: {
+      kind: "numberLine",
       min: 30,
       max: 40,
       labels: [30, 34, 35, 40],
@@ -264,4 +277,6 @@ export const PREVIEW_CARDS: PreviewCard[] = [
       explanation: "6은 5 이상이라서 올려요. 그래서 480이에요.",
     },
   },
+  ...FRACTION_PREVIEW_CARDS,
+  ...GEOMETRY_PREVIEW_CARDS,
 ];
