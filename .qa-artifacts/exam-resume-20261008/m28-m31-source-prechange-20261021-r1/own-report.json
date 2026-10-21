@@ -1,0 +1,119 @@
+{
+  "status": "SOURCE_ONLY_TWO_ACTIONABLE_FINDINGS;runtime-render-pending",
+  "scope": "OnlyM28/M31engineinvestigation, no productionedits/Node/memorypolling/browser/API/DB/network/bank/layout/writtenbatchwork",
+  "handoffBinding": {
+    "commit": "4b21d2983",
+    "path": "docs/planning/tracks/brief-engine-handoff-display-20261021.md",
+    "sha256": "ae7b1d2009a3f3b54cccd8697d81ecc8b018ebbe7c8436fd34f59a94661effbe",
+    "scopedRows": [
+      "| M28 | `2-2\\|평행사변형\\|15A` (`s20403562`) | `src/lib/middle/m2GeoQuad.ts` | 🔴 **그림과 값이 어긋남** — 답 $x=7$ 이면 $\\angle B=\\angle D=16^\\circ$ 인데 그림은 $\\angle B$ 약 65° 인 보통 평행사변형 · 각 표시도 B · D 가 아니라 A · C 에(Claude) | 각을 값에 맞춰 그리거나 값 범위를 그림에 맞게 |",
+      "| M31 | `1-2\\|다각형\\|04` (`s20411481`) | `src/lib/middle/m1Geo2.ts` · `m1Book2.ts` | 🔴 **그림이 정답을 보여 줌** — 한 꼭짓점에서 그은 대각선 5개를 다 그려 놓고 개수를 물음(세 모델 중 둘 · 높음) | 대각선 없이 다각형만 |"
+    ]
+  },
+  "counts": {
+    "assertions": 453,
+    "passed": 453,
+    "failed": 0,
+    "M28literalParameterTuples": 432,
+    "M31literalBranchTuples": 16,
+    "actualSeedOutputs": 0
+  },
+  "findings": {
+    "M28": {
+      "typeKey": "2-2|평행사변형|15A",
+      "originCorrection": "Actualm2Quad.ts:738; m2GeoQuad.tsdoesnotdefine15Aandbelongs여러가지사각형. Narrowtype15Asearch resolvedactualdirectowner; not a missinggenerator claim.",
+      "currentRoles": "StemgivesA=C,B=D andB=(p*x+q)degrees,D=(x+s)degrees. Unique x=(s-q)/(p-1) becausep2..4. x4..15,q1..12 ->B/D9..72andA/C108..171; all432literalcasesnondegenerate.",
+      "actualFigureSource": "UnconditionalfigCondAngles(150,92,40); quadPtsA(40,92),B(0,0),C(150,0),D(190,92). Onlyboundarysegments, vertexlabels andsinglearcs atA/C; no B/Danglemarkers,numeric/symbolicanglelabels orparallelmarks.",
+      "actualVectorFinding": "B/Dangleatan2(92,40)=66.501434324deg,A/C113.498565676deg. Sourceuniformfitpreservesanglesbefore2decrounding. Diagnosticmin difference0.498565676deg,max57.501434324deg across432printedvalues; x7,p2,q2 givesB/D16degwhilefixedvector66.50deg. Vectoranalysis, not pixelmeasure or studenttrigmethod.",
+      "calibration": "A/CmarksareNOTwrong numericalB/Dlabels: they correctlyencodeonegivenA=Cpair. Handoffclaim ofwrongrequestedvertices shouldbe narrowedtoinput-dependentangle/shapeinconsistency andunmarkedB/Drole. Schematicconvention/renderimpactnotcertified. No mathanswer/domaincontradiction foundinthis432tupleanalysis.",
+      "severity": "Actionable enginefigure-consistency/information-fit issue; exactlayout severity requiresactualAPI/rendercheck.",
+      "actualSeed20411481": "NOTEXECUTED;handoffexampleonly."
+    },
+    "M31": {
+      "typeKey": "1-2|다각형|04",
+      "actualOrigin": "m1Geo2.tsM1_POLY_BASIC ->M1_POLY2_TYPES ->M1_GEO2 ->generateALL. m1Book2.tsdoesnotregisterpolygon04; itspolygon07/08andother04namespacesarenotthisquestion.",
+      "branches": "mode0and1;n5..12,v=n-3. mode0asksnumberofdiagonalsfromonevertexwithfigure; mode1givesthatcountandasksn,figureSpec:null.16literalbranch/ncombinations, not16actualgeneratedoutputs.",
+      "vectorTopology": "figPolygonDiagonalsFromAaddsnboundarysegmentsandA-to-verticesindices2..n-2, exactlyn-3distinctnon-boundaryedges. All8mode0graphs thereforepredrawentireanswerfan; octagonshowsAC,AD,AE,AF,AG=5. No numericlabel/pixels needed forleakproof.",
+      "calibration": "Correctmathcount/uniqueanswer; issueispre-completedconstruction changingpossible-connectionreasoningintocountprovidedsegments. Isitpermissiblecountingtaskisapedagogicaldecision; handoffasksavoidanswer-revealingconstruction. mode1alreadyguardsagainstvertexcountanswerexposure andmustremainnofigure.",
+      "actualSeed20411481": "NOTEXECUTED; sourcebranchproofonly.",
+      "severity": "Actionable pedagogicalinformationexposure, notalgebraicincorrectanswer."
+    }
+  },
+  "recommendations": {
+    "kind": "minimal directions only; no candidate source applied/written",
+    "M28": {
+      "preferredMinimalOption": "Atactualm2Quad.ts15Aonly, returnfigureSpec:null. Stemfullyspecifiesoppositeangleequalitiesandlinearangleexpressions, so xuniqueunchanged withouta conflicting numerical shape. Do not change sharedfigCondAngles globally because otherconsumersdifferentproblems.",
+      "alternativeIfFigureRequired": "Useactualprinted beta=p*x+q toconstructaconvexquadrilateral with B=D=beta,A=C=180-beta atenginegeometrylevel; put only given symbolic angleexpressions at B/D, not evaluatedbeta. GiveA/Cequalarcs andoptionalB/Ddifferent-multiplicityarcs representingprintedgivens, no extra parallel/conclusionmarkers. Targetcomputedanglesmustnotbecomeextra numericdata. Rendering/labelplacementrequireslaterindependent validation.",
+      "methodAndPrereqs": "M2opposite-angleconditionsofparallelogram, quadrilateralanglefacts andpriorlinear equation(p-1)x=s-q. No studenttrigonometry; coordinateatan/tanonlyengine/auditgeometry ifused. Exactofficialwholegradeapprovalnotgiven.",
+      "revisionBoundary": "Mathstemanswerdomaincanremainbyteidentical withnofigureoption, butenginefigure/representation/versionrecord must reflectchange. No existingquestionrow refresh orsourceprovenanceapproval."
+    },
+    "M31": {
+      "preferredMinimalOption": "Foractualm1Geo2.tsMINOR_POLY04mode0, returnonlyregularpolygonboundary+vertexlabels. Remove A-to-nonadjacent fansegments from this task, e.gdedicatedfigPolygonOutlinehelper. Preserve mode1figureSpec:null. Do not alterall-diagonals05orotherpolygon tasks outside scope.",
+      "methodAndPrereqs": "M1polygon/diagonaldefinition; nverticesexclude chosenvertexitselfandtwoadjacentvertices ->n-3. Outline leavesnvisibleasalreadyprintedinput, requiresstudentdeducepossibleconnections. No pre-drawnconnections tocount.",
+      "revisionBoundary": "Stemanswer/prereqsremainoriginal; graphicinformation changesfromcompletedconstructiontocandidateverticesonly. Versionandfutureseedoutputs separatelyrecord; no issuedquestion/bank/layoutbatchrewrite."
+    },
+    "blockedApprovals": [
+      "ActualnewSVG/renderer/readability/nativeprinting pending",
+      "Officialgrade/sourceidentity/rights pending independently",
+      "No automaticDB refresh/unlock or new manual counts"
+    ]
+  },
+  "sourceBindings": {
+    "before": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2GeoQuad.ts": "845f781fbfa93b1beca4e7ec35bbc392f1cbe11a327714fbaacec6d30d49350f",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Quad.ts": "baa7eb6130d5a6aeb540a3b803ec219d4ea436aade22346cab49812b5baa168e",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Geo2.ts": "7e91735224b46c47db08cd9e7706383d80f449c4dff7d50633ac8d37722bb5c9",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Book2.ts": "b838359f705a03b557c08cdef1699a97bbf052e910894bb2da7fcefa35a87fbb",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2.ts": "51aa1c9ee1b083bddaccf833c8f9f19b1f8d6cc26fb216ce2dc2304b70fe319e",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\generate.ts": "8f2639b269024fdec1eb57752f975526b0d4d1e38e2c265ebe6ab7908bc414f7"
+    },
+    "after": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2GeoQuad.ts": "845f781fbfa93b1beca4e7ec35bbc392f1cbe11a327714fbaacec6d30d49350f",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2Quad.ts": "baa7eb6130d5a6aeb540a3b803ec219d4ea436aade22346cab49812b5baa168e",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Geo2.ts": "7e91735224b46c47db08cd9e7706383d80f449c4dff7d50633ac8d37722bb5c9",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m1Book2.ts": "b838359f705a03b557c08cdef1699a97bbf052e910894bb2da7fcefa35a87fbb",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m2.ts": "51aa1c9ee1b083bddaccf833c8f9f19b1f8d6cc26fb216ce2dc2304b70fe319e",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\generate.ts": "8f2639b269024fdec1eb57752f975526b0d4d1e38e2c265ebe6ab7908bc414f7"
+    },
+    "changed": [],
+    "locators": [
+      {
+        "path": "src\\lib\\middle\\m2Quad.ts",
+        "sha256": "baa7eb6130d5a6aeb540a3b803ec219d4ea436aade22346cab49812b5baa168e",
+        "lastFileCommit": "0477ce3848033bd8c949bca483ae6f2b532ded9b",
+        "lines": {
+          "function quadPts": 113,
+          "function figCondAngles": 257,
+          "def(\"15A\"": 738
+        }
+      },
+      {
+        "path": "src\\lib\\middle\\m1Geo2.ts",
+        "sha256": "7e91735224b46c47db08cd9e7706383d80f449c4dff7d50633ac8d37722bb5c9",
+        "lastFileCommit": "6d73a625d0e3d053dc6a690e1ac34179b3bad29f",
+        "lines": {
+          "function regularPolygon": 173,
+          "function figPolygonDiagonalsFromA": 811,
+          "\"한 꼭짓점에서 그을 수 있는 대각선의 개수\"": 901
+        }
+      }
+    ],
+    "ROOTHeadObserved": "319173ae2a4a2013d34e15fba1b7f045eb0b67dd",
+    "fileHashesNotHeadEquality": true
+  },
+  "methodLimits": [
+    "453Pythonassertionsincludes432exactprinted-domain checks,8polygon topologychecks and13source/geometry/probechecks; repetitionsnotcounted. atan2/roundedcoordinatecomparisons arefloatgeometrydiagnostics, no pixeloracle.",
+    "No actualregisteredTypes/generateMiddleProblem execution, no seedmatrixfrequency, no renderedSVG/pixels or currentbank rowcount.",
+    "Exactsourcefunctioncontractsinspecteddirectly; no actualfirst-importclosureexecutionclaimed.",
+    "Grade/prereqconditions arecandidateconstraints only, not officialcurriculum/wholemethod approval.",
+    "Readactualm2Quadonlyafterdiscoveringhandofffilemismatch. Initialunrelatedm1.tslookupfailed; no suchfileassumed. No hiddenMacscripts/absoluteMacpathsused.",
+    "Onlynewauditnamespace written; existingdirtyfourfiles, priorcommits/raw/private/evidence preserved."
+  ],
+  "artifacts": {
+    "own-analyze.py": "ccf7f399113a7196a67a57f3634c2cf9852ec864da65b21b72850df227df13d7",
+    "own-source-analysis-results.json": "6c6a95b22d79a10e177c01846b5a556582f0a3562414447f4f997b4ba7148b54",
+    "own-candidate-directions.json": "05d5d5883072d79517564274a822aa3b4c31b87b146db2bde12164674cc2672e",
+    "own-handoff-receipt.json": "705987296dfcb31c5feda06b677a8225af2449a7a57f32deac04cfb22e4137ef",
+    "own-utf8-probe.txt": "11475dfd929fd92d6adf5cdf253c35ed6b6f0b60470c3e1323dc1627e4cd09d3"
+  }
+}
