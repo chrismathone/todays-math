@@ -1,0 +1,21 @@
+{
+  "initialCompletedBeforeChildLaunch": 133,
+  "initialFailures": [
+    {
+      "id": "assets-container-null",
+      "kind": "actual render_json",
+      "expected": "reject",
+      "pass": false,
+      "inputSHA256": "19b6b551c2ad9cff0d16349c0ec2a249201792343dc08dc501becd44cd0a1464",
+      "outputSHA256": "78e8bc9b6b222a270981c9868e9c9cec92b1a9b2e7af177723f071237b54d617",
+      "observation": {
+        "svgSHA256": "100f5450c88824bf839eef2659095133fd61c7360158a7cd0fc8124e84245663",
+        "svgBytes": 308
+      }
+    }
+  ],
+  "failureStage": "Windows subprocess audit event executable=None when executable kwarg omitted; own deny-nonPython audit hook blocked Python child before launch",
+  "classification": "harness guard/launch issue, not Root engine fault",
+  "correction": "explicit executable=sys.executable; same6CLI command, same expectations. Replay receipt in NEW own-run2 folder, old progress/script/console preserved",
+  "countsNotAccumulated": true
+}

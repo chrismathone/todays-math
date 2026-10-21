@@ -1,0 +1,5 @@
+{
+  "cp949Failure": "UnicodeDecodeError: cp949 codec cannot decode byte0xeb at position1364; own diagnostic read_text omitted encoding",
+  "correctedDiagnostic": "explicitutf8; cohortMismatch[], duringRunChanges[], six[true,true,true,true,true,true]",
+  "firstFinalizer": "AssertionError because actual source drift; original own-finalize.py preserved, no expectation rewritten"
+}
