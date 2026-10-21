@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 333,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A56-001-r2",
+ "authorId": "claude-fable-5-1:4469b56e-ee8b-4b44-8992-e83148a24f76",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20705-A56-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n$\\triangle PQR$의 무게중심을 $G$, $\\triangle GQR$의 무게중심을 $H$라 하자. 색칠한 $\\triangle HQG$의 넓이가 $7\\,\\mathrm{cm}^2$일 때, $\\triangle PQR$의 넓이는 몇 $\\mathrm{cm}^2$인지 구하시오.",
+ "choices": [],
+ "answer": "$63\\,\\mathrm{cm}^2$",
+ "solution": "무게중심과 세 꼭짓점을 이으면 넓이가 같은 세 삼각형으로 나뉜다. $H$는 $\\triangle GQR$의 무게중심이므로 $\\triangle GQR=3\\times\\triangle HQG=3\\times7=21\\,(\\mathrm{cm}^2)$이다. 또 $G$는 $\\triangle PQR$의 무게중심이므로 $\\triangle PQR=3\\times\\triangle GQR=3\\times21=63\\,(\\mathrm{cm}^2)$이다. 따라서 $\\triangle PQR$의 넓이는 $63\\,\\mathrm{cm}^2$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A56-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A56-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-720824b629c397d4-1-4",
+  "problemCode": "J20705-A56-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "64a55b0cdcf79d0a19287caf71b7a13922d8ff68214f61cb12799f10cd47882f",
+  "dbContentSha256": "e3f4f0cd4ea66188a594831f4b1855e80a9fb600217e5f062c9f5568be4d53e1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-4_삼각형의무게중심.hwp",
+    "sha256": "ea1d380a785b7ae83830781675c22e3de06f2abb11f9591e2dfca8143694288c",
+    "bytes": 792064
+   }
+  ],
+  "originalFigureSha256": [
+   "761e60a94fe364ba8e04af5c2dad5aeb2fa67de8048b3dc642b3bd175872a2ad"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "context"
+  ],
+  "before": "큰 삼각형의 넓이가 주어지고, 그 무게중심이 만든 작은 삼각형의 무게중심을 한 번 더 잡아 가장 안쪽 작은 삼각형의 넓이를 1/3씩 두 번 줄여 구한다.",
+  "after": "가장 안쪽 색칠한 작은 삼각형의 넓이가 주어지고, 무게중심의 넓이 삼등분 성질을 두 번 거꾸로 써서 3배씩 두 번 키워 처음 삼각형의 넓이를 되짚는다. 꼭짓점 이름도 새로.",
+  "sharedConcept": "무게중심과 세 꼭짓점을 이으면 삼각형이 넓이가 같은 세 삼각형으로 나뉜다",
+  "sharedProcedure": "안쪽 무게중심으로 넓이 1:3 관계 세움 → 바깥 무게중심으로 다시 1:3 관계 세움 → 두 관계를 이어 구하는 넓이 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "삼각형의 중선과 넓이",
+   "삼각형의 무게중심의 성질",
+   "무게중심과 삼각형의 넓이 삼등분"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A56-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "무게중심을 두 번 잡은 삼각형에서 넓이의 비 (되짚기)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.119,
+   "longestRun": 5,
+   "residualChars": 52,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

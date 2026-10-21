@@ -1,0 +1,132 @@
+{
+ "version": 2,
+ "points": {
+  "P": [
+   40,
+   120
+  ],
+  "Q": [
+   40,
+   280
+  ],
+  "R": [
+   340,
+   280
+  ],
+  "S": [
+   340,
+   120
+  ],
+  "Rp": [
+   207.128,
+   30.865
+  ],
+  "T": [
+   147.333,
+   120
+  ],
+  "H": [
+   190,
+   200
+  ],
+  "len17": [
+   126,
+   258
+  ]
+ },
+ "segments": {
+  "PQ": [
+   "P",
+   "Q"
+  ],
+  "PS": [
+   "P",
+   "S"
+  ],
+  "QR": {
+   "points": [
+    "Q",
+    "R"
+   ],
+   "dashed": "5 3"
+  },
+  "RS": {
+   "points": [
+    "R",
+    "S"
+   ],
+   "dashed": "5 3"
+  },
+  "QS": [
+   "Q",
+   "S"
+  ],
+  "QRp": [
+   "Q",
+   "Rp"
+  ],
+  "RpS": [
+   "Rp",
+   "S"
+  ],
+  "TH": [
+   "T",
+   "H"
+  ]
+ },
+ "angles": {
+  "h": {
+   "vertex": "H",
+   "points": [
+    "Q",
+    "T"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "pq": {
+   "points": [
+    "P",
+    "Q"
+   ],
+   "label": "8 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "P": {
+   "text": "P",
+   "position": "NW"
+  },
+  "Q": {
+   "text": "Q",
+   "position": "SW"
+  },
+  "R": {
+   "text": "R",
+   "position": "SE"
+  },
+  "S": {
+   "text": "S",
+   "position": "NE"
+  },
+  "Rp": {
+   "text": "R'",
+   "position": "N"
+  },
+  "T": {
+   "text": "T",
+   "position": "N"
+  },
+  "H": {
+   "text": "H",
+   "position": "SE"
+  },
+  "len17": {
+   "text": "17 cm",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

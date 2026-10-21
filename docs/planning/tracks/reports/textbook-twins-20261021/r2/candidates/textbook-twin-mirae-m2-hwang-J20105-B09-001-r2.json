@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 99,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B09-001-r2",
+ "authorId": "claude-fable-5-1:5b79e6e8-045b-4673-8660-1f131510370d",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B09-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$b^{21}\\div (b^{\\square})^{3}\\div b^{5}=b^{7}$일 때, $\\square$ 안에 알맞은 수는?",
+ "choices": [
+  "$2$",
+  "$3$",
+  "$4$",
+  "$5$",
+  "$6$"
+ ],
+ "answer": "②",
+ "solution": "$(b^{\\square})^{3}=b^{3\\square}$이므로 좌변은 $b^{21}\\div b^{3\\square}\\div b^{5}=b^{21-3\\square-5}=b^{16-3\\square}$이다.\n$b^{16-3\\square}=b^{7}$에서 $16-3\\square=7$, $3\\square=9$이므로 $\\square=3$이다.\n따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-da5fbc5ffd2d2f6f-0-4",
+  "problemCode": "J20105-B09-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "691127c787850ce8e224bd5b4a7b0ff9e6cbeddea161d1bfb503608706ed06e3",
+  "dbContentSha256": "d0c6207fbfd222e8205716ee44fdcb53ab1379fe74ad33f7afbee8b98158dba9",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_2_식의계산.hwp",
+    "sha256": "f568ee34e2a1c424cece11c0fb1c0f0ad795621e14867948df493cbefc092239",
+    "bytes": 572928
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "거듭제곱의 거듭제곱 하나와 지수가 비어 있는 거듭제곱 하나를 차례로 나눈 식이 주어지고, 결과의 지수와 맞추어 빈 지수 하나를 구하는 객관식. 빈칸은 마지막 나눗셈의 지수에 있어 7−□=3 꼴의 식이 나온다.",
+  "after": "세 번의 나눗셈 가운데 빈칸이 거듭제곱의 거듭제곱 안쪽 지수에 있다. 지수법칙 ⑵로 3□를 만들고 ⑶으로 지수를 빼면 16−3□=7 꼴이 나와 □를 구한다. 밑·지수·보기를 모두 새로 두었다.",
+  "sharedConcept": "지수법칙 ⑵ 거듭제곱의 거듭제곱, 지수법칙 ⑶ 같은 밑의 나눗셈",
+  "sharedProcedure": "거듭제곱의 거듭제곱을 지수 곱으로 정리 → 나눗셈을 지수의 뺄셈으로 한 거듭제곱으로 묶기 → 양변의 지수를 같다고 놓고 □ 구하기 → 보기에서 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "지수법칙 ⑵ 거듭제곱의 거듭제곱",
+   "지수법칙 ⑶ 같은 밑의 나눗셈",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B09-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "지수법칙 ⑵⑶을 섞어 빈 지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "상투 말을 걷은 글이 34자",
+    "원본 수 6개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.194,
+   "longestRun": 9,
+   "residualChars": 34,
+   "params": 6,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

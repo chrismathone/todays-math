@@ -1,0 +1,128 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 116,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B70-001-r2",
+ "authorId": "claude-fable-5-1:3005a333-caa3-428a-a79a-aea0eb8e5985",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20105-B70-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "자연수 $m$, $n$에 대하여 $2^{m}\\times 7^{n}=98^{3}$이 성립한다. $m$, $n$의 값을 각각 구하시오.",
+ "choices": [],
+ "answer": "$m=3$, $n=6$",
+ "solution": "$98=2\\times 7^{2}$이므로 $98^{3}=(2\\times 7^{2})^{3}=2^{3}\\times (7^{2})^{3}$이다.\n$(7^{2})^{3}=7^{6}$이므로 $98^{3}=2^{3}\\times 7^{6}$이다.\n따라서 $m=3$, $n=6$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-27e81b57b3302127-0-4",
+  "problemCode": "J20105-B70-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "dfaed16836781e1e2204c670dcb09bc694665dff6819b97097df418c04bab2ba",
+  "dbContentSha256": "86e4916fe3e26360062857a7ab811247a2289b7b977259d1dfdbacf7fffebbaa",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_2-2_지수법칙2.hwp",
+    "sha256": "dcf5b1bb29c0cbdadf4de1aacfab4483ca6979b10c143bf554eb044154b17ddc",
+    "bytes": 38400
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "합성수의 거듭제곱을 왼쪽에 두고 그것이 두 소수의 거듭제곱의 곱과 같다는 등식에서 두 지수를 묻는다.",
+  "after": "두 소수의 거듭제곱의 곱을 왼쪽에, 합성수의 거듭제곱을 오른쪽에 둔 등식이 성립한다고 서술한 뒤 두 지수를 묻는다. 밑 · 지수 · 소인수를 모두 새로 정했다.",
+  "sharedConcept": "지수법칙 (ab)^n=a^n b^n, (a^m)^n=a^{mn} 과 소인수분해",
+  "sharedProcedure": "밑을 소인수분해 → 곱의 거듭제곱으로 분배 → 거듭제곱의 거듭제곱 계산 → 지수 비교"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "semester": 1,
+   "chapter": "1. 수와 식",
+   "section": "지수법칙"
+  },
+  "prerequisites": [
+   "소인수분해",
+   "지수법칙 ⑵ 거듭제곱의 거듭제곱",
+   "지수법칙 ⑷ 곱의 거듭제곱"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20105-B70-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "합성수의 거듭제곱을 소인수의 거듭제곱의 곱으로 나타내어 지수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "23c0d8b3-9fb0-4b8f-b76c-42c8db879e3c",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 29자"
+   ],
+   "overlap4": 0.192,
+   "longestRun": 6,
+   "residualChars": 29,
+   "params": 4,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

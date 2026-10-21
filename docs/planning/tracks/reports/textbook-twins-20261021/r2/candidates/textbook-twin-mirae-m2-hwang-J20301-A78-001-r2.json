@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 168,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20301-A78-001-r2",
+ "authorId": "claude-fable-5-1:9c7e0714-27b5-4ce2-8334-3fa69b783d08",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20301-A78-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 순서쌍 가운데 일차방정식 $4x-y=10$ 의 해가 아닌 것은?",
+ "choices": [
+  "$(-2,\\ -17)$",
+  "$(4,\\ 6)$",
+  "$(6,\\ 14)$",
+  "$(7,\\ 18)$",
+  "$(9,\\ 26)$"
+ ],
+ "answer": "①",
+ "solution": "각 순서쌍의 $x$, $y$ 값을 $4x-y$ 에 대입하여 $10$ 이 되는지 확인한다.\n① $4\\times(-2)-(-17)=-8+17=9\\neq 10$\n② $4\\times 4-6=10$\n③ $4\\times 6-14=10$\n④ $4\\times 7-18=10$\n⑤ $4\\times 9-26=10$\n따라서 해가 아닌 것은 ①이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-2",
+  "problemCode": "J20301-A78-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "9d7d260aa00834514f62ccedf4d31c2189c5b986ee0c2d072d473972b731060b",
+  "dbContentSha256": "c024f73b22ee32812326d875d6630655f32b6ec3e236b8be648e11177766087c",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "y의 계수가 1이고 상수항이 한 자리인 일차방정식에 다섯 순서쌍을 대입하여, 식을 만족시키지 않는 하나를 고른다. 순서쌍의 x는 -1부터 3까지 연속, 해가 아닌 보기는 ④.",
+  "after": "y의 계수가 -1인 일차방정식(4x-y=10)에 다섯 순서쌍을 대입하여 만족시키지 않는 하나를 고른다. x값은 띄엄띄엄(-2, 4, 6, 7, 9)이고 음수 좌표를 가진 보기 ①이 해가 아니다. 원본의 수는 하나도 쓰지 않았다.",
+  "sharedConcept": "미지수가 2개인 일차방정식의 해(순서쌍이 식을 만족시키는지 판정)",
+  "sharedProcedure": "순서쌍의 x, y를 식에 대입 → 좌변 계산 → 우변과 비교 → 같지 않은 보기 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "미지수가 2개인 연립일차방정식"
+  },
+  "prerequisites": [
+   "식의 값(두 문자에 수 대입)",
+   "정수의 사칙계산",
+   "미지수가 2개인 일차방정식의 해의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20301-A78-001",
+  "difficultyProposal": "연산",
+  "sourceDifficulty": "연산",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "순서쌍을 대입하여 일차방정식의 해가 아닌 것 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "d52a02c4-365a-4768-9cd3-ab4a6e9756a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.137,
+   "longestRun": 8,
+   "residualChars": 54,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,140 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 251,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20504-A81-001-r2",
+ "authorId": "claude-fable-5-1:f1856f95-723e-4dc0-8346-f6adc012f1d3",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20504-A81-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림] 그림의 $\\triangle ABC$는 $\\overline{CA}=\\overline{CB}$이고 $\\angle ACB=52^{\\circ}$이다. 점 $I$는 이 삼각형의 내심이고, 점 $J$는 세 점 $I$, $A$, $B$를 꼭짓점으로 하는 삼각형의 내심이다. $\\angle x$의 크기를 구하시오.",
+ "choices": [],
+ "answer": "$16^{\\circ}$",
+ "solution": "$\\overline{CA}=\\overline{CB}$이므로 두 밑각이 같고, $\\angle CAB=\\frac{1}{2}\\times(180^{\\circ}-52^{\\circ})=64^{\\circ}$이다. 점 $I$가 $\\triangle ABC$의 내심이므로 $\\overline{AI}$는 $\\angle CAB$를 이등분하여 $\\angle IAB=\\frac{1}{2}\\times 64^{\\circ}=32^{\\circ}$이다. 점 $J$가 $\\triangle IAB$의 내심이므로 $\\overline{AJ}$는 $\\angle IAB$를 이등분하여 $\\angle x=\\angle JAB=\\frac{1}{2}\\times 32^{\\circ}=16^{\\circ}$이다. 따라서 $\\angle x=16^{\\circ}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A81-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20504-A81-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-11",
+  "problemCode": "J20504-A81-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "9a58dd1d8fd11060589adc3e68724343eaef40f0588073315f54e334092011bd",
+  "dbContentSha256": "228b8ff2fc397250800036f1e5c4b8c1bcc0b0de66503a16d15389c9e8bde2cb",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "ef7fe28bff07ce850fde4a6181049752770be71f2b80206ac53d810e47caa33d"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "꼭지각이 A인 이등변삼각형의 내심 I를 잡고, 다시 I와 밑변 양 끝으로 만든 삼각형의 내심 I′를 잡아, 꼭지각의 크기에서 I′가 밑변 한 끝에서 만드는 각을 구한다.",
+  "after": "꼭지각이 C인 이등변삼각형(두 같은 변을 CA, CB로 둠)의 내심 I를 잡고, 세 점 I, A, B로 만든 삼각형의 내심 J를 잡아, 꼭지각의 크기에서 그림에 표시된 각 x(=∠JAB)를 구한다. 꼭짓점 배치와 둘째 삼각형이 올라앉는 변을 바꾸고, 구할 각은 그림의 x로 표시했다.",
+  "sharedConcept": "이등변삼각형의 밑각 · 내심은 세 내각의 이등분선의 교점",
+  "sharedProcedure": "꼭지각으로 밑각 구하기 → 내심이므로 밑각의 절반 → 둘째 내심이므로 다시 절반"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 내심"
+  },
+  "prerequisites": [
+   "이등변삼각형의 성질(두 밑각이 같다)",
+   "삼각형의 내각의 합",
+   "삼각형의 내심과 내각의 이등분선"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20504-A81-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "이등변삼각형의 내심을 두 번 잡아 각의 크기 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "80ae3c94-f040-4b1b-b089-93ae53395c64",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.039,
+   "longestRun": 4,
+   "residualChars": 57,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

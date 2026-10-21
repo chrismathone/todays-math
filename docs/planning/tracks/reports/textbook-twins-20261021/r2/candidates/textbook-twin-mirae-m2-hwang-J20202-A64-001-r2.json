@@ -1,0 +1,135 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 145,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20202-A64-001-r2",
+ "authorId": "claude-fable-5-1:de147a66-e564-4038-8260-41329e03f401",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20202-A64-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "부등식 $\\frac{x+7}{6}-\\frac{5x-9}{8}<0$ 을 만족시키지 않는 $x$의 값은?",
+ "choices": [
+  "$5$",
+  "$6$",
+  "$8$",
+  "$10$",
+  "$12$"
+ ],
+ "answer": "①",
+ "solution": "양변에 $24$를 곱하면 $4(x+7)-3(5x-9)<0$ 이다. 괄호를 풀면 $4x+28-15x+27<0$, 정리하면 $-11x+55<0$ 이다. $55$를 이항하면 $-11x<-55$ 이고, 양변을 $-11$로 나누면 부등호의 방향이 바뀌어 $x>5$ 이다. $5$는 $x>5$ 를 만족시키지 않으므로 답은 ①이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-51f4c1431376eff4-1-4",
+  "problemCode": "J20202-A64-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "7ea062a664359650eb8fa67ca551c1a536b40ba21137f1e9e1b492a6cbcfecd3",
+  "dbContentSha256": "0495c3d820ca7df01b630c015f149803309e79527055180d2625dccefea82486",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_3-3_일차부등식의풀이.hwp",
+    "sha256": "a374a285941d2fa27cc2228a9abef548e08ea23bbddde87c8c6d5b1b038b8194",
+    "bytes": 416768
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "분모가 다른 두 분수식이 양변에 놓인 일차부등식을 주고, 보기 다섯 수 가운데 해가 아닌 하나를 고른다. 분모의 최소공배수를 곱해 괄호식을 만들고, 이항 뒤 음수로 나누며 부등호 방향을 바꾼다.",
+  "after": "두 분수식의 차가 0보다 작다는 꼴로 놓인 일차부등식을 주고, 보기 다섯 수 가운데 부등식을 만족시키지 않는 하나를 고른다. 분모의 최소공배수 24를 곱해 괄호식을 만들고, 정리 뒤 -11로 나누며 부등호 방향을 바꾼다. 경계값 5가 등호 없는 부등식의 해가 아님을 확인한다.",
+  "sharedConcept": "계수가 분수인 일차부등식의 풀이와 해의 판별",
+  "sharedProcedure": "분모의 최소공배수를 양변에 곱함 → 괄호를 풀어 정리 → 이항 → 음수로 나누며 부등호 방향 바꿈 → 보기의 수를 해의 범위와 비교"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "일차부등식의 풀이"
+  },
+  "prerequisites": [
+   "부등식의 성질(음수를 곱하거나 나누면 부등호 방향이 바뀜)",
+   "일차부등식의 풀이(이항·정리)",
+   "계수가 분수인 일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20202-A64-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "분수 계수 일차부등식의 해가 아닌 값 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "74103a7e-ab11-4103-a171-3cb2bbabbbeb",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 34자",
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.032,
+   "longestRun": 4,
+   "residualChars": 34,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

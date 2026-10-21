@@ -1,0 +1,134 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 126,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20201-A88-001-r2",
+ "authorId": "claude-fable-5-1:bdca5485-fe02-492b-9235-824b18a2f4b6",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20201-A88-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "네 수 $p$, $q$, $r$, $s$가 $p<q<0<r<s$를 만족시킬 때, 다음 중 옳지 않은 것은?",
+ "choices": [
+  "$p-s<q-s$",
+  "$\\frac{p}{r}<\\frac{q}{r}$",
+  "$pq>pr$",
+  "$\\frac{r}{q}<\\frac{s}{q}$",
+  "$r-p>r-q$"
+ ],
+ "answer": "④",
+ "solution": "① $p<q$의 양변에서 $s$를 빼면 $p-s<q-s$ (옳다)\n② $p<q$의 양변을 양수 $r$로 나누면 $\\frac{p}{r}<\\frac{q}{r}$ (옳다)\n③ $q<r$의 양변에 음수 $p$를 곱하면 부등호의 방향이 바뀌어 $pq>pr$ (옳다)\n④ $r<s$의 양변을 음수 $q$로 나누면 부등호의 방향이 바뀌어 $\\frac{r}{q}>\\frac{s}{q}$이다. 따라서 $\\frac{r}{q}<\\frac{s}{q}$는 옳지 않다.\n⑤ $p<q$의 양변에 $-1$을 곱하면 $-p>-q$이고, 양변에 $r$을 더하면 $r-p>r-q$ (옳다)\n따라서 옳지 않은 것은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-262db53846435c1c-0-3",
+  "problemCode": "J20201-A88-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "b3c2dd5dbf0c1b15dd33a62cc635b3e08e98cb9fa8c79068a87e82120da5765f",
+  "dbContentSha256": "cb41cc8e67564638c5eb3a6c204bb007517244c870585519eeff3d6ce938728c",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_3_일차부등식.hwp",
+    "sha256": "1ebb17b076b32660f2c62ccfa8e49574d2da081f7cfe0937beb637c1467e1bcb",
+    "bytes": 78848
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation"
+  ],
+  "before": "음수 둘과 양수 둘의 대소가 주어지고, 두 문자의 부등식에 같은 수를 더하거나 빼거나 양수·음수를 곱하거나 나눈 다섯 식 가운데 틀린 것 하나를 고른다. 틀린 보기는 음수를 곱해 방향이 바뀌는 경우다.",
+  "after": "문자 이름을 p, q, r, s로 바꾸고, 보기의 조합을 새로 짰다(빼기·양수로 나누기·음수 곱하기·음수로 나누기·부호 바꿔 더하기). 틀린 보기는 음수로 나눠 방향이 바뀌는 경우로 두어 정답 자리도 ④로 옮겼다.",
+  "sharedConcept": "부등식의 성질(양변에 같은 수를 더하거나 빼기, 양수·음수를 곱하거나 나누기)",
+  "sharedProcedure": "보기마다 출발 부등식을 찾는다 → 양변에 어떤 연산을 했는지 본다 → 음수를 곱하거나 나눴으면 부등호 방향을 바꾼다 → 주어진 식과 비교해 틀린 것을 고른다"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "semester": 1,
+   "chapter": "2. 부등식",
+   "section": "부등식"
+  },
+  "prerequisites": [
+   "부등식의 뜻",
+   "부등식의 성질",
+   "양수와 음수의 곱셈·나눗셈 부호"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20201-A88-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "네 수의 부호와 대소가 주어질 때 부등식의 성질로 옳지 않은 식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c1fe36b6-8f97-46e5-be13-f022636211f8",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 1개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.0,
+   "longestRun": 3,
+   "residualChars": 56,
+   "params": 1,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
