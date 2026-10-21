@@ -1,0 +1,259 @@
+{
+  "fixtureCount": 32,
+  "coordinateSpace": "analysis pixels x-right,y-down; raw bytes row-major unsigned8",
+  "cases": [
+    {
+      "id": "white",
+      "width": 100,
+      "height": 100,
+      "grayFile": "own-fixtures/white.gray",
+      "graySHA256": "2bf7158cb3d8f419f1e19ee71df61927cc17017f37ea8820f3bd719d2b4f88f8",
+      "expected": "null",
+      "details": "No evidence"
+    },
+    {
+      "id": "explicit-grid",
+      "width": 100,
+      "height": 100,
+      "grayFile": "own-fixtures/explicit-grid.gray",
+      "graySHA256": "71ceae95bac7addce77cdb785fcd8111bb2816f3a40e2e41d4b0be4e304a92d6",
+      "expected": "advisory-grid",
+      "details": "Known drawn9lines each way =>8cells; no mathematical answer"
+    },
+    {
+      "id": "table-identical",
+      "width": 100,
+      "height": 100,
+      "grayFile": "own-fixtures/table-identical.gray",
+      "graySHA256": "71ceae95bac7addce77cdb785fcd8111bb2816f3a40e2e41d4b0be4e304a92d6",
+      "expected": "advisory-grid",
+      "details": "Identical bytes to grid; semantics cannot be inferred from pixels"
+    },
+    {
+      "id": "parallel-lines",
+      "width": 100,
+      "height": 100,
+      "grayFile": "own-fixtures/parallel-lines.gray",
+      "graySHA256": "3830ece8b1a4f441e9c46640806105812a0d930612934ddf092f78f5ef6870f6",
+      "expected": "null",
+      "details": "Only one direction"
+    },
+    {
+      "id": "missing-line",
+      "width": 100,
+      "height": 100,
+      "grayFile": "own-fixtures/missing-line.gray",
+      "graySHA256": "ed865c8734a38463647838feaf5586c307b52bf94d8a6afbf8d9cda2f39d2b38",
+      "expected": "null",
+      "details": "Conservative no inferred missing line"
+    },
+    {
+      "id": "half-cropped",
+      "width": 100,
+      "height": 100,
+      "grayFile": "own-fixtures/half-cropped.gray",
+      "graySHA256": "3c8fb5d7ba64b48112960a8cbe06aaeb317379845bc1af6b2ecb577ba9bcb7e4",
+      "expected": "null",
+      "details": "First line on analysis crop edge"
+    },
+    {
+      "id": "cuboid",
+      "width": 100,
+      "height": 100,
+      "grayFile": "own-fixtures/cuboid.gray",
+      "graySHA256": "ccbb3b1507238d2144f66f604232b47d827baa7a3c28d736934fdcd3f8352c6b",
+      "expected": "null",
+      "details": "Simple cuboid projection, not grid"
+    },
+    {
+      "id": "letter-H",
+      "width": 100,
+      "height": 100,
+      "grayFile": "own-fixtures/letter-H.gray",
+      "graySHA256": "59e9eadfd7b573eabc301583a73e797581f488568710a2eabb16515a573a1294",
+      "expected": "null",
+      "details": "Text-like strokes insufficient lattice"
+    },
+    {
+      "id": "width-zero",
+      "width": 0,
+      "height": 100,
+      "grayMode": "empty",
+      "expected": "null"
+    },
+    {
+      "id": "width-neg",
+      "width": -1,
+      "height": 100,
+      "grayMode": "empty",
+      "expected": "null"
+    },
+    {
+      "id": "width-float",
+      "width": 1.5,
+      "height": 100,
+      "grayMode": "empty",
+      "expected": "null"
+    },
+    {
+      "id": "width-nan",
+      "width": "NaN",
+      "height": 100,
+      "grayMode": "empty",
+      "expected": "null"
+    },
+    {
+      "id": "width-inf",
+      "width": "Infinity",
+      "height": 100,
+      "grayMode": "empty",
+      "expected": "null"
+    },
+    {
+      "id": "width-bool",
+      "width": true,
+      "height": 100,
+      "grayMode": "empty",
+      "expected": "null"
+    },
+    {
+      "id": "width-oversize",
+      "width": 1401,
+      "height": 100,
+      "grayMode": "empty",
+      "expected": "null"
+    },
+    {
+      "id": "height-zero",
+      "width": 100,
+      "height": 0,
+      "grayMode": "empty",
+      "expected": "null"
+    },
+    {
+      "id": "height-oversize",
+      "width": 100,
+      "height": 1401,
+      "grayMode": "empty",
+      "expected": "null"
+    },
+    {
+      "id": "gray-short",
+      "width": 100,
+      "height": 100,
+      "grayMode": "short",
+      "expected": "null"
+    },
+    {
+      "id": "gray-long",
+      "width": 100,
+      "height": 100,
+      "grayMode": "long",
+      "expected": "null"
+    },
+    {
+      "id": "gray-sparse",
+      "width": 100,
+      "height": 100,
+      "grayMode": "sparse",
+      "expected": "null"
+    },
+    {
+      "id": "gray-oversize-sparse",
+      "width": 100,
+      "height": 100,
+      "grayMode": "oversize-sparse",
+      "expected": "null"
+    },
+    {
+      "id": "gray-fake-arraylike",
+      "width": 100,
+      "height": 100,
+      "grayMode": "fake-arraylike",
+      "expected": "null"
+    },
+    {
+      "id": "gray-undefined",
+      "width": 100,
+      "height": 100,
+      "grayMode": "undefined",
+      "expected": "null"
+    },
+    {
+      "id": "gray-string",
+      "width": 100,
+      "height": 100,
+      "grayMode": "string",
+      "expected": "null"
+    },
+    {
+      "id": "gray-value--1",
+      "width": 100,
+      "height": 100,
+      "grayMode": "override",
+      "value": -1,
+      "expected": "null"
+    },
+    {
+      "id": "gray-value-256",
+      "width": 100,
+      "height": 100,
+      "grayMode": "override",
+      "value": 256,
+      "expected": "null"
+    },
+    {
+      "id": "gray-value-1.5",
+      "width": 100,
+      "height": 100,
+      "grayMode": "override",
+      "value": 1.5,
+      "expected": "null"
+    },
+    {
+      "id": "gray-value-NaN",
+      "width": 100,
+      "height": 100,
+      "grayMode": "override",
+      "value": "NaN",
+      "expected": "null"
+    },
+    {
+      "id": "gray-value-Infinity",
+      "width": 100,
+      "height": 100,
+      "grayMode": "override",
+      "value": "Infinity",
+      "expected": "null"
+    },
+    {
+      "id": "gray-value-None",
+      "width": 100,
+      "height": 100,
+      "grayMode": "override",
+      "value": null,
+      "expected": "null"
+    },
+    {
+      "id": "gray-value-True",
+      "width": 100,
+      "height": 100,
+      "grayMode": "override",
+      "value": true,
+      "expected": "null"
+    },
+    {
+      "id": "gray-value-7",
+      "width": 100,
+      "height": 100,
+      "grayMode": "override",
+      "value": "7",
+      "expected": "null"
+    }
+  ],
+  "specialNumberEncoding": [
+    "NaN",
+    "Infinity"
+  ],
+  "candidateRuntimeExecuted": false
+}

@@ -1,0 +1,61 @@
+{
+  "status": "STATIC_CANDIDATE_ONLY_RUNTIME_AND_INTEGRATION_PENDING",
+  "ownedImplementation": "own-gridMeasure.ts",
+  "candidateSHA256": "e58035db5e5d0c5f87136fc0612508c3cac5b9c944dd5c8aa506d056aa25cb4c",
+  "designSHA256": "f31d23912121e2966db97b3d0140734015aed99b34ee37118f447f7bd8f8f95a",
+  "fixtureManifestSHA256": "8bc041615733f0fa05aceb887add7a90afe357e8438ac90154c00cbf3f13d430",
+  "counts": {
+    "syntheticFixtureCasesPrepared": 32,
+    "PythonFixtureIdentityAndConstructionChecksExecuted": 4,
+    "passed": 4,
+    "candidateTypeScriptControlsExecuted": 0,
+    "nodeBrowserTypesExecuted": 0,
+    "mathGradeOrQuestionApprovalCredits": 0
+  },
+  "sourceChanges": [],
+  "sourceBindings": [
+    "own-before.json",
+    "own-after.json"
+  ],
+  "sharpDirectDependency": false,
+  "bounds": {
+    "positiveSafeIntegerDimensions": true,
+    "maxSide": 1400,
+    "maxPixels": 2000000,
+    "gray": "exact dense byte count, finite integer0..255; byte arrays or ordinary number arrays",
+    "sampleMax": 4000,
+    "projectionMax": 1400,
+    "centreMaxPerAxis": 61,
+    "spreadMaxRemoved": true,
+    "unsupportedUnknown": "null; never passed"
+  },
+  "reviewInvariants": [
+    "No new public request field/storage contract/model route",
+    "No automatic snap/point movement/source byte changes",
+    "Final figureReview and source-and-rendered-images retained by integration design; not actually patched",
+    "Missing/count mismatch/unknown must not become pass; helper has no pass field",
+    "Derived ordinal coordinates belong only to comparison derivative, never authored/source labels"
+  ],
+  "risks": [
+    "Regular table and grid can be byte-identical; cannot promise table-null generically",
+    "Parallel lines/text/clipping/occlusion/dashed grid may cause false positives/negatives; conservative null is intentional",
+    "Image decode and browser serialization still need independent resource/taint/abort/timeout tests",
+    "Coordinate origin, contain transform and SVG letterboxing must not be conflated",
+    "Overlay may be mistaken for source labels; mandatory legend and no spec copying",
+    "No TypeScript typecheck or candidate execution: syntax and expected fixtures remain unvalidated at runtime"
+  ],
+  "TypeSafeDocs": {
+    "skillRead": ".agents/skills/typesafe-ai/SKILL.md",
+    "currentSuccessfulReads": [
+      "https://docs.typesafe.ai/llms.txt",
+      "https://docs.typesafe.ai/confidence"
+    ],
+    "initialMarkdownAttempts": "not accessible; HTML/index fallback read",
+    "effect": "no new model integration, deterministic bounded code and preserved unknown"
+  },
+  "productionEdits": 0,
+  "SourceDExecutionOrWrites": 0,
+  "DBOrModelCalls": 0,
+  "previousEvidenceDirtyPreserved": true,
+  "reproducePreparedOnly": "python -B -S own-fixtures.py; after explicit runtime GO node --require ROOT/node_modules/tsx/dist/cjs/index.cjs own-pending-runtime.cjs; not executed now"
+}
