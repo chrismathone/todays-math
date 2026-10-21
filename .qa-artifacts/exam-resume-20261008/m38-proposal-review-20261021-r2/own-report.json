@@ -1,0 +1,32 @@
+{
+  "status": "REJECTED_PREPARATION-R2-TeX-ESCAPING",
+  "proposalSHA256": "ee3b2cd727f1e8b940fab208739b5b278afffe523d3ae7566ac29f2545dbb4d2",
+  "counts": {
+    "assertions": 442,
+    "passed": 441,
+    "failed": 1,
+    "M8literalTuples": 120,
+    "M9bounds": 48,
+    "M9literalTuples": 171,
+    "M19tuples": 18,
+    "M20kind1Tuples": 64,
+    "actualSeedOutputs": 0
+  },
+  "failedChecks": [
+    {
+      "name": "M20TeXSourceEscapesDouble",
+      "pass": false
+    }
+  ],
+  "mathematicalScope": "M8all120feasible; M9all48rangebounds nonempty and171reachableinteger tuples satisfystricttriangles/externalpointuniqueness; M19all18sideradius exactintegeridentity andequalalloldfeasibletuples; M20all64kind1tuples disjointm/n/k anduniversalcondition yieldunique positiveinputs. No answer/factsoracle.",
+  "blocker": "ActualR2source has1U+005C beforeTeXleft/right in M20newtemplates. This losesleftslash andturnsrightintoCR underJavaScripttemplateescape. Newlineshave1sourceescapeasexpected. Need2sourcebackslashesbeforeTeX. Node/rendernotrun.",
+  "parentAcknowledgment": "ParentconfirmedR2preparationerror; originalproposalR1hadcorrectescapes andcurrentR3willbe reviewedseparately, not silently substitutedhere.",
+  "productionOriginalsUnchanged": true,
+  "runtime120Replay": "PENDING;0actualoutputs; Pythonstaticonly, nomemoryprobe/Node/API/DB/network.",
+  "gradeRightsNativeReleaseApproved": false,
+  "artifacts": {
+    "resultsSHA256": "011ccd02f0fbbe52db79f7b76f2e702a33c4c79d69c5a59a2a9e83ad449a07b1",
+    "reviewScriptSHA256": "d865812742aa55d1584818fbbadea57434829210591093f7281c9e204ace6d2d"
+  },
+  "preservation": "Priorstaticd607andraw/privateevidenceunchanged; onlynewownproposalreviewfileswritten."
+}
