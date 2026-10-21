@@ -9,30 +9,19 @@
  */
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
 
 import type { Page } from "@playwright/test";
 import { expect } from "vitest";
 
+// 글꼴 · KaTeX 는 전수 탐침과 한 벌이다(2026-10-21 — 탐침이 따로 짓다가 글꼴을 못 실었다).
 import {
   buildTailwindCss,
+  katexCss,
+  PAPER_FONT_CSS,
   PAPER_VARS_ATTR,
 } from "../../../scripts/qa/paperProbe";
 
 const ROOT = process.cwd();
-const fileUrl = (rel: string) => pathToFileURL(path.join(ROOT, rel)).href;
-
-const FONT_CSS = `
-@font-face{font-family:"TM Noto Serif KR";src:url(${fileUrl("public/fonts/NotoSerifKR-subset.woff2")}) format("woff2");font-weight:100 900}
-:root{--font-noto-serif-kr:"TM Noto Serif KR"}`;
-
-function katexCss(): string {
-  const dir = path.join(ROOT, "node_modules/katex/dist");
-  return readFileSync(path.join(dir, "katex.min.css"), "utf8").replace(
-    /url\((fonts\/[^)]+)\)/g,
-    (_, file: string) => `url(${pathToFileURL(path.join(dir, file)).href})`,
-  );
-}
 
 /** 지면 변수(`PAPER_CSS_VARIABLES`)를 얹은 문서 하나 — `body` 는 제품 렌더 결과다. */
 export async function paperDocument(
@@ -45,7 +34,7 @@ export async function paperDocument(
     "utf8",
   );
   return `<!doctype html><html lang="ko"><head><meta charset="utf-8">
-<style>${FONT_CSS}</style><style>${katexCss()}</style><style>${tailwind}</style><style>${moduleCss}</style>
+<style>${PAPER_FONT_CSS}</style><style>${katexCss()}</style><style>${tailwind}</style><style>${moduleCss}</style>
 <style>body{margin:0;background:#fff}${extraCss}</style></head>
 <body><div style="${PAPER_VARS_ATTR}">${body}</div></body></html>`;
 }

@@ -260,7 +260,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 150: D-164(2026-10-21) — 식 뒤 조사 잇기(①).
     // 151: 초등 엔진 D-164 — 식 뒤 조사 붙임 · 합쇼체 · 세로셈 틀(2026-10-21).
     // 152: D-164(2026-10-21) — 그림 자리 `[그림:n]`(③④).
-    expect(ITEMS.length).toBe(152);
+    // 153: D-164(2026-10-21) — 한글 어절 줄바꿈 keep-all(②).
+    expect(ITEMS.length).toBe(153);
     for (const id of [
       "question-smart-spacing-20261020",
       "answer-quick-key-h2",

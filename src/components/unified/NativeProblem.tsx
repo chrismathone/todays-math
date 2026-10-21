@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element -- source-local figure resources */
 import { Fragment, type ReactNode } from "react";
+import { MATH_TEXT_WRAP } from "@/components/math/mathTextWrap";
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
 import {
   blocksToMarkdown,
@@ -225,7 +226,7 @@ export default function NativeProblem({
     </div>
   ));
   return (
-    <div data-native-problem>
+    <div data-native-problem className={MATH_TEXT_WRAP}>
       {data?.labelType &&
         !blocksToMarkdown(data.blocks).includes(data.labelType) && (
           <span className="text-sm font-semibold">[{data.labelType}]</span>

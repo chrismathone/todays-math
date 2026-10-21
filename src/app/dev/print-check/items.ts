@@ -3907,6 +3907,32 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "2026-10-21",
   },
+  {
+    id: "math-keep-all-20261021",
+    title: "한글 어절 줄바꿈 — 낱말 가운데서 줄이 안 갈린다 (D-164 ②)",
+    changed:
+      "수학 문제 본문 · 보기 · 상자 · 그림 캡션 · 작업실 원본 문항 · 정답 · 해설이 화면과 지면 모두 한글을 **어절 단위로** 줄 바꾼다(`word-break: keep-all`) — «구하시 ⏎ 오» 처럼 한 낱말이 두 줄로 갈리지 않는다. " +
+      "칸보다 넓은 한 마디(띄어쓰기 없는 긴 글 · 긴 로마자)는 그래도 끊긴다(`overflow-wrap: anywhere`). 교재 QR 화면의 정답 · 풀이 · 작업실 원본 미리보기도 같다. 영어 문항(본문 · 정답)은 그대로다. " +
+      "낱말째 다음 줄로 넘어가 줄이 하나 늘 수 있다 — 공유 DB 118,551행 전수(제품 글꼴)에서 자습 지면 1,632행 · 기출 2단 지면 왼쪽 단 2,253행 · 오른쪽 단 2,681행이 한 줄 남짓 늘었다.",
+    look:
+      "(제안) ① 줄 끝에서 한 낱말이 갈려 다음 줄 머리에 조각(«오.» · «니다.» · «이다.»)이 찍히는 일이 없는가. ② 낱말째 넘어가 줄 오른쪽 끝이 들쭉날쭉해진 정도가 읽기에 거슬리지 않는가. " +
+      "③ 보기 2열 칸 · 2열 〈보기〉 상자 칸 · 그림 캡션에서 글이 칸 밖으로 넘치거나 잘리지 않는가. ④ 한 줄 늘어난 문항이 다음 문항 · 답란과 겹치지 않는가. " +
+      "⑤ 정답지 해설 · 기출 2단 지면(오른쪽 단이 더 좁다)에서도 ①. ⑥ 정답지 첫 장(빠른 정답 상자가 얹힌 장)에서 해설이 지면 밖으로 사라지지 않는가 — 넘치면 다음 장으로 넘어가야 한다.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/math/mathTextWrap.ts · src/components/math/ProblemContent.tsx · src/components/unified/NativeProblem.tsx · src/components/math/MathText.tsx · src/components/learn/textbook/TextbookQrScreen.tsx · src/components/unified/StudioReviewPane.tsx",
+      "src/__tests__/unit/mathTextWrapChrome.test.tsx(대조군은 어절이 갈리고 제품은 0 · 2열 보기 · 2열 상자 · 캡션 · 좁은 칸의 넘친 양이 대조군보다 안 큼 · 변이 둘) · src/__tests__/unit/renderParity.test.tsx",
+      "scripts/qa/measure-print-overflow.tsx · scripts/qa/eval-overflow-rules.ts · scripts/qa/measure-exam-paper-overflow.tsx · scripts/qa/paperProbe.tsx(제품 글꼴) · docs/planning/tracks/reports/problem-display-decisions-consensus-20261021.md(②)",
+    ],
+    scale:
+      "공유 DB 118,551행 전수 · 전후 같은 스냅숏 · 제품 글꼴 — 자습 지면 둘이 앉은 칸의 넘침 이어지는 장 716 → 720 · 첫 장 3,994 → 4,039, 새로 넘친 행은 전부 제품이 장에 혼자 앉힌다(겹쳐 찍힘 1 → 1 · 2 → 2, 같은 행). " +
+      "혼자 앉은 칸 · 가로 넘침 · 보기 열 수는 새로 0. 기출 2단(지금은 /dev 지면) — `packExamPaper` 배치 그대로 시험지 5,928개 · 단 31,106개에서 넘친 단 2 → 2(같은 단). " +
+      "정답지(제품 `PrintAnswerKeyPage` 그대로 · 쪼개기 전 정적 표본)는 50,000건에서 해설이 지면 밖 217 → 226 — 제품은 `TestPrint` 가 넘친 장을 재서 쪼개고 통합 인쇄가 잰 높이로 나눠, 이 변경으로 새로 잃는 해설은 확인되지 않았다(쪼갠 뒤를 브라우저로 다시 잰 것은 아니다 · 쪼개지 않는 `PastPaperPrint` 는 /dev 전용)",
+    needs:
+      "줄 끝에 긴 낱말이 걸리는 문항 여럿(중등 서술 · 교과서 · 고등) · 보기 2열 · 〈보기〉 상자 · 그림 캡션이 있는 문항 · 해설이 긴 문항이 든 일일테스트와 정답지 · 기출 2단 시험지와 교사용 정답지 한 벌",
+    status: "대기",
+    changedOn: "2026-10-21",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

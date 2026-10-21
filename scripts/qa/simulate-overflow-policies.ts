@@ -108,6 +108,8 @@ interface Row {
   figureSourceMm?: number[];
   /** 보기 그림의 짝 — 알면 지면이 달라진다(2026-10-03 B1). 측정기의 지문과 같이 본다. */
   choiceFigureIndex?: number[];
+  /** 엔진 SVG 그림 — 측정기가 그리고 판정이 센다(D-164 ② · 2026-10-21). 안 넘기면 그 그림만큼 엔진이 낮게 본다. */
+  figureSvg?: string | null;
   /** 채점의 «참» — 지면을 그려 잰 값이다. 제품은 이 값을 못 본다. */
   neededPx: number;
 }
@@ -125,9 +127,11 @@ function blind(row: Row): Row {
     figureDims,
     figureSourceMm,
     choiceFigureIndex,
+    figureSvg,
     ...rest
   } = row;
   void content;
+  void figureSvg;
   void figureUrls;
   void figureDims;
   void figureSourceMm;
@@ -146,6 +150,7 @@ const toPrint = (rows: Row[]): TestPrintProblem[] =>
     figureDims: r.figureDims ?? [],
     figureSourceMm: r.figureSourceMm ?? [],
     choiceFigureIndex: r.choiceFigureIndex,
+    figureSvg: r.figureSvg ?? null,
   }));
 
 /**
@@ -275,7 +280,7 @@ async function main() {
             content, figure_urls AS "figureUrls", figure_dims AS "figureDims",
             figure_source_mm AS "figureSourceMm",
             choice_figure_index AS "choiceFigureIndex",
-            question_type AS "questionType",
+            question_type AS "questionType", figure_svg AS "figureSvg",
             (pool = 'shared' AND review_status = 'approved'
              AND direct_use_allowed = TRUE AND answer <> '(정답 없음)') AS eligible
        FROM problem ORDER BY id`,
@@ -287,6 +292,7 @@ async function main() {
       figureSourceMm: number[] | null;
       choiceFigureIndex: number[] | null;
       questionType: string | null;
+      figureSvg: string | null;
       eligible: boolean;
     }
   >;
@@ -320,6 +326,7 @@ async function main() {
       figureSourceMm: r.figureSourceMm,
       choiceFigureIndex: r.choiceFigureIndex,
       questionType: r.questionType,
+      figureSvg: r.figureSvg,
     })),
   );
   /**
@@ -478,6 +485,7 @@ async function main() {
       figureDims: capDims(r.figureUrls, r.figureDims),
       figureSourceMm: r.figureSourceMm ?? undefined,
       choiceFigureIndex: r.choiceFigureIndex ?? undefined,
+      figureSvg: r.figureSvg,
       neededPx,
     });
   }

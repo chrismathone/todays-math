@@ -23,7 +23,16 @@
  * 화면과 인쇄가 다르므로 `emulateMedia({ media: "print" })` 를 쓸지 반드시 정할 것
  * (그림 상한이 화면 360px · 인쇄 70mm=264.6px 라 실제로 다르다).
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -53,6 +62,33 @@ export const PAPER_VARS_ATTR = PAPER_VARS.replaceAll('"', "&quot;");
 /** `public/` 아래 그림을 file:// 로 읽게 만든다 — 인쇄 지면은 그림이 빠지면 안 된다. */
 export const FIGURE_ROOT = pathToFileURL(path.join(ROOT, "public")).href;
 
+const fileUrl = (rel: string) => pathToFileURL(path.join(ROOT, rel)).href;
+
+/**
+ * 지면 명조 — 제품이 `next/font/local` 로 싣는 **그 파일 · 그 변수**(`src/app/fonts.ts` 의 `notoSerifKR`).
+ *
+ * 🔴 2026-10-21(D-164 ② · Codex 검토)까지 이 탐침에는 둘 다 없었다. 지면 글꼴 스택은
+ *    `var(--font-noto-serif-kr), "KoPubBatang", …` 인데, 정의 안 된 변수를 가리키는 `var()` 는 선언 **전체**를 무효로
+ *    만든다(뒤의 이름으로 넘어가지 않는다 — `fonts.ts` 주석의 가정과 다르다). 그래서 탐침의 본문은 브라우저 기본 서체로
+ *    그려졌고, 높이 캐시 · 넘침 전수가 제품과 다른 서체로 잰 값이었다. Chrome 시험(`helpers/paperChrome.ts`)은 이것을
+ *    싣고 있었다 — 이제 둘이 이 한 벌을 쓴다.
+ */
+export const PAPER_FONT_CSS = `
+@font-face{font-family:"TM Noto Serif KR";src:url(${fileUrl("public/fonts/NotoSerifKR-subset.woff2")}) format("woff2");font-weight:100 900}
+:root{--font-noto-serif-kr:"TM Noto Serif KR"}`;
+
+/**
+ * KaTeX CSS — 글꼴 주소를 **절대 경로로** 바꿔 싣는다. 원문의 `url(fonts/…)` 는 `<style>` 로 붙이면 탐침 HTML 자리
+ * (`node_modules/.cache/paper-probe/`)에서 풀려 글꼴이 하나도 안 실린다(2026-10-21 — 수식이 대체 글꼴로 그려졌다).
+ */
+export function katexCss(): string {
+  const dir = path.join(ROOT, "node_modules/katex/dist");
+  return readFileSync(path.join(dir, "katex.min.css"), "utf8").replace(
+    /url\((fonts\/[^)]+)\)/g,
+    (_, file: string) => `url(${pathToFileURL(path.join(dir, file)).href})`,
+  );
+}
+
 /**
  * 실측 상수. 값을 **여기 적어 두지 말고** `measure-paper-units.tsx` 로 다시 뽑을 것 —
  * 아래는 2026-08-18 인쇄 매체 기준 기록이다(지면 CSS 를 바꾸면 달라진다).
@@ -68,17 +104,64 @@ export const MEASURED = {
   fixedChromePx: 62.5,
 } as const;
 
-/** Tailwind 산출물을 실제로 빌드한다(캐시). 손으로 옮겨 적지 않는다. */
-export async function buildTailwindCss(): Promise<string> {
-  const cached = path.join(CACHE_DIR, "tailwind.css");
+/**
+ * Tailwind 가 훑는 원문의 열쇠 — 작업트리 자리 · `globals.css` 원문 · 클래스를 쓰는 파일들의 (경로 · 크기 · 수정 시각).
+ *
+ * 🔴 2026-10-21(D-164 ②) 전의 열쇠는 «`globals.css` 가 캐시보다 새것인가» 하나였다. 둘이 샜다.
+ *  - 컴포넌트에 **새 클래스**를 달아도(`[word-break:keep-all]`) `globals.css` 는 그대로라 낡은 산출물이 쓰였다 —
+ *    그 클래스의 규칙이 없는 지면을 재고 «높이가 안 바뀌었다»가 나온다.
+ *  - 캐시 자리가 `node_modules/.cache` 인데 워크트리의 `node_modules` 는 본 작업트리로 가는 **링크**다 — 가지마다
+ *    같은 파일을 나눠 써서, 전후를 나란히 재면 한쪽이 남의 CSS 를 읽는다.
+ * 그래서 열쇠를 파일 이름에 넣는다. 훑는 범위는 지면 DOM 을 만드는 곳(`src` · `scripts/qa`)이다 — 다른 곳의 클래스는
+ * 규칙을 보탤 뿐 이 DOM 의 어느 요소에도 안 붙는다. `._*` 는 exFAT 가 만드는 그림자 파일이라 뺀다.
+ * ⚠️ 못 보는 것: 크기 · 수정 시각을 그대로 둔 채 바뀐 파일, 한 프로세스 안에서 빌드한 뒤의 수정(한 번만 짓는다).
+ */
+function tailwindSourceKey(): string {
+  const hash = createHash("sha256");
+  hash.update(`${ROOT}\u0000`);
+  hash.update(readFileSync(path.join(ROOT, "src/app/globals.css")));
+  // 산출물을 짓는 쪽의 판도 열쇠다 — 올리면 같은 원문에서 다른 CSS 가 나온다.
+  for (const pkg of ["tailwindcss", "@tailwindcss/postcss"]) {
+    const manifest = path.join(ROOT, "node_modules", pkg, "package.json");
+    hash.update(
+      `${pkg}@${existsSync(manifest) ? (JSON.parse(readFileSync(manifest, "utf8")) as { version?: string }).version : "?"}\u0000`,
+    );
+  }
+  const walk = (dir: string) => {
+    if (!existsSync(dir)) return;
+    const entries = readdirSync(dir, { withFileTypes: true }).sort((a, b) =>
+      a.name < b.name ? -1 : a.name > b.name ? 1 : 0,
+    );
+    for (const entry of entries) {
+      if (entry.name.startsWith("._") || entry.name === "node_modules")
+        continue;
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.isFile()) {
+        const stat = statSync(full);
+        hash.update(
+          `${path.relative(ROOT, full)}\u0000${stat.size}\u0000${stat.mtimeMs}\u0001`,
+        );
+      }
+    }
+  };
+  walk(path.join(ROOT, "src"));
+  walk(path.join(ROOT, "scripts/qa"));
+  return hash.digest("hex").slice(0, 16);
+}
+
+let tailwindBuild: Promise<string> | null = null;
+
+/** Tailwind 산출물을 실제로 빌드한다(캐시 — 프로세스 안에서는 한 번). 손으로 옮겨 적지 않는다. */
+export function buildTailwindCss(): Promise<string> {
+  tailwindBuild ??= buildTailwindCssUncached();
+  return tailwindBuild;
+}
+
+async function buildTailwindCssUncached(): Promise<string> {
+  const cached = path.join(CACHE_DIR, `tailwind-${tailwindSourceKey()}.css`);
   const source = path.join(ROOT, "src/app/globals.css");
-  if (
-    existsSync(cached) &&
-    readFileSync(cached, "utf8").length > 0 &&
-    // globals.css 가 더 새것이면 다시 빌드한다.
-    (await import("node:fs")).statSync(cached).mtimeMs >
-      (await import("node:fs")).statSync(source).mtimeMs
-  ) {
+  if (existsSync(cached) && statSync(cached).size > 0) {
     return readFileSync(cached, "utf8");
   }
   const postcss = (await import("postcss")).default;
@@ -92,21 +175,20 @@ export async function buildTailwindCss(): Promise<string> {
   if (!result.css.includes(".mt-4"))
     throw new Error("Tailwind 유틸리티가 비었다 — 측정 중단(거짓 측정 방지)");
   mkdirSync(CACHE_DIR, { recursive: true });
-  writeFileSync(cached, result.css, "utf8");
+  // 다른 측정이 같은 열쇠를 동시에 읽을 수 있다 — 반쯤 쓴 파일을 읽지 않게 다 쓴 뒤 이름을 바꾼다.
+  const partial = `${cached}.${process.pid}.tmp`;
+  writeFileSync(partial, result.css, "utf8");
+  renameSync(partial, cached);
   return result.css;
 }
 
 export async function paperStyles(): Promise<string> {
-  const katex = readFileSync(
-    path.join(ROOT, "node_modules/katex/dist/katex.min.css"),
-    "utf8",
-  );
   const tailwind = await buildTailwindCss();
   const moduleCss = readFileSync(
     path.join(ROOT, "src/components/print/TestPrint.module.css"),
     "utf8",
   );
-  return `<style>${katex}</style><style>${tailwind}</style><style>${moduleCss}</style>`;
+  return `<style>${PAPER_FONT_CSS}</style><style>${katexCss()}</style><style>${tailwind}</style><style>${moduleCss}</style>`;
 }
 
 export interface SlotInput {
@@ -134,6 +216,11 @@ export interface SlotInput {
    * `probeChoiceFigureParity.test.tsx` 가 잠근다.
    */
   choiceFigureIndex?: number[];
+  /**
+   * 엔진이 그린 인라인 SVG(`Problem.figureSvg`) — 제품 인쇄 경로(`PaperProblemView`)가 넘기는 그림이다.
+   * 🔴 안 넘기면 탐침만 그림 없는 지면을 잰다 — SVG 그림 문항 1만 9천여 행의 높이가 그림만큼 비었다(D-164 ② · 2026-10-21).
+   */
+  figureSvg?: string | null;
   /** 「서술형 n」 배지 번호. 없으면 배지를 안 그린다. */
   essayNumber?: number | null;
 }
@@ -149,6 +236,7 @@ export function renderSlot(row: SlotInput, number: number): string {
       figureDims={row.figureDims}
       figureSourceMm={row.figureSourceMm}
       choiceFigureIndex={row.choiceFigureIndex}
+      figureSvg={row.figureSvg ?? null}
       className="problemText"
       // 인쇄 지면은 지연 로딩을 쓰지 않는다(PaperProblemView 와 같다).
       deferFigures={false}
@@ -196,27 +284,72 @@ export async function paperDocument(pages: string[]): Promise<string> {
 }
 
 /** 측정 전에 스타일시트가 실제로 붙었는지 확인한다 — 안 붙으면 값이 통째로 거짓이다. */
+/**
+ * 글꼴 적재 — `document.fonts.ready` 를 기다린 **뒤에** 읽는다. 실패한 글꼴(주소가 안 풀린 KaTeX 따위)과 지면 명조가
+ * 실제로 실렸는지 · 본문이 그 이름으로 풀리는지를 같이 낸다. 크기(12.5px)만 보던 예전 가드는 서체가 통째로 바뀐 지면을
+ * 통과시켰다(2026-10-21). 지면 명조가 안 쓰이는 문서(본문이 없는 장)에서는 `serifUsed` 가 거짓이라 묻지 않는다.
+ */
+export const FONT_GUARD = `
+  const faces = [...document.fonts];
+  const family = text ? getComputedStyle(text).fontFamily : "";
+  const fonts = {
+    fontsFailed: faces.filter((f) => f.status === "error").map((f) => f.family.replace(/"/g, "")),
+    serifUsed: Boolean(text),
+    serifLoaded: faces.some((f) => f.family.replace(/"/g, "") === "TM Noto Serif KR" && f.status === "loaded"),
+    family,
+  };`;
+
 export const GUARD_SCRIPT = `(() => {
   const katex = document.querySelector(".katex-mathml");
   const a4 = document.querySelector(".a4Page");
-  const text = document.querySelector(".problemText");
+  const text = document.querySelector(".problemText");${FONT_GUARD}
   return {
     katexOk: katex ? getComputedStyle(katex).position === "absolute" : true,
     a4Height: a4 ? a4.getBoundingClientRect().height : 0,
     fontSize: text ? getComputedStyle(text).fontSize : "",
+    ...fonts,
   };
 })()`;
 
-export function assertPaperSane(guard: {
-  katexOk: boolean;
-  a4Height: number;
-  fontSize: string;
-}) {
+/** 글꼴 가드의 결과. 손으로 가드 값을 짓는 옛 호출을 깨지 않으려고 칸은 선택이다 — `GUARD_SCRIPT` 는 늘 채운다. */
+export interface FontGuard {
+  fontsFailed?: string[];
+  serifUsed?: boolean;
+  serifLoaded?: boolean;
+  family?: string;
+}
+
+/** 글꼴이 제품 지면과 같은가 — 기출 탐침(`examPaperProbe.assertExamSane`)도 이것을 부른다. */
+export function assertFontsLoaded(guard: FontGuard) {
+  if (guard.fontsFailed?.length)
+    throw new Error(
+      `글꼴을 못 실었다(${[...new Set(guard.fontsFailed)].join(", ")}) — 측정 중단(거짓 측정 방지)`,
+    );
+  if (guard.serifUsed && guard.serifLoaded === false)
+    throw new Error(
+      "지면 명조(TM Noto Serif KR)가 안 실렸다 — 측정 중단(거짓 측정 방지)",
+    );
+  if (
+    guard.serifUsed &&
+    guard.family !== undefined &&
+    !/^"?TM Noto Serif KR/.test(guard.family)
+  )
+    throw new Error(`본문이 지면 명조로 안 풀린다: ${guard.family}`);
+}
+
+export function assertPaperSane(
+  guard: {
+    katexOk: boolean;
+    a4Height: number;
+    fontSize: string;
+  } & FontGuard,
+) {
   if (!guard.katexOk) throw new Error("KaTeX CSS 미적용 — 측정 중단");
   if (Math.abs(guard.a4Height - 1122.5) > 2)
     throw new Error(`A4 높이가 297mm 가 아니다: ${guard.a4Height}`);
   if (guard.fontSize !== "12.5px")
     throw new Error(`본문 글꼴이 지면과 다르다: ${guard.fontSize}`);
+  assertFontsLoaded(guard);
 }
 
 /**

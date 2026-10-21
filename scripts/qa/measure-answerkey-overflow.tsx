@@ -6,9 +6,13 @@
  * `paginateAnswerKey` 는 장당 8건 고정이고, **1쪽에는 빠른 정답 상자가 더 얹힌다**
  * (문항 수에 비례해 커진다). 넘침 경고는 `content` 만 보고 `solution` 은 안 본다.
  *
- *   npx tsx scripts/qa/measure-answerkey-overflow.tsx --tests 120 --count 25
- *   npx tsx scripts/qa/measure-answerkey-overflow.tsx --with-solution --shot out.png
- *   npx tsx scripts/qa/measure-answerkey-overflow.tsx --with-solution --json .measure/ak.json
+ *   npx tsx --require ./scripts/qa/css-module-stub.cjs scripts/qa/measure-answerkey-overflow.tsx --tests 120 --count 25
+ *   npx tsx --require ./scripts/qa/css-module-stub.cjs scripts/qa/measure-answerkey-overflow.tsx --with-solution --shot out.png
+ *   npx tsx --require ./scripts/qa/css-module-stub.cjs scripts/qa/measure-answerkey-overflow.tsx --with-solution --json .measure/ak.json
+ *
+ * ⚠️ 이 수는 **장을 쪼개지 않는 길**의 것이다(기출 교사용 정답지 `PastPaperPrint`). 자습 · 확인테스트(`TestPrint`)는
+ *    그린 뒤 실제 DOM 을 재서 넘친 장을 쪼갠다(`splitOverflowingAnswerPages` · 2026-10-18) — 거기서는 잃지 않고 장이 는다.
+ *    잘림 판정은 그 쪼개기와 **같은 식**이다(해설 2단 상자 밖에 조각 하나라도 있으면).
  *
  * ⚠️ 2026-08-18 추가: 장 단위 «잘렸다/아니다» 만으로는 **판정을 만들 수 없다.**
  *    어느 문항이 사라졌는지가 있어야 «solution 으로 예측할 수 있는가»를 채점한다.
@@ -21,15 +25,32 @@ import { PrismaClient } from "@prisma/client";
 import { chromium } from "@playwright/test";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import { MathText } from "../../src/components/math/MathText";
+import { PrintAnswerKeyPage } from "../../src/components/print/PrintAnswerKeyPage";
 import type { TestPrintProblem } from "../../src/components/print/types";
 import { paginateAnswerKey } from "../../src/lib/printLayout";
-import { solutionForDisplay } from "../../src/lib/solutionSteps";
-import { PAPER_VARS, paperStyles, writeProbe } from "./paperProbe";
+import {
+  assertFontsLoaded,
+  FONT_GUARD,
+  paperStyles,
+  writeProbe,
+} from "./paperProbe";
 
 const prisma = new PrismaClient();
 
-/** `PrintAnswerKeyPage` 의 DOM 과 같은 모양. */
+/** 글꼴 가드 — 정답지 해설 본문이 지면 명조로 풀리는가(`paperProbe.FONT_GUARD` 를 `.solutionBody` 에 댄다). */
+const ANSWER_FONT_GUARD = `(() => {
+  const text = document.querySelector(".solutionBody");${FONT_GUARD}
+  return fonts;
+})()`;
+
+/**
+ * 제품의 `PrintAnswerKeyPage` 를 **그대로** 그린다.
+ *
+ * 🔴 2026-10-21(D-164 ② · Codex 검토) 전에는 그 DOM 을 손으로 지었고 셋이 갈려 있었다 — 지면 변수를 `style` 속성에 그대로
+ *    끼워 글꼴 스택의 첫 따옴표에서 속성이 끊겼고(`paperProbe.PAPER_VARS_ATTR` 의 함정 — 본문이 지면 명조가 아니었다),
+ *    «빠른 정답» 상자를 해설 2단 **밖**에 두었고(제품은 안쪽 첫머리), 답을 머리 줄에 붙였다(제품은 따로 한 줄).
+ *    CSS 모듈 이름은 `css-module-stub.cjs` 가 원문 이름으로 풀어 탐침이 싣는 `TestPrint.module.css` 원문과 맞는다.
+ */
 function renderAnswerPage(
   all: TestPrintProblem[],
   pageProblems: TestPrintProblem[],
@@ -38,42 +59,19 @@ function renderAnswerPage(
   totalPages: number,
   tag: string,
 ): string {
-  const quick =
-    pageNumber === 1
-      ? `<section class="quickAnswerBox"><h3>빠른 정답</h3><div class="quickAnswerGrid">${all
-          .map(
-            (p, i) =>
-              `<div class="quickAnswerCell"><strong>문 ${i + 1}</strong>${renderToStaticMarkup(
-                <MathText as="span" text={p.answer} />,
-              )}</div>`,
-          )
-          .join("")}</div></section>`
-      : "";
-  const items = pageProblems
-    .map(
-      (p, i) =>
-        `<article class="solutionItem" data-pid="${p.id}"><div class="solutionHeading">문 ${startingNumber + i} · ${renderToStaticMarkup(
-          <MathText as="span" text={p.answer} />,
-        )}</div><div class="solutionBody">${renderToStaticMarkup(
-          // 🔴 **제품과 같은 글을 그려야 «참»이다.** `PrintAnswerKeyPage` 는
-          //    `solutionForDisplay` 를 태운다 — 여기서 원문을 그리면 이 탐침이
-          //    «제품이 아닌 지면»을 재고, 그 기록으로 자를 채점하면
-          //    **틀린 자가 만점**을 받는다(2026-09-06 실제로 그럴 뻔했다).
-          <MathText
-            as="div"
-            text={
-              solutionForDisplay(p.solution) ?? "해설이 등록되지 않았습니다."
-            }
-          />,
-        )}</div></article>`,
-    )
-    .join("");
-  return `<section class="a4Page answerPage" data-tag="${tag}" data-page="${pageNumber}" style="${PAPER_VARS}">
-<header class="answerHeader"><div><div class="answerEyebrow">오늘 수학 · ANSWER KEY</div><h2>일일테스트 · 이차방정식</h2></div><span>정답 및 해설 · ${pageNumber} / ${totalPages}</span></header>
-${quick}
-<div class="answerSolutions" style="column-count:2">${items}</div>
-<footer class="answerFooter">오늘 수학 · p. ${pageNumber}</footer>
-</section>`;
+  return renderToStaticMarkup(
+    <PrintAnswerKeyPage
+      allProblems={all}
+      pageProblems={pageProblems}
+      page={pageNumber}
+      startingNumber={startingNumber}
+      testTitle="일일테스트 · 이차방정식"
+      totalPages={totalPages}
+    />,
+  ).replace(
+    "<section ",
+    `<section data-tag="${tag}" data-page="${pageNumber}" `,
+  );
 }
 
 async function main() {
@@ -149,15 +147,20 @@ async function main() {
         "probe-answerkey.html",
         `<!doctype html><html><head><meta charset="utf-8">${styles}<style>body{margin:0}</style></head><body>${sections.join("\n")}</body></html>`,
       );
-      await page.goto(url, { waitUntil: "load" });
+      await page.goto(url, { waitUntil: "load", timeout: 120_000 });
       await page.evaluate(() => document.fonts.ready);
+      assertFontsLoaded(
+        (await page.evaluate(ANSWER_FONT_GUARD)) as Parameters<
+          typeof assertFontsLoaded
+        >[0],
+      );
       const res = (await page.evaluate(() => {
         const out: Array<{
           tag: number;
           page: number;
           clientW: number;
           scrollW: number;
-          lost: string[];
+          lost: number[];
           heights: number[];
           quickCells: number[];
           columnPx: number;
@@ -165,14 +168,21 @@ async function main() {
         document.querySelectorAll(".a4Page").forEach((section) => {
           const el = section.querySelector(".answerSolutions") as HTMLElement;
           const box = el.getBoundingClientRect();
-          const lost: string[] = [];
+          const lost: number[] = [];
           const heights: number[] = [];
-          el.querySelectorAll(".solutionItem").forEach((node) => {
+          el.querySelectorAll(".solutionItem").forEach((node, index) => {
             const item = node as HTMLElement;
-            // 다단에서 넘친 항목은 **3번째 단**, 즉 컨테이너 오른쪽 밖에 놓인다.
-            // (세로로 잘리는 게 아니라 가로로 밀려 지면에서 사라진다.)
-            if (item.getBoundingClientRect().left > box.right - 1)
-              lost.push(item.dataset.pid ?? "");
+            // 다단에서 넘친 항목은 **3번째 단**(상자 오른쪽 밖)이나 상자 아래로 밀려 지면에서 사라진다.
+            // 판정은 제품 `TestPrint` 의 쪼개기와 같은 식 — 조각(줄 상자) 하나라도 상자 밖이면.
+            if (
+              [...item.getClientRects()].some(
+                (rect) =>
+                  rect.left >= box.right - 1 ||
+                  rect.right > box.right + 1 ||
+                  rect.bottom > box.bottom + 1,
+              )
+            )
+              lost.push(index);
             // 항목 높이는 **이 지면 안에서** 재야 한다 — 따로 떼어 재면 글꼴 문맥이
             // 달라져 조용히 다른 값이 나온다(실제로 그래서 자가 20% 짧았다).
             heights.push(
@@ -211,7 +221,7 @@ async function main() {
         page: number;
         clientW: number;
         scrollW: number;
-        lost: string[];
+        lost: number[];
         heights: number[];
         quickCells: number[];
         columnPx: number;
@@ -220,17 +230,18 @@ async function main() {
         total += 1;
         const picked = pick(r.tag);
         const pages = paginateAnswerKey(picked);
+        const ids = pages[r.page - 1]!.problems.map((p) => p.id);
         pageLog.push({
           test: r.tag,
           page: r.page,
-          ids: pages[r.page - 1]!.problems.map((p) => p.id),
-          lost: r.lost,
+          ids,
+          lost: r.lost.map((index) => ids[index]!),
           heights: r.heights,
           quickCells: r.quickCells,
           columnPx: r.columnPx,
         });
-        // 다단에서 높이를 넘긴 내용은 **가로로** 단을 더 만들고 그게 잘린다.
-        if (r.scrollW > r.clientW + 1) {
+        // 다단에서 높이를 넘긴 내용은 **가로로** 단을 더 만들고 그게 잘린다 — 잃은 해설이 있는 장을 센다.
+        if (r.lost.length > 0) {
           clipped += 1;
           worst.push({
             test: r.tag,
