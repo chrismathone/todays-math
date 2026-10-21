@@ -1,0 +1,7 @@
+﻿from pathlib import Path
+import json,hashlib
+P=Path(__file__).resolve().parent;OLD=P.parent/'figure-editor-import-audit-20261021-r3';R=Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008');sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+a=json.loads((OLD/'own-before.json').read_text(encoding='utf-8'));paths=list(a)+['scripts/figure/engine-catalog.json','scripts/figure/build_catalog.py','vendor/figure-engine/core/figure_quality.py'];before={x:sha(R/x) for x in paths};(P/'own-before.json').write_text(json.dumps(before,indent=2),encoding='utf-8');probe=P/'own-write-probe.txt';probe.write_text('R4 실제 현재함수: 분수 입력 거절 확인\n',encoding='utf-8');assert '분수' in probe.read_text(encoding='utf-8')
+s=(OLD/'own-dom-controls.cjs').read_text(encoding='utf-8-sig');start=s.index('const probes=[];');end=s.index('const after={};',start)
+s=s[:start]+'''const probes=[];for(const n of [1.001,.999,60.001])check('strict-fractional-cols-'+n,{field:'cols',n},()=>{try{grid.setFigureGrid(initial,{...state,cols:n});return false}catch{return true}});
+'''+s[end:];(P/'own-dom-controls.cjs').write_text(s,encoding='utf-8');(P/'own-harness-lineage.json').write_text(json.dumps({'previousHarnessSHA256':sha(OLD/'own-dom-controls.cjs'),'currentHarnessSHA256':sha(P/'own-dom-controls.cjs'),'change':'same83 runtime controls; replace3 diagnostic acceptance probes by3 strict rejection assertions; no previous results used as current execution','R3ArtifactsReadOnly':True},indent=2),encoding='utf-8')

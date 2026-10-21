@@ -1,0 +1,507 @@
+[
+  {
+    "id": "parse-bad-0",
+    "input": "0 0 0 10 2 2"
+  },
+  {
+    "id": "bad-keeps-shape-0",
+    "input": "0 0 0 10 2 2"
+  },
+  {
+    "id": "parse-bad-1",
+    "input": "0 0 10 0 2 2"
+  },
+  {
+    "id": "bad-keeps-shape-1",
+    "input": "0 0 10 0 2 2"
+  },
+  {
+    "id": "parse-bad-2",
+    "input": "0 0 10 10 0 2"
+  },
+  {
+    "id": "bad-keeps-shape-2",
+    "input": "0 0 10 10 0 2"
+  },
+  {
+    "id": "parse-bad-3",
+    "input": "0 0 10 10 61 2"
+  },
+  {
+    "id": "bad-keeps-shape-3",
+    "input": "0 0 10 10 61 2"
+  },
+  {
+    "id": "parse-bad-4",
+    "input": "0 0 10 10 2 999"
+  },
+  {
+    "id": "bad-keeps-shape-4",
+    "input": "0 0 10 10 2 999"
+  },
+  {
+    "id": "parse-bad-5",
+    "input": "0 0 10 11 2 2"
+  },
+  {
+    "id": "bad-keeps-shape-5",
+    "input": "0 0 10 11 2 2"
+  },
+  {
+    "id": "parse-bad-6",
+    "input": "0 0 NaN 10 2 2"
+  },
+  {
+    "id": "bad-keeps-shape-6",
+    "input": "0 0 NaN 10 2 2"
+  },
+  {
+    "id": "parse-bad-7",
+    "input": "0 0 Infinity 10 2 2"
+  },
+  {
+    "id": "bad-keeps-shape-7",
+    "input": "0 0 Infinity 10 2 2"
+  },
+  {
+    "id": "parse-bad-8",
+    "input": "0 0 -10 10 2 2"
+  },
+  {
+    "id": "bad-keeps-shape-8",
+    "input": "0 0 -10 10 2 2"
+  },
+  {
+    "id": "parse-bad-9",
+    "input": "0 0 10 10 1.5 2"
+  },
+  {
+    "id": "bad-keeps-shape-9",
+    "input": "0 0 10 10 1.5 2"
+  },
+  {
+    "id": "parse-bad-10",
+    "input": "0 0 10 10 2 2 junk"
+  },
+  {
+    "id": "bad-keeps-shape-10",
+    "input": "0 0 10 10 2 2 junk"
+  },
+  {
+    "id": "parse-bad-11",
+    "input": "0 0 10 10 2"
+  },
+  {
+    "id": "bad-keeps-shape-11",
+    "input": "0 0 10 10 2"
+  },
+  {
+    "id": "parse-bad-12",
+    "input": "0 0 10 10 2 2 2"
+  },
+  {
+    "id": "bad-keeps-shape-12",
+    "input": "0 0 10 10 2 2 2"
+  },
+  {
+    "id": "parse-bad-13",
+    "input": "10000001 0 10 10 2 2"
+  },
+  {
+    "id": "bad-keeps-shape-13",
+    "input": "10000001 0 10 10 2 2"
+  },
+  {
+    "id": "parse-valid-0 0 10 10 1 1",
+    "input": "0 0 10 10 1 1"
+  },
+  {
+    "id": "parse-valid--20 -20 10 10 60 60",
+    "input": "-20 -20 10 10 60 60"
+  },
+  {
+    "id": "parse-valid-0.5 0.5 1.25 1.25 2 3",
+    "input": "0.5 0.5 1.25 1.25 2 3"
+  },
+  {
+    "id": "placement-nested",
+    "input": "<g><g data-grid=\"0 0 10 10 2 2\"><path id=\"marked\" d=\"M0 0L20 20\" stroke=\"#000000\"/></g></g>"
+  },
+  {
+    "id": "placement-transform",
+    "input": "<g transform=\"translate(1 1)\" data-grid=\"0 0 10 10 2 2\"><path id=\"marked\" d=\"M0 0L20 20\" stroke=\"#000000\"/></g>"
+  },
+  {
+    "id": "placement-late",
+    "input": "<line id=\"line\" x1=\"10\" y1=\"20\" x2=\"80\" y2=\"60\" stroke=\"#000000\"/><g data-grid=\"0 0 10 10 2 2\"><path id=\"marked\" d=\"M0 0L20 20\" stroke=\"#000000\"/></g>"
+  },
+  {
+    "id": "placement-path-transform",
+    "input": "<g data-grid=\"0 0 10 10 2 2\"><path transform=\"translate(1 1)\" id=\"marked\" d=\"M0 0L20 20\" stroke=\"#000000\"/></g>"
+  },
+  {
+    "id": "placement-empty",
+    "input": "<g data-grid=\"0 0 10 10 2 2\"/>"
+  },
+  {
+    "id": "placement-two-path",
+    "input": "<g data-grid=\"0 0 10 10 2 2\"><path id=\"marked\" d=\"M0 0L20 20\" stroke=\"#000000\"/><path id=\"extra\" d=\"M0 1L20 1\"/></g>"
+  },
+  {
+    "id": "duplicate-shape-remains",
+    "input": "<g data-grid=\"0 0 10 10 2 2\"><path id=\"marked\" d=\"M0 0L20 20\" stroke=\"#000000\"/></g><g data-grid=\"0 0 10 10 2 2\"><path id=\"second\" d=\"M0 0L20 20\" stroke=\"#000000\"/></g>"
+  },
+  {
+    "id": "set-shape-ownership",
+    "input": {
+      "x": 0,
+      "y": 0,
+      "cellW": 10,
+      "cellH": 10,
+      "cols": 8,
+      "rows": 8,
+      "color": "#aaaaaa",
+      "width": 0.8,
+      "dashed": false
+    }
+  },
+  {
+    "id": "resize-ownership-x12",
+    "input": {
+      "axis": "x",
+      "count": 12
+    }
+  },
+  {
+    "id": "resize-ownership-y5",
+    "input": {
+      "axis": "y",
+      "count": 5
+    }
+  },
+  {
+    "id": "resize-ownership-x60",
+    "input": {
+      "axis": "x",
+      "count": 60
+    }
+  },
+  {
+    "id": "resize-ownership-x1",
+    "input": {
+      "axis": "x",
+      "count": 1
+    }
+  },
+  {
+    "id": "remove-grid-ownership",
+    "input": {
+      "x": 0,
+      "y": 0,
+      "cellW": 10,
+      "cellH": 10,
+      "cols": 8,
+      "rows": 8,
+      "color": "#aaaaaa",
+      "width": 0.8,
+      "dashed": false
+    }
+  },
+  {
+    "id": "cover-ownership",
+    "input": {
+      "x": -20,
+      "y": -20,
+      "width": 120,
+      "height": 120
+    }
+  },
+  {
+    "id": "cover60-remains-short",
+    "input": {
+      "width": 610,
+      "cell": 10,
+      "cols": 60
+    }
+  },
+  {
+    "id": "set-nonfinite-x-nan",
+    "input": {
+      "field": "x",
+      "name": "nan"
+    }
+  },
+  {
+    "id": "set-nonfinite-x-inf",
+    "input": {
+      "field": "x",
+      "name": "inf"
+    }
+  },
+  {
+    "id": "set-nonfinite-x-ninf",
+    "input": {
+      "field": "x",
+      "name": "ninf"
+    }
+  },
+  {
+    "id": "set-nonfinite-y-nan",
+    "input": {
+      "field": "y",
+      "name": "nan"
+    }
+  },
+  {
+    "id": "set-nonfinite-y-inf",
+    "input": {
+      "field": "y",
+      "name": "inf"
+    }
+  },
+  {
+    "id": "set-nonfinite-y-ninf",
+    "input": {
+      "field": "y",
+      "name": "ninf"
+    }
+  },
+  {
+    "id": "set-nonfinite-cellW-nan",
+    "input": {
+      "field": "cellW",
+      "name": "nan"
+    }
+  },
+  {
+    "id": "set-nonfinite-cellW-inf",
+    "input": {
+      "field": "cellW",
+      "name": "inf"
+    }
+  },
+  {
+    "id": "set-nonfinite-cellW-ninf",
+    "input": {
+      "field": "cellW",
+      "name": "ninf"
+    }
+  },
+  {
+    "id": "set-nonfinite-cellH-nan",
+    "input": {
+      "field": "cellH",
+      "name": "nan"
+    }
+  },
+  {
+    "id": "set-nonfinite-cellH-inf",
+    "input": {
+      "field": "cellH",
+      "name": "inf"
+    }
+  },
+  {
+    "id": "set-nonfinite-cellH-ninf",
+    "input": {
+      "field": "cellH",
+      "name": "ninf"
+    }
+  },
+  {
+    "id": "set-nonfinite-cols-nan",
+    "input": {
+      "field": "cols",
+      "name": "nan"
+    }
+  },
+  {
+    "id": "set-nonfinite-cols-inf",
+    "input": {
+      "field": "cols",
+      "name": "inf"
+    }
+  },
+  {
+    "id": "set-nonfinite-cols-ninf",
+    "input": {
+      "field": "cols",
+      "name": "ninf"
+    }
+  },
+  {
+    "id": "set-nonfinite-rows-nan",
+    "input": {
+      "field": "rows",
+      "name": "nan"
+    }
+  },
+  {
+    "id": "set-nonfinite-rows-inf",
+    "input": {
+      "field": "rows",
+      "name": "inf"
+    }
+  },
+  {
+    "id": "set-nonfinite-rows-ninf",
+    "input": {
+      "field": "rows",
+      "name": "ninf"
+    }
+  },
+  {
+    "id": "set-nonfinite-width-nan",
+    "input": {
+      "field": "width",
+      "name": "nan"
+    }
+  },
+  {
+    "id": "set-nonfinite-width-inf",
+    "input": {
+      "field": "width",
+      "name": "inf"
+    }
+  },
+  {
+    "id": "set-nonfinite-width-ninf",
+    "input": {
+      "field": "width",
+      "name": "ninf"
+    }
+  },
+  {
+    "id": "set-invalid-cols0",
+    "input": {
+      "field": "cols",
+      "n": 0
+    }
+  },
+  {
+    "id": "set-invalid-rows61",
+    "input": {
+      "field": "rows",
+      "n": 61
+    }
+  },
+  {
+    "id": "set-invalid-cols1.5",
+    "input": {
+      "field": "cols",
+      "n": 1.5
+    }
+  },
+  {
+    "id": "set-invalid-cellW-1",
+    "input": {
+      "field": "cellW",
+      "n": -1
+    }
+  },
+  {
+    "id": "set-invalid-cellH0",
+    "input": {
+      "field": "cellH",
+      "n": 0
+    }
+  },
+  {
+    "id": "set-invalid-width257",
+    "input": {
+      "field": "width",
+      "n": 257
+    }
+  },
+  {
+    "id": "marks-\\vec{AB}",
+    "input": {
+      "tex": "\\vec{AB}",
+      "expected": "\\overrightarrow{\\mathrm{AB}}"
+    }
+  },
+  {
+    "id": "marks-\\vec{ABC}",
+    "input": {
+      "tex": "\\vec{ABC}",
+      "expected": "\\overrightarrow{\\mathrm{ABC}}"
+    }
+  },
+  {
+    "id": "marks-\\vec{a}",
+    "input": {
+      "tex": "\\vec{a}",
+      "expected": "\\vec{a}"
+    }
+  },
+  {
+    "id": "marks-\\overparen{ABC}",
+    "input": {
+      "tex": "\\overparen{ABC}",
+      "expected": "\\overparen{\\mathrm{ABC}}"
+    }
+  },
+  {
+    "id": "marks-\\overset{\\frown}{ABC}",
+    "input": {
+      "tex": "\\overset{\\frown}{ABC}",
+      "expected": "\\overparen{\\mathrm{ABC}}"
+    }
+  },
+  {
+    "id": "hwp-$root2$",
+    "input": {
+      "input": "$root2$",
+      "expected": "$\\sqrt{2}$"
+    }
+  },
+  {
+    "id": "hwp-root2",
+    "input": {
+      "input": "root2",
+      "expected": "root2"
+    }
+  },
+  {
+    "id": "hwp-hwp2",
+    "input": {
+      "input": "hwp2",
+      "expected": "hwp2"
+    }
+  },
+  {
+    "id": "hwp-AB",
+    "input": {
+      "input": "AB",
+      "expected": "AB"
+    }
+  },
+  {
+    "id": "hwp-$\\vec{a}$",
+    "input": {
+      "input": "$\\vec{a}$",
+      "expected": "$\\vec{a}$"
+    }
+  },
+  {
+    "id": "strict-fractional-cols-1.001",
+    "input": {
+      "field": "cols",
+      "n": 1.001
+    }
+  },
+  {
+    "id": "strict-fractional-cols-0.999",
+    "input": {
+      "field": "cols",
+      "n": 0.999
+    }
+  },
+  {
+    "id": "strict-fractional-cols-60.001",
+    "input": {
+      "field": "cols",
+      "n": 60.001
+    }
+  }
+]

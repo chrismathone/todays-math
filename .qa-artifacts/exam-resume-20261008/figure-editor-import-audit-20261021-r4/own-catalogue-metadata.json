@@ -1,0 +1,28 @@
+{
+  "baseline": "R1 local patched source copy, historical hash snapshot; not a new build execution",
+  "baselineSHA256": "ccf666b112a5c96be6dac56bbae3d0ac75dcc54944b1f1aa4150821105c33ecd",
+  "currentSHA256": "54a665d1d3c1d96873e73241ed2a48f87356b22b2891507e6d992c4314642f36",
+  "differences": [
+    {
+      "path": "/elementary/pictograph/optional",
+      "before": [],
+      "after": [
+        "hideUnit"
+      ]
+    },
+    {
+      "path": "/elementary/rotateFlip/optional",
+      "before": [
+        "n"
+      ],
+      "after": [
+        "n",
+        "showAfter"
+      ]
+    }
+  ],
+  "sameV2Example": true,
+  "hideUnitPresent": true,
+  "showAfterPresent": true,
+  "buildExecutedByWorker": false
+}
