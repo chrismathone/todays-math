@@ -1,0 +1,3 @@
+﻿from pathlib import Path
+import hashlib,json
+P=Path(__file__).resolve().parent;R=Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008');files=[R/f'src/lib/figure/{n}.ts' for n in ['renderFigureSpec','mathjaxSubstitute','mathjaxLabel']]+[R/'scripts/figure/render_spec.py',R/'scripts/figure/engine_path.py']+list((R/'vendor/figure-engine').rglob('*.py'));before={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in files};(P/'own-render-sources-before.json').write_text(json.dumps(before,indent=2),encoding='utf-8');print(json.dumps({'rendererSourceFiles':len(before)}))

@@ -1,0 +1,2310 @@
+{
+  "counts": {
+    "assertions": 383,
+    "passed": 383,
+    "failed": 0
+  },
+  "branchCountsActual": {
+    "1": 42,
+    "0": 58
+  },
+  "checks": [
+    {
+      "name": "0/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "0/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "1/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "1/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "1/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "1/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "2/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "2/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "2/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "2/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "3/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "3/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "4/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "4/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "4/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "4/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "5/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "5/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "5/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "5/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "6/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "6/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "6/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "6/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "7/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "7/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "8/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "8/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "8/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "8/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "9/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "9/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "9/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "9/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "10/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "10/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "10/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "10/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "11/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "11/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "11/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "11/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "12/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "12/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "12/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "12/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "13/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "13/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "14/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "14/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "14/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "14/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "15/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "15/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "15/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "15/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "16/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "16/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "16/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "16/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "17/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "17/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "18/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "18/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "19/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "19/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "19/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "19/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "20/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "20/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "21/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "21/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "22/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "22/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "22/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "22/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "23/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "23/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "23/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "23/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "24/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "24/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "24/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "24/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "25/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "25/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "25/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "25/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "26/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "26/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "27/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "27/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "28/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "28/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "28/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "28/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "29/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "29/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "29/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "29/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "30/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "30/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "31/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "31/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "32/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "32/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "33/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "33/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "33/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "33/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "34/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "34/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "35/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "35/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "35/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "35/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "36/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "36/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "36/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "36/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "37/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "37/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "37/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "37/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "38/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "38/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "39/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "39/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "40/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "40/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "40/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "40/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "41/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "41/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "41/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "41/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "42/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "42/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "42/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "42/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "43/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "43/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "43/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "43/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "44/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "44/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "45/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "45/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "45/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "45/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "46/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "46/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "47/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "47/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "48/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "48/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "49/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "49/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "50/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "50/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "50/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "50/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "51/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "51/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "52/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "52/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "53/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "53/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "53/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "53/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "54/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "54/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "54/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "54/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "55/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "55/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "56/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "56/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "56/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "56/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "57/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "57/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "58/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "58/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "58/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "58/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "59/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "59/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "60/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "60/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "60/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "60/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "61/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "61/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "62/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "62/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "63/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "63/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "63/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "63/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "64/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "64/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "64/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "64/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "65/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "65/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "65/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "65/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "66/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "66/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "66/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "66/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "67/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "67/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "68/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "68/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "68/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "68/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "69/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "69/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "70/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "70/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "71/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "71/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "72/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "72/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "73/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "73/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "73/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "73/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "74/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "74/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "74/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "74/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "75/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "75/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "76/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "76/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "76/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "76/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "77/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "77/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "78/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "78/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "78/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "78/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "79/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "79/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "79/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "79/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "80/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "80/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "81/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "81/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "81/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "81/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "82/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "82/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "82/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "82/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "83/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "83/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "83/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "83/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "84/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "84/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "84/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "84/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "85/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "85/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "85/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "85/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "86/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "86/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "86/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "86/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "87/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "87/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "88/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "88/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "88/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "88/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "89/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "89/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "89/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "89/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "90/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "90/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "91/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "91/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "91/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "91/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "92/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "92/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "92/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "92/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "93/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "93/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "94/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "94/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "95/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "95/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "96/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "96/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "96/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "96/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "97/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "97/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "98/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "98/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "98/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "98/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "99/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "99/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "99/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "99/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "100/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "100/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "100/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "100/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "100/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "101/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "101/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "101/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "102/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "102/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "102/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "102/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "102/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "103/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "103/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "103/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "104/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "104/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "104/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "104/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "104/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "105/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "105/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "105/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "106/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "106/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "106/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "106/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "106/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "107/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "107/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "107/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "108/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "108/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "108/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "108/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "108/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "109/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "109/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "109/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "110/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "110/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "110/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "110/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "110/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "111/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "111/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "111/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "112/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "112/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "112/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "112/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "112/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "113/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "113/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "113/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "114/boundaryCycleExactly",
+      "pass": true
+    },
+    {
+      "name": "114/vertexLabelsOnly",
+      "pass": true
+    },
+    {
+      "name": "114/noConstructionExtraMarks",
+      "pass": true
+    },
+    {
+      "name": "114/countAndUnits",
+      "pass": true
+    },
+    {
+      "name": "114/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "115/inverseNoFigure",
+      "pass": true
+    },
+    {
+      "name": "115/inverseAnswerScalarNoUnit",
+      "pass": true
+    },
+    {
+      "name": "115/forcedModeN",
+      "pass": true
+    },
+    {
+      "name": "API100andForced16",
+      "pass": true
+    },
+    {
+      "name": "bothActualBranches",
+      "pass": true
+    },
+    {
+      "name": "heapAndNoCalls",
+      "pass": true
+    }
+  ],
+  "cases": [
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 10,
+      "givenDiagonalCount": 7
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 11,
+      "edges": 11,
+      "possibleDiagonalsNotDrawn": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 11,
+      "edges": 11,
+      "possibleDiagonalsNotDrawn": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 11,
+      "givenDiagonalCount": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 7,
+      "edges": 7,
+      "possibleDiagonalsNotDrawn": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 8,
+      "givenDiagonalCount": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 11,
+      "edges": 11,
+      "possibleDiagonalsNotDrawn": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 7,
+      "givenDiagonalCount": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 8,
+      "givenDiagonalCount": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 8,
+      "givenDiagonalCount": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 8,
+      "edges": 8,
+      "possibleDiagonalsNotDrawn": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 6,
+      "givenDiagonalCount": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 12,
+      "givenDiagonalCount": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 9,
+      "edges": 9,
+      "possibleDiagonalsNotDrawn": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 10,
+      "edges": 10,
+      "possibleDiagonalsNotDrawn": 7
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 7,
+      "edges": 7,
+      "possibleDiagonalsNotDrawn": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 5,
+      "edges": 5,
+      "possibleDiagonalsNotDrawn": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 5,
+      "givenDiagonalCount": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 11,
+      "givenDiagonalCount": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 5,
+      "givenDiagonalCount": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 5,
+      "givenDiagonalCount": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 11,
+      "givenDiagonalCount": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 9,
+      "edges": 9,
+      "possibleDiagonalsNotDrawn": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 9,
+      "givenDiagonalCount": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 9,
+      "edges": 9,
+      "possibleDiagonalsNotDrawn": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 8,
+      "edges": 8,
+      "possibleDiagonalsNotDrawn": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 11,
+      "edges": 11,
+      "possibleDiagonalsNotDrawn": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 11,
+      "givenDiagonalCount": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 10,
+      "givenDiagonalCount": 7
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 7,
+      "edges": 7,
+      "possibleDiagonalsNotDrawn": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 8,
+      "edges": 8,
+      "possibleDiagonalsNotDrawn": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 7,
+      "givenDiagonalCount": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 10,
+      "edges": 10,
+      "possibleDiagonalsNotDrawn": 7
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 7,
+      "givenDiagonalCount": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 9,
+      "givenDiagonalCount": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 5,
+      "givenDiagonalCount": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 6,
+      "givenDiagonalCount": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 5,
+      "edges": 5,
+      "possibleDiagonalsNotDrawn": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 9,
+      "givenDiagonalCount": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 6,
+      "givenDiagonalCount": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 7,
+      "edges": 7,
+      "possibleDiagonalsNotDrawn": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 7,
+      "edges": 7,
+      "possibleDiagonalsNotDrawn": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 9,
+      "givenDiagonalCount": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 11,
+      "givenDiagonalCount": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 5,
+      "edges": 5,
+      "possibleDiagonalsNotDrawn": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 5,
+      "givenDiagonalCount": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 8,
+      "edges": 8,
+      "possibleDiagonalsNotDrawn": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 9,
+      "givenDiagonalCount": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 8,
+      "givenDiagonalCount": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 9,
+      "edges": 9,
+      "possibleDiagonalsNotDrawn": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 5,
+      "edges": 5,
+      "possibleDiagonalsNotDrawn": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 5,
+      "edges": 5,
+      "possibleDiagonalsNotDrawn": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 10,
+      "givenDiagonalCount": 7
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 9,
+      "edges": 9,
+      "possibleDiagonalsNotDrawn": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 11,
+      "givenDiagonalCount": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 7,
+      "givenDiagonalCount": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 6,
+      "givenDiagonalCount": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 7,
+      "givenDiagonalCount": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 11,
+      "edges": 11,
+      "possibleDiagonalsNotDrawn": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 6,
+      "givenDiagonalCount": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 9,
+      "edges": 9,
+      "possibleDiagonalsNotDrawn": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 7,
+      "givenDiagonalCount": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 7,
+      "edges": 7,
+      "possibleDiagonalsNotDrawn": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 11,
+      "edges": 11,
+      "possibleDiagonalsNotDrawn": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 7,
+      "givenDiagonalCount": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 8,
+      "edges": 8,
+      "possibleDiagonalsNotDrawn": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 5,
+      "edges": 5,
+      "possibleDiagonalsNotDrawn": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 11,
+      "edges": 11,
+      "possibleDiagonalsNotDrawn": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 8,
+      "edges": 8,
+      "possibleDiagonalsNotDrawn": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 9,
+      "givenDiagonalCount": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 5,
+      "edges": 5,
+      "possibleDiagonalsNotDrawn": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 8,
+      "givenDiagonalCount": 5
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 10,
+      "edges": 10,
+      "possibleDiagonalsNotDrawn": 7
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 6,
+      "givenDiagonalCount": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 6,
+      "givenDiagonalCount": 3
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 5,
+      "givenDiagonalCount": 2
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 7,
+      "edges": 7,
+      "possibleDiagonalsNotDrawn": 4
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 1,
+      "n": 11,
+      "givenDiagonalCount": 8
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 9,
+      "edges": 9,
+      "possibleDiagonalsNotDrawn": 6
+    },
+    {
+      "cohort": "actualAPI100",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 0,
+      "n": 5,
+      "edges": 5,
+      "possibleDiagonalsNotDrawn": 2
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 1,
+      "n": 5,
+      "givenDiagonalCount": 2
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 0,
+      "n": 6,
+      "edges": 6,
+      "possibleDiagonalsNotDrawn": 3
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 1,
+      "n": 6,
+      "givenDiagonalCount": 3
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 0,
+      "n": 7,
+      "edges": 7,
+      "possibleDiagonalsNotDrawn": 4
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 1,
+      "n": 7,
+      "givenDiagonalCount": 4
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 0,
+      "n": 8,
+      "edges": 8,
+      "possibleDiagonalsNotDrawn": 5
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 1,
+      "n": 8,
+      "givenDiagonalCount": 5
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 0,
+      "n": 9,
+      "edges": 9,
+      "possibleDiagonalsNotDrawn": 6
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 1,
+      "n": 9,
+      "givenDiagonalCount": 6
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 0,
+      "n": 10,
+      "edges": 10,
+      "possibleDiagonalsNotDrawn": 7
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 1,
+      "n": 10,
+      "givenDiagonalCount": 7
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 0,
+      "n": 11,
+      "edges": 11,
+      "possibleDiagonalsNotDrawn": 8
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 1,
+      "n": 11,
+      "givenDiagonalCount": 8
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 0,
+      "n": 12,
+      "edges": 12,
+      "possibleDiagonalsNotDrawn": 9
+    },
+    {
+      "cohort": "forcedHandler16",
+      "mode": 1,
+      "n": 12,
+      "givenDiagonalCount": 9
+    }
+  ],
+  "sourceOutputsSHA256": "816c15d1f7d29b049b4387c64819da2959b34567510803098de72380bf21cdd4"
+}
