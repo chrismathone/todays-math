@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20703-A38-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dfa-d344-7b73-9677-b466c116f45f",
+ "startedAt": "2026-10-21T19:21:21+0900",
+ "elapsedSec": 9.2,
+ "studentSha256": {
+  "fig-1.png": "4c43a1fa5ad95120ee2ddf45435eb294b3026fc351c2ed3c3fc52a4819ef8618",
+  "student.json": "e7dab3ff63ebac665637f4fd1016687286d9f876dda51cf99fcd560ef3f6cb9f"
+ },
+ "promptSha256": "ed6fd71205f0bff68bca36dbcfa3d4e759645fd6bde9d8d837b8d46a4a71547b",
+ "freezeCommit": "b83ec5db3b5581c59bde147e8074885f8925abba",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"평행선 사이의 대응하는 선분의 길이는 비례하므로 $9:3=x:5$, $3:y=5:25$이다.\\n따라서 $x=15$, $y=15$이므로 $x+y=30$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "평행선 사이의 대응하는 선분의 길이는 비례하므로 $9:3=x:5$, $3:y=5:25$이다.\n따라서 $x=15$, $y=15$이므로 $x+y=30$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9f4dc3b21ebb67e22f5d867ed31e8f2765ba18175b69d52634902df827f49cb6"
+}

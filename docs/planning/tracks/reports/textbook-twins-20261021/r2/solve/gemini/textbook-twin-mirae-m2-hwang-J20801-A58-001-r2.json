@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20801-A58-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "28d0344b-514c-4202-8d1f-55e35b472d45",
+ "startedAt": "2026-10-21T18:45:20+0900",
+ "elapsedSec": 85.3,
+ "studentSha256": {
+  "fig-1.png": "c046ea87e39e12aa9bff61e1310d5534eeb11da4e32297042206fe888bbfb7b3",
+  "student.json": "1e412743cf4ce236509222b05a4e3cd385a07701e55847d8d67d42100355d457"
+ },
+ "promptSha256": "5a4be7c4b1b6c467d32f5b8eb75234cd5855cda7fee02c61014728f32e582f40",
+ "freezeCommit": "6d13fbfa6d5452b39f9fed4a0b10d2e60933084b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"53 cm²\",\n  \"work\": \"△ABC ≡ △CDE이므로 AB = CD = 5 cm, BC = DE = 9 cm이다. 또한 ∠BCA + ∠ECD = ∠BCA + ∠BAC = 90°이므로 ∠ACE = 180° - 90° = 90°이고 AC = CE이다.\\n사다리꼴 ABDE의 넓이는 1/2 × (5 + 9) × (9 + 5) = 98 cm²이고, 두 직각삼각형 넓이의 합은 2 × (1/2 × 5 × 9) = 45 cm²이다.\\n따라서 △ACE의 넓이는 사다리꼴 넓이에서 두 삼각형의 넓이를 뺀 98 - 45 = 53 cm²이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "53 cm²",
+  "work": "△ABC ≡ △CDE이므로 AB = CD = 5 cm, BC = DE = 9 cm이다. 또한 ∠BCA + ∠ECD = ∠BCA + ∠BAC = 90°이므로 ∠ACE = 180° - 90° = 90°이고 AC = CE이다.\n사다리꼴 ABDE의 넓이는 1/2 × (5 + 9) × (9 + 5) = 98 cm²이고, 두 직각삼각형 넓이의 합은 2 × (1/2 × 5 × 9) = 45 cm²이다.\n따라서 △ACE의 넓이는 사다리꼴 넓이에서 두 삼각형의 넓이를 뺀 98 - 45 = 53 cm²이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4cd92b1fbd7f53ca3d8cbf9c1c92a6f0d716d01dbf6a0d487085dd8b99005532"
+}
