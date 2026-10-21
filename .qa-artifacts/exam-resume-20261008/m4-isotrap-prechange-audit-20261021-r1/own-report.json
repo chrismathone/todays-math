@@ -1,0 +1,91 @@
+{
+  "status": "M4 prechange step-disclosure confirmed; minimal angA-only replacement has52source-port renders/2strict layout HOLDs, not final-ready",
+  "attribution": {
+    "originalCard": "M4",
+    "exactCardRow": "| M4 | `2-2\\|여러 가지 사각형\\|08`(등변사다리꼴) | `src/lib/middle/m2GeoQuad.ts`(유형 08 의 그림 각) | 그림이 한 걸음을 보여 줌 · 발문의 각은 그림에 없음 | 12 | 44 | 발문 «$\\angle A=120^\\circ$일 때 $\\overline{BC}$» — 그림 «∠B 60°» | 그림 각을 발문과 같은 ∠A 120° 로 |",
+    "handoff": "docs/planning/tracks/brief-engine-handoff-display-20261021.md",
+    "currentSource": "src/lib/middle/m2GeoQuad.ts",
+    "helper": "figIsoTrap",
+    "type": "2-2|여러 가지 사각형|08",
+    "branch": "mode1"
+  },
+  "domain": {
+    "p": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "c": [
+      4,
+      6,
+      8,
+      10,
+      12,
+      14
+    ],
+    "pairs": 54,
+    "source": "p=intBetween(rng,4,12);c=2*intBetween(rng,2,7)"
+  },
+  "mathematics": {
+    "givens": "AB=c, AD=p, angleA120, isosceles trapezoidADparallelBC",
+    "independentExpected": "AngleB60 by same-side interior angles. Drop perpendicularsAE,DH; angleBAE30. Short legsBE,CH=c/2, EH=AD=p, soBC=p+c. Positive p,c give two nondegenerate congruent right triangles and rectangle, uniquely determiningBC.",
+    "studentProofWithoutTrigOrRoot": "To justify short-leg half rule without memorized trig: reflect triangleABE acrossAE to a congruent triangleAFE. ApexBAF60 andAB=AF makeBAF equilateral, soBF=AB=c; E is midpointBF, henceBE=c/2. This uses elementary congruence/triangle angles/equilateral properties. No sin/cos/sqrt is a required student operation.",
+    "engineOnlyGeometry": "Source computes height=round2(9c*sin60). Independent positivity and symmetry verified; numerical raw angles A differ from120 by at most about.002456degrees due height rounding. This is approximate vector witness, not an exact printed-angle certificate."
+  },
+  "disclosure": "Current mode1 opts.angB=60degree prints the first computed supplementary angle while omitting given A120. Numeric60 is an intermediate solving step, not final answer. Full current dimensions carry only givenAD/AB; noBC target dimension; equal leg ticks/parallel marks represent stated givens.",
+  "proposal": [
+    "Add optional opts.angA?:string to figIsoTrap; if supplied, create angles.angA={vertex:A,points:[B,D],label:opts.angA}. Only type08mode1 passes angA120 instead ofangB60.",
+    "Do not modify existing angB, angADB, foot, diagBD callers or default behaviors. Preserve every point/segment/tick/parallel mark/point label/dimension/body/answer/facts/solution/RNG draw exactly except declared given-angle entry and any explicitly necessary scoped label-layout metadata.",
+    "Do not remove AB given dimension to silence new conflict. Bound a separate angle label/radius/clear-label placement adaptation only after actual captures with real MathJax metrics, keeping points/printed labels unchanged.",
+    "Capture before first, then actual bothbranch tests, mode0valid49(p,q) pairs and relatedhelper callers plus seededAPI. Preserve attempt RNG consumption and IDs. Update only future relevant adapter revision/fingerprint, no issued-row rewrite."
+  ],
+  "ownExecution": {
+    "Python54ExactStudentArithmeticCases": 54,
+    "sourcePortCurrentNativeRenders": 54,
+    "QAOnlyAngAReplacementRendersSuccessful": 52,
+    "QAOnlyAngAReplacementStrictFailures": 2,
+    "actualTSGeneratorOrSeedAPI": 0,
+    "Node": 0,
+    "browser": 0,
+    "model": 0,
+    "DB": 0,
+    "productionEdits": 0
+  },
+  "exactFailureHolds": [
+    {
+      "p": 11,
+      "c": 4,
+      "error": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))",
+      "requiredAction": "Preserve failure and AB dimension; actual Root implementation/render design pending"
+    },
+    {
+      "p": 12,
+      "c": 4,
+      "error": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))",
+      "requiredAction": "Preserve failure and AB dimension; actual Root implementation/render design pending"
+    }
+  ],
+  "layoutLimits": "Successful52source-port candidates had0 basic label box clips and0 label-pair overlaps. Default Python metrics only, not actual MathJax/halo/arc/line/leader/physical print verification; no whole native approval. Failed2 excluded from success, not repaired or dropped. Root will capture actual TS outputs.",
+  "mode0Preservation": "Proposal is optional helper field, mode1 call-only. Original default length branch must be exact. No actual mode0JS execution in this Python prechange task; preservation is a mandatory subsequent regression, not an accomplished claim.",
+  "gradeLimits": "The supplementary-angle/quadrilateral/congruence/30-60-right-triangle route is described as a possible M2-school method, not certified official curriculum placement or prerequisite completion. Source engine sin60 is coordinate construction only. School/type labels and teacher conventions do not grant whole-grade/Unit/rights approval.",
+  "compatibility": "All current/old QA/source hashes preserved. No new authored/exam/student task or blind count, DB/native/source/rights/public release approval.",
+  "sourceBeforeAfterUnchanged": true,
+  "boundFiles": 67,
+  "artifactSHA256": {
+    "own-after.json": "4d348273e781c3d2c3a346f08dc973d88e1781f8300dd4409be3a215e45abfc3",
+    "own-audit.py": "b97a31cfd6df3f7857a31991d81da1e57e94075eae2a225fcdd517946e011dac",
+    "own-before.json": "4d348273e781c3d2c3a346f08dc973d88e1781f8300dd4409be3a215e45abfc3",
+    "own-finalize.py": "1ac8bff21f2bdb3fe0c161838d77616869a545e5c30d8ad6b16230d413a8546a",
+    "own-minimal-current.svg": "4b263be303ba6a913e0f3bb84b6cadedfd4df0bf06216eaad7229b8e0cd582bc",
+    "own-minimal-proposed.svg": "baca2ac7331c8749e63202cd7715f86463c726449b98d16e163ddbe591341a5b",
+    "own-minimal-specimens.json": "7de34718ee8cf27effb7587a872d7350ef08161ad75502f53fe62cb90e500257",
+    "own-probe.txt": "4280d0c175ef671ab01055ca31a52e7d6a3d4b75f3bbd2a2fe0d8057b54f3ca1",
+    "own-results.json": "998108ec2ab532d467a65ceb9fbf18b4f9d3facbb96f6a9361c12402e07d3ee3"
+  }
+}

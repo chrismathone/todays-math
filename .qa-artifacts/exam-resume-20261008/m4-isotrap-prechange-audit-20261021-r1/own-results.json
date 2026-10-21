@@ -1,0 +1,2039 @@
+{
+  "originalCard": "| M4 | `2-2\\|여러 가지 사각형\\|08`(등변사다리꼴) | `src/lib/middle/m2GeoQuad.ts`(유형 08 의 그림 각) | 그림이 한 걸음을 보여 줌 · 발문의 각은 그림에 없음 | 12 | 44 | 발문 «$\\angle A=120^\\circ$일 때 $\\overline{BC}$» — 그림 «∠B 60°» | 그림 각을 발문과 같은 ∠A 120° 로 |",
+  "domain54": 54,
+  "sourcePortCurrentRenders": 54,
+  "candidateSourcePortRenders": 52,
+  "candidateFailureRows": [
+    {
+      "p": 11,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "15",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "5d344303fae60e2602bdfef973f84596a938800a3bc2754a94374c0efc24641f",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": false,
+      "candidateError": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 12,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "16",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "3b03f46db5acf260a3cd230bce70983b0ed79faaeae0169701cc8624a20b2dd4",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": false,
+      "candidateError": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    }
+  ],
+  "records": [
+    {
+      "p": 4,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "8",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "fcf2a0a21a635af07905d0768d7d7bd791160483ebc83553c20b6bcc2949eb25",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "facf40f1c3698e7e958d984664b8f91909174e901cc760b36fbb1d5236047fb0",
+      "candidateLabels": [
+        "120°",
+        "4 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 4,
+      "c": 6,
+      "independentShortLeg": "3",
+      "independentExpectedBC": "10",
+      "sourceRawHeight": 46.77,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "c698d777234921659b3d6eecd58a5bc8ec446026ea807348fd05813217177838",
+      "currentLabels": [
+        "60°",
+        "6 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "2f00d36504088105f3bbad2c74c40c6c26e5fe74d997ad6736d3882ed6276a8a",
+      "candidateLabels": [
+        "120°",
+        "6 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 4,
+      "c": 8,
+      "independentShortLeg": "4",
+      "independentExpectedBC": "12",
+      "sourceRawHeight": 62.35,
+      "sourceRawAngles": {
+        "A": 120.00152360970336,
+        "B": 59.99847639029665
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "9ef8ad8f288455104bb40d98be612723a7c00953aa0f01ce335d7b779c7839b9",
+      "currentLabels": [
+        "60°",
+        "8 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "4b7403155a420ead73ac8a20efd67d5f1e1a24b4ba0f90091caca14b4299efdf",
+      "candidateLabels": [
+        "120°",
+        "8 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 4,
+      "c": 10,
+      "independentShortLeg": "5",
+      "independentExpectedBC": "14",
+      "sourceRawHeight": 77.94,
+      "sourceRawAngles": {
+        "A": 120.00072778082739,
+        "B": 59.999272219172624
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "032594f56ee7da8de313ba1544f785a057d19ebb742fe1d02882cad9c9e8b599",
+      "currentLabels": [
+        "60°",
+        "10 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "924cbf43bfe155d528bb9029c31a9c3ccba1f9947932e5d89a9d6a92c6526a02",
+      "candidateLabels": [
+        "120°",
+        "10 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 4,
+      "c": 12,
+      "independentShortLeg": "6",
+      "independentExpectedBC": "16",
+      "sourceRawHeight": 93.53,
+      "sourceRawAngles": {
+        "A": 120.00019724951518,
+        "B": 59.99980275048482
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "a6db2c8ed2ea088835c4271323892298607e024e27be26b7831a0c8748a7777b",
+      "currentLabels": [
+        "60°",
+        "12 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "a97550b3c914408f1383bff1be1eb4fdd8e6cd57295deb6ea56a3921abf10b1e",
+      "candidateLabels": [
+        "120°",
+        "12 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": [
+        "angA"
+      ]
+    },
+    {
+      "p": 4,
+      "c": 14,
+      "independentShortLeg": "7",
+      "independentExpectedBC": "18",
+      "sourceRawHeight": 109.12,
+      "sourceRawAngles": {
+        "A": 119.9998183089963,
+        "B": 60.00018169100373
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "f86606b4db4be4bb70aab83f6d2cdefa7f574943f4f59080ec43d23aec4c8736",
+      "currentLabels": [
+        "60°",
+        "14 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "51d50285c26aad8c74a9d0512078f0579739315725656378d83e4d299d403868",
+      "candidateLabels": [
+        "120°",
+        "14 cm",
+        "4 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": [
+        "angA"
+      ]
+    },
+    {
+      "p": 5,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "9",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "d78d28af336fe3a5292db4bd67db4db219706cdba9d6803c039d2cf128b7578f",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "5f75ff7dc8cbe340b9b8aab35bfde89210517ae8d390b744b968085ca0b9a248",
+      "candidateLabels": [
+        "120°",
+        "4 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 5,
+      "c": 6,
+      "independentShortLeg": "3",
+      "independentExpectedBC": "11",
+      "sourceRawHeight": 46.77,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "f67650be0508c12a09d5e327af3059bd8b035740f912294ff4706fbd43eb5a03",
+      "currentLabels": [
+        "60°",
+        "6 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "b8db487de374cf866fce0c1b761e68f4756894bc131f83aedeeb7af3cf19addd",
+      "candidateLabels": [
+        "120°",
+        "6 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 5,
+      "c": 8,
+      "independentShortLeg": "4",
+      "independentExpectedBC": "13",
+      "sourceRawHeight": 62.35,
+      "sourceRawAngles": {
+        "A": 120.00152360970336,
+        "B": 59.99847639029664
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "15d12dff0f7797ffeb7c1871ff1748227878cd171ddfa63bb2b8f6f3b94966b3",
+      "currentLabels": [
+        "60°",
+        "8 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "b1aaa5d8c6463f24981a4f3606435833657d33b1caedcc103c08909d3ebd6c87",
+      "candidateLabels": [
+        "120°",
+        "8 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 5,
+      "c": 10,
+      "independentShortLeg": "5",
+      "independentExpectedBC": "15",
+      "sourceRawHeight": 77.94,
+      "sourceRawAngles": {
+        "A": 120.00072778082739,
+        "B": 59.999272219172624
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "c8dd9f0b4c02a14258a74625163ba7dd60b1a547290f0fd6584e32447c3bbfdb",
+      "currentLabels": [
+        "60°",
+        "10 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "ad584f05d29b1468e0e55fd602967eb1232687f60837fb7c6929528030d80839",
+      "candidateLabels": [
+        "120°",
+        "10 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 5,
+      "c": 12,
+      "independentShortLeg": "6",
+      "independentExpectedBC": "17",
+      "sourceRawHeight": 93.53,
+      "sourceRawAngles": {
+        "A": 120.00019724951518,
+        "B": 59.99980275048482
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "39ba14d3396a6dc24024c9959442c0ca609835a26775881ebdcfb4b394392a3d",
+      "currentLabels": [
+        "60°",
+        "12 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "a3863c038bbf4fac47ad35a414f56330bd926caada0c934b45e3596718967235",
+      "candidateLabels": [
+        "120°",
+        "12 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 5,
+      "c": 14,
+      "independentShortLeg": "7",
+      "independentExpectedBC": "19",
+      "sourceRawHeight": 109.12,
+      "sourceRawAngles": {
+        "A": 119.99981830899627,
+        "B": 60.00018169100372
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "41e276a0ad8e728c6614e0fc7f396709c475b3bfe565536aa598dca5144c37d8",
+      "currentLabels": [
+        "60°",
+        "14 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "b510e8802537056523ef00aac2f339a608c4b98d43e5734fe390943ada4c66ae",
+      "candidateLabels": [
+        "120°",
+        "14 cm",
+        "5 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": [
+        "angA"
+      ]
+    },
+    {
+      "p": 6,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "10",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "b5ce18558ec82e9542feede9e42ed0a15c0131ed9e91f5494ea3959d4be6b0fa",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "3c361f3f5f13caefd3779a00a7eb69f7ed41dc6a2fd504d50bd6d4d663ba3968",
+      "candidateLabels": [
+        "120°",
+        "4 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 6,
+      "c": 6,
+      "independentShortLeg": "3",
+      "independentExpectedBC": "12",
+      "sourceRawHeight": 46.77,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "b8d4c8619bd1537ebaa35e3bddf2f7337cba0ad5e063c01b4cad2f2dd91749a1",
+      "currentLabels": [
+        "60°",
+        "6 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "70cde309a745bcb522f1d81bf959831bad3bd692263b45d7a9f7b6c8c621e023",
+      "candidateLabels": [
+        "120°",
+        "6 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 6,
+      "c": 8,
+      "independentShortLeg": "4",
+      "independentExpectedBC": "14",
+      "sourceRawHeight": 62.35,
+      "sourceRawAngles": {
+        "A": 120.00152360970336,
+        "B": 59.99847639029665
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "5d3c3f9b008397ddb888373debc631720eeee7ac3555197881d39e425d33b739",
+      "currentLabels": [
+        "60°",
+        "8 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "ed31765fbe6b491da684e8949a3e7a91b2dc6c6c0cdf85a1dd1cdd431a74af43",
+      "candidateLabels": [
+        "120°",
+        "8 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 6,
+      "c": 10,
+      "independentShortLeg": "5",
+      "independentExpectedBC": "16",
+      "sourceRawHeight": 77.94,
+      "sourceRawAngles": {
+        "A": 120.00072778082739,
+        "B": 59.999272219172624
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "acec621d47542dcc2f18c9decf730dd60bc3c3cac6cd5b0d09ce0be4b71eb3cb",
+      "currentLabels": [
+        "60°",
+        "10 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "fd8df5501fee28be5e549360423a2d66675aa85222f6d579e93cd47d9a0a3c38",
+      "candidateLabels": [
+        "120°",
+        "10 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 6,
+      "c": 12,
+      "independentShortLeg": "6",
+      "independentExpectedBC": "18",
+      "sourceRawHeight": 93.53,
+      "sourceRawAngles": {
+        "A": 120.00019724951518,
+        "B": 59.99980275048482
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "16fef4abfd98ef81068b3b723f7b6f23755c54e0d490ad158346e06d55fa3a94",
+      "currentLabels": [
+        "60°",
+        "12 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "1d7b58eef7799bd92d837359537410670542a8d803b6f1efc1bc3cb62319a896",
+      "candidateLabels": [
+        "120°",
+        "12 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 6,
+      "c": 14,
+      "independentShortLeg": "7",
+      "independentExpectedBC": "20",
+      "sourceRawHeight": 109.12,
+      "sourceRawAngles": {
+        "A": 119.9998183089963,
+        "B": 60.00018169100373
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "707e3bceb0855cb32955c3388f4f95f263186a84367b4ffad8d2c7c1dad54d7e",
+      "currentLabels": [
+        "60°",
+        "14 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "fabb6ecfc165fc57a96a815ddd0c292daca6dc8ba5f55cc485dfbcd8e43ffc2e",
+      "candidateLabels": [
+        "120°",
+        "14 cm",
+        "6 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 7,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "11",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "839a94e9e9f4a881aa3af2c3b1295ab9adaa2b0f424fb03cfeccd32ad206b9f5",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "c194e055919ffbd896bc42416ae5c31bee7e1c04d8585c4387cfd06426d36dfe",
+      "candidateLabels": [
+        "120°",
+        "4 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 7,
+      "c": 6,
+      "independentShortLeg": "3",
+      "independentExpectedBC": "13",
+      "sourceRawHeight": 46.77,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "06dc7621e1963877089e7bb222dadbc6c3146f8f9b052f8d30ca2b8761a569f1",
+      "currentLabels": [
+        "60°",
+        "6 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "dad4127dc42d274b665de80aa11ea29c1271dd9dc501157c4a70807fe806ca49",
+      "candidateLabels": [
+        "120°",
+        "6 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 7,
+      "c": 8,
+      "independentShortLeg": "4",
+      "independentExpectedBC": "15",
+      "sourceRawHeight": 62.35,
+      "sourceRawAngles": {
+        "A": 120.00152360970336,
+        "B": 59.99847639029664
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "34929fdedf455badcad31d259be4203df05ee52e3ad4bd4acb1bbea41d68236e",
+      "currentLabels": [
+        "60°",
+        "8 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "32ba98c2b9663bc65b98574e6e9815bb7c32f16c4f605763235b4391dbd27804",
+      "candidateLabels": [
+        "120°",
+        "8 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 7,
+      "c": 10,
+      "independentShortLeg": "5",
+      "independentExpectedBC": "17",
+      "sourceRawHeight": 77.94,
+      "sourceRawAngles": {
+        "A": 120.00072778082739,
+        "B": 59.999272219172624
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "f0b0f3009cfa036a27098e7653dc34155b021b749400bf791fcf3f48d6955775",
+      "currentLabels": [
+        "60°",
+        "10 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "11ffc3857d249fce89a1c275fa38bf874f31c1177fd91455b9d00d6b9549cd87",
+      "candidateLabels": [
+        "120°",
+        "10 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 7,
+      "c": 12,
+      "independentShortLeg": "6",
+      "independentExpectedBC": "19",
+      "sourceRawHeight": 93.53,
+      "sourceRawAngles": {
+        "A": 120.00019724951518,
+        "B": 59.99980275048482
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "adc7a7669863ba1b419c3ff883c61c60617b8c610109b4e52d996aff6d0645b9",
+      "currentLabels": [
+        "60°",
+        "12 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "199e81ebbadc22a031b818d018eede7dd5427b7deb52b29f3d349a7516ed1460",
+      "candidateLabels": [
+        "120°",
+        "12 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 7,
+      "c": 14,
+      "independentShortLeg": "7",
+      "independentExpectedBC": "21",
+      "sourceRawHeight": 109.12,
+      "sourceRawAngles": {
+        "A": 119.9998183089963,
+        "B": 60.00018169100372
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "ea9d8acce23556c34581cc319950d5cb9854bb448f8558c5aa1bf48a9617f8d9",
+      "currentLabels": [
+        "60°",
+        "14 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "5b493d1becdb23c38c154c6f9c6d265e38b69dc6b8c5388e994aa598af1ff720",
+      "candidateLabels": [
+        "120°",
+        "14 cm",
+        "7 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 8,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "12",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "61b5cc0b56c7dd991bc19d603a9a0bd5becab5b90c46eec27b03baddc3cfd213",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "cd3591fe664e3a7512e82cbdb2d110e8bc1b4a2d33105d7995bf503dc0edc164",
+      "candidateLabels": [
+        "120°",
+        "4 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 8,
+      "c": 6,
+      "independentShortLeg": "3",
+      "independentExpectedBC": "14",
+      "sourceRawHeight": 46.77,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "7e8ae5a9dec1ce2e2a7470019e4891aa5c1e082b9f89f97236bec9f47c56f2cc",
+      "currentLabels": [
+        "60°",
+        "6 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "7519e9c65ea3c803b6be5d2bd275f8866e4a8103223d64357f5d316849c900f4",
+      "candidateLabels": [
+        "120°",
+        "6 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 8,
+      "c": 8,
+      "independentShortLeg": "4",
+      "independentExpectedBC": "16",
+      "sourceRawHeight": 62.35,
+      "sourceRawAngles": {
+        "A": 120.00152360970336,
+        "B": 59.99847639029664
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "6d1e3499a068bbc75bbdc1d61436c76a49eeb75c5df2b2d8a0e865417225d872",
+      "currentLabels": [
+        "60°",
+        "8 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "43302ec495fd60a96c404fd48e6a74496eb5c6354cb11338400b34ac56cba33b",
+      "candidateLabels": [
+        "120°",
+        "8 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 8,
+      "c": 10,
+      "independentShortLeg": "5",
+      "independentExpectedBC": "18",
+      "sourceRawHeight": 77.94,
+      "sourceRawAngles": {
+        "A": 120.00072778082739,
+        "B": 59.999272219172624
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "f39ca371ddb09bd18ed0c3ddfb78c4fd5b0ae2603ccb7749c25e9f7baf00759d",
+      "currentLabels": [
+        "60°",
+        "10 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "9faf80d939b9f5184a3e392174a9f8e8f6c0f5aaebe9f318e50977055502b63a",
+      "candidateLabels": [
+        "120°",
+        "10 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 8,
+      "c": 12,
+      "independentShortLeg": "6",
+      "independentExpectedBC": "20",
+      "sourceRawHeight": 93.53,
+      "sourceRawAngles": {
+        "A": 120.00019724951518,
+        "B": 59.99980275048482
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "cbe03b198a2776bab3f85826f9c2835953c5e77a57e8c05c50e885f454126934",
+      "currentLabels": [
+        "60°",
+        "12 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "cf92fb61c6093f8e9cf64a4b1c503f6849666d2193d5122097c70d3f130e29e9",
+      "candidateLabels": [
+        "120°",
+        "12 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 8,
+      "c": 14,
+      "independentShortLeg": "7",
+      "independentExpectedBC": "22",
+      "sourceRawHeight": 109.12,
+      "sourceRawAngles": {
+        "A": 119.9998183089963,
+        "B": 60.00018169100373
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "62cf6d0cd1b2ed87118e5e80efc123c072515eb232f55edee0a78ee5eee8d706",
+      "currentLabels": [
+        "60°",
+        "14 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "fd500a0c545a16a7b23d7dcb08ee15b81d6d656801f9b979e1eb0eaf89d3eaf0",
+      "candidateLabels": [
+        "120°",
+        "14 cm",
+        "8 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 9,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "13",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "6cd309172c1ae618632187e1f2428c5983ce130a358247675d38ed1a3c1f56c5",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "44a05116b679bf95100840800155006e602e63fec078d6bd0354d016a0ae84a2",
+      "candidateLabels": [
+        "120°",
+        "4 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 9,
+      "c": 6,
+      "independentShortLeg": "3",
+      "independentExpectedBC": "15",
+      "sourceRawHeight": 46.77,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "bd21544dd75b3c9574d751e7b11342fe68af92bead4a3c1a3be7785f9cf43001",
+      "currentLabels": [
+        "60°",
+        "6 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "5935ba10450531b906871a51967e6392be7fc415246644ccfc082f08e2176c38",
+      "candidateLabels": [
+        "120°",
+        "6 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 9,
+      "c": 8,
+      "independentShortLeg": "4",
+      "independentExpectedBC": "17",
+      "sourceRawHeight": 62.35,
+      "sourceRawAngles": {
+        "A": 120.00152360970336,
+        "B": 59.99847639029665
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "44703e7aa91c775effaa2f4f799f76e9b5182f1483993d87af13f8fc70f70ceb",
+      "currentLabels": [
+        "60°",
+        "8 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "c659e01363125a4c0e3807a3791a1089078f107ff9074309ebb2656cbc0f6058",
+      "candidateLabels": [
+        "120°",
+        "8 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 9,
+      "c": 10,
+      "independentShortLeg": "5",
+      "independentExpectedBC": "19",
+      "sourceRawHeight": 77.94,
+      "sourceRawAngles": {
+        "A": 120.00072778082739,
+        "B": 59.999272219172624
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "bf6e4d7cc760586c8afb77cd0981693e7ac3dd6f7434944d361971732dc138a0",
+      "currentLabels": [
+        "60°",
+        "10 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "33feddaa70fda24d7a3294b6c2855996d3f996f01c75e4ea6a016de3e65ff63f",
+      "candidateLabels": [
+        "120°",
+        "10 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 9,
+      "c": 12,
+      "independentShortLeg": "6",
+      "independentExpectedBC": "21",
+      "sourceRawHeight": 93.53,
+      "sourceRawAngles": {
+        "A": 120.00019724951518,
+        "B": 59.99980275048482
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "53746b45fccfb232189ca4bd9dc76fafcbff8ba0e764988aee5c0f96347902f1",
+      "currentLabels": [
+        "60°",
+        "12 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "967f8dd5c1045e8f0563196e8b4a46c55a723c0342a5d5cb931e6b2777a60049",
+      "candidateLabels": [
+        "120°",
+        "12 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 9,
+      "c": 14,
+      "independentShortLeg": "7",
+      "independentExpectedBC": "23",
+      "sourceRawHeight": 109.12,
+      "sourceRawAngles": {
+        "A": 119.99981830899627,
+        "B": 60.00018169100372
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "5ed83c05329f34b50388461bf413b3e56e8da73ed4f94b5a33fa0278ea551cc3",
+      "currentLabels": [
+        "60°",
+        "14 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "a52e0e3721105f3d83ec79b32d487a933cb1f4343391339b135a5d69ae7da79b",
+      "candidateLabels": [
+        "120°",
+        "14 cm",
+        "9 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 10,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "14",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "1e350a2f96937e397c0635c51edcd7da1a3d1ce0d5794a7c6e3b8334c82fa5bd",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "48550adcaf71d40ee528266c75254782d336c139e8b4aec4ef6c599460292b49",
+      "candidateLabels": [
+        "120°",
+        "4 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 10,
+      "c": 6,
+      "independentShortLeg": "3",
+      "independentExpectedBC": "16",
+      "sourceRawHeight": 46.77,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "6401a41e74c5987939c94e6bf57271270a51af9226aad51c7ced10cb05aae6fa",
+      "currentLabels": [
+        "60°",
+        "6 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "1a93f5abf53fb5b3e5cdc865032b9896faf572da906ae4109e95bfe00d40697e",
+      "candidateLabels": [
+        "120°",
+        "6 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 10,
+      "c": 8,
+      "independentShortLeg": "4",
+      "independentExpectedBC": "18",
+      "sourceRawHeight": 62.35,
+      "sourceRawAngles": {
+        "A": 120.00152360970336,
+        "B": 59.99847639029665
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "e8e019077b0b57bd3159c34d4295bae26ecf285b28c1593104002951c6230ad6",
+      "currentLabels": [
+        "60°",
+        "8 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "e95988944286c8cc025e4e398eaf818ca0c03ac88b6057f7715f848e4ad9ef26",
+      "candidateLabels": [
+        "120°",
+        "8 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 10,
+      "c": 10,
+      "independentShortLeg": "5",
+      "independentExpectedBC": "20",
+      "sourceRawHeight": 77.94,
+      "sourceRawAngles": {
+        "A": 120.00072778082739,
+        "B": 59.999272219172624
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "42584e088f57a9210101b41cd1cec3e4d3fdeace73db60afc4966c0882a79482",
+      "currentLabels": [
+        "60°",
+        "10 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "6df203629e2ab65eaabcefaf30e5bf8750fab5ae39f823a0cbdebb22a4667db2",
+      "candidateLabels": [
+        "120°",
+        "10 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 10,
+      "c": 12,
+      "independentShortLeg": "6",
+      "independentExpectedBC": "22",
+      "sourceRawHeight": 93.53,
+      "sourceRawAngles": {
+        "A": 120.00019724951518,
+        "B": 59.99980275048482
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "75f5e2369b415e8d2b57def8d6a3c5e13188c36b2b107d4939916f5d403cdae3",
+      "currentLabels": [
+        "60°",
+        "12 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "0e8daced61412cd306caf41e0775458ea49d98d1c4f04e917f392954035ac7c6",
+      "candidateLabels": [
+        "120°",
+        "12 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 10,
+      "c": 14,
+      "independentShortLeg": "7",
+      "independentExpectedBC": "24",
+      "sourceRawHeight": 109.12,
+      "sourceRawAngles": {
+        "A": 119.99981830899627,
+        "B": 60.00018169100373
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "92e4d286737ee748b1c0370c57c69b1b382b737d560024c6af6b3b1377bef63d",
+      "currentLabels": [
+        "60°",
+        "14 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "d3fe35bfd9df70c6fac5b30c9f96f03973a67b2cc5cdc612da8ac4d8008832c2",
+      "candidateLabels": [
+        "120°",
+        "14 cm",
+        "10 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 11,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "15",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "5d344303fae60e2602bdfef973f84596a938800a3bc2754a94374c0efc24641f",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": false,
+      "candidateError": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 11,
+      "c": 6,
+      "independentShortLeg": "3",
+      "independentExpectedBC": "17",
+      "sourceRawHeight": 46.77,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "48d30ff9c01be1113439f6f35f837d1d682501f00364db3a33cb949913652e41",
+      "currentLabels": [
+        "60°",
+        "6 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "7c492a07f324e8e25b605ba8354aafa6d9abeea0912a42e4a597fe4a3ff670ad",
+      "candidateLabels": [
+        "120°",
+        "6 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 11,
+      "c": 8,
+      "independentShortLeg": "4",
+      "independentExpectedBC": "19",
+      "sourceRawHeight": 62.35,
+      "sourceRawAngles": {
+        "A": 120.00152360970336,
+        "B": 59.99847639029665
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "78baa8e7c0a81f84c3b8fe17b5c2f1737f3266a0f8368025a4887230507871dc",
+      "currentLabels": [
+        "60°",
+        "8 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "ddfb9a95c313df95c2b03e8896bbd1a125131c60b9fab86b528b11e43a1dc888",
+      "candidateLabels": [
+        "120°",
+        "8 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 11,
+      "c": 10,
+      "independentShortLeg": "5",
+      "independentExpectedBC": "21",
+      "sourceRawHeight": 77.94,
+      "sourceRawAngles": {
+        "A": 120.00072778082739,
+        "B": 59.999272219172624
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "a8dcbcf31b486f34770376d07df3ef8485779efc85052df5f84d250347631320",
+      "currentLabels": [
+        "60°",
+        "10 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "e4883f8944111b8cdb2b0dec42e588ef59bfc43460a7105f33cc2f9f5e40ff1e",
+      "candidateLabels": [
+        "120°",
+        "10 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 11,
+      "c": 12,
+      "independentShortLeg": "6",
+      "independentExpectedBC": "23",
+      "sourceRawHeight": 93.53,
+      "sourceRawAngles": {
+        "A": 120.00019724951518,
+        "B": 59.99980275048482
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "e7974a9bb1568cefbb183c1dc89eddf74e3a243858a119fc7399774581ef1be9",
+      "currentLabels": [
+        "60°",
+        "12 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "1374e2c4f7b81fcee3c7eab30c655458d44b010febf5d13f7e334e9127dc8302",
+      "candidateLabels": [
+        "120°",
+        "12 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 11,
+      "c": 14,
+      "independentShortLeg": "7",
+      "independentExpectedBC": "25",
+      "sourceRawHeight": 109.12,
+      "sourceRawAngles": {
+        "A": 119.9998183089963,
+        "B": 60.00018169100372
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "c5b84b96fbb3588752f7008d3cf11c7ffc28ddb5e1a7a84e32f8d41e2d19117d",
+      "currentLabels": [
+        "60°",
+        "14 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "0e4fdba64b712a6a50ee621233496021f6c0a74c10cd6082f4db3b68ef52773d",
+      "candidateLabels": [
+        "120°",
+        "14 cm",
+        "11 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 12,
+      "c": 4,
+      "independentShortLeg": "2",
+      "independentExpectedBC": "16",
+      "sourceRawHeight": 31.18,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "3b03f46db5acf260a3cd230bce70983b0ed79faaeae0169701cc8624a20b2dd4",
+      "currentLabels": [
+        "60°",
+        "4 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": false,
+      "candidateError": "도형을 그리지 못했습니다: dimension 'd_AB' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))"
+    },
+    {
+      "p": 12,
+      "c": 6,
+      "independentShortLeg": "3",
+      "independentExpectedBC": "18",
+      "sourceRawHeight": 46.77,
+      "sourceRawAngles": {
+        "A": 119.99754484818861,
+        "B": 60.00245515181138
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "bdfe0de567af39266f56e8f6d7a6a3a31ad5086dce4aba653606765c76a7e7c6",
+      "currentLabels": [
+        "60°",
+        "6 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "75cbdcfc5e6e17461591f6e942375c75fe550a7ad010fab539a610b39de1f55c",
+      "candidateLabels": [
+        "120°",
+        "6 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 12,
+      "c": 8,
+      "independentShortLeg": "4",
+      "independentExpectedBC": "20",
+      "sourceRawHeight": 62.35,
+      "sourceRawAngles": {
+        "A": 120.00152360970336,
+        "B": 59.99847639029664
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "00c1bbc14590ca90bdb8a85e8f4cd74bd254ac0a5a498aee094c0fa938261b28",
+      "currentLabels": [
+        "60°",
+        "8 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "180da7b6b401e88b64770b5ba0e05317752ecf64c299606f94ce1d37708fdbc7",
+      "candidateLabels": [
+        "120°",
+        "8 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 12,
+      "c": 10,
+      "independentShortLeg": "5",
+      "independentExpectedBC": "22",
+      "sourceRawHeight": 77.94,
+      "sourceRawAngles": {
+        "A": 120.00072778082739,
+        "B": 59.999272219172624
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "de0aa6375af31f31327cfb34874d8a1fc44104601dbaf7d6a645714f9e114a42",
+      "currentLabels": [
+        "60°",
+        "10 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "ccd2fa49bb3e98ab37237c29c3e34bf8d5e2c6632aee2b59a5c85e46a8fe8f2d",
+      "candidateLabels": [
+        "120°",
+        "10 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 12,
+      "c": 12,
+      "independentShortLeg": "6",
+      "independentExpectedBC": "24",
+      "sourceRawHeight": 93.53,
+      "sourceRawAngles": {
+        "A": 120.00019724951518,
+        "B": 59.99980275048482
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "943285dae7130a21bc948268da9f3414555e6d3bff442fe2d7d7ac2b2e04c562",
+      "currentLabels": [
+        "60°",
+        "12 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "00ff1ff9948f64f64aa3a397d810bebbace30b63344a51a08e647be6962653db",
+      "candidateLabels": [
+        "120°",
+        "12 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    },
+    {
+      "p": 12,
+      "c": 14,
+      "independentShortLeg": "7",
+      "independentExpectedBC": "26",
+      "sourceRawHeight": 109.12,
+      "sourceRawAngles": {
+        "A": 119.9998183089963,
+        "B": 60.00018169100372
+      },
+      "currentRendered": true,
+      "currentSVG_SHA": "119ea5c10e18055b2827d50551c3fb330814db134185dbb8d361a83ffe831ef6",
+      "currentLabels": [
+        "60°",
+        "14 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateRendered": true,
+      "candidateError": null,
+      "candidateSVG_SHA": "22a764231c178baeb31f50a8fd0d79c7a31022b5f4d57ad05f44eeb291adc1b4",
+      "candidateLabels": [
+        "120°",
+        "14 cm",
+        "12 cm",
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "candidateBoxClip": [],
+      "candidateLabelBoxOverlap": [],
+      "candidateLeaders": []
+    }
+  ],
+  "actualTSorAPI": false,
+  "productionModified": false,
+  "sourceUnchanged": true
+}
