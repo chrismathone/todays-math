@@ -1,0 +1,94 @@
+{
+ "version": 2,
+ "canvas": {
+  "width": 240,
+  "height": 240
+ },
+ "points": {
+  "O": [
+   120,
+   124
+  ],
+  "A": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": 90
+  },
+  "B": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": 38.5714
+  },
+  "C": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": -12.8571
+  },
+  "D": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": -64.2857
+  },
+  "E": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": -115.7143
+  },
+  "F": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": -167.1429
+  },
+  "G": {
+   "type": "on_circle",
+   "circle": "c",
+   "angle": -218.5714
+  }
+ },
+ "circles": {
+  "c": {
+   "center": "O",
+   "radius": 88,
+   "draw": false
+  }
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CD": [
+   "C",
+   "D"
+  ],
+  "DE": [
+   "D",
+   "E"
+  ],
+  "EF": [
+   "E",
+   "F"
+  ],
+  "FG": [
+   "F",
+   "G"
+  ],
+  "GA": [
+   "G",
+   "A"
+  ]
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E",
+  "F": "F",
+  "G": "G"
+ }
+}

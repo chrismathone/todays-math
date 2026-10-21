@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 359,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20901-A86-001-r2",
+ "authorId": "claude-opus-5-5:c68703c5-e872-4991-9c95-4678f9d87afd",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20901-A86-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "그림은 네 정류장 $\\mathrm{A}$, $\\mathrm{B}$, $\\mathrm{C}$, $\\mathrm{D}$ 사이에 놓인 자전거 길을 나타낸 것이다. 서아가 $\\mathrm{B}$ 정류장에서 출발하여 $\\mathrm{A}$ 정류장까지 자전거를 타고 가는 경로의 수는? (단, 한 번 들른 정류장은 다시 들르지 않는다.)\n[그림]",
+ "choices": [
+  "$4$",
+  "$9$",
+  "$11$",
+  "$13$",
+  "$36$"
+ ],
+ "answer": "④",
+ "solution": "(ⅰ) $\\mathrm{B}$ → $\\mathrm{C}$ → $\\mathrm{A}$로 가는 경우: $\\mathrm{B}$에서 $\\mathrm{C}$로 가는 길이 $4$가지, 그 각각에 대하여 $\\mathrm{C}$에서 $\\mathrm{A}$로 가는 길이 $1$가지이므로 $4\\times 1=4$(가지)\n(ⅱ) $\\mathrm{B}$ → $\\mathrm{D}$ → $\\mathrm{A}$로 가는 경우: $\\mathrm{B}$에서 $\\mathrm{D}$로 가는 길이 $3$가지, 그 각각에 대하여 $\\mathrm{D}$에서 $\\mathrm{A}$로 가는 길이 $3$가지이므로 $3\\times 3=9$(가지)\n(ⅰ), (ⅱ)는 동시에 일어나지 않으므로 구하는 경로의 수는 $4+9=13$이다. 정답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20901-A86-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20901-A86-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-ce0ef086cea8f2f4-0-6",
+  "problemCode": "J20901-A86-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 6,
+  "sourceContentSha256": "14b231b6e477f21c7513a9b4205e58de2c048abb5e3f10ffaebb43f5fa971aef",
+  "dbContentSha256": "c2d80078377d4cb5913b204bc718e44c26716588382aa6c4f63f23ed9661b399",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_8_경우의수와확률.hwp",
+    "sha256": "d23647430e5de8033463990c8934b7ffc469885ff6b606cc4009edb2f511f41b",
+    "bytes": 500736
+   }
+  ],
+  "originalFigureSha256": [
+   "1f1551e419f8e0879b6f9e4479b21b05e944c3a3b1e72f98dee901ab64df2370"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers",
+   "structure"
+  ],
+  "before": "도시 넷을 잇는 도로 그림에서 한 도시에서 다른 도시로 가는 경로의 수를 고른다. 원본 그림(J20901-A86-001-1.png)을 다시 확인한 결과 A–C 3개, A–D 2개, C–B 2개, D–B 2개이고 C–D 도로는 없다. 원본 풀이도 3×2+2×2=10으로 두 경우의 합만 쓴다. 따라서 r1 검수의 «원본에 C–D 길이 있다»는 지적은 원본 그림·정답과 맞지 않는다. C–D 길을 넣으면 원본보다 경우와 단계가 늘어 쌍둥이 기준(같은 절차·같은 난이도)을 벗어나므로 넣지 않았다.",
+  "after": "정류장 넷을 잇는 자전거 길 그림에서 출발과 도착을 바꿔(B에서 A로) 경로의 수를 고른다. 중간 정류장 C, D를 거치는 두 경우로 나눈다. 길 수는 B–C 4, C–A 1, B–D 3, D–A 3이고, 4×1+3×3=13이다.",
+  "sharedConcept": "경로의 수 — 구간마다 곱의 법칙, 거쳐 가는 곳에 따라 나눈 경우끼리 합의 법칙",
+  "sharedProcedure": "거쳐 가는 중간 지점에 따라 경우 나누기 → 경우마다 구간별 길의 수를 곱하기 → 동시에 일어나지 않는 경우들의 수를 더하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "경우의 수"
+  },
+  "prerequisites": [
+   "사건과 경우의 수",
+   "경우의 수의 합(합의 법칙)",
+   "경우의 수의 곱(곱의 법칙)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20901-A86-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "중간 지점을 거쳐 가는 경로의 수 — 합의 법칙과 곱의 법칙",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3827cda-b1d7-49e8-9a1c-56e68d13b2ba",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.136,
+   "longestRun": 11,
+   "residualChars": 84,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

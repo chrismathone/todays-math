@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 368,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A74-001-r2",
+ "authorId": "claude-opus-5-5:a868c642-1b4d-4d18-b2c7-5e4a8c696d2a",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20904-A74-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "미나와 서아가 배드민턴 시합을 한다. 한 게임씩 치러 먼저 두 게임을 이긴 사람이 시합의 승자가 되므로, 시합은 많아야 세 게임으로 끝난다. 한 게임에서 미나가 이길 확률이 $\\frac{2}{3}$일 때, 시합을 시작하기 전에 생각하여 다음 사건이 일어날 확률을 구하시오.\n\n«시합이 세 번째 게임까지 이어지고, 그 세 번째 게임을 미나가 이겨 시합의 승자가 된다.»\n\n(단, 비기는 게임은 없다.)",
+ "choices": [],
+ "answer": "$\\frac{8}{27}$",
+ "solution": "시합이 세 번째 게임까지 이어지려면 앞의 두 게임에서 미나가 한 번 이기고 한 번 져야 하고, 그다음 세 번째 게임을 미나가 이겨야 한다. 미나가 한 게임을 질 확률은 $1-\\frac{2}{3}=\\frac{1}{3}$이다. (이김, 짐, 이김)일 확률은 $\\frac{2}{3}\\times\\frac{1}{3}\\times\\frac{2}{3}=\\frac{4}{27}$이고, (짐, 이김, 이김)일 확률은 $\\frac{1}{3}\\times\\frac{2}{3}\\times\\frac{2}{3}=\\frac{4}{27}$이다. 두 경우는 동시에 일어나지 않으므로 구하는 확률은 $\\frac{4}{27}+\\frac{4}{27}=\\frac{8}{27}$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-be47842229cc8198-0-13",
+  "problemCode": "J20904-A74-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 13,
+  "sourceContentSha256": "c79a0b086354bacce806a16f18933d3f8dc83ec5cc3152ebcdbbb4d84051f7b9",
+  "dbContentSha256": "b94075194e3f8f965d9f70ace615e46a4a99d59ffe79afebd8c7765ca8f5c90f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_8_경우의수와확률.hwp",
+    "sha256": "2530df7cbbfa242c4c133e4d8be9cd273dca8703d7207ab671caa16ed8f9043c",
+    "bytes": 2813952
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "두 선수가 세 경기 가운데 두 경기를 먼저 이기면 우승하는 테니스 대회에서, 한 경기의 승리 확률이 주어진 선수가 세 번째 경기에서 우승할 확률을 묻는다.",
+  "after": "두 사람이 두 게임을 먼저 이기면 승자가 되는 배드민턴 시합에서, 시합 전에 생각할 때 시합이 세 번째 게임까지 가고 그 게임을 이겨 한 사람이 승자가 될 확률을 묻는다. 조건부 확률로 읽히지 않도록 구하는 사건을 따로 적어 두었다.",
+  "sharedConcept": "여사건의 확률, 독립인 시행에서 확률의 곱셈과 덧셈",
+  "sharedProcedure": "질 확률을 1에서 빼서 구함 → 앞 두 경기 1승 1패의 순서 두 가지로 나눔 → 각 순서의 확률을 곱으로 구함 → 두 경우를 더함"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "semester": 2,
+   "chapter": "9. 확률",
+   "section": "확률의 계산"
+  },
+  "prerequisites": [
+   "어떤 사건이 일어나지 않을 확률",
+   "확률의 덧셈",
+   "확률의 곱셈"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20904-A74-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "먼저 두 번 이기면 끝나는 경기에서 세 번째 경기까지 가서 승리할 확률",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "17b77ecc-bed4-46e4-af24-9b8da95b5359",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.047,
+   "longestRun": 8,
+   "residualChars": 138,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

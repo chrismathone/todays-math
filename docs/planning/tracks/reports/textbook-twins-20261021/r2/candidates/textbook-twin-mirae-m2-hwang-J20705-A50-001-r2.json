@@ -1,0 +1,161 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 327,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20705-A50-001-r2",
+ "authorId": "claude-opus-5-5:a9f79e08-28c1-44d4-990a-36a893a1bc80",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20705-A50-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림에서 $\\angle B=90^{\\circ}$인 직각삼각형 $ABC$의 빗변 $AC$의 중점을 $M$, $\\triangle ABC$의 무게중심을 $G$라 하자. $\\overline{AC}=30\\,\\mathrm{cm}$일 때, $\\overline{BG}$의 길이는?",
+ "choices": [
+  "$5\\,\\mathrm{cm}$",
+  "$6\\,\\mathrm{cm}$",
+  "$8\\,\\mathrm{cm}$",
+  "$10\\,\\mathrm{cm}$",
+  "$15\\,\\mathrm{cm}$"
+ ],
+ "answer": "④",
+ "solution": "직각삼각형에서 빗변의 중점 $M$은 외심이므로 $\\overline{BM}=\\overline{AM}=\\overline{CM}=\\frac{1}{2}\\times30=15\\,(\\mathrm{cm})$이다. 점 $G$는 무게중심이고 $\\overline{BM}$은 중선이므로 $\\overline{BG}:\\overline{GM}=2:1$이다. 따라서 $\\overline{BG}=\\frac{2}{3}\\times15=10\\,(\\mathrm{cm})$이고, 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A50-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20705-A50-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-10",
+  "problemCode": "J20705-A50-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "0dcb24f561dc6edf26059212727009982aaa3b2595dce89608b7c12806d5f551",
+  "dbContentSha256": "b5980afac277189c56b816205cd54d1fa2347d182faa9834484db57b2d03fc2a",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "008d0fbef20434e73f41b51091b205a6a8b03a780df82d123b7183ea04854849"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure",
+   "representation"
+  ],
+  "before": "직각이 C에 있는 직각삼각형에서 빗변 AB의 길이를 주고, 빗변의 중점은 그림에만 두고 직각 꼭짓점 C에서 무게중심까지의 길이를 고르게 한다.",
+  "after": "직각이 B에 있는 직각삼각형에서 빗변 AC의 길이를 주고, 빗변의 중점 M을 발문에서 이름 붙여 들인 뒤 직각 꼭짓점 B에서 무게중심까지의 길이를 고르게 한다. 그림은 직각 꼭짓점을 왼쪽 아래에 두고, 중점을 같은 길이 표시로 나타낸다.",
+  "sharedConcept": "직각삼각형의 빗변의 중점은 외심이다 · 무게중심은 중선을 꼭짓점에서부터 2:1로 나눈다",
+  "sharedProcedure": "빗변의 중점이 외심임을 쓴다 → 중선의 길이 = 빗변의 절반 → 무게중심까지의 길이 = 중선의 2/3"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 무게중심"
+  },
+  "prerequisites": [
+   "직각삼각형의 외심은 빗변의 중점이다",
+   "삼각형의 무게중심은 중선을 2:1로 나눈다"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20705-A50-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각삼각형에서 빗변의 길이로 직각 꼭짓점과 무게중심 사이의 거리 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "3bb02181-1b39-4c25-93f3-6a93a039041a",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: dimension 'AC_len' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 2, 0, 0))",
+     "session": "59c6b102-ed02-40ad-a063-13ae256f473b",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    },
+    {
+     "round": 2,
+     "error": "도형을 그리지 못했습니다: labels.AC_len.point conflicts with its key",
+     "session": "651dba27-82ae-48ee-a3f6-79c5c7881337",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.147,
+   "longestRun": 9,
+   "residualChars": 72,
+   "params": 6,
+   "numberRetention": 0.167,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
