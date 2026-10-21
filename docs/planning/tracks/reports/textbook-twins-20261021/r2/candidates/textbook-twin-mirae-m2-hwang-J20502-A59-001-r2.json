@@ -1,0 +1,154 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 273,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A59-001-r2",
+ "authorId": "claude-opus-5-5:c8f7cead-d3ca-4d90-8bbf-bb7e914f17f4",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20502-A59-001-r1",
+ "route": "author",
+ "questionType": "객관식",
+ "content": "그림과 같이 $\\angle A=90^{\\circ}$인 직각삼각형 $ABC$의 빗변 $BC$ 위에 $\\overline{BA}=\\overline{BD}$가 되도록 점 $D$를 잡고, 점 $D$에서 $\\overline{BC}$에 수직으로 그은 직선이 $\\overline{AC}$와 만나는 점을 $E$라 하자. $\\angle EBD=26^{\\circ}$일 때, $\\angle x$의 크기는?\n[그림]",
+ "choices": [
+  "$46^{\\circ}$",
+  "$48^{\\circ}$",
+  "$50^{\\circ}$",
+  "$52^{\\circ}$",
+  "$54^{\\circ}$"
+ ],
+ "answer": "④",
+ "solution": "두 직각삼각형 $ABE$와 $DBE$에서 $\\angle BAE=\\angle BDE=90^{\\circ}$, 빗변 $BE$는 공통, $\\overline{BA}=\\overline{BD}$이므로 $\\triangle ABE\\equiv\\triangle DBE$($\\mathrm{RHS}$ 합동)이다. 따라서 $\\angle ABE=\\angle DBE=26^{\\circ}$이고 $\\angle ABC=2\\times26^{\\circ}=52^{\\circ}$이다. $\\triangle ABC$에서 $\\angle C=180^{\\circ}-(90^{\\circ}+52^{\\circ})=38^{\\circ}$이다. $\\triangle EDC$에서 $\\angle x=180^{\\circ}-(90^{\\circ}+38^{\\circ})=52^{\\circ}$이므로 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A59-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A59-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-3",
+  "problemCode": "J20502-A59-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "c552eae2e84d5aa687199195afd4dc154253fc9cf67fda1a1def5cdf842e5fe6",
+  "dbContentSha256": "8626f9c6928b74fa6b232f249f68823aa0ce724afd67c069a78088f09bae64a0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "8cba6bb765454137a1f8278675de563c50c9050ded1e0f434dc626b965814f56"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "B가 직각인 삼각형에서 빗변 위 점에 수선을 내리고, 직각 꼭짓점 A와 수선의 발 사이 등변으로 RHS 합동을 만든 뒤 반쪽 각에서 빗변 쪽 삼각형의 한 각(수선과 밑변이 이루는 각)을 구한다.",
+  "after": "A가 직각인 삼각형에서 빗변 BC 위에 BA와 같은 길이로 점 D를 잡고 D에서 빗변에 세운 수선이 다른 변과 만나는 점 E를 두어, 꼭짓점 B의 반쪽 각에서 E에 생기는 각을 구한다. 직각 위치 · 등변의 꼭짓점 · 수선을 내리는 변 · 구하는 각의 꼭짓점이 바뀌었다.",
+  "sharedConcept": "직각삼각형의 RHS 합동과 삼각형 내각의 합",
+  "sharedProcedure": "공통 빗변과 같은 변으로 RHS 합동 찾기 → 대응각으로 전체 각 = 반쪽 각의 2배 → 큰 직각삼각형 내각의 합으로 나머지 예각 → 작은 직각삼각형 내각의 합으로 ∠x"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "직각삼각형의 RHS 합동 조건",
+   "합동인 도형에서 대응각의 크기",
+   "삼각형의 세 내각의 크기의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A59-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "RHS 합동으로 각을 두 배로 구한 뒤 내각의 합으로 각의 크기 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'rA' ray to 'C' is not covered by a rendered segment",
+     "session": "76c97972-716b-4fba-bbde-758e6991c5be",
+     "model": "claude-opus-5-5",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.115,
+   "longestRun": 13,
+   "residualChars": 99,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

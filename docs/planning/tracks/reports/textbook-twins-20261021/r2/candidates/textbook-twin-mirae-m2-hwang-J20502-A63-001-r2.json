@@ -1,0 +1,144 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 277,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A63-001-r2",
+ "authorId": "claude-opus-5-5:ae045633-4bef-435e-acfd-f0d05999dd8b",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20502-A63-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "하루가 두꺼운 종이에서 직각삼각형 모양의 조각 두 개를 오려 냈다. 그림은 두 조각 $ABC$, $DEF$에 잰 길이를 적은 것이다.\n[그림]\n⑴ 두 조각이 꼭 포개어지는지 판단하고, 포개어진다면 꼭짓점의 짝이 맞게 $\\triangle ABC$와의 관계를 $\\equiv$로 적은 뒤 그 근거가 되는 합동 조건을 밝히시오.\n⑵ 조각 $DEF$에서 변 $DF$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "⑴ $\\triangle ABC\\equiv\\triangle FED$, $\\mathrm{RHS}$ 합동 ⑵ $16\\,\\mathrm{cm}$",
+ "solution": "⑴ $\\triangle ABC$에서 $\\angle A=90^{\\circ}$, 빗변 $\\overline{BC}=20\\,\\mathrm{cm}$, $\\overline{AB}=12\\,\\mathrm{cm}$이다. $\\triangle DEF$에서 $\\angle F=90^{\\circ}$, 빗변 $\\overline{DE}=20\\,\\mathrm{cm}$, $\\overline{FE}=12\\,\\mathrm{cm}$이다. 직각인 꼭짓점 $A$와 $F$, 길이가 $12\\,\\mathrm{cm}$인 변의 다른 끝 $B$와 $E$, 남은 꼭짓점 $C$와 $D$가 짝을 이룬다. 빗변의 길이와 다른 한 변의 길이가 각각 같으므로 $\\triangle ABC\\equiv\\triangle FED$이고, 합동 조건은 $\\mathrm{RHS}$ 합동이다.\n⑵ $\\overline{DF}$는 $\\overline{CA}$에 대응하므로 $\\overline{DF}=\\overline{CA}=16\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A63-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A63-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-51eff7970230c0f4-0-2",
+  "problemCode": "J20502-A63-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "3c34a64f856adf80cc15afcdb08f6f61bb428bafedc3110c235924de56f698c7",
+  "dbContentSha256": "6c0ef57947f01b3780ca5cb2fa2905452f73580ca6ff09ff4ab6f8215c306a1e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_6-2_직각삼각형의합동조건.hwp",
+    "sha256": "653ea49140b0a4fc5aa8ba06ebd6f77f351ab617ee7533f43170ce54530df38a",
+    "bytes": 918528
+   }
+  ],
+  "originalFigureSha256": [
+   "5b19a8d8fc755bb8a776f1a176ed3650d555fb00a4933ae8f6bc347829445d09",
+   "feb4a92dc892cd3acad0dfafb5306b32c66168c839a9e8224a463c508b69b6ee"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "그림에 길이가 적힌 두 직각삼각형을 보고, 대응 순서를 맞춰 합동을 기호로 나타내고 합동 조건을 말한다. 그다음 둘째 삼각형에서 길이가 적히지 않은 변(첫째 삼각형의 한 변에 대응)을 구한다.",
+  "after": "종이 조각이라는 장면에서 두 조각이 포개어지는지 먼저 판단한다. 포개어지면 꼭짓점의 짝을 맞춰 합동을 식으로 쓰고 근거인 조건을 밝힌다. 직각의 위치·놓인 방향·대응 순서(A↔F, B↔E, C↔D)와 수(12·16·20)가 바뀌었고, 둘째 조각에서 비어 있는 변을 대응변으로 구한다.",
+  "sharedConcept": "직각삼각형의 RHS 합동 조건과 합동인 도형의 대응변",
+  "sharedProcedure": "직각인 꼭짓점 찾기 → 빗변과 다른 한 변이 같은지 확인 → 꼭짓점 대응 정하기 → 합동 기호로 표기·RHS 합동 → 대응변으로 길이 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "삼각형의 합동과 합동 기호 ≡ 및 대응 순서",
+   "직각삼각형의 빗변",
+   "합동인 도형에서 대응변의 길이는 같다"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A63-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "그림의 두 직각삼각형의 RHS 합동을 대응 순서에 맞게 쓰고 대응변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 2개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.069,
+   "longestRun": 5,
+   "residualChars": 120,
+   "params": 2,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 272,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A58-001-r2",
+ "authorId": "claude-opus-5-5:9824200b-16cf-437e-86c4-078720d4fee4",
+ "revisionOf": "textbook-twin-mirae-m2-hwang-J20502-A58-001-r1",
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림과 같이 $\\angle B$가 직각인 직각삼각형 $ABC$가 있다. 빗변 $AC$의 중점 $M$을 지나고 $\\overline{AC}$에 수직인 직선이 변 $BC$와 만나는 점을 $N$이라 하면 $\\overline{BN}=\\overline{MN}$이다. $\\angle NAC=\\angle x$일 때, $\\angle x$의 크기를 구하시오.",
+ "choices": [],
+ "answer": "$30^{\\circ}$",
+ "solution": "$\\triangle AMN$과 $\\triangle CMN$에서 $\\overline{AM}=\\overline{CM}$이고 $\\overline{MN}$은 공통이며 $\\angle AMN=\\angle CMN=90^{\\circ}$이므로 $\\triangle AMN\\equiv\\triangle CMN$($\\mathrm{SAS}$ 합동)이다. 그러므로 $\\angle C=\\angle MAN=\\angle x$이다.\n직각삼각형 $ABN$과 $AMN$에서 빗변 $AN$은 공통이고 $\\overline{BN}=\\overline{MN}$이며 $\\angle B=\\angle AMN=90^{\\circ}$이므로 $\\triangle ABN\\equiv\\triangle AMN$($\\mathrm{RHS}$ 합동)이다. 그러므로 $\\angle BAN=\\angle MAN=\\angle x$이다.\n$\\triangle ABC$에서 $\\angle x+\\angle x+\\angle x+90^{\\circ}=180^{\\circ}$이므로 $3\\angle x=90^{\\circ}$이다.\n따라서 $\\angle x=30^{\\circ}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A58-001-r2.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A58-001-r2.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-5",
+  "problemCode": "J20502-A58-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "2b697f05e251e84de2b7235ab2d7e0a5f4ab90c66e33cf762665752f5f4c9637",
+  "dbContentSha256": "38ff12d4ce0bec400169d3bd51ae8700dd0c914377245f75b86a62a799e3d652",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "c991889eebecaf4a3681ff04c3bd4f9f6a8f94e9821ca93bea642eeaac2a9f8a"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation"
+  ],
+  "before": "꼭짓점 C가 직각인 직각삼각형에서 빗변 중점에 세운 수선이 다른 변과 만나는 점까지의 길이가 직각 꼭짓점에서 그 점까지의 길이와 같다. 이때 빗변 아래쪽 끝 꼭짓점 B의 각을 묻는다.",
+  "after": "꼭짓점 B가 직각이고 방향을 뒤집은 직각삼각형에서 같은 조건을 둔다. 직각은 숫자 없이 말로 주고, 묻는 각을 꼭짓점의 각이 아니라 꼭짓점 A에서 갈린 조각 ∠NAC로 옮겨 놓는다. 한 번 더 계산하는 단계가 없이 3x=90°에서 바로 답이 나온다.",
+  "sharedConcept": "SAS 합동과 직각삼각형의 RHS 합동으로 같은 각 셋을 찾고, 삼각형의 내각의 합으로 각의 크기를 구한다.",
+  "sharedProcedure": "중점과 수직 조건에서 SAS 합동으로 ∠C=∠x를 얻는다 → 빗변 공통과 BN=MN에서 RHS 합동으로 ∠BAN=∠x를 얻는다 → 내각의 합에서 3x+90°=180°로 놓는다 → x=30°"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "삼각형의 합동 조건(SAS)",
+   "직각삼각형의 합동 조건(RHS)",
+   "삼각형의 내각의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A58-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직각삼각형의 빗변 중점에 세운 수선과 RHS 합동으로 같은 각 세 개를 찾아 각의 크기 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.085,
+   "longestRun": 9,
+   "residualChars": 74,
+   "params": 1,
+   "numberRetention": 0.0,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
