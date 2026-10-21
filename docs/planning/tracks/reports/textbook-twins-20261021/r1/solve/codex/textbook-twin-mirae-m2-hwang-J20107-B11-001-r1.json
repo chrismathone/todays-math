@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B11-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d59-1beb-7933-a5ca-df600b2a7514",
+ "startedAt": "2026-10-21T16:24:43+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "student.json": "02dc31dc3c0fc0d0fc181d8390a52c1c59ac7e851cfbaf5fa75930da9260f8bf"
+ },
+ "promptSha256": "8e526dc662efdcafb530959bab039452500095cef33748c3878c2ee3b1181f21",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"7\",\"work\":\"중괄호 안을 정리하면 $-5x^{2}+8x-10$이다.\\n대괄호 안은 $-x^{2}-x-6$이므로 전체 식은 $x^{2}+6x+6$이다.\\n따라서 $x^{2}$의 계수와 상수항의 합은 $1+6=7$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "7",
+  "work": "중괄호 안을 정리하면 $-5x^{2}+8x-10$이다.\n대괄호 안은 $-x^{2}-x-6$이므로 전체 식은 $x^{2}+6x+6$이다.\n따라서 $x^{2}$의 계수와 상수항의 합은 $1+6=7$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "8fa019614dd6ab44a6f170d6356847d27a30fe67c2ddfa0a603b0e7d7a0c1c5c"
+}

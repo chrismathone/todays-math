@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A71-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d57-4a61-7083-ae4e-efddf7d7bcc6",
+ "startedAt": "2026-10-21T16:22:44+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "student.json": "5cafdac90d61c6ab3373c68c5a19b22ad1770d6eeb599b6820e6838292531a62"
+ },
+ "promptSha256": "a2b16ac59b8f730de8e8c4fb6e1ac1a7bb6845c4b6799da3255aac640af99706",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑤\",\"work\":\"분배법칙으로 괄호를 풀면 $-4x^{2}+10x-12-3x^{2}-15x+24$이다.\\n동류항끼리 계산하면 $-7x^{2}-5x+12$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑤",
+  "work": "분배법칙으로 괄호를 풀면 $-4x^{2}+10x-12-3x^{2}-15x+24$이다.\n동류항끼리 계산하면 $-7x^{2}-5x+12$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bc15ff88c8ac59d5dec4cdc0a5c04fa2be023d39649394fbc71fdf5128c10075"
+}

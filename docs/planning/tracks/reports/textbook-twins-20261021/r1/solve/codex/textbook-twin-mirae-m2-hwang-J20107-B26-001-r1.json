@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B26-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d59-8bbc-79f0-9806-3a68d5edcbae",
+ "startedAt": "2026-10-21T16:25:11+0900",
+ "elapsedSec": 13.2,
+ "studentSha256": {
+  "fig-1.png": "8be17f74d524ed1b29527f628e61dbcc50666e7ba0f4addca092c908a591e1e4",
+  "student.json": "f60cbdf14c75455fb0385930790c576e9dd67ffef6b718ad0167eaadcb660251"
+ },
+ "promptSha256": "91d92d81f56da77f051ebe0be8628016dde5717db0fccf6978b2fb4875052253",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$A=3x+2y-5$, $B=x+5y-5$, $C=3x+10y-6$\",\"work\":\"가로 규칙에 따라 $A=(2x+5y-1)-(-x+3y+4)=3x+2y-5$.\\n$B-(4x-y+2)=-3x+6y-7$이므로 $B=(4x-y+2)+(-3x+6y-7)=x+5y-5$.\\n세로 규칙에 따라 $C=(2x+5y-1)+(x+5y-5)=3x+10y-6$.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$A=3x+2y-5$, $B=x+5y-5$, $C=3x+10y-6$",
+  "work": "가로 규칙에 따라 $A=(2x+5y-1)-(-x+3y+4)=3x+2y-5$.\n$B-(4x-y+2)=-3x+6y-7$이므로 $B=(4x-y+2)+(-3x+6y-7)=x+5y-5$.\n세로 규칙에 따라 $C=(2x+5y-1)+(x+5y-5)=3x+10y-6$.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3922fef3cc90ebc4190bd021ae432b860502fb3446ea0fd887a5c20d12e5c42a"
+}

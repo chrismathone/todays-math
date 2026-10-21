@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B18-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d59-4f8f-73b0-af8c-ecba8093094a",
+ "startedAt": "2026-10-21T16:24:56+0900",
+ "elapsedSec": 15.4,
+ "studentSha256": {
+  "fig-1.png": "ef0c4ab4ab19bd51d502c534f9150172d8b0bd97a7a89fc58fa65111e6ae550b",
+  "student.json": "416cc4ff4820d003cbf5e000eaed13269a6782155b5cb63260e1fbb52f5e8a82"
+ },
+ "promptSha256": "aaa02ca16cb9356df0a1c73887d2005a9c3da371e02cf930b2172446d4c4a446",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$9x+2y+2$\",\"work\":\"마주 보는 면의 쌍은 A와 $-x+2y-1$, B와 $2x-5y+7$, $x-3y+2$와 $3x+y+3$이다.\\n각 쌍의 합은 $(x-3y+2)+(3x+y+3)=4x-2y+5$이다.\\n따라서 $A=5x-4y+6$, $B=2x+3y-2$이므로 $A+2B=9x+2y+2$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$9x+2y+2$",
+  "work": "마주 보는 면의 쌍은 A와 $-x+2y-1$, B와 $2x-5y+7$, $x-3y+2$와 $3x+y+3$이다.\n각 쌍의 합은 $(x-3y+2)+(3x+y+3)=4x-2y+5$이다.\n따라서 $A=5x-4y+6$, $B=2x+3y-2$이므로 $A+2B=9x+2y+2$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cedcdebe36bdf9f1c5299de76a2396018f784807de9e598ebda2dc8e27a6598c"
+}

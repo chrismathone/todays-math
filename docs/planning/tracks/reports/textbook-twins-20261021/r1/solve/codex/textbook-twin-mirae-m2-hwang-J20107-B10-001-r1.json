@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B10-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d58-cc58-79a2-a60e-0185058276a2",
+ "startedAt": "2026-10-21T16:24:22+0900",
+ "elapsedSec": 20.3,
+ "studentSha256": {
+  "student.json": "8416a983d8fb1545816730877d7e318aa3ae5c20562dca9f833abaf6b92ecdba"
+ },
+ "promptSha256": "0aa1dee8e891447dacf7ef59f141d59fb056b19556d5d4fa18e628c70ec5f9a9",
+ "freezeCommit": "fdd52d02894e24f3a7dbce6b3b208a8b04b8ff1b",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $3x^{2}+3x-6$ ⑵ $-4x^{2}-x-5$\",\"work\":\"⑴ 동류항끼리 더하면 $(-2+5)x^{2}+(4-1)x+(1-7)=3x^{2}+3x-6$.\\n⑵ 빼는 식의 각 항의 부호를 바꾸면 $2x^{2}-9-6x^{2}-x+4=-4x^{2}-x-5$.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $3x^{2}+3x-6$ ⑵ $-4x^{2}-x-5$",
+  "work": "⑴ 동류항끼리 더하면 $(-2+5)x^{2}+(4-1)x+(1-7)=3x^{2}+3x-6$.\n⑵ 빼는 식의 각 항의 부호를 바꾸면 $2x^{2}-9-6x^{2}-x+4=-4x^{2}-x-5$.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "adc2b496a03fe1d58a705bb3e42891dde0725d9333f75e918ebb1b3c4ad77ae3"
+}

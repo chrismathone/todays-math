@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B26-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "e55ab23e-d086-4b29-89dc-f299f5a8c51c",
+ "startedAt": "2026-10-21T16:17:03+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "fig-1.png": "8be17f74d524ed1b29527f628e61dbcc50666e7ba0f4addca092c908a591e1e4",
+  "student.json": "f60cbdf14c75455fb0385930790c576e9dd67ffef6b718ad0167eaadcb660251"
+ },
+ "promptSha256": "542cb2512e3d07d0fb673223512a6789375e4d5eb431fba4759fede5697d3ac9",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$A=3x+2y-5$, $B=x+5y-5$, $C=3x+10y-6$\", \"work\": \"1행: A=(2x+5y-1)-(-x+3y+4)=3x+2y-5. 2행: B-(4x-y+2)=-3x+6y-7 이므로 B=(-3x+6y-7)+(4x-y+2)=x+5y-5. 1열: C=(2x+5y-1)+(x+5y-5)=3x+10y-6. 검산: 3행 가운데 칸은 (-x+3y+4)+(4x-y+2)=3x+2y+6이고, C-(3x+2y+6)=8y-12가 3열 합 A+(-3x+6y-7)=8y-12와 같다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$A=3x+2y-5$, $B=x+5y-5$, $C=3x+10y-6$",
+  "work": "1행: A=(2x+5y-1)-(-x+3y+4)=3x+2y-5. 2행: B-(4x-y+2)=-3x+6y-7 이므로 B=(-3x+6y-7)+(4x-y+2)=x+5y-5. 1열: C=(2x+5y-1)+(x+5y-5)=3x+10y-6. 검산: 3행 가운데 칸은 (-x+3y+4)+(4x-y+2)=3x+2y+6이고, C-(3x+2y+6)=8y-12가 3열 합 A+(-3x+6y-7)=8y-12와 같다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d8577b3115a03b2a96d6a10ff2ed773c7e32e72f5b2c6991a783d1a366f92c7b"
+}

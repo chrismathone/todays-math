@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-B11-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "087f89c7-ddba-450a-ab76-e0ee0ac54e6f",
+ "startedAt": "2026-10-21T16:16:44+0900",
+ "elapsedSec": 4.6,
+ "studentSha256": {
+  "student.json": "02dc31dc3c0fc0d0fc181d8390a52c1c59ac7e851cfbaf5fa75930da9260f8bf"
+ },
+ "promptSha256": "8e526dc662efdcafb530959bab039452500095cef33748c3878c2ee3b1181f21",
+ "freezeCommit": "77fee368536b65155fa0739e8e421486b72b1220",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"7\", \"work\": \"중괄호 안: $x^{2}-(6x^{2}-8x+10)=-5x^{2}+8x-10$\\n대괄호 안: $4x^{2}-9x+(-5x^{2}+8x-10)+4=-x^{2}-x-6$\\n전체: $5x-(-x^{2}-x-6)=x^{2}+6x+6$\\n$x^{2}$의 계수 1, 상수항 6이므로 합은 $1+6=7$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "7",
+  "work": "중괄호 안: $x^{2}-(6x^{2}-8x+10)=-5x^{2}+8x-10$\n대괄호 안: $4x^{2}-9x+(-5x^{2}+8x-10)+4=-x^{2}-x-6$\n전체: $5x-(-x^{2}-x-6)=x^{2}+6x+6$\n$x^{2}$의 계수 1, 상수항 6이므로 합은 $1+6=7$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d736b67b708b68a8d009c769c10fee99d359b1b242d163f74c884568998b2f4c"
+}
