@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20305-A27-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de6-6c20-71a3-af21-e76daaa74be7",
+ "startedAt": "2026-10-21T18:59:04+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "student.json": "ada8355ed04aba5ed6b4c84a6612427fdf99439832624d2a2fee65b905d098eb"
+ },
+ "promptSha256": "7365b7917423ffda7de893cb1258dffa648eb5a3596d154c96115b1f449b9b8e",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"-9\",\"work\":\"두 그래프가 완전히 겹치므로 첫째 식에 $-\\\\frac{3}{2}$를 곱하면 둘째 식이 된다.\\n따라서 $-\\\\frac{3}{2}a=9$, $b=-15$이므로 $a=-6$이다.\\n그러므로 $b-a=-15-(-6)=-9$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "-9",
+  "work": "두 그래프가 완전히 겹치므로 첫째 식에 $-\\frac{3}{2}$를 곱하면 둘째 식이 된다.\n따라서 $-\\frac{3}{2}a=9$, $b=-15$이므로 $a=-6$이다.\n그러므로 $b-a=-15-(-6)=-9$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "c713ed04c8d4b9c2d24aedb48a5ccce6017de4be7eeed18ce2c5715d84bd7708"
+}

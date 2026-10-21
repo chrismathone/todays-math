@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20305-A27-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "d131b77e-6568-41fb-bed1-72d1fd52b245",
+ "startedAt": "2026-10-21T18:13:48+0900",
+ "elapsedSec": 12.5,
+ "studentSha256": {
+  "student.json": "ada8355ed04aba5ed6b4c84a6612427fdf99439832624d2a2fee65b905d098eb"
+ },
+ "promptSha256": "fe8c208d4b7f0c44c0ec24f735dfce10349c702edd97706f7d55c3a4ff756d78",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"-9\",\n  \"work\": \"두 일차방정식의 그래프가 일치하여 해가 무수히 많으므로 계수와 상수항의 비가 같습니다. 4/(-6) = a/9 = 10/b = -2/3에서 a = -6, b = -15입니다. 따라서 b - a = -15 - (-6) = -9입니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "-9",
+  "work": "두 일차방정식의 그래프가 일치하여 해가 무수히 많으므로 계수와 상수항의 비가 같습니다. 4/(-6) = a/9 = 10/b = -2/3에서 a = -6, b = -15입니다. 따라서 b - a = -15 - (-6) = -9입니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fc1fb9faeb7bb83704ca4233fd0580c199e19b888bc976ebfe73e353ac6a0b7d"
+}

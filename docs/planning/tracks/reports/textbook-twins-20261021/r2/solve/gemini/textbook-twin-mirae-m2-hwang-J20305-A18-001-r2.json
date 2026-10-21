@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20305-A18-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "fd45f184-db40-4d21-8a56-cc9a341ffb09",
+ "startedAt": "2026-10-21T18:13:41+0900",
+ "elapsedSec": 14.1,
+ "studentSha256": {
+  "student.json": "7fa40a5ff64b85d69938894a72839174b204146f099ada0ee74a1dc32a66b85c"
+ },
+ "promptSha256": "7d2883ade1763d5b100c3989653cbe9c80caaf6efdb35cf8c99384a21e543b23",
+ "freezeCommit": "787482be0dd80c53f777b94ac1a0a358589c0f9f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"-10\",\n  \"work\": \"연립방정식을 $2x - 5y = -10$, $4x + ay = 3$으로 정리했을 때, 해가 없으려면 $\\\\frac{2}{4} = \\\\frac{-5}{a} \\\\neq \\\\frac{-10}{3}$이어야 합니다. $\\\\frac{1}{2} = \\\\frac{-5}{a}$에서 $a = -10$이고, 이는 $a \\\\neq 0$ 및 상수항의 비와의 불일치 조건을 만족합니다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "-10",
+  "work": "연립방정식을 $2x - 5y = -10$, $4x + ay = 3$으로 정리했을 때, 해가 없으려면 $\\frac{2}{4} = \\frac{-5}{a} \\neq \\frac{-10}{3}$이어야 합니다. $\\frac{1}{2} = \\frac{-5}{a}$에서 $a = -10$이고, 이는 $a \\neq 0$ 및 상수항의 비와의 불일치 조건을 만족합니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b9dbd48ce7c6c0ef9d5f64e63608f9494e7d0d1dccdbc22c1f0b6caa6611e69a"
+}

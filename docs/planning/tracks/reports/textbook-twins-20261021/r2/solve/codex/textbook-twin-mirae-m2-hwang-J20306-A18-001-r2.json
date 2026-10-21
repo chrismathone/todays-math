@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A18-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de5-8826-7221-8cd2-25180db37948",
+ "startedAt": "2026-10-21T18:58:06+0900",
+ "elapsedSec": 12.8,
+ "studentSha256": {
+  "student.json": "ab9f0e3f49c0af49ce4b502a8ca60dd0b97f478b24e9f5ce9963117ed49ed0eb"
+ },
+ "promptSha256": "b5637d672b0246180cec269336b396b1aaacccf6a5c61611bd89d276d0e389ea",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"19\",\"work\":\"십의 자리 숫자를 x, 일의 자리 숫자를 y라 하면 x+y=10, 10y+x=5(10x+y)-4이다.\\n두 번째 식을 정리하면 49x-5y=4이고, y=10-x를 대입하면 54x=54이다.\\n따라서 x=1, y=9이므로 사물함 번호는 19이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "19",
+  "work": "십의 자리 숫자를 x, 일의 자리 숫자를 y라 하면 x+y=10, 10y+x=5(10x+y)-4이다.\n두 번째 식을 정리하면 49x-5y=4이고, y=10-x를 대입하면 54x=54이다.\n따라서 x=1, y=9이므로 사물함 번호는 19이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6133b8b91842e5065e9f4e89f249f55ef1597be71e4f5cee9f4096ff43941cb0"
+}

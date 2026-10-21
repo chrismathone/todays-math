@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A48-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de5-04af-75c0-995b-f9c19a9c0062",
+ "startedAt": "2026-10-21T18:57:32+0900",
+ "elapsedSec": 9.5,
+ "studentSha256": {
+  "student.json": "b18885374eec1f40e01808f0561a0975637fc6875723a4e31f92422d401be4e5"
+ },
+ "promptSha256": "e2b45c50f93be7eac0f36f5ae9a6c5745d7d28917ead9a6679fef91700c9ba5b",
+ "freezeCommit": "f3faae642d38f8504ebb60f9d7f8d4c4013923ef",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"바르게 적은 ㉡에 $x=3$을 대입하면 $3+4y=1$이므로 $y=-\\\\frac{1}{2}$이다.\\n따라서 잘못 적은 수는 $5x-6y=15-6\\\\times(-\\\\frac{1}{2})=18$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "바르게 적은 ㉡에 $x=3$을 대입하면 $3+4y=1$이므로 $y=-\\frac{1}{2}$이다.\n따라서 잘못 적은 수는 $5x-6y=15-6\\times(-\\frac{1}{2})=18$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2d8c9188b84f930aad753845fdd43040d550e7826141125cba447253d1cf557c"
+}
