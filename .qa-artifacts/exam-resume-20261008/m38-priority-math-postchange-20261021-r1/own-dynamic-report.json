@@ -1,0 +1,326 @@
+{
+  "status": "BOUNDED_CURRENT120_TARGETED_REPLAY_PASS",
+  "executionFinished": true,
+  "NodeEnded": true,
+  "prechangeCommit": "eb846a15db71f68e33084a21fc307a00f0fd9e24",
+  "cohort": "Identical4typekeys,seed20261020+s*7919,s0..29,variant0,sourceROOTabsoluteimports. Oneactualprocess afteronefreshmemoryprobe3,206,553,600bytes.",
+  "counts": {
+    "actualGenerateMiddleProblemCalls": 120,
+    "registeredTypesCalls": 1,
+    "selectedTypeKeys": 4,
+    "NodeProcesses": 1,
+    "actualNetworkAPIDBCalls": 0,
+    "realRendererCalls": 0,
+    "finalAssertions": 22,
+    "failed": 0,
+    "firstImportModuleHashes": 104,
+    "beforeAfterUniqueFiles": 139,
+    "sourceChanges": 0,
+    "oldEvidenceFilesVerified": 32
+  },
+  "incidenceBefore": {
+    "M8": {
+      "matrixCount": 30,
+      "mathematicalDefects": 21
+    },
+    "M9": {
+      "matrixCount": 30,
+      "mathematicalDefects": 17
+    },
+    "M19": {
+      "matrixCount": 30,
+      "mathematicalDefects": 30,
+      "rightTriangles": 1,
+      "triangleNonexistence": 7,
+      "radiusMismatchForExistingTriangles": 23
+    },
+    "M20": {
+      "matrixCount": 30,
+      "mathematicalDefects": 12,
+      "naturalInputBranch": 15,
+      "collisionCount": 12,
+      "simplifyBranch": 15
+    }
+  },
+  "incidenceCurrent": {
+    "M8": {
+      "matrixCount": 30,
+      "mathematicalDefects": 0
+    },
+    "M9": {
+      "matrixCount": 30,
+      "mathematicalDefects": 0
+    },
+    "M19": {
+      "matrixCount": 30,
+      "mathematicalDefects": 0,
+      "rightTriangles": 13,
+      "triangleNonexistence": 0,
+      "radiusMismatchForExistingTriangles": 0
+    },
+    "M20": {
+      "matrixCount": 30,
+      "mathematicalDefects": 0,
+      "naturalInputBranch": 15,
+      "collisionCount": 0,
+      "simplifyBranch": 15
+    }
+  },
+  "checks": [
+    {
+      "name": "same120cohortOrder",
+      "pass": true
+    },
+    {
+      "name": "exactAPI120calls",
+      "pass": true
+    },
+    {
+      "name": "targetedDefectsZero",
+      "pass": true
+    },
+    {
+      "name": "allRequiredConditionsAndConditionalAnswers",
+      "pass": true
+    },
+    {
+      "name": "M20universalUnique15",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20261020",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20292696",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20300615",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20324372",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20340210",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20348129",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20356048",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20363967",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20371886",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20387724",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20411481",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20419400",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20435238",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20443157",
+      "pass": true
+    },
+    {
+      "name": "M20TeXnewline/20466914",
+      "pass": true
+    },
+    {
+      "name": "resources",
+      "pass": true
+    },
+    {
+      "name": "sourceAndPriorEvidenceUnchanged",
+      "pass": true
+    }
+  ],
+  "mathEvidence": {
+    "M8": "30/30positivevalidsimilartriangles/P>2AD; unique scaled perimeter matches independent printedconditions.",
+    "M9": "30/30stricttriangleinequalities,positivealtitude² andexternalpointD beyondC; CDuniquefromratio andlengths.",
+    "M19": "30/30stricttriangleexistence andactualinradius²equalgivenr²; positive r fixespositivebranch,targetIBC area follows commonheightgivenr. Pythagoreanprojection squaredarea is audit-only; studentsneednoHeron/trig.",
+    "M20": "15/15naturalinputtasks have disjointm/n/k andexplicitall-valuescondition, exactuniquen fromcoefficientpowermagnitude, thenm=X/n,k=ey*n. Universalexponentidentity proofnotmeresubstitution. 36numericchecks/task corroborate. Remaining15simplificationtasksnotnewlywholemathcertified."
+  },
+  "staticDynamicSeparated": "own-static-binding-report.json rebindsactual5currentfiles to priorR3staticreview. own-independent-calculations.json is currentactualprinted120 math. Static373finite-domainoutputs parenttests not counted as ownruntime; no repeatedold/staticcounts added.",
+  "sourceRuntimeBinding": "own-source-hashes.json capturescurrent5source/testexpectedhashes andfreshfirst-import104modulehashes, allafterequal. ROOTHEADmetadataobservationnotfreezecondition. CurrentnewconditiontestBigIntspelling is parenttestchange, not executed here.",
+  "preservedEvidence": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-before.py",
+      "sha256": "8c47fa09a2136d9d6708ca0a9e2c00698e1696bd5b0853ea0bc5b458e8745819"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-finalize-static.py",
+      "sha256": "3dda19e7554607ce6f1958531f1b865cd5076d502e0e597cd6f1dc90c47d92aa"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-guard.cjs",
+      "sha256": "ca763fdc220401cf5d269b9e879420d1cf6e75f58038e165bc52f2395aeafa1b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-handoff-receipt.json",
+      "sha256": "2001ed489929cf76f25f060a5677304899258e261091be5c49ea946f48db3166"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-independent-calculations.py",
+      "sha256": "ab12c4e7a013376d8534e0b9db27d6dcfe49dbc87ba3bbe25d927d1bde91ca83"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-locators.py",
+      "sha256": "d63d51786e75f0519b6c3fa792480c4a644152fa91cd420374e4cd34e0a460db"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-replay.ps1",
+      "sha256": "cd1f5838f787e10b2dde3a32825c18702420bd53bd33a877d38e2576566c7578"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-runner.ts",
+      "sha256": "eaf81dcdcd579da436c1133c15d3f58348180fdd2d00059ee488788db5001866"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-source-after.json",
+      "sha256": "c6808565fc46e802a74ce4c3b45203e9168783952955ad14f18402cb079df361"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-source-before.json",
+      "sha256": "5cc8175e2a0351ddd2cf0806fddcec2b5a7e55224591e90f5fc643d4545f67f9"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-source-locators.json",
+      "sha256": "e3520922627e88031d3e93597bf8b6f07b18b44c9b8aecfaba6c9a67d2365afc"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-static-domain-results.json",
+      "sha256": "f7e21ab96609783e0dbb18c6aadc22d381a735652a9e768405cd24afa59fd197"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-static-domain.py",
+      "sha256": "4bc537543ff10de7a6c7d2a83fb7eb202977e189a052b612a15f0c8617e0992c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-static-report.json",
+      "sha256": "0a4b503ae171f3b118576f09cc041bd26c30812f97a0d7021e8a29d7e10cbfdf"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-tsconfig.json",
+      "sha256": "ce969bc9120ea598f7cece33df8237bf7ee1fdd8728e50a87684482b20456963"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-20261021-r1/own-utf8-probe.txt",
+      "sha256": "86d752e1f75d667bc7c8963934065116ff5fd8280c2decaed91a482788fb7a9e"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-actual-outputs.json",
+      "sha256": "d2226ff8caa895d1511aba51921220cb8c6848e178d921a9a6f124a4085b5329"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-counterexamples.json",
+      "sha256": "0e290cfeb86601601ba103bb33824d47a2bc0c9728ac26ee77bdb3bc8293f25f"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-dynamic-memory.json",
+      "sha256": "8038e1dae1449f15c00682ec480dd877db51254009c004e60a3b31510b5bde1c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-dynamic-report.json",
+      "sha256": "701dd6b454824c537f5fe36dacf4f9f6b0817774436900f5febfdbe00d0b663c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-finalize.py",
+      "sha256": "215fb03be28d2f07e2bf138b7af2a63eb74a5645ccbd0d38e908e2f640044652"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-guard.cjs",
+      "sha256": "ca763fdc220401cf5d269b9e879420d1cf6e75f58038e165bc52f2395aeafa1b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-independent-calculations.json",
+      "sha256": "1397f26b634a54ec8d5848e792a434427078da2d3459ce368446c0b11aa68e82"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-independent-calculations.py",
+      "sha256": "ab12c4e7a013376d8534e0b9db27d6dcfe49dbc87ba3bbe25d927d1bde91ca83"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-runner.ts",
+      "sha256": "eaf81dcdcd579da436c1133c15d3f58348180fdd2d00059ee488788db5001866"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-source-hashes.json",
+      "sha256": "69e5cfe5b9f43bb79dbc3a151328698e207532414db6f715bd2209724080f3a3"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-priority-math-prechange-dynamic-20261021-r2/own-tsconfig.json",
+      "sha256": "ce969bc9120ea598f7cece33df8237bf7ee1fdd8728e50a87684482b20456963"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r3/own-finalize.py",
+      "sha256": "de5d2bfe51d22d528a5bdec74c00d3acba5df8b60cfb81dfbb8307bbfbd1a8ce"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r3/own-report.json",
+      "sha256": "c9572efefae88ac3c041bab33fa07ae2a677c1236f6f4e67555ed16cbfedea38"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r3/own-review.py",
+      "sha256": "d865812742aa55d1584818fbbadea57434829210591093f7281c9e204ace6d2d"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r3/own-static-results.json",
+      "sha256": "a5ac01aa3a338de17ed7cf734305a6661705bc5e763fe4aad91f8d9673c8833b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/m38-proposal-review-20261021-r3/own-utf8-probe.txt",
+      "sha256": "2e753edd7fcd943aa0729a3325716be67e9d481a688b8962e559189401a98571"
+    }
+  ],
+  "resource": {
+    "freshMemoryProbe": {
+      "maxSemiSpaceMiB": 8,
+      "maxOldSpaceMiB": 192,
+      "minimumBytes": 1610612736,
+      "availablePhysicalMemoryBytes": 3206553600,
+      "parentGO": true
+    },
+    "actualNodeHeapLimitBytes": 226492416,
+    "arguments": "--max-old-space-size=192 --max-semi-space-size=8",
+    "noConcurrentOwnRunner": true,
+    "NodeProcessExitedBeforePythonFinalization": true
+  },
+  "limitations": [
+    "Onlysamebounded30seeds/type, notwholebank/exhaustiveRNGcoverage orfullengineapproval.",
+    "NoDB/API/model/network/CIM/browser/renderer/TScompile/lint/Vitest. Parentrelatedchecksnotcounted.",
+    "No learnertrig/Heronrequirementinferredfromauditformulas; newgrade/rights/sourceidentity/native/publicreleaseapprovalsremainfalse.",
+    "Noissuedquestionrefresh,recordmigration,bankrebuild,authoring/blindcredit orproductionedits. Oldraw/private untouched."
+  ],
+  "artifacts": {
+    "own-before-execution.json": "aba5cf9ac8ecff6b4fff1fe557216a0dd0a3040ae5c5d28280222875d130a711",
+    "own-actual-outputs.json": "c2b7f35f15e39232bdbe647083de5c8e382260408187fbd88772ab709fad102f",
+    "own-independent-calculations.py": "f7c09bdb7f4df592388402cb690bbbf58e456c7413ab834b5311d4f8accf764a",
+    "own-independent-calculations.json": "00f18336dbf2c865dbcb1ea43289aa3fd0b73b9598bcf6e09c423ba50e7909c5",
+    "own-source-hashes.json": "5c705af761cdc4ea7f4d16ea156381e855a8cc0ee8005981bed0b539588ebd53",
+    "own-static-binding-report.json": "1318e757bd244166c641147595f829c7033aa671572c96aba584a80ddb2a1f35",
+    "own-memory-execution.json": "01eebd5be81f481605e937636c91d71fb05a2a2757f784ffb5a4490c4f2b5f83",
+    "own-runner.ts": "04db2bdae58ba3c1ae7be16d0d6417ae53cd975672f850851d5cfb188201453a"
+  }
+}

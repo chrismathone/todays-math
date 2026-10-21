@@ -1,0 +1,6751 @@
+{
+  "summary": {
+    "M8": {
+      "matrixCount": 30,
+      "mathematicalDefects": 0
+    },
+    "M9": {
+      "matrixCount": 30,
+      "mathematicalDefects": 0
+    },
+    "M19": {
+      "matrixCount": 30,
+      "mathematicalDefects": 0,
+      "rightTriangles": 13,
+      "triangleNonexistence": 0,
+      "radiusMismatchForExistingTriangles": 0
+    },
+    "M20": {
+      "matrixCount": 30,
+      "mathematicalDefects": 0,
+      "naturalInputBranch": 15,
+      "collisionCount": 0,
+      "simplifyBranch": 15
+    }
+  },
+  "cases": [
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20261020,
+      "variant": 0,
+      "matrixIndex": 0,
+      "printedContentSHA256": "5110a11c708c99e4ef3e97c3b5b6a959babc768c5d05e2510116caf16ad1e04a",
+      "printed": {
+        "AD": 5,
+        "AB": 10,
+        "ADEperimeter": 20
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 10,
+        "scale": "2",
+        "equalOtherSidesWitness": "15/2",
+        "largerPerimeterConditional": "40"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20268939,
+      "variant": 0,
+      "matrixIndex": 1,
+      "printedContentSHA256": "aacec36b308f599abd6e174abc74a1b9c6ca2a11e9c1be7f9be78c396ab7438d",
+      "printed": {
+        "AD": 5,
+        "AB": 20,
+        "ADEperimeter": 11
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 1,
+        "scale": "4",
+        "equalOtherSidesWitness": "3",
+        "largerPerimeterConditional": "44"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20276858,
+      "variant": 0,
+      "matrixIndex": 2,
+      "printedContentSHA256": "51653a47d19c6010d429b7b2d11348a41a483140c67f91626f67632e21d6b093",
+      "printed": {
+        "AD": 2,
+        "AB": 4,
+        "ADEperimeter": 8
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 4,
+        "scale": "2",
+        "equalOtherSidesWitness": "3",
+        "largerPerimeterConditional": "16"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20284777,
+      "variant": 0,
+      "matrixIndex": 3,
+      "printedContentSHA256": "3564aa02fdd9bfc886691e0a7e5197e08c18b7a9838e052aca996bb353ff4c66",
+      "printed": {
+        "AD": 5,
+        "AB": 20,
+        "ADEperimeter": 18
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 8,
+        "scale": "4",
+        "equalOtherSidesWitness": "13/2",
+        "largerPerimeterConditional": "72"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20292696,
+      "variant": 0,
+      "matrixIndex": 4,
+      "printedContentSHA256": "5a587081d358652f3980e7960017a45a68f766b9df8bc19448ec143844899d95",
+      "printed": {
+        "AD": 3,
+        "AB": 9,
+        "ADEperimeter": 9
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 3,
+        "scale": "3",
+        "equalOtherSidesWitness": "3",
+        "largerPerimeterConditional": "27"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20300615,
+      "variant": 0,
+      "matrixIndex": 5,
+      "printedContentSHA256": "1686df4a713a98c442d9aca19b955fbe3d1495df987c2adb93b4b998f476d5d4",
+      "printed": {
+        "AD": 5,
+        "AB": 15,
+        "ADEperimeter": 14
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 4,
+        "scale": "3",
+        "equalOtherSidesWitness": "9/2",
+        "largerPerimeterConditional": "42"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20308534,
+      "variant": 0,
+      "matrixIndex": 6,
+      "printedContentSHA256": "8cc5b9378561e6ee08f215ced081ce77c682bda369a098694edf5b24b9566a18",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 7
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 1,
+        "scale": "2",
+        "equalOtherSidesWitness": "2",
+        "largerPerimeterConditional": "14"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20316453,
+      "variant": 0,
+      "matrixIndex": 7,
+      "printedContentSHA256": "082bf752175a81e697ac2b5315a1ed3170161657a580139832d13d570ea7b81c",
+      "printed": {
+        "AD": 3,
+        "AB": 12,
+        "ADEperimeter": 10
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 4,
+        "scale": "4",
+        "equalOtherSidesWitness": "7/2",
+        "largerPerimeterConditional": "40"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20324372,
+      "variant": 0,
+      "matrixIndex": 8,
+      "printedContentSHA256": "42a11cd237ad9aa0b2098628eb61a0c99dbf99caa420bb894ca1f58577dbd43e",
+      "printed": {
+        "AD": 3,
+        "AB": 9,
+        "ADEperimeter": 7
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 1,
+        "scale": "3",
+        "equalOtherSidesWitness": "2",
+        "largerPerimeterConditional": "21"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20332291,
+      "variant": 0,
+      "matrixIndex": 9,
+      "printedContentSHA256": "8c077e1e2c35ff544910e34a2e81e5837581f2e1c5bc611a2e00faafaec85c58",
+      "printed": {
+        "AD": 2,
+        "AB": 6,
+        "ADEperimeter": 14
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 10,
+        "scale": "3",
+        "equalOtherSidesWitness": "6",
+        "largerPerimeterConditional": "42"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20340210,
+      "variant": 0,
+      "matrixIndex": 10,
+      "printedContentSHA256": "1686df4a713a98c442d9aca19b955fbe3d1495df987c2adb93b4b998f476d5d4",
+      "printed": {
+        "AD": 5,
+        "AB": 15,
+        "ADEperimeter": 14
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 4,
+        "scale": "3",
+        "equalOtherSidesWitness": "9/2",
+        "largerPerimeterConditional": "42"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20348129,
+      "variant": 0,
+      "matrixIndex": 11,
+      "printedContentSHA256": "57004edf0b553b548fba16aeba1c7cc15c5c21910f8e247f2a1db5bf8e581056",
+      "printed": {
+        "AD": 5,
+        "AB": 10,
+        "ADEperimeter": 16
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 6,
+        "scale": "2",
+        "equalOtherSidesWitness": "11/2",
+        "largerPerimeterConditional": "32"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20356048,
+      "variant": 0,
+      "matrixIndex": 12,
+      "printedContentSHA256": "f86f3a841138541e80b5c5312c45c7aae044e132f22d38ccc8f1e0a83bdce4a7",
+      "printed": {
+        "AD": 3,
+        "AB": 9,
+        "ADEperimeter": 8
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 2,
+        "scale": "3",
+        "equalOtherSidesWitness": "5/2",
+        "largerPerimeterConditional": "24"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20363967,
+      "variant": 0,
+      "matrixIndex": 13,
+      "printedContentSHA256": "2bffe6671a606b9dfcd0c614756fad4aa8b000bd21f1f3a8d4928678e4c7840c",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 10
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 4,
+        "scale": "2",
+        "equalOtherSidesWitness": "7/2",
+        "largerPerimeterConditional": "20"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20371886,
+      "variant": 0,
+      "matrixIndex": 14,
+      "printedContentSHA256": "58680dd3a27c66630e8b712b7993344736ef932dbb12efab4a87bae57fb74a70",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 11
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 5,
+        "scale": "2",
+        "equalOtherSidesWitness": "4",
+        "largerPerimeterConditional": "22"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20379805,
+      "variant": 0,
+      "matrixIndex": 15,
+      "printedContentSHA256": "f86f3a841138541e80b5c5312c45c7aae044e132f22d38ccc8f1e0a83bdce4a7",
+      "printed": {
+        "AD": 3,
+        "AB": 9,
+        "ADEperimeter": 8
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 2,
+        "scale": "3",
+        "equalOtherSidesWitness": "5/2",
+        "largerPerimeterConditional": "24"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20387724,
+      "variant": 0,
+      "matrixIndex": 16,
+      "printedContentSHA256": "3f9e686e29ea6c6856cbc6b3cdd179f32a7dbdeac21aa42b84a7dbec5528e46a",
+      "printed": {
+        "AD": 3,
+        "AB": 12,
+        "ADEperimeter": 8
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 2,
+        "scale": "4",
+        "equalOtherSidesWitness": "5/2",
+        "largerPerimeterConditional": "32"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20395643,
+      "variant": 0,
+      "matrixIndex": 17,
+      "printedContentSHA256": "93acd5a0303bbe1009f6b319d1c676c17f7ec4d849dfb07ae0abfbaaebb7d2f8",
+      "printed": {
+        "AD": 5,
+        "AB": 10,
+        "ADEperimeter": 11
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 1,
+        "scale": "2",
+        "equalOtherSidesWitness": "3",
+        "largerPerimeterConditional": "22"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20403562,
+      "variant": 0,
+      "matrixIndex": 18,
+      "printedContentSHA256": "61424e28b628b0e39785e60233f424daec00dfd990d6b71db842ee5924851eee",
+      "printed": {
+        "AD": 4,
+        "AB": 12,
+        "ADEperimeter": 16
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 8,
+        "scale": "3",
+        "equalOtherSidesWitness": "6",
+        "largerPerimeterConditional": "48"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20411481,
+      "variant": 0,
+      "matrixIndex": 19,
+      "printedContentSHA256": "c2a8746638a7865422d671697de773427c9f0f063c401e96881e3ec6ffa65436",
+      "printed": {
+        "AD": 2,
+        "AB": 8,
+        "ADEperimeter": 5
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 1,
+        "scale": "4",
+        "equalOtherSidesWitness": "3/2",
+        "largerPerimeterConditional": "20"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20419400,
+      "variant": 0,
+      "matrixIndex": 20,
+      "printedContentSHA256": "93acd5a0303bbe1009f6b319d1c676c17f7ec4d849dfb07ae0abfbaaebb7d2f8",
+      "printed": {
+        "AD": 5,
+        "AB": 10,
+        "ADEperimeter": 11
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 1,
+        "scale": "2",
+        "equalOtherSidesWitness": "3",
+        "largerPerimeterConditional": "22"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20427319,
+      "variant": 0,
+      "matrixIndex": 21,
+      "printedContentSHA256": "9a51e276968e3460e9aadb5191099de5c9a5fbe8f30896c60962593fa3e9fbe7",
+      "printed": {
+        "AD": 3,
+        "AB": 12,
+        "ADEperimeter": 7
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 1,
+        "scale": "4",
+        "equalOtherSidesWitness": "2",
+        "largerPerimeterConditional": "28"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20435238,
+      "variant": 0,
+      "matrixIndex": 22,
+      "printedContentSHA256": "7242bb29b935a9d95b763684c55fab39bb489884c8328a52b3fdf641718771f9",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 15
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 9,
+        "scale": "2",
+        "equalOtherSidesWitness": "6",
+        "largerPerimeterConditional": "30"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20443157,
+      "variant": 0,
+      "matrixIndex": 23,
+      "printedContentSHA256": "c7c3808ef596c97c77cc33fcff5005009938c0a4554b5a983228ac67744040be",
+      "printed": {
+        "AD": 4,
+        "AB": 12,
+        "ADEperimeter": 13
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 5,
+        "scale": "3",
+        "equalOtherSidesWitness": "9/2",
+        "largerPerimeterConditional": "39"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20451076,
+      "variant": 0,
+      "matrixIndex": 24,
+      "printedContentSHA256": "2968e0fe4b90eb9c0c8f9ac1403b629cfd2d050e03f048a4a08e1d64a173135c",
+      "printed": {
+        "AD": 4,
+        "AB": 8,
+        "ADEperimeter": 15
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 7,
+        "scale": "2",
+        "equalOtherSidesWitness": "11/2",
+        "largerPerimeterConditional": "30"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20458995,
+      "variant": 0,
+      "matrixIndex": 25,
+      "printedContentSHA256": "bbc953f59ac7849c27c06c270df9a23bcb47a14a89db0c1793ca1c97ae803940",
+      "printed": {
+        "AD": 3,
+        "AB": 6,
+        "ADEperimeter": 13
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 7,
+        "scale": "2",
+        "equalOtherSidesWitness": "5",
+        "largerPerimeterConditional": "26"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20466914,
+      "variant": 0,
+      "matrixIndex": 26,
+      "printedContentSHA256": "b3ae7e6d714690cc8b2e29d2a9d4449a27b191692d436f0ace63309174b74a0e",
+      "printed": {
+        "AD": 5,
+        "AB": 15,
+        "ADEperimeter": 15
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 5,
+        "scale": "3",
+        "equalOtherSidesWitness": "5",
+        "largerPerimeterConditional": "45"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20474833,
+      "variant": 0,
+      "matrixIndex": 27,
+      "printedContentSHA256": "855eaec57789d8c0c354ba00c041392a9c138f19eb7fbcd492b3517badaf1510",
+      "printed": {
+        "AD": 5,
+        "AB": 15,
+        "ADEperimeter": 17
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 7,
+        "scale": "3",
+        "equalOtherSidesWitness": "6",
+        "largerPerimeterConditional": "51"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20482752,
+      "variant": 0,
+      "matrixIndex": 28,
+      "printedContentSHA256": "b6cf455e9130a67e582b04568724968ce72e26724ff4fbcfebeb913976dd8d83",
+      "printed": {
+        "AD": 5,
+        "AB": 20,
+        "ADEperimeter": 13
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 3,
+        "scale": "4",
+        "equalOtherSidesWitness": "4",
+        "largerPerimeterConditional": "52"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M8",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|60",
+      "seed": 20490671,
+      "variant": 0,
+      "matrixIndex": 29,
+      "printedContentSHA256": "8c077e1e2c35ff544910e34a2e81e5837581f2e1c5bc611a2e00faafaec85c58",
+      "printed": {
+        "AD": 2,
+        "AB": 6,
+        "ADEperimeter": 14
+      },
+      "own": {
+        "necessaryAndSufficient": "P>2AD with AD>0 and AB>AD; AE=DE=(P-AD)/2 provides witness iff strict.",
+        "Pminus2AD": 10,
+        "scale": "3",
+        "equalOtherSidesWitness": "6",
+        "largerPerimeterConditional": "42"
+      },
+      "exists": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20261020,
+      "variant": 0,
+      "matrixIndex": 0,
+      "printedContentSHA256": "7b209077dae2343cc834fb6f4b13a19f0b8f288c67d3e2e183eede7d617d71ef",
+      "printed": {
+        "AB": 8,
+        "AC": 4,
+        "BC": 8,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          4,
+          12,
+          4
+        ],
+        "CDconditional": "8",
+        "DCoordinateWhenB0Cbc": "16",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "15",
+        "triangleRange": "4 < BC < 12"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20268939,
+      "variant": 0,
+      "matrixIndex": 1,
+      "printedContentSHA256": "5cc3d0bd4292d6752845c9daf02db0c62f952ae410b9de2680ef436409fe17ea",
+      "printed": {
+        "AB": 9,
+        "AC": 3,
+        "BC": 10,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          2,
+          16,
+          4
+        ],
+        "CDconditional": "5",
+        "DCoordinateWhenB0Cbc": "15",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "176/25",
+        "triangleRange": "6 < BC < 12"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20276858,
+      "variant": 0,
+      "matrixIndex": 2,
+      "printedContentSHA256": "89b099990372223a34c3ff43b292f371e5982a8c731e430ba9dfe7a5dc915eb8",
+      "printed": {
+        "AB": 35,
+        "AC": 20,
+        "BC": 21,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          34,
+          36,
+          6
+        ],
+        "CDconditional": "28",
+        "DCoordinateWhenB0Cbc": "49",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "15504/49",
+        "triangleRange": "15 < BC < 55"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20284777,
+      "variant": 0,
+      "matrixIndex": 3,
+      "printedContentSHA256": "e7425106478bd8cc48a65bc23c6069f7d78c6b3b37ffb824c304d827ac202fc8",
+      "printed": {
+        "AB": 15,
+        "AC": 10,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          16,
+          14,
+          4
+        ],
+        "CDconditional": "18",
+        "DCoordinateWhenB0Cbc": "27",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "7616/81",
+        "triangleRange": "5 < BC < 25"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20292696,
+      "variant": 0,
+      "matrixIndex": 4,
+      "printedContentSHA256": "a11c4f39c9c7cf7134dba4c5a7e58ca2b58723d9b589feb658f368b9492b4bea",
+      "printed": {
+        "AB": 12,
+        "AC": 6,
+        "BC": 10,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          8,
+          16,
+          4
+        ],
+        "CDconditional": "10",
+        "DCoordinateWhenB0Cbc": "20",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "896/25",
+        "triangleRange": "6 < BC < 18"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20300615,
+      "variant": 0,
+      "matrixIndex": 5,
+      "printedContentSHA256": "4ab65f78820493f95a39e949587b5b0bb57503abe72cece2905899181c1fd051",
+      "printed": {
+        "AB": 4,
+        "AC": 2,
+        "BC": 4,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          2,
+          6,
+          2
+        ],
+        "CDconditional": "4",
+        "DCoordinateWhenB0Cbc": "8",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "15/4",
+        "triangleRange": "2 < BC < 6"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20308534,
+      "variant": 0,
+      "matrixIndex": 6,
+      "printedContentSHA256": "c6d2f553fabfc0ae121213026638728797f7476ce3ecb0ebf3310bd6b87c09eb",
+      "printed": {
+        "AB": 18,
+        "AC": 12,
+        "BC": 8,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          22,
+          14,
+          2
+        ],
+        "CDconditional": "16",
+        "DCoordinateWhenB0Cbc": "24",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "1463/16",
+        "triangleRange": "6 < BC < 30"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20316453,
+      "variant": 0,
+      "matrixIndex": 7,
+      "printedContentSHA256": "80c2c01becac1dbceec4ea56bceac2af4002c9ad987d940cee75872539700164",
+      "printed": {
+        "AB": 9,
+        "AC": 6,
+        "BC": 6,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          9,
+          9,
+          3
+        ],
+        "CDconditional": "12",
+        "DCoordinateWhenB0Cbc": "18",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "567/16",
+        "triangleRange": "3 < BC < 15"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20324372,
+      "variant": 0,
+      "matrixIndex": 8,
+      "printedContentSHA256": "3b5849ac8a5ca7ea15a62a19367767f2dab043456cd0c00abae8251d13389983",
+      "printed": {
+        "AB": 8,
+        "AC": 2,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          1,
+          15,
+          3
+        ],
+        "CDconditional": "3",
+        "DCoordinateWhenB0Cbc": "12",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "95/36",
+        "triangleRange": "6 < BC < 10"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20332291,
+      "variant": 0,
+      "matrixIndex": 9,
+      "printedContentSHA256": "6707e68c4d937d88031fae1626b7dcf7b9c1c8b48d14bc20439e41dfc99dec2b",
+      "printed": {
+        "AB": 20,
+        "AC": 16,
+        "BC": 6,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          30,
+          10,
+          2
+        ],
+        "CDconditional": "24",
+        "DCoordinateWhenB0Cbc": "30",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "175",
+        "triangleRange": "4 < BC < 36"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20340210,
+      "variant": 0,
+      "matrixIndex": 10,
+      "printedContentSHA256": "3f7b069b1b1c96a91865aa2daa03ac2881a590435846c5ca6bd99660cd58757e",
+      "printed": {
+        "AB": 6,
+        "AC": 2,
+        "BC": 6,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          2,
+          10,
+          2
+        ],
+        "CDconditional": "3",
+        "DCoordinateWhenB0Cbc": "9",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "35/9",
+        "triangleRange": "4 < BC < 8"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20348129,
+      "variant": 0,
+      "matrixIndex": 11,
+      "printedContentSHA256": "a11c4f39c9c7cf7134dba4c5a7e58ca2b58723d9b589feb658f368b9492b4bea",
+      "printed": {
+        "AB": 12,
+        "AC": 6,
+        "BC": 10,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          8,
+          16,
+          4
+        ],
+        "CDconditional": "10",
+        "DCoordinateWhenB0Cbc": "20",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "896/25",
+        "triangleRange": "6 < BC < 18"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20356048,
+      "variant": 0,
+      "matrixIndex": 12,
+      "printedContentSHA256": "35e6f56c38f6c09c983b8d926a492a4fcd7f3f989eda700678590829f5cbb20f",
+      "printed": {
+        "AB": 4,
+        "AC": 2,
+        "BC": 3,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          3,
+          5,
+          1
+        ],
+        "CDconditional": "3",
+        "DCoordinateWhenB0Cbc": "6",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "15/4",
+        "triangleRange": "2 < BC < 6"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20363967,
+      "variant": 0,
+      "matrixIndex": 13,
+      "printedContentSHA256": "15000e37d989aa8948adcf74f684387cdc3801ed573524a4380bf1554d7358b2",
+      "printed": {
+        "AB": 10,
+        "AC": 4,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          5,
+          15,
+          3
+        ],
+        "CDconditional": "6",
+        "DCoordinateWhenB0Cbc": "15",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "575/36",
+        "triangleRange": "6 < BC < 14"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20371886,
+      "variant": 0,
+      "matrixIndex": 14,
+      "printedContentSHA256": "f0bfa3d06c835a57d40a83e56d8b240f548124cf84648930e85a08463b442343",
+      "printed": {
+        "AB": 8,
+        "AC": 6,
+        "BC": 5,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          9,
+          7,
+          3
+        ],
+        "CDconditional": "15",
+        "DCoordinateWhenB0Cbc": "20",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "3591/100",
+        "triangleRange": "2 < BC < 14"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20379805,
+      "variant": 0,
+      "matrixIndex": 15,
+      "printedContentSHA256": "06bbcbb7dc8a4333b44ca16a5548b2d2deaa2043c069bf20c816d541137b14ca",
+      "printed": {
+        "AB": 20,
+        "AC": 5,
+        "BC": 21,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          4,
+          36,
+          6
+        ],
+        "CDconditional": "7",
+        "DCoordinateWhenB0Cbc": "28",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "1104/49",
+        "triangleRange": "15 < BC < 25"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20387724,
+      "variant": 0,
+      "matrixIndex": 16,
+      "printedContentSHA256": "7fa20d3bdf9c81abd6fc63c2d62d043efbca54900f62466b95c64ee39569c2a3",
+      "printed": {
+        "AB": 15,
+        "AC": 12,
+        "BC": 5,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          22,
+          8,
+          2
+        ],
+        "CDconditional": "20",
+        "DCoordinateWhenB0Cbc": "25",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "2816/25",
+        "triangleRange": "3 < BC < 27"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20395643,
+      "variant": 0,
+      "matrixIndex": 17,
+      "printedContentSHA256": "a5e32cb851bf3d000e9d61c86b5e632180914776111b059c9e194c728330d4a0",
+      "printed": {
+        "AB": 20,
+        "AC": 16,
+        "BC": 8,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          28,
+          12,
+          4
+        ],
+        "CDconditional": "32",
+        "DCoordinateWhenB0Cbc": "40",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "231",
+        "triangleRange": "4 < BC < 36"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20403562,
+      "variant": 0,
+      "matrixIndex": 18,
+      "printedContentSHA256": "cf95af63e61488546d53eb5d281f7d469e347dd2b0c2e691f3dcf155d94be008",
+      "printed": {
+        "AB": 15,
+        "AC": 6,
+        "BC": 15,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          6,
+          24,
+          6
+        ],
+        "CDconditional": "10",
+        "DCoordinateWhenB0Cbc": "25",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "864/25",
+        "triangleRange": "9 < BC < 21"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20411481,
+      "variant": 0,
+      "matrixIndex": 19,
+      "printedContentSHA256": "a478b3ddd5f0828584a257cd333b501af9167162507376cf8d31217e87f600d8",
+      "printed": {
+        "AB": 15,
+        "AC": 9,
+        "BC": 12,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          18,
+          6
+        ],
+        "CDconditional": "18",
+        "DCoordinateWhenB0Cbc": "30",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "81",
+        "triangleRange": "6 < BC < 24"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20419400,
+      "variant": 0,
+      "matrixIndex": 20,
+      "printedContentSHA256": "0b8b902b8539b6c013450b13ed94b7cdc8ce5159962bd2ab46bebdc60abdb8a4",
+      "printed": {
+        "AB": 28,
+        "AC": 16,
+        "BC": 15,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          29,
+          27,
+          3
+        ],
+        "CDconditional": "20",
+        "DCoordinateWhenB0Cbc": "35",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "15399/100",
+        "triangleRange": "12 < BC < 44"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20427319,
+      "variant": 0,
+      "matrixIndex": 21,
+      "printedContentSHA256": "891f248c2039f56ba25a12e4320457d6c51ab1b1cae79d965825d49076b4ab36",
+      "printed": {
+        "AB": 9,
+        "AC": 6,
+        "BC": 7,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          8,
+          10,
+          4
+        ],
+        "CDconditional": "14",
+        "DCoordinateWhenB0Cbc": "21",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "1760/49",
+        "triangleRange": "3 < BC < 15"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20435238,
+      "variant": 0,
+      "matrixIndex": 22,
+      "printedContentSHA256": "83401d50b80c4b6f3960eaddb353d22e7ac98b8aa24cbbee4550c715949249b0",
+      "printed": {
+        "AB": 15,
+        "AC": 10,
+        "BC": 6,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          19,
+          11,
+          1
+        ],
+        "CDconditional": "12",
+        "DCoordinateWhenB0Cbc": "18",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "6479/144",
+        "triangleRange": "5 < BC < 25"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20443157,
+      "variant": 0,
+      "matrixIndex": 23,
+      "printedContentSHA256": "2323e7c1f62520aa7587d54332c0d5eb463049076b6f5ef064d5cda4819f062b",
+      "printed": {
+        "AB": 12,
+        "AC": 6,
+        "BC": 9,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          9,
+          15,
+          3
+        ],
+        "CDconditional": "9",
+        "DCoordinateWhenB0Cbc": "18",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "135/4",
+        "triangleRange": "6 < BC < 18"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20451076,
+      "variant": 0,
+      "matrixIndex": 24,
+      "printedContentSHA256": "f80928bfb614079f1077a51d6d49877fb78acd379342793c442e1ce0c3807cf1",
+      "printed": {
+        "AB": 20,
+        "AC": 5,
+        "BC": 18,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          7,
+          33,
+          3
+        ],
+        "CDconditional": "6",
+        "DCoordinateWhenB0Cbc": "24",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "3311/144",
+        "triangleRange": "15 < BC < 25"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20458995,
+      "variant": 0,
+      "matrixIndex": 25,
+      "printedContentSHA256": "3b9c4c7c96e5995c8537a58f27e7ecca88b235e1e2f62b19c491b2617ca141a2",
+      "printed": {
+        "AB": 28,
+        "AC": 16,
+        "BC": 18,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          26,
+          30,
+          6
+        ],
+        "CDconditional": "24",
+        "DCoordinateWhenB0Cbc": "42",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "2015/9",
+        "triangleRange": "12 < BC < 44"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20466914,
+      "variant": 0,
+      "matrixIndex": 26,
+      "printedContentSHA256": "44a0f4af07f589e6ee760ae26047ccd3e44714a30f7a09ce289315e26e95bbcc",
+      "printed": {
+        "AB": 16,
+        "AC": 4,
+        "BC": 15,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          5,
+          27,
+          3
+        ],
+        "CDconditional": "5",
+        "DCoordinateWhenB0Cbc": "20",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "63/4",
+        "triangleRange": "12 < BC < 20"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20474833,
+      "variant": 0,
+      "matrixIndex": 27,
+      "printedContentSHA256": "d06e0c2ed83494cee69213340f93394399d24d717402ef14bc9ea3ead3be3987",
+      "printed": {
+        "AB": 15,
+        "AC": 9,
+        "BC": 14,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          10,
+          20,
+          8
+        ],
+        "CDconditional": "21",
+        "DCoordinateWhenB0Cbc": "35",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "3800/49",
+        "triangleRange": "6 < BC < 24"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20482752,
+      "variant": 0,
+      "matrixIndex": 28,
+      "printedContentSHA256": "2b60af308bdef7879419495abc02b9913ca19665b0cd3b9229c9f78e2bc1ddac",
+      "printed": {
+        "AB": 20,
+        "AC": 5,
+        "BC": 24,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          1,
+          39,
+          9
+        ],
+        "CDconditional": "8",
+        "DCoordinateWhenB0Cbc": "32",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "1911/256",
+        "triangleRange": "15 < BC < 25"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M9",
+      "typeKey": "2-2|평행선 사이의 선분의 길이의 비|17",
+      "seed": 20490671,
+      "variant": 0,
+      "matrixIndex": 29,
+      "printedContentSHA256": "be90b925b01c72c81ec9cf7764f571afd8501e677d0409cea4f1a81fb4a59c98",
+      "printed": {
+        "AB": 10,
+        "AC": 5,
+        "BC": 8,
+        "order": "B,C,D"
+      },
+      "own": {
+        "triangleStrictMargins": [
+          7,
+          13,
+          3
+        ],
+        "CDconditional": "8",
+        "DCoordinateWhenB0Cbc": "16",
+        "externalRatioIdentity": true,
+        "altitudeSquared": "6279/256",
+        "triangleRange": "5 < BC < 15"
+      },
+      "exists": true,
+      "externalPointConsistentConditional": true,
+      "mathematicalDefect": false,
+      "answerMatchesConditionalAlgebra": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20261020,
+      "variant": 0,
+      "matrixIndex": 0,
+      "printedContentSHA256": "fbc5cedce54aedd2418035412aa7c54a41e86b5ba51e21cfcbc6f3393d6a3613",
+      "printed": {
+        "BC": 12,
+        "CA": 10,
+        "AB": 10,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          12,
+          8
+        ],
+        "semiperimeter": "16",
+        "altitudeProjection": "6",
+        "altitudeSquared": "64",
+        "areaSquared": "2304",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "324",
+        "printedFormulaAreaIBC": "18",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20268939,
+      "variant": 0,
+      "matrixIndex": 1,
+      "printedContentSHA256": "fa6cc7c8f993cdb712d7492938aa1da5d657697e963d9570bab9e90311788490",
+      "printed": {
+        "BC": 20,
+        "CA": 7,
+        "AB": 15,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          28,
+          2
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "72/5",
+        "altitudeSquared": "441/25",
+        "areaSquared": "1764",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "400",
+        "printedFormulaAreaIBC": "20",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20276858,
+      "variant": 0,
+      "matrixIndex": 2,
+      "printedContentSHA256": "fb439cee58c0833e16cdcfbfebfb14ecfd6669e64f87434c991cf81561ccf031",
+      "printed": {
+        "BC": 14,
+        "CA": 15,
+        "AB": 13,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          16,
+          12,
+          14
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "5",
+        "altitudeSquared": "144",
+        "areaSquared": "7056",
+        "actualRadiusSquared": "16",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "784",
+        "printedFormulaAreaIBC": "28",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20284777,
+      "variant": 0,
+      "matrixIndex": 3,
+      "printedContentSHA256": "6d75fb6d229a4dd701b4d4ed2ad13a49d198bf5ff19c7c6cc71e9209e0dbdb11",
+      "printed": {
+        "BC": 20,
+        "CA": 15,
+        "AB": 7,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          28,
+          12,
+          2
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "28/5",
+        "altitudeSquared": "441/25",
+        "areaSquared": "1764",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "400",
+        "printedFormulaAreaIBC": "20",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20292696,
+      "variant": 0,
+      "matrixIndex": 4,
+      "printedContentSHA256": "fa6cc7c8f993cdb712d7492938aa1da5d657697e963d9570bab9e90311788490",
+      "printed": {
+        "BC": 20,
+        "CA": 7,
+        "AB": 15,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          28,
+          2
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "72/5",
+        "altitudeSquared": "441/25",
+        "areaSquared": "1764",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "400",
+        "printedFormulaAreaIBC": "20",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20300615,
+      "variant": 0,
+      "matrixIndex": 5,
+      "printedContentSHA256": "421173b102db76dd10e127f79fdeb9ac8692b8244fe6862339b78a4111ec546e",
+      "printed": {
+        "BC": 8,
+        "CA": 6,
+        "AB": 10,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          4,
+          12,
+          8
+        ],
+        "semiperimeter": "12",
+        "altitudeProjection": "8",
+        "altitudeSquared": "36",
+        "areaSquared": "576",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "64",
+        "printedFormulaAreaIBC": "8",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "24",
+        "semiperimeter": "12",
+        "actualRadius": "2",
+        "actualAreaIBC": "8",
+        "printedFormulaAreaIBC": "8"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20308534,
+      "variant": 0,
+      "matrixIndex": 6,
+      "printedContentSHA256": "059437230ebe90d848c4f8bf6aee00b49faadcdc010b09b5ef1cc20fd1047f32",
+      "printed": {
+        "BC": 12,
+        "CA": 15,
+        "AB": 9,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          18,
+          6,
+          12
+        ],
+        "semiperimeter": "18",
+        "altitudeProjection": "0",
+        "altitudeSquared": "81",
+        "areaSquared": "2916",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "324",
+        "printedFormulaAreaIBC": "18",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "54",
+        "semiperimeter": "18",
+        "actualRadius": "3",
+        "actualAreaIBC": "18",
+        "printedFormulaAreaIBC": "18"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20316453,
+      "variant": 0,
+      "matrixIndex": 7,
+      "printedContentSHA256": "6a6936bdcf9ade364f67ad8ff96bb78216042a1ad14f2ff2a141690130b2c2a2",
+      "printed": {
+        "BC": 10,
+        "CA": 8,
+        "AB": 6,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          8,
+          4
+        ],
+        "semiperimeter": "12",
+        "altitudeProjection": "18/5",
+        "altitudeSquared": "576/25",
+        "areaSquared": "576",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "100",
+        "printedFormulaAreaIBC": "10",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "24",
+        "semiperimeter": "12",
+        "actualRadius": "2",
+        "actualAreaIBC": "10",
+        "printedFormulaAreaIBC": "10"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20324372,
+      "variant": 0,
+      "matrixIndex": 8,
+      "printedContentSHA256": "059437230ebe90d848c4f8bf6aee00b49faadcdc010b09b5ef1cc20fd1047f32",
+      "printed": {
+        "BC": 12,
+        "CA": 15,
+        "AB": 9,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          18,
+          6,
+          12
+        ],
+        "semiperimeter": "18",
+        "altitudeProjection": "0",
+        "altitudeSquared": "81",
+        "areaSquared": "2916",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "324",
+        "printedFormulaAreaIBC": "18",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "54",
+        "semiperimeter": "18",
+        "actualRadius": "3",
+        "actualAreaIBC": "18",
+        "printedFormulaAreaIBC": "18"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20332291,
+      "variant": 0,
+      "matrixIndex": 9,
+      "printedContentSHA256": "2e0b06d3e981bfba8ee9693658ea37c5f2cd45322996062deac59cb21632bf3a",
+      "printed": {
+        "BC": 10,
+        "CA": 10,
+        "AB": 12,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          8,
+          12,
+          12
+        ],
+        "semiperimeter": "16",
+        "altitudeProjection": "36/5",
+        "altitudeSquared": "2304/25",
+        "areaSquared": "2304",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "225",
+        "printedFormulaAreaIBC": "15",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20340210,
+      "variant": 0,
+      "matrixIndex": 10,
+      "printedContentSHA256": "bd0ad15d7d8ab7014bfe3701254fc244768a6d9f3fa73c56b0f318e6e1b11596",
+      "printed": {
+        "BC": 24,
+        "CA": 15,
+        "AB": 15,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          24,
+          24,
+          6
+        ],
+        "semiperimeter": "27",
+        "altitudeProjection": "12",
+        "altitudeSquared": "81",
+        "areaSquared": "11664",
+        "actualRadiusSquared": "16",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "2304",
+        "printedFormulaAreaIBC": "48",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20348129,
+      "variant": 0,
+      "matrixIndex": 11,
+      "printedContentSHA256": "fb439cee58c0833e16cdcfbfebfb14ecfd6669e64f87434c991cf81561ccf031",
+      "printed": {
+        "BC": 14,
+        "CA": 15,
+        "AB": 13,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          16,
+          12,
+          14
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "5",
+        "altitudeSquared": "144",
+        "areaSquared": "7056",
+        "actualRadiusSquared": "16",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "784",
+        "printedFormulaAreaIBC": "28",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20356048,
+      "variant": 0,
+      "matrixIndex": 12,
+      "printedContentSHA256": "81c2a306e2a3b5fa2b02048c4f202d7c206a8c7c200cd025e89966a08b8a58b3",
+      "printed": {
+        "BC": 12,
+        "CA": 13,
+        "AB": 5,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          20,
+          4,
+          6
+        ],
+        "semiperimeter": "15",
+        "altitudeProjection": "0",
+        "altitudeSquared": "25",
+        "areaSquared": "900",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "144",
+        "printedFormulaAreaIBC": "12",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "30",
+        "semiperimeter": "15",
+        "actualRadius": "2",
+        "actualAreaIBC": "12",
+        "printedFormulaAreaIBC": "12"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20363967,
+      "variant": 0,
+      "matrixIndex": 13,
+      "printedContentSHA256": "8e40d3e5e8576ff78435da46b69b233ef5dc5dfed35a21009061db1f2bd3404b",
+      "printed": {
+        "BC": 20,
+        "CA": 11,
+        "AB": 13,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          18,
+          22,
+          4
+        ],
+        "semiperimeter": "22",
+        "altitudeProjection": "56/5",
+        "altitudeSquared": "1089/25",
+        "areaSquared": "4356",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "900",
+        "printedFormulaAreaIBC": "30",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20371886,
+      "variant": 0,
+      "matrixIndex": 14,
+      "printedContentSHA256": "f93caa0b0b79fe62b5a2c9cff0e0b0e5f99105670af21db57d7647619dde10cd",
+      "printed": {
+        "BC": 14,
+        "CA": 13,
+        "AB": 15,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          16,
+          14
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "9",
+        "altitudeSquared": "144",
+        "areaSquared": "7056",
+        "actualRadiusSquared": "16",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "784",
+        "printedFormulaAreaIBC": "28",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20379805,
+      "variant": 0,
+      "matrixIndex": 15,
+      "printedContentSHA256": "6d75fb6d229a4dd701b4d4ed2ad13a49d198bf5ff19c7c6cc71e9209e0dbdb11",
+      "printed": {
+        "BC": 20,
+        "CA": 15,
+        "AB": 7,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          28,
+          12,
+          2
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "28/5",
+        "altitudeSquared": "441/25",
+        "areaSquared": "1764",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "400",
+        "printedFormulaAreaIBC": "20",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20387724,
+      "variant": 0,
+      "matrixIndex": 16,
+      "printedContentSHA256": "fb439cee58c0833e16cdcfbfebfb14ecfd6669e64f87434c991cf81561ccf031",
+      "printed": {
+        "BC": 14,
+        "CA": 15,
+        "AB": 13,
+        "radius": 4
+      },
+      "own": {
+        "triangleStrictMargins": [
+          16,
+          12,
+          14
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "5",
+        "altitudeSquared": "144",
+        "areaSquared": "7056",
+        "actualRadiusSquared": "16",
+        "printedRadiusSquared": 16,
+        "actualAreaIBCSquared": "784",
+        "printedFormulaAreaIBC": "28",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20395643,
+      "variant": 0,
+      "matrixIndex": 17,
+      "printedContentSHA256": "81c2a306e2a3b5fa2b02048c4f202d7c206a8c7c200cd025e89966a08b8a58b3",
+      "printed": {
+        "BC": 12,
+        "CA": 13,
+        "AB": 5,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          20,
+          4,
+          6
+        ],
+        "semiperimeter": "15",
+        "altitudeProjection": "0",
+        "altitudeSquared": "25",
+        "areaSquared": "900",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "144",
+        "printedFormulaAreaIBC": "12",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "30",
+        "semiperimeter": "15",
+        "actualRadius": "2",
+        "actualAreaIBC": "12",
+        "printedFormulaAreaIBC": "12"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20403562,
+      "variant": 0,
+      "matrixIndex": 18,
+      "printedContentSHA256": "c73223394e2835d0f6c2489571a3b270dabe273675f714173a092a9835604780",
+      "printed": {
+        "BC": 10,
+        "CA": 12,
+        "AB": 10,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          8,
+          12
+        ],
+        "semiperimeter": "16",
+        "altitudeProjection": "14/5",
+        "altitudeSquared": "2304/25",
+        "areaSquared": "2304",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "225",
+        "printedFormulaAreaIBC": "15",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20411481,
+      "variant": 0,
+      "matrixIndex": 19,
+      "printedContentSHA256": "2e0b06d3e981bfba8ee9693658ea37c5f2cd45322996062deac59cb21632bf3a",
+      "printed": {
+        "BC": 10,
+        "CA": 10,
+        "AB": 12,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          8,
+          12,
+          12
+        ],
+        "semiperimeter": "16",
+        "altitudeProjection": "36/5",
+        "altitudeSquared": "2304/25",
+        "areaSquared": "2304",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "225",
+        "printedFormulaAreaIBC": "15",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20419400,
+      "variant": 0,
+      "matrixIndex": 20,
+      "printedContentSHA256": "6a6936bdcf9ade364f67ad8ff96bb78216042a1ad14f2ff2a141690130b2c2a2",
+      "printed": {
+        "BC": 10,
+        "CA": 8,
+        "AB": 6,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          8,
+          4
+        ],
+        "semiperimeter": "12",
+        "altitudeProjection": "18/5",
+        "altitudeSquared": "576/25",
+        "areaSquared": "576",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "100",
+        "printedFormulaAreaIBC": "10",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "24",
+        "semiperimeter": "12",
+        "actualRadius": "2",
+        "actualAreaIBC": "10",
+        "printedFormulaAreaIBC": "10"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20427319,
+      "variant": 0,
+      "matrixIndex": 21,
+      "printedContentSHA256": "059437230ebe90d848c4f8bf6aee00b49faadcdc010b09b5ef1cc20fd1047f32",
+      "printed": {
+        "BC": 12,
+        "CA": 15,
+        "AB": 9,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          18,
+          6,
+          12
+        ],
+        "semiperimeter": "18",
+        "altitudeProjection": "0",
+        "altitudeSquared": "81",
+        "areaSquared": "2916",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "324",
+        "printedFormulaAreaIBC": "18",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "54",
+        "semiperimeter": "18",
+        "actualRadius": "3",
+        "actualAreaIBC": "18",
+        "printedFormulaAreaIBC": "18"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20435238,
+      "variant": 0,
+      "matrixIndex": 22,
+      "printedContentSHA256": "6a6936bdcf9ade364f67ad8ff96bb78216042a1ad14f2ff2a141690130b2c2a2",
+      "printed": {
+        "BC": 10,
+        "CA": 8,
+        "AB": 6,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          8,
+          4
+        ],
+        "semiperimeter": "12",
+        "altitudeProjection": "18/5",
+        "altitudeSquared": "576/25",
+        "areaSquared": "576",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "100",
+        "printedFormulaAreaIBC": "10",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "24",
+        "semiperimeter": "12",
+        "actualRadius": "2",
+        "actualAreaIBC": "10",
+        "printedFormulaAreaIBC": "10"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20443157,
+      "variant": 0,
+      "matrixIndex": 23,
+      "printedContentSHA256": "53e57b4e64a0f9a5538891f4549fe7b1d2f66546fe5d1f5913d4009d3a6b3a9a",
+      "printed": {
+        "BC": 20,
+        "CA": 13,
+        "AB": 11,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          22,
+          18,
+          4
+        ],
+        "semiperimeter": "22",
+        "altitudeProjection": "44/5",
+        "altitudeSquared": "1089/25",
+        "areaSquared": "4356",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "900",
+        "printedFormulaAreaIBC": "30",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20451076,
+      "variant": 0,
+      "matrixIndex": 24,
+      "printedContentSHA256": "6a6936bdcf9ade364f67ad8ff96bb78216042a1ad14f2ff2a141690130b2c2a2",
+      "printed": {
+        "BC": 10,
+        "CA": 8,
+        "AB": 6,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          8,
+          4
+        ],
+        "semiperimeter": "12",
+        "altitudeProjection": "18/5",
+        "altitudeSquared": "576/25",
+        "areaSquared": "576",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "100",
+        "printedFormulaAreaIBC": "10",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "24",
+        "semiperimeter": "12",
+        "actualRadius": "2",
+        "actualAreaIBC": "10",
+        "printedFormulaAreaIBC": "10"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20458995,
+      "variant": 0,
+      "matrixIndex": 25,
+      "printedContentSHA256": "b47182719b2c0585f36589063c516b8d504b56e3625010e1eb213f3db0c35e6e",
+      "printed": {
+        "BC": 10,
+        "CA": 6,
+        "AB": 8,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          8,
+          12,
+          4
+        ],
+        "semiperimeter": "12",
+        "altitudeProjection": "32/5",
+        "altitudeSquared": "576/25",
+        "areaSquared": "576",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "100",
+        "printedFormulaAreaIBC": "10",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "24",
+        "semiperimeter": "12",
+        "actualRadius": "2",
+        "actualAreaIBC": "10",
+        "printedFormulaAreaIBC": "10"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20466914,
+      "variant": 0,
+      "matrixIndex": 26,
+      "printedContentSHA256": "6d75fb6d229a4dd701b4d4ed2ad13a49d198bf5ff19c7c6cc71e9209e0dbdb11",
+      "printed": {
+        "BC": 20,
+        "CA": 15,
+        "AB": 7,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          28,
+          12,
+          2
+        ],
+        "semiperimeter": "21",
+        "altitudeProjection": "28/5",
+        "altitudeSquared": "441/25",
+        "areaSquared": "1764",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "400",
+        "printedFormulaAreaIBC": "20",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20474833,
+      "variant": 0,
+      "matrixIndex": 27,
+      "printedContentSHA256": "fbc5cedce54aedd2418035412aa7c54a41e86b5ba51e21cfcbc6f3393d6a3613",
+      "printed": {
+        "BC": 12,
+        "CA": 10,
+        "AB": 10,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          12,
+          12,
+          8
+        ],
+        "semiperimeter": "16",
+        "altitudeProjection": "6",
+        "altitudeSquared": "64",
+        "areaSquared": "2304",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "324",
+        "printedFormulaAreaIBC": "18",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": false,
+      "studentRouteForActualRightCase": null,
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20482752,
+      "variant": 0,
+      "matrixIndex": 28,
+      "printedContentSHA256": "421173b102db76dd10e127f79fdeb9ac8692b8244fe6862339b78a4111ec546e",
+      "printed": {
+        "BC": 8,
+        "CA": 6,
+        "AB": 10,
+        "radius": 2
+      },
+      "own": {
+        "triangleStrictMargins": [
+          4,
+          12,
+          8
+        ],
+        "semiperimeter": "12",
+        "altitudeProjection": "8",
+        "altitudeSquared": "36",
+        "areaSquared": "576",
+        "actualRadiusSquared": "4",
+        "printedRadiusSquared": 4,
+        "actualAreaIBCSquared": "64",
+        "printedFormulaAreaIBC": "8",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "24",
+        "semiperimeter": "12",
+        "actualRadius": "2",
+        "actualAreaIBC": "8",
+        "printedFormulaAreaIBC": "8"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M19",
+      "typeKey": "2-2|삼각형의 외심과 내심|75",
+      "seed": 20490671,
+      "variant": 0,
+      "matrixIndex": 29,
+      "printedContentSHA256": "059437230ebe90d848c4f8bf6aee00b49faadcdc010b09b5ef1cc20fd1047f32",
+      "printed": {
+        "BC": 12,
+        "CA": 15,
+        "AB": 9,
+        "radius": 3
+      },
+      "own": {
+        "triangleStrictMargins": [
+          18,
+          6,
+          12
+        ],
+        "semiperimeter": "18",
+        "altitudeProjection": "0",
+        "altitudeSquared": "81",
+        "areaSquared": "2916",
+        "actualRadiusSquared": "9",
+        "printedRadiusSquared": 9,
+        "actualAreaIBCSquared": "324",
+        "printedFormulaAreaIBC": "18",
+        "generalOracleLimit": "Pythagorean altitude/projection rational algebra for diagnostics only, not a claimed required M2 student procedure for all nonright triples."
+      },
+      "rightTriangle": true,
+      "studentRouteForActualRightCase": {
+        "method": "M2: right triangle area=legs product/2; split into3triangles from incenter with common height r so area=r*(a+b+c)/2. No Heron.",
+        "area": "54",
+        "semiperimeter": "18",
+        "actualRadius": "3",
+        "actualAreaIBC": "18",
+        "printedFormulaAreaIBC": "18"
+      },
+      "exists": true,
+      "radiusConsistent": true,
+      "mathematicalDefect": false,
+      "answerMatchesPrintedRadiusFormula": true
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20261020,
+      "variant": 0,
+      "matrixIndex": 0,
+      "printedContentSHA256": "afd7c397f60bd477ea2bb14c3e204b2bfc080da5933752ef3a84cd672a436a9d",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 8,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          2,
+          3,
+          6
+        ],
+        "sum": 11,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "32768",
+            "rhs": "32768"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "32768",
+            "rhs": "32768"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "373248",
+            "rhs": "373248"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "5832",
+            "rhs": "5832"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "5832",
+            "rhs": "5832"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "32768",
+            "rhs": "32768"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "32768",
+            "rhs": "32768"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "373248",
+            "rhs": "373248"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "373248",
+            "rhs": "373248"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "5832",
+            "rhs": "5832"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "5832",
+            "rhs": "5832"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "373248",
+            "rhs": "373248"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "4251528",
+            "rhs": "4251528"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20268939,
+      "variant": 0,
+      "matrixIndex": 1,
+      "printedContentSHA256": "bee8b20a6d710b47153c95d2784553637dbf543a719d4692cce74ea54e98c270",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20276858,
+      "variant": 0,
+      "matrixIndex": 2,
+      "printedContentSHA256": "87429161cd224d5dbae7048b311c130b527b277741854a5e8f5bd085dc81baff",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20284777,
+      "variant": 0,
+      "matrixIndex": 3,
+      "printedContentSHA256": "59ab003827de4868486ffc6b887e046d25880237257e320619701ec404c37017",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20292696,
+      "variant": 0,
+      "matrixIndex": 4,
+      "printedContentSHA256": "86df9dcbac2e6d9f101c6b90155393d246dfccc88bf9c13965c1129af918d316",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 8,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          2,
+          3,
+          3
+        ],
+        "sum": 8,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "-4096",
+            "rhs": "-4096"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "-512",
+            "rhs": "-512"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "-64",
+            "rhs": "-64"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "-8",
+            "rhs": "-8"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "-64",
+            "rhs": "-64"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "-8",
+            "rhs": "-8"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "-4096",
+            "rhs": "-4096"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "-512",
+            "rhs": "-512"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "-46656",
+            "rhs": "-46656"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "-5832",
+            "rhs": "-5832"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "5832",
+            "rhs": "5832"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "46656",
+            "rhs": "46656"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "157464",
+            "rhs": "157464"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20300615,
+      "variant": 0,
+      "matrixIndex": 5,
+      "printedContentSHA256": "4e42640d5ff1a20cc566962dbef69deecedc2a84cb7e594ce11b69cc9e17156c",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 4,
+        "rightFirstExponent": 4,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          2,
+          2,
+          2
+        ],
+        "sum": 6,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "36",
+            "rhs": "36"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "36",
+            "rhs": "36"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "1296",
+            "rhs": "1296"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "324",
+            "rhs": "324"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "324",
+            "rhs": "324"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "1296",
+            "rhs": "1296"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "2916",
+            "rhs": "2916"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20308534,
+      "variant": 0,
+      "matrixIndex": 6,
+      "printedContentSHA256": "465180fd260f7c4dd91a179cb627b7349fd7b35186f89e85fe41604446672def",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20316453,
+      "variant": 0,
+      "matrixIndex": 7,
+      "printedContentSHA256": "d0ff01072d5d38924b3d787fd9f80bb203445c0afab8c6c9a94639fc9a54c626",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20324372,
+      "variant": 0,
+      "matrixIndex": 8,
+      "printedContentSHA256": "27bcc8d0828d99618e82253a1c4e54201ffc8e6ab4f768d2e2c8946bcb9e8789",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 9,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          3,
+          2,
+          4
+        ],
+        "sum": 9,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "9216",
+            "rhs": "9216"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "9216",
+            "rhs": "9216"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "46656",
+            "rhs": "46656"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "9",
+            "rhs": "9"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "9",
+            "rhs": "9"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "729",
+            "rhs": "729"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "9",
+            "rhs": "9"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "9",
+            "rhs": "9"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "729",
+            "rhs": "729"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "9216",
+            "rhs": "9216"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "9216",
+            "rhs": "9216"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "46656",
+            "rhs": "46656"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "104976",
+            "rhs": "104976"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "6561",
+            "rhs": "6561"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "6561",
+            "rhs": "6561"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "104976",
+            "rhs": "104976"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "531441",
+            "rhs": "531441"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20332291,
+      "variant": 0,
+      "matrixIndex": 9,
+      "printedContentSHA256": "9b544885e48e19cbf1c37935c0cf74795242c309dc8af835a7c3771930b24aa7",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20340210,
+      "variant": 0,
+      "matrixIndex": 10,
+      "printedContentSHA256": "dc996315eb88565080695a5e63a78959eca3bc96d93f1c57d278e00a63f2ea3a",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 4,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          3,
+          2,
+          2
+        ],
+        "sum": 7,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "2304",
+            "rhs": "2304"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "36",
+            "rhs": "36"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "36",
+            "rhs": "36"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "2304",
+            "rhs": "2304"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "11664",
+            "rhs": "11664"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "2916",
+            "rhs": "2916"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "2916",
+            "rhs": "2916"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "11664",
+            "rhs": "11664"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "26244",
+            "rhs": "26244"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20348129,
+      "variant": 0,
+      "matrixIndex": 11,
+      "printedContentSHA256": "79837c524ffda1d3a1778d58f8d1b640857837a4e34198eb8aff8a461f603ca6",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 27,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          2,
+          3,
+          6
+        ],
+        "sum": 11,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "110592",
+            "rhs": "110592"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "110592",
+            "rhs": "110592"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "1259712",
+            "rhs": "1259712"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "19683",
+            "rhs": "19683"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "19683",
+            "rhs": "19683"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "110592",
+            "rhs": "110592"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "110592",
+            "rhs": "110592"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "1259712",
+            "rhs": "1259712"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "1259712",
+            "rhs": "1259712"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "19683",
+            "rhs": "19683"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "19683",
+            "rhs": "19683"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "1259712",
+            "rhs": "1259712"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "14348907",
+            "rhs": "14348907"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20356048,
+      "variant": 0,
+      "matrixIndex": 12,
+      "printedContentSHA256": "27bcc8d0828d99618e82253a1c4e54201ffc8e6ab4f768d2e2c8946bcb9e8789",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 9,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          3,
+          2,
+          4
+        ],
+        "sum": 9,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "9216",
+            "rhs": "9216"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "9216",
+            "rhs": "9216"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "46656",
+            "rhs": "46656"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "9",
+            "rhs": "9"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "9",
+            "rhs": "9"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "729",
+            "rhs": "729"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "9",
+            "rhs": "9"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "9",
+            "rhs": "9"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "144",
+            "rhs": "144"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "729",
+            "rhs": "729"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "9216",
+            "rhs": "9216"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "576",
+            "rhs": "576"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "9216",
+            "rhs": "9216"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "46656",
+            "rhs": "46656"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "104976",
+            "rhs": "104976"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "6561",
+            "rhs": "6561"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "6561",
+            "rhs": "6561"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "104976",
+            "rhs": "104976"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "531441",
+            "rhs": "531441"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20363967,
+      "variant": 0,
+      "matrixIndex": 13,
+      "printedContentSHA256": "dc996315eb88565080695a5e63a78959eca3bc96d93f1c57d278e00a63f2ea3a",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 4,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          3,
+          2,
+          2
+        ],
+        "sum": 7,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "2304",
+            "rhs": "2304"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "36",
+            "rhs": "36"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "16",
+            "rhs": "16"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "36",
+            "rhs": "36"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "256",
+            "rhs": "256"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "2304",
+            "rhs": "2304"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "11664",
+            "rhs": "11664"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "2916",
+            "rhs": "2916"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "2916",
+            "rhs": "2916"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "11664",
+            "rhs": "11664"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "26244",
+            "rhs": "26244"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20371886,
+      "variant": 0,
+      "matrixIndex": 14,
+      "printedContentSHA256": "20a57558d783270a624896a799edc85214cddd0a71a3bbef855413ff977b922f",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "x",
+          "y"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": -27,
+        "rightFirstExponent": 9,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          3,
+          3,
+          3
+        ],
+        "sum": 9,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "-110592",
+            "rhs": "-110592"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "-13824",
+            "rhs": "-13824"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "110592",
+            "rhs": "110592"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "373248",
+            "rhs": "373248"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "-216",
+            "rhs": "-216"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "729",
+            "rhs": "729"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "-216",
+            "rhs": "-216"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "-729",
+            "rhs": "-729"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "110592",
+            "rhs": "110592"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "-13824",
+            "rhs": "-13824"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "-110592",
+            "rhs": "-110592"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "-373248",
+            "rhs": "-373248"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "4251528",
+            "rhs": "4251528"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "531441",
+            "rhs": "531441"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "-531441",
+            "rhs": "-531441"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "-4251528",
+            "rhs": "-4251528"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "-14348907",
+            "rhs": "-14348907"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20379805,
+      "variant": 0,
+      "matrixIndex": 15,
+      "printedContentSHA256": "da91b92172b65b68f12490e093cee1a497309a91ff680d381ac9783357f080fe",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20387724,
+      "variant": 0,
+      "matrixIndex": 16,
+      "printedContentSHA256": "9bb3c6f3a4860a89d4e7e2a647aa376cbe112744a60c22732a1c591c40f3effc",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": -27,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          2,
+          3,
+          6
+        ],
+        "sum": 11,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "-110592",
+            "rhs": "-110592"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "-110592",
+            "rhs": "-110592"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "-1259712",
+            "rhs": "-1259712"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "-19683",
+            "rhs": "-19683"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "-19683",
+            "rhs": "-19683"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "-110592",
+            "rhs": "-110592"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "-110592",
+            "rhs": "-110592"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "-1259712",
+            "rhs": "-1259712"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "-1259712",
+            "rhs": "-1259712"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "-19683",
+            "rhs": "-19683"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "-19683",
+            "rhs": "-19683"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "-1259712",
+            "rhs": "-1259712"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "-14348907",
+            "rhs": "-14348907"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20395643,
+      "variant": 0,
+      "matrixIndex": 17,
+      "printedContentSHA256": "09ebf5aad73d149548956fde708d1e6abd8c72eabb110ab4404b4a0363ec0ea7",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20403562,
+      "variant": 0,
+      "matrixIndex": 18,
+      "printedContentSHA256": "7bee260f78c515832694000c0f150db23d3c8a2a7bdef52d86fc2a08f6397a95",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20411481,
+      "variant": 0,
+      "matrixIndex": 19,
+      "printedContentSHA256": "3b956f3c5d6aae5007c9a9c029221f3b9a81c98531f7effb06421c69e77fcc94",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 3,
+        "baseLetters": [
+          "x",
+          "y"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 27,
+        "rightFirstExponent": 9,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          3,
+          3,
+          6
+        ],
+        "sum": 12,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "-884736",
+            "rhs": "-884736"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "-13824",
+            "rhs": "-13824"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "-13824",
+            "rhs": "-13824"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "-884736",
+            "rhs": "-884736"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "-10077696",
+            "rhs": "-10077696"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "-19683",
+            "rhs": "-19683"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "19683",
+            "rhs": "19683"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "884736",
+            "rhs": "884736"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "884736",
+            "rhs": "884736"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "10077696",
+            "rhs": "10077696"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "34012224",
+            "rhs": "34012224"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "531441",
+            "rhs": "531441"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "531441",
+            "rhs": "531441"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "34012224",
+            "rhs": "34012224"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "387420489",
+            "rhs": "387420489"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20419400,
+      "variant": 0,
+      "matrixIndex": 20,
+      "printedContentSHA256": "e2748800fe67bed8d44865c27e7d1254bd7cb11cfb90dde4f954cb05b1774d9e",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 2,
+        "baseLetters": [
+          "x",
+          "y"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 8,
+        "rightFirstExponent": 9,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          3,
+          3,
+          6
+        ],
+        "sum": 12,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "-262144",
+            "rhs": "-262144"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "-4096",
+            "rhs": "-4096"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "-4096",
+            "rhs": "-4096"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "-262144",
+            "rhs": "-262144"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "-2985984",
+            "rhs": "-2985984"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "-512",
+            "rhs": "-512"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "-8",
+            "rhs": "-8"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "-8",
+            "rhs": "-8"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "-512",
+            "rhs": "-512"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "-5832",
+            "rhs": "-5832"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "5832",
+            "rhs": "5832"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "262144",
+            "rhs": "262144"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "262144",
+            "rhs": "262144"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "2985984",
+            "rhs": "2985984"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "10077696",
+            "rhs": "10077696"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "157464",
+            "rhs": "157464"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "157464",
+            "rhs": "157464"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "10077696",
+            "rhs": "10077696"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "114791256",
+            "rhs": "114791256"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20427319,
+      "variant": 0,
+      "matrixIndex": 21,
+      "printedContentSHA256": "f303b918a36681b66ef0d4cb33b13da9477aa3c5ae6cdb17a43e251b05f5d270",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20435238,
+      "variant": 0,
+      "matrixIndex": 22,
+      "printedContentSHA256": "bffdd506a0a3e5b6ada702faa52bfba730ea0c66c7e1d4723034b7f3b918ef13",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -3,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": -27,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          2,
+          3,
+          3
+        ],
+        "sum": 8,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "-13824",
+            "rhs": "-13824"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "-46656",
+            "rhs": "-46656"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "-216",
+            "rhs": "-216"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "-729",
+            "rhs": "-729"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "27",
+            "rhs": "27"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "-27",
+            "rhs": "-27"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "-216",
+            "rhs": "-216"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "-729",
+            "rhs": "-729"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "1728",
+            "rhs": "1728"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "-1728",
+            "rhs": "-1728"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "-13824",
+            "rhs": "-13824"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "-46656",
+            "rhs": "-46656"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "157464",
+            "rhs": "157464"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "19683",
+            "rhs": "19683"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "-19683",
+            "rhs": "-19683"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "-157464",
+            "rhs": "-157464"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "-531441",
+            "rhs": "-531441"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20443157,
+      "variant": 0,
+      "matrixIndex": 23,
+      "printedContentSHA256": "6259ab2e48c7bf952ff5d6b8648eb14b9d1220930f3aa3c3b74c6929e291f2fa",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": -2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 2,
+        "rightCoefficient": 4,
+        "rightFirstExponent": 4,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          2,
+          2,
+          4
+        ],
+        "sum": 8,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "5184",
+            "rhs": "5184"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "324",
+            "rhs": "324"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "4",
+            "rhs": "4"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "324",
+            "rhs": "324"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "1024",
+            "rhs": "1024"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "5184",
+            "rhs": "5184"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "5184",
+            "rhs": "5184"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "324",
+            "rhs": "324"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "324",
+            "rhs": "324"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "5184",
+            "rhs": "5184"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "26244",
+            "rhs": "26244"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20451076,
+      "variant": 0,
+      "matrixIndex": 24,
+      "printedContentSHA256": "ed92fede9e32262112cd8c1ad4d625135baa52efd4197bbe75bf507b81f3a2fa",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20458995,
+      "variant": 0,
+      "matrixIndex": 25,
+      "printedContentSHA256": "2574398b767dc0d6a19c9d26b7c703f54c72eec5f244389e16b74dbaec7f1288",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20466914,
+      "variant": 0,
+      "matrixIndex": 26,
+      "printedContentSHA256": "86df9dcbac2e6d9f101c6b90155393d246dfccc88bf9c13965c1129af918d316",
+      "branch": "natural-exponent-inputs",
+      "printed": {
+        "coefficientBase": 2,
+        "baseLetters": [
+          "a",
+          "b"
+        ],
+        "secondBaseExponent": 1,
+        "rightCoefficient": 8,
+        "rightFirstExponent": 6,
+        "allValuesCondition": true
+      },
+      "own": {
+        "uniqueNaturalInputs": [
+          2,
+          3,
+          3
+        ],
+        "sum": 8,
+        "coefficientIdentity": true,
+        "exponentIdentities": true,
+        "independentAnswerMatches": true,
+        "uniquenessProof": "All-values identity at independent bases(1,1)forces kc^n=K. abs(kc)>=2 gives strictly increasing positive-integer power magnitudes, so n unique among ALL natural numbers. Firstbase2/secondbase1 forces mn=X and m=X/n; firstbase1/secondbase2 forcesk=ey*n. Positiveinteger checks give existence; elementary exponentlaws give universal sufficiency. 36numeric substitutions corroborate only, not proof of uniqueness.",
+        "numericChecksSupplementary": [
+          {
+            "base0": -2,
+            "base1": -2,
+            "lhs": "-4096",
+            "rhs": "-4096"
+          },
+          {
+            "base0": -2,
+            "base1": -1,
+            "lhs": "-512",
+            "rhs": "-512"
+          },
+          {
+            "base0": -2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -2,
+            "base1": 1,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": -2,
+            "base1": 2,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "base0": -2,
+            "base1": 3,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": -1,
+            "base1": -2,
+            "lhs": "-64",
+            "rhs": "-64"
+          },
+          {
+            "base0": -1,
+            "base1": -1,
+            "lhs": "-8",
+            "rhs": "-8"
+          },
+          {
+            "base0": -1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": -1,
+            "base1": 1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": -1,
+            "base1": 2,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": -1,
+            "base1": 3,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "base0": 0,
+            "base1": -2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": -1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 1,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 2,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 0,
+            "base1": 3,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": -2,
+            "lhs": "-64",
+            "rhs": "-64"
+          },
+          {
+            "base0": 1,
+            "base1": -1,
+            "lhs": "-8",
+            "rhs": "-8"
+          },
+          {
+            "base0": 1,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 1,
+            "base1": 1,
+            "lhs": "8",
+            "rhs": "8"
+          },
+          {
+            "base0": 1,
+            "base1": 2,
+            "lhs": "64",
+            "rhs": "64"
+          },
+          {
+            "base0": 1,
+            "base1": 3,
+            "lhs": "216",
+            "rhs": "216"
+          },
+          {
+            "base0": 2,
+            "base1": -2,
+            "lhs": "-4096",
+            "rhs": "-4096"
+          },
+          {
+            "base0": 2,
+            "base1": -1,
+            "lhs": "-512",
+            "rhs": "-512"
+          },
+          {
+            "base0": 2,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 2,
+            "base1": 1,
+            "lhs": "512",
+            "rhs": "512"
+          },
+          {
+            "base0": 2,
+            "base1": 2,
+            "lhs": "4096",
+            "rhs": "4096"
+          },
+          {
+            "base0": 2,
+            "base1": 3,
+            "lhs": "13824",
+            "rhs": "13824"
+          },
+          {
+            "base0": 3,
+            "base1": -2,
+            "lhs": "-46656",
+            "rhs": "-46656"
+          },
+          {
+            "base0": 3,
+            "base1": -1,
+            "lhs": "-5832",
+            "rhs": "-5832"
+          },
+          {
+            "base0": 3,
+            "base1": 0,
+            "lhs": "0",
+            "rhs": "0"
+          },
+          {
+            "base0": 3,
+            "base1": 1,
+            "lhs": "5832",
+            "rhs": "5832"
+          },
+          {
+            "base0": 3,
+            "base1": 2,
+            "lhs": "46656",
+            "rhs": "46656"
+          },
+          {
+            "base0": 3,
+            "base1": 3,
+            "lhs": "157464",
+            "rhs": "157464"
+          }
+        ]
+      },
+      "letterBaseExponentCollision": false,
+      "mathematicalDefect": false,
+      "assessment": "Universal condition and distinct m/n/k remove numeric-base collision; exact coefficient/degree relations prove unique natural inputs, not just sample substitutions."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20474833,
+      "variant": 0,
+      "matrixIndex": 27,
+      "printedContentSHA256": "1a42adccde7e8f3c3535a3ae9b82b4c462edc28beef7bc733b03ad7cddc10d79",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20482752,
+      "variant": 0,
+      "matrixIndex": 28,
+      "printedContentSHA256": "dfa615116d5d4905944bef8f0d87b098037bfa0380e6697153b02c43759ab294",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    },
+    {
+      "finding": "M20",
+      "typeKey": "2-1|단항식의 계산|04",
+      "seed": 20490671,
+      "variant": 0,
+      "matrixIndex": 29,
+      "printedContentSHA256": "dfa615116d5d4905944bef8f0d87b098037bfa0380e6697153b02c43759ab294",
+      "branch": "simplify-expression",
+      "mathematicalDefect": false,
+      "assessment": "Same non-input simplification branch; no collision analysis needed, not full simplification certification."
+    }
+  ],
+  "oracle": "All math parsed from printed content; generator facts not used, generator answers compared only after independent derivation. Exact Fraction and integers; no pixels/renderer.",
+  "inputSHA256": "c2b7f35f15e39232bdbe647083de5c8e382260408187fbd88772ab709fad102f"
+}
