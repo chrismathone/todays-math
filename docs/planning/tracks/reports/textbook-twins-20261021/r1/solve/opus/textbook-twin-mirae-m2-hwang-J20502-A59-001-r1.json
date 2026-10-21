@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A59-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "76da6544-6faf-43b7-ba9d-83ecd2154efb",
+ "startedAt": "2026-10-21T17:05:21+0900",
+ "elapsedSec": 7.2,
+ "studentSha256": {
+  "fig-1.png": "0dfe5bacda0ac765c75acacb82ca5ae247933e6c0ea12be1d90a6fb800a5f1e3",
+  "student.json": "e9cee152191760315cf4fa6fe2f6c39a96987b8fbabd505221fb32fe2efda2ff"
+ },
+ "promptSha256": "44627ddf60a60f81d6e54576cf42c009f0382fd09c43037ebb52acf8e5ff1e0d",
+ "freezeCommit": "a607e83878eb11a4aba726ddf224a72f8606ccb3",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"△BDE와 △BCE는 ∠BDE=∠BCE=90°이고 빗변 BE가 공통이며 BD=BC이므로 RHS 합동이다. 따라서 ∠EBC=∠DBE=20°이고 ∠B=40°이다. 삼각형 ABC에서 ∠A=90°−40°=50°이다. △ADE에서 ∠ADE=90°이므로 ∠x=∠AED=90°−50°=40°이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "△BDE와 △BCE는 ∠BDE=∠BCE=90°이고 빗변 BE가 공통이며 BD=BC이므로 RHS 합동이다. 따라서 ∠EBC=∠DBE=20°이고 ∠B=40°이다. 삼각형 ABC에서 ∠A=90°−40°=50°이다. △ADE에서 ∠ADE=90°이므로 ∠x=∠AED=90°−50°=40°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "14465e399d80bca5e39f28a6cfa752a0aa5d395d821209afe6a134f3b9b2f0ac"
+}

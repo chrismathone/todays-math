@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A68-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15daf-14dd-79b3-89ed-8aef7c41bc66",
+ "startedAt": "2026-10-21T17:58:37+0900",
+ "elapsedSec": 15.4,
+ "studentSha256": {
+  "fig-1.png": "fe137c90bc5ae83949ef4023369969fca62ffc1333ab9f3db5f437f6bf712941",
+  "student.json": "e772da584570953239744c8d80f974d889e3b56bf98f8f6ede19987200d9daa1"
+ },
+ "promptSha256": "8e95247166f0acdeeb1e69aacfad3d5b69e7bdca933aec2e55291016408d801c",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"5 cm\",\"work\":\"∠R=30°이고, MQ=MR이므로 ∠MQR=30°이다. 따라서 ∠PQM=90°−30°=60°이므로 △PQM은 정삼각형이다. PQ=PM=MQ=MR이므로 PR=PM+MR=2PQ=10 cm에서 PQ=5 cm이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "5 cm",
+  "work": "∠R=30°이고, MQ=MR이므로 ∠MQR=30°이다. 따라서 ∠PQM=90°−30°=60°이므로 △PQM은 정삼각형이다. PQ=PM=MQ=MR이므로 PR=PM+MR=2PQ=10 cm에서 PQ=5 cm이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f9d93f8954be27c6fe8f87e001d2636866a0ca1cdd347f4e95004124ddf5b334"
+}

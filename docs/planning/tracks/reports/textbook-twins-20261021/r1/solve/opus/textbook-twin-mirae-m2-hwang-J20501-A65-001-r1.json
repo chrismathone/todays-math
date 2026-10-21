@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20501-A65-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "ea6d24cf-c138-4176-a1a2-dfc69a440075",
+ "startedAt": "2026-10-21T17:04:56+0900",
+ "elapsedSec": 4.3,
+ "studentSha256": {
+  "student.json": "17f3f6922ea28240b1e3416905efde80aaf5526acd3577f61f8c8e7a8c926d07"
+ },
+ "promptSha256": "612c77a472d1c7fc059f743667921ad9e09eaed386d5586ae546546e031c49c9",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"②\", \"work\": \"AB=AC이므로 ∠B=∠C=51°. ∠A=180°−2×51°=78°.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "AB=AC이므로 ∠B=∠C=51°. ∠A=180°−2×51°=78°.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "440ea1567f7e5560348e0ecfebda97a5d6cc733ccb9578068cbe8827e839c28e"
+}

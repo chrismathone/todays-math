@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A59-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db0-2d41-7053-8c67-c4050c2238af",
+ "startedAt": "2026-10-21T17:59:49+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "fig-1.png": "0dfe5bacda0ac765c75acacb82ca5ae247933e6c0ea12be1d90a6fb800a5f1e3",
+  "student.json": "e9cee152191760315cf4fa6fe2f6c39a96987b8fbabd505221fb32fe2efda2ff"
+ },
+ "promptSha256": "205908debe430ba7e9b9a1c4f546121be6a14c997f4a36bd20d0e8b31d7d76a9",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"직각삼각형 BDE와 BCE는 빗변 BE가 공통이고 BD=BC이므로 합동이다. 따라서 ∠EBC=∠DBE=20°이므로 ∠ABC=40°, ∠BAC=50°이다. 직각삼각형 ADE에서 x=180°−90°−50°=40°이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "직각삼각형 BDE와 BCE는 빗변 BE가 공통이고 BD=BC이므로 합동이다. 따라서 ∠EBC=∠DBE=20°이므로 ∠ABC=40°, ∠BAC=50°이다. 직각삼각형 ADE에서 x=180°−90°−50°=40°이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6553627f002c863e87d564287094b91ca467c27c6cbb2b186525699b2756a6ba"
+}

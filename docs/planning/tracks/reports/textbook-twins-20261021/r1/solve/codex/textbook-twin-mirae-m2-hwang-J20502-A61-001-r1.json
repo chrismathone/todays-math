@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A61-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15db0-d96e-7433-bf4b-9c87bd6c8cc0",
+ "startedAt": "2026-10-21T18:00:33+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "fig-1.png": "c79721b3c3d4f2b271af4d35d5950cc5a0084a7fc61ce4f80956213a8b76c235",
+  "student.json": "0a54546403445c3b706905e61772080b990e096f1c0a7d84473f41afed4fc308"
+ },
+ "promptSha256": "704c05c68740d6bbc1170b48cabe9fa7ca732bd6ceab603de3c074643ff1a492",
+ "freezeCommit": "a4b56c62c0b20d01fb210146bbe623504a43a92a",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"두 직각삼각형의 빗변은 각각 AC, DF이다. ④이면 AC=DF=9이고 ∠C=∠F=41°이다. 따라서 빗변의 길이와 한 예각의 크기가 각각 같으므로 두 직각삼각형은 합동이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "두 직각삼각형의 빗변은 각각 AC, DF이다. ④이면 AC=DF=9이고 ∠C=∠F=41°이다. 따라서 빗변의 길이와 한 예각의 크기가 각각 같으므로 두 직각삼각형은 합동이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1bfa7c3d88c0a272404ddd117f18ecf7f82651c7419cd55ab7064b0cdc8d50aa"
+}
