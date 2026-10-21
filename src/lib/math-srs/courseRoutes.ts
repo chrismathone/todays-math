@@ -7,11 +7,11 @@ import {
   courseAttemptInputSchema,
   courseFollowUpInputSchema,
   courseHintInputSchema,
-  coursePlanInputSchema,
   courseStudentResponseSchema,
 } from "@/contracts/mathSrsCourse.contract";
 import { sameOriginMutation } from "@/lib/accountAccess";
 import {
+  forbiddenError,
   jsonError,
   jsonOk,
   notFoundError,
@@ -28,7 +28,6 @@ import {
   emptyCourseState,
   findStoredCourseSession,
   revealCourseHint,
-  setCoursePlan,
   startRecommendedCourse,
   submitCourseAttempt,
   submitCourseFollowUp,
@@ -63,6 +62,8 @@ export async function handleCourseStudentRequest(
   if (gate.response) return noStore(gate.response);
   if (operation !== "read" && !sameOriginMutation(request))
     return noStore(crossSiteError());
+  // Retired student writer: teacher plans use their own authorized route.
+  if (operation === "plan") return noStore(forbiddenError());
   const now = await learnNow(gate.student.studentId, request);
   // Screens that show «한 번 더 → 풀이» say so; older tabs keep the old records and response.
   const followUps = request.headers.get(COURSE_FOLLOW_UP_HEADER) === "1";
@@ -82,13 +83,7 @@ export async function handleCourseStudentRequest(
     else {
       const body = await request.json().catch(() => undefined);
       let change: (course: StoredCourse, state: StoredSrsState) => StoredCourse;
-      let expectedRevision: number | undefined;
-      if (operation === "plan") {
-        const parsed = coursePlanInputSchema.safeParse(body);
-        if (!parsed.success) return noStore(validationError(parsed.error));
-        expectedRevision = parsed.data.expectedRevision;
-        change = (c) => setCoursePlan(c, parsed.data, now);
-      } else if (operation === "start") {
+      if (operation === "start") {
         const parsed = z.strictObject({}).safeParse(body);
         if (!parsed.success) return noStore(validationError(parsed.error));
         const seed = randomInt(0, 0x1_0000_0000);
@@ -151,7 +146,7 @@ export async function handleCourseStudentRequest(
           return course === previous ? stored : { ...state, course };
         },
         undefined,
-        expectedRevision,
+        undefined,
         {},
         now,
       );

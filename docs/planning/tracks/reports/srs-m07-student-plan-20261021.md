@@ -101,6 +101,42 @@ M02/M10 `5dd0816af`, scope 후보, 엔진 가지는 합치지 않는다.
 검수 7파일: `scripts/qa/srs-m07-student-plan/`의 `data.ts`, `fixture.tsx`, `fixture.css`, `index.html`, `server.mjs`, `verify.mjs`, `README.md`.
 보고서 1파일: 이 문서. 총 24파일. 콘텐츠·그림·일정·FSRS·분량·채점·저장 형식·엔진 울타리 혼입 없음.
 
-### B / 납품 상태
+### B — 승인된 학생 HTTP writer 닫기
 
-리드가 2026-10-21 18:52 KST에 원천표와 B 방식을 승인했다(`msg_da0f43e30c19`). A 커밋 시점에는 B를 아직 구현하지 않았고, A 뒤 별도 로컬 커밋으로 진행한다. 리드에게 A 로컬 SHA와 브라우저 차례 요청을 전달한다. A 운영 Ready 전 B 배포 금지. 리드 main 반영/종료 확인 전 현재 가지·트리를 보존한다.
+리드가 2026-10-21 18:52 KST에 원천표와 B 방식을 승인했다(`msg_da0f43e30c19`, 스레드 `msg_31189b34d3a3`). A는 `feda5978b49631f3d4ef7a9c7b23633b99326d10`에 보존했고 B는 그 뒤 별도 로컬 커밋이다.
+
+- `studentRouteAccess`에서 학생 course/plan POST 허용만 제거했다. route 파일은 남겨 직접 호출에서도 `requireStudent({ active: true })`와 same-origin 뒤 기존 `forbiddenError()` 403/no-store로 끝낸다. JSON/진도 로드/CAS 전에 닫으며 해당 학생 plan 파싱·저장 분기와 쓰지 않는 import만 제거했다.
+- 탐험 HTTP는 기존 인증·same-origin·활성 계정·payload 검사·studentId 일치 확인을 그대로 거친 뒤 `course`/`goal`만 403/no-store로 끝낸다. `changeExplorer`/`changeSrsState` 전에 닫으므로 이전 receipt 재처리나 기록 변경이 없다. 잘못된 payload 400, 학생 ID 불일치 409, 잘못된 origin의 기존 오류 문구, 익명/교사의 학생 route 호출 401 우선순위를 보존했다.
+- 공유 `applyExplorerAction`, action/저장 스키마, `setCoursePlan`, teacher/admin route, 기존 목표·계획 reader, 자동 기본값, FSRS/일정/분량/채점/콘텐츠/그림/reader floor/원격 엔진 울타리는 바꾸지 않았다. 학생 정상 시작·답·뜻/해설·복습·재개는 열린 채다.
+- 구 탭의 세 저장 요청은 B부터 403이다. A의 화면·호출 제거가 운영 Ready인 것을 리드가 확인한 뒤 B를 배포한다. 두 커밋을 한 번에 운영 반영하지 않는다. 현재 평가 POST 503 조사로 main 배포 보류도 유지한다.
+
+### B 검증·파일 목록
+
+| 검사                       | 결과                                                                                                                                                                                                                                                  |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RED                        | 학생 plan/course/goal의 200과 plan allowlist 허용을 잡는 4건 실패, 기존 인증/읽기/teacher-admin writer 3건 통과. `B-red.log`                                                                                                                          |
+| 최종 회귀                  | 9파일 124건 통과, `--maxWorkers=3`. `B-regression-final.log`                                                                                                                                                                                          |
+| 새 경계 회귀               | 실제 route + 조건을 읽는 메모리 DB. 유효 학생 plan/course/goal 각각 403, `changeSrsState` spy 0회, writes 0, 기존 row 전체 불변. 인증·origin·잘못된 payload·학생 ID 우선순위 및 교사 계획/admin 탐험 쓰기 200, 기존 명시 목표와 15문제 계획 읽기 확인 |
+| 기존 회귀 보존             | 학생 설정 POST로 시작하던 코스 시험은 교사 plan route를 통해 준비한다. 이미 저장된 탐험 grade/goal은 과거 기록으로 seed한다. 요청 ID/낡은 revision 충돌은 정상 start action으로 검증하며 진행 중 미션/오답 재개·교사 거절 감사 불변 검증을 유지한다   |
+| 학생 proxy                 | 실제 route 파일 전수 sweep의 허용 집합에서 plan POST 제외. 의도적으로 닫힌 route 목록에 사유를 남기고 별도 경계 시험에서 forbidden을 검증한다                                                                                                         |
+| 전체 type-check            | 최종 결과는 알려진 QA 2파일 3진단만 남음. `B-type-check-final.log`: arithmetic-angle-presentation-verify.ts(36,52) TS2345, paperProbe.tsx(174,24) TS2769/TS2321. 공유 의존성/제품/설정/기대값 우회 없음                                               |
+| ESLint / affordance / diff | 통과. `B-eslint.log`, `final-fixture-eslint.log`, `B-affordance.log`, `git diff --check`                                                                                                                                                              |
+
+중간 회귀 2건은 준비용 plan이 교사 경로로 옮겨져 생긴 정상 감사 기록과 route 전수 검사의 은퇴 endpoint 예외 누락이었다. 준비 단계의 감사 1회를 확인한 뒤 거절 요청만 따로 관찰하도록 했고, 명시적으로 닫힌 route 목록과 forbidden 시험을 맞춰 최종 통과했다. 중간 타입 검사에서 새 fixture의 필수 expectedRevision 및 새 시험의 quota literal 타입도 바로잡았다. 최종 타입 로그에는 이번 변경 오류가 없다.
+
+B 제품 3파일:
+
+- `src/lib/math-srs/courseRoutes.ts`
+- `src/lib/math-explorers/routes.ts`
+- `src/lib/studentRouteAccess.ts`
+
+B 시험 6파일:
+
+- `src/__tests__/api/studentPlanWritersClosed.test.ts` (신규)
+- `src/__tests__/api/mathSrsCourseRoutes.test.ts`
+- `src/__tests__/api/mathExplorersRoutes.test.ts`
+- `src/__tests__/unit/studentRouteAccess.test.ts`
+- `src/__tests__/unit/proxyStudentGate.test.ts`
+- `src/__tests__/unit/courseSrsAccess.test.ts`
+
+보고서 1파일 포함 총 10파일. A/B 각각 파일명을 명시해 stage·로컬 commit한다. 최종 B SHA는 자기 참조를 피하려고 리드 납품 메시지로 전달한다. 현재 세션은 main/build/push/deploy/DB/운영 UI 쓰기를 하지 않았으며, 리드 main 반영/종료 확인 전 가지·트리를 보존한다. 추가 정책 결정은 없고 리드의 A Ready 확인·B 배포 차례와 평가503 조사 해제가 남는다.

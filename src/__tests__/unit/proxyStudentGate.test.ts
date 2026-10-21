@@ -383,7 +383,6 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "POST /api/learn/math-srs/hint",
         "GET /api/learn/math-srs/course",
         "POST /api/learn/math-srs/course",
-        "POST /api/learn/math-srs/course/plan",
         "POST /api/learn/math-srs/course/attempts",
         "POST /api/learn/math-srs/course/hint",
         "POST /api/learn/math-srs/course/follow-up",

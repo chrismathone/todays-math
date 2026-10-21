@@ -202,9 +202,12 @@ const studentSession = () => {
 const context = (id = f.studentId) => ({ params: Promise.resolve({ id }) });
 const teacherPath = (id = f.studentId) => `/api/students/${id}/math-srs/course`;
 async function started() {
-  expect((await PLAN(request(`${coursePath}/plan`, "POST", plan))).status).toBe(
-    200,
-  );
+  teacher();
+  expect(
+    (await TEACHER_PLAN(request(teacherPath(), "POST", plan), context()))
+      .status,
+  ).toBe(200);
+  studentSession();
   const response = await POST(request(coursePath, "POST", {}));
   expect(response.status).toBe(200);
   return courseStudentResponseSchema.parse(await response.json()).data;
@@ -397,7 +400,7 @@ describe("student course API", () => {
     expect((await GET(request())).status).toBe(401);
     expect(f.rows.size).toBe(0);
   });
-  it("returns setup without writing; rejects cross-origin, unknown section and forged fields", async () => {
+  it("returns setup without writing; retired plan writes reject cross-origin and any body", async () => {
     const response = await GET(request());
     expect(response.headers.get("cache-control")).toContain("no-store");
     expect((await response.json()).data.summary.status).toBe("setup");
@@ -418,7 +421,7 @@ describe("student course API", () => {
           }),
         )
       ).status,
-    ).toBe(400);
+    ).toBe(403);
     expect(
       (
         await PLAN(
@@ -428,7 +431,7 @@ describe("student course API", () => {
           }),
         )
       ).status,
-    ).toBe(400);
+    ).toBe(403);
   });
   it("stores real student IDs, grades on server, persists hints and conflicts on stale answers/plans", async () => {
     const state = await started();
@@ -476,11 +479,13 @@ describe("student course API", () => {
         )
       ).status,
     ).toBe(409);
-    const stale = await PLAN(
-      request(`${coursePath}/plan`, "POST", {
+    teacher();
+    const stale = await TEACHER_PLAN(
+      request(teacherPath(), "POST", {
         ...plan,
         expectedRevision: state.revision,
       }),
+      context(),
     );
     expect(stale.status).toBe(409);
     expect((await stale.json()).error.code).toBe("REVISION_MISMATCH");
@@ -639,6 +644,8 @@ describe("teacher course roster, plans and detail", () => {
 
   it("keeps mission guards distinct from revisions and does not audit refused changes", async () => {
     const state = await started();
+    expect(f.audit).toHaveBeenCalledTimes(1); // The teacher configured the fixture plan.
+    f.audit.mockClear();
     teacher();
     const response = await TEACHER_PLAN(
       request(teacherPath(), "POST", {
