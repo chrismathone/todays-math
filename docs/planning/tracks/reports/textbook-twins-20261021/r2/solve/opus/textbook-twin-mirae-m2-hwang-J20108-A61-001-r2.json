@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A61-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f48fe86a-febf-4202-a4e5-36a64155385b",
+ "startedAt": "2026-10-21T16:54:39+0900",
+ "elapsedSec": 13.5,
+ "studentSha256": {
+  "student.json": "e260e4389f3e7f7948d5bf9d1aa32ed5606c76ff00ee460018319e01f70b32cb"
+ },
+ "promptSha256": "c52bced0589066f479f81049ecfa1b3134acffafd38d7ddd1fbb462ade8750a9",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $19b^2-38b$ ⑵ $6p^2-51pq$\", \"work\": \"⑴ $(b-8)\\\\times 7b=7b^2-56b$, $(6b+9)\\\\times 2b=12b^2+18b$ → 합: $19b^2-38b$\\n⑵ $(6p-q)\\\\times 9p=54p^2-9pq$, $(8p+7q)\\\\times 6p=48p^2+42pq$ → 차: $6p^2-51pq$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $19b^2-38b$ ⑵ $6p^2-51pq$",
+  "work": "⑴ $(b-8)\\times 7b=7b^2-56b$, $(6b+9)\\times 2b=12b^2+18b$ → 합: $19b^2-38b$\n⑵ $(6p-q)\\times 9p=54p^2-9pq$, $(8p+7q)\\times 6p=48p^2+42pq$ → 차: $6p^2-51pq$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a2afb2dc7390dccde27d64bb2b157b59aac8e84bf6d63a177b34a88baf202c61"
+}

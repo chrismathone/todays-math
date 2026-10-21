@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A60-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7b-a046-7f20-8d79-3721d61c7d42",
+ "startedAt": "2026-10-21T17:02:25+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "99aef46dc35f424c785cee05938c06100d059dbf7720823f89e5f9d528616802"
+ },
+ "promptSha256": "1c6b4dc77bf6805a54f5341a3f013bf061d96a7e2364b4301e6871a357f5311d",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"4\",\"work\":\"$-4y(2x-3y+5)=-8xy+12y^2-20y$이다. 따라서 $a=-8$, $b=12$이므로 $a+b=4$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "4",
+  "work": "$-4y(2x-3y+5)=-8xy+12y^2-20y$이다. 따라서 $a=-8$, $b=12$이므로 $a+b=4$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "078a86169e045fa0d98497dd4936ad55e587ea09e0baf19bc020c0f514d8d1c6"
+}

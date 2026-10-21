@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A59-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7b-6837-7b93-b933-c32d70500524",
+ "startedAt": "2026-10-21T17:02:11+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "student.json": "e55b5d162144ada08e6f7d995192f9834772aa6b5ac8991d6544efeb6603bf16"
+ },
+ "promptSha256": "6dbcb3d17e34c3b3085d422005b3f285b27e201cffaa746fab4bd996193aa9c8",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"⑴ $9y^2-29y+27$ ⑵ $-4a^2+11ab$\",\"work\":\"⑴ 나눗셈 부분은 $18y-27$이므로, $9y^2-11y-(18y-27)=9y^2-29y+27$.\\n⑵ 분수를 약분하고 괄호를 풀면, $3a^2+2ab-7a^2+9ab=-4a^2+11ab$.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "⑴ $9y^2-29y+27$ ⑵ $-4a^2+11ab$",
+  "work": "⑴ 나눗셈 부분은 $18y-27$이므로, $9y^2-11y-(18y-27)=9y^2-29y+27$.\n⑵ 분수를 약분하고 괄호를 풀면, $3a^2+2ab-7a^2+9ab=-4a^2+11ab$.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "e5b99808fc2d32bd2790f4d1c976bc2a20506d41418d6c8ba0b054c23f41737a"
+}

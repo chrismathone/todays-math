@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A55-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7a-45d9-7033-b1e3-8409c5cf1c9e",
+ "startedAt": "2026-10-21T17:00:56+0900",
+ "elapsedSec": 14.2,
+ "studentSha256": {
+  "student.json": "96a93cf8357910045bb030e67686429b31355dca83d9adcf6a212f0f8e09e25d"
+ },
+ "promptSha256": "fb902a1405a14eee4459eb8eade97ae4ddd68f8e88a695eeb52de271ee46a447",
+ "freezeCommit": "d2f74b1328a8198730d54ff05bcbdc04a5030e33",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$15a^{2}+10ab$\",\"work\":\"각 항을 나누면 계수는 (-18)÷(-6/5)=15, (-12)÷(-6/5)=10이다.\\n문자 부분은 각각 a³b÷ab=a², a²b²÷ab=ab이므로 답은 15a²+10ab이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$15a^{2}+10ab$",
+  "work": "각 항을 나누면 계수는 (-18)÷(-6/5)=15, (-12)÷(-6/5)=10이다.\n문자 부분은 각각 a³b÷ab=a², a²b²÷ab=ab이므로 답은 15a²+10ab이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fc77f6bda535d529d628bde71fd30c13fec90aeef1bf9c710bacebf882edcc0d"
+}
