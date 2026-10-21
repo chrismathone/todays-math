@@ -109,6 +109,12 @@ export const unifiedBankPickerBookCountsSchema =
 export type UnifiedBankPickerBookCounts = z.infer<
   typeof unifiedBankPickerBookCountsSchema
 >;
+/** The kind column before a book is chosen — held questions per kind over every textbook book. */
+export const unifiedBankPickerKindCountsSchema =
+  questionReadMetadataSchema.extend({
+    view: z.literal("picker-kind-counts"),
+    kinds: z.record(z.string().min(1), z.number().int().nonnegative()),
+  });
 
 export const unifiedBankMaterialsPageSchema = questionReadMetadataSchema.extend(
   {

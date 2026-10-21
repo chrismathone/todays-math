@@ -13,6 +13,7 @@ import {
   unifiedBankPickerGroupsSchema,
   unifiedBankPickerBooksSchema,
   unifiedBankPickerBookCountsSchema,
+  unifiedBankPickerKindCountsSchema,
   type UnifiedBankPickerBook,
   type UnifiedBankPickerBookCounts,
 } from "@/contracts/unifiedBankBootstrap.contract";
@@ -131,11 +132,14 @@ export default function SourcePicker({
     key: string;
     value: UnifiedBankPickerBookCounts;
   }>();
+  // 책을 안 고른 때의 자료 종류 열 — 교과서 전부의 종류별 수(적용 범위와 같다). 그때만 한 번 받는다.
+  const [kindTotals, setKindTotals] = useState<Record<string, number>>();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [retry, setRetry] = useState(0);
   const textbook = group === "school_textbook";
   const selectedKey = [...books].sort().join(",");
   const countKey = JSON.stringify([grade, selectedKey]);
+  const needKindTotals = textbook && !books.length && !kindTotals;
   useEffect(() => {
     const controller = new AbortController();
     void request({ view: "picker-groups" }, controller.signal)
@@ -208,6 +212,30 @@ export default function SourcePicker({
       });
     return () => controller.abort();
   }, [textbook, grade, selectedKey, countKey, filterGrade, onCatalog, retry]);
+  useEffect(() => {
+    if (!needKindTotals) return;
+    const controller = new AbortController();
+    void request({ view: "picker-kind-counts" }, controller.signal)
+      .then((body) => {
+        const value = unifiedBankPickerKindCountsSchema.parse(body);
+        requireQuestionRead(value);
+        if (!controller.signal.aborted) {
+          setKindTotals(value.kinds);
+          setErrors((current) => ({ ...current, kinds: "" }));
+        }
+      })
+      .catch((cause: unknown) => {
+        if (!controller.signal.aborted)
+          setErrors((current) => ({
+            ...current,
+            kinds:
+              cause instanceof Error
+                ? cause.message
+                : "자료 종류 수량 확인 실패",
+          }));
+      });
+    return () => controller.abort();
+  }, [needKindTotals, retry]);
   const currentCounts = counts?.key === countKey ? counts.value : undefined;
   const byId = useMemo(
     () => new Map(currentCounts?.books.map((book) => [book.id, book]) ?? []),
@@ -223,20 +251,47 @@ export default function SourcePicker({
     );
   const ids = list.map((book) => book.id);
   const all = ids.length > 0 && ids.every((id) => books.includes(id));
+  // 고른 책들의 합 — 문항 하나는 자료 하나에만 들어 책 × 자료 종류의 수가 겹치지 않는다(`bankSourcePick.ts`
+  // 머리말) — 더하면 정확하다. 수가 아직 안 왔으면 모른다. 수는 고른 책을 다 실어 오므로, 온 뒤에도 없는
+  // 책(사라진 책)은 0 이다(문제은행 창과 같은 규칙).
+  const sum = (
+    pool: readonly string[],
+    of: (book: UnifiedBankPickerBookCounts["books"][number]) => number,
+  ) => {
+    if (!currentCounts) return null;
+    let total = 0;
+    for (const id of pool) {
+      const book = byId.get(id);
+      if (book) total += of(book);
+    }
+    return total;
+  };
+  // 책을 안 고르면 적용 범위가 교과서 전부다 — 지금 펼친 과목이 아니라 전역 종류별 수로 센다.
   const kindCount = (kind: string) =>
-    books.length !== 1
-      ? null
-      : (byId.get(books[0])?.kinds[kind] ??
-        (byId.has(books[0]) ? 0 : undefined));
+    books.length
+      ? sum(books, (book) => book.kinds[kind] ?? 0)
+      : kindTotals
+        ? (kindTotals[kind] ?? 0)
+        : null;
   const matched =
     !books.length && !kinds.length
       ? groups?.sources.school_textbook
-      : books.length !== 1 || kinds.length > 1
-        ? null
-        : kinds.length
-          ? kindCount(kinds[0])
-          : byId.get(books[0])?.count;
-  const error = errors.groups || (textbook && errors.books);
+      : !books.length
+        ? kindTotals
+          ? kinds.reduce((total, kind) => total + (kindTotals[kind] ?? 0), 0)
+          : null
+        : sum(books, (book) =>
+            kinds.length
+              ? kinds.reduce(
+                  (total, kind) => total + (book.kinds[kind] ?? 0),
+                  0,
+                )
+              : book.count,
+          );
+  // 교과서 전부의 수는 책을 안 고른 동안만 쓴다 — 그 오류도 그동안만 보인다(책을 다 풀면 다시 읽는다).
+  const error =
+    errors.groups ||
+    (textbook && (errors.books || (!books.length && errors.kinds)));
   const apply = () =>
     onApply({
       group,
@@ -355,9 +410,7 @@ export default function SourcePicker({
                         <Check
                           checked={all}
                           label={`${grade} 교과서 전부`}
-                          count={
-                            ids.length === 1 ? byId.get(ids[0])?.count : null
-                          }
+                          count={sum(ids, (book) => book.count)}
                           onChange={() =>
                             setBooks((current) =>
                               all
@@ -412,11 +465,6 @@ export default function SourcePicker({
                         {" "}
                         / 교과서 {n(groups.sources.school_textbook)}
                       </span>
-                      {matched == null && (
-                        <small className={s.sub}>
-                          겹치는 문항 수는 적용 후 목록에서 확인합니다.
-                        </small>
-                      )}
                     </span>
                     <button
                       type="button"

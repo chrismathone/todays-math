@@ -32,7 +32,10 @@ import {
 import { loadQuestionCounts } from "./problem/questionCountProjection";
 import { questionBucketTally } from "./problem/questionCountBuckets";
 import type { CountBucket, CountDimension } from "./problem/questionCountSql";
-import { heldQuestionSourceGroupsSql } from "./problem/questionHeldSourceSql";
+import {
+  heldQuestionSourceGroupsSql,
+  heldQuestionTextbookKindsSql,
+} from "./problem/questionHeldSourceSql";
 
 const tally = questionBucketTally;
 const axis = (buckets: readonly CountBucket[], name: string) =>
@@ -199,6 +202,27 @@ export async function loadQuestionPickerBookCounts(params: URLSearchParams) {
     // lead-enabled one-row revision makes validating/reusing this result cheaper.
     return process.env.BANK_READ_REVISION === "on" && key !== null
       ? withBankReadFingerprint(tx, () => cachedBankRead(`picker-book-counts:${key}`, read))
+      : read();
+  }, { isolationLevel: "RepeatableRead", timeout: 30000 });
+}
+
+/** The kind column before any book is chosen: held questions per kind over every
+ * textbook book (the per-book `kinds` summed). No book/material metadata leaves the
+ * database. Like the book counts, a plain read unless the one-row revision is on.
+ */
+export async function loadQuestionPickerKindCounts(params: URLSearchParams) {
+  check(params);
+  if (params.get("view") !== "picker-kind-counts") throw new UnifiedBankQueryError("자료 종류 수량 보기를 확인해 주세요.");
+  const key = publicBankQueryKey(params);
+  return db.$transaction((tx) => {
+    const read = async () => {
+      const rows = await tx.$queryRaw<{ kind: string; count: number }[]>(heldQuestionTextbookKindsSql());
+      const counts = new Map(rows.map((row) => [row.kind, row.count]));
+      return { view: "picker-kind-counts" as const, ...questionReadMetadata(params),
+        kinds: Object.fromEntries(SOURCE_MATERIAL_KINDS.flatMap((kind) => counts.has(kind) ? [[kind, counts.get(kind)!]] : [])) };
+    };
+    return process.env.BANK_READ_REVISION === "on" && key !== null
+      ? withBankReadFingerprint(tx, () => cachedBankRead(`picker-kind-counts:${key}`, read))
       : read();
   }, { isolationLevel: "RepeatableRead", timeout: 30000 });
 }

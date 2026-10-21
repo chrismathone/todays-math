@@ -9,6 +9,7 @@ import {
   loadQuestionPickerGroups,
   loadQuestionPickerBooks,
   loadQuestionPickerBookCounts,
+  loadQuestionPickerKindCounts,
   loadQuestionMaterialsPage,
 } from "@/lib/bankSourceQuestions";
 import { readUnifiedBankQueryBody } from "@/lib/unifiedBankQueryBody";
@@ -60,6 +61,9 @@ export async function bankSourcesResponse(
         break;
       case "picker-book-counts":
         value = await loadQuestionPickerBookCounts(params);
+        break;
+      case "picker-kind-counts":
+        value = await loadQuestionPickerKindCounts(params);
         break;
       case "materials-page":
         value = await loadQuestionMaterialsPage(params, context);

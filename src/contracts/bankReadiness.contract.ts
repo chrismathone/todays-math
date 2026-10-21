@@ -40,10 +40,11 @@ export const BANK_INELIGIBLE_LABEL: Record<BankIneligibleCode, string> = {
 export const BANK_CHECK_LIMIT = 100;
 
 /**
- * 두 문이 읽는 본문의 상한(바이트) — 계약이 받는 가장 큰 요청이 들어가야 한다.
+ * 두 문이 읽는 본문의 상한(바이트) — 앱이 만드는 가장 큰 요청이 들어가야 한다.
  * 재검증은 문항마다 `selections`(신분 · 실제 형식 · 판)를 같이 싣는다: 100문항 · 가장 긴 값
- * (`q:v1:` 신분 · `multiple_choice` · `qr:v1:` 판)이면 28,824바이트다. 16KB 였을 때는 64문항부터 읽기 전에
- * 400 이 났다(2026-10-21 운영 — 교과서 75문항 · 19,341바이트). `bankCheckBodyLimit.test.ts` 가 지킨다.
+ * (`q:v1:` 신분 · `multiple_choice` · 서버가 만든 `qr:v1:` 판)이면 28,824바이트다. 16KB 였을 때는 64문항부터
+ * 읽기 전에 400 이 났다(2026-10-21 운영 — 교과서 75문항 · 19,341바이트). `bankCheckBodyLimit.test.ts` 가 지킨다.
+ * ⚠️ 계약의 `revision` 은 길이를 묶지 않는다 — 판의 꼴을 바꾸면 이 상한을 다시 잰다(그 시험이 실제 판으로 잰다).
  */
 export const BANK_READINESS_BODY_BYTES = 32 * 1024;
 

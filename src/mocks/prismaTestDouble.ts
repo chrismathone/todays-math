@@ -3227,6 +3227,16 @@ async function testLockQuery(query: { sql: string; values?: readonly unknown[] }
       ])),
     }];
   }
+  if ((query as { bankHeldTextbookKinds?: boolean }).bankHeldTextbookKinds) {
+    const books = new Set(sourceBookRows.filter((book) => book.kind === "school_textbook").map((book) => book.id));
+    const materials = new Map(sourceMaterialRows.filter((m) => books.has(m.bookId)).map((m) => [m.id, m.kind]));
+    const byKind = new Map<string, Set<string>>();
+    for (const row of problemRows) {
+      const kind = row.pool === "shared" && row.source === "school_textbook" ? materials.get(row.sourceMaterialId ?? "") : undefined;
+      if (kind) byKind.set(kind, (byKind.get(kind) ?? new Set()).add(row.questionGroupKey ?? `row:${row.id}`));
+    }
+    return [...byKind].map(([kind, ids]) => ({ kind, count: ids.size }));
+  }
   const revision = (query as { bankReadRevision?: boolean }).bankReadRevision;
   if ((query as { bankReadFingerprint?: boolean }).bankReadFingerprint || revision) {
     const shared = problemRows.filter((row) => row.pool === "shared");
