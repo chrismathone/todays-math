@@ -685,6 +685,23 @@ label.checkField {
     }
   }
 }
+/* 미리보기 단은 세로로 넘치지 않는다 — 지면 띠가 남은 높이를 채우고 쪽 크기를 그 높이에 맞춰
+   가로 막대가 늘 단 안에 보인다(원장님 2026-10-21 «세로스크롤은 필요없고, 가로스크롤도 항상 잘 보이게»).
+   낮은 화면(600px 이하)은 띠가 창 높이에 맞추던 대로 둔다 — 칸이 좁아지면 쪽이 잘린다. */
+@media screen and (min-height: 601px) {
+  @container worksheet-editor (min-width: 901px) {
+    .builderFrame .paperCanvas {
+      display: flex;
+      flex-direction: column;
+    }
+    .builderFrame .previewStrip {
+      display: flex;
+      flex: 1 1 0;
+      flex-direction: column;
+      min-height: 0;
+    }
+  }
+}
 @media print {
   .exportContent,
   .exportGrid,
