@@ -36,6 +36,14 @@ export function DailyStudy({
   const next = plan.activities.find((activity) => activity.key === plan.next);
   const done = plan.status === "done" || plan.status === "short";
   const unit = useContext(StudyUnit);
+  const conceptBundle =
+    !done && next
+      ? next.kind === "recall"
+        ? studentCurriculumName(next.section)
+        : next.kind === "practice" && next.source.kind === "explorers"
+          ? next.source.title
+          : null
+      : null;
   // The context names the current learning target. Only completed activities
   // name today's work: a mission's recorded display name or a recall's section.
   // A mission name is not an inventory of every course problem it contained.
@@ -63,6 +71,7 @@ export function DailyStudy({
       <h1>{done ? "오늘 공부를 마쳤어요" : "오늘도 한 칸씩 배워요"}</h1>
       {units.length ? (
         <div className={b.unit}>
+          {!done && <p className={b.unitLabel}>문제 진도</p>}
           {units.map((label) => (
             <div key={label}>
               <ExplorerMath text={label} />
@@ -70,6 +79,12 @@ export function DailyStudy({
           ))}
         </div>
       ) : null}
+      {conceptBundle && (
+        <div className={b.unit}>
+          <p className={b.unitLabel}>오늘 개념 묶음</p>
+          <ExplorerMath text={conceptBundle} />
+        </div>
+      )}
       {done ? (
         <>
           <section className={b.result}>

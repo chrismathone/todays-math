@@ -324,7 +324,7 @@ describe("Explorer concept memory inside the old shell", () => {
       return rest;
     };
     const longTerm = outsideQueue();
-    fireEvent.click(screen.getByRole("button", { name: "오늘의 복습으로" }));
+    fireEvent.click(screen.getByRole("button", { name: "학습 홈으로" }));
     // Cold checks of a first rating come once, five minutes later (decision 2, 2026-10-16).
     now += 300000;
     fireEvent(window, new Event("focus"));
@@ -844,7 +844,7 @@ describe("Explorer concept memory inside the old shell", () => {
     }
     fireEvent.click(screen.getByRole("button", { name: /^다시/ }));
     await screen.findByRole("heading", { name: "풀이를 마쳤어요" });
-    fireEvent.click(screen.getByRole("button", { name: "오늘의 복습으로" }));
+    fireEvent.click(screen.getByRole("button", { name: "학습 홈으로" }));
     await screen.findByRole("heading", { name: "개념을 떠올려 볼까요?" });
     const final = await source.state();
     expect(final.summary.todayCount.fresh).toBe(1);

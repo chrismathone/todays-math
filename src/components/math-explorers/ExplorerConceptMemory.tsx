@@ -594,6 +594,7 @@ export default function ExplorerConceptMemory({
             state={sessionState}
             practice={practice}
             paused={!!relearn.active}
+            onAccessFailure={onAccessFailure}
             onEvidence={(observation) => void relearn.record(observation)}
             onBoundary={relearn.boundary}
             onState={(next) => {
@@ -618,6 +619,17 @@ export default function ExplorerConceptMemory({
               if (!next.session) exitSession();
             }}
             onExit={exitSession}
+            exitLabel="학습 홈으로"
+            completionHasNext={
+              !!(
+                !practice &&
+                state &&
+                !state.session &&
+                dailyPlan?.next &&
+                !dailyBusy &&
+                !dailyFailure
+              )
+            }
           />
           {!practice &&
           state &&

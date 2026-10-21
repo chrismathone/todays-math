@@ -1,12 +1,13 @@
 /*
- * 테스트 도구판 — 학생 화면 위에 뜨는 «도구». 학생 화면과 섞이지 않게 먹색 바탕 · 흰 글자 한 가지로만 쓴다.
+ * 테스트 도구판 — 학습 본문 뒤에서 여는 «도구». 학생 화면과 섞이지 않게 먹색 바탕 · 흰 글자 한 가지로만 쓴다.
  * 색은 토큰만(05 §2.2.1): 바탕 = --learn-ink, 글자·입력칸 = --learn-surface.
  */
 .fab {
-  position: fixed;
-  z-index: 40;
-  right: 16px;
-  bottom: 24px;
+  display: block;
+  /* The fading desktop action bar reserves 120px in its session. Keep the
+     test-only tool reachable after that fixed bar, including keyboard focus. */
+  margin: 16px 16px calc(120px + env(safe-area-inset-bottom, 0px)) auto;
+  scroll-margin-block: 120px;
   min-width: 64px;
   min-height: 44px;
   padding: 0 16px;
@@ -18,12 +19,6 @@
   font-weight: 800;
   letter-spacing: 0.5px;
   box-shadow: 0 6px 18px rgb(0 0 0 / 22%);
-}
-
-@media (max-width: 600px) {
-  .fab {
-    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
-  }
 }
 
 .scrim {

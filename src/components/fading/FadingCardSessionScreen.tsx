@@ -76,6 +76,8 @@ export type FadingSessionScreenProps = {
   onState: (state: FadingState) => void;
   onReconcile: (state: FadingState, message: string) => void;
   onExit: () => void;
+  exitLabel?: string;
+  completionHasNext?: boolean;
   paused?: boolean;
   onEvidence?: (observation: FadingRelearnObservation) => void;
   onBoundary?: () => void;
@@ -98,6 +100,8 @@ export function FadingCardSessionScreen({
   onState,
   onReconcile,
   onExit,
+  exitLabel = "오늘의 복습으로",
+  completionHasNext = false,
   paused = false,
   onEvidence,
   onBoundary,
@@ -105,6 +109,11 @@ export function FadingCardSessionScreen({
 }: FadingSessionScreenProps) {
   const content = practice?.content ?? state.opened!;
   const concept = content.concept;
+  // A resumed rating retains judgments, not every typed answer. Do not call
+  // those missing originals empty; only this visit knows which blanks were skipped.
+  const [resumedRating] = useState(
+    () => !practice && state.session?.phase === "rating",
+  );
   const [local, setLocal] = useState(() =>
     practice
       ? startFadingSession(concept, practice.status?.step ?? 1, 42, "cards")
@@ -632,7 +641,11 @@ export function FadingCardSessionScreen({
       card.blanks.map((blank) => [
         blank.target.id,
         blank.text ??
-          (student ? "[쓴 답을 다시 볼 수 없어요]" : "[입력 원문 없음]"),
+          (student
+            ? resumedRating
+              ? "[이전 답은 표시되지 않아요]"
+              : "[쓴 답이 없어요]"
+            : "[입력 원문 없음]"),
       ]),
     ),
   );
@@ -797,8 +810,12 @@ export function FadingCardSessionScreen({
                 : state.receipt.dueOn}
             </p>
           )}
-          <button type="button" className={s.primary} onClick={onExit}>
-            오늘의 복습으로
+          <button
+            type="button"
+            className={completionHasNext ? s.secondary : s.primary}
+            onClick={onExit}
+          >
+            {exitLabel}
           </button>
         </section>
       ) : compare ? (
