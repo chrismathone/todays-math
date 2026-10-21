@@ -1,0 +1,217 @@
+{
+  "inputBasis": "existing literal HARMONIC_PAIRS[0], current mode0 helper port; no new authored task",
+  "sourceDerivedSpec": {
+    "version": 2,
+    "points": {
+      "A": [
+        64.0,
+        39.52
+      ],
+      "B": [
+        18.0,
+        172.0
+      ],
+      "C": [
+        202.0,
+        172.0
+      ],
+      "D": [
+        156.0,
+        39.52
+      ],
+      "E": [
+        48.67,
+        83.68
+      ],
+      "F": [
+        171.33,
+        83.68
+      ]
+    },
+    "segments": {
+      "AD": {
+        "points": [
+          "A",
+          "D"
+        ],
+        "parallel": 1
+      },
+      "EF": [
+        "E",
+        "F"
+      ],
+      "BC": {
+        "points": [
+          "B",
+          "C"
+        ],
+        "parallel": 1
+      },
+      "AE": [
+        "A",
+        "E"
+      ],
+      "EB": [
+        "E",
+        "B"
+      ],
+      "DF": [
+        "D",
+        "F"
+      ],
+      "FC": [
+        "F",
+        "C"
+      ],
+      "AC": [
+        "A",
+        "C"
+      ],
+      "BD": [
+        "B",
+        "D"
+      ]
+    },
+    "labels": {
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "E": "E",
+      "F": "F"
+    },
+    "dimensions": {
+      "d_AD": {
+        "points": [
+          "A",
+          "D"
+        ],
+        "label": "6 cm",
+        "side": "auto"
+      },
+      "d_BC": {
+        "points": [
+          "B",
+          "C"
+        ],
+        "label": "12 cm",
+        "side": "auto"
+      }
+    }
+  },
+  "QAOnlyAddO": {
+    "version": 2,
+    "points": {
+      "A": [
+        64.0,
+        39.52
+      ],
+      "B": [
+        18.0,
+        172.0
+      ],
+      "C": [
+        202.0,
+        172.0
+      ],
+      "D": [
+        156.0,
+        39.52
+      ],
+      "E": [
+        48.67,
+        83.68
+      ],
+      "F": [
+        171.33,
+        83.68
+      ],
+      "O": [
+        110.0,
+        83.68
+      ]
+    },
+    "segments": {
+      "AD": {
+        "points": [
+          "A",
+          "D"
+        ],
+        "parallel": 1
+      },
+      "EF": [
+        "E",
+        "F"
+      ],
+      "BC": {
+        "points": [
+          "B",
+          "C"
+        ],
+        "parallel": 1
+      },
+      "AE": [
+        "A",
+        "E"
+      ],
+      "EB": [
+        "E",
+        "B"
+      ],
+      "DF": [
+        "D",
+        "F"
+      ],
+      "FC": [
+        "F",
+        "C"
+      ],
+      "AC": [
+        "A",
+        "C"
+      ],
+      "BD": [
+        "B",
+        "D"
+      ]
+    },
+    "labels": {
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "E": "E",
+      "F": "F",
+      "O": "O"
+    },
+    "dimensions": {
+      "d_AD": {
+        "points": [
+          "A",
+          "D"
+        ],
+        "label": "6 cm",
+        "side": "auto"
+      },
+      "d_BC": {
+        "points": [
+          "B",
+          "C"
+        ],
+        "label": "12 cm",
+        "side": "auto"
+      }
+    }
+  },
+  "actualCurrentRendererOriginalLabels": [
+    "6 cm",
+    "12 cm",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  ],
+  "expectedReference": "Named O at exact AC∩BD∩EF, label O; not merely an unnamed crossing"
+}
