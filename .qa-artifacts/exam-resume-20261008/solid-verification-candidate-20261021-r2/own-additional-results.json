@@ -1,0 +1,101 @@
+{
+  "oldTestsRun": 32,
+  "oldFailures": 0,
+  "oldErrors": 0,
+  "oldSkipped": 0,
+  "additionalControls": [
+    {
+      "name": "nonunit-plane-foot-self-consistency-held",
+      "passed": true
+    },
+    {
+      "name": "nonunit-plane-angle-held",
+      "passed": true
+    },
+    {
+      "name": "nonunit-plane-onplane-held",
+      "passed": true
+    },
+    {
+      "name": "nonunit-plane-equation-held",
+      "passed": true
+    },
+    {
+      "name": "nonunit-plane-area-held",
+      "passed": true
+    },
+    {
+      "name": "nonunit-near-normal-held",
+      "passed": true
+    },
+    {
+      "name": "finite-overflow-length-held",
+      "passed": true
+    },
+    {
+      "name": "negative-small-angle-held",
+      "passed": true
+    },
+    {
+      "name": "angle-above90-held",
+      "passed": true
+    },
+    {
+      "name": "nonfinite-view-held",
+      "passed": true
+    },
+    {
+      "name": "angle0-positive",
+      "passed": true
+    },
+    {
+      "name": "projected-zero-area-positive",
+      "passed": true
+    },
+    {
+      "name": "scaled-equation-positive",
+      "passed": true
+    },
+    {
+      "name": "input-not-mutated",
+      "passed": true
+    },
+    {
+      "name": "empty-not-positive-registration",
+      "passed": true
+    },
+    {
+      "name": "all-public-helper-AST-unchanged",
+      "passed": true
+    }
+  ],
+  "additionalCount": 16,
+  "additionalPassed": 16,
+  "nonunitCounterexample": {
+    "planeNormal": [
+      0,
+      0,
+      2
+    ],
+    "point": [
+      0,
+      0,
+      1
+    ],
+    "unchangedPublicFootReturned": [
+      0.0,
+      0.0,
+      -3.0
+    ],
+    "mathematicallyCorrectFoot": [
+      0,
+      0,
+      0
+    ],
+    "candidateVerifyRejects": true
+  },
+  "actualImportPaths": {
+    "solid": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\solid-verification-candidate-20261021-r2\\own-shadow\\core\\figure_solid.py",
+    "svg": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\solid-verification-candidate-20261021-r2\\own-shadow\\core\\figure_svg.py"
+  }
+}

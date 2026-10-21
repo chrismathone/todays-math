@@ -1,0 +1,372 @@
+{
+  "uniqueScenarioControls": 28,
+  "passed": 28,
+  "failed": 0,
+  "controls": [
+    {
+      "name": "feet-positive",
+      "passed": true,
+      "expectedCount": 2,
+      "modes": [
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        },
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "feet-negative",
+      "passed": true,
+      "expectedCount": 0,
+      "modes": [
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [feetFalselist] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  정사영 발: 적어 둔 (1.0, 0.0, 0.0) 이 실제 발 (0.0, 0.0, 0.0) 과 1.0000 어긋남"
+        },
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [feetFalsegenerator] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  정사영 발: 적어 둔 (1.0, 0.0, 0.0) 이 실제 발 (0.0, 0.0, 0.0) 과 1.0000 어긋남"
+        }
+      ]
+    },
+    {
+      "name": "angles-positive",
+      "passed": true,
+      "expectedCount": 2,
+      "modes": [
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        },
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "angles-negative",
+      "passed": true,
+      "expectedCount": 0,
+      "modes": [
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [anglesFalselist] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  각 0.0°(dihedral): 실제 구성은 90.00° (차 90.00° > 허용 2.0°)"
+        },
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [anglesFalsegenerator] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  각 0.0°(dihedral): 실제 구성은 90.00° (차 90.00° > 허용 2.0°)"
+        }
+      ]
+    },
+    {
+      "name": "areas-positive",
+      "passed": true,
+      "expectedCount": 2,
+      "modes": [
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        },
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "areas-negative",
+      "passed": true,
+      "expectedCount": 0,
+      "modes": [
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [areasFalselist] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  정사영 넓이 라벨 3: 실제 S′=2.000000"
+        },
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [areasFalsegenerator] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  정사영 넓이 라벨 3: 실제 S′=2.000000"
+        }
+      ]
+    },
+    {
+      "name": "lengths-positive",
+      "passed": true,
+      "expectedCount": 3,
+      "modes": [
+        {
+          "accepted": true,
+          "count": 3,
+          "error": null
+        },
+        {
+          "accepted": true,
+          "count": 3,
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "lengths-negative",
+      "passed": true,
+      "expectedCount": 0,
+      "modes": [
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [lengthsFalselist] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  길이 1: 실제 길이가 라벨 대비 0.67배 (오차 33% > 허용 6%)\n  길이 1: 실제 길이가 라벨 대비 1.33배 (오차 33% > 허용 6%)"
+        },
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [lengthsFalsegenerator] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  길이 1: 실제 길이가 라벨 대비 0.67배 (오차 33% > 허용 6%)\n  길이 1: 실제 길이가 라벨 대비 1.33배 (오차 33% > 허용 6%)"
+        }
+      ]
+    },
+    {
+      "name": "equations-positive",
+      "passed": true,
+      "expectedCount": 2,
+      "modes": [
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        },
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "equations-negative",
+      "passed": true,
+      "expectedCount": 0,
+      "modes": [
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [equationsFalselist] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  방정식 라벨 z + 1 = 0: 실제 평면과 다름(법선 어긋남 0.00°, 거리 1.0000)"
+        },
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [equationsFalsegenerator] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  방정식 라벨 z + 1 = 0: 실제 평면과 다름(법선 어긋남 0.00°, 거리 1.0000)"
+        }
+      ]
+    },
+    {
+      "name": "perpendicular-positive",
+      "passed": true,
+      "expectedCount": 2,
+      "modes": [
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        },
+        {
+          "accepted": true,
+          "count": 2,
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "perpendicular-negative",
+      "passed": true,
+      "expectedCount": 0,
+      "modes": [
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [perpendicularFalselist] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  수직 검사: 두 선분이 이루는 각 0.00° (90° 여야 함)"
+        },
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [perpendicularFalsegenerator] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  수직 검사: 두 선분이 이루는 각 0.00° (90° 여야 함)"
+        }
+      ]
+    },
+    {
+      "name": "on_plane-positive",
+      "passed": true,
+      "expectedCount": 1,
+      "modes": [
+        {
+          "accepted": true,
+          "count": 1,
+          "error": null
+        },
+        {
+          "accepted": true,
+          "count": 1,
+          "error": null
+        }
+      ]
+    },
+    {
+      "name": "on_plane-negative",
+      "passed": true,
+      "expectedCount": 0,
+      "modes": [
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [on_planeFalselist] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  평면 위 검사: 점이 평면에서 1.000000 떨어져 있음"
+        },
+        {
+          "accepted": false,
+          "count": 0,
+          "error": "SolidGeometryError: [on_planeFalsegenerator] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  평면 위 검사: 점이 평면에서 1.000000 떨어져 있음"
+        }
+      ]
+    },
+    {
+      "name": "broken-feet",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "RuntimeError: owned materialization fault"
+      }
+    },
+    {
+      "name": "broken-angles",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "RuntimeError: owned materialization fault"
+      }
+    },
+    {
+      "name": "broken-areas",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "RuntimeError: owned materialization fault"
+      }
+    },
+    {
+      "name": "broken-lengths",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "RuntimeError: owned materialization fault"
+      }
+    },
+    {
+      "name": "broken-equations",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "RuntimeError: owned materialization fault"
+      }
+    },
+    {
+      "name": "broken-perpendicular",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "RuntimeError: owned materialization fault"
+      }
+    },
+    {
+      "name": "broken-on_plane",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "RuntimeError: owned materialization fault"
+      }
+    },
+    {
+      "name": "view-collapse-list",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "SolidGeometryError: [view-list] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  시점: 이 View 에서 도형이 선으로 뭉갠다(퇴화)"
+      }
+    },
+    {
+      "name": "view-collapse-generator",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "SolidGeometryError: [view-generator] 공간 검산 실패 — 라벨과 구성이 모순된다. 좌표를 조건에서 유도할 것:\n  시점: 이 View 에서 도형이 선으로 뭉갠다(퇴화)"
+      }
+    },
+    {
+      "name": "nonfinite-intermediate-reference-norm",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "SolidGeometryError: 검산 값은 유한한 수여야 함"
+      }
+    },
+    {
+      "name": "nonfinite-intermediate-tolerance-product",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "SolidGeometryError: 검산 값은 유한한 수여야 함"
+      }
+    },
+    {
+      "name": "nonfinite-intermediate-area-label-tolerance-product",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "SolidGeometryError: 검산 값은 유한한 수여야 함"
+      }
+    },
+    {
+      "name": "nonfinite-intermediate-ratio-overflow",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "SolidGeometryError: 검산 값은 유한한 수여야 함"
+      }
+    },
+    {
+      "name": "nonfinite-intermediate-view-scale-overflow",
+      "passed": true,
+      "observed": {
+        "accepted": false,
+        "count": 0,
+        "error": "SolidGeometryError: 검산 값은 유한한 수여야 함"
+      }
+    }
+  ],
+  "actualCandidate": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\solid-verification-candidate-20261021-r2\\own-shadow\\core\\figure_solid.py"
+}
