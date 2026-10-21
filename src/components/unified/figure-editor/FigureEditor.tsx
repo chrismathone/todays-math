@@ -25,6 +25,7 @@ import { describeFigureForEdit } from "./figureEditElements";
 import { applyFigureEdits } from "./figureEditApply";
 import { buildFigureEditSnapshot } from "./figureEditSnapshot";
 import {
+  addFigureAsset,
   addFigureObject,
   cleanFigureForSave,
   editFigureObject,
@@ -33,6 +34,8 @@ import {
   numberFigureObjects,
   prepareFigureSvg,
   editFigureObjects,
+  popFigureGroup,
+  pushFigureGroup,
   setFigureGroup,
   withoutFigureNumbers,
 } from "./figureSvgEditing";
@@ -41,6 +44,7 @@ import {
   groupFigureObjects,
   nextGroupName,
   renumberAutoGroups,
+  stackedGroupNames,
 } from "./figureObjectGroups";
 import {
   copyFigureSelection,
@@ -86,6 +90,8 @@ import {
 import { FigureNumberLayer } from "./FigureNumberLayer";
 import { FigureObjectList } from "./FigureObjectList";
 import { FigureGroupRow } from "./FigureGroupRow";
+import { FigureAssetMenu } from "./FigureAssetMenu";
+import { loadFigureAsset, type FigureLibraryAsset } from "./figureAssetLibrary";
 import { FigureCommonFormat } from "./FigureCommonFormat";
 import { objectName } from "./figureObjectNames";
 import { FigurePolygonDraft } from "./FigurePolygonDraft";
@@ -330,6 +336,9 @@ export function FigureEditor({
   const [symbolGroup, setSymbolGroup] = useState(FIGURE_SYMBOL_GROUPS[0].name);
   const [instructions, setInstructions] = useState("");
   const [busy, setBusy] = useState(false);
+  const assetLoading = useRef(false);
+  const assetInsertEpoch = useRef(0);
+  useEffect(() => () => { assetInsertEpoch.current += 1; }, []);
   const [redrawing, setRedrawing] = useState(false);
   // «요청대로 고치기»가 도는 중인가(단추 글자) · 마지막으로 고친 결과 한 줄
   const [editing, setEditing] = useState(false);
@@ -502,11 +511,18 @@ export function FigureEditor({
   // 묶음 편집은 원문(`data-group`)을 고친다 — 되돌리기·저장을 같이 탄다. 목록이 memo 라 콜백은 안 바뀌게 liveSvg 로.
   const editGroups = useCallback((edit: (source: string) => string) => {
     const current = liveSvg.current;
-    const next = numberFigureObjects(edit(current));
-    if (next === current) return;
+    let next: string;
+    try {
+      next = numberFigureObjects(edit(current));
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "그림 편집 내용을 확인해 주세요.");
+      return false;
+    }
+    if (next === current) return false;
     setHistory((h) => ({ past: [...h.past.slice(-59), current], future: [] }));
     liveSvg.current = next;
     setSvg(next);
+    return true;
   }, []);
   // 옮기기(끌어 놓기) · 이름 바꾸기 · 해제("") · 자동 묶음(null) 이 모두 이 하나다.
   // 묶음이 바뀌면 자동 이름(A·B·…)을 목록 차례에 맞춰 다시 매긴다 — 같은 한 걸음에(원장님 2026-09-21).
@@ -520,25 +536,59 @@ export function FigureEditor({
   );
   // 새 묶음 — 이름은 A · B · C … 차례(원장님 2026-09-21). 단추로 만들면 이름 칸에 바로 초점을 주고,
   // 단축키(Ctrl+G)로 만들면 주지 않는다 — 초점이 글자 칸으로 가면 이어지는 단축키가 안 먹는다.
+  // 묶음을 다시 묶을 수 있다 — 지금 묶음은 요소에 쌓아 두고(`data-group-stack`) 해제하면 한 겹만 풀린다.
   const makeGroup = (focusName = true) => {
     if (selectedIds.length < 2) return;
-    const next = regroup(
-      liveSvg.current,
-      selectedIds,
-      nextGroupName(groups.map((g) => g.name)),
-    );
+    let next: string;
+    try {
+      next = renumberAutoGroups(
+        pushFigureGroup(liveSvg.current, selectedIds, nextGroupName([
+          ...groups.map((g) => g.name), ...stackedGroupNames(objects),
+        ])),
+      );
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "묶음 이력을 확인해 주세요.");
+      return;
+    }
     // 초점을 줄 이름은 **다시 매긴 뒤**의 것이다 — 목록에서 위에 서면 방금 만든 묶음이 A 가 된다.
     const named = figureObjects(next).find((o) => o.id === selectedIds[0])
       ?.attrs["data-group"];
     editGroups(() => next);
     if (focusName && named) setRenamingGroup(`custom:${named}`);
   };
-  // 묶음 해제(Ctrl+Shift+G) — 오른쪽 칸 «묶음 해제» 단추와 같은 한 길(`data-group=""` — 묶음 밖).
-  // 묶음에 든 것만 푼다 — 묶음 밖 요소까지 `data-group=""` 로 적으면 «아무 일도 안 한다»가 되돌리기 한 걸음이 된다.
+  // 묶음 해제(Ctrl+Shift+G) — 오른쪽 칸 «묶음 해제» 단추와 같은 한 길. **한 겹만** 푼다: 다시 묶은 묶음이면 안쪽
+  // 묶음이 돌아오고, 처음 묶은 것이면 묶기 전(역할 어림)으로 돌아간다(사용자 2026-10-21 «1차 그룹해제»).
+  // 묶음에 든 것만 푼다 — 묶음 밖 요소까지 건드리면 «아무 일도 안 한다»가 되돌리기 한 걸음이 된다.
+  const ungroupIds = useCallback(
+    (ids: string[]) =>
+      editGroups((source) => renumberAutoGroups(popFigureGroup(source, ids))),
+    [editGroups],
+  );
+  // 툴바 «그림» — 에셋 하나를 그림 가운데에 넣고 고른다. 원문 편집은 묶음 편집과 같은 한 걸음(되돌리기 한 번).
+  const insertAsset = async (asset: FigureLibraryAsset) => {
+    if (busy || assetLoading.current) return;
+    assetLoading.current = true;
+    const epoch = ++assetInsertEpoch.current;
+    setBusy(true);
+    try {
+      const body = await loadFigureAsset(asset);
+      if (assetInsertEpoch.current !== epoch) return;
+      const id = `obj-${crypto.randomUUID()}`;
+      if (!editGroups((source) => addFigureAsset(source, asset, body, id).svg)) return;
+      setSelectedIds([id]);
+      setTool("select");
+      surface.current?.focus();
+    } catch {
+      if (assetInsertEpoch.current === epoch) setError(`${asset.label} 그림을 읽지 못했습니다.`);
+    } finally {
+      assetLoading.current = false;
+      if (assetInsertEpoch.current === epoch) setBusy(false);
+    }
+  };
   const breakGroup = () => {
     const inGroup = selectedIds.filter((id) => groupNames.has(id));
-    if (inGroup.length < 2) return;
-    assignGroup(inGroup, "");
+    if (!inGroup.length) return;
+    ungroupIds(inGroup);
   };
   /** 묶음 이름 → 그 묶음에 든 요소들. `groupNames`(요소 → 이름)의 반대쪽이다. */
   const groupMembers = useMemo(() => {
@@ -899,8 +949,6 @@ export function FigureEditor({
         case "undo":
           e.preventDefault();
           undo();
-          // Undo clears selection and unmounts a focused detail button. Keep
-          // the next shortcut (redo, etc.) inside this editor's focus boundary.
           surface.current?.focus();
           return;
         case "redo":
@@ -1321,6 +1369,9 @@ export function FigureEditor({
     e.preventDefault();
     e.stopPropagation();
     surface.current?.setPointerCapture(e.pointerId);
+    // 끄는 동안 포인터는 캔버스가 잡는다 — 누른 조절점의 커서(크기 조절 ↖↘ 등)를 캔버스에 걸어 둔다. 놓으면 푼다.
+    const handleCursor = (e.currentTarget as SVGElement | null)?.style?.cursor;
+    if (handleCursor && surface.current) surface.current.style.cursor = handleCursor;
   };
   const move = (e: { clientX: number; clientY: number; shiftKey: boolean }) => {
     const d = drag.current;
@@ -1447,6 +1498,7 @@ export function FigureEditor({
     if (d?.canvas !== undefined && canvas.current)
       canvas.current.innerHTML = d.canvas;
     setFrozenCanvas(null);
+    if (surface.current) surface.current.style.cursor = tool === "pan" ? "grab" : "";
   };
   const up = (event: React.PointerEvent) => {
     const d = drag.current;
@@ -1852,6 +1904,7 @@ export function FigureEditor({
                 </button>
               );
             })}
+            <FigureAssetMenu disabled={busy} onInsert={insertAsset} />
             <button
               type="button"
               title="Delete / Backspace"
@@ -2231,6 +2284,7 @@ export function FigureEditor({
                 focus={renamingGroup === selectedGroup.key}
                 onFocused={clearRenaming}
                 onAssign={assignGroup}
+                onUngroup={ungroupIds}
               />
             )}
             {/* 요소의 내용(함수식·글자)과 안내는 무리 밖 — 접어도 늘 보인다(더블클릭하면 글자 칸으로 간다). */}

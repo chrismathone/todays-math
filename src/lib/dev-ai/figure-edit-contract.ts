@@ -405,6 +405,8 @@ export const FigureEditCommandSchema = z
         from: PointRefSchema,
         to: PointRefSchema,
         right: z.boolean().optional(),
+        /** 원근(입체·실물 장면) 그림의 직각 — 종이 위 각이 90° 가 아니어도 기운 ㄱ자로(right:true 와 함께). */
+        perspective: z.boolean().optional(),
         /** 겹 호(같은 각끼리 같은 수) — 반지름을 3 씩 줄인 호를 더 긋는다. */
         arcs: markCount.optional(),
         /** 각의 크기 글자(«40°»·«$x$») — 엔진처럼 이등분선 위, 좁으면 밖으로 끌어내고 지시선을 긋는다. */
@@ -413,6 +415,8 @@ export const FigureEditCommandSchema = z
       .strict(),
   ])
   .superRefine((command, ctx) => {
+    if (command.op === "addAngle" && command.perspective === true && command.right !== true)
+      ctx.addIssue({ code: "custom", message: "원근 직각 표시는 right:true와 함께 사용합니다." });
     if (
       command.op === "style" &&
       [

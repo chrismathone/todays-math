@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-21T12:45:45.317280+00:00",
+  "stage": "tests",
+  "command": [
+    "node",
+    "--max-old-space-size=384",
+    "--max-semi-space-size=8",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\editor08-integration-20261021-r1\\editor08-r1.mts",
+    "--maxWorkers=1",
+    "--no-file-parallelism",
+    "--reporter=json",
+    "--outputFile=C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\engine-upgrade-20261019\\editor08-integration-20261021-r1\\editor08-r1-results.json"
+  ],
+  "memory": {
+    "availableGiB": 4.226802825927734,
+    "minimumGiB": 1.5
+  },
+  "sourceSHA256": {
+    "src/components/unified/figure-editor/FigureEditor.tsx": "5af2204ffc3d9dfc457450ac4cb144d05fbccbdb91805a1d11a49e13097fec4e",
+    "src/components/unified/figure-editor/FigureGroupRow.tsx": "e47a9a2700f0681996abb923b13b448411fc311729ab8becd05621be4d786db3",
+    "src/components/unified/figure-editor/FigureSelectionOverlay.tsx": "bdc10362c741b770717e23fb3fa07af4f7ad9e4b816096492ef18f99ce849565",
+    "src/components/unified/figure-editor/figureAngleMark.ts": "6c98717fd33cac2a55b4aff49cb9975b54646f734e39c05a61539164577494f4",
+    "src/components/unified/figure-editor/figureEditApply.ts": "1849440c6c4613c86c87a0174cf4f3fa95fb4f798e3e8d9b324d9b2159bf7380",
+    "src/components/unified/figure-editor/figureObjectGroups.ts": "724880c56eedd210d2e49d53a6bfd3ed128bb08fe1b05f65382e1b7c89ca7171",
+    "src/components/unified/figure-editor/figureSvgEditing.ts": "4ff2950fe18f290a15785254a23f6b7033bfe22ae09179890771300ef28bc542",
+    "src/lib/dev-ai/figure-edit-contract.ts": "35e39851d716799440ab2c3bbea702348165862eb2a9647c676c38eb7291eee7",
+    "src/lib/dev-ai/figure-edit-prompt.ts": "c1db3cc82357ee7e5944f4a0d296e4147b7f052365099e57e9556ad10a7ec1c6",
+    "src/lib/figure/assetCatalog.ts": "12b0cfba1551fb0e6cd5b2918a05256e007ed6591e575441b66cd4347f8be867",
+    "scripts/figure/render_spec.py": "590a4ad6c208795038b1bc7cafd4f32227272c549d50dc0d2d13e026062899b5",
+    "src/lib/figure/asset-editor-geometry-legacy-20261021.json": "ebaa87fb68464fba6dcace09e77fc8f9f42fd0e8b4943fafc2868bac7ae63ba8",
+    "src/__tests__/fixtures/figure-assets-legacy-20261021.json": "28a76b9585da12a424d083ae15b5a81d6ad8fb4239373477dbbf50d75b3bd165"
+  },
+  "sourcesUnchanged": true,
+  "exitcode": 1,
+  "dbWrites": 0
+}

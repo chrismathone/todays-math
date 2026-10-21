@@ -48,6 +48,19 @@ export function FigureSelectionOverlay({
         }))
       : [];
   const radius = 6 / selection.scale;
+  // 조절점 커서 — 크기를 바꾸는 점은 크기 조절 커서(사용자 2026-10-21 «크기를 줄이려면 십자 표시가 아니라 다른 모양»).
+  // 방향은 화면에서 놓인 자리로 정한다(뒤집거나 돌린 도형도 맞게). 점 하나를 옮기는 끝점·꼭짓점은 십자 그대로.
+  const middle = at(b.x + b.width / 2, b.y + b.height / 2);
+  const cursorOf = (key: string, p: DOMPoint) => {
+    if (key === "center") return "move";
+    const dx = p.x - middle.x,
+      dy = p.y - middle.y;
+    if (/^(?:resize|corner)-/.test(key))
+      return dx * dy > 0 ? "nwse-resize" : "nesw-resize";
+    if (/^radius-/.test(key))
+      return Math.abs(dx) >= Math.abs(dy) ? "ew-resize" : "ns-resize";
+    return "crosshair";
+  };
   return (
     <svg
       aria-label="도형 마우스 조절점"
@@ -118,7 +131,7 @@ export function FigureSelectionOverlay({
             strokeWidth={2 / selection.scale}
             style={{
               pointerEvents: busy ? "none" : "all",
-              cursor: h.key === "center" ? "move" : "crosshair",
+              cursor: cursorOf(h.key, p),
             }}
             onPointerDown={(e) => onHandleDown(e, h.key)}
           >

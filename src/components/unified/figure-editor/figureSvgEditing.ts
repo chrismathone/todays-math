@@ -1,5 +1,5 @@
 import { isFigureGridLayer } from './figureGridMetadata';
-import { isFigureAssetLayer } from './figureAssetGeometry';
+import { figureAssetLocalFrame, isFigureAssetLayer } from './figureAssetGeometry';
 
 export const SVG_NS = "http://www.w3.org/2000/svg";
 const SHAPES = "path,line,polyline,polygon,circle,ellipse,rect,text";
@@ -19,7 +19,7 @@ const STYLE_PROPERTIES = new Set(
   ),
 );
 const METADATA =
-  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last|grid|asset)$/;
+  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|group-stack|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last|grid|asset)$/;
 const safeValue = (value: string) =>
   !/[\\<>@\u0000-\u001f]/.test(value) &&
   !/(?:javascript|vbscript|data|https?|file)\s*:|\/\*|expression\s*\(/i.test(
@@ -436,6 +436,75 @@ export function setFigureGroup(
   return serializeFigureSvg(doc);
 }
 
+/**
+ * 겹친 묶음 — 요소가 지금 묶음에 들기 **전**의 `data-group` 들(없었으면 null)을 안쪽부터 적은 JSON 목록.
+ * 묶음을 다시 묶어도 해제하면 한 겹만 풀린다(ppt 와 같다 — 사용자 2026-10-21 «그룹을 다시 그룹화 하더라도
+ * 그룹화 해제하면 1차 그룹해제»).
+ */
+export const GROUP_STACK_ATTR = "data-group-stack";
+
+function parseGroupStack(value: string | null | undefined): (string | null)[] | null {
+  if (value === null || value === undefined) return [];
+  if (!value || value.length > 8192) return null;
+  try {
+    const parsed: unknown = JSON.parse(value);
+    return Array.isArray(parsed) && parsed.length <= 64 && parsed.every((v) => v === null || (typeof v === "string" && v.length <= 128 && safeValue(v)))
+      ? parsed as (string | null)[]
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+export function readGroupStack(value: string | null | undefined): (string | null)[] {
+  return parseGroupStack(value) ?? [];
+}
+
+function editableGroupStack(node: Element): (string | null)[] {
+  const stack = parseGroupStack(node.getAttribute(GROUP_STACK_ATTR));
+  if (!stack) throw new Error("묶음 이력을 확인해 주세요.");
+  return stack;
+}
+
+/** 묶기(Ctrl+G) — 고른 요소를 새 묶음 `name` 으로. 지금 묶음은 `data-group-stack` 에 쌓아 둔다. */
+export function pushFigureGroup(svg: string, ids: readonly string[], name: string) {
+  if (!name.trim() || name.length > 128 || !safeValue(name)) throw new Error("묶음 이름을 확인해 주세요.");
+  const doc = editableFigureDoc(svg);
+  const wanted = new Set(ids);
+  for (const node of doc.querySelectorAll("[data-object-id]"))
+    if (wanted.has(node.getAttribute("data-object-id")!)) {
+      const stack = editableGroupStack(node);
+      if (stack.length >= 64) throw new Error("묶음은 64겹까지 만들 수 있습니다.");
+      stack.push(node.getAttribute("data-group"));
+      const serialized = JSON.stringify(stack);
+      // Check the combined limit before committing. A depth below64 can still
+      // exceed8192 characters and otherwise lose its history on the next read.
+      if (!parseGroupStack(serialized)) throw new Error("묶음 이력의 길이와 이름을 확인해 주세요.");
+      node.setAttribute(GROUP_STACK_ATTR, serialized);
+      node.setAttribute("data-group", name);
+    }
+  return serializeFigureSvg(doc);
+}
+
+/**
+ * 묶음 해제(Ctrl+Shift+G) — **한 겹만**. 쌓아 둔 바로 앞 묶음으로 돌아가고, 쌓인 것이 없으면 묶기 전처럼
+ * 역할 어림(선분·글자 …)으로 돌아간다 — 전에는 «묶음 없음» 한 덩이로 몰려 풀렸는데도 한 묶음처럼 보였다.
+ */
+export function popFigureGroup(svg: string, ids: readonly string[]) {
+  const doc = editableFigureDoc(svg);
+  const wanted = new Set(ids);
+  for (const node of doc.querySelectorAll("[data-object-id]"))
+    if (wanted.has(node.getAttribute("data-object-id")!)) {
+      const stack = editableGroupStack(node);
+      const previous = stack.length ? stack.pop()! : null;
+      if (previous === null) node.removeAttribute("data-group");
+      else node.setAttribute("data-group", previous);
+      if (stack.length) node.setAttribute(GROUP_STACK_ATTR, JSON.stringify(stack));
+      else node.removeAttribute(GROUP_STACK_ATTR);
+    }
+  return serializeFigureSvg(doc);
+}
+
 /** 여러 요소에 같은 서식을 한 번에 — 묶음을 골라 공통 서식을 바꾼다(한 번 되돌리기로 돌아간다). */
 export function editFigureObjects(
   svg: string,
@@ -494,6 +563,15 @@ function curveControl(
   return { x: round(mid.x + nx * lift), y: round(mid.y + ny * lift) };
 }
 
+/** 엔진 `_fmt` — 소수 셋째 자리, 뒤 0 없이(`figureMarks` 의 `fmt` 와 같은 꼴). */
+const fmtCoord = (value: number) => {
+  const text = (Math.abs(value) < 5e-7 ? 0 : value)
+    .toFixed(3)
+    .replace(/0+$/, "")
+    .replace(/\.$/, "");
+  return text === "-0" || !text ? "0" : text;
+};
+
 export function addFigureObject(
   svg: string,
   type: string,
@@ -505,9 +583,11 @@ export function addFigureObject(
   const tag = type === "arrow" ? "line" : type === "curve" ? "path" : type;
   const el = doc.createElementNS(SVG_NS, tag);
   const id = `obj-${crypto.randomUUID()}`;
+  // 좌표는 소수 셋째 자리까지(다른 편집 모듈·엔진 `_fmt` 와 같다) — 화면→그림 변환의 끝자리 오차
+  // (39.99999896547841)가 원문에 남지 않고, Shift 로 수평을 맞춘 선의 두 끝이 같은 수로 적힌다.
   const set = (attrs: Record<string, string | number>) =>
     Object.entries(attrs).forEach(([key, value]) =>
-      el.setAttribute(key, String(value)),
+      el.setAttribute(key, typeof value === "number" ? fmtCoord(value) : value),
     );
   set({
     "data-object-id": id,
@@ -560,7 +640,7 @@ export function addFigureObject(
   if (type === "curve") {
     const control = curveControl(from, to);
     set({
-      d: `M ${from.x} ${from.y} Q ${control.x} ${control.y} ${to.x} ${to.y}`,
+      d: `M ${fmtCoord(from.x)} ${fmtCoord(from.y)} Q ${fmtCoord(control.x)} ${fmtCoord(control.y)} ${fmtCoord(to.x)} ${fmtCoord(to.y)}`,
     });
   }
   if (type === "text") {
@@ -577,6 +657,88 @@ export function addFigureObject(
     el.textContent = visibleFigureLabel(label);
   }
   doc.documentElement.append(el);
+  return { svg: serializeFigureSvg(doc), id };
+}
+
+/** 엔진 `scene_assets.STROKE_OUT` — 에셋 파일 굵기(윤곽 1.4 · 세부 1)를 그림에서 1.1 · 0.8 로. */
+const ASSET_STROKE_OUT = 1.1 / 1.4;
+
+/**
+ * 툴바 «그림» — 에셋(scripts/figure/assets) 하나를 그림 가운데에 넣는다(사용자 2026-10-21 «상단에 에셋에서 보유한
+ * 그림도 넣을 수 있게»). 마크업은 엔진 `scene_assets.emit_assets` 와 같은 꼴이다 — `<g data-asset transform=
+ * "translate(기준점 자리) scale(s s) translate(-기준점)">` + 배율과 무관한 굵기 — 그래서 엔진이 얹은 조각과 똑같이
+ * 한 요소로 골라지고 끌리고, AI 에게는 이름·자리로만 간다. 층은 엔진처럼 맨 뒤(배경·모눈 바로 위)라 선·글자가 위에 온다.
+ *
+ * 크기는 그림 너비의 30%(세로는 60%까지), 가운데에 놓는다 — 넣은 뒤 끌거나 조절점으로 맞춘다.
+ */
+export function addFigureAsset(
+  svg: string,
+  asset: {
+    slug: string;
+    viewBox: readonly [number, number] | readonly number[];
+    center?: readonly number[];
+  },
+  body: string,
+  id = `obj-${crypto.randomUUID()}`,
+) {
+  const doc = editableFigureDoc(svg);
+  const root = doc.documentElement;
+  const view = (root.getAttribute("viewBox") ?? "")
+    .trim()
+    .split(/[\s,]+/)
+    .map(Number);
+  const [vx, vy, vw, vh] =
+    view.length === 4 && view.every(Number.isFinite) && view[2] > 0 && view[3] > 0
+      ? view
+      : [
+          0,
+          0,
+          Number.parseFloat(root.getAttribute("width") ?? "") || 480,
+          Number.parseFloat(root.getAttribute("height") ?? "") || 360,
+        ];
+  const [aw, ah] = asset.viewBox;
+  const [ax, ay] = asset.center?.length === 2 ? asset.center : [aw / 2, ah / 2];
+  if (![aw, ah, ax, ay].every(Number.isFinite) || aw <= 0 || ah <= 0 || ax < 0 || ax > aw || ay < 0 || ay > ah)
+    throw new Error("그림의 크기와 기준점을 확인해 주세요.");
+  if (body.length > 100_000 || [...doc.querySelectorAll("[data-object-id]")].some((el) => el.getAttribute("data-object-id") === id))
+    throw new Error("그림 파일과 요소 번호를 확인해 주세요.");
+  const scale = Math.min((vw * 0.3) / aw, (vh * 0.6) / ah);
+  const k = ASSET_STROKE_OUT / scale;
+
+  const g = doc.createElementNS(SVG_NS, "g");
+  g.setAttribute("data-object-id", id);
+  g.setAttribute("data-asset", asset.slug);
+  g.setAttribute(
+    "transform",
+    `translate(${fmtCoord(vx + vw / 2)} ${fmtCoord(vy + vh / 2)}) scale(${fmtCoord(scale)} ${fmtCoord(scale)}) translate(${fmtCoord(-ax)} ${fmtCoord(-ay)})`,
+  );
+  const inner = readFigureSvg(prepareFigureSvg(body)).documentElement;
+  for (const child of [...inner.children]) g.append(doc.importNode(child, true));
+  for (const child of g.querySelectorAll("[data-object-id], [data-n]")) {
+    child.removeAttribute("data-object-id");child.removeAttribute("data-n");
+  }
+  const frame = figureAssetLocalFrame(g);
+  if (!frame || frame[2][0] !== aw || frame[2][1] !== ah)
+    throw new Error("등록된 그림의 형상과 크기가 일치하지 않습니다.");
+  for (const node of g.querySelectorAll("[stroke-width]")) {
+    const width = Number.parseFloat(node.getAttribute("stroke-width")!);
+    if (Number.isFinite(width))
+      node.setAttribute("stroke-width", fmtCoord(width * k));
+  }
+  // 맨 뒤 층 — 정의·배경 사각형·모눈 다음
+  const behind = [...root.children].find((child) => {
+    const tag = child.localName;
+    if (["defs", "style", "title", "desc", "metadata"].includes(tag)) return false;
+    if (tag === "g" && child.hasAttribute("data-grid")) return false;
+    const stroke = child.getAttribute("stroke");
+    return !(
+      tag === "rect" &&
+      (!stroke || stroke === "none") &&
+      (child.getAttribute("width") === "100%" ||
+        Number.parseFloat(child.getAttribute("width") ?? "") >= vw)
+    );
+  });
+  root.insertBefore(g, behind ?? null);
   return { svg: serializeFigureSvg(doc), id };
 }
 

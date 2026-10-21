@@ -190,7 +190,7 @@ export async function redrawDevAiFigure(
       },
       Math.max(0, budget),
     );
-    let repair: { spec: DevAiFigureSpec; error: string } | undefined;
+    let repair: { spec: DevAiFigureSpec; error: string; kind?: "engine-validation" | "source-review" } | undefined;
     // 원장님 2026-09-20 — 모델이 «엔진이 한글을 못 그린다»고 지어내 spec:null 로 끝냈다(422).
     // 그런 사유에만 반박 한 줄을 붙여 **딱 한 번** 다시 묻는다 — 사진·손그림 같은 진짜 사유는 그대로 422.
     // 되묻기는 아래 세 바퀴 안에서 한 칸을 쓸 뿐이라 토큰·시간 예산은 그대로다.
@@ -355,6 +355,7 @@ export async function redrawDevAiFigure(
         lastRender.issues = review.issues;
         repair = {
           spec,
+          kind: "source-review",
           error: `원본 대조: ${review.issues.join(" / ") || "도형의 원본 일치 여부를 확인할 수 없습니다."}`,
         };
         continue;

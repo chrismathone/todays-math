@@ -552,7 +552,7 @@ describe("단축키 — Ctrl+G 묶기 · Ctrl+Shift+G 묶음 해제 (원장님 2
     expect(chipNumbers("A")).toEqual(["7", "8"]);
     press("g", { shiftKey: true });
     expect(list().queryByRole("group", { name: "A 묶음" })).toBeNull();
-    expect(chipNumbers("묶음 없음")).toEqual(["7", "8"]);
+    expect(chipNumbers("그래프")).toEqual(["7", "8"]);
     fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
     expect(chipNumbers("A")).toEqual(["7", "8"]);
     fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
@@ -675,7 +675,7 @@ describe("묶음 이름 A·B·C · 번호표 하나 (원장님 2026-09-21)", () 
     press("g", { shiftKey: true });
     expect(groupNames().slice(0, 2)).toEqual(["A 묶음", "B 묶음"]);
     expect(chipNumbers("B")).toEqual(["7", "8"]);
-    expect(chipNumbers("묶음 없음")).toEqual(["5", "6"]);
+    expect(chipNumbers("눈금")).toEqual(["5", "6"]);
     // 되돌리기는 한 걸음 — 이름 다시 매기기까지 같이 돌아온다
     fireEvent.click(screen.getByRole("button", { name: /되돌리기/ }));
     expect(groupNames().slice(0, 3)).toEqual(["A 묶음", "B 묶음", "C 묶음"]);

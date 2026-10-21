@@ -15,10 +15,20 @@ export interface FigureAsset {
   slug: string;
   label: string;
   tags: string[];
+  /** 파일 이름(assets/ 안) — 편집기 «그림» 메뉴가 읽는다 */
+  file: string;
+  /** 에셋 좌표 틀 [너비, 높이] */
+  viewBox: [number, number];
 }
 
 export const FIGURE_ASSETS: readonly FigureAsset[] = [core, objects, outdoor, exam].flatMap((manifest) =>
-  manifest.assets.map(({ slug, label, tags }) => ({ slug, label, tags })),
+  manifest.assets.map(({ slug, label, tags, file, viewBox }) => ({
+    slug,
+    label,
+    tags,
+    file,
+    viewBox: [viewBox[0], viewBox[1]] as [number, number],
+  })),
 );
 
 const LABELS = new Map(FIGURE_ASSETS.map((asset) => [asset.slug, asset.label]));
@@ -36,5 +46,4 @@ export const PICTURE_ASSETS = FIGURE_ASSETS.filter((asset) => PICTURE_SLUGS.has(
 /** 지시문 한 줄 — «house=집, building=건물, …». */
 export const ASSET_PROMPT_LIST = PICTURE_ASSETS.map((asset) => `${asset.slug}=${asset.label}`).join(", ");
 
-// Keep raw SVG bodies in review/edit evidence. A data-asset name alone is not
-// enough evidence to delete geometry from a model's view of the current drawing.
+// Keep complete SVG bodies in review/edit evidence; a marker never authorizes stripping geometry.

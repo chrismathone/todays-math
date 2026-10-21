@@ -1,0 +1,170 @@
+{
+  "sourceRevision": "4ccb0cb",
+  "patchSHA256": "842d962c018f7e5548908fa7e329740c69211fbfdbc6395bc9bc7dc4981e2a1f",
+  "files": [
+    {
+      "path": "src/components/unified/figure-editor/FigureAssetMenu.tsx",
+      "exists": false,
+      "beforeSHA256": null,
+      "incomingSHA256": "e9a1a3b915be2473191076ca3b7b6e9b6e87eac7f12671712761d629bcac9059"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureChipText.tsx",
+      "exists": true,
+      "beforeSHA256": "3f33d1d7bf32ec80bd9f061f5f764bc50889a27b614a25ca355377e3e71c8087",
+      "incomingSHA256": "1eca2fa9a21ed744c43941d420c7b6d631fc2dd09533d338e59ee536deac3c8c"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureEditor.tsx",
+      "exists": true,
+      "beforeSHA256": "b6cbfb0e2f87ea1b5e8561a3ca9ba1a5c39a9c547e87aa6942b2a799cb564c90",
+      "incomingSHA256": "6f00a2c1cbfbf124989d4d3c3bb2d11d18fc0b2bb1d282bc20a8675e23d5c78c"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureGridPanel.tsx",
+      "exists": true,
+      "beforeSHA256": "e749c71e18595f597ef1cae3b846df2b3635f88c9c36a4a9f68c7834e00b2b61",
+      "incomingSHA256": "c5275c3820ea106454d5daae0d9257bf2c8dda40af75b77b18df0dd90015b455"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureGroupRow.tsx",
+      "exists": true,
+      "beforeSHA256": "3344d0d77072de7c2cb94bd41d53c9ff42c3de69cbd1640390400682badc5469",
+      "incomingSHA256": "e47a9a2700f0681996abb923b13b448411fc311729ab8becd05621be4d786db3"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureLabelInput.tsx",
+      "exists": true,
+      "beforeSHA256": "9ef127de15db20aac11dbf7485a4053a9a69a64654095df5598427d0b1a37e68",
+      "incomingSHA256": "7c5dea2433e3bd0f92b3b3612f75224ea9f1b6d37aa62d64123b0a4b32e48361"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureObjectList.tsx",
+      "exists": true,
+      "beforeSHA256": "e3ee5af5a6af462550fe99e773989c8cb564980caafcff3709ee36f73d973582",
+      "incomingSHA256": "fce4c71a8f1905f286f8874874672da791371184e10277b7f49edcf12840e888"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigurePanelFold.tsx",
+      "exists": true,
+      "beforeSHA256": "a9fe571b36f29804316304c6083672e24581e4a12b1657fc03f0f6d27cfd33b8",
+      "incomingSHA256": "0560b742b0aa2a1f3af30b005174b033d97a8cbe9fe90ce38a7441b6379b7c57"
+    },
+    {
+      "path": "src/components/unified/figure-editor/FigureSelectionOverlay.tsx",
+      "exists": true,
+      "beforeSHA256": "d90e0c567c5201ced71750e2462d503679554a4a10ca40b803fa91dfc52accb9",
+      "incomingSHA256": "bdc10362c741b770717e23fb3fa07af4f7ad9e4b816096492ef18f99ce849565"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureAngleMark.ts",
+      "exists": true,
+      "beforeSHA256": "ac41672b2e38076745dd404530f5fc4c841a97b7f80834d71f4c6e2a1dd2cc1a",
+      "incomingSHA256": "cfd8cac880eb252c1d7d4c2cb85c1fd511fbdb80fe263950d5b4ee638074fc3d"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureAssetLibrary.ts",
+      "exists": false,
+      "beforeSHA256": null,
+      "incomingSHA256": "e1c5869a1478110fa66ebf917b488fc4233bac1f73d9576be6546274866bf4f2"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureEditApply.ts",
+      "exists": true,
+      "beforeSHA256": "4155082202143fcacce39211b750aebaac0fc9969c4da3e69c97254d7bab5d2e",
+      "incomingSHA256": "1849440c6c4613c86c87a0174cf4f3fa95fb4f798e3e8d9b324d9b2159bf7380"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureEditElements.ts",
+      "exists": true,
+      "beforeSHA256": "96205f545a70906d1002766e329bf2c236cd3c67da9f4e1552e8ed7991f07279",
+      "incomingSHA256": "6899eb611fb2ddd68dac4b160d80ebd8840a30b570e8ff7cceca5d5767597b99"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureGrid.ts",
+      "exists": true,
+      "beforeSHA256": "a6cbdd2939c74c2b3b9fbd590491f709fc246e4d0c0261cde1c9090e72ac3136",
+      "incomingSHA256": "54bbfe0af4fb4279af1752bac40715a2ab305a15ff8f6235950d116f010a024e"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureObjectGroups.ts",
+      "exists": true,
+      "beforeSHA256": "16a799b9354d28625f2a0017523b9248f33cbcc13e6be4f4b7001b8cc092e99d",
+      "incomingSHA256": "724880c56eedd210d2e49d53a6bfd3ed128bb08fe1b05f65382e1b7c89ca7171"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureObjectNames.ts",
+      "exists": true,
+      "beforeSHA256": "b0fb5d7b4128a45968c18009cb05b4efa007febecedd67a2a051b734a9a81ff4",
+      "incomingSHA256": "c9dec509684c62d221396f1ec9da3de5374cff0d55c880d4fe57076f145e2d7c"
+    },
+    {
+      "path": "src/components/unified/figure-editor/figureSvgEditing.ts",
+      "exists": true,
+      "beforeSHA256": "85fa4c117a245640055eb22132cfa1723074b133678b900f42d112a9f25d3a6e",
+      "incomingSHA256": "9630b093efdb102a14f809070312f53ee5a95b26feb53ff6642ad25b13c0e499"
+    },
+    {
+      "path": "src/components/unified/figure-editor/mathjaxLabel.ts",
+      "exists": true,
+      "beforeSHA256": "0a443691ae392f35254228ced9dff173f28fae18be6d28bb49d24bc4d467f3dc",
+      "incomingSHA256": "ad5b1aab8dc6cb3e3d8455401d8dcbbb82baeda74d220d086d0d4348b2a8d337"
+    },
+    {
+      "path": "src/components/unified/figure-editor/types.ts",
+      "exists": true,
+      "beforeSHA256": "8684850718da1452615eb7eae5714bad2c5cf6810ba34c9a139a29fc81a8efef",
+      "incomingSHA256": "447dff01bb928b011e59c6f0dead377c6b100377a1039c55da575afe3d8dafc8"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-edit-contract.ts",
+      "exists": true,
+      "beforeSHA256": "5cc453d10639e7599f0d4262c986f2b159a5f654f1892a9137231c6ff21b66a8",
+      "incomingSHA256": "485fbca9c4ee57c7a558b63af7e3e24f8705457473069315b16261aa4fe29412"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-edit-prompt.ts",
+      "exists": true,
+      "beforeSHA256": "4c74e11ac0cca6c1bb152a56fa40acbcfb7e03095ba4463fca7b90d1e6974e58",
+      "incomingSHA256": "c1db3cc82357ee7e5944f4a0d296e4147b7f052365099e57e9556ad10a7ec1c6"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-prompt.ts",
+      "exists": true,
+      "beforeSHA256": "10d326661fea8669adb9c5e2b632564b272b1fd15fa259dd75ba3dfc59001b2d",
+      "incomingSHA256": "d67e9e5ea1bca87cd1c79d97ea7cf8df54e54f614e037c48e37181b96b2b5c49"
+    },
+    {
+      "path": "src/lib/dev-ai/figure-repair.ts",
+      "exists": true,
+      "beforeSHA256": "134bc8d2a68ace93cce748e300f26cf9d1042e159d5d8bd45f84cc62c53c9c6e",
+      "incomingSHA256": "78c8f64ed26010802d9caef2bdb796bfacb19135885bd284527d080a4b4c61b1"
+    },
+    {
+      "path": "src/lib/dev-ai/review-issues.ts",
+      "exists": false,
+      "beforeSHA256": null,
+      "incomingSHA256": "4e7c120c1d4350957bd041e843bea5dbb295f86b5cb8f4bb7280a1f22267671a"
+    },
+    {
+      "path": "src/lib/figure/assetCatalog.ts",
+      "exists": true,
+      "beforeSHA256": "f6bba2d14868b16b3933a10b9a196ad2ac3527e6423a04dead1954b75ae69e30",
+      "incomingSHA256": "686b1dc5edc0f55b7bf423903add3e001d61f1ba960824e2d2914369b1ed2262"
+    },
+    {
+      "path": "src/lib/figure/mathjaxLabel.ts",
+      "exists": true,
+      "beforeSHA256": "2a0eb96aaaa3dfa8e353f0de22d84c043f7d5e75c5ec0c34796229a767148d4e",
+      "incomingSHA256": "02aeb9cddb0955dc86306a9ee84e74b25fb2cb86be743dc1c0c0c61b5c25aaea"
+    },
+    {
+      "path": "src/lib/figure/vectorLabel.ts",
+      "exists": true,
+      "beforeSHA256": "f4f003091d49fd84304a29835bf2533f13f6d5a933984a9087beb9880867acd5",
+      "incomingSHA256": "ea9b78a5ab3cdcaca4ae431230b91510d28da1062c9c6df1ae98b37da93c9935"
+    }
+  ],
+  "productionWrites": 0,
+  "sourceWrites": 0
+}

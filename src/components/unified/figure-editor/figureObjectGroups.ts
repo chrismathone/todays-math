@@ -1,6 +1,8 @@
 import {
   figureObjects,
+  GROUP_STACK_ATTR,
   numberedFigureObjects,
+  readGroupStack,
   setFigureGroup,
 } from "./figureSvgEditing";
 import {
@@ -54,6 +56,17 @@ export function nextGroupName(used: Iterable<string>): string {
 export const isAutoGroupName = (name: string) =>
   /^[A-Z]{1,2}$/.test(name.trim());
 
+/** 겹친 묶음 속(`data-group-stack`)에 숨은 묶음 이름 — 새 묶음·다시 매기기가 이 글자를 피한다. */
+export function stackedGroupNames(
+  objects: readonly { attrs: Record<string, string> }[],
+): Set<string> {
+  const names = new Set<string>();
+  for (const o of objects)
+    for (const name of readGroupStack(o.attrs[GROUP_STACK_ATTR]))
+      if (name?.trim()) names.add(name.trim());
+  return names;
+}
+
 /**
  * 자동으로 붙은 묶음 이름을 **목록 차례**에 맞춰 다시 매긴다 — 위에서부터 A · B · C
  * (원장님 2026-09-21). 목록 차례는 첫 요소의 번호 차례라, 나중에 묶어도 위에 있으면 A 가 된다.
@@ -74,11 +87,15 @@ export function renumberAutoGroups(svg: string): string {
     .split(/[\s,]+/)
     .map(Number) ?? [0, 0, 480, 360];
   const custom = groupFigureObjects(objects, viewBox).filter((g) => g.custom);
+  // 겹친 묶음 속에 숨은 이름은 비워 둔다 — 겉 묶음이 그 글자를 가져가면 해제할 때 딴 묶음과 합쳐진다.
+  // 겉에도 같은 이름이 있으면(일부만 다시 묶은 경우) 그 묶음은 이름을 그대로 둔다.
+  const reserved = stackedGroupNames(objects);
   const changes = new Map<string, string[]>();
   let index = 0;
   for (const group of custom) {
-    if (!isAutoGroupName(group.name)) continue;
-    const name = letterName(index++);
+    if (!isAutoGroupName(group.name) || reserved.has(group.name)) continue;
+    let name = letterName(index++);
+    while (reserved.has(name)) name = letterName(index++);
     if (name === group.name) continue;
     changes.set(name, [...(changes.get(name) ?? []), ...group.ids]);
   }

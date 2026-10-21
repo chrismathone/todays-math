@@ -54,14 +54,21 @@ export function angleMarkPath({
   from,
   to,
   right,
+  perspective = false,
   radius = ANGLE_MARK_RADIUS,
 }: {
   at: Point;
   from: Point;
   to: Point;
   right?: boolean;
+  /**
+   * 원근(입체·실물 장면) 그림의 직각 — 종이 위 각이 90° 가 아니어도 두 변 방향으로 기운 ㄱ자를 그린다
+   * (엔진 `angles.perspective` 와 같다, 사용자 2026-10-21 «D 의 직각 표시» 가 «그림의 각이 125°» 로 거절됐다).
+   */
+  perspective?: boolean;
   radius?: number;
 }): AngleMarkResult {
+  if (perspective && right !== true) return { reason: "원근 직각 표시는 right:true와 함께 사용합니다" };
   const first = unit(at, from),
     second = unit(at, to);
   if (!(first.length > 1e-6) || !(second.length > 1e-6))
@@ -75,7 +82,7 @@ export function angleMarkPath({
   const square = right ?? Math.abs(degrees - 90) <= RIGHT_SLACK;
   const shorter = Math.min(first.length, second.length);
   if (square) {
-    if (Math.abs(degrees - 90) > RIGHT_LIMIT)
+    if (!perspective && Math.abs(degrees - 90) > RIGHT_LIMIT)
       return {
         reason: `그림의 각이 ${Math.round(degrees)}°라 직각 표시를 하지 않았습니다`,
       };
