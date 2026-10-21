@@ -1,0 +1,811 @@
+{
+  "originalCard": "| M3 | `2-2\\|삼각형의 성질\\|09`(각의 이등분선의 성질) mode 1 | `src/lib/middle/m2GeoTri.ts:1080` (`figBisector09(w, 1)`) | 그림이 한 걸음을 보여 줌 | 15 | 24 | 발문 «$\\angle AOB=42^\\circ$일 때 $\\angle CPD$» — 그림 각 라벨 «21° · 21°»(이등분한 값) | 그림은 ∠AOB 에 «42°» 하나 + 이등분 표지만 |",
+  "domainCount": 21,
+  "rawSourceGeometryAndExpectedAnglesPass": 21,
+  "literalSourcePortNativeRenders": 21,
+  "QAOnlyCandidateNativeSuccess": 21,
+  "candidateLabelOverlapRows": 0,
+  "records": [
+    {
+      "w": 40,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 140,
+      "rawCoordinateAngles": {
+        "AOB": 40.0,
+        "AOP": 20.000000000000004,
+        "POB": 19.999999999999996,
+        "OCP": 90.00000000000003,
+        "ODP": 90.0,
+        "CPD": 140.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 32.49191361593853,
+      "fittedCPDAngleErrorDegrees": 0.002519957010406415,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "13f512f82d85480fd7cf1dab1d9ddf887d29b04810d485c8f51412e84dec34b8",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "2c736768d2228a568b6ec3ea59052011db9117525af6c46c408ef8126ecd67a2",
+      "proposalLabels": [
+        "x",
+        "40°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 42,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 138,
+      "rawCoordinateAngles": {
+        "AOB": 42.00000000000001,
+        "AOP": 21.0,
+        "POB": 21.0,
+        "OCP": 90.0,
+        "ODP": 90.0,
+        "CPD": 138.00000000000003
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 34.04495520680353,
+      "fittedCPDAngleErrorDegrees": 0.008708496642924501,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "fa6364b3eebc2228bf5519a48826eaa6a81368d38035ea6bcb522c0c5a107f92",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "b1f0ab829a4f2234e82314242083c1995c4ea02d69ae262d0a69de60a8af1cde",
+      "proposalLabels": [
+        "x",
+        "42°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 44,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 136,
+      "rawCoordinateAngles": {
+        "AOB": 44.0,
+        "AOP": 21.999999999999996,
+        "POB": 22.000000000000004,
+        "OCP": 90.00000000000001,
+        "ODP": 90.0,
+        "CPD": 136.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 35.587626374511636,
+      "fittedCPDAngleErrorDegrees": 0.0021563238376529625,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "c5e4a6a2a3492b7e4d9f10bdc592db52a675b50baa611a9c186323dad675a6f3",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "dfc4f5e614d75642ec962132b0d9f4ff7c142e73d5994b433fcdc9ffe78acfae",
+      "proposalLabels": [
+        "x",
+        "44°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 46,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 134,
+      "rawCoordinateAngles": {
+        "AOB": 46.00000000000001,
+        "AOP": 22.999999999999996,
+        "POB": 23.0,
+        "OCP": 90.0,
+        "ODP": 90.0,
+        "CPD": 134.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 37.11945720648101,
+      "fittedCPDAngleErrorDegrees": 0.003342644981984222,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "5dd19c3f15730bd9cb53782938c770b025c663a7095f52f37eaa595ad7088fa3",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "3a1a23b8ce7979004762dc381475b335eec25fbf9bb8b9d99b0a7d8b1f49e5fd",
+      "proposalLabels": [
+        "x",
+        "46°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 48,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 132,
+      "rawCoordinateAngles": {
+        "AOB": 48.0,
+        "AOP": 23.999999999999996,
+        "POB": 24.000000000000004,
+        "OCP": 89.99999999999999,
+        "ODP": 90.0,
+        "CPD": 132.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 38.63998109220102,
+      "fittedCPDAngleErrorDegrees": 0.010092035563587842,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "29a8a32e8ea3652130e4dfdb701b332d75cd9cd98c5a0fd1f4d04838632523f6",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "4f06f57ca5b830b1b2f88e8273bd945ab0b9d2ad0ea18aca006a30afe8d61448",
+      "proposalLabels": [
+        "x",
+        "48°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 50,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 130,
+      "rawCoordinateAngles": {
+        "AOB": 50.0,
+        "AOP": 24.99999999999999,
+        "POB": 25.000000000000004,
+        "OCP": 90.00000000000003,
+        "ODP": 90.0,
+        "CPD": 129.99999999999997
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 40.14873486536643,
+      "fittedCPDAngleErrorDegrees": 0.0006869834436145084,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "86fdb5992f66d30730d82f6f2ff5fad03d50ef27a132a7b82a2c1273a83a640b",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "72017ff9356594e2d6cb84ae23182aaa74e25d4ee4994195f39a6b24677e2b01",
+      "proposalLabels": [
+        "x",
+        "50°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 52,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 128,
+      "rawCoordinateAngles": {
+        "AOB": 52.0,
+        "AOP": 26.000000000000004,
+        "POB": 25.999999999999996,
+        "OCP": 89.99999999999997,
+        "ODP": 90.0,
+        "CPD": 128.00000000000003
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 41.64525894496235,
+      "fittedCPDAngleErrorDegrees": 0.004807702742027686,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "0df3992c2b1b772714526fd00f64d066a3ee16f61faf5aed9b27becfae3acc2a",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "890fc47c129d902a736989e0a40bfdc1caa14b48c144ec88191b76e2e129371e",
+      "proposalLabels": [
+        "x",
+        "52°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 54,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 126,
+      "rawCoordinateAngles": {
+        "AOB": 54.0,
+        "AOP": 27.000000000000004,
+        "POB": 26.999999999999996,
+        "OCP": 89.99999999999999,
+        "ODP": 90.0,
+        "CPD": 126.00000000000003
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 43.12909747525694,
+      "fittedCPDAngleErrorDegrees": 0.00527514038257948,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "5b4a9bd762dd7414209e5dc148d31d4422fdf01e3060f3ace7f96b6bf5011587",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "ae7a422ad0e169639912f0a41d0fb646e0ae6c3ca32e1c7fb31d5e3ab4cb0572",
+      "proposalLabels": [
+        "x",
+        "54°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 56,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 124,
+      "rawCoordinateAngles": {
+        "AOB": 56.0,
+        "AOP": 28.000000000000004,
+        "POB": 28.0,
+        "OCP": 89.99999999999999,
+        "ODP": 90.0,
+        "CPD": 124.00000000000003
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 44.59979846465963,
+      "fittedCPDAngleErrorDegrees": 0.0009019965451528833,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "67a2cba30960ae66842a3a67595d50899f2c0870b7592d7468982de3ad007b0a",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "c6e0ce2b9b9958122eb725772b34b4916693bc8fc4f5f6157c0ee6c0a47f02a1",
+      "proposalLabels": [
+        "x",
+        "56°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 58,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 122,
+      "rawCoordinateAngles": {
+        "AOB": 58.00000000000001,
+        "AOP": 29.000000000000004,
+        "POB": 29.000000000000004,
+        "OCP": 90.0,
+        "ODP": 90.0,
+        "CPD": 122.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 46.05691392340202,
+      "fittedCPDAngleErrorDegrees": 0.00877680709663764,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "00ffb7b973183a8137decc6557c0baa2ca925837c86bb722f0c5361dbd7837a0",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "8632bebde96d796a12a0129fb67b214492ca33cf97ac71971bc9698c6e1f69e5",
+      "proposalLabels": [
+        "x",
+        "58°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 60,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 120,
+      "rawCoordinateAngles": {
+        "AOB": 59.99999999999999,
+        "AOP": 30.00000000000001,
+        "POB": 29.999999999999996,
+        "OCP": 90.0,
+        "ODP": 90.0,
+        "CPD": 120.00000000000001
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 47.49999999999999,
+      "fittedCPDAngleErrorDegrees": 0.007403077311906259,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "51634c5f6127cda2f7e4a425789901228eb7677362401eb9baa9afd7148bcf15",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "ca7bdef5a3199116153648254120b30352c3b8e69ae4eebe10f264aae27be996",
+      "proposalLabels": [
+        "x",
+        "60°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 62,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 118,
+      "rawCoordinateAngles": {
+        "AOB": 62.0,
+        "AOP": 31.000000000000007,
+        "POB": 31.0,
+        "OCP": 90.0,
+        "ODP": 90.0,
+        "CPD": 118.00000000000001
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 48.92861711645514,
+      "fittedCPDAngleErrorDegrees": 0.0027400906222823096,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "9bcd992bb8d29284e3b78e54d5f2c5bae7ba389c0aa565deb57b7c643451ef5d",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "2c8bf2e412a4addeee7d5e9105343e1aca8c69c847135362cacc6b7c4114c929",
+      "proposalLabels": [
+        "x",
+        "62°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 64,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 116,
+      "rawCoordinateAngles": {
+        "AOB": 64.0,
+        "AOP": 32.00000000000001,
+        "POB": 32.0,
+        "OCP": 90.0,
+        "ODP": 90.0,
+        "CPD": 116.00000000000001
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 50.34233010215446,
+      "fittedCPDAngleErrorDegrees": 0.000803665526120767,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "bae80865f6ad7aabc751be5c0aa04fd8c6c488c61f522a2834f65a3b6cfd3ed2",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "a879508cfb01ae79a6c1401acd05c6062dfe7604df2f2c47dff13483dda89c85",
+      "proposalLabels": [
+        "x",
+        "64°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 66,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 114,
+      "rawCoordinateAngles": {
+        "AOB": 66.0,
+        "AOP": 33.0,
+        "POB": 33.0,
+        "OCP": 90.00000000000001,
+        "ODP": 90.0,
+        "CPD": 114.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 51.740708326427566,
+      "fittedCPDAngleErrorDegrees": 0.0004930826438140912,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "fe904da8e4641df637ef41da22ebf4161ffa08298399f222ca354a0905ee7f6c",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "881ee31c1c4d3daf8d16f6b682a920447d59b7d3fead8414b8baa76c2742c924",
+      "proposalLabels": [
+        "x",
+        "66°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 68,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 112,
+      "rawCoordinateAngles": {
+        "AOB": 68.0,
+        "AOP": 34.0,
+        "POB": 34.0,
+        "OCP": 90.00000000000001,
+        "ODP": 90.0,
+        "CPD": 111.99999999999999
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 53.12332582972095,
+      "fittedCPDAngleErrorDegrees": 0.003982267682332008,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "e4e60a7ec595d2df1d4b02eb879d9627ffae917d1eabf53a432062adbb53fa00",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "aa465b6f1b86c2287a28dc156491cb3cbbdae1795269b1b676aed7cc660d7843",
+      "proposalLabels": [
+        "x",
+        "68°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 70,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 110,
+      "rawCoordinateAngles": {
+        "AOB": 70.0,
+        "AOP": 35.0,
+        "POB": 34.99999999999999,
+        "OCP": 90.00000000000001,
+        "ODP": 90.0,
+        "CPD": 110.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 54.489761453349374,
+      "fittedCPDAngleErrorDegrees": 0.00044760481445393907,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "f7886ee098bd4c44225730f4809aeebc82fb75f98c604b91581abbd1096c176e",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "86427606b589c0c6142bf8e0524f65e4fc293682a5298f3843d29c7ee230a778",
+      "proposalLabels": [
+        "x",
+        "70°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 72,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 108,
+      "rawCoordinateAngles": {
+        "AOB": 72.0,
+        "AOP": 36.0,
+        "POB": 36.0,
+        "OCP": 90.00000000000001,
+        "ODP": 90.0,
+        "CPD": 108.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 55.83959896778495,
+      "fittedCPDAngleErrorDegrees": 0.0021277491284195094,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "40a6d255924f082b19766c32d61680f92b1afeb4a9bc5f6c864d1ccd0a5d597e",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "5c609b204c6c6f7f9c26351871464e19eeb7876c31713af1aefe6fe2dd3067fb",
+      "proposalLabels": [
+        "x",
+        "72°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 74,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 106,
+      "rawCoordinateAngles": {
+        "AOB": 74.0,
+        "AOP": 37.0,
+        "POB": 37.0,
+        "OCP": 89.99999999999999,
+        "ODP": 90.0,
+        "CPD": 106.00000000000001
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 57.172427199444584,
+      "fittedCPDAngleErrorDegrees": 0.0008238689422483958,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "3b868ed244aa7186565f58a7593d5305eefafb0eb57f50633f683fa95e07823e",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "4d09d81e08abf1ef0009dbacbc00a2eea7e7f5550a1f5dce7d8c6101f3849a80",
+      "proposalLabels": [
+        "x",
+        "74°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 76,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 104,
+      "rawCoordinateAngles": {
+        "AOB": 76.0,
+        "AOP": 37.99999999999999,
+        "POB": 38.0,
+        "OCP": 90.00000000000001,
+        "ODP": 90.0,
+        "CPD": 104.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 58.48784015593753,
+      "fittedCPDAngleErrorDegrees": 0.0019282649423502107,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "0ddfcaec92cc0431920ec18283b4526e279dbf622a71728063905ab51a3f15dc",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "4bb6e2008edc9726691b1628be405179c0e63b8a6d592db20a2be937d5aeb979",
+      "proposalLabels": [
+        "x",
+        "76°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 78,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 102,
+      "rawCoordinateAngles": {
+        "AOB": 78.0,
+        "AOP": 39.0,
+        "POB": 39.0,
+        "OCP": 90.0,
+        "ODP": 90.0,
+        "CPD": 102.00000000000001
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 59.785437149734555,
+      "fittedCPDAngleErrorDegrees": 0.0029277985120899075,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "47495875fd11be74acb05f7f7dc09a1ade624cdd5f11ce82f2275425df33ad0d",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "b181cc984fcd30ffc6576bce67465add8a516f086c8d6967ced216e63304af70",
+      "proposalLabels": [
+        "x",
+        "78°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    },
+    {
+      "w": 80,
+      "domainSource": "2*integer20..40",
+      "independentExpectedCPD": 100,
+      "rawCoordinateAngles": {
+        "AOB": 80.0,
+        "AOP": 39.99999999999999,
+        "POB": 40.0,
+        "OCP": 90.00000000000001,
+        "ODP": 90.0,
+        "CPD": 100.0
+      },
+      "quadrilateralConvex": true,
+      "positiveRayAndFeetDistances": 61.064822920221225,
+      "fittedCPDAngleErrorDegrees": 0.005053222198370122,
+      "sourcePortRendered": true,
+      "originalSVG_SHA": "952a38b1dd8bb0e505dae8d9bf48e9ba69a3a7664a06ff8cc543b02e56801629",
+      "numericHalfLabels": 2,
+      "proposalStrictRendered": true,
+      "proposalError": null,
+      "proposalSVG_SHA": "0cbb9d937572398e149f0e9f6171c8d1e4b3c6f6c820c8971c0724adebf67c1d",
+      "proposalLabels": [
+        "x",
+        "80°",
+        "A",
+        "B",
+        "C",
+        "D",
+        "O",
+        "P"
+      ],
+      "labelBoxOverlaps": [],
+      "angleLeaders": [
+        "ax",
+        "whole"
+      ],
+      "allOriginalPointsSegmentsPointLabelsUnchanged": true
+    }
+  ],
+  "actualTSOrAPI": false,
+  "productionApplied": false,
+  "sourceUnchanged": true
+}

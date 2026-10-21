@@ -1,0 +1,113 @@
+{
+  "status": "M3 prechange step-disclosure confirmed; QA-only replacement feasible in bounded source-port render, final implementation/native review pending",
+  "attribution": {
+    "card": "M3",
+    "originalRow": "| M3 | `2-2\\|삼각형의 성질\\|09`(각의 이등분선의 성질) mode 1 | `src/lib/middle/m2GeoTri.ts:1080` (`figBisector09(w, 1)`) | 그림이 한 걸음을 보여 줌 | 15 | 24 | 발문 «$\\angle AOB=42^\\circ$일 때 $\\angle CPD$» — 그림 각 라벨 «21° · 21°»(이등분한 값) | 그림은 ∠AOB 에 «42°» 하나 + 이등분 표지만 |",
+    "path": "docs/planning/tracks/brief-engine-handoff-display-20261021.md",
+    "currentSource": "src/lib/middle/m2GeoTri.ts",
+    "typeKey": "2-2|삼각형의 성질|09",
+    "currentBranches": "figBisector09 else and handler mode1; mode0 excluded from proposed change"
+  },
+  "domain": {
+    "source": "w=2*intBetween(rng,20,40)",
+    "allValues": [
+      40,
+      42,
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62,
+      64,
+      66,
+      68,
+      70,
+      72,
+      74,
+      76,
+      78,
+      80
+    ],
+    "count": 21,
+    "exposedHalfValues": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "independentTargetRange": [
+      100,
+      140
+    ]
+  },
+  "independentStudentDerivation": "C,D are perpendicular feet, hence quadrilateralOCPD has90-degree angles atC andD. Its fourth angle is360−90−90−w=180−w. No numerical half-angle calculation, trigonometry, cosine law or high-school theorem is needed in student solution. Given bisector can be shown by equal marks without printing evaluated halves.",
+  "geometryEvidence": "Engine-only trig reconstructs actual literal source coordinates; C,D lie on given rays with positive distances, both perpendiculars are90degrees, P lies inside and OCPD is convex over all21w. Raw CPD angle agrees with independent whole-angle subtraction within floating arithmetic. Fitted2-decimal points introduce measured error (not exact geometry).",
+  "maximumFittedCPDAngleErrorDegrees": 0.010092035563587842,
+  "disclosedStep": "Current a1/a2 label w/2 each is derived from given whole angle and bisector; it is an intermediate step disclosure, not the final CPD answer. Whole given w is absent as a single mark. This is the exact originalM3 issue, not a newly authored question.",
+  "proposal": [
+    "Mode1 only: keep existing points/rays/perpendicular segments, point names, ax unknown target label, body/answer/solution/facts and RNG call order. Remove only a1/a2 numeric labels; use same-count equal arc marks for AOP and POB.",
+    "Add a separate whole AOB mark with only given w°; use clearly distinct radius from both half-angle marks. QA witness uses inner radius16/outer32; do not treat these constants as final typography without actual viewport/typeset evidence.",
+    "Ensure the given whole arc cannot be read as another equality assertion with half arcs; distinct radius/span plus numeric given needed. Consider two equal half-arcs vs one given whole arc if actual visual comparison is ambiguous, but preserve meaning and validate inner effective radii.",
+    "Preserve original mode0 exact bytes across its21w*7d=147literal combinations and actual seeded API; do not accidentally add whole angle where d-only branch gives no numeric angle. Do not move RNG draws or change type IDs.",
+    "Use real engine angle-label placement/leader rather than inventing free numeric labels or extra geometry. Parent final MathJax/render must check that leader is clearly a label callout, not new construction, and no clipped/hidden whole given or equal-arc marks."
+  ],
+  "ownExecuted": {
+    "rawGeometryDomain": 21,
+    "currentLiteralSourcePortPythonRenders": 21,
+    "QAOnlyProposedPythonRenders": 21,
+    "noHalfOrTargetNumericLabelsInProposal": 21,
+    "proposalBasicLabelBoxOverlapRows": 0,
+    "actualTSHandlerOrAPI": 0,
+    "Node": 0,
+    "browser": 0,
+    "model": 0,
+    "DB": 0,
+    "productionEdits": 0
+  },
+  "nativeLimitations": [
+    "Source port is NOT actual TS output capture; Root will supply actual current/final cases",
+    "Python default text metrics, not actual MathJax typography; no glyph/halo/physical-print approval",
+    "No basic text-box pair overlaps observed, but this is not all text-vs-arc/stroke/leader collision proof. Current angle label placement can choose least-bad position and successful render alone is insufficient",
+    "Whole mark label and existing target label use external angle leaders in observed cases; source/body segments remain unchanged, yet callout visual semantics require review",
+    "No strict serialized-arc containment certification or tolerance relaxation; M28opt-in not copied here by default"
+  ],
+  "gradeDistinction": "Whole student route needs perpendicular definition and quadrilateral angle sum (earlier middle-school prerequisites). Coordinates use engine-only trig for audit. No official primary whole-grade/Unit/prerequisite-completion approval performed here; school source/type label is not authority.",
+  "compatibility": "Future adapter/fingerprint revision if rendered spec changes; original seeds/issued rows/raw evidence immutable. No DB rebuild or operational release.",
+  "hashes": {
+    "beforeAfterUnchanged": true,
+    "boundFileCount": 67
+  },
+  "artifactSHA256": {
+    "own-after.json": "7e6316ae603a8af09deb7d89509a4ef193e67f00251a4263ae240e93055af1c4",
+    "own-audit.py": "c0021f43fd106c557ad17886e41576e96e64a09b6dd2b1baa14b8710cd1c7405",
+    "own-before.json": "7e6316ae603a8af09deb7d89509a4ef193e67f00251a4263ae240e93055af1c4",
+    "own-finalize.py": "e406e53452cbca3d6407292d27aab4548d0dc3812bca7eec6832d410876323da",
+    "own-probe.txt": "27270cb35c8fb832b2dfdaab098cb8ac327a4bab2ed5a0c05cf72fc3ca119232",
+    "own-results.json": "b37e31e378cf39b60b564f07aa5eb16e1e57399388080595e0e72276349e5fe1",
+    "own-w42-candidate.svg": "2d6ae13eefe3115917c743a55879d91505ebaab00e2d8ab757cec0cf0d3ce9d2",
+    "own-w42-current.svg": "f597788b66e32d665de0ade4a38e5c4689f55849aac8b1b7950c10d92a938f5c",
+    "own-w42-specimens.json": "0f2f468ba3ee0d2219026f49137c8840c6cf0e4208a8aab264504b486406421c"
+  }
+}
