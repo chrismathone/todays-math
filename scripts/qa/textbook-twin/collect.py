@@ -144,7 +144,7 @@ def main() -> None:
                 external = Path(pointer["externalReview"]) if pointer.get("externalReview") else None
                 run_root = external.parents[2] if external else None
                 legacy = integrity.committed(review_file, LEGACY_BASELINE) and integrity.is_ancestor(bundle, LEGACY_BASELINE, head)
-                proof["review"] = review_evidence(review_record, external, legacy)
+                proof["review"] = review_evidence(review_record, external, legacy, bundle=bundle)
                 reasons += proof["review"]["errors"]
                 for solver, record in records.items():
                     proof["solvers"][solver] = solver_evidence(record, run_root)

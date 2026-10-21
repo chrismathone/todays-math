@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import collections
 import json
+import re
 from pathlib import Path
 
 from integrity import digest
@@ -12,7 +13,8 @@ from solve import parse
 
 def envelope_evidence(path: Path | None, model: str | None, session: str | None) -> dict:
     result = {"recordedModel": model, "sessionId": session, "actualModels": [],
-              "actualEnvelopeVerified": False, "evidenceLevel": "record-only" if model else "inference-only"}
+              "actualEnvelopeVerified": False, "identityVerified": False, "actualEnvelopeVerifiedScope": "identity-only",
+              "evidenceLevel": "record-only" if model else "inference-only"}
     if path is None or not path.exists():
         return result
     data = path.read_bytes()
@@ -21,7 +23,44 @@ def envelope_evidence(path: Path | None, model: str | None, session: str | None)
     verified = bool(session and actual and envelope.get("session_id") == session
                     and envelope.get("is_error") is False and (not model or actual == [model]))
     return {**result, "envelopePath": str(path), "envelopeSha256": digest(data), "actualModels": actual,
-            "actualEnvelopeVerified": verified, "evidenceLevel": "actual-envelope" if verified else "conflicting-envelope"}
+            "actualEnvelopeVerified": verified, "identityVerified": verified, "evidenceLevel": "actual-envelope" if verified else "conflicting-envelope"}
+
+
+def proposal_evidence(record: dict, path: Path, envelope_path: Path) -> dict:
+    result = {"proposalContentVerified": False, "proposalContentStatus": "missing-envelope",
+              "candidateFinalContentCompared": False}
+    if not envelope_path.is_file():
+        return result
+    result["proposalContentStatus"] = "mismatch"
+    try:
+        from author import parse_result
+        raw_bytes = envelope_path.read_bytes()
+        raw = json.loads(raw_bytes)["result"]
+        repair = record.get("formatRepair")
+        if repair:
+            result["proposalContentStatus"] = "invalid-format-repair"
+            fixed_file = path.with_suffix(".format-repaired.txt")
+            if not fixed_file.is_file(): return result
+            fixed_bytes = fixed_file.read_bytes()
+            result.update({"formatRepairPath": str(fixed_file), "formatRepairSha256": digest(fixed_bytes)})
+            fenced = re.fullmatch(r"```json\s*(.*?)\s*```", raw.strip(), re.S)
+            body = fenced.group(1) if fenced else raw.strip()
+            # 허용된 과거 복구 하나만 재현: fence 제거 뒤 마지막 잉여 } 한 개 삭제.
+            reproduced, count = re.subn(r"\}\s*\]\s*$", "]", body, count=1)
+            if (repair.get("kind") != "remove-one-surplus-final-closing-brace" or count != 1
+                    or repair.get("rawSha256") != digest(raw_bytes)
+                    or repair.get("repairedResponseSha256") != digest(fixed_bytes)
+                    or reproduced.encode() != fixed_bytes):
+                return result
+            proposals = json.loads(reproduced)
+            method = "exact-format-repair-match"
+        else:
+            proposals = parse_result(raw)
+            method = "direct-match"
+        verified = isinstance(proposals, list) and proposals == record.get("proposals")
+        return {**result, "proposalContentVerified": verified, "proposalContentStatus": method if verified else "mismatch"}
+    except (ValueError, KeyError, TypeError, OSError):
+        return result
 
 
 def main():
@@ -55,7 +94,13 @@ def main():
                 read(raw)
             entry = {"recordPath": str(path), "recordSha256": inputs[str(path.resolve())],
                      "problemCodes": [p["problemCode"] for p in record["proposals"]],
-                     **envelope_evidence(raw, record.get("model"), record.get("sessionId"))}
+                     **envelope_evidence(raw, record.get("model"), record.get("sessionId")),
+                     **proposal_evidence(record, path, raw)}
+            if entry.get("formatRepairPath"):
+                fixed = Path(entry["formatRepairPath"])
+                inputs[str(fixed.resolve())] = digest(fixed.read_bytes())
+            if raw.exists() and not entry["proposalContentVerified"]:
+                errors.append({"path": str(path), "error": "저작 raw→proposals 내용/정확 형식 복구 불일치"})
             authors.append(entry)
             authors_by_session[record.get("sessionId")].append(entry)
             if entry["evidenceLevel"] == "conflicting-envelope":
@@ -123,14 +168,19 @@ def main():
             candidates.append({"twinExternalId": tid, "selected": tid in selected, "contentGateStatus": status,
                 "answerAgreementStatus": ("match" if all(s["verdict"] == "match" for s in selected[tid]["solves"].values())
                                           else "hold") if tid in selected else None,
-                "executionLineageStatus": "unverified-missing-envelope" if missing_roles else "no-gap-in-body-figure-envelope-scope",
+                "executionLineageStatus": ("unverified-missing-envelope" if missing_roles else
+                    "rejected-proposal-content" if not all(r["proposalContentVerified"] for r in body) else
+                    "no-gap-in-body-figure-envelope-scope"),
                 "missingRoles": missing_roles, "bodyEvidence": body,
                 "eligibleForMerge": False, "limitation": "전체 실행계보/원문/수학 인증 아님. 독립 최종 검토가 별도로 필요"})
     sets = {"bodyOnly": sorted((body_missing - figure_missing) & passed),
             "figureOnly": sorted((figure_missing - body_missing) & passed),
             "intersection": sorted(body_missing & figure_missing & passed),
             "union": sorted((body_missing | figure_missing) & passed)}
-    summary = {"authorRecords": len(authors), "historicalBodyRecords": sum(not r["actualEnvelopeVerified"] for r in authors),
+    summary = {"authorRecords": len(authors), "authorIdentityVerified": sum(r["identityVerified"] for r in authors),
+        "authorProposalContentVerified": sum(r["proposalContentVerified"] for r in authors),
+        "authorProposalContentStates": dict(collections.Counter(r["proposalContentStatus"] for r in authors)),
+        "historicalBodyRecords": sum(not r["actualEnvelopeVerified"] for r in authors),
         "bodyCandidates": len(body_missing), "bodyFinalPass": len(body_missing & passed),
         "figureRepairEvents": len(repairs), "figureRepairEnvelopesVerified": sum(r["actualEnvelopeVerified"] for r in repairs),
         "figureMissingEnvelopeEvents": sum(not r["actualEnvelopeVerified"] for r in repairs),

@@ -8,6 +8,8 @@
 `docs/planning/tracks/reports/textbook-twins-root-fix-20261021.md`를 먼저 읽는다.
 기존 200통과는 내용 관문 판정이며 실행계보의 완전한 승인이 아니다. 최종 통과36개는 본문/그림 보완
 원봉투가 없고, 과거 검수672개의 실제 도구 경로도 미확인이다. 기존 묶음과75개 봉인은 보존한다.
+6b0053 이후 R5 재보완·저작 내용 감사는 `docs/planning/tracks/reports/textbook-twins-r5-followup-20261021.md`에 있다.
+과거36은 비교 기록이며 실제 출제/적재 승인 대상이 아니다. 새 풀이로 역사적 원봉투가 복구되지는 않는다.
 아래 생성 절차는 시범 이력/향후 별도 배정을 위한 설명이며 현재 추가 모델 실행은 금지돼 있다.
 
 🔴 **적재하지 않는다** — 모든 후보가 `loadable: false` · `productionWrites: false`. DB 를 안 만진다.
@@ -45,13 +47,14 @@ $PY scripts/qa/textbook-twin/solve.py $B $T/run --solver codex
 $PY scripts/qa/textbook-twin/solve.py $B $T/run --solver opus --jobs 2
 # Opus 저작/그림 보완 후보는 Opus 풀이에서 건너뛴다. 그 ID만 --only로 Gemini에 준다.
 $PY scripts/qa/textbook-twin/solve.py $B $T/run --solver gemini --jobs 2 --only <Opus가-저작한-ID-목록>
-# 6. 짝이 모인 풀이 파일만 명시적으로 커밋한 뒤 검수한다(이미 있는 다른 staged 파일이 있으면 거절).
+# 6. 짝이 모인 풀이 + 새 review-inputs 해시 계약을 명시적으로 커밋한 뒤 검수한다.
+# 원문 source manifest는 $T/run/review-inputs/에만 보존한다. 다른 staged 파일이 있으면 거절한다.
 $PY scripts/qa/textbook-twin/review_ready.py $T/sources.jsonl $B $T/run --watch
 # 7. 모으기 → 8. 미리보기 (B는 r1 또는 r2 회차 폴더)
 $PY scripts/qa/textbook-twin/collect.py $B
 npx tsx scripts/qa/textbook-twin/preview.ts $T/sources.jsonl $B $T
 # 시험
-$PY -m pytest scripts/qa/textbook-twin/test_twin.py scripts/qa/textbook-twin/test_evidence.py -q -p no:cacheprovider
+$PY -m pytest scripts/qa/textbook-twin/test_twin.py scripts/qa/textbook-twin/test_evidence.py scripts/qa/textbook-twin/test_review_execution.py scripts/qa/textbook-twin/test_author_evidence.py -q -p no:cacheprovider
 npx vitest run src/__tests__/unit/textbookTwinHelpers.test.ts --maxWorkers=3
 # 운영 빌드·DB 적재·푸시는 하지 않는다.
 ```
@@ -75,7 +78,14 @@ npx vitest run src/__tests__/unit/textbookTwinHelpers.test.ts --maxWorkers=3
 
 후속 `collect.py --output <외부 JSON>`은 기존 집계 파일을 덮어쓰지 않고 원응답/parsed·실제 CLI 사건·
 입력 바이트·도구 선언·허용 검수 모델·freeze→seal→HEAD 조상을 재검증한다. 새 검수에는 전체 stream과
-그림 입력 해시/실제 Read가 필요하다. 662b에 봉인된 과거 검수만 `legacy-unverified-paths`로 읽으며,
+v2 추적과 `review-inputs/{tid}.json`의 사전 Git 봉인이 필요하다. `review_ready.py`가 외부 source snapshot을
+준비하고 해시 계약을 풀이와 함께 커밋하며, `review.py` 단독 호출도 이 계약이 없으면 실행 전에 거절한다.
+수집기는 같은 seal의 실제 계약 바이트에서 source snapshot을 읽고, 동결 후보의 원본 그림 해시 목록과
+동결 학생면의 그림 해시로 필수 집합을 다시 계산한다. 검수 기록의 `inputSha256`는 이 기대값과 같아야 한다.
+Read 요청과 성공 반환은 세션·ID·순서로 연결하며 반환 이미지 바이트도 기대값과 같아야 한다.
+현재 지원하는 반환은 원바이트 base64 이미지다. 리사이즈/텍스트 SVG/부분 읽기 등 다른 반환이나
+새 event/block 종류는 지원을 검증하기 전 거절한다. CLI 로그는 서명된 실행 증명이 아니며 파일과 Git의
+보존 근거를 검증하는 범위다. 실제 모델의 인지/그림 의미 이해를 인증하지 않는다. 662b에 봉인된 과거 검수만 `legacy-unverified-paths`로 읽으며,
 그 경로를 확인한 것처럼 채우지 않는다. 일반/반복 근거 표시는 의미의 타당성 인증이 아니다.
 
 미리보기는 외부의 `review.html`(원본 비교·상태/검색), `student.html`(정답 없는 통과 문항),
@@ -94,8 +104,9 @@ npx vitest run src/__tests__/unit/textbookTwinHelpers.test.ts --maxWorkers=3
 | `solve.py` | 블라인드 풀이(Codex · Opus · Gemini) — 학생 면만 · 문항마다 새 세션 · 도구 사용 기록 |
 | `answers.py` | 답 비교 — 표기만 접고 부호 · 단위 · 소문항 순서를 지킨다 |
 | `recheck_answers.py` | 이전 SHA와 현재 비교기로 전체 답/집계 재생 — 외부 출력만 |
-| `audit_author_provenance.py` | 본문·그림 보완 원봉투/기록/추정 및 최종 영향 합집합 — 외부 출력만 |
+| `audit_author_provenance.py` | identity와 raw→proposals/정확 형식 복구를 분리하고 그림 보완·최종 영향 합집합 감사 — 외부 출력만 |
 | `execution_evidence.py` · `test_evidence.py` | 실제 사건/원응답 검증, 실제 임시 Git과 대역 CLI 회귀 |
+| `review_inputs.py` | source 외부 snapshot + 동결 후보/학생면에 묶인 사전 Git 해시 계약 |
 | `review.py` · `review_ready.py` | 봉인 뒤 검수(Sonnet) — 12 검수 · 7 면 · 엔진 유형 맞춤 · 난이도 · 물음 꼴 |
 | `collect.py` | 문항마다 상태 하나(통과 · 보류 — 수학 / 검수 / 너무 닮음 / 봉인) |
 | `integrity.py` · `export_guard.py` | 실제 학생 면·그림·후보·커밋 연결과 원문 반출 검사 |

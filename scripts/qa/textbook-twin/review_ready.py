@@ -1,7 +1,7 @@
 """두 원시 풀이가 모인 문항만 먼저 Git 봉인한 뒤 검수한다. 구독 CLI, DB 쓰기 없음.
 
 python review_ready.py <sources.jsonl> <bundle> <run_dir> [--watch]
-코드/후보를 커밋하지 않으며 선택한 문항의 원시 풀이 파일만 명시적으로 추가한다.
+코드/후보를 커밋하지 않으며 선택한 원시 풀이와 검수 입력 해시 계약만 명시적으로 추가한다.
 """
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ import time
 from pathlib import Path
 
 import integrity
+import review_inputs
 from review import review_one
 
 
@@ -45,13 +46,16 @@ def main():
         ready = ready[:30]
         paths = [bundle / "solve" / solver / f"{tid}.json" for tid in ready for solver in ("codex", "opus", "gemini")
                  if (bundle / "solve" / solver / f"{tid}.json").exists()]
+        for tid in ready:
+            candidate = json.loads((bundle / "candidates" / f"{tid}.json").read_text())
+            paths.append(review_inputs.prepare(tid, sources[candidate["sourceReference"]["problemCode"]], bundle, run_dir))
         new = [path for path in paths if not integrity.committed(path)]
         if new:
             if subprocess.check_output(["git", "diff", "--cached", "--name-only"], text=True).strip():
                 raise RuntimeError("다른 작업의 staged 파일이 있다 — 섞어서 커밋하지 않는다")
             subprocess.run(["git", "add", "--pathspec-from-file=-", "--pathspec-file-nul"],
                            input=b"\0".join(str(p).encode() for p in new) + b"\0", check=True)
-            subprocess.run(["git", "commit", "-q", "-m", f"chore(qa): seal paired blind solves for {len(ready)} textbook twins"], check=True)
+            subprocess.run(["git", "commit", "-q", "-m", f"chore(qa): seal blind solves and review inputs for {len(ready)} textbook twins"], check=True)
         print(f"봉인 {len(ready)} · {integrity.git_head(bundle)[:9]}", flush=True)
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
             futures = {}
