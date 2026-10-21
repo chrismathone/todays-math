@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 300,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A51-001-r1",
+ "authorId": "claude-fable-5-1:0eb6adec-6302-4e79-aaff-e7ce3605521d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "아래 그림에서 $\\square ABCD\\backsim\\square EFGH$일 때, $5x+y$의 값은?\n[그림]",
+ "choices": [
+  "$31$",
+  "$32$",
+  "$33$",
+  "$34$",
+  "$35$"
+ ],
+ "answer": "③",
+ "solution": "$\\overline{AB}$의 대응변은 $\\overline{EF}$이므로 두 사각형의 닮음비는 $4:10=2:5$이다. $\\overline{CD}$의 대응변은 $\\overline{GH}$이므로 $x:9=2:5$에서 $x=\\frac{18}{5}$이다. $\\overline{BC}$의 대응변은 $\\overline{FG}$이므로 $6:y=2:5$에서 $y=15$이다. 따라서 $5x+y=18+15=33$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20601-A51-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20601-A51-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-4a9835b0ae5c5f16-0-2",
+  "problemCode": "J20601-A51-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "de458030ba247b9404970236eee4abed3923c75766edda76383419b0c787a0a2",
+  "dbContentSha256": "9fa2b6e4be3f3dc8607b6fb52c634d31ecaf0ceafa96d01bd10de74f8af406cf",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "359c52205a1bd1c4393a736ace11d3daf6bbe9a29f8797fb8effac33ec6c95e4",
+    "bytes": 1603584
+   }
+  ],
+  "originalFigureSha256": [
+   "a47fc10b1bd9888a576e9fbca052372581556addfb4958de19be6da2a1ed458e",
+   "069625ac5b438ed3efb63227f0f57b52de496d912f996ed09f624a7292a18dba"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "큰 사각형이 먼저, 작은 사각형이 나중에 그려져 있고 윗변 한 쌍으로 닮음비를 구한다. 큰 쪽 아랫변 x(분수)와 작은 쪽 왼쪽 변 y를 구해 3x+y를 묻는다. 직각은 왼쪽 아래 꼭짓점.",
+  "after": "작은 사각형이 먼저, 큰 사각형이 나중에 그려져 있고 왼쪽 변 한 쌍으로 닮음비를 구한다. 작은 쪽 오른쪽 변 x(분수)와 큰 쪽 아랫변 y를 구해 5x+y를 묻는다. 직각은 오른쪽 아래 꼭짓점.",
+  "sharedConcept": "평면도형의 닮음에서 대응변의 길이의 비가 일정함",
+  "sharedProcedure": "대응변 한 쌍으로 닮음비 구하기 → 비례식으로 x 구하기 → 비례식으로 y 구하기 → 식의 값 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "닮은 도형"
+  },
+  "prerequisites": [
+   "닮은 도형의 대응변",
+   "평면도형에서 닮음의 성질",
+   "비례식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20601-A51-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "닮은 두 사각형에서 미지 변의 길이로 식의 값 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "manual",
+   "reasons": [
+    "상투 말을 걷은 글이 25자"
+   ],
+   "overlap4": 0.364,
+   "longestRun": 10,
+   "residualChars": 25,
+   "params": 6,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 224,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A52-001-r1",
+ "authorId": "claude-fable-5-1:70ed3a64-b652-4115-8809-4918d910d244",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차함수 $y=-3x+a$의 그래프가 $x$축과 점 $(5,\\ 0)$에서 만난다. 이 그래프의 $y$절편은? (단, $a$는 수이다.)",
+ "choices": [
+  "$9$",
+  "$12$",
+  "$15$",
+  "$18$",
+  "$21$"
+ ],
+ "answer": "③",
+ "solution": "그래프가 점 $(5,\\ 0)$을 지나므로 $0=-3\\times 5+a$, $a=15$. 즉 $y=-3x+15$이고 $x=0$일 때 $y=15$이다. 따라서 $y$절편은 $15$이고 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-4c9bb29a877a27e6-0-5",
+  "problemCode": "J20402-A52-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "4b77630c4ff37f650e9c92758b082bd7f6a398baa1da68f38a3fe2a4f9b3b95c",
+  "dbContentSha256": "33e810a9502f89329e8f0c18b12d2b9ebb7e51981052ecdb7f371a8e87cc26e0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_5_일차함수.hwp",
+    "sha256": "2001b788ec93462cfb892e7f0e70995d888e1cc5310b5f2bf9dbb421024e04c4",
+    "bytes": 646144
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "different",
+   "answer": "same"
+  },
+  "authorSawDbText": false,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "representation"
+  ],
+  "before": "x절편의 값이 수로 주어진 일차함수에서 상수를 구한 뒤 y절편을 고르는 객관식",
+  "after": "x절편을 「x축과 만나는 점의 좌표」로 나타내어 주고, 기울기를 음수로 바꾸어 상수를 구한 뒤 y절편을 고른다",
+  "sharedConcept": "일차함수의 그래프의 $x$절편과 $y$절편",
+  "sharedProcedure": "$x$절편 점의 좌표 대입 → 상수 결정 → $x=0$ 대입 → $y$절편"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 절편"
+  },
+  "prerequisites": [
+   "일차함수의 그래프의 x절편과 y절편",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20402-A52-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "x절편이 주어질 때 y절편 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.3,
+   "longestRun": 10,
+   "residualChars": 53,
+   "params": 7,
+   "numberRetention": 0.286,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,131 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   158.3,
+   71.2
+  ],
+  "B": [
+   60,
+   140
+  ],
+  "C": [
+   240,
+   140
+  ],
+  "D": [
+   395.6,
+   87.1
+  ],
+  "E": [
+   320,
+   140
+  ],
+  "F": [
+   440,
+   140
+  ],
+  "len_AB": [
+   73,
+   83
+  ],
+  "len_BC": [
+   150,
+   162
+  ],
+  "len_EF": [
+   380,
+   162
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "DE": [
+   "D",
+   "E"
+  ],
+  "EF": [
+   "E",
+   "F"
+  ],
+  "FD": [
+   "F",
+   "D"
+  ]
+ },
+ "angles": {
+  "angB": {
+   "vertex": "B",
+   "points": [
+    "A",
+    "C"
+   ],
+   "label": "35°"
+  },
+  "angE": {
+   "vertex": "E",
+   "points": [
+    "D",
+    "F"
+   ],
+   "label": "35°"
+  },
+  "angF": {
+   "vertex": "F",
+   "points": [
+    "E",
+    "D"
+   ],
+   "label": "50°"
+  }
+ },
+ "labels": {
+  "A": {
+   "text": "A",
+   "position": "N"
+  },
+  "B": {
+   "text": "B",
+   "position": "SW"
+  },
+  "C": {
+   "text": "C",
+   "position": "SE"
+  },
+  "D": {
+   "text": "D",
+   "position": "N"
+  },
+  "E": {
+   "text": "E",
+   "position": "SW"
+  },
+  "F": {
+   "text": "F",
+   "position": "SE"
+  },
+  "len_AB": {
+   "text": "6 cm",
+   "position": "NW"
+  },
+  "len_BC": {
+   "text": "9 cm",
+   "position": "S"
+  },
+  "len_EF": {
+   "text": "6 cm",
+   "position": "S"
+  }
+ }
+}

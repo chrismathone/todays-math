@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 184,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A31-001-r1",
+ "authorId": "claude-fable-5-1:8409027a-7640-43bc-b94a-13f07b447407",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "$x$, $y$의 순서쌍 $(-2,\\,3)$이 연립방정식 $\\begin{cases} \\,ax+4y=2 \\\\ \\,5x+by=14 \\end{cases}$의 해일 때, $ab$의 값은? (단, $a$와 $b$는 수이다.)",
+ "choices": [
+  "$20$",
+  "$30$",
+  "$35$",
+  "$40$",
+  "$45$"
+ ],
+ "answer": "④",
+ "solution": "$x=-2$, $y=3$을 첫째 식에 대입하면 $-2a+12=2$, $-2a=-10$, $a=5$. 둘째 식에 대입하면 $-10+3b=14$, $3b=24$, $b=8$. 따라서 $ab=5\\times 8=40$이므로 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-9",
+  "problemCode": "J20304-A31-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "a88fc6dd13c7c5a6009df8ae90d114d92b3d0bedd20622f5e6dce916c5ac6a70",
+  "dbContentSha256": "d94ac1d5c47c28e33c8905efc6b8b3cfa20382bafa7d8f5763d866b321da0eb8",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "해를 x=…, y=… 꼴로 주고, 각 식에 대입해 미지 계수 둘을 따로 구한 뒤 곱을 고른다. 미지 계수가 첫째 식의 y항, 둘째 식의 x항에 있다.",
+  "after": "해를 순서쌍으로 주고, 미지 계수를 첫째 식의 x항, 둘째 식의 y항에 두어 같은 절차로 둘을 구한 뒤 곱을 고른다.",
+  "sharedConcept": "주어진 해를 연립방정식에 대입하여 미지 계수 구하기",
+  "sharedProcedure": "해를 각 식에 대입 → 계수별 일차방정식 풀기 → 두 계수의 곱 계산"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이의 응용"
+  },
+  "prerequisites": [
+   "일차방정식의 풀이",
+   "연립방정식의 해의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20304-A31-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "해가 주어진 연립방정식에서 두 미지 계수의 곱 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.176,
+   "longestRun": 10,
+   "residualChars": 54,
+   "params": 7,
+   "numberRetention": 0.429,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

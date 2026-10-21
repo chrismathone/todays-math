@@ -1,0 +1,154 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 280,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A66-001-r1",
+ "authorId": "claude-fable-5-1:2b6ea356-8d8c-4726-a387-d18c7bc3ddc4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림에서 $\\angle PAO=\\angle PBO=90^{\\circ}$이고 $\\angle AOP=\\angle BOP$일 때, 다음 중 옳지 않은 것은?",
+ "choices": [
+  "$\\overline{PA}=\\overline{PB}$",
+  "$\\overline{OA}=\\overline{OB}$",
+  "$\\angle APO=\\angle BPO$",
+  "$\\overline{OA}=\\overline{PA}$",
+  "$\\triangle AOP\\equiv\\triangle BOP$"
+ ],
+ "answer": "④",
+ "solution": "직각삼각형 $AOP$와 $BOP$에서 빗변 $OP$는 공통이고 $\\angle AOP=\\angle BOP$이므로 $\\triangle AOP\\equiv\\triangle BOP$($\\mathrm{RHA}$ 합동)이다(⑤). 따라서 대응하는 변과 각이 같아 $\\overline{PA}=\\overline{PB}$(①), $\\overline{OA}=\\overline{OB}$(②), $\\angle APO=\\angle BPO$(③)가 성립한다. ④의 $\\overline{OA}$와 $\\overline{PA}$는 한 직각삼각형의 두 변으로, 길이가 항상 같다고 할 수 없다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A66-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A66-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-51eff7970230c0f4-1-4",
+  "problemCode": "J20502-A66-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "3e33090c8feed2094bbf7f0511d9da515dd3f632c7a988fb95c09d4cd24e8fe5",
+  "dbContentSha256": "b129eb97a797ee37bd2c4c83f7637d20722f2e20488cee2416ad11eabe2ae797",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_6-2_직각삼각형의합동조건.hwp",
+    "sha256": "653ea49140b0a4fc5aa8ba06ebd6f77f351ab617ee7533f43170ce54530df38a",
+    "bytes": 918528
+   }
+  ],
+  "originalFigureSha256": [
+   "97740275b0ea97d57bcba7aadbb9f779e0e02b667e35387fea053dbad14d9ab9"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure"
+  ],
+  "before": "두 수선의 길이가 같다는 조건(RHS)에서 출발해 각의 이등분·변의 같음·합동 가운데 성립하지 않는 것을 고른다.",
+  "after": "각이 이등분된다는 조건(RHA)에서 출발해 수선의 길이가 같음 등을 끌어내고, 한 직각삼각형의 두 변이 같다는 보기를 옳지 않은 것으로 둔다. 주어진 것과 끌어내는 것이 맞바뀌었다.",
+  "sharedConcept": "각의 두 변에 내린 수선으로 생기는 두 직각삼각형의 합동과 그 성질",
+  "sharedProcedure": "빗변 공통 확인 → 주어진 조건으로 합동 조건 정하기 → 대응변·대응각 나열 → 성립하지 않는 보기 찾기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "직각삼각형의 합동 조건(RHA·RHS)",
+   "합동인 도형의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A66-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "각의 두 변에 내린 수선이 만드는 직각삼각형의 합동 성질 판별",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: angle 'rA' ray to 'O' is not covered by a rendered segment",
+     "session": "34d4c1a0-99c7-4061-adfe-bdb15270d8c0",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.43",
+    "원본 수 1개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.433,
+   "longestRun": 13,
+   "residualChars": 66,
+   "params": 1,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

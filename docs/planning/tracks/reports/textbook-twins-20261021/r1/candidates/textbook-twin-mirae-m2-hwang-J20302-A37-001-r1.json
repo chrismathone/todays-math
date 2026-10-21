@@ -1,0 +1,136 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 182,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A37-001-r1",
+ "authorId": "claude-fable-5-1:2a33ed89-21c4-4268-8cf9-c9a64f1b073d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "연립방정식 $\\begin{cases} 4x+5y=22 & \\cdots\\cdots\\,㉠ \\\\ 7x-2y=17 & \\cdots\\cdots\\,㉡ \\end{cases}$에서 $x$를 없애기 위한 두 식의 계산으로 알맞은 것은?",
+ "choices": [
+  "$㉠\\times 4+㉡\\times 7$",
+  "$㉠\\times 4-㉡\\times 7$",
+  "$㉠\\times 7-㉡\\times 4$",
+  "$㉠\\times 7+㉡\\times 4$",
+  "$㉠\\times 2+㉡\\times 5$"
+ ],
+ "answer": "③",
+ "solution": "$㉠\\times 7$을 하면 $28x+35y=154$, $㉡\\times 4$를 하면 $28x-8y=68$이다. 두 식의 $x$의 계수가 $28$로 같으므로 변끼리 빼면 $x$가 소거되어 $43y=86$이 된다. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-5",
+  "problemCode": "J20302-A37-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "5dc5791c6ac0ff2e88154c85f14080d351758508b54434a464a83fcfcaa30036",
+  "dbContentSha256": "c275a6dc90b96476972f4ad7e68b2c20f33a9695cf9f3ca6b1d35530f174f27c",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [
+   "183d4bbc299b7eef5ba9aad44813f45b886ab364ac09489b4d04da52261ba2d3"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "연립방정식을 그림으로 보여 주고, x의 계수 3과 2를 맞추어 빼는 식을 다섯 보기에서 고르게 한다.",
+  "after": "연립방정식을 본문 수식으로 직접 주고, x의 계수 4와 7을 맞추어 빼는 식을 고르게 한다. y를 소거하는 식을 오답 보기로 넣었다.",
+  "sharedConcept": "가감법에서 소거할 문자의 계수 맞추기",
+  "sharedProcedure": "x의 계수 확인 → 최소공배수가 되도록 각 식에 곱할 수 정하기 → 계수의 부호가 같으므로 빼기로 결정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "등식의 성질",
+   "최소공배수",
+   "가감법의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20302-A37-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "가감법에서 x를 소거하는 식 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 3개 가운데 67% 그대로"
+   ],
+   "overlap4": 0.078,
+   "longestRun": 6,
+   "residualChars": 84,
+   "params": 3,
+   "numberRetention": 0.667,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

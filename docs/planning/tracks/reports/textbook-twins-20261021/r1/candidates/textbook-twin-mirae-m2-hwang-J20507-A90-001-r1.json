@@ -1,0 +1,147 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 287,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20507-A90-001-r1",
+ "authorId": "claude-fable-5-1:167a8d23-20dc-4aed-aa63-09f1402a7ca3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n다음 그림과 같이 직사각형 $ABCD$에서 $\\overline{MN}$은 대각선 $BD$의 수직이등분선이고, 두 점 $M$, $N$은 각각 $\\overline{AD}$, $\\overline{BC}$ 위에 있다. $\\overline{BC}=18\\,\\mathrm{cm}$이고 $\\square MBND$의 둘레의 길이가 $52\\,\\mathrm{cm}$일 때, $\\overline{AM}$의 길이는?",
+ "choices": [
+  "$3\\,\\mathrm{cm}$",
+  "$4\\,\\mathrm{cm}$",
+  "$5\\,\\mathrm{cm}$",
+  "$6\\,\\mathrm{cm}$",
+  "$7\\,\\mathrm{cm}$"
+ ],
+ "answer": "③",
+ "solution": "$\\overline{MN}$과 $\\overline{BD}$의 교점을 $O$라 하면 $\\triangle MOD$와 $\\triangle NOB$에서 $\\overline{OD}=\\overline{OB}$, $\\angle MOD=\\angle NOB$(맞꼭지각), $\\overline{MD}\\,/\\!/\\,\\overline{BN}$이므로 $\\angle MDO=\\angle NBO$(엇각)이다. 따라서 $\\triangle MOD\\equiv\\triangle NOB$(ASA 합동)이고 $\\overline{OM}=\\overline{ON}$이다. 두 대각선이 서로를 수직이등분하므로 $\\square MBND$는 마름모이고, 한 변의 길이는 $52\\div 4=13\\,(\\mathrm{cm})$이다. $\\overline{AD}=\\overline{BC}=18\\,\\mathrm{cm}$이므로 $\\overline{AM}=18-13=5\\,(\\mathrm{cm})$이다. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20507-A90-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20507-A90-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-10",
+  "problemCode": "J20507-A90-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 10,
+  "sourceContentSha256": "7adccde48b381a400fae10a1b898ad5b395761b8f3acd1a82eb3e21bd67d3127",
+  "dbContentSha256": "88a87d1c7f4644bbd3676fb8dcb34adc11a21b405e95833ef4f66cc47b7e0fc7",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "f785e7b2ec4b9dbcbaa766d9247961d7f429ffd9ccd96524d09665a5dc06b404"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "structure",
+   "numbers"
+  ],
+  "before": "대각선 AC의 수직이등분선이 만드는 마름모에서, 직사각형의 변 길이와 잘린 조각 길이를 주고 마름모의 둘레를 고른다.",
+  "after": "대각선 BD의 수직이등분선이 만드는 마름모에서, 직사각형의 변 길이와 마름모의 둘레를 주고 잘린 조각 길이를 고른다.",
+  "sharedConcept": "대각선의 수직이등분선과 직사각형 두 변으로 둘러싸인 사각형은 마름모이다",
+  "sharedProcedure": "ASA 합동으로 교점이 수직이등분선의 중점임을 확인 → 마름모 판정 → 네 변이 같음을 이용해 한 변과 둘레 연결 → 직사각형의 변 길이에서 뺄셈"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "15c4bdd0-5dba-4c07-9552-66cf1e62a500",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직사각형, 마름모, 정사각형"
+  },
+  "prerequisites": [
+   "삼각형의 합동 조건",
+   "평행선과 엇각",
+   "마름모가 되는 조건"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20507-A90-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "직사각형 안 대각선의 수직이등분선이 만드는 마름모와 길이",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "15c4bdd0-5dba-4c07-9552-66cf1e62a500",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.169,
+   "longestRun": 11,
+   "residualChars": 86,
+   "params": 7,
+   "numberRetention": 0.143,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

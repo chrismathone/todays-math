@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 196,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A27-001-r1",
+ "authorId": "claude-fable-5-1:7d67c8ae-a4b9-455b-acf0-28cbf0fa6ffb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "하루가 고른 두 자리 자연수는 일의 자리 숫자의 $3$배가 십의 자리 숫자보다 $12$만큼 크고, 두 자리 숫자를 서로 바꾼 자연수는 처음 수보다 $18$만큼 작다고 한다. 하루가 고른 자연수는?",
+ "choices": [
+  "$53$",
+  "$64$",
+  "$75$",
+  "$86$",
+  "$97$"
+ ],
+ "answer": "⑤",
+ "solution": "십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$라 하면 $3y=x+12$, $10y+x=10x+y-18$이다. 둘째 식을 정리하면 $9x-9y=18$, 즉 $x-y=2$이다. $x=y+2$를 첫째 식에 대입하면 $3y=y+14$, $y=7$이고 $x=9$이다. 따라서 처음 수는 $97$이므로 답은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-f97235c3a79e5a0b-0-9",
+  "problemCode": "J20306-A27-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "97a19b29496b01f3d6f280494d5c901e8d32f8662f8d63754da949338cd36eee",
+  "dbContentSha256": "cd3a8229d1913cad950f9a827dae05a94e9a2d5b4ea29598e7f0deecacff345f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_4_연립일차방정식.hwp",
+    "sha256": "c340de7d8c4c23ba80db5019df26d2a29074c3d408b63331e914a42ce9610934",
+    "bytes": 70656
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "structure",
+   "numbers"
+  ],
+  "before": "십의 자리 숫자의 배수와 일의 자리 숫자의 관계, 그리고 자리를 바꾼 수가 처음 수보다 얼마 큰지가 주어지고 처음 수를 고른다.",
+  "after": "일의 자리 숫자의 배수와 십의 자리 숫자의 관계, 그리고 자리를 바꾼 수가 처음 수보다 얼마 작은지가 주어지고 처음 수를 고른다. 보기는 모두 두 자리 숫자의 차가 같게 두어 둘째 조건만으로는 가려지지 않게 한다.",
+  "sharedConcept": "두 자리 자연수의 자릿값 표현과 연립방정식",
+  "sharedProcedure": "각 자리 숫자를 미지수로 놓기 → 숫자 사이의 배수 관계 식 → 바꾼 수와 처음 수의 차를 식으로 → 정리하여 $x-y$ 꼴로 만들기 → 가감법(대입법)으로 풀기 → 처음 수 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 활용(수, 평균, 나이)"
+  },
+  "prerequisites": [
+   "두 자리 자연수의 자릿값 표현",
+   "연립일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20306-A27-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "자릿수 사이의 배수 관계와 바꾼 수의 차로 두 자리 수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.162,
+   "longestRun": 8,
+   "residualChars": 84,
+   "params": 8,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

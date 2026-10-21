@@ -1,0 +1,155 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 299,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20601-A50-001-r1",
+ "authorId": "claude-fable-5-1:0eb6adec-6302-4e79-aaff-e7ce3605521d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "아래 그림의 두 삼각기둥은 서로 닮은 도형이고 $\\overline{BC}$에 대응하는 모서리가 $\\overline{HI}$이다. 다음 중 옳지 않은 것은?\n[그림]",
+ "choices": [
+  "두 삼각기둥의 닮음비는 $3:5$이다.",
+  "$\\overline{AC}:\\overline{GI}=3:5$",
+  "면 $\\mathrm{ABED}$에 대응하는 면은 면 $\\mathrm{GHKJ}$이다.",
+  "$\\triangle ABC\\backsim\\triangle GHI$",
+  "$x+y-z=75$"
+ ],
+ "answer": "⑤",
+ "solution": "$\\overline{BC}:\\overline{HI}=6:10=3:5$이므로 두 삼각기둥의 닮음비는 $3:5$이고, $\\overline{AC}:\\overline{GI}=3:5$이다. 꼭짓점 $A$, $B$, $C$, $D$, $E$, $F$는 차례로 $G$, $H$, $I$, $J$, $K$, $L$에 대응하므로 면 $\\mathrm{ABED}$의 대응면은 면 $\\mathrm{GHKJ}$이고 $\\triangle ABC\\backsim\\triangle GHI$이다. $\\angle KJL=\\angle EDF=\\angle BAC=70^{\\circ}$이므로 $x=70$이다. $9:y=3:5$에서 $y=15$, $z:20=3:5$에서 $z=12$이므로 $x+y-z=70+15-12=73$이다. 따라서 옳지 않은 것은 ⑤이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20601-A50-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20601-A50-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-1a5ea8acdfea66b8-0-1",
+  "problemCode": "J20601-A50-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "f996b5a3e0ec466e2a7893df91d06027e46424a82e6de1be679006ca2bf9df4e",
+  "dbContentSha256": "f50420d4aa8fd7f09518f5a2fb8253ba07204b7611dceafbaa77c8688a47603f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_7_도형의닮음과피타고라스정리.hwp",
+    "sha256": "c63caf7d5101690b4dcc1d32ed1beb8790688bff5c3b95a32d8b34fac1227276",
+    "bytes": 2240512
+   }
+  ],
+  "originalFigureSha256": [
+   "69b262114d7334a5794a10fc5a6f0f1d9951347b28b4fdab09f84a82dcfd42f9"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "닮은 두 삼각기둥 그림에서 밑면의 한 모서리 쌍으로 닮음비를 구하고, 작은 기둥의 미지 각 · 미지 변과 큰 기둥의 미지 높이를 구한 뒤 다섯 진술(대응변 비 · 대응면 · 세 미지수 식 · 닮음비) 가운데 틀린 것 하나를 찾는다. 틀린 진술은 세 번째의 미지수 식.",
+  "after": "닮은 두 삼각기둥 그림에서 윗면의 한 모서리 쌍으로 닮음비를 구하고, 큰 기둥의 미지 각 · 미지 변과 작은 기둥의 미지 높이를 구한다. 주어진 각은 작은 기둥 윗면에, 미지 각은 큰 기둥 아랫면에 두어 대응각을 두 번 옮겨 찾게 했다. 틀린 진술은 다섯 번째의 미지수 식.",
+  "sharedConcept": "입체도형의 닮음에서 대응 모서리의 길이의 비와 대응각의 크기가 같음",
+  "sharedProcedure": "대응하는 모서리 한 쌍으로 닮음비 구하기 → 대응각으로 미지 각 구하기 → 비례식으로 미지 모서리 길이 둘 구하기 → 식의 값 계산 → 각 진술의 참 · 거짓 판정"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "semester": 2,
+   "chapter": "6. 도형의 닮음",
+   "section": "닮은 도형"
+  },
+  "prerequisites": [
+   "닮은 도형의 뜻과 대응",
+   "입체도형에서 닮음의 성질",
+   "비례식의 성질"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20601-A50-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "닮은 두 삼각기둥에서 옳지 않은 진술 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "a312f8e1-49c5-460c-a576-c6532e0f4715",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": [
+    {
+     "round": 1,
+     "error": "도형을 그리지 못했습니다: dimension 'd_BC' has no collision-free layout (clip/text/point/geometry/circle/dimension=(0, 0, 0, 1, 0, 0))",
+     "session": "e36f5be9-3399-4d8c-bda3-a336f1857177",
+     "gotSpec": true
+    }
+   ]
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.36"
+   ],
+   "overlap4": 0.361,
+   "longestRun": 14,
+   "residualChars": 90,
+   "params": 3,
+   "numberRetention": 0.333,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 220,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A12-001-r1",
+ "authorId": "claude-fable-5-1:70ed3a64-b652-4115-8809-4918d910d244",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "다음 중 $y$가 $x$에 대한 일차함수인 것은?",
+ "choices": [
+  "반지름의 길이가 $x\\,\\mathrm{cm}$인 원의 넓이 $y\\,\\mathrm{cm}^{2}$",
+  "$1$분에 $60\\,\\mathrm{L}$씩 물을 넣을 때 $x$분 동안 넣은 물의 양 $y\\,\\mathrm{L}$",
+  "넓이가 $36\\,\\mathrm{cm}^{2}$인 직사각형의 가로의 길이 $x\\,\\mathrm{cm}$와 세로의 길이 $y\\,\\mathrm{cm}$",
+  "한 자루에 $700$원인 연필 $x$자루와 한 권에 $y$원인 공책 $4$권을 산 값",
+  "한 변의 길이가 $x\\,\\mathrm{cm}$인 정육각형의 한 내각의 크기 $y^{\\circ}$"
+ ],
+ "answer": "②",
+ "solution": "① $y=\\pi x^{2}$이므로 일차함수가 아니다. ② $y=60x$이므로 일차함수이다. ③ $y=\\frac{36}{x}$이므로 일차함수가 아니다. ④ $700x+4y$는 $y$를 $x$의 식으로 나타낸 관계가 아니다. ⑤ $y=120$으로 상수이므로 일차함수가 아니다. 따라서 답은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2ab1927fe714b703-0-2",
+  "problemCode": "J20402-A12-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "2616cd6e30b3ce9904917aadbc57afec09e53c3ba92c00bef2803a2e2c71de5b",
+  "dbContentSha256": "369ecd9baab592a3da6c3479c8a87978b65ae7798f11522464ce197866a25e18",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_5_일차함수.hwp",
+    "sha256": "d8e8e864ce0b01aa94319c16f694cb39d1b29f9c9414d2b9e0bf36638cab6ab5",
+    "bytes": 226304
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "numbers"
+  ],
+  "before": "다섯 가지 실생활·도형 상황(상수, 제곱, 두 변수의 합, 반비례, 정비례)을 식으로 세워 일차함수인 하나를 고른다",
+  "after": "원의 넓이·물 채우기·직사각형 넓이·연필과 공책 값·정육각형 내각으로 장면을 바꾸고 같은 다섯 유형(제곱, 정비례, 반비례, 두 변수의 합, 상수)에서 일차함수 하나를 고른다",
+  "sharedConcept": "일차함수의 뜻 $y=ax+b$ ($a\\ne 0$)",
+  "sharedProcedure": "각 상황을 $y$를 $x$의 식으로 나타냄 → $y=ax+b$ 꼴인지 판별 → 하나 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 절편"
+  },
+  "prerequisites": [
+   "함수의 뜻",
+   "정비례와 반비례",
+   "일차식"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20402-A12-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "실생활 상황에서 일차함수 판별하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.212,
+   "longestRun": 14,
+   "residualChars": 143,
+   "params": 5,
+   "numberRetention": 0.2,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

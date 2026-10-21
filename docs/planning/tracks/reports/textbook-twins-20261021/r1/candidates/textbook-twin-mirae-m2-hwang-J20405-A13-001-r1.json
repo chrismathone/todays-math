@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 234,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A13-001-r1",
+ "authorId": "claude-fable-5-1:9f781e43-81fc-45fe-9bee-1150cb98a543",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "직선 $2x+y-5=0$을 평행이동하였더니 점 $(-3,~4)$를 지나는 직선이 되었다. 평행이동한 후의 직선의 방정식은?",
+ "choices": [
+  "$x+2y-5=0$",
+  "$2x-y+10=0$",
+  "$2x+y+2=0$",
+  "$2x+y-2=0$",
+  "$x-2y+11=0$"
+ ],
+ "answer": "③",
+ "solution": "$2x+y-5=0$을 $y$에 대하여 풀면 $y=-2x+5$이므로 기울기는 $-2$이다. 평행이동한 직선은 기울기가 같으므로 $y=-2x+b$로 놓는다. 점 $(-3,~4)$를 지나므로 $4=-2\\times(-3)+b$, $b=-2$이다. 따라서 $y=-2x-2$, 즉 $2x+y+2=0$이므로 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-9631d96ae64e7d9b-0-3",
+  "problemCode": "J20405-A13-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "3aef93ef08c0982f34020556b04e94a54a6462ea6567774f08c9af2324f12a92",
+  "dbContentSha256": "d0d09ed738e98b2093a5fcc8150a51fac6f019a86fd3ef40a82ad0473fb8e3e4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-6_일차함수와일차방정식.hwp",
+    "sha256": "b1f96c73d3c880011abf4f6322c46b25fc44d4f91e20dd4f0893daaa1f26f13c",
+    "bytes": 98816
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "representation",
+   "numbers"
+  ],
+  "before": "일반형으로 주어진 직선과 평행하고 한 점을 지나는 직선의 방정식을 일반형 보기에서 고른다.",
+  "after": "일반형 직선을 평행이동하여 한 점을 지나게 한 뒤의 직선 방정식을 일반형 보기에서 고른다(평행 조건을 평행이동으로 표현).",
+  "sharedConcept": "평행한 두 직선은 기울기가 같다 · 일차방정식과 일차함수의 관계",
+  "sharedProcedure": "일반형을 y=ax+b 꼴로 고쳐 기울기 읽기 → 같은 기울기로 y=ax+b 놓기 → 점 대입해 b 구하기 → 일반형으로 정리"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "5d61c69e-052f-42e2-862f-45116e66761b",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 식 구하기"
+  },
+  "prerequisites": [
+   "일차함수의 식 구하기(기울기와 한 점)",
+   "일차함수와 일차방정식의 관계",
+   "평행한 그래프의 기울기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20405-A13-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행 조건과 한 점으로 직선의 방정식(일반형) 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "5d61c69e-052f-42e2-862f-45116e66761b",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.163,
+   "longestRun": 8,
+   "residualChars": 92,
+   "params": 9,
+   "numberRetention": 0.556,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

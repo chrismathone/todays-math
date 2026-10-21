@@ -1,0 +1,119 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   60,
+   260
+  ],
+  "B": [
+   300,
+   260
+  ],
+  "C": [
+   300,
+   160
+  ],
+  "D": [
+   233.3333,
+   260
+  ],
+  "E": [
+   207.6923,
+   198.4615
+  ],
+  "lenAB": [
+   150,
+   284
+  ],
+  "lenBC": [
+   324,
+   210
+  ],
+  "lenCA": [
+   148,
+   192
+  ]
+ },
+ "segments": {
+  "AD": [
+   "A",
+   "D"
+  ],
+  "DB": {
+   "points": [
+    "D",
+    "B"
+   ],
+   "ticks": 1
+  },
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CE": [
+   "C",
+   "E"
+  ],
+  "EA": [
+   "E",
+   "A"
+  ],
+  "CD": [
+   "C",
+   "D"
+  ],
+  "DE": {
+   "points": [
+    "D",
+    "E"
+   ],
+   "ticks": 1
+  }
+ },
+ "angles": {
+  "rB": {
+   "vertex": "B",
+   "points": [
+    "D",
+    "C"
+   ],
+   "right": true
+  },
+  "rE": {
+   "vertex": "E",
+   "points": [
+    "D",
+    "C"
+   ],
+   "right": true
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": {
+   "text": "D",
+   "position": "S"
+  },
+  "E": {
+   "text": "E",
+   "position": "NW"
+  },
+  "lenAB": {
+   "text": "12 cm",
+   "dx": 0,
+   "dy": 0
+  },
+  "lenBC": {
+   "text": "5 cm",
+   "dx": 0,
+   "dy": 0
+  },
+  "lenCA": {
+   "text": "13 cm",
+   "dx": 0,
+   "dy": 0
+  }
+ }
+}

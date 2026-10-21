@@ -1,0 +1,179 @@
+{
+ "version": 2,
+ "points": {
+  "TL": [
+   30,
+   100
+  ],
+  "P": [
+   30,
+   190
+  ],
+  "Q": [
+   174,
+   100
+  ],
+  "R": [
+   74,
+   100
+  ],
+  "E": [
+   150,
+   190
+  ],
+  "TR": [
+   200,
+   100
+  ],
+  "BR": [
+   200,
+   190
+  ],
+  "F1": [
+   104.8,
+   37
+  ],
+  "F2": [
+   185,
+   77
+  ]
+ },
+ "segments": {
+  "edgeTop": [
+   "TL",
+   "Q"
+  ],
+  "edgeLeft": [
+   "TL",
+   "P"
+  ],
+  "fold": [
+   "P",
+   "Q"
+  ],
+  "topR": {
+   "points": [
+    "Q",
+    "TR"
+   ],
+   "dash": "5 3"
+  },
+  "rightR": {
+   "points": [
+    "TR",
+    "BR"
+   ],
+   "dash": "5 3"
+  },
+  "botR": {
+   "points": [
+    "P",
+    "BR"
+   ],
+   "dash": "5 3"
+  },
+  "flap1a": [
+   "P",
+   "R"
+  ],
+  "flap1b": [
+   "R",
+   "F1"
+  ],
+  "flap2": [
+   "F1",
+   "F2"
+  ],
+  "flap3": [
+   "F2",
+   "Q"
+  ]
+ },
+ "regions": {
+  "leftPart": {
+   "boundary": [
+    {
+     "seg": [
+      "TL",
+      "Q"
+     ]
+    },
+    {
+     "seg": [
+      "Q",
+      "P"
+     ]
+    },
+    {
+     "seg": [
+      "P",
+      "TL"
+     ]
+    }
+   ],
+   "fill": "#dcdcdc"
+  },
+  "flap": {
+   "boundary": [
+    {
+     "seg": [
+      "P",
+      "Q"
+     ]
+    },
+    {
+     "seg": [
+      "Q",
+      "F2"
+     ]
+    },
+    {
+     "seg": [
+      "F2",
+      "F1"
+     ]
+    },
+    {
+     "seg": [
+      "F1",
+      "R"
+     ]
+    },
+    {
+     "seg": [
+      "R",
+      "P"
+     ]
+    }
+   ],
+   "fill": "#efefef"
+  }
+ },
+ "angles": {
+  "x": {
+   "vertex": "R",
+   "points": [
+    "TL",
+    "P"
+   ],
+   "label": "x"
+  },
+  "given": {
+   "vertex": "P",
+   "points": [
+    "Q",
+    "R"
+   ],
+   "label": "32°"
+  }
+ },
+ "labels": {
+  "P": "P",
+  "Q": "Q",
+  "R": {
+   "text": "R",
+   "position": "NW"
+  },
+  "E": "E"
+ }
+}

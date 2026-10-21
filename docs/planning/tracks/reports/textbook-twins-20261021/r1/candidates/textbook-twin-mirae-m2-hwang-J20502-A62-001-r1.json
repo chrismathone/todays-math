@@ -1,0 +1,144 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 276,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A62-001-r1",
+ "authorId": "claude-fable-5-1:2b6ea356-8d8c-4726-a387-d18c7bc3ddc4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n그림의 두 직각삼각형 $ABC$, $DEF$를 보고 물음에 답하시오.\n⑴ 두 삼각형이 합동임을 기호 $\\equiv$를 써서 나타내고, 그때의 합동 조건을 쓰시오.\n⑵ $\\overline{AC}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "⑴ $\\triangle ABC\\equiv\\triangle DFE$, $\\mathrm{RHA}$ 합동 ⑵ $5\\,\\mathrm{cm}$",
+ "solution": "⑴ $\\triangle ABC$는 $\\angle A=90^{\\circ}$, $\\angle C=60^{\\circ}$이고 빗변 $\\overline{BC}=10\\,\\mathrm{cm}$이다. $\\triangle DEF$는 $\\angle D=90^{\\circ}$, $\\angle E=60^{\\circ}$이고 빗변 $\\overline{EF}=10\\,\\mathrm{cm}$이다. 빗변의 길이와 한 예각의 크기가 각각 같으므로 $\\triangle ABC\\equiv\\triangle DFE$($\\mathrm{RHA}$ 합동)이다.\n⑵ 대응하는 변끼리 길이가 같으므로 $\\overline{AC}=\\overline{DE}=5\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A62-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A62-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-51eff7970230c0f4-0-1",
+  "problemCode": "J20502-A62-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "a4cf1fcf6e616ef5ac70f5166d69eeab45865354a2eeddeb114bacec46c63be6",
+  "dbContentSha256": "87939591674080d1004903e8173e9b07b6d8d79672647279279ededeac2019c1",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_6-2_직각삼각형의합동조건.hwp",
+    "sha256": "653ea49140b0a4fc5aa8ba06ebd6f77f351ab617ee7533f43170ce54530df38a",
+    "bytes": 918528
+   }
+  ],
+  "originalFigureSha256": [
+   "6a6efa708f766860b1f7c3cf7367459a59b07069681cb7a545ab642a619b8daa",
+   "a880f6c5bbaf8dd1ce6e151afeaa2adf8315ce8c419346a33df47b063e4c7183"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation",
+   "numbers"
+  ],
+  "before": "한 삼각형에는 $30^{\\circ}$와 빗변, 다른 삼각형에는 $60^{\\circ}$·빗변·짧은 변을 주어 남은 예각을 계산해 대응을 찾고, 짧은 변의 길이를 옮긴다. 그림이 둘로 나뉘어 있다.",
+  "after": "두 삼각형 모두 $60^{\\circ}$를 보여 주고 직각 꼭짓점을 $A$와 $D$로 두어 대응($A\\to D$, $B\\to F$, $C\\to E$)이 원본과 다르게 꼬인다. 빗변 $10$과 변 $5$를 주고, 한 그림 안에 나란히 놓았다.",
+  "sharedConcept": "빗변과 한 예각이 같은 두 직각삼각형의 RHA 합동과 대응변의 길이",
+  "sharedProcedure": "각 삼각형의 빗변과 예각 확인 → 대응 꼭짓점 순서대로 합동 기호 쓰기 → RHA 조건 말하기 → 대응변으로 길이 옮기기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "직각삼각형의 합동 조건(RHA)",
+   "합동인 도형의 성질",
+   "삼각형의 내각의 크기의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A62-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "RHA 합동인 두 직각삼각형의 대응 쓰기와 변의 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "원본 수 2개 가운데 100% 그대로"
+   ],
+   "overlap4": 0.311,
+   "longestRun": 9,
+   "residualChars": 64,
+   "params": 2,
+   "numberRetention": 1.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

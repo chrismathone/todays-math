@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 296,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-A87-001-r1",
+ "authorId": "claude-fable-5-1:781c61b8-f193-49f5-8b00-90c39199d6e3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n평행사변형 $ABCD$의 두 대각선이 만나는 점을 $O$라 하고, 점 $O$를 지나는 직선이 $\\overline{AD}$, $\\overline{BC}$와 만나는 점을 각각 $E$, $F$라 할 때, 다음 중 옳지 않은 것은?",
+ "choices": [
+  "$\\overline{AO}=\\overline{CO}$",
+  "$\\overline{AE}=\\overline{BF}$",
+  "$\\angle EAO=\\angle FCO$",
+  "$\\overline{OE}=\\overline{OF}$",
+  "$\\triangle AEO\\equiv\\triangle CFO$"
+ ],
+ "answer": "②",
+ "solution": "① 두 대각선은 서로를 이등분하므로 $\\overline{AO}=\\overline{CO}$이다.\n③ $\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle EAO=\\angle FCO$(엇각)이다.\n⑤ $\\triangle AEO$와 $\\triangle CFO$에서 $\\overline{AO}=\\overline{CO}$, $\\angle EAO=\\angle FCO$, $\\angle AOE=\\angle COF$(맞꼭지각)이므로 $\\triangle AEO\\equiv\\triangle CFO$($\\mathrm{ASA}$ 합동)이다.\n④ 합동이므로 $\\overline{OE}=\\overline{OF}$이다.\n② 합동에서 $\\overline{AE}=\\overline{CF}$이지만 $\\overline{BF}$는 $\\overline{BC}-\\overline{CF}$이므로 항상 같다고 할 수 없다.\n따라서 옳지 않은 것은 ②이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A87-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-A87-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-aa6d7134992fa333-0-5",
+  "problemCode": "J20505-A87-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "328444f9f5816d44b1112750c2e161ca13351baebfd4a35ba4893a47068caf8b",
+  "dbContentSha256": "e4b3f7a171b6f799a9d24f54539e0831f83e5bb16d5a3a73e97d8d93ea63c6e4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-5_평행사변형의성질.hwp",
+    "sha256": "5d2a12537ffa93a0c9eb29bd27b5ccd7b0c3d64f5a86b26430268aff7129331c",
+    "bytes": 170496
+   }
+  ],
+  "originalFigureSha256": [
+   "e489d6bd48188f4814b18f80bb5e5979e1be79ead909a38b533cff98fc62603b"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure"
+  ],
+  "before": "교점을 지나는 직선이 두 빗변과 만날 때 대각선 · 합동 · 대응각에 관한 다섯 진술 중 대응이 어긋난 각의 등식 하나를 고른다.",
+  "after": "직선이 위아래 변과 만나게 두고, 다섯 진술 중 합동으로 얻어지는 변이 아닌 엉뚱한 변의 등식 하나를 고른다.",
+  "sharedConcept": "대각선이 서로를 이등분함 · 엇각 · 맞꼭지각 · ASA 합동과 대응변·대응각",
+  "sharedProcedure": "대각선 성질 확인 → 두 삼각형의 ASA 합동 → 대응변·대응각 등식 판별 → 어긋난 진술 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "평행사변형의 대각선의 성질",
+   "평행선의 엇각",
+   "삼각형의 합동 조건(ASA)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-A87-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "대각선의 교점을 지나는 직선과 합동으로 옳지 않은 진술 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.322,
+   "longestRun": 11,
+   "residualChars": 92,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

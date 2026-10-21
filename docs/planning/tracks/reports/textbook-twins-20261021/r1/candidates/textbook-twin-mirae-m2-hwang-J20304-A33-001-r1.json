@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 186,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A33-001-r1",
+ "authorId": "claude-fable-5-1:8409027a-7640-43bc-b94a-13f07b447407",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차방정식 $ax+by=8$의 해 가운데 세 순서쌍 $(1,\\,2)$, $(-2,\\,4)$, $(k,\\,6)$이 있다. 이때 $k$의 값은? (단, $a$와 $b$는 수이다.)",
+ "choices": [
+  "$-7$",
+  "$-6$",
+  "$-5$",
+  "$-4$",
+  "$-3$"
+ ],
+ "answer": "③",
+ "solution": "$(1,\\,2)$, $(-2,\\,4)$를 각각 대입하면 $a+2b=8$, $-2a+4b=8$. 첫째 식에서 $a=8-2b$를 둘째 식에 대입하면 $-16+4b+4b=8$, $8b=24$, $b=3$, $a=2$. 즉 일차방정식은 $2x+3y=8$이고 $(k,\\,6)$을 대입하면 $2k+18=8$, $k=-5$. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-11",
+  "problemCode": "J20304-A33-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 11,
+  "sourceContentSha256": "817d4c8d5e6102dd823582ef59f0526567136793f9800a3519e95b53e2b1b975",
+  "dbContentSha256": "d0cc3742a7e3cc3aebcedc4a8ae26fbb91de967c4851825b7b4140436c00654d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "두 순서쌍을 대입해 계수 a, b를 연립방정식으로 구하고, 세 번째 순서쌍의 y좌표 미지수를 구한다.",
+  "after": "같은 방식으로 a, b를 구하되, 세 번째 순서쌍에서 비어 있는 것이 x좌표다. 대입법으로 a, b를 구한다.",
+  "sharedConcept": "일차방정식의 해인 순서쌍을 대입해 계수를 결정하고 또 다른 해를 구한다",
+  "sharedProcedure": "두 순서쌍 대입 → a, b의 연립방정식 풀기 → 식 확정 → 셋째 순서쌍 대입해 미지수 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이의 응용"
+  },
+  "prerequisites": [
+   "일차방정식의 해와 순서쌍",
+   "연립방정식의 풀이(대입법)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20304-A33-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "여러 해가 주어진 일차방정식의 계수와 미지 좌표 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 10개 가운데 60% 그대로"
+   ],
+   "overlap4": 0.302,
+   "longestRun": 11,
+   "residualChars": 56,
+   "params": 10,
+   "numberRetention": 0.6,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

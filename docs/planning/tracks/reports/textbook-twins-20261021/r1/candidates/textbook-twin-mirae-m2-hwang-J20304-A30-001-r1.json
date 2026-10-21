@@ -1,0 +1,151 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 183,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A30-001-r1",
+ "authorId": "middle-engine:2-1|연립일차방정식|13",
+ "revisionOf": null,
+ "route": "engine",
+ "questionType": "객관식",
+ "content": "연립방정식 $\\begin{cases}x+y=1\\\\3x-y=-9\\end{cases}$ 의 해가 일차방정식 $3x-ky=9$ 를 만족시킬 때, 상수 $k$의 값을 구하시오.",
+ "choices": [
+  "$-5$",
+  "$-6$",
+  "$5$",
+  "$-4$",
+  "$-2$"
+ ],
+ "answer": "①",
+ "solution": "연립방정식의 두 식을 변끼리 더하면 $4x=-8$이므로 $x=-2$, $y=3$이다.\n$x=-2$, $y=3$ 을 $3x-ky=9$에 대입하면 $-6-3k=9$이다.\n따라서 $k=-5$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-8",
+  "problemCode": "J20304-A30-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "b8f54c03cb328ec7de06ba7bd8c1d0ca619389e9be4f217d03544885a9aa2807",
+  "dbContentSha256": "01986f102583d776fa82f9f8d4fbf545ebcbeb15bd06eb8095c428c2f36a652d",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "두 일차방정식의 연립 해를 가감법으로 구한 뒤, 미지 계수 하나가 든 세 번째 일차방정식에 대입해 그 계수를 보기에서 고른다.",
+  "after": "엔진이 새 계수의 연립방정식과 새 일차방정식을 정해 같은 절차로 상수 하나를 구하게 하고, 파생기가 보기 다섯을 만든다.",
+  "sharedConcept": "연립방정식의 해가 다른 일차방정식을 만족시킬 때 미지 계수 구하기",
+  "sharedProcedure": "연립방정식 풀기 → 해를 세 번째 방정식에 대입 → 일차방정식 풀어 상수 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이의 응용"
+  },
+  "prerequisites": [
+   "일차방정식의 풀이",
+   "연립방정식의 풀이(가감법·대입법)"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20304-A30-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "연립방정식의 해가 다른 일차방정식을 만족시킬 때 상수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "0741200c-e491-461b-b5fa-4a942c818489",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": {
+   "commit": "45a94b3ff249998e285988003aa48eadd9d4428c",
+   "typeKey": "2-1|연립일차방정식|13",
+   "seed": 875657585,
+   "variant": 0,
+   "formatChanged": false,
+   "proposedBy": "claude-fable-5-1:8409027a-7640-43bc-b94a-13f07b447407",
+   "authorRationale": "연립방정식을 먼저 풀고 그 해를 다른 일차방정식에 대입해 상수 하나를 구하는 절차와 물음 꼴(값 하나)이 같다 — 원본이 객관식이므로 파생기로 값을 묻는 객관식이 된다.",
+   "facts": {
+    "s": 1,
+    "p": 3,
+    "c2": -9,
+    "q": 3,
+    "c3": 9,
+    "k": -5,
+    "x0": -2,
+    "y0": 3
+   }
+  },
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 5개 가운데 80% 그대로"
+   ],
+   "overlap4": 0.213,
+   "longestRun": 8,
+   "residualChars": 50,
+   "params": 5,
+   "numberRetention": 0.8,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

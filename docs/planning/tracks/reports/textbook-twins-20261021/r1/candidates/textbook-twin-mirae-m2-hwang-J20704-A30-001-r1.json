@@ -1,0 +1,142 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 325,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A30-001-r1",
+ "authorId": "claude-fable-5-1:f9191227-d7e4-4af2-be8d-878397dde7ff",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "[그림]\n사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{BC}$이다. $\\overline{AB}$의 중점을 $M$, $\\overline{CD}$의 중점을 $N$이라 하고, 두 대각선 $\\overline{BD}$, $\\overline{AC}$가 선분 $MN$과 만나는 점을 각각 $P$, $Q$라 하자. $\\overline{BC}=26\\,\\mathrm{cm}$, $\\overline{PQ}=5\\,\\mathrm{cm}$일 때, $\\overline{AD}$의 길이를 구하시오.",
+ "choices": [],
+ "answer": "$16\\,\\mathrm{cm}$",
+ "solution": "$\\overline{AM}=\\overline{MB}$, $\\overline{DN}=\\overline{NC}$이므로 $\\overline{AD}\\parallel\\overline{MN}\\parallel\\overline{BC}$이다. $\\triangle ABC$에서 $M$은 $\\overline{AB}$의 중점이고 $\\overline{MQ}\\parallel\\overline{BC}$이므로 $\\overline{MQ}=\\frac{1}{2}\\overline{BC}=\\frac{1}{2}\\times 26=13\\,(\\mathrm{cm})$. 따라서 $\\overline{MP}=\\overline{MQ}-\\overline{PQ}=13-5=8\\,(\\mathrm{cm})$. $\\triangle ABD$에서 $\\overline{AM}=\\overline{MB}$, $\\overline{MP}\\parallel\\overline{AD}$이므로 $\\overline{AD}=2\\overline{MP}=2\\times 8=16\\,(\\mathrm{cm})$. 따라서 $\\overline{AD}$의 길이는 $16\\,\\mathrm{cm}$이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20704-A30-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20704-A30-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-e07b6dbebddb2e1f-1-2",
+  "problemCode": "J20704-A30-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 2,
+  "sourceContentSha256": "af24dce731d86edea9f5249f29e4d93eb03916a01fa266bd4d8e46f00a5d439b",
+  "dbContentSha256": "57fd624c0dcb2b51731a13815a56d563319ec3cc59a7961d9498f23f621b7540",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_7-3_평행선사이의선분의길이의비.hwp",
+    "sha256": "3c3540da486426fa51435b688bc6ab7f49964cc103d9f365f62c56e36b4d7007",
+    "bytes": 821248
+   }
+  ],
+  "originalFigureSha256": [
+   "d5dfb9bbb3dd8472414c0d0ee75bc4c26e0dd562f9d5b7d142e34355bfea1e69"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "사다리꼴에서 두 다리의 중점을 이은 선분이 두 대각선과 만나는 두 점 사이의 길이와 윗변 길이를 주고 아랫변 길이를 구한다.",
+  "after": "같은 짜임에서 아랫변 길이와 두 교점 사이 길이를 주고 윗변 길이를 구한다(주어진 것과 구하는 것을 맞바꿈, 뺄셈 단계로 바뀜).",
+  "sharedConcept": "사다리꼴의 두 다리의 중점을 이은 선분은 두 밑변에 평행하고, 삼각형의 한 변의 중점을 지나 다른 변에 평행한 선분은 나머지 변의 절반이다",
+  "sharedProcedure": "MN이 두 밑변에 평행함을 확인 → 한 삼각형에서 중점연결로 한 조각 길이 구함 → PQ를 더하거나 빼서 다른 조각 길이 구함 → 다른 삼각형에서 두 배하여 밑변 길이 구함"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "b34dbe8b-fd8a-4428-8758-941c5bf6aea6",
+   "semester": 2,
+   "chapter": "7. 닮음의 활용",
+   "section": "삼각형의 두 변의 중점을 연결한 선분"
+  },
+  "prerequisites": [
+   "삼각형의 두 변의 중점을 연결한 선분의 성질",
+   "삼각형의 한 변의 중점을 지나고 다른 변에 평행한 직선의 성질",
+   "사다리꼴의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20704-A30-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "사다리꼴의 두 다리의 중점을 이은 선분과 대각선의 교점으로 밑변 길이 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "b34dbe8b-fd8a-4428-8758-941c5bf6aea6",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "warn",
+   "reasons": [
+    "글 겹침 0.41"
+   ],
+   "overlap4": 0.405,
+   "longestRun": 12,
+   "residualChars": 83,
+   "params": 2,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

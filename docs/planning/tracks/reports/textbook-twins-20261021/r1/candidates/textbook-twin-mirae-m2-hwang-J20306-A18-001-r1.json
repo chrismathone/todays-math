@@ -1,0 +1,126 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 195,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20306-A18-001-r1",
+ "authorId": "claude-fable-5-1:7d67c8ae-a4b9-455b-acf0-28cbf0fa6ffb",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "서아가 두 자리 자연수 하나를 카드에 적었다. 각 자리 숫자의 합은 $8$이고, 십의 자리 숫자와 일의 자리 숫자를 서로 바꾼 수는 처음 수의 $4$배보다 $3$만큼 크다고 한다. 자리를 바꾼 수를 구하시오.",
+ "choices": [],
+ "answer": "$71$",
+ "solution": "처음 수의 십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$라 하면 $x+y=8$, $10y+x=4(10x+y)+3$이다. 둘째 식을 정리하면 $39x-6y=-3$, 즉 $13x-2y=-1$이다. 첫째 식에서 $y=8-x$를 대입하면 $13x-16+2x=-1$, $15x=15$, $x=1$이고 $y=7$이다. 처음 수는 $17$이므로 자리를 바꾼 수는 $71$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-b6b2229b6561155b-0-18",
+  "problemCode": "J20306-A18-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 18,
+  "sourceContentSha256": "37d847acaaeee67096aa9a3e0346e0720289034cdda4e6ad8b87dd355948bbc4",
+  "dbContentSha256": "37d847acaaeee67096aa9a3e0346e0720289034cdda4e6ad8b87dd355948bbc4",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_4_연립일차방정식.hwp",
+    "sha256": "a5b1d9580024707298aa45a4582009f05549215eae0d09aed91debdda14fd0de",
+    "bytes": 410112
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "context",
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "두 자리 수의 자릿수 합과, 자리를 바꾼 수가 처음 수의 몇 배보다 얼마 작다는 관계가 주어지고 처음 수를 구한다.",
+  "after": "인물이 적은 두 자리 수의 자릿수 합과, 자리를 바꾼 수가 처음 수의 몇 배보다 얼마 크다는 관계가 주어지고 자리를 바꾼 수를 구한다.",
+  "sharedConcept": "두 자리 자연수를 $10x+y$로 나타내어 연립방정식 세우기",
+  "sharedProcedure": "각 자리 숫자를 미지수로 놓기 → 자릿수 합 식 → 바꾼 수와 처음 수의 배수 관계 식 → 괄호를 풀어 정리 → 대입법(또는 가감법)으로 풀기 → 묻는 수 쓰기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 활용(수, 평균, 나이)"
+  },
+  "prerequisites": [
+   "두 자리 자연수의 자릿값 표현",
+   "연립일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20306-A18-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "자릿수 합과 바꾼 수의 배수 관계로 두 자리 수 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "f5d3c22d-bff3-4fca-a2b0-328b40ec5283",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.254,
+   "longestRun": 9,
+   "residualChars": 69,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

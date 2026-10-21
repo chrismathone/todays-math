@@ -1,0 +1,150 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 297,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20505-B17-001-r1",
+ "authorId": "claude-fable-5-1:781c61b8-f193-49f5-8b00-90c39199d6e3",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n평행사변형 $ABCD$에서 $\\overline{BC}$의 연장선 위에 $\\overline{AB}=\\overline{AC}=\\overline{CE}$가 되도록 점 $E$를 잡았다. $\\angle DAE=33^{\\circ}$일 때, $\\angle ADC$의 크기는?",
+ "choices": [
+  "$60^{\\circ}$",
+  "$63^{\\circ}$",
+  "$66^{\\circ}$",
+  "$69^{\\circ}$",
+  "$72^{\\circ}$"
+ ],
+ "answer": "③",
+ "solution": "$\\overline{AD}\\parallel\\overline{BE}$이므로 $\\angle AEC=\\angle DAE=33^{\\circ}$(엇각)이다.\n$\\triangle CAE$는 $\\overline{CA}=\\overline{CE}$인 이등변삼각형이므로 $\\angle CAE=\\angle CEA=33^{\\circ}$이고, 외각의 성질에서 $\\angle ACB=33^{\\circ}+33^{\\circ}=66^{\\circ}$이다.\n$\\triangle ABC$는 $\\overline{AB}=\\overline{AC}$인 이등변삼각형이므로 $\\angle ABC=\\angle ACB=66^{\\circ}$이다.\n평행사변형의 대각의 크기는 같으므로 $\\angle ADC=\\angle ABC=66^{\\circ}$이다. 따라서 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20505-B17-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20505-B17-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-44c3a1f18259e837-0-8",
+  "problemCode": "J20505-B17-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "3c8854d47c90fae8f9472b27d3bfb29255a16fe518bb3921352015e384ac8c62",
+  "dbContentSha256": "9c6d79118ea7dd670e6a5e93d4de0a2211dd98e3e35fe30ea71499813dc19fe0",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_6_삼각형과사각형의성질.hwp",
+    "sha256": "97a0cadd7ae5f168253f5da1b3dfb34176059dc4051b73896ccb90f8a866f586",
+    "bytes": 448000
+   }
+  ],
+  "originalFigureSha256": [
+   "189b4deda8d623aaebe0e551c46f813c07af0b9cb730a929cba00606f9746a79"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "inverse-target",
+   "numbers"
+  ],
+  "before": "아래 꼭짓점의 각이 주어지고, 두 이등변삼각형과 외각을 거쳐 윗변과 바깥 선분이 이루는 각을 구한다.",
+  "after": "윗변과 바깥 선분이 이루는 각을 주고, 엇각·이등변삼각형·외각을 거꾸로 밟아 맞은편 꼭짓점의 내각을 구한다.",
+  "sharedConcept": "이등변삼각형의 밑각 · 삼각형의 외각 · 평행선의 엇각 · 평행사변형의 대각",
+  "sharedProcedure": "엇각 → 이등변삼각형 밑각 → 외각으로 두 배 → 다른 이등변삼각형 밑각 → 대각의 크기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "평행사변형의 성질"
+  },
+  "prerequisites": [
+   "이등변삼각형의 성질",
+   "삼각형의 외각",
+   "평행선의 엇각",
+   "평행사변형의 대각"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20505-B17-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "변의 연장선 위에 이등변삼각형을 만들어 평행사변형의 각 구하기(객관식)",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "ee97d9ac-cab6-4152-b2c2-e1827e5efacd",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "글 겹침 0.56",
+    "이어진 같은 글 39자"
+   ],
+   "overlap4": 0.561,
+   "longestRun": 39,
+   "residualChars": 69,
+   "params": 6,
+   "numberRetention": 0.167,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

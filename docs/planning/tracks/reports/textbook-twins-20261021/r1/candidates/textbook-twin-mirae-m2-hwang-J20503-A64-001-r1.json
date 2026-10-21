@@ -1,0 +1,146 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 262,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A64-001-r1",
+ "authorId": "claude-fable-5-1:f1b92172-e962-4710-a704-9f9a2ef49176",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n점 $O$가 $\\triangle ABC$의 외심이고 $\\angle AOB=120^{\\circ}$, $\\angle OCB=28^{\\circ}$이다. 이때 $\\angle x$의 크기는?",
+ "choices": [
+  "$28^{\\circ}$",
+  "$30^{\\circ}$",
+  "$32^{\\circ}$",
+  "$34^{\\circ}$",
+  "$36^{\\circ}$"
+ ],
+ "answer": "③",
+ "solution": "$\\overline{OA}=\\overline{OB}=\\overline{OC}$이므로 $\\triangle OAB$, $\\triangle OBC$, $\\triangle OCA$는 모두 이등변삼각형이다. $\\triangle OAB$에서 $\\angle OAB=\\angle OBA=\\frac{1}{2}\\times(180^{\\circ}-120^{\\circ})=30^{\\circ}$이고, $\\angle OBC=\\angle OCB=28^{\\circ}$, $\\angle OAC=\\angle OCA=\\angle x$이다. $\\triangle ABC$의 세 내각의 합에서 $2\\times(30^{\\circ}+28^{\\circ}+\\angle x)=180^{\\circ}$이므로 $\\angle x=32^{\\circ}$이다. 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A64-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A64-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-5",
+  "problemCode": "J20503-A64-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "fdd709a65fde98e3496506b1a418d0d8b49c04d1c90b2028f633023b3586f8af",
+  "dbContentSha256": "278d5d6cb1a38a220c598fe220a6e3c1074256be838d449db00b4bfe298d3292",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "6076fd35bde39c1ff425ebcbee6dcc4826fe74cc38c04b7173ceeafc0a69c032"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "꼭짓점 A 쪽 밑각 하나와 밑변 쪽 중심각 하나를 주고, 나머지 꼭짓점 C에 걸린 밑각을 고른다.",
+  "after": "꼭짓점 A와 B 사이의 중심각과 꼭짓점 C 쪽 밑각 하나를 주고, 꼭짓점 A에 걸린 나머지 밑각을 고른다. 중심각이 걸린 변과 묻는 각의 자리를 바꾸었다.",
+  "sharedConcept": "외심이 만드는 세 이등변삼각형과 삼각형의 내각의 합",
+  "sharedProcedure": "중심각이 주어진 이등변삼각형의 밑각 구하기 → 나머지 밑각 쌍을 같게 두기 → 세 밑각의 합이 90°임을 이용해 미지각 구하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "삼각형의 외심의 성질",
+   "이등변삼각형의 두 밑각의 크기",
+   "삼각형의 세 내각의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A64-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외심의 중심각과 밑각이 섞여 주어질 때 나머지 밑각 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.143,
+   "longestRun": 8,
+   "residualChars": 45,
+   "params": 7,
+   "numberRetention": 0.571,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

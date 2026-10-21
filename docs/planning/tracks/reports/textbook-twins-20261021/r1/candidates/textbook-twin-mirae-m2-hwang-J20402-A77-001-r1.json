@@ -1,0 +1,131 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 227,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A77-001-r1",
+ "authorId": "claude-fable-5-1:70ed3a64-b652-4115-8809-4918d910d244",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차함수 $y=-\\frac{4}{5}x+3$의 그래프를 평행이동하였을 때 겹쳐질 수 있는 그래프를 갖는 일차함수는?",
+ "choices": [
+  "$y=\\frac{4}{5}x+3$",
+  "$y=-\\frac{5}{4}x+3$",
+  "$y=-\\frac{4}{5}x-1$",
+  "$y=\\frac{5}{4}x-1$",
+  "$y=\\frac{4}{5}x-3$"
+ ],
+ "answer": "③",
+ "solution": "평행이동하여 겹쳐지는 두 그래프는 기울기가 같다. 기울기가 $-\\frac{4}{5}$인 것은 ③ $y=-\\frac{4}{5}x-1$뿐이며, $y=-\\frac{4}{5}x+3$의 그래프를 $y$축의 방향으로 $-4$만큼 평행이동하면 겹쳐진다. 따라서 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-6d2b7e156d996e54-0-3",
+  "problemCode": "J20402-A77-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 3,
+  "sourceContentSha256": "d6bdce348d838ee72ea5624fca68c25cc837fdbc60e036a558bdd2fcb852c6fc",
+  "dbContentSha256": "5de51c4fbeb3356e956dbdd5391aecdeeea5f89d48a0f92b34b9e7de58da2388",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_5-2_일차함수와그그래프.hwp",
+    "sha256": "738b0e7870ca46a39301619f9978cd042293e87e29e401c4088a212e966f61b5",
+    "bytes": 50688
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "numbers",
+   "structure"
+  ],
+  "before": "원점을 지나는 분수 기울기의 일차함수를 기준으로, 평행이동하여 겹쳐지는 그래프를 보기 다섯에서 고른다",
+  "after": "기준 함수에 y절편을 두고(원점을 지나지 않음), 기울기의 부호와 역수를 섞은 보기 다섯에서 기울기가 같은 하나를 고른다",
+  "sharedConcept": "평행이동하여 겹쳐지는 두 일차함수의 그래프는 기울기가 같다",
+  "sharedProcedure": "기준 함수의 기울기 확인 → 각 보기의 기울기 비교 → 기울기가 같은 것 선택"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수의 그래프와 절편"
+  },
+  "prerequisites": [
+   "일차함수의 그래프의 평행이동",
+   "일차함수의 기울기"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20402-A77-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "평행이동하여 겹쳐지는 일차함수의 그래프 찾기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "c3f613de-16a6-4424-9c69-ceafec7273a7",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.141,
+   "longestRun": 9,
+   "residualChars": 86,
+   "params": 2,
+   "numberRetention": 0.5,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

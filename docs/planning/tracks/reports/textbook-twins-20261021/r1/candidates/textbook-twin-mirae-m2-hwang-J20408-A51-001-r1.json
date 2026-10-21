@@ -1,0 +1,133 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 204,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20408-A51-001-r1",
+ "authorId": "claude-fable-5-1:1bb1f7cd-9929-4673-b930-dc6798c3e99b",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "일차방정식 $3x+by+8=0$의 그래프가 점 $(2,~-7)$을 지난다. 다음 점 가운데 이 그래프 위에 있지 않은 것은? (단, $b$는 수이다.)",
+ "choices": [
+  "$\\left(-4,~2\\right)$",
+  "$\\left(1,~-5\\right)$",
+  "$\\left(-1,~-\\frac{5}{2}\\right)$",
+  "$\\left(\\frac{2}{3},~-5\\right)$",
+  "$\\left(4,~-10\\right)$"
+ ],
+ "answer": "②",
+ "solution": "그래프가 점 $(2,~-7)$을 지나므로 $6-7b+8=0$, $b=2$이다. 따라서 일차방정식은 $3x+2y+8=0$이다.\n① $x=-4$, $y=2$를 대입하면 $-12+4+8=0$\n② $x=1$, $y=-5$를 대입하면 $3-10+8=1\\neq 0$\n③ $x=-1$, $y=-\\frac{5}{2}$를 대입하면 $-3-5+8=0$\n④ $x=\\frac{2}{3}$, $y=-5$를 대입하면 $2-10+8=0$\n⑤ $x=4$, $y=-10$을 대입하면 $12-20+8=0$\n따라서 그래프 위에 있지 않은 점은 ②이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-2ab1927fe714b703-0-9",
+  "problemCode": "J20408-A51-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 9,
+  "sourceContentSha256": "d69dfb7f63a853db6be96009ea9f6259f3bd7575896b78c2fe8d67c0eb8fbf37",
+  "dbContentSha256": "91872c3401876a4e36549b738ba89497bc82d8db3447aae46ac795b16933896e",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원마무리\\미래엔_중학교수학2_대단원마무리_5_일차함수.hwp",
+    "sha256": "d8e8e864ce0b01aa94319c16f694cb39d1b29f9c9414d2b9e0bf36638cab6ab5",
+    "bytes": 226304
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "x의 계수가 미지수인 일차방정식에 지나는 점을 대입해 계수를 정한 뒤, 다섯 점 가운데 그래프 위에 없는 점을 고른다",
+  "after": "y의 계수가 미지수인 일차방정식에 지나는 점을 대입해 계수를 정한 뒤, 다섯 점 가운데 그래프 위에 없는 점을 고른다",
+  "sharedConcept": "일차방정식의 그래프 위의 점은 방정식을 만족한다",
+  "sharedProcedure": "지나는 점 대입 → 미지 계수 결정 → 각 보기의 좌표를 대입 → 등식이 성립하지 않는 점 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "semester": 1,
+   "chapter": "4. 함수",
+   "section": "일차함수와 일차방정식"
+  },
+  "prerequisites": [
+   "일차방정식의 그래프 위의 점",
+   "일차방정식의 해"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20408-A51-001",
+  "difficultyProposal": "응용",
+  "sourceDifficulty": "응용",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "미지 계수를 정한 뒤 그래프 위에 있지 않은 점 찾기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "4ead74eb-d343-45e4-a340-8efdf1f66083",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 10개 가운데 70% 그대로"
+   ],
+   "overlap4": 0.138,
+   "longestRun": 9,
+   "residualChars": 84,
+   "params": 10,
+   "numberRetention": 0.7,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

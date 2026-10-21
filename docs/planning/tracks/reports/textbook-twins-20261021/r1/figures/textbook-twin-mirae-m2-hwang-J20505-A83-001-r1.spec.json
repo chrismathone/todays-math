@@ -1,0 +1,170 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   70,
+   82
+  ],
+  "B": [
+   20,
+   180
+  ],
+  "C": [
+   188,
+   180
+  ],
+  "D": [
+   238,
+   82
+  ],
+  "E": [
+   110,
+   82
+  ],
+  "F": [
+   148,
+   180
+  ],
+  "H": [
+   238,
+   180
+  ],
+  "O": {
+   "type": "intersection",
+   "segments": [
+    "AC",
+    "BD"
+   ]
+  }
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CD": [
+   "C",
+   "D"
+  ],
+  "DA": [
+   "D",
+   "A"
+  ],
+  "AC": [
+   "A",
+   "C"
+  ],
+  "BD": [
+   "B",
+   "D"
+  ],
+  "EF": [
+   "E",
+   "F"
+  ],
+  "CH": {
+   "points": [
+    "C",
+    "H"
+   ],
+   "dashed": "5 3"
+  },
+  "DH": {
+   "points": [
+    "D",
+    "H"
+   ],
+   "dashed": "5 3"
+  }
+ },
+ "angles": {
+  "rh": {
+   "vertex": "H",
+   "points": [
+    "D",
+    "C"
+   ],
+   "right": true
+  }
+ },
+ "dimensions": {
+  "BC_len": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "label": "12 cm",
+   "side": "auto"
+  },
+  "DH_len": {
+   "points": [
+    "D",
+    "H"
+   ],
+   "label": "7 cm",
+   "side": "auto"
+  }
+ },
+ "regions": {
+  "s1": {
+   "boundary": [
+    {
+     "seg": [
+      "O",
+      "A"
+     ]
+    },
+    {
+     "seg": [
+      "A",
+      "E"
+     ]
+    },
+    {
+     "seg": [
+      "E",
+      "O"
+     ]
+    }
+   ],
+   "fill": "#e6e6e6"
+  },
+  "s2": {
+   "boundary": [
+    {
+     "seg": [
+      "O",
+      "B"
+     ]
+    },
+    {
+     "seg": [
+      "B",
+      "F"
+     ]
+    },
+    {
+     "seg": [
+      "F",
+      "O"
+     ]
+    }
+   ],
+   "fill": "#e6e6e6"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E",
+  "F": "F",
+  "H": "H",
+  "O": "O"
+ }
+}

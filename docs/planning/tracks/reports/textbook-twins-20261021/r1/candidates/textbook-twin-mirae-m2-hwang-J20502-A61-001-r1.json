@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 275,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20502-A61-001-r1",
+ "authorId": "claude-fable-5-1:2b6ea356-8d8c-4726-a387-d18c7bc3ddc4",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n그림의 두 직각삼각형 $ABC$와 $DEF$는 $\\angle B=\\angle E=90^{\\circ}$이고, $\\angle C=41^{\\circ}$, $\\overline{AC}=9$이다. 두 삼각형이 서로 합동이 되도록 하는 조건을 고르면?",
+ "choices": [
+  "$\\angle D=49^{\\circ}$, $\\angle F=41^{\\circ}$",
+  "$\\overline{DE}=9$, $\\angle D=49^{\\circ}$",
+  "$\\overline{EF}=9$, $\\angle F=41^{\\circ}$",
+  "$\\overline{DF}=9$, $\\angle F=41^{\\circ}$",
+  "$\\overline{DF}=9$, $\\overline{DE}=5$"
+ ],
+ "answer": "④",
+ "solution": "$\\triangle ABC$에서 $\\angle B=90^{\\circ}$이므로 빗변은 $\\overline{AC}=9$이고, $\\angle A=180^{\\circ}-90^{\\circ}-41^{\\circ}=49^{\\circ}$이다. $\\triangle DEF$에서 $\\angle E=90^{\\circ}$이므로 빗변은 $\\overline{DF}$이다. ④는 빗변의 길이 $\\overline{DF}=9$와 한 예각 $\\angle F=41^{\\circ}=\\angle C$가 각각 같으므로 $\\mathrm{RHA}$ 합동이 된다. ①은 각만 주어져 크기가 정해지지 않고, ②와 ③은 빗변이 아닌 변의 길이이며, ⑤는 $\\overline{AB}$의 길이를 모르므로 합동을 말할 수 없다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A61-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20502-A61-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-9b0ed5ba631a2086-0-1",
+  "problemCode": "J20502-A61-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "소단원 평가",
+  "sourceQuestionNumber": 1,
+  "sourceContentSha256": "f736ffaa046cb9d65cdee432dca4529014ed3c4fbfa71702c4fa88e97ac2b149",
+  "dbContentSha256": "b36c31a08fe0ff820ed35d4b4c49fc2b7e79b95c1e87b23ff11bdcbda7ad4843",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원마무리\\미래엔_중학교수학2_소단원마무리_6-2_직각삼각형의합동조건.hwp",
+    "sha256": "c09dfe98333e85b2b87e7693367b01686faef4983a645255abccc261b8c15379",
+    "bytes": 277504
+   }
+  ],
+  "originalFigureSha256": [
+   "93dcb628c2daa7a758af89b1a46302b27ca2220e59da17401bdde6aaefeb81f8"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "notation",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "직각이 $C$와 $F$인 두 직각삼각형에서 한 쪽의 예각 하나와 빗변의 길이를 그림으로 주고, 다른 쪽에 보탤 조건 가운데 합동이 되는 것을 고른다. 정답 보기는 빗변과 남은 예각의 짝이다.",
+  "after": "직각을 $B$와 $E$로 옮기고 예각 $41^{\\circ}$와 빗변 $9$를 주었다. 정답 보기는 빗변과 주어진 예각과 대응하는 예각의 짝이며, 오답은 각만 둘·빗변 아닌 변·길이를 모르는 변으로 짰다.",
+  "sharedConcept": "직각삼각형의 합동 조건(RHA·RHS)에서 빗변이 꼭 필요함",
+  "sharedProcedure": "직각의 위치로 빗변 찾기 → 나머지 예각 계산 → 각 보기가 RHA 또는 RHS가 되는지 확인 → 고르기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "직각삼각형의 합동"
+  },
+  "prerequisites": [
+   "직각삼각형의 합동 조건(RHA·RHS)",
+   "삼각형의 내각의 크기의 합"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20502-A61-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "두 직각삼각형이 합동이 되기 위한 조건 고르기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "caebb044-12e8-4de8-ba6a-a72e4af0fcdf",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.18,
+   "longestRun": 13,
+   "residualChars": 114,
+   "params": 4,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

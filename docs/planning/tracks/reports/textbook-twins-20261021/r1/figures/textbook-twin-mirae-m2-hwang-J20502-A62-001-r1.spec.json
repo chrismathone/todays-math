@@ -1,0 +1,123 @@
+{
+ "version": 2,
+ "points": {
+  "A": [
+   40,
+   120
+  ],
+  "B": [
+   161,
+   120
+  ],
+  "C": [
+   40,
+   190
+  ],
+  "D": [
+   230,
+   190
+  ],
+  "E": [
+   230,
+   120
+  ],
+  "F": [
+   351,
+   190
+  ]
+ },
+ "segments": {
+  "AB": [
+   "A",
+   "B"
+  ],
+  "BC": [
+   "B",
+   "C"
+  ],
+  "CA": [
+   "C",
+   "A"
+  ],
+  "DE": [
+   "D",
+   "E"
+  ],
+  "EF": [
+   "E",
+   "F"
+  ],
+  "FD": [
+   "F",
+   "D"
+  ]
+ },
+ "angles": {
+  "rA": {
+   "vertex": "A",
+   "points": [
+    "B",
+    "C"
+   ],
+   "right": true
+  },
+  "rD": {
+   "vertex": "D",
+   "points": [
+    "E",
+    "F"
+   ],
+   "right": true
+  },
+  "angC": {
+   "vertex": "C",
+   "points": [
+    "A",
+    "B"
+   ],
+   "label": "60°"
+  },
+  "angE": {
+   "vertex": "E",
+   "points": [
+    "D",
+    "F"
+   ],
+   "label": "60°"
+  }
+ },
+ "dimensions": {
+  "d_BC": {
+   "points": [
+    "B",
+    "C"
+   ],
+   "label": "10 cm",
+   "side": "auto"
+  },
+  "d_EF": {
+   "points": [
+    "E",
+    "F"
+   ],
+   "label": "10 cm",
+   "side": "auto"
+  },
+  "d_DE": {
+   "points": [
+    "D",
+    "E"
+   ],
+   "label": "5 cm",
+   "side": "auto"
+  }
+ },
+ "labels": {
+  "A": "A",
+  "B": "B",
+  "C": "C",
+  "D": "D",
+  "E": "E",
+  "F": "F"
+ }
+}

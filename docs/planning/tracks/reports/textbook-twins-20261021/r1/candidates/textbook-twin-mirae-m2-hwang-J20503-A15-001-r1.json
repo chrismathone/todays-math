@@ -1,0 +1,132 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 260,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A15-001-r1",
+ "authorId": "claude-fable-5-1:f1b92172-e962-4710-a704-9f9a2ef49176",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "삼각형의 외심과 내심에 대한 다음 설명 가운데 옳지 않은 것은?",
+ "choices": [
+  "삼각형의 외심은 세 변의 수직이등분선이 만나는 점이다.",
+  "삼각형의 내심에서 세 변에 이르는 거리는 모두 같다.",
+  "직각삼각형의 외심은 빗변의 중점이다.",
+  "둔각삼각형의 내심은 삼각형의 외부에 있다.",
+  "삼각형의 외심에서 세 꼭짓점에 이르는 거리는 모두 같다."
+ ],
+ "answer": "④",
+ "solution": "외심은 세 변의 수직이등분선의 교점이고 세 꼭짓점에서 같은 거리에 있으므로 ①, ⑤는 옳다. 내심은 세 내각의 이등분선의 교점이고 세 변에서 같은 거리에 있으므로 ②는 옳다. 직각삼각형의 외심은 빗변의 중점이므로 ③도 옳다. 내심은 삼각형의 모양에 관계없이 항상 삼각형의 내부에 있으므로 ④는 옳지 않다. 따라서 답은 ④이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-8",
+  "problemCode": "J20503-A15-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 8,
+  "sourceContentSha256": "037b1315fb3714d6fead2c4b5761df3352e7f7523b27c320d05385b5725d2607",
+  "dbContentSha256": "037b1315fb3714d6fead2c4b5761df3352e7f7523b27c320d05385b5725d2607",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "context"
+  ],
+  "before": "외심 · 내심의 존재 · 위치 · 특수한 삼각형에서의 성질을 다섯 진술로 나열하고 틀린 것 하나를 고른다. 틀린 진술은 «외심은 항상 내부에 있다».",
+  "after": "외심 · 내심의 정의(수직이등분선 · 거리) · 직각삼각형의 외심 · 내심의 위치를 다섯 진술로 나열하고 틀린 것 하나를 고른다. 틀린 진술은 «둔각삼각형의 내심은 외부에 있다».",
+  "sharedConcept": "삼각형의 외심과 내심의 정의와 위치에 관한 성질",
+  "sharedProcedure": "각 진술을 외심 · 내심의 성질과 대조 → 삼각형 모양별 위치를 확인 → 어긋나는 진술 하나를 고름"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "삼각형의 외심의 뜻과 성질",
+   "삼각형의 내심의 뜻과 성질",
+   "직각삼각형 · 둔각삼각형의 외심의 위치"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A15-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외심과 내심의 성질에 관한 진술의 참 · 거짓 판별",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.202,
+   "longestRun": 12,
+   "residualChars": 123,
+   "params": 0,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

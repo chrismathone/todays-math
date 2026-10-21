@@ -1,0 +1,100 @@
+{
+ "version": 2,
+ "points": {
+  "B": [
+   18,
+   172
+  ],
+  "T": [
+   18,
+   34
+  ],
+  "S1": [
+   137.6,
+   172
+  ],
+  "P": [
+   172.1,
+   172
+  ],
+  "Q": [
+   172.1,
+   137.5
+  ],
+  "S2": [
+   202,
+   172
+  ]
+ },
+ "segments": {
+  "ground1": [
+   "B",
+   "S1"
+  ],
+  "tree": [
+   "T",
+   "B"
+  ],
+  "ray1": [
+   "T",
+   "S1"
+  ],
+  "ground2": [
+   "P",
+   "S2"
+  ],
+  "pole": [
+   "Q",
+   "P"
+  ],
+  "ray2": [
+   "Q",
+   "S2"
+  ]
+ },
+ "angles": {
+  "rB": {
+   "vertex": "B",
+   "points": [
+    "T",
+    "S1"
+   ],
+   "right": true
+  },
+  "rP": {
+   "vertex": "P",
+   "points": [
+    "Q",
+    "S2"
+   ],
+   "right": true
+  }
+ },
+ "labels": {},
+ "dimensions": {
+  "d_QP": {
+   "points": [
+    "Q",
+    "P"
+   ],
+   "label": "3 m",
+   "side": "auto"
+  },
+  "d_PS2": {
+   "points": [
+    "P",
+    "S2"
+   ],
+   "label": "5 m",
+   "side": "auto"
+  },
+  "d_BS1": {
+   "points": [
+    "B",
+    "S1"
+   ],
+   "label": "20 m",
+   "side": "auto"
+  }
+ }
+}

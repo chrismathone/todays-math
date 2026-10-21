@@ -1,0 +1,149 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 261,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20503-A63-001-r1",
+ "authorId": "claude-fable-5-1:f1b92172-e962-4710-a704-9f9a2ef49176",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "객관식",
+ "content": "[그림]\n점 $O$가 $\\triangle ABC$의 외심이고 $\\overline{BC}=14\\,\\mathrm{cm}$이다. $\\triangle OBC$의 둘레의 길이가 $34\\,\\mathrm{cm}$일 때, $\\triangle ABC$의 외접원의 반지름의 길이는?",
+ "choices": [
+  "$8\\,\\mathrm{cm}$",
+  "$9\\,\\mathrm{cm}$",
+  "$10\\,\\mathrm{cm}$",
+  "$11\\,\\mathrm{cm}$",
+  "$12\\,\\mathrm{cm}$"
+ ],
+ "answer": "③",
+ "solution": "점 $O$가 외심이므로 $\\overline{OB}=\\overline{OC}$이고, 이 길이가 외접원의 반지름이다. $\\triangle OBC$의 둘레에서 $\\overline{OB}+\\overline{OC}+14=34$이므로 $2\\times\\overline{OB}=20$, $\\overline{OB}=10\\,(\\mathrm{cm})$이다. 따라서 외접원의 반지름의 길이는 $10\\,\\mathrm{cm}$이고 답은 ③이다.",
+ "score": null,
+ "figureArtifacts": [
+  {
+   "role": "stem",
+   "specPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A63-001-r1.spec.json",
+   "svgPath": "figures/textbook-twin-mirae-m2-hwang-J20503-A63-001-r1.svg",
+   "intendedWidthMm": 70
+  }
+ ],
+ "sourceReference": {
+  "externalId": "tb-03411dc4ca477bea-0-4",
+  "problemCode": "J20503-A63-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "대단원 평가",
+  "sourceQuestionNumber": 4,
+  "sourceContentSha256": "8c6b7c2c650fa16390ef48c06784cdc8ef5fe9fc176f998f8671f653a60abf26",
+  "dbContentSha256": "608a1ee21a5cb9dcaab32456520021c13a1d77687d15c601c7931bccf6271dd6",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\대단원평가문제\\미래엔_중학교수학2_대단원평가문제_6_삼각형과사각형의성질.hwp",
+    "sha256": "77776714c777fea25ec930aca424273942dafd4cd49f66a684f8bcddff4b2701",
+    "bytes": 1149440
+   }
+  ],
+  "originalFigureSha256": [
+   "c851655f63519ea82eac8b5d0a30fd9b2abb8aa2da3f42fb78f51466bdeff95f"
+  ],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "same"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": true,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "numbers"
+  ],
+  "before": "외심과 두 꼭짓점이 이루는 삼각형의 둘레와 그 삼각형의 밑변(삼각형의 한 변) 길이를 주고, 외심에서 꼭짓점까지의 선분 길이를 고른다.",
+  "after": "외심과 밑변 양 끝점이 이루는 삼각형의 둘레와 밑변 길이를 주고, 같은 길이를 «외접원의 반지름»으로 묻는다.",
+  "sharedConcept": "외심에서 세 꼭짓점에 이르는 거리는 모두 같다(외접원의 반지름)",
+  "sharedProcedure": "외심의 성질로 두 선분이 같음을 확인 → 둘레 식 세우기 → 같은 두 선분의 합을 구해 2로 나눔"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "semester": 2,
+   "chapter": "5. 도형의 성질",
+   "section": "삼각형의 외심"
+  },
+  "prerequisites": [
+   "삼각형의 외심의 성질",
+   "이등변삼각형의 뜻",
+   "일차방정식의 풀이"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "객관식",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20503-A63-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "외심을 꼭짓점으로 하는 이등변삼각형의 둘레로 반지름 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "097f7812-d185-46c3-8579-a4942a1962f3",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {
+   "method": "author-figureSpec-engine-strict",
+   "newFigures": 1,
+   "originalCropEmbedded": false,
+   "specRepairs": []
+  },
+  "figureCheckByAuthor": "matches",
+  "similarity": {
+   "verdict": "hold",
+   "reasons": [
+    "원본 수 6개 가운데 67% 그대로",
+    "정답이 원본과 같다"
+   ],
+   "overlap4": 0.175,
+   "longestRun": 7,
+   "residualChars": 64,
+   "params": 6,
+   "numberRetention": 0.667,
+   "sameAnswer": true
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}

@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "questionNumber": 176,
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A27-001-r1",
+ "authorId": "claude-fable-5-1:2a33ed89-21c4-4268-8cf9-c9a64f1b073d",
+ "revisionOf": null,
+ "route": "author",
+ "questionType": "단답형",
+ "content": "두 자연수 $x$, $y$가 연립방정식 $\\begin{cases} \\,x+3y=10 \\\\ \\,2x+y=10 \\end{cases}$을 만족시킬 때, 그 해를 순서쌍 $(x,\\,y)$로 나타내시오.",
+ "choices": [],
+ "answer": "$(4,\\,2)$",
+ "solution": "$x+3y=10$을 만족시키는 자연수 $x$, $y$의 순서쌍은 $(1,\\,3)$, $(4,\\,2)$, $(7,\\,1)$이다. $2x+y=10$을 만족시키는 자연수 $x$, $y$의 순서쌍은 $(1,\\,8)$, $(2,\\,6)$, $(3,\\,4)$, $(4,\\,2)$이다. 두 식을 동시에 만족시키는 순서쌍은 $(4,\\,2)$이므로 해는 $(4,\\,2)$이다.",
+ "score": null,
+ "figureArtifacts": [],
+ "sourceReference": {
+  "externalId": "tb-447e2b2adaabb5e5-1-5",
+  "problemCode": "J20302-A27-001",
+  "sourceBook": "2022/미래엔/중2/황선욱",
+  "materialKind": "수준별 문제",
+  "sourceQuestionNumber": 5,
+  "sourceContentSha256": "44d77c70901ecb2f094a11a31552d890d9adb30e8befe0ff676ab9ee782378e3",
+  "dbContentSha256": "4783d709f9f94999cf0ef915fc15ff337fdf4171e13c3965dd41eff0413e2b8f",
+  "sourceFiles": [
+   {
+    "path": "G:\\중등교과서\\중2\\미래엔 중학 수학2 (황선욱) (22개정)\\평가자료\\소단원수준별문제\\미래엔_중학교수학2_소단원수준별문제_4-1_연립일차방정식과그해.hwp",
+    "sha256": "7ddade8c6a99c39aa30dad5aa6276c913d32876abfa5ca35f2f942c439f75201",
+    "bytes": 276480
+   }
+  ],
+  "originalFigureSha256": [],
+  "verifyLedger": {
+   "path": "display-survey/textbook-verify/ledger-20261021.jsonl",
+   "body": "same",
+   "answer": "different"
+  },
+  "authorSawDbText": true,
+  "authorSawOriginalFigures": false,
+  "originalFigureIdentityVerified": false,
+  "sourceDirectUseAllowed": true,
+  "sourceIdentityApproved": false,
+  "rightsApproved": false,
+  "sourceTextCopiedToCandidate": false
+ },
+ "variantDelta": {
+  "modes": [
+   "structure",
+   "representation",
+   "numbers"
+  ],
+  "before": "두 식 모두 y의 계수가 1인 연립방정식에서 자연수 해를 순서쌍으로 나열해 공통인 것을 찾고 x=, y= 꼴로 답한다.",
+  "after": "한 식은 y의 계수가 3, 다른 식은 x의 계수가 2인 연립방정식으로 바꾸고, 공통 순서쌍을 (x, y) 꼴로 답하게 한다.",
+  "sharedConcept": "미지수가 2개인 일차방정식의 자연수 해와 연립방정식의 해",
+  "sharedProcedure": "각 식의 자연수 해를 순서쌍으로 나열 → 두 목록의 공통 순서쌍 찾기 → 해로 답하기"
+ },
+ "curriculumReview": {
+  "grade": "중2",
+  "edition": "2022",
+  "status": "author-proposed",
+  "standardCodes": [],
+  "basis": "source-textbook-placement",
+  "sourceUnit": {
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "semester": 1,
+   "chapter": "3. 방정식",
+   "section": "연립방정식의 풀이"
+  },
+  "prerequisites": [
+   "미지수가 2개인 일차방정식의 해",
+   "순서쌍",
+   "연립방정식의 해의 뜻"
+  ],
+  "sevenSurfaces": {
+   "stem": "author-proposed-independent-review-pending",
+   "choices": "author-proposed-independent-review-pending",
+   "figuresAndTables": "author-proposed-independent-review-pending",
+   "notation": "author-proposed-independent-review-pending",
+   "answer": "author-proposed-independent-review-pending",
+   "studentSolution": "author-proposed-independent-review-pending",
+   "prerequisites": "author-proposed-independent-review-pending"
+  },
+  "independentReviewPending": true,
+  "authorCannotApprove": true
+ },
+ "metadata": {
+  "grade": "중2",
+  "subject": "수학",
+  "curriculum": {
+   "source": "2022",
+   "target": "2022"
+  },
+  "questionType": "단답형",
+  "score": null,
+  "source": "transformed",
+  "originProblemCode": "J20302-A27-001",
+  "difficultyProposal": "기본",
+  "sourceDifficulty": "기본",
+  "difficultyStatus": "author-proposed-independent-calibration-pending",
+  "problemTypeProposal": "자연수 조건에서 순서쌍 나열로 연립방정식의 해 구하기",
+  "problemTypeStatus": "author-proposed",
+  "assignment": {
+   "status": "proposed",
+   "unitId": "bd644a48-6edd-44ac-96b9-0595c0ed4d70",
+   "familyKey": null,
+   "evidence": "원본 교과서 문항의 차시 — 쌍둥이를 같은 차시에 두자는 제안(family 는 정하지 않음)"
+  },
+  "engine": null,
+  "figureAuthoring": {},
+  "figureCheckByAuthor": "no-figure",
+  "similarity": {
+   "verdict": "pass",
+   "reasons": [],
+   "overlap4": 0.103,
+   "longestRun": 5,
+   "residualChars": 43,
+   "params": 3,
+   "numberRetention": 0.0,
+   "sameAnswer": false
+  },
+  "authorOnly": true,
+  "independentMathApproval": false,
+  "independentGradeApproval": false,
+  "similarityApproved": false,
+  "nativeProvenanceApproved": false,
+  "loadable": false,
+  "productionWrites": false
+ }
+}
