@@ -170,6 +170,44 @@ describe("지면 띠", () => {
     expect(scale() * A4_DIMENSIONS.widthPx).toBeLessThanOrEqual(248);
   });
 
+  it("fill — 높이가 정해진 세로 flex 칸에서는 쪽을 띠 자신의 높이에 맞추고, 쌓인 띠는 창 높이에 맞춘다", () => {
+    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(1200);
+    const original = HTMLElement.prototype.getBoundingClientRect;
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: HTMLElement) {
+        // The column gives the strip 300px; each caption is 24px tall.
+        if (this.dataset.paperDesk !== undefined)
+          return { top: 300, height: 300 } as DOMRect;
+        if (this.tagName === "FIGCAPTION")
+          return { top: 0, height: 24 } as DOMRect;
+        return original.call(this);
+      },
+    );
+    render(
+      <>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <PaperStrip fill pages={[page(1), page(2)]} hint="" label="채운 띠" />
+        </div>
+        <div>
+          <PaperStrip fill pages={[page(1), page(2)]} hint="" label="쌓인 띠" />
+        </div>
+      </>,
+    );
+    const height = (name: string) =>
+      Number(
+        screen
+          .getByRole("region", { name })
+          .style.getPropertyValue("--paper-strip-scale"),
+      ) *
+        A4_DIMENSIONS.heightPx +
+      32 + // padding
+      24 + // caption
+      16; // horizontal scrollbar
+    // The pages and the horizontal bar fit the strip's own 300px, whatever the window.
+    expect(height("채운 띠")).toBeCloseTo(300);
+    expect(height("쌓인 띠")).toBeCloseTo(window.innerHeight - 300 - 16);
+  });
+
   it("defaults enlarged pages to whole-page fit and preserves width/percent zoom and the current page", () => {
     let width = 900;
     let height = 500;

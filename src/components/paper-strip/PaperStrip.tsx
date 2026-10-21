@@ -42,6 +42,7 @@ function usePageScroll(
   scaleVars: readonly string[],
   horizontal = false,
   zoom: PreviewZoom = "page",
+  fill = false,
 ) {
   const ref = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(maxScale);
@@ -76,8 +77,19 @@ function usePageScroll(
           window.innerHeight * 0.85,
           remaining > 180 ? remaining : window.innerHeight * 0.68,
         );
+        // A filled strip takes its height from the caller's flex column, so the
+        // pages and the horizontal scrollbar stay inside that column. Its own
+        // box height does not depend on the pages, only on that column.
+        const filled =
+          fill &&
+          /flex$/.test(
+            getComputedStyle(el.parentElement?.parentElement ?? el).display,
+          );
         const height = horizontal
-          ? overviewHeight - 32 - caption - 16 // padding + caption + horizontal scrollbar
+          ? (filled ? el.getBoundingClientRect().height : overviewHeight) -
+            32 -
+            caption -
+            16 // padding + caption + horizontal scrollbar
           : el.clientHeight - 32;
         const widthFit = Math.min(maxScale, width / A4_DIMENSIONS.widthPx);
         setScale(
@@ -102,7 +114,7 @@ function usePageScroll(
       observer?.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, [horizontal, maxScale, measureEdges, zoom]);
+  }, [fill, horizontal, maxScale, measureEdges, zoom]);
   useEffect(() => {
     const el = ref.current;
     if (!horizontal || !el) return;
@@ -187,6 +199,7 @@ export function PaperStrip({
   scaleVars = [],
   scrollTo,
   onVisible,
+  fill = false,
 }: {
   pages: readonly PaperStripPage[];
   /** 띠 위의 안내 한 줄. */
@@ -204,6 +217,11 @@ export function PaperStrip({
   scrollTo?: { key: string; nonce: number } | null;
   /** 넘길 때마다 맨 앞에 보이는 쪽을 알린다. */
   onVisible?: (key: string) => void;
+  /**
+   * 높이가 정해진 세로 flex 칸 안에서 띠가 남은 높이를 채운다 — 쪽 크기를 그 높이에 맞추고 가로 막대도 칸 안에 둔다
+   * (시험지 만들기 3단계 미리보기 · 원장님 2026-10-21). 띠의 바깥이 flex 가 아니면(좁은 화면에서 쌓일 때) 창 높이에 맞추던 대로다.
+   */
+  fill?: boolean;
 }) {
   const {
     ref: deskRef,
@@ -211,7 +229,7 @@ export function PaperStrip({
     edges,
     measureEdges,
     scale,
-  } = usePageScroll(maxScale, scaleVars, true);
+  } = usePageScroll(maxScale, scaleVars, true, "page", fill);
   const [expanded, setExpanded] = useState<string | null>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   /** 보고 있는 쪽 — 그 앞에 쪽이 끼어들어도(뒤늦게 조판된 구획) 이 쪽을 제자리에 둔다. */
@@ -266,7 +284,7 @@ export function PaperStrip({
   return (
     <>
       <p className={s.hint}>{hint}</p>
-      <div className={s.frame}>
+      <div className={`${s.frame} ${fill ? s.fillFrame : ""}`}>
         <div
           id={id}
           ref={deskRef}
