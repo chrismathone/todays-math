@@ -1,0 +1,94 @@
+[
+  {
+    "id": "scale-rounding-collapse",
+    "method": "Exact Fraction calculation of proposed n(v)=round(v*k*1000)/1000",
+    "input": {
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          0.001,
+          0
+        ],
+        "C": [
+          1000000,
+          0
+        ]
+      }
+    },
+    "k": "1/2000",
+    "exactScaledB": "1/2000000",
+    "serializedRoundedB": 0,
+    "effect": "distinct A/B collapse; uniform mathematical similarity no longer exact after3-decimal rounding. Needs reject or source-backed retry, not approve."
+  },
+  {
+    "id": "typo-duplicate-target",
+    "method": "Python Levenshtein mirror of stated editDistance; source not executed",
+    "near": {
+      "perpective": [
+        "perspective"
+      ],
+      "perspectiv": [
+        "perspective"
+      ]
+    },
+    "input": {
+      "right": true,
+      "perpective": false,
+      "perspectiv": true
+    },
+    "effect": "Both unknown keys map to perspective; existing-target guard sees no original perspective; Object.fromEntries duplicate target retains last and loses prior value."
+  },
+  {
+    "id": "edge-not-printed",
+    "method": "Source predicate witness, not TS execution",
+    "input": {
+      "assets": [
+        {
+          "asset": "house",
+          "from": "D",
+          "to": "C"
+        }
+      ],
+      "segments": {},
+      "angle": {
+        "vertex": "D",
+        "points": [
+          "C",
+          "A"
+        ]
+      }
+    },
+    "effect": "from/to artistic alignment does not prove printed construction segment DC; assetEdgeSegment invents solid DC based only on metadata. Newly added line can satisfy ray-coverage check without source evidence."
+  },
+  {
+    "id": "marker-stripping-math",
+    "method": "Static regex/data-flow witness, not JS execution",
+    "input": "<g data-asset=\"house\"><line x1=\"0\" y1=\"0\" x2=\"100\" y2=\"0\"/></g>",
+    "effect": "stripAssetBodies replaces whole marked subtree without registered-body identity; a real mathematical line can disappear from prompt evidence."
+  },
+  {
+    "id": "rotated-two-corners",
+    "method": "Exact transformed rect-corner calculation",
+    "input": {
+      "rect": [
+        0,
+        0,
+        10,
+        10
+      ],
+      "rotateDeg": 45
+    },
+    "diagonalPairXRange": [
+      0,
+      0
+    ],
+    "trueFourCornerXRange": [
+      -7.071067811865475,
+      7.071067811865475
+    ],
+    "effect": "incoming assetBox underbounds; raw path-number pairing also ignores command grammar. Keep Root registered4corner frames instead."
+  }
+]
