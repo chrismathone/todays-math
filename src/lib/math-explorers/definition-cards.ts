@@ -1,3 +1,5 @@
+import type { ExplorerReviewVariant } from "@/contracts/mathExplorers.contract";
+import { reviewVariantCard } from "./reviewVariants";
 import type {
   DefinitionAction as Action,
   DefinitionFeedback as Feedback,
@@ -493,6 +495,7 @@ export type DefinitionProgress = {
   lastRecall?: "new" | "remembered" | "supported" | "retry";
 };
 export type DefinitionSession = {
+  reviewVariant?: ExplorerReviewVariant;
   route?: "unit" | "memory" | "repair";
   targetCardId?: string;
   cardIds?: string[];
@@ -552,6 +555,13 @@ export function definitionCard(id: string) {
   const c = definitionCards.find((c) => c.id === id);
   if (!c) throw new Error("개념 카드를 찾을 수 없어요.");
   return c;
+}
+/** Every session consumer resolves the same stored examples and answer key. */
+export function definitionSessionCard(
+  s: DefinitionSession | undefined,
+  cardId: string,
+) {
+  return reviewVariantCard(definitionCard(cardId), s?.reviewVariant);
 }
 export function definitionTaskKey(t: DefinitionTask) {
   return `${t.cardId}:${t.kind}`;
@@ -617,7 +627,7 @@ export function definitionNeedsRead(p: Profile, s: DefinitionSession) {
   );
 }
 export function definitionOptions(s: DefinitionSession, t: DefinitionTask) {
-  const c = definitionCard(t.cardId),
+  const c = definitionSessionCard(s, t.cardId),
     n = t.kind === 0 ? c.words.length : t.kind === 1 ? c.examples.length : 2;
   const a = Array.from({ length: n }, (_, i) => i);
   let seed = 0;
@@ -790,7 +800,7 @@ export function applyDefinitionAction(
   if (!s || s.done || a.questionId !== definitionQuestionId(s))
     throw new Error("이미 넘어간 카드예요. 현재 문항을 확인해주세요.");
   const task = s.queue[s.index],
-    c = definitionCard(task.cardId),
+    c = definitionSessionCard(s, task.cardId),
     key = definitionTaskKey(task);
   // A follow-up belongs to the question it was opened on.
   const open = s.followUp?.questionId === a.questionId ? s.followUp : undefined;
