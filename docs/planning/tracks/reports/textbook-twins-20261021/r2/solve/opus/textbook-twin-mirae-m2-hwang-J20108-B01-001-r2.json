@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-B01-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "34c8b4d0-29a7-466b-9ee6-e91ac8cee849",
+ "startedAt": "2026-10-21T17:06:34+0900",
+ "elapsedSec": 6.9,
+ "studentSha256": {
+  "fig-1.png": "512861752c18dfed427cdb2eca324844f9b10bd565241ecf017f93da6cc57277",
+  "student.json": "3084f5a0415684e88b343374377f6de48936d6c03b856428f76990ec589503b5"
+ },
+ "promptSha256": "32cf8fb917f503dd0285b3faf87b2ec2ca2b49d753994a34037eb5bc6693991c",
+ "freezeCommit": "0a9ee11711ef013a306cc61afc3f5ca7105931ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$\\\\frac{5}{2}a+b$\", \"work\": \"사다리꼴의 넓이는 $\\\\frac{1}{2}(4ab+8ab)h$이므로 $6abh$이다.\\n$6abh=15a^{2}b+6ab^{2}$이다.\\n따라서 $h=\\\\frac{15a^{2}b+6ab^{2}}{6ab}=\\\\frac{5}{2}a+b$이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$\\frac{5}{2}a+b$",
+  "work": "사다리꼴의 넓이는 $\\frac{1}{2}(4ab+8ab)h$이므로 $6abh$이다.\n$6abh=15a^{2}b+6ab^{2}$이다.\n따라서 $h=\\frac{15a^{2}b+6ab^{2}}{6ab}=\\frac{5}{2}a+b$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "2bae4ca265472fbda2ba0ae13a72f1f028ba195e54adc5d2a0a086508aa91389"
+}

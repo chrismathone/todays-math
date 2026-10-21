@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B11-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d83-ec11-76e3-8235-f532e2f9b20a",
+ "startedAt": "2026-10-21T17:11:29+0900",
+ "elapsedSec": 13.4,
+ "studentSha256": {
+  "student.json": "127d7d64c1eff3f09fa19d8475697f70b8604bd9f638c20b4771fdd819c84efc"
+ },
+ "promptSha256": "a518ea69796090862bd76186c68e919dd62834d8e200d436facb55427eb9f8e0",
+ "freezeCommit": "0008e9f6b28dfea66028a16ea16b220e5410d168",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$p=5$, $q=4$, $r=3$\",\"work\":\"12=2²×3, 18=2×3², 20=2²×5, 75=3×5²이다.\\n같은 소인수의 지수를 더하면 p=2+1+2=5, q=1+2+1=4, r=1+2=3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$p=5$, $q=4$, $r=3$",
+  "work": "12=2²×3, 18=2×3², 20=2²×5, 75=3×5²이다.\n같은 소인수의 지수를 더하면 p=2+1+2=5, q=1+2+1=4, r=1+2=3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a1072db09c7985ada60728b97368c9ebdf96180cf8e2b4071b847faf5b319fdc"
+}

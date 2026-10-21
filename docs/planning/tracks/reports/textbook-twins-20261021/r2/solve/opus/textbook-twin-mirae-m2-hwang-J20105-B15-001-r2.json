@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20105-B15-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "d1e83c74-0ec7-40f7-8a11-64a2eed0ee21",
+ "startedAt": "2026-10-21T16:56:21+0900",
+ "elapsedSec": 5.6,
+ "studentSha256": {
+  "student.json": "9273de2f66d345db677bd6bb31f7dad85ae03ff8f66c96ec11fe2d84fe1d144e"
+ },
+ "promptSha256": "dfb5346edbb46fafb44fa200127f4f792d6771bf6ef73524b0ea87768ae0b497",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$5^{11}$\", \"work\": \"625 = 5^4이다. 상자 하나에 든 나사 수는 5^3 × 5^4 = 5^7이다. 전체 나사 수는 5^7 × 5^4 = 5^{11}이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$5^{11}$",
+  "work": "625 = 5^4이다. 상자 하나에 든 나사 수는 5^3 × 5^4 = 5^7이다. 전체 나사 수는 5^7 × 5^4 = 5^{11}이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "01efc6ffab7c3d02cd9b6779e0302ec167d6119fdb0d2ea781d4d64167ebbb13"
+}
