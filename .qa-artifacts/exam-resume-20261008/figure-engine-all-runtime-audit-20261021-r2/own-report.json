@@ -1,0 +1,130 @@
+{
+  "scope": "fresh fixed-current Root Python runtime R2, identical139input cohort",
+  "status": "BOUNDED_RUNTIME_PASS_139_OF139",
+  "counts": {
+    "uniqueRuntimeControls": 139,
+    "passed": 139,
+    "failed": 0,
+    "byKind": {
+      "actual render_json": 65,
+      "actual sanitize_svg": 21,
+      "actual parse_label": 7,
+      "actual manifest loader": 1,
+      "actual registered body load and sanitize": 39,
+      "actual sequential Python CLI stdout byte comparison": 6
+    },
+    "sixRawCLIByteMatches": 6,
+    "manifestRegisteredBodiesLoadedSanitized": 39,
+    "countsNotAddedToR1": true,
+    "parentTestsCounted": 0,
+    "mathGradeRightsOperationalApproval": 0,
+    "NodeBrowserModelDBCalls": 0
+  },
+  "resolvedR1Finding": {
+    "id": "EA-NULL",
+    "old": "explicitnull rendered scene; R1 remains138/139 at old executed hash",
+    "current": "explicitnull rejected without changing input or expected rejection",
+    "actual": {
+      "error": "도형을 그리지 못했습니다: assets 는 비어 있지 않은 목록이어야 합니다"
+    },
+    "currentSceneAssetsRawSHA256": "2e2af817f5edc808f676c4d9ad9e289a0d063db808a481090a62ca10122c9f95",
+    "R1ReportCommit": "40aca96b7616ea2f3f4259411c97677086ca0326",
+    "R1FinalDriftAndCP949Diagnostics": "preserved unchanged in R1 prefix"
+  },
+  "binding": {
+    "before": "own-before.json",
+    "immediateAfter": "own-after.json",
+    "finalAfter": "own-final-after.json",
+    "trackedSourceAndAssetFiles": 107,
+    "duringRunChanged": [],
+    "finalChanged": [],
+    "firstReadAndResolvedModulePaths": "own-results.json",
+    "sameCohort": "own-cohort-binding.json",
+    "inputReceiptSHA256": "4da31aab7b30cb003d58a329fa0817e2fd3b7915c7f8df375ed419518fdea26b",
+    "outputReceiptSHA256": "694bb1447bc81eefc33e4b2d1398c4cd72be1c1891a2abac6174e968ddc2c261",
+    "resultSHA256": "881ceefa018c4fd8400ad1e5b0c6414a18f682a72d6beebca54aa7f2c2761a4d",
+    "sixExpectedAndActual": [
+      {
+        "id": "six-raw-grid",
+        "stdoutSHA256": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+        "expectedSHA256": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+        "sameRawBytes": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "id": "six-raw-assets",
+        "stdoutSHA256": "89fcca5c2ff931e35f374f8b1efdd9d02c63aec05b35a800acd39fcd4071f229",
+        "expectedSHA256": "89fcca5c2ff931e35f374f8b1efdd9d02c63aec05b35a800acd39fcd4071f229",
+        "sameRawBytes": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "id": "six-raw-perspective",
+        "stdoutSHA256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+        "expectedSHA256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+        "sameRawBytes": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "id": "six-raw-units",
+        "stdoutSHA256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+        "expectedSHA256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+        "sameRawBytes": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "id": "six-raw-right-refused",
+        "stdoutSHA256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+        "expectedSHA256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+        "sameRawBytes": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "id": "six-raw-solid-object-refused",
+        "stdoutSHA256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+        "expectedSHA256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+        "sameRawBytes": true,
+        "returncode": 0,
+        "stderr": ""
+      }
+    ],
+    "catalogue": "own-catalogue-binding.json"
+  },
+  "observedBoundaries": [
+    "projectedTrue renders nonorthogonal-paper marker; false/nonboolean/rightmissing and degenerate controls reject; no mathematical orthogonality approved",
+    "bad assets containers,size,finite values,slug/path,mixed fields and frame-name collisions reject including explicitnull",
+    "7geometry-shaped known picture assets refuse;39 registered SVG bodies load and sanitize",
+    "event/script/external reference/badslug asset groups reject; benign forged/nested metadata acceptance remains syntax only, not provenance/editor validation",
+    "existing grid numeric/placement regressions reject; no shape semantic proof inferred",
+    "unit30m/5g upright and2m/g-h variable parse observations recorded without granting unit semantic/grade approval",
+    "six own CLI runs matched exact raw stdout expected bytes with exit0 and empty stderr"
+  ],
+  "execution": {
+    "pythonDontWriteBytecode": true,
+    "env": "PYTHONDONTWRITEBYTECODE=1;PYTHONIOENCODING=utf-8;FIGURE_ENGINE_PATH=currentRoot/vendor process-only",
+    "parentFlags": [
+      "-X",
+      "utf8",
+      "-B",
+      "-S"
+    ],
+    "children": "six sequential same Python executable with-Xutf8-B-S; explicit executable kwarg",
+    "externalCheckerOrSourceDCodeExecuted": false,
+    "writes": "own namespace only; parent audit hook blocks outside writes/network and nonPython subprocess"
+  },
+  "limitations": [
+    "No all-engine/raster/pixel/native/physical print or browser/DOM verification",
+    "No perasset licence/source identity validation; stock-body sanitation is not rights approval",
+    "Perspective rendering does not prove world/screen right angles; one-letter typography does not establish units versus algebra",
+    "Null or count failures were not fixed in the audit; production repair is parent-owned and current expectations unchanged",
+    "No actual student method/grade/public/DB/release promotion from these139 cases",
+    "NaN/Infinity testinputs intentionally use Python extended JSON for finite guards; receipts are not public JSON schema examples",
+    "No direct catalogue generator run or copied parent9unittest result; only current catalogue metadata hash/read"
+  ],
+  "reproduction": "fresh owned output namespace: PYTHONDONTWRITEBYTECODE=1 PYTHONIOENCODING=utf-8 python-Xutf8-B-S own-runtime.py; do not overwrite sealed progress; then own-finalize.py"
+}

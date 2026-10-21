@@ -1,0 +1,982 @@
+[
+  {
+    "id": "r7-true-projected",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 147.9 97.9\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"34.95\" y1=\"34.95\" x2=\"134.95\" y2=\"34.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n    <line x1=\"34.95\" y1=\"34.95\" x2=\"84.95\" y2=\"84.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    <path d=\"M 47.05 34.95 L 55.606 43.506 L 43.506 43.506\" fill=\"none\" stroke=\"#111111\" stroke-width=\"0.72\" />\n  </g>\n  <g>\n    \n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-false-planar",
+    "output": {
+      "error": "도형을 그리지 못했습니다: angle 'r' is marked right but measures 45.00° — fix the geometry, not the mark (only in a perspective/3D drawing whose printed mark is slanted, add perspective:true)"
+    }
+  },
+  {
+    "id": "r7-nonboolean-string",
+    "output": {
+      "error": "도형을 그리지 못했습니다: angles.r.perspective must be boolean"
+    }
+  },
+  {
+    "id": "r7-nonboolean-number",
+    "output": {
+      "error": "도형을 그리지 못했습니다: angles.r.perspective must be boolean"
+    }
+  },
+  {
+    "id": "r7-nonboolean-null",
+    "output": {
+      "error": "도형을 그리지 못했습니다: angles.r.perspective must be boolean"
+    }
+  },
+  {
+    "id": "r7-perspective-without-right",
+    "output": {
+      "error": "도형을 그리지 못했습니다: angle 'r': perspective needs right=True"
+    }
+  },
+  {
+    "id": "r7-ordinary-right-False",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 147.9 147.9\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"34.95\" y1=\"34.95\" x2=\"134.95\" y2=\"34.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n    <line x1=\"34.95\" y1=\"34.95\" x2=\"34.95\" y2=\"134.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    <path d=\"M 47.05 34.95 L 47.05 47.05 L 34.95 47.05\" fill=\"none\" stroke=\"#111111\" stroke-width=\"0.72\" />\n  </g>\n  <g>\n    \n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-ordinary-right-True",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 147.9 147.9\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"34.95\" y1=\"34.95\" x2=\"134.95\" y2=\"34.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n    <line x1=\"34.95\" y1=\"34.95\" x2=\"34.95\" y2=\"134.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    <path d=\"M 47.05 34.95 L 47.05 47.05 L 34.95 47.05\" fill=\"none\" stroke=\"#111111\" stroke-width=\"0.72\" />\n  </g>\n  <g>\n    \n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-coincident-ray-False",
+    "output": {
+      "error": "도형을 그리지 못했습니다: segment 'VQ' has zero length"
+    }
+  },
+  {
+    "id": "r7-coincident-ray-True",
+    "output": {
+      "error": "도형을 그리지 못했습니다: segment 'VQ' has zero length"
+    }
+  },
+  {
+    "id": "r7-collinear-ray-False",
+    "output": {
+      "error": "도형을 그리지 못했습니다: angle 'r' is degenerate (collinear rays)"
+    }
+  },
+  {
+    "id": "r7-collinear-ray-True",
+    "output": {
+      "error": "도형을 그리지 못했습니다: angle 'r' is degenerate (collinear rays)"
+    }
+  },
+  {
+    "id": "r7-known-math-object-can",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: can 는 도형으로 그릴 수 있는 물체라 그림 조각으로 쓰지 않습니다 — 원기둥·직육면체·원 같은 엔진 도형으로 그려 주세요"
+    }
+  },
+  {
+    "id": "r7-known-math-object-cup-cylinder",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: cup-cylinder 는 도형으로 그릴 수 있는 물체라 그림 조각으로 쓰지 않습니다 — 원기둥·직육면체·원 같은 엔진 도형으로 그려 주세요"
+    }
+  },
+  {
+    "id": "r7-known-math-object-cup-cone",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: cup-cone 는 도형으로 그릴 수 있는 물체라 그림 조각으로 쓰지 않습니다 — 원기둥·직육면체·원 같은 엔진 도형으로 그려 주세요"
+    }
+  },
+  {
+    "id": "r7-known-math-object-bowl",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: bowl 는 도형으로 그릴 수 있는 물체라 그림 조각으로 쓰지 않습니다 — 원기둥·직육면체·원 같은 엔진 도형으로 그려 주세요"
+    }
+  },
+  {
+    "id": "r7-known-math-object-dice",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: dice 는 도형으로 그릴 수 있는 물체라 그림 조각으로 쓰지 않습니다 — 원기둥·직육면체·원 같은 엔진 도형으로 그려 주세요"
+    }
+  },
+  {
+    "id": "r7-known-math-object-ferris-wheel",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: ferris-wheel 는 도형으로 그릴 수 있는 물체라 그림 조각으로 쓰지 않습니다 — 원기둥·직육면체·원 같은 엔진 도형으로 그려 주세요"
+    }
+  },
+  {
+    "id": "r7-known-math-object-pizza",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: pizza 는 도형으로 그릴 수 있는 물체라 그림 조각으로 쓰지 않습니다 — 원기둥·직육면체·원 같은 엔진 도형으로 그려 주세요"
+    }
+  },
+  {
+    "id": "r7-unit-variable-30 m",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 60.326\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"30 m\"><tspan font-style=\"normal\">30 </tspan><tspan font-style=\"normal\">m</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-2m",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 60.326\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"2m\"><tspan font-style=\"normal\">2</tspan><tspan font-style=\"italic\" font-family=\"Cambria, Times New Roman, serif\">m</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-5 g",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 64.022\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"5 g\"><tspan font-style=\"normal\">5 </tspan><tspan font-style=\"normal\">g</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-g/h",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 64.022\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"g/h\"><tspan font-style=\"italic\" font-family=\"Cambria, Times New Roman, serif\">g</tspan><tspan font-style=\"normal\">/</tspan><tspan font-style=\"italic\" font-family=\"Cambria, Times New Roman, serif\">h</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-$30 m$",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 60.326\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"$30 m$\"><tspan font-style=\"normal\">30 </tspan><tspan font-style=\"normal\">m</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-2 L",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 60.326\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"2 L\"><tspan font-style=\"normal\">2 L</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 mL",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 60.326\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"3 mL\"><tspan font-style=\"normal\">3 </tspan><tspan font-style=\"normal\">m</tspan><tspan font-style=\"normal\">L</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 dL",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 60.326\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"3 dL\"><tspan font-style=\"normal\">3 </tspan><tspan font-style=\"normal\">d</tspan><tspan font-style=\"normal\">L</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 kL",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 60.326\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"3 kL\"><tspan font-style=\"normal\">3 </tspan><tspan font-style=\"normal\">k</tspan><tspan font-style=\"normal\">L</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 m",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 60.326\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"3 m\"><tspan font-style=\"normal\">3 </tspan><tspan font-style=\"normal\">m</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 m",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 205.9 60.326\" xmlns=\"http://www.w3.org/2000/svg\">\n  <g>\n    <line x1=\"12.95\" y1=\"12.95\" x2=\"192.95\" y2=\"12.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    <text x=\"102.95\" y=\"48.326\" font-family=\"Cambria Math, HancomEQN, Times New Roman, serif\" font-size=\"16.8\" text-anchor=\"middle\" fill=\"#111111\" data-px=\"102.95\" data-py=\"42.95\" data-mj=\"3 m\"><tspan font-style=\"normal\">3 </tspan><tspan font-style=\"normal\">m</tspan></text>\n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "r7-asset-group-forged-known",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><g data-asset=\"house\"><line x1=\"0\" y1=\"0\" x2=\"50\" y2=\"50\" /></g></svg>"
+    }
+  },
+  {
+    "id": "r7-asset-group-nested",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><g data-asset=\"house\"><g data-asset=\"building\"><path d=\"M0 0L50 50\" /></g></g></svg>"
+    }
+  },
+  {
+    "id": "r7-asset-group-script",
+    "output": {
+      "error": "blocked SVG element: <script>"
+    }
+  },
+  {
+    "id": "r7-asset-group-badslug",
+    "output": {
+      "error": "invalid data-asset (kebab-case slug)"
+    }
+  },
+  {
+    "id": "positive-house",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 146.9 111.9\" xmlns=\"http://www.w3.org/2000/svg\"><g data-asset=\"house\" transform=\"translate(33.95 48.95) scale(0.3 0.3) translate(-50 -100)\"><rect x=\"10\" y=\"39\" width=\"80\" height=\"60.3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"3.667\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><polygon points=\"0.7,40 50,0.7 99.3,40\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"3.667\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"24\" y=\"64\" width=\"20\" height=\"35.3\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"2.619\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"59\" y=\"59\" width=\"19\" height=\"20\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"2.619\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"68.5\" y1=\"59\" x2=\"68.5\" y2=\"79\" fill=\"none\" stroke=\"#333333\" stroke-width=\"2.619\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /></g>\n  <g>\n    <line x1=\"33.95\" y1=\"48.95\" x2=\"133.95\" y2=\"48.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n    <line x1=\"33.95\" y1=\"48.95\" x2=\"83.95\" y2=\"98.95\" stroke=\"#111111\" stroke-width=\"1.9\" />\n  </g>\n  <g>\n    \n  </g>\n  <g>\n    \n  </g>\n</svg>"
+    }
+  },
+  {
+    "id": "assets-container-null",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets 는 비어 있지 않은 목록이어야 합니다"
+    }
+  },
+  {
+    "id": "assets-container-empty",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets 는 비어 있지 않은 목록이어야 합니다"
+    }
+  },
+  {
+    "id": "assets-container-object",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets 는 비어 있지 않은 목록이어야 합니다"
+    }
+  },
+  {
+    "id": "assets-container-string",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets 는 비어 있지 않은 목록이어야 합니다"
+    }
+  },
+  {
+    "id": "assets-container-boolean",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets 는 비어 있지 않은 목록이어야 합니다"
+    }
+  },
+  {
+    "id": "assets-container-entry-null",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets[0] 는 객체여야 합니다"
+    }
+  },
+  {
+    "id": "assets-container-entry-int",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets[0] 는 객체여야 합니다"
+    }
+  },
+  {
+    "id": "assets-container-entry-string",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets[0] 는 객체여야 합니다"
+    }
+  },
+  {
+    "id": "assets-container-too-many",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets 는 12개까지입니다"
+    }
+  },
+  {
+    "id": "asset-item-unknown",
+    "output": {
+      "error": "도형을 그리지 못했습니다: manifest 에 없는 에셋입니다: no-such-asset"
+    }
+  },
+  {
+    "id": "asset-item-path",
+    "output": {
+      "error": "도형을 그리지 못했습니다: manifest 에 없는 에셋입니다: ../house"
+    }
+  },
+  {
+    "id": "asset-item-absolute",
+    "output": {
+      "error": "도형을 그리지 못했습니다: manifest 에 없는 에셋입니다: C:/house"
+    }
+  },
+  {
+    "id": "asset-item-slash",
+    "output": {
+      "error": "도형을 그리지 못했습니다: manifest 에 없는 에셋입니다: house.svg"
+    }
+  },
+  {
+    "id": "asset-item-width-zero",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: width 는 양수여야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-width-neg",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: width 는 양수여야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-width-nan",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: width 는 양수여야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-width-inf",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: width 는 양수여야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-width-bool",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: width 는 양수여야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-width-string",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: width 는 양수여야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-width-huge",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: house 크기가 지나칩니다(배율 1e+07)"
+    }
+  },
+  {
+    "id": "asset-item-width-missing",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: width 는 양수여야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-bad-anchor",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: anchor 는 base·top·center 중 하나입니다"
+    }
+  },
+  {
+    "id": "asset-item-flip-int",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: flip 은 참/거짓이어야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-coords-nan",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets 좌표 는 [x, y] 수 두 개여야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-coords-inf",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets 좌표 는 [x, y] 수 두 개여야 합니다"
+    }
+  },
+  {
+    "id": "asset-item-unknown-field",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets[0] 에 모르는 필드가 있습니다: other"
+    }
+  },
+  {
+    "id": "asset-item-mixed-from",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: from·to 는 둘 다 적고 at·width 와 섞지 않습니다"
+    }
+  },
+  {
+    "id": "asset-item-missing-to",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: from·to 는 둘 다 적고 at·width 와 섞지 않습니다"
+    }
+  },
+  {
+    "id": "asset-item-anchor-null",
+    "output": {
+      "error": "도형을 그리지 못했습니다: assets: anchor 는 base·top·center 중 하나입니다"
+    }
+  },
+  {
+    "id": "reserved-point-assetFrameLo",
+    "output": {
+      "error": "도형을 그리지 못했습니다: duplicate geometry name 'assetFrameLo': new point conflicts with point"
+    }
+  },
+  {
+    "id": "reserved-point-assetFrameHi",
+    "output": {
+      "error": "도형을 그리지 못했습니다: duplicate geometry name 'assetFrameHi': new point conflicts with point"
+    }
+  },
+  {
+    "id": "reserved-segment",
+    "output": {
+      "error": "도형을 그리지 못했습니다: duplicate geometry name 'assetFrameLo': new point conflicts with segment"
+    }
+  },
+  {
+    "id": "projected-nonfinite-nan",
+    "output": {
+      "error": "도형을 그리지 못했습니다: points.P.x must be finite"
+    }
+  },
+  {
+    "id": "projected-nonfinite-inf",
+    "output": {
+      "error": "도형을 그리지 못했습니다: points.P.x must be finite"
+    }
+  },
+  {
+    "id": "asset-security-event",
+    "output": {
+      "error": "event attribute is not allowed: onload"
+    }
+  },
+  {
+    "id": "asset-security-external-use",
+    "output": {
+      "error": "blocked SVG element: <use>"
+    }
+  },
+  {
+    "id": "asset-security-external-fill",
+    "output": {
+      "error": "only local url(#id) gradient references are allowed"
+    }
+  },
+  {
+    "id": "asset-security-badslug-space",
+    "output": {
+      "error": "invalid data-asset (kebab-case slug)"
+    }
+  },
+  {
+    "id": "grid-number-zero-width",
+    "output": {
+      "error": "data-grid requires square positive cells and 1..60 integer counts"
+    }
+  },
+  {
+    "id": "grid-number-zero-height",
+    "output": {
+      "error": "data-grid requires square positive cells and 1..60 integer counts"
+    }
+  },
+  {
+    "id": "grid-number-zero-count",
+    "output": {
+      "error": "data-grid requires square positive cells and 1..60 integer counts"
+    }
+  },
+  {
+    "id": "grid-number-61",
+    "output": {
+      "error": "data-grid requires square positive cells and 1..60 integer counts"
+    }
+  },
+  {
+    "id": "grid-number-999",
+    "output": {
+      "error": "data-grid requires square positive cells and 1..60 integer counts"
+    }
+  },
+  {
+    "id": "grid-number-nonsquare",
+    "output": {
+      "error": "data-grid requires square positive cells and 1..60 integer counts"
+    }
+  },
+  {
+    "id": "grid-number-nan",
+    "output": {
+      "error": "invalid data-grid (six numbers)"
+    }
+  },
+  {
+    "id": "grid-number-fraction",
+    "output": {
+      "error": "invalid data-grid (six numbers)"
+    }
+  },
+  {
+    "id": "grid-placement-nested",
+    "output": {
+      "error": "data-grid must be one untransformed root background path layer"
+    }
+  },
+  {
+    "id": "grid-placement-transform",
+    "output": {
+      "error": "data-grid must be one untransformed root background path layer"
+    }
+  },
+  {
+    "id": "grid-placement-duplicate",
+    "output": {
+      "error": "data-grid must be one untransformed root background path layer"
+    }
+  },
+  {
+    "id": "grid-placement-late",
+    "output": {
+      "error": "data-grid must be one untransformed root background path layer"
+    }
+  },
+  {
+    "id": "grid-placement-empty",
+    "output": {
+      "error": "data-grid must be one untransformed root background path layer"
+    }
+  },
+  {
+    "id": "pieces-30 m",
+    "output": {
+      "pieces": [
+        {
+          "text": "30 ",
+          "italic": false,
+          "shift": null
+        },
+        {
+          "text": "m",
+          "italic": false,
+          "shift": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "pieces-5 g",
+    "output": {
+      "pieces": [
+        {
+          "text": "5 ",
+          "italic": false,
+          "shift": null
+        },
+        {
+          "text": "g",
+          "italic": false,
+          "shift": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "pieces-2m",
+    "output": {
+      "pieces": [
+        {
+          "text": "2",
+          "italic": false,
+          "shift": null
+        },
+        {
+          "text": "m",
+          "italic": true,
+          "shift": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "pieces-g/h",
+    "output": {
+      "pieces": [
+        {
+          "text": "g",
+          "italic": true,
+          "shift": null
+        },
+        {
+          "text": "/",
+          "italic": false,
+          "shift": null
+        },
+        {
+          "text": "h",
+          "italic": true,
+          "shift": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "pieces-$30 m$",
+    "output": {
+      "pieces": [
+        {
+          "text": "30 ",
+          "italic": false,
+          "shift": null
+        },
+        {
+          "text": "m",
+          "italic": false,
+          "shift": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "pieces-2 L",
+    "output": {
+      "pieces": [
+        {
+          "text": "2 L",
+          "italic": false,
+          "shift": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "pieces-3 mL",
+    "output": {
+      "pieces": [
+        {
+          "text": "3 ",
+          "italic": false,
+          "shift": null
+        },
+        {
+          "text": "m",
+          "italic": false,
+          "shift": null
+        },
+        {
+          "text": "L",
+          "italic": false,
+          "shift": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "manifest39",
+    "output": {
+      "slugs": [
+        "tree",
+        "house",
+        "lighthouse",
+        "airplane",
+        "tower",
+        "ladder",
+        "utility-pole",
+        "hot-air-balloon",
+        "kite",
+        "sun",
+        "slide",
+        "ferris-wheel",
+        "bowl",
+        "water-tank",
+        "cup-cylinder",
+        "cup-cone",
+        "can",
+        "cake-roll",
+        "pizza",
+        "ice-cream-cone",
+        "baduk-black",
+        "baduk-white",
+        "matchstick",
+        "picture-frame",
+        "balance-scale",
+        "thermometer",
+        "dice",
+        "train-side",
+        "tunnel",
+        "bridge",
+        "streetlamp",
+        "building",
+        "flagpole",
+        "mountain",
+        "person-standing",
+        "person-walking",
+        "bicycle",
+        "car-side",
+        "boat"
+      ]
+    }
+  },
+  {
+    "id": "manifest-sanitize-tree",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 60 90\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"26\" y=\"58\" width=\"8\" height=\"30\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"30\" cy=\"34\" r=\"24\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"16\" cy=\"46\" r=\"13\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"44\" cy=\"46\" r=\"13\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-house",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"10\" y=\"39\" width=\"80\" height=\"60.3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><polygon points=\"0.7,40 50,0.7 99.3,40\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"24\" y=\"64\" width=\"20\" height=\"35.3\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"59\" y=\"59\" width=\"19\" height=\"20\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"68.5\" y1=\"59\" x2=\"68.5\" y2=\"79\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-lighthouse",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 64 140\" xmlns=\"http://www.w3.org/2000/svg\">\n<polygon points=\"18,40 46,40 63.3,139.3 0.7,139.3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><polygon points=\"13.6,65 50.4,65 53,80 11,80\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><polygon points=\"7.5,100 56.5,100 59.1,115 4.9,115\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"17\" y=\"19\" width=\"30\" height=\"21\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M27 19 V40 M37 19 V40\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><polygon points=\"12,19 32,0.7 52,19\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-airplane",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 160 60\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0.7 38 L12 38 L5 0.7 L19 0.7 L40 32 L123 32 Q147 33 159.3 44 Q148 51 127 51 L29 51 L9 58 L3 54 L18 46 L0.7 44 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><polygon points=\"62,43 84,43 113,59.3 91,59.3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M126 33 L139 36 L143 41 L127 41 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"48\" y1=\"39\" x2=\"108\" y2=\"39\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-tower",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 70 150\" xmlns=\"http://www.w3.org/2000/svg\">\n<polyline points=\"0.7,149.3 35,0.7 69.3,149.3\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"0.7\" y1=\"149.3\" x2=\"69.3\" y2=\"149.3\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M7.5 120 L55.5 90 L21.2 60 L41.9 30 M62.5 120 L14.5 90 L48.8 60 L28.1 30 M7.5 120 L69.3 149.3 M62.5 120 L0.7 149.3 M7.5 120 H62.5 M14.5 90 H55.5 M21.2 60 H48.8 M28.1 30 H41.9\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-ladder",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 44 120\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0.7\" y=\"0.7\" width=\"5\" height=\"118.6\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"38.3\" y=\"0.7\" width=\"5\" height=\"118.6\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"5.7\" y1=\"14\" x2=\"38.3\" y2=\"14\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"5.7\" y1=\"29\" x2=\"38.3\" y2=\"29\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"5.7\" y1=\"44\" x2=\"38.3\" y2=\"44\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"5.7\" y1=\"59\" x2=\"38.3\" y2=\"59\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"5.7\" y1=\"74\" x2=\"38.3\" y2=\"74\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"5.7\" y1=\"89\" x2=\"38.3\" y2=\"89\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"5.7\" y1=\"104\" x2=\"38.3\" y2=\"104\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-utility-pole",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 70 140\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"31\" y=\"0.7\" width=\"8\" height=\"138.6\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"0.7\" y=\"23\" width=\"68.6\" height=\"5\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"6\" y=\"12\" width=\"6\" height=\"11\" rx=\"2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"5\" y1=\"16\" x2=\"13\" y2=\"16\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"19\" y=\"12\" width=\"6\" height=\"11\" rx=\"2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"18\" y1=\"16\" x2=\"26\" y2=\"16\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"45\" y=\"12\" width=\"6\" height=\"11\" rx=\"2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"44\" y1=\"16\" x2=\"52\" y2=\"16\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"58\" y=\"12\" width=\"6\" height=\"11\" rx=\"2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"57\" y1=\"16\" x2=\"65\" y2=\"16\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-hot-air-balloon",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 90 130\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M45 0.7 C19 0.7 0.7 16 0.7 40 C0.7 62 23 79 32 91 L58 91 C67 79 89.3 62 89.3 40 C89.3 16 71 0.7 45 0.7 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M45 0.7 C17 24 22 62 37 91 M45 0.7 C73 24 68 62 53 91 M45 0.7 V91 M32 91 L35 111 M58 91 L55 111\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"32\" y=\"111\" width=\"26\" height=\"18.3\" rx=\"2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-kite",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 80 110\" xmlns=\"http://www.w3.org/2000/svg\">\n<polygon points=\"40,0.7 79.3,33 40,77 0.7,33\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M40 0.7 V77 M0.7 33 H79.3\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M40 77 C25 90 55 96 40 109.3\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M36 88 L29 84 L30 92 Z M45 99 L53 94 L52 103 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-sun",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 80 80\" xmlns=\"http://www.w3.org/2000/svg\">\n<circle cx=\"40\" cy=\"40\" r=\"23\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"71.00000\" y1=\"40.00000\" x2=\"79.30000\" y2=\"40.00000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"61.92031\" y1=\"61.92031\" x2=\"67.78930\" y2=\"67.78930\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"40.00000\" y1=\"71.00000\" x2=\"40.00000\" y2=\"79.30000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"18.07969\" y1=\"61.92031\" x2=\"12.21070\" y2=\"67.78930\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"9.00000\" y1=\"40.00000\" x2=\"0.70000\" y2=\"40.00000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"18.07969\" y1=\"18.07969\" x2=\"12.21070\" y2=\"12.21070\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"40.00000\" y1=\"9.00000\" x2=\"40.00000\" y2=\"0.70000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"61.92031\" y1=\"18.07969\" x2=\"67.78930\" y2=\"12.21070\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-slide",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 140 100\" xmlns=\"http://www.w3.org/2000/svg\">\n<polyline points=\"0.7,99.3 26,26 42,26 17,99.3\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"21.1678\" y1=\"40\" x2=\"37.2251\" y2=\"40\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"17.0259\" y1=\"52\" x2=\"33.1323\" y2=\"52\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"12.8840\" y1=\"64\" x2=\"29.0396\" y2=\"64\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"8.7422\" y1=\"76\" x2=\"24.9468\" y2=\"76\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"4.6003\" y1=\"88\" x2=\"20.8540\" y2=\"88\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M26 26 V0.7 H49 V26\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M26 26 H49 L128 91 H139.3 V99.3 H124 L46 34 H26 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"46\" y1=\"34\" x2=\"46\" y2=\"99.3\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-ferris-wheel",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 140 150\" xmlns=\"http://www.w3.org/2000/svg\">\n<circle cx=\"70\" cy=\"65\" r=\"64.3\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70\" y1=\"65\" x2=\"128.0000\" y2=\"65.0000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"128.0000\" y1=\"65.0000\" x2=\"128.0000\" y2=\"70.0000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"116.7000\" y=\"70.0000\" width=\"22.6\" height=\"12\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70\" y1=\"65\" x2=\"111.0122\" y2=\"106.0122\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"111.0122\" y1=\"106.0122\" x2=\"111.0122\" y2=\"111.0122\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"99.7122\" y=\"111.0122\" width=\"22.6\" height=\"12\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70\" y1=\"65\" x2=\"70.0000\" y2=\"123.0000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70.0000\" y1=\"123.0000\" x2=\"70.0000\" y2=\"128.0000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"58.7000\" y=\"128.0000\" width=\"22.6\" height=\"12\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70\" y1=\"65\" x2=\"28.9878\" y2=\"106.0122\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"28.9878\" y1=\"106.0122\" x2=\"28.9878\" y2=\"111.0122\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"17.6878\" y=\"111.0122\" width=\"22.6\" height=\"12\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70\" y1=\"65\" x2=\"12.0000\" y2=\"65.0000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"12.0000\" y1=\"65.0000\" x2=\"12.0000\" y2=\"70.0000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"0.7000\" y=\"70.0000\" width=\"22.6\" height=\"12\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70\" y1=\"65\" x2=\"28.9878\" y2=\"23.9878\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"28.9878\" y1=\"23.9878\" x2=\"28.9878\" y2=\"28.9878\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"17.6878\" y=\"28.9878\" width=\"22.6\" height=\"12\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70\" y1=\"65\" x2=\"70.0000\" y2=\"7.0000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70.0000\" y1=\"7.0000\" x2=\"70.0000\" y2=\"12.0000\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"58.7000\" y=\"12.0000\" width=\"22.6\" height=\"12\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"70\" y1=\"65\" x2=\"111.0122\" y2=\"23.9878\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><line x1=\"111.0122\" y1=\"23.9878\" x2=\"111.0122\" y2=\"28.9878\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"99.7122\" y=\"28.9878\" width=\"22.6\" height=\"12\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><polygon points=\"70,65 37,149.3 44,149.3 70,80 96,149.3 103,149.3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"70\" cy=\"65\" r=\"4\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-bowl",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 100 62\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0.7 12 A49.3 49.3 0 0 0 99.3 12 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><ellipse cx=\"50\" cy=\"12\" rx=\"49.3\" ry=\"11.3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-water-tank",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 97.4 77.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-11.3 -11.3)\">\n<path d=\"M12 24 L32 12 L108 12 L108 76 L88 88 L12 88 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M12 49 L88 49 L108 37 L108 76 L88 88 L12 88 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M12 24 L88 24 L108 12 M88 24 L88 88 M12 24 L32 12\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-cup-cylinder",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 57.4 79.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-11.3 -9.3)\">\n<path d=\"M12 20 L12 78 A28 10 0 0 0 68 78 L68 20\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><ellipse cx=\"40\" cy=\"20\" rx=\"28\" ry=\"10\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-cup-cone",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 57.4 81.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-11.3 -9.3)\">\n<path d=\"M12 20 L40 90 L68 20 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><ellipse cx=\"40\" cy=\"20\" rx=\"28\" ry=\"10\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-can",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 47.4 82.2\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-16.3 -7.3)\">\n<rect x=\"17\" y=\"14\" width=\"46\" height=\"74\" rx=\"7\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<ellipse cx=\"40\" cy=\"15\" rx=\"22\" ry=\"7\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<ellipse cx=\"40\" cy=\"84\" rx=\"21\" ry=\"5\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<ellipse cx=\"40\" cy=\"15\" rx=\"10\" ry=\"3\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<path d=\"M33 14 C36 10 44 10 47 14 C44 17 36 17 33 14 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<rect x=\"18.5\" y=\"37\" width=\"43\" height=\"26\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-cake-roll",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 103.4 57.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-7.3 -13.3)\">\n<path d=\"M28 14 L90 14 A20 28 0 0 1 90 70 L28 70 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><ellipse cx=\"28\" cy=\"42\" rx=\"20\" ry=\"28\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M20 26 C42 21 44 61 26 61 C12 61 12 35 27 35 C36 35 36 49 28 49\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-pizza",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n<circle cx=\"50\" cy=\"50\" r=\"44\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"50\" cy=\"50\" r=\"38\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"35\" cy=\"31\" r=\"6\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"64\" cy=\"28\" r=\"5\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"70\" cy=\"57\" r=\"6\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"39\" cy=\"67\" r=\"5\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<ellipse cx=\"24\" cy=\"50\" rx=\"5\" ry=\"3\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<ellipse cx=\"52\" cy=\"49\" rx=\"5\" ry=\"3\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<ellipse cx=\"59\" cy=\"75\" rx=\"4\" ry=\"2.5\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-ice-cream-cone",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 56.2 97.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-17.6 -14.3)\">\n<polygon points=\"22,48 68,48 45,111\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<path d=\"M19 44 C17 40 20 36 25 35 C22 27 28 20 36 21 C39 13 51 13 55 21 C64 19 70 27 67 35 C73 36 75 42 71 47 C69 51 64 53 59 50 C55 56 48 55 44 50 C39 55 32 55 29 50 C25 53 21 50 19 44 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-baduk-black",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 61.4 34.7\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-9.3 -10.3)\">\n<ellipse cx=\"40\" cy=\"25\" rx=\"30\" ry=\"14\" fill=\"#333333\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M10 25 C10 51 70 51 70 25\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-baduk-white",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 61.4 38.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-9.3 -6.3)\">\n<ellipse cx=\"40\" cy=\"29\" rx=\"30\" ry=\"15\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<ellipse cx=\"40\" cy=\"23\" rx=\"30\" ry=\"16\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<path d=\"M13 25 C18 36 62 39 68 25\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-matchstick",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 80 110\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"36\" y=\"22\" width=\"8\" height=\"82\" rx=\"4\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<ellipse cx=\"40\" cy=\"18\" rx=\"10\" ry=\"13\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<ellipse cx=\"37\" cy=\"14\" rx=\"3\" ry=\"5\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"40\" y1=\"31\" x2=\"40\" y2=\"96\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-picture-frame",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 110 90\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"6\" y=\"8\" width=\"98\" height=\"70\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<rect x=\"18\" y=\"19\" width=\"74\" height=\"48\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"6\" y1=\"8\" x2=\"18\" y2=\"19\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"104\" y1=\"8\" x2=\"92\" y2=\"19\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"6\" y1=\"78\" x2=\"18\" y2=\"67\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"104\" y1=\"78\" x2=\"92\" y2=\"67\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<rect x=\"12\" y=\"78\" width=\"86\" height=\"5\" rx=\"2\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-balance-scale",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 140 110\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"48\" y=\"98\" width=\"44\" height=\"7\" rx=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<rect x=\"66\" y=\"39\" width=\"8\" height=\"61\" rx=\"2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<polygon points=\"70,16 62,39 78,39\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<polygon points=\"18,36 70,31 122,36 121,42 70,38 19,42\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"70\" cy=\"36\" r=\"5\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"24\" y1=\"41\" x2=\"13\" y2=\"70\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"24\" y1=\"41\" x2=\"39\" y2=\"70\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<path d=\"M9 70 Q26 94 43 70 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"116\" y1=\"41\" x2=\"101\" y2=\"70\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"116\" y1=\"41\" x2=\"127\" y2=\"70\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<path d=\"M97 70 Q114 94 131 70 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-thermometer",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 80 110\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"33\" y=\"8\" width=\"14\" height=\"81\" rx=\"7\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"40\" cy=\"91\" r=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<rect x=\"38\" y=\"34\" width=\"4\" height=\"57\" rx=\"2\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<circle cx=\"40\" cy=\"91\" r=\"8\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"24\" y1=\"19\" x2=\"31\" y2=\"19\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"27\" y1=\"30\" x2=\"31\" y2=\"30\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"24\" y1=\"41\" x2=\"31\" y2=\"41\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"27\" y1=\"52\" x2=\"31\" y2=\"52\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"24\" y1=\"63\" x2=\"31\" y2=\"63\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<line x1=\"27\" y1=\"74\" x2=\"31\" y2=\"74\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-dice",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 71.4 77.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-14.3 -11.3)\">\n<path d=\"M15 30 L50 12 L85 30 L85 70 L50 88 L15 70 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M15 30 L50 48 L85 30 M50 48 L50 88\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"50\" cy=\"30\" r=\"2.5\" fill=\"#333333\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"28\" cy=\"47\" r=\"2.5\" fill=\"#333333\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"38\" cy=\"68\" r=\"2.5\" fill=\"#333333\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"62\" cy=\"64\" r=\"2.5\" fill=\"#333333\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"68\" cy=\"55\" r=\"2.5\" fill=\"#333333\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"75\" cy=\"46\" r=\"2.5\" fill=\"#333333\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-train-side",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 157.4 50.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-7.3 -17.3)\">\n<rect x=\"8\" y=\"18\" width=\"74\" height=\"39\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"90\" y=\"18\" width=\"74\" height=\"39\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M82 48 L90 48\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"18\" y=\"26\" width=\"22\" height=\"16\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"48\" y=\"26\" width=\"22\" height=\"16\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"100\" y=\"26\" width=\"22\" height=\"16\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><rect x=\"130\" y=\"26\" width=\"22\" height=\"16\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"25\" cy=\"59\" r=\"8\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"65\" cy=\"59\" r=\"8\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"107\" cy=\"59\" r=\"8\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><circle cx=\"147\" cy=\"59\" r=\"8\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-tunnel",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 125.4 70.8\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-7.3 -11.9)\">\n<path d=\"M8 82 Q16 30 44 20 Q72 2 99 28 Q124 42 132 82 L96 82 L96 62 A26 30 0 0 0 44 62 L44 82 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"M44 82 L44 62 A26 30 0 0 1 96 62 L96 82\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-bridge",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 155.4 58.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-2.3 -14.3)\">\n  <line x1=\"6\" y1=\"15\" x2=\"154\" y2=\"15\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"8\" y1=\"24\" x2=\"152\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"13\" y1=\"15\" x2=\"13\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"32\" y1=\"15\" x2=\"32\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"51\" y1=\"15\" x2=\"51\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"70\" y1=\"15\" x2=\"70\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"89\" y1=\"15\" x2=\"89\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"108\" y1=\"15\" x2=\"108\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"127\" y1=\"15\" x2=\"127\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"146\" y1=\"15\" x2=\"146\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"3\" y=\"25\" width=\"154\" height=\"10\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <polygon points=\"31,35 50,35 47,68 34,68\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <polygon points=\"110,35 129,35 126,68 113,68\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"29\" y=\"66\" width=\"23\" height=\"6\" rx=\"1\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"108\" y=\"66\" width=\"23\" height=\"6\" rx=\"1\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-streetlamp",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 29.4 109.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-18.3 -11.3)\">\n  <rect x=\"19\" y=\"113\" width=\"16\" height=\"7\" rx=\"1.5\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <polygon points=\"22,108 32,108 35,113 19,113\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M25 109 L25 27 Q25 12 39 12\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M29 109 L29 28 Q29 16 40 16\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"25\" y1=\"48\" x2=\"29\" y2=\"48\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"25\" y1=\"76\" x2=\"29\" y2=\"76\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"24\" y=\"25\" width=\"6\" height=\"7\" rx=\"1\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"39\" y1=\"12\" x2=\"39\" y2=\"19\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M31 19 Q39 14 47 19 L44 25 L34 25 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <ellipse cx=\"39\" cy=\"25\" rx=\"5\" ry=\"2.2\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"27\" cy=\"23\" r=\"2.5\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-building",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 79.4 109.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-4.3 -5.3)\">\n  <rect x=\"8\" y=\"9\" width=\"72\" height=\"105\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"5\" y=\"6\" width=\"78\" height=\"7\" rx=\"1\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"16\" y=\"20\" width=\"14\" height=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"37\" y=\"20\" width=\"14\" height=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"58\" y=\"20\" width=\"14\" height=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"16\" y=\"43\" width=\"14\" height=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"37\" y=\"43\" width=\"14\" height=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"58\" y=\"43\" width=\"14\" height=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"16\" y=\"66\" width=\"14\" height=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"37\" y=\"66\" width=\"14\" height=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"58\" y=\"66\" width=\"14\" height=\"14\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"33\" y=\"91\" width=\"22\" height=\"23\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"44\" y1=\"91\" x2=\"44\" y2=\"114\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"48\" cy=\"103\" r=\"1.3\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-flagpole",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 61.4 124.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-5.3 -3.3)\">\n  <circle cx=\"20\" cy=\"8\" r=\"4\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"18\" y=\"12\" width=\"4\" height=\"105\" rx=\"1\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M22 17 Q36 12 48 18 Q56 22 66 17 L62 45 Q51 49 41 43 Q32 38 22 43 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M22 29 Q33 25 43 30 Q53 35 64 30\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"25\" y1=\"44\" x2=\"25\" y2=\"78\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"25\" cy=\"81\" r=\"2.2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <polygon points=\"14,116 26,116 30,122 10,122\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"6\" y=\"122\" width=\"28\" height=\"5\" rx=\"1\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-mountain",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 145.4 71.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-7.3 -13.3)\">\n<path d=\"M8 84 L66 14 L101 56 L120 34 L152 84\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-person-standing",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 37 92.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-5.5 -3.3)\">\n  <circle cx=\"24\" cy=\"12\" r=\"8\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M17 9 Q24 1 31 9 Q27 6 20 7 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M17 23 Q24 20 31 23 L34 54 Q29 58 24 58 Q19 58 14 54 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M16 25 Q12 27 10 37 L7 55 Q8 58 12 56 L18 36\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M32 25 Q36 27 38 37 L41 55 Q40 58 36 56 L30 36\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"9\" cy=\"58\" r=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"39\" cy=\"58\" r=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M16 54 L24 56 L22 91 L12 91 L17 76 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M24 56 L32 54 L31 76 L36 91 L26 91 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M11 90 Q17 87 23 91 L22 95 L10 95 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M26 91 Q32 87 37 91 L38 95 L26 95 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-person-walking",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 57.4 92.5\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-5.3 -3.3)\">\n  <circle cx=\"37\" cy=\"12\" r=\"8\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M30 10 Q35 1 44 8 Q40 6 33 7 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M31 23 Q37 20 43 24 L39 55 Q34 59 27 55 L25 37 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M30 26 Q25 25 21 30 L10 45 Q8 49 12 51 Q15 52 18 48 L29 38\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M42 27 Q47 29 50 35 L57 49 Q59 53 55 55 Q51 56 49 52 L38 38\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"10\" cy=\"50\" r=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"56\" cy=\"55\" r=\"3\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M28 54 L36 56 L48 82 L58 90 L52 95 L40 87 L26 68 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M28 55 L35 61 L22 78 L16 91 L7 91 L14 74 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M50 91 Q56 87 62 91 L61 95 L52 95 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M7 90 Q13 87 18 91 L17 95 L6 95 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-bicycle",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 110.4 61.2\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-4.3 -7.5)\">\n  <circle cx=\"25\" cy=\"48\" r=\"20\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"94\" cy=\"48\" r=\"20\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"25\" cy=\"48\" r=\"2.5\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"94\" cy=\"48\" r=\"2.5\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <polygon points=\"25,48 48,20 66,48\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <polyline points=\"25,48 66,48 53,24 86,24 94,48\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"48\" y1=\"20\" x2=\"53\" y2=\"24\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"66\" cy=\"48\" r=\"5.5\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"66\" y1=\"48\" x2=\"72\" y2=\"56\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"70\" y1=\"56\" x2=\"76\" y2=\"56\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"66\" y1=\"43\" x2=\"28\" y2=\"43\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"66\" y1=\"53\" x2=\"28\" y2=\"53\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"28\" y1=\"43\" x2=\"28\" y2=\"53\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"48\" y1=\"20\" x2=\"44\" y2=\"13\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"38\" y=\"10\" width=\"14\" height=\"4\" rx=\"2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"86\" y1=\"24\" x2=\"83\" y2=\"12\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M77 12 L88 12 L92 17\" fill=\"none\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"88\" y1=\"8\" x2=\"88\" y2=\"16\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-car-side",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 134 56.4\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-3.5 -8.3)\">\n  <path d=\"M5 48 L8 36 Q10 31 18 29 L38 26 L53 12 Q56 9 62 9 L91 9 Q97 10 102 15 L114 27 L128 30 Q135 32 136 39 L136 51 L125 54 L17 54 L5 51 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M45 26 L58 14 Q60 13 64 13 L73 13 L73 27 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M78 13 L90 13 Q94 14 98 18 L106 27 L78 27 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"75\" y1=\"11\" x2=\"75\" y2=\"53\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"108\" y1=\"29\" x2=\"112\" y2=\"53\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"84\" y=\"32\" width=\"8\" height=\"2.5\" rx=\"1.2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"4\" y=\"43\" width=\"9\" height=\"6\" rx=\"1.5\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"131\" y=\"40\" width=\"6\" height=\"7\" rx=\"1.2\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M17 54 Q18 41 31 41 Q44 41 45 54\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M101 54 Q102 41 115 41 Q128 41 129 54\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"31\" cy=\"54\" r=\"10\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"115\" cy=\"54\" r=\"10\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"31\" cy=\"54\" r=\"3\" fill=\"#c6c6c6\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"115\" cy=\"54\" r=\"3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"45\" y1=\"51\" x2=\"101\" y2=\"51\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "manifest-sanitize-boat",
+    "output": {
+      "svg": "<svg viewBox=\"0 0 127.4 54.9\" xmlns=\"http://www.w3.org/2000/svg\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(0 0)\">\n<g transform=\"translate(-7.3 -12.8)\">\n  <path d=\"M8 43 L134 43 L122 61 Q117 67 107 67 L30 67 Q21 66 17 59 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"13\" y1=\"51\" x2=\"128\" y2=\"51\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M43 42 L48 25 L93 25 L101 43 Z\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <polygon points=\"52,29 65,29 65,41 49,41\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <rect x=\"70\" y=\"29\" width=\"15\" height=\"12\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"92\" y1=\"25\" x2=\"92\" y2=\"14\" stroke=\"#333333\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <path d=\"M92 14 Q101 12 108 16 Q101 20 92 18 Z\" fill=\"#ececec\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"22\" y1=\"42\" x2=\"22\" y2=\"34\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"22\" y1=\"34\" x2=\"42\" y2=\"34\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"27\" y1=\"34\" x2=\"27\" y2=\"42\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <line x1=\"36\" y1=\"34\" x2=\"36\" y2=\"42\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"32\" cy=\"56\" r=\"3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <circle cx=\"109\" cy=\"56\" r=\"3\" fill=\"#ffffff\" stroke=\"#333333\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n</g>\n</g>\n</g>\n</svg>"
+    }
+  },
+  {
+    "id": "six-raw-grid",
+    "output": {
+      "stdoutSHA256": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+      "expectedSHA256": "140b8f727c0a9ad694ef6a184a5a3016aa20ac1fddec2671db9ac589b30a6176",
+      "sameRawBytes": true,
+      "returncode": 0,
+      "stderr": ""
+    }
+  },
+  {
+    "id": "six-raw-assets",
+    "output": {
+      "stdoutSHA256": "89fcca5c2ff931e35f374f8b1efdd9d02c63aec05b35a800acd39fcd4071f229",
+      "expectedSHA256": "89fcca5c2ff931e35f374f8b1efdd9d02c63aec05b35a800acd39fcd4071f229",
+      "sameRawBytes": true,
+      "returncode": 0,
+      "stderr": ""
+    }
+  },
+  {
+    "id": "six-raw-perspective",
+    "output": {
+      "stdoutSHA256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+      "expectedSHA256": "bf57f0c7edcd5289c4db7650cabcdee67aa95da76634144d08392135e10d6514",
+      "sameRawBytes": true,
+      "returncode": 0,
+      "stderr": ""
+    }
+  },
+  {
+    "id": "six-raw-units",
+    "output": {
+      "stdoutSHA256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+      "expectedSHA256": "0f12fa6385aeb65d58eec1add58ec25c2fed8449ff16e18363c1b37e0031ec60",
+      "sameRawBytes": true,
+      "returncode": 0,
+      "stderr": ""
+    }
+  },
+  {
+    "id": "six-raw-right-refused",
+    "output": {
+      "stdoutSHA256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+      "expectedSHA256": "a7c1691197127a831e7abe3d7379ce6a1401b225e49b1a301cbcb94b321a866d",
+      "sameRawBytes": true,
+      "returncode": 0,
+      "stderr": ""
+    }
+  },
+  {
+    "id": "six-raw-solid-object-refused",
+    "output": {
+      "stdoutSHA256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+      "expectedSHA256": "c21ebb494f30a1d04bea3084c3dc96d8ffbe44306c9167d0feacfa935a231e54",
+      "sameRawBytes": true,
+      "returncode": 0,
+      "stderr": ""
+    }
+  }
+]
