@@ -1,0 +1,130 @@
+{
+  "sourceSHA256Before": "4ff96e1b029e37c9fc36be751bec3248fd8391ad0999cb4b4610fd7efd12efcb",
+  "sourceSHA256After": "4ff96e1b029e37c9fc36be751bec3248fd8391ad0999cb4b4610fd7efd12efcb",
+  "triplesChecked": 10,
+  "allMathPassed": true,
+  "sqrtFreeProposalOnly": true,
+  "productionApplied": false,
+  "rows": [
+    {
+      "givenCA": 4,
+      "givenCB": 3,
+      "ownEnumeratedPositiveAB": 5,
+      "squareEquality": "9+16=25",
+      "own09CD": "12/5",
+      "own10BD": "9/5",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=3²+4²=25=5²이다. AB는 양수인 길이이므로 AB=5 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (3×4)/2=(5×CD)/2이므로 CD=12/5 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    },
+    {
+      "givenCA": 8,
+      "givenCB": 6,
+      "ownEnumeratedPositiveAB": 10,
+      "squareEquality": "36+64=100",
+      "own09CD": "24/5",
+      "own10BD": "18/5",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=6²+8²=100=10²이다. AB는 양수인 길이이므로 AB=10 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (6×8)/2=(10×CD)/2이므로 CD=24/5 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    },
+    {
+      "givenCA": 12,
+      "givenCB": 5,
+      "ownEnumeratedPositiveAB": 13,
+      "squareEquality": "25+144=169",
+      "own09CD": "60/13",
+      "own10BD": "25/13",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=5²+12²=169=13²이다. AB는 양수인 길이이므로 AB=13 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (5×12)/2=(13×CD)/2이므로 CD=60/13 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    },
+    {
+      "givenCA": 12,
+      "givenCB": 9,
+      "ownEnumeratedPositiveAB": 15,
+      "squareEquality": "81+144=225",
+      "own09CD": "36/5",
+      "own10BD": "27/5",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=9²+12²=225=15²이다. AB는 양수인 길이이므로 AB=15 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (9×12)/2=(15×CD)/2이므로 CD=36/5 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    },
+    {
+      "givenCA": 15,
+      "givenCB": 8,
+      "ownEnumeratedPositiveAB": 17,
+      "squareEquality": "64+225=289",
+      "own09CD": "120/17",
+      "own10BD": "64/17",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=8²+15²=289=17²이다. AB는 양수인 길이이므로 AB=17 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (8×15)/2=(17×CD)/2이므로 CD=120/17 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    },
+    {
+      "givenCA": 16,
+      "givenCB": 12,
+      "ownEnumeratedPositiveAB": 20,
+      "squareEquality": "144+256=400",
+      "own09CD": "48/5",
+      "own10BD": "36/5",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=12²+16²=400=20²이다. AB는 양수인 길이이므로 AB=20 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (12×16)/2=(20×CD)/2이므로 CD=48/5 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    },
+    {
+      "givenCA": 24,
+      "givenCB": 7,
+      "ownEnumeratedPositiveAB": 25,
+      "squareEquality": "49+576=625",
+      "own09CD": "168/25",
+      "own10BD": "49/25",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=7²+24²=625=25²이다. AB는 양수인 길이이므로 AB=25 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (7×24)/2=(25×CD)/2이므로 CD=168/25 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    },
+    {
+      "givenCA": 20,
+      "givenCB": 15,
+      "ownEnumeratedPositiveAB": 25,
+      "squareEquality": "225+400=625",
+      "own09CD": "12",
+      "own10BD": "9",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=15²+20²=625=25²이다. AB는 양수인 길이이므로 AB=25 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (15×20)/2=(25×CD)/2이므로 CD=12 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    },
+    {
+      "givenCA": 24,
+      "givenCB": 10,
+      "ownEnumeratedPositiveAB": 26,
+      "squareEquality": "100+576=676",
+      "own09CD": "120/13",
+      "own10BD": "50/13",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=10²+24²=676=26²이다. AB는 양수인 길이이므로 AB=26 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (10×24)/2=(26×CD)/2이므로 CD=120/13 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    },
+    {
+      "givenCA": 21,
+      "givenCB": 20,
+      "ownEnumeratedPositiveAB": 29,
+      "squareEquality": "400+441=841",
+      "own09CD": "420/29",
+      "own10BD": "400/29",
+      "proposal09Solution": "피타고라스 정리에 의해 AB²=20²+21²=841=29²이다. AB는 양수인 길이이므로 AB=29 cm이다. 삼각형 ABC의 넓이를 두 가지로 나타내면 (20×21)/2=(29×CD)/2이므로 CD=420/29 cm이다.",
+      "current10Method": "AA: ABC~CBD with A↔C,B↔B,C↔D; CB/BD=BA/CB, so CB²=BD*BA. No trig/discriminant/Vieta.",
+      "mathChecked": true,
+      "gradeApproved": false
+    }
+  ]
+}
