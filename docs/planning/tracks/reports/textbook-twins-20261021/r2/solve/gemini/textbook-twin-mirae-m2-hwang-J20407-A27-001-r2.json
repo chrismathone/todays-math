@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20407-A27-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "9aeec535-a07b-4ac8-acb8-436c87004ce8",
+ "startedAt": "2026-10-21T18:18:37+0900",
+ "elapsedSec": 21.6,
+ "studentSha256": {
+  "fig-1.png": "0d2c5922ff62f5671eb983d0e260a3757836ed2c6cf0d2e4eec1062afadadabd",
+  "student.json": "f34dda59528ada9475c55453330667918329b4b2afcfcfeb140b809f083ee131"
+ },
+ "promptSha256": "e6e2962031961528468f152ca8f4357b6596a7414e12bdc302742fcfab9fe7dd",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"24 kg\",\n  \"work\": \"그래프가 두 점 (4, 6200), (10, 7700)을 지나는 직선이므로 기울기는 (7700 - 6200) / (10 - 4) = 250이다. 일차함수 식을 y = 250x + b로 두면 6200 = 250 * 4 + b에서 b = 5200이므로 y = 250x + 5200이다. 배송비 y = 11200일 때 250x + 5200 = 11200, 250x = 6000에서 x = 24이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "24 kg",
+  "work": "그래프가 두 점 (4, 6200), (10, 7700)을 지나는 직선이므로 기울기는 (7700 - 6200) / (10 - 4) = 250이다. 일차함수 식을 y = 250x + b로 두면 6200 = 250 * 4 + b에서 b = 5200이므로 y = 250x + 5200이다. 배송비 y = 11200일 때 250x + 5200 = 11200, 250x = 6000에서 x = 24이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "226ec80963e62cc55fa0461a4ae1f9e507327e26abc5c0d49bb0c5205b7a582d"
+}

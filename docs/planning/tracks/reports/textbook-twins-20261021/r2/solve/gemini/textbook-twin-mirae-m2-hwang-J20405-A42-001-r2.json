@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20405-A42-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "826d9a03-e4b1-407a-8cf1-8d8fbc19eb08",
+ "startedAt": "2026-10-21T18:18:27+0900",
+ "elapsedSec": 10.0,
+ "studentSha256": {
+  "student.json": "f528d29bd4e12760c33c5254ec042a613bcba8dae3dbf6751e177c3f505273a8"
+ },
+ "promptSha256": "50c72f206bca42eadc640928cafa6d84a5a9a60f72ebf22a7096047481c5af13",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"①\",\n  \"work\": \"일차함수의 식을 $y=ax+b$라 하면 기울기 $a=-\\\\frac{5}{7}$이고, 점 $(0,~6)$에서 $y$축과 만나므로 $y$절편 $b=6$이다. 따라서 구하는 일차함수의 식은 $y=-\\\\frac{5}{7}x+6$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "①",
+  "work": "일차함수의 식을 $y=ax+b$라 하면 기울기 $a=-\\frac{5}{7}$이고, 점 $(0,~6)$에서 $y$축과 만나므로 $y$절편 $b=6$이다. 따라서 구하는 일차함수의 식은 $y=-\\frac{5}{7}x+6$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "75c63f89e66ce052cef4aa814c0ca97aa44b32b64253a49cd1f71cdfd77216b5"
+}

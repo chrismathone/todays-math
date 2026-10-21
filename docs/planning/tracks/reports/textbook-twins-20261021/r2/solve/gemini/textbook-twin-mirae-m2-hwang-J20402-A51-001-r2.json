@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A51-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "e852743e-fbae-45e7-80e8-8c5c76955b84",
+ "startedAt": "2026-10-21T18:17:15+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "student.json": "c2aa61a70570ce7d807f53d98b80dc9129652cdab7b780a3b89d906c6ba0e62f"
+ },
+ "promptSha256": "47de0cc7a0cce3bc6a928390613058e7ca2c0df97c9c1e7efca00c0083ea0f4f",
+ "freezeCommit": "7b97817f225f5653537ae9ac4776cbd67053317c",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"④\",\n  \"work\": \"일차함수 $y=\\\\frac{1}{2}x+b$의 그래프를 아래쪽으로 $5$만큼 평행이동하면 $y=\\\\frac{1}{2}x+b-5$이다. 이 직선이 $y=ax-4$와 일치하므로 기울기 $a=\\\\frac{1}{2}$, $y$절편 $b-5=-4$에서 $b=1$이다. 따라서 $a+b=\\\\frac{1}{2}+1=\\\\frac{3}{2}$이다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "④",
+  "work": "일차함수 $y=\\frac{1}{2}x+b$의 그래프를 아래쪽으로 $5$만큼 평행이동하면 $y=\\frac{1}{2}x+b-5$이다. 이 직선이 $y=ax-4$와 일치하므로 기울기 $a=\\frac{1}{2}$, $y$절편 $b-5=-4$에서 $b=1$이다. 따라서 $a+b=\\frac{1}{2}+1=\\frac{3}{2}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "672bf352baf4f7bc18734ce42531f95bef4d0d1ee18f3cfb1e55d0b3ca2e08ed"
+}

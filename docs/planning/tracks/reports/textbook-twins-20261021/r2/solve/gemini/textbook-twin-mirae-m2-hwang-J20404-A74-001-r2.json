@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20404-A74-001-r2",
+ "solver": "gemini",
+ "model": "gemini-3.8-flash-high",
+ "sessionId": "c0829c2b-1cbe-4d4f-bab7-88403fd21285",
+ "startedAt": "2026-10-21T18:18:06+0900",
+ "elapsedSec": 23.3,
+ "studentSha256": {
+  "fig-1.png": "2d98d3526e95e569f45fd21e2194ea7931c5512b032dcca7068f8bca75cc0845",
+  "student.json": "c8e0684ed7e11277eb6d56b916606f3d3cb8790ba7044e2304d5186e73fa792b"
+ },
+ "promptSha256": "543c6af8b50551e3459232caad1c5cf4d7d583db47a3fb06202f332106290df6",
+ "freezeCommit": "a691612b0209611f95027e77b9cb47960640fe37",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"②\",\n  \"work\": \"주어진 $y=ax+b$의 그래프에서 오른쪽 위로 향하므로 기울기 $a>0$, $y$축과 음의 부분에서 만나므로 $y$절편 $b<0$이다. 따라서 일차함수 $y=-bx-a$의 기울기는 $-b>0$, $y$절편은 $-a<0$이다. 기울기가 양수이고 $y$절편이 음수인 직선은 제1, 제3, 제4사분면을 지나고 제2사분면을 지나지 않는다.\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```\n",
+ "parsed": {
+  "answer": "②",
+  "work": "주어진 $y=ax+b$의 그래프에서 오른쪽 위로 향하므로 기울기 $a>0$, $y$축과 음의 부분에서 만나므로 $y$절편 $b<0$이다. 따라서 일차함수 $y=-bx-a$의 기울기는 $-b>0$, $y$절편은 $-a<0$이다. 기울기가 양수이고 $y$절편이 음수인 직선은 제1, 제3, 제4사분면을 지나고 제2사분면을 지나지 않는다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "287242b55ccee9dd72c9ae181d2f625d0bc24eec96261b9dee6dcebbac8c21a7"
+}

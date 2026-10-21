@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A52-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dea-25f0-72a2-9384-0c46a0a8dd28",
+ "startedAt": "2026-10-21T19:03:08+0900",
+ "elapsedSec": 8.2,
+ "studentSha256": {
+  "student.json": "e85f585b915d7785aac4b48d17b123a6b8dae6c35fcc494364ad68ea82836471"
+ },
+ "promptSha256": "901c22882efffc4c6a9664c0e321cdb9bdab808fced53d23000ad7bfed427fab",
+ "freezeCommit": "fce07a21b4e233b0e732cc87031fb5f53548992d",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"x절편이 8이므로 그래프는 점 (8, 0)을 지난다. 따라서 0 = -4 + a이므로 a = 4이다. y축에서는 x = 0이므로 만나는 점의 y좌표는 4이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "x절편이 8이므로 그래프는 점 (8, 0)을 지난다. 따라서 0 = -4 + a이므로 a = 4이다. y축에서는 x = 0이므로 만나는 점의 y좌표는 4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "b3152ca5e834bb64e6aeb3884a2dc8e93d3315157b7e7aa38b324a41f37311b3"
+}
