@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A71-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7d-496b-7f90-a5e1-c189f5d20227",
+ "startedAt": "2026-10-21T17:04:14+0900",
+ "elapsedSec": 11.3,
+ "studentSha256": {
+  "student.json": "4a70f83dc1497f0bdce2277f37ecbdce1b61492613abd399b42bf5db6bdef78e"
+ },
+ "promptSha256": "d6e81c5fc8573d6f3e53c694882d93b79ea8ebf5491744d5edde7125a71e97e6",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"분배법칙으로 전개하면 $-9x^{2}+54x-63+12x^{2}-42x+48$이다.\\n동류항끼리 계산하면 $3x^{2}+12x-15$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "분배법칙으로 전개하면 $-9x^{2}+54x-63+12x^{2}-42x+48$이다.\n동류항끼리 계산하면 $3x^{2}+12x-15$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "fc7becabaa7365d0a9a409aa210add2318b66b2cf8209f6653500928cdfe3cf2"
+}

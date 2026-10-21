@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A99-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7c-6123-7733-9acc-603a89d09176",
+ "startedAt": "2026-10-21T17:03:14+0900",
+ "elapsedSec": 11.7,
+ "studentSha256": {
+  "fig-1.png": "42e5deb76b744e7e927dfb07981b91175522800a714466536f4ce50f600699bc",
+  "student.json": "2354660f689650bdf3eac2f513224d89ba38851e122a00b3d943f835cf22aec8"
+ },
+ "promptSha256": "3357211be7293a5562fa70535fda3c2245cda5dc449b95181d1fad5e215161f7",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"길을 제외한 가로 길이의 합은 $(9a+2)-a=8a+2$, 세로 길이의 합은 $5a-2a=3a$이다.\\n따라서 길을 제외한 텃밭의 넓이는 $(8a+2)(3a)=24a^{2}+6a$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "길을 제외한 가로 길이의 합은 $(9a+2)-a=8a+2$, 세로 길이의 합은 $5a-2a=3a$이다.\n따라서 길을 제외한 텃밭의 넓이는 $(8a+2)(3a)=24a^{2}+6a$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "05fcc4b6be61038af009c5b784f4ecdc135fc8aae20b857ed1e87801326a7d62"
+}

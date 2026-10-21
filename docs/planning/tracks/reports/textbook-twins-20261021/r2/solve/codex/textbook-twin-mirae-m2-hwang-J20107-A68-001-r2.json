@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A68-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7c-bdfe-7eb2-9be9-15ddb09ecb5f",
+ "startedAt": "2026-10-21T17:03:38+0900",
+ "elapsedSec": 12.6,
+ "studentSha256": {
+  "student.json": "a0375ef323c05a44bcd5da958f3cb49511f7aec5826c2cf2e83a75df98259c59"
+ },
+ "promptSha256": "31b7a287d4518d9d659739158cbfd6043fd66b796d3c23d966e0b29555ca9dc4",
+ "freezeCommit": "ceac41924347c581a6318f5fefef0da7cbd69629",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"중괄호 안은 $9x-4y-x-6y=8x-10y$이다.\\n대괄호 안은 $4x-6y-(8x-10y)=-4x+4y$이다.\\n따라서 주어진 식은 $9y-(-4x+4y)=4x+5y$이므로 두 계수의 합은 $4+5=9$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "중괄호 안은 $9x-4y-x-6y=8x-10y$이다.\n대괄호 안은 $4x-6y-(8x-10y)=-4x+4y$이다.\n따라서 주어진 식은 $9y-(-4x+4y)=4x+5y$이므로 두 계수의 합은 $4+5=9$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "d3fcb46f288dd9e7c956d89f6600cc37f46475ff79e46390f5666e9dfdb3a0d4"
+}

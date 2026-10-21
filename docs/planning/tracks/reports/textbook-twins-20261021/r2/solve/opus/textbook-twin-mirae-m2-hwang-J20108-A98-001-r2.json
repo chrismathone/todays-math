@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A98-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "76e7d6e5-c18e-470d-9bdc-a61fefac5141",
+ "startedAt": "2026-10-21T16:54:48+0900",
+ "elapsedSec": 7.7,
+ "studentSha256": {
+  "fig-1.png": "694620b970edb35adac8fa7b3a5736b915f6fdb9c9b441255b758919a7340605",
+  "student.json": "ea017aa1d06efe9d9749caaf5b0364d749a240081ee5dada08dadd0c0e63b3b1"
+ },
+ "promptSha256": "2e1b7610ccce79e4a82880e386c30829d13c8e462fbfc98182747e4383971224",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "BC = 2(10a²b²+15ab)/(5ab) = 4ab+6.\n\n```json\n{\"answer\": \"$4ab+6$\", \"work\": \"삼각형 넓이 = (1/2)×BC×AH 이므로 BC = 2×(10a^2b^2+15ab)÷(5ab) = (20a^2b^2+30ab)÷(5ab) = 4ab+6\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$4ab+6$",
+  "work": "삼각형 넓이 = (1/2)×BC×AH 이므로 BC = 2×(10a^2b^2+15ab)÷(5ab) = (20a^2b^2+30ab)÷(5ab) = 4ab+6",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "88ce9351723c03ac1c979840ab5b65973dc357a1f0436c8e7dcb1efad7ecd71e"
+}

@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A93-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d7b-ee5d-7aa0-9854-930aab4b943c",
+ "startedAt": "2026-10-21T17:02:45+0900",
+ "elapsedSec": 13.8,
+ "studentSha256": {
+  "student.json": "4f03772a7de2a50e1750906a7e700941cfeb1cb80cbd23333d4881a61a696831"
+ },
+ "promptSha256": "1d45e700308fbb990b9a2f00e616285a7c59870b7a6b93e546b8960a30ab27db",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\n  \"answer\": \"$A=24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$\",\n  \"work\": \"나누어지는 식은 나누는 식과 몫의 곱이다.\\n$A=4xy^{2}(6x^{2}y-5xy+7)=24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$\",\n  \"confidence\": \"high\",\n  \"issues\": []\n}\n```",
+ "parsed": {
+  "answer": "$A=24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$",
+  "work": "나누어지는 식은 나누는 식과 몫의 곱이다.\n$A=4xy^{2}(6x^{2}y-5xy+7)=24x^{3}y^{3}-20x^{2}y^{3}+28xy^{2}$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "9b4653d3853dc61d2c6b22460ee28bb2596861dc5bf5e3761ff8db20dafbc070"
+}

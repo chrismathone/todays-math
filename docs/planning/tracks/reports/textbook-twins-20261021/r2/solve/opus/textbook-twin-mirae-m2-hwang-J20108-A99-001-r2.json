@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20108-A99-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "58abbb6f-a7f8-431d-8186-93db9cf17c4e",
+ "startedAt": "2026-10-21T16:54:53+0900",
+ "elapsedSec": 6.1,
+ "studentSha256": {
+  "fig-1.png": "42e5deb76b744e7e927dfb07981b91175522800a714466536f4ce50f600699bc",
+  "student.json": "2354660f689650bdf3eac2f513224d89ba38851e122a00b3d943f835cf22aec8"
+ },
+ "promptSha256": "271cdf142db04f8edb116d969b8bd1b72d7b10c7fd6ca996749dc66dbdac5983",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"④\", \"work\": \"길을 한쪽으로 모은다. 가로 길이: $(9a+2)-a=8a+2$. 세로 길이: $5a-2a=3a$. 넓이: $3a(8a+2)=24a^{2}+6a$\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "길을 한쪽으로 모은다. 가로 길이: $(9a+2)-a=8a+2$. 세로 길이: $5a-2a=3a$. 넓이: $3a(8a+2)=24a^{2}+6a$",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "a9b8eafaa7df067f5cdc0fc26840f721284f9f0119f4658ce6d018a1541578ba"
+}

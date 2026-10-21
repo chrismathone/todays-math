@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20107-A72-001-r2",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "f02acc13-793c-4b7f-ae0e-908f2f4b390f",
+ "startedAt": "2026-10-21T16:55:10+0900",
+ "elapsedSec": 6.1,
+ "studentSha256": {
+  "student.json": "6eb3649f60541057b144599f1abd31d22295feabdc808846c0c4b5d2ea6f5454"
+ },
+ "promptSha256": "781391e49f6f7763d7972f9e3ba9bed39cab1c0fe7ab7cfa618af899dec97ad6",
+ "freezeCommit": "e4f51deffd3efc6631b7224987faa1337091b3fc",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ $-2x+14y$ ⑵ $-2a-2b$ ⑶ $x-2y-5$ ⑷ $5a+b-30$\", \"work\": \"⑴ 7x-9x=-2x, 6y+8y=14y → -2x+14y\\n⑵ -8a+7b+6a-9b → -2a-2b\\n⑶ 13x-8y+7-12x+6y-12 → x-2y-5\\n⑷ 14a-7b-42-9a+8b+12 → 5a+b-30\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ $-2x+14y$ ⑵ $-2a-2b$ ⑶ $x-2y-5$ ⑷ $5a+b-30$",
+  "work": "⑴ 7x-9x=-2x, 6y+8y=14y → -2x+14y\n⑵ -8a+7b+6a-9b → -2a-2b\n⑶ 13x-8y+7-12x+6y-12 → x-2y-5\n⑷ 14a-7b-42-9a+8b+12 → 5a+b-30",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "1a0548cc5d550417e84d50a03f32091fff9711976d061946a30ccb72ff8a0bef"
+}
