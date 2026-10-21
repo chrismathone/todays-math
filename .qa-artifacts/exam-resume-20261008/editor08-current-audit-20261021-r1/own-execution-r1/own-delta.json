@@ -1,0 +1,9 @@
+{
+  "RootChanges": {},
+  "fixtureContractAdaptationBeforeFirstRun": [
+    "Use actual PointRef{x,y}, not own unexecuted array representation",
+    "Use numberFigureObjects actual commit path; prepare may reassign transient IDs on reimport, never require ID equality across reimport",
+    "Added partial/depth/lock/resume/name controls; long128-character stack expectation remains preserve-or-reject, no relaxation"
+  ],
+  "preparedArtifactsUnchanged": true
+}

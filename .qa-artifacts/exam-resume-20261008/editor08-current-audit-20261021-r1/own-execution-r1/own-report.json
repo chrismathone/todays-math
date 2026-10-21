@@ -1,0 +1,126 @@
+{
+  "status": "TECHNICAL HOLD: long nested group history silently becomes unreadable; other113 bounded controls pass",
+  "NodeEnded": true,
+  "actualUnique": 114,
+  "passed": 113,
+  "failed": 1,
+  "cohorts": {
+    "fakeFetchIntegrityRetryCache": 4,
+    "legacyOwnFrames": 39,
+    "current41Insertion": 41,
+    "insertionInvalidContracts": 8,
+    "stackReaderBounds": 5,
+    "nestedBasic": 1,
+    "longStackHold": 1,
+    "typedPerspective": 5,
+    "projectedVsFlat": 1,
+    "unknownFetchNoService": 1,
+    "partialUngroup": 1,
+    "depth64ShortNames": 1,
+    "numberedCommitResume": 1,
+    "sizeLock": 1,
+    "groupNameReject": 4
+  },
+  "finding": {
+    "id": "E08-STACK-SERIALIZED-LIMIT",
+    "actualFailure": {
+      "id": "long-stack-must-preserve-or-reject-before-commit",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: history silently dropped\n\n0 !== 64\n\n    at C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\editor08-current-audit-20261021-r1\\own-execution-r1\\own-runner.cjs:41:449\n    at test (C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\editor08-current-audit-20261021-r1\\own-execution-r1\\own-runner.cjs:18:76)\n    at C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.qa-artifacts\\exam-resume-20261008\\editor08-current-audit-20261021-r1\\own-execution-r1\\own-runner.cjs:41:8"
+    },
+    "actualSequence": "Start ordinary2-objectSVG, repeatedly push same math object with128-character safe group names; first saved previous-group is null. At64th push, prior63-layer JSON8128 chars becomes64-layer JSON8259 chars. Depth guard permits it, but subsequent read rejects>8192 and returns[].",
+    "staticVsRuntime": "Prior static8123->8254 witness uses all-string entries. Actual DOM starts null and reaches8128->8259 at64th push; same combined-length defect, recorded separately, no force-fit.",
+    "impact": "Grouping-history metadata becomes unreadable, so later push/pop may silently lose provenance. This does not by itself show coordinate/answer/DB corruption.",
+    "minimalRecommendation": "Check complete proposed JSON.length<=8192 BEFORE committing any mutated result. Distinguish absent stack from invalid existing stack; push/pop must reject invalid/overlong/corrupt existing metadata instead of interpreting it as empty. Preserve original SVG on failure.",
+    "pendingNegative": "Reader rejects invalid formats tested; actual mutation push/pop with preexisting invalid metadata not independently executed in this run. Source shows readGroupStack fallback[] flows into both mutators, requiring separate repair regression."
+  },
+  "sourceBinding": {
+    "initialToAfterEqual": true,
+    "filesIncludingPublicAssets": 123,
+    "actualRootModulesImported": {
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSvgEditing.ts": "4ff2950fe18f290a15785254a23f6b7033bfe22ae09179890771300ef28bc542",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureGridMetadata.ts": "4e66e4d293b280e79ed0da6072f2aa0e3f2a00a62166e45d287fe0a256f020db",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureAssetGeometry.ts": "0a8905bf82001a2877856bb95b8202e6b6d3ab022a42ee98a573dd00a254f679",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\asset-editor-geometry.json": "918ddc47b9e204c63309f8257bc13e94bf9a21568dd70653f79c74f5fe480a9b",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\asset-editor-geometry-legacy-20261021.json": "ebaa87fb68464fba6dcace09e77fc8f9f42fd0e8b4943fafc2868bac7ae63ba8",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureEditGeometry.ts": "25a371c33215e3b76692b585bb3ea97d6cc08945bb18d657bb2e352ce605a4d5",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureAssetLibrary.ts": "4c381b1790b772c1bd7ba0fa5e7f19b782aba19be2e3ad449e25e7534bbaf5bc",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\assetCatalog.ts": "12b0cfba1551fb0e6cd5b2918a05256e007ed6591e575441b66cd4347f8be867",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureAngleMark.ts": "6c98717fd33cac2a55b4aff49cb9975b54646f734e39c05a61539164577494f4",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFlip.ts": "3754a7f4fff448779ca88cfa9647b86bc9c11770c57ca80029053460f6fdbfe8",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureClipboard.ts": "f1873f72f4abc8dbdf552adafd70547307a8af811d56ab83426fe1ae0f8563f1",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureEditElements.ts": "96205f545a70906d1002766e329bf2c236cd3c67da9f4e1552e8ed7991f07279",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\dev-ai\\figure-edit-contract.ts": "35e39851d716799440ab2c3bbea702348165862eb2a9647c676c38eb7291eee7",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureHandles.ts": "3254de796386eab3fed031e58385b6565ff31def2544a230aed8da20cd0e82cc",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureObjectNames.ts": "b0fb5d7b4128a45968c18009cb05b4efa007febecedd67a2a051b734a9a81ff4",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\FigureLabelInput.tsx": "9ef127de15db20aac11dbf7485a4053a9a69a64654095df5598427d0b1a37e68",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\hwpEquation.ts": "53fa803e506bb7a4859719656a6bef2ae4fd50f201c3d40a07067434b8f1122c",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\math\\hwpEquationVocab.json": "cc3e6775631215aea45f57e6313c50f01abc08c0aa93cffe1e7623af26a1daf1",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSymbols.ts": "c9440b6fbd7e6b1b88ac78755dc63d51bc5406f8144f1c2b81d9cf5b9ad250fc",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureObjectGroups.ts": "724880c56eedd210d2e49d53a6bfd3ed128bb08fe1b05f65382e1b7c89ca7171",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSegmentMarks.ts": "fce8e090c8c839b9420db4329b6828b17fb60314c8ecaff854a15a50a8a1c830",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureSizeLock.ts": "4979cdfdde1f8dcde9edb37cae08a81ac1fb0daaa6e07de46ad0f5a3ef74899f",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFaceEditing.ts": "f8f33e4b341b84efd385e815f40790edaf1f9420d72247daa9b9e6c059e5d192",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFaceGeometry.ts": "c03d902de5a7d175ede53ec15e6ccf16540dbe4b98344aa3672d965a85f40a91",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFaceSources.ts": "0f6d101b83184150516c34fc4da72d38bbba2e6335a4261f288d01d42c04a1a0",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureShapeAdjust.ts": "68d5250abb3bb45d94f1299ec32043c7bd6f9ff0878f1977db895fc62c1e5480",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureFrame.ts": "d60dca34cc0989fb38c71b1247db8ce411dd81dc11cb86e77aecdc9cfd80591c",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureTypeset.ts": "2566a6fec5deb8a553a805258ebc0505a17eb72582f1e1197df7b9a3fa9cf1d3",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureTextBackground.ts": "87d45b03c509f955d57d8658536c170bf57dae089918858eba076dde2831c8c9",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureMidLabel.ts": "e605e5ca728d7ffc7b2a1b388634da3f2f723ffe4ccd2efe09fb25590a152a0a",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureRotate.ts": "8671be1030b525d06debea6e89adba928b477e6d275f61b542580d0f920aef25",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureBake.ts": "d4558484409c8a22f451dd15a909a71ba075cfa3de5cf6b3c10b18a4e8745445",
+      "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\components\\unified\\figure-editor\\figureMirror.ts": "114a76ca3891d0e718b74d336330e826bdf645ec4d9929c52ac4cafd3a0b87c6"
+    },
+    "fixtureSHA256": "1c75622bc62e4f3fc3b7c56a5628e768e17ccaf5f8cb6b16e10c4000d24cdcab",
+    "runtimeResultSHA256": "b748c222231d974cbf1480d14741f0bd7b5cf9609435758569183409321fd50f"
+  },
+  "runtime": {
+    "heapLimitBytes": 226492416,
+    "preflightAvailableBytes": 5691097088,
+    "NodeProcessesActualCohort": 1,
+    "browser": 0,
+    "SourceDExecution": 0,
+    "realNetworkCalls": 0,
+    "fakeFetchCalls": 41,
+    "DB": 0,
+    "model": 0
+  },
+  "positiveEvidence": [
+    "41 current stock bodies fetched only from controlled local fixture responses then inserted through actual Root module; base math line/value coordinates unchanged",
+    "39 old identities recognized with each own historical viewBox",
+    "Invalid body/slug/viewBox/center/ID collision rejected",
+    "Actual nested and selected-subset ungroup, short-name64-depth guard and lock checks passed",
+    "Actual typed perspective rejects nonboolean/right absent, planar mismatched right rejects; projected display path is not math-right-angle evidence",
+    "Actual numbered commit/reimport preserves object numbers and registered geometry; transient IDs may be reassigned by prepare"
+  ],
+  "harnessAdaptation": {
+    "RootChanges": {},
+    "fixtureContractAdaptationBeforeFirstRun": [
+      "Use actual PointRef{x,y}, not own unexecuted array representation",
+      "Use numberFigureObjects actual commit path; prepare may reassign transient IDs on reimport, never require ID equality across reimport",
+      "Added partial/depth/lock/resume/name controls; long128-character stack expectation remains preserve-or-reject, no relaxation"
+    ],
+    "preparedArtifactsUnchanged": true
+  },
+  "limits": [
+    "Direct function/jsdom only, no full React keyboard/focus/undo/redo/history UI",
+    "Fake transport intentionally supplies Root local bytes; not HTTP/browser fetch or public deployment proof",
+    "No image/pixel mathematical oracle",
+    "No semantic source/grade/rights/native/operational approvals",
+    "Parent577tests/browser4 are not included",
+    "Current failure not fixed or relabeled, production unchanged"
+  ],
+  "preparedEvidenceUnchanged": true,
+  "artifactSHA256": {
+    "own-after.json": "03c0efe7066e6fa19de47da90fe43b954a43a61af5eac05d85833cff30a840e2",
+    "own-before.json": "03c0efe7066e6fa19de47da90fe43b954a43a61af5eac05d85833cff30a840e2",
+    "own-delta.json": "8de79547c1382444202dc492be6a80f7080b264f1f524d5fc36d3104ab2afeb5",
+    "own-failing-stack-input.json": "8b0c1656d0eeee79566612ad571111424386c7b181ca90cea1461c9c0106c35c",
+    "own-fixtures.json": "1c75622bc62e4f3fc3b7c56a5628e768e17ccaf5f8cb6b16e10c4000d24cdcab",
+    "own-go-freeze.json": "cca940b8e2ab4733734c386180ebde09b982f68882f88cb06e4651b435cabffe",
+    "own-probe.txt": "c98bba28710ebdb9fd7766b38f3e5b273ecd245649b9353b113f3cd94892fcbc",
+    "own-runner.cjs": "18f4ed63f58a0a1a8f3bbdcf0bd9084c43caec9f94109fbd57e2be7b68a59822",
+    "own-runtime-results.json": "b748c222231d974cbf1480d14741f0bd7b5cf9609435758569183409321fd50f"
+  }
+}
