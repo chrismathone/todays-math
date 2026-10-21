@@ -899,10 +899,14 @@ export function FigureEditor({
         case "undo":
           e.preventDefault();
           undo();
+          // Undo clears selection and unmounts a focused detail button. Keep
+          // the next shortcut (redo, etc.) inside this editor's focus boundary.
+          surface.current?.focus();
           return;
         case "redo":
           e.preventDefault();
           redo();
+          surface.current?.focus();
           return;
         case "selectAll":
           e.preventDefault();
@@ -969,6 +973,7 @@ export function FigureEditor({
         case "delete":
           e.preventDefault();
           remove();
+          surface.current?.focus();
           return;
         case "nudge": {
           if (!selectedIds.length) return;

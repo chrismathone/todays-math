@@ -1,0 +1,80 @@
+{
+  "sourceSpec": {
+    "version": "graph-1",
+    "xRange": [
+      0,
+      8
+    ],
+    "yRange": [
+      0,
+      5
+    ],
+    "axes": false,
+    "grid": {
+      "step": 1
+    },
+    "segments": [
+      {
+        "from": [
+          1,
+          1
+        ],
+        "to": [
+          4,
+          4
+        ],
+        "arrow": true
+      },
+      {
+        "from": [
+          5,
+          4
+        ],
+        "to": [
+          7,
+          1
+        ],
+        "arrow": true
+      }
+    ],
+    "labels": [
+      {
+        "at": [
+          2.5,
+          2.5
+        ],
+        "text": "$\\vec{AB}$",
+        "dx": -18
+      },
+      {
+        "at": [
+          6,
+          2.5
+        ],
+        "text": "$\\vec{a}$",
+        "dx": 18
+      },
+      {
+        "at": [
+          4,
+          0.5
+        ],
+        "text": "30 m"
+      }
+    ],
+    "assets": [
+      {
+        "asset": "house",
+        "at": [
+          6,
+          0.5
+        ],
+        "width": 0.75
+      }
+    ]
+  },
+  "sourceSVG_SHA256": "6f3c280bc9f470e893f0a2ceaed0a0b7809e9e796ed8393e5129f6b4ec13b729",
+  "sourceRepositoryWrites": 0,
+  "dbWrites": 0,
+  "originalExamUsed": false
+}

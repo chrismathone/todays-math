@@ -40,6 +40,7 @@ import { FACE_ATTR, FACE_SEED_ATTR } from "./figureFaceSources";
 import { sampleFigurePath } from "./figureFlip";
 import { widenFigureFrame } from "./figureFrame";
 import { isSizeLocked } from "./figureSizeLock";
+import { figureAssetLocalFrame } from "./figureAssetGeometry";
 import {
   editableFigureDoc,
   serializeFigureSvg,
@@ -323,6 +324,7 @@ const objectOf = (node: Element): FigureObject => ({
  * (그것들은 요소 좌표계에 붙어 좌표만 돌리면 제자리에 남는다). 화살촉(marker)은 선 방향을 따라가니 괜찮다.
  */
 const keepsFrame = (node: Element) =>
+  node.hasAttribute("data-asset") ||
   node.hasAttribute("data-function") ||
   [...node.attributes].some(
     ({ name, value }) => !name.startsWith("marker") && /url\(/i.test(value),
@@ -360,6 +362,10 @@ function localPoints(node: Element): Point[] {
 
 /** 경계 상자에 넣을 점(그림 좌표). 원·타원은 변환 뒤의 정확한 상자 — 옮긴 뒤의 상자가 상자를 옮긴 것과 같다. */
 function extentPoints(node: Element, m: Affine): Point[] {
+  if (node.hasAttribute("data-asset")) {
+    const frame = figureAssetLocalFrame(node);
+    if (frame) return frame.map((point) => applyPoint(m, point));
+  }
   if (node.localName === "circle" || node.localName === "ellipse") {
     const n = (name: string) => first(node.getAttribute(name));
     const rx = node.localName === "circle" ? n("r") : n("rx"),

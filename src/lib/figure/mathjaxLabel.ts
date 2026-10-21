@@ -109,7 +109,10 @@ function toTex(label: string): string {
   const romanized = wasMath
     ? text.replace(/[A-Za-z]{2,}/g, (word) => `\\mathrm{${word}}`)
     : text.replace(/[A-Za-z]{2,}|[A-Z]/g, (word) => `\\mathrm{${word}}`);
-  return romanized.replace(/ +/g, "\\,").replace(/°/g, "^\\circ ");
+  // 숫자 뒤에 띄어 쓴 한 글자 단위(`30 m`·`5 g`)도 정자체 — 낱글자라 위 규칙에 안 걸린다
+  // (math-figure-editor 2026-10-21, 엔진 label_markup `_romanize_unit_letters` 와 같은 규칙). `2m` 은 2×m 일 수 있어 그대로.
+  const units = romanized.replace(/(\d +)([mg])(?![A-Za-z{])/g, "$1\\mathrm{$2}");
+  return units.replace(/ +/g, "\\,").replace(/°/g, "^\\circ ");
 }
 
 /**

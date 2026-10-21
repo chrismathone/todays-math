@@ -122,6 +122,34 @@ const selectAll = () => {
 };
 
 describe("90° 회전 — 선택한 요소 칸", () => {
+  it("요소 목록 단추에서 삭제해도 캔버스에 초점을 남겨 단축키로 복원한다", () => {
+    open();
+    pickNumber(1);
+    const button = document.querySelector<HTMLButtonElement>('[data-figure-list-number="1"]')!;
+    button.focus();
+    fireEvent.keyDown(button, { key: "Delete" });
+    expect(canvas().querySelector("line")).toBeNull();
+    expect(surface()).toHaveFocus();
+    fireEvent.keyDown(surface(), { key: "z", ctrlKey: true });
+    expect(canvas().querySelector("line")).not.toBeNull();
+  });
+
+  it("회전 상세 단추에서 단축키로 되돌려도 초점을 유지해 곧바로 다시 실행한다", () => {
+    open();
+    pickNumber(1);
+    const button = cw();
+    button.focus();
+    fireEvent.click(button);
+    expect(button).toHaveFocus();
+    fireEvent.keyDown(button, { key: "z", ctrlKey: true });
+    expect(button).not.toBeInTheDocument();
+    expect(surface()).toHaveFocus();
+    expect(coords(canvas().querySelector("line")!, ["x1", "y1", "x2", "y2"])).toEqual(["20", "30", "80", "90"]);
+    fireEvent.keyDown(surface(), { key: "y", ctrlKey: true });
+    expect(surface()).toHaveFocus();
+    expect(coords(canvas().querySelector("line")!, ["x1", "y1", "x2", "y2"])).toEqual(["80", "30", "20", "90"]);
+  });
+
   it("아무것도 안 고르면 단추가 없다", () => {
     open();
     expect(rotateRow()).toBeNull();

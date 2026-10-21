@@ -1,4 +1,5 @@
 import { isFigureGridLayer } from './figureGridMetadata';
+import { isFigureAssetLayer } from './figureAssetGeometry';
 
 export const SVG_NS = "http://www.w3.org/2000/svg";
 const SHAPES = "path,line,polyline,polygon,circle,ellipse,rect,text";
@@ -18,7 +19,7 @@ const STYLE_PROPERTIES = new Set(
   ),
 );
 const METADATA =
-  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last|grid)$/;
+  /^data-(?:mj|function|function-viewbox|mathgen-clipboard|label|anchor|halo|x|y|base|px|py|fs|w|a|d|group|size-locked|text-bg|line-gap|face|face-seed|shape|n|n-last|grid|asset)$/;
 const safeValue = (value: string) =>
   !/[\\<>@\u0000-\u001f]/.test(value) &&
   !/(?:javascript|vbscript|data|https?|file)\s*:|\/\*|expression\s*\(/i.test(
@@ -242,9 +243,19 @@ export function prepareFigureSvg(source?: string) {
     );
   }
   let index = 0;
-  for (const node of doc.querySelectorAll(SHAPES)) {
+  // Only a matching registered stock body becomes one picture object. Unknown,
+  // forged or edited markers keep their visible geometry as ordinary elements.
+  for (const node of doc.querySelectorAll("[data-asset]")) {
+    if (!isFigureAssetLayer(node)) node.removeAttribute("data-asset");
+  }
+  // 그림 조각(`g[data-asset]`, scene_assets.py)은 묶음 통째가 요소 하나 — 안의 도형은 따로 세지 않는다
+  // (건물 하나가 요소 마흔 개·번호표 마흔 개·AI 요소 목록 마흔 줄이 되지 않게. math-figure-editor 추가).
+  for (const node of doc.querySelectorAll(`${SHAPES},g[data-asset]`)) {
     // `[data-grid]` — 모눈 배경 층(figureGrid.ts)은 요소가 아니다(math-figure-editor 추가).
-    if (!node.closest("defs,clipPath,mask,marker,pattern,[data-grid]")) {
+    if (
+      !node.closest("defs,clipPath,mask,marker,pattern,[data-grid]") &&
+      !node.parentElement?.closest("[data-asset]")
+    ) {
       node.setAttribute("data-object-id", `obj-${index++}`);
       // 번호는 요소에 붙은 값 — 틀리게 적힌 것은 지우고 아래 writeNumbers 가 새로 준다
       if (!validNumber(node.getAttribute(NUMBER_ATTR)))

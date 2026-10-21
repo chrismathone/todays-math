@@ -1,3 +1,4 @@
+import { assetLabel } from "@/lib/figure/assetCatalog";
 import { isFigureMathLabel } from "./FigureLabelInput";
 
 export const NAMES: Record<string, string> = {
@@ -78,6 +79,8 @@ export const objectName = (
   angles?: FigureAngleKinds,
 ) =>
   (o.id === undefined ? undefined : angles?.get(o.id)) ??
+  // 그림 조각(math-figure-editor) — «건물»·«집»처럼 그 이름
+  (o.attrs["data-asset"] !== undefined ? assetLabel(o.attrs["data-asset"]) : undefined) ??
   (o.attrs["data-function"]
     ? "함수 그래프"
     : o.type === "text"

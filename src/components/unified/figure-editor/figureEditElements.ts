@@ -13,6 +13,7 @@ import { figureHandles } from "./figureHandles";
 import { objectName } from "./figureObjectNames";
 import { figureAngleKinds } from "./figureObjectGroups";
 import { isSizeLocked } from "./figureSizeLock";
+import { figureAssetRootFrame } from "./figureAssetGeometry";
 import {
   applyPoint,
   elementMatrix,
@@ -87,6 +88,22 @@ function boxOf(o: FigureObject, node: Element) {
     tenth(Math.max(...xs)),
     tenth(Math.max(...ys)),
   ] as [number, number, number, number];
+}
+
+/**
+ * 검증된 실물 조각의 보수적인 틀 상자 — 경로의 숫자를 좌표 쌍으로 추측하지 않는다.
+ * AI 에게는 조각 하나를 요소 한 줄(이름 + 상자)로만 보낸다 — 안의 도형 수십 개를 늘어놓지 않는다(math-figure-editor).
+ */
+function assetBox(node: Element) {
+  const frame = figureAssetRootFrame(node);
+  if (!frame) return undefined;
+  const xs = frame.map(([x]) => x), ys = frame.map(([, y]) => y);
+  return [tenth(Math.min(...xs)), tenth(Math.min(...ys)), tenth(Math.max(...xs)), tenth(Math.max(...ys))] as [
+    number,
+    number,
+    number,
+    number,
+  ];
 }
 
 /** 점 이름 라벨(A · P′ · A_1 …) — 곡선 뒤집기(figureFlip.ts)도 «값 글자가 아닌 것»을 이것으로 가른다. */
@@ -215,6 +232,12 @@ export function describeFigureForEdit(svg: string): FigureEditFigure {
       if (group) element.role = group.slice(0, 40);
       if (o.type === "text")
         element.text = (o.attrs["data-mj"] ?? o.text).slice(0, 200);
+      if (o.attrs["data-asset"] !== undefined) {
+        const box = assetBox(node);
+        if (box) element.box = box;
+        if (isSizeLocked(o)) element.locked = true;
+        return element;
+      }
       const points = keyPoints(o);
       if (points.length && points.length <= FIGURE_EDIT_MAX_POINTS)
         element.points = points.map((p) => roundPoint(applyPoint(matrix, p)));
