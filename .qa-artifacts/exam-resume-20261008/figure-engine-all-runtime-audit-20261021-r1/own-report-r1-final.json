@@ -1,0 +1,70 @@
+{
+  "scope": "immutable R1 actual Python runtime, not latest null-fixed Root",
+  "status": "R1_TECHNICAL_HOLD_138_OF139_AND_POSTRUN_ROOT_DRIFT",
+  "counts": {
+    "unique": 139,
+    "passed": 138,
+    "failed": 1,
+    "sixRawCLIByteMatches": 6,
+    "registeredAssetsLoadedSanitized": 39,
+    "initial133ReplayedNotSummed": 133,
+    "supplementalNullCallsNotUniqueCount": 2,
+    "newQuestionGradeRightsOperationalApproval": 0
+  },
+  "failed": [
+    {
+      "id": "assets-container-null",
+      "kind": "actual render_json",
+      "expected": "reject",
+      "pass": false,
+      "inputSHA256": "19b6b551c2ad9cff0d16349c0ec2a249201792343dc08dc501becd44cd0a1464",
+      "outputSHA256": "78e8bc9b6b222a270981c9868e9c9cec92b1a9b2e7af177723f071237b54d617",
+      "observation": {
+        "svgSHA256": "100f5450c88824bf839eef2659095133fd61c7360158a7cd0fc8124e84245663",
+        "svgBytes": 308
+      }
+    }
+  ],
+  "bindings": {
+    "executionBefore": "own-run2/own-before.json",
+    "executionAfter": "own-run2/own-after.json",
+    "duringRunDrift": [],
+    "laterFinalAfter": "own-final-after.json",
+    "laterDrift": [
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\scene_assets.py",
+        "executedSHA256": "f71193de5083814ac11674e8d863bf4c710bde48cd8956bce5ad5ccf1113bb18",
+        "laterSHA256": "2e2af817f5edc808f676c4d9ad9e289a0d063db808a481090a62ca10122c9f95"
+      }
+    ],
+    "inputSHA256": "4da31aab7b30cb003d58a329fa0817e2fd3b7915c7f8df375ed419518fdea26b",
+    "outputSHA256": "f5d306a71e1ca89cbf21d489c28c24c309d2af1a00f086b5395d1282aca5575b",
+    "resultSHA256": "4d0dabb885d9b1bce23807aa03f689322d242d4e2de7a80824cc87eb87d041c3",
+    "initial133DigestsMatchRerun": true
+  },
+  "observations": [
+    "explicit assets:null produced identical SVG to no-assets base; strict expectation stayed reject",
+    "all6 own raw stdout comparisons matched expected bytes; each exited0 with empty stderr",
+    "projected marker acceptance is not screen/world orthogonality proof",
+    "syntactic asset groups may remain accepted without body/provenance assurance",
+    "unit presentation is not unit/variable semantic truth"
+  ],
+  "diagnostics": [
+    "first Python child launch blocked by own hook because Windows executable event=None; explicit executable corrected in new script/folder, original script/progress retained",
+    "first finalization assertion caught actual post-run scene_assets.py drift and did not issue current-source pass",
+    "subsequent diagnostic used default cp949 read_text and failed UnicodeDecodeError; explicit encoding=utf8 diagnostic succeeded; transcript preserved in own-diagnostic-receipt.json"
+  ],
+  "RootChangeAcknowledgement": "User confirmed null-fix occurred before final hash receipt and requested freshR2; R1 is not approval of2e2af817current code",
+  "runtimePolicies": {
+    "dontWriteBytecode": true,
+    "RootOrSourceDWrites": 0,
+    "NodeBrowserDBModelCalls": 0,
+    "externalCheckerExecuted": false
+  },
+  "limits": [
+    "No whole-engine/mathematical/grade/rights/native/operational approval",
+    "39 body sanitize checks do not prove semantics/licence",
+    "R1 hash inventory covered105 code/asset files but not engine-catalog.json; renderer did not consume it. R2 will explicitly add catalogue metadata hash.",
+    "NaN/Infinity fixtures intentionally use Python extended JSON literals; receipts are not public JSON contract."
+  ]
+}

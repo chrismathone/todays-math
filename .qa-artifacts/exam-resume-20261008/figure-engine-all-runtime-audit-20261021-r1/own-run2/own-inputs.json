@@ -1,0 +1,3279 @@
+[
+  {
+    "id": "r7-true-projected",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": true
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-false-planar",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": false
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-nonboolean-string",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": "true"
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-nonboolean-number",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": 1
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-nonboolean-null",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": null
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-perspective-without-right",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": false,
+          "perspective": true
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-ordinary-right-False",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          100,
+          200
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": false
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-ordinary-right-True",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          100,
+          200
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": true
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-coincident-ray-False",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          100,
+          100
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": false
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-coincident-ray-True",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          100,
+          100
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": true
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-collinear-ray-False",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          300,
+          100
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": false
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-collinear-ray-True",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          300,
+          100
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": true
+        }
+      }
+    }
+  },
+  {
+    "id": "r7-known-math-object-can",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "can",
+          "at": "V",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "r7-known-math-object-cup-cylinder",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "cup-cylinder",
+          "at": "V",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "r7-known-math-object-cup-cone",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "cup-cone",
+          "at": "V",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "r7-known-math-object-bowl",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "bowl",
+          "at": "V",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "r7-known-math-object-dice",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "dice",
+          "at": "V",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "r7-known-math-object-ferris-wheel",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "ferris-wheel",
+          "at": "V",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "r7-known-math-object-pizza",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "pizza",
+          "at": "V",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "r7-unit-variable-30 m",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "30 m",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-2m",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "2m",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-5 g",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "5 g",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-g/h",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "g/h",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-$30 m$",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "$30 m$",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-2 L",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "2 L",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 mL",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "3 mL",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 dL",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "3 dL",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 kL",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "3 kL",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 m",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "3 m",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-unit-variable-3 m",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          180,
+          0
+        ],
+        "v": [
+          90,
+          30
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "3 m",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "r7-asset-group-forged-known",
+    "input": "<svg viewBox=\"0 0 100 100\"><g data-asset=\"house\"><line x1=\"0\" y1=\"0\" x2=\"50\" y2=\"50\"/></g></svg>"
+  },
+  {
+    "id": "r7-asset-group-nested",
+    "input": "<svg viewBox=\"0 0 100 100\"><g data-asset=\"house\"><g data-asset=\"building\"><path d=\"M0 0L50 50\"/></g></g></svg>"
+  },
+  {
+    "id": "r7-asset-group-script",
+    "input": "<svg viewBox=\"0 0 100 100\"><g data-asset=\"house\"><script>alert(1)</script></g></svg>"
+  },
+  {
+    "id": "r7-asset-group-badslug",
+    "input": "<svg viewBox=\"0 0 100 100\"><g data-asset=\"../house\"><path d=\"M0 0L50 50\"/></g></svg>"
+  },
+  {
+    "id": "positive-house",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "assets-container-null",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": null
+    }
+  },
+  {
+    "id": "assets-container-empty",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": []
+    }
+  },
+  {
+    "id": "assets-container-object",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": {}
+    }
+  },
+  {
+    "id": "assets-container-string",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": "house"
+    }
+  },
+  {
+    "id": "assets-container-boolean",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": false
+    }
+  },
+  {
+    "id": "assets-container-entry-null",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        null
+      ]
+    }
+  },
+  {
+    "id": "assets-container-entry-int",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        1
+      ]
+    }
+  },
+  {
+    "id": "assets-container-entry-string",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        "house"
+      ]
+    }
+  },
+  {
+    "id": "assets-container-too-many",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        },
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-unknown",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "no-such-asset",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-path",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "../house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-absolute",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "C:/house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-slash",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house.svg",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-width-zero",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-width-neg",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-width-nan",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": NaN
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-width-inf",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": Infinity
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-width-bool",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-width-string",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": "30"
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-width-huge",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 1000000000.0
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-width-missing",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-bad-anchor",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "feet",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-flip-int",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30,
+          "flip": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-coords-nan",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": [
+            NaN,
+            0
+          ],
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-coords-inf",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": [
+            0,
+            Infinity
+          ],
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-unknown-field",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30,
+          "other": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-mixed-from",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30,
+          "from": "V",
+          "to": "P"
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-missing-to",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30,
+          "from": "V"
+        }
+      ]
+    }
+  },
+  {
+    "id": "asset-item-anchor-null",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": null,
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "reserved-point-assetFrameLo",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ],
+        "assetFrameLo": [
+          20,
+          20
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "reserved-point-assetFrameHi",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ],
+        "assetFrameHi": [
+          20,
+          20
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "reserved-segment",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          200,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ],
+        "assetFrameLo": [
+          "V",
+          "P"
+        ]
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "house",
+          "at": "V",
+          "anchor": "base",
+          "width": 30
+        }
+      ]
+    }
+  },
+  {
+    "id": "projected-nonfinite-nan",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          NaN,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": true
+        }
+      }
+    }
+  },
+  {
+    "id": "projected-nonfinite-inf",
+    "input": {
+      "version": 2,
+      "points": {
+        "V": [
+          100,
+          100
+        ],
+        "P": [
+          Infinity,
+          100
+        ],
+        "Q": [
+          150,
+          150
+        ]
+      },
+      "segments": {
+        "VP": [
+          "V",
+          "P"
+        ],
+        "VQ": [
+          "V",
+          "Q"
+        ]
+      },
+      "background": "transparent",
+      "angles": {
+        "r": {
+          "vertex": "V",
+          "points": [
+            "P",
+            "Q"
+          ],
+          "right": true,
+          "perspective": true
+        }
+      }
+    }
+  },
+  {
+    "id": "asset-security-event",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-asset=\"house\" onload=\"alert(1)\"><path d=\"M0 0L20 20\"/></g></svg>"
+  },
+  {
+    "id": "asset-security-external-use",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-asset=\"house\"><use href=\"https://example.invalid/a.svg\"/></g></svg>"
+  },
+  {
+    "id": "asset-security-external-fill",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-asset=\"house\"><path d=\"M0 0L20 20\" fill=\"url(https://example.invalid/a)\"/></g></svg>"
+  },
+  {
+    "id": "asset-security-badslug-space",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-asset=\"house other\"><path d=\"M0 0L20 20\"/></g></svg>"
+  },
+  {
+    "id": "grid-number-zero-width",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 0 10 2 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-number-zero-height",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 10 0 2 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-number-zero-count",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 10 10 0 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-number-61",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 10 10 61 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-number-999",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 10 10 999 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-number-nonsquare",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 10 20 2 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-number-nan",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 NaN 10 2 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-number-fraction",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 10 10 1.001 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-placement-nested",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g><g data-grid=\"0 0 10 10 2 2\"><path d=\"M0 0V20\"/></g></g></svg>"
+  },
+  {
+    "id": "grid-placement-transform",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g transform=\"translate(1 1)\" data-grid=\"0 0 10 10 2 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-placement-duplicate",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 10 10 2 2\"><path d=\"M0 0V20\"/></g><g data-grid=\"0 0 10 10 2 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-placement-late",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><path d=\"M0 0L5 5\"/><g data-grid=\"0 0 10 10 2 2\"><path d=\"M0 0V20\"/></g></svg>"
+  },
+  {
+    "id": "grid-placement-empty",
+    "input": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><g data-grid=\"0 0 10 10 2 2\"/></svg>"
+  },
+  {
+    "id": "pieces-30 m",
+    "input": "30 m"
+  },
+  {
+    "id": "pieces-5 g",
+    "input": "5 g"
+  },
+  {
+    "id": "pieces-2m",
+    "input": "2m"
+  },
+  {
+    "id": "pieces-g/h",
+    "input": "g/h"
+  },
+  {
+    "id": "pieces-$30 m$",
+    "input": "$30 m$"
+  },
+  {
+    "id": "pieces-2 L",
+    "input": "2 L"
+  },
+  {
+    "id": "pieces-3 mL",
+    "input": "3 mL"
+  },
+  {
+    "id": "manifest39",
+    "input": {
+      "manifestRoot": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\assets"
+    }
+  },
+  {
+    "id": "manifest-sanitize-tree",
+    "input": {
+      "slug": "tree"
+    }
+  },
+  {
+    "id": "manifest-sanitize-house",
+    "input": {
+      "slug": "house"
+    }
+  },
+  {
+    "id": "manifest-sanitize-lighthouse",
+    "input": {
+      "slug": "lighthouse"
+    }
+  },
+  {
+    "id": "manifest-sanitize-airplane",
+    "input": {
+      "slug": "airplane"
+    }
+  },
+  {
+    "id": "manifest-sanitize-tower",
+    "input": {
+      "slug": "tower"
+    }
+  },
+  {
+    "id": "manifest-sanitize-ladder",
+    "input": {
+      "slug": "ladder"
+    }
+  },
+  {
+    "id": "manifest-sanitize-utility-pole",
+    "input": {
+      "slug": "utility-pole"
+    }
+  },
+  {
+    "id": "manifest-sanitize-hot-air-balloon",
+    "input": {
+      "slug": "hot-air-balloon"
+    }
+  },
+  {
+    "id": "manifest-sanitize-kite",
+    "input": {
+      "slug": "kite"
+    }
+  },
+  {
+    "id": "manifest-sanitize-sun",
+    "input": {
+      "slug": "sun"
+    }
+  },
+  {
+    "id": "manifest-sanitize-slide",
+    "input": {
+      "slug": "slide"
+    }
+  },
+  {
+    "id": "manifest-sanitize-ferris-wheel",
+    "input": {
+      "slug": "ferris-wheel"
+    }
+  },
+  {
+    "id": "manifest-sanitize-bowl",
+    "input": {
+      "slug": "bowl"
+    }
+  },
+  {
+    "id": "manifest-sanitize-water-tank",
+    "input": {
+      "slug": "water-tank"
+    }
+  },
+  {
+    "id": "manifest-sanitize-cup-cylinder",
+    "input": {
+      "slug": "cup-cylinder"
+    }
+  },
+  {
+    "id": "manifest-sanitize-cup-cone",
+    "input": {
+      "slug": "cup-cone"
+    }
+  },
+  {
+    "id": "manifest-sanitize-can",
+    "input": {
+      "slug": "can"
+    }
+  },
+  {
+    "id": "manifest-sanitize-cake-roll",
+    "input": {
+      "slug": "cake-roll"
+    }
+  },
+  {
+    "id": "manifest-sanitize-pizza",
+    "input": {
+      "slug": "pizza"
+    }
+  },
+  {
+    "id": "manifest-sanitize-ice-cream-cone",
+    "input": {
+      "slug": "ice-cream-cone"
+    }
+  },
+  {
+    "id": "manifest-sanitize-baduk-black",
+    "input": {
+      "slug": "baduk-black"
+    }
+  },
+  {
+    "id": "manifest-sanitize-baduk-white",
+    "input": {
+      "slug": "baduk-white"
+    }
+  },
+  {
+    "id": "manifest-sanitize-matchstick",
+    "input": {
+      "slug": "matchstick"
+    }
+  },
+  {
+    "id": "manifest-sanitize-picture-frame",
+    "input": {
+      "slug": "picture-frame"
+    }
+  },
+  {
+    "id": "manifest-sanitize-balance-scale",
+    "input": {
+      "slug": "balance-scale"
+    }
+  },
+  {
+    "id": "manifest-sanitize-thermometer",
+    "input": {
+      "slug": "thermometer"
+    }
+  },
+  {
+    "id": "manifest-sanitize-dice",
+    "input": {
+      "slug": "dice"
+    }
+  },
+  {
+    "id": "manifest-sanitize-train-side",
+    "input": {
+      "slug": "train-side"
+    }
+  },
+  {
+    "id": "manifest-sanitize-tunnel",
+    "input": {
+      "slug": "tunnel"
+    }
+  },
+  {
+    "id": "manifest-sanitize-bridge",
+    "input": {
+      "slug": "bridge"
+    }
+  },
+  {
+    "id": "manifest-sanitize-streetlamp",
+    "input": {
+      "slug": "streetlamp"
+    }
+  },
+  {
+    "id": "manifest-sanitize-building",
+    "input": {
+      "slug": "building"
+    }
+  },
+  {
+    "id": "manifest-sanitize-flagpole",
+    "input": {
+      "slug": "flagpole"
+    }
+  },
+  {
+    "id": "manifest-sanitize-mountain",
+    "input": {
+      "slug": "mountain"
+    }
+  },
+  {
+    "id": "manifest-sanitize-person-standing",
+    "input": {
+      "slug": "person-standing"
+    }
+  },
+  {
+    "id": "manifest-sanitize-person-walking",
+    "input": {
+      "slug": "person-walking"
+    }
+  },
+  {
+    "id": "manifest-sanitize-bicycle",
+    "input": {
+      "slug": "bicycle"
+    }
+  },
+  {
+    "id": "manifest-sanitize-car-side",
+    "input": {
+      "slug": "car-side"
+    }
+  },
+  {
+    "id": "manifest-sanitize-boat",
+    "input": {
+      "slug": "boat"
+    }
+  },
+  {
+    "id": "six-raw-grid",
+    "input": {
+      "version": "graph-1",
+      "xRange": [
+        0,
+        16
+      ],
+      "yRange": [
+        0,
+        10
+      ],
+      "axes": false,
+      "width": 520,
+      "height": 360,
+      "grid": {
+        "step": 1
+      },
+      "segments": [
+        {
+          "from": [
+            0,
+            3
+          ],
+          "to": [
+            3,
+            9
+          ],
+          "arrow": true
+        },
+        {
+          "from": [
+            4,
+            6
+          ],
+          "to": [
+            2.5,
+            1
+          ],
+          "arrow": true
+        },
+        {
+          "from": [
+            8,
+            9
+          ],
+          "to": [
+            12,
+            7
+          ],
+          "arrow": true
+        }
+      ],
+      "labels": [
+        {
+          "at": [
+            1.6,
+            6
+          ],
+          "text": "$\\vec{a}$",
+          "dx": -10
+        },
+        {
+          "at": [
+            3.2,
+            3.4
+          ],
+          "text": "$\\vec{b}$",
+          "dx": -12
+        }
+      ]
+    }
+  },
+  {
+    "id": "six-raw-assets",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          325,
+          293
+        ],
+        "B": [
+          528,
+          377
+        ],
+        "C": [
+          708,
+          62
+        ],
+        "D": [
+          700,
+          243
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ],
+        "BD": [
+          "B",
+          "D"
+        ],
+        "AC": [
+          "A",
+          "C"
+        ],
+        "AD": [
+          "A",
+          "D"
+        ],
+        "DC": [
+          "D",
+          "C"
+        ]
+      },
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C"
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "building",
+          "from": "D",
+          "to": "C"
+        },
+        {
+          "asset": "house",
+          "at": "A",
+          "anchor": "base",
+          "width": 44
+        }
+      ]
+    }
+  },
+  {
+    "id": "six-raw-perspective",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          325,
+          293
+        ],
+        "B": [
+          528,
+          377
+        ],
+        "C": [
+          708,
+          62
+        ],
+        "D": [
+          700,
+          243
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ],
+        "BD": [
+          "B",
+          "D"
+        ],
+        "AC": [
+          "A",
+          "C"
+        ],
+        "AD": [
+          "A",
+          "D"
+        ],
+        "DC": [
+          "D",
+          "C"
+        ]
+      },
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C"
+      },
+      "background": "transparent",
+      "angles": {
+        "rB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "D"
+          ],
+          "right": true,
+          "perspective": true
+        }
+      }
+    }
+  },
+  {
+    "id": "six-raw-units",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          0,
+          0
+        ],
+        "B": [
+          200,
+          0
+        ],
+        "v": [
+          100,
+          20
+        ],
+        "w": [
+          100,
+          -20
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ]
+      },
+      "labels": {
+        "v": {
+          "text": "30 m",
+          "dx": 0,
+          "dy": 0
+        },
+        "w": {
+          "text": "5 g",
+          "dx": 0,
+          "dy": 0
+        }
+      },
+      "background": "transparent"
+    }
+  },
+  {
+    "id": "six-raw-right-refused",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          325,
+          293
+        ],
+        "B": [
+          528,
+          377
+        ],
+        "C": [
+          708,
+          62
+        ],
+        "D": [
+          700,
+          243
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ],
+        "BD": [
+          "B",
+          "D"
+        ],
+        "AC": [
+          "A",
+          "C"
+        ],
+        "AD": [
+          "A",
+          "D"
+        ],
+        "DC": [
+          "D",
+          "C"
+        ]
+      },
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C"
+      },
+      "background": "transparent",
+      "angles": {
+        "rB": {
+          "vertex": "B",
+          "points": [
+            "A",
+            "D"
+          ],
+          "right": true
+        }
+      }
+    }
+  },
+  {
+    "id": "six-raw-solid-object-refused",
+    "input": {
+      "version": 2,
+      "points": {
+        "A": [
+          325,
+          293
+        ],
+        "B": [
+          528,
+          377
+        ],
+        "C": [
+          708,
+          62
+        ],
+        "D": [
+          700,
+          243
+        ]
+      },
+      "segments": {
+        "AB": [
+          "A",
+          "B"
+        ],
+        "BD": [
+          "B",
+          "D"
+        ],
+        "AC": [
+          "A",
+          "C"
+        ],
+        "AD": [
+          "A",
+          "D"
+        ],
+        "DC": [
+          "D",
+          "C"
+        ]
+      },
+      "labels": {
+        "A": "A",
+        "B": "B",
+        "C": "C"
+      },
+      "background": "transparent",
+      "assets": [
+        {
+          "asset": "can",
+          "at": "A",
+          "width": 30
+        }
+      ]
+    }
+  }
+]
