@@ -77,8 +77,6 @@ const studentRequest = async (url: string, body?: unknown) => {
 };
 export const getCourseState = () => studentRequest(base);
 export const startCourse = () => studentRequest(base, {});
-export const saveOwnCoursePlan = (input: CoursePlanInput) =>
-  studentRequest(`${base}/plan`, input);
 export const answerCourse = (input: CourseAttemptInput) =>
   studentRequest(`${base}/attempts`, input);
 export const hintCourse = (input: CourseHintInput) =>

@@ -231,20 +231,14 @@ describe("기기 설정 «움직임 줄이기»", () => {
     expect(scope).toHaveAttribute("data-learning-motion", "full");
   });
 
-  it("미션이 진행 중이어서 학년 · 단원이 잠겨도, 저장 · 요청을 기다리는 중이어도 눌린다", () => {
+  it("미션 진행 · 저장 · 요청 중에도 기기 설정은 눌리고 학년 · 목표는 바꾸지 않는다", () => {
     const { scope, onAction } = home(
       view({ mission: activeMission, next: null }),
       { busy: true, claims: ["chest-waiting"] },
     );
     openSettings();
     const sheet = screen.getByRole("dialog", { name: "학습 설정" });
-    expect(sheet).toHaveTextContent(
-      "진행 중인 오늘의 탐험을 마치면 설정을 바꿀 수 있어요.",
-    );
-    for (const grade of within(
-      within(sheet).getByLabelText("학년 선택"),
-    ).getAllByRole("button"))
-      expect(grade).toBeDisabled();
+    expect(within(sheet).queryByLabelText("학년 선택")).not.toBeInTheDocument();
 
     expect(motionSwitch()).toBeEnabled();
     fireEvent.click(motionSwitch());

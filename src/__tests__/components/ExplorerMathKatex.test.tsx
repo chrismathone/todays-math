@@ -294,7 +294,6 @@ describe("③ 카드 글이 보이는 자리 전부가 KaTeX 를 지난다", () 
         busy={false}
         onInspect={vi.fn()}
         onSolution={vi.fn()}
-        onSetGoal={vi.fn()}
         onClose={vi.fn()}
       />,
     );
@@ -349,7 +348,6 @@ describe("③ 카드 글이 보이는 자리 전부가 KaTeX 를 지난다", () 
         busy={false}
         onInspect={vi.fn()}
         onSolution={vi.fn()}
-        onSetGoal={vi.fn()}
         onClose={vi.fn()}
       />,
     );
