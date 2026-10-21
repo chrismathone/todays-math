@@ -2,6 +2,7 @@ import "server-only";
 import type { Browser, Page } from "puppeteer-core";
 import { launchExportBrowser } from "@/lib/export/pdfServer";
 import { substituteLabels } from "@/lib/figure/mathjaxSubstitute";
+import { COMPARISON_GRID_LAYOUT, gridIndexOverlay, measureGridFromGray } from "@/lib/figure/gridMeasure";
 import { abortError } from "./cli-process";
 import { validDevAiSvg } from "./svg";
 
@@ -129,15 +130,75 @@ export async function buildFigureComparisonImage(
       *{box-sizing:border-box}html,body{margin:0;width:1840px;height:960px;background:white}
       body{display:flex;gap:20px;padding:10px;font:24px Arial,sans-serif;color:black}
       section{width:900px}h1{font-size:24px;margin:0;height:40px;text-align:center}
+      .frame{position:relative;width:900px;height:900px}
       img{display:block;width:900px;height:900px;object-fit:contain}
-      </style></head><body><section><h1>1. ORIGINAL</h1><img src="${original}"></section>
-      <section><h1>2. RECONSTRUCTION</h1><img src="${reconstruction}"></section></body></html>`,
+      .grid-advisory img{position:absolute;left:${COMPARISON_GRID_LAYOUT.inset}px;top:${COMPARISON_GRID_LAYOUT.inset}px;width:${COMPARISON_GRID_LAYOUT.side}px;height:${COMPARISON_GRID_LAYOUT.side}px}
+      .grid-index{position:absolute;transform:translate(-50%,-50%);font:13px/16px Arial,sans-serif;color:#b91c1c;white-space:nowrap}
+      .grid-legend{position:absolute;left:0;top:0;width:900px;text-align:center;font:13px/20px Arial,sans-serif;color:#8f1616}
+      </style></head><body><section><h1>1. ORIGINAL</h1><div class="frame"><img src="${original}"></div></section>
+      <section><h1>2. RECONSTRUCTION</h1><div class="frame"><img src="${reconstruction}"></div></section></body></html>`,
       { waitUntil: "load", timeout: 20_000 },
     );
     await page.evaluate(async () => {
       await document.fonts.ready;
       await Promise.all(Array.from(document.images, (image) => image.decode()));
     });
+    if (signal?.aborted) throw abortError();
+    // Reuse this request's already decoded images/page. No extra browser, decoder,
+    // source rewrite or snapping. Pixel measurements can never approve a figure.
+    const overlays: ReturnType<typeof gridIndexOverlay>[] = [];
+    for (const index of [0, 1]) {
+      const raster = await page.evaluate((i: number) => {
+        const image = document.images[i];
+        if (!image) return null;
+        const nw = image.naturalWidth, nh = image.naturalHeight;
+        if (!Number.isSafeInteger(nw) || !Number.isSafeInteger(nh) ||
+            nw < 1 || nh < 1 || nw > 16000 || nh > 16000 || nw * nh > 40_000_000) return null;
+        const scale = Math.min(1, 900 / Math.max(nw, nh));
+        const width = Math.max(1, Math.round(nw * scale));
+        const height = Math.max(1, Math.round(nh * scale));
+        const canvas = document.createElement("canvas");
+        canvas.width = width; canvas.height = height;
+        try {
+          const context = canvas.getContext("2d", { willReadFrequently: true });
+          if (!context) return null;
+          context.fillStyle = "white"; context.fillRect(0, 0, width, height);
+          context.drawImage(image, 0, 0, width, height);
+          const rgba = context.getImageData(0, 0, width, height).data;
+          const gray = new Array<number>(width * height);
+          for (let j = 0; j < gray.length; j++) {
+            gray[j] = Math.round((299 * rgba[4 * j]! + 587 * rgba[4 * j + 1]! + 114 * rgba[4 * j + 2]!) / 1000);
+          }
+          return { width, height, naturalWidth: nw, naturalHeight: nh, gray };
+        } catch {
+          // Tainted/unsupported canvas is unknown. Original comparison stays usable.
+          return null;
+        } finally {
+          canvas.width = 0; canvas.height = 0;
+        }
+      }, index);
+      if (signal?.aborted) throw abortError();
+      const grid = raster && measureGridFromGray(raster.gray, raster.width, raster.height);
+      overlays.push(grid && raster ? gridIndexOverlay(grid, raster.naturalWidth, raster.naturalHeight) : null);
+    }
+    if (overlays.some(Boolean)) {
+      await page.evaluate((items) => {
+        for (const [index, frame] of Array.from(document.querySelectorAll<HTMLElement>(".frame")).entries()) {
+          frame.classList.add("grid-advisory");
+          const overlay = items[index];
+          const legend = document.createElement("div");
+          legend.className = "grid-legend";
+          legend.textContent = overlay?.legend ?? "칸 실측 불명 · 원문과 직접 대조";
+          frame.append(legend);
+          for (const tick of overlay?.ticks ?? []) {
+            const label = document.createElement("span");
+            label.className = "grid-index";
+            label.style.left = `${tick.x}px`; label.style.top = `${tick.y}px`;
+            label.textContent = tick.label; frame.append(label);
+          }
+        }
+      }, overlays);
+    }
     if (signal?.aborted) throw abortError();
     const data = await page.screenshot({ type: "png", encoding: "base64" });
     return `data:image/png;base64,${data}`;

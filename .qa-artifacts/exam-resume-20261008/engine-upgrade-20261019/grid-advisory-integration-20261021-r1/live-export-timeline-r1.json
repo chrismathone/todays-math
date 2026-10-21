@@ -1,0 +1,19 @@
+{
+  "recordedUTC": "2026-10-21T11:55:55.066792+00:00",
+  "precedingSixCaseLiveRun": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/engine-all-sync-20261021-r1/check-grid-r1.json",
+  "precedingRun": {
+    "utc": "2026-10-21T11:45:04.782343+00:00",
+    "exitcode": 1,
+    "originalCheckerInvoked": true,
+    "saveFlag": false,
+    "sourceCheckerAndExpectedUnchanged": true,
+    "dbWrites": 0
+  },
+  "followingCapture": ".qa-artifacts/exam-resume-20261008/engine-upgrade-20261019/grid-advisory-integration-20261021-r1/live-export-drift-r1.json",
+  "followingCaptureUTC": "2026-10-21T11:50:04.941941+00:00",
+  "followingSourceDirty": "M docs/export/todays-math/engine-check/check_engine.py\n?? docs/export/todays-math/engine-check/expected/assets-3d.json\n?? docs/export/todays-math/patches/07-engine-all.patch",
+  "followingCaptureCheckerAlreadyChanged": true,
+  "semantics": "5 matches/1 mismatch belong only to the preceding six-case run; later working export has new checker/3D expectation/patch07 and must not be treated as the same immutable six-case contract",
+  "capturedV1SixMatchesSeparate": true,
+  "sourceRepositoryWrites": 0
+}

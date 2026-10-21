@@ -1,0 +1,239 @@
+{
+  "candidateSHA256": "d13dce39a522101b2d3cd1e26bcfaf2afc19a7436539b1fbd36c3655aa89a3ad",
+  "rows": [
+    {
+      "id": "white",
+      "pass": true,
+      "result": null,
+      "inputSHA256": "2bf7158cb3d8f419f1e19ee71df61927cc17017f37ea8820f3bd719d2b4f88f8"
+    },
+    {
+      "id": "explicit-grid",
+      "pass": true,
+      "result": {
+        "kind": "heuristic-only",
+        "requiresReview": true,
+        "width": 100,
+        "height": 100,
+        "coordinateSpace": "analysis-pixels-x-right-y-down",
+        "x": {
+          "first": 10.000000000000002,
+          "last": 90,
+          "cell": 10,
+          "count": 8,
+          "found": 9
+        },
+        "y": {
+          "first": 10.000000000000002,
+          "last": 90,
+          "cell": 10,
+          "count": 8,
+          "found": 9
+        }
+      },
+      "inputSHA256": "71ceae95bac7addce77cdb785fcd8111bb2816f3a40e2e41d4b0be4e304a92d6"
+    },
+    {
+      "id": "table-identical",
+      "pass": true,
+      "result": {
+        "kind": "heuristic-only",
+        "requiresReview": true,
+        "width": 100,
+        "height": 100,
+        "coordinateSpace": "analysis-pixels-x-right-y-down",
+        "x": {
+          "first": 10.000000000000002,
+          "last": 90,
+          "cell": 10,
+          "count": 8,
+          "found": 9
+        },
+        "y": {
+          "first": 10.000000000000002,
+          "last": 90,
+          "cell": 10,
+          "count": 8,
+          "found": 9
+        }
+      },
+      "inputSHA256": "71ceae95bac7addce77cdb785fcd8111bb2816f3a40e2e41d4b0be4e304a92d6"
+    },
+    {
+      "id": "parallel-lines",
+      "pass": true,
+      "result": null,
+      "inputSHA256": "3830ece8b1a4f441e9c46640806105812a0d930612934ddf092f78f5ef6870f6"
+    },
+    {
+      "id": "missing-line",
+      "pass": true,
+      "result": null,
+      "inputSHA256": "ed865c8734a38463647838feaf5586c307b52bf94d8a6afbf8d9cda2f39d2b38"
+    },
+    {
+      "id": "half-cropped",
+      "pass": true,
+      "result": null,
+      "inputSHA256": "3c8fb5d7ba64b48112960a8cbe06aaeb317379845bc1af6b2ecb577ba9bcb7e4"
+    },
+    {
+      "id": "cuboid",
+      "pass": true,
+      "result": null,
+      "inputSHA256": "ccbb3b1507238d2144f66f604232b47d827baa7a3c28d736934fdcd3f8352c6b"
+    },
+    {
+      "id": "letter-H",
+      "pass": true,
+      "result": null,
+      "inputSHA256": "59e9eadfd7b573eabc301583a73e797581f488568710a2eabb16515a573a1294"
+    },
+    {
+      "id": "width-zero",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "width-neg",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "width-float",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "width-nan",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "width-inf",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "width-bool",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "width-oversize",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "height-zero",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "height-oversize",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-short",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-long",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-sparse",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-oversize-sparse",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-fake-arraylike",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-undefined",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-string",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-value--1",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-value-256",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-value-1.5",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-value-NaN",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-value-Infinity",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-value-None",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-value-True",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    },
+    {
+      "id": "gray-value-7",
+      "pass": true,
+      "result": null,
+      "inputSHA256": null
+    }
+  ],
+  "passed": 32,
+  "total": 32
+}

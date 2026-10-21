@@ -25,11 +25,11 @@ function fakePage(hold?: ReturnType<typeof gate>) {
     setViewport: vi.fn(async () => {}),
     setRequestInterception: vi.fn(async () => {}),
     on: vi.fn(),
-    setContent: vi.fn(async () => {
+    setContent: vi.fn<(html?: string) => Promise<void>>(async () => {
       if (hold) await hold.promise;
       if (page.closed) throw new Error("Target closed");
     }),
-    evaluate: vi.fn(async () => {}),
+    evaluate: vi.fn<(...args: unknown[]) => Promise<unknown>>(async () => {}),
     screenshot: vi.fn(async () => "cGln"),
     close: vi.fn(async () => {
       page.closed = true;
@@ -184,5 +184,30 @@ describe("comparison browser reuse", () => {
     await expect(build(original, svg)).rejects.toThrow("Chromium");
     await expect(build(original, svg)).resolves.toContain("data:image/png");
     expect(launch).toHaveBeenCalledTimes(2);
+  });
+
+  it("annotates a detected lattice only in the derivative and labels the other panel unknown", async () => {
+    const gray = new Array<number>(10000).fill(255);
+    for (let i = 10; i <= 90; i += 10) for (let j = 10; j <= 90; j++) {
+      gray[j * 100 + i] = 40; gray[i * 100 + j] = 40;
+    }
+    const page = fakePage(), browser = fakeBrowser();
+    page.evaluate.mockResolvedValueOnce(undefined).mockResolvedValueOnce({
+      gray, width: 100, height: 100, naturalWidth: 100, naturalHeight: 100,
+    }).mockResolvedValueOnce(null).mockResolvedValueOnce(undefined);
+    browser.newPage.mockResolvedValue(page);
+    launch.mockResolvedValue(browser as never);
+    const { build, close } = await harness();
+    await build(original, svg);
+    const overlays = page.evaluate.mock.calls[3]![1];
+    expect(overlays).toEqual([expect.objectContaining({
+      legend: expect.stringContaining("원문 좌표 아님"),
+      ticks: expect.any(Array),
+    }), null]);
+    expect(page.setContent.mock.calls[0]![0]).toContain(`<img src="${original}">`);
+    expect(page.setJavaScriptEnabled).toHaveBeenCalledWith(false);
+    expect(page.closed).toBe(true);
+    expect(browser.newPage).toHaveBeenCalledTimes(1);
+    await close();
   });
 });
