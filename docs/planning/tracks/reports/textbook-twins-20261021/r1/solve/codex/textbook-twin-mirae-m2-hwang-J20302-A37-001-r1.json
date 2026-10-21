@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A37-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d86-cc03-79d2-b45a-f60f337a5ff2",
+ "startedAt": "2026-10-21T17:14:37+0900",
+ "elapsedSec": 12.0,
+ "studentSha256": {
+  "student.json": "dd2714497fe8f5a16d04eb4e348c3c336eb2d9909a10008037e850330293f2e4"
+ },
+ "promptSha256": "cfa65d802223597f467b787d9d9e38e68ce29931310238b0f00ffd2f299400ac",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"㉠에 7을 곱하고 ㉡에 4를 곱하면 두 식의 x의 계수가 모두 28이 된다. 따라서 ㉠×7−㉡×4를 하면 28x−28x=0이 되어 x가 없어진다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "㉠에 7을 곱하고 ㉡에 4를 곱하면 두 식의 x의 계수가 모두 28이 된다. 따라서 ㉠×7−㉡×4를 하면 28x−28x=0이 되어 x가 없어진다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "4a1e4e0d65ad188bb1fc1126dc86f9e3a2b0b43f339d0644b4aba34456ec9453"
+}

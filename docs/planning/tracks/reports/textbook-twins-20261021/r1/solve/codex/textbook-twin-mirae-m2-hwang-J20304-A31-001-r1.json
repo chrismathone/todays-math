@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20304-A31-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d87-2000-7f33-8126-8d4b7c8c2e5d",
+ "startedAt": "2026-10-21T17:14:59+0900",
+ "elapsedSec": 11.6,
+ "studentSha256": {
+  "student.json": "3491f9a2077effec372dc428e68adf883eeba509fb9135361d5e0ed7d238680c"
+ },
+ "promptSha256": "a6871aa9e7276e80ed02c40f27f3466aad035c6e161f3d775d4fc1c98a25645b",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"x=-2, y=3을 대입하면 -2a+12=2이므로 a=5이다.\\n또한 -10+3b=14이므로 b=8이다.\\n따라서 ab=5×8=40이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "x=-2, y=3을 대입하면 -2a+12=2이므로 a=5이다.\n또한 -10+3b=14이므로 b=8이다.\n따라서 ab=5×8=40이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6d9db23f5c88c4adecb79dd430feee7efbb0da725659ae39b19242cfdd4758c4"
+}

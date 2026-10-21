@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A26-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d85-78ed-7a60-b265-170dcec89d8d",
+ "startedAt": "2026-10-21T17:13:10+0900",
+ "elapsedSec": 13.8,
+ "studentSha256": {
+  "student.json": "854cc26979304c0a878ee08a8cbcf15e42f5f35e30e4b603fbefb6373d86a2eb"
+ },
+ "promptSha256": "cc1007c4f7e57b67214e1f201e669d4c103ed315eef4c36947262aef161920f6",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"12\",\"work\":\"공통인 해는 3x+4y=7과 7x+5y=25를 만족하므로, 두 식을 풀면 x=5, y=-2이다.\\n나머지 식에 대입하면 5a+4=19, 5b+6=26이므로 a=3, b=4이다.\\n따라서 ab=12이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "12",
+  "work": "공통인 해는 3x+4y=7과 7x+5y=25를 만족하므로, 두 식을 풀면 x=5, y=-2이다.\n나머지 식에 대입하면 5a+4=19, 5b+6=26이므로 a=3, b=4이다.\n따라서 ab=12이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "61bd985a1b21a6b95b86922bd25097a665311c7fab8264cbff26723c4b109757"
+}

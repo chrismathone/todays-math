@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A35-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "325a0388-bf2d-4475-9fb8-1ab7be37f3c7",
+ "startedAt": "2026-10-21T17:01:33+0900",
+ "elapsedSec": 4.0,
+ "studentSha256": {
+  "student.json": "e7fbe5f0e8606ddb904cf653f92cfdacb1caa640f4ed27d6218ea22a469a927a"
+ },
+ "promptSha256": "3a1028ec93527b870ed58691f1bf2c4f99ad76694817a5a1fcd3591b15df3ddc",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"y=-1을 5x+3y=7에 대입: 5a-3=7 → a=2. x=2, y=-1을 x-5y=b에 대입: b=2+5=7. 따라서 a+b=2+7=9.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "y=-1을 5x+3y=7에 대입: 5a-3=7 → a=2. x=2, y=-1을 x-5y=b에 대입: b=2+5=7. 따라서 a+b=2+7=9.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6478c8c2e22de443caaf8c2cf0d16c5b243f9f3810891ddec11af25ade3472e1"
+}

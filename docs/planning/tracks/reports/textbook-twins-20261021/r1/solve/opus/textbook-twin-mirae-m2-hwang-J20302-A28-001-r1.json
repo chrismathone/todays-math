@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A28-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "19da319d-fbe5-4755-8999-640006493f37",
+ "startedAt": "2026-10-21T17:01:24+0900",
+ "elapsedSec": 4.4,
+ "studentSha256": {
+  "student.json": "48897b46a702f5f2ec94a763f2b7ce35f15390e95aece7eddf3bcffc86b18a15"
+ },
+ "promptSha256": "ad191e68f6c13e9a47b367a76fa8d00c19c507c5ec0e54e6044b9919b0a065b4",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"⑴ 27, 3 ⑵ 지우 15살, 미나 12살\", \"work\": \"x+y=27, x-y=3 (지우가 나이가 많으므로). 두 식을 더하면 2x=30, x=15. y=27-15=12.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "⑴ 27, 3 ⑵ 지우 15살, 미나 12살",
+  "work": "x+y=27, x-y=3 (지우가 나이가 많으므로). 두 식을 더하면 2x=30, x=15. y=27-15=12.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "0f58db30b53b771d1e67c662769ff38b98787b05a81aacdfac4c2bdc5d3de9bc"
+}

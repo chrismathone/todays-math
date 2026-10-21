@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A27-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "5557cf0a-5019-4019-b202-f69c4085f6a1",
+ "startedAt": "2026-10-21T17:01:23+0900",
+ "elapsedSec": 5.9,
+ "studentSha256": {
+  "student.json": "45fad035be10d510dfbb3137572cbc1b06c10288bd3a80b46f328c52c69e2c92"
+ },
+ "promptSha256": "65984294c3dd0bebab15a5b1945977c3c182997145bf1c7cc73fd60c66033599",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"$(4,\\\\,2)$\", \"work\": \"두 번째 식에서 y = 10 − 2x이다. 이를 첫 번째 식에 대입하면 x + 3(10 − 2x) = 10, 즉 −5x = −20이므로 x = 4이다. 따라서 y = 10 − 8 = 2이다. 검산하면 4 + 6 = 10, 8 + 2 = 10으로 두 식을 모두 만족하고, x와 y가 모두 자연수이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "$(4,\\,2)$",
+  "work": "두 번째 식에서 y = 10 − 2x이다. 이를 첫 번째 식에 대입하면 x + 3(10 − 2x) = 10, 즉 −5x = −20이므로 x = 4이다. 따라서 y = 10 − 8 = 2이다. 검산하면 4 + 6 = 10, 8 + 2 = 10으로 두 식을 모두 만족하고, x와 y가 모두 자연수이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "141dc8dc4a8ce7623a71824fcf9d630900f9caeb479aa60dd0ebf30b7907227e"
+}

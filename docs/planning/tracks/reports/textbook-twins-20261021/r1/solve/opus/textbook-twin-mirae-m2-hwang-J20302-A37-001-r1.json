@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A37-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "3e982c59-facd-4aaa-a1f7-04765fa2aa25",
+ "startedAt": "2026-10-21T17:01:37+0900",
+ "elapsedSec": 4.9,
+ "studentSha256": {
+  "student.json": "dd2714497fe8f5a16d04eb4e348c3c336eb2d9909a10008037e850330293f2e4"
+ },
+ "promptSha256": "cfa65d802223597f467b787d9d9e38e68ce29931310238b0f00ffd2f299400ac",
+ "freezeCommit": "6dfd87bf62423c6bc4f4c1cc72a4f0164b5fd18f",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"x의 계수 4와 7을 같게 만든다. ㉠×7: 28x+35y=154, ㉡×4: 28x-8y=68. 두 식의 x 계수의 부호가 같으므로 빼면 43y=86이 되어 x가 없어진다. 따라서 ㉠×7-㉡×4이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "x의 계수 4와 7을 같게 만든다. ㉠×7: 28x+35y=154, ㉡×4: 28x-8y=68. 두 식의 x 계수의 부호가 같으므로 빼면 43y=86이 되어 x가 없어진다. 따라서 ㉠×7-㉡×4이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f55b09093b77328b37a62d4f6408aa8492711e2481c285e1d9fd28dcf15ca96b"
+}

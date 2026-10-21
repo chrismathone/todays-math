@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20302-A33-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15d86-0c88-7843-a4d2-e23e47bd4df3",
+ "startedAt": "2026-10-21T17:13:48+0900",
+ "elapsedSec": 10.9,
+ "studentSha256": {
+  "student.json": "11b2eb1a7f7aed4e5371ab93bc6cc3cad89812d1a4daeba441d4ef66f704e756"
+ },
+ "promptSha256": "504733c5916975388e5be9afbdc0f4930bdbc31047708e569e5ac5f636371ca5",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"㉠에 3을, ㉡에 5를 곱하면 y의 계수가 모두 15가 된다.\\n따라서 ㉠×3−㉡×5를 계산하면 15y−15y=0이 되어 y가 소거된다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "㉠에 3을, ㉡에 5를 곱하면 y의 계수가 모두 15가 된다.\n따라서 ㉠×3−㉡×5를 계산하면 15y−15y=0이 되어 y가 소거된다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f907de18f3e600b5fefd4a1088144523809cf080926b12fb32e727d086a8b22e"
+}
