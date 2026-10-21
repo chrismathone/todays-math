@@ -99,7 +99,29 @@ const historyEntry = z.strictObject({
   unresolved: z.number().int().min(0).max(15),
   stars: z.number().int().min(0).max(5),
 });
+/** Additive stored identity; missing means the static authored examples forever. */
+export const EXPLORER_REVIEW_VARIANT_CARD_IDS = [
+  "g5-decimal-multiply",
+  "g5-at-least",
+  "g5-more-than",
+  "g5-round",
+  "g5-round-up",
+] as const;
+export const explorerReviewVariantSchema = z.strictObject({
+  version: z.literal(1),
+  seed: count,
+  cardIds: z
+    .array(z.enum(EXPLORER_REVIEW_VARIANT_CARD_IDS))
+    .min(1)
+    .max(5)
+    .refine(
+      (ids) => new Set(ids).size === ids.length,
+      "Duplicate variant card",
+    ),
+});
+export type ExplorerReviewVariant = z.infer<typeof explorerReviewVariantSchema>;
 export const explorerDefinitionSessionSchema = z.strictObject({
+  reviewVariant: explorerReviewVariantSchema.optional(),
   route: route.optional(),
   targetCardId: id.optional(),
   cardIds: z.array(id).length(5).optional(),
@@ -365,7 +387,13 @@ export const storedExplorerSchema = z.strictObject({
       }),
     )
     .max(256),
-  completedDays: z.array(completedDay).max(36600),
+  completedDays: z
+    .array(
+      completedDay.extend({
+        reviewVariant: explorerReviewVariantSchema.optional(),
+      }),
+    )
+    .max(36600),
 });
 export type StoredExplorer = z.infer<typeof storedExplorerSchema>;
 
