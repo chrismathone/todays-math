@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A12-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "beae68f9-544b-40c7-b0c2-3c8220ea905d",
+ "startedAt": "2026-10-21T17:08:04+0900",
+ "elapsedSec": 3.6,
+ "studentSha256": {
+  "student.json": "2fa0640681cbea38ad31b593f70ea0d8ab528b0f41bdff4dff54083da394a03e"
+ },
+ "promptSha256": "b367104e346980674ae3a8e251adaac7c7e008a66cf05406d897149ee4503615",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "Perimeter = AC + BD = 36 cm.\n\n```json\n{\"answer\": \"①\", \"work\": \"삼각형의 두 변의 중점을 연결한 선분의 성질에 의해 PQ = SR = AC/2 = 11 cm, PS = QR = BD/2 = 7 cm. 따라서 둘레 = 2(11+7) = AC + BD = 36 cm\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "①",
+  "work": "삼각형의 두 변의 중점을 연결한 선분의 성질에 의해 PQ = SR = AC/2 = 11 cm, PS = QR = BD/2 = 7 cm. 따라서 둘레 = 2(11+7) = AC + BD = 36 cm",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "3c3dde830e0463a25c15e3f24db5a55ed46ef417a7c3c1befc785096a9fbe983"
+}

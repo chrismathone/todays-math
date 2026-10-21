@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20706-A48-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dbb-294d-7481-9216-724564e9c513",
+ "startedAt": "2026-10-21T18:11:49+0900",
+ "elapsedSec": 9.8,
+ "studentSha256": {
+  "fig-1.png": "e4abfe47fc5ca74128e8dca93545976e69fec523d3dcc4797c95edc60afd5f9a",
+  "student.json": "80aa1728dcf9d6f8ba9db79f7379f52d79337d4802869b8a5952c578282a87e2"
+ },
+ "promptSha256": "1038bc11366c0e89b56414a02d22c17bdff175234957c4a779acb499c2d7c693",
+ "freezeCommit": "e9b0cc7dcbdc69ed996fa456dc1e7d052bcd45ce",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"④\",\"work\":\"큰 비누와 작은 비누의 반지름은 각각 6 cm, 2 cm이다.\\n구의 부피는 반지름의 세제곱에 비례하므로 작은 비누의 개수는 (6÷2)³=27개이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "④",
+  "work": "큰 비누와 작은 비누의 반지름은 각각 6 cm, 2 cm이다.\n구의 부피는 반지름의 세제곱에 비례하므로 작은 비누의 개수는 (6÷2)³=27개이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "24e35503ea9ee174b30d13c032c3851fb1b32f1ad2f6b85c1cd756e63235ef7b"
+}

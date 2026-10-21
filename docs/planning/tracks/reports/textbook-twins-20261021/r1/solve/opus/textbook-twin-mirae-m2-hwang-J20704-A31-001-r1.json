@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20704-A31-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "670f73fa-7930-423a-8f81-9762d2a90837",
+ "startedAt": "2026-10-21T17:08:08+0900",
+ "elapsedSec": 8.0,
+ "studentSha256": {
+  "fig-1.png": "1e115aa600b45b72476684c63e4948f48ce565d678fff26f6b97f6d1487d4ed3",
+  "student.json": "4a8c225c9885c6a5df5260c5cd77961544244a92b0f2b608b4d8638ef66bfeac"
+ },
+ "promptSha256": "b81a011221bf70700312330985629412bd2a6b156ed4128b2a546c0339f6a2dd",
+ "freezeCommit": "2d7e3a3ce0e2c48190bfe7410a64a07c3466a3bf",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 1,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"20\", \"work\": \"△BCP에서 Q, D는 각각 BP, BC의 중점이므로 QD ∥ PC이고 QD = ½PC이다. 따라서 x = PC = 8이다. △AQE에서 P는 AQ의 중점이고 PC ∥ QE이므로 C는 AE의 중점이며 PC = ½QE이다. 따라서 QE = 16이다. y = DE = QE − QD = 16 − 4 = 12이므로 x + y = 8 + 12 = 20이다.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "20",
+  "work": "△BCP에서 Q, D는 각각 BP, BC의 중점이므로 QD ∥ PC이고 QD = ½PC이다. 따라서 x = PC = 8이다. △AQE에서 P는 AQ의 중점이고 PC ∥ QE이므로 C는 AE의 중점이며 PC = ½QE이다. 따라서 QE = 16이다. y = DE = QE − QD = 16 − 4 = 12이므로 x + y = 8 + 12 = 20이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "951d8dfb46b0d94640d207b560239c4175254da002eee1203e32aec4485c8d5d"
+}
