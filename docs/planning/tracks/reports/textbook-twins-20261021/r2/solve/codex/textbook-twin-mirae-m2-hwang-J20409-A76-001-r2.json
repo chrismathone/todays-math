@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A76-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de8-eea4-7b40-acb8-6ded8ca0b961",
+ "startedAt": "2026-10-21T19:01:48+0900",
+ "elapsedSec": 14.3,
+ "studentSha256": {
+  "fig-1.png": "d70a9c93acd500e9bd03a9e6e1c4ee169c0c5a37a1df658df526bf9ea20f2593",
+  "student.json": "5bfaf0a2832212d21b41dcc0939401087aa0ae3e56a342b8d1a39e77b229384b"
+ },
+ "promptSha256": "d5f9a7b35054e092bef5ea0f4f121dcf38ea3cc47d87b6f31bbf61f1a8398f67",
+ "freezeCommit": "fce07a21b4e233b0e732cc87031fb5f53548992d",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"8\",\"work\":\"직선 $l$은 $(-3,0)$, $(0,6)$을 지나므로 $y=2x+6$, 직선 $m$은 $(-2,0)$, $(0,2)$를 지나므로 $y=x+2$이다.\\n두 식을 연립하면 $2x+6=x+2$에서 $x=-4$, $y=-2$이므로 교점은 $(-4,-2)$이다.\\n$y$축 위의 변을 밑변으로 잡으면 밑변의 길이는 $6-2=4$, 높이는 교점에서 $y$축까지의 거리인 $4$이다. 따라서 삼각형의 넓이는 $\\\\frac{1}{2}\\\\times4\\\\times4=8$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "8",
+  "work": "직선 $l$은 $(-3,0)$, $(0,6)$을 지나므로 $y=2x+6$, 직선 $m$은 $(-2,0)$, $(0,2)$를 지나므로 $y=x+2$이다.\n두 식을 연립하면 $2x+6=x+2$에서 $x=-4$, $y=-2$이므로 교점은 $(-4,-2)$이다.\n$y$축 위의 변을 밑변으로 잡으면 밑변의 길이는 $6-2=4$, 높이는 교점에서 $y$축까지의 거리인 $4$이다. 따라서 삼각형의 넓이는 $\\frac{1}{2}\\times4\\times4=8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "41595d9a3533e201063bd9a97dad3433787499c9e787e23bb6478ef99912ce5e"
+}

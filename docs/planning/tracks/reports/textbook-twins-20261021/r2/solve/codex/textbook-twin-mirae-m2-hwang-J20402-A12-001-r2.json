@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20402-A12-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de9-8578-7b80-bc46-2ed8f8b36968",
+ "startedAt": "2026-10-21T19:02:27+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "1bfd7a7be9e3927a1044296d520fbae1124184b4d78aa5bdb0dfd4a877fba229"
+ },
+ "promptSha256": "0e3a051963b5de23110492f8ccd055376831585afab534ea91d8e1c21f8c8105",
+ "freezeCommit": "fce07a21b4e233b0e732cc87031fb5f53548992d",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"②\",\"work\":\"일차함수는 $y=ax+b$ ($a\\\\ne 0$) 꼴이다.\\n②는 $y=60x$이므로 일차함수이다.\\n①은 $y=\\\\pi x^2$, ③은 $y=\\\\frac{36}{x}$, ④는 나머지가 반복되는 관계, ⑤는 $y=120$인 상수함수이므로 일차함수가 아니다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "②",
+  "work": "일차함수는 $y=ax+b$ ($a\\ne 0$) 꼴이다.\n②는 $y=60x$이므로 일차함수이다.\n①은 $y=\\pi x^2$, ③은 $y=\\frac{36}{x}$, ④는 나머지가 반복되는 관계, ⑤는 $y=120$인 상수함수이므로 일차함수가 아니다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "f5864097bd2809af19c7fea62861c635690a84185fc0f6825c561c047f92894d"
+}

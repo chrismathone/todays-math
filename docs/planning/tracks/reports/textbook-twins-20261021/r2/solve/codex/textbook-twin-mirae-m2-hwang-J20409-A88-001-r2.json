@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A88-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de9-53af-7650-849b-5ebd5c9173b1",
+ "startedAt": "2026-10-21T19:02:14+0900",
+ "elapsedSec": 12.7,
+ "studentSha256": {
+  "fig-1.png": "357eed92d2c478d194d6df765565800a644ea811faf50949bf69f179b9898feb",
+  "student.json": "b972ca172df7cf48193761ec6abf9f091c349278fe3b39485d257832a4ddde06"
+ },
+ "promptSha256": "40b19836c81057dcd89a93044a79f46fff8bac8c8f3a35c393ee15ce0935d59a",
+ "freezeCommit": "fce07a21b4e233b0e732cc87031fb5f53548992d",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"6\",\"work\":\"그림에서 점 P의 좌표는 $(1,4)$이다.\\n각 방정식에 대입하면 $a+8=5$, $3-4b=11$이므로 $a=-3$, $b=-2$이다.\\n따라서 $ab=(-3)\\\\times(-2)=6$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "6",
+  "work": "그림에서 점 P의 좌표는 $(1,4)$이다.\n각 방정식에 대입하면 $a+8=5$, $3-4b=11$이므로 $a=-3$, $b=-2$이다.\n따라서 $ab=(-3)\\times(-2)=6$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "7a9429508e6c572811489791f5187bb6d0a27f7cfabc9f5f84f444de630ccb18"
+}

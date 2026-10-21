@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A56-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de8-9ac5-78e0-be8b-0a2bd3b3de94",
+ "startedAt": "2026-10-21T19:01:27+0900",
+ "elapsedSec": 9.4,
+ "studentSha256": {
+  "student.json": "9b8ce121847b3b2ecb3960b5a34d3b592b2cbbfda393e97952a4f3216c1a7867"
+ },
+ "promptSha256": "e486a8cef142dfe2c8f13463dca17e71aac30414446929997d70b779c8fa2b9e",
+ "freezeCommit": "fce07a21b4e233b0e732cc87031fb5f53548992d",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"3\",\"work\":\"첫째 식에 y=-5를 대입하면 4x-12=0이므로 x=3이다.\\n둘째 식에 x=3, y=-5를 대입하면 6-5b+9=0이므로 b=3이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "3",
+  "work": "첫째 식에 y=-5를 대입하면 4x-12=0이므로 x=3이다.\n둘째 식에 x=3, y=-5를 대입하면 6-5b+9=0이므로 b=3이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ad1c0d784af0b4e3328cf8aba8f775e020fbd318e8c66b49d59882ffee6aceb8"
+}

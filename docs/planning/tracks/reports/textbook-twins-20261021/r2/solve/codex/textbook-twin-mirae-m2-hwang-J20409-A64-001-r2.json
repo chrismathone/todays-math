@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20409-A64-001-r2",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15de8-c02c-7770-9e32-93273af5e90d",
+ "startedAt": "2026-10-21T19:01:37+0900",
+ "elapsedSec": 11.8,
+ "studentSha256": {
+  "student.json": "f21812b5f594d60b18cd86770efb8dcc1b9eb1ef7aba9b56a14db1b906a43bf4"
+ },
+ "promptSha256": "950d7dad9eeed511b8280323847922f25a874e596837b8416d403e29e19c1c49",
+ "freezeCommit": "fce07a21b4e233b0e732cc87031fb5f53548992d",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"8\",\"work\":\"두 직선의 식을 더하면 $15x+30=0$이므로 $x=-2$이다. 이를 $6x+y+6=0$에 대입하면 $y=6$이다. 교점 $(-2,6)$을 $mx-y+22=0$에 대입하면 $-2m-6+22=0$이므로 $m=8$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "8",
+  "work": "두 직선의 식을 더하면 $15x+30=0$이므로 $x=-2$이다. 이를 $6x+y+6=0$에 대입하면 $y=6$이다. 교점 $(-2,6)$을 $mx-y+22=0$에 대입하면 $-2m-6+22=0$이므로 $m=8$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "6c709298b09e7d8d67deed279b0a67a1719819c4a308b22fad0d18dfbe144e41"
+}
