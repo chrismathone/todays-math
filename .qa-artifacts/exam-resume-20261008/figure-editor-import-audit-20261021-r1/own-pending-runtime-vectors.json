@@ -1,0 +1,39 @@
+{
+  "execution": "NOT RUN: parent Node/heavy exclusion remains active",
+  "cases": [
+    {
+      "id": "root2-click",
+      "input": "$root2$",
+      "expected": "$\\sqrt{2}$",
+      "check": "click canvas without Enter; persist conversion warning if any"
+    },
+    {
+      "id": "text-root2",
+      "input": "root2",
+      "expected": "root2"
+    },
+    {
+      "id": "upright-vector",
+      "input": "\\vec{AB}",
+      "expected": "\\overrightarrow{\\mathrm{AB}}"
+    },
+    {
+      "id": "lowercase-vector",
+      "input": "\\vec{a}",
+      "expected": "\\vec{a}"
+    },
+    {
+      "id": "upright-arc",
+      "input": "\\overparen{ABC}",
+      "expected": "\\overparen{\\mathrm{ABC}}"
+    },
+    {
+      "id": "resize-ownership",
+      "check": "deep compare every non-grid shape geometry and label before/after resize/cover; >60 remains HOLD"
+    },
+    {
+      "id": "warning-recommit",
+      "check": "conversion warning must survive blur, canvas click and later unchanged commit; hwpLabelToTex returns no warning payload"
+    }
+  ]
+}
