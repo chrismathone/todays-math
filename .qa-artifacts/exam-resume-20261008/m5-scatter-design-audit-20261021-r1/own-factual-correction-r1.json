@@ -1,0 +1,23 @@
+{
+  "kind": "factual-correction-only",
+  "originalSHA256": {
+    "own-report.json": "b00adcda3b4d2f10ce6f1097da9ced272aee9fdfc4bf0d159d05c1dc691dbba7",
+    "own-review.py": "650afe3318d8cb5aaa72dae231bf3c2d9b079373f26440fcc1e5d5cc98574fe2"
+  },
+  "corrections": [
+    {
+      "topic": "historical distance item",
+      "corrected": "Historical excluded 2D-distance question is scatter09; scatter13 is real-life correlation. This does not change the current exact-nine identity whitelist, which includes09 and excludes13. Historical item scope must not be confused with current revised09 or identity eligibility."
+    },
+    {
+      "topic": "alignment witness",
+      "oldName": "major10DoesNotAlignAt30With20Step",
+      "oldExpression": "Fraction(30-20,10)==1",
+      "meaning": "The old expression proves alignment to a10-step lattice anchored at20; its name was ambiguous and does not prove nonalignment to20-step ticks.",
+      "correctNonalignmentExpression": "Fraction(30-20,20).denominator != 1",
+      "exactRatio": "1/2",
+      "result": true
+    }
+  ],
+  "limits": "No rerun of own-review.py, no overwrite of original report/script, no expanded audit or production change; optional combo check not performed."
+}
