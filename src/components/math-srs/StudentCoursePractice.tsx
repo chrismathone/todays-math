@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { BackButton } from "@/components/ui/BackLink";
 import {
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -32,6 +33,7 @@ import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./elementary-practice.module.css";
 import pageTurn from "./question-page-turn.module.css";
 import { useQuestionPageTurn } from "./useQuestionPageTurn";
+import { useLearningMotion } from "./LearningMotion";
 import f from "./course-follow-up.module.css";
 import {
   FollowUpSolution,
@@ -417,9 +419,19 @@ function CourseQuestion({
   const ready = figure.status === "ready";
   const locked = busy || !ready;
   const instantAnswer = useChoices || useInteractive;
+  const { reduceMotion } = useLearningMotion();
+  const advanced = useRef(false);
+  const advance = useCallback(() => {
+    if (advanced.current || busy) return;
+    advanced.current = true;
+    onNext();
+  }, [busy, onNext]);
 
   useEffect(() => {
-    if (!busy && !hasFeedback) submitted.current = false;
+    if (!busy && !hasFeedback) {
+      submitted.current = false;
+      advanced.current = false;
+    }
   }, [busy, hasFeedback]);
 
   useEffect(() => {
@@ -428,21 +440,21 @@ function CourseQuestion({
       !feedback?.correct ||
       busy ||
       !instantAnswer ||
-      followUp
+      followUp ||
+      reduceMotion
     )
       return;
-    const motion = window.matchMedia?.("(prefers-reduced-motion: reduce)");
-    if (motion?.matches) return;
-    const timer = window.setTimeout(onNext, 2000);
-    const cancel = () => {
-      if (motion?.matches) window.clearTimeout(timer);
-    };
-    motion?.addEventListener("change", cancel);
-    return () => {
-      window.clearTimeout(timer);
-      motion?.removeEventListener("change", cancel);
-    };
-  }, [hasFeedback, feedback?.correct, busy, instantAnswer, onNext, followUp]);
+    const timer = window.setTimeout(advance, 2000);
+    return () => window.clearTimeout(timer);
+  }, [
+    hasFeedback,
+    feedback?.correct,
+    busy,
+    instantAnswer,
+    advance,
+    followUp,
+    reduceMotion,
+  ]);
 
   useEffect(() => {
     if (hasFeedback || (followUp && !awaiting))
@@ -677,7 +689,7 @@ function CourseQuestion({
                 type="button"
                 className={s.primary}
                 aria-keyshortcuts="Enter"
-                onClick={onNext}
+                onClick={advance}
                 disabled={busy}
               >
                 {repeatNext
@@ -941,7 +953,7 @@ function CourseQuestion({
                     type="button"
                     className={s.primary}
                     aria-keyshortcuts="Enter"
-                    onClick={onNext}
+                    onClick={advance}
                     disabled={busy}
                   >
                     {repeatNext

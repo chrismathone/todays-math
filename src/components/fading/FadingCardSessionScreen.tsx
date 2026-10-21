@@ -213,15 +213,21 @@ export function FadingCardSessionScreen({
   const needsSure = asksSure && sure[cardIndex] === 0 && pending !== null;
   const filling = local.phase === "filling" && !compare && !done;
   const ref = { conceptId: concept.id, sessionId: state.session?.id ?? "" };
+  // finishStep clears filled; a completed screen keeps that step's result.
+  const progressResult =
+    compare ??
+    (done
+      ? local.results.find((result) => result.step === visibleStep)
+      : undefined);
   const progressDone =
     local.phase === "reading"
       ? seen.filter((mark) => mark !== 0).length
-      : (compare?.blanks ??
+      : (progressResult?.blanks ??
         Object.keys(local.filled).length + (local.skipped?.length ?? 0));
   const progressTotal =
     local.phase === "reading"
       ? concept.propositions.length
-      : erasedTargets(concept, visibleStep).length;
+      : (progressResult?.blanks ?? erasedTargets(concept, visibleStep).length);
   const answers =
     inputKind === "typed"
       ? {
@@ -1036,7 +1042,8 @@ export function FadingCardSessionScreen({
                   />
                 </section>
               ) : (
-                filling && (
+                filling &&
+                pending !== null && (
                   <form
                     className={s.typedInput}
                     onSubmit={(event) => {
