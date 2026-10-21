@@ -143,8 +143,9 @@ def review_one(tid: str, src: dict, bundle: Path, run_dir: Path, model: str = MO
     event_file.write_text(proc.stdout, encoding="utf-8")
     try:
         events = events_from(proc.stdout)
-    except ValueError:
-        events = []
+    except ValueError as error:
+        # CLI stdout은 위 사건 파일에 그대로 보존했다. 부분 응답으로 포인터를 만들지 않는다.
+        raise RuntimeError(f"검수 CLI 실패/사건 파싱 오류: {workdir}: {error}") from error
     envelope = next((event for event in reversed(events) if event.get("type") == "result"), {})
     trace = claude_trace(events, workdir, allowed_names, model, input_hashes)
     images_read = {(workdir / name).resolve() for name in allowed_names}.issubset(
