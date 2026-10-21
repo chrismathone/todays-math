@@ -1,0 +1,88 @@
+{
+  "scope": "current Root Python behavior plus static client review, intermediate R2 audit",
+  "verdict": "BOUNDED_PYTHON_PASS_CLIENT_RUNTIME_PENDING",
+  "counts": {
+    "ownIndependentPython": {
+      "unique": 69,
+      "passed": 69,
+      "failed": 0,
+      "components": "68 own-controls including40 repeated escape controls, plus1 exact catalogue SVG example"
+    },
+    "suppliedTestsOwnExecution": {
+      "tests": 4,
+      "passed": 4,
+      "countedAsIndependentNewControls": false
+    },
+    "R1CountsNotAccumulated": true,
+    "newQuestionBlindGradeCredits": 0
+  },
+  "R1EightFindings": "all8 reproduced on current actual sanitizer and rejected; valid group fixture replaced with actual graph full path. Empty group now explicitly negative. R1 valid minimal-path positives were structural fixtures, not evidence of correct background coverage.",
+  "positiveBindings": [
+    "4 actual square graph grid fixtures (16x4 used; no16x3 validity claim)",
+    "actual default background path and visible vector remain",
+    "4 non-grid graph SVGs byte-equal to R1 graph renderer baseline under current common dependency imports",
+    "one exact engine-catalog v2 example compiled/rendered/sanitized, identical raw/sanitized bytes",
+    "40 escape input/custom-entity comparisons against stdlib"
+  ],
+  "currentSourceSHA256": {
+    "vendor/figure-engine/core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vendor/figure-engine/core/figure_quality.py": "fb9249f4783a649f4b384a578988004ab6cc2d35c7de9f88f50c81017a55f1fe",
+    "vendor/figure-engine/core/figure_svg.py": "ffb5c6547c364cd96bf2f26854b5f3bde8fdf1cbfdd62ecd147fdb65a6945cb5",
+    "vendor/figure-engine/core/label_markup.py": "9c5694da78dc9a6d884338ecffcfbded0a618b27f9fe1264a02ce42ea25773c0",
+    "scripts/figure/graph_scene.py": "6d70bf137f9e5cd5117a882af9cd72592da1c1b7851f02d015831f536c2527a2",
+    "scripts/figure/graph_native.py": "616e34f2f424875f16f9a7d8f19baccce3427a2729bb9933c1afeee30c0f4ad7",
+    "scripts/figure/engine_path.py": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+    "scripts/figure/test_grid.py": "a0f1bf52fc8227195d635f484a82ccb42dcc59379f792533aaef060efc168eba",
+    "scripts/figure/engine-catalog.json": "2231afad6fc09d83b268157ea52c64e93e161fc41f7711b93ac75a0a4213a867",
+    "src/components/unified/figure-editor/figureGridMetadata.ts": "4e66e4d293b280e79ed0da6072f2aa0e3f2a00a62166e45d287fe0a256f020db",
+    "src/components/unified/figure-editor/figureGrid.ts": "4f7168e84fce0258b6418b824a4c999480948046aa253c3c8dd519ca0a5b5df0",
+    "src/components/unified/figure-editor/figureSvgEditing.ts": "287eea446899a7b5acf4aa2bad4734bac59e469cdb16f5c67cfff758dc04143f",
+    "src/components/unified/figure-editor/FigureGridPanel.tsx": "e749c71e18595f597ef1cae3b846df2b3635f88c9c36a4a9f68c7834e00b2b61",
+    "src/components/unified/figure-editor/FigureLabelInput.tsx": "64436f4ce0a4031da27c22d712ce6d6eb1d843f732eef6a5c0664117fa2b9521",
+    "src/components/unified/figure-editor/FigureEditor.tsx": "f9bf7e185e9ec7ff0ae1ea11311903146886013b0b12132e5737ce869491dce8",
+    "src/lib/dev-ai/figure-engine.ts": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab",
+    "src/components/unified/draftStore.ts": "d1748318b0394c13baaf7631335a5d837f8cd307f43a07b86f484091e5c34acd"
+  },
+  "clientReadSHA256": {
+    "src/components/unified/figure-editor/FigureChipText.tsx": "42540e10c85fc460fd0ecb317d1ca9c47615341043ad93c2af7fb9633f5fbd9e",
+    "src/components/unified/figure-editor/figureGridMetadata.ts": "4e66e4d293b280e79ed0da6072f2aa0e3f2a00a62166e45d287fe0a256f020db",
+    "src/components/unified/figure-editor/figureSvgEditing.ts": "287eea446899a7b5acf4aa2bad4734bac59e469cdb16f5c67cfff758dc04143f",
+    "src/components/unified/figure-editor/FigureGridPanel.tsx": "e749c71e18595f597ef1cae3b846df2b3635f88c9c36a4a9f68c7834e00b2b61",
+    "src/components/unified/figure-editor/FigureLabelInput.tsx": "64436f4ce0a4031da27c22d712ce6d6eb1d843f732eef6a5c0664117fa2b9521",
+    "src/components/unified/figure-editor/figureGrid.ts": "4f7168e84fce0258b6418b824a4c999480948046aa253c3c8dd519ca0a5b5df0",
+    "src/lib/dev-ai/figure-engine.ts": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab",
+    "src/components/unified/draftStore.ts": "d1748318b0394c13baaf7631335a5d837f8cd307f43a07b86f484091e5c34acd"
+  },
+  "currentQualitySHA256": "fb9249f4783a649f4b384a578988004ab6cc2d35c7de9f88f50c81017a55f1fe",
+  "sourceChangesDuringRuns": [],
+  "runtimeImportProof": "own-results.json modules and own-catalogue-and-root-tests.json first-read dependency hashes",
+  "staticClientObservations": [
+    "common metadata parser validates finite square cells and integer1..60 counts; isFigureGridLayer tests placement/path/transform",
+    "prepareSvg removes only invalid data-grid attribute before object numbering, retains underlying ordinary shapes by source inspection",
+    "setFigureGrid uses shared numeric parser and width finite bounds; actual DOM setter not executed",
+    "cover computes remainder, disables button and shows limit status",
+    "warning commit now changes warning only if conversion changed; actual blur/click timing pending",
+    "chip lazy import catch keeps original text and stale layout is raw-key checked",
+    "current parseReview retains model passed AND issues.length===0; final source-and-rendered-images records remain; external reviewFilter not imported"
+  ],
+  "limits": [
+    "No Node/DOM/browser/raster/actual rendered pixels or physical/native print inspection",
+    "No full catalogue traversal: exactly one documented v2 example",
+    "No equation round-trip, geometry-semantic or label mathematical approval",
+    "No unit/grade/rights/native/source identity/load/public/DB approval",
+    "No sourceD execution/write, no Root source edits, no API/DB/network",
+    "No extrapolation of69 controls to all possible grid/SVG values; arbitrary path math is not certified by metadata",
+    "README REVIEW_FOCUS wording is being adapted by parent, not approved by this report"
+  ],
+  "harnessDiagnostics": [
+    "PowerShell brace-expansion command rejected before execution; corrected file-specific reads",
+    "guessed scripts/figure/catalog.py absent; actual build_catalog.py inspected read-only, never executed because it writes catalogue",
+    "parent16x3 fixture failure is parent-provided history; own valid case16x4 and copied current tests passed"
+  ],
+  "reproduce": [
+    "python -B -S own-controls.py",
+    "python -B -S own-catalogue.py",
+    "python -B -S own-finalize.py"
+  ],
+  "RootExistingDirtyPreserved": true
+}
