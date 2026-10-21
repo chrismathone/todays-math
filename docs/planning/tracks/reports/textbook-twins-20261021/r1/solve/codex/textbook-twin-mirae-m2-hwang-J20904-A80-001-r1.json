@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A80-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc9-dc60-73c1-851a-1e9ae3c429fe",
+ "startedAt": "2026-10-21T18:27:52+0900",
+ "elapsedSec": 12.9,
+ "studentSha256": {
+  "student.json": "2be220c64fc6cb8a90219e17e97784510420955990f4feefb308637f62d48a51"
+ },
+ "promptSha256": "72232e3f04378fd1e069a1d570ce60451442bc8fe7aca10589d303397b63a5bf",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"③\",\"work\":\"한 발을 맞힐 확률은 $40\\\\%=\\\\frac{2}{5}$이다.\\n세 발 모두 맞힐 확률은 $\\\\left(\\\\frac{2}{5}\\\\right)^3=\\\\frac{8}{125}$이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "한 발을 맞힐 확률은 $40\\%=\\frac{2}{5}$이다.\n세 발 모두 맞힐 확률은 $\\left(\\frac{2}{5}\\right)^3=\\frac{8}{125}$이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "800515065477277935b0281c88d43c779002c89a62265383be23c8771183530c"
+}

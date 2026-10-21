@@ -1,0 +1,32 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-B45-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dca-4471-7613-9d50-6607f55bf9f4",
+ "startedAt": "2026-10-21T18:28:19+0900",
+ "elapsedSec": 9.1,
+ "studentSha256": {
+  "fig-1.png": "a761ed72b61e767774d1f74d18f9a3f30be2bd07a780111761da5d06528afa8e",
+  "student.json": "8ef7f059be28cd6d262b84cf4a6e83fd7b757b7106e6b9d779e8ffa509e2e50d"
+ },
+ "promptSha256": "fe744fde86b0e7a1953a112db03ed1842c242dd84cc9974dcaf0bacf5919c85c",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "fig-1.png",
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"$\\\\frac{9}{25}$\",\"work\":\"전체 학생 수는 11+7+5+2=25명이다.\\n김밥 또는 과일을 가장 좋아하는 학생은 7+2=9명이므로, 구하는 확률은 9/25이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "$\\frac{9}{25}$",
+  "work": "전체 학생 수는 11+7+5+2=25명이다.\n김밥 또는 과일을 가장 좋아하는 학생은 7+2=9명이므로, 구하는 확률은 9/25이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "bd0167236c0ac25947f744b74ff740584335d488c2c73281ea7245dcec11ff5b"
+}

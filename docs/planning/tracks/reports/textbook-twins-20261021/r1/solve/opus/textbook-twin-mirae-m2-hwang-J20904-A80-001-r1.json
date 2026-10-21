@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A80-001-r1",
+ "solver": "opus",
+ "model": "claude-opus-5-5",
+ "sessionId": "b76caff2-a6de-4124-875f-b96070ff684d",
+ "startedAt": "2026-10-21T17:12:28+0900",
+ "elapsedSec": 4.6,
+ "studentSha256": {
+  "student.json": "2be220c64fc6cb8a90219e17e97784510420955990f4feefb308637f62d48a51"
+ },
+ "promptSha256": "72232e3f04378fd1e069a1d570ce60451442bc8fe7aca10589d303397b63a5bf",
+ "freezeCommit": "699c54740d7371914fa339934bae6257fa7055d0",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\": \"③\", \"work\": \"한 발 적중 확률 = 40% = 2/5. 각 발은 독립이므로 세 발 모두 적중할 확률 = (2/5)^3 = 8/125.\", \"confidence\": \"high\", \"issues\": []}\n```",
+ "parsed": {
+  "answer": "③",
+  "work": "한 발 적중 확률 = 40% = 2/5. 각 발은 독립이므로 세 발 모두 적중할 확률 = (2/5)^3 = 8/125.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "cab780d7e8e26168447355103bf46d75a73068dfbea4d60d26bac3474a7f675c"
+}

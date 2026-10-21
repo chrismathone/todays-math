@@ -1,0 +1,30 @@
+{
+ "twinExternalId": "textbook-twin-mirae-m2-hwang-J20904-A77-001-r1",
+ "solver": "codex",
+ "model": "gpt-6-astra",
+ "sessionId": "01a15dc9-5cc3-7622-ab90-22e6dc8ebbc3",
+ "startedAt": "2026-10-21T18:27:19+0900",
+ "elapsedSec": 13.1,
+ "studentSha256": {
+  "student.json": "376dbcd7a67a379985c69b86b4d73df27f19d9bea502c715db1a78f10dc10997"
+ },
+ "promptSha256": "6a7f87f6b8641b3da91718826106e95ac6f7ede54e9aa8b9038452158ac1f16b",
+ "freezeCommit": "c2d7c8eaf725739e39b14b15c686460f711058a7",
+ "exposure": {
+  "received": [
+   "student.json"
+  ],
+  "toolCalls": 0,
+  "toolPolicyVerified": true,
+  "answerKeyOrSourceAvailableInWorkdir": false
+ },
+ "returncode": 0,
+ "raw": "```json\n{\"answer\":\"48%\",\"work\":\"한 번만 성공하는 경우는 ‘성공 후 실패’와 ‘실패 후 성공’이다.\\n따라서 확률은 0.6×0.4+0.4×0.6=0.48, 즉 48%이다.\",\"confidence\":\"high\",\"issues\":[]}\n```",
+ "parsed": {
+  "answer": "48%",
+  "work": "한 번만 성공하는 경우는 ‘성공 후 실패’와 ‘실패 후 성공’이다.\n따라서 확률은 0.6×0.4+0.4×0.6=0.48, 즉 48%이다.",
+  "confidence": "high",
+  "issues": []
+ },
+ "eventsSha256": "ea46c1f605a6cbb018cb279ae8606d7bbfc40d0a730fc373d4e674947a5e084b"
+}
